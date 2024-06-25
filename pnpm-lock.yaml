@@ -52,7 +52,7 @@ importers:
         version: 8.0.3
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -86,6 +86,9 @@ importers:
       react-refresh:
         specifier: ^0.11.0
         version: 0.11.0
+      shx:
+        specifier: ^0.3.4
+        version: 0.3.4
       sort-package-json:
         specifier: ^2.7.0
         version: 2.10.0
@@ -94,7 +97,7 @@ importers:
         version: 12.3.2(typescript@5.4.5)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -470,7 +473,7 @@ importers:
         version: 2.8.8
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1765,7 +1768,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13638,7 +13641,7 @@ importers:
         version: 6.5.16
       '@storybook/preset-create-react-app':
         specifier: ^4.1.0
-        version: 4.1.2(syckn67yfq64ghb6dhaxk2jqjq)
+        version: 4.1.2(@babel/core@7.24.4)(@storybook/node-logger@6.5.16)(@storybook/react@6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1))(@types/webpack@4.41.38)(react-refresh@0.11.0)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(type-fest@3.13.1)(typescript@5.4.5)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
       '@storybook/react':
         specifier: ^6.4.20
         version: 6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)
@@ -13735,7 +13738,7 @@ importers:
         version: 6.5.16
       '@storybook/preset-create-react-app':
         specifier: ^4.1.0
-        version: 4.1.2(ros7hgbatorp3umtvmej4zzkkm)
+        version: 4.1.2(@babel/core@7.24.4)(@storybook/node-logger@6.5.16)(@storybook/react@6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1))(@types/webpack@4.41.38)(react-refresh@0.11.0)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(type-fest@3.13.1)(typescript@5.4.5)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
       '@storybook/react':
         specifier: ^6.4.20
         version: 6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)
@@ -13854,7 +13857,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -13863,13 +13866,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13891,7 +13894,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: 4.51.0
         version: link:../core
@@ -13900,7 +13903,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -13909,13 +13912,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13961,7 +13964,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -14009,7 +14012,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14021,10 +14024,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14037,7 +14040,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -14049,7 +14052,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14058,13 +14061,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14119,7 +14122,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -14164,7 +14167,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -14173,10 +14176,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14294,7 +14297,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@types/center-align':
         specifier: ^1.0.0
         version: 1.0.2
@@ -14348,13 +14351,13 @@ importers:
         version: 0.9.4
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14406,10 +14409,10 @@ importers:
         version: 0.11.11
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14455,7 +14458,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@testing-library/dom':
         specifier: ^8.5.0
         version: 8.20.1
@@ -14506,16 +14509,16 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14564,7 +14567,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
@@ -14582,13 +14585,13 @@ importers:
         version: 1.0.2
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -14634,7 +14637,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
@@ -14661,7 +14664,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14698,7 +14701,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
@@ -14722,7 +14725,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14813,7 +14816,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/devtools-ui':
         specifier: 1.1.25
         version: link:../devtools-ui
@@ -14870,7 +14873,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14907,7 +14910,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@testing-library/jest-dom':
         specifier: ^5.16.4
         version: 5.17.0
@@ -14928,7 +14931,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -14998,7 +15001,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@tailwindcss/typography':
         specifier: ^0.5.9
         version: 0.5.12(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))
@@ -15043,7 +15046,7 @@ importers:
         version: 3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -15080,7 +15083,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15095,7 +15098,7 @@ importers:
         version: 0.0.29
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15104,13 +15107,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15144,7 +15147,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15159,7 +15162,7 @@ importers:
         version: 4.17.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15168,13 +15171,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15274,7 +15277,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/antd':
         specifier: ^5.40.0
         version: link:../antd
@@ -15340,7 +15343,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15352,10 +15355,10 @@ importers:
         version: 18.3.0(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15374,7 +15377,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -15395,7 +15398,7 @@ importers:
         version: 18.3.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15404,13 +15407,13 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15618,7 +15621,7 @@ importers:
         version: 2.0.22
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15676,7 +15679,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15724,7 +15727,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15733,10 +15736,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15752,7 +15755,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15764,7 +15767,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15773,13 +15776,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15849,7 +15852,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15897,7 +15900,7 @@ importers:
         version: 3.0.0
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15909,10 +15912,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -15949,7 +15952,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -15967,7 +15970,7 @@ importers:
         version: 0.0.29
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -15976,13 +15979,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16001,7 +16004,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16013,7 +16016,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16022,13 +16025,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16056,7 +16059,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16065,7 +16068,7 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16074,13 +16077,13 @@ importers:
         version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16111,7 +16114,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16147,7 +16150,7 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -16181,7 +16184,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16193,19 +16196,19 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16224,7 +16227,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16233,7 +16236,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16242,13 +16245,13 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16273,7 +16276,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16291,7 +16294,7 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16300,13 +16303,13 @@ importers:
         version: 2.9.1
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16322,7 +16325,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16334,7 +16337,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16343,13 +16346,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16380,7 +16383,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^4.51.0
         version: link:../core
@@ -16389,7 +16392,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16398,13 +16401,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16432,7 +16435,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16447,7 +16450,7 @@ importers:
         version: 6.9.15
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16456,13 +16459,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16475,7 +16478,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/cli':
         specifier: ^2.16.33
         version: link:../cli
@@ -16487,7 +16490,7 @@ importers:
         version: 29.5.12
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16496,13 +16499,13 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16527,7 +16530,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@testing-library/dom':
         specifier: ^8.5.0
         version: 8.20.1
@@ -16560,7 +16563,7 @@ importers:
         version: 5.14.9
       jest:
         specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+        version: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-environment-jsdom:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
@@ -16569,10 +16572,10 @@ importers:
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -16597,7 +16600,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.20.2)
+        version: 0.1.4(esbuild@0.17.19)
       '@types/react':
         specifier: ^18.0.0
         version: 18.3.0
@@ -16606,7 +16609,7 @@ importers:
         version: 18.3.0
       tsup:
         specifier: ^6.7.0
-        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
+        version: 6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -29178,6 +29181,10 @@ packages:
     resolution: {integrity: sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==}
     engines: {node: '>=12'}
 
+  interpret@1.4.0:
+    resolution: {integrity: sha512-agE4QfB2Lkp9uICn7BAqoscw4SZP9kTE2hxiFI3jBPmXJfdqiahTbUuKGsMoN2GtqL9AxhYioAcVvgsb1HvRbA==}
+    engines: {node: '>= 0.10'}
+
   interpret@2.2.0:
     resolution: {integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==}
     engines: {node: '>= 0.10'}
@@ -34570,6 +34577,10 @@ packages:
       react: ^16.0.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.0.0 || ^17.0.0 || ^18.0.0
 
+  rechoir@0.6.2:
+    resolution: {integrity: sha512-HFM8rkZ+i3zrV+4LQjwQ0W+ez98pApMGM3HUrN04j3CqzPOzl9nmP15Y8YXNm8QHGv/eacOVEjqhmWpkRV0NAw==}
+    engines: {node: '>= 0.10'}
+
   rechoir@0.8.0:
     resolution: {integrity: sha512-/vxpCXddiX8NGfGO/mTafwjq4aFa/71pvamip0++IQk3zG8cbCj0fifNPrjjF1XMXUne91jL9OoxmdykoEtifQ==}
     engines: {node: '>= 10.13.0'}
@@ -35357,6 +35368,16 @@ packages:
 
   shell-quote@1.8.1:
     resolution: {integrity: sha512-6j1W9l1iAs/4xYBI1SYOVZyFcCis9b4KCLQ8fgAGG07QvzaRLVVRQvAy85yNmmZSjYjg4MWh4gNvlPujU/5LpA==}
+
+  shelljs@0.8.5:
+    resolution: {integrity: sha512-TiwcRcrkhHvbrZbnRcFYMLl30Dfov3HKqzp5tO5b4pt6G/SezKcYhmDg15zXVBswHmctSAQKznqNW2LO5tTDow==}
+    engines: {node: '>=4'}
+    hasBin: true
+
+  shx@0.3.4:
+    resolution: {integrity: sha512-N6A9MLVqjxZYcVn8hLmtneQWIJtp8IKzMP4eMnx+nqkvXoqinUPCbUFLp2UcWTEIUONhlk0ewxr/jaVGlc+J+g==}
+    engines: {node: '>=6'}
+    hasBin: true
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -41259,7 +41280,7 @@ snapshots:
       lodash.merge: 4.6.2
       lodash.uniq: 4.5.0
       resolve-from: 5.0.0
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
       typescript: 5.4.5
     transitivePeerDependencies:
       - '@swc/core'
@@ -41688,16 +41709,6 @@ snapshots:
       '@types/resolve': 1.20.6
       debug: 4.3.4(supports-color@5.5.0)
       esbuild: 0.17.19
-      escape-string-regexp: 4.0.0
-      resolve: 1.22.8
-    transitivePeerDependencies:
-      - supports-color
-
-  '@esbuild-plugins/node-resolve@0.1.4(esbuild@0.20.2)':
-    dependencies:
-      '@types/resolve': 1.20.6
-      debug: 4.3.4(supports-color@5.5.0)
-      esbuild: 0.20.2
       escape-string-regexp: 4.0.0
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -43412,41 +43423,6 @@ snapshots:
       - supports-color
       - ts-node
 
-  '@jest/core@29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))':
-    dependencies:
-      '@jest/console': 29.7.0
-      '@jest/reporters': 29.7.0
-      '@jest/test-result': 29.7.0
-      '@jest/transform': 29.7.0
-      '@jest/types': 29.6.3
-      '@types/node': 18.19.31
-      ansi-escapes: 4.3.2
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      exit: 0.1.2
-      graceful-fs: 4.2.11
-      jest-changed-files: 29.7.0
-      jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      jest-haste-map: 29.7.0
-      jest-message-util: 29.7.0
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.7.0
-      jest-resolve-dependencies: 29.7.0
-      jest-runner: 29.7.0
-      jest-runtime: 29.7.0
-      jest-snapshot: 29.7.0
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      jest-watcher: 29.7.0
-      micromatch: 4.0.5
-      pretty-format: 29.7.0
-      slash: 3.0.0
-      strip-ansi: 6.0.1
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-
   '@jest/environment@27.5.1':
     dependencies:
       '@jest/fake-timers': 27.5.1
@@ -44420,7 +44396,7 @@ snapshots:
       reflect-metadata: 0.1.13
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
 
   '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
@@ -44459,20 +44435,6 @@ snapshots:
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       pg: 8.11.5
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
-
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.3)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.3
     transitivePeerDependencies:
       - pg-native
       - supports-color
@@ -44532,23 +44494,6 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
-      pg: 8.11.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-    transitivePeerDependencies:
-      - better-sqlite3
-      - mssql
-      - mysql
-      - mysql2
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-
   '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
@@ -44569,10 +44514,10 @@ snapshots:
   '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
       pg: 8.11.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
     transitivePeerDependencies:
       - better-sqlite3
       - mssql
@@ -46331,25 +46276,6 @@ snapshots:
       html-entities: 2.5.2
       loader-utils: 2.0.4
       react-refresh: 0.11.0
-      schema-utils: 3.3.0
-      source-map: 0.7.4
-      webpack: 5.91.0
-    optionalDependencies:
-      '@types/webpack': 4.41.38
-      type-fest: 3.13.1
-      webpack-dev-server: 4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0)
-      webpack-hot-middleware: 2.26.1
-
-  '@pmmmwh/react-refresh-webpack-plugin@0.5.11(@types/webpack@4.41.38)(react-refresh@0.14.1)(type-fest@3.13.1)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)':
-    dependencies:
-      ansi-html-community: 0.0.8
-      common-path-prefix: 3.0.0
-      core-js-pure: 3.37.0
-      error-stack-parser: 2.1.4
-      find-up: 5.0.0
-      html-entities: 2.5.2
-      loader-utils: 2.0.4
-      react-refresh: 0.14.1
       schema-utils: 3.3.0
       source-map: 0.7.4
       webpack: 5.91.0
@@ -48767,7 +48693,7 @@ snapshots:
       case-sensitive-paths-webpack-plugin: 2.4.0
       core-js: 3.37.0
       css-loader: 3.6.0(webpack@4.47.0)
-      file-loader: 6.2.0(webpack@5.91.0)
+      file-loader: 6.2.0(webpack@4.47.0)
       find-up: 5.0.0
       fork-ts-checker-webpack-plugin: 4.1.6(eslint@8.57.0)(typescript@5.4.5)(webpack@4.47.0)
       glob: 7.2.3
@@ -49234,7 +49160,7 @@ snapshots:
       core-js: 3.37.0
       css-loader: 3.6.0(webpack@4.47.0)
       express: 4.19.2
-      file-loader: 6.2.0(webpack@4.47.0)
+      file-loader: 6.2.0(webpack@5.91.0)
       find-up: 5.0.0
       fs-extra: 9.1.0
       html-webpack-plugin: 4.5.2(webpack@4.47.0)
@@ -49344,32 +49270,8 @@ snapshots:
     dependencies:
       core-js: 3.37.0
 
-  '@storybook/preset-create-react-app@4.1.2(ros7hgbatorp3umtvmej4zzkkm)':
-    dependencies:
-      '@babel/core': 7.24.4
-      '@pmmmwh/react-refresh-webpack-plugin': 0.5.11(@types/webpack@4.41.38)(react-refresh@0.14.1)(type-fest@3.13.1)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
-      '@storybook/node-logger': 6.5.16
-      '@storybook/react': 6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)
-      '@storybook/react-docgen-typescript-plugin': 1.0.2--canary.12.cf35881ff63bf958b8998e8dd1dfd5626ee868c2.0(typescript@5.4.5)(webpack@5.91.0)
-      '@types/babel__core': 7.20.5
-      babel-plugin-react-docgen: 4.2.1
-      pnp-webpack-plugin: 1.7.0(typescript@5.4.5)
-      react-scripts: 5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1)
-      semver: 7.5.2
-    transitivePeerDependencies:
-      - '@types/webpack'
-      - react-refresh
-      - sockjs-client
-      - supports-color
-      - type-fest
-      - typescript
-      - webpack
-      - webpack-dev-server
-      - webpack-hot-middleware
-      - webpack-plugin-serve
-
-  '@storybook/preset-create-react-app@4.1.2(syckn67yfq64ghb6dhaxk2jqjq)':
-    dependencies:
+  ? '@storybook/preset-create-react-app@4.1.2(@babel/core@7.24.4)(@storybook/node-logger@6.5.16)(@storybook/react@6.5.16(@babel/core@7.24.4)(@storybook/builder-webpack5@6.5.16(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@storybook/manager-webpack5@6.5.16(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@types/webpack@4.41.38)(bufferutil@4.0.8)(encoding@0.1.13)(eslint@8.57.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(require-from-string@2.0.2)(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1))(@types/webpack@4.41.38)(react-refresh@0.11.0)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(type-fest@3.13.1)(typescript@5.4.5)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)'
+  : dependencies:
       '@babel/core': 7.24.4
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.11(@types/webpack@4.41.38)(react-refresh@0.11.0)(type-fest@3.13.1)(webpack-dev-server@4.15.2(bufferutil@4.0.8)(utf-8-validate@5.0.10)(webpack@5.91.0))(webpack-hot-middleware@2.26.1)(webpack@5.91.0)
       '@storybook/node-logger': 6.5.16
@@ -53307,7 +53209,7 @@ snapshots:
     dependencies:
       '@types/node': 20.5.1
       cosmiconfig: 8.3.6(typescript@5.4.5)
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
+      ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
       typescript: 5.4.5
 
   cosmiconfig@6.0.0:
@@ -53408,21 +53310,6 @@ snapshots:
       exit: 0.1.2
       graceful-fs: 4.2.11
       jest-config: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
-      jest-util: 29.7.0
-      prompts: 2.1.0
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-
-  create-jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      '@jest/types': 29.6.3
-      chalk: 4.1.2
-      exit: 0.1.2
-      graceful-fs: 4.2.11
-      jest-config: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       jest-util: 29.7.0
       prompts: 2.1.0
     transitivePeerDependencies:
@@ -57126,6 +57013,8 @@ snapshots:
 
   internmap@2.0.3: {}
 
+  interpret@1.4.0: {}
+
   interpret@2.2.0: {}
 
   intl-messageformat@10.5.11:
@@ -57780,25 +57669,6 @@ snapshots:
       - supports-color
       - ts-node
 
-  jest-cli@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      '@jest/test-result': 29.7.0
-      '@jest/types': 29.6.3
-      chalk: 4.1.2
-      create-jest: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      exit: 0.1.2
-      import-local: 3.1.0
-      jest-config: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      yargs: 17.7.2
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-
   jest-config@27.5.1(bufferutil@4.0.8)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(utf-8-validate@5.0.10):
     dependencies:
       '@babel/core': 7.24.4
@@ -57894,68 +57764,6 @@ snapshots:
     optionalDependencies:
       '@types/node': 18.19.31
       ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
-
-  jest-config@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      '@babel/core': 7.24.4
-      '@jest/test-sequencer': 29.7.0
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.24.4)
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      graceful-fs: 4.2.11
-      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
-      jest-environment-node: 29.7.0
-      jest-get-type: 29.6.3
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.7.0
-      jest-runner: 29.7.0
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 29.7.0
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    optionalDependencies:
-      '@types/node': 18.19.31
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
-    transitivePeerDependencies:
-      - babel-plugin-macros
-      - supports-color
-
-  jest-config@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      '@babel/core': 7.24.4
-      '@jest/test-sequencer': 29.7.0
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.24.4)
-      chalk: 4.1.2
-      ci-info: 3.9.0
-      deepmerge: 4.3.1
-      glob: 7.2.3
-      graceful-fs: 4.2.11
-      jest-circus: 29.7.0(babel-plugin-macros@3.1.0)
-      jest-environment-node: 29.7.0
-      jest-get-type: 29.6.3
-      jest-regex-util: 29.6.3
-      jest-resolve: 29.7.0
-      jest-runner: 29.7.0
-      jest-util: 29.7.0
-      jest-validate: 29.7.0
-      micromatch: 4.0.5
-      parse-json: 5.2.0
-      pretty-format: 29.7.0
-      slash: 3.0.0
-      strip-json-comments: 3.1.1
-    optionalDependencies:
-      '@types/node': 20.5.1
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
     transitivePeerDependencies:
       - babel-plugin-macros
       - supports-color
@@ -58586,18 +58394,6 @@ snapshots:
       '@jest/types': 29.6.3
       import-local: 3.1.0
       jest-cli: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
-    transitivePeerDependencies:
-      - '@types/node'
-      - babel-plugin-macros
-      - supports-color
-      - ts-node
-
-  jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      '@jest/core': 29.7.0(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      '@jest/types': 29.6.3
-      import-local: 3.1.0
-      jest-cli: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
     transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
@@ -59959,7 +59755,7 @@ snapshots:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
       medusa-core-utils: 1.2.1
       randomatic: 3.1.1
     optionalDependencies:
@@ -62254,14 +62050,6 @@ snapshots:
       postcss: 8.4.38
       ts-node: 10.9.2(@types/node@18.19.31)(typescript@5.4.5)
 
-  postcss-load-config@3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)):
-    dependencies:
-      lilconfig: 2.1.0
-      yaml: 1.10.2
-    optionalDependencies:
-      postcss: 8.4.38
-      ts-node: 10.9.2(@types/node@20.5.1)(typescript@5.4.5)
-
   postcss-load-config@4.0.2(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)):
     dependencies:
       lilconfig: 3.1.1
@@ -64495,6 +64283,10 @@ snapshots:
       tiny-invariant: 1.3.3
       victory-vendor: 36.9.2
 
+  rechoir@0.6.2:
+    dependencies:
+      resolve: 1.22.8
+
   rechoir@0.8.0:
     dependencies:
       resolve: 1.22.8
@@ -65474,6 +65266,17 @@ snapshots:
   shebang-regex@3.0.0: {}
 
   shell-quote@1.8.1: {}
+
+  shelljs@0.8.5:
+    dependencies:
+      glob: 7.2.3
+      interpret: 1.4.0
+      rechoir: 0.6.2
+
+  shx@0.3.4:
+    dependencies:
+      minimist: 1.2.8
+      shelljs: 0.8.5
 
   side-channel@1.0.6:
     dependencies:
@@ -66788,25 +66591,7 @@ snapshots:
 
   ts-interface-checker@0.1.13: {}
 
-  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5):
-    dependencies:
-      bs-logger: 0.2.6
-      fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      jest-util: 29.7.0
-      json5: 2.2.3
-      lodash.memoize: 4.1.2
-      make-error: 1.3.6
-      semver: 7.6.0
-      typescript: 5.4.5
-      yargs-parser: 21.1.1
-    optionalDependencies:
-      '@babel/core': 7.24.4
-      '@jest/types': 29.6.3
-      babel-jest: 29.7.0(@babel/core@7.24.4)
-      esbuild: 0.17.19
-
-  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5):
+  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
@@ -66822,13 +66607,13 @@ snapshots:
       '@babel/core': 7.24.4
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.24.4)
-      esbuild: 0.20.2
+      esbuild: 0.17.19
 
-  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.20.2)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5):
+  ts-jest@29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5):
     dependencies:
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
-      jest: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest: 29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
       jest-util: 29.7.0
       json5: 2.2.3
       lodash.memoize: 4.1.2
@@ -66840,7 +66625,6 @@ snapshots:
       '@babel/core': 7.24.4
       '@jest/types': 29.6.3
       babel-jest: 29.7.0(@babel/core@7.24.4)
-      esbuild: 0.20.2
 
   ts-log@2.2.5: {}
 
@@ -66924,29 +66708,6 @@ snapshots:
       globby: 11.1.0
       joycon: 3.1.1
       postcss-load-config: 3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))
-      resolve-from: 5.0.0
-      rollup: 3.29.4
-      source-map: 0.8.0-beta.0
-      sucrase: 3.35.0
-      tree-kill: 1.2.2
-    optionalDependencies:
-      postcss: 8.4.38
-      typescript: 5.4.5
-    transitivePeerDependencies:
-      - supports-color
-      - ts-node
-
-  tsup@6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5):
-    dependencies:
-      bundle-require: 4.0.3(esbuild@0.17.19)
-      cac: 6.7.14
-      chokidar: 3.6.0
-      debug: 4.3.4(supports-color@5.5.0)
-      esbuild: 0.17.19
-      execa: 5.1.1
-      globby: 11.1.0
-      joycon: 3.1.1
-      postcss-load-config: 3.1.4(postcss@8.4.38)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
       resolve-from: 5.0.0
       rollup: 3.29.4
       source-map: 0.8.0-beta.0
