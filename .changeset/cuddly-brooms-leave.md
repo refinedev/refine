@@ -1,5 +1,5 @@
 ---
-"@refinedev/supabase": minor
+"@refinedev/supabase": patch
 ---
 
 fix supabase sorting with nested embedded resources
