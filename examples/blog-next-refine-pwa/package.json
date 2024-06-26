@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "refine build && rm -rf .next/cache",
+    "build": "refine build && rimraf .next/cache",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "start:prod": "refine start"
@@ -26,6 +26,7 @@
     "autoprefixer": "^10.4.1",
     "next-pwa": "^5.6.0",
     "postcss": "^8.1.4",
+    "rimraf": "3.0.2",
     "tailwindcss": "^3.0.11",
     "typescript": "^5.4.2"
   }
