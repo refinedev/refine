@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "next build && rm -rf .next/cache",
+    "build": "next build && rimraf .next/cache",
     "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=8000 next dev",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "start:prod": "next start"
@@ -57,6 +57,7 @@
     "postcss-preset-env": "^7.2.3",
     "prettier": "^2.7.1",
     "prettier-plugin-tailwindcss": "^0.1.4",
+    "rimraf": "3.0.2",
     "typescript": "^5.4.2"
   }
 }
