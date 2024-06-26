@@ -4,7 +4,7 @@
   "private": true,
   "author": "refine",
   "scripts": {
-    "build": "next build && rm -rf .next/cache",
+    "build": "next build && rimraf .next/cache",
     "dev": "NODE_OPTIONS='--max-http-header-size=32767' PORT=3030 next dev",
     "lint": "next lint",
     "start": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
@@ -80,6 +80,7 @@
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "nodemon": "^2.0.20",
+    "rimraf": "3.0.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.2"
   }

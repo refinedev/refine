@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "refine build && rm -rf .next/cache",
+    "build": "refine build && rimraf .next/cache",
     "dev": "refine dev",
     "start:prod": "refine start"
   },
@@ -27,6 +27,7 @@
     "@types/react": "^18.0.0",
     "autoprefixer": "^10.4.1",
     "postcss": "^8.1.4",
+    "rimraf": "3.0.2",
     "tailwindcss": "^3.0.11",
     "typescript": "^5.4.2"
   }
