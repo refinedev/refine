@@ -4,7 +4,7 @@ description: We'll see how to redirect using Navigate Component in React Router 
 slug: navigate-react-router-redirect
 authors: joseph_mawa
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-29-router-navigate-component/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-29-router-navigate-component/social-3.png
 hide_table_of_contents: false
 ---
 
