@@ -24,6 +24,7 @@ We follow a [code of conduct](https://github.com/refinedev/refine/blob/master/CO
 - [Node.js](https://nodejs.org/en/) version 18 or higher
 - [Git](https://git-scm.com/) and [GitHub](https://github.com) account
 - [pnpm](https://pnpm.io/) version 9 or higher
+- [Latest Microsoft Visual C++ Redistributable Version](https://learn.microsoft.com/en-us/cpp/windows/latest-supported-vc-redist?view=msvc-170)
 
 :::
 
@@ -68,12 +69,6 @@ pnpm dev --scope @refinedev/antd --scope base-antd
 After running this command, you should see the packages and examples you've started in watch mode. You can now make changes in any of them and see the results in the browser.
 
 If you make a change in the `@refinedev/antd` package, you will see that right after the compilation, the `base-antd` example will re-compile and you will see the changes in the browser.
-
-:::simple Development Tip
-
-It's recommended to always keep at least one example ready to run while you are working on Refine. This way, you can test your changes in the example and make sure everything works as expected.
-
-:::
 
 <details>
 
