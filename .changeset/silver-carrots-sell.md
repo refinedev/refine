@@ -2,9 +2,9 @@
 "@refinedev/antd": minor
 ---
 
-fix: `defaultFormValues` prop of `useDrawerForm` is not working (#5727).
+fix: `defaultFormValues` prop of `useForm` is not working (#5727).
 
-From now on, `useForm`, `useStepsForm`, `useDrawerForm`, and `useModalForm` hooks accept the `defaultFormValues` prop to pre-populate the form with data that needs to be displayed.
+From now on, `useForm`, `useDrawerForm`, and `useModalForm` hooks accept the `defaultFormValues` prop to pre-populate the form with data that needs to be displayed.
 
 ```tsx
 useForm({
