@@ -1,5 +1,5 @@
 ---
-"@refinedev/antd": patch
+"@refinedev/antd": minor
 ---
 
 fix: `defaultFormValues` prop of `useDrawerForm` is not working (#5727).
