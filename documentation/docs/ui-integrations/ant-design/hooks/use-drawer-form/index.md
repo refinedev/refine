@@ -414,6 +414,30 @@ useDrawerForm({
 });
 ```
 
+### defaultFormValues
+
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+
+```tsx
+useForm({
+  defaultFormValues: {
+    title: "Hello World",
+  },
+});
+```
+
+Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the [`defaultFormValuesLoading`](#defaultformvaluesloading) state returned from the hook.
+
+```tsx
+const { defaultFormValuesLoading } = useForm({
+  defaultFormValues: async () => {
+    const response = await fetch("https://my-api.com/posts/1");
+    const data = await response.json();
+    return data;
+  },
+});
+```
+
 ## Return values
 
 ### show
@@ -472,6 +496,10 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
+
+### defaultFormValuesLoading
+
+If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormValuesLoading` will be `true` until the function is resolved.
 
 ## FAQ
 
@@ -548,19 +576,20 @@ export const UserCreate: React.FC = () => {
 | mutationMode? | [`MutationMode`](#mutationmode) |
 | hideText? | `boolean` |
 
-| Key               | Description                                                  | Type                                                                                                                                     |
-| ----------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| show              | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                                                                                 |
-| form              | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                           |
-| formProps         | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form#properties)                                                                |
-| drawerProps       | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                            |
-| saveButtonProps   | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                          |
-| deleteButtonProps | Adds props for delete button                                 | `{ resourceName?: string; recordItemId?: BaseKey; onSuccess?: (data: TData) => void; mutationMode?: MutationMode; hideText?: boolean; }` |
-| submit            | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                             |
-| open              | Whether the drawer is open or not                            | `boolean`                                                                                                                                |
-| close             | Specify a function that can close the drawer                 | `() => void`                                                                                                                             |
-| overtime          | Overtime loading props                                       | `{ elapsedTime?: number }`                                                                                                               |
-| autoSaveProps     | Auto save props                                              | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`  |
+| Key                      | Description                                                  | Type                                                                                                                                     |
+| ------------------------ | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| show                     | A function that opens the drawer                             | `(id?: BaseKey) => void`                                                                                                                 |
+| form                     | Ant Design form instance                                     | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                           |
+| formProps                | Ant Design form props                                        | [`FormProps`](/docs/ui-integrations/ant-design/hooks/use-form#properties)                                                                |
+| drawerProps              | Props for managed drawer                                     | [`DrawerProps`](#drawerprops)                                                                                                            |
+| saveButtonProps          | Props for a submit button                                    | `{ disabled: boolean; onClick: () => void; loading: boolean; }`                                                                          |
+| deleteButtonProps        | Adds props for delete button                                 | `{ resourceName?: string; recordItemId?: BaseKey; onSuccess?: (data: TData) => void; mutationMode?: MutationMode; hideText?: boolean; }` |
+| submit                   | Submit method, the parameter is the value of the form fields | `() => void`                                                                                                                             |
+| open                     | Whether the drawer is open or not                            | `boolean`                                                                                                                                |
+| close                    | Specify a function that can close the drawer                 | `() => void`                                                                                                                             |
+| overtime                 | Overtime loading props                                       | `{ elapsedTime?: number }`                                                                                                               |
+| autoSaveProps            | Auto save props                                              | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`  |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                     | `boolean`                                                                                                                                |
 
 ## Example
 

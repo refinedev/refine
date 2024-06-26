@@ -871,6 +871,30 @@ useForm({
 });
 ```
 
+### defaultFormValues
+
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+
+```tsx
+useForm({
+  defaultFormValues: {
+    title: "Hello World",
+  },
+});
+```
+
+Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the [`defaultFormValuesLoading`](#defaultformvaluesloading) state returned from the hook.
+
+```tsx
+const { defaultFormValuesLoading } = useForm({
+  defaultFormValues: async () => {
+    const response = await fetch("https://my-api.com/posts/1");
+    const data = await response.json();
+    return data;
+  },
+});
+```
+
 ## Return Values
 
 All [`Refine Core's useForm`](/docs/data/hooks/use-form/) return values also available in `useForm`.
@@ -988,6 +1012,10 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
+### defaultFormValuesLoading
+
+If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormValuesLoading` will be `true` until the function is resolved.
+
 ## FAQ
 
 ### How can Invalidate other resources?
@@ -1083,20 +1111,21 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                                                                                                             |
-| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                   |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                               |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                          |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
-| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
-| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                        |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |
-| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                       |
-| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                          |
+| Property                 | Description                                             | Type                                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish                 | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                   |
+| form                     | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                               |
+| formProps                | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                          |
+| saveButtonProps          | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
+| redirect                 | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
+| queryResult              | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
+| mutationResult           | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
+| formLoading              | Loading state of form request                           | `boolean`                                                                                                                                                        |
+| id                       | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
+| setId                    | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |
+| overtime                 | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                       |
+| autoSaveProps            | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                          |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                | `boolean`                                                                                                                                                        |
 
 ## Example
 
