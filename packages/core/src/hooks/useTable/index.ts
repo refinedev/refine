@@ -205,7 +205,7 @@ export type useTableReturnType<
   /**
    * Last resolved value from the [`getList`](https://refine.dev/docs/data/data-provider/#getlist-) method, same as `tableQueryResult.data`
    */
-  result: QueryObserverResult<GetListResponse<TData>, TError>["data"];
+  result: GetListResponse<TData> | undefined;
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
