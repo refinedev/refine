@@ -22,8 +22,8 @@ interface IPost {
 
 const PostList: React.FC = () => {
   const {
-    tableQueryResult,
     // highlight-start
+    result,
     current,
     setCurrent,
     pageSize,
@@ -32,8 +32,8 @@ const PostList: React.FC = () => {
     // highlight-end
   } = useTable<IPost, HttpError>();
 
-  // Fetches the posts for the current page
-  const posts = tableQueryResult?.data?.data ?? [];
+  const posts = result?.data || [];
+
   // highlight-start
   // Checks if there is a next page available
   const hasNext = current < pageCount;
@@ -54,7 +54,7 @@ const PostList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {posts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

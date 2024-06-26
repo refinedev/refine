@@ -523,81 +523,21 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 ### refineCore
 
-#### tableQueryResult
-
-Returned values from [`useList`](/docs/data/hooks/use-list) hook.
-
-### sorters
-
-Current [sorters state][crudsorting].
-
-### setSorters
-
-A function to set current [sorters state][crudsorting].
+The object that contains all return values of the [`useTable`][use-table-core] hook from the `@refinedev/core` package.
 
 ```tsx
- (sorters: CrudSorting) => void;
+const {
+  refineCore: {
+    tableQueryResult,
+    result,
+    setFilters,
+    setSorters,
+    setPagination,
+    data,
+    //...
+  },
+} = useTable();
 ```
-
-A function to set current [sorters state][crudsorting].
-
-#### filters
-
-Current [filters state][crudfilters].
-
-#### setFilters
-
-```tsx
-((filters: CrudFilters, behavior?: SetFilterBehavior) => void) & ((setter: (prevFilters: CrudFilters) => CrudFilters) => void)
-```
-
-A function to set current [filters state][crudfilters].
-
-#### current
-
-Current page index state. If pagination is disabled, it will be `undefined`.
-
-#### setCurrent
-
-```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined;
-```
-
-A function to set the current page index state. If pagination is disabled, it will be `undefined`.
-
-#### pageSize
-
-Current page size state. If pagination is disabled, it will be `undefined`.
-
-#### setPageSize
-
-```tsx
-React.Dispatch<React.SetStateAction<number>> | undefined;
-```
-
-A function to set the current page size state. If pagination is disabled, it will be `undefined`.
-
-#### pageCount
-
-Total page count state. If pagination is disabled, it will be `undefined`.
-
-#### createLinkForSyncWithLocation
-
-```tsx
-(params: SyncWithLocationParams) => string;
-```
-
-A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
-
-### ~~sorter~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
-Current [sorters state][crudsorting].
-
-### ~~setSorter~~ <PropTag deprecated />
-
-Use `setSorters` instead.
 
 ## FAQ
 

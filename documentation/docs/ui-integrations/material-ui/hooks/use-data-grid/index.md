@@ -831,6 +831,10 @@ Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
 Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
+### result
+
+The last successfully resolved value from the [`getList`](/docs/data/data-provider/#getlist-) method. It is identical to `tableQueryResult.data` and useful for accessing data directly without destructuring the `tableQueryResult` object.
+
 ### sorters
 
 Current [sorters state][crudsorting].
@@ -853,7 +857,9 @@ Current [filters state][crudfilters].
 ((filters: CrudFilters, behavior?: SetFilterBehavior) => void) & ((setter: (prevFilters: CrudFilters) => CrudFilters) => void)
 ```
 
-A function to set current [filters state][crudfilters].
+### search
+
+A function that calls the `onSearch` prop with the given parameters.
 
 ### current
 
@@ -958,25 +964,25 @@ useDataGrid({
 
 ### Return values
 
-| Property                      | Description                                                                                        | Type                                                                                 |
-| ----------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                              | `DataGridPropsType`\*                                                                |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
-| search                        | It sends the parameters it receives to its `onSearch` function                                     | `(value: TSearchVariables) => Promise<void>`                                         |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
-| totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                   | `number` \| `undefined`                                                              |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
-| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                             | `number` \| `undefined`                                                              |
-| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)               | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
-| hideFooterPagination          | Whether to hide the footer pagination accordingly your `pagination.mode` and `hasPagination` props | `boolean`                                                                            |
-| sorters                       | Current sorting state                                                                              | [`CrudSorting`][crudsorting]                                                         |
-| setSorters                    | A function that accepts a new sorters state                                                        | `(sorters: CrudSorting) => void`                                                     |
-| ~~sorter~~                    | Current sorting state                                                                              | [`CrudSorting`][crudsorting]                                                         |
-| ~~setSorter~~                 | A function that accepts a new sorters state                                                        | `(sorters: CrudSorting) => void`                                                     |
-| filters                       | Current filters state                                                                              | [`CrudFilters`][crudfilters]                                                         |
-| setFilters                    | A function that accepts a new filter state                                                         | `(filters: CrudFilters) => void`                                                     |
-| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                                            | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
-| overtime                      | Overtime loading props                                                                             | `{ elapsedTime?: number }`                                                           |
+| Property                      | Description                                                                          | Type                                                                                 |
+| ----------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------ | --- |
+| dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                | `DataGridPropsType`\*                                                                |
+| tableQueryResult              | Result of the `react-query`'s `useQuery`                                             | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| result                        | Resolved value from the [getList](/docs/data/data-provider/#getlist-) method.        | `GetListResponse<TData>`                                                             |
+| sorters                       | Current sorting state                                                                | [`CrudSorting`][crudsorting]                                                         |
+| setSorters                    | A function that accepts a new sorters state                                          | `(sorters: CrudSorting) => void`                                                     |
+| ~~sorter~~                    | Current sorting state                                                                | [`CrudSorting`][crudsorting]                                                         |
+| ~~setSorter~~                 | A function that accepts a new sorters state                                          | `(sorters: CrudSorting) => void`                                                     |
+| filters                       | Current filters state                                                                | [`CrudFilters`][crudfilters]                                                         |
+| setFilters                    | A function that accepts a new filter state                                           | `(filters: CrudFilters) => void`                                                     |
+| search                        | A function that calls the `onSearch` prop with the given parameters.                 | `(value: TSearchVariables) => Promise<void>`                                         |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)             | `number` \| `undefined`                                                              |
+| pageCount                     | Total page count (returns `undefined` if pagination is disabled)                     | `number` \| `undefined`                                                              |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)  | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)               | `number` \| `undefined`                                                              |
+| setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |     |
+| createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                              | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`            |
+| overtime                      | Overtime loading props                                                               | `{ elapsedTime?: number }`                                                           |
 
 > **DataGridProps**
 >

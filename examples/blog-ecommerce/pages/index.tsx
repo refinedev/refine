@@ -13,7 +13,7 @@ type ItemProps = {
 };
 
 export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
-  const { tableQueryResult, setFilters, current, setCurrent, pageSize } =
+  const { result, setFilters, current, setCurrent, pageSize } =
     useTable<IProduct>({
       resource: "products",
       queryOptions: {
@@ -23,9 +23,8 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
       metaData: { populate: ["image"] },
     });
 
-  const totalPageCount = Math.ceil(
-    (tableQueryResult.data?.total ?? 0) / pageSize,
-  );
+  const data = result?.data || [];
+  const totalPageCount = Math.ceil((result?.total ?? 0) / pageSize);
 
   return (
     <>
@@ -74,7 +73,7 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
       </Flex>
 
       <SimpleGrid columns={[1, 2, 3]} mt={6} spacing={3}>
-        {tableQueryResult.data?.data.map((item) => (
+        {data.map((item) => (
           <ProductCard
             key={item.id}
             id={item.id}

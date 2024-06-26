@@ -17,16 +17,18 @@ type ItemProp = {
 };
 
 const ProductList: React.FC<ItemProp> = ({ products }) => {
-  const { tableQueryResult } = useTable<IProduct>({
+  const { result } = useTable<IProduct>({
     resource: "products",
     queryOptions: {
       initialData: products,
     },
   });
 
+  const data = result?.data || [];
+
   return (
     <div className="my-8 grid grid-cols-4 gap-6 px-24">
-      {tableQueryResult.data?.data.map((product) => {
+      {data.map((product) => {
         return (
           <ProductCards
             key={product.id}

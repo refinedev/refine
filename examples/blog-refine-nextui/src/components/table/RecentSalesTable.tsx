@@ -64,7 +64,7 @@ const getChipColor = (status: number) => {
 
 export const RecentSalesTable = () => {
   const {
-    tableQueryResult,
+    result,
     pageCount,
     current,
     pageSize,
@@ -86,7 +86,7 @@ export const RecentSalesTable = () => {
     direction: "ascending",
   });
 
-  const orders = tableQueryResult?.data?.data ?? [];
+  const orders = result?.data || [];
 
   const getCellContents = useCallback((columnKey: string, item: IOrder) => {
     if (columnKey === "id") return item.id;

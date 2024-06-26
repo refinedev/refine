@@ -91,6 +91,7 @@ export const useSimpleList = <
     setSorters,
     createLinkForSyncWithLocation,
     tableQueryResult: queryResult,
+    result,
     overtime,
   } = useTableCore({
     resource,
@@ -127,7 +128,7 @@ export const useSimpleList = <
 
   const [form] = Form.useForm<TSearchVariables>();
 
-  const { data, isFetched, isLoading } = queryResult;
+  const { isFetched, isLoading } = queryResult;
 
   const onChange = (page: number, pageSize?: number): void => {
     if (isPaginationEnabled) {
@@ -190,7 +191,7 @@ export const useSimpleList = <
         pageSize,
         current,
         simple: !breakpoint.sm,
-        total: data?.total,
+        total: result?.total,
         onChange,
       };
     }
@@ -204,11 +205,12 @@ export const useSimpleList = <
       onFinish,
     },
     listProps: {
-      dataSource: data?.data,
+      dataSource: result?.data,
       loading: liveMode === "auto" ? isLoading : !isFetched,
       pagination: antdPagination(),
     },
     queryResult,
+    result,
     filters,
     setFilters,
     sorter,

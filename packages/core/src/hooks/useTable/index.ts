@@ -202,6 +202,7 @@ export type useTableReturnType<
   TError extends HttpError = HttpError,
 > = {
   tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  result: QueryObserverResult<GetListResponse<TData>, TError>["data"];
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
@@ -559,6 +560,7 @@ export function useTable<
 
   return {
     tableQueryResult: queryResult,
+    result: queryResult?.data,
     sorters,
     setSorters: setSortWithUnion,
     sorter: sorters,

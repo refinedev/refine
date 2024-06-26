@@ -539,6 +539,10 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 `queryResult` is the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
+### result
+
+The last successfully resolved value from the [`getList`](/docs/data/data-provider/#getlist-) method. It is identical to `tableQueryResult.data` and useful for accessing data directly without destructuring the `tableQueryResult` object.
+
 ### searchFormProps
 
 `searchFormProps` returns the [`<Form>`](https://ant.design/components/form/) instance of Ant Design. When `searchFormProps.onFinish` is called, it will trigger [`onSearch`](#onsearch) function.
@@ -700,6 +704,7 @@ Use `setSorters` instead.
 | Property        | Description                                                                           | Type                                                                                                                                                    |
 | --------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | queryResult     | Result of the query of a record                                                       | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
+| result          | Resolved value from the [getList](/docs/data/data-provider/#getlist-) method.         | `GetListResponse<TData>`                                                                                                                                |
 | searchFormProps | Ant design Form props                                                                 | [`Form`][form]                                                                                                                                          |
 | listProps       | Ant design List props                                                                 | [`List`][list]                                                                                                                                          |
 | totalPage       | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |

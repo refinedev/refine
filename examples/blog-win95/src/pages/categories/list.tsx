@@ -16,11 +16,13 @@ import {
 import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
-  const { tableQueryResult } = useTable<ICategory>({
+  const { tableQueryResult, result } = useTable<ICategory>({
     resource: "categories",
   });
 
   const { edit } = useNavigation();
+
+  const categories = result?.data || [];
 
   return (
     <Window style={{ width: "100%" }}>
@@ -35,7 +37,7 @@ export const CategoryList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tableQueryResult.data?.data.map((item) => {
+            {categories.map((item) => {
               return (
                 <TableRow key={item.id}>
                   <TableDataCell>{item.id}</TableDataCell>

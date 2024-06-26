@@ -21,8 +21,9 @@ interface IPost {
 }
 
 const PostList: React.FC = () => {
-  const { tableQueryResult } = useTable<IPost, HttpError>();
-  const posts = tableQueryResult?.data?.data ?? [];
+  const { tableQueryResult, result } = useTable<IPost, HttpError>();
+
+  const posts = result?.data || [];
 
   if (tableQueryResult?.isLoading) {
     return <div>Loading...</div>;

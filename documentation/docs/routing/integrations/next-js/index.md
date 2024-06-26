@@ -107,10 +107,11 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
-    tableQueryResult: { data, isLoading },
+    result,
+    tableQueryResult: { isLoading },
   } = useTable<IPost>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -1086,7 +1087,7 @@ export const getServerSideProps = async () => {
 
 export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
   const {
-    tableQueryResult: { data },
+    result: { data },
   } = useTable<IPost>({
     queryOptions: {
       initialData: posts,

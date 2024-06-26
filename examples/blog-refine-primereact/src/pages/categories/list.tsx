@@ -17,6 +17,7 @@ import type { ICategory } from "../../interfaces";
 export const CategoryList = () => {
   const {
     tableQueryResult,
+    result,
     pageCount,
     current,
     pageSize,
@@ -31,10 +32,11 @@ export const CategoryList = () => {
       pageSize: 5,
     },
   });
+
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const categories = tableQueryResult?.data?.data;
+  const categories = result?.data || [];
 
   const confirmDeleteProduct = (id: number) => {
     confirmDialog({

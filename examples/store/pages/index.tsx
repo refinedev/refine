@@ -59,7 +59,8 @@ const Home = ({
   const selectedCategoryId = selectedCategory?.id;
 
   const {
-    tableQueryResult: { data: products, isLoading, isFetching },
+    tableQueryResult: { isLoading, isFetching },
+    result,
     filters,
     setFilters,
   } = useTable<Product>({
@@ -109,6 +110,8 @@ const Home = ({
       },
     },
   });
+
+  const products = result?.data || [];
 
   const activeSearchQuery = filters.find(
     (f) => "field" in f && f.field === "q",
@@ -195,7 +198,7 @@ const Home = ({
           "gap-y-16",
         )}
       >
-        {products?.data.map((product) => (
+        {products.map((product) => (
           <ProductGridItem key={product.id} product={product} />
         ))}
         {isLoading
@@ -203,7 +206,7 @@ const Home = ({
               <ProductGridItemSkeleton key={i} />
             ))
           : null}
-        {!isLoading && !products?.data.length ? (
+        {!isLoading && !products.length ? (
           <div
             className={clsx("text-xl", "font-semibold", "text-gray-darkest")}
           >

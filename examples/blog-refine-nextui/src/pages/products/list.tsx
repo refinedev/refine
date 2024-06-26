@@ -49,7 +49,7 @@ const columns = [
 
 export const ProductList = () => {
   const {
-    tableQueryResult,
+    result,
     pageCount,
     current,
     pageSize,
@@ -68,11 +68,11 @@ export const ProductList = () => {
     direction: "ascending",
   });
 
-  const products = tableQueryResult?.data?.data ?? [];
+  const products = result?.data || [];
 
   const { data: categoryData } = useMany<ICategory>({
     resource: "categories",
-    ids: products?.map((item) => item?.category?.id) ?? [],
+    ids: products.map((item) => item?.category?.id) ?? [],
     queryOptions: {
       enabled: !!products,
     },

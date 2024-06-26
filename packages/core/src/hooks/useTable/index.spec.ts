@@ -36,7 +36,7 @@ const routerProvider = mockRouterProvider({
 
 describe("useTable Hook", () => {
   it("default", async () => {
-    const { result } = renderHook(() => useTable(), {
+    const { result: renderHookResult } = renderHook(() => useTable(), {
       wrapper: TestWrapper({
         dataProvider: MockJSONServer,
         resources: [{ name: "posts" }],
@@ -45,17 +45,12 @@ describe("useTable Hook", () => {
     });
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(!renderHookResult.current.tableQueryResult.isLoading).toBeTruthy();
     });
 
-    const {
-      tableQueryResult: { data },
-      pageSize,
-      current,
-      pageCount,
-    } = result.current;
+    const { result, pageSize, current, pageCount } = renderHookResult.current;
 
-    expect(data?.data).toHaveLength(2);
+    expect(result?.data).toHaveLength(2);
     expect(pageSize).toEqual(defaultPagination.pageSize);
     expect(current).toEqual(defaultPagination.current);
     expect(pageCount).toEqual(1);
@@ -91,7 +86,7 @@ describe("useTable Hook", () => {
   });
 
   it("with custom resource", async () => {
-    const { result } = renderHook(
+    const { result: renderHookResult } = renderHook(
       () =>
         useTable({
           resource: "categories",
@@ -109,18 +104,16 @@ describe("useTable Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(!renderHookResult.current.tableQueryResult.isLoading).toBeTruthy();
     });
 
-    const {
-      tableQueryResult: { data },
-    } = result.current;
+    const { result } = renderHookResult.current;
 
-    expect(data?.data).toHaveLength(2);
+    expect(result?.data).toHaveLength(2);
   });
 
   it("with syncWithLocation", async () => {
-    const { result } = renderHook(
+    const { result: renderHookResult } = renderHook(
       () =>
         useTable({
           resource: "categories",
@@ -139,14 +132,12 @@ describe("useTable Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(!renderHookResult.current.tableQueryResult.isLoading).toBeTruthy();
     });
 
-    const {
-      tableQueryResult: { data },
-    } = result.current;
+    const { result } = renderHookResult.current;
 
-    expect(data?.data).toHaveLength(2);
+    expect(result?.data).toHaveLength(2);
   });
 
   it("should success data with resource", async () => {

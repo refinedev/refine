@@ -167,6 +167,7 @@ export function useDataGrid<
 
   const {
     tableQueryResult,
+    result,
     current,
     setCurrent,
     pageSize,
@@ -208,7 +209,7 @@ export function useDataGrid<
 
   const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
 
-  const { data, isFetched, isLoading } = tableQueryResult;
+  const { isFetched, isLoading } = tableQueryResult;
 
   const isServerSideFilteringEnabled =
     (filtersFromProp?.mode || "server") === "server";
@@ -319,9 +320,9 @@ export function useDataGrid<
     tableQueryResult,
     dataGridProps: {
       disableRowSelectionOnClick: true,
-      rows: data?.data || [],
+      rows: result?.data || [],
       loading: liveMode === "auto" ? isLoading : !isFetched,
-      rowCount: data?.total || 0,
+      rowCount: result?.total || 0,
       ...dataGridPaginationValues(),
       sortingMode: isServerSideSortingEnabled ? "server" : "client",
       sortModel: transformCrudSortingToSortModel(
@@ -364,6 +365,7 @@ export function useDataGrid<
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
     },
+    result,
     current,
     setCurrent,
     pageSize,

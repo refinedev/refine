@@ -51,10 +51,11 @@ import React from "react";
 import { useTable, HttpError, useMany } from "@refinedev/core";
 
 export const HomePage: React.FC = () => {
-    const { tableQueryResult } = useTable<IPost, HttpError>({
+    const { tableQueryResult, result, } = useTable<IPost, HttpError>({
         resource: "posts",
     });
-    const posts = tableQueryResult?.data?.data ?? [];
+
+    const posts = result?.data || [];
 
     const categoryIds = posts.map((item) => item.category.id);
     const { data: categoriesData, isLoading } = useMany<ICategory>({

@@ -533,6 +533,10 @@ Use `filters.defaultBehavior` instead.
 
 Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
+### result
+
+The last successfully resolved value from the [`getList`](/docs/data/data-provider/#getlist-) method. It is identical to `tableQueryResult.data` and useful for accessing data directly without destructuring the `tableQueryResult` object.
+
 ### sorters
 
 Current [sorters state][crudsorting].
@@ -754,17 +758,18 @@ errorNotification-default='"There was an error creating resource (status code: `
 | Property                      | Description                                                                           | Type                                                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
 | tableQueryResult              | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
-| pageCount                     | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
-| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
-| setPageSize                   | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| result                        | Resolved value from the [getList](/docs/data/data-provider/#getlist-) method.         | `GetListResponse<TData>`                                                                                                                          |
 | sorters                       | Current sorting states                                                                | [`CrudSorting`][crudsorting]                                                                                                                      |
 | setSorters                    | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
 | ~~sorter~~                    | Current sorting states                                                                | [`CrudSorting`][crudsorting]                                                                                                                      |
 | ~~setSorter~~                 | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
 | filters                       | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
 | setFilters                    | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| current                       | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
+| pageCount                     | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
+| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
+| setPageSize                   | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
 | createLinkForSyncWithLocation | A function create accessible links for syncWithLocation                               | `(params: `[SyncWithLocationParams][syncwithlocationparams]`) => string;`                                                                         |
 | overtime                      | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
 

@@ -92,6 +92,7 @@ export const useTable = <
 > = {}): useTableReturnType<TData, TError, TSearchVariables> => {
   const {
     tableQueryResult,
+    result,
     current,
     setCurrent,
     pageSize,
@@ -147,7 +148,7 @@ export const useTable = <
     initialFilter,
   );
 
-  const { data, isFetched, isLoading } = tableQueryResult;
+  const { isFetched, isLoading } = tableQueryResult;
 
   React.useEffect(() => {
     if (shouldSyncWithLocation) {
@@ -259,7 +260,7 @@ export const useTable = <
         current,
         simple: !breakpoint.sm,
         position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
-        total: data?.total,
+        total: result?.total,
       };
     }
 
@@ -272,13 +273,14 @@ export const useTable = <
       onFinish,
     },
     tableProps: {
-      dataSource: data?.data,
+      dataSource: result?.data,
       loading: liveMode === "auto" ? isLoading : !isFetched,
       onChange,
       pagination: antdPagination(),
       scroll: { x: true },
     },
     tableQueryResult,
+    result,
     sorters,
     sorter,
     filters,

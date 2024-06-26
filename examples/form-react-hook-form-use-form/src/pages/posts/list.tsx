@@ -3,7 +3,7 @@ import { useTable, useNavigation } from "@refinedev/core";
 import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const { tableQueryResult } = useTable<IPost>({
+  const { result } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
@@ -12,6 +12,8 @@ export const PostList: React.FC = () => {
     ],
   });
   const { edit, create } = useNavigation();
+
+  const posts = result?.data || [];
 
   return (
     <div>
@@ -23,7 +25,7 @@ export const PostList: React.FC = () => {
           <td>Actions</td>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {posts.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

@@ -28,7 +28,7 @@ const columns: ColumnDef<Post>[] = [
 
 describe("useTable Hook", () => {
   it("It should work successfully with no properties", async () => {
-    const { result } = renderHook(
+    const { result: renderHookResult } = renderHook(
       () => useTable({ columns, refineCoreProps: { resource: "posts" } }),
       {
         wrapper: TestWrapper({
@@ -40,7 +40,7 @@ describe("useTable Hook", () => {
     await waitFor(
       () => {
         expect(
-          !result.current.refineCore.tableQueryResult.isLoading,
+          !renderHookResult.current.refineCore.tableQueryResult.isLoading,
         ).toBeTruthy();
       },
       { timeout: 10000 },
@@ -48,15 +48,15 @@ describe("useTable Hook", () => {
 
     const {
       options: { state, pageCount },
-      refineCore: { tableQueryResult },
-    } = result.current;
+      refineCore: { tableQueryResult, result },
+    } = renderHookResult.current;
 
     expect(pageCount).toBe(1);
     expect(state.pagination?.pageIndex).toBe(0);
     expect(state.pagination?.pageSize).toBe(10);
     expect(state.columnFilters).toEqual([]);
     expect(state.sorting).toEqual([]);
-    expect(tableQueryResult.data?.data).toHaveLength(3);
+    expect(result?.data).toHaveLength(3);
     expect(tableQueryResult.data?.total).toBe(3);
   });
 

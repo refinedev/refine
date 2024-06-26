@@ -12,6 +12,7 @@ import type { IOrder, IOrderStatus } from "../../../interfaces";
 export const RecentSales = () => {
   const {
     tableQueryResult,
+    result,
     pageCount,
     current,
     pageSize,
@@ -28,7 +29,7 @@ export const RecentSales = () => {
     },
   });
 
-  const orders = tableQueryResult?.data?.data;
+  const orders = result?.data || [];
 
   const formatCurrency = (value: number) => {
     return value.toLocaleString("en-US", {

@@ -44,7 +44,7 @@ const columns = [
 
 export const CategoryList = () => {
   const {
-    tableQueryResult,
+    result,
     pageCount,
     current,
     pageSize,
@@ -58,6 +58,7 @@ export const CategoryList = () => {
       pageSize: 5,
     },
   });
+
   const { edit, show, create } = useNavigation();
   const { mutate: deleteCategory } = useDelete();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -67,7 +68,7 @@ export const CategoryList = () => {
     direction: "ascending",
   });
 
-  const categories = tableQueryResult?.data?.data ?? [];
+  const categories = result?.data || [];
 
   const renderCell = useCallback((columnKey: string, item: IProduct) => {
     if (columnKey === "actions") {
