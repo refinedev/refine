@@ -25,7 +25,7 @@ jobs:
           cache: "pnpm"
       - name: Install Dependencies
         run: |
-          pnpm install -w --ignore-scripts
+          pnpm install -w
       - name: lint
         run: |
           pnpm lint:ci
@@ -46,10 +46,9 @@ jobs:
         with:
           node-version: 18
           cache: "pnpm"
-      - name: Install
-        run: pnpm install -w --ignore-scripts
-      - name: Build
-        run: pnpm install
+      - name: Install & Build
+        run: |
+          pnpm install
       - name: Test
         run: |
           pnpm test:all --skip-nx-cache
