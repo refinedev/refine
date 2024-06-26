@@ -13,7 +13,7 @@ import type {
   InferencerComponentProps,
   ResourceInferenceAttempt,
 } from "../types";
-import { get } from "lodash";
+import get from "lodash/get";
 import { pickMeta } from "../utilities/get-meta-props";
 
 type UseRelationFetchProps = {
