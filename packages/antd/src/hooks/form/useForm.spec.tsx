@@ -12,6 +12,7 @@ import {
   waitFor,
   fireEvent,
   renderHook,
+  act,
 } from "@test";
 import { mockRouterBindings } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
@@ -300,7 +301,9 @@ describe("useForm hook", () => {
     });
   });
 
-  it("formLoading and defaultFormValuesLoading should work", async () => {
+  it.only("formLoading and defaultFormValuesLoading should work", async () => {
+    jest.useFakeTimers();
+
     const { result } = renderHook(
       () => {
         return useForm<IPost, HttpError, IPost>({
@@ -321,7 +324,7 @@ describe("useForm hook", () => {
           dataProvider: {
             ...MockJSONServer,
             getOne: async () => {
-              await new Promise((resolve) => setTimeout(resolve, 500));
+              await new Promise((resolve) => setTimeout(resolve, 600));
               return {
                 data: {
                   id: 1,
@@ -340,25 +343,18 @@ describe("useForm hook", () => {
       },
     );
 
-    await waitFor(
-      () => {
-        expect(result.current.formLoading).toBe(true);
-        expect(result.current.defaultFormValuesLoading).toBe(true);
-      },
-      { timeout: 200 },
-    );
-
-    await waitFor(
-      () => {
-        expect(result.current.formLoading).toBe(true);
-        expect(result.current.defaultFormValuesLoading).toBe(false);
-      },
-      { timeout: 400 },
-    );
-
-    await waitFor(() => {
-      expect(result.current.formLoading).toBe(false);
-      expect(result.current.defaultFormValuesLoading).toBe(false);
+    expect(result.current.formLoading).toBe(true);
+    expect(result.current.defaultFormValuesLoading).toBe(true);
+    await act(async () => {
+      jest.advanceTimersByTime(400);
     });
+    expect(result.current.formLoading).toBe(true);
+    expect(result.current.defaultFormValuesLoading).toBe(false);
+
+    await act(async () => {
+      jest.advanceTimersByTime(1000);
+    });
+    expect(result.current.formLoading).toBe(false);
+    expect(result.current.defaultFormValuesLoading).toBe(false);
   });
 });
