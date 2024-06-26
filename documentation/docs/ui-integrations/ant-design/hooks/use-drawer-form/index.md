@@ -428,6 +428,8 @@ useForm({
 
 Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the [`defaultFormValuesLoading`](#defaultformvaluesloading) state returned from the hook.
 
+> 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
+
 ```tsx
 const { defaultFormValuesLoading } = useForm({
   defaultFormValues: async () => {
