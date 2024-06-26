@@ -202,6 +202,9 @@ export type useTableReturnType<
   TError extends HttpError = HttpError,
 > = {
   tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  /**
+   * Last resolved value from the [`getList`](https://refine.dev/docs/data/data-provider/#getlist-) method, same as `tableQueryResult.data`
+   */
   result: QueryObserverResult<GetListResponse<TData>, TError>["data"];
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
