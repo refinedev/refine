@@ -75,7 +75,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const renderMenuItems = (items: ITreeMenu[]) => {
     return (
       <>
-        {menuItems.map(({ name, label, icon, route }) => {
+        {items.map(({ name, label, icon, route }) => {
           const isSelected = route === selectedKey;
           return (
             <li key={name}>

@@ -4,34 +4,38 @@ description: Are we saying goodbye to the JavaScript Date object? Use the Tempor
 slug: temporal-date-api
 authors: muhammed_arslan
 tags: [javascript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-19-temporal-api/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-19-temporal-api/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on June 21, 2024, to include additional use cases and information about the JavaScript Temporal API.**
+
 ## Introduction
 
-Date object is the least-fun thing and a long-standing pain point in JavaScript. That's why there're other libraries like moment.js and date-fns. Developers use these to make sense of Date object. Implementation of Date object was directly copied from Java. Java scrapped it, but it remained in JavaScript for backward compatibility. It was written a long-time ago and not updated. There're some basic issues with the current Date implementation.
-
-- Supports only UTC and user's local time zone
-- The Date object is mutable: a date will change as methods are applied
-- Parsing dates from strings is unreliable
-- No support for non-Gregorian calendars
-- Computation APIs are clunky
+Date object is the least-fun thing and a long-standing pain point in JavaScript. That's why there're other libraries like moment.js and date-fns. Developers use these to make sense of Date object. Implementation of Date object was directly copied from Java. Java scrapped it, but it remained in JavaScript for backward compatibility. It was written a long-time ago and not updated.
 
 Steps we’ll cover:
 
 - [What Is The Temporal API?](#what-is-the-temporal-api)
+- [Why Temporal API?](#why-temporal-api)
+  - [Benefits of Using Temporal API](#benefits-of-using-temporal-api)
+  - [When to Use Temporal API](#when-to-use-temporal-api)
 - [Project setup](#project-setup)
 - [Temporal API Data Types](#temporal-api-data-types)
   - [Temporal.Now](#temporalnow)
   - [Temporal.PlainDate](#temporalplaindate)
   - [Temporal.Duration](#temporalduration)
   - [Temporal.TimeZone](#temporaltimezone)
+- [Temporal API Advanced Features](#temporal-api-advanced-features)
 - [Browser Support for Temporal API](#browser-support-for-temporal-api)
 
 ## What Is The Temporal API?
 
-Temporal API, a better replacement for Date object. Temporal presents standard data types and methods for working with dates and times. It allows you to have an easy-to-use API for date and time computations. It gives support for all time zones without having to reach for another library like date-fns. It’s a way to have a better date/time API in JavaScript. It provides PlainDate, PlainTime, and PlainDateTime objects which don’t have an association with a time zone. There’s also a way to grab time associated with time zone. It supplies tools to work with time zones or without them. So, basically, Temporal provides data types that are being split into plain and zoned.
+[Temporal API](https://tc39.es/proposal-temporal/docs/), will be a better replacement for Date object.
+
+As of the latest updates, the Temporal API is still considered experimental. It is currently at Stage 3 in the TC39 process, which means it is close to being finalized but is not yet a part of the official ECMAScript standard.
+
+Temporal presents standard data types and methods for working with dates and times. It allows you to have an easy-to-use API for date and time computations. It gives support for all time zones without having to reach for another library like date-fns. It’s a way to have a better date/time API in JavaScript. It provides PlainDate, PlainTime, and PlainDateTime objects which don’t have an association with a time zone. There’s also a way to grab time associated with time zone. It supplies tools to work with time zones or without them. So, basically, Temporal provides data types that are being split into plain and zoned.
 
 Temporal handles these issues by:
 
@@ -42,6 +46,28 @@ Temporal handles these issues by:
 - Date and time computations by providing simple APIs
 
 There’re several data types and methods available with Temporal and we'll get to explore most of them in this guide.
+
+## Why Temporal API?
+
+### Benefits of Using Temporal API
+
+The Temporal API is much easier to work with compared to the Date object, and therefore, it's more reliable. It supports all time zones out of the box. This means you don't have to worry about additional libraries like date-fns or Moment.js to make time zone handling right.
+
+Another wonderful thing about Temporal objects is immutability. For this reason, when they undergo operations, it will not change the current object but return a new one. This makes your code way more predictable and less error-prone.
+
+Parsing dates from strings is also a lot more reliable with Temporal. It strictly follows the ISO 8601 format, where one avoids the pitfalls that usually comes across with a Date object. It offers a convenient way to also work with non-Gregorian calendars; in case we would ever need to work with dates from another cultural background, this would be perfect for that purpose. This makes date and time calculations pretty simple; the API is relatively straightforward.
+
+In a general sense, the Temporal API offers a modern and robust approach to working with dates and times in JavaScript. That is light years better than the old Date object. Handling dates and times has become much less of a headache now.
+
+### When to Use Temporal API
+
+If you need to work across multiple time zones, the Temporal API is just perfect. The complex time zone conversions are managed perfectly without extra libraries such as date-fns or Moment.js. And that makes it perfect for worldwide applications.
+
+Another good case is when you need precise and reliable date and time calculations. Temporal being immutable means that operations return new objects instead of changing the original ones, which helps you to avoid bugs in your code.
+
+It's also beneficial when you're dealing with different calendar systems. Temporal supports non-Gregorian calendars so that you can handle dates from different cultural formats.
+
+Temporal is an excellent alternative to the old Date object, which we have gotten used to with its unreliable parsing and manipulation methods. It is more reliable because it uses a strict ISO 8601 format for parsing.
 
 ## Project setup
 
@@ -177,13 +203,6 @@ console.log(now.toString());
 It puts the time zone at the end to show time with your current time zone. It's something you can't do very easily with a normal Date object. Conversion between time zones and non-time zones was very difficult to achieve. So, this `Temporal.Now`
 the object has functions for getting the current date time, whatever you're looking for.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
-
 ### Temporal.PlainDate
 
 If you want to get the exact date without time, You can do this:
@@ -281,6 +300,20 @@ console.log(localTimeZone.toString());
 ```
 
 There're various data types and helper methods available with `Temporal`. If you want to explore them, you can do it through [Temporal Docs](https://tc39.es/proposal-temporal/docs/).
+
+## Temporal API Advanced Features
+
+One of the cool things about Temporal is its support for non-Gregorian calendars. This is super handy if you need to work with different cultural date formats. You can easily switch between calendars without any hassle.
+
+Another advanced feature is the `Temporal.Instant` object. This lets you work with precise timestamps down to the nanosecond. It’s perfect for applications that need high precision, like logging events or handling real-time data.
+
+The Temporal API also includes the `Temporal.Calendar` object, which allows you to define custom calendars. This can be really useful if you have specific business rules or need to track dates in a unique way.
+
+Additionally, Temporal provides robust timezone handling with the `Temporal.ZonedDateTime` object. You can easily convert dates and times between different time zones, making it great for global applications.
+
+Lastly, the API includes helper methods like `with`, `add`, `subtract`, `since`, and `until`, which make date arithmetic straightforward and reliable. These methods return new objects, ensuring immutability and preventing unintended side effects in your code.
+
+Overall, these advanced features of Temporal give you a lot of flexibility and power when working with dates and times in JavaScript.
 
 ## Browser Support for Temporal API
 
