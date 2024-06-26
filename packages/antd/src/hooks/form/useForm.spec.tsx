@@ -301,7 +301,7 @@ describe("useForm hook", () => {
     });
   });
 
-  it.only("formLoading and defaultFormValuesLoading should work", async () => {
+  it("formLoading and defaultFormValuesLoading should work", async () => {
     jest.useFakeTimers();
 
     const { result } = renderHook(
