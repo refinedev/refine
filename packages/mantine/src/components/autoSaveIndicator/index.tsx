@@ -17,28 +17,28 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   elements: {
     success = (
       <Message
-        key="autoSave.success"
+        translationKey="autoSave.success"
         defaultMessage="saved"
         icon={<IconCircleCheck size="18px" />}
       />
     ),
     error = (
       <Message
-        key="autoSave.error"
+        translationKey="autoSave.error"
         defaultMessage="auto save failure"
         icon={<IconExclamationCircle size="18px" />}
       />
     ),
     loading = (
       <Message
-        key="autoSave.loading"
+        translationKey="autoSave.loading"
         defaultMessage="saving..."
         icon={<IconRefresh size="18px" />}
       />
     ),
     idle = (
       <Message
-        key="autoSave.idle"
+        translationKey="autoSave.idle"
         defaultMessage="waiting for changes"
         icon={<IconDots size="18px" />}
       />
@@ -59,11 +59,11 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
 };
 
 const Message = ({
-  key,
+  translationKey,
   defaultMessage,
   icon,
 }: {
-  key: string;
+  translationKey: string;
   defaultMessage: string;
   icon: React.ReactNode;
 }) => {
@@ -71,7 +71,7 @@ const Message = ({
 
   return (
     <Text size="sm" display="flex" align="center" mr="2" color="gray">
-      {translate(key, defaultMessage)}
+      {translate(translationKey, defaultMessage)}
       <span style={{ position: "relative", top: "3px", marginLeft: "3px" }}>
         {icon}
       </span>

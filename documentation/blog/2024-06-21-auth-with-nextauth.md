@@ -4,17 +4,16 @@ description: How to implement Google and GitHub authentications using NextAuth.j
 slug: nextauth-google-github-authentication-nextjs
 authors: ekekenta_clinton
 tags: [nextjs, access-control]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social.png
-social_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-18-auth-with-nextauth/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on June 21, 2024, to include new sections on testing, security, error handling, and performance optimization for NextAuth.**
 
 ## Introduction
 
 We know how exhausting and time-consuming it can be to set up authentication, which includes handling databases, cookies, JWT, sessions, etc., on your own.
 The goal of this article is for you to learn about an alternative and simple tool (NextAuth), which we will use to easily add Google and GitHub authentication to our application.
-
-<!--truncate-->
 
 Steps we’ll cover:
 
@@ -22,10 +21,16 @@ Steps we’ll cover:
 - [Why use NextAuth.js?](#why-use-nextauthjs)
 - [Project setup](#project-setup)
 - [Create API Routes](#create-api-routes)
+  - [For GoogleProvider (Make sure you have a Google account):](#for-googleprovider-make-sure-you-have-a-google-account)
+  - [For GithubProvider (you will need a GitHub account):](#for-githubprovider-you-will-need-a-github-account)
 - [Configure Shared Session State](#configure-shared-session-state)
 - [Update Page Components](#update-page-components)
 - [Add React Hook](#add-react-hook)
 - [Protect API Routes](#protect-api-routes)
+- [Testing Authentication](#testing-authentication)
+- [Security Considerations](#security-considerations)
+- [Error Handling](#error-handling)
+- [Some Performance Optimization Tips](#some-performance-optimization-tips)
 
 ## Prerequisites
 
@@ -47,7 +52,7 @@ We will be building a simple landing page to demonstrate how you can simply add 
 - Allows for stateless authentication with any backend (Active Directory, LDAP, etc.)
 - JSON Web Tokens and database sessions are both supported.
 - Designed for Serverless but runs anywhere (AWS Lambda, Docker, Heroku, and so on…).
-- An open-source solution that gives you control over your data \*
+- An open-source solution that gives you control over your data
 - MySQL, MariaDB, Postgres, SQL Server, MongoDB, and SQLite are all supported natively.
 - Excellent compatibility with popular hosting provider databases
 - It can be used without a database (for example, OAuth + JWT).
@@ -533,6 +538,82 @@ export default async function handler(req, res) {
 ```
 
 In the above code snippet, we imported the `unstable_getServerSession` method and the `authOptions` props. Then we created a `session` object from the `unstable_getServerSession` method passing in the `req`, `res` and `authOptions` as arguments. The session object will provide us with the details of the logged-in user. We check if a session exists and send the blog data to the client else send a `401` (Unauthorized) response.
+
+## Testing Authentication
+
+Testing on authentication in my project using NextAuth.js. Auth flow is significant, so here is the process.
+
+The first step involves writing unit tests for my authentication logic. I use Jest, which is a great testing framework for JavaScript. For example, I am going to test out my API routes to ensure that they are handling login and logout properly.
+
+The following is a simple test that verifies the success response of the login route:
+
+```js
+import { createMocks } from "node-mocks-http";
+import handleLogin from "./pages/api/auth/[...nextauth]";
+
+test("login API returns success", async () => {
+  const { req, res } = createMocks({
+    method: "POST",
+    body: {
+      provider: "google",
+      token: "sample-token",
+    },
+  });
+
+  await handleLogin(req, res);
+
+  expect(res.statusCode).toBe(200);
+  expect(res._getJSONData().message).toBe("Login successful");
+});
+```
+
+I also make sure the whole authentication flow works using end-to-end integration tests. I write it using the likes of Cypress and for instance, simulating user interactions like signing in and out and verifying whether an application behaves in a certain way. The following is an example of an integration test with Cypress:
+
+```js
+describe("Authentication Flow", () => {
+  it("should allow a user to sign in and sign out", () => {
+    cy.visit("/");
+    cy.contains("Sign in").click();
+    cy.url().should("include", "/auth/signin");
+    cy.get('input[name="email"]').type("user@example.com");
+    cy.get('input[name="password"]').type("password");
+    cy.contains("Sign in").click();
+    cy.url().should("include", "/");
+    cy.contains("Sign out").click();
+    cy.contains("Sign in");
+  });
+});
+```
+
+Lastly, I mock the OAuth providers during tests to avoid hitting real provider APIs. This makes tests much faster and saves you from dealing with issues around rate limiting or network problems during the test. I use libraries such as `nock` for HTTP request mocking.
+
+## Security Considerations
+
+When building your app and implementing authentication, it is very important to ensure the security of your users' data. One major step to take in this regard is using environment variables to store sensitive information such as client IDs and secrets so that it is out of the code base.
+
+Always make sure to use HTTPS for transmission of data between the client and server, which helps to avoid attackers from intercepting sensitive information. Also, the session information may be maintained securely with cookies. The cookie attribute may be applied along with HttpOnly to avoid an XSS attack.
+
+Correct handling of the sessions is also essential. The session should be given a proper expiry time and invalidated when the user logs out. Another best practice is the updating of dependencies to safeguard against known vulnerabilities within libraries, including but not limited to Next.js, NextAuth.js, etc. Last but not least, apply the rate limit on your authentication endpoints to protect against brute-force attacks.
+
+By these best practices, you can further secure the implementation of your authentication and provide better protection for data belonging to your users.
+
+## Error Handling
+
+I use tools like Sentry and LogRocket to track and diagnose these issues. They help me spot patterns and recurring problems. For custom error handling, I set up custom error pages using the pages/\_error.js file in Next.js. This way, users get guided through troubleshooting steps if something goes wrong.
+
+Additionally, I use middleware to catch and manage errors at different stages of the authentication process. The signIn and signOut methods from NextAuth.js can include error handling logic to manage specific authentication failures.
+
+By using these tools and methods, I can handle authentication errors smoothly, which improves the user experience and keeps the application secure.
+
+## Some Performance Optimization Tips
+
+To begin with, one of the excellent ways to boost authentication performance is by using caching. You can implement a caching strategy about OAuth tokens, cutting down on the number of requests made to the authentication provider.
+
+Another efficient way is to reduce the size of data sent and received. I made these requests on Google, GitHub, and the like, requesting only the scopes needed and the data required out of them, which has helped in making my payloads small and efficient.
+
+Plus, all my dependencies are up-to-date, so I have everything at the best performance and without bugs in libraries like Next.js and NextAuth.js.
+
+Finally, I use a Content Delivery Network (CDN) to serve static assets quickly. This dramatically reduces the load on my server and speeds up general application performance. With those strategies in place, my authentication process will be fast and effective.
 
 ## Conclusion
 

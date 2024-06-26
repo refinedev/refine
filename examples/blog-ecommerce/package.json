@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "refine build && rm -rf .next/cache",
+    "build": "refine build && rimraf .next/cache",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
     "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 refine dev",
     "start:prod": "refine start"
@@ -32,6 +32,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@typescript-eslint/parser": "5.48.0",
+    "rimraf": "3.0.2",
     "typescript": "^5.4.2"
   }
 }
