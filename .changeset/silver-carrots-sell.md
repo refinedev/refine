@@ -2,7 +2,7 @@
 "@refinedev/antd": minor
 ---
 
-fix: `defaultFormValues` prop of `useForm` is not working (#5727).
+fix: `useForm`'s `defaultFormValues` prop is not working (#5727).
 
 From now on, `useForm`, `useDrawerForm`, and `useModalForm` hooks accept the `defaultFormValues` prop to pre-populate the form with data that needs to be displayed.
 
@@ -27,11 +27,3 @@ const { defaultFormValuesLoading } = useForm({
   },
 });
 ```
-
-fix: [`useDrawerForm`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-drawer-form/) has unused props.
-
-- `submit` prop is removed from `useDrawerForm` hook. Instead, you can use `onFinish` prop to handle the form submission.
-  https://refine.dev/docs/guides-concepts/forms/#modifying-data-before-submission
-
-- `form` prop is removed from `useDrawerForm` hook.
-  The purpose of `useDrawerForm` is to create a `form` instance. Because of that `form` instance cannot be passed as a prop.
