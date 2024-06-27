@@ -1,4 +1,4 @@
-export { useList, UseListProps } from "./useList";
+export { useList, UseListProps, UseListReturnType } from "./useList";
 export { useOne, UseOneProps } from "./useOne";
 export { useMany, UseManyProps } from "./useMany";
 

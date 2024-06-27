@@ -164,7 +164,9 @@ export type UseSelectReturnType<
   TOption extends BaseOption = BaseOption,
 > = {
   queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  result: GetListResponse<TData> | undefined;
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+  defaultValueResult: GetManyResponse<TData> | undefined;
   onSearch: (value: string) => void;
   options: TOption[];
 } & UseLoadingOvertimeReturnType;
@@ -368,7 +370,9 @@ export const useSelect = <
 
   return {
     queryResult,
+    result: queryResult?.data,
     defaultValueQueryResult,
+    defaultValueResult: defaultValueQueryResult?.data,
     options: combinedOptions,
     onSearch: debounce(onSearch, debounceValue),
     overtime: { elapsedTime },

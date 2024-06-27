@@ -43,7 +43,7 @@ import type {
 } from "../../contexts/data/types";
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
-import type { BaseListProps } from "../data/useList";
+import type { BaseListProps, UseListReturnType } from "../data/useList";
 import {
   type UseLoadingOvertimeOptionsProps,
   type UseLoadingOvertimeReturnType,
@@ -201,7 +201,7 @@ export type useTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
 > = {
-  tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  tableQueryResult: UseListReturnType<TData, TError>;
   /**
    * Last resolved value from the [`getList`](https://refine.dev/docs/data/data-provider/#getlist-) method, same as `tableQueryResult.data`
    */

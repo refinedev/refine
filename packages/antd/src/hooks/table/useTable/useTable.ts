@@ -18,6 +18,11 @@ import {
   type useTableReturnType as useTableCoreReturnType,
   pickNotDeprecated,
   useSyncWithLocation,
+  useList,
+  useSelect,
+  useForm,
+  useOne,
+  useShow,
 } from "@refinedev/core";
 
 import {
@@ -295,4 +300,59 @@ export const useTable = <
     createLinkForSyncWithLocation,
     overtime,
   };
+};
+
+const UseTableExample = () => {
+  const { result, tableQueryResult, tableProps } = useTable();
+
+  tableProps.dataSource;
+  tableQueryResult.data?.data;
+  tableQueryResult.data?.total;
+  // new fields
+  tableQueryResult.result?.data;
+  tableQueryResult.result?.total;
+
+  result?.data;
+  result?.total;
+};
+
+const UseListExample = () => {
+  const { result, data } = useList();
+  data?.data;
+  data?.total;
+  // new fields
+  result?.data;
+  result?.total;
+};
+
+const UseFormExample = () => {
+  const { queryResult, mutationResult } = useForm();
+  queryResult?.data?.data;
+  mutationResult?.data?.data;
+};
+
+const UseOneExample = () => {
+  const { data } = useOne({ resource: "" });
+  data?.data;
+};
+
+const UseShowExample = () => {
+  const { queryResult } = useShow<{ foo: "bar" }>({ resource: "" });
+  queryResult.data?.data.foo;
+};
+
+const UseSelectExample = () => {
+  const { result, defaultValueResult, queryResult, defaultValueQueryResult } =
+    useSelect({
+      resource: "posts",
+    });
+
+  queryResult.data?.data;
+  queryResult.data?.total;
+  // new fields
+  result?.data;
+  result?.total;
+
+  defaultValueQueryResult.data?.data;
+  defaultValueResult?.data;
 };
