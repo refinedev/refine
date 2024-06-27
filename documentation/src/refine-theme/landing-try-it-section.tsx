@@ -43,7 +43,11 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
 
   React.useEffect(() => {
     if (params.playground || hash === "#playground") {
-      scrollToItem();
+      if (params.playground === "browser") {
+        setWizardOpen(true);
+      } else {
+        scrollToItem();
+      }
     }
   }, [params.playground, hash]);
 
@@ -308,19 +312,23 @@ const LandingTryItWizardSection = ({
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const { colorMode } = useColorMode();
 
+  const postColorMode = React.useCallback(() => {
+    iframeRef.current.contentWindow?.postMessage(
+      {
+        type: "colorMode",
+        colorMode,
+      },
+      "*",
+    );
+  }, [iframeRef.current, colorMode]);
+
   React.useEffect(() => {
     // when color mode changes, post a message to the iframe
     // to update its color mode
     if (iframeRef.current) {
-      iframeRef.current.contentWindow?.postMessage(
-        {
-          type: "colorMode",
-          colorMode,
-        },
-        "*",
-      );
+      postColorMode();
     }
-  }, [colorMode, visible]);
+  }, [iframeRef.current, postColorMode]);
 
   return (
     <div
@@ -384,6 +392,9 @@ const LandingTryItWizardSection = ({
           <iframe
             ref={iframeRef}
             src="https://refine.new/embed-form"
+            onLoad={() => {
+              setTimeout(postColorMode, 50);
+            }}
             className={clsx(
               "scrollbar-hidden",
               "transition-opacity",
