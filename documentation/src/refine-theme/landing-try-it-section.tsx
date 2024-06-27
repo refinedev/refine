@@ -320,7 +320,7 @@ const LandingTryItWizardSection = ({
       },
       "*",
     );
-  }, [iframeRef.current, colorMode]);
+  }, [colorMode]);
 
   React.useEffect(() => {
     // when color mode changes, post a message to the iframe
@@ -328,7 +328,7 @@ const LandingTryItWizardSection = ({
     if (iframeRef.current) {
       postColorMode();
     }
-  }, [iframeRef.current, postColorMode]);
+  }, [postColorMode]);
 
   return (
     <div
