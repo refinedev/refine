@@ -2,6 +2,7 @@ import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
+import { posts } from "@test/dataMocks";
 
 import type {
   CrudFilter,
@@ -441,23 +442,26 @@ describe("useSelect Hook", () => {
   });
 
   it("should sort default data first with selectedOptionsOrder for defaultValue", async () => {
-    const mockFunc = jest.fn();
-
     const { result } = renderHook(
       () =>
         useSelect({
           resource: "posts",
-          queryOptions: {
-            onSuccess: () => {
-              mockFunc();
-            },
-          },
-          defaultValue: [2],
+          defaultValue: ["2"],
           selectedOptionsOrder: "selected-first",
         }),
       {
         wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              // Default `getMany` mock returns all posts, we need to update it to return appropriate posts
+              getMany: ({ ids }) => {
+                return Promise.resolve({
+                  data: posts.filter((post) => ids.includes(post.id)) as any,
+                });
+              },
+            },
+          },
           resources: [{ name: "posts" }],
         }),
       },
@@ -467,10 +471,8 @@ describe("useSelect Hook", () => {
       expect(result.current.queryResult.isSuccess).toBeTruthy();
     });
 
-    const { options } = result.current;
-
-    expect(options).toHaveLength(2);
-    expect(options).toEqual([
+    expect(result.current.options).toHaveLength(2);
+    expect(result.current.options).toEqual([
       { label: "Recusandae consectetur aut atque est.", value: "2" },
       {
         label:
@@ -478,9 +480,6 @@ describe("useSelect Hook", () => {
         value: "1",
       },
     ]);
-
-    // for init call and defaultValue
-    expect(mockFunc).toBeCalledTimes(2);
   });
 
   it("should invoke queryOptions methods for default value successfully", async () => {
