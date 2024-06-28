@@ -5,6 +5,8 @@ import {
   type RouterBindings,
   matchResourceFromRoute,
   ResourceContext,
+  pickNotDeprecated,
+  useUpdate,
 } from "@refinedev/core";
 import { useCallback, useContext } from "react";
 import qs from "qs";
@@ -111,6 +113,12 @@ export const routerBindings: RouterBindings = {
         ...parsedSearch,
       };
 
+      const prefferedPage = convertToNumberIfPossible(
+        pickNotDeprecated(
+          combinedParams.page ?? combinedParams.current,
+        ) as string,
+      ) as number | undefined;
+
       const response: ParseResponse = {
         ...(resource && { resource }),
         ...(action && { action }),
@@ -119,9 +127,8 @@ export const routerBindings: RouterBindings = {
         pathname,
         params: {
           ...combinedParams,
-          current: convertToNumberIfPossible(
-            combinedParams.current as string,
-          ) as number | undefined,
+          page: prefferedPage,
+          current: prefferedPage,
           pageSize: convertToNumberIfPossible(
             combinedParams.pageSize as string,
           ) as number | undefined,

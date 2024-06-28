@@ -108,8 +108,14 @@ export interface Pagination {
   /**
    * Initial page index
    * @default 1
+   * @deprecated `current` is deprecated, use `page` instead.
    */
   current?: number;
+  /**
+   * Initial page index
+   * @default 1
+   */
+  page?: number;
   /**
    * Initial number of items per page
    * @default 10

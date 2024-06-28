@@ -17,14 +17,17 @@ import type {
 import * as useRouterType from "../../contexts/router/picker";
 
 const defaultPagination = {
+  page: 1,
   pageSize: 10,
   current: 1,
 };
 
 const customPagination = {
+  page: 2,
+  defaultPage: 2,
+  defaultPageSize: 1,
   current: 2,
   defaultCurrent: 2,
-  defaultPageSize: 1,
   pageSize: 1,
 };
 
@@ -50,12 +53,14 @@ describe("useTable Hook", () => {
 
     const {
       tableQueryResult: { data },
+      page,
       pageSize,
       current,
       pageCount,
     } = result.current;
 
     expect(data?.data).toHaveLength(2);
+    expect(page).toEqual(defaultPagination.page);
     expect(pageSize).toEqual(defaultPagination.pageSize);
     expect(current).toEqual(defaultPagination.current);
     expect(pageCount).toEqual(1);
@@ -66,6 +71,7 @@ describe("useTable Hook", () => {
       () =>
         useTable({
           pagination: {
+            page: customPagination.defaultPage,
             current: customPagination.defaultCurrent,
             pageSize: customPagination.defaultPageSize,
           },
@@ -83,10 +89,11 @@ describe("useTable Hook", () => {
       expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
     });
 
-    const { pageSize, current, pageCount } = result.current;
+    const { pageSize, page, current, pageCount } = result.current;
 
     expect(pageSize).toEqual(customPagination.pageSize);
     expect(current).toEqual(customPagination.current);
+    expect(page).toEqual(customPagination.page);
     expect(pageCount).toEqual(2);
   });
 
@@ -170,29 +177,6 @@ describe("useTable Hook", () => {
     await waitFor(() => {
       expect(result.current.tableQueryResult.isSuccess).toBeTruthy();
     });
-  });
-
-  it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
-    const { result } = renderHook(
-      () =>
-        useTable({
-          initialCurrent: 10,
-          initialPageSize: 20,
-          pagination: {
-            current: 1,
-            pageSize: 10,
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          routerProvider,
-          dataProvider: MockJSONServer,
-        }),
-      },
-    );
-
-    expect(result.current.pageSize).toBe(10);
-    expect(result.current.current).toBe(1);
   });
 
   it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
@@ -372,29 +356,6 @@ describe("useTable Hook", () => {
     expect(result.current.sorters).toStrictEqual([
       { field: "title", order: "desc" },
     ]);
-  });
-
-  it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
-    const { result } = renderHook(
-      () =>
-        useTable({
-          initialCurrent: 10,
-          initialPageSize: 20,
-          pagination: {
-            current: 1,
-            pageSize: 10,
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          routerProvider,
-          dataProvider: MockJSONServer,
-        }),
-      },
-    );
-
-    expect(result.current.pageSize).toBe(10);
-    expect(result.current.current).toBe(1);
   });
 
   it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
@@ -1484,7 +1445,25 @@ describe("useTable Filters", () => {
         },
       );
 
-      const link = result.current.createLinkForSyncWithLocation({
+      const linkWithBothCurrentAndPageField =
+        result.current.createLinkForSyncWithLocation({
+          filters: [],
+          sorters: [],
+          pagination: {
+            current: 1,
+            page: 1,
+            pageSize: 10,
+          },
+        });
+      if (testCase === "new") {
+        expect(linkWithBothCurrentAndPageField).toEqual("go mock");
+      } else {
+        expect(linkWithBothCurrentAndPageField).toEqual(
+          "/posts?page=1&pageSize=10&current=1",
+        );
+      }
+
+      const linkWithCurrent = result.current.createLinkForSyncWithLocation({
         filters: [],
         sorters: [],
         pagination: {
@@ -1492,11 +1471,24 @@ describe("useTable Filters", () => {
           pageSize: 10,
         },
       });
-
       if (testCase === "new") {
-        expect(link).toEqual("go mock");
+        expect(linkWithCurrent).toEqual("go mock");
       } else {
-        expect(link).toEqual("/posts?pageSize=10&current=1");
+        expect(linkWithCurrent).toEqual("/posts?pageSize=10&current=1");
+      }
+
+      const linkWithPage = result.current.createLinkForSyncWithLocation({
+        filters: [],
+        sorters: [],
+        pagination: {
+          page: 1,
+          pageSize: 10,
+        },
+      });
+      if (testCase === "new") {
+        expect(linkWithPage).toEqual("go mock");
+      } else {
+        expect(linkWithPage).toEqual("/posts?page=1&pageSize=10");
       }
     },
   );
@@ -1583,5 +1575,203 @@ describe("legacy Router Provider", () => {
     expect(result.current.pageSize).toEqual(defaultValues.pagination.pageSize);
     expect(result.current.sorters).toEqual(defaultValues.sorters.initial);
     expect(result.current.filters).toEqual(defaultValues.filters.initial);
+  });
+});
+
+describe("useTable hook pagination", () => {
+  it("should be prioritized over initialCurrent and initialPageSize", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          initialCurrent: 10,
+          initialPageSize: 20,
+          pagination: {
+            current: 1,
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider,
+          dataProvider: MockJSONServer,
+        }),
+      },
+    );
+
+    expect(result.current.pageSize).toBe(10);
+    expect(result.current.current).toBe(1);
+    expect(result.current.page).toBe(1);
+  });
+
+  it("should be prioritized over initialCurrent and initialPageSize", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          initialCurrent: 10,
+          initialPageSize: 20,
+          pagination: {
+            current: 1,
+            page: 1,
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider,
+          dataProvider: MockJSONServer,
+        }),
+      },
+    );
+
+    expect(result.current.pageSize).toBe(10);
+    expect(result.current.current).toBe(1);
+    expect(result.current.page).toBe(1);
+  });
+
+  it("should be prioritized `page` over `current` [from props]", async () => {
+    const getListMock = jest.fn();
+
+    const defaultPagination = {
+      current: 10,
+      page: 5,
+      pageSize: 10,
+      mode: "server",
+    } as const;
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          pagination: defaultPagination,
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider,
+          dataProvider: {
+            ...MockJSONServer.default,
+            getList: getListMock,
+          },
+        }),
+      },
+    );
+
+    expect(result.current.current).toBe(defaultPagination.page);
+    expect(result.current.page).toBe(defaultPagination.page);
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pagination: {
+          page: defaultPagination.page,
+          current: defaultPagination.page,
+          pageSize: defaultPagination.pageSize,
+          mode: defaultPagination.mode,
+        },
+      }),
+    );
+  });
+
+  it("should be prioritized `page` over `current` [from location]", async () => {
+    const getListMock = jest.fn();
+
+    const defaultPagination = {
+      current: 10,
+      page: 5,
+      pageSize: 10,
+      mode: "server",
+    } as const;
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          syncWithLocation: true,
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider: mockRouterProvider({
+            resource: { name: "posts", list: "/posts" },
+            action: "list",
+            pathname: "/posts",
+            params: {
+              page: defaultPagination.page,
+              current: defaultPagination.current,
+              pageSize: defaultPagination.pageSize,
+            },
+          }),
+          dataProvider: {
+            ...MockJSONServer.default,
+            getList: getListMock,
+          },
+        }),
+      },
+    );
+
+    const { current, page } = result.current;
+
+    expect(current).toBe(defaultPagination.page);
+    expect(page).toBe(defaultPagination.page);
+    expect(getListMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        pagination: {
+          page: defaultPagination.page,
+          current: defaultPagination.page,
+          pageSize: defaultPagination.pageSize,
+          mode: defaultPagination.mode,
+        },
+      }),
+    );
+  });
+
+  it("should work same with setCurrent and setPage", async () => {
+    const goMock = jest.fn(() => "go mock");
+
+    const { result } = renderHook(
+      () =>
+        useTable({
+          syncWithLocation: true,
+          pagination: {
+            current: 1,
+            page: 1,
+            pageSize: 10,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          routerProvider: {
+            ...routerProvider,
+            go: () => goMock,
+          },
+          dataProvider: MockJSONServer,
+        }),
+      },
+    );
+
+    expect(result.current.current).toBe(1);
+    expect(result.current.page).toBe(1);
+
+    act(() => {
+      result.current.setCurrent(5);
+    });
+    await waitFor(() => {
+      expect(result.current.current).toBe(5);
+      expect(result.current.page).toBe(5);
+      expect(goMock).toHaveBeenCalledWith({
+        options: { keepQuery: true },
+        query: { page: 5, pageSize: 10, filters: [], sorters: [] },
+        to: undefined,
+        type: "replace",
+      });
+    });
+
+    act(() => {
+      result.current.setPage(10);
+    });
+    await waitFor(() => {
+      expect(result.current.current).toBe(10);
+      expect(result.current.page).toBe(10);
+      expect(goMock).toHaveBeenCalledWith({
+        options: { keepQuery: true },
+        query: { page: 10, pageSize: 10, filters: [], sorters: [] },
+        to: undefined,
+        type: "replace",
+      });
+    });
   });
 });

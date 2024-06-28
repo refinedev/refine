@@ -12,13 +12,27 @@ import type {
   SortOrder,
 } from "../../contexts/data/types";
 
-export const parseTableParams = (url: string) => {
-  const { current, pageSize, sorter, sorters, filters } = qs.parse(
+type ParseTableParamsReturnType = {
+  /**
+   * @deprecated Use `parsedCurrent` instead.
+   */
+  parsedCurrent: number | "" | undefined;
+  parsedPage: number | "" | undefined;
+  parsedPageSize: number | "" | undefined;
+  parsedSorter: CrudSort[];
+  parsedFilters: CrudFilter[];
+};
+
+export const parseTableParams = (url: string): ParseTableParamsReturnType => {
+  const { page, current, pageSize, sorter, sorters, filters } = qs.parse(
     url.substring(1), // remove first ? character
   );
 
+  const prefferedPage = pickNotDeprecated(page, current);
+
   return {
-    parsedCurrent: current && Number(current),
+    parsedCurrent: prefferedPage && Number(prefferedPage),
+    parsedPage: prefferedPage && Number(prefferedPage),
     parsedPageSize: pageSize && Number(pageSize),
     parsedSorter: (pickNotDeprecated(sorters, sorter) as CrudSort[]) ?? [],
     parsedFilters: (filters as CrudFilter[]) ?? [],
@@ -34,7 +48,7 @@ export const parseTableParamsFromQuery = (params: any) => {
  * @internal This function is used to stringify table params from the useTable hook.
  */
 export const stringifyTableParams = (params: {
-  pagination?: { current?: number; pageSize?: number };
+  pagination?: { current?: number; page?: number; pageSize?: number };
   sorters: CrudSort[];
   filters: CrudFilter[];
   [key: string]: any;

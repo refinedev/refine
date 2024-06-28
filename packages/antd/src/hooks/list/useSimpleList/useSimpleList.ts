@@ -217,6 +217,8 @@ export const useSimpleList = <
     setSorters,
     current,
     setCurrent,
+    page: current,
+    setPage: setCurrent,
     pageSize,
     setPageSize,
     pageCount,

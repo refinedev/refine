@@ -1,13 +1,16 @@
 import qs from "qs";
-import type { ParsedParams } from "@refinedev/core";
+import { pickNotDeprecated, type ParsedParams } from "@refinedev/core";
 
 export const parseTableParams = (search: string) => {
   const parsed: ParsedParams = qs.parse(search, { ignoreQueryPrefix: true });
 
+  const prefferedPage = pickNotDeprecated(parsed.page, parsed.current);
+
   const tableReady = {
     ...parsed,
     pagination: {
-      current: parsed.current,
+      page: prefferedPage,
+      current: prefferedPage,
       pageSize: parsed.pageSize,
     },
   };

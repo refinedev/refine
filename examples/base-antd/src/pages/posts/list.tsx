@@ -1,4 +1,9 @@
-import { useMany, getDefaultFilter } from "@refinedev/core";
+import {
+  useMany,
+  getDefaultFilter,
+  parseTableParamsFromQuery,
+  useParsed,
+} from "@refinedev/core";
 
 import {
   List,
@@ -16,7 +21,19 @@ import { Table, Space, Select, Radio } from "antd";
 import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
-  const { tableProps, filters } = useTable<IPost>({
+  const { params } = useParsed();
+
+  const {
+    tableProps,
+    filters,
+    createLinkForSyncWithLocation,
+    sorters,
+    page,
+    pageSize,
+    current,
+    setPage,
+    setCurrent,
+  } = useTable<IPost>({
     syncWithLocation: true,
   });
 
@@ -37,8 +54,45 @@ export const PostList = () => {
     defaultValue: getDefaultFilter("category.id", filters, "in"),
   });
 
+  const syncWithLocationLink = createLinkForSyncWithLocation({
+    filters,
+    sorters,
+    pagination: {
+      page,
+      current,
+      pageSize,
+    },
+  });
+  const parsedTableParams = parseTableParamsFromQuery(params);
+
+  const { current: paramsCurrent, page: paramsPage } = params || {};
+
+  console.log({
+    params,
+    parsedTableParams,
+    syncWithLocationLink,
+  });
+
   return (
     <List>
+      <button
+        onClick={() =>
+          setPage((prev) => {
+            return Number(prev) + 1;
+          })
+        }
+      >
+        increment setPage
+      </button>
+      <button
+        onClick={() =>
+          setCurrent((prev) => {
+            return Number(prev) + 1;
+          })
+        }
+      >
+        increment setCurrent
+      </button>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" />
         <Table.Column dataIndex="title" title="Title" />

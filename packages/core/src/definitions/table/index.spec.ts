@@ -79,6 +79,7 @@ describe("definitions/table", () => {
   it("stringify table params correctly", async () => {
     const pagination = {
       current: 1,
+      page: 1,
       pageSize: 10,
     };
 
@@ -111,6 +112,7 @@ describe("definitions/table", () => {
       filters,
       ...userDefinedQueryParam,
     });
+    console.log(url);
     expect(url).toMatchSnapshot();
   });
 
@@ -621,6 +623,7 @@ describe("definitions/table", () => {
   it("parseTableParams default sorter and filters", () => {
     expect(parseTableParams("?current=1&pageSize=10")).toStrictEqual({
       parsedCurrent: 1,
+      parsedPage: 1,
       parsedFilters: [],
       parsedPageSize: 10,
       parsedSorter: [],

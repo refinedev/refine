@@ -15,14 +15,19 @@ export const handlePaginationParams = ({
   const hasPaginationString = hasPagination === false ? "off" : "server";
   const mode = pagination?.mode ?? hasPaginationString;
 
-  const current =
-    pickNotDeprecated(pagination?.current, configPagination?.current) ?? 1;
+  const page =
+    pickNotDeprecated(
+      pagination?.page,
+      pagination?.current,
+      configPagination?.current,
+    ) ?? 1;
 
   const pageSize =
     pickNotDeprecated(pagination?.pageSize, configPagination?.pageSize) ?? 10;
 
   return {
-    current,
+    current: page,
+    page,
     pageSize,
     mode,
   };

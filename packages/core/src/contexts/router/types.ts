@@ -47,7 +47,11 @@ export type ParsedParams<
 > = {
   filters?: CrudFilter[];
   sorters?: CrudSort[];
+  /**
+   * @deprecated `current` is deprecated, use `page` instead.
+   */
   current?: number;
+  page?: number;
   pageSize?: number;
 } & TParams;
 

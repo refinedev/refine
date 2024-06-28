@@ -366,6 +366,8 @@ export function useDataGrid<
     },
     current,
     setCurrent,
+    page: current,
+    setPage: setCurrent,
     pageSize,
     setPageSize,
     pageCount,

@@ -188,7 +188,14 @@ export type useTableProps<TQueryFnData, TError, TData> = {
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 type SyncWithLocationParams = {
-  pagination: { current?: number; pageSize?: number };
+  pagination: {
+    /**
+     * @deprecated `current` is deprecated. Use `page` instead.
+     */
+    current?: number;
+    page?: number;
+    pageSize?: number;
+  };
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
@@ -216,8 +223,16 @@ export type useTableReturnType<
   setFilters: ((filters: CrudFilter[], behavior?: SetFilterBehavior) => void) &
     ((setter: (prevFilters: CrudFilter[]) => CrudFilter[]) => void);
   createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
+  /**
+   * @deprecated  `current` is deprecated. Use `page` instead.
+   */
   current: number;
+  /**
+   * @deprecated  `setCurrent` is deprecated. Use `setPage` instead.
+   * */
   setCurrent: ReactSetState<useTableReturnType["current"]>;
+  page: number;
+  setPage: ReactSetState<useTableReturnType["page"]>;
   pageSize: number;
   setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
   pageCount: number;
@@ -290,7 +305,8 @@ export function useTable<
   const hasPaginationString = hasPagination === false ? "off" : "server";
   const isPaginationEnabled =
     (pagination?.mode ?? hasPaginationString) !== "off";
-  const prefferedCurrent = pickNotDeprecated(
+  const prefferedPage = pickNotDeprecated(
+    pagination?.page,
     pagination?.current,
     initialCurrent,
   );
@@ -303,8 +319,13 @@ export function useTable<
   /** `parseTableParams` is redundant with the new routing */
   // We want to always parse the query string even when syncWithLocation is
   // deactivated, for hotlinking to work properly
-  const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
-    parseTableParams(search ?? "?");
+  const {
+    parsedPage,
+    parsedCurrent,
+    parsedPageSize,
+    parsedSorter,
+    parsedFilters,
+  } = parseTableParams(search ?? "?");
 
   const preferredInitialFilters = pickNotDeprecated(
     filtersFromProp?.initial,
@@ -328,14 +349,21 @@ export function useTable<
       defaultSetFilterBehavior,
     ) ?? "merge";
 
-  let defaultCurrent: number;
+  const prefferedPageFromParams = pickNotDeprecated(
+    parsedParams?.params?.page,
+    parsedParams?.params?.current,
+  );
+
+  const prefferedParsedPage = pickNotDeprecated(parsedPage, parsedCurrent);
+
+  let defaultPage: number;
   let defaultPageSize: number;
   let defaultSorter: CrudSort[] | undefined;
   let defaultFilter: CrudFilter[] | undefined;
 
   if (syncWithLocation) {
-    defaultCurrent =
-      parsedParams?.params?.current || parsedCurrent || prefferedCurrent || 1;
+    defaultPage =
+      prefferedPageFromParams || prefferedParsedPage || prefferedPage || 1;
     defaultPageSize =
       parsedParams?.params?.pageSize ||
       parsedPageSize ||
@@ -348,7 +376,7 @@ export function useTable<
       parsedParams?.params?.filters ||
       (parsedFilters.length ? parsedFilters : preferredInitialFilters);
   } else {
-    defaultCurrent = prefferedCurrent || 1;
+    defaultPage = prefferedPage || 1;
     defaultPageSize = prefferedPageSize || 10;
     defaultSorter = preferredInitialSorters;
     defaultFilter = preferredInitialFilters;
@@ -378,28 +406,31 @@ export function useTable<
   const [filters, setFilters] = useState<CrudFilter[]>(
     setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
   );
-  const [current, setCurrent] = useState<number>(defaultCurrent);
+  const [page, setPage] = useState<number>(defaultPage);
   const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
   const getCurrentQueryParams = (): object => {
     if (routerType === "new") {
       // We get QueryString parameters that are uncontrolled by refine.
-      const { sorters, filters, pageSize, current, ...rest } =
+      const { sorters, filters, pageSize, page, current, ...rest } =
         parsedParams?.params ?? {};
 
       return rest;
     }
 
     // We get QueryString parameters that are uncontrolled by refine.
-    const { sorter, filters, pageSize, current, ...rest } = qs.parse(search, {
-      ignoreQueryPrefix: true,
-    });
+    const { sorter, filters, pageSize, page, current, ...rest } = qs.parse(
+      search,
+      {
+        ignoreQueryPrefix: true,
+      },
+    );
 
     return rest;
   };
 
   const createLinkForSyncWithLocation = ({
-    pagination: { current, pageSize },
+    pagination: { current, page, pageSize },
     sorter,
     filters,
   }: SyncWithLocationParams) => {
@@ -412,7 +443,13 @@ export function useTable<
             keepQuery: true,
           },
           query: {
-            ...(isPaginationEnabled ? { current, pageSize } : {}),
+            ...(isPaginationEnabled
+              ? {
+                  page,
+                  pageSize,
+                  current,
+                }
+              : {}),
             sorters: sorter,
             filters,
             ...getCurrentQueryParams(),
@@ -424,6 +461,7 @@ export function useTable<
 
     const stringifyParams = stringifyTableParams({
       pagination: {
+        page,
         pageSize,
         current,
       },
@@ -437,7 +475,7 @@ export function useTable<
 
   useEffect(() => {
     if (search === "") {
-      setCurrent(defaultCurrent);
+      setPage(defaultPage);
       setPageSize(defaultPageSize);
       setSorters(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
@@ -460,7 +498,7 @@ export function useTable<
             keepQuery: true,
           },
           query: {
-            ...(isPaginationEnabled ? { pageSize, current } : {}),
+            ...(isPaginationEnabled ? { pageSize, page } : {}),
             sorters: differenceWith(
               sorters,
               preferredPermanentSorters,
@@ -480,7 +518,7 @@ export function useTable<
             ? {
                 pagination: {
                   pageSize,
-                  current,
+                  page,
                 },
               }
             : {}),
@@ -493,12 +531,12 @@ export function useTable<
         });
       }
     }
-  }, [syncWithLocation, current, pageSize, sorters, filters]);
+  }, [syncWithLocation, page, pageSize, sorters, filters]);
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
     hasPagination,
-    pagination: { current, pageSize, mode: pagination?.mode },
+    pagination: { page, pageSize, mode: pagination?.mode },
     filters: isServerSideFilteringEnabled
       ? unionFilters(preferredPermanentFilters, filters)
       : undefined,
@@ -565,8 +603,10 @@ export function useTable<
     setSorter: setSortWithUnion,
     filters,
     setFilters: setFiltersFn,
-    current,
-    setCurrent,
+    current: page,
+    setCurrent: setPage,
+    page,
+    setPage,
     pageSize,
     setPageSize,
     pageCount: pageSize
