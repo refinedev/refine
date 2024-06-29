@@ -131,17 +131,23 @@ export const serveApi = (app: Express, db: Data) => {
   });
 
   app.get("/api/project-id/status", async (_, res) => {
+    const CODES = {
+      OK: 0,
+      NOT_FOUND: 1,
+      ERROR: 2,
+    };
+
     const projectId = await getProjectIdFromPackageJson();
 
     if (projectId) {
-      res.status(200).json({ projectId });
+      res.status(200).json({ projectId, status: CODES.OK });
       return;
     }
     if (projectId === false) {
-      res.status(404).json({ projectId: null });
+      res.status(200).json({ projectId: null, status: CODES.NOT_FOUND });
       return;
     }
-    res.status(500).json({ projectId: null });
+    res.status(200).json({ projectId: null, status: CODES.ERROR });
     return;
   });
 
