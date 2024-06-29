@@ -46,7 +46,6 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@ory/client": "^1.5.2",
     "@refinedev/devtools-shared": "1.1.9",
     "body-parser": "^1.20.2",
     "boxen": "^5.1.2",
