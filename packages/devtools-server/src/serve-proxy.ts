@@ -118,11 +118,19 @@ export const serveProxy = async (app: Express) => {
 
   const loginTrigger: RequestHandler = async (req, res, _next) => {
     const query = req.query;
-    const referrer = req.headers.referer?.replace(/\/$/, "");
+    const protocol = req.secure ? "https" : "http";
+    const host = req.headers.host;
+
+    if (!host) {
+      res.redirect(`${AUTH_CALLBACK_API_PATH}?error=Missing%20Host`);
+      return;
+    }
+
+    const callbackUrl = `${protocol}://${host}${AUTH_CALLBACK_API_PATH}`;
 
     const params = new URLSearchParams({
       provider: query.provider as string,
-      returnUrl: encodeURIComponent(`${referrer}${AUTH_CALLBACK_API_PATH}`),
+      returnUrl: encodeURIComponent(callbackUrl),
     });
 
     res.redirect(`${AUTH_SERVER_URL}/login?${params.toString()}`);
