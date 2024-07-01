@@ -1,11 +1,11 @@
 export const DEFAULT_SERVER_PORT = 5001;
 export const SERVER_PORT = DEFAULT_SERVER_PORT;
 
-export const AUTH_SERVER_URL = /* __DEVELOPMENT__ */ true
+export const AUTH_SERVER_URL = __DEVELOPMENT__
   ? "https://auth.refine.dev"
   : "https://auth.refine.dev";
 
-export const REFINE_API_URL = /* __DEVELOPMENT__ */ true
+export const REFINE_API_URL = __DEVELOPMENT__
   ? "https://develop.cloud.refine.dev"
   : "https://cloud2.refine.dev";
 
