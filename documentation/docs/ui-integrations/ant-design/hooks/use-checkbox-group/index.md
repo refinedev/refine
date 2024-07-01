@@ -91,6 +91,23 @@ const { selectProps } = useCheckboxGroup({
 });
 ```
 
+### selectedOptionsOrder
+
+`selectedOptionsOrder` allows us to sort `selectedOptions` on `defaultValue`. It can be:
+
+- `"in-place"`: sort `selectedOptions` at the bottom. It is by default.
+- `"selected-first"`: sort `selectedOptions` at the top.
+
+```tsx
+const { selectProps } = useCheckboxGroup({
+  resource: "languages",
+  // highlight-next-line
+  defaultValue: [1, 2],
+  // highlight-next-line
+  selectedOptionsOrder: "selected-first", // in-place | selected-first
+});
+```
+
 The easiest way to select default values for checkbox fields is by passing in `defaultValue`.
 
 ### optionLabel and optionValue
@@ -260,3 +277,7 @@ Use `sorters` instead.
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
+
+```
+
+```
