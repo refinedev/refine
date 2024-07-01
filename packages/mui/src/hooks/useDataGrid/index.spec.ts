@@ -5,6 +5,7 @@ import { MockJSONServer, TestWrapper } from "@test";
 import { useDataGrid } from "./";
 import type { CrudFilters } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
+import { posts } from "@test/dataMocks";
 
 describe("useDataGrid Hook", () => {
   it("controlled filtering with 'onSubmit' and 'onSearch'", async () => {
@@ -197,5 +198,43 @@ describe("useDataGrid Hook", () => {
       expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
+  });
+
+  it("when processRowUpdate is called, update data", async () => {
+    let postToUpdate: any = posts[0];
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          editable: true,
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            update: async (data) => {
+              const resolvedData = await Promise.resolve({ data });
+              postToUpdate = resolvedData.data.variables;
+            },
+          },
+        }),
+      },
+    );
+    const newPost = {
+      ...postToUpdate,
+      title: "New title",
+    };
+
+    await act(async () => {
+      if (result.current.dataGridProps.processRowUpdate) {
+        await result.current.dataGridProps.processRowUpdate(
+          newPost,
+          postToUpdate,
+        );
+      }
+    });
+
+    expect(newPost).toEqual(postToUpdate);
   });
 });

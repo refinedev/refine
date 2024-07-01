@@ -47,22 +47,32 @@ export {
   AccessControlProvider,
   AccessControlProvider as AccessControlBindings,
   CanParams,
+  CanResponse,
   CanReturnType,
   IAccessControlContext,
+  IAccessControlContextReturnType,
 } from "./contexts/accessControl/types.js";
 
 export {
   AuditLogProvider,
+  IAuditLogContext,
   ILog,
   ILogData,
   LogParams,
 } from "./contexts/auditLog/types.js";
 
 export {
+  AuthActionResponse,
   AuthBindings,
   AuthProvider,
+  CheckResponse,
+  IAuthContext,
+  IdentityResponse,
   ILegacyAuthContext,
   LegacyAuthProvider,
+  OnErrorResponse,
+  PermissionResponse,
+  SuccessNotificationResponse,
 } from "./contexts/auth/types.js";
 
 export {
@@ -107,6 +117,20 @@ export {
   BaseOption,
   IQueryKeys,
   Prettify,
+  Context,
+  ContextQuery,
+  DataProviders,
+  IDataContext,
+  GraphQLQueryOptions,
+  Fields,
+  NestedField,
+  PrevContext,
+  PreviousQuery,
+  QueryBuilderOptions,
+  QueryResponse,
+  RefineError,
+  ValidationErrors,
+  VariableOptions,
 } from "./contexts/data/types.js";
 
 export {
@@ -123,6 +147,7 @@ export {
 
 export {
   ILiveContext,
+  ILiveModeContextProvider,
   LiveEvent,
   LiveCommonParams,
   LiveManyParams,
@@ -141,6 +166,7 @@ export {
 } from "./contexts/notification/types.js";
 
 export {
+  DashboardPageProps,
   IRefineContext,
   IRefineContextOptions,
   IRefineContextProvider,
@@ -158,7 +184,14 @@ export {
   IResourceContext,
   IResourceItem,
   ITreeMenu,
+  IMenuItem,
+  ResourceAuditLogPermissions,
   ResourceBindings,
+  RouteableProperties,
+  ResourceRouteComponent,
+  ResourceRouteComposition,
+  ResourceRouteDefinition,
+  ResourceRoutePath,
 } from "./contexts/resource/types.js";
 
 export {
@@ -183,5 +216,11 @@ export {
   RouterProvider,
   RouterProvider as RouterBindings,
 } from "./contexts/router/types.js";
+
+export {
+  ActionTypes,
+  IUndoableQueue,
+  IUndoableQueueContext,
+} from "./contexts/undoableQueue/types.js";
 
 export { IUnsavedWarnContext } from "./contexts/unsavedWarn/types.js";

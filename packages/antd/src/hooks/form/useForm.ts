@@ -5,7 +5,7 @@ import {
   Form,
   type ButtonProps,
 } from "antd";
-import { useForm as useFormSF } from "sunflower-antd";
+import { useForm as useFormSF, type UseFormConfig } from "sunflower-antd";
 import {
   type AutoSaveProps,
   flattenObjectKeys,
@@ -52,7 +52,8 @@ export type UseFormProps<
    * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
    */
   disableServerSideValidation?: boolean;
-} & AutoSaveProps<TVariables>;
+} & AutoSaveProps<TVariables> &
+  Pick<UseFormConfig, "defaultFormValues">;
 
 export type UseFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -77,7 +78,10 @@ export type UseFormReturnType<
   onFinish: (
     values?: TVariables,
   ) => Promise<CreateResponse<TResponse> | UpdateResponse<TResponse> | void>;
-};
+} & Pick<
+    ReturnType<typeof useFormSF<TResponse, TVariables>>,
+    "defaultFormValuesLoading"
+  >;
 
 /**
  * `useForm` is used to manage forms. It uses Ant Design {@link https://ant.design/components/form/ Form} data scope management under the hood and returns the required props for managing the form actions.
@@ -128,6 +132,7 @@ export const useForm = <
   id: idFromProps,
   overtimeOptions,
   optimisticUpdateMap,
+  defaultFormValues,
   disableServerSideValidation: disableServerSideValidationProp = false,
 }: UseFormProps<
   TQueryFnData,
@@ -153,6 +158,7 @@ export const useForm = <
   const [formAnt] = Form.useForm();
   const formSF = useFormSF<TResponse, TVariables>({
     form: formAnt,
+    defaultFormValues,
   });
   const { form } = formSF;
 
@@ -264,6 +270,8 @@ export const useForm = <
   const warnWhenUnsavedChanges =
     warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
+  // populate form with data when queryResult is ready or id changes
+  // form populated via initialValues prop
   React.useEffect(() => {
     form.resetFields();
   }, [queryResult?.data?.data, id]);
@@ -310,6 +318,7 @@ export const useForm = <
       initialValues: queryResult?.data?.data,
     },
     saveButtonProps,
+    defaultFormValuesLoading: formSF.defaultFormValuesLoading,
     ...useFormCoreResult,
     onFinish: async (values?: TVariables) => {
       return await onFinish(values ?? formSF.form.getFieldsValue(true));

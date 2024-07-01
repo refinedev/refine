@@ -134,7 +134,7 @@ type UpdateManyParams<TData, TError, TVariables> = {
   { ids: BaseKey[]; values: TVariables }
 >;
 
-type UseUpdateManyReturnType<
+export type UseUpdateManyReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TVariables = {},

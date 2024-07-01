@@ -1,5 +1,4 @@
 import React, { useCallback } from "react";
-import type { UseFormConfig } from "sunflower-antd";
 import type { FormInstance, FormProps, DrawerProps, ButtonProps } from "antd";
 import {
   useTranslate,
@@ -20,7 +19,7 @@ import {
 import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 import type { DeleteButtonProps } from "../../../components";
 
-export interface UseDrawerFormConfig extends UseFormConfig {
+export interface UseDrawerFormConfig {
   action: "show" | "edit" | "create" | "clone";
 }
 

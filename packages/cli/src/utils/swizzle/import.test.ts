@@ -9,39 +9,60 @@ describe("getImports", () => {
                 import * as Antd from "antd";
                 import { Button as AntButton, TextInput } from "antd";
                 import { Button as AntButton, TextInput as AntTextInput } from "antd";
+                import type { IAuthProvider } from "@refinedev/core";
+                import { type BaseRecord } from "@refinedev/core";
+
         `;
 
     const expected = [
       {
+        isType: false,
         statement: 'import React from "react";',
         importPath: "react",
         defaultImport: "React",
       },
       {
+        isType: false,
         statement: 'import { Button } from "antd";',
         importPath: "antd",
-        namedImports: " { Button }",
+        namedImports: "{ Button }",
       },
       {
+        isType: false,
         statement: 'import { TextInput as AntTextInput } from "antd";',
         importPath: "antd",
-        namedImports: " { TextInput as AntTextInput }",
+        namedImports: "{ TextInput as AntTextInput }",
       },
       {
+        isType: false,
         statement: 'import * as Antd from "antd";',
         importPath: "antd",
         namespaceImport: "Antd",
       },
       {
+        isType: false,
         statement: 'import { Button as AntButton, TextInput } from "antd";',
         importPath: "antd",
-        namedImports: " { Button as AntButton, TextInput }",
+        namedImports: "{ Button as AntButton, TextInput }",
       },
       {
+        isType: false,
         statement:
           'import { Button as AntButton, TextInput as AntTextInput } from "antd";',
         importPath: "antd",
-        namedImports: " { Button as AntButton, TextInput as AntTextInput }",
+        namedImports: "{ Button as AntButton, TextInput as AntTextInput }",
+      },
+      {
+        isType: true,
+        statement: 'import type { IAuthProvider } from "@refinedev/core";',
+        importPath: "@refinedev/core",
+        namedImports: "{ IAuthProvider }",
+      },
+      {
+        isType: false,
+        statement: 'import { type BaseRecord } from "@refinedev/core";',
+        importPath: "@refinedev/core",
+        namedImports: "{ type BaseRecord }",
       },
     ];
 
@@ -52,7 +73,7 @@ describe("getImports", () => {
 describe("getNameChangeInImport", () => {
   it("should get all name changes", () => {
     const statement = `
-                { Button as AntButton, TextInput as AntTextInput }
+                { Button as AntButton, TextInput as AntTextInput, type ButtonProps, type TextInputProps as AntTextInputProps }
         `;
 
     const expected = [
@@ -63,10 +84,16 @@ describe("getNameChangeInImport", () => {
         afterCharacter: ",",
       },
       {
-        statement: " TextInput as AntTextInput ",
+        statement: " TextInput as AntTextInput,",
         fromName: "TextInput",
         toName: "AntTextInput",
+        afterCharacter: ",",
+      },
+      {
         afterCharacter: undefined,
+        fromName: "type TextInputProps",
+        statement: " type TextInputProps as AntTextInputProps ",
+        toName: "AntTextInputProps",
       },
     ];
 
@@ -196,6 +223,32 @@ import { Button, TextInput } from "antd";
 import React from "react";
 import { Button, TextInput } from "antd";
 import type { Layout } from "antd";
+`;
+
+    expect(reorderImports(content).trim()).toEqual(expected.trim());
+  });
+
+  it("should keep type imports with content", () => {
+    const content = `
+import type { AxiosInstance } from "axios";
+import { stringify } from "query-string";
+import type { DataProvider } from "@refinedev/core";
+import { axiosInstance, generateSort, generateFilter } from "./utils";
+
+type MethodTypes = "get" | "delete" | "head" | "options";
+type MethodTypesWithBody = "post" | "put" | "patch";
+`;
+
+    const expected = `
+import { axiosInstance, generateSort, generateFilter } from "./utils";
+import { stringify } from "query-string";
+import type { AxiosInstance } from "axios";
+import type { DataProvider } from "@refinedev/core";
+
+
+
+type MethodTypes = "get" | "delete" | "head" | "options";
+type MethodTypesWithBody = "post" | "put" | "patch";
 `;
 
     expect(reorderImports(content).trim()).toEqual(expected.trim());

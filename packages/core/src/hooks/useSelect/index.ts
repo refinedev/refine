@@ -34,6 +34,8 @@ import {
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
+export type SelectedOptionsOrder = "in-place" | "selected-first";
+
 export type UseSelectProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
@@ -84,6 +86,11 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * Adds extra `options`
    */
   defaultValue?: BaseKey | BaseKey[];
+  /**
+   * Allow us to sort the selection options
+   * @default `in-place`
+   */
+  selectedOptionsOrder?: SelectedOptionsOrder;
   /**
    * The number of milliseconds to delay
    * @default `300`
@@ -213,6 +220,7 @@ export const useSelect = <
     hasPagination = false,
     liveMode,
     defaultValue = [],
+    selectedOptionsOrder = "in-place",
     onLiveEvent,
     onSearch: onSearchFromProp,
     liveParams,
@@ -362,7 +370,13 @@ export const useSelect = <
   });
 
   const combinedOptions = useMemo(
-    () => uniqBy([...options, ...selectedOptions], "value"),
+    () =>
+      uniqBy(
+        selectedOptionsOrder === "in-place"
+          ? [...options, ...selectedOptions]
+          : [...selectedOptions, ...options],
+        "value",
+      ),
     [options, selectedOptions],
   );
 

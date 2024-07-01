@@ -17,7 +17,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   elements: {
     success = (
       <Message
-        key="autoSave.success"
+        translationKey="autoSave.success"
         defaultMessage="saved"
         // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<CheckCircleOutlined />}
@@ -25,7 +25,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     ),
     error = (
       <Message
-        key="autoSave.error"
+        translationKey="autoSave.error"
         defaultMessage="auto save failure"
         // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<ExclamationCircleOutlined />}
@@ -33,7 +33,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     ),
     loading = (
       <Message
-        key="autoSave.loading"
+        translationKey="autoSave.loading"
         defaultMessage="saving..."
         // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<SyncOutlined />}
@@ -41,7 +41,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
     ),
     idle = (
       <Message
-        key="autoSave.idle"
+        translationKey="autoSave.idle"
         defaultMessage="waiting for changes"
         // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<EllipsisOutlined />}
@@ -63,11 +63,11 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
 };
 
 const Message = ({
-  key,
+  translationKey,
   defaultMessage,
   icon,
 }: {
-  key: string;
+  translationKey: string;
   defaultMessage: string;
   icon: React.ReactNode;
 }) => {
@@ -82,7 +82,7 @@ const Message = ({
         fontSize: ".8rem",
       }}
     >
-      {translate(key, defaultMessage)}
+      {translate(translationKey, defaultMessage)}
       <span style={{ marginLeft: ".2rem" }}>{icon}</span>
     </Typography.Text>
   );

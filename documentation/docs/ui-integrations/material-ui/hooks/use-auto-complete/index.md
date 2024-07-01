@@ -90,6 +90,20 @@ useAutocomplete({
 });
 ```
 
+### selectedOptionsOrder
+
+`selectedOptionsOrder` allows us to sort `selectedOptions` on `defaultValue`. It can be:
+
+- `"in-place"`: sort `selectedOptions` at the bottom. It is by default.
+- `"selected-first"`: sort `selectedOptions` at the top.
+
+```tsx
+useAutocomplete({
+  defaultValue: 1, // or [1, 2]
+  selectedOptionsOrder: "selected-first", // in-place | selected-first
+});
+```
+
 > For more information, refer to the [`useMany` documentation &#8594](/docs/data/hooks/use-many)
 
 ### debounce

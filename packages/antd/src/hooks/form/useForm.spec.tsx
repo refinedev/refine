@@ -5,7 +5,15 @@ import type { IRefineOptions, HttpError } from "@refinedev/core";
 
 import { Form, Input, Select } from "antd";
 import { useForm, useSelect } from "..";
-import { MockJSONServer, TestWrapper, render, waitFor, fireEvent } from "@test";
+import {
+  MockJSONServer,
+  TestWrapper,
+  render,
+  waitFor,
+  fireEvent,
+  renderHook,
+  act,
+} from "@test";
 import { mockRouterBindings } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
 
@@ -25,11 +33,13 @@ const renderForm = ({
   refineOptions?: IRefineOptions;
 }) => {
   const Page = () => {
-    const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
-      IPost,
-      HttpError,
-      IPost
-    >(formParams);
+    const {
+      formProps,
+      saveButtonProps,
+      queryResult,
+      formLoading,
+      defaultFormValuesLoading,
+    } = useForm<IPost, HttpError, IPost>(formParams);
 
     const postData = queryResult?.data?.data;
     const { selectProps: categorySelectProps } = useSelect({
@@ -42,7 +52,8 @@ const renderForm = ({
 
     return (
       <>
-        {formLoading && <div>loading...</div>}
+        {formLoading && <div>formLoading</div>}
+        {defaultFormValuesLoading && <div>defaultFormValuesLoading</div>}
         <SaveButton {...saveButtonProps} />
         <Form {...formProps} layout="vertical">
           <Form.Item label="Title" name="title">
@@ -244,5 +255,106 @@ describe("useForm hook", () => {
       expect(queryByText("Translated content error")).not.toBeInTheDocument();
       expect(queryByText("Field is not valid.")).not.toBeInTheDocument();
     });
+  });
+
+  it("should accept defaultFormValues", async () => {
+    const { getByLabelText } = renderForm({
+      formParams: {
+        resource: "posts",
+        action: "create",
+        defaultFormValues: {
+          title: "Default Title",
+          content: "Default Content",
+        },
+      },
+    });
+
+    await waitFor(() => {
+      expect(getByLabelText("Title")).toHaveValue("Default Title");
+      expect(getByLabelText("Content")).toHaveValue("Default Content");
+    });
+  });
+
+  it("should accept defaultFormValues as promise", async () => {
+    const { getByLabelText } = renderForm({
+      formParams: {
+        resource: "posts",
+        action: "create",
+        defaultFormValues: async () => {
+          await new Promise((resolve) => setTimeout(resolve, 0));
+          return {
+            title: "Default Title",
+            content: "Default Content",
+          };
+        },
+      },
+    });
+
+    await waitFor(() => {
+      expect(getByLabelText("Title")).toHaveValue("");
+      expect(getByLabelText("Content")).toHaveValue("");
+    });
+
+    await waitFor(() => {
+      expect(getByLabelText("Title")).toHaveValue("Default Title");
+      expect(getByLabelText("Content")).toHaveValue("Default Content");
+    });
+  });
+
+  it("formLoading and defaultFormValuesLoading should work", async () => {
+    jest.useFakeTimers();
+
+    const { result } = renderHook(
+      () => {
+        return useForm<IPost, HttpError, IPost>({
+          resource: "posts",
+          action: "edit",
+          id: "1",
+          defaultFormValues: async () => {
+            await new Promise((resolve) => setTimeout(resolve, 200));
+            return {
+              title: "Default Title",
+              content: "Default Content",
+            };
+          },
+        });
+      },
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            getOne: async () => {
+              await new Promise((resolve) => setTimeout(resolve, 600));
+              return {
+                data: {
+                  id: 1,
+                  title:
+                    "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+                  content: "Content",
+                  category: {
+                    id: 1,
+                  },
+                  tags: ["tag1", "tag2"],
+                },
+              };
+            },
+          },
+        }),
+      },
+    );
+
+    expect(result.current.formLoading).toBe(true);
+    expect(result.current.defaultFormValuesLoading).toBe(true);
+    await act(async () => {
+      jest.advanceTimersByTime(400);
+    });
+    expect(result.current.formLoading).toBe(true);
+    expect(result.current.defaultFormValuesLoading).toBe(false);
+
+    await act(async () => {
+      jest.advanceTimersByTime(1000);
+    });
+    expect(result.current.formLoading).toBe(false);
+    expect(result.current.defaultFormValuesLoading).toBe(false);
   });
 });
