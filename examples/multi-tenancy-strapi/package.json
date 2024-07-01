@@ -29,7 +29,9 @@
     "@refinedev/react-router-v6": "^4.5.11",
     "@refinedev/strapi-v4": "^6.0.8",
     "antd": "^5.17.0",
+    "antd-style": "^3.6.1",
     "axios": "^1.6.2",
+    "lucide-react": "^0.336.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1"
@@ -40,6 +42,7 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.1.6",
+    "vite-tsconfig-paths": "^4.2.1"
   }
 }

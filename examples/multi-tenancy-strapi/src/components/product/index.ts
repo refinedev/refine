@@ -1,3 +1,2 @@
-export * from "./item";
-export * from "./create";
-export * from "./edit";
+export * from "./product-cards";
+export * from "./product-table";
