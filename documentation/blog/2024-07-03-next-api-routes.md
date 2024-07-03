@@ -4,9 +4,11 @@ description: We will deep dive into Next.js API Routes with Dynamic Routes.
 slug: next-js-api-routes
 authors: michael
 tags: [nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-05-next-api-routes/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 03, 2024, to add sections for Middleware in API Routes, Testing API Routes, and Securing API Routes.**
 
 ## Introduction
 
@@ -23,8 +25,7 @@ Steps we'll cover:
 - [Dynamic API Routes](#dynamic-api-routes)
 - [API Routes custom configuration](#api-routes-custom-configuration)
 - [Typing API Routes with TypeScript](#typing-api-routes-with-typescript)
-  - [Typing `request` and `response` objects](#typing-request-and-response-objects)
-  - [Typing response data](#typing-response-data)
+- [Testing API Routes in Next.js](#testing-api-routes-in-nextjs)
 
 ## What are Next.js API Routes?
 
@@ -222,6 +223,84 @@ export const config = {
 
 You can read more about other available configuration options [here](https://nextjs.org/docs/api-routes/request-helpers#custom-config).
 
+I have been improving our article on Next.js API Routes and would like to provide a section on using Middleware. Here is a preliminary version of the text we can add:
+
+### Middleware in API Routes
+
+The middleware functions of the API routes are essential in an API for performing tasks such as authentication, logging, and request validation. They allow us to pre-process requests before they reach our route handlers, which makes our routes more secure and maintainable.
+
+Example Below is an example of applying middleware to an API route using Next.js. In this example, let's create a small instance of middleware and apply it to an API route.
+
+1. **Make a Middleware Function**:
+
+```tsx
+// middleware/auth.js
+export function authenticate(req, res, next) {
+  const token = req.headers.authorization;
+
+  if (token === "your-secret-token") {
+    next(); // Proceed to the next middleware or route handler
+  } else {
+    res.status(401).json({ message: "Unauthorized" });
+  }
+}
+```
+
+2. **Apply Middleware to an API Route**
+
+```javascript
+// pages/api/protected.js
+import { authenticate } from "../../middleware/auth";
+
+export default function handler(req, res) {
+  authenticate(req, res, () => {
+    res.status(200).json({ message: "You are authenticated!" });
+  });
+}
+```
+
+In this case, the ` authenticate` middleware verifies whether a valid token is included in the request headers. It checks out for a valid token and, if the token is valid, moves on to the handler; otherwise, it returns a 401 Unauthorized response.
+
+### Popular Middleware Libraries
+
+There are some different shared middleware libraries one can include with Next.js API routes to make working with middleware relatively easy.
+
+1.  `next-connect` is a popular library for working with middleware within Next.js API routes. It enables us to use middleware functions as we write them in Express.
+
+```javascript
+import nextConnect from "next-connect";
+import { authenticate } from "../../middleware/auth";
+
+const handler = nextConnect();
+
+handler.use(authenticate);
+
+handler.get((req, res) => {
+  res.status(200).json({ message: "GET request - authenticated" });
+});
+
+export default handler;
+```
+
+2. `Express`
+
+You can, similarly, use Express middleware in a Next.js API route; just wrap your handlers with an Express app.
+
+```javascript
+import express from "express";
+import { authenticate } from "../../middleware/auth";
+
+const app = express();
+
+app.use(authenticate);
+
+app.get((req, res) => {
+  res.status(200).json({ message: "GET request - authenticated" });
+});
+
+export default (req, res) => app(req, res);
+```
+
 ## Typing API Routes with TypeScript
 
 Next.js provides automatic types to ensure your API Routes are type-safe and involves zero configuration to set up.
@@ -239,13 +318,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   res.status(200).json({ name: "John Doe" });
 }
 ```
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
 
 #### Typing response data
 
@@ -275,6 +347,210 @@ export default function handler(
 ```
 
 You can learn more about extending the `res` and `req` objects with TypeScript [here](https://nextjs.org/docs/api-routes/request-helpers#extending-the-reqres-objects-with-typescript).
+
+## Testing API Routes in Next.js
+
+I have written a new section for our article about testing API routes in Next.js. This deals with unit and integration testing to ensure our API routes are reliable and maintainable.
+
+### Testing API Routes
+
+#### Unit Testing API Routes
+
+**Overview**:
+Unit testing is essential for verifying that individual parts of our application work as expected. For API routes, this means testing the route handlers to ensure they return the correct responses for given inputs. We can use testing frameworks like Jest to write these unit tests.
+
+**Example**:
+Here’s a simple example of a unit test for an API route using Jest.
+
+1. **API Route Handler**:
+
+```javascript
+// pages/api/hello.js
+export default function handler(req, res) {
+  res.status(200).json({ name: "John Doe" });
+}
+```
+
+2. **Unit Test**:
+
+```javascript
+// __tests__/api/hello.test.js
+import { createMocks } from "node-mocks-http";
+import handler from "../../pages/api/hello";
+
+describe("/api/hello API Endpoint", () => {
+  test("returns a 200 status and correct response", async () => {
+    const { req, res } = createMocks();
+    await handler(req, res);
+
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toEqual({ name: "John Doe" });
+  });
+});
+```
+
+Here's how you do it with `node-mocks-http` to create mock request and response objects in the following test of an API handler, at which point we assert that a correct response status and body have been sent.
+
+#### Integration Testing
+
+**Overview:**
+What integration testing tries to achieve is that the different parts of our application work perfectly together. Regarding the API routes, this would imply that the routes must be tested about other parts of the application, such as the database connection or any other APIs.
+
+**Example:**
+The following would be an example of an integration test for a route to an API, including a database.
+
+1. **API Route Handler**:
+
+```javascript
+// pages/api/user.js
+import { getUser } from "../../lib/user";
+
+export default async function handler(req, res) {
+  const user = await getUser(req.query.id);
+  if (user) {
+    res.status(200).json(user);
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+}
+```
+
+2. **Integration Test**:
+
+We will mock the function `getUser` to make different return scenarios. The integration test should make sure that the API route is returning a different status and response if a user exists or doesn't exist in the database. Unit and integration tests can be written to make the Next.js API routes sturdy and trustworthy. Please let me know if you have further questions or require more detailed information.
+
+```javascript
+// __tests__/api/user.test.js
+import { createMocks } from "node-mocks-http";
+import handler from "../../pages/api/user";
+import { getUser } from "../../lib/user";
+
+jest.mock("../../lib/user");
+
+describe("/api/user API Endpoint", () => {
+  test("returns a 200 status and user data if user exists", async () => {
+    const { req, res } = createMocks({ query: { id: "1" } });
+    getUser.mockResolvedValue({ id: "1", name: "John Doe" });
+
+    await handler(req, res);
+
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toEqual({ id: "1", name: "John Doe" });
+  });
+
+  test("returns a 404 status if user does not exist", async () => {
+    const { req, res } = createMocks({ query: { id: "2" } });
+    getUser.mockResolvedValue(null);
+
+    await handler(req, res);
+
+    expect(res.statusCode).toBe(404);
+    expect(res._getJSONData()).toEqual({ message: "User not found" });
+  });
+});
+```
+
+Dear Team,
+
+I have also included a part regarding securing API routes in our Next.js article, which shall discuss the significance of API route security and best practices to keep our applications safe and secure.
+
+### Securing API Routes
+
+#### Overview
+
+Since the data exposed can be susceptible and unauthorized access is in place, API routes have to be secured. Our API routes, without the proper security measures, are wide open for all sorts of malicious use that include data breaches, unauthorized entry, and injection. Secure API routes guarantee the integrity and confidentiality of the application and its data.
+
+#### Best Practices
+
+Following are some good practices on how to secure your API routes in Next.js:
+
+**1. Enable HTTPS**
+
+- **Why**: HTTPS encrypts data sent from the client to the server, so attackers cannot eavesdrop or tamper with data.
+- **How**: Ensure your production environment runs using HTTPS. A platform such as Vercel or Netlify uses HTTPS out of the box.
+
+**2. Implement Rate Limiting**
+
+- **Why**: Rate limiting is a way to protect your API from abuse. By adding limits, you will ensure that only a set number of requests can be made from the client within a certain period.
+- **How**: Rate limiting using middleware to restrict requests, for example `express-rate-limit`.
+
+```javascript
+import rateLimit from "express-rate-limit";
+
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+});
+
+export default function handler(req, res) {
+  limiter(req, res, () => {
+    // Your API route logic here
+  });
+}
+```
+
+3. **Validate Input Data**
+
+- **Why**: By doing input validation, we establish the first perimeter defense to preclude injection attacks, as data will arrive at the server in the expected format and type.
+- **How**: Use libraries like `joi` or `yup` to validate the request data.
+
+```javascript
+import { object, string } from "yup";
+
+const schema = object({
+  name: string().required(),
+  email: string().email().required(),
+});
+
+export default async function handler(req, res) {
+  try {
+    await schema.validate(req.body);
+    // Proceed with your API logic
+    res.status(200).json({ message: "Data is valid" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+```
+
+**4. Authenticate and Authorize Requests**
+
+- **Why**: Authentication means that a legitimate user is making a request, while authorization ensures a legitimate user has access rights to the resource.
+- **How**: Establish an authentication mechanism with JWT (JSON Web Tokens) or OAuth, and verify the roles and permissions of user.
+
+```javascript
+import jwt from "jsonwebtoken";
+
+export default function handler(req, res) {
+  const token = req.headers.authorization?.split(" ")[1];
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  try {
+    const user = jwt.verify(token, process.env.JWT_SECRET);
+    // Check user roles and permissions here
+    res.status(200).json({ message: "Authorized", user });
+  } catch (error) {
+    res.status(403).json({ message: "Forbidden" });
+  }
+}
+```
+
+**5. Secure Sensitive Data**
+
+- **Why**: Sensitive data, such as API keys and passwords, should be protected from unauthorized access to prevent data breaches.
+- **How**: Use environment variables to store secrets and sensitive data instead of hard coding them into your codebase.
+
+```javascript
+export default function handler(req, res) {
+  const apiKey = process.env.API_KEY;
+  // Use the API key securely
+  res.status(200).json({ message: "API key is secure" });
+}
+```
+
+Implementing these best practices would make our Next.js API routes very secure and protect the application from potential security breaches.
 
 ## Conclusion
 
