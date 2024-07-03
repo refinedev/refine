@@ -37,6 +37,8 @@ export const serveProxy = async (app: Express) => {
 
   const authProxy = createProxyMiddleware({
     target: `${AUTH_SERVER_URL}/api/.auth`,
+    secure: false,
+    changeOrigin: true,
     logger: __DEVELOPMENT__ ? console : undefined,
     on: {
       proxyReq: fixRequestBody,
