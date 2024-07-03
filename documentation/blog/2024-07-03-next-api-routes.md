@@ -450,11 +450,9 @@ describe("/api/user API Endpoint", () => {
 });
 ```
 
-Dear Team,
+### Securing API Routes
 
 I have also included a part regarding securing API routes in our Next.js article, which shall discuss the significance of API route security and best practices to keep our applications safe and secure.
-
-### Securing API Routes
 
 #### Overview
 
