@@ -417,7 +417,7 @@ export default async function handler(req, res) {
 
 2. **Integration Test**:
 
-We will mock the function `getUser` to make different return scenarios. The integration test should make sure that the API route is returning a different status and response if a user exists or doesn't exist in the database. Unit and integration tests can be written to make the Next.js API routes sturdy and trustworthy. Please let me know if you have further questions or require more detailed information.
+We will mock the function `getUser` to make different return scenarios. The integration test should make sure that the API route is returning a different status and response if a user exists or doesn't exist in the database. Unit and integration tests can be written to make the Next.js API routes sturdy and trustworthy.
 
 ```javascript
 // __tests__/api/user.test.js
@@ -554,4 +554,4 @@ Implementing these best practices would make our Next.js API routes very secure 
 
 ## Conclusion
 
-In this article we introduced you to **API Routes in Next.js** and how to use them to create API endpoints for your application. You learned how to add custom configurations to API Routes and also how to include typings among other things. Ready to get started with **API Routes** in your next project? Let's know what you build and feel free to reach out if you have any questions. Happy coding!
+In this article we introduced you to **API Routes in Next.js** and how to use them to create API endpoints for your application. You learned how to add custom configurations to API Routes and also how to include typings among other things. Ready to get started with **API Routes** in your next project?
