@@ -57,6 +57,9 @@ export const serveProxy = async (app: Express) => {
     secure: false,
     changeOrigin: true,
     logger: __DEVELOPMENT__ ? console : undefined,
+    on: {
+      proxyReq: fixRequestBody,
+    },
   });
 
   let currentProjectId: string | null | false = null;
