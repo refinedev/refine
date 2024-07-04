@@ -5,7 +5,6 @@ import figlet from "figlet";
 
 import checkUpdates from "@commands/check-updates";
 import createResource from "@commands/create-resource";
-import proxy from "@commands/proxy";
 import { build, dev, run, start } from "@commands/runner";
 import swizzle from "@commands/swizzle";
 import update from "@commands/update";
@@ -49,7 +48,6 @@ const bootstrap = () => {
   run(program);
   checkUpdates(program);
   whoami(program);
-  proxy(program);
   devtools(program);
   add(program);
 

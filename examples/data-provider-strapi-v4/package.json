@@ -43,7 +43,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "cypress": "^13.6.3",
-    "http-proxy-middleware": "^2.0.6",
     "typescript": "^5.4.2",
     "vite": "^5.1.6"
   }
