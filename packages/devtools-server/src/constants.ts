@@ -2,7 +2,7 @@ export const DEFAULT_SERVER_PORT = 5001;
 export const SERVER_PORT = DEFAULT_SERVER_PORT;
 
 export const AUTH_SERVER_URL = __DEVELOPMENT__
-  ? "https://auth.refine.dev"
+  ? "https://develop.auth.refine.dev"
   : "https://auth.refine.dev";
 
 export const REFINE_API_URL = __DEVELOPMENT__
