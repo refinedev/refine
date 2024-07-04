@@ -242,9 +242,6 @@
     "dayjs": {
       "optional": true
     },
-    "graphql-tag": {
-      "optional": true
-    },
     "react-hook-form": {
       "optional": true
     }
