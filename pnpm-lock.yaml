@@ -14747,9 +14747,6 @@ importers:
 
   packages/devtools-server:
     dependencies:
-      '@ory/client':
-        specifier: ^1.5.2
-        version: 1.9.0
       '@refinedev/devtools-shared':
         specifier: 1.1.9
         version: link:../devtools-shared
