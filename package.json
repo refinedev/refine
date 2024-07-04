@@ -5,7 +5,7 @@
   "license": "MIT",
   "author": "refine",
   "scripts": {
-    "attw": "lerna run publint --scope @refinedev/core",
+    "attw": "lerna run attw --scope @refinedev/core",
     "attw:all": "lerna run attw --scope @refinedev/*",
     "biome": "biome",
     "build": "lerna run build --scope @refinedev/core",

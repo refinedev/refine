@@ -1,9 +1,16 @@
+import { Layout } from "@/components/layout";
+import { CategoriesList, CategoryCreate } from "@/pages/categories";
+import { CustomerList, CustomerShow } from "@/pages/customer";
+import { OrderList, OrderShow } from "@/pages/order";
+import { ProductCreate, ProductEdit, ProductList } from "@/pages/product";
+import { authProvider } from "@/providers/auth";
+import { ConfigProvider } from "@/providers/config";
+import { dataProvider } from "@/providers/data";
+import { TenantProvider, useTenant } from "@/providers/tenant";
 import {
   AuthPage,
   ErrorComponent,
-  ThemedLayoutV2,
   useNotificationProvider,
-  RefineThemes,
 } from "@refinedev/antd";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
@@ -12,125 +19,190 @@ import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
-import { DataProvider } from "@refinedev/strapi-v4";
+import { App as AntdApp } from "antd";
+import { LayoutGrid, List, ShoppingBag, UsersRound } from "lucide-react";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
-import { ConfigProvider, App as AntdApp } from "antd";
-import "@refinedev/antd/dist/reset.css";
-
-import { OrderCreate, OrderEdit, OrderList } from "./pages/order";
-import { ProductList } from "./pages/product";
-import { Header } from "./components/header";
-import { authProvider, axiosInstance } from "./authProvider";
-import { API_URL } from "./constants";
+import "./App.css";
 
 const App: React.FC = () => {
-  // inital tenant
-  const tenant = "1";
-
   return (
     <BrowserRouter>
-      <GitHubBanner />
-      <ConfigProvider theme={RefineThemes.Blue}>
-        <AntdApp>
-          <Refine
-            authProvider={authProvider}
-            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
-            routerProvider={routerProvider}
-            resources={[
-              {
-                name: "products",
-                list: "/:tenant/products",
-                meta: {
-                  tenant,
-                },
+      <GitHubBanner
+        containerStyle={{
+          paddingLeft: "312px",
+        }}
+      />
+      <AntdApp>
+        <Refine
+          authProvider={authProvider}
+          dataProvider={dataProvider}
+          routerProvider={routerProvider}
+          resources={[
+            {
+              name: "products",
+              list: "/:tenantId/products",
+              create: "/:tenantId/products/new",
+              edit: "/:tenantId/products/:id/edit",
+              meta: {
+                icon: <LayoutGrid />,
               },
-              {
-                name: "orders",
-                list: "/:tenant/orders",
-                create: "/:tenant/orders/create",
-                edit: "/:tenant/orders/edit/:id",
-                meta: {
-                  tenant,
-                },
+            },
+            {
+              name: "categories",
+              list: "/:tenantId/categories",
+              create: "/:tenantId/categories/new",
+              meta: {
+                icon: <List />,
               },
-            ]}
-            notificationProvider={useNotificationProvider}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-            }}
-          >
-            <Routes>
+            },
+            {
+              name: "orders",
+              list: "/:tenantId/orders",
+              show: "/:tenantId/orders/:id",
+              meta: {
+                icon: <ShoppingBag />,
+              },
+            },
+            {
+              name: "customers",
+              list: "/:tenantId/customers",
+              show: "/:tenantId/customers/:id",
+              meta: {
+                icon: <UsersRound />,
+              },
+            },
+          ]}
+          notificationProvider={useNotificationProvider}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            breadcrumb: false,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated
+                  key="authenticated-routes"
+                  fallback={<CatchAllNavigate to="/login" />}
+                >
+                  <TenantProvider>
+                    <ConfigProvider>
+                      <Layout>
+                        <Outlet />
+                      </Layout>
+                    </ConfigProvider>
+                  </TenantProvider>
+                </Authenticated>
+              }
+            >
               <Route
-                element={
-                  <Authenticated
-                    key="authenticated-routes"
-                    fallback={<CatchAllNavigate to="/login" />}
-                  >
-                    <ThemedLayoutV2 Header={Header}>
-                      <Outlet />
-                    </ThemedLayoutV2>
-                  </Authenticated>
-                }
-              >
-                <Route
-                  index
-                  element={<NavigateToResource resource="products" />}
-                />
-                <Route path="/:tenant">
-                  <Route path="products">
-                    <Route index element={<ProductList />} />
-                  </Route>
+                index
+                Component={() => {
+                  const { tenant } = useTenant();
 
-                  <Route path="orders">
-                    <Route index element={<OrderList />} />
-                    <Route path="create" element={<OrderCreate />} />
-                    <Route path="edit/:id" element={<OrderEdit />} />
-                  </Route>
+                  return (
+                    <div>
+                      <NavigateToResource
+                        meta={{
+                          tenantId: tenant?.id,
+                        }}
+                      />
+                    </div>
+                  );
+                }}
+              />
+
+              <Route path="/:tenantId">
+                <Route index element={<NavigateToResource />} />
+
+                <Route
+                  path="products"
+                  element={
+                    <ProductList>
+                      <Outlet />
+                    </ProductList>
+                  }
+                >
+                  <Route path="new" element={<ProductCreate />} />
+                  <Route path=":id/edit" element={<ProductEdit />} />
+                </Route>
+
+                <Route
+                  path="categories"
+                  element={
+                    <CategoriesList>
+                      <Outlet />
+                    </CategoriesList>
+                  }
+                >
+                  <Route path="new" element={<CategoryCreate />} />
+                </Route>
+
+                <Route
+                  path="orders"
+                  element={
+                    <OrderList>
+                      <Outlet />
+                    </OrderList>
+                  }
+                >
+                  <Route path=":id" element={<OrderShow />} />
+                </Route>
+
+                <Route
+                  path="customers"
+                  element={
+                    <CustomerList>
+                      <Outlet />
+                    </CustomerList>
+                  }
+                >
+                  <Route path=":id" element={<CustomerShow />} />
                 </Route>
               </Route>
+            </Route>
 
+            <Route
+              element={
+                <Authenticated key="auth-pages" fallback={<Outlet />}>
+                  <NavigateToResource />
+                </Authenticated>
+              }
+            >
               <Route
+                path="/login"
                 element={
-                  <Authenticated key="auth-pages" fallback={<Outlet />}>
-                    <NavigateToResource resource="posts" />
-                  </Authenticated>
+                  <AuthPage
+                    type="login"
+                    formProps={{
+                      initialValues: {
+                        email: "demo@refine.dev",
+                        password: "demodemo",
+                      },
+                    }}
+                  />
                 }
-              >
-                <Route
-                  path="/login"
-                  element={
-                    <AuthPage
-                      type="login"
-                      formProps={{
-                        initialValues: {
-                          email: "demo@refine.dev",
-                          password: "demodemo",
-                        },
-                      }}
-                    />
-                  }
-                />
-              </Route>
+              />
+            </Route>
 
-              <Route
-                element={
-                  <Authenticated key="catch-all">
-                    <ThemedLayoutV2 Header={Header}>
-                      <Outlet />
-                    </ThemedLayoutV2>
-                  </Authenticated>
-                }
-              >
-                <Route path="*" element={<ErrorComponent />} />
-              </Route>
-            </Routes>
-            <UnsavedChangesNotifier />
-            <DocumentTitleHandler />
-          </Refine>
-        </AntdApp>
-      </ConfigProvider>
+            <Route
+              element={
+                <Authenticated key="catch-all">
+                  <Layout>
+                    <Outlet />
+                  </Layout>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+      </AntdApp>
     </BrowserRouter>
   );
 };

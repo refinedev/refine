@@ -156,4 +156,49 @@ describe("generateFilters", () => {
       expect(result).toEqual(expected);
     });
   });
+  it("should generate filter when value is valid", () => {
+    const testCases: { filters: CrudFilter[]; expected: any }[] = [
+      {
+        filters: [{ operator: "eq", field: "name", value: "" }],
+        expected: { name: { eq: "" } },
+      },
+      {
+        filters: [{ operator: "eq", field: "name", value: null }],
+        expected: {},
+      },
+      {
+        filters: [{ operator: "eq", field: "name", value: undefined }],
+        expected: {},
+      },
+      {
+        filters: [{ operator: "eq", field: "age", value: 0 }],
+        expected: { age: { eq: 0 } },
+      },
+      {
+        filters: [{ operator: "eq", field: "age", value: Number.NaN }],
+        expected: {},
+      },
+      {
+        filters: [
+          { operator: "eq", field: "age", value: Number.POSITIVE_INFINITY },
+        ],
+        expected: {},
+      },
+      {
+        filters: [
+          { operator: "eq", field: "age", value: Number.NEGATIVE_INFINITY },
+        ],
+        expected: {},
+      },
+      {
+        filters: [{ operator: "between", field: "age", value: [] }],
+        expected: {},
+      },
+    ];
+
+    testCases.forEach(({ filters, expected }) => {
+      const result = generateFilters(filters as LogicalFilter[]);
+      expect(result).toEqual(expected);
+    });
+  });
 });

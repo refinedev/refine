@@ -22,7 +22,7 @@ export const dataProvider = (
       }
 
       sorters?.map((item) => {
-        const [foreignTable, field] = item.field.split(/\.(.*)/);
+        const [foreignTable, field] = item.field.split(/\.(?=[^.]+$)/);
 
         if (foreignTable && field) {
           query
