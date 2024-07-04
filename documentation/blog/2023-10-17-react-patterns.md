@@ -279,16 +279,14 @@ After creating the provider, we will enclose components dependent on the data fr
 To obtain the data from context API, we call useContext hook, which accepts a context as a parameter(in this case, **ThemeContext**).
 
 ```tsx
-impor { useContext } from 'react';
+import { useContext } from "react";
 import { ThemeProvider, ThemeContext } from "../context";
-
 
 const HeaderSection = () => {
   <ThemeProvider>
     <TopNav />
   </ThemeProvider>;
 };
-
 
 const TopNav = () => {
   const { theme, setTheme } = useContext(ThemeContext);
@@ -299,7 +297,6 @@ const TopNav = () => {
     </div>
   );
 };
-
 ```
 
 ## Component enhancement with HOCs (higher-order components)
