@@ -4,9 +4,11 @@ description: We'll discover the Material UI AutoComplete component with examples
 slug: material-ui-autocomplete-component
 authors: doro_onome
 tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 03, 2024, to add sections for Accessibility Features, Security Considerations, and Formik Integration with AutoComplete to Material UI AutoComplete.**
 
 ## Introduction
 
@@ -17,21 +19,11 @@ Steps we'll cover:
 - [What is Material UI?](#what-is-material-ui)
 - [Getting Started with Material UI Autocomplete](#getting-started-with-material-ui-autocomplete)
 - [Material UI Autocomplete props](#material-ui-autocomplete-props)
-  - [RenderInput](#renderinput)
-- [GetOptionLabel](#getoptionlabel)
-- [GetOptionSelected](#getoptionselected)
-  - [Free solo](#free-solo)
-  - [GroupBy](#groupby)
 - [Material UI Autocomplete features](#material-ui-autocomplete-features)
-  - [Material UI Autocomplete State Management](#material-ui-autocomplete-state-management)
-  - [The useAutocomplete Hook](#the-useautocomplete-hook)
-  - [Asynchronous Requests](#asynchronous-requests)
-  - [Multiple Values](#multiple-values)
-  - [Fixed Options](#fixed-options)
-  - [Checkboxes](#checkboxes)
+- [Accessibility Features](#accessibility-features)
 - [Cloning Google’s Home Page UI with Material UI Autocomplete](#cloning-googles-home-page-ui-with-material-ui-autocomplete)
 - [Material UI Autocomplete Limitations](#material-ui-autocomplete-limitations)
-  - [autocomplete/autofill](#autocompleteautofill)
+- [Using AutoComplete with Formik](#using-autocomplete-with-formik)
 
 ## What is Material UI?
 
@@ -706,6 +698,139 @@ export default function CheckboxesTags() {
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-19-mui-autocomplete/checkbox.gif"  alt="Material UI useAutoComplete checkbox" />
 </div>
 
+## Accessibility Features
+
+I have added a new section to the article about our Material-UI AutoComplete component that addresses accessibility features. This section explains how to treat accessibility in general and gives some specific examples of how ARIA attributes might be implemented in a product, along with keyboard navigation.
+
+### ARIA Properties
+
+**Introduction:**
+It is essential that we make our applications accessible to every user. ARIA, or Accessible Rich Internet Applications, attributes help increase accessibility within our components.
+
+**Example:**
+Make the AutoComplete component more accessible by adding in ARIA attributes as shown below:
+
+1. **Adding ARIA Attributes to Input**:
+
+- If possible, use `aria-label`, `aria-labelledby`, or `aria-describedby` to describe the input for accessible purposes.
+
+```tsx
+<Autocomplete
+  options={top5Songs}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      label="Songs"
+      inputProps={{
+        ...params.inputProps,
+        "aria-label": "Songs",
+        "aria-labelledby": "autocomplete-label",
+        "aria-describedby": "autocomplete-desc",
+      }}
+    />
+  )}
+/>
+```
+
+2. **Describing the Role and Status**:
+
+- `role="combobox"`: Describes the role of the AutoComplete input.
+- Be sure to use `aria-expanded` to let users know if the dropdown is opened or closed.
+
+```tsx
+<Autocomplete
+  options={top5Songs}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      inputProps={{
+        ...params.inputProps,
+        role: "combobox",
+        "aria-expanded": open ? "true" : "false",
+        "aria-controls": open ? "autocomplete-options" : undefined,
+      }}
+    />
+  )}
+/>
+```
+
+3. **Providing Accessible Descriptions**:
+
+- Use `aria-live` and `aria-relevant` to manage announcements about dropdown changes made visible to screen readers.
+
+```tsx
+<Autocomplete
+  options={top5Songs}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      inputProps={{
+        ...params.inputProps,
+        "aria-live": "polite",
+        "aria-relevant": "additions removals",
+      }}
+    />
+  )}
+/>
+```
+
+### Keyboard Navigation
+
+**Introduction:**
+It is important to make sure that the functionality of our AutoComplete component can also be accessed by using the keyboard so that it could be operated even without a pointing device. This will require that we handle keyboard events in such a way that a user could interact with our component only through the use of the keyboard.
+
+**Example:**
+
+Below are some code snippets and tips to improve keyboard navigation:
+
+1. **Keyboard Events**:
+
+- Use `onKeyDown` to implement navigation with the arrow keys, selection with Enter, and closing the dropdown with Escape.
+
+```tsx
+<Autocomplete
+  options={top5Songs}
+  onKeyDown={(event) => {
+    if (event.key === "ArrowDown") {
+      // Navigate to next option
+    } else if (event.key === "ArrowUp") {
+      // Navigate to previous option
+    } else if (event.key === "Enter") {
+      // Select the option
+    } else if (event.key === "Escape") {
+      // Close the dropdown
+    }
+  }}
+  renderInput={(params) => <TextField {...params} label="Songs" />}
+/>
+```
+
+2. **Focus Management**:
+
+- Ensure that it behaves responsibly concerning focus with the dropdown open and closed.
+- Use `tabindex` to control the tabbing order of dropdown items.
+
+```tsx
+<Autocomplete
+  options={top5Songs}
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      inputProps={{
+        ...params.inputProps,
+        tabindex: 0, // Ensure the input is focusable
+      }}
+    />
+  )}
+  ListboxProps={{
+    "aria-labelledby": "autocomplete-label",
+    id: "autocomplete-options",
+  }}
+/>
+```
+
+These accessibility features ensure all users can use our AutoComplete component without issue, including screen reader users and keyboard navigators.
+
 ## Cloning Google’s Home Page UI with Material UI Autocomplete
 
 The majority of products incorporate search inputs into various elements of their web applications. Google's Home page layout illustrates how search inputs might be used in typical real-world application. For the sake of this tutorial, we will use React and **Material UI Autocomplete** to replicate Google's home page layout.
@@ -821,6 +946,109 @@ Heuristics are built into browsers to assist users in filling out form inputs, b
 In addition to remembering previously entered information, the browser may make autofill suggestions (saved login, address, or username). If you wish to avoid autofill, you can attempt the following:
 Name the input without revealing any information that the browser can utilize. id="field1" instead of id="country" If you leave the id field empty, the component generates a random id.
 Set `autoComplete="new-password"`. Some browsers will recommend a secure password for inputs with this attribute set.
+
+## Using AutoComplete with Formik
+
+I've added a new section on integrating the Material UI AutoComplete component with Formik. In this section, I will give an overview of how integration can be done without actual code snippets.
+
+#### Overview
+
+Formik is an already well-known library for managing form states in React. Since Material-UI's AutoComplete component is integrated with Formik, it will provide us with all the good features of Formik in terms of validation and state management for the robust form, and, in parallel, it would allow user input.
+
+#### Example
+
+The following shows how you can use the Material UI AutoComplete component in combination with Formik:
+
+1. **Setup**: The first thing you need to do is install Formik and Yup if you haven't done so yet.
+
+```
+npm install formik yup @mui/material @emotion/react @emotion/styled
+```
+
+1. **Custom AutoComplete Component**:
+   - Make a custom component combining Material UI's AutoComplete with Formik.
+   - Use the `useField` hook from Formik to sync your AutoComplete component with the form state from Formik.
+
+```tsx
+import React from "react";
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import { TextField, Autocomplete } from "@mui/material";
+import { useField } from "formik";
+
+// Custom AutoComplete component with Formik integration
+const FormikAutoComplete = ({ label, ...props }) => {
+  const [field, meta, helpers] = useField(props);
+  const { setValue } = helpers;
+
+  return (
+    <Autocomplete
+      {...props}
+      onChange={(event, value) => setValue(value)}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          {...field}
+          label={label}
+          error={meta.touched && Boolean(meta.error)}
+          helperText={meta.touched && meta.error}
+        />
+      )}
+    />
+  );
+};
+
+// Validation schema using Yup
+const validationSchema = Yup.object({
+  song: Yup.string().required("Required"),
+});
+
+const options = [
+  { title: "Organize" },
+  { title: "Joha" },
+  { title: "Terminator" },
+  { title: "Dull" },
+  { title: "Nzaza" },
+];
+
+const AutoCompleteForm = () => {
+  return (
+    <Formik
+      initialValues={{ song: "" }}
+      validationSchema={validationSchema}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({ setFieldValue }) => (
+        <Form>
+          <Field
+            name="song"
+            component={FormikAutoComplete}
+            options={options}
+            getOptionLabel={(option) => option.title}
+            label="Song"
+          />
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
+  );
+};
+
+export default AutoCompleteForm;
+```
+
+**Validation Schema**:
+
+- Define a validation schema using Yup, which enforces the validation requirement on the AutoComplete field.
+
+**Form Implementation**:
+
+- Make use of Formik's custom AutoComplete component.
+- Handle form submission and validations with the help of Formik's components like Form and Field.
+
+By following these steps, you can now easily use the Material UI AutoComplete component in combination with Formik in a way that maintains the state and validates form elements.
 
 ## Conclusion
 

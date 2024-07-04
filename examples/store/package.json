@@ -26,7 +26,7 @@
     "body-scroll-lock": "^4.0.0-beta.0",
     "clsx": "^1.1.1",
     "cross-env": "^7.0.3",
-    "http-proxy-middleware": "^2.0.6",
+    "http-proxy-middleware": "^3.0.0",
     "keen-slider": "^6.6.3",
     "lodash": "^4.17.21",
     "medusa-react": "^0.3.5",

@@ -1,67 +1,22 @@
-import { readJSON, writeJSON } from "fs-extra";
-import { FrontendApi } from "@ory/client";
-import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import path from "path";
-import { REFINE_API_URL, SERVER_PORT } from "./constants";
+import { readJSON, writeJSON } from "fs-extra";
+import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
+import {
+  REFINE_API_URL,
+  AUTH_SERVER_URL,
+  AUTH_CALLBACK_API_PATH,
+  AUTH_CALLBACK_UI_PATH,
+  AUTH_TRIGGER_API_PATH,
+} from "./constants";
 import { getProjectIdFromPackageJson } from "./project-id/get-project-id-from-package-json";
 
 import type { Express, RequestHandler } from "express";
 
-let currentProjectId: string | null | false = null;
-const projectIdAppender: RequestHandler = async (req, res, next) => {
-  if (!currentProjectId) {
-    currentProjectId = await getProjectIdFromPackageJson();
-  }
-
-  if (currentProjectId) {
-    req.headers["x-project-id"] = currentProjectId;
-  }
-
-  next();
-};
-
-const restream: Options["onProxyReq"] = (proxyReq, req) => {
-  if (req.body) {
-    const bodyData = JSON.stringify(req.body);
-    // incase if content-type is application/x-www-form-urlencoded -> we need to change to application/json
-    proxyReq.setHeader("Content-Type", "application/json");
-    proxyReq.setHeader("Content-Length", Buffer.byteLength(bodyData));
-    // stream the content
-    proxyReq.write(bodyData);
-  }
-};
-
-const tokenize = async (token: string) => {
-  try {
-    const ORY_URL = `${REFINE_API_URL}/.auth`;
-
-    const ory = new FrontendApi({
-      isJsonMime: () => true,
-      basePath: ORY_URL,
-      baseOptions: {
-        withCredentials: true,
-      },
-    });
-
-    const { data } = await ory.toSession({
-      xSessionToken: token,
-      tokenizeAs: "jwt_template_1",
-    });
-
-    return data?.tokenized;
-  } catch (err) {
-    //
-  }
-
-  return undefined;
-};
+const persistPath = path.join(__dirname, "..", ".persist.json");
 
 const saveAuth = async (token?: string, jwt?: string) => {
   try {
-    writeJSON(path.join(__dirname, "..", ".persist.json"), {
-      token: token,
-      jwt: jwt,
-    });
+    await writeJSON(persistPath, { token, jwt });
   } catch (error) {
     //
   }
@@ -69,138 +24,128 @@ const saveAuth = async (token?: string, jwt?: string) => {
 
 const loadAuth = async () => {
   try {
-    const persist = await readJSON(path.join(__dirname, "..", ".persist.json"));
-    return persist as { token?: string; jwt?: string };
+    return (await readJSON(persistPath)) as { token?: string; jwt?: string };
   } catch (error) {
     //
   }
 
-  return {
-    token: undefined,
-    jwt: undefined,
-  };
-};
-
-const handleLogoutToken: (
-  token?: string,
-) => NonNullable<Options["onProxyReq"]> = (token) => {
-  return (proxyReq, req) => {
-    if (req.url.includes("self-service/logout/api")) {
-      const bodyData = JSON.stringify({
-        session_token: token,
-      });
-      proxyReq.setHeader("Content-Length", Buffer.byteLength(bodyData));
-      // stream the content
-      proxyReq.write(bodyData);
-    }
-  };
-};
-
-const handleSignInCallbacks: (
-  onToken: (token?: string, jwt?: string) => void,
-) => NonNullable<Options["onProxyRes"]> = (onToken) => {
-  return (proxyRes, req, res) => {
-    let body = "";
-    proxyRes.on("data", (chunk) => {
-      body += chunk;
-    });
-    proxyRes.on("end", () => {
-      let sessionToken: string | undefined = undefined;
-      try {
-        const parsed = JSON.parse(body);
-        sessionToken = parsed.session_token;
-      } catch (err) {
-        //
-      }
-      if (!sessionToken) {
-        if (body?.includes?.("an+account+with+the+same+identifier")) {
-          res.redirect(
-            "/after-login?error=An+account+with+the+same+identifier+exists+already",
-          );
-          return;
-        }
-        res.redirect("/after-login?error=Invalid-session-token");
-        return;
-      }
-
-      // After grabbing the session_token, convert it to JWT, then redirect to /after-login
-      tokenize(sessionToken).then((tokenized) => {
-        onToken(sessionToken, tokenized ?? "");
-        res.redirect("/after-login");
-      });
-    });
-  };
+  return {};
 };
 
 export const serveProxy = async (app: Express) => {
   let { token, jwt } = await loadAuth();
 
   const authProxy = createProxyMiddleware({
-    target: REFINE_API_URL,
-    changeOrigin: true,
-    pathRewrite: { "^/api/.auth": "/.auth" },
-    cookieDomainRewrite: {
-      "refine.dev": "localhost",
-    },
-    logLevel: __DEVELOPMENT__ ? "debug" : "silent",
-    headers: {
-      "auth-base-url-rewrite": `http://localhost:${SERVER_PORT}/api/.auth`,
-    },
-    selfHandleResponse: true,
-    onProxyReq: (proxyReq, req, ...rest) => {
-      if (token) {
-        proxyReq.setHeader("X-Session-Token", token ?? "");
-
-        handleLogoutToken(token)(proxyReq, req, ...rest);
-      }
-    },
-    onProxyRes: (proxyRes, req, res) => {
-      const newSetCookie = proxyRes.headers["set-cookie"]?.map((cookie) =>
-        cookie
-          .replace("Domain=refine.dev;", "Domain=localhost;")
-          .replace(" HttpOnly; Secure; SameSite=Lax", ""),
-      );
-      if (newSetCookie) proxyRes.headers["set-cookie"] = newSetCookie;
-
-      if (req.url.includes("self-service/methods/oidc/callback")) {
-        return handleSignInCallbacks((_token, _jwt) => {
-          token = _token;
-          jwt = _jwt;
-          saveAuth(token, jwt);
-        })(proxyRes, req, res);
-      }
-
-      if (proxyRes.statusCode === 401) {
-        res.writeHead(200, {
-          ...proxyRes.headers,
-          "Refine-Is-Authenticated": "false",
-          "Access-Control-Expose-Headers": `Refine-Is-Authenticated, ${proxyRes.headers["Access-Control-Expose-Headers"]}`,
-        });
-      } else {
-        res.writeHead(proxyRes.statusCode || 500, proxyRes.headers);
-      }
-
-      proxyRes.pipe(res, { end: true });
-    },
-  });
-
-  app.use("/api/.auth", authProxy);
-
-  const refineApiProxy = createProxyMiddleware({
-    target: REFINE_API_URL,
+    target: `${AUTH_SERVER_URL}/api/.auth`,
     secure: false,
     changeOrigin: true,
-    logLevel: __DEVELOPMENT__ ? "debug" : "silent",
-    pathRewrite: { "^/api/.refine": "/.refine" },
-    onProxyReq: (proxyReq, ...rest) => {
-      if (jwt) {
-        proxyReq.setHeader("Authorization", `Bearer ${jwt}`);
-        proxyReq.removeHeader("cookie");
-      }
-
-      restream(proxyReq, ...rest);
+    logger: __DEVELOPMENT__ ? console : undefined,
+    on: {
+      proxyReq: fixRequestBody,
+      proxyRes: (_proxyRes, req) => {
+        if (req.url?.includes("self-service/logout/api")) {
+          token = undefined;
+          jwt = undefined;
+          saveAuth();
+        }
+      },
     },
   });
 
-  app.use("/api/.refine", projectIdAppender, refineApiProxy);
+  const refineProxy = createProxyMiddleware({
+    target: `${REFINE_API_URL}/.refine`,
+    secure: false,
+    changeOrigin: true,
+    logger: __DEVELOPMENT__ ? console : undefined,
+    on: {
+      proxyReq: fixRequestBody,
+    },
+  });
+
+  let currentProjectId: string | null | false = null;
+  const projectIdAppender: RequestHandler = async (req, _res, next) => {
+    if (!currentProjectId) {
+      currentProjectId = await getProjectIdFromPackageJson();
+    }
+
+    if (currentProjectId) {
+      req.headers["x-project-id"] = currentProjectId;
+    }
+
+    next();
+  };
+
+  const appendAuth: RequestHandler = async (req, _res, next) => {
+    if (token) {
+      req.headers["X-Session-Token"] = token;
+    }
+    if (req.url?.includes("self-service/logout/api")) {
+      req.body = {
+        session_token: token,
+      };
+
+      req.headers["Content-Length"] = Buffer.byteLength(
+        JSON.stringify(req.body),
+      ).toString();
+    }
+
+    next();
+  };
+
+  const appendJwt: RequestHandler = async (req, _res, next) => {
+    if (jwt) {
+      req.headers["Authorization"] = `Bearer ${jwt}`;
+      delete req.headers["cookie"];
+    }
+
+    next();
+  };
+
+  const loginCallback: RequestHandler = async (req, res, _next) => {
+    const query = req.query;
+
+    if (query.token && query.jwt) {
+      token = query.token as string;
+      jwt = query.jwt as string;
+      await saveAuth(query.token as string, query.jwt as string);
+    }
+
+    const errorParams = new URLSearchParams();
+    if (query.error) {
+      errorParams.set("error", query.error as string);
+    }
+    if (query.code) {
+      errorParams.set("code", query.code as string);
+    }
+
+    res.redirect(`${AUTH_CALLBACK_UI_PATH}?${errorParams.toString()}`);
+  };
+
+  const loginTrigger: RequestHandler = async (req, res, _next) => {
+    const query = req.query;
+    const protocol = req.secure ? "https" : "http";
+    const host = req.headers.host;
+
+    if (!host) {
+      res.redirect(`${AUTH_CALLBACK_API_PATH}?error=Missing%20Host`);
+      return;
+    }
+
+    const callbackUrl = `${protocol}://${host}${AUTH_CALLBACK_API_PATH}`;
+
+    const params = new URLSearchParams({
+      provider: query.provider as string,
+      returnUrl: encodeURIComponent(callbackUrl),
+    });
+
+    res.redirect(`${AUTH_SERVER_URL}/login?${params.toString()}`);
+  };
+
+  app.use(AUTH_TRIGGER_API_PATH, loginTrigger);
+
+  app.use(AUTH_CALLBACK_API_PATH, loginCallback);
+
+  app.use("/api/.auth", appendAuth, authProxy);
+
+  app.use("/api/.refine", projectIdAppender, appendJwt, refineProxy);
 };
