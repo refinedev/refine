@@ -41,12 +41,12 @@ jobs:
         run: pnpm lint:ci
       - name: Syncpack
         run: pnpm sp lint
-      - name: Test
-        run: pnpm test:all
       - name: Publint
         run: pnpm publint:all
       - name: Are The Types Wrong
         run: pnpm attw:all
+      - name: Test
+        run: pnpm test:all
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
