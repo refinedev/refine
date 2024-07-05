@@ -4,9 +4,11 @@ description: The advantages of using Turborepo for monorepo development.
 slug: how-to-use-turborepo
 authors: muhammad_khabbab
 tags: [nextjs, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-13-turborepo/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 05, 2024, to add sections for Advanced Configuration Options and Integrating Turborepo with Existing Tools.**
 
 ## Introduction
 
@@ -101,12 +103,115 @@ Following are some of the commands to use Turborepo:
 - `turbo prune --scope=<target>` creates a sparse/partial monorepo with a pruned lock file for a target package.
 - Remote Caching commands: `turbo login` and `turbo link`
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Advanced Configuration Options
+
+I have added a new section under advanced configuration options in our article on Turborepo. The following ways describe how you can configure your build process to tailor it to your project's specific needs and optimize your build performance.
+
+### Customizing Build Pipelines
+
+Customizing build pipelines in Turborepo will allow you to tailor the process to your project's needs. Define custom pipelines that handle dependencies, outputs, and task orchestration effectively.
+
+If you are willing to do deeper customization around building pipelines, you can define an additional task with its dependencies in your Turborepo configuration file. This allows you to create a build process that ties together building for multiple environments and use cases. For example, separate pipelines can be established for building, linting, and testing projects with their respective dependencies and outputs.
+
+```bash
+module.exports = {
+  pipeline: {
+    build: {
+      dependsOn: ['^build'],
+      outputs: ['dist/**'],
+    },
+    lint: {
+      dependsOn: ['^lint'],
+      outputs: [''],
+    },
+    test: {
+      dependsOn: ['^test'],
+      outputs: ['coverage/**'],
+    },
+  },
+};
+```
+
+### Optimizing Build Performance
+
+Optimizing build performance is extremely important to speed up and run the development process efficiently. Turborepo integrates a set of more advanced techniques in the context of build optimization: caching strategies, and running tasks in parallel.
+
+During the build process with Turborepo, optimization for better performance means running some parallel tasks and caching the results of those tasks. To do that, it gives you the flexibility to run tasks in parallel so the already cached results can be utilized other than executing them, again boosting the process of parallel tasking manifolds at a minimal cost of total turnaround time, using all the resources it could lay its hands on.
+
+```bash
+module.exports = {
+  cache: {
+    build: true,
+    lint: true,
+    test: true,
+  },
+  workers: {
+    maxConcurrentTasks: 4,
+  },
+};
+```
+
+With these advanced configuration features, you can customize the build and fully optimize the performance of your projects such that your projects are built quickly and efficiently.
+
+Hello Team,
+
+I am preparing a new chapter: "Integrating Turborepo with existing tools," for our Turborepo article so that readers can understand how to integrate Turborepo with standard development tools like CI/CD pipelines, package managers, and testing frameworks.
+
+## Using Turborepo with the Existing Tools
+
+By integrating Turborepo into the most popular development tools, your development workflow will be seamless and allow you to get maximum efficiency from the development process. Maybe you'd have it set up to work with CI/CD pipelines, package managers, and testing frameworks to enhance your build and deploy software processes.
+
+### Example: CI/CD Pipelines
+
+You can adapt your existing CI/CD scripts to run Turborepo commands and be plugged into the CI/CD pipelines. This would ensure that builds, tests, and other tasks are carried out efficiently while following the continuous integration and deployment.
+
+```yaml
+# .github/workflows/ci.yml
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Turborepo build
+        run: npx turbo run build --cache-dir=.cache/turbo
+
+      - name: Run tests
+        run: npx turbo run test
+```
+
+1. **Setup**: Make sure Node.js and Turborepo are available within your CI/CD environment.
+2. **Configuration**: Add Turborepo to your CI/CD configuration file with instructions for building and testing your projects.
+
+### Example: Package Managers
+
+Turborepo effectively integrates with package managers like npm, yarn, and pnpm, making it possible to manage dependencies in one centralized place. The add-on nature of Turborepo allows you to use the main features of your favorite package manager while using Turborepo's advanced features for task execution and caching.
+
+1. **Setup**: Install dependencies using your favourite package manager.
+
+2. **Configuration**: Configure Turborepo to understand and work with the package manager's lock file and workspace settings.
+
+### Example: Testing Frameworks
+
+Testing is made practical with tools that come with Turborepo by being integrated into testing frameworks. By using caching features, the running of tests with commands to take advantage of the infrastructure of Turborepo enables one to achieve a fast process in this case.
+
+1. **Setup**: Set up your favorite testing framework (e.g., Jest or Mocha).
+2. **Configuration**: Integrate test commands into the Turborepo pipeline configuration to trigger tests in the build process.
+
+Leveraging these tools with Turborepo, you can set up an integrated and seamless development environment that substantially enhances your workflow and shrinks build times.
 
 ## Conclusion
 
