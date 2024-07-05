@@ -1,18 +1,34 @@
-export { useList } from "./useList";
-export { useOne } from "./useOne";
-export { useMany } from "./useMany";
+export { useList, UseListProps } from "./useList";
+export { useOne, UseOneProps } from "./useOne";
+export { useMany, UseManyProps } from "./useMany";
 
-export { useUpdate } from "./useUpdate";
-export { useCreate, UseCreateReturnType } from "./useCreate";
-export { useDelete } from "./useDelete";
+export { useUpdate, UseUpdateProps, UseUpdateReturnType } from "./useUpdate";
+export { useCreate, UseCreateProps, UseCreateReturnType } from "./useCreate";
+export { useDelete, UseDeleteProps, UseDeleteReturnType } from "./useDelete";
 
-export { useCreateMany, UseCreateManyReturnType } from "./useCreateMany";
-export { useUpdateMany } from "./useUpdateMany";
-export { useDeleteMany } from "./useDeleteMany";
+export {
+  useCreateMany,
+  UseCreateManyProps,
+  UseCreateManyReturnType,
+} from "./useCreateMany";
+export {
+  useUpdateMany,
+  UseUpdateManyProps,
+  UseUpdateManyReturnType,
+} from "./useUpdateMany";
+export {
+  useDeleteMany,
+  UseDeleteManyProps,
+  UseDeleteManyReturnType,
+} from "./useDeleteMany";
 
 export { useApiUrl } from "./useApiUrl";
-export { useCustom } from "./useCustom";
-export { useCustomMutation } from "./useCustomMutation";
+export { useCustom, UseCustomProps } from "./useCustom";
+export {
+  useCustomMutation,
+  UseCustomMutationProps,
+  UseCustomMutationReturnType,
+} from "./useCustomMutation";
 
 export { useDataProvider } from "./useDataProvider";
-export { useInfiniteList } from "./useInfiniteList";
+export { useInfiniteList, UseInfiniteListProps } from "./useInfiniteList";

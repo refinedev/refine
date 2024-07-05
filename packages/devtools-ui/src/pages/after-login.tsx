@@ -3,9 +3,9 @@ import {
   DevtoolsEvent,
   send,
 } from "@refinedev/devtools-shared";
-import clsx from "clsx";
 import React from "react";
-import { useSearchParams, Navigate } from "react-router-dom";
+import clsx from "clsx";
+import { useSearchParams } from "react-router-dom";
 import { Authenticated } from "src/components/authenticated";
 
 export const AfterLogin = () => {
@@ -17,10 +17,24 @@ export const AfterLogin = () => {
 };
 
 const Failure = () => {
+  const { ws } = React.useContext(DevToolsContext);
+
   const [searchParams] = useSearchParams();
   const errorParam = searchParams.get("error");
+  const errorCode = searchParams.get("code");
 
-  return <Navigate to={`/login${errorParam ? `?error=${errorParam}` : ""}`} />;
+  React.useEffect(() => {
+    if (ws) {
+      send(ws, DevtoolsEvent.DEVTOOLS_LOGIN_FAILURE, {
+        error: errorParam,
+        code: errorCode,
+      }).then(() => {
+        window.close();
+      });
+    }
+  }, [ws, errorCode, errorParam]);
+
+  return <Wrapper>Login failed.</Wrapper>;
 };
 
 const Success = () => {
@@ -34,6 +48,10 @@ const Success = () => {
     }
   }, [ws]);
 
+  return <Wrapper>Logged in successfully, you can close this window.</Wrapper>;
+};
+
+const Wrapper = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       className={clsx(
@@ -57,7 +75,7 @@ const Success = () => {
           "re-text-sm",
         )}
       >
-        Logged in successfully, you can close this window.
+        {children}
       </div>
     </div>
   );

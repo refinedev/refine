@@ -2,6 +2,7 @@ import { waitFor } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
+import { posts } from "@test/dataMocks";
 
 import type {
   CrudFilter,
@@ -438,6 +439,47 @@ describe("useSelect Hook", () => {
 
     // for init call and defaultValue
     expect(mockFunc).toBeCalledTimes(2);
+  });
+
+  it("should sort default data first with selectedOptionsOrder for defaultValue", async () => {
+    const { result } = renderHook(
+      () =>
+        useSelect({
+          resource: "posts",
+          defaultValue: ["2"],
+          selectedOptionsOrder: "selected-first",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              // Default `getMany` mock returns all posts, we need to update it to return appropriate posts
+              getMany: ({ ids }) => {
+                return Promise.resolve({
+                  data: posts.filter((post) => ids.includes(post.id)) as any,
+                });
+              },
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.queryResult.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.options).toHaveLength(2);
+    expect(result.current.options).toEqual([
+      { label: "Recusandae consectetur aut atque est.", value: "2" },
+      {
+        label:
+          "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
+        value: "1",
+      },
+    ]);
   });
 
   it("should invoke queryOptions methods for default value successfully", async () => {

@@ -1,14 +1,17 @@
 import {
+  useUpdate,
+  useLiveMode,
+  pickNotDeprecated,
+  useTable as useTableCore,
   type BaseRecord,
   type CrudFilters,
   type HttpError,
   type Pagination,
-  pickNotDeprecated,
   type Prettify,
-  useLiveMode,
-  useTable as useTableCore,
+  type UseUpdateProps,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableReturnTypeCore,
+  useResourceParams,
 } from "@refinedev/core";
 import { useState } from "react";
 
@@ -49,37 +52,50 @@ type DataGridPropsType = Required<
 > &
   Pick<
     DataGridProps,
-    "paginationModel" | "onPaginationModelChange" | "filterModel"
+    | "paginationModel"
+    | "onPaginationModelChange"
+    | "filterModel"
+    | "processRowUpdate"
   >;
 
-export type UseDataGridProps<TQueryFnData, TError, TSearchVariables, TData> =
-  Omit<
-    useTablePropsCore<TQueryFnData, TError, TData>,
-    "pagination" | "filters"
-  > & {
-    onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
-    pagination?: Prettify<
-      Omit<Pagination, "pageSize"> & {
-        /**
-         * Initial number of items per page
-         * @default 25
-         */
-        pageSize?: number;
-      }
-    >;
-    filters?: Prettify<
-      Omit<
-        NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
-        "defaultBehavior"
-      > & {
-        /**
-         * Default behavior of the `setFilters` function
-         * @default "replace"
-         */
-        defaultBehavior?: "replace" | "merge";
-      }
-    >;
-  };
+export type UseDataGridProps<
+  TQueryFnData,
+  TError extends HttpError,
+  TSearchVariables,
+  TData extends BaseRecord,
+> = Omit<
+  useTablePropsCore<TQueryFnData, TError, TData>,
+  "pagination" | "filters"
+> & {
+  onSearch?: (data: TSearchVariables) => CrudFilters | Promise<CrudFilters>;
+  pagination?: Prettify<
+    Omit<Pagination, "pageSize"> & {
+      /**
+       * Initial number of items per page
+       * @default 25
+       */
+      pageSize?: number;
+    }
+  >;
+  filters?: Prettify<
+    Omit<
+      NonNullable<useTablePropsCore<TQueryFnData, TError, TData>["filters"]>,
+      "defaultBehavior"
+    > & {
+      /**
+       * Default behavior of the `setFilters` function
+       * @default "replace"
+       */
+      defaultBehavior?: "replace" | "merge";
+    }
+  >;
+  editable?: boolean;
+  updateMutationOptions?: UseUpdateProps<
+    TData,
+    TError,
+    TData
+  >["mutationOptions"];
+};
 
 export type UseDataGridReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -134,6 +150,8 @@ export function useDataGrid<
   metaData,
   dataProviderName,
   overtimeOptions,
+  editable = false,
+  updateMutationOptions,
 }: UseDataGridProps<
   TQueryFnData,
   TError,
@@ -144,6 +162,8 @@ export function useDataGrid<
   const liveMode = useLiveMode(liveModeFromProp);
 
   const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
+
+  const { identifier } = useResourceParams({ resource: resourceFromProp });
 
   const {
     tableQueryResult,
@@ -263,6 +283,38 @@ export function useDataGrid<
     };
   };
 
+  const { mutate } = useUpdate<TData, TError, TData>({
+    mutationOptions: updateMutationOptions,
+  });
+
+  const processRowUpdate = async (newRow: TData, oldRow: TData) => {
+    if (!editable) {
+      return Promise.resolve(oldRow);
+    }
+
+    if (!identifier) {
+      return Promise.reject(new Error("Resource is not defined"));
+    }
+
+    return new Promise((resolve, reject) => {
+      mutate(
+        {
+          resource: identifier,
+          id: newRow.id as string,
+          values: newRow,
+        },
+        {
+          onError: (error) => {
+            reject(error);
+          },
+          onSuccess: (data) => {
+            resolve(newRow);
+          },
+        },
+      );
+    });
+  };
+
   return {
     tableQueryResult,
     dataGridProps: {
@@ -310,6 +362,7 @@ export function useDataGrid<
           )}`,
         },
       },
+      processRowUpdate: editable ? processRowUpdate : undefined,
     },
     current,
     setCurrent,

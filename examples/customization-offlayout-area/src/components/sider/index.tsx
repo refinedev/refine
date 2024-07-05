@@ -49,7 +49,7 @@ export const FixedSider: React.FC = () => {
       return (
         <CanAccess
           key={route}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{ resource: item }}
         >
