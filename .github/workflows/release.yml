@@ -51,8 +51,8 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         with:
-          version: ./.github/workflows/scripts/update-lock.sh
-          publish: npm run changeset publish
+          version: pnpm version-packages
+          publish: pnpm changeset publish
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
         env:
