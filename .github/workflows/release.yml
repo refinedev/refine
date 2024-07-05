@@ -54,7 +54,7 @@ jobs:
         run: pnpm test:all
         if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Version Packages
-        run: pnpm version-packages
+        run: pnpm version-packages && /usr/bin/git add pnpm-lock.yaml && /usr/bin/git checkout -- .
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
