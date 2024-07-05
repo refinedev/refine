@@ -1,5 +1,24 @@
 # @refinedev/devtools-ui
 
+## 1.1.27
+
+### Patch Changes
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools): updated flow for login callbacks
+
+  Previously, when the login flow had an error, the Devtools UI was displaying it in the secondary window, which was not user-friendly and lead to multiple clients to connect unnecessarily. This change updates the flow to display the error message in the main Devtools window.
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - chore(devtools-ui): fix slider image loader
+
+  In the welcome page of the Devtools UI, feature slider was re-mounting every image at transition, causing polluted network tab in the browser even though the images were cached and loaded already. This change fixes the issue by loading the images only once and reusing them on transition.
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools): updated auth flow
+
+  Previously, a proxy in the Devtools Server was used as an auth server to handle sign-ins in the localhost (Devtools Server). This change updates the flow and moves the authentication flow to `https://auth.refine.dev` to handle sign-ins and sign-outs. Now the Devtools Server is only responsible for the connection between the auth server and the user interface while also managing the user's session.
+
+- Updated dependencies [[`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a)]:
+  - @refinedev/devtools-shared@1.1.11
+
 ## 1.1.25
 
 ### Patch Changes
