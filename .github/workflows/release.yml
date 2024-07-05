@@ -53,17 +53,11 @@ jobs:
       - name: Test
         run: pnpm test:all
         if: ${{ env.RELEASE_ONLY != 'true' }}
-      - name: Version Packages
-        run: pnpm version-packages && /usr/bin/git add pnpm-lock.yaml && /usr/bin/git checkout -- .
-        env:
-          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm changeset version
+          version: pnpm version-packages
           publish: pnpm changeset publish
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
