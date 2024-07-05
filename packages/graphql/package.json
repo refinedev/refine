@@ -51,7 +51,7 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.33",
-    "@refinedev/core": "^4.51.0",
+    "@refinedev/core": "^4.52.0",
     "@types/jest": "^29.2.4",
     "@types/pluralize": "^0.0.29",
     "jest": "^29.3.1",

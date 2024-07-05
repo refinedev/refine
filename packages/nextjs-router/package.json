@@ -91,7 +91,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.51.0",
+    "@refinedev/core": "^4.52.0",
     "@types/qs": "^6.9.7",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",

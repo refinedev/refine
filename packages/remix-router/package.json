@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.51.0",
+    "@refinedev/core": "^4.52.0",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@types/jest": "^29.2.4",
