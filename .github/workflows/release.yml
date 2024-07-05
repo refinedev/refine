@@ -7,6 +7,11 @@ on:
 
 jobs:
   publish:
+    permissions:
+      contents: write
+      id-token: write
+      issues: read
+      pull-requests: write
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.ref }}-stable-release
@@ -14,14 +19,10 @@ jobs:
     outputs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
-      - name: Workflow run cleanup action
-        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PANKOD_BOT_TOKEN }}
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v4
         with:
           version: 9
       - uses: actions/setup-node@v4
