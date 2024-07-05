@@ -31,8 +31,12 @@
       "outputs": ["{projectRoot}/dist"]
     },
     "cypress:run": {},
-    "attw": {},
-    "publint": {}
+    "attw": {
+      "dependsOn": ["build"]
+    },
+    "publint": {
+      "dependsOn": ["build"]
+    }
   },
   "defaultProject": "@refinedev/core",
   "cli": {
