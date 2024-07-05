@@ -14620,8 +14620,8 @@ importers:
         specifier: ^0.4.0
         version: 0.4.1
       '@refinedev/cli':
-        specifier: 2.16.34
-        version: 2.16.34(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/express@4.17.21)(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
+        specifier: 2.16.35
+        version: link:../cli
       '@refinedev/core':
         specifier: ^4.46.1
         version: link:../core
@@ -22476,10 +22476,6 @@ packages:
     peerDependencies:
       '@refinedev/core': ^4.28.2
 
-  '@refinedev/cli@2.16.34':
-    resolution: {integrity: sha512-OV6ilMoVMXrRGUufhUF45VCFL4gQEtQFvcmxcNxRU34pqWAzKQ66jXoQq7NYK3rPKxWJ1OMW/RIWT7rTfsRZfQ==}
-    hasBin: true
-
   '@refinedev/core@4.51.0':
     resolution: {integrity: sha512-nvyaARMiBzReF+OwUfblLl49rjcNBFT/m+4XWW6jcz5lWHRAYAfIEH6KbOBRabxs+V4nKzWKLzzZwpEqIEqvFA==}
     peerDependencies:
@@ -22492,16 +22488,6 @@ packages:
   '@refinedev/devtools-internal@1.1.11':
     resolution: {integrity: sha512-s+Mm6RB/dbgd6x9R3Iydum6gJ2/MFotYSIh/Ba7seCUS0v/Vb5f0X8EVhwbPbJ45N+WctaRpjNbxM0eKZ8blSA==}
     engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
-  '@refinedev/devtools-server@1.1.32':
-    resolution: {integrity: sha512-hl6s9Neq6kJeAEIUP9/GSmBvQrZBEU3VqfioWt2+Sk2ohXzx3vMvSySlL9lDve35P2iTKmQ6xvcwSgQK/MStcw==}
-    engines: {node: '>=10'}
-    hasBin: true
     peerDependencies:
       '@types/react': ^17.0.0 || ^18.0.0
       '@types/react-dom': ^17.0.0 || ^18.0.0
@@ -47805,58 +47791,6 @@ snapshots:
       - react
       - react-dom
 
-  '@refinedev/cli@2.16.34(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/express@4.17.21)(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)':
-    dependencies:
-      '@refinedev/devtools-server': 1.1.32(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/express@4.17.21)(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
-      boxen: 5.1.2
-      cardinal: 2.1.1
-      center-align: 1.0.1
-      chalk: 4.1.2
-      cli-table3: 0.6.4
-      commander: 9.4.1
-      conf: 10.2.0
-      decamelize: 5.0.1
-      dedent: 0.7.0
-      dotenv: 16.4.5
-      envinfo: 7.12.0
-      execa: 5.1.1
-      express: 4.19.2
-      figlet: 1.7.0
-      fs-extra: 10.1.0
-      globby: 11.1.0
-      gray-matter: 4.0.3
-      handlebars: 4.7.8
-      http-proxy-middleware: 2.0.6(@types/express@4.17.21)
-      inquirer: 8.2.6
-      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.2.6)
-      jscodeshift: 0.15.2(@babel/preset-env@7.24.4(@babel/core@7.24.4))
-      marked: 4.3.0
-      marked-terminal: 6.3.0(marked@4.3.0)
-      node-emoji: 2.1.3
-      node-env-type: 0.0.8
-      node-fetch: 2.7.0(encoding@0.1.13)
-      ora: 5.4.1
-      pluralize: 8.0.0
-      preferred-pm: 3.1.3
-      prettier: 2.8.8
-      semver: 7.5.2
-      semver-diff: 3.1.1
-      temp: 0.9.4
-      tslib: 2.6.2
-    transitivePeerDependencies:
-      - '@babel/preset-env'
-      - '@types/express'
-      - '@types/react'
-      - '@types/react-dom'
-      - bufferutil
-      - debug
-      - encoding
-      - react
-      - react-dom
-      - react-native
-      - supports-color
-      - utf-8-validate
-
   '@refinedev/core@4.51.0(@tanstack/react-query@4.36.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@refinedev/devtools-internal': 1.1.11(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -47886,43 +47820,6 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
     transitivePeerDependencies:
       - react-native
-
-  '@refinedev/devtools-server@1.1.32(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/express@4.17.21)(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)':
-    dependencies:
-      '@ory/client': 1.9.0
-      '@refinedev/devtools-shared': 1.1.9(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@types/react': 18.3.0
-      '@types/react-dom': 18.3.0
-      body-parser: 1.20.2
-      boxen: 5.1.2
-      chalk: 4.1.2
-      dedent: 0.7.0
-      error-stack-parser: 2.1.4
-      execa: 5.1.1
-      express: 4.19.2
-      fs-extra: 10.1.0
-      globby: 11.1.0
-      gray-matter: 4.0.3
-      http-proxy-middleware: 2.0.6(@types/express@4.17.21)
-      jscodeshift: 0.15.2(@babel/preset-env@7.24.4(@babel/core@7.24.4))
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      marked: 4.3.0
-      node-fetch: 2.7.0(encoding@0.1.13)
-      preferred-pm: 3.1.3
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      sanitize-html: 2.13.0
-      ws: 8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-    transitivePeerDependencies:
-      - '@babel/preset-env'
-      - '@types/express'
-      - bufferutil
-      - debug
-      - encoding
-      - react-native
-      - supports-color
-      - utf-8-validate
 
   '@refinedev/devtools-shared@1.1.9(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
