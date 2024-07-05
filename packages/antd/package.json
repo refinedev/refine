@@ -57,7 +57,7 @@
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.36",
     "@refinedev/core": "^4.53.0",
-    "@refinedev/ui-tests": "^1.14.8",
+    "@refinedev/ui-tests": "^1.14.9",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",

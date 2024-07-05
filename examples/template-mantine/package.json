@@ -29,7 +29,7 @@
     "@mantine/notifications": "^5.10.4",
     "@refinedev/cli": "^2.16.36",
     "@refinedev/core": "^4.53.0",
-    "@refinedev/mantine": "^2.32.1",
+    "@refinedev/mantine": "^2.32.2",
     "@refinedev/react-router-v6": "^4.5.11",
     "@refinedev/react-table": "^5.6.12",
     "@refinedev/simple-rest": "^5.0.8",

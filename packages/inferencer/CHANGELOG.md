@@ -1,6 +1,6 @@
 # @refinedev/mantine
 
-## 4.6.5
+## 4.6.6
 
 ### Patch Changes
 

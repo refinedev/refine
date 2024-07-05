@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/hasura",
-  "version": "6.6.5",
+  "version": "6.6.6",
   "private": false,
   "description": "refine Hasura data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "repository": {

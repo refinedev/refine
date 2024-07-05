@@ -327,7 +327,7 @@ importers:
         specifier: ^1.2.6
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
-        specifier: ^1.3.1
+        specifier: ^1.3.2
         version: link:../../packages/nestjs-query
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -520,7 +520,7 @@ importers:
         specifier: ^1.2.6
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
-        specifier: ^1.3.1
+        specifier: ^1.3.2
         version: link:../../packages/nestjs-query
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -1096,7 +1096,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -1462,7 +1462,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -1809,7 +1809,7 @@ importers:
         specifier: ^4.5.11
         version: link:../../packages/react-router-v6
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       antd:
         specifier: ^5.17.0
@@ -2025,7 +2025,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -2168,7 +2168,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -2235,7 +2235,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -2405,7 +2405,7 @@ importers:
         specifier: ^1.2.6
         version: link:../../packages/devtools
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -2511,7 +2511,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -2599,7 +2599,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^4.8.20
@@ -2745,7 +2745,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -2824,13 +2824,13 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
       '@refinedev/nestjs-query':
-        specifier: ^1.3.1
+        specifier: ^1.3.2
         version: link:../../packages/nestjs-query
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -2973,13 +2973,13 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -3055,7 +3055,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -3146,7 +3146,7 @@ importers:
         specifier: ^1.2.6
         version: link:../../packages/devtools
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -3243,7 +3243,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -3628,7 +3628,7 @@ importers:
         specifier: ^4.5.11
         version: link:../../packages/react-router-v6
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       daisyui:
         specifier: ^3.5.1
@@ -3698,7 +3698,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -3859,7 +3859,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -3874,7 +3874,7 @@ importers:
         specifier: ^5.6.12
         version: link:../../packages/react-table
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       '@tanstack/react-table':
         specifier: ^8.2.6
@@ -4599,7 +4599,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -4935,7 +4935,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.5
+        specifier: ^6.6.6
         version: link:../../packages/hasura
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -5057,7 +5057,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/nestjs-query':
-        specifier: ^1.3.1
+        specifier: ^1.3.2
         version: link:../../packages/nestjs-query
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -5383,7 +5383,7 @@ importers:
         specifier: ^4.5.11
         version: link:../../packages/react-router-v6
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       '@uiw/react-md-editor':
         specifier: ^3.19.5
@@ -6663,7 +6663,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -6736,7 +6736,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -6812,7 +6812,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -6885,7 +6885,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -6961,7 +6961,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -7817,7 +7817,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -7939,7 +7939,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -8024,7 +8024,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -8118,10 +8118,10 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.5
+        specifier: ^6.6.6
         version: link:../../packages/hasura
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -8191,7 +8191,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -8288,13 +8288,13 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -8391,7 +8391,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -8781,7 +8781,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/mui':
         specifier: ^5.19.0
@@ -9058,7 +9058,7 @@ importers:
         specifier: ^4.5.11
         version: link:../../packages/react-router-v6
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       antd:
         specifier: ^5.17.0
@@ -9113,7 +9113,7 @@ importers:
         specifier: ^4.5.11
         version: link:../../packages/react-router-v6
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       antd:
         specifier: ^5.17.0
@@ -9180,7 +9180,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -9427,7 +9427,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -10274,7 +10274,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -10347,7 +10347,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -11224,7 +11224,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -11501,7 +11501,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -11629,7 +11629,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -11699,7 +11699,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^4.8.20
@@ -11772,7 +11772,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^4.8.20
@@ -11857,10 +11857,10 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -11948,7 +11948,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/mui':
         specifier: ^5.19.0
@@ -12259,7 +12259,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -12332,7 +12332,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../../packages/mantine
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
@@ -12686,7 +12686,7 @@ importers:
         specifier: ^5.6.12
         version: link:../../packages/react-table
       '@refinedev/supabase':
-        specifier: ^5.9.1
+        specifier: ^5.9.2
         version: link:../../packages/supabase
       '@tanstack/react-table':
         specifier: ^8.2.6
@@ -13076,7 +13076,7 @@ importers:
         specifier: ^1.2.6
         version: link:../../packages/devtools
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -13323,7 +13323,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/remix-router':
         specifier: ^3.0.6
@@ -13478,7 +13478,7 @@ importers:
         specifier: ^4.53.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^4.6.5
+        specifier: ^4.6.6
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.12
@@ -13993,7 +13993,7 @@ importers:
         specifier: ^4.53.0
         version: link:../core
       '@refinedev/ui-tests':
-        specifier: ^1.14.8
+        specifier: ^1.14.9
         version: link:../ui-tests
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -14151,7 +14151,7 @@ importers:
         specifier: ^4.53.0
         version: link:../core
       '@refinedev/ui-tests':
-        specifier: ^1.14.8
+        specifier: ^1.14.9
         version: link:../ui-tests
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -15300,7 +15300,7 @@ importers:
         specifier: ^2.31.2
         version: link:../chakra-ui
       '@refinedev/mantine':
-        specifier: ^2.32.1
+        specifier: ^2.32.2
         version: link:../mantine
       '@refinedev/mui':
         specifier: ^5.19.0
@@ -15705,7 +15705,7 @@ importers:
         specifier: ^4.53.0
         version: link:../core
       '@refinedev/ui-tests':
-        specifier: ^1.14.8
+        specifier: ^1.14.9
         version: link:../ui-tests
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -15878,7 +15878,7 @@ importers:
         specifier: ^4.53.0
         version: link:../core
       '@refinedev/ui-tests':
-        specifier: ^1.14.8
+        specifier: ^1.14.9
         version: link:../ui-tests
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -48803,7 +48803,7 @@ snapshots:
       case-sensitive-paths-webpack-plugin: 2.4.0
       core-js: 3.37.0
       css-loader: 3.6.0(webpack@4.47.0)
-      file-loader: 6.2.0(webpack@5.91.0)
+      file-loader: 6.2.0(webpack@4.47.0)
       find-up: 5.0.0
       fork-ts-checker-webpack-plugin: 4.1.6(eslint@8.57.0)(typescript@5.4.5)(webpack@4.47.0)
       glob: 7.2.3
@@ -49270,7 +49270,7 @@ snapshots:
       core-js: 3.37.0
       css-loader: 3.6.0(webpack@4.47.0)
       express: 4.19.2
-      file-loader: 6.2.0(webpack@4.47.0)
+      file-loader: 6.2.0(webpack@5.91.0)
       find-up: 5.0.0
       fs-extra: 9.1.0
       html-webpack-plugin: 4.5.2(webpack@4.47.0)
@@ -51937,14 +51937,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)):
+  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)):
     dependencies:
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-module-imports': 7.24.3
       '@babel/plugin-syntax-jsx': 7.24.1(@babel/core@7.24.4)
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)
+      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)
     transitivePeerDependencies:
       - '@babel/core'
 
@@ -66175,18 +66175,18 @@ snapshots:
     dependencies:
       inline-style-parser: 0.1.1
 
-  styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0):
+  styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0):
     dependencies:
       '@babel/helper-module-imports': 7.24.3
       '@babel/traverse': 7.24.1(supports-color@5.5.0)
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0))
+      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0))
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 16.14.0
+      react-dom: 16.14.0(react@16.14.0)
       react-is: 18.3.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
@@ -68050,7 +68050,7 @@ snapshots:
       prop-types: 15.8.1
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)
+      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)
       tslib: 1.14.1
     transitivePeerDependencies:
       - '@babel/core'

@@ -1,6 +1,6 @@
 # @refinedev/nestjs-query
 
-## 1.3.1
+## 1.3.2
 
 ### Patch Changes
 

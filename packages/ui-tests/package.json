@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/ui-tests",
-  "version": "1.14.8",
+  "version": "1.14.9",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",

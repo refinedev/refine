@@ -1,6 +1,6 @@
 # @refinedev/mantine
 
-## 2.32.1
+## 2.32.2
 
 ### Patch Changes
 
