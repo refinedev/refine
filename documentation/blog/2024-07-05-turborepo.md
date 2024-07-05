@@ -153,9 +153,7 @@ module.exports = {
 
 With these advanced configuration features, you can customize the build and fully optimize the performance of your projects such that your projects are built quickly and efficiently.
 
-Hello Team,
-
-I am preparing a new chapter: "Integrating Turborepo with existing tools," for our Turborepo article so that readers can understand how to integrate Turborepo with standard development tools like CI/CD pipelines, package managers, and testing frameworks.
+.
 
 ## Using Turborepo with the Existing Tools
 
