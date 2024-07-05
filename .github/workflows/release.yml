@@ -18,6 +18,8 @@ jobs:
       cancel-in-progress: true
     outputs:
       published: ${{ steps.changesets.outputs.published }}
+    env:
+      RELEASE_ONLY: ${{ secrets.RELEASE_ONLY }}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -38,19 +40,26 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm lint:ci
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Syncpack
         run: pnpm sp lint
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Publint
         run: pnpm publint:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Are The Types Wrong
         run: pnpm attw:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Test
         run: pnpm test:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
+      - name: Version Packages
+        run: pnpm version-packages
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm version-packages
+          version: pnpm changeset version
           publish: pnpm changeset publish
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
