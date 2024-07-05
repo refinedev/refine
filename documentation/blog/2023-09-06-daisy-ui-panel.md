@@ -281,7 +281,7 @@ body {
 }
 
 .page-container {
-  @apply mx-auto my-2 py-2 px-4 bg-slate-50 border rounded drop-shadow-md;
+  @apply mx-auto my-2 rounded border bg-slate-50 px-4 py-2 drop-shadow-md;
 }
 
 .page-title {
@@ -289,7 +289,7 @@ body {
 }
 
 .page-header {
-  @apply py-4 flex justify-between items-center mb-6;
+  @apply mb-6 flex items-center justify-between py-4;
 }
 ```
 
@@ -433,7 +433,7 @@ import React from "react";
 
 export const Dashboard: React.FC = () => {
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content text-center">
         <div className="max-w-md">
           <h1 className="text-5xl font-bold">Hello there...</h1>
@@ -570,8 +570,8 @@ type TStats = {
 
 const Stats = ({ dailyRevenue, dailyOrders, newCustomers }: TStats) => {
   return (
-    <div className="w-full mx-auto mb-4 flex flex-col justify-center items-stretch md:flex-row md:justify-between drop-shadow-md">
-      <div className="w-full mx-auto md:flex-1 md:mr-2">
+    <div className="mx-auto mb-4 flex w-full flex-col items-stretch justify-center drop-shadow-md md:flex-row md:justify-between">
+      <div className="mx-auto w-full md:mr-2 md:flex-1">
         <KpiCard
           title="Weekly Revenue"
           data={dailyRevenue}
@@ -583,7 +583,7 @@ const Stats = ({ dailyRevenue, dailyOrders, newCustomers }: TStats) => {
           }}
         />
       </div>
-      <div className="w-full mx-auto md:flex-1">
+      <div className="mx-auto w-full md:flex-1">
         <KpiCard
           title="Weekly Orders"
           data={dailyOrders}
@@ -594,7 +594,7 @@ const Stats = ({ dailyRevenue, dailyOrders, newCustomers }: TStats) => {
           }}
         />
       </div>
-      <div className="w-full mx-auto md:flex-1 md:ml-2">
+      <div className="mx-auto w-full md:ml-2 md:flex-1">
         <KpiCard
           title="New Customers"
           data={newCustomers}
@@ -653,7 +653,7 @@ export const KpiCard = ({
 
   return (
     <div
-      className="stat my-2 py-4 flex-1 bg-zinc-50 border-l-4 rounded"
+      className="stat my-2 flex-1 rounded border-l-4 bg-zinc-50 py-4"
       style={{ borderColor: colors?.stroke }}
     >
       <div
@@ -667,7 +667,7 @@ export const KpiCard = ({
         {formatTotal(total ?? "...")}
       </div>
       <div className="stat-desc my-2">
-        <span className="mx-1 text-l font-bold" style={{ color: textColor }}>
+        <span className="text-l mx-1 font-bold" style={{ color: textColor }}>
           {percent}
         </span>
         since last week
@@ -780,7 +780,7 @@ type TTabItem = {
 export const TabItem = ({ label, isActive, clickHandler }: TTabItem) => {
   return (
     <a
-      className={`text-l font-bold tab tab-bordered${
+      className={`text-l tab font-bold tab-bordered${
         isActive ? " tab-active" : ""
       }`}
       onClick={clickHandler}
@@ -837,7 +837,7 @@ type TTabViewProps = {
 export const TabView = ({ tabs }: TTabViewProps) => {
   const [activeTab, setActiveTab] = useState(0);
   return (
-    <div className="mx-auto py-4 bg-slate-50 border rounded-lg drop-shadow-md">
+    <div className="mx-auto rounded-lg border bg-slate-50 py-4 drop-shadow-md">
       <div className="tabs">
         {tabs?.map((tab: TTab, index: number) => (
           <TabItem
@@ -1092,7 +1092,7 @@ export const ChartTooltip = ({
 
     return (
       <div
-        className="p-1 flex flex-col justify-center items-start border border-black rounded-lg text-zinc-50"
+        className="flex flex-col items-start justify-center rounded-lg border border-black p-1 text-zinc-50"
         style={tooltipStyle}
       >
         <div
@@ -1386,14 +1386,14 @@ export const RecentSales = () => {
   });
 
   const header = (
-    <div className="w-full mx-auto">
+    <div className="mx-auto w-full">
       <div className="my-2">
         <h1 className="page-title text-gray-700">Recent Sales</h1>
       </div>
-      <div className="overflow-x-auto bg-slate-50 border rounded-t-lg">
-        <div className="flex justify-between items-center m-4">
+      <div className="overflow-x-auto rounded-t-lg border bg-slate-50">
+        <div className="m-4 flex items-center justify-between">
           <button
-            className="btn btn-outline btn-primary btn-sm normal-case font-light"
+            className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
               setCurrent(1);
               setFilters([], "replace");
@@ -1403,7 +1403,7 @@ export const RecentSales = () => {
             <FunnelIcon className="h-4 w-4" />
             Clear
           </button>
-          <div className="flex justify-end items-center">
+          <div className="flex items-center justify-end">
             <form ref={filterForm}>
               <input
                 className="input input-bordered input-sm"
@@ -1429,10 +1429,10 @@ export const RecentSales = () => {
   );
 
   return (
-    <div className="w-full mx-auto my-8 drop-shadow-md">
+    <div className="mx-auto my-8 w-full drop-shadow-md">
       {header}
-      <div className="p-4 overflow-x-auto bg-slate-50 border rounded-b-lg">
-        <table className="table table-zebra border-t">
+      <div className="overflow-x-auto rounded-b-lg border bg-slate-50 p-4">
+        <table className="table-zebra table border-t">
           <thead className="bg-slate-200">
             {getHeaderGroups()?.map((headerGroup) => (
               <tr key={headerGroup?.id}>
@@ -1442,7 +1442,7 @@ export const RecentSales = () => {
                     key={header?.id}
                     onClick={header?.column?.getToggleSortingHandler()}
                   >
-                    <div className="flex justify-start items-center">
+                    <div className="flex items-center justify-start">
                       {!header?.isPlaceholder &&
                         flexRender(
                           header?.column?.columnDef?.header,
@@ -2087,7 +2087,7 @@ export const ProductList = () => {
         enableSorting: false,
         cell: function render({ getValue }) {
           return (
-            <div className="flex justify-around items-center">
+            <div className="flex items-center justify-around">
               <button
                 className="btn btn-xs btn-circle btn-ghost m-1"
                 onClick={() => {
@@ -2113,7 +2113,7 @@ export const ProductList = () => {
                   });
                 }}
               >
-                <TrashIcon className="h-4 w-4 text-error" />
+                <TrashIcon className="text-error h-4 w-4" />
               </button>
             </div>
           );
@@ -2146,17 +2146,17 @@ export const ProductList = () => {
       <div className="page-header">
         <h1 className="page-title">Products</h1>
         <button
-          className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
+          className="btn btn-sm btn-primary font-normal normal-case text-zinc-50"
           onClick={() => create("products")}
         >
           <PlusIcon className="h-5 w-5" />
           Create
         </button>
       </div>
-      <div className="overflow-x-auto bg-slate-50 border">
-        <div className="flex justify-between items-center m-4">
+      <div className="overflow-x-auto border bg-slate-50">
+        <div className="m-4 flex items-center justify-between">
           <button
-            className="btn btn-outline btn-primary btn-sm normal-case font-light"
+            className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
               setCurrent(1);
               setFilters([], "replace");
@@ -2166,7 +2166,7 @@ export const ProductList = () => {
             <FunnelIcon className="h-4 w-4" />
             Clear
           </button>
-          <div className="flex justify-end items-center">
+          <div className="flex items-center justify-end">
             <form ref={filterForm}>
               <input
                 className="input input-bordered input-sm"
@@ -2187,7 +2187,7 @@ export const ProductList = () => {
             </form>
           </div>
         </div>
-        <table className="table table-zebra border-t">
+        <table className="table-zebra table border-t">
           <thead className="bg-slate-200">
             {getHeaderGroups()?.map((headerGroup) => (
               <tr key={headerGroup?.id}>
@@ -2197,7 +2197,7 @@ export const ProductList = () => {
                     key={header?.id}
                     onClick={header?.column?.getToggleSortingHandler()}
                   >
-                    <div className="flex justify-start items-center">
+                    <div className="flex items-center justify-start">
                       {!header?.isPlaceholder &&
                         flexRender(
                           header?.column?.columnDef?.header,
@@ -2229,7 +2229,7 @@ export const ProductList = () => {
           </tbody>
         </table>
       </div>
-      <div className="flex justify-center items-center mt-3">
+      <div className="mt-3 flex items-center justify-center">
         <div className="join">
           <button
             className="join-item btn btn-sm btn-ghost"
@@ -2278,14 +2278,14 @@ export const ProductList = () => {
           </button>
         </div>
         <select
-          className="mx-2 p-1 border rounded"
+          className="mx-2 rounded border p-1"
           value={getState()?.pagination?.pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
         >
           {[10, 25, 50].map((pageSize) => (
-            <option className="border rounded" key={pageSize} value={pageSize}>
+            <option className="rounded border" key={pageSize} value={pageSize}>
               {pageSize}
             </option>
           ))}
@@ -2436,10 +2436,10 @@ export const ProductCreate = () => {
 
   return (
     <div className="page-container">
-      <div className="flex justify-start items-center">
+      <div className="flex items-center justify-start">
         <div>
           <button
-            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            className="btn btn-primary btn-sm btn-ghost mr-2"
             onClick={() => {
               list("products");
             }}
@@ -2512,9 +2512,9 @@ export const ProductCreate = () => {
             {(errors as any)?.description?.message as string}
           </span>
         </div>
-        <div className="flex justify-end items-center my-6">
+        <div className="my-6 flex items-center justify-end">
           <input
-            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+            className="btn btn-primary btn-sm text-xl font-normal normal-case text-zinc-50"
             type="submit"
             value="Save"
           />
@@ -2602,10 +2602,10 @@ export const ProductEdit = () => {
 
   return (
     <div className="page-container">
-      <div className="flex justify-between items-center">
-        <div className="flex justify-start items-center">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-start">
           <button
-            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            className="btn btn-primary btn-sm btn-ghost mr-2"
             onClick={() => {
               list("products");
             }}
@@ -2616,7 +2616,7 @@ export const ProductEdit = () => {
         </div>
         <div>
           <button
-            className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
+            className="btn btn-sm btn-primary btn-outline flex items-center justify-center font-normal normal-case"
             onClick={() => queryResult?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
@@ -2684,9 +2684,9 @@ export const ProductEdit = () => {
             {(errors as any)?.description?.message as string}
           </span>
         </div>
-        <div className="flex justify-end items-center">
+        <div className="flex items-center justify-end">
           <input
-            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+            className="btn btn-primary btn-sm text-xl font-normal normal-case text-zinc-50"
             type="submit"
             value="Save"
           />
@@ -2699,7 +2699,7 @@ export const ProductEdit = () => {
 
 </details>
 
-In the final version of `<ProductEdit />` component, we are implementing the same form field control, state management, submission and error handling functionalities as the `<ProductCreate />` component implemnted above. We're doing them with the `onFinish` object, `register()` and `handleSubmit()` methods. We are accessing the errors with the `formState.errors` object. We are also using more or less the same daisyUI classes for buttons and form fields.
+In the final version of `<ProductEdit />` component, we are implementing the same form field control, state management, submission and error handling functionalities as the `<ProductCreate />` component implemented above. We're doing them with the `onFinish` object, `register()` and `handleSubmit()` methods. We are accessing the errors with the `formState.errors` object. We are also using more or less the same daisyUI classes for buttons and form fields.
 
 Additionally, we are setting the current option of the `<select />` dropdown with `setValue()` method destructured from `useForm()` hook.
 
@@ -2737,18 +2737,18 @@ export const ProductShow = () => {
   return (
     <div className="page-container">
       <div className="page-header">
-        <div className="flex justify-start items-center">
+        <div className="flex items-center justify-start">
           <button
-            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            className="btn btn-primary btn-sm btn-ghost mr-2"
             onClick={() => list("products")}
           >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
           <h1 className="page-title">Product Details</h1>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <button
-            className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
+            className="btn btn-primary btn-sm flex items-center justify-center font-normal normal-case text-zinc-50"
             onClick={() => edit("products", id ?? "")}
           >
             <PencilSquareIcon className="h-5 w-5" />
@@ -2761,7 +2761,7 @@ export const ProductShow = () => {
           <div className="text-xl font-bold">
             {record?.name ?? "Loading..."}
           </div>
-          <div className="divider p-0 m-0"></div>
+          <div className="divider m-0 p-0"></div>
           <div className="mb-2">
             <h5 className="mb-1 font-bold">Price</h5>
             <div>{record?.price ? `$ ${record?.price}` : "Loading..."}</div>
@@ -2974,7 +2974,7 @@ export const CategoryList = () => {
         header: "Name",
         cell: function render({ getValue }) {
           return (
-            <div className="w-24 md:w-60 lg:w-96 text-center">
+            <div className="w-24 text-center md:w-60 lg:w-96">
               {getValue() as string}
             </div>
           );
@@ -2987,7 +2987,7 @@ export const CategoryList = () => {
         enableSorting: false,
         cell: function render({ getValue }) {
           return (
-            <div className="flex justify-around items-center">
+            <div className="flex items-center justify-around">
               <button
                 className="btn btn-xs btn-circle btn-ghost m-1"
                 onClick={() => {
@@ -3013,7 +3013,7 @@ export const CategoryList = () => {
                   });
                 }}
               >
-                <TrashIcon className="h-4 w-4 text-error" />
+                <TrashIcon className="text-error h-4 w-4" />
               </button>
             </div>
           );
@@ -3046,17 +3046,17 @@ export const CategoryList = () => {
       <div className="page-header">
         <h1 className="page-title">Categories</h1>
         <button
-          className="btn btn-sm btn-primary normal-case font-normal text-zinc-50"
+          className="btn btn-sm btn-primary font-normal normal-case text-zinc-50"
           onClick={() => create("categories")}
         >
           <PlusIcon className="h-5 w-5" />
           Create
         </button>
       </div>
-      <div className="overflow-x-auto bg-slate-50 border">
-        <div className="flex justify-between items-center m-4">
+      <div className="overflow-x-auto border bg-slate-50">
+        <div className="m-4 flex items-center justify-between">
           <button
-            className="btn btn-outline btn-primary btn-sm normal-case font-light"
+            className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
               setCurrent(1);
               setFilters([], "replace");
@@ -3066,7 +3066,7 @@ export const CategoryList = () => {
             <FunnelIcon className="h-4 w-4" />
             Clear
           </button>
-          <div className="flex justify-end items-center">
+          <div className="flex items-center justify-end">
             <form ref={filterForm}>
               <input
                 className="input input-bordered input-sm"
@@ -3088,7 +3088,7 @@ export const CategoryList = () => {
           </div>
         </div>
       </div>
-      <table className="table table-zebra border-t">
+      <table className="table-zebra table border-t">
         <thead className="bg-slate-200">
           {getHeaderGroups()?.map((headerGroup) => (
             <tr key={headerGroup?.id}>
@@ -3098,7 +3098,7 @@ export const CategoryList = () => {
                   key={header?.id}
                   onClick={header?.column?.getToggleSortingHandler()}
                 >
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center justify-center">
                     {!header?.isPlaceholder &&
                       flexRender(
                         header?.column?.columnDef?.header,
@@ -3119,7 +3119,7 @@ export const CategoryList = () => {
             <tr key={row?.id}>
               {row?.getVisibleCells()?.map((cell) => (
                 <td className="text-center" key={cell?.id}>
-                  <div className="flex justify-center items-center">
+                  <div className="flex items-center justify-center">
                     {flexRender(
                       cell?.column?.columnDef?.cell,
                       cell?.getContext(),
@@ -3131,7 +3131,7 @@ export const CategoryList = () => {
           ))}
         </tbody>
       </table>
-      <div className="flex justify-center items-center mt-3">
+      <div className="mt-3 flex items-center justify-center">
         <div className="join">
           <button
             className="join-item btn btn-sm btn-ghost"
@@ -3180,14 +3180,14 @@ export const CategoryList = () => {
           </button>
         </div>
         <select
-          className="mx-2 p-1 border rounded"
+          className="mx-2 rounded border p-1"
           value={getState()?.pagination?.pageSize}
           onChange={(e) => {
             setPageSize(Number(e.target.value));
           }}
         >
           {[10, 25, 50].map((pageSize) => (
-            <option className="border rounded" key={pageSize} value={pageSize}>
+            <option className="rounded border" key={pageSize} value={pageSize}>
               {pageSize}
             </option>
           ))}
@@ -3226,10 +3226,10 @@ export const CategoryCreate = () => {
 
   return (
     <div className="page-container">
-      <div className="flex justify-start items-center">
+      <div className="flex items-center justify-start">
         <div>
           <button
-            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            className="btn btn-primary btn-sm btn-ghost mr-2"
             onClick={() => {
               list("categories");
             }}
@@ -3252,9 +3252,9 @@ export const CategoryCreate = () => {
           <span style={{ color: "red" }}>
             {(errors as any)?.title?.message as string}
           </span>
-          <div className="flex justify-end items-center my-6">
+          <div className="my-6 flex items-center justify-end">
             <input
-              className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+              className="btn btn-primary btn-sm text-xl font-normal normal-case text-zinc-50"
               type="submit"
               value="Save"
             />
@@ -3294,10 +3294,10 @@ export const CategoryEdit = () => {
 
   return (
     <div className="page-container">
-      <div className="flex justify-between items-center">
-        <div className="flex justify-start items-center">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center justify-start">
           <button
-            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            className="btn btn-primary btn-sm btn-ghost mr-2"
             onClick={() => {
               list("categories");
             }}
@@ -3308,7 +3308,7 @@ export const CategoryEdit = () => {
         </div>
         <div>
           <button
-            className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
+            className="btn btn-sm btn-primary btn-outline flex items-center justify-center font-normal normal-case"
             onClick={() => queryResult?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
@@ -3330,9 +3330,9 @@ export const CategoryEdit = () => {
             {(errors as any)?.title?.message as string}
           </span>
         </div>
-        <div className="flex justify-end items-center">
+        <div className="flex items-center justify-end">
           <input
-            className="btn btn-primary btn-sm normal-case text-xl text-zinc-50 font-normal"
+            className="btn btn-primary btn-sm text-xl font-normal normal-case text-zinc-50"
             type="submit"
             value="Save"
           />
@@ -3370,18 +3370,18 @@ export const CategoryShow = () => {
   return (
     <div className="page-container">
       <div className="page-header">
-        <div className="flex justify-between items-center">
+        <div className="flex items-center justify-between">
           <button
-            className="mr-2 btn btn-primary btn-sm btn-ghost"
+            className="btn btn-primary btn-sm btn-ghost mr-2"
             onClick={() => list("categories")}
           >
             <ArrowLeftIcon className="h-5 w-5" />
           </button>
           <h1 className="page-title">Category Details</h1>
         </div>
-        <div className="flex justify-start items-center">
+        <div className="flex items-center justify-start">
           <button
-            className="flex justify-center items-center btn btn-primary btn-sm text-zinc-50 normal-case font-normal"
+            className="btn btn-primary btn-sm flex items-center justify-center font-normal normal-case text-zinc-50"
             onClick={() => edit("categories", record?.id ?? "")}
           >
             <PencilSquareIcon className="h-5 w-5" />
@@ -3453,7 +3453,7 @@ export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
     <div>
       <Menu />
-      <div className="p-4 bg-zinc-100">
+      <div className="bg-zinc-100 p-4">
         <Breadcrumb />
         <div>{children}</div>
       </div>
@@ -3609,13 +3609,13 @@ export const Menu = () => {
   const { menuItems } = useMenu();
 
   return (
-    <nav className="sticky top-0 z-50 menu mx-0 bg-white">
-      <ul className="mx-0 flex justify-start items-center">
+    <nav className="menu sticky top-0 z-50 mx-0 bg-white">
+      <ul className="mx-0 flex items-center justify-start">
         {menuItems.map((item) => (
-          <li key={item?.key} className="mx-0 flex justify-start items-center">
+          <li key={item?.key} className="mx-0 flex items-center justify-start">
             <div className="text-gray-600">
               <NavLink
-                className="text-lg flex items-center"
+                className="flex items-center text-lg"
                 to={item?.route ?? "/"}
               >
                 <span className="mr-2">{item?.icon}</span>
@@ -3652,7 +3652,7 @@ export const Breadcrumb = () => {
   if (breadcrumbs.length == 1) return null;
 
   return (
-    <div className="text-sm breadcrumbs">
+    <div className="breadcrumbs text-sm">
       <ul className="my-2">
         {breadcrumbs?.map((breadcrumb) => {
           return (
