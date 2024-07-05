@@ -1,5 +1,18 @@
 # @refinedev/mantine
 
+## 4.6.5
+
+### Patch Changes
+
+- [#6099](https://github.com/refinedev/refine/pull/6099) [`ba8117f6060253dc1d589d69acba79d7c89e94c6`](https://github.com/refinedev/refine/commit/ba8117f6060253dc1d589d69acba79d7c89e94c6) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: remove graphql-tag from peer dependencies. fixes #6100
+
+- [#6052](https://github.com/refinedev/refine/pull/6052) [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd) Thanks [@aliemir](https://github.com/aliemir)! - fix(inferencer): broken lodash import in bundle
+
+  ESM bundle of `@refinedev/inferencer` was broken due to incorrect lodash import. Import has been replaced with subdirectory import to get handled properly in the bundling process.
+
+- Updated dependencies [[`853bef97ed7baf59e74c98fc54c0ed11624fb491`](https://github.com/refinedev/refine/commit/853bef97ed7baf59e74c98fc54c0ed11624fb491), [`b86648f42cd849a506e4c32d740de26b72681f72`](https://github.com/refinedev/refine/commit/b86648f42cd849a506e4c32d740de26b72681f72), [`4265ae2509f79af9dbca8d52daf5c2f1b4a50a51`](https://github.com/refinedev/refine/commit/4265ae2509f79af9dbca8d52daf5c2f1b4a50a51), [`b516c18b828ba8823561d0fefc4afe02b45ce332`](https://github.com/refinedev/refine/commit/b516c18b828ba8823561d0fefc4afe02b45ce332)]:
+  - @refinedev/core@4.53.0
+
 ## 4.6.4
 
 ### Patch Changes

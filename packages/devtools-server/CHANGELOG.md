@@ -1,5 +1,28 @@
 # @refinedev/devtools-server
 
+## 1.1.34
+
+### Patch Changes
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools): updated flow for login callbacks
+
+  Previously, when the login flow had an error, the Devtools UI was displaying it in the secondary window, which was not user-friendly and lead to multiple clients to connect unnecessarily. This change updates the flow to display the error message in the main Devtools window.
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools): updated auth flow
+
+  Previously, a proxy in the Devtools Server was used as an auth server to handle sign-ins in the localhost (Devtools Server). This change updates the flow and moves the authentication flow to `https://auth.refine.dev` to handle sign-ins and sign-outs. Now the Devtools Server is only responsible for the connection between the auth server and the user interface while also managing the user's session.
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools-server): handle project id without polluting user console
+
+  When project ID is missing in the project, Devtools Server was returning with `400` and `404` status codes, which leads to unwanted logs in the user console. To avoid this, the server now returns a `200` status code with an error message in the response body. This change is accompanied by a new error handler in the `@refinedev/devtools-ui` package to handle the error message and display it in the user interface.
+
+- [#6052](https://github.com/refinedev/refine/pull/6052) [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools-server): lodash import from root
+
+  `@refinedev/devtools-server` was using `lodash` imports from root which are interpreted as CJS imports in the ESM bundle. To avoid any future issues, lodash imports have been replaced with subdirectory imports.
+
+- Updated dependencies [[`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a)]:
+  - @refinedev/devtools-shared@1.1.11
+
 ## 1.1.32
 
 ### Patch Changes

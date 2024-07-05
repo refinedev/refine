@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@refine-auth/kinde-react": "^1.0.2",
-    "@refinedev/antd": "^5.41.0",
-    "@refinedev/cli": "^2.16.35",
-    "@refinedev/core": "^4.52.0",
+    "@refinedev/antd": "^5.42.0",
+    "@refinedev/cli": "^2.16.36",
+    "@refinedev/core": "^4.53.0",
     "@refinedev/react-router-v6": "^4.5.11",
     "@refinedev/simple-rest": "^5.0.8",
     "antd": "^5.17.0",
