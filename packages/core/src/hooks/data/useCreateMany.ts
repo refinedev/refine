@@ -132,16 +132,8 @@ export const useCreateMany = <
       metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }: UseCreateManyParams<TData, TError, TVariables>) => {
-      if (!values) {
-        throw new Error(
-          `[useCreateMany]: The 'values' prop is required for the 'useCreateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useCreateMany]: The 'resource' prop is required for the 'useCreateMany' hook.`,
-        );
-      }
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
 
@@ -183,16 +175,8 @@ export const useCreateMany = <
         meta = metaFromProps,
         metaData = metaDataFromProps,
       } = variables;
-      if (!values) {
-        throw new Error(
-          `[useCreateMany]: The 'values' prop is required for the 'useCreateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useCreateMany]: The 'resource' prop is required for the 'useCreateMany' hook.`,
-        );
-      }
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
       const resourcePlural = textTransformers.plural(identifier);
@@ -273,16 +257,8 @@ export const useCreateMany = <
         errorNotification = errorNotificationFromProps,
         values = valuesFromProps,
       } = variables;
-      if (!values) {
-        throw new Error(
-          `[useCreateMany]: The 'values' prop is required for the 'useCreateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useCreateMany]: The 'resource' prop is required for the 'useCreateMany' hook.`,
-        );
-      }
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
 
@@ -355,3 +331,11 @@ export const useCreateMany = <
     overtime: { elapsedTime },
   };
 };
+
+const missingResourceError = new Error(
+  "[useCreateMany]: `resource` is not defined or not matched but is required",
+);
+
+const missingValuesError = new Error(
+  "[useCreateMany]: `values` is not provided but is required",
+);

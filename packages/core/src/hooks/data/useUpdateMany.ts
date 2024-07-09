@@ -241,21 +241,9 @@ export const useUpdateMany = <
       metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }: UpdateManyParams<TData, TError, TVariables>) => {
-      if (!ids) {
-        throw new Error(
-          `[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdateMany]: The 'values' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
 
@@ -345,21 +333,9 @@ export const useUpdateMany = <
         detail: true,
       },
     }) => {
-      if (!ids) {
-        throw new Error(
-          `[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdateMany]: The 'values' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
       const {
@@ -511,16 +487,8 @@ export const useUpdateMany = <
         resource: resourceName = resourceFromProps,
         dataProviderName = dataProviderNameFromProps,
       } = variables;
-      if (!ids) {
-        throw new Error(
-          `[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
+      if (!ids) throw missingIdError;
+      if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
 
@@ -565,21 +533,9 @@ export const useUpdateMany = <
         dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
         successNotification = successNotificationFromProps,
       } = variables;
-      if (!ids) {
-        throw new Error(
-          `[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdateMany]: The 'values' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
@@ -669,21 +625,9 @@ export const useUpdateMany = <
         errorNotification = errorNotificationFromProps,
         values = valuesFromProps,
       } = variables;
-      if (!ids) {
-        throw new Error(
-          `[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdateMany]: The 'values' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.`,
-        );
-      }
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
 
@@ -769,3 +713,15 @@ export const useUpdateMany = <
     overtime: { elapsedTime },
   };
 };
+
+const missingResourceError = new Error(
+  "[useUpdateMany]: `resource` is not defined or not matched but is required",
+);
+
+const missingIdError = new Error(
+  "[useUpdateMany]: `id` is not defined but is required in edit and clone actions",
+);
+
+const missingValuesError = new Error(
+  "[useUpdateMany]: `values` is not provided but is required",
+);

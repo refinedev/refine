@@ -159,16 +159,8 @@ export const useCreate = <
       metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }: UseCreateParams<TData, TError, TVariables>) => {
-      if (!values) {
-        throw new Error(
-          `[useCreate]: The 'values' prop is required for the 'useCreate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useCreate]: The 'resource' prop is required for the 'useCreate' hook.`,
-        );
-      }
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
 
@@ -197,16 +189,8 @@ export const useCreate = <
         meta = metaFromProps,
         metaData = metaDataFromProps,
       } = variables;
-      if (!values) {
-        throw new Error(
-          `[useCreate]: The 'values' prop is required for the 'useCreate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useCreate]: The 'resource' prop is required for the 'useCreate' hook.`,
-        );
-      }
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
@@ -288,17 +272,8 @@ export const useCreate = <
           errorNotificationFromProp = errorNotificationFromProps,
         values = valuesFromProps,
       } = variables;
-
-      if (!values) {
-        throw new Error(
-          `[useCreate]: The 'values' prop is required for the 'useCreate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useCreate]: The 'resource' prop is required for the 'useCreate' hook.`,
-        );
-      }
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       checkError(err);
 
@@ -378,3 +353,11 @@ export const useCreate = <
     overtime: { elapsedTime },
   };
 };
+
+const missingResourceError = new Error(
+  "[useCreate]: `resource` is not defined or not matched but is required",
+);
+
+const missingValuesError = new Error(
+  "[useCreate]: `values` is not provided but is required",
+);

@@ -240,21 +240,9 @@ export const useUpdate = <
       metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }) => {
-      if (!id) {
-        throw new Error(
-          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
-        );
-      }
+      if (!id) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
 
@@ -333,21 +321,9 @@ export const useUpdate = <
         detail: true,
       },
     }) => {
-      if (!id) {
-        throw new Error(
-          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
-        );
-      }
+      if (!id) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
 
@@ -486,16 +462,9 @@ export const useUpdate = <
         dataProviderName = dataProviderNameFromProps,
         invalidates = invalidatesFromProps ?? ["list", "many", "detail"],
       } = variables;
-      if (!id) {
-        throw new Error(
-          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
-        );
-      }
+      if (!id) throw missingIdError;
+      if (!resourceName) throw missingResourceError;
+
       const { identifier } = select(resourceName);
 
       invalidateStore({
@@ -526,21 +495,9 @@ export const useUpdate = <
         meta = metaFromProps,
         metaData = metaDataFromProps,
       } = variables;
-      if (!id) {
-        throw new Error(
-          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
-        );
-      }
+      if (!id) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
@@ -629,21 +586,9 @@ export const useUpdate = <
         errorNotification = errorNotificationFromProps,
         values = valuesFromProps,
       } = variables;
-      if (!id) {
-        throw new Error(
-          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!values) {
-        throw new Error(
-          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
-        );
-      }
-      if (!resourceName) {
-        throw new Error(
-          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
-        );
-      }
+      if (!id) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
 
@@ -732,3 +677,15 @@ export const useUpdate = <
     overtime: { elapsedTime },
   };
 };
+
+const missingResourceError = new Error(
+  "[useUpdate]: `resource` is not defined or not matched but is required",
+);
+
+const missingIdError = new Error(
+  "[useUpdate]: `id` is not defined but is required in edit and clone actions",
+);
+
+const missingValuesError = new Error(
+  "[useUpdate]: `values` is not provided but is required",
+);
