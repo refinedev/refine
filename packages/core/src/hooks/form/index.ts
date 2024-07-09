@@ -22,6 +22,8 @@ import {
   pickNotDeprecated,
 } from "@definitions/helpers";
 
+import type { UpdateParams } from "../data/useUpdate";
+import type { UseCreateParams } from "../data/useCreate";
 import type { UseFormProps, UseFormReturnType } from "./types";
 import type {
   BaseKey,
@@ -244,7 +246,9 @@ export const useForm = <
         resolve();
       }
 
-      const variables = {
+      const variables:
+        | UpdateParams<TResponse, TResponseError, TVariables>
+        | UseCreateParams<TResponse, TResponseError, TVariables> = {
         values,
         resource: identifier ?? resource.name,
         meta: { ...combinedMeta, ...props.mutationMeta },
@@ -262,65 +266,36 @@ export const useForm = <
               optimisticUpdateMap: props.optimisticUpdateMap,
             }
           : {}),
-      } as const;
+      };
 
-      if (isEdit) {
-        updateMutation
-          .mutateAsync(variables, {
-            // Call user-defined `onMutationSuccess` and `onMutationError` callbacks if provided
-            // These callbacks will not have an effect on the submission promise
-            onSuccess: props.onMutationSuccess
-              ? (data, _, context) => {
-                  props.onMutationSuccess?.(data, values, context, isAutosave);
-                }
-              : undefined,
-            onError: props.onMutationError
-              ? (error: TResponseError, _, context) => {
-                  props.onMutationError?.(error, values, context, isAutosave);
-                }
-              : undefined,
-          })
-          // If the mutation mode is pessimistic, resolve the promise after the mutation is succeeded
-          .then((data) => {
-            if (isPessimistic && !isAutosave) {
-              deferExecution(() => onSuccessRedirect(data?.data?.id));
+      const { mutateAsync } = isEdit ? updateMutation : createMutation;
+
+      mutateAsync(variables as any, {
+        // Call user-defined `onMutationSuccess` and `onMutationError` callbacks if provided
+        // These callbacks will not have an effect on the submission promise
+        onSuccess: props.onMutationSuccess
+          ? (data, _, context) => {
+              props.onMutationSuccess?.(data, values, context, isAutosave);
             }
-            if (isAutosave) {
-              setAutosaved(true);
+          : undefined,
+        onError: props.onMutationError
+          ? (error: TResponseError, _, context) => {
+              props.onMutationError?.(error, values, context, isAutosave);
             }
-            resolve(data);
-          })
-          // If the mutation mode is pessimistic, reject the promise after the mutation is failed
-          .catch(reject);
-      } else {
-        createMutation
-          .mutateAsync(variables, {
-            // Call user-defined `onMutationSuccess` and `onMutationError` callbacks if provided
-            // These callbacks will not have an effect on the submission promise
-            onSuccess: props.onMutationSuccess
-              ? (data, _, context) => {
-                  props.onMutationSuccess?.(data, values, context, isAutosave);
-                }
-              : undefined,
-            onError: props.onMutationError
-              ? (error: TResponseError, _, context) => {
-                  props.onMutationError?.(error, values, context, isAutosave);
-                }
-              : undefined,
-          })
-          // If the mutation mode is pessimistic, resolve the promise after the mutation is succeeded
-          .then((data) => {
-            if (isPessimistic && !isAutosave) {
-              deferExecution(() => onSuccessRedirect(data?.data?.id));
-            }
-            if (isAutosave) {
-              setAutosaved(true);
-            }
-            resolve(data);
-          })
-          // If the mutation mode is pessimistic, reject the promise after the mutation is failed
-          .catch(reject);
-      }
+          : undefined,
+      })
+        // If the mutation mode is pessimistic, resolve the promise after the mutation is succeeded
+        .then((data) => {
+          if (isPessimistic && !isAutosave) {
+            deferExecution(() => onSuccessRedirect(data?.data?.id));
+          }
+          if (isAutosave) {
+            setAutosaved(true);
+          }
+          resolve(data);
+        })
+        // If the mutation mode is pessimistic, reject the promise after the mutation is failed
+        .catch(reject);
     });
 
     return submissionPromise;

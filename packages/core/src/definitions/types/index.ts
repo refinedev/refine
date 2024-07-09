@@ -1,20 +1,26 @@
-import type { UseMutationResult as UseMutationResultBase } from "@tanstack/react-query";
+import type {
+  MutateOptions,
+  UseMutationResult as UseMutationResultBase,
+} from "@tanstack/react-query";
 
-export type Override<A, B> = {
-  [K in keyof A]: K extends keyof B ? B[K] : A[K];
-};
+export type MutateAsyncFunction<
+  TData = unknown,
+  TError = unknown,
+  TVariables = void,
+  TContext = unknown,
+> = (
+  variables?: TVariables,
+  options?: MutateOptions<TData, TError, TVariables, TContext>,
+) => Promise<TData>;
 
-// Type to make array elements optional
-export type PartialArray<T extends unknown[]> = {
-  [K in keyof T]?: T[K];
-};
-
-// Type to make function arguments optional
-export type MakeFunctionArgsOptional<T> = T extends (
-  ...args: infer P
-) => infer R
-  ? (...args: PartialArray<P>) => R
-  : never;
+export type MutateFunction<
+  TData = unknown,
+  TError = unknown,
+  TVariables = void,
+  TContext = unknown,
+> = (
+  ...args: Parameters<MutateAsyncFunction<TData, TError, TVariables, TContext>>
+) => void;
 
 /**
  * we want to make the mutate and mutateAsync functions optional in the UseMutationResult
@@ -25,14 +31,10 @@ export type UseMutationResult<
   TError = unknown,
   TVariables = unknown,
   TContext = unknown,
-> = Override<
+> = Omit<
   UseMutationResultBase<TData, TError, TVariables, TContext>,
-  {
-    mutate: MakeFunctionArgsOptional<
-      UseMutationResultBase<TData, TError, TVariables, TContext>["mutate"]
-    >;
-    mutateAsync: MakeFunctionArgsOptional<
-      UseMutationResultBase<TData, TError, TVariables, TContext>["mutateAsync"]
-    >;
-  }
->;
+  "mutate" | "mutateAsync"
+> & {
+  mutate: MutateFunction<TData, TError, TVariables, TContext>;
+  mutateAsync: MutateAsyncFunction<TData, TError, TVariables, TContext>;
+};
