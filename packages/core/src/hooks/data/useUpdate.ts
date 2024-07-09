@@ -1,11 +1,11 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
-  type UseMutationResult,
+  type MutateOptions,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-
+import type { UseMutationResult } from "@definitions/types";
 import {
   pickDataProvider,
   pickNotDeprecated,
@@ -78,11 +78,11 @@ export type UpdateParams<TData, TError, TVariables> = {
   /**
    * Resource name for API data interactions
    */
-  resource: string;
+  resource?: string;
   /**
    * id for mutation function
    */
-  id: BaseKey;
+  id?: BaseKey;
   /**
    * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
    */
@@ -98,7 +98,7 @@ export type UpdateParams<TData, TError, TVariables> = {
   /**
    * Values for mutation function
    */
-  values: TVariables;
+  values?: TVariables;
   /**
    * Metadata query for dataProvider
    */
@@ -156,9 +156,10 @@ export type UseUpdateProps<
       UpdateParams<TData, TError, TVariables>,
       UpdateContext<TData>
     >,
-    "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
+    "mutationFn" | "onMutate"
   >;
-} & UseLoadingOvertimeOptionsProps;
+} & UseLoadingOvertimeOptionsProps &
+  UpdateParams<TData, TError, TVariables>;
 
 /**
  * `useUpdate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for update mutations.
@@ -177,6 +178,19 @@ export const useUpdate = <
   TError extends HttpError = HttpError,
   TVariables = {},
 >({
+  id: idFromProps,
+  resource: resourceFromProps,
+  values: valuesFromProps,
+  dataProviderName: dataProviderNameFromProps,
+  successNotification: successNotificationFromProps,
+  errorNotification: errorNotificationFromProps,
+  meta: metaFromProps,
+  metaData: metaDataFromProps,
+  mutationMode: mutationModeFromProps,
+  undoableTimeout: undoableTimeoutFromProps,
+  onCancel: onCancelFromProps,
+  optimisticUpdateMap: optimisticUpdateMapFromProps,
+  invalidates: invalidatesFromProps,
   mutationOptions,
   overtimeOptions,
 }: UseUpdateProps<TData, TError, TVariables> = {}): UseUpdateReturnType<
@@ -208,23 +222,39 @@ export const useUpdate = <
   } = useRefineContext();
   const { keys, preferLegacyKeys } = useKeys();
 
-  const mutation = useMutation<
+  const mutationResult = useMutation<
     UpdateResponse<TData>,
     TError,
     UpdateParams<TData, TError, TVariables>,
     UpdateContext<TData>
   >({
     mutationFn: ({
-      id,
-      values,
-      resource: resourceName,
-      mutationMode,
-      undoableTimeout,
-      onCancel,
-      meta,
-      metaData,
-      dataProviderName,
+      id = idFromProps,
+      values = valuesFromProps,
+      resource: resourceName = resourceFromProps,
+      mutationMode = mutationModeFromProps,
+      undoableTimeout = undoableTimeoutFromProps,
+      onCancel = onCancelFromProps,
+      meta = metaFromProps,
+      metaData = metaDataFromProps,
+      dataProviderName = dataProviderNameFromProps,
     }) => {
+      if (!id) {
+        throw new Error(
+          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!values) {
+        throw new Error(
+          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!resourceName) {
+        throw new Error(
+          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+
       const { resource, identifier } = select(resourceName);
 
       const combinedMeta = getMeta({
@@ -289,15 +319,35 @@ export const useUpdate = <
       return updatePromise;
     },
     onMutate: async ({
-      resource: resourceName,
-      id,
-      mutationMode,
-      values,
-      dataProviderName,
-      meta,
-      metaData,
-      optimisticUpdateMap = { list: true, many: true, detail: true },
+      resource: resourceName = resourceFromProps,
+      id = idFromProps,
+      mutationMode = mutationModeFromProps,
+      values = valuesFromProps,
+      dataProviderName = dataProviderNameFromProps,
+      meta = metaFromProps,
+      metaData = metaDataFromProps,
+      optimisticUpdateMap = optimisticUpdateMapFromProps ?? {
+        list: true,
+        many: true,
+        detail: true,
+      },
     }) => {
+      if (!id) {
+        throw new Error(
+          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!values) {
+        throw new Error(
+          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!resourceName) {
+        throw new Error(
+          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+
       const { identifier } = select(resourceName);
 
       const {
@@ -428,16 +478,23 @@ export const useUpdate = <
         queryKey,
       };
     },
-    onSettled: (
-      _data,
-      _error,
-      {
-        id,
-        resource: resourceName,
-        dataProviderName,
-        invalidates = ["list", "many", "detail"],
-      },
-    ) => {
+    onSettled: (data, error, variables, context) => {
+      const {
+        id = idFromProps,
+        resource: resourceName = resourceFromProps,
+        dataProviderName = dataProviderNameFromProps,
+        invalidates = invalidatesFromProps ?? ["list", "many", "detail"],
+      } = variables;
+      if (!id) {
+        throw new Error(
+          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!resourceName) {
+        throw new Error(
+          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
+        );
+      }
       const { identifier } = select(resourceName);
 
       invalidateStore({
@@ -455,20 +512,35 @@ export const useUpdate = <
         type: ActionTypes.REMOVE,
         payload: { id, resource: identifier },
       });
+
+      mutationOptions?.onSettled?.(data, error, variables, context);
     },
-    onSuccess: (
-      data,
-      {
-        id,
-        resource: resourceName,
-        successNotification,
-        dataProviderName: dataProviderNameFromProp,
-        values,
-        meta,
-        metaData,
-      },
-      context,
-    ) => {
+    onSuccess: (data, variables, context) => {
+      const {
+        id = idFromProps,
+        resource: resourceName = resourceFromProps,
+        successNotification = successNotificationFromProps,
+        dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
+        values = valuesFromProps,
+        meta = metaFromProps,
+        metaData = metaDataFromProps,
+      } = variables;
+      if (!id) {
+        throw new Error(
+          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!values) {
+        throw new Error(
+          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!resourceName) {
+        throw new Error(
+          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
 
@@ -546,12 +618,32 @@ export const useUpdate = <
           ...rest,
         },
       });
+
+      mutationOptions?.onSuccess?.(data, variables, context);
     },
-    onError: (
-      err: TError,
-      { id, resource: resourceName, errorNotification, values },
-      context,
-    ) => {
+    onError: (err: TError, variables, context) => {
+      const {
+        id = idFromProps,
+        resource: resourceName = resourceFromProps,
+        errorNotification = errorNotificationFromProps,
+        values = valuesFromProps,
+      } = variables;
+      if (!id) {
+        throw new Error(
+          `[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!values) {
+        throw new Error(
+          `[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+      if (!resourceName) {
+        throw new Error(
+          `[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.`,
+        );
+      }
+
       const { identifier } = select(resourceName);
 
       // set back the queries to the context:
@@ -588,6 +680,8 @@ export const useUpdate = <
           type: "error",
         });
       }
+
+      mutationOptions?.onError?.(err, variables, context);
     },
     mutationKey: keys().data().mutation("update").get(preferLegacyKeys),
     ...mutationOptions,
@@ -596,6 +690,7 @@ export const useUpdate = <
       ...getXRay("useUpdate", preferLegacyKeys),
     },
   });
+  const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     isLoading: mutation.isLoading,
@@ -603,5 +698,36 @@ export const useUpdate = <
     onInterval: overtimeOptions?.onInterval,
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  // this function is used to make the `variables` parameter optional
+  const handleMutation = (
+    variables?: UpdateParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      UpdateResponse<TData>,
+      TError,
+      UpdateParams<TData, TError, TVariables>,
+      UpdateContext<TData>
+    >,
+  ) => {
+    return mutate(variables || {}, options);
+  };
+
+  // this function is used to make the `variables` parameter optional
+  const handleMutateAsync = (
+    variables?: UpdateParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      UpdateResponse<TData>,
+      TError,
+      UpdateParams<TData, TError, TVariables>,
+      UpdateContext<TData>
+    >,
+  ) => {
+    return mutateAsync(variables || {}, options);
+  };
+
+  return {
+    ...mutation,
+    mutate: handleMutation,
+    mutateAsync: handleMutateAsync,
+    overtime: { elapsedTime },
+  };
 };
