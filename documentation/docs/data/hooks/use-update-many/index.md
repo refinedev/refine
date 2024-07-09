@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useUpdateMany.ts
 
 `useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
-- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
+- It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine />`.
 
 It is useful when you want to update many records at once.
 
@@ -14,7 +14,24 @@ If your data provider does not have a `updateMany` method, `useUpdateMany` will 
 
 ## Usage
 
-The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `ids` as parameters. These parameters will be passed to the `updateMany` method from the `dataProvider` as parameters.
+The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
+
+```tsx
+import { useUpdateMany } from "@refinedev/core";
+
+const { mutate } = useUpdateMany({
+  resource: "products",
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
+  ids: [1, 2, 3],
+});
+
+mutate();
+```
+
+Alternatively, you can pass the parameters directly to the `mutate` function:
 
 ```tsx
 import { useUpdateMany } from "@refinedev/core";
@@ -30,6 +47,8 @@ mutate({
   ids: [1, 2, 3],
 });
 ```
+
+> 🚨 The mutate function always overrides the props of the `useUpdateMany` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.
 
 ## Realtime Updates
 
@@ -56,32 +75,13 @@ useUpdateMany({
   mutationOptions: {
     retry: 3,
   },
+  onSuccess: (data, variables, context) => {
+    // Let's celebrate!
+  },
+  onError: (error, variables, context) => {
+    // An error occurred!
+  },
 });
-```
-
-`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
-
-```tsx
-const { mutate } = useUpdateMany();
-
-mutate(
-  {
-    resource: "products",
-    values: {
-      name: "New Product",
-      material: "Wood",
-    },
-    ids: [1, 2, 3],
-  },
-  {
-    onError: (error, variables, context) => {
-      // An error occurred!
-    },
-    onSuccess: (data, variables, context) => {
-      // Let's celebrate!
-    },
-  },
-);
 ```
 
 ### overtimeOptions
@@ -111,6 +111,24 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
 ## Mutation Parameters
+
+All these parameters also can be given to the `useUpdateMany` hook directly as a prop. If you pass these parameters to the `mutate` function, it will override the values given to the hook.
+
+You can think of the parameters given to the `useUpdateMany` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+
+```tsx
+import { useUpdateMany } from "@refinedev/core";
+
+const { mutate } = useUpdateMany({
+  /* parameters */
+});
+
+mutate({
+  /* this will override the parameters given to the useUpdateMany hook */
+});
+```
+
+> 🚨 Parameters marked as required can be provided either as props to the `useUpdateMany` hook or as parameters to the `mutate` function.
 
 ### resource <PropTag required />
 

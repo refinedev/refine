@@ -10,7 +10,24 @@ It uses the `update` method as the **mutation function** from the [`dataProvider
 
 ## Usage
 
-The `useUpdate` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `resource`, and `id` as parameters. These parameters will be passed to the `update` method from the `dataProvider` as parameters.
+The `useUpdate` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
+
+```tsx
+import { useUpdate } from "@refinedev/core";
+
+const { mutate } = useUpdate({
+  resource: "products",
+  id: 1,
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
+});
+
+mutate();
+```
+
+Alternatively, you can pass the parameters directly to the `mutate` function:
 
 ```tsx
 import { useUpdate } from "@refinedev/core";
@@ -19,13 +36,15 @@ const { mutate } = useUpdate();
 
 mutate({
   resource: "products",
+  id: 1,
   values: {
     name: "New Product",
     material: "Wood",
   },
-  id: 1,
 });
 ```
+
+> 🚨 The mutate function always overrides the props of the `useUpdate` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.
 
 ## Realtime Updates
 
@@ -52,41 +71,48 @@ When the `useUpdate` mutation runs successfully, it will call the `log` method f
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
 ```tsx
-useUpdate({
+const { mutate } = useUpdate({
+  resource: "products",
+  id: 1,
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
   mutationOptions: {
     retry: 3,
-  },
-});
-```
-
-`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
-
-```tsx
-const { mutate } = useUpdate();
-
-mutate(
-  {
-    resource: "products",
-    values: {
-      name: "New Product",
-      material: "Wood",
-    },
-    id: 1,
-  },
-  {
-    onError: (error, variables, context) => {
-      // An error occurred!
-    },
     onSuccess: (data, variables, context) => {
       // Let's celebrate!
     },
+    onError: (error, variables, context) => {
+      // An error occurred!
+    },
   },
-);
+});
+
+mutate();
 ```
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
 
 ## Mutation Parameters
+
+All these parameters also can be given to the `useUpdate` hook directly as a prop. If you pass these parameters to the `mutate` function, it will override the values given to the hook.
+
+You can think of the parameters given to the `useUpdate` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+
+```tsx
+import { useUpdate } from "@refinedev/core";
+
+const { mutate } = useUpdate({
+  /* parameters */
+});
+
+mutate({
+  /* this will override the parameters given to the useUpdate hook */
+});
+```
+
+> 🚨 Parameters marked as required can be provided either as props to the `useUpdate` hook or as parameters to the `mutate` function.
 
 ### resource <PropTag required />
 
