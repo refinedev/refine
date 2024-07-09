@@ -1191,7 +1191,7 @@ describe("useUpdateMany Hook [with params]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.",
+          "[useUpdateMany]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -1215,9 +1215,7 @@ describe("useUpdateMany Hook [with params]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useUpdateMany]: The 'values' prop is required for the 'useUpdateMany' hook.",
-        ),
+        new Error("[useUpdateMany]: `values` is not provided but is required"),
       );
     });
   });
@@ -1241,7 +1239,7 @@ describe("useUpdateMany Hook [with params]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.",
+          "[useUpdateMany]: `id` is not defined but is required in edit and clone actions",
         ),
       );
     });
@@ -2537,7 +2535,7 @@ describe("useUpdateMany Hook [with props]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdateMany]: The 'resource' prop is required for the 'useUpdateMany' hook.",
+          "[useUpdateMany]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -2565,9 +2563,7 @@ describe("useUpdateMany Hook [with props]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useUpdateMany]: The 'values' prop is required for the 'useUpdateMany' hook.",
-        ),
+        new Error("[useUpdateMany]: `values` is not provided but is required"),
       );
     });
   });
@@ -2595,7 +2591,7 @@ describe("useUpdateMany Hook [with props]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdateMany]: The 'id' prop is required for the 'useUpdateMany' hook.",
+          "[useUpdateMany]: `id` is not defined but is required in edit and clone actions",
         ),
       );
     });

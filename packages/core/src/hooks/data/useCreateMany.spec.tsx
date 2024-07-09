@@ -764,7 +764,7 @@ describe("useCreateMany Hook [with params]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useCreateMany]: The 'resource' prop is required for the 'useCreateMany' hook.",
+          "[useCreateMany]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -787,9 +787,7 @@ describe("useCreateMany Hook [with params]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useCreateMany]: The 'values' prop is required for the 'useCreateMany' hook.",
-        ),
+        new Error("[useCreateMany]: `values` is not provided but is required"),
       );
     });
   });
@@ -1622,7 +1620,7 @@ describe("useCreateMany Hook [with props]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useCreateMany]: The 'resource' prop is required for the 'useCreateMany' hook.",
+          "[useCreateMany]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -1649,9 +1647,7 @@ describe("useCreateMany Hook [with props]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useCreateMany]: The 'values' prop is required for the 'useCreateMany' hook.",
-        ),
+        new Error("[useCreateMany]: `values` is not provided but is required"),
       );
     });
   });

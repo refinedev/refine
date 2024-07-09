@@ -1109,7 +1109,7 @@ describe("useUpdate Hook [with params]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.",
+          "[useUpdate]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -1133,9 +1133,7 @@ describe("useUpdate Hook [with params]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.",
-        ),
+        new Error("[useUpdate]: `values` is not provided but is required"),
       );
     });
   });
@@ -1159,7 +1157,7 @@ describe("useUpdate Hook [with params]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.",
+          "[useUpdate]: `id` is not defined but is required in edit and clone actions",
         ),
       );
     });
@@ -2337,7 +2335,7 @@ describe("useUpdate Hook [with props]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdate]: The 'resource' prop is required for the 'useUpdate' hook.",
+          "[useUpdate]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -2365,9 +2363,7 @@ describe("useUpdate Hook [with props]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useUpdate]: The 'values' prop is required for the 'useUpdate' hook.",
-        ),
+        new Error("[useUpdate]: `values` is not provided but is required"),
       );
     });
   });
@@ -2395,7 +2391,7 @@ describe("useUpdate Hook [with props]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useUpdate]: The 'id' prop is required for the 'useUpdate' hook.",
+          "[useUpdate]: `id` is not defined but is required in edit and clone actions",
         ),
       );
     });

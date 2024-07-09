@@ -822,7 +822,7 @@ describe("useCreate Hook [with params]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useCreate]: The 'resource' prop is required for the 'useCreate' hook.",
+          "[useCreate]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -845,9 +845,7 @@ describe("useCreate Hook [with params]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useCreate]: The 'values' prop is required for the 'useCreate' hook.",
-        ),
+        new Error("[useCreate]: `values` is not provided but is required"),
       );
     });
   });
@@ -1706,7 +1704,7 @@ describe("useCreate Hook [with props]", () => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
         new Error(
-          "[useCreate]: The 'resource' prop is required for the 'useCreate' hook.",
+          "[useCreate]: `resource` is not defined or not matched but is required",
         ),
       );
     });
@@ -1733,9 +1731,7 @@ describe("useCreate Hook [with props]", () => {
     await waitFor(() => {
       expect(result.current.isError).toBeTruthy();
       expect(result.current.error).toEqual(
-        new Error(
-          "[useCreate]: The 'values' prop is required for the 'useCreate' hook.",
-        ),
+        new Error("[useCreate]: `values` is not provided but is required"),
       );
     });
   });
