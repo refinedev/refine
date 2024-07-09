@@ -4,7 +4,7 @@ import {
   type MutateOptions,
   useMutation,
 } from "@tanstack/react-query";
-import type { UseMutationResult } from "@definitions/types";
+
 import {
   handleMultiple,
   pickDataProvider,
@@ -30,6 +30,7 @@ import type {
   IQueryKeys,
   MetaQuery,
 } from "../../contexts/data/types";
+import type { UseMutationResult } from "../../definitions/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
   type UseLoadingOvertimeOptionsProps,

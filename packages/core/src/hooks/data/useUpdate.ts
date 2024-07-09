@@ -5,7 +5,7 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
-import type { UseMutationResult } from "@definitions/types";
+
 import {
   pickDataProvider,
   pickNotDeprecated,
@@ -42,6 +42,7 @@ import type {
   PreviousQuery,
   UpdateResponse,
 } from "../../contexts/data/types";
+import type { UseMutationResult } from "../../definitions/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import { ActionTypes } from "../../contexts/undoableQueue/types";
 import {
