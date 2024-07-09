@@ -265,11 +265,12 @@ const ContactForm = () => {
   const [form] = Form.useForm<ContactFormValues>();
   const contacts = Form.useWatch("contacts", form);
 
-  const { mutateAsync } = useCreateMany<
-    Contact,
-    HttpError,
-    ContactCreateInput
-  >();
+  const { mutateAsync } = useCreateMany<Contact, HttpError, ContactCreateInput>(
+    {
+      resource: "contacts",
+      successNotification: false,
+    },
+  );
 
   const handleOnFinish = async (args: ContactFormValues) => {
     form.validateFields();
@@ -281,9 +282,7 @@ const ContactForm = () => {
     }));
 
     await mutateAsync({
-      resource: "contacts",
       values: contacts,
-      successNotification: false,
     });
 
     form.resetFields();

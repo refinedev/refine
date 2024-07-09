@@ -1,12 +1,9 @@
-import { type ChangeEvent, useEffect, useMemo, useState } from "react";
 import Image from "next/legacy/image";
 import Link from "next/link";
 import cn, { clsx } from "clsx";
-import { useDelete, useInvalidate, useUpdate } from "@refinedev/core";
 import type { LineItem } from "@medusajs/medusa";
 import { formatAmount } from "medusa-react";
 
-import { Quantity } from "@components";
 import { useCartContext, useUI } from "@lib/context";
 
 import s from "./CheckoutCartItem.module.css";
@@ -18,83 +15,9 @@ interface CartItemProps {
 }
 
 export const CheckoutCartItem: React.FC<CartItemProps> = ({ item }) => {
-  const { closeSidebarIfPresent } = useUI();
-  const [removing, setRemoving] = useState(false);
-  const [quantity, setQuantity] = useState<number>(item.quantity);
-
-  const { mutateAsync: deleteMutate, isLoading: deleteIsLoading } = useDelete();
-  const { mutate: updateMutate, isLoading: updateIsLoading } = useUpdate();
-  const invalidate = useInvalidate();
-
   const { cart } = useCartContext();
 
-  const isLoading = useMemo(() => {
-    return updateIsLoading || deleteIsLoading;
-  }, [deleteIsLoading, updateIsLoading]);
-
-  useEffect(() => {
-    setRemoving(isLoading);
-  }, [isLoading]);
-
-  const updateItem = (quantity: number) => {
-    return updateMutate(
-      {
-        resource: `carts/${cart?.id}/line-items`,
-        id: item.id,
-        values: { quantity },
-      },
-      {
-        onSuccess: () => {
-          invalidate({
-            resource: "carts",
-            invalidates: ["detail"],
-            id: cart?.id,
-          });
-        },
-      },
-    );
-  };
-
-  const handleChange = async ({
-    target: { value },
-  }: ChangeEvent<HTMLInputElement>) => {
-    setQuantity(Number(value));
-    updateItem(Number(value));
-  };
-
-  const increaseQuantity = async (n = 1) => {
-    const val = Number(quantity) + n;
-    setQuantity(val);
-    updateItem(val);
-  };
-
-  const removeItem = async () => {
-    try {
-      await deleteMutate(
-        {
-          resource: `carts/${cart?.id}/line-items`,
-          id: item.id,
-        },
-        {
-          onSuccess: () => {
-            invalidate({
-              resource: "carts",
-              invalidates: ["detail"],
-              id: cart?.id,
-            });
-          },
-        },
-      );
-    } catch (error) {
-      console.log("Error", error);
-    }
-  };
-
-  useEffect(() => {
-    if (item.quantity !== Number(quantity)) {
-      setQuantity(item.quantity);
-    }
-  }, [item.quantity]);
+  const { closeSidebarIfPresent } = useUI();
 
   if (!cart) {
     return null;
@@ -111,9 +34,6 @@ export const CheckoutCartItem: React.FC<CartItemProps> = ({ item }) => {
     <li
       className={cn(
         s.root,
-        {
-          "pointer-events-none opacity-50": removing,
-        },
         "pb-0",
         "!border-t-0",
         "border-solid",
@@ -179,7 +99,7 @@ export const CheckoutCartItem: React.FC<CartItemProps> = ({ item }) => {
               {item.variant.title}
             </div>
             <div className={clsx("text-gray-darker", "text-base")}>
-              {`Quantity: ${quantity}`}
+              {`Quantity: ${item.quantity}`}
             </div>
           </div>
           <div

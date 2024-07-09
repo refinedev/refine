@@ -54,18 +54,24 @@ export const ContactShowPage: React.FC = () => {
     "email" | "companyId" | "jobTitle" | "phone" | "timezone"
   >();
   const { list } = useNavigation();
-  const { mutate } = useUpdate<Contact>();
-  const { mutate: deleteMutation } = useDelete<Contact>();
   const { queryResult } = useShow<GetFields<ContactShowQuery>>({
     meta: {
       gqlQuery: CONTACT_SHOW_QUERY,
     },
   });
+  const { data, isLoading, isError } = queryResult;
+
+  const { mutate } = useUpdate<Contact>({
+    resource: "contacts",
+    successNotification: false,
+    id: data?.data?.id,
+  });
+  const { mutate: deleteMutation } = useDelete<Contact>();
+
   const {
     selectProps: companySelectProps,
     queryResult: companySelectQueryResult,
   } = useCompaniesSelect();
-
   const { selectProps: usersSelectProps, queryResult: usersSelectQueryResult } =
     useUsersSelect();
 
@@ -74,8 +80,6 @@ export const ContactShowPage: React.FC = () => {
 
     list("contacts");
   };
-
-  const { data, isLoading, isError } = queryResult;
 
   if (isError) {
     closeModal();
@@ -147,12 +151,9 @@ export const ContactShowPage: React.FC = () => {
             editable={{
               onChange(value) {
                 mutate({
-                  resource: "contacts",
-                  id,
                   values: {
                     name: value,
                   },
-                  successNotification: false,
                 });
               },
               triggerType: ["text", "icon"],

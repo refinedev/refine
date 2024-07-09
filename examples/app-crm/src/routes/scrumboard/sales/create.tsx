@@ -96,7 +96,12 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
 
   const { data: user } = useGetIdentity<User>();
 
-  const { mutateAsync: createMutateAsync } = useCreate<Contact>();
+  const { mutateAsync: createMutateAsync } = useCreate<Contact>({
+    resource: "contacts",
+    meta: {
+      gqlMutation: SALES_CREATE_CONTACT_MUTATION,
+    },
+  });
 
   const companyId = Form.useWatch("companyId", formProps.form);
 
@@ -186,15 +191,11 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
           onFinish={async (values) => {
             if (values.contactName && values.contactEmail) {
               const { data } = await createMutateAsync({
-                resource: "contacts",
                 values: {
                   name: values.contactName,
                   email: values.contactEmail,
                   salesOwnerId: user?.id,
                   companyId,
-                },
-                meta: {
-                  gqlMutation: SALES_CREATE_CONTACT_MUTATION,
                 },
               });
 
