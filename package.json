@@ -35,7 +35,7 @@
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
     "test:all:coverage": "pnpm test:all -- -- --coverage",
     "test:coverage": "pnpm test -- -- --coverage",
-    "version-packages": "pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --no-frozen-lockfile && git add pnpm-lock.yaml && git status"
+    "version-packages": "pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --no-frozen-lockfile && git add pnpm-lock.yaml && git status --porcelain"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
