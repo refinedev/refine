@@ -4,11 +4,13 @@ description: A detailed guide on React props with examples
 slug: react-props
 authors: chidume_nnamdi
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-16-react-props/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-16-react-props/social-2.png
 hide_table_of_contents: false
 ---
 
-##  Introduction
+**This article was last updated on July 10, 2024, to add sections for Dynamic Component Rendering and Performance Optimization with React Props.**
+
+## Introduction
 
 React.js is the backbone of modern web development. Almost all companies use it. This is because React is easy to install and use, has strong community support, and is still actively maintained by Facebook.
 
@@ -20,8 +22,13 @@ Steps we'll cover:
 - [Passing Array to React Component](#passing-array-to-react-component)
 - [Passing Function to React Component](#passing-function-to-react-component)
 - [Default Props in React](#default-props-in-react)
+- [Destructuring Props](#destructuring-props)
 - [React children prop](#react-children-prop)
+- [Dynamic Component Rendering](#dynamic-component-rendering)
 - [State vs Props](#state-vs-props)
+- [Optimize Performance with Props](#optimize-performance-with-props)
+  - [Memoization via React.memo](#memoization-via-reactmemo)
+  - [useCallback and useMemo Hooks](#usecallback-and-usememo-hooks)
 
 Props in simple terms are used for communication among components in React app. Component communication is a very essential feature that any framework based on component-driven design should have. Most popular frameworks like Angular and Vuejs have their own way of components passing data to each other.
 
@@ -476,12 +483,35 @@ Let's see it in action:
 
 The application didn't crash this time.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Destructuring Props
+
+Destructuring props in functional components will make your code cleaner and more readable. You simply access the props rather than through properties of an object.
+
+Here's how you do it: The following example accesses the props just like we would do with properties of an object.
+
+```tsx
+// Without Destructuring
+function MyComponent(props) {
+  return (
+    <div>
+      <p>Name: {props.name}</p>
+      <p>Age: {props.age}</p>
+    </div>
+  );
+}
+
+// With Destructuring
+function MyComponent({ name, age }) {
+  return (
+    <div>
+      <p>Name: {name}</p>
+      <p>Age: {age}</p>
+    </div>
+  );
+}
+```
+
+The second example shows the direct deconstruction of props with properties such as name and age in the parameter list of the function to keep the code for the component nice.
 
 ## React children prop
 
@@ -532,7 +562,7 @@ function DisplayUser(props) {
 
 This will render this:
 
-```ts
+```tsx
 <div>
   <p>
     Name: <span>{user.name}</span>
@@ -545,6 +575,28 @@ This will render this:
 </div>
 ```
 
+## Dynamic Component Rendering
+
+I wrote a new section for our article: Dynamic Component Rendering with React Props. This is about rendering sections of the components depending on the value of the prop, and it is very useful in making components reusable and flexible.
+
+Dynamic component rendering in React supplies you with a way to conditionally render different components or content, based on the props that are passed to a given component. This would be very useful in helping developers build flexible and reusable components under different use cases.
+
+Here is an example of dynamic component rendering based on values of props:
+
+```tsx
+function DynamicComponent({ type }) {
+  if (type === "A") {
+    return <ComponentA />;
+  } else if (type === "B") {
+    return <ComponentB />;
+  } else {
+    return <DefaultComponent />;
+  }
+}
+```
+
+In this case, `DynamicComponent` receives a prop called `type`; depending on its value, it renders either `ComponentA`, `ComponentB`, or `DefaultComponent`. This allows you to write just one component that outputs differently based on the passed props.
+
 ## State vs Props
 
 We have learned deep down what props are. Now, people often tend to confuse props with the state in React components. They differ completely, let's see their differences.
@@ -555,6 +607,52 @@ Props are immutable, which means that they cannot be modified. Once a props is p
 
 So props are read-only while states are read-and-write.
 Props are used for communication uni-directional or bi-directional, while the state is used to render dynamic data in the component.
+
+## Optimize Performance with Props
+
+### Memoization via React.memo
+
+A further good reason for using memoization will be that it avoids unnecessary re-renders of functional components when props did not really change. By using the `React.memo` wrapper, you can create a memoized version of a component which only re-renders when the props change.
+
+In this example, `MemoizedComponent` will only re-render if the `name` prop changes, hence deriving great benefit in terms of performance since unwanted renders can be eliminated.
+
+```tsx
+import React from "react";
+
+// Without memoization
+function MyComponent({ name }) {
+  console.log("Rendering MyComponent");
+  return <p>Name: {name}</p>;
+}
+
+// With memoization
+const MemoizedComponent = React.memo(function MyComponent({ name }) {
+  console.log("Rendering MemoizedComponent");
+  return <p>Name: {name}</p>;
+});
+```
+
+### useCallback and useMemo Hooks
+
+`useCallback` and `useMemo` are hooks for the memoization of functions and values, respectively. They help you to optimize and ensure the same function or value is not recreated on every single render, which can become quite important if you pass functions as props often.
+
+```tsx
+import React, { useCallback, useMemo } from "react";
+
+function ParentComponent({ onClick }) {
+  const memoizedCallback = useCallback(() => {
+    onClick();
+  }, [onClick]);
+
+  const memoizedValue = useMemo(() => {
+    return computeExpensiveValue();
+  }, []);
+
+  return <ChildComponent onClick={memoizedCallback} value={memoizedValue} />;
+}
+```
+
+Here, `memoizedCallback` represents the memoized callback of function `onClick`, while `memoizedValue` represents a memoized value from expensive computation. You, of course, will use `useCallback` and `useMemo` so you make sure values are just recomputed upon each change of dependencies, hence avoiding poor performance.
 
 ## Conclusion
 
