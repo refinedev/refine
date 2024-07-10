@@ -29,8 +29,10 @@ import { AutoSaveIndicator, useForm } from "@refinedev/core";
 
 const EditPage = () => {
   const { autoSaveProps } = useForm({
-    autoSave: {
-      enabled: true,
+    refineCoreProps: {
+      autoSave: {
+        enabled: true,
+      },
     },
   });
 
@@ -74,8 +76,10 @@ import { AutoSaveIndicator, useForm } from "@refinedev/core";
 
 const EditPage = () => {
   const { autoSaveProps } = useForm({
-    autoSave: {
-      enabled: true,
+    refineCoreProps: {
+      autoSave: {
+        enabled: true,
+      },
     },
   });
 

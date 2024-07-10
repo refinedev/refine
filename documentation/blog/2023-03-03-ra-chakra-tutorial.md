@@ -981,7 +981,7 @@ export const PostEdit = () => {
     formState: { errors },
   } = useForm({
     refineCoreProps: {
-      metaData: {
+      meta: {
         populate: ["category"],
       },
     },

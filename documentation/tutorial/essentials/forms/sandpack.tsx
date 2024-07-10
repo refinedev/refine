@@ -165,7 +165,12 @@ const CreateProductFormWithFieldsTsxCode = /* tsx */ `
 import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({ action: "create", resource: "products" });
+  const { onFinish, mutationResult } = useForm({
+    refineCoreProps: {
+      action: "create",
+      resource: "products",
+    },
+  });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -203,7 +208,12 @@ const CreateProductFormWithPriceUpdateTsxCode = /* tsx */ `
 import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({ action: "create", resource: "products" });
+  const { onFinish, mutationResult } = useForm({
+    refineCoreProps: {
+      action: "create",
+      resource: "products",
+    },
+  });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -246,8 +256,10 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
   const { onFinish, mutationResult } = useForm({
-    action: "create",
-    resource: "products",
+    refineCoreProps: {
+      action: "create",
+      resource: "products",
+    },
   });
 
   const { options } = useSelect({
@@ -325,9 +337,11 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
   const { onFinish, mutationResult, queryResult } = useForm({
-    action: "edit",
-    resource: "products",
-    id: "123"
+    refineCoreProps: {
+      action: "edit",
+      resource: "products",
+      id: "123"
+    },
   });
 
   const record = queryResult.data?.data;

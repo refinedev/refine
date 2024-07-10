@@ -33,12 +33,14 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
   const { onFinish, mutationResult, queryResult } = useForm({
-    // highlight-start
-    // This will redirect to the show page after the mutation is successful.
-    // Default value is `"list"`.
-    // We can also provide `false` to disable the redirect.
-    redirect: "show",
-    // highlight-end
+    refineCoreProps: {
+      // highlight-start
+      // This will redirect to the show page after the mutation is successful.
+      // Default value is `"list"`.
+      // We can also provide `false` to disable the redirect.
+      redirect: "show",
+      // highlight-end
+    },
   });
 
   /* ... */
@@ -58,11 +60,13 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
   const { onFinish, mutationResult } = useForm({
-    // highlight-start
-    // We can also provide `false` to disable the redirect.
-    // Default value is `"list"`.
-    redirect: "edit",
-    // highlight-end
+    refineCoreProps: {
+      // highlight-start
+      // We can also provide `false` to disable the redirect.
+      // Default value is `"list"`.
+      redirect: "edit",
+      // highlight-end
+    },
   });
 
   /* ... */

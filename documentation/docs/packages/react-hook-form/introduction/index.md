@@ -37,9 +37,11 @@ export const PostEdit = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<IPost, HttpError>({
-    resource: "posts",
-    action: "edit",
-    id: 1,
+    refineCoreProps: {
+      resource: "posts",
+      action: "edit",
+      id: 1,
+    }
   });
 
   return (
@@ -102,9 +104,11 @@ export const PostEdit: React.FC = () => {
     control,
     formState: { errors },
   } = useForm<IPost, HttpError>({
-    resource: "posts",
-    action: "edit",
-    id: 1,
+    refineCoreProps: {
+      resource: "posts",
+      action: "edit",
+      id: 1,
+    }
   });
 
   return (

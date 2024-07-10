@@ -82,13 +82,15 @@ import { useForm, useSelect } from "@refinedev/core";
 export const EditProduct = () => {
   // removed-line
   const { onFinish, mutationResult, queryResult } = useForm({
-    // removed-line
-    action: "edit",
-    // removed-line
-    resource: "products",
-    // removed-line
-    id: "123",
-    // removed-line
+    refineCoreProps: {
+      // removed-line
+      action: "edit",
+      // removed-line
+      resource: "products",
+      // removed-line
+      id: "123",
+      // removed-line
+    },
   });
   // added-line
   const { onFinish, mutationResult, queryResult } = useForm();
@@ -111,11 +113,13 @@ import { useForm, useSelect } from "@refinedev/core";
 export const CreateProduct = () => {
   // removed-line
   const { onFinish, mutationResult } = useForm({
-    // removed-line
-    action: "create",
-    // removed-line
-    resource: "products",
-    // removed-line
+    refineCoreProps: {
+      // removed-line
+      action: "create",
+      // removed-line
+      resource: "products",
+      // removed-line
+    },
   });
   // added-line
   const { onFinish, mutationResult } = useForm();

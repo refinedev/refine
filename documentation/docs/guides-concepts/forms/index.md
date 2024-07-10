@@ -30,9 +30,11 @@ const EditPage = () => {
     HttpError,
     FormValues
   >({
-    resource: "products",
-    action: "edit",
-    id: 123,
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
   });
 
   const record = queryResult.data?.data;
@@ -113,9 +115,11 @@ const EditPage = () => {
     HttpError,
     FormValues
   >({
-    resource: "products",
-    action: "edit",
-    id: 123,
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
   });
 
   return (
@@ -154,10 +158,10 @@ const EditPage = () => {
       resource: "products",
       action: "edit",
       id: 123,
-    },
-    initialValues: {
-      name: "",
-      material: "",
+      initialValues: {
+        name: "",
+        material: "",
+      },
     },
   });
 
@@ -295,12 +299,14 @@ If a router integration is made, in most of the cases this enables Refine to inf
 import { useForm } from "@refinedev/core";
 
 useForm({
-  // These properties will be inferred from the current route
-  // removed-start
-  resource: "posts",
-  action: "edit",
-  id: 1,
-  // removed-end
+  refineCoreProps: {
+    // These properties will be inferred from the current route
+    // removed-start
+    resource: "posts",
+    action: "edit",
+    id: 1,
+    // removed-end
+  },
 });
 ```
 
@@ -314,7 +320,9 @@ To learn more about the routing, check out the [Routing](/guides-concepts/routin
 import { useForm } from "@refinedev/core";
 
 useForm({
-  redirect: "show", // Can also be "list", "edit" or false
+  refineCoreProps: {
+    redirect: "show", // Can also be "list", "edit" or false
+  },
 });
 ```
 
@@ -326,7 +334,9 @@ Refine's `useForm` hooks have a built-in feature to prevent the user from losing
 import { Refine, useForm } from "@refinedev/core";
 
 useForm({
-  warnWhenUnsavedChanges: true,
+  refineCoreProps: {
+    warnWhenUnsavedChanges: true,
+  },
 });
 ```
 
@@ -526,7 +536,9 @@ import UseSelectMantine from "./use-select-mantine";
 
 ```tsx
 useForm({
-  mutationMode: "optimistic", // Can be "pessimistic", "optimistic" and "undoable". Default is "pessimistic"
+  refineCoreProps: {
+    mutationMode: "optimistic", // Can be "pessimistic", "optimistic" and "undoable". Default is "pessimistic"
+  },
 });
 ```
 
@@ -572,11 +584,13 @@ In some cases, you may want to change the default invalidation behavior such as 
 
 ```tsx
 const { formProps } = useForm({
-  resource: "posts",
-  action: "edit",
-  id: 1,
-  // highlight-next-line
-  invalidates: ["many", "detail"], // default is ["list", "many", "detail"]
+  refineCoreProps: {
+    resource: "posts",
+    action: "edit",
+    id: 1,
+    // highlight-next-line
+    invalidates: ["many", "detail"], // default is ["list", "many", "detail"]
+  },
 });
 ```
 
@@ -588,18 +602,20 @@ import { useInvalidate } from "@refinedev/core";
 const invalidate = useInvalidate();
 
 useForm({
-  resource: "categories",
-  action: "edit",
-  id: 1,
-  // highlight-start
-  invalidates: false,
-  onMutationSuccess() {
-    invalidate({
-      resource: "posts",
-      invalidates: ["resourceAll"],
-    });
+  refineCoreProps: {
+    resource: "categories",
+    action: "edit",
+    id: 1,
+    // highlight-start
+    invalidates: false,
+    onMutationSuccess() {
+      invalidate({
+        resource: "posts",
+        invalidates: ["resourceAll"],
+      });
+    },
+    // highlight-end
   },
-  // highlight-end
 });
 ```
 
@@ -625,29 +641,31 @@ In some cases such as the data being submitted is slightly different from the da
 
 ```tsx
 useForm({
-  resource: "posts",
-  id: 1,
-  mutationMode: "optimistic",
-  optimisticUpdateMap: {
-    list: (
-      previous, // Previous query data
-      variables, // Variables used in the query
-      id, // Record id
-    ) => {
-      // update the `previous` data using the `variables` and `id`, then return it
-    },
-    many: (
-      previous, // Previous query data
-      variables, // Variables used in the query
-      id, // Record id
-    ) => {
-      // update the `previous` data using the `variables` and `id`, then return it
-    },
-    detail: (
-      previous, // Previous query data
-      variables, // Variables used in the query
-    ) => {
-      // update the `previous` data using the `variables`, then return it
+  refineCoreProps: {
+    resource: "posts",
+    id: 1,
+    mutationMode: "optimistic",
+    optimisticUpdateMap: {
+      list: (
+        previous, // Previous query data
+        variables, // Variables used in the query
+        id, // Record id
+      ) => {
+        // update the `previous` data using the `variables` and `id`, then return it
+      },
+      many: (
+        previous, // Previous query data
+        variables, // Variables used in the query
+        id, // Record id
+      ) => {
+        // update the `previous` data using the `variables` and `id`, then return it
+      },
+      detail: (
+        previous, // Previous query data
+        variables, // Variables used in the query
+      ) => {
+        // update the `previous` data using the `variables`, then return it
+      },
     },
   },
 });
@@ -735,27 +753,30 @@ These props accepts both a function that returns the configuration or a static c
 
 ```tsx title="Default Notification Values"
 useForm({
-  // If not passed explicitly, these default values will be used. Default values can also be customized via i18n.
-  successNotification: (data, values, resource) => {
-    return {
-      description: translate("notifications.success", "Successful"),
-      message: translate(
-        "notifications.(edit|create)Success",
-        "Successfully (updated|created) {resource}",
-      ),
-      type: "success",
-    };
-  },
-  // If not passed explicitly, these default values will be used. Default values can also be customized via i18n.
-  errorNotification: (error, values, resource) => {
-    return {
-      description: error.message,
-      message: translate(
-        "notifications.(edit|create)Error",
-        "Error when (updating|creating) {resource} (status code: {error.statusCode})",
-      ),
-      type: "error",
-    };
+  refineCoreProps: {
+    // If not passed explicitly, these default values will be used. Default values can also be customized via i18n.
+    successNotification: (data, values, resource) => {
+      return {
+        description: translate("notifications.success", "Successful"),
+        message: translate(
+          "notifications.(edit|create)Success",
+          "Successfully (updated|created) {resource}",
+        ),
+        type: "success",
+      };
+    },
+
+    // If not passed explicitly, these default values will be used. Default values can also be customized via i18n.
+    errorNotification: (error, values, resource) => {
+      return {
+        description: error.message,
+        message: translate(
+          "notifications.(edit|create)Error",
+          "Error when (updating|creating) {resource} (status code: {error.statusCode})",
+        ),
+        type: "error",
+      };
+    },
   },
 });
 ```
@@ -770,10 +791,12 @@ While `@refinedev/core`'s `useForm` packs this feature, the auto save is not tri
 import { useForm } from "@refinedev/core";
 
 const { autoSaveProps } = useForm({
-  autoSave: {
-    enabled: true, // Enables the auto save feature, defaults to false
-    debounce: 2000, // Debounce interval to trigger the auto save, defaults to 1000
-    invalidateOnUnmount: true, // Invalidates the queries when the form is unmounted, defaults to false
+  refineCoreProps: {
+    autoSave: {
+      enabled: true, // Enables the auto save feature, defaults to false
+      debounce: 2000, // Debounce interval to trigger the auto save, defaults to 1000
+      invalidateOnUnmount: true, // Invalidates the queries when the form is unmounted, defaults to false
+    },
   },
 });
 ```
@@ -786,11 +809,13 @@ Refine's core and ui integrations are shipped with an [`<AutoSaveIndicator />`](
 import { AutoSaveIndicator } from "@refinedev/core";
 
 const { autoSaveProps } = useForm({
-  resource: "posts",
-  action: "edit",
-  id: 1,
-  autoSave: {
-    enabled: true,
+  refineCoreProps: {
+    resource: "posts",
+    action: "edit",
+    id: 1,
+    autoSave: {
+      enabled: true,
+    },
   },
 });
 
@@ -1029,15 +1054,17 @@ import { TextInput } from "@mantine/core";
 
 const CreatePage = () => {
   const { saveButtonProps, getInputProps } = useForm({
-    initialValues: {
-      name: "",
-      surname: "",
+    refineCoreProps: {
+      initialValues: {
+        name: "",
+        surname: "",
+      },
+      // highlight-start
+      transformValues: (values) => ({
+        fullName: `${values.name} ${values.surname}`,
+      }),
+      // highlight-end
     },
-    // highlight-start
-    transformValues: (values) => ({
-      fullName: `${values.name} ${values.surname}`,
-    }),
-    // highlight-end
   });
 
   return (

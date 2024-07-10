@@ -101,7 +101,7 @@ Mutation hooks such as `useUpdate`, `useDelete` and `useForm` supports undoable 
 import { useForm } from "@refinedev/core";
 
 // automatically cancel the mutation when undo button is clicked
-useForm({ mutationMode: "undoable" });
+useForm({ refineCoreProps: { mutationMode: "undoable" }});
 ```
 
 ## Customizing Notifications
@@ -150,23 +150,25 @@ mutate({
 import { useForm } from "@refinedev/core";
 
 useForm({
-  //  it will be called when the form is submitted successfully
-  // By setting it to `false`, you can disable the notification.
-  successNotification: (data, values, resource) => {
-    return {
-      message: `Successfully created ${data.title}`,
-      description: "good job!",
-      type: "success",
-    };
-  },
-  // it will be called when the form is submitted with errors
-  // By setting it to `false`, you can disable the notification.
-  errorNotification: (error, values, resource) => {
-    return {
-      message: `Failed to create ${values.title}`,
-      description: error.message,
-      type: "error",
-    };
+  refineCoreProps: {
+    //  it will be called when the form is submitted successfully
+    // By setting it to `false`, you can disable the notification.
+    successNotification: (data, values, resource) => {
+      return {
+        message: `Successfully created ${data.title}`,
+        description: "good job!",
+        type: "success",
+      };
+    },
+    // it will be called when the form is submitted with errors
+    // By setting it to `false`, you can disable the notification.
+    errorNotification: (error, values, resource) => {
+      return {
+        message: `Failed to create ${values.title}`,
+        description: error.message,
+        type: "error",
+      };
+    },
   },
 });
 ```
