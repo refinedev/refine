@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+      - chore-test-pnpm-lock-fix
+
+jobs:
+  temp_test:
+    permissions:
+      contents: write
+      id-token: write
+      issues: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.ref }}-temp-test
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PANKOD_BOT_TOKEN }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install Dependencies & Build
+        run: pnpm install
+      - name: Version Packages
+        run: pnpm version-packages
+        env:
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
