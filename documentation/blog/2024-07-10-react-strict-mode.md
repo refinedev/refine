@@ -302,11 +302,6 @@ module.exports = {
 
 ```
 
-### Babel
-
-Setup Babel is a JavaScript compiler that helps you use the new features of JavaScript. Make sure that your Babel setup supports React Strict Mode.
-Example Add presets such as `@babel/preset-react` to your Babel configuration, setting up the correct compilation for your code so that it can take full advantage of all React Strict Mode features.
-
 ## Conclusion
 
 In this article, you learned about the React Strict Mode, its similarities to the JavaScript “use strict” expression, and the enormous benefits and features of the React Strict Mode.
