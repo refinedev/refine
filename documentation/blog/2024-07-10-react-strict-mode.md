@@ -4,9 +4,11 @@ description: What is Strict Mode in React 18 and how to use it to find and fix b
 slug: react-strict-mode-in-react-18
 authors: deborah_emeni
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-24-react-strict-mode/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-24-react-strict-mode/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 10, 2024, to add sections for React Strict Mode post.**
 
 ## Introduction
 
@@ -20,17 +22,10 @@ Steps we'll cover:
 
 - [What is React Strict Mode?](#what-is-react-strict-mode)
 - [Comparison between React Strict Mode and Use Strict](#comparison-between-react-strict-mode-and-use-strict)
-  - [React Strict Mode](#react-strict-mode)
-  - [Use Strict](#use-strict)
 - [What’s new in React v18.0?](#whats-new-in-react-v180)
 - [Benefits of React Strict Mode](#benefits-of-react-strict-mode)
 - [Features of React Strict Mode](#features-of-react-strict-mode)
-  - [Identifying components with unsafe lifecycles in React](#identifying-components-with-unsafe-lifecycles-in-react)
-  - [Warning About Legacy String Ref API Usage](#warning-about-legacy-string-ref-api-usage)
-  - [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
-  - [Detecting Unexpected Side Effects](#detecting-unexpected-side-effects)
-  - [Detecting Legacy Context API](#detecting-legacy-context-api)
-  - [Ensuring a reusable state](#ensuring-a-reusable-state)
+  - [Cool Features of React Strict Mode You Should Know About](#cool-features-of-react-strict-mode-you-should-know-about)
 
 ## What is React Strict Mode?
 
@@ -121,6 +116,10 @@ React Strict Mode comes with a couple of outstanding benefits:
 - Ease of use: React Strict mode makes it easier to work with unfamiliar codebases, i.e. code that you did not write.
 - Bug detection: It makes it easier to detect programming bugs.
 - Facilitating Clean Code: Strict Mode helps you become a better React developer. It assists the developer in writing cleaner code by instilling the habit of writing code that follows React's best practices.
+- Catches Potential Issues Early: Strict Mode helps you catch unsafe lifecycle methods and deprecated APIs at the earliest stage possible—that is, before they grow into bigger issues. This is very useful when working with older codebases or integrating third-party libraries.
+- Enforces Best Practices: It kinda is a best practice enforcer for React, because what it does is it points out parts in your code that might not be standard, such as the side effects within your components, in order to lead you to more predictable and maintainable code.
+- Prepares for Future Updates: With the use of Strict Mode, it assures that your code is ready when React plans an update in the future. This is so because Strict Mode highlights areas that might break or need some alterations with upcoming releases.
+- Code Quality: Checks and warnings enhance the overall quality of the code. The application becomes more robust and, consequently, is easier to maintain in the long run. It is indeed very easy to set up and gives a lot of value, particularly when your project is growing.
 
 ## Features of React Strict Mode
 
@@ -165,6 +164,148 @@ StrictMode now highlights the use of the old Context API, prompting the user to 
 ### Ensuring a reusable state
 
 In future versions, the React Strict Mode aims to prevent state loss caused by component mounts and dismounts. This feature improves performance by retaining and restoring application states when dismounted components are mounted back into the component tree.
+
+## Cool Features of React Strict Mode You Should Know About
+
+Some other features of React Strict Mode that you might be helpful are the following, which help you to write cleaner and more performant code:
+
+#### Identifying Unsafe Lifecycles
+
+React Strict Mode helps to identify the components that use old lifecycle methods that might create problems in the lifecycle. It does warn you when your component is using the likes of `componentWillMount`, `componentWillReceiveProps`, or `componentWillUpdate`.
+
+#### Warning About Legacy String Ref API Usage
+
+Using string refs is not a great practice within React. Strict Mode will warn you about them and suggest using callback refs or `React.createRef` instead.
+
+#### Deprecated `findDOMNode` Usage Warning
+
+The `findDOMNode` method is also now deprecated. React Strict Mode will now raise warnings when you are using this and will let you know what to use instead.
+
+#### Detecting Unexpected Side Effects
+
+React Strict Mode runs some functions twice, specifically in development mode, thereby bringing to your attention those side effects that could slip by you during a normal cycle. This way, it makes sure that your functions are pure and reliable.
+
+#### Detecting Legacy Context API
+
+The old Context API will be warning and suggesting your project update to use the newer version of the Context API, which is more stable and easier to use than before.
+
+#### Ensuring Reusable State
+
+Strict Mode tries to ensure that state isn't lost when components are unmounted and then remounted—meaning your components can keep their state across mounts, making your app more efficient.
+
+These features are very useful in improving your development workflow and catching any prospective issues as early as possible. If you have not yet enabled React Strict Mode, I strongly advise trying it out.
+
+## Integrating React Strict Mode with Other Tools
+
+I would like to share some ideas with you regarding combining React Strict Mode with tools that can be used in your projects, thereby enhancing your development workflow and helping you catch more issues early.
+
+### ESLint
+
+ESLint is a tool to find and fix problems in your JavaScript code. For example, you could add rules into your ESLint configuration to enforce best practices that are aligned with React Strict Mode.
+
+Add rules such as `react/no-deprecated` to warn you about using deprecated lifecycle methods. This is meant to be a supplement to the warnings you'll get from React Strict Mode.
+
+```json
+{
+  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "plugins": ["react"],
+  "rules": {
+    "react/no-deprecated": "warn", // Warn about deprecated lifecycle methods
+    "react/no-direct-mutation-state": "error" // Prevent direct state mutation
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+```
+
+### Prettier
+
+Setup Prettier is a code formatter that enforces code style consistently without arguing what it looks like. It works pretty easily in concert with ESLint so that you never have to worry about keeping your code in line with best practices.
+Example Configure Prettier in your project by installing it and configuring it to your ESLint. So your code not only looks correct but is right according to the best practices to do with React.
+
+```json
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["react", "prettier"],
+  "rules": {
+    "prettier/prettier": "error", // Enforce Prettier formatting
+    "react/no-deprecated": "warn"
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
+```
+
+### Jest
+
+Setup Jest is a JavaScript testing framework. You will run your tests in an environment with a similar setup to React Strict Mode and catch more potential issues earlier in the development process.
+Example Set up your Jest environment to use React Strict Mode. This way, you can catch warnings and errors related to strict mode when tests are run.
+
+```tsx
+module.exports = {
+  setupFilesAfterEnv: ["<rootDir>/setupTests.js"],
+  testEnvironment: "jsdom",
+};
+
+// setupTests.js
+import React from "react";
+import { render } from "@testing-library/react";
+
+const AllTheProviders = ({ children }) => {
+  return <React.StrictMode>{children}</React.StrictMode>;
+};
+
+const customRender = (ui, options) =>
+  render(ui, { wrapper: AllTheProviders, ...options });
+
+export * from "@testing-library/react";
+export { customRender as render };
+```
+
+### Webpack
+
+Setup Webpack is a module bundler for JavaScript applications, so you set it to work with React Strict Mode by telling it to use the right version of React and use the proper settings.
+Example Ensure your Webpack configuration has the required plugins and loaders to support React Strict Mode. This too can help catch issues during building.
+
+```tsx
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader'
+        }
+      }
+    ]
+  },
+  resolve: {
+    extensions: ['
+
+```
+
+### Babel
+
+Setup Babel is a JavaScript compiler that helps you use the new features of JavaScript. Make sure that your Babel setup supports React Strict Mode.
+Example Add presets such as `@babel/preset-react` to your Babel configuration, setting up the correct compilation for your code so that it can take full advantage of all React Strict Mode features.
 
 ## Conclusion
 
