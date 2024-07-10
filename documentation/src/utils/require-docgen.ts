@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import type { ComponentDoc, PropItem } from "react-docgen-typescript";
 
 export interface StringIndexedObject<T> {
@@ -18,30 +17,17 @@ export type DeclarationType = Omit<ComponentDoc, "methods"> &
     >;
   };
 
-export const useDynamicImport = (
+export const requireDocgen = (
   name: string,
   prefix = "@refinedev/",
 ): DeclarationType | null => {
-  const [props, setProps] = useState<DeclarationType>(null);
+  try {
+    const data = require(
+      `@docgen/${name.startsWith(prefix) ? name : `${prefix}${name}`}.json`,
+    );
 
-  useEffect(() => {
-    let resolved = false;
-
-    import(
-      `@docgen/${name.startsWith(prefix) ? name : `${prefix}${name}`}.json`
-    )
-      .then((props) => {
-        if (!resolved) {
-          resolved = true;
-          setProps(props.default);
-        }
-      })
-      .catch(console.warn);
-
-    return () => {
-      resolved = true;
-    };
-  }, [name]);
-
-  return props;
+    return data as DeclarationType;
+  } catch (err) {
+    return null;
+  }
 };
