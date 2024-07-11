@@ -169,10 +169,6 @@ In future versions, the React Strict Mode aims to prevent state loss caused by c
 
 Some other features of React Strict Mode that you might be helpful are the following, which help you to write cleaner and more performant code:
 
-#### Identifying Unsafe Lifecycles
-
-React Strict Mode helps to identify the components that use old lifecycle methods that might create problems in the lifecycle. It does warn you when your component is using the likes of `componentWillMount`, `componentWillReceiveProps`, or `componentWillUpdate`.
-
 #### Warning About Legacy String Ref API Usage
 
 Using string refs is not a great practice within React. Strict Mode will warn you about them and suggest using callback refs or `React.createRef` instead.
@@ -270,36 +266,6 @@ const customRender = (ui, options) =>
 
 export * from "@testing-library/react";
 export { customRender as render };
-```
-
-### Webpack
-
-Setup Webpack is a module bundler for JavaScript applications, so you set it to work with React Strict Mode by telling it to use the right version of React and use the proper settings.
-Example Ensure your Webpack configuration has the required plugins and loaders to support React Strict Mode. This too can help catch issues during building.
-
-```tsx
-const path = require('path');
-
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      }
-    ]
-  },
-  resolve: {
-    extensions: ['
-
 ```
 
 ## Conclusion
