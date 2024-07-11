@@ -448,9 +448,7 @@ It will be passed to the [`dataProvider`][data-provider]'s method as a params. T
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    resource: "categories",
-  },
+  resource: "categories",
 });
 ```
 
@@ -464,11 +462,9 @@ It is useful when you want to `edit` or `clone` a `resource` from a different pa
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    action: "edit", // or clone
-    resource: "categories",
-    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-  },
+  action: "edit", // or clone
+  resource: "categories",
+  id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
 });
 ```
 
@@ -480,9 +476,7 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    redirect: false,
-  },
+  redirect: false,
 });
 ```
 
@@ -498,10 +492,8 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onMutationSuccess: (data, variables, context) => {
-      console.log({ data, variables, context });
-    },
+  onMutationSuccess: (data, variables, context) => {
+    console.log({ data, variables, context });
   },
 });
 ```
@@ -518,10 +510,8 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onMutationError: (data, variables, context) => {
-      console.log({ data, variables, context });
-    },
+  onMutationError: (data, variables, context) => {
+    console.log({ data, variables, context });
   },
 });
 ```
@@ -537,9 +527,7 @@ By default it's invalidates following queries from the current `resource`:
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    invalidates: ["list", "many", "detail"],
-  },
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -554,9 +542,7 @@ If you want to use a different `dataProvider` on all resource pages, you can use
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    dataProviderName: "second-data-provider",
-  },
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -569,9 +555,7 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
-  },
+  mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
 });
 ```
 
@@ -583,14 +567,12 @@ After form is submitted successfully, `useForm` will call `open` function from [
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    successNotification: (data, values, resource) => {
-      return {
-        message: `Post Successfully created with ${data.title}`,
-        description: "Success with no errors",
-        type: "success",
-      };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Post Successfully created with ${data.title}`,
+      description: "Success with no errors",
+      type: "success",
+    };
   },
 });
 ```
@@ -603,16 +585,14 @@ After form is submit is failed, `useForm` will call `open` function from [`Notif
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    action: "create",
-    resource: "post",
-    errorNotification: (data, values, resource) => {
-      return {
-        message: `Something went wrong when deleting ${data.id}`,
-        description: "Error",
-        type: "error",
-      };
-    },
+  action: "create",
+  resource: "post",
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when deleting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
   },
 });
 ```
@@ -636,10 +616,8 @@ In the following example, we pass the `headers` property in the `metaData` objec
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    meta: {
-      headers: { "x-meta-data": "true" },
-    },
+  metaData: {
+    headers: { "x-meta-data": "true" },
   },
 });
 
@@ -670,10 +648,8 @@ in `edit` or `clone` mode, **refine** uses [`useOne`](/docs/3.xx.xx/api-referenc
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    queryOptions: {
-      retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
   },
 });
 ```
@@ -686,10 +662,8 @@ In `create` or `clone` mode, **refine** uses [`useCreate`](/docs/3.xx.xx/api-ref
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    createMutationOptions: {
-      retry: 3,
-    },
+  createMutationOptions: {
+    retry: 3,
   },
 });
 ```
@@ -702,10 +676,8 @@ In `edit` mode, **refine** uses [`useUpdate`](/docs/3.xx.xx/api-reference/core/h
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    updateMutationOptions: {
-      retry: 3,
-    },
+  updateMutationOptions: {
+    retry: 3,
   },
 });
 ```
@@ -720,9 +692,7 @@ It can be set globally in [`refine config`](/docs/3.xx.xx/api-reference/core/com
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    warnWhenUnsavedChanges: true,
-  },
+  warnWhenUnsavedChanges: true,
 });
 ```
 
@@ -734,9 +704,7 @@ When it's true, pressing the Enter key will submit the form. It can be used to p
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    submitOnEnter: true,
-  },
+  submitOnEnter: true,
 });
 ```
 
@@ -747,9 +715,7 @@ For more information about live mode, please check [Live / Realtime](/docs/3.xx.
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    liveMode: "auto",
-  },
+  liveMode: "auto",
 });
 ```
 
@@ -759,10 +725,8 @@ The callback function that is executed when new events from a subscription are a
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onLiveEvent: (event) => {
-      console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
   },
 });
 ```
@@ -892,16 +856,14 @@ const PostEdit = () => {
   const invalidate = useInvalidate();
 
   useForm({
-    refineCoreProps: {
-      // highlight-start
-      onMutationSuccess: (data, variables, context) => {
-        invalidate({
-          resource: "users",
-          invalidates: ["resourceAll"],
-        });
-      },
-      // highlight-end
+    // highlight-start
+    onMutationSuccess: (data, variables, context) => {
+      invalidate({
+        resource: "users",
+        invalidates: ["resourceAll"],
+      });
     },
+    // highlight-end
   });
 
   // ---
