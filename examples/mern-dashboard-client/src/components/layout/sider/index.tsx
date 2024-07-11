@@ -86,7 +86,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
         return (
           <CanAccess
             key={route}
-            resource={name.toLowerCase()}
+            resource={name}
             action="list"
             params={{
               resource: item,
@@ -156,7 +156,7 @@ export const Sider: typeof DefaultSider = ({ render }) => {
       return (
         <CanAccess
           key={route}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{ resource: item }}
         >

@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 
 import type { Server } from "ws";

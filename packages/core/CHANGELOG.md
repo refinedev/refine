@@ -1,5 +1,36 @@
 # @refinedev/core
 
+## 4.53.0
+
+### Minor Changes
+
+- [#6071](https://github.com/refinedev/refine/pull/6071) [`853bef97ed7baf59e74c98fc54c0ed11624fb491`](https://github.com/refinedev/refine/commit/853bef97ed7baf59e74c98fc54c0ed11624fb491) Thanks [@Dominic-Preap](https://github.com/Dominic-Preap)! - feat: add `selectedOptionsOrder` in `useSelect`
+
+  Now with `selectedOptionsOrder`, you can sort `selectedOptions` at the top of list when use `useSelect` with `defaultValue`.
+
+  Resolves [#6061](https://github.com/refinedev/refine/issues/6061)
+
+### Patch Changes
+
+- [#5989](https://github.com/refinedev/refine/pull/5989) [`b86648f42cd849a506e4c32d740de26b72681f72`](https://github.com/refinedev/refine/commit/b86648f42cd849a506e4c32d740de26b72681f72) Thanks [@lnikitadobrenkol](https://github.com/lnikitadobrenkol)! - chore(core): add missing types of data hooks
+
+  Added missing props and return types of data hooks.
+
+- [#6070](https://github.com/refinedev/refine/pull/6070) [`4265ae2509f79af9dbca8d52daf5c2f1b4a50a51`](https://github.com/refinedev/refine/commit/4265ae2509f79af9dbca8d52daf5c2f1b4a50a51) Thanks [@FatimaSaleem21](https://github.com/FatimaSaleem21)! - fix(core): add unexported types in `index.tsx`
+
+  The `refinedev/core` package has many unexported types that are not accessible for use outside the package. This change aims to address this limitation by exporting those missing types.
+
+  Resolves [#6041](https://github.com/refinedev/refine/issues/6041)
+
+- [#6064](https://github.com/refinedev/refine/pull/6064) [`b516c18b828ba8823561d0fefc4afe02b45ce332`](https://github.com/refinedev/refine/commit/b516c18b828ba8823561d0fefc4afe02b45ce332) Thanks [@aliemir](https://github.com/aliemir)! - fix(auto-save-indicator): replace reserved `key` prop with `translationKey` in <Message /> components
+
+  `<AutoSaveIndicator />` components from UI libraries have been using a `<Message />` component internally that uses a `key` prop. Since `key` is a reserved prop in React, it was causing a warning in the console. This change replaces the `key` prop with `translationKey` to avoid the warning.
+
+  Resolves [#6067](https://github.com/refinedev/refine/issues/6067)
+
+- Updated dependencies []:
+  - @refinedev/devtools-internal@1.1.13
+
 ## 4.51.0
 
 ### Minor Changes

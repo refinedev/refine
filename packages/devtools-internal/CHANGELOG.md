@@ -1,5 +1,12 @@
 # @refinedev/devtools-internal
 
+## 1.1.13
+
+### Patch Changes
+
+- Updated dependencies [[`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a)]:
+  - @refinedev/devtools-shared@1.1.11
+
 ## 1.1.11
 
 ### Patch Changes

@@ -1,5 +1,22 @@
 # @refinedev/cli
 
+## 2.16.36
+
+### Patch Changes
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - chore(cli): remove unused command
+
+  Previously `@refinedev/cli` had a `proxy` command that is no longer in use and not required in any of the projects. This change removes the command from the CLI without a fallback.
+
+- [#6039](https://github.com/refinedev/refine/pull/6039) [`24db047aea42e307a9662c46fde50ea69ca8c381`](https://github.com/refinedev/refine/commit/24db047aea42e307a9662c46fde50ea69ca8c381) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): type imports are breaking the code structure on swizzle
+
+  When exporting elements with `swizzle` command, it will try to replace and combine imports from Refine packages. This process was broken if the target file was using `import type` syntax. This PR updates swizzle command to handle `import type` syntax separately.
+
+  Resolves [#6035](https://github.com/refinedev/refine/issues/6035)
+
+- Updated dependencies [[`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd)]:
+  - @refinedev/devtools-server@1.1.34
+
 ## 2.16.34
 
 ### Patch Changes

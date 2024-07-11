@@ -161,8 +161,12 @@ export const generateFilters = (filters: LogicalFilter[]) => {
       if (Array.isArray(f.value) && f.value.length === 0) {
         return false;
       }
+      if (typeof f.value === "number") {
+        return Number.isFinite(f.value);
+      }
 
-      return !!f.value;
+      // If the value is null or undefined, it returns false.
+      return !(f.value == null);
     })
     .map((filter: LogicalFilter | CrudFilter) => {
       if (filter.operator === "and" || filter.operator === "or") {

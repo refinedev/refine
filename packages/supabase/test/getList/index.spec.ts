@@ -81,6 +81,23 @@ describe("getList", () => {
         foreignTable: "categories",
       });
     });
+
+    it("correct sorting object with nested foreignTable", async () => {
+      await dataProvider(mockSupabaseClient).getList({
+        resource: "posts",
+        sorters: [
+          {
+            field: "categories.tags.title",
+            order: "asc",
+          },
+        ],
+      });
+      expect(mockSupabaseOrder).toHaveBeenCalledWith("title", {
+        ascending: true,
+        foreignTable: "categories.tags",
+      });
+    });
+
     it("correct sorting object without foreignTable", async () => {
       await dataProvider(mockSupabaseClient).getList({
         resource: "posts",

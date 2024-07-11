@@ -59,7 +59,7 @@
     "i18next": "^20.1.0",
     "i18next-browser-languagedetector": "^6.1.1",
     "i18next-xhr-backend": "^3.2.2",
-    "keycloak-js": "^20.0.3",
+    "keycloak-js": "^25.0.1",
     "lz-string": "^1.4.4",
     "next": "^14.1.0",
     "qs": "^6.10.1",

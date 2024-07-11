@@ -60,11 +60,18 @@ export const useAutocomplete = <
 
   return {
     autocompleteProps: {
-      options: unionWith(
-        queryResult.data?.data || [],
-        defaultValueQueryResult.data?.data || [],
-        isEqual,
-      ),
+      options:
+        props.selectedOptionsOrder === "selected-first"
+          ? unionWith(
+              defaultValueQueryResult.data?.data || [],
+              queryResult.data?.data || [],
+              isEqual,
+            )
+          : unionWith(
+              queryResult.data?.data || [],
+              defaultValueQueryResult.data?.data || [],
+              isEqual,
+            ),
       loading: queryResult.isFetching || defaultValueQueryResult.isFetching,
       onInputChange: (event, value) => {
         if (event?.type === "change") {

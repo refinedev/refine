@@ -421,12 +421,26 @@ const modalForm = useModalForm({
 
 ### defaultFormValues
 
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available for `"create"` action.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
 ```tsx
-const modalForm = useModalForm({
+useForm({
   defaultFormValues: {
     title: "Hello World",
+  },
+});
+```
+
+Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the [`defaultFormValuesLoading`](#defaultformvaluesloading) state returned from the hook.
+
+> 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
+
+```tsx
+const { defaultFormValuesLoading } = useForm({
+  defaultFormValues: async () => {
+    const response = await fetch("https://my-api.com/posts/1");
+    const data = await response.json();
+    return data;
   },
 });
 ```
@@ -763,6 +777,10 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
+### defaultFormValuesLoading
+
+If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormValuesLoading` will be `true` until the function is resolved.
+
 ## FAQ
 
 ### How can I change the form data before submitting it to the API?
@@ -847,6 +865,7 @@ export const UserCreate: React.FC = () => {
 | mutationResult           | Result of the mutation triggered by submitting the form                                                        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 | overtime                 | Overtime loading props                                                                                         | `{ elapsedTime?: number }`                                                                                                                                 |
 | autoSaveProps            | Auto save props                                                                                                | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                    |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                                                                       | `boolean`                                                                                                                                                  |
 
 ## Example
 

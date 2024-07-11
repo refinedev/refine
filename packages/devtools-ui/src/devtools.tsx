@@ -1,7 +1,5 @@
 import React from "react";
 import { DevToolsContextProvider } from "@refinedev/devtools-shared";
-import { ReloadOnChanges } from "./reload-on-changes";
-import { Layout } from "./components/layout";
 import {
   BrowserRouter,
   Navigate,
@@ -9,11 +7,14 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { Layout } from "./components/layout";
+import { ReloadOnChanges } from "./components/reload-on-changes";
 import { Authenticated } from "./components/authenticated";
 import { Overview } from "./pages/overview";
 import { Login } from "./pages/login";
 import { Onboarding } from "./pages/onboarding";
 import { Monitor } from "./pages/monitor";
+import { AfterLogin } from "./pages/after-login";
 
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
@@ -23,7 +24,6 @@ import { RaffleHandler } from "./components/raffle-handler";
 import { MonitorHighlightHandler } from "./components/monitor-highlight-handler";
 import { LocationChangeHandler } from "./components/location-change-handler";
 import { getLastLocation } from "./utils/last-location";
-import { AfterLogin } from "./pages/after-login";
 
 dayjs.extend(relativeTime);
 

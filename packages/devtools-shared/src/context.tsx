@@ -35,11 +35,13 @@ export const DevToolsContextProvider: React.FC<Props> = ({
     url: "localhost",
     secure: false,
     ws: null,
+    devtoolsUrl: "http://localhost:5001",
   });
 
   const [ws, setWs] = React.useState<WebSocket | null>(null);
 
   React.useEffect(() => {
+    let timeout: NodeJS.Timeout | null = null;
     const wsInstance = new WebSocket(
       `${values.secure ? "wss" : "ws"}://localhost:${values.port}`,
     );
@@ -58,9 +60,11 @@ export const DevToolsContextProvider: React.FC<Props> = ({
 
     wsInstance.addEventListener("open", () => {
       if (!values.__devtools) {
-        send(wsInstance, DevtoolsEvent.DEVTOOLS_INIT, {
-          url: window.location.origin,
-        });
+        timeout = setTimeout(() => {
+          send(wsInstance, DevtoolsEvent.DEVTOOLS_INIT, {
+            url: window.location.origin,
+          });
+        }, 300);
       }
     });
 
@@ -68,6 +72,8 @@ export const DevToolsContextProvider: React.FC<Props> = ({
 
     return () => {
       unsubscribe();
+
+      if (timeout) clearTimeout(timeout);
 
       // In strict mode, the WebSocket instance might not be connected yet
       // so we need to wait for it to connect before closing it

@@ -24,9 +24,9 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.40.0",
-    "@refinedev/cli": "^2.16.34",
-    "@refinedev/core": "^4.51.0",
+    "@refinedev/antd": "^5.42.0",
+    "@refinedev/cli": "^2.16.36",
+    "@refinedev/core": "^4.53.0",
     "@refinedev/react-router-v6": "^4.5.11",
     "@refinedev/strapi-v4": "^6.0.8",
     "@uiw/react-md-editor": "^3.19.5",
@@ -43,7 +43,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "cypress": "^13.6.3",
-    "http-proxy-middleware": "^2.0.6",
     "typescript": "^5.4.2",
     "vite": "^5.1.6"
   }

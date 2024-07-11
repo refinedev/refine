@@ -1,5 +1,11 @@
 # @refinedev/supabase
 
+## 5.9.2
+
+### Patch Changes
+
+- [#6025](https://github.com/refinedev/refine/pull/6025) [`f4e61b0fae7e78d0c63c09453f4bd11b4c6f8b09`](https://github.com/refinedev/refine/commit/f4e61b0fae7e78d0c63c09453f4bd11b4c6f8b09) Thanks [@youssefsiam38](https://github.com/youssefsiam38)! - fix supabase sorting with nested embedded resources
+
 ## 5.9.0
 
 ### Minor Changes

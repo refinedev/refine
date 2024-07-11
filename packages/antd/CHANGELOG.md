@@ -1,5 +1,84 @@
 # @refinedev/antd
 
+## 5.42.0
+
+### Minor Changes
+
+- [#6074](https://github.com/refinedev/refine/pull/6074) [`311dcdc454ee6914218a59198b5d423a4f8e5456`](https://github.com/refinedev/refine/commit/311dcdc454ee6914218a59198b5d423a4f8e5456) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: [`useDrawerForm`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-drawer-form/)'s `submit` and `form` props are not working (#6082).
+
+  - `submit` prop is removed from `useDrawerForm` hook. Instead, you can use `onFinish` prop to handle the form submission.
+    https://refine.dev/docs/guides-concepts/forms/#modifying-data-before-submission
+
+  - `form` prop is removed from `useDrawerForm` hook.
+    The purpose of `useDrawerForm` is to create a `form` instance. Because of that `form` instance cannot be passed as a prop.
+
+- [#6071](https://github.com/refinedev/refine/pull/6071) [`853bef97ed7baf59e74c98fc54c0ed11624fb491`](https://github.com/refinedev/refine/commit/853bef97ed7baf59e74c98fc54c0ed11624fb491) Thanks [@Dominic-Preap](https://github.com/Dominic-Preap)! - feat: add `selectedOptionsOrder` in `useSelect`
+
+  Now with `selectedOptionsOrder`, you can sort `selectedOptions` at the top of list when use `useSelect` with `defaultValue`.
+
+  Resolves [#6061](https://github.com/refinedev/refine/issues/6061)
+
+- [#6074](https://github.com/refinedev/refine/pull/6074) [`311dcdc454ee6914218a59198b5d423a4f8e5456`](https://github.com/refinedev/refine/commit/311dcdc454ee6914218a59198b5d423a4f8e5456) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useForm`'s `defaultFormValues` prop is not working (#5727).
+
+  From now on, `useForm`, `useDrawerForm`, and `useModalForm` hooks accept the `defaultFormValues` prop to pre-populate the form with data that needs to be displayed.
+
+  ```tsx
+  useForm({
+    defaultFormValues: {
+      title: "Hello World",
+    },
+  });
+  ```
+
+  Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the `defaultFormValuesLoading` state returned from the hook.
+
+  > 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
+
+  ```tsx
+  const { defaultFormValuesLoading } = useForm({
+    defaultFormValues: async () => {
+      const response = await fetch("https://my-api.com/posts/1");
+      const data = await response.json();
+      return data;
+    },
+  });
+  ```
+
+### Patch Changes
+
+- [#6021](https://github.com/refinedev/refine/pull/6021) [`55cd0662b1e3ff8f8410eba812e80130afe75d14`](https://github.com/refinedev/refine/commit/55cd0662b1e3ff8f8410eba812e80130afe75d14) Thanks [@JayBhensdadia](https://github.com/JayBhensdadia)! - fix: ensure Sider component handles various resource name formats correctly
+
+  Updated Sider component to correctly handle lowercase and camelcased resource names, enhancing usability and functionality.
+
+  Fixes #6004
+
+- [#5984](https://github.com/refinedev/refine/pull/5984) [`658891c413b1fc83b75905919eabc94f08482e61`](https://github.com/refinedev/refine/commit/658891c413b1fc83b75905919eabc94f08482e61) Thanks [@ApsMJ23](https://github.com/ApsMJ23)! - fix(antd): use appropriate icons for RTL direction layouts
+
+  Previously CRUD components and `<ThemedSiderV2 />` component used hardcoded icons which doesn't fit well for RTL layouts. This PR uses Ant Design's `ConfigProvider` context to use `direction` to determine the appropriate icons for RTL layouts.
+
+  **Example**
+
+  ```tsx
+  import { ConfigProvider } from 'antd';
+  import { Refine } from '@refinedev/antd';
+
+  const App = () => (
+    <ConfigProvider direction="rtl">
+      <Refine
+          {/* ... */}
+      />
+    </ConfigProvider>
+  );
+  ```
+
+  When any CRUD component or `<ThemedSiderV2 />` component is rendered, the icons will be rendered with respect to the `direction` prop of `ConfigProvider`.
+
+- [#6064](https://github.com/refinedev/refine/pull/6064) [`b516c18b828ba8823561d0fefc4afe02b45ce332`](https://github.com/refinedev/refine/commit/b516c18b828ba8823561d0fefc4afe02b45ce332) Thanks [@aliemir](https://github.com/aliemir)! - fix(auto-save-indicator): replace reserved `key` prop with `translationKey` in <Message /> components
+
+  `<AutoSaveIndicator />` components from UI libraries have been using a `<Message />` component internally that uses a `key` prop. Since `key` is a reserved prop in React, it was causing a warning in the console. This change replaces the `key` prop with `translationKey` to avoid the warning.
+
+  Resolves [#6067](https://github.com/refinedev/refine/issues/6067)
+
 ## 5.40.0
 
 ### Minor Changes

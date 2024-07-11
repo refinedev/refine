@@ -270,6 +270,71 @@ const MyComponent = () => {
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
 
+## Editing
+
+The `useDataGrid` hook extends the editing capabilities provided by the [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component from MUI. To enable column editing, set `editable: "true"` on specific column definitions.
+
+`useDataGrid` leverages [`useUpdate`](https://refine.dev/docs/data/hooks/use-update/) for direct integration with update operations. This change enhances performance and simplifies the interaction model by directly using the update mechanisms provided by Refine.
+
+Here is how you can define columns to be editable:
+
+```tsx
+const columns = React.useMemo<GridColDef<IPost>[]>(
+  () => [
+    {
+      field: "title",
+      headerName: "Title",
+      minWidth: 400,
+      flex: 1,
+      editable: true,
+    },
+  ],
+  [],
+);
+```
+
+### Handling Updates
+
+With the integration of `useUpdate`, processRowUpdate from [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) directly interacts with the backend. This method attempts to update the row with the new values, handling the update logic internally.
+
+The hook now simplifies the handling of updates by removing the need for managing form state transitions explicitly:
+
+```tsx
+const {
+  dataGridProps,
+  formProps: { processRowUpdate, formLoading },
+} = useDataGrid<IPost>();
+```
+
+By default, when a cell edit is initiated and completed, the processRowUpdate function will be triggered, which will now use the mutate function from useUpdate to commit changes.
+
+```tsx
+const processRowUpdate = async (newRow: TData, oldRow: TData) => {
+  try {
+    await new Promise((resolve, reject) => {
+      mutate(
+        {
+          resource: resourceFromProp as string,
+          id: newRow.id as string,
+          values: newRow,
+        },
+        {
+          onError: (error) => {
+            reject(error);
+          },
+          onSuccess: (data) => {
+            resolve(data);
+          },
+        },
+      );
+    });
+    return newRow;
+  } catch (error) {
+    return oldRow;
+  }
+};
+```
+
 ## Properties
 
 ### resource
