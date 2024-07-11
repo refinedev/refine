@@ -2,8 +2,8 @@ import React, { useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import {
   type DeclarationType,
-  useDynamicImport,
-} from "../../hooks/use-dynamic-import";
+  requireDocgen,
+} from "../../utils/require-docgen";
 import PropTag from "../prop-tag";
 import Tooltip from "../tooltip";
 
@@ -212,7 +212,7 @@ const PropsTable: React.FC<React.PropsWithChildren<Props>> = ({
   children,
   ...overrides
 }) => {
-  const data = useDynamicImport(module);
+  const data = requireDocgen(module);
 
   const hideRowDefault = useMemo(() => {
     if (hideDefaults) return false;
