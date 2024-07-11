@@ -113,10 +113,8 @@ import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
   const { onFinish, mutationResult } = useForm({
-    refineCoreProps: {
-      action: "create",
-      resource: "products",
-    },
+    action: "create",
+    resource: "products",
   });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -168,10 +166,8 @@ import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
   const { onFinish, mutationResult } = useForm({
-    refineCoreProps: {
-      action: "create",
-      resource: "products",
-    },
+    action: "create",
+    resource: "products",
   });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -218,10 +214,8 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
   const { onFinish, mutationResult } = useForm({
-    refineCoreProps: {
-      action: "create",
-      resource: "products",
-    },
+    action: "create",
+    resource: "products",
   });
 
   // highlight-start
@@ -320,11 +314,9 @@ import { useForm, useSelect } from "@refinedev/core";
 export const EditProduct = () => {
   // highlight-start
   const { onFinish, mutationResult, queryResult } = useForm({
-    refineCoreProps: {
-      action: "edit",
-      resource: "products",
-      id: "123",
-    },
+    action: "edit",
+    resource: "products",
+    id: "123",
   });
   // highlight-end
 

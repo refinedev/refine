@@ -137,11 +137,9 @@ import { POST_CREATE_MUTATION } from "./queries";
 
 export const PostCreatePage () => {
   const { formProps } = useForm({
-    refineCoreProps: {
-      resource: "posts",
-      // highlight-next-line
-      meta: { gqlMutation: POST_CREATE_MUTATION },
-    },
+    resource: "posts",
+    // highlight-next-line
+    meta: { gqlMutation: POST_CREATE_MUTATION },
   });
 
   return (

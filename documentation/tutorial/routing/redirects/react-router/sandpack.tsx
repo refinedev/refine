@@ -27,10 +27,8 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
   const { onFinish, mutationResult, queryResult } = useForm({
-    refineCoreProps: {
-      // This will redirect to the show page after the mutation is successful.
-      redirect: "show",
-    },
+    // This will redirect to the show page after the mutation is successful.
+    redirect: "show",
   });
 
   const record = queryResult.data?.data;
@@ -105,9 +103,7 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
   const { onFinish, mutationResult } = useForm({
-    refineCoreProps: {
-      redirect: "edit",
-    },
+    redirect: "edit",
   });
 
   const { options } = useSelect({

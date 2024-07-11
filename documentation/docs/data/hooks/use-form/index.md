@@ -38,11 +38,7 @@ Basic usage of the `useForm` hook demonstrates how to use the hook in all three 
 The action that will be performed with the submission of the form. Can be `create`, `edit`, or `clone`. If not specified, it will be determined by the current route or fallback to `create`.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    action: "create",
-  },
-});
+useForm({ action: "create" });
 ```
 
 #### Create
@@ -97,11 +93,7 @@ After form is submitted:
 The resource name or identifier that will be used for the form. If not specified, it will be determined by the current route.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    resource: "products",
-  },
-});
+useForm({ resource: "products" });
 ```
 
 ### id <RouterBadge />
@@ -110,9 +102,7 @@ The ID of the record that will be used for the action. If not specified, it will
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    id: 123,
-  },
+  id: 123,
 });
 ```
 
@@ -127,11 +117,7 @@ If explicit `resource` is provided, `id` must be provided as well to avoid any u
 The redirection behavior after the form submission. It can be `list`, `edit`, `show`, `create`, or `false`. By default it will be `list` or whatever is defined in the Refine's global options.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    redirect: "show",
-  },
-});
+useForm({ redirect: "show" });
 ```
 
 :::simple Router Integration
@@ -146,14 +132,12 @@ Callback function to be called after a successful mutation. It will be called wi
 
 ```tsx
 useForm({
-  refineCoreProps: {
     onMutationSuccess: (
-      data, // Mutation result, depending on the action its the response of `useCreate` or `useUpdate`
-      variables, // Variables/form values that were used for the mutation
-      context, // React Query's context for the mutation
-      isAutoSave, // Boolean value indicating if the mutation was triggered by auto-save or not
+        data, // Mutation result, depending on the action its the response of `useCreate` or `useUpdate`
+        variables, // Variables/form values that were used for the mutation
+        context, // React Query's context for the mutation
+        isAutoSave, // Boolean value indicating if the mutation was triggered by auto-save or not
     ) => { ... }
-  },
 });
 ```
 
@@ -163,14 +147,12 @@ Callback function to be called after a failed mutation. It will be called with t
 
 ```tsx
 useForm({
-  refineCoreProps: {
     onMutationError: (
-      error, // Mutation error, depending on the action its the error response of `useCreate` or `useUpdate`
-      variables, // Variables/form values that were used for the mutation
-      context, // React Query's context for the mutation
-      isAutoSave, // Boolean value indicating if the mutation was triggered by auto-save or not
+        error, // Mutation error, depending on the action its the error response of `useCreate` or `useUpdate`
+        variables, // Variables/form values that were used for the mutation
+        context, // React Query's context for the mutation
+        isAutoSave, // Boolean value indicating if the mutation was triggered by auto-save or not
     ) => { ... }
-  },
 });
 ```
 
@@ -179,11 +161,7 @@ useForm({
 Determines the scope of the invalidation after a successful mutation. Can be array of `list`, `many`, `detail`, `resourceAll`, `all` or `false`. By default, `create` and `clone` actions will invalidate `list` and `many`. `edit` action will invalidate `list`, `many` and `detail` queries.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    invalidates: ["list", "many"],
-  },
-});
+useForm({ invalidates: ["list", "many"] });
 ```
 
 ### dataProviderName <GlobalConfigBadge description="This property can also be included in the `resource` definition." />
@@ -191,11 +169,7 @@ useForm({
 Name of the data provider to be used in API interactions. Useful when there are more than one data providers defined.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    dataProviderName: "store",
-  },
-});
+useForm({ dataProviderName: "store" });
 ```
 
 ### mutationMode <GuideBadge id="guides-concepts/forms#mutation-modes" /> <GlobalConfigBadge />
@@ -203,11 +177,7 @@ useForm({
 Behavior of the mutation, can either be `pessimistic`, `optimistic` or `undoable`. By default, `pessimistic` or whatever is defined in the Refine's global options.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    mutationMode: "optimistic",
-  },
-});
+useForm({ mutationMode: "optimistic" });
 ```
 
 ### successNotification <GuideBadge id="guides-concepts/forms#notifications" />
@@ -218,16 +188,14 @@ Customization options for the notification that will be shown after a successful
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    // Can also be a static object if you don't need to access the data, values or resource.
-    // By setting it to `false`, you can disable the notification.
-    successNotification: (data, values, resource) => {
-      return {
-        message: `Successfully created ${data.title}`,
-        description: "good job!",
-        type: "success",
-      };
-    },
+  // Can also be a static object if you don't need to access the data, values or resource.
+  // By setting it to `false`, you can disable the notification.
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Successfully created ${data.title}`,
+      description: "good job!",
+      type: "success",
+    };
   },
 });
 ```
@@ -240,16 +208,14 @@ Customization options for the notification that will be shown after a failed mut
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    // Can also be a static object if you don't need to access the data, values or resource.
-    // By setting it to `false`, you can disable the notification.
-    errorNotification: (error, values, resource) => {
-      return {
-        message: `Failed to create ${values.title}`,
-        description: error.message,
-        type: "error",
-      };
-    },
+  // Can also be a static object if you don't need to access the data, values or resource.
+  // By setting it to `false`, you can disable the notification.
+  errorNotification: (error, values, resource) => {
+    return {
+      message: `Failed to create ${values.title}`,
+      description: error.message,
+      type: "error",
+    };
   },
 });
 ```
@@ -259,15 +225,7 @@ useForm({
 Additional information that will be passed to the data provider. Can be used to handle special cases in the data provider, generating GraphQL queries or handling additional parameters in the redirection routes.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    meta: {
-      headers: {
-        "x-greetings": "hello world",
-      },
-    },
-  },
-});
+useForm({ meta: { headers: { "x-greetings": "hello world" } } });
 ```
 
 ### queryMeta
@@ -275,15 +233,7 @@ useForm({
 Meta data values to be used in the internal `useOne` call for the `edit` and `clone` actions. These values will take precedence over the `meta` values.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    meta: {
-      headers: {
-        "x-greetings": "hello mars",
-      },
-    },
-  },
-});
+useForm({ meta: { headers: { "x-greetings": "hello mars" } } });
 ```
 
 ### mutationMeta
@@ -291,15 +241,7 @@ useForm({
 Meta data values to be used in the internal `useCreate` and `useUpdate` calls for form submissions. These values will take precedence over the `meta` values.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    meta: {
-      headers: {
-        "x-greetings": "hello pluto",
-      },
-    },
-  },
-});
+useForm({ meta: { headers: { "x-greetings": "hello pluto" } } });
 ```
 
 ### queryOptions
@@ -308,9 +250,7 @@ Options to be used in the internal `useOne` call for the `edit` and `clone` acti
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    queryOptions: { retry: 3 },
-  },
+  queryOptions: { retry: 3 },
 });
 ```
 
@@ -320,9 +260,7 @@ Options to be used in the internal `useCreate` call for the `create` and `clone`
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    createMutationOptions: { retry: 3 },
-  },
+  createMutationOptions: { retry: 3 },
 });
 ```
 
@@ -332,9 +270,7 @@ Options to be used in the internal `useUpdate` call for the `edit` action.
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    updateMutationOptions: { retry: 3 },
-  },
+  updateMutationOptions: { retry: 3 },
 });
 ```
 
@@ -345,11 +281,7 @@ useForm({
 Behavior of how to handle received real-time updates, can be `auto`, `manual` or `off`. By default, `auto` or whatever is defined in the Refine's global options.
 
 ```tsx
-useForm({
-  refineCoreProps: {
-    liveMode: "auto",
-  },
-});
+useForm({ liveMode: "auto" });
 ```
 
 ### onLiveEvent <GuideBadge id="guides-concepts/realtime" />
@@ -358,10 +290,8 @@ A callback function that will be called when a related real-time event is receiv
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onLiveEvent: (event) => {
-      console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
   },
 });
 ```
@@ -372,10 +302,8 @@ Additional parameters to be used in the `liveProvider`'s `subscribe` method.
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    liveParams: {
-      foo: "bar",
-    },
+  liveParams: {
+    foo: "bar",
   },
 });
 ```
@@ -386,13 +314,9 @@ A set of options to be used for the overtime loading state. Useful when the API 
 
 ```tsx
 const { overtime } = useForm({
-  refineCoreProps: {
-    overTimeOptions: {
-      interval: 1000,
-      onInterval(elapsedTime) {
-        console.log(elapsedTime);
-      },
-    },
+  interval: 1000,
+  onInterval(elapsedTime) {
+    console.log(elapsedTime);
   },
 });
 ```
@@ -403,12 +327,10 @@ Auto-save behavior of the form. Can have `enabled` to toggle auto-save, `debounc
 
 ```tsx
 const { onFinishAutoSave } = useForm({
-  refineCoreProps: {
-    autoSave: {
-      enabled: true, // default is false
-      debounce: 2000, // debounce interval for auto-save, default is 1000
-      invalidateOnUnmount: true, // whether to invalidate the queries on unmount, default is false
-    },
+  autoSave: {
+    enabled: true, // default is false
+    debounce: 2000, // debounce interval for auto-save, default is 1000
+    invalidateOnUnmount: true, // whether to invalidate the queries on unmount, default is false
   },
 });
 ```
@@ -427,25 +349,23 @@ In `optimistic` and `undoable` mutation modes, `useForm` will automatically upda
 
 ```tsx
 useForm({
-  refineCoreProps: {
     optimisticUpdateMap: {
-      // A boolean value can also be used to enable/disable the optimistic updates for the query set.
-      list: (
-          previous, // Previous query data
-          variables, // Variables used in the query
-          id, // Record id
-      ) => { ... },
-      many: (
-          previous, // Previous query data
-          variables, // Variables used in the query
-          id, // Record id
-      ) => { ... },
-      detail: (
-          previous, // Previous query data
-          variables, // Variables used in the query
-      ) => { ... },
-    },
-  },
+        // A boolean value can also be used to enable/disable the optimistic updates for the query set.
+        list: (
+            previous, // Previous query data
+            variables, // Variables used in the query
+            id, // Record id
+        ) => { ... },
+        many: (
+            previous, // Previous query data
+            variables, // Variables used in the query
+            id, // Record id
+        ) => { ... },
+        detail: (
+            previous, // Previous query data
+            variables, // Variables used in the query
+        ) => { ... },
+    }
 })
 ```
 
