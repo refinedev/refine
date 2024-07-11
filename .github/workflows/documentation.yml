@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: Check out code.
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: typos
         id: check_for_typos
         uses: crate-ci/typos@master
@@ -35,6 +33,8 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@v3
         with:
           version: 9
