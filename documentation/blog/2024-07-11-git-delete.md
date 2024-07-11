@@ -4,9 +4,11 @@ description: We will take a look the example of deleting local and remote Git br
 slug: git-delete-remote-branch-and-local-branch
 authors: muhammad_khabbab
 tags: [git, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 10, 2024, to add sections forAutomate Deletion with a Scheduled Task and Using CI/CD Pipelines.**
 
 ## Introduction
 
@@ -29,13 +31,12 @@ Steps we'll cover:
 - [Deleting a Git remote branch](#deleting-a-git-remote-branch)
 - [Deleting a branch with merged changes](#deleting-a-branch-with-merged-changes)
 - [Deleting a git branch with unmerged changes](#deleting-a-git-branch-with-unmerged-changes)
+- [Advanced Scenarios for Branch Deletion](#advanced-scenarios-for-branch-deletion)
 - [What are tracking branches and how to delete them](#what-are-tracking-branches-and-how-to-delete-them)
 - [How to delete a branch on Github using web console](#how-to-delete-a-branch-on-github-using-web-console)
+- [Automate Deletion with a Scheduled Task](#automate-deletion-with-a-scheduled-task)
+- [Running on CI/CD Pipelines](#running-on-cicd-pipelines)
 - [Frequently asked questions](#frequently-asked-questions)
-  - [I am unable to delete my branch](#i-am-unable-to-delete-my-branch)
-  - [I deleted a branch by mistake, can I recover it?](#i-deleted-a-branch-by-mistake-can-i-recover-it)
-  - [How to automatically delete a branch when it is merge back into master](#how-to-automatically-delete-a-branch-when-it-is-merge-back-into-master)
-  - [I am getting an error when I delete a branch having the same name as a tag](#i-am-getting-an-error-when-i-delete-a-branch-having-the-same-name-as-a-tag)
 
 ## Why you might need to remove a branch
 
@@ -132,6 +133,46 @@ git branch --delete --force <branch_name>
 
 It will also remove the branch forcibly even if there are unmerged changes in the branch.
 
+## Advanced Scenarios for Branch Deletion
+
+I want to share with you some of the tips in advance about deleting branches in Git, so as to ensure our repository remains clean and organized. Here are a few scenarios and how to handle them:
+
+The usage of the double hyphen can also be applied when there are times when we have multiple old branches that we have to delete. It's a very boring job to do them manually, one by one. Here's a quick command for that:
+
+```bash
+git branch -d branch1 branch2 branch3
+```
+
+This will delete `branch1`, `branch2`, and `branch3` all at one go.
+
+### Cleaning up local branches
+
+It is good practice to delete the branches that have already been merged with the master branch in order to keep our local repository clean. We can handle this through the script, making it something that can be automated this way:
+
+```bash
+git checkout main
+git branch --merged | grep -v '\*' | xargs -n 1 git branch -d
+```
+
+The script checks out the main branch, fetches all the already-merged branches, and deletes them.
+
+### Automating Branch Deletion
+
+We can take advantage of Git hooks to automatically delete branches upon merging of a pull request. This is achieved by creating a post-merge hook:
+
+1. Write a file named `post-merge` in the directory `.git/hooks`.
+2. Insert the script below:
+
+```bash
+#!/bin/sh
+BRANCH=$(git symbolic-ref --short HEAD)
+if [ "$BRANCH" != "main" ]; then
+  git branch -d $BRANCH
+fi
+```
+
+This script removes the branch after merging, in case it is not the main branch.
+
 ## What are tracking branches and how to delete them
 
 When we check out a local branch from a remote branch, it automatically creates what is called a tracking branch. These are local branches that have a direct association with a remote branch. It means it exists on our local machine cache but not on the remote repository.
@@ -180,12 +221,51 @@ git branch –r
 
 <br/>
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Automate Deletion with a Scheduled Task
+
+You can even set up a scheduled task to delete the merged branches after a time. The commands can run either through a cron job on Unix-like systems or a scheduled task on Windows.
+
+Here is an example: a cron job that is run at 12 AM every Sunday:
+
+1. Open crontab file:
+
+```bash
+crontab -e
+```
+
+2. And now append this line to add the task to crontab:
+
+```bash
+0 0 * * 0 cd /path/to/your/repo && git fetch -p && git branch --merged main | grep -v 'main' | xargs -n 1 git branch -d
+```
+
+This will get the latest changes, prune stale branches, and remove branches merged to main.
+
+## Running on CI/CD Pipelines
+
+We can also leverage this opportunity to carry out automated branch deletion within our CI/CD pipeline. For instance, if we are to use GitHub Actions, here is how we can automate the workflow to delete branches:
+
+```yaml
+name: Delete Merged Branches
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  delete-merged-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Delete Merged Branches
+        run: |
+          git fetch -p
+          git branch --merged main | grep -v 'main' | xargs -n 1 git branch -d
+```
+
+The workflow is triggered with each push to the main branch and cleans branches merged to main.
 
 ## Frequently asked questions
 
