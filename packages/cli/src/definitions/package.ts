@@ -13,7 +13,7 @@ export type NpmOutdatedResponse = Record<
     current: string;
     wanted: string;
     latest: string;
-    dependet: string;
+    dependent: string;
     location: string;
   }
 >;
@@ -43,9 +43,9 @@ export type RefinePackageInstalledVersionData = {
    */
   changelog?: string;
   /**
-   * dependet package name
+   * dependent package name
    */
-  dependet: string;
+  dependent: string;
   /**
    * location of the package
    */
