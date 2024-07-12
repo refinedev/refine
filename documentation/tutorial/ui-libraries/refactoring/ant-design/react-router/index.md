@@ -326,7 +326,9 @@ import { Form, Input, Select, InputNumber } from "antd";
 export const EditProduct = () => {
   // highlight-start
   const { formProps, saveButtonProps, queryResult } = useForm({
-    redirect: "show",
+    refineCoreProps: {
+      redirect: "show",
+    },
   });
   // highlight-end
 
@@ -379,7 +381,9 @@ import { Form, Input, Select, InputNumber } from "antd";
 export const CreateProduct = () => {
   // highlight-start
   const { formProps, saveButtonProps } = useForm({
-    redirect: "edit",
+    refineCoreProps: {
+      redirect: "edit",
+    },
   });
   // highlight-end
 
