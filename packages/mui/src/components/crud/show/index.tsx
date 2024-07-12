@@ -34,7 +34,7 @@ import {
 } from "@components";
 import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
-import { CircularProgress } from "@mui/material";
+import CircularProgress from "@mui/material/CircularProgress";
 
 /**
  * `<Show>` provides us a layout for displaying the page.
