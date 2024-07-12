@@ -3,7 +3,7 @@ import type { BaseRecord, DataProvider, LogicalFilter } from "@refinedev/core";
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
 import type VariableOptions from "gql-query-builder/build/VariableOptions";
-import type { GraphQLClient } from "graphql-request";
+import { GraphQLClient } from "graphql-request";
 import gqlTag from "graphql-tag";
 import { singular } from "pluralize";
 
@@ -419,30 +419,38 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       return (client as any).url; // url field in GraphQLClient is private
     },
     custom: async ({ url, method, headers, meta }) => {
-      if (url) {
-        client.setEndpoint(url);
+      const SUPPORTED_METHODS = ["get", "post"];
+      const requestUrl = url || (client as any).url;
+
+      if (!SUPPORTED_METHODS.some((it) => it === method)) {
+        throw Error(`GraphQL does not support ${method} method.`);
       }
 
-      if (headers) {
-        client.setHeaders(headers);
-      }
+      const validMethod = method as "get" | "post";
+
+      const _client = new GraphQLClient(requestUrl, {
+        method: validMethod,
+        headers,
+      });
 
       const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
       if (gqlOperation) {
-        const response: any = await client.request(
-          gqlOperation,
-          meta?.variables ?? {},
-        );
+        const response: any = await _client.request<BaseRecord>({
+          document: gqlOperation,
+          variables: meta?.variables,
+          requestHeaders: headers,
+        });
 
         return { data: response };
       }
 
       if (meta?.rawQuery) {
-        const response = await client.request<BaseRecord>(
-          meta.rawQuery,
-          meta.variables,
-        );
+        const response = await _client.request<BaseRecord>({
+          document: meta.rawQuery,
+          variables: meta.variables,
+          requestHeaders: headers,
+        });
 
         return { data: response };
       }
@@ -472,7 +480,11 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
             variables = gqlMutation.variables;
           }
 
-          const response = await client.request<BaseRecord>(query, variables);
+          const response = await _client.request<BaseRecord>({
+            document: query,
+            variables,
+            requestHeaders: headers,
+          });
 
           return {
             data: response[meta.operation],
