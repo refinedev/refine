@@ -439,7 +439,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         const response: any = await _client.request<BaseRecord>({
           document: gqlOperation,
           variables: meta?.variables,
-          requestHeaders: headers,
         });
 
         return { data: response };
@@ -449,7 +448,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         const response = await _client.request<BaseRecord>({
           document: meta.rawQuery,
           variables: meta.variables,
-          requestHeaders: headers,
         });
 
         return { data: response };
@@ -483,7 +481,6 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
           const response = await _client.request<BaseRecord>({
             document: query,
             variables,
-            requestHeaders: headers,
           });
 
           return {
