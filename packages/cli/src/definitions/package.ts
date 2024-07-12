@@ -4,20 +4,67 @@ export enum PackageManagerTypes {
   PNPM = "pnpm",
 }
 
+/**
+ * type of `npm outdated` command response
+ */
 export type NpmOutdatedResponse = Record<
   string,
   {
     current: string;
     wanted: string;
     latest: string;
-    dependet?: string;
+    dependet: string;
+    location: string;
   }
 >;
 
 export type RefinePackageInstalledVersionData = {
   name: string;
+  /**
+   * version of the package that is currently installed. Without semver range wildcard.
+   */
   current: string;
+  /**
+   * version that the user wants to update to. Without semver range wildcard.
+   * e.g. `^1.0.0` in `package.json` resolves to `1.0.1` in the this field.
+   */
   wanted: string;
+  /**
+   * version of the package that satisfies the semver range specified in `package.json` with the preferred  semver range wildcard.
+   * e.g. `^1.0.0` in `package.json` resolves to `^1.0.1` in the this field.
+   */
+  wantedWithPreferredWildcard: string;
+  /**
+   * latest version of the package available on npm
+   */
   latest: string;
+  /**
+   * changelog url
+   */
   changelog?: string;
+  /**
+   * dependet package name
+   */
+  dependet: string;
+  /**
+   * location of the package
+   */
+  location: string;
+};
+
+/**
+ * key is the script name and value is the script command
+ */
+export type PackageDependency = Record<string, string>;
+
+export type PackageJson = {
+  name: string;
+  version: string;
+  scripts?: Record<string, string>;
+  dependencies?: PackageDependency;
+  devDependencies?: PackageDependency;
+  peerDependencies?: PackageDependency;
+  refine?: {
+    projectId?: string;
+  };
 };

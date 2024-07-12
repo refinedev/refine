@@ -47,7 +47,11 @@ export const promptInteractiveRefineUpdate = async (
     },
   ]);
 
-  return answers.packages.length > 0 ? answers.packages : null;
+  if (answers.packages.length > 0) {
+    return answers.packages;
+  }
+
+  return null;
 };
 
 export const validatePrompt = (input: string[]) => {
@@ -159,8 +163,8 @@ const createInquirerUI = (uiGroup: UIGroup) => {
       choices.push({
         name: `${pckg.name.padEnd(maxNameLength)} ${pckg.from.padStart(
           maxFromLength,
-        )} -> ${pckg.to}`,
-        value: `${pckg.name}@${pckg.to}`,
+        )} -> ^${pckg.to}`,
+        value: `${pckg.name}@^${pckg.to}`,
       });
     });
   }
@@ -173,8 +177,8 @@ const createInquirerUI = (uiGroup: UIGroup) => {
       choices.push({
         name: `${pckg.name.padEnd(maxNameLength)} ${pckg.from.padStart(
           maxFromLength,
-        )} -> ${pckg.to}`,
-        value: `${pckg.name}@${pckg.to}`,
+        )} -> ^${pckg.to}`,
+        value: `${pckg.name}@^${pckg.to}`,
       });
     });
   }
@@ -187,8 +191,8 @@ const createInquirerUI = (uiGroup: UIGroup) => {
       choices.push({
         name: `${pckg.name.padEnd(maxNameLength)} ${pckg.from.padStart(
           maxFromLength,
-        )} -> ${pckg.to}`,
-        value: `${pckg.name}@${pckg.to}`,
+        )} -> ^${pckg.to}`,
+        value: `${pckg.name}@^${pckg.to}`,
       });
     });
   }

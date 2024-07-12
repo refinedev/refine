@@ -7,6 +7,7 @@ import { getPreferedPM, installPackages, pmCommands } from "@utils/package";
 import { promptInteractiveRefineUpdate } from "@commands/update/interactive";
 import type { RefinePackageInstalledVersionData } from "@definitions/package";
 import { getVersionTable } from "@components/version-table";
+import chalk from "chalk";
 
 enum Tag {
   Wanted = "wanted",
@@ -64,6 +65,22 @@ const action = async (options: OptionValues) => {
     const { table, width } = getVersionTable(packages) ?? "";
 
     console.log(center("Available Updates", width));
+    console.log();
+    console.log(
+      `- ${chalk.yellow(
+        chalk.bold("Current"),
+      )}: The version of the package that is currently installed`,
+    );
+    console.log(
+      `- ${chalk.yellow(
+        chalk.bold("Wanted"),
+      )}: The maximum version of the package that satisfies the semver range specified in \`package.json\``,
+    );
+    console.log(
+      `- ${chalk.yellow(
+        chalk.bold("Latest"),
+      )}: The latest version of the package available on npm`,
+    );
     console.log(table);
 
     const { allByPrompt } = await inquirer.prompt<{ allByPrompt: boolean }>([
@@ -74,11 +91,11 @@ const action = async (options: OptionValues) => {
           "Do you want to update all Refine packages for minor and patch versions?",
         choices: [
           {
-            name: "Yes (Recommended)",
+            name: "Yes, automatically update all packages to wanted version.",
             value: true,
           },
           {
-            name: "No, use interactive mode",
+            name: "No, use interactive mode.",
             value: false,
           },
         ],
@@ -95,6 +112,7 @@ const action = async (options: OptionValues) => {
   if (!selectedPackages) return;
 
   if (dryRun) {
+    console.log();
     printInstallCommand(selectedPackages);
     return;
   }
@@ -108,15 +126,14 @@ const runAll = (tag: Tag, packages: RefinePackageInstalledVersionData[]) => {
       (pkg) => pkg.current === pkg.wanted,
     );
     if (isAllPackagesAtWantedVersion) {
-      console.log(
-        "All `Refine` packages are up to date with the wanted version 🎉",
-      );
+      console.log();
+      console.log("✅ All `Refine` packages are already at the wanted version");
       return null;
     }
   }
 
   const packagesWithVersion = packages.map((pkg) => {
-    const version = tag === Tag.Wanted ? pkg.wanted : tag;
+    const version = pkg.wantedWithPreferredWildcard;
     return `${pkg.name}@${version}`;
   });
 
@@ -131,6 +148,7 @@ const printInstallCommand = async (packages: string[]) => {
 
 const pmInstall = (packages: string[]) => {
   console.log("Updating `Refine` packages...");
+  console.log();
   console.log(packages.map((pkg) => ` - ${pkg}`).join("\n"));
   installPackages(packages);
 };
