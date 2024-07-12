@@ -34,6 +34,14 @@ const renderShow = (
 describe("Show", () => {
   crudShowTests.bind(this)(Show);
 
+  it("should display loading spinner when isLoading is true", async () => {
+    const { queryByRole } = renderShow(<Show isLoading />);
+
+    await waitFor(() => {
+      expect(queryByRole("progressbar")).not.toBeNull();
+    });
+  });
+
   it("depending on the accessControlProvider it should get the buttons successfully", async () => {
     const { getByText, getAllByText, queryByTestId } = renderShow(
       <Show

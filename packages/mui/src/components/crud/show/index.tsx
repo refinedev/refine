@@ -34,6 +34,7 @@ import {
 } from "@components";
 import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
+import { CircularProgress } from "@mui/material";
 
 /**
  * `<Show>` provides us a layout for displaying the page.
@@ -212,7 +213,17 @@ export const Show: React.FC<ShowProps> = ({
         }
         {...(headerProps ?? {})}
       />
-      <CardContent {...(contentProps ?? {})}>{children}</CardContent>
+      <CardContent {...(contentProps ?? {})}>
+        {isLoading ? (
+          <Box display="flex" justifyContent="center">
+            <CircularProgress
+              sx={{ border: (theme) => theme.palette.primary.main }}
+            />
+          </Box>
+        ) : (
+          children
+        )}
+      </CardContent>
       <CardActions sx={{ padding: "16px" }} {...(footerButtonProps ?? {})}>
         {footerButtons
           ? typeof footerButtons === "function"
