@@ -8,7 +8,7 @@ import gql from "graphql-tag";
 
 describe("custom", () => {
   describe("gql", () => {
-    it("correct get query response", async () => {
+    it("correct get query response using GET request", async () => {
       const response = await dataProvider(client).custom?.({
         url: "",
         method: "get",
@@ -51,7 +51,7 @@ describe("custom", () => {
       ).toBeDefined();
     });
 
-    it("custom graphql query", async () => {
+    it("custom graphql query using GET request", async () => {
       const response = await dataProvider(client).custom<BaseRecord>({
         url: "",
         method: "get",
@@ -95,7 +95,7 @@ describe("custom", () => {
       expect(response.data.filtered.nodes).toHaveLength(1);
     });
 
-    it("correct get mutation response", async () => {
+    it("correct get mutation response using POST request", async () => {
       const response = await dataProvider(client).custom?.({
         url: "",
         method: "post",
@@ -129,10 +129,110 @@ describe("custom", () => {
 
       expect(response?.data?.["updateManyBlogPosts"].updatedCount).toBe(1);
     });
+
+    it("correct get query response using GET request and custom URL", async () => {
+      const response = await dataProvider(client).custom?.({
+        url: "http://localhost:3004/graphql",
+        method: "get",
+        meta: {
+          gqlQuery: gql`
+                        query BlogPostAggregate {
+                            blogPostAggregate {
+                                groupBy {
+                                    status
+                                }
+                                count {
+                                    status
+                                }
+                            }
+                        }
+                    `,
+          operation: "blogPostAggregate",
+          fields: [{ groupBy: ["status"], count: ["status"] }],
+        },
+      });
+
+      expect(response?.data?.["blogPostAggregate"]).toHaveLength(3);
+      expect(response.data?.["blogPostAggregate"][0].groupBy.status).toBe(
+        "DRAFT",
+      );
+      expect(
+        response.data?.["blogPostAggregate"][0].count.status,
+      ).toBeDefined();
+      expect(response.data?.["blogPostAggregate"][1].groupBy.status).toBe(
+        "PUBLISHED",
+      );
+      expect(
+        response.data?.["blogPostAggregate"][1].count.status,
+      ).toBeDefined();
+      expect(response.data?.["blogPostAggregate"][2].groupBy.status).toBe(
+        "REJECTED",
+      );
+      expect(
+        response.data?.["blogPostAggregate"][2].count.status,
+      ).toBeDefined();
+    });
+
+    it("correctly passes custom URL and custom headers using GET", async () => {
+      const response = await dataProvider(client).custom?.({
+        url: "http://localhost:3004/graphql",
+        method: "get",
+        headers: {
+          "Custom-Header": "Custom-Header-Value",
+        },
+        meta: {
+          gqlQuery: gql`
+                        query TestQuery {
+                            testAggregate {
+                                id
+                            }
+                        }
+                    `,
+          operation: "testAggregate",
+        },
+      });
+
+      expect(response?.data?.testAggregate.id).toBe("lorem ipsum");
+    });
+
+    it("unsupported method throws error", async () => {
+      const unsupportedMethods = ["delete", "head", "options", "put", "patch"];
+      unsupportedMethods.sort(() => Math.random() - 0.5);
+      const method = unsupportedMethods[0] as any;
+
+      try {
+        await dataProvider(client).custom?.({
+          url: "",
+          method,
+          meta: {
+            operation: "updateManyBlogPosts",
+            variables: {
+              input: {
+                value: {
+                  filter: {
+                    id: { in: ["42"] },
+                  },
+                  update: {
+                    status: "REJECTED",
+                  },
+                },
+                type: "UpdateManyBlogPostsInput",
+                required: true,
+              },
+            },
+            fields: ["updatedCount"],
+          },
+        });
+      } catch (e) {
+        expect((e as Error).message).toBe(
+          `GraphQL does not support ${method} method.`,
+        );
+      }
+    });
   });
 
   describe("fields (legacy)", () => {
-    it("correct get query response", async () => {
+    it("correct get query response using GET request", async () => {
       const response = await dataProvider(client).custom?.({
         url: "",
         method: "get",
@@ -151,7 +251,7 @@ describe("custom", () => {
       expect(response.data[2].count.status).toBeDefined();
     });
 
-    it("custom graphql query", async () => {
+    it("custom graphql query using GET request", async () => {
       const response = await dataProvider(client).custom<BaseRecord>({
         url: "",
         method: "get",
@@ -192,7 +292,7 @@ describe("custom", () => {
       expect(response.data.filtered.nodes).toHaveLength(1);
     });
 
-    it("correct get mutation response", async () => {
+    it("correct get mutation response using POST request", async () => {
       const response = await dataProvider(client).custom?.({
         url: "",
         method: "post",
@@ -217,6 +317,49 @@ describe("custom", () => {
       });
 
       expect(response?.data.updatedCount).toBe(1);
+    });
+
+    it("throws error when no operation name is provided", async () => {
+      try {
+        await dataProvider(client).custom?.({
+          url: "",
+          method: "post",
+          meta: {
+            variables: {
+              input: {
+                value: {
+                  filter: {
+                    id: { in: ["42"] },
+                  },
+                  update: {
+                    status: "REJECTED",
+                  },
+                },
+                type: "UpdateManyBlogPostsInput",
+                required: true,
+              },
+            },
+            fields: ["updatedCount"],
+          },
+        });
+      } catch (e) {
+        expect((e as Error).message).toEqual(
+          "GraphQL operation name required.",
+        );
+      }
+    });
+
+    it("throws error when no meta is provided", async () => {
+      try {
+        await dataProvider(client).custom?.({
+          url: "",
+          method: "post",
+        });
+      } catch (e) {
+        expect((e as Error).message).toEqual(
+          "GraphQL needs operation, fields and variables values in meta object.",
+        );
+      }
     });
   });
 });
