@@ -284,7 +284,7 @@ Make sure important content, and especially above-the-fold content, is not lazy-
 
 ### Use Proper HTML Markup
 
-Use standard HTML tags and attributes correctly. For instance, even though we are lazy-loading images, still use the <img> tag; however, set the src attribute to a placeholder image and use the data-src attribute, or similar, for the real image URL. This will ensure search engines can interpret and index our images.
+Use standard HTML tags and attributes correctly. For instance, even though we are lazy-loading images, still use the `<img>` tag; however, set the src attribute to a placeholder image and use the data-src attribute, or similar, for the real image URL. This will ensure search engines can interpret and index our images.
 
 ### Intersection Observer API
 
