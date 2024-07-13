@@ -11,6 +11,9 @@ describe("create", () => {
       variables: {
         title: "Lorem",
       },
+      meta: {
+        documentId: "unique()",
+      },
     });
 
     expect(data.title).toEqual("Lorem");

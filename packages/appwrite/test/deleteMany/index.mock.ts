@@ -1,11 +1,40 @@
 import nock from "nock";
+import zlib from "zlib";
 
 nock("https://matej10qa.appwrite.org:443", { encodedQueryParams: true })
   .post("/v1/account/sessions/anonymous", {})
   .reply(
     201,
     [
-      "1f8b0800000000000003758fcb4ec33010457f0545dd4123c749f3da15542416748102fbd49e50aba91d8ded8a08f1ef384dc84315b225dbf7ce9cb9fef656827bb91787344a5256f128ab2075eb1096de83b76208a501be35ae86124ad7245b0771118439753bf1d364734f484e882bb61af065010b1961318d1d2b743e7c3502a10785b72032821a5417c1015d6929956ccfcaea99fc7e4d3c13b68c81d6853a81fcd7d875c3dba5fd0615823ece1a45e3ce6093f94114fb51e0d32e8ed24f8a435fa0f4be3c8ff70f402dd4d0cb6a01d2146dd3d9b53860e9e6fdc913a17f0f94bd93ef9ec1b0e3e84cccc027a3ba939f422e08bdb248c0e122184c01fbf7239692cf855737b41e50ca4a83ed90cee0240d94c2e209aedfb0886eaa971bb4f0f30b5ce487c537020000",
+      zlib.gzipSync(
+        JSON.stringify({
+          $id: "632478cfd49fe8e8eb3a",
+          $createdAt: "2022-09-16T13:23:27.875+00:00",
+          userId: "632478cfd3c0c626b3a3",
+          expire: "2023-09-16T13:23:27.870+00:00",
+          provider: "anonymous",
+          providerUid: "",
+          providerAccessToken: "",
+          providerAccessTokenExpiry: "",
+          providerRefreshToken: "",
+          ip: "159.146.41.20",
+          osCode: "",
+          osName: "",
+          osVersion: "",
+          clientType: "library",
+          clientCode: "",
+          clientName: "Node Fetch",
+          clientVersion: "1.0",
+          clientEngine: "",
+          clientEngineVersion: "",
+          deviceName: "",
+          deviceBrand: "",
+          deviceModel: "",
+          countryCode: "tr",
+          countryName: "Turkey",
+          current: true,
+        }),
+      ),
     ],
     [
       "Access-Control-Allow-Credentials",

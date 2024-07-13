@@ -1,6 +1,6 @@
-import { Models } from "appwrite";
 import nock from "nock";
 import { account } from "./appwriteClient";
+import zlib from "zlib";
 
 nock("https://matej10qa.appwrite.org", { encodedQueryParams: true })
   .persist()
@@ -8,7 +8,39 @@ nock("https://matej10qa.appwrite.org", { encodedQueryParams: true })
   .reply(
     201,
     [
-      "1f8b0800000000000003558ecb4ec33010457f05592cdba813d4a4cd12d44a2ce8aa659fc714aca633d1382e44887fc7c156dcacec39d73e777ed4a36e54a132a8617baeaa7c93ae412d943528afb3e009600cf0bbd382aa802c870cd6e91616aa13bee906c53d2f8969b8b2352ae2d37fc31d38f205c923ddb913f234814db24ac602362fdca04fd91ccaeb747f47319ac3c7bad548fd71e8c6b8d59594324c381afc1c2c07871ff6d8d79f53129d90ac26baa30f4d338327b30d1abce91ae3827e7e96929a7bf0e64adba0624bbd0c61bbe532a26039d185f88b466e455cad2a7ab1f8fb070a007e28a6010000",
+      zlib.gzipSync(
+        JSON.stringify({
+          $id: "669256d23f17cfded25b",
+          $createdAt: "2024-07-13T10:28:34.642+00:00",
+          $updatedAt: "2024-07-13T10:28:34.642+00:00",
+          userId: "669256d239ac8e93a365",
+          expire: "2025-07-13T10:28:34.258+00:00",
+          provider: "anonymous",
+          providerUid: "",
+          providerAccessToken: "",
+          providerAccessTokenExpiry: "",
+          providerRefreshToken: "",
+          ip: "172.25.0.1",
+          osCode: "",
+          osName: "",
+          osVersion: "",
+          clientType: "",
+          clientCode: "",
+          clientName: "",
+          clientVersion: "",
+          clientEngine: "",
+          clientEngineVersion: "",
+          deviceName: "smartphone",
+          deviceBrand: "Highscreen",
+          deviceModel: "Thunder",
+          countryCode: "--",
+          countryName: "Unknown",
+          current: true,
+          factors: ["anonymous"],
+          secret: "",
+          mfaUpdatedAt: "",
+        }),
+      ),
     ],
     [
       "Access-Control-Allow-Credentials",

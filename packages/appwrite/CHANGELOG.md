@@ -1,5 +1,17 @@
 # @refinedev/appwrite
 
+## 6.6.0
+
+### Major Changes
+
+#### Codebase
+- Replaced all GZIP string to JSON object.
+  - The JSON object will be transformed into GZIP string by `zlib` library during the test.
+  - This change is aimed to make the codebase (tests) more readable and maintainable.
+
+#### Dependency
+- Bump `appwrite` SDK from `10.0.1` to version `14.0.1`
+
 ## 6.5.3
 
 ### Patch Changes

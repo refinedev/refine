@@ -1,11 +1,40 @@
 import nock from "nock";
+import zlib from "zlib";
 
 nock("https://matej10qa.appwrite.org:443", { encodedQueryParams: true })
   .post("/v1/account/sessions/anonymous", {})
   .reply(
     201,
     [
-      "1f8b0800000000000003758f4b4fc3301084ff0a8a7a83467ea449935b4145e2400f287077e22db59adad1daa98810ff1db7097954e2647b66f79bf177b05032c88298b32811842429279cb1754a280d1e824589201cc88df3338c30b624e992c639e5195b679c852b42ef09c908f1c38d057c99c1927d2c8a82b284a7de87af5a2174207e0b8ad27800d568ce4a02fa51a18d6e4fa6b113f9fdda78226cca12accdcd11f4bfc6f612deceed37d823d8c36451d5fea4ab34a4511c463464973ac63e1909dd80b13b711aee1f8056997eb7ac146897b7f5c5ae5481c2e7fdc923a17bf7949d97ef9ec19587c11999342483bad59f4acf089d326b20e1ac4a180b76ef47145a4e85571f5af528d368876ddfcee128f594bcc1235cbfd120fad42073d8c0cf2f53a2796a37020000",
+      zlib.gzipSync(
+        JSON.stringify({
+          $id: "63247a00793032289011",
+          $createdAt: "2022-09-16T13:28:32.501+00:00",
+          userId: "63247a0077f6abb12739",
+          expire: "2023-09-16T13:28:32.496+00:00",
+          provider: "anonymous",
+          providerUid: "",
+          providerAccessToken: "",
+          providerAccessTokenExpiry: "",
+          providerRefreshToken: "",
+          ip: "159.146.41.20",
+          osCode: "",
+          osName: "",
+          osVersion: "",
+          clientType: "library",
+          clientCode: "",
+          clientName: "Node Fetch",
+          clientVersion: "1.0",
+          clientEngine: "",
+          clientEngineVersion: "",
+          deviceName: "",
+          deviceBrand: "",
+          deviceModel: "",
+          countryCode: "tr",
+          countryName: "Turkey",
+          current: true,
+        }),
+      ),
     ],
     [
       "Access-Control-Allow-Credentials",
@@ -58,7 +87,18 @@ nock("https://matej10qa.appwrite.org:443", { encodedQueryParams: true })
   .reply(
     200,
     [
-      "1f8b08000000000000038d8eb10ac23014457f45829b56de4b9ba4cde6e8ee260e2fc91302ad2d4d9cc47f37011147d773cfe5dea7c8318f2cacc89cb2d88bc0c9af71c971be7fe0a6a2926c632844b7b253dadd90d9e9810c92e96be857a6cce1988b2341ca068606f519c1aade8239a0d43b000b50e5c712fe97175ea79852399484bd5cebd63c8eecebc5d3f79222a5823792910850d762d92047897f25707d00341db49e07f17a03e557b535ff000000",
+      zlib.gzipSync(
+        JSON.stringify({
+          title: "test",
+          description: "test desc",
+          $id: "632456bf1eeb69a71a78",
+          $createdAt: "2022-09-16T10:58:07.126+00:00",
+          $updatedAt: "2022-09-16T10:58:07.126+00:00",
+          $permissions: [],
+          $collectionId: "632455a55dc72e1aa016",
+          $databaseId: "632455a0b8d017403ce9",
+        }),
+      ),
     ],
     [
       "Access-Control-Allow-Credentials",

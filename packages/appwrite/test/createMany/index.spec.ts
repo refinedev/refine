@@ -16,6 +16,9 @@ describe("createMany", () => {
           title: "Test 2",
         },
       ],
+      meta: {
+        documentId: "unique()",
+      },
     });
 
     expect(data[0].title).toEqual("Test 1");
