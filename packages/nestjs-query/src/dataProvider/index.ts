@@ -429,6 +429,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const validMethod = method as "get" | "post";
 
       const _client = new GraphQLClient(requestUrl, {
+        ...client.requestConfig,
         method: validMethod,
         headers,
       });
