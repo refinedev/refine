@@ -2,7 +2,7 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-antd", () => {
-  const BASE_URL = "http://localhost:4173";
+  const BASE_URL = "http://localhost:5173";
 
   beforeEach(() => {
     cy.clearAllCookies();
