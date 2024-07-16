@@ -504,8 +504,6 @@ I wanted to talk about a few of the backup and recovery strategies for our datab
 
 A strong backup and recovery strategy are key to retaining data integrity and sustaining business continuity. We must, therefore, conduct assessments of our specific needs and approach the best method for the databases and platforms in use.
 
--
-
 ## Conclusion
 
 From the highlights above, Netlify and Vercel are among the top contenders for the preferred hosting platform if you want to deploy a static site or a Jamstack application. They have out-of-the-box features that make deployment and collaboration a breeze. They also have plenty of plugins if the built-in features do not satisfy your use cases.
