@@ -5,8 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "tsc && refine build",
-    "cypress": "cypress open -C ./cypress.config.ts",
-    "cypress:run": "cypress run -C ./cypress.config.ts",
     "dev": "refine dev",
     "preview": "refine start",
     "refine": "refine"
@@ -30,7 +28,6 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "cypress": "^13.6.3",
     "typescript": "^5.4.2",
     "vite": "^5.1.6"
   }

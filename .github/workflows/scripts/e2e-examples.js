@@ -69,13 +69,6 @@ const getProjectInfo = (path) => {
     command = `pnpm build --scope ${projectName} && pnpm run --filter ${projectName} start:prod`;
   }
 
-  if (
-    dependencies.includes("react-scripts") ||
-    devDependencies.includes("react-scripts")
-  ) {
-    additionalParams = "--host 127.0.0.1";
-  }
-
   return {
     port,
     command,
@@ -97,11 +90,10 @@ const prettyLog = (bg, ...args) => {
 const getProjectsWithE2E = () => {
   return EXAMPLES.split(",")
     .map((path) => {
-      const dir = pathJoin(EXAMPLES_DIR, path);
-      const isDirectory = fs.statSync(dir).isDirectory();
-      const isConfigExists = fs.existsSync(pathJoin(dir, "cypress"));
+      const dir = pathJoin("./cypress/e2e", path);
+      const isDirectory = fs.existsSync(dir);
 
-      if (isDirectory && isConfigExists) {
+      if (isDirectory) {
         return path;
       }
     })
@@ -233,8 +225,8 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `-- --record --group ${path}`;
-        const runner = `pnpm lerna run cypress:run --scope ${path} ${params}`;
+        const params = `--record --group ${path}`;
+        const runner = `pnpm cypress:run --spec cypress/e2e/${path} ${params}`;
 
         prettyLog("blue", `Running tests for ${path}`);
 
