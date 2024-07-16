@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/appwrite",
-  "version": "6.6.0",
+  "version": "6.5.3",
   "private": false,
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "appwrite": "^14.0.1"
+    "appwrite": "^15.0.0"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",

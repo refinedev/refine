@@ -1,5 +1,5 @@
 ---
-"@refinedev/appwrite": major
+"@refinedev/appwrite": patch
 ---
 
 feat(package/appwrite): Update `Appwrite` SDK to `14.0.1` #6090
