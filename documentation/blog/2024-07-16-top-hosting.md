@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-23-top-hostin
 hide_table_of_contents: false
 ---
 
+**This article was last updated on July 16, 2024, to add sections for Database Hosting Options and Backup and Recovery.**
+
 ## Introduction
 
 Most developers spend a significant proportion of their private time building side projects. These projects come in different forms and sizes. More often than not, you need to temporarily host these projects on a platform to test, showcase, or obtain feedback.
@@ -23,6 +25,22 @@ Steps we will cover.
 - [How to create Refine application](#how-to-create-refine-application)
 - [Top hosting platforms with free plans for your hobby projects](#top-hosting-platforms-with-free-plans-for-your-hobby-projects)
 - [Comparing top hosting platforms with free plans for your hobby projects](#comparing-top-hosting-platforms-with-free-plans-for-your-hobby-projects)
+
+## Importance of Choosing the Right Hosting Platform
+
+I would like to share a few ideas regarding the reasons it is critically important to have the right hosting platform for our projects. Here's a simple breakdown of the key points:
+
+**Impact on Performance**: The hosting platform which we choose can considerably affect our project speed and reliability. A good platform ensures that our application loads promptly and runs seamlessly, which is critical in giving perfect user experiences.
+
+**Scalability**: The hosting platform should scale to your project needs as it grows. A proper platform shouldn't have any problem accommodating a large volume of traffic or enabling us to expand functionalities without the stress of major overhauls.
+
+**Cost Efficiency**: Hosting can be really expensive, but the right platform for hosting can strike a balance between cost and features. For us, it means looking for resources on their platform that are going to fit our budget more comfortably—specifically for smaller or side projects.
+
+**Security**: It's not possible to choose a hosting platform without security. The hosting platform should inculcate strict security measures including SSL, data encryption, and secure access controls to safeguard our data and our users.
+
+**Support and Usability**: A platform with good support and an intuitive interface will save us a lot of headaches. Support in the form of customer service is paramount, along with a platform that is easy to set up and manage.
+
+It is very important to choose the right platform for hosting, not just in order to get our project online but to perform well and scale with our needs, keeping within budget and ensuring security. By taking these factors into consideration, a better decision can be made that will benefit the overall well-being of our project.
 
 ## Prerequisites
 
@@ -320,11 +338,6 @@ To deploy to Render, log in and navigate to your dashboard. The dashboard has se
 - It doesn't support BitBucket as a Git provider
 
 <br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
 
 ### GitHub pages
 
@@ -429,7 +442,71 @@ This section will highlight some differences and similarities among the hosting 
 | Secure HTTPS                     | Yes                                    | Yes                                       | Yes                                      | Yes                | Yes                |
 | Support for front-end frameworks | Good                                   | Good                                      | Good                                     | Good               | Good               |
 
-### Conclusion
+## Bonus: Backup and Recovery Options for Our Databases
+
+I wanted to talk about a few of the backup and recovery strategies for our databases. Here is an outline of what we can look at:
+
+**1. Amazon RDS (Relational Database Service)**
+
+- **Automated Backups**: RDS automatically backs up and can be configured to snap daily snapshots that are retained for a specified number of days.
+- **Manual Snapshots**: We can take manual snapshots at any point in time. These are retained until we delete them.
+- **Point-in-Time Recovery**: This permits the recovery of a database up to a specific time during the retention period for backups.
+
+**2. Google Cloud SQL**
+
+- **Automated Backups**: With Cloud SQL, it has the ability to take daily backups automatically. These can be easily configured based on our needs.
+- **On-Demand Backups**: We have the ability to trigger backups at our will.
+- **Point-in-Time Recovery**: By enabling us to restore our database to any single point in time across the previous 7 days.
+
+**3. Azure SQL Database**
+
+- **Automated Backup**: Azure gives its users the benefit of automatic backups, whether they are full, differential, or transaction log backups.
+- **Long-Term Retention**: We can keep backup as long as 10 years having an option of long-term retention.
+- **Point-in-Time Restore**: We can restore the database to any point in time within the retention period.
+
+**4. Heroku Postgres**
+
+- **Automated Backups**: Automated daily backups are managed by Heroku Postgres.
+- **Manual Backups**: Manual backups are taken using the Heroku CLI.
+- **Point-in-Time Recovery**: This is available for paid plans, which allows you to recover to any point within the backup window.
+
+**5. DigitalOcean Managed Databases**
+
+- **Automated Backups**: Backups are captured automatically on a daily basis and retained for 7 days.
+- **Manual Backups**: We can create manual backups as and when required.
+- **Point-in-time Recovery**: Not mentioned but snapshots can be the restore point.
+
+**6. Firebase Firestore**
+
+- **Automated Backups**: There is no feature for in-built automated backups but you can set up scheduled exports by using Cloud Functions.
+- **Manual Exports**: Data can be exported manually to Google Cloud Storage.
+- **Recovery**: We can manually restore data from backup.
+
+**7. MongoDB Atlas**
+
+- **Automated Backups**: Automated backups can be scheduled and kept for the desired retention period.
+- **Snapshot Backups**: Snapshots can be taken at any time.
+- **Point-in-Time Recovery**: Can be performed for clusters enabled with Continuous Backup.
+
+**8. Supabase**
+
+- **Automated Backups**: Daily automated backups can be set in the configuration.
+- **Manual Backups**: We can trigger manual backups through the dashboard.
+- **Recovery**: Easy to recover from backups through the Supabase dashboard.
+
+**Considerations**:
+
+- **Frequency**: How often should the backup be done? Daily, hourly, etc.
+- **Retention**: For how long exactly are we to keep those backups? Days, weeks, months?
+- **Redundancy**: Are the backups sited in more than one location?
+- **Recovery Time**: To what speed do we need to restore service in case of failure?
+- **Cost**: Backup storage and retrieval costs.
+
+A strong backup and recovery strategy are key to retaining data integrity and sustaining business continuity. We must, therefore, conduct assessments of our specific needs and approach the best method for the databases and platforms in use.
+
+-
+
+## Conclusion
 
 From the highlights above, Netlify and Vercel are among the top contenders for the preferred hosting platform if you want to deploy a static site or a Jamstack application. They have out-of-the-box features that make deployment and collaboration a breeze. They also have plenty of plugins if the built-in features do not satisfy your use cases.
 
