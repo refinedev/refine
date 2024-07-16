@@ -6,8 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "cypress": "cypress open -C ./cypress.config.cts",
-    "cypress:run": "cypress run -C ./cypress.config.cts",
     "dev": "remix vite:dev",
     "refine": "refine",
     "start:prod": "remix-serve ./build/server/index.js"
