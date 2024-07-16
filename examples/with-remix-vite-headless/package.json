@@ -32,7 +32,6 @@
     "@remix-run/dev": "^2.3.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "cypress": "^13.6.3",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.2.1"
