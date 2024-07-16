@@ -73,6 +73,7 @@ describe("form-material-ui-use-form", () => {
     cy.get("#content").should("not.have.value", "").clear();
     cy.get("#status").should("not.have.value", "").clear({ force: true });
     cy.get("#category").should("not.have.value", "").clear({ force: true });
+    cy.get("#category").blur();
 
     submitForm();
 
