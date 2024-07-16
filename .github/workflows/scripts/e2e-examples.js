@@ -91,7 +91,7 @@ const getProjectsWithE2E = () => {
   return EXAMPLES.split(",")
     .map((path) => {
       const dir = pathJoin("./cypress/e2e", path);
-      const isDirectory = fs.statSync(dir).isDirectory();
+      const isDirectory = fs.existsSync(dir);
 
       if (isDirectory) {
         return path;
