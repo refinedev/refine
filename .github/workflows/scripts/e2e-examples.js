@@ -226,7 +226,7 @@ const runTests = async () => {
     try {
       if (!failed) {
         const params = `--record --group ${path}`;
-        const runner = `pnpm cypress:run  cypress/e2e/${path} ${params}`;
+        const runner = `pnpm cypress:run --spec cypress/e2e/${path} ${params}`;
 
         prettyLog("blue", `Running tests for ${path}`);
 
