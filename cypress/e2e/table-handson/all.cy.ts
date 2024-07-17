@@ -5,7 +5,7 @@ describe("table-handson", () => {
   beforeEach(() => {
     cy.interceptGETPosts();
 
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("the cell should be update", () => {

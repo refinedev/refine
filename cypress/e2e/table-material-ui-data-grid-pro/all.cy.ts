@@ -3,7 +3,7 @@
 
 describe("table-material-ui-data-grid-pro", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("should work with sorter", () => {
