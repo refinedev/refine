@@ -282,7 +282,6 @@ describe("inferencer-mantine", () => {
   it("should work with pagination", () => {
     cy.wait("@getBlogPosts");
     cy.wait("@getBlogPosts");
-    cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getMantineLoadingOverlay().should("not.exist");
 
