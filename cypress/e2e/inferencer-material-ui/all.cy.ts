@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("inferencer-material-ui", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const login = () => {
     cy.fixture("demo-auth-credentials").then((auth) => {
       cy.get("#email").clear();
@@ -27,7 +25,7 @@ describe("inferencer-material-ui", () => {
     cy.interceptGETCategory();
     cy.interceptGETCategories();
     cy.interceptGETBlogPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
 
     login();
   });
@@ -238,7 +236,7 @@ describe("inferencer-material-ui", () => {
 
     // find initial theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
-      const initialTheme = ls[BASE_URL]["colorMode"]?.toString() || "dark";
+      const initialTheme = ls["colorMode"]?.toString() || "dark";
 
       // click the theme switch
       if (initialTheme === "dark") {
@@ -249,9 +247,9 @@ describe("inferencer-material-ui", () => {
 
       cy.getAllLocalStorage().then((ls) => {
         if (initialTheme === "dark") {
-          expect(ls[BASE_URL]["colorMode"]).to.eq("light");
+          expect(ls["colorMode"]).to.eq("light");
         } else {
-          expect(ls[BASE_URL]["colorMode"]).to.eq("dark");
+          expect(ls["colorMode"]).to.eq("dark");
         }
       });
 
@@ -281,7 +279,7 @@ describe("inferencer-material-ui", () => {
     cy.get("li[data-value=de]").click();
     // assert localStoage has changed
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls[BASE_URL]["i18nextLng"]).to.eq("de");
+      expect(ls["i18nextLng"]).to.eq("de");
     });
 
     // reload the page and assert the language is persisted

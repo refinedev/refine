@@ -2,13 +2,11 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-antd", () => {
-  const BASE_URL = "http://localhost:5173";
-
   beforeEach(() => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   const submitAuthForm = () => {
@@ -32,7 +30,7 @@ describe("auth-antd", () => {
 
       cy.location("pathname").should("eq", "/");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("email");
+        expect(ls).to.have.property("email");
       });
     });
 
@@ -48,7 +46,7 @@ describe("auth-antd", () => {
       login();
       cy.location("pathname").should("eq", "/");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllLocalStorage();
       cy.reload();
@@ -60,7 +58,7 @@ describe("auth-antd", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get(".ant-card-head-title > .ant-typography").contains(
         /sign in to your account/i,
       );
@@ -78,7 +76,7 @@ describe("auth-antd", () => {
       login();
       cy.location("pathname").should("eq", "/");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("email");
+        expect(ls).to.have.property("email");
       });
     });
 
@@ -97,7 +95,7 @@ describe("auth-antd", () => {
 
   describe("forgot password", () => {
     it("should throw error if forgot password email is wrong", () => {
-      cy.visit(`${BASE_URL}/forgot-password`);
+      cy.visit("/forgot-password");
       cy.get("#email").clear().type("test@test.com");
       submitAuthForm();
       cy.getAntdNotification().contains(/invalid email/i);
@@ -107,7 +105,7 @@ describe("auth-antd", () => {
 
   describe("update password", () => {
     it("should throw error if update password is wrong", () => {
-      cy.visit(`${BASE_URL}/update-password`);
+      cy.visit("/update-password");
       cy.get("#password").clear().type("123456");
       cy.get("#confirmPassword").clear().type("123456");
       submitAuthForm();

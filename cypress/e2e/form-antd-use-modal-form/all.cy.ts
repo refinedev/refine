@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-antd-use-modal-form", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const mockPost = {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -43,7 +41,7 @@ describe("form-antd-use-modal-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("should open and close modal", () => {

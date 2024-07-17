@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-react-hook-form-use-form", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const mockPost = {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -59,7 +57,7 @@ describe("form-react-hook-form-use-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("should create record", () => {

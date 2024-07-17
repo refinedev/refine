@@ -6,15 +6,13 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("base-mantine", () => {
-  const BASE_URL = "http://localhost:5173";
-
   beforeEach(() => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
     cy.interceptGETPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("should list resource", () => {

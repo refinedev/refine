@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("inferencer-headless", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const waitForLoading = () => {
     cy.contains(/loading/).should("not.exist");
   };
@@ -31,7 +29,7 @@ describe("inferencer-headless", () => {
     cy.interceptGETCategory();
     cy.interceptGETCategories();
     cy.interceptGETBlogPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
 
     login();
   });

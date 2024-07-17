@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("with-nextjs-next-auth", () => {
-  const BASE_URL = "http://localhost:3000";
-
   const submitAuthForm = () => {
     return cy.get("button[type=submit]").click();
   };
@@ -22,7 +20,7 @@ describe("with-nextjs-next-auth", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL, { failOnStatusCode: false });
+    cy.visit("/", { failOnStatusCode: false });
   });
 
   describe("login", () => {
@@ -30,7 +28,7 @@ describe("with-nextjs-next-auth", () => {
       login();
       cy.location("pathname").should("eq", "/blog-posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("nextauth.message");
+        expect(ls).to.have.property("nextauth.message");
       });
     });
 
@@ -39,7 +37,7 @@ describe("with-nextjs-next-auth", () => {
       login();
       cy.location("pathname").should("eq", "/blog-posts");
 
-      cy.visit(`${BASE_URL}/test`, { failOnStatusCode: false });
+      cy.visit("/test", { failOnStatusCode: false });
       cy.location("pathname").should("eq", "/test");
       cy.clearAllCookies();
       cy.reload();
@@ -54,7 +52,7 @@ describe("with-nextjs-next-auth", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`, { failOnStatusCode: false });
+      cy.visit("/test-route", { failOnStatusCode: false });
       cy.get(".ant-card-head-title > .ant-typography").contains(
         /sign in to your account/i,
       );

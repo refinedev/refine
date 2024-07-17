@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("inferencer-antd", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const login = () => {
     cy.fixture("demo-auth-credentials").then((auth) => {
       cy.get("#email").clear();
@@ -27,7 +25,7 @@ describe("inferencer-antd", () => {
     cy.interceptGETCategory();
     cy.interceptGETCategories();
     cy.interceptGETBlogPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
 
     login();
   });
@@ -233,7 +231,7 @@ describe("inferencer-antd", () => {
     });
     // assert localStoage has changed
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls[BASE_URL]["i18nextLng"]).to.eq("de");
+      expect(ls["i18nextLng"]).to.eq("de");
     });
 
     // reload the page and assert the language is persisted
@@ -253,7 +251,7 @@ describe("inferencer-antd", () => {
 
     // find initial  theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
-      const initialTheme = ls[BASE_URL]["colorMode"]?.toString();
+      const initialTheme = ls["colorMode"]?.toString();
 
       // find the theme swtich
       cy.get(".ant-layout-header").within(() => {
@@ -269,10 +267,10 @@ describe("inferencer-antd", () => {
         cy.getAllLocalStorage().then((ls) => {
           if (initialTheme === "dark") {
             expect(cy.get(".ant-switch-checked").should("not.exist"));
-            expect(ls[BASE_URL]["colorMode"]).to.eq("light");
+            expect(ls["colorMode"]).to.eq("light");
           } else {
             expect(cy.get(".ant-switch-checked").should("exist"));
-            expect(ls[BASE_URL]["colorMode"]).to.eq("dark");
+            expect(ls["colorMode"]).to.eq("dark");
           }
         });
       });

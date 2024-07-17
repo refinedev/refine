@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-keycloak", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const login = () => {
     cy.get("button")
       .contains(/sign in/i)
@@ -25,7 +23,7 @@ describe("auth-keycloak", () => {
     cy.interceptGETPosts();
     cy.interceptGETCategories();
 
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -36,7 +34,7 @@ describe("auth-keycloak", () => {
 
     it("should redirect to /login if user not authenticated", () => {
       login();
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.clearAllCookies();
       cy.reload();
       cy.location("pathname").should("eq", "/login");

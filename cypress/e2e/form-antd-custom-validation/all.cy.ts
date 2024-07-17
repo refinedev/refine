@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-antd-custom-validation", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const interceptUniqueCheck = (available: boolean) => {
     cy.intercept(
       {
@@ -34,7 +32,7 @@ describe("form-antd-custom-validation", () => {
 
   it("should render error", () => {
     interceptUniqueCheck(false);
-    cy.visit(`${BASE_URL}/posts/create`);
+    cy.visit("/posts/create");
 
     cy.get("#title").type("test title", { delay: 0 });
     cy.getSaveButton().click();
@@ -45,7 +43,7 @@ describe("form-antd-custom-validation", () => {
 
   it("should not render error", () => {
     interceptUniqueCheck(true);
-    cy.visit(`${BASE_URL}/posts/create`);
+    cy.visit("/posts/create");
 
     cy.get("#title").type("test title", { delay: 0 });
     cy.getSaveButton().click();

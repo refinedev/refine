@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("inferencer-mantine", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const login = () => {
     cy.fixture("demo-auth-credentials").then((auth) => {
       cy.get("input[name=email]").clear();
@@ -27,7 +25,7 @@ describe("inferencer-mantine", () => {
     cy.interceptGETCategory();
     cy.interceptGETCategories();
     cy.interceptGETBlogPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
 
     login();
   });
@@ -217,7 +215,7 @@ describe("inferencer-mantine", () => {
 
     // assert localStoage has changed
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls[BASE_URL]["i18nextLng"]).to.eq("de");
+      expect(ls["i18nextLng"]).to.eq("de");
     });
 
     // reload the page and assert the language is persisted
@@ -238,7 +236,7 @@ describe("inferencer-mantine", () => {
 
     // find initial  theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
-      const initialTheme = ls[BASE_URL]["mantine-color-scheme"]?.toString();
+      const initialTheme = ls["mantine-color-scheme"]?.toString();
 
       console.log(initialTheme);
 
@@ -255,10 +253,10 @@ describe("inferencer-mantine", () => {
         // assert the theme is changed, it should be reversed from initial theme
         if (initialTheme === "dark") {
           expect(cy.get(".tabler-icon-moon-stars").should("exist"));
-          expect(ls[BASE_URL]["mantine-color-scheme"]).to.contains("light");
+          expect(ls["mantine-color-scheme"]).to.contains("light");
         } else {
           expect(cy.get(".tabler-icon-sun").should("exist"));
-          expect(ls[BASE_URL]["mantine-color-scheme"]).to.contains("dark");
+          expect(ls["mantine-color-scheme"]).to.contains("dark");
         }
       });
 

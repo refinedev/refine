@@ -2,13 +2,11 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-google-login", () => {
-  const BASE_URL = "http://localhost:5173";
-
   beforeEach(() => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("has google button", () => {

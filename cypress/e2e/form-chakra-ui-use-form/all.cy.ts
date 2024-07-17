@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-chakra-ui-use-form", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const submitForm = () => {
     return cy.getSaveButton().click();
   };
@@ -14,7 +12,7 @@ describe("form-chakra-ui-use-form", () => {
     cy.clearAllSessionStorage();
 
     cy.interceptGETPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("should list resource", () => {
