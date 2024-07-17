@@ -431,7 +431,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const _client = new GraphQLClient(requestUrl, {
         ...client.requestConfig,
         method: validMethod,
-        headers: { ..client.requestConfig.headers, ...headers },
+        headers: { ...client.requestConfig.headers, ...headers },
       });
 
       const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
