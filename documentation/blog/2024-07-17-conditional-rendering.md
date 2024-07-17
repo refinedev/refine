@@ -299,59 +299,66 @@ I wanted to share some insights on common pitfalls and best practices for condit
 - Issue: Too much conditional logic can make the code hard to read and maintain.
   Avoid multiple nested ternary operators in the render function.
 
-````jsx
-   // Avoid this
-   return condition1 ? (condition2 ? <ComponentA /> : <ComponentB />) : <ComponentC />;
-   ```
+```jsx
+// Avoid this
+return condition1 ? (
+  condition2 ? (
+    <ComponentA />
+  ) : (
+    <ComponentB />
+  )
+) : (
+  <ComponentC />
+);
+```
 
 ### State Management Issues
 
- - Issue: Improper state management can cause unexpected behavior.
+- Issue: Improper state management can cause unexpected behavior.
   Ensure the state is updated correctly before re-rendering.
 
 ```jsx
-   // Properly update state
-   const handleClick = () => {
-     setState(prevState => ({ ...prevState, key: newValue }));
-   };
-   ```
+// Properly update state
+const handleClick = () => {
+  setState((prevState) => ({ ...prevState, key: newValue }));
+};
+```
 
 ### Performance Degradation
 
- - Issue: Unoptimized conditional rendering can slow down performance.
+- Issue: Unoptimized conditional rendering can slow down performance.
   Use memoization to avoid frequent re-renders.
 
 ```jsx
-   const MemoizedComponent = React.memo(() => {
-     return <ExpensiveComponent />;
-   });
-   ```
+const MemoizedComponent = React.memo(() => {
+  return <ExpensiveComponent />;
+});
+```
 
 ### Conditional Rendering of Large Components
 
- - Issue: Rendering large components without optimization can affect load time.
+- Issue: Rendering large components without optimization can affect load time.
   Use lazy loading for large components.
 
 ```jsx
-   const LazyComponent = React.lazy(() => import('./LargeComponent'));
+const LazyComponent = React.lazy(() => import("./LargeComponent"));
 
-   const App = () => (
-     <Suspense fallback={<div>Loading...</div>}>
-       <LazyComponent />
-     </Suspense>
-   );
-   ```
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <LazyComponent />
+  </Suspense>
+);
+```
 
 ### Ignoring Accessibility
 
- - Issue: Not considering accessibility can make the app difficult to use.
+- Issue: Not considering accessibility can make the app difficult to use.
   Provide alternative text and manage focus properly.
 
 ```jsx
-   const AccessibleComponent = ({ isVisible }) => (
-     isVisible ? <div aria-live="polite">Content is visible</div> : null
-   );
-````
+const AccessibleComponent = ({ isVisible }) =>
+  isVisible ? <div aria-live="polite">Content is visible</div> : null;
+```
 
 ### Inconsistent User Experience
 
@@ -458,7 +465,7 @@ IIFEs are self-invoking functions (functions that call themselves immediately af
 In the following example, you have a state called `isLoggedIn,` and the content is rendered based on whether the user is logged in or not. In addition, based on the `isLoggedIn` state, an input field is rendered or a welcome user message is displayed.
 The code example can be found on [codesanbox](https://codesandbox.io/s/using-iifes-s4bm0n?file=/src/App.js).
 
-```t
+```tsx
 import "./styles.css";
 
 export default function App() {
@@ -509,8 +516,6 @@ Conditional rendering has so many use cases. To list a few:
 ## Best Practices for Testing Conditional Rendering in React
 
 I wanted to share some best practices for testing conditional rendering in our React applications. Effective testing ensures our components behave as expected under different conditions. Here are the key points and examples:
-
-### Testing Conditional Rendering in React Applications
 
 ### Using Jest and React Testing Library
 
