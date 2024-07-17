@@ -5,8 +5,8 @@
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
-    "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "start": "refine start"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
