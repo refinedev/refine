@@ -82,7 +82,7 @@ const action = async (options: OptionValues) => {
   // print the table of available updates
   const { table, width } = getVersionTable(packages) ?? "";
   console.log(center("Available Updates", width));
-  console.log();
+  console.log(table);
   console.log(
     `- ${chalk.yellow(
       chalk.bold("Current"),
@@ -98,7 +98,7 @@ const action = async (options: OptionValues) => {
       chalk.bold("Latest"),
     )}: The latest version of the package available on npm`,
   );
-  console.log(table);
+  console.log();
 
   const { installationType } = await inquirer.prompt<{
     installationType: "wanted" | "interactive" | "latest";
