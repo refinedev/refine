@@ -231,7 +231,7 @@ describe("inferencer-antd", () => {
     });
     // assert localStoage has changed
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls["i18nextLng"]).to.eq("de");
+      expect(ls[Cypress.config("baseUrl")!]["i18nextLng"]).to.eq("de");
     });
 
     // reload the page and assert the language is persisted
@@ -251,7 +251,8 @@ describe("inferencer-antd", () => {
 
     // find initial  theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
-      const initialTheme = ls["colorMode"]?.toString();
+      const initialTheme =
+        ls[Cypress.config("baseUrl")!]["colorMode"]?.toString();
 
       // find the theme swtich
       cy.get(".ant-layout-header").within(() => {
@@ -267,10 +268,10 @@ describe("inferencer-antd", () => {
         cy.getAllLocalStorage().then((ls) => {
           if (initialTheme === "dark") {
             expect(cy.get(".ant-switch-checked").should("not.exist"));
-            expect(ls["colorMode"]).to.eq("light");
+            expect(ls[Cypress.config("baseUrl")!]["colorMode"]).to.eq("light");
           } else {
             expect(cy.get(".ant-switch-checked").should("exist"));
-            expect(ls["colorMode"]).to.eq("dark");
+            expect(ls[Cypress.config("baseUrl")!]["colorMode"]).to.eq("dark");
           }
         });
       });

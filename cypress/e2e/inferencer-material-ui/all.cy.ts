@@ -236,7 +236,8 @@ describe("inferencer-material-ui", () => {
 
     // find initial theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
-      const initialTheme = ls["colorMode"]?.toString() || "dark";
+      const initialTheme =
+        ls[Cypress.config("baseUrl")!]["colorMode"]?.toString() || "dark";
 
       // click the theme switch
       if (initialTheme === "dark") {
@@ -247,9 +248,9 @@ describe("inferencer-material-ui", () => {
 
       cy.getAllLocalStorage().then((ls) => {
         if (initialTheme === "dark") {
-          expect(ls["colorMode"]).to.eq("light");
+          expect(ls[Cypress.config("baseUrl")!]["colorMode"]).to.eq("light");
         } else {
-          expect(ls["colorMode"]).to.eq("dark");
+          expect(ls[Cypress.config("baseUrl")!]["colorMode"]).to.eq("dark");
         }
       });
 
@@ -279,7 +280,7 @@ describe("inferencer-material-ui", () => {
     cy.get("li[data-value=de]").click();
     // assert localStoage has changed
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls["i18nextLng"]).to.eq("de");
+      expect(ls[Cypress.config("baseUrl")!]["i18nextLng"]).to.eq("de");
     });
 
     // reload the page and assert the language is persisted

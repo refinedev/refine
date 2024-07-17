@@ -29,7 +29,7 @@ describe("auth-material-ui", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls).to.have.property("email");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property("email");
       });
     });
 
@@ -73,7 +73,7 @@ describe("auth-material-ui", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls).to.have.property("email");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property("email");
       });
     });
 

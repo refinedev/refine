@@ -28,7 +28,9 @@ describe("with-nextjs-next-auth", () => {
       login();
       cy.location("pathname").should("eq", "/blog-posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls).to.have.property("nextauth.message");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property(
+          "nextauth.message",
+        );
       });
     });
 
