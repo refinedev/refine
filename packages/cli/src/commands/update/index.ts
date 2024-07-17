@@ -1,13 +1,19 @@
 import inquirer from "inquirer";
 import center from "center-align";
 import { type Command, Option } from "commander";
+import PackageJson from "@npmcli/package-json";
 import spinner from "@utils/spinner";
 import { isRefineUptoDate } from "@commands/check-updates";
 import { getPreferedPM, installPackages, pmCommands } from "@utils/package";
 import { promptInteractiveRefineUpdate } from "@commands/update/interactive";
-import type { RefinePackageInstalledVersionData } from "@definitions/package";
+import type {
+  PackageDependency,
+  RefinePackageInstalledVersionData,
+} from "@definitions/package";
 import { getVersionTable } from "@components/version-table";
 import chalk from "chalk";
+
+type SelectedPackage = PackageDependency;
 
 enum Tag {
   Wanted = "wanted",
@@ -57,70 +63,86 @@ const action = async (options: OptionValues) => {
     return;
   }
 
-  let selectedPackages: string[] | null | undefined = null;
+  let selectedPackages: SelectedPackage | null | undefined = null;
 
   if (all) {
-    runAll(tag, packages);
-  } else {
-    const { table, width } = getVersionTable(packages) ?? "";
+    const selectedPackages = runAll(tag, packages);
+    if (!selectedPackages) return;
 
-    console.log(center("Available Updates", width));
-    console.log();
-    console.log(
-      `- ${chalk.yellow(
-        chalk.bold("Current"),
-      )}: The version of the package that is currently installed`,
-    );
-    console.log(
-      `- ${chalk.yellow(
-        chalk.bold("Wanted"),
-      )}: The maximum version of the package that satisfies the semver range specified in \`package.json\``,
-    );
-    console.log(
-      `- ${chalk.yellow(
-        chalk.bold("Latest"),
-      )}: The latest version of the package available on npm`,
-    );
-    console.log(table);
-
-    const { allByPrompt } = await inquirer.prompt<{ allByPrompt: boolean }>([
-      {
-        type: "list",
-        name: "allByPrompt",
-        message:
-          "Do you want to update all Refine packages for minor and patch versions?",
-        choices: [
-          {
-            name: "Yes, automatically update all packages to wanted version.",
-            value: true,
-          },
-          {
-            name: "No, use interactive mode.",
-            value: false,
-          },
-        ],
-      },
-    ]);
-
-    if (allByPrompt) {
-      selectedPackages = runAll(tag, packages);
-    } else {
-      selectedPackages = await promptInteractiveRefineUpdate(packages);
+    if (dryRun) {
+      console.log();
+      printInstallCommand(selectedPackages);
+      return;
     }
-  }
 
-  if (!selectedPackages) return;
-
-  if (dryRun) {
-    console.log();
-    printInstallCommand(selectedPackages);
+    runInstallation(selectedPackages);
     return;
   }
 
-  pmInstall(selectedPackages);
+  // print the table of available updates
+  const { table, width } = getVersionTable(packages) ?? "";
+  console.log(center("Available Updates", width));
+  console.log();
+  console.log(
+    `- ${chalk.yellow(
+      chalk.bold("Current"),
+    )}: The version of the package that is currently installed`,
+  );
+  console.log(
+    `- ${chalk.yellow(
+      chalk.bold("Wanted"),
+    )}: The maximum version of the package that satisfies the semver range specified in \`package.json\``,
+  );
+  console.log(
+    `- ${chalk.yellow(
+      chalk.bold("Latest"),
+    )}: The latest version of the package available on npm`,
+  );
+  console.log(table);
+
+  const { installationType } = await inquirer.prompt<{
+    installationType: "wanted" | "interactive" | "latest";
+  }>([
+    {
+      type: "list",
+      name: "installationType",
+      message:
+        "Do you want to update all Refine packages for minor and patch versions?",
+      choices: [
+        {
+          name: `Update all packages to "latest" version.`,
+          value: "latest",
+        },
+        {
+          name: `Update all packages to "wanted" version.`,
+          value: "wanted",
+        },
+        {
+          name: "Use interactive mode.",
+          value: "interactive",
+        },
+      ],
+    },
+  ]);
+
+  if (installationType === "interactive") {
+    selectedPackages = await promptInteractiveRefineUpdate(packages);
+  }
+  if (installationType === Tag.Wanted) {
+    selectedPackages = runAll(Tag.Wanted, packages);
+  }
+  if (installationType === Tag.Latest) {
+    selectedPackages = runAll(Tag.Latest, packages);
+  }
+  if (!selectedPackages) return;
+
+  runInstallation(selectedPackages);
 };
 
-const runAll = (tag: Tag, packages: RefinePackageInstalledVersionData[]) => {
+const runAll = (
+  tag: Tag,
+  packages: RefinePackageInstalledVersionData[],
+): PackageDependency | null => {
   if (tag === Tag.Wanted) {
     const isAllPackagesAtWantedVersion = packages.every(
       (pkg) => pkg.current === pkg.wanted,
@@ -132,25 +154,50 @@ const runAll = (tag: Tag, packages: RefinePackageInstalledVersionData[]) => {
     }
   }
 
-  const packagesWithVersion = packages.map((pkg) => {
-    const version = pkg.wantedWithPreferredWildcard;
-    return `${pkg.name}@${version}`;
-  });
+  const packagesWithVersion: PackageDependency = {};
+  for (const pkg of packages) {
+    let version = pkg.latest;
+    if (tag === Tag.Wanted) {
+      version = pkg.wantedWithPreferredWildcard;
+    }
+    if (tag === Tag.Latest) {
+      version = `^${pkg.latest}`;
+    }
+    if (tag === Tag.Next) {
+      version = tag;
+    }
+
+    packagesWithVersion[pkg.name] = version;
+  }
 
   return packagesWithVersion;
 };
 
-const printInstallCommand = async (packages: string[]) => {
+const printInstallCommand = async (packages: SelectedPackage) => {
   const pm = await getPreferedPM();
-  const commandInstall = pmCommands[pm.name].install;
-  console.log(`${pm.name} ${commandInstall.join(" ")} ${packages.join(" ")}`);
+  const commandInstall = pmCommands[pm.name].add;
+  let packagesListAsString = "";
+  for (const [name, version] of Object.entries(packages)) {
+    packagesListAsString += `${name}@${version} `;
+  }
+  console.log(`${pm.name} ${commandInstall.join(" ")} ${packagesListAsString}`);
 };
 
-const pmInstall = (packages: string[]) => {
+const runInstallation = async (packagesToInstall: SelectedPackage) => {
   console.log("Updating `Refine` packages...");
-  console.log();
-  console.log(packages.map((pkg) => ` - ${pkg}`).join("\n"));
-  installPackages(packages);
+
+  // to install packages, first we need to manipulate the package.json file, then install the packages
+  const packageJson = await PackageJson.load(process.cwd());
+
+  packageJson.update({
+    dependencies: {
+      ...((packageJson.content.dependencies ?? {}) as { [x: string]: string }),
+      ...(packagesToInstall ?? {}),
+    },
+  });
+  await packageJson.save();
+
+  installPackages([], "all");
 };
 
 export default load;
