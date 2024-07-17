@@ -55,7 +55,7 @@ type DataGridPropsType = Required<
   >
 > &
   Pick<
-    DataGridPropsOverride,
+    DataGridProps,
     | "paginationModel"
     | "onPaginationModelChange"
     | "filterModel"
@@ -264,10 +264,10 @@ export function useDataGrid<
   };
 
   const dataGridPaginationValues = (): Pick<
-    DataGridPropsOverride,
+    DataGridProps,
     "paginationModel" | "onPaginationModelChange"
   > &
-    Required<Pick<DataGridPropsOverride, "paginationMode">> => {
+    Required<Pick<DataGridProps, "paginationMode">> => {
     if (isPaginationEnabled) {
       return {
         paginationMode: "server" as const,
