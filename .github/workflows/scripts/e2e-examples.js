@@ -214,12 +214,17 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `--record --group ${path}`;
-        const runner = `pnpm cypress:run --spec cypress/e2e/${path} ${params} --config baseUrl=http://localhost:${port}`;
+        const additionalParams = [
+          `--record --group ${path}`,
+          `--spec cypress/e2e/${path}`,
+          `--config baseUrl=http://localhost:${port}`,
+        ];
+
+        const runCommand = `pnpm cypress:run ${additionalParams.join(" ")} `;
 
         prettyLog("blue", `Running tests for ${path}`);
 
-        const { promise } = execPromise(runner);
+        const { promise } = execPromise(runCommand);
 
         await promise;
 
