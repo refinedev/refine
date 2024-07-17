@@ -6,8 +6,6 @@
   "type": "module",
   "scripts": {
     "build": "remix vite:build",
-    "cypress": "cypress open -C ./cypress.config.cts",
-    "cypress:run": "cypress run -C ./cypress.config.cts",
     "dev": "remix vite:dev",
     "refine": "refine",
     "start:prod": "remix-serve ./build/server/index.js"
@@ -32,7 +30,6 @@
     "@remix-run/dev": "^2.3.1",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "cypress": "^13.6.3",
     "typescript": "^5.4.2",
     "vite": "^5.1.6",
     "vite-tsconfig-paths": "^4.2.1"
