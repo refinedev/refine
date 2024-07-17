@@ -57,7 +57,7 @@ const hasPackageJson = (example) => {
 };
 
 const hasE2eTests = (example) => {
-  return fs.existsSync(path.join(EXAMPLES_DIR, example, "cypress.config.ts"));
+  return fs.existsSync(path.join("./cypress/e2e", example));
 };
 
 const isDirectory = (example) => {
