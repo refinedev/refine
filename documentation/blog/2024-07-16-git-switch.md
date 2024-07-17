@@ -4,9 +4,11 @@ description: We will go through different use cases and examples for using git c
 slug: git-switch-and-git-checkout
 authors: muhammad_khabbab
 tags: [git, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 16, 2024, to add sections for Advanced Branch Management Techniques and Troubleshooting Branch Issues to Git switch post.**
 
 ## Introduction
 
@@ -22,14 +24,13 @@ Let's go through some examples of switching branches through `git checkout`, and
 Steps we'll cover:
 
 - [Using git checkout to switch branches](#using-git-checkout-to-switch-branches)
-  - [Switch to an existing branch](#switch-to-an-existing-branch)
-  - [Switch to a new branch](#switch-to-a-new-branch)
-  - [Switching to a remote branch](#switching-to-a-remote-branch)
+- [Troubleshooting Branch Issues](#troubleshooting-branch-issues)
 - [Using git switch vs git checkout](#using-git-switch-vs-git-checkout)
-  - [Why git switch was needed?](#why-git-switch-was-needed)
 - [Difference between git checkout and git reset](#difference-between-git-checkout-and-git-reset)
 - [Difference between git checkout and git restore](#difference-between-git-checkout-and-git-restore)
 - [Difference between git checkout and git Clone](#difference-between-git-checkout-and-git-clone)
+- [Branch Management Techniques](#branch-management-techniques)
+- [Performance Optimization in Branch Management](#performance-optimization-in-branch-management)
 
 ## Using git checkout to switch branches
 
@@ -86,6 +87,89 @@ The above error appears when you have changed a file, and the branch that you ar
 • Use stash to locally stash your changes temporarily without commit
 • Force checkout, which will discard your local changes
 • Commit your changes, and then update this commit with extra changes (you can modify commits in Git until they are pushed)
+
+## Troubleshooting Branch Issues
+
+Allow me to share some tips on branch troubleshooting that will really help solve the common problems in a timely manner.
+
+### Rescue the Detached HEAD State
+
+You will have a detached HEAD state when you checkout a commit that is not a branch. Here is how you solve this:
+
+- Create a new branch from the detached HEAD state:
+
+```sh
+git checkout -b <new-branch>
+```
+
+- Or maybe you just want to switch back to an old branch:
+
+```sh
+git checkout <branch-name>
+```
+
+### Undoing a Commit
+
+If you need to reset an unpublished commit, you can do:
+
+- To prepare changes in your working directory:
+
+```sh
+git reset --soft HEAD~1
+```
+
+- To discard changes:
+
+```sh
+git reset --hard HEAD~1
+```
+
+### Recover a Deleted Branch
+
+If you delete a branch by mistake, let's restore it with the reflog:
+
+- Find the commit hash where the branch that was deleted was pointing:
+
+```sh
+git reflog
+```
+
+- For the restoration of the branch:
+
+```sh
+git checkout -b <branch-name> <commit-hash>
+```
+
+### Handling Unmerged Changes
+
+If you have any unmerged files and you wish to change branches:
+
+- Stash your changes:
+
+```sh
+git stash
+```
+
+- Switch branches:
+
+```sh
+git checkout <branch-name>
+```
+
+- Apply the stashed changes:
+
+```sh
+git stash apply
+```
+
+**6. Check Branch Tracking Information:**
+Use this to see which remote branch your local branch is tracking:
+
+```sh
+git branch -vv
+```
+
+This command gives you information about branches and their tracking status.
 
 ### Switching to a remote branch
 
@@ -189,3 +273,107 @@ If you want to restore both index and the working tree, then you would use the f
 ## Difference between git checkout and git Clone
 
 `git clone` is used to fetch repositories you do not have. It will fetch your repositories from the remote git server. `git checkout` is a powerful command with different uses, like switching branches in your current repository and restoring files file from a particular revision.
+
+## Branch Management Techniques
+
+I thought I would share some advanced techniques on how to manage branches, which will streamline our workflow and keep the project organized.
+
+**Branch Naming Conventions:**
+Branch naming convention that is clear and consistent is important in projects with multiple contributors. So as to help us comprehend the meaning of each branch, and manage more effectively the project's process of development. Here are some common naming strategies:
+
+- **Feature Branches:** `feature/<feature-name>` - New features, e.g., `feature/user-authentication`.
+- **Bug Fix Branches:** `bugfix/<issue-number>` - Used for fixing bugs, e.g., `bugfix/123-fix-login-error`.
+- **Release Branches:** `release/<version>` - Used for preparing a release, e.g., `release/1.0.0`.
+- **Hotfix Branches:** `hotfix/<issue-number>` - For urgent fixes in production, e.g., `hotfix/456-patch-security-issue`.
+
+**Using Pull Requests Effectively:**
+Pull requests are one of the best ways to go over code changes and discuss them prior to merging with the main branch. Here are some tips:
+
+- Attempt to create a PR even for insignificant change.
+- Add a clear description and link to relevant issues.
+- Request reviews from the team members who are code-savvy.
+- Address the review comments quickly and update the PR.
+
+## Performance Optimization in Branch Management
+
+I would like to share some insights into performance optimization in branch management with an attempt to streamline the workflow and improve efficiency.
+
+### Regular Branch Cleanup
+
+The performance could be improved by cleaning the repository at regular intervals, deleting old or merged branches. It will prevent clutter, and it will be easy to spot the relevant branches.
+
+- List merged branches:
+
+```sh
+git branch --merged
+```
+
+- Delete merged branches:
+
+```sh
+git branch -d <branch_name>
+```
+
+### Create Lightweight Branches
+
+Git branches are lightweight, so do keep them lean for better performance. Do not add large files directly to the branches.
+
+### Branch Change Success
+
+Switching branches frequently can sometimes lead to performance issues, especially if there are uncommitted changes. To mitigate this:
+
+- Stash changes before switching branches:
+
+```sh
+git stash
+git checkout <branch-name>
+git stash apply
+```
+
+### Rebase Instead of Merge
+
+Rebase can clean up the project history with moving or combining commits to make it easier for users to trace and can save performance of branch operations.
+
+- Rebase the branch on top of the main branch:
+
+```sh
+git checkout <feature-branch>
+git rebase main
+```
+
+5. Lower Large File Changes:
+   Large files or binary files can slow down branch operations. Use Git LFS (Large File Storage) to efficiently handle large files.
+
+- Track a large file with Git LFS:
+
+```sh
+git lfs track <file>
+```
+
+### Repository Performance Monitoring
+
+Monitor the performance of your repository on a regular basis to find possible bottlenecks.
+
+- Determine repository size:
+
+```sh
+du -sh .git
+```
+
+- Reduce unnecessary items and optimize repository:
+
+```sh
+git gc --aggressive --prune=now
+```
+
+### Using Shallow Clones
+
+Use shallow clones for large repositories to save network data and speed up the fetching.
+
+- Shallow clone with depth:
+
+```sh
+git clone --depth 1 <repository-url>
+```
+
+These performance improvement techniques would help us hold an efficient and non-overburdened process of branch management.

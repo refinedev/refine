@@ -4,9 +4,11 @@ description: We'll implement Conditional Rendering in React and the various ways
 slug: react-conditional-rendering
 authors: deborah_emeni
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-14-conditional-rendering/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 17, 2024, to add sections for Common Pitfalls and Best Practices in Conditional Rendering and Testing Conditional Rendering in React Applications.**
 
 ## Introduction
 
@@ -25,8 +27,10 @@ Steps we'll cover:
 - [Conditional rendering with switch statements](#conditional-rendering-with-switch-statements)
 - [Using ternary operators](#using-ternary-operators)
 - [Using Logical AND (\&\&) and OR (||) operators (Short Circuit Evaluation)](#using-logical-and--and-or--operators-short-circuit-evaluation)
+- [Common Pitfalls in Conditional Rendering](#common-pitfalls-in-conditional-rendering)
 - [Using IIFEs (Immediately Invoked Function Expressions)](#using-iifes-immediately-invoked-function-expressions)
 - [Use cases of conditional rendering](#use-cases-of-conditional-rendering)
+- [Best Practices for Testing Conditional Rendering in React](#best-practices-for-testing-conditional-rendering-in-react)
 
 ## What is Conditional Rendering in React?
 
@@ -286,6 +290,174 @@ export default function App() {
 }
 ```
 
+## Common Pitfalls in Conditional Rendering
+
+I wanted to share some insights on common pitfalls and best practices for conditional rendering in React. I hope you find these tips useful for our projects.
+
+### Overusing Conditional Logic
+
+- Issue: Too much conditional logic can make the code hard to read and maintain.
+  Avoid multiple nested ternary operators in the render function.
+
+```jsx
+// Avoid this
+return condition1 ? (
+  condition2 ? (
+    <ComponentA />
+  ) : (
+    <ComponentB />
+  )
+) : (
+  <ComponentC />
+);
+```
+
+### State Management Issues
+
+- Issue: Improper state management can cause unexpected behavior.
+  Ensure the state is updated correctly before re-rendering.
+
+```jsx
+// Properly update state
+const handleClick = () => {
+  setState((prevState) => ({ ...prevState, key: newValue }));
+};
+```
+
+### Performance Degradation
+
+- Issue: Unoptimized conditional rendering can slow down performance.
+  Use memoization to avoid frequent re-renders.
+
+```jsx
+const MemoizedComponent = React.memo(() => {
+  return <ExpensiveComponent />;
+});
+```
+
+### Conditional Rendering of Large Components
+
+- Issue: Rendering large components without optimization can affect load time.
+  Use lazy loading for large components.
+
+```jsx
+const LazyComponent = React.lazy(() => import("./LargeComponent"));
+
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <LazyComponent />
+  </Suspense>
+);
+```
+
+### Ignoring Accessibility
+
+- Issue: Not considering accessibility can make the app difficult to use.
+  Provide alternative text and manage focus properly.
+
+```jsx
+const AccessibleComponent = ({ isVisible }) =>
+  isVisible ? <div aria-live="polite">Content is visible</div> : null;
+```
+
+### Inconsistent User Experience
+
+- Issue: Inconsistent UI due to poor handling of conditions.
+  Use loading indicators consistently and reset states appropriately.
+
+```jsx
+const LoadingIndicator = ({ isLoading }) =>
+  isLoading ? <Spinner /> : <Content />;
+```
+
+**Best Practices in Conditional Rendering**
+
+### Keep It Simple
+
+Use simple and readable conditional statements.
+Prefer if-else statements or ternary operators for clarity.
+
+```jsx
+const SimpleConditional = ({ isTrue }) =>
+  isTrue ? <ComponentA /> : <ComponentB />;
+```
+
+### Use Descriptive Variable Names
+
+Use meaningful variable names to make conditions clear.
+Name variables to describe the condition precisely.
+
+```jsx
+const isUserLoggedIn = true;
+return isUserLoggedIn ? <Dashboard /> : <Login />;
+```
+
+### Optimize Performance
+
+Use React.memo, useMemo, and useCallback to prevent unnecessary re-renders.
+Memoize components that are conditionally rendered.
+
+```jsx
+const OptimizedComponent = React.memo(() => {
+  return <ExpensiveComponent />;
+});
+```
+
+### Implement Code-Splitting and Lazy Loading
+
+Load components only when needed using React.lazy and Suspense.
+Lazy load large components to improve performance.
+
+```jsx
+const LazyComponent = React.lazy(() => import("./LargeComponent"));
+
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <LazyComponent />
+  </Suspense>
+);
+```
+
+### Consider Accessibility
+
+Ensure conditional rendering doesn’t compromise accessibility.
+Use ARIA attributes and manage focus for screen readers.
+
+```jsx
+const AccessibleComponent = ({ isVisible }) =>
+  isVisible ? <div aria-live="polite">Content is visible</div> : null;
+```
+
+### Maintain Consistent User Experience
+
+Provide a consistent and predictable UI and state.
+Use loading spinners or placeholders for better UX.
+
+```jsx
+const LoadingIndicator = ({ isLoading }) =>
+  isLoading ? <Spinner /> : <Content />;
+```
+
+### Separate Logic from JSX
+
+Move conditional logic outside the JSX for readability.
+Use helper functions or variables for managing conditions.
+
+```jsx
+const renderContent = (isLoggedIn) => {
+  if (isLoggedIn) {
+    return <Dashboard />;
+  } else {
+    return <Login />;
+  }
+};
+
+const App = () => {
+  const isLoggedIn = true;
+  return <div>{renderContent(isLoggedIn)}</div>;
+};
+```
+
 ## Using IIFEs (Immediately Invoked Function Expressions)
 
 IIFEs are self-invoking functions (functions that call themselves immediately after they have been created). They allow you to use your `if...else` and `switch` statements within the JSX you are returning. This opens up the possibility of using the previously mentioned `switch` or `if-else` method in the JSX.
@@ -293,7 +465,7 @@ IIFEs are self-invoking functions (functions that call themselves immediately af
 In the following example, you have a state called `isLoggedIn,` and the content is rendered based on whether the user is logged in or not. In addition, based on the `isLoggedIn` state, an input field is rendered or a welcome user message is displayed.
 The code example can be found on [codesanbox](https://codesandbox.io/s/using-iifes-s4bm0n?file=/src/App.js).
 
-```ts
+```tsx
 import "./styles.css";
 
 export default function App() {
@@ -340,6 +512,134 @@ Conditional rendering has so many use cases. To list a few:
 - **Personalization**: Giving customers a personalized experience is what personalization entails. To accomplish this, many templates must be customized based on the personalization conditions specified.
 
 - **Authorization**: When developing applications, you may need to hide certain actions or information from the user. This is possible by using the null method, as previously mentioned. Depending on the user's role, you can hide or render certain features.
+
+## Best Practices for Testing Conditional Rendering in React
+
+I wanted to share some best practices for testing conditional rendering in our React applications. Effective testing ensures our components behave as expected under different conditions. Here are the key points and examples:
+
+### Using Jest and React Testing Library
+
+- Jest and React Testing Library are popular tools for testing React components. They provide a simple and efficient way to test conditional rendering.
+
+### Test Different States
+
+- Ensure you cover all possible states and conditions in your tests.
+
+### Mock Functions and Props
+
+- Use mock functions and props to simulate different scenarios.
+
+### Snapshots for UI Testing
+
+- Use snapshots to ensure the UI renders correctly based on conditions.
+
+### Example Code
+
+Here’s how you can set up tests for conditional rendering using Jest and React Testing Library:
+
+### Install Necessary Packages
+
+```sh
+   npm install --save-dev @testing-library/react @testing-library/jest-dom jest
+```
+
+### Component Example
+
+```jsx
+// MyComponent.js
+import React from "react";
+
+const MyComponent = ({ isLoggedIn }) => {
+  return (
+    <div>{isLoggedIn ? <h1>Welcome back!</h1> : <h1>Please log in.</h1>}</div>
+  );
+};
+
+export default MyComponent;
+```
+
+### Test File
+
+```jsx
+// MyComponent.test.js
+import React from "react";
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import MyComponent from "./MyComponent";
+
+test("renders welcome message if user is logged in", () => {
+  render(<MyComponent isLoggedIn={true} />);
+  expect(screen.getByText("Welcome back!")).toBeInTheDocument();
+});
+
+test("renders log in message if user is not logged in", () => {
+  render(<MyComponent isLoggedIn={false} />);
+  expect(screen.getByText("Please log in.")).toBeInTheDocument();
+});
+```
+
+### Testing with Mock Functions
+
+```jsx
+// MyComponentWithFunction.js
+import React from "react";
+
+const MyComponentWithFunction = ({ isLoggedIn, handleLogin }) => {
+  return (
+    <div>
+      {isLoggedIn ? (
+        <h1>Welcome back!</h1>
+      ) : (
+        <>
+          <h1>Please log in.</h1>
+          <button onClick={handleLogin}>Log In</button>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default MyComponentWithFunction;
+```
+
+```jsx
+// MyComponentWithFunction.test.js
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+import MyComponentWithFunction from "./MyComponentWithFunction";
+
+test("calls handleLogin when login button is clicked", () => {
+  const handleLogin = jest.fn();
+  render(
+    <MyComponentWithFunction isLoggedIn={false} handleLogin={handleLogin} />,
+  );
+
+  fireEvent.click(screen.getByText("Log In"));
+  expect(handleLogin).toHaveBeenCalledTimes(1);
+});
+```
+
+### Using Snapshots
+
+```jsx
+// MyComponentWithSnapshot.test.js
+import React from "react";
+import renderer from "react-test-renderer";
+import MyComponent from "./MyComponent";
+
+test("renders correctly when logged in", () => {
+  const tree = renderer.create(<MyComponent isLoggedIn={true} />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+
+test("renders correctly when not logged in", () => {
+  const tree = renderer.create(<MyComponent isLoggedIn={false} />).toJSON();
+  expect(tree).toMatchSnapshot();
+});
+```
+
+Testing conditional rendering in React applications ensures that our components display the correct content under various conditions. By using Jest and React Testing Library, we can efficiently test different states, mock functions, and props, and utilize snapshots for UI consistency.
 
 ## Conclusion
 
