@@ -35,6 +35,9 @@
     },
     "publint": {
       "dependsOn": ["build"]
+    },
+    "start": {
+      "dependsOn": ["build"]
     }
   },
   "defaultProject": "@refinedev/core",
