@@ -33,9 +33,13 @@ import {
   transformSortModelToCrudSorting,
 } from "@definitions";
 
+type DataGridPropsOverride = Omit<DataGridProps, "onFilterModelChange"> & {
+  onFilterModelChange: (model: GridFilterModel) => void;
+};
+
 type DataGridPropsType = Required<
   Pick<
-    DataGridProps,
+    DataGridPropsOverride,
     | "rows"
     | "loading"
     | "rowCount"
@@ -51,7 +55,7 @@ type DataGridPropsType = Required<
   >
 > &
   Pick<
-    DataGridProps,
+    DataGridPropsOverride,
     | "paginationModel"
     | "onPaginationModelChange"
     | "filterModel"
@@ -260,10 +264,10 @@ export function useDataGrid<
   };
 
   const dataGridPaginationValues = (): Pick<
-    DataGridProps,
+    DataGridPropsOverride,
     "paginationModel" | "onPaginationModelChange"
   > &
-    Required<Pick<DataGridProps, "paginationMode">> => {
+    Required<Pick<DataGridPropsOverride, "paginationMode">> => {
     if (isPaginationEnabled) {
       return {
         paginationMode: "server" as const,
