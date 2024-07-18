@@ -1,6 +1,10 @@
 import type { Command } from "commander";
 import { printUpdateWarningTable } from "@components/update-warning-table";
-import { getDependenciesWithVersion, pmCommands } from "@utils/package";
+import {
+  getAllVersionsOfPackage,
+  getDependenciesWithVersion,
+  pmCommands,
+} from "@utils/package";
 import execa from "execa";
 import spinner from "@utils/spinner";
 import type {
@@ -8,6 +12,7 @@ import type {
   RefinePackageInstalledVersionData,
 } from "@definitions/package";
 import semverDiff from "semver-diff";
+import { maxSatisfying } from "semver";
 
 const load = (program: Command) => {
   return program
@@ -56,10 +61,6 @@ export const getOutdatedRefinePackages = async () => {
       list.push({
         ...dependency,
         name: packageName,
-        wantedWithPreferredWildcard: getWantedWithPreferredWildcard(
-          packageName,
-          dependency.wanted,
-        ),
         changelog: packageName.replace(/@refinedev\//, "https://c.refine.dev/"),
       });
     }
@@ -107,7 +108,7 @@ export const getOutdatedPackageList = async () => {
 export const getWantedWithPreferredWildcard = (
   packageName: RefinePackageInstalledVersionData["name"],
   versionWanted: RefinePackageInstalledVersionData["wanted"],
-): RefinePackageInstalledVersionData["wantedWithPreferredWildcard"] => {
+): string => {
   const dependencies = getDependenciesWithVersion();
   const versionInPackageJson = dependencies[packageName];
 
@@ -152,6 +153,25 @@ export const getWantedWithPreferredWildcard = (
   }
 
   return versionWanted;
+};
+
+/**
+ *
+ * @param packageName to get the latest minor version of the package available on npm.
+ * @param version current installed version of the package. This will be used to calculate the latest minor version.
+ * @returns The latest minor version of the package available on npm.
+ */
+export const getLatestMinorVersionOfPackage = async (
+  packageName: RefinePackageInstalledVersionData["name"],
+  version: RefinePackageInstalledVersionData["wanted"],
+) => {
+  const versionAll = await getAllVersionsOfPackage(packageName);
+
+  /**
+   * The `semver` package's `maxSatisfying` function returns the highest version in the list that satisfies the range.
+   */
+  const versionLatest = maxSatisfying(versionAll, `^${version}`);
+  return versionLatest ?? version;
 };
 
 export default load;

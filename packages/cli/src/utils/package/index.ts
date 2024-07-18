@@ -293,3 +293,44 @@ export const hasIncomatiblePackages = (packages: string[]): boolean => {
 
   return false;
 };
+
+export const getAllVersionsOfPackage = async (
+  packageName: string,
+): Promise<string[]> => {
+  const pm = "npm";
+
+  const { stdout, timedOut } = await execa(
+    pm,
+    ["view", packageName, "versions", "--json"],
+    {
+      reject: false,
+      timeout: 25 * 1000,
+    },
+  );
+
+  if (timedOut) {
+    console.log("❌ Timed out while checking for updates.");
+    process.exit(1);
+  }
+
+  let result:
+    | string[]
+    | {
+        error: {
+          code: string;
+        };
+      } = [];
+
+  try {
+    result = JSON.parse(stdout);
+    if (!result || "error" in result) {
+      console.log("❌ Something went wrong while checking for updates.");
+      process.exit(1);
+    }
+  } catch (error) {
+    console.log("❌ Something went wrong while checking for updates.");
+    process.exit(1);
+  }
+
+  return result;
+};

@@ -30,11 +30,6 @@ export type RefinePackageInstalledVersionData = {
    */
   wanted: string;
   /**
-   * version of the package that satisfies the semver range specified in `package.json` with the preferred  semver range wildcard.
-   * e.g. `^1.0.0` in `package.json` resolves to `^1.0.1` in the this field.
-   */
-  wantedWithPreferredWildcard: string;
-  /**
    * latest version of the package available on npm
    */
   latest: string;

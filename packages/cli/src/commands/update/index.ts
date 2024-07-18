@@ -3,7 +3,11 @@ import center from "center-align";
 import { type Command, Option } from "commander";
 import PackageJson from "@npmcli/package-json";
 import spinner from "@utils/spinner";
-import { isRefineUptoDate } from "@commands/check-updates";
+import {
+  getLatestMinorVersionOfPackage,
+  getWantedWithPreferredWildcard,
+  isRefineUptoDate,
+} from "@commands/check-updates";
 import { getPreferedPM, installPackages, pmCommands } from "@utils/package";
 import { promptInteractiveRefineUpdate } from "@commands/update/interactive";
 import type {
@@ -19,6 +23,12 @@ enum Tag {
   Wanted = "wanted",
   Latest = "latest",
   Next = "next",
+}
+
+enum InstallationType {
+  Wanted = "wanted",
+  Minor = "minor",
+  Interactive = "interactive",
 }
 
 interface OptionValues {
@@ -66,7 +76,7 @@ const action = async (options: OptionValues) => {
   let selectedPackages: SelectedPackage | null | undefined = null;
 
   if (all) {
-    const selectedPackages = runAll(tag, packages);
+    const selectedPackages = await preparePackagesToInstall(tag, packages);
     if (!selectedPackages) return;
 
     if (dryRun) {
@@ -101,7 +111,7 @@ const action = async (options: OptionValues) => {
   console.log();
 
   const { installationType } = await inquirer.prompt<{
-    installationType: "wanted" | "interactive" | "latest";
+    installationType: InstallationType;
   }>([
     {
       type: "list",
@@ -110,39 +120,48 @@ const action = async (options: OptionValues) => {
         "Do you want to update all Refine packages for minor and patch versions?",
       choices: [
         {
-          name: `Update all packages to "latest" version.`,
-          value: "latest",
+          name: `Update all packages to latest "minor" version without any breaking changes.`,
+          value: "minor",
         },
         {
-          name: `Update all packages to "wanted" version.`,
+          name: "Update all packages to the latest version that satisfies the semver(`wanted`) range specified in `package.json`",
           value: "wanted",
         },
         {
-          name: "Use interactive mode.",
+          name: `Use interactive mode. Choose this option for "major" version updates.`,
           value: "interactive",
         },
       ],
     },
   ]);
 
-  if (installationType === "interactive") {
+  if (installationType === InstallationType.Interactive) {
     selectedPackages = await promptInteractiveRefineUpdate(packages);
   }
-  if (installationType === Tag.Wanted) {
-    selectedPackages = runAll(Tag.Wanted, packages);
+  if (installationType === InstallationType.Wanted) {
+    selectedPackages = await preparePackagesToInstall(Tag.Wanted, packages);
   }
-  if (installationType === Tag.Latest) {
-    selectedPackages = runAll(Tag.Latest, packages);
+  if (installationType === InstallationType.Minor) {
+    selectedPackages = await preparePackagesToInstall(
+      InstallationType.Minor,
+      packages,
+    );
   }
+
   if (!selectedPackages) return;
 
-  runInstallation(selectedPackages);
+  if (dryRun) {
+    console.log();
+    printInstallCommand(selectedPackages);
+  } else {
+    runInstallation(selectedPackages);
+  }
 };
 
-const runAll = (
-  tag: Tag,
+const preparePackagesToInstall = async (
+  tag: Tag | InstallationType,
   packages: RefinePackageInstalledVersionData[],
-): PackageDependency | null => {
+): Promise<PackageDependency | null> => {
   if (tag === Tag.Wanted) {
     const isAllPackagesAtWantedVersion = packages.every(
       (pkg) => pkg.current === pkg.wanted,
@@ -154,17 +173,28 @@ const runAll = (
     }
   }
 
+  // empty line for better readability
+  console.log();
+
   const packagesWithVersion: PackageDependency = {};
   for (const pkg of packages) {
     let version = pkg.latest;
+
+    if (tag === InstallationType.Minor) {
+      const latestMinorVersion = await spinner(
+        () => getLatestMinorVersionOfPackage(pkg.name, pkg.wanted),
+        `Checking for the latest minor version of ${pkg.name}`,
+      );
+      version = `^${latestMinorVersion}`;
+    }
     if (tag === Tag.Wanted) {
-      version = pkg.wantedWithPreferredWildcard;
+      version = getWantedWithPreferredWildcard(pkg.name, pkg.wanted);
     }
     if (tag === Tag.Latest) {
       version = `^${pkg.latest}`;
     }
     if (tag === Tag.Next) {
-      version = tag;
+      version = Tag.Next;
     }
 
     packagesWithVersion[pkg.name] = version;

@@ -1,10 +1,10 @@
 import type {
   NpmOutdatedResponse,
-  PackageDependency,
   RefinePackageInstalledVersionData,
 } from "@definitions/package";
 import * as checkUpdates from "./index";
 import * as packageUtils from "@utils/package";
+
 const { getOutdatedRefinePackages } = checkUpdates;
 
 test("Get outdated refine packages", async () => {
@@ -199,5 +199,42 @@ describe("getWantedWithPreferredWildcard", () => {
       "3.1.1",
     );
     expect(result).toEqual("*");
+  });
+});
+
+describe("getLatestMinorVersionOfPackage", () => {
+  it.each([
+    {
+      versionList: [
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+        "1.1.0",
+        "1.1.1",
+        "1.1.2",
+        "2.0.0",
+      ],
+      currentVersion: "1.1.0",
+      expected: "1.1.2",
+    },
+    {
+      versionList: ["1.0.0", "1.0.1"],
+      currentVersion: "1.0.1",
+      expected: "1.0.1",
+    },
+    {
+      versionList: [],
+      currentVersion: "1.0.1",
+      expected: "1.0.1",
+    },
+  ])("should return %p", async ({ versionList, currentVersion, expected }) => {
+    jest
+      .spyOn(packageUtils, "getAllVersionsOfPackage")
+      .mockResolvedValueOnce(versionList);
+    const result = await checkUpdates.getLatestMinorVersionOfPackage(
+      "@refinedev/core",
+      currentVersion,
+    );
+    expect(result).toEqual(expected);
   });
 });
