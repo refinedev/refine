@@ -80,7 +80,6 @@ const action = async (options: OptionValues) => {
     if (!selectedPackages) return;
 
     if (dryRun) {
-      console.log();
       printInstallCommand(selectedPackages);
       return;
     }
@@ -151,7 +150,6 @@ const action = async (options: OptionValues) => {
   if (!selectedPackages) return;
 
   if (dryRun) {
-    console.log();
     printInstallCommand(selectedPackages);
   } else {
     runInstallation(selectedPackages);
@@ -210,6 +208,7 @@ const printInstallCommand = async (packages: SelectedPackage) => {
   for (const [name, version] of Object.entries(packages)) {
     packagesListAsString += `${name}@${version} `;
   }
+  console.log();
   console.log(`${pm.name} ${commandInstall.join(" ")} ${packagesListAsString}`);
 };
 
