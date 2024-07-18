@@ -275,6 +275,7 @@ nock("http://localhost:3004")
 nock("http://localhost:3004", {
   reqheaders: {
     "Custom-Header": (value) => value === "Custom-Header-Value",
+    "Custom-Header-Before": (value) => value === "Custom-Header-Before",
   },
 })
   .get("/graphql")
@@ -303,6 +304,87 @@ nock("http://localhost:3004", {
       'W/"ca-6w/o6KLhG7ECL6B1j+01HCRQ2WI"',
       "Date",
       "Tue, 08 Aug 2023 11:40:35 GMT",
+      "Connection",
+      "close",
+    ],
+  );
+
+nock("http://localhost:3004", {
+  reqheaders: {
+    "Subsequent-Test": (value) => value === "Subsequent-Test",
+  },
+})
+  .get("/graphql")
+  .query(
+    "query=query%20TestQuery%20%7B%20testAggregate%20%7B%20id%20%7D%20%7D&operationName=TestQuery",
+  )
+  .reply(
+    200,
+    {
+      data: {
+        testAggregate: {
+          id: "lorem ipsum",
+        },
+      },
+    },
+    [
+      "X-Powered-By",
+      "Express",
+      "cache-control",
+      "no-store",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "202",
+      "ETag",
+      'W/"ca-6w/o6KLhG7ECL6B1j+01HCRQ2WI"',
+      "Date",
+      "Tue, 08 Aug 2023 11:40:35 GMT",
+      "Connection",
+      "close",
+    ],
+  );
+
+nock("http://localhost:3003", {
+  encodedQueryParams: true,
+  reqheaders: {
+    "Subsequent-Test": (value) => value === "Subsequent-Test",
+  },
+})
+  .post("/graphql", {
+    query:
+      "query GetOneBlogPost($id: ID!) {\n  blogPost(id: $id) {\n    id\n    title\n    content\n    status\n    category {\n      id\n    }\n  }\n}\n",
+    variables: {
+      id: "1",
+    },
+    operationName: "GetOneBlogPost",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        blogPost: {
+          id: "1",
+          title: "updated-foo-2",
+          content: "updated-bar-2",
+          status: "PUBLISHED",
+          category: { id: "3" },
+        },
+      },
+    },
+    [
+      "X-Powered-By",
+      "Express",
+      "cache-control",
+      "no-store",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "126",
+      "ETag",
+      'W/"7e-Cl5he/nvkiuG9ZY19THgesoMW0g"',
+      "Date",
+      "Tue, 08 Aug 2023 11:40:36 GMT",
       "Connection",
       "close",
     ],

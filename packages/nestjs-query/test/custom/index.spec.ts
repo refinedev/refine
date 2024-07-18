@@ -173,7 +173,9 @@ describe("custom", () => {
       ).toBeDefined();
     });
 
-    it("correctly passes custom URL and custom headers using GET", async () => {
+    it("correctly passes custom URL and custom headers without overriding existing headers using GET", async () => {
+      client.setHeader("Custom-Header-Before", "Custom-Header-Before");
+
       const response = await dataProvider(client).custom?.({
         url: "http://localhost:3004/graphql",
         method: "get",
@@ -193,6 +195,49 @@ describe("custom", () => {
       });
 
       expect(response?.data?.testAggregate.id).toBe("lorem ipsum");
+    });
+
+    it("doesnt change URL of subsequent requests", async () => {
+      client.setHeader("Subsequent-Test", "Subsequent-Test");
+
+      const response = await dataProvider(client).custom?.({
+        url: "http://localhost:3004/graphql",
+        method: "get",
+        meta: {
+          gqlQuery: gql`
+                        query TestQuery {
+                            testAggregate {
+                                id
+                            }
+                        }
+                    `,
+          operation: "testAggregate",
+        },
+      });
+
+      expect(response?.data?.testAggregate.id).toBe("lorem ipsum");
+
+      const nextResponse = await dataProvider(client).getOne({
+        resource: "blog_posts",
+        id: "1",
+        meta: {
+          gqlQuery: gql`
+                        query GetOneBlogPost($id: ID!) {
+                            blogPost(id: $id) {
+                                id
+                                title
+                                content
+                                status
+                                category {
+                                    id
+                                }
+                            }
+                        }
+                    `,
+        },
+      });
+
+      expect(nextResponse.data?.id).toBe("1");
     });
 
     it("unsupported method throws error", async () => {
