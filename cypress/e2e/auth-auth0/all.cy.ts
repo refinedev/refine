@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 /// <reference types="../../cypress/support" />
 
-describe.skip("auth-auth0", () => {
+describe("auth-auth0", () => {
   const login = () => {
     cy.get("button")
       .contains(/sign in/i)
