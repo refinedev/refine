@@ -2,4 +2,8 @@
 "@refinedev/mui": patch
 ---
 
-useDataGrid overide DataGridPropsType onFilterModelChange. Fixes #5997
+fix(use-data-grid): incompatible types when using data-grid-pro
+
+useDataGrid overide DataGridPropsType onFilterModelChange.
+
+[Fixes #5997](https://github.com/refinedev/refine/issues/5997)
