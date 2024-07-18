@@ -83,7 +83,7 @@ export const createResources = async (
     // get the project type
     const uiFramework = getUIFramework();
 
-    const sourceDir = `${__dirname}/../templates/resource/components`;
+    const sourceDir = `${getCommandRootDir()}/../templates/resource/components`;
 
     // create temp dir
     const tempDir = generateTempDir();
@@ -142,7 +142,7 @@ export const createResources = async (
       "./",
       "--extensions=ts,tsx,js,jsx",
       "--parser=tsx",
-      `--transform=${__dirname}/../src/transformers/resource.ts`,
+      `--transform=${getCommandRootDir()}/../src/transformers/resource.ts`,
       "--ignore-pattern=.cache",
       "--ignore-pattern=node_modules",
       "--ignore-pattern=build",
@@ -166,6 +166,11 @@ export const createResources = async (
   });
 
   return;
+};
+
+// this export is for testing
+export const getCommandRootDir = () => {
+  return __dirname;
 };
 
 const generateTempDir = (): string => {
@@ -205,7 +210,7 @@ const generateNextJsPages = (
     mkdirSync(actionPageDirPath, { recursive: true });
 
     // copy template files as page files
-    const sourceFilePath = `${__dirname}/../templates/resource/pages/next/${actionPageRelativeDirPath}/page.tsx.hbs`;
+    const sourceFilePath = `${getCommandRootDir()}/../templates/resource/pages/next/${actionPageRelativeDirPath}/page.tsx.hbs`;
     const destFilePath = join(actionPageDirPath, "page.tsx.hbs");
     copySync(sourceFilePath, destFilePath);
   });
