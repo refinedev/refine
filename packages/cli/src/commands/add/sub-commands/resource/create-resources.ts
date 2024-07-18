@@ -1,3 +1,4 @@
+import { ProjectTypes } from "@definitions/projectTypes";
 import { compileDir } from "@utils/compile";
 import { getProjectType, getUIFramework } from "@utils/project";
 import { getResourcePath } from "@utils/resource";
@@ -126,6 +127,16 @@ export const createResources = async (
     // clear temp dir
     temp.cleanupSync();
 
+    // if use Next.js, generate page files. This makes easier to use the resource
+    const projectType = getProjectType();
+    if (projectType === ProjectTypes.NEXTJS) {
+      generateNextJsPages(
+        resource,
+        resourceFolderName,
+        customActions || defaultActions,
+      );
+    }
+
     const jscodeshiftExecutable = require.resolve(".bin/jscodeshift");
     const { stderr } = execa.sync(jscodeshiftExecutable, [
       "./",
@@ -160,4 +171,46 @@ export const createResources = async (
 const generateTempDir = (): string => {
   temp.track();
   return temp.mkdirSync("resource");
+};
+
+/**
+ * generate resource pages for Next.js App Router
+ */
+const generateNextJsPages = (
+  resource: string,
+  resourceFolderName: string,
+  actions: string[],
+): void => {
+  const resourcePageRootDirPath = join(
+    process.cwd(),
+    "src/app/",
+    resourceFolderName,
+  );
+
+  // this is specific to Next.js, so defined here
+  const actionPageRelativeDirPaths: { [key: string]: string } = {
+    list: "/",
+    create: "/create",
+    edit: "/edit/[id]",
+    show: "/show/[id]",
+  };
+
+  actions.forEach((action) => {
+    // create page dir
+    const actionPageRelativeDirPath = actionPageRelativeDirPaths[action];
+    const actionPageDirPath = join(
+      resourcePageRootDirPath,
+      actionPageRelativeDirPath,
+    );
+    mkdirSync(actionPageDirPath, { recursive: true });
+
+    // copy template files as page files
+    const sourceFilePath = `${__dirname}/../templates/resource/pages/next/${actionPageRelativeDirPath}/page.tsx.hbs`;
+    const destFilePath = join(actionPageDirPath, "page.tsx.hbs");
+    copySync(sourceFilePath, destFilePath);
+  });
+
+  // compile page files
+  const compileParams = { resource, resourceFolderName };
+  compileDir(resourcePageRootDirPath, compileParams);
 };
