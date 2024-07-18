@@ -38,10 +38,6 @@ import { useUpdateMany } from "@refinedev/core";
 
 const { mutate } = useUpdateMany({
   resource: "products",
-  values: {
-    name: "New Product",
-    material: "Wood",
-  },
   ids: [1, 2, 3],
   successNotification: false,
   mutationMode: "optimistic",
