@@ -6,8 +6,8 @@
   "scripts": {
     "build": "refine build",
     "dev": "refine dev",
-    "preview": "refine start",
     "refine": "refine",
+    "start": "refine start",
     "test": "jest --passWithNoTests --runInBand"
   },
   "browserslist": {

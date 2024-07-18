@@ -6,7 +6,7 @@ describe("table-antd-use-delete-many", () => {
     cy.interceptGETPosts();
     cy.interceptGETCategories();
 
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("should be view list page", () => {

@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("data-provider-strapi-v4", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const submitAuthForm = () => {
     return cy.get("button[type=submit]").click();
   };
@@ -33,7 +31,7 @@ describe("data-provider-strapi-v4", () => {
     cy.interceptStrapiV4GETCategories();
     cy.interceptStrapiV4GETCategory();
 
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -55,7 +53,7 @@ describe("data-provider-strapi-v4", () => {
       cy.location("pathname").should("eq", "/posts");
       cy.wait("@strapiV4GetPosts");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllCookies();
       cy.clearAllLocalStorage();
@@ -66,7 +64,7 @@ describe("data-provider-strapi-v4", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get(".ant-card-head-title > .ant-typography").contains(
         /sign in to your account/i,
       );

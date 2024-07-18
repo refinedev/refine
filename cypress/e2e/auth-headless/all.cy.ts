@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-headless", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const submitAuthForm = () => {
     return cy.get("[type=submit]").click();
   };
@@ -22,7 +20,7 @@ describe("auth-headless", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -30,7 +28,7 @@ describe("auth-headless", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("email");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property("email");
       });
     });
 
@@ -38,7 +36,7 @@ describe("auth-headless", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllLocalStorage();
       cy.reload();
@@ -47,7 +45,7 @@ describe("auth-headless", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get("h1").contains(/sign in to your account/i);
       cy.location("search").should("contains", "to=%2Ftest");
       cy.location("pathname").should("eq", "/login");
@@ -63,7 +61,7 @@ describe("auth-headless", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("email");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property("email");
       });
     });
   });

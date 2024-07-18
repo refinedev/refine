@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-chakra-ui-mutation-mode", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const mockPost = {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
@@ -51,7 +49,7 @@ describe("form-chakra-ui-mutation-mode", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("should edit record when mutation mode is pessimistic", () => {

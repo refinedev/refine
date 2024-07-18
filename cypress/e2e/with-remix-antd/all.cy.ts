@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe.skip("with-remix-antd", () => {
-  const BASE_URL = "http://localhost:3000";
-
   const mockPost = {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -51,7 +49,7 @@ describe.skip("with-remix-antd", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   const submitAuthForm = () => {
@@ -92,7 +90,7 @@ describe.skip("with-remix-antd", () => {
       login();
       cy.location("pathname").should("eq", "/");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllCookies();
       cy.reload();
@@ -104,7 +102,7 @@ describe.skip("with-remix-antd", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get(".ant-card-head-title > .ant-typography").contains(
         /sign in to your account/i,
       );
@@ -143,7 +141,7 @@ describe.skip("with-remix-antd", () => {
 
   describe("forgot password", () => {
     it("should throw error if forgot password email is wrong", () => {
-      cy.visit(`${BASE_URL}/forgot-password`);
+      cy.visit("/forgot-password");
       cy.get("#email").clear();
       cy.get("#email").type("test@test.com");
       submitAuthForm();
@@ -154,7 +152,7 @@ describe.skip("with-remix-antd", () => {
 
   describe("update password", () => {
     it("should throw error if update password is wrong", () => {
-      cy.visit(`${BASE_URL}/update-password`);
+      cy.visit("/update-password");
       cy.get("#password").clear();
       cy.get("#password").clear().type("123456");
       cy.get("#confirmPassword").clear();

@@ -7,7 +7,7 @@
     "build": "refine build",
     "dev": "refine dev",
     "refine": "refine",
-    "start:prod": "refine start"
+    "start": "refine start"
   },
   "dependencies": {
     "@refinedev/antd": "^5.42.0",

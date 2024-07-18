@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-auth0", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const login = () => {
     cy.get("button")
       .contains(/sign in/i)
@@ -23,7 +21,7 @@ describe("auth-auth0", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -36,7 +34,7 @@ describe("auth-auth0", () => {
       cy.location("pathname").should("eq", "/login");
       login();
       cy.location("pathname").should("eq", "/posts");
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get(".ant-result-404").should("exist");
       cy.clearAllCookies();
       cy.clearAllSessionStorage();

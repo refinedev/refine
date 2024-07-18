@@ -3,7 +3,7 @@
 
 describe("table-antd-advanced", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173/categories");
+    cy.visit("/categories");
   });
 
   it("expanded row should be display the table with the posts data", () => {
