@@ -6,7 +6,7 @@ describe("table-antd-table-filter", () => {
     cy.interceptGETPosts();
     cy.interceptGETPosts();
     cy.interceptGETCategories();
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
     cy.wait("@getPosts");
     cy.wait("@getCategories");
   });

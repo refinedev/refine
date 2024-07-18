@@ -8,7 +8,7 @@
     "build": "remix vite:build",
     "dev": "remix vite:dev",
     "refine": "refine",
-    "start:prod": "remix-serve ./build/server/index.js"
+    "start": "remix-serve ./build/server/index.js"
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.36",

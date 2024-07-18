@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("auth-mantine", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const submitAuthForm = () => {
     return cy.get("button[type=submit]").click();
   };
@@ -21,7 +19,7 @@ describe("auth-mantine", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -29,7 +27,7 @@ describe("auth-mantine", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("email");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property("email");
       });
     });
 
@@ -45,7 +43,7 @@ describe("auth-mantine", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllLocalStorage();
       cy.reload();
@@ -57,7 +55,7 @@ describe("auth-mantine", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get(".mantine-Title-root").contains(/sign in to your account/i);
       cy.location("search").should("contains", "to=%2Ftest");
       cy.location("pathname").should("eq", "/login");
@@ -78,7 +76,7 @@ describe("auth-mantine", () => {
 
       cy.location("pathname").should("eq", "/posts");
       cy.getAllLocalStorage().then((ls) => {
-        expect(ls[BASE_URL]).to.have.property("email");
+        expect(ls[Cypress.config("baseUrl")!]).to.have.property("email");
       });
     });
 
@@ -104,7 +102,7 @@ describe("auth-mantine", () => {
 
   describe("forgot password", () => {
     it("should throw error if forgot password email is wrong", () => {
-      cy.visit(`${BASE_URL}/forgot-password`);
+      cy.visit("/forgot-password");
       cy.get('input[name="email"]').clear().type("test@test.com");
       submitAuthForm();
       cy.getMantineNotification().contains(/invalid email/i);
@@ -114,7 +112,7 @@ describe("auth-mantine", () => {
 
   describe("update password", () => {
     it("should throw error if update password is wrong", () => {
-      cy.visit(`${BASE_URL}/update-password`);
+      cy.visit("/update-password");
       cy.get('input[name="password"]').clear().type("123456");
       cy.get('input[name="confirmPassword"]').clear().type("123456");
       submitAuthForm();

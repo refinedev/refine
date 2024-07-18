@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("server-side-form-validation-chakra-ui", () => {
-  const BASE_URL = "http://localhost:5173";
-
   beforeEach(() => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
@@ -15,7 +13,7 @@ describe("server-side-form-validation-chakra-ui", () => {
 
     cy.interceptGETCategories();
     cy.interceptGETPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("should render edit form errors ", () => {

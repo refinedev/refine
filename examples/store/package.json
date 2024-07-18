@@ -6,7 +6,7 @@
     "build": "next build && rimraf .next/cache",
     "dev": "cross-env NODE_OPTIONS=--max_old_space_size=4096 PORT=8000 next dev",
     "lint": "eslint '**/*.{js,jsx,ts,tsx}'",
-    "start:prod": "next start"
+    "start": "next start"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",

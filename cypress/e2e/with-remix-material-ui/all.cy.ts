@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("with-remix-material-ui", () => {
-  const BASE_URL = "http://localhost:3000";
-
   const submitAuthForm = () => {
     return cy.get("button[type=submit]").click();
   };
@@ -26,7 +24,7 @@ describe("with-remix-material-ui", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -50,7 +48,7 @@ describe("with-remix-material-ui", () => {
       login();
       cy.location("pathname").should("eq", "/blog-posts");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllCookies();
       cy.reload();
@@ -63,7 +61,7 @@ describe("with-remix-material-ui", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get(".MuiTypography-root").contains(/sign in to your account/i);
       cy.location("search").should("contains", "to=%2Ftest");
       cy.location("pathname").should("eq", "/login");
@@ -116,7 +114,7 @@ describe("with-remix-material-ui", () => {
 
   describe("update password", () => {
     it("should throw error if update password is wrong", () => {
-      cy.visit(`${BASE_URL}/update-password`).wait(1000);
+      cy.visit("/update-password").wait(1000);
       cy.location("pathname").should("eq", "/update-password");
       cy.get("#password").type("123456");
       cy.get("#confirmPassword").type("123456");

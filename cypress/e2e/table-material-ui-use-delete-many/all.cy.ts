@@ -3,7 +3,7 @@
 
 describe("table-material-ui-use-delete-many", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("should be view list page", () => {

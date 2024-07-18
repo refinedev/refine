@@ -7,7 +7,7 @@
     "build": "refine build",
     "dev": "refine dev",
     "refine": "refine",
-    "start:prod": "refine start"
+    "start": "refine start"
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.36",
