@@ -18,13 +18,14 @@ import { useUpdate } from "@refinedev/core";
 const { mutate } = useUpdate({
   resource: "products",
   id: 1,
+});
+
+mutate({
   values: {
     name: "New Product",
     material: "Wood",
   },
 });
-
-mutate();
 ```
 
 Alternatively, you can pass the parameters directly to the `mutate` function:
@@ -74,10 +75,6 @@ When the `useUpdate` mutation runs successfully, it will call the `log` method f
 const { mutate } = useUpdate({
   resource: "products",
   id: 1,
-  values: {
-    name: "New Product",
-    material: "Wood",
-  },
   mutationOptions: {
     retry: 3,
     onSuccess: (data, variables, context) => {
@@ -89,7 +86,12 @@ const { mutate } = useUpdate({
   },
 });
 
-mutate();
+mutate({
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
+});
 ```
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)

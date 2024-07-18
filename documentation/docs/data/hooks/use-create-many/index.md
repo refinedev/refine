@@ -20,6 +20,14 @@ import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany({
   resource: "products",
+  mutationOptions: {
+    onSuccess: () => {
+      /* do something after mutation success */
+    },
+  },
+});
+
+mutate({
   values: [
     {
       name: "Product 1",
@@ -31,8 +39,6 @@ const { mutate } = useCreateMany({
     },
   ],
 });
-
-mutate();
 ```
 
 Alternatively, you can pass the parameters directly to the `mutate` function:
@@ -42,19 +48,26 @@ import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany();
 
-mutate({
-  resource: "products",
-  values: [
-    {
-      name: "Product 1",
-      material: "Wood",
+mutate(
+  {
+    resource: "products",
+    values: [
+      {
+        name: "Product 1",
+        material: "Wood",
+      },
+      {
+        name: "Product 2",
+        material: "Metal",
+      },
+    ],
+  },
+  {
+    onSuccess: () => {
+      /* do something after mutation success */
     },
-    {
-      name: "Product 2",
-      material: "Metal",
-    },
-  ],
-});
+  },
+);
 ```
 
 > 🚨 The mutate function always overrides the props of the `useCreateMany` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.

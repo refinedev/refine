@@ -37,10 +37,6 @@ import { useCreate } from "@refinedev/core";
 
 const { mutate } = useCreate({
   resource: "products",
-  values: {
-    name: "New Product",
-    material: "Wood",
-  },
   successNotification: false,
   mutationMode: "optimistic",
   mutationOptions: {
@@ -52,6 +48,10 @@ const { mutate } = useCreate({
 
 mutate({
   // also you can override the parameters given to the hook
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
 });
 ```
 

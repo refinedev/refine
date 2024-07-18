@@ -21,14 +21,15 @@ import { useUpdateMany } from "@refinedev/core";
 
 const { mutate } = useUpdateMany({
   resource: "products",
+  ids: [1, 2, 3],
+});
+
+mutate({
   values: {
     name: "New Product",
     material: "Wood",
   },
-  ids: [1, 2, 3],
 });
-
-mutate();
 ```
 
 Alternatively, you can pass the parameters directly to the `mutate` function:
