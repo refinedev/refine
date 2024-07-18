@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("with-remix-headless", () => {
-  const BASE_URL = "http://localhost:3000";
-
   const submitAuthForm = () => {
     return cy.get("[type=submit]").click();
   };
@@ -26,7 +24,7 @@ describe("with-remix-headless", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   describe("login", () => {
@@ -42,7 +40,7 @@ describe("with-remix-headless", () => {
       login();
       cy.location("pathname").should("eq", "/posts");
 
-      cy.visit(`${BASE_URL}/test`);
+      cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
       cy.clearAllCookies();
       cy.reload();
@@ -54,7 +52,7 @@ describe("with-remix-headless", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`);
+      cy.visit("/test-route");
       cy.get("h1").contains(/sign in to your account/i);
       cy.location("search").should("contains", "to=%2Ftest");
       cy.location("pathname").should("eq", "/login");

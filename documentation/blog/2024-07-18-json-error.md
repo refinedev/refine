@@ -4,9 +4,11 @@ description: We will look into the various possible causes of this error message
 slug: unexpected-token-in-json-at-position-0-error
 authors: chukwuka_reuben
 tags: [javascript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-09-json-error/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 18, 2024, to add sections for JSON Validation Tools and Best Practices for Working with JSON.**
 
 ## Introduction.
 
@@ -20,6 +22,8 @@ Steps we'll cover:
 - [Hitting Any API endpoint that does not exist:](#hitting-any-api-endpoint-that-does-not-exist)
 - [Spelling Error](#spelling-error)
 - [Forgetting to stringify your object:](#forgetting-to-stringify-your-object)
+- [Tools to Validate JSON](#tools-to-validate-json)
+- [Best Practices for Working with JSON](#best-practices-for-working-with-json)
 
 ## What is JSON?
 
@@ -190,6 +194,181 @@ localStorage.setItem("list", JSON.stringify(list));
 The code snippet above will fix the error.
 
 In general, it is always a good idea to carefully check your JSON data for any syntax errors before attempting to parse it. This will help to ensure that your code is able to properly handle the JSON data and avoid any errors like the "Unexpected token in JSON at position 0" error.
+
+## Tools to Validate JSON
+
+Let me introduce some tools and libraries that may help us to validate JSON responses before parsing them in order to save a lot of time by catching errors early.
+
+### JSONLint
+
+JSONLint is quite helpful in checking the JSON data quickly. It is an online tool where you can paste your JSON data, and it will point out all the errors. It helps me with debugging small snippets of JSON very well.
+
+The way to use JSONLint:
+
+1. Go to [JSONLint](https://jsonlint.com/).
+2. Paste your JSON data into the input box.
+3. Click the "Validate JSON" button.
+4. Review the highlighted errors and fix them accordingly.
+
+### Ajv
+
+Ajv is a useful library whenever more sophisticated validation is required, especially when working with JSON schemas. It allows us to define the structure of our JSON data and validate it programmatically.
+
+The following example demonstrates how to use Ajv:
+
+1. Install Ajv:
+
+   ```sh
+   npm install ajv
+   ```
+
+2. Create a JSON Schema:
+
+   ```json
+   {
+     "type": "object",
+     "properties": {
+       "name": { "type": "string" },
+       "age": { "type": "integer" }
+     },
+     "required": ["name", "age"]
+   }
+   ```
+
+3. Validate your JSON data:
+
+   ```javascript
+   const Ajv = require("ajv");
+   const ajv = new Ajv();
+
+   const schema = {
+     type: "object",
+     properties: {
+       name: { type: "string" },
+       age: { type: "integer" },
+     },
+     required: ["name", "age"],
+   };
+
+   const validate = ajv.compile(schema);
+   const data = { name: "John", age: 30 };
+
+   const valid = validate(data);
+   if (!valid) console.log(validate.errors);
+   else console.log("Valid JSON");
+   ```
+
+Using these tools, we can ensure that our JSON data is correctly formatted and adheres to the expected structure, which should help us avoid those annoying parsing errors.
+
+## Best Practices for Working with JSON
+
+I would like to share some good practices for working with JSON within our projects so that we do not fall into the basic pitfalls and make code more robust and maintainable.
+
+### Never Forget to Validate Your JSON Data
+
+Always validate JSON data first in order to ensure it is, in fact, well-formed and fits the expected schema; one can use quick-check tools like JSONLint or schema validation libraries such as Ajv.
+
+Example with Ajv:
+
+```javascript
+const Ajv = require("ajv");
+const ajv = new Ajv();
+
+const schema = {
+  type: "object",
+  properties: {
+    name: { type: "string" },
+    age: { type: "integer" },
+  },
+  required: ["name", "age"],
+};
+
+const validate = ajv.compile(schema);
+const data = { name: "John", age: 30 };
+
+const valid = validate(data);
+if (!valid) console.log(validate.errors);
+else console.log("Valid JSON");
+```
+
+### Use Good Error-Handling Practices
+
+Always use the try-catch block when parsing JSON to handle the errors in a nice and graceful manner.
+
+```javascript
+try {
+  const data = JSON.parse(jsonString);
+  console.log("Parsed data:", data);
+} catch (error) {
+  console.error("Error parsing JSON:", error);
+}
+```
+
+### Minify JSON Data
+
+Wherever possible, remove all unnecessary white space and, to the extent possible, use short key nameThis helps keep JSON payloads reduced in size, hence saving on bandwidth and optimizing for performance.
+
+```json
+{
+  "n": "John",
+  "a": 30
+}
+```
+
+### Use Consistent Naming Conventions for Keys
+
+Be sure to use a consistent key naming scheme, whether it is camelCase or snake_case, as consistency will make your code easily readable and maintainable.
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+```
+
+### Get Rid of Circular References
+
+JSON does not support circular reference. Make sure that the objects do not contain circular references before stringifying.
+
+```javascript
+const obj = {};
+obj.a = obj; // Circular reference
+JSON.stringify(obj); // This is going to throw an error
+```
+
+### Stringify with a Replacer Function
+
+Here is where you can serialize the format into a JSON, which might have an option for the filter to exclude some properties or even a method to change all other values before the process of serialization.
+
+```javascript
+const data = {
+  name: "John",
+  password: "secret",
+};
+
+const jsonString = JSON.stringify(data, (key, value) => {
+  if (key === "password") return undefined;
+  return value;
+});
+
+console.log(jsonString); // {"name":"John"}
+```
+
+### Watch Your Dates
+
+With regard to native support, JSON does not support date objects. Prior to serialization, dates have to be converted into a string or timestamp format.
+
+```javascript
+const data = {
+  name: "John",
+  createdAt: new Date().toISOString(),
+};
+
+const jsonString = JSON.stringify(data);
+console.log(jsonString); // {"name":"John","createdAt":"2024-07-10T12:34:56.789Z"}
+```
+
+Here's a quick list of best practices that will help us all work through JSON with increasing effectiveness and some common pitfalls to avoid.
 
 ## Conclusion
 

@@ -5,7 +5,7 @@ describe("table-chakra-ui-advanced", () => {
   beforeEach(() => {
     cy.interceptGETPosts();
 
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("the row should be expandable", () => {

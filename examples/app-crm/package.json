@@ -9,8 +9,8 @@
     "dev": "refine dev",
     "format": "prettier src --write",
     "lint": "eslint src --fix",
-    "preview": "refine start",
     "refine": "refine",
+    "start": "refine start",
     "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {
