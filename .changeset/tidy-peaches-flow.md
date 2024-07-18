@@ -53,6 +53,10 @@ const { mutate } = useUpdateMany({
 });
 
 mutate({
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
   // also you can override the parameters given to the hook
 });
 ```

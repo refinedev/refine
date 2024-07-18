@@ -43,16 +43,6 @@ import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany({
   resource: "products",
-  values: [
-    {
-      name: "Product 1",
-      material: "Wood",
-    },
-    {
-      name: "Product 2",
-      material: "Metal",
-    },
-  ],
   successNotification: false,
   mutationMode: "optimistic",
   mutationOptions: {
@@ -64,6 +54,16 @@ const { mutate } = useCreateMany({
 
 mutate({
   // also you can override the parameters given to the hook
+  values: [
+    {
+      name: "Product 1",
+      material: "Wood",
+    },
+    {
+      name: "Product 2",
+      material: "Metal",
+    },
+  ],
 });
 ```
 

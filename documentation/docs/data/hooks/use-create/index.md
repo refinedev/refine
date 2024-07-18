@@ -9,14 +9,13 @@ It uses the `create` method as the **mutation function** from the [`dataProvider
 
 ## Usage
 
-The `useUpdate` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
+The `useCreate` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
 
 ```tsx
-import { useUpdate } from "@refinedev/core";
+import { useCreate } from "@refinedev/core";
 
-const { mutate } = useUpdate({
+const { mutate } = useCreate({
   resource: "products",
-  id: 1,
 });
 
 mutate({
@@ -30,13 +29,12 @@ mutate({
 Alternatively, you can pass the parameters directly to the `mutate` function:
 
 ```tsx
-import { useUpdate } from "@refinedev/core";
+import { useCreate } from "@refinedev/core";
 
-const { mutate } = useUpdate();
+const { mutate } = useCreate();
 
 mutate({
   resource: "products",
-  id: 1,
   values: {
     name: "New Product",
     material: "Wood",
@@ -44,7 +42,7 @@ mutate({
 });
 ```
 
-> 🚨 The mutate function always overrides the props of the `useUpdate` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.
+> 🚨 The mutate function always overrides the props of the `useCreate` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.
 
 ## Realtime Updates
 
@@ -71,7 +69,7 @@ When the `useCreate` mutation runs successfully, it will call the `log` method f
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
 ```tsx
-const { mutate } = useUpdate({
+const { mutate } = useCreate({
   resource: "products",
   mutationOptions: {
     retry: 3,
