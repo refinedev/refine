@@ -82,7 +82,7 @@ export const createResources = async (
     // get the project type
     const uiFramework = getUIFramework();
 
-    const sourceDir = `${__dirname}/../templates/resource`;
+    const sourceDir = `${__dirname}/../templates/resource/components`;
 
     // create temp dir
     const tempDir = generateTempDir();
