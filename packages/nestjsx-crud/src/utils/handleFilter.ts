@@ -36,7 +36,7 @@ export const handleFilter = (
   query: RequestQueryBuilder,
   filters?: CrudFilters,
 ) => {
-  if (filters) {
+ if (Array.isArray(filters) && filters.length > 0)  {
     query.search(generateSearchFilter(filters));
   }
   return query;
