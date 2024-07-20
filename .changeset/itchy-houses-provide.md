@@ -1,9 +1,9 @@
 ---
-"@refinedev/nestjsx-crud": major
+"@refinedev/nestjsx-crud": patch
 ---
 
-fix:Handle empty filters on nestjsx/crud data provider.
+fix: update empty filter checks
 
-Updated the condition  in handleFilter
+Updated the conditions to properly check empty filters
 
-Fixes #6146
+[Fixes #6146](https://github.com/refinedev/refine/issues/6146)
