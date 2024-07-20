@@ -6,8 +6,8 @@
 "@refinedev/mui": minor
 ---
 
-feat(react-hook-form): update version (#6139)
+feat(react-hook-form): update version constraint from `^6.30.0` to `^6.43.5`
 
 Update react-hook-form version to address runtime subscribe error
 
-Fixes #6139
+[Fixes #6139](https://github.com/refinedev/refine/issues/6139)
