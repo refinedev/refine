@@ -3,7 +3,7 @@ import * as utilsProject from "../../../../utils/project/index";
 import * as testTargetModule from "@commands/add/sub-commands/resource/create-resources";
 import { existsSync, rmdirSync } from "fs-extra";
 
-const srcDirPath = __dirname.split("\\").slice(0, -4).join("\\");
+const srcDirPath = `${__dirname}/../../../..`;
 const tmpComponentDirPath = `${srcDirPath}/components/tmps`;
 const pageRootDirPath = `${srcDirPath}/app`;
 
