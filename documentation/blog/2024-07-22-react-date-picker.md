@@ -4,9 +4,11 @@ description: We’ll show you how to implement a date picker using the ‘react-
 slug: react-date-picker
 authors: irakli_tchigladze
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-03-react-date-picker/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 22, 2024, to add sections for Accessibility Considerations, Internationalization and Localization, and Performance Optimization.**
 
 ## Introduction
 
@@ -506,12 +508,300 @@ By default, a date picker shows a calendar where users can select a date. Use th
 
 <br/>
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Accessibility Considerations
+
+I just wanted to share a few thoughts on how to make our date picker implementation accessible for all users. Accessibility is key, and here are a few key things we should bear in mind:
+
+### Keyboard Navigation
+
+- Ensure that the date picker is browsable and selectable using a keyboard, which in turn shall include browsing of dates by arrow keys, selection of date by pressing Enter, and closing the date picker by pressing Esc.
+- Proper focus management should be ensured so that the date picker is an active element when open and on closing, the focus should get back to the element which triggers it.
+
+### ARIA Attributes
+
+- Use ARIA attributes like `aria-label` for buttons, `role="dialog"` on the date picker container, and `aria-live` on content that is dynamically updated.
+- Ensure each date cell contains an `aria-label` that describes the date, for example, "July 17, 2024".
+
+### Screen Reader Support
+
+- Make sure the date picker is correctly announced by screen readers, with proper instruction and feedback on interaction.
+- Tested with popular screen readers like JAWS, NVDA, and VoiceOver.
+
+### High Contrast Mode
+
+- Ensure that the date picker can be seen and used properly when in high contrast mode. This is especially of value to a visually impaired user.
+- Test with Windows High Contrast mode and its counterparts in other operating systems.
+
+### Color Contrast
+
+- Ensure the presence of enough color contrast between elements such as text and interactive components. Contrast ratio should meet WCAG guidelines, while at the minimum, normal text should have a 4.5:1 contrast ratio.
+- Make use of tools such as the Chrome DevTools Accessibility Pane or contrast checkers to verify online.
+
+### Responsive Design
+
+- Ensure that the date picker is usable on every screen size, from the smallest mobile screen to a large tablet. Tap-target sizes and hit areas need to be decently sized.
+- Test on multiple devices and orientations for an acceptable experience.
+
+### Clear Instructions
+
+- Offer clear error messages and instructions. If a user has made an invalid selection, such as choosing an invalid date, explain to them the reason it's invalid and how to correct the mistake.
+- It may guide users with inline instructions or tooltips about how to select a date.
+
+With these accessibility features, we can be sure that the date picker accommodates each and every one, regardless of their abilities. So let's go over these points once again, and then let's implement them in our date picker component and test thoroughly.
+
+## Internationalization and Localization
+
+There are some key issues in the area of Internationalization (i18n) and Localization (l10n) that I would like to raise as they relate to our date picker implementation. For the date picker, let's customize it for different languages and regions so users all over the world can share a common experience.
+
+### Language Support
+
+- Be able to translate the date picker to other languages. Use libraries or frameworks that support i18n, such as `react-i18next` or `react-intl`.
+- All static text, such as names of the months, names of days, and any textual instructions, should be translatable.
+
+### Date Formats
+
+- Date format depends on locale, e.g., MM/DD/YYYY in the United States, DD/MM/YYYY in Europe. Datepicker should locale user's machine settings.
+- Use a locale-aware library like `date-fns` or `moment.js` for date formatting and parsing.
+
+### Number Formats
+
+- Ensure that numeric values like years are formatted with respect to the locale being used while considering different systems of numerals.
+
+### Right-to-Left (RTL) Support
+
+- Some of the languages that read RTL are Arabic and Hebrew. There should be RTL layout support for date pickers so that a natural user reading and interacting experience can be maintained.
+- Test the date picker within an RTL layout for elements alignment and usability.
+
+### Locale-Specific Holidays and Weekends
+
+- In other cultures, weekends might not take place on Saturday and Sunday. For instance, in some Middle Eastern countries, the weekend takes place on Friday and Saturday.
+- Shows local holidays and weekends as per the user's locale.
+
+### Time Zone Awareness
+
+- If the date picker includes time entry, make sure that it properly supports time zones. Users should see the local time in their time zone.
+- Make use of libraries such as `moment-timezone` for time zone conversions.
+
+### Cultural Sensitivities
+
+- Be mindful of cultural differences and sensitivities. Some colors, icons, and symbols have different connotations depending on the culture and the people.
+- Ensure that the user interface of the date picker does not face any of these differences.
+
+### Testing
+
+- Test the date picker for different languages, date formats, and cultural settings. Use tools such as BrowserStack for testing on various locales and devices.
+- Involve native speakers in the testing process, so that any translation error or cultural issue can be caught.
+
+Implementation of these best i18n and l10n practices on the date picker takes it one step further as we keep enhancing our component.
+
+## Performance Optimization
+
+I also wanted to touch on some critical aspects of optimization in performance that we should consider for our date picker, taking care that it runs in the most efficient manner and responds properly to user input. This would greatly improve the user experience—most importantly, for users with low-end devices or slow connections.
+
+### Lazy Loading
+
+- Load the components and data only when needed, like the date picker component should be loaded when only the user interacts with the input field.
+- Use React's `React.lazy` with a `Suspense` wrapper to get component-level code-splitting.
+
+```tsx
+import React, { Suspense, lazy } from "react";
+
+const DatePicker = lazy(() => import("./DatePicker"));
+
+function App() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <DatePicker />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### Avoid Minimize Re-renders
+
+- Guarantee minimal re-rendering in the date picker component. The `React.memo` implementation takes care of this.
+- Avoid passing a new object or function reference as a prop, it is better to avoid it because it will make re-renders.
+
+```tsx
+import React, { useState, memo } from "react";
+
+const DatePicker = memo(({ selectedDate, onDateChange }) => {
+  return <input type="date" value={selectedDate} onChange={onDateChange} />;
+});
+
+function App() {
+  const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  return (
+    <div>
+      <DatePicker selectedDate={date} onDateChange={handleDateChange} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+### Efficient State Management
+
+- Keep the state as minimal as possible. Store only values that are required to support the functionality of the date picker.
+- Use the `useCallback` and `useMemo` hooks to memoize functions and values for preventing unnecessary calculations.
+
+```tsx
+import React, { useState, useCallback, useMemo } from "react";
+
+function DatePicker({ selectedDate, onDateChange }) {
+  return <input type="date" value={selectedDate} onChange={onDateChange} />;
+}
+
+function App() {
+  const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
+
+  const handleDateChange = useCallback((e) => {
+    setDate(e.target.value);
+  }, []);
+
+  const formattedDate = useMemo(() => {
+    return new Date(date).toLocaleDateString();
+  }, [date]);
+
+  return (
+    <div>
+      <DatePicker selectedDate={date} onDateChange={handleDateChange} />
+      <p>Selected Date: {formattedDate}</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### Virtualization
+
+- If the date picker is rich in numbers of items, for example, years or months, use virtualization of visible items. The huge positive impact can be realized in reducing the loading time and scrolling performance at the start.
+- Leverage libraries like `react-window` or `react-virtualized` for virtualization.
+
+```tsx
+import React from "react";
+import { FixedSizeList as List } from "react-window";
+
+const items = Array.from({ length: 1000 }, (_, index) => `Item ${index + 1}`);
+
+function DatePicker() {
+  return (
+    <List height={150} itemCount={items.length} itemSize={35} width={300}>
+      {({ index, style }) => <div style={style}>{items[index]}</div>}
+    </List>
+  );
+}
+
+export default DatePicker;
+```
+
+### Debouncing
+
+- For user input that triggers heavy computation or API calls (e.g., searching for dates or input validation), you'll want to debounce so the operations don't get called too frequently.
+- Implement a debounce function that triggers the search after a predefined period of time in which a user has stopped typing.
+
+```tsx
+import React, { useState } from "react";
+import { debounce } from "lodash";
+
+function DatePicker() {
+  const [date, setDate] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+    debouncedSearch(e.target.value);
+  };
+
+  const debouncedSearch = debounce((term) => {
+    // Simulate an API call
+    console.log("Searching for:", term);
+  }, 300);
+
+  return (
+    <div>
+      <input type="date" value={date} onChange={handleDateChange} />
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+      />
+    </div>
+  );
+}
+
+export default DatePicker;
+```
+
+### Code Splitting
+
+- Code split into small bundles to ensure the load time for the first instance. Use in-built support in React for code-splitting with React.lazy and dynamic imports.
+- Analyze the bundle size with tools like Webpack Bundle Analyzer and optimize the build configuration based on the analysis.
+
+```tsx
+import React, { Suspense, lazy } from "react";
+
+const DatePicker = lazy(() => import("./DatePicker"));
+
+function App() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <DatePicker />
+      </Suspense>
+    </div>
+  );
+}
+
+export default App;
+```
+
+### Optimized Event Handling
+
+- Do not add many event listeners; it is expensive in terms of performance. Use event delegation when possible.
+- Batch state updates and handle multiple events within one handler in order to cut on re-renders.
+
+```tsx
+import React, { useState, useEffect } from "react";
+
+function DatePicker() {
+  const [date, setDate] = useState(new Date().toISOString().substr(0, 10));
+
+  useEffect(() => {
+    const handleResize = () => {
+      console.log("Window resized");
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const handleDateChange = (e) => {
+    setDate(e.target.value);
+  };
+
+  return (
+    <div>
+      <input type="date" value={date} onChange={handleDateChange} />
+    </div>
+  );
+}
+
+export default DatePicker;
+```
 
 ## Conclusion
 
