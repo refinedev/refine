@@ -13,14 +13,14 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostCreate = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     resetField,
     formState: { errors },
   } = useForm();
 
-  const postsData = queryResult?.data?.data;
+  const postsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",

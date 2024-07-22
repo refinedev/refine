@@ -12,7 +12,7 @@ import { useSelect } from "@refinedev/core";
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     setValue,
@@ -25,7 +25,7 @@ export const PostEdit = () => {
     },
   });
 
-  const postsData = queryResult?.data?.data;
+  const postsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",
@@ -33,7 +33,7 @@ export const PostEdit = () => {
   });
 
   React.useEffect(() => {
-    setValue("category.id", queryResult?.data?.data?.category?.id || 1);
+    setValue("category.id", query?.data?.data?.category?.id || 1);
   }, [categoryOptions]);
 
   return (

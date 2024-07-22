@@ -918,13 +918,13 @@ render(<App />);
 When creating and editing posts you can use these API parameters in `meta`:
 
 ```tsx
-const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+const { formProps, saveButtonProps, query } = useForm<IPost>({
   meta: { publicationState: "preview" },
 });
 ```
 
 ```tsx title="EditList.tsx"
-const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+const { formProps, saveButtonProps, query } = useForm<IPost>({
   meta: { populate: ["category", "cover"] },
 });
 ```

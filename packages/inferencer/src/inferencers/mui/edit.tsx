@@ -439,7 +439,7 @@ export const renderer = ({
         ${useTranslateHook}
         const {
             saveButtonProps,
-            refineCore: { queryResult },
+            refineCore: { query },
             register,
             control,
             formState: { errors },
@@ -472,7 +472,7 @@ export const renderer = ({
             }
         );
 
-        const ${recordName} = queryResult?.data?.data;
+        const ${recordName} = query?.data?.data;
 
         ${relationHooksCode}
 

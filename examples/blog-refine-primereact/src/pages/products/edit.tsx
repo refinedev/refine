@@ -16,7 +16,7 @@ export const ProductEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     handleSubmit,
     control,
     formState: { errors },
@@ -58,7 +58,7 @@ export const ProductEdit = () => {
             label="Refresh"
             icon="pi pi-refresh"
             outlined
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           />
         </div>
       }

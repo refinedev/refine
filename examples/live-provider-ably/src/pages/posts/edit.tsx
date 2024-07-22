@@ -16,7 +16,7 @@ export const PostEdit = () => {
     "deleted" | "updated" | undefined
   >();
 
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const { formProps, saveButtonProps, query } = useForm<IPost>({
     liveMode: "manual",
     onLiveEvent: (event) => {
       if (event.type === "deleted" || event.type === "updated") {
@@ -25,14 +25,14 @@ export const PostEdit = () => {
     },
   });
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: postData?.category.id,
   });
 
   const handleRefresh = () => {
-    queryResult?.refetch();
+    query?.refetch();
     setDeprecated(undefined);
   };
 

@@ -5,14 +5,14 @@ import type { IPost } from "../../interfaces";
 type FormValues = Omit<IPost, "id">;
 
 export const PostCreate: React.FC = () => {
-  const { formLoading, onFinish, queryResult } = useForm<
+  const { formLoading, onFinish, query } = useForm<
     IPost,
     HttpError,
     FormValues
   >();
 
   // if action is "clone", we'll have defaultValues
-  const defaultValues = queryResult?.data?.data;
+  const defaultValues = query?.data?.data;
 
   const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

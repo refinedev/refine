@@ -14,7 +14,7 @@ import type { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     formState: { errors },
@@ -24,8 +24,8 @@ export const PostEdit = () => {
   const { options } = useSelect({
     resource: "categories",
 
-    defaultValue: queryResult?.data?.data.category.id,
-    queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+    defaultValue: query?.data?.data.category.id,
+    queryOptions: { enabled: !!query?.data?.data.category.id },
   });
 
   useEffect(() => {

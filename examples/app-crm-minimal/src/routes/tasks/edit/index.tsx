@@ -27,7 +27,7 @@ export const TasksEditPage = () => {
   const [activeKey, setActiveKey] = useState<string | undefined>();
 
   const { list } = useNavigation();
-  const { modalProps, close, queryResult } = useModalForm<Task>({
+  const { modalProps, close, query } = useModalForm<Task>({
     action: "edit",
     defaultVisible: true,
     meta: {
@@ -35,8 +35,8 @@ export const TasksEditPage = () => {
     },
   });
 
-  const { description, dueDate, users, title } = queryResult?.data?.data ?? {};
-  const isLoading = queryResult?.isLoading ?? true;
+  const { description, dueDate, users, title } = query?.data?.data ?? {};
+  const isLoading = query?.isLoading ?? true;
 
   return (
     <Modal

@@ -142,7 +142,7 @@ import { Controller } from "react-hook-form";
 export const ProductCreate = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },

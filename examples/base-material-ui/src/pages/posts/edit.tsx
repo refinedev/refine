@@ -12,7 +12,7 @@ import type { IPost, ICategory, Nullable, IStatus } from "../../interfaces";
 export const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -26,7 +26,7 @@ export const PostEdit: React.FC = () => {
 
   const { autocompleteProps } = useAutocomplete<ICategory>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   return (

@@ -15,7 +15,7 @@ import { CATEGORIES_SELECT_QUERY, POST_EDIT_MUTATION } from "./queries";
 import type { CategoriesSelectQuery, PostEditMutation } from "graphql/types";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
+  const { formProps, saveButtonProps, query } = useForm<
     GetFields<PostEditMutation>,
     HttpError
   >({
@@ -39,7 +39,7 @@ export const PostEdit = () => {
         extra: (
           <>
             <ListButton />
-            <RefreshButton onClick={() => queryResult?.refetch()} />
+            <RefreshButton onClick={() => query?.refetch()} />
           </>
         ),
       }}

@@ -81,7 +81,7 @@ import Typography from "@mui/material/Typography";
 export const EditPage: React.FC = () => {
     const {
         saveButtonProps,
-        refineCore: { queryResult: productQueryResult },
+        refineCore: { query: productQuery },
         register,
         control,
     } = useForm<IProduct>({
@@ -91,7 +91,7 @@ export const EditPage: React.FC = () => {
             action: "edit",
         },
     });
-    const product = productQueryResult?.data?.data;
+    const product = productQuery?.data?.data;
 
     const { autocompleteProps, queryResult: categoriesQueryResult } =
         useAutocomplete<ICategory>({

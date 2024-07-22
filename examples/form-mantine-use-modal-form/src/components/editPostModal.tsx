@@ -20,12 +20,12 @@ export const EditPostModal: React.FC<
   getInputProps,
   errors,
   modal: { visible, close, title },
-  refineCore: { queryResult },
+  refineCore: { query },
   saveButtonProps,
 }) => {
   const { selectProps } = useSelect({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   return (

@@ -19,7 +19,7 @@ export const PostEdit: React.FC = () => {
 
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     register,
     control,
     formState: { errors },
@@ -30,7 +30,7 @@ export const PostEdit: React.FC = () => {
 
   const { autocompleteProps } = useAutocomplete<ICategory>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   const imageInput = watch("images");

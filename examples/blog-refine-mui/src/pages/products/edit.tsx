@@ -14,13 +14,13 @@ export const ProductEdit = () => {
   const translate = useTranslate();
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     register,
     control,
     formState: { errors },
   } = useForm();
 
-  const productsData = queryResult?.data?.data;
+  const productsData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",

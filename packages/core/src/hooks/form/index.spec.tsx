@@ -74,9 +74,7 @@ describe("useForm Hook", () => {
       expect(!result.current.formLoading).toBeTruthy();
     });
 
-    expect(result.current.queryResult?.data?.data.title).toEqual(
-      posts[0].title,
-    );
+    expect(result.current.query?.data?.data.title).toEqual(posts[0].title);
   });
 
   it("uses the correct meta values when fetching data", async () => {
@@ -171,9 +169,7 @@ describe("useForm Hook", () => {
       expect(!result.current.formLoading).toBeTruthy();
     });
 
-    expect(result.current.queryResult?.data?.data.title).toEqual(
-      posts[0].title,
-    );
+    expect(result.current.query?.data?.data.title).toEqual(posts[0].title);
     expect(result.current.id).toEqual(2);
   });
 
@@ -194,9 +190,7 @@ describe("useForm Hook", () => {
       expect(!result.current.formLoading).toBeTruthy();
     });
 
-    expect(result.current.queryResult?.data?.data.title).toEqual(
-      posts[0].title,
-    );
+    expect(result.current.query?.data?.data.title).toEqual(posts[0].title);
 
     expect(result.current.id).toEqual(2);
   });
@@ -268,9 +262,7 @@ describe("useForm Hook", () => {
       expect(!result.current.formLoading).toBeTruthy();
     });
 
-    expect(result.current.queryResult?.data?.data.title).toEqual(
-      posts[0].title,
-    );
+    expect(result.current.query?.data?.data.title).toEqual(posts[0].title);
   });
 
   it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
@@ -561,14 +553,25 @@ describe("useForm Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult?.isFetching).toBeTruthy();
+      expect(result.current.query?.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
     });
 
     await waitFor(() => {
-      expect(!result.current.queryResult?.isFetching).toBeTruthy();
+      expect(!result.current.query?.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
+    });
+  });
+
+  it("should return deprecated query and mutation results", async () => {
+    const { result } = renderHook(() => useForm({ resource: "posts" }), {
+      wrapper: SimpleWrapper,
+    });
+
+    await waitFor(() => {
+      expect(result.current.query).toEqual(result.current.query);
+      expect(result.current.mutation).toEqual(result.current.mutation);
     });
   });
 
@@ -709,7 +712,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutationResult.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(onMutationSuccessMock).toBeCalledWith(
@@ -751,7 +754,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutationResult.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onMutationErrorMock).toBeCalledWith(
@@ -805,7 +808,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutationResult?.isLoading).toBeTruthy();
+        expect(result.current.mutation?.isLoading).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
         expect(onInterval).toBeCalled();
       });
@@ -813,7 +816,7 @@ describe("useForm Hook", () => {
       await promise;
 
       await waitFor(() => {
-        expect(!result.current.mutationResult?.isLoading).toBeTruthy();
+        expect(!result.current.mutation?.isLoading).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBeUndefined();
       });
     });
@@ -959,7 +962,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutationResult.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(onMutationSuccessMock).toBeCalledWith(
@@ -1002,7 +1005,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutationResult.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onMutationErrorMock).toBeCalledWith(
@@ -1057,7 +1060,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutationResult?.isLoading).toBeTruthy();
+        expect(result.current.mutation?.isLoading).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
         expect(onInterval).toBeCalled();
       });
@@ -1065,7 +1068,7 @@ describe("useForm Hook", () => {
       await promise;
 
       await waitFor(() => {
-        expect(!result.current.mutationResult?.isLoading).toBeTruthy();
+        expect(!result.current.mutation?.isLoading).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBeUndefined();
       });
     });
@@ -1120,7 +1123,7 @@ describe("useForm Hook", () => {
       await assertList(useManyResult, "title", updatedTitle);
 
       await waitFor(() => {
-        expect(result.current.mutationResult.isError).toEqual(true);
+        expect(result.current.mutation.isError).toEqual(true);
       });
 
       await assertOne(useOneResult, "title", initialTitle);

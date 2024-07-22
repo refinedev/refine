@@ -19,19 +19,19 @@ export const VideoClubMemberPageEdit = () => {
 
   const {
     control,
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query },
     handleSubmit,
   } = useForm<Member>();
 
   const onFinishHandler = (data: FieldValues) => {
     onFinish({
       ...data,
-      photo_url: memberPhoto || queryResult?.data?.data?.photo_url,
+      photo_url: memberPhoto || query?.data?.data?.photo_url,
     });
   };
 
-  const member = queryResult?.data?.data;
-  const isLoading = queryResult?.isLoading;
+  const member = query?.data?.data;
+  const isLoading = query?.isLoading;
 
   return (
     <VideoClubLayoutSubPage

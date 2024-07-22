@@ -13,7 +13,7 @@ export const CategoryEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     handleSubmit,
     control,
     formState: { errors },
@@ -50,7 +50,7 @@ export const CategoryEdit = () => {
             label="Refresh"
             icon="pi pi-refresh"
             outlined
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           />
         </div>
       }

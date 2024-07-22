@@ -145,8 +145,8 @@ import React from "react";
 import { useForm } from "@refinedev/core";
 
 export default function ProductsEdit() {
-  const { onFinish, queryResult, formLoading } = useForm();
-  const record = queryResult?.data?.data;
+  const { onFinish, query, formLoading } = useForm();
+  const record = query?.data?.data;
 
   if (isLoading) {
     return <div>Loading...</div>;

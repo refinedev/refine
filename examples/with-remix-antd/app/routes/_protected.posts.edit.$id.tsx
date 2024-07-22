@@ -10,7 +10,7 @@ import type { IPost } from "../interfaces";
 const PostEdit: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();
 
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const { formProps, saveButtonProps, query } = useForm<IPost>({
     queryOptions: {
       initialData,
     },
@@ -18,7 +18,7 @@ const PostEdit: React.FC = () => {
 
   const { selectProps: categorySelectProps } = useSelect<IPost>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data?.category.id,
+    defaultValue: query?.data?.data?.category.id,
   });
 
   return (

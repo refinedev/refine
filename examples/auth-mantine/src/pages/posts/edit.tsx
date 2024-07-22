@@ -8,7 +8,7 @@ export const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     errors,
   } = useForm({
     initialValues: {
@@ -31,7 +31,7 @@ export const PostEdit: React.FC = () => {
 
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   return (

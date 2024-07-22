@@ -1,5 +1,5 @@
-import React from "react";
-import { Edit, useForm, useSelect } from "@refinedev/antd";
+import { Edit, useEditableTable, useForm, useSelect } from "@refinedev/antd";
+import { useForm as useFormCore, useShow, useTable } from "@refinedev/core";
 
 import { Form, Input, Select } from "antd";
 
@@ -8,13 +8,31 @@ import MDEditor from "@uiw/react-md-editor";
 import type { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult, autoSaveProps } =
-    useForm<IPost>({
-      warnWhenUnsavedChanges: true,
-      autoSave: {
-        enabled: true,
-      },
-    });
+  const {
+    queryResult: queryResultCore,
+    mutationResult: mutationResultCore,
+    mutation: mutationCore,
+    query: queryCore,
+  } = useFormCore();
+  const { queryResult: queryResultShow } = useShow();
+  const { queryResult: queryResultShowSelect, defaultValueQueryResult } =
+    useSelect({ resource: "" });
+  const { tableQueryResult } = useTable();
+
+  // const { queryResult,query } = useEditableTable();
+
+  const {
+    formProps,
+    saveButtonProps,
+    queryResult,
+    mutationResult,
+    autoSaveProps,
+  } = useForm<IPost>({
+    warnWhenUnsavedChanges: true,
+    autoSave: {
+      enabled: true,
+    },
+  });
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({

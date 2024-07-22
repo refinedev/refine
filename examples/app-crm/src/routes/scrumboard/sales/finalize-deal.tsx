@@ -24,7 +24,7 @@ export const SalesFinalizeDeal = () => {
   const invalidate = useInvalidate();
   const { list } = useNavigation();
 
-  const { formProps, modalProps, close, queryResult } = useModalForm<
+  const { formProps, modalProps, close, query } = useModalForm<
     Deal,
     HttpError,
     FormValues
@@ -48,16 +48,14 @@ export const SalesFinalizeDeal = () => {
   });
 
   useEffect(() => {
-    const month =
-      queryResult?.data?.data?.closeDateMonth ?? new Date().getMonth();
-    const day = queryResult?.data?.data?.closeDateDay ?? new Date().getDay();
-    const year =
-      queryResult?.data?.data?.closeDateYear ?? new Date().getFullYear();
+    const month = query?.data?.data?.closeDateMonth ?? new Date().getMonth();
+    const day = query?.data?.data?.closeDateDay ?? new Date().getDay();
+    const year = query?.data?.data?.closeDateYear ?? new Date().getFullYear();
 
     formProps.form?.setFieldsValue({
       closeDate: dayjs(new Date(year, month - 1, day)),
     });
-  }, [queryResult?.data?.data]);
+  }, [query?.data?.data]);
 
   return (
     <Modal

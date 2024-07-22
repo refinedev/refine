@@ -4,9 +4,9 @@ import { Edit, useForm, useSelect } from "@refinedev/antd";
 import { Form, Input, Select } from "antd";
 
 export default function BlogPostEdit() {
-  const { formProps, saveButtonProps, queryResult } = useForm({});
+  const { formProps, saveButtonProps, query } = useForm({});
 
-  const blogPostsData = queryResult?.data?.data;
+  const blogPostsData = query?.data?.data;
 
   const { selectProps: categorySelectProps } = useSelect({
     resource: "categories",

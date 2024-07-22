@@ -26,7 +26,7 @@ import type {
 import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
+  const { formProps, saveButtonProps, query, formLoading } = useForm<
     GetFields<UpdatePostMutation>,
     HttpError,
     GetVariables<UpdatePostMutationVariables>
@@ -36,7 +36,7 @@ export const PostEdit = () => {
     },
   });
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<
     GetFieldsFromList<GetPostCategoriesSelectQuery>
   >({
@@ -54,7 +54,7 @@ export const PostEdit = () => {
         extra: (
           <>
             <ListButton />
-            <RefreshButton onClick={() => queryResult?.refetch()} />
+            <RefreshButton onClick={() => query?.refetch()} />
           </>
         ),
       }}

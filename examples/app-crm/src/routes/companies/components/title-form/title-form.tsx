@@ -20,7 +20,7 @@ import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
 import styles from "./title-form.module.css";
 
 export const CompanyTitleForm = () => {
-  const { formProps, queryResult, onFinish } = useForm<
+  const { formProps, query, onFinish } = useForm<
     GetFields<CompanyTitleFormMutation>,
     HttpError,
     GetVariables<CompanyTitleFormMutationVariables>
@@ -32,8 +32,8 @@ export const CompanyTitleForm = () => {
     },
   });
 
-  const company = queryResult?.data?.data;
-  const loading = queryResult?.isLoading;
+  const company = query?.data?.data;
+  const loading = query?.isLoading;
 
   return (
     <Form {...formProps}>

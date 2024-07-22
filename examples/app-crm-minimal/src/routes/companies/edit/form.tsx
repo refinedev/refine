@@ -25,7 +25,7 @@ import { getNameInitials } from "@/utilities";
 import { UPDATE_COMPANY_MUTATION } from "./queries";
 
 export const CompanyForm = () => {
-  const { saveButtonProps, formProps, formLoading, queryResult } = useForm<
+  const { saveButtonProps, formProps, formLoading, query } = useForm<
     GetFields<UpdateCompanyMutation>,
     HttpError,
     GetVariables<UpdateCompanyMutationVariables>
@@ -35,7 +35,7 @@ export const CompanyForm = () => {
       gqlMutation: UPDATE_COMPANY_MUTATION,
     },
   });
-  const { avatarUrl, name } = queryResult?.data?.data || {};
+  const { avatarUrl, name } = query?.data?.data || {};
 
   const { selectProps: selectPropsUsers, queryResult: queryResultUsers } =
     useSelect<GetFieldsFromList<UsersSelectQuery>>({

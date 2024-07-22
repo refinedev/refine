@@ -399,13 +399,13 @@ export const EditProduct = () => {
     register,
     control,
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     formState: { errors },
   } = useForm();
 
   const { autocompleteProps } = useAutocomplete({
     resource: "categories",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (

@@ -9,7 +9,7 @@ export const PostEdit: React.FC = () => {
     saveButtonProps,
     getInputProps,
     errors,
-    refineCore: { queryResult },
+    refineCore: { query },
   } = useForm({
     initialValues: {
       title: "",
@@ -22,11 +22,11 @@ export const PostEdit: React.FC = () => {
     },
   });
 
-  const defaultTags = queryResult?.data?.data?.tags || [];
+  const defaultTags = query?.data?.data?.tags || [];
 
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   const { selectProps: tagSelectProps } = useSelect<ITag>({

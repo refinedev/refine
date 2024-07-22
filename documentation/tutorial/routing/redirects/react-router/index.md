@@ -32,7 +32,7 @@ Update your `src/pages/products/edit.tsx` file by adding the following lines:
 import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm({
+  const { onFinish, mutation, query } = useForm({
     // highlight-start
     // This will redirect to the show page after the mutation is successful.
     // Default value is `"list"`.
@@ -57,7 +57,7 @@ Update your `src/pages/products/create.tsx` file by adding the following lines:
 import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({
+  const { onFinish, mutation } = useForm({
     // highlight-start
     // We can also provide `false` to disable the redirect.
     // Default value is `"list"`.

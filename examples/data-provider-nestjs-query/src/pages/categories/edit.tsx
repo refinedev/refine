@@ -7,7 +7,7 @@ import { CATEGORY_EDIT_MUTATION } from "./queries";
 import type { CategoryEditMutation } from "graphql/types";
 
 export const CategoryEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
+  const { formProps, saveButtonProps, query } = useForm<
     GetFields<CategoryEditMutation>
   >({
     metaData: {
@@ -21,7 +21,7 @@ export const CategoryEdit = () => {
         extra: (
           <>
             <ListButton />
-            <RefreshButton onClick={() => queryResult?.refetch()} />
+            <RefreshButton onClick={() => query?.refetch()} />
           </>
         ),
       }}

@@ -15,7 +15,7 @@ const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 export const ShowDescription = () => {
   const params = useParams<{ id: string }>();
 
-  const { formProps, queryResult, autoSaveProps } = useForm<
+  const { formProps, query, autoSaveProps } = useForm<
     Quote,
     HttpError,
     QuoteUpdateInput
@@ -35,7 +35,7 @@ export const ShowDescription = () => {
     },
   });
 
-  const formLoading = queryResult?.isLoading ?? false;
+  const formLoading = query?.isLoading ?? false;
 
   return (
     <Spin spinning={formLoading}>

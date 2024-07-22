@@ -7,7 +7,7 @@ export const PostEdit = () => {
   const {
     getInputProps,
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
   } = useForm({
     initialValues: {
       id: "",
@@ -30,7 +30,7 @@ export const PostEdit = () => {
     },
   });
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: postData?.category?.id,

@@ -348,8 +348,8 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 | saveButtonProps   | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; }`                                        |
 | cancelButtonProps | Props for a cancel button                               | `{ onClick: () => void; }`                                                           |
 | editButtonProps   | Props for an edit button                                | `{ onClick: () => void; }`                                                           |
-| queryResult       | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                 |
-| mutationResult    | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                |
+| query             | Result of the query of a record                         | [`QueryObserverResult<T>`][usequery]                                                 |
+| mutation          | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`][usemutation]                                                |
 | formLoading       | Loading state of form request                           | `boolean`                                                                            |
 | id                | Record id for edit action                               | [`BaseKey`][basekey]                                                                 |
 | setId             | `id` setter                                             | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                     |

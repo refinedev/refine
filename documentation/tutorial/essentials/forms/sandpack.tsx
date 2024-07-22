@@ -165,7 +165,7 @@ const CreateProductFormWithFieldsTsxCode = /* tsx */ `
 import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({ action: "create", resource: "products" });
+  const { onFinish, mutation } = useForm({ action: "create", resource: "products" });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -192,7 +192,7 @@ export const CreateProduct = () => {
       <label htmlFor="category">Category ID</label>
       <input type="number" id="category" name="category" />
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );
@@ -203,7 +203,7 @@ const CreateProductFormWithPriceUpdateTsxCode = /* tsx */ `
 import { useForm } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({ action: "create", resource: "products" });
+  const { onFinish, mutation } = useForm({ action: "create", resource: "products" });
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -234,7 +234,7 @@ export const CreateProduct = () => {
       <label htmlFor="category">Category ID</label>
       <input type="number" id="category" name="category" />
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );
@@ -245,7 +245,7 @@ const CreateProductFormWithCategoryRelationTsxCode = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({
+  const { onFinish, mutation } = useForm({
     action: "create",
     resource: "products",
   });
@@ -291,7 +291,7 @@ export const CreateProduct = () => {
         ))}
       </select>
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );
@@ -324,13 +324,13 @@ const RefactorEditProductTsxWithFormCode = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm({
+  const { onFinish, mutation, query } = useForm({
     action: "edit",
     resource: "products",
     id: "123"
   });
 
-  const record = queryResult.data?.data;
+  const record = query.data?.data;
 
   const { options } = useSelect({
     resource: "categories",
@@ -388,7 +388,7 @@ export const EditProduct = () => {
         ))}
       </select>
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );

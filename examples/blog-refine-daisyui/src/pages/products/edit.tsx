@@ -7,14 +7,14 @@ export const ProductEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query },
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm();
 
-  const productsData = queryResult?.data?.data;
+  const productsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",
@@ -42,7 +42,7 @@ export const ProductEdit = () => {
         <div>
           <button
             className="flex justify-center items-center btn btn-sm btn-primary btn-outline normal-case font-normal"
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
             Refresh

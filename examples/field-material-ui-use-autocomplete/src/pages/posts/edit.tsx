@@ -18,7 +18,7 @@ import type {
 export const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     register,
     control,
     formState: { errors },
@@ -27,7 +27,7 @@ export const PostEdit: React.FC = () => {
 
   const { autocompleteProps } = useAutocomplete<ICategory>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   const { autocompleteProps: tagsAutocompleteProps } = useAutocomplete<ITag>({

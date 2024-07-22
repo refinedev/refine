@@ -24,7 +24,7 @@ export const PostEdit = () => {
   const [uploading, setUploading] = useState(false);
   const apiUrl = useApiUrl();
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     watch,
@@ -36,8 +36,8 @@ export const PostEdit = () => {
   const { options } = useSelect({
     resource: "categories",
 
-    defaultValue: queryResult?.data?.data.category.id,
-    queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+    defaultValue: query?.data?.data.category.id,
+    queryOptions: { enabled: !!query?.data?.data.category.id },
   });
 
   useEffect(() => {

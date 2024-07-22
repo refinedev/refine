@@ -18,27 +18,26 @@ export const CalendarEditPage: React.FC = () => {
   const { id } = useResource();
   const { list } = useNavigation();
 
-  const { formProps, saveButtonProps, form, onFinish, queryResult } =
-    useForm<Event>({
-      action: "edit",
-      id,
-      queryOptions: {
-        enabled: true,
-      },
-      meta: {
-        gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
-      },
-    });
+  const { formProps, saveButtonProps, form, onFinish, query } = useForm<Event>({
+    action: "edit",
+    id,
+    queryOptions: {
+      enabled: true,
+    },
+    meta: {
+      gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
+    },
+  });
 
   useEffect(() => {
-    const startDate = queryResult?.data?.data.startDate;
-    const endDate = queryResult?.data?.data.endDate;
+    const startDate = query?.data?.data.startDate;
+    const endDate = query?.data?.data.endDate;
     const utcStartDate = dayjs(startDate).utc();
     const utcEndDate = dayjs(endDate).utc();
 
     form.setFieldsValue({
-      categoryId: queryResult?.data?.data.category.id,
-      participantIds: queryResult?.data?.data.participants.map(
+      categoryId: query?.data?.data.category.id,
+      participantIds: query?.data?.data.participants.map(
         (participant) => participant.id,
       ),
     });
@@ -55,7 +54,7 @@ export const CalendarEditPage: React.FC = () => {
         time: [utcStartDate, utcEndDate],
       });
     }
-  }, [queryResult?.data]);
+  }, [query?.data]);
 
   const handleOnFinish = async (values: any) => {
     const { rangeDate, date, time, color, ...otherValues } = values;

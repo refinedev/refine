@@ -12,7 +12,7 @@ import type {
 import { CATEGORY_UPDATE_MUTATION } from "./queries";
 
 export const CategoryEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
+  const { formProps, saveButtonProps, query } = useForm<
     GetFields<UpdateCategoryMutation>,
     HttpError,
     GetVariables<UpdateCategoryMutationVariables>
@@ -28,7 +28,7 @@ export const CategoryEdit = () => {
         extra: (
           <>
             <ListButton />
-            <RefreshButton onClick={() => queryResult?.refetch()} />
+            <RefreshButton onClick={() => query?.refetch()} />
           </>
         ),
       }}
