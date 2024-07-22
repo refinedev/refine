@@ -39,7 +39,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "appwrite": "^14.0.1"
+    "appwrite": "^15.0.0"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
