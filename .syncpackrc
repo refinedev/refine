@@ -20,6 +20,12 @@
       "dependencyTypes": ["peer"],
       "packages": ["**"],
       "isIgnored": true
+    },
+    {
+      "dependencies": ["nock"],
+      "dependencyTypes": ["dev"],
+      "packages": ["@refinedev/appwrite"],
+      "isIgnored": true
     }
   ]
 }
