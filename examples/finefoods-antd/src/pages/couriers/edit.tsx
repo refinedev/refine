@@ -135,7 +135,7 @@ export const CourierEdit = () => {
                 }}
               >
                 <CourierStatus
-                  isLoading={queryResult?.isLoading}
+                  isLoading={query?.isLoading}
                   value={
                     courier?.status || {
                       id: 3,

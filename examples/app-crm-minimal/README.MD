@@ -837,10 +837,10 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
    * formProps -> It's an instance of HTML form that manages form state and actions like onFinish, onValuesChange, etc.
    * https://refine.dev/docs/ui-integrations/ant-design/hooks/use-form/#form
    *
-   * queryResult -> contains the result of the query. For example, isLoading, data, error, etc.
-   * https://refine.dev/docs/packages/react-hook-form/use-form/#queryresult
+   * query -> contains the result of the query. For example, isLoading, data, error, etc.
+   * https://refine.dev/docs/packages/react-hook-form/use-form/#query
    */
-  const { saveButtonProps, formProps, queryResult } = useForm<
+  const { saveButtonProps, formProps, query } = useForm<
     /**
      * GetFields is used to get the fields of the mutation i.e., in this case, fields are name, email, jobTitle, and phone
      * https://refine.dev/docs/data/packages/nestjs-query/#getfields
@@ -878,14 +878,14 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
       gqlMutation: UPDATE_USER_MUTATION,
     },
   });
-  const { avatarUrl, name } = queryResult?.data?.data || {};
+  const { avatarUrl, name } = query?.data?.data || {};
 
   const closeModal = () => {
     setOpened(false);
   };
 
   // if query is processing, show a loading indicator
-  if (queryResult?.isLoading) {
+  if (query?.isLoading) {
     return (
       <Drawer
         open={opened}
@@ -1769,8 +1769,8 @@ const TasksEditPage = () => {
   // create a modal form to edit a task using the useModalForm hook
   // modalProps -> It's an instance of Modal that manages modal state and actions like onOk, onCancel, etc.
   // close -> It's a function that closes the modal
-  // queryResult -> It's an instance of useQuery from react-query
-  const { modalProps, close, queryResult } = useModalForm<Task>({
+  // query -> It's an instance of useQuery from react-query
+  const { modalProps, close, query } = useModalForm<Task>({
     // specify the action to perform i.e., create or edit
     action: "edit",
     // specify whether the modal should be visible by default
@@ -1781,10 +1781,10 @@ const TasksEditPage = () => {
     },
   });
 
-  // get the data of the task from the queryResult
-  const { description, dueDate, users, title } = queryResult?.data?.data ?? {};
+  // get the data of the task from the query
+  const { description, dueDate, users, title } = query?.data?.data ?? {};
 
-  const isLoading = queryResult?.isLoading ?? true;
+  const isLoading = query?.isLoading ?? true;
 
   return (
     <Modal
