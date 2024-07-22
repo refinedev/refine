@@ -16,7 +16,7 @@ import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -34,7 +34,7 @@ export const CategoryList = () => {
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const categories = tableQueryResult?.data?.data;
+  const categories = tableQuery?.data?.data;
 
   const confirmDeleteProduct = (id: number) => {
     confirmDialog({
@@ -149,7 +149,7 @@ export const CategoryList = () => {
         }}
         sortField={sorters[0]?.field}
         sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-        loading={tableQueryResult?.isLoading}
+        loading={tableQuery?.isLoading}
         header={header}
       >
         <Column

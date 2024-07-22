@@ -172,4 +172,20 @@ describe("useSimpleList Hook", () => {
 
     expect(result.current.listProps.pagination).toBeFalsy();
   });
+
+  it("shoukd work with query and queryResult", async () => {
+    const { result } = renderHook(() => useSimpleList(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        routerProvider,
+      }),
+    });
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.query).toEqual(result.current.queryResult);
+  });
 });

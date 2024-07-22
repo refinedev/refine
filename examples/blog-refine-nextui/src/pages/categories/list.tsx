@@ -44,7 +44,7 @@ const columns = [
 
 export const CategoryList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -67,7 +67,7 @@ export const CategoryList = () => {
     direction: "ascending",
   });
 
-  const categories = tableQueryResult?.data?.data ?? [];
+  const categories = tableQuery?.data?.data ?? [];
 
   const renderCell = useCallback((columnKey: string, item: IProduct) => {
     if (columnKey === "actions") {

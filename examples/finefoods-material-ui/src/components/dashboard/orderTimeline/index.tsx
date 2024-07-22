@@ -15,21 +15,19 @@ export const OrderTimeline: React.FC = () => {
 
   const { show } = useNavigation();
 
-  const { tableQueryResult, current, setCurrent, pageCount } = useTable<IOrder>(
-    {
-      resource: "orders",
-      initialSorter: [
-        {
-          field: "createdAt",
-          order: "desc",
-        },
-      ],
-      initialPageSize: 7,
-      syncWithLocation: false,
-    },
-  );
+  const { tableQuery, current, setCurrent, pageCount } = useTable<IOrder>({
+    resource: "orders",
+    initialSorter: [
+      {
+        field: "createdAt",
+        order: "desc",
+      },
+    ],
+    initialPageSize: 7,
+    syncWithLocation: false,
+  });
 
-  const { data } = tableQueryResult;
+  const { data } = tableQuery;
 
   return (
     <Box

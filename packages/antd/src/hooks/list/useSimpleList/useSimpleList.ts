@@ -23,9 +23,13 @@ export type useSimpleListReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
   TSearchVariables = unknown,
   TData extends BaseRecord = TQueryFnData,
-> = Omit<useTableReturnType<TData>, "tableQueryResult"> & {
+> = Omit<useTableReturnType<TData>, "tableQueryResult" | "tableQuery"> & {
   listProps: ListProps<TData>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: useTableReturnType["tableQueryResult"];
+  query: useTableReturnType["tableQuery"];
   searchFormProps: FormProps<TSearchVariables>;
 };
 
@@ -91,6 +95,7 @@ export const useSimpleList = <
     setSorters,
     createLinkForSyncWithLocation,
     tableQueryResult: queryResult,
+    tableQuery: query,
     overtime,
   } = useTableCore({
     resource,
@@ -208,6 +213,7 @@ export const useSimpleList = <
       loading: liveMode === "auto" ? isLoading : !isFetched,
       pagination: antdPagination(),
     },
+    query,
     queryResult,
     filters,
     setFilters,

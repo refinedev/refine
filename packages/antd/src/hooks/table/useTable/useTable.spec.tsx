@@ -3,7 +3,7 @@ import type { CrudFilters } from "@refinedev/core";
 import isEqual from "lodash/isEqual";
 import { renderHook, waitFor } from "@testing-library/react";
 import { Form, Input } from "antd";
-import { act, TestWrapper, render } from "@test";
+import { act, TestWrapper, render, MockJSONServer } from "@test";
 
 import { useTable } from "./useTable";
 
@@ -338,5 +338,21 @@ describe("useTable Hook", () => {
     await waitFor(() => {
       expect(getByDisplayValue("Some Name To Look For")).toBeInTheDocument();
     });
+  });
+
+  it("shoukd work with query and queryResult", async () => {
+    const { result } = renderHook(() => useTable(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        routerProvider,
+      }),
+    });
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
   });
 });

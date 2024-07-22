@@ -24,7 +24,7 @@ const formatCurrency = (value: number) => {
 
 export const ProductList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -38,7 +38,7 @@ export const ProductList = () => {
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const products = tableQueryResult?.data?.data;
+  const products = tableQuery?.data?.data;
 
   const { data: categoryData } = useMany<ICategory>({
     resource: "categories",
@@ -173,7 +173,7 @@ export const ProductList = () => {
         }}
         sortField={sorters[0]?.field}
         sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-        loading={tableQueryResult?.isLoading}
+        loading={tableQuery?.isLoading}
         header={header}
       >
         <Column field="id" header="Id" sortable style={{ minWidth: "1rem" }} />

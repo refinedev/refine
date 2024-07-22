@@ -110,7 +110,7 @@ export const BlogPostList: React.FC<IResourceComponentsProps> = () => {
     },
   });
 
-  const tableData = tableProps?.refineCore?.tableQueryResult?.data;
+  const tableData = tableProps?.refineCore?.tableQuery?.data;
   const catList =
     tableData?.data?.map((item: IBlogPost) => item?.category?.id) ?? [];
 

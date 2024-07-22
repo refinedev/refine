@@ -170,7 +170,7 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
 });
 
 export default () => (
-  <Card className="max-w-xs mx-auto">
+  <Card className="mx-auto max-w-xs">
     <Text>Revenue</Text>
     <Metric>{currencyFormatter.format(3_500)}</Metric>
   </Card>
@@ -597,7 +597,7 @@ export const DashboardPage: React.FC = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
+            <Grid numItemsMd={2} numItemsLg={3} className="mt-6 gap-6">
               <Card>
                 <div className="h-28" />
               </Card>
@@ -842,7 +842,7 @@ export const DashboardPage: React.FC = () => {
         </TabList>
         <TabPanels>
           <TabPanel>
-            <Grid numItemsMd={2} numItemsLg={3} className="gap-6 mt-6">
+            <Grid numItemsMd={2} numItemsLg={3} className="mt-6 gap-6">
               //highlight-start
               <KpiCard
                 title="Weekly Revenue"
@@ -977,7 +977,7 @@ export function ChartView({ revenue, orders, customers }: IProps) {
 
   return (
     <Card>
-      <div className="md:flex justify-between">
+      <div className="justify-between md:flex">
         <div>
           <Flex
             justifyContent="start"
@@ -1014,7 +1014,7 @@ export function ChartView({ revenue, orders, customers }: IProps) {
         showLegend={true}
         valueFormatter={formatters[selectedKpi]}
         yAxisWidth={56}
-        className="h-96 mt-8"
+        className="mt-8 h-96"
       />
     </Card>
   );
@@ -1246,7 +1246,7 @@ export const Details = () => {
     getHeaderGroups,
     getRowModel,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,
@@ -1402,7 +1402,7 @@ export const Details = () => {
         <TextInput
           type="text"
           placeholder="Enter Page"
-          className="max-w-xs w-1/8"
+          className="w-1/8 max-w-xs"
           defaultValue={`${getState().pagination.pageIndex + 1}`}
           onChange={(e) => {
             const { value } = e.target;
