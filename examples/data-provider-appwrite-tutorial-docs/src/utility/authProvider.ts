@@ -6,7 +6,7 @@ import { account } from "./";
 export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     try {
-      await account.createEmailSession(email, password);
+      await account.createEmailPasswordSession(email, password);
       return {
         success: true,
         redirectTo: "/",
