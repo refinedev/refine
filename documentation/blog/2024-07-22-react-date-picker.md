@@ -517,17 +517,17 @@ I just wanted to share a few thoughts on how to make our date picker implementat
 - Ensure that the date picker is browsable and selectable using a keyboard, which in turn shall include browsing of dates by arrow keys, selection of date by pressing Enter, and closing the date picker by pressing Esc.
 - Proper focus management should be ensured so that the date picker is an active element when open and on closing, the focus should get back to the element which triggers it.
 
-### ARIA Attributes\*\*:
+### ARIA Attributes
 
 - Use ARIA attributes like `aria-label` for buttons, `role="dialog"` on the date picker container, and `aria-live` on content that is dynamically updated.
 - Ensure each date cell contains an `aria-label` that describes the date, for example, "July 17, 2024".
 
-### Screen Reader Support
+### Screen Reader Support
 
 - Make sure the date picker is correctly announced by screen readers, with proper instruction and feedback on interaction.
 - Tested with popular screen readers like JAWS, NVDA, and VoiceOver.
 
-### High Contrast Mode
+### High Contrast Mode
 
 - Ensure that the date picker can be seen and used properly when in high contrast mode. This is especially of value to a visually impaired user.
 - Test with Windows High Contrast mode and its counterparts in other operating systems.
