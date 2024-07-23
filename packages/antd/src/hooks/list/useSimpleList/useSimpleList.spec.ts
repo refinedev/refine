@@ -173,7 +173,7 @@ describe("useSimpleList Hook", () => {
     expect(result.current.listProps.pagination).toBeFalsy();
   });
 
-  it("shoukd work with query and queryResult", async () => {
+  it("should work with query and queryResult", async () => {
     const { result } = renderHook(() => useSimpleList(), {
       wrapper: TestWrapper({
         dataProvider: MockJSONServer,

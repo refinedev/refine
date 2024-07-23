@@ -238,13 +238,19 @@ describe("useDataGrid Hook", () => {
     expect(newPost).toEqual(postToUpdate);
   });
 
-  it("shoukd work with query and queryResult", async () => {
-    const { result } = renderHook(() => useDataGrid(), {
-      wrapper: TestWrapper({
-        dataProvider: MockJSONServer,
-        resources: [{ name: "posts" }],
-      }),
-    });
+  it("should work with query and queryResult", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
 
     await waitFor(() => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();

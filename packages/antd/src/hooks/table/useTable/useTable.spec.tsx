@@ -340,7 +340,7 @@ describe("useTable Hook", () => {
     });
   });
 
-  it("shoukd work with query and queryResult", async () => {
+  it("should work with query and queryResult", async () => {
     const { result } = renderHook(() => useTable(), {
       wrapper: TestWrapper({
         dataProvider: MockJSONServer,
