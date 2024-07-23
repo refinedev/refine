@@ -20,7 +20,7 @@ import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
 import styles from "./title-form.module.css";
 
 export const CompanyTitleForm = () => {
-  const { formProps, query, onFinish } = useForm<
+  const { formProps, queryResult, onFinish } = useForm<
     GetFields<CompanyTitleFormMutation>,
     HttpError,
     GetVariables<CompanyTitleFormMutationVariables>
@@ -32,8 +32,8 @@ export const CompanyTitleForm = () => {
     },
   });
 
-  const company = query?.data?.data;
-  const loading = query?.isLoading;
+  const company = queryResult?.data?.data;
+  const loading = queryResult?.isLoading;
 
   return (
     <Form {...formProps}>
@@ -121,7 +121,7 @@ const SalesOwnerInput = ({
 }) => {
   const [isEdit, setIsEdit] = useState(false);
 
-  const { selectProps, query } = useUsersSelect();
+  const { selectProps, queryResult } = useUsersSelect();
 
   return (
     <div
@@ -176,7 +176,7 @@ const SalesOwnerInput = ({
               selectProps.onChange?.(value, option);
             }}
             options={
-              query.data?.data?.map(({ id, name, avatarUrl }) => ({
+              queryResult.data?.data?.map(({ id, name, avatarUrl }) => ({
                 value: id,
                 label: (
                   <SelectOptionWithAvatar
