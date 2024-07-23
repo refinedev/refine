@@ -33,7 +33,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
     filters,
     sorters,
     setFilters,
-    tableQueryResult,
+    tableQuery,
   } = useTable<
     GetFieldsFromList<ContactsListQuery>,
     HttpError,
@@ -131,10 +131,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
                     // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
-                      <Spin
-                        size="small"
-                        spinning={tableQueryResult.isFetching}
-                      />
+                      <Spin size="small" spinning={tableQuery.isFetching} />
                     }
                     placeholder="Search by name"
                     onChange={debouncedOnChange}

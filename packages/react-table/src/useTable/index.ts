@@ -75,7 +75,7 @@ export function useTable<
     (refineCoreProps.pagination?.mode ?? hasPaginationString) !== "off";
 
   const {
-    tableQueryResult: { data },
+    tableQuery: { data },
     current,
     setCurrent,
     pageSize: pageSizeCore,

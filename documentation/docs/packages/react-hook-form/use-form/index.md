@@ -29,7 +29,7 @@ const Layout: React.FC = ({ children }) => {
 };
 
 const PostList: React.FC = () => {
-  const { tableQueryResult, current, setCurrent, pageSize, pageCount } =
+  const { tableQuery, current, setCurrent, pageSize, pageCount } =
     useTable<IPost>({
       sorters: {
         initial: [
@@ -55,7 +55,7 @@ const PostList: React.FC = () => {
           <td>Actions</td>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {tableQuery.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

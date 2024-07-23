@@ -827,7 +827,7 @@ Indicates whether the data is being fetched.
 
 Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
-### tableQueryResult
+### tableQuery
 
 Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
@@ -909,6 +909,10 @@ Use `sorters` instead.
 
 Use `setSorters` instead.
 
+### ~~tableQueryResult~~ <PropTag deprecated />
+
+Use [`tableQuery`](#tablequery) instead.
+
 ## FAQ
 
 ### How can I handle relational data?
@@ -961,7 +965,7 @@ useDataGrid({
 | Property                      | Description                                                                                        | Type                                                                                 |
 | ----------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                              | `DataGridPropsType`\*                                                                |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| tableQuery                    | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
 | search                        | It sends the parameters it receives to its `onSearch` function                                     | `(value: TSearchVariables) => Promise<void>`                                         |
 | current                       | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
 | totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                   | `number` \| `undefined`                                                              |

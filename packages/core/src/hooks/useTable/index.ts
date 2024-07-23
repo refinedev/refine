@@ -201,6 +201,10 @@ export type useTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
 > = {
+  tableQuery: QueryObserverResult<GetListResponse<TData>, TError>;
+  /**
+   * @deprecated `tableQueryResult` is deprecated. Use `tableQuery` instead.
+   */
   tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
@@ -559,6 +563,7 @@ export function useTable<
 
   return {
     tableQueryResult: queryResult,
+    tableQuery: queryResult,
     sorters,
     setSorters: setSortWithUnion,
     sorter: sorters,

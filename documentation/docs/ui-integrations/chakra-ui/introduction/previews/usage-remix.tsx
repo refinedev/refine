@@ -301,7 +301,7 @@ export default function ProductList() {
             setCurrent,
             pageCount,
             current,
-            tableQueryResult: { data: tableData },
+            tableQuery: { data: tableData },
         },
     } = useTable({
         columns,

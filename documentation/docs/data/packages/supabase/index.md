@@ -1621,7 +1621,7 @@ export const PostList = () => {
     channel: "categories",
     types: ["*"],
     onLiveEvent: () => {
-      table.tableQueryResult.refetch();
+      table.tableQuery.refetch();
     },
   });
 

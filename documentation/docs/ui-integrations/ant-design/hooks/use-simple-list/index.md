@@ -115,15 +115,9 @@ interface ICategory {
 }
 
 export const ProductList: React.FC = () => {
-  const { tableQueryResult: productsQueryResult } = useSimpleList<
-    IProduct,
-    HttpError
-  >();
+  const { query: productsQuery } = useSimpleList<IProduct, HttpError>();
 
-  const { tableQueryResult: categoriesQueryResult } = useSimpleList<
-    ICategory,
-    HttpError
-  >({
+  const { query: categoriesQuery } = useSimpleList<ICategory, HttpError>({
     resource: "categories",
   });
 
@@ -535,9 +529,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ## Return Values
 
-### queryResult
+### query
 
-`queryResult` is the returned values from [`useList`](/docs/data/hooks/use-list) hook.
+`query` is the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### searchFormProps
 
@@ -680,6 +674,10 @@ Use `sorters` instead.
 
 Use `setSorters` instead.
 
+### ~~queryResult~~ <PropTag deprecated />
+
+Use [`query`](#query) instead.
+
 ## API
 
 ### Properties
@@ -699,7 +697,7 @@ Use `setSorters` instead.
 
 | Property        | Description                                                                           | Type                                                                                                                                                    |
 | --------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| queryResult     | Result of the query of a record                                                       | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
+| query           | Result of the query of a record                                                       | [`QueryObserverResult<{ data: TData }>`][usequery]                                                                                                      |
 | searchFormProps | Ant design Form props                                                                 | [`Form`][form]                                                                                                                                          |
 | listProps       | Ant design List props                                                                 | [`List`][list]                                                                                                                                          |
 | totalPage       | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                                 |

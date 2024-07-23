@@ -38,7 +38,7 @@ export function DataTable({ ...tableProps }: any) {
     getHeaderGroups,
     getRowModel,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,
