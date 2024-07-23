@@ -4,9 +4,11 @@ description: This article will compare React Hook Form and Formik by highlightin
 slug: react-hook-form-vs-formik
 authors: joseph_mawa
 tags: [react-hook-form, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-30-compare-form-libraries/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-01-30-compare-form-libraries/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 23, 2024, to add sections for Custom Validation and Accessibility Features.**
 
 ## Introduction
 
@@ -192,12 +194,227 @@ The above code illustrates a simple use case of the Formik library. It has sever
 | Open GitHub issues   | 635                        | 3               |
 | Closed GitHub issues | 1497                       | 3528            |
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Custom Validation with React Hook Form
+
+This would be a post to share some insights on how to apply custom validation in React forms using React Hook Form and Formik. I hope this simple guide will help all of us in our next project.
+
+Custom validation is pretty easy using React Hook Form. We'll set up our validation rules using the register function directly on input fields. Here's an example:
+
+```javascript
+import { useForm } from "react-hook-form";
+
+function MyForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input
+        {...register("username", {
+          required: "Username is required",
+          validate: (value) =>
+            value.length >= 4 || "Username must be at least 4 characters",
+        })}
+      />
+      {errors.username && <p>{errors.username.message}</p>}
+
+      <input
+        {...register("email", {
+          required: "Email is required",
+          pattern: {
+            value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+            message: "Invalid email address",
+          },
+        })}
+      />
+      {errors.email && <p>{errors.email.message}</p>}
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+In the above example, we put in place some custom validation messages for the username and email fields.
+
+## Custom Validation with Formik
+
+Formik also allows custom validation through its `validate` prop. We can write our validation logic inside a function and pass it to Formik. Here's an example:
+
+```javascript
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
+function MyForm() {
+  return (
+    <Formik
+      initialValues={{ username: "", email: "" }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.username) {
+          errors.username = "Username is required";
+        } else if (values.username.length < 4) {
+          errors.username = "Username must be at least 4 characters";
+        }
+        if (!values.email) {
+          errors.email = "Email is required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+        return errors;
+      }}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({ handleSubmit }) => (
+        <Form onSubmit={handleSubmit}>
+          <Field name="username" />
+          <ErrorMessage name="username" component="div" />
+
+          <Field name="email" />
+          <ErrorMessage name="email" component="div" />
+
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
+  );
+}
+```
+
+In this case, we implemented custom validation for the `username` and `email` fields using a `validate` function.
+
+## Implementing Accessibility Features in React Forms
+
+I would like to share a few tips on how to implement the necessary accessibility features in our React forms with the help of React Hook Form and Formik. Accessibility is so important because it ensures our applications are accessible to everyone, including people with disabilities. Below are some guidelines with examples on how to enhance the accessibility of our forms.
+
+### Accessibility with React Hook Form
+
+With React Hook Form, form accessibility is just as easy. We should use semantic HTML elements and ARIA attributes where necessary. Here's an example:
+
+```tsx
+import { useForm } from "react-hook-form";
+
+function AccessibleForm() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <label htmlFor="username">Username</label>
+        <input
+          id="username"
+          aria-invalid={errors.username ? "true" : "false"}
+          {...register("username", { required: "Username is required" })}
+        />
+        {errors.username && <span role="alert">{errors.username.message}</span>}
+      </div>
+
+      <div>
+        <label htmlFor="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          aria-invalid={errors.email ? "true" : "false"}
+          {...register("email", {
+            required: "Email is required",
+            pattern: {
+              value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+              message: "Invalid email address",
+            },
+          })}
+        />
+        {errors.email && <span role="alert">{errors.email.message}</span>}
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
+
+In this example, we have used `aria-invalid` to indicate invalid fields and `role="alert"` to announce error messages to screen readers.
+
+### Accessibility with Formik
+
+Formik also supports accessibility enhancements. We should go ahead to support the same by the right use of semantic HTML elements and ARIA attributes. Here is an example:
+
+```tsx
+import { Formik, Form, Field, ErrorMessage } from "formik";
+
+function AccessibleForm() {
+  return (
+    <Formik
+      initialValues={{ username: "", email: "" }}
+      validate={(values) => {
+        const errors = {};
+        if (!values.username) {
+          errors.username = "Username is required";
+        }
+        if (!values.email) {
+          errors.email = "Email is required";
+        } else if (
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address";
+        }
+        return errors;
+      }}
+      onSubmit={(values) => {
+        console.log(values);
+      }}
+    >
+      {({ handleSubmit, errors, touched }) => (
+        <Form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="username">Username</label>
+            <Field
+              id="username"
+              name="username"
+              aria-invalid={
+                errors.username && touched.username ? "true" : "false"
+              }
+            />
+            <ErrorMessage name="username" component="span" role="alert" />
+          </div>
+
+          <div>
+            <label htmlFor="email">Email</label>
+            <Field
+              id="email"
+              name="email"
+              type="email"
+              aria-invalid={errors.email && touched.email ? "true" : "false"}
+            />
+            <ErrorMessage name="email" component="span" role="alert" />
+          </div>
+
+          <button type="submit">Submit</button>
+        </Form>
+      )}
+    </Formik>
+  );
+}
+```
+
+In this example, we ensured all the form fields have proper labels and ARIA attributes so they can be more accessible. Implementing these accessibility features will make our forms more user-friendly.
 
 ## Conclusion
 
