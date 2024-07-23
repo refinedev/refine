@@ -15,7 +15,7 @@ import type { IResourceItem } from "../../contexts/resource/types";
 import * as pickResource from "../../definitions/helpers/pick-resource";
 import * as useResourceWithRoute from "../resource/useResourceWithRoute";
 
-import { useShow } from "./useShow";
+import { useShow } from "./index";
 
 const routerProvider = mockRouterProvider({
   action: "show",

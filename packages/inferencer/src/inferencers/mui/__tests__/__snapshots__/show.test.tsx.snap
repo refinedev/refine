@@ -2,66 +2,273 @@
 
 exports[`MuiShowInferencer should match the snapshot 1`] = `
 <DocumentFragment>
-  <div />
-  <div
-    class="MuiBox-root css-0"
-    style="display: flex; justify-content: center; align-items: center; min-height: 200px;"
-  >
+  <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-colorError MuiAlert-standardError MuiAlert-standard css-x7o5da-MuiPaper-root-MuiAlert-root"
-      role="alert"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
     >
       <div
-        class="MuiAlert-icon css-1ytlwq5-MuiAlert-icon"
-      >
-        <svg
-          aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
-          data-testid="ErrorOutlineIcon"
-          focusable="false"
-          viewBox="0 0 24 24"
-        >
-          <path
-            d="M11 15h2v2h-2zm0-8h2v6h-2zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
-          />
-        </svg>
-      </div>
-      <div
-        class="MuiAlert-message css-1pxa9xg-MuiAlert-message"
+        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
         <div
-          class="MuiTypography-root MuiTypography-body1 MuiTypography-gutterBottom MuiAlertTitle-root css-yslrua-MuiTypography-root-MuiAlertTitle-root"
+          class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
         >
-          Error
-        </div>
-        <div>
-          <p>
-            An error occured while rendering the generated component.You can check the generated code from the below "Show Code" button and fix the error manually.
-          </p>
-          
-                                    
-          <p>
-            If you think this is a bug, please report the issue at 
-            <a
-              href="https://github.com/refinedev/refine/issues"
-              rel="noopener noreferrer"
-              target="_blank"
+          <button
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="ArrowBackIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              https://github.com/refinedev/refine/issues
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+        <div
+          class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+        >
+          <h5
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
+          >
+            Show Post
+          </h5>
+        </div>
+        <div
+          class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
+        >
+          <div
+            class="MuiBox-root css-10egq61"
+          >
+            <a
+              href="/posts"
+              style="text-decoration: none;"
+            >
+              <button
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-list-button css-198eyrn-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                title=""
+                type="button"
+              >
+                <span
+                  class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="ListOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M3 13h2v-2H3zm0 4h2v-2H3zm0-8h2V7H3zm4 4h14v-2H7zm0 4h14v-2H7zM7 7v2h14V7zm-4 6h2v-2H3zm0 4h2v-2H3zm0-8h2V7H3zm4 4h14v-2H7zm0 4h14v-2H7zM7 7v2h14V7z"
+                    />
+                  </svg>
+                </span>
+                Posts
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
             </a>
-          </p>
-          
-                                    
-          <p>
-            Exception:
-          </p>
-          
-                                    
-          <code>
-            TypeError: Cannot destructure property 'data' of 'query' as it is undefined.
-          </code>
+            <button
+              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-refresh-button css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+              id=":r0:"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="RefreshOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M17.65 6.35C16.2 4.9 14.21 4 12 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08c-.82 2.33-3.04 4-5.65 4-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4z"
+                  />
+                </svg>
+              </span>
+              Refresh
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
         </div>
       </div>
+      <div
+        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+      >
+        <div
+          class="MuiStack-root css-hwnj0i-MuiStack-root"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Id
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            11
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Title
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            Nobis exercitationem officia quia est.
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Slug
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            provident-culpa-facere
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Content
+          </p>
+          <p>
+            Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Hit
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            920,557
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Category
+          </p>
+          Numquam Saepe Illo
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            User
+          </p>
+          Eriberto Leannon
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Status
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            draft
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Status Color
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            orange
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Created At
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            04/02/2022
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Published At
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            08/10/2021
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Image
+          </p>
+          <div
+            class="MuiStack-root css-niqf4j-MuiStack-root"
+          >
+            <img
+              src="http://loremflickr.com/640/480/abstract"
+              style="max-width: 200px; width: 100%; height: 200px;"
+            />
+          </div>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Tags
+          </p>
+          <div
+            class="MuiStack-root css-niqf4j-MuiStack-root"
+          >
+            <div
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-gavykb-MuiChip-root"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                Error Eos Et
+              </span>
+            </div>
+            <div
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-gavykb-MuiChip-root"
+            >
+              <span
+                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+              >
+                Nobis Et Ut
+              </span>
+            </div>
+          </div>
+          <p
+            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+          >
+            Language
+          </p>
+          <p
+            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+          >
+            2
+          </p>
+        </div>
+      </div>
+      <div
+        class="MuiCardActions-root MuiCardActions-spacing css-op0xil-MuiCardActions-root"
+      />
     </div>
   </div>
   <div
