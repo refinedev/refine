@@ -61,12 +61,10 @@ export const ContactShowPage: React.FC = () => {
       gqlQuery: CONTACT_SHOW_QUERY,
     },
   });
-  const {
-    selectProps: companySelectProps,
-    queryResult: companySelectQueryResult,
-  } = useCompaniesSelect();
+  const { selectProps: companySelectProps, query: companySelectQueryResult } =
+    useCompaniesSelect();
 
-  const { selectProps: usersSelectProps, queryResult: usersSelectQueryResult } =
+  const { selectProps: usersSelectProps, query: usersSelectQueryResult } =
     useUsersSelect();
 
   const closeModal = () => {

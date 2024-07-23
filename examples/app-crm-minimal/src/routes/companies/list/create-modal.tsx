@@ -47,15 +47,15 @@ export const CompanyCreateModal = () => {
     },
   });
 
-  const { selectProps, queryResult } = useSelect<
-    GetFieldsFromList<UsersSelectQuery>
-  >({
-    resource: "users",
-    meta: {
-      gqlQuery: USERS_SELECT_QUERY,
+  const { selectProps, query } = useSelect<GetFieldsFromList<UsersSelectQuery>>(
+    {
+      resource: "users",
+      meta: {
+        gqlQuery: USERS_SELECT_QUERY,
+      },
+      optionLabel: "name",
     },
-    optionLabel: "name",
-  });
+  );
 
   return (
     <Modal
@@ -82,7 +82,7 @@ export const CompanyCreateModal = () => {
             placeholder="Please sales owner user"
             {...selectProps}
             options={
-              queryResult.data?.data?.map((user) => ({
+              query.data?.data?.map((user) => ({
                 value: user.id,
                 label: (
                   <SelectOptionWithAvatar

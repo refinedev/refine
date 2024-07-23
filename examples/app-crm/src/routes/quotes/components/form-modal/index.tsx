@@ -66,17 +66,17 @@ export const QuotesFormModal: FC<Props> = ({
 
   const {
     selectProps: selectPropsCompanies,
-    queryResult: { isLoading: isLoadingCompanies },
+    query: { isLoading: isLoadingCompanies },
   } = useCompaniesSelect();
 
   const {
     selectProps: selectPropsContacts,
-    queryResult: { isLoading: isLoadingContact },
+    query: { isLoading: isLoadingContact },
   } = useContactsSelect();
 
   const {
     selectProps: selectPropsSalesOwners,
-    queryResult: { isLoading: isLoadingSalesOwners },
+    query: { isLoading: isLoadingSalesOwners },
   } = useUsersSelect();
 
   const loading =

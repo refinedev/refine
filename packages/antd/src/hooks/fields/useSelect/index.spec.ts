@@ -347,4 +347,26 @@ describe("useSelect Hook", () => {
     );
     expect(mockFunc).toBeCalled();
   });
+
+  it("should work with queryResult and query", async () => {
+    const { result } = renderHook(
+      () =>
+        useSelect({
+          resource: "posts",
+          defaultValue: ["1", "2", "3", "4"],
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.queryResult.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.query).toEqual(result.current.queryResult);
+  });
 });

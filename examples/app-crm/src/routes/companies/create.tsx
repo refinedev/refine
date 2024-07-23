@@ -73,7 +73,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
     },
   });
 
-  const { selectProps, queryResult } = useUsersSelect();
+  const { selectProps, query } = useUsersSelect();
 
   const { mutateAsync: createManyMutateAsync } = useCreateMany();
 
@@ -161,7 +161,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
             placeholder="Please sales owner user"
             {...selectProps}
             options={
-              queryResult.data?.data?.map((user) => ({
+              query.data?.data?.map((user) => ({
                 value: user.id,
                 label: (
                   <SelectOptionWithAvatar
