@@ -410,4 +410,15 @@ describe("useShow Hook", () => {
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
+
+  it("should work with queryResult and query", async () => {
+    const { result } = renderHook(() => useShow(), {
+      wrapper: WrapperWithRoute,
+    });
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+      expect(result.current.query).toEqual(result.current.queryResult);
+    });
+  });
 });

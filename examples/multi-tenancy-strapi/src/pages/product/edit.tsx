@@ -18,12 +18,12 @@ export const ProductEdit = () => {
 
   const { styles, cx } = useStyles();
   const go = useGo();
-  const { queryResult } = useShow<ProductWithCategories>({
+  const { query } = useShow<ProductWithCategories>({
     meta: {
       populate: ["category", "image"],
     },
   });
-  const product = queryResult.data?.data;
+  const product = query.data?.data;
 
   const onClose = () => {
     go({
@@ -54,7 +54,7 @@ export const ProductEdit = () => {
       )}
 
       {!isEdit && (
-        <Spin spinning={queryResult.isLoading}>
+        <Spin spinning={query.isLoading}>
           <div className={styles.coverContainer}>
             {product?.image?.url ? (
               <img

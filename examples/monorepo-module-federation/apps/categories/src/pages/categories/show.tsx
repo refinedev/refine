@@ -9,8 +9,8 @@ import type { ICategory } from "../../interfaces";
 const { Title, Text } = Typography;
 
 const CategoryShow = () => {
-  const { queryResult } = useShow<ICategory>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<ICategory>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (

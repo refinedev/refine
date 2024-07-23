@@ -7,8 +7,8 @@ import { Tag, Typography } from "antd";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

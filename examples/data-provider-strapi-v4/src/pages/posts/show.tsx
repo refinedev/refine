@@ -17,11 +17,11 @@ import { API_URL } from "../../constants";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<IPost>({
+  const { query } = useShow<IPost>({
     metaData: { populate: ["category", "cover"] },
   });
 
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } =
@@ -34,7 +34,7 @@ export const PostShow = () => {
     });
 
   const handleRefresh = () => {
-    queryResult.refetch();
+    query.refetch();
   };
 
   return (

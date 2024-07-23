@@ -29,7 +29,7 @@ export const CustomerShow = () => {
 
   const { styles } = useStyles();
 
-  const { queryResult } = useShow<CustomerExtended>({
+  const { query } = useShow<CustomerExtended>({
     meta: {
       populate: ["orders.products.image"],
     },
@@ -45,8 +45,8 @@ export const CustomerShow = () => {
     });
   };
 
-  const isLoading = queryResult.isLoading;
-  const customer = queryResult.data?.data;
+  const isLoading = query.isLoading;
+  const customer = query.data?.data;
 
   return (
     <Drawer

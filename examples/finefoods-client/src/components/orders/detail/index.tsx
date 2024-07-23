@@ -13,11 +13,11 @@ type OrderPageProps = {
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ useShowProps }) => {
-  const { queryResult } = useShow<Order>({
+  const { query } = useShow<Order>({
     resource: "orders",
     ...useShowProps,
   });
-  const order = queryResult.data?.data;
+  const order = query.data?.data;
 
   useLayoutEffect(() => {
     const jsConfetti = new JSConfetti();

@@ -8,9 +8,9 @@ import {
 } from "@refinedev/mui";
 
 export const BlogPostShow = () => {
-  const { queryResult } = useShow({});
+  const { query } = useShow({});
 
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
 
   const record = data?.data;
 

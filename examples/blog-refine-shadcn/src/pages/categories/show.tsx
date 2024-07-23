@@ -11,8 +11,8 @@ import React from "react";
 export const CategoryShow: React.FC<IResourceComponentsProps> = () => {
   const { edit, list } = useNavigation();
   const { id } = useResource();
-  const { queryResult } = useShow({});
-  const { data } = queryResult;
+  const { query } = useShow({});
+  const { data } = query;
 
   const record = data?.data;
 

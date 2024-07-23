@@ -8,8 +8,8 @@ import type { ICategory, IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<IProduct>();
-  const product = queryResult?.data?.data;
+  const { query } = useShow<IProduct>();
+  const product = query?.data?.data;
 
   const { data: categoryData } = useOne<ICategory>({
     resource: "categories",

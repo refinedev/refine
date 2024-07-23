@@ -19,7 +19,7 @@ export const PostShow = () => {
     "deleted" | "updated" | undefined
   >();
 
-  const { queryResult } = useShow<IPost>({
+  const { query } = useShow<IPost>({
     liveMode: "manual",
     onLiveEvent: (event) => {
       if (event.type === "deleted" || event.type === "updated") {
@@ -28,7 +28,7 @@ export const PostShow = () => {
     },
   });
 
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } =
@@ -41,7 +41,7 @@ export const PostShow = () => {
     });
 
   const handleRefresh = () => {
-    queryResult?.refetch();
+    query?.refetch();
     setDeprecated(undefined);
   };
 

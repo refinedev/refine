@@ -19,14 +19,14 @@ const { Title, Text } = Typography;
 export const PostShow = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
 
-  const { queryResult } = useShow<IPost>({
+  const { query } = useShow<IPost>({
     liveMode: "manual",
     onLiveEvent: () => {
       setIsDeprecated(true);
     },
   });
 
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } =
@@ -39,7 +39,7 @@ export const PostShow = () => {
     });
 
   const handleRefresh = () => {
-    queryResult.refetch();
+    query.refetch();
     setIsDeprecated(false);
   };
 

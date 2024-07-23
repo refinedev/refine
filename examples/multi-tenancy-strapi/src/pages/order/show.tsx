@@ -16,7 +16,7 @@ export const OrderShow = () => {
 
   const { styles } = useStyles();
 
-  const { queryResult } = useShow<
+  const { query } = useShow<
     Order & {
       products: Product[];
       customer: Customer;
@@ -37,8 +37,8 @@ export const OrderShow = () => {
     });
   };
 
-  const isLoading = queryResult.isLoading;
-  const order = queryResult.data?.data;
+  const isLoading = query.isLoading;
+  const order = query.data?.data;
   const uniqueProducts = getUniqueProductsWithQuantity(order?.products || []);
   const orderTotal =
     order?.products.reduce((acc, product) => acc + product.price, 0) || 0;

@@ -8,8 +8,8 @@ const { Title } = Typography;
 
 export default function CategoryShow() {
   const { translate: t } = useTranslation();
-  const { queryResult } = useShow({});
-  const { data, isLoading } = queryResult;
+  const { query } = useShow({});
+  const { data, isLoading } = query;
 
   const record = data?.data;
 

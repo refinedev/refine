@@ -9,8 +9,8 @@ import type { IPost, ITag } from "../../interfaces";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: tagsData, isLoading: tagsIsLoading } = useMany<ITag>({

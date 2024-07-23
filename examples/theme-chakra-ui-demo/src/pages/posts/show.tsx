@@ -6,8 +6,8 @@ import { Heading, Text, Spacer } from "@chakra-ui/react";
 import type { ICategory, IPost } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

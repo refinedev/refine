@@ -36,13 +36,13 @@ export const CompanyInfoForm = () => {
     | "website"
   >();
 
-  const { queryResult } = useShow<Company>({
+  const { query } = useShow<Company>({
     meta: {
       gqlQuery: COMPANY_INFO_QUERY,
     },
   });
 
-  const data = queryResult?.data?.data;
+  const data = query?.data?.data;
   const {
     totalRevenue,
     industry,
@@ -66,7 +66,7 @@ export const CompanyInfoForm = () => {
     return "view";
   };
 
-  const loading = queryResult?.isLoading;
+  const loading = query?.isLoading;
 
   return (
     <Card

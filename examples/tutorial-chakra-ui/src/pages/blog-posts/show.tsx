@@ -10,8 +10,8 @@ import {
 import { Heading, HStack } from "@chakra-ui/react";
 
 export const BlogPostShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
 
   const record = data?.data;
 

@@ -13,12 +13,12 @@ const { Title, Text } = Typography;
 const PostShow: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();
 
-  const { queryResult } = useShow({
+  const { query } = useShow({
     queryOptions: {
       initialData,
     },
   });
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

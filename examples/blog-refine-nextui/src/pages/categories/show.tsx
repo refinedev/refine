@@ -7,9 +7,9 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
+  const { query } = useShow<ICategory>();
 
-  const category = queryResult?.data?.data;
+  const category = query?.data?.data;
 
   return (
     <div className="my-3">

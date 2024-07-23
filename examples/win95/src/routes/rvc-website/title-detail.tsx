@@ -24,12 +24,12 @@ export const RVCWebsitePageTitleDetails = ({ withBrowser = true }: Props) => {
   const { titleId } = useParams();
   const navigate = useNavigate();
 
-  const { queryResult } = useShow<VideoTitle>({
+  const { query } = useShow<VideoTitle>({
     resource: "titles",
     id: titleId,
   });
-  const title = queryResult.data?.data;
-  const isLoading = queryResult.isLoading;
+  const title = query.data?.data;
+  const isLoading = query.isLoading;
   const address = title
     ? `http://www.refinevideoclub.geocities.com/catalog/${title?.title}.html`
     : "";
