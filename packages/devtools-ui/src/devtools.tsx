@@ -29,7 +29,7 @@ dayjs.extend(relativeTime);
 
 export const DevToolsApp = () => {
   return (
-    <DevToolsContextProvider __devtools>
+    <DevToolsContextProvider __devtools url={location.origin}>
       <ReloadOnChanges />
       <BrowserRouter>
         <Routes>
