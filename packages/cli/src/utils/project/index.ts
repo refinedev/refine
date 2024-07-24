@@ -77,3 +77,18 @@ export const getUIFramework = (): UIFrameworks | undefined => {
 
   return;
 };
+
+export const getDevtoolsEnvKeyByProjectType = (
+  projectType: ProjectTypes,
+): string => {
+  switch (projectType) {
+    case ProjectTypes.REACT_SCRIPT:
+      return "REACT_APP_REFINE_DEVTOOLS_PORT";
+    case ProjectTypes.NEXTJS:
+      return "NEXT_PUBLIC_REFINE_DEVTOOLS_PORT";
+    case ProjectTypes.VITE:
+      return "VITE_REFINE_DEVTOOLS_PORT";
+    default:
+      return "REFINE_DEVTOOLS_PORT";
+  }
+};

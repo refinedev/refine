@@ -33,19 +33,16 @@ export const getNodeEnv = (): NODE_ENV => {
   return env;
 };
 
-const getEnvValue = (key: string, defaultValue?: string | number) => {
-  return process.env[key] || refineEnv[key] || defaultValue;
+const getEnvValue = (key: string): string | undefined => {
+  return process.env[key] || refineEnv[key];
 };
 
 export const ENV = {
   NODE_ENV: getNodeEnv(),
-  REFINE_NO_TELEMETRY: getEnvValue("REFINE_NO_TELEMETRY", "false"),
-  UPDATE_NOTIFIER_IS_DISABLED: getEnvValue(
-    "UPDATE_NOTIFIER_IS_DISABLED",
-    "false",
-  ),
-  UPDATE_NOTIFIER_CACHE_TTL: getEnvValue(
-    "UPDATE_NOTIFIER_CACHE_TTL",
-    1000 * 60 * 60 * 24,
-  ),
+  REFINE_NO_TELEMETRY: getEnvValue("REFINE_NO_TELEMETRY") || "false",
+  UPDATE_NOTIFIER_IS_DISABLED:
+    getEnvValue("UPDATE_NOTIFIER_IS_DISABLED") || "false",
+  UPDATE_NOTIFIER_CACHE_TTL:
+    getEnvValue("UPDATE_NOTIFIER_CACHE_TTL") || 1000 * 60 * 60 * 24,
+  REFINE_DEVTOOLS_PORT: getEnvValue("REFINE_DEVTOOLS_PORT"),
 };
