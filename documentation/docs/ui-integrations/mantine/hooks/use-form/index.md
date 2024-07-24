@@ -779,8 +779,10 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-  queryMeta: {
-    querySpecificValue: "someValue",
+  refineCoreProps: {
+    queryMeta: {
+      querySpecificValue: "someValue",
+    },
   },
 });
 ```
@@ -793,8 +795,10 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-  mutationMeta: {
-    mutationSpecificValue: "someValue",
+  refineCoreProps: {
+    mutationMeta: {
+      mutationSpecificValue: "someValue",
+    },
   },
 });
 ```
@@ -901,10 +905,12 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 ```tsx
 const { overtime } = useForm({
   //...
-  overtimeOptions: {
-    interval: 1000,
-    onInterval(elapsedInterval) {
-      console.log(elapsedInterval);
+  refineCoreProps: {
+    overtimeOptions: {
+      interval: 1000,
+      onInterval(elapsedInterval) {
+        console.log(elapsedInterval);
+      },
     },
   },
 });

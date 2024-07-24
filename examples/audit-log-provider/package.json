@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
-    "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "start": "refine start"
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.36",
