@@ -12,6 +12,8 @@
     "build:all": "lerna run build --scope @refinedev/* --scope create-refine-app",
     "changeset": "changeset",
     "coffee": "pnpm nuke && pnpm i && pnpm build:all",
+    "cypress:open": "cypress open -C cypress/cypress.config.ts",
+    "cypress:run": "cypress run -C cypress/cypress.config.ts",
     "dev": "lerna run dev",
     "dev:docs": "concurrently \"cd documentation && pnpm dev\" \"pnpm dev --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
@@ -31,10 +33,12 @@
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
     "sp": "syncpack",
+    "start": "lerna run start",
     "test": "lerna run test --stream",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
     "test:all:coverage": "pnpm test:all -- -- --coverage",
-    "test:coverage": "pnpm test -- -- --coverage"
+    "test:coverage": "pnpm test -- -- --coverage",
+    "version-packages": "pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --no-frozen-lockfile && git add pnpm-lock.yaml"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": [
@@ -83,7 +87,7 @@
     "typescript": "^5.4.2",
     "wait-on": "^7.0.1"
   },
-  "packageManager": "pnpm@9.1.2+sha256.19c17528f9ca20bd442e4ca42f00f1b9808a9cb419383cd04ba32ef19322aba7",
+  "packageManager": "pnpm@9.4.0+sha256.b6fd0bfda555e7e584ad7e56b30c68b01d5a04f9ee93989f4b93ca8473c49c74",
   "engines": {
     "node": ">=18",
     "pnpm": ">=9"

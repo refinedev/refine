@@ -5,11 +5,11 @@
   "scripts": {
     "build": "refine build && rimraf .next/cache",
     "dev": "refine dev",
-    "start:prod": "refine start"
+    "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.34",
-    "@refinedev/core": "^4.51.0",
+    "@refinedev/cli": "^2.16.36",
+    "@refinedev/core": "^4.53.0",
     "@refinedev/nextjs-router": "^6.0.6",
     "@refinedev/react-table": "^5.6.12",
     "@refinedev/simple-rest": "^5.0.8",

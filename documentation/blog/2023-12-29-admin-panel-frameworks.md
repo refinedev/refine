@@ -70,7 +70,7 @@ However, it comes with a wide range of built-in UI frameworks support that we ca
 The React platform is used to build the front end of the application. It allows us to also select a React platform of our choice. We can choose from a wide range of options:
 
 - `Vite`: This is a React project with Vite as the builder and bundler.
-- `Remix`: This is a full-stack web framework for React. Other exmples of full-stack frameworks are Next.js and Blitz.js.
+- `Remix`: This is a full-stack web framework for React. Other examples of full-stack frameworks are Next.js and Blitz.js.
 - `Next.js`: This is a server-side rendering framework for React.
 
 **Backend**

@@ -123,7 +123,7 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 export const ProductCreate = () => {
-  const { formProps, saveButtonProps } = useForm({ redirect: "show" });
+  const { formProps, saveButtonProps } = useForm({ refineCoreProps: { redirect: "show" }});
 
   return (
     <Create saveButtonProps={saveButtonProps}>

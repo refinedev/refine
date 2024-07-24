@@ -1,10 +1,9 @@
 import { FrontendApi } from "@ory/client";
-
-const ORY_URL = "/api/.auth";
+import { AUTH_SERVER_URL } from "./constants";
 
 export const ory = new FrontendApi({
   isJsonMime: () => true,
-  basePath: ORY_URL,
+  basePath: AUTH_SERVER_URL,
   baseOptions: {
     withCredentials: true,
   },

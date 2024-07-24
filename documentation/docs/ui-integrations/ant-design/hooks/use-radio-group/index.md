@@ -90,6 +90,23 @@ const { selectProps } = useRadioGroup({
 });
 ```
 
+### selectedOptionsOrder
+
+`selectedOptionsOrder` allows us to sort `selectedOptions` on `defaultValue`. It can be:
+
+- `"in-place"`: sort `selectedOptions` at the bottom. It is by default.
+- `"selected-first"`: sort `selectedOptions` at the top.
+
+```tsx
+const { selectProps } = useRadioGroup({
+  resource: "languages",
+  // highlight-next-line
+  defaultValue: 1,
+  // highlight-next-line
+  selectedOptionsOrder: "selected-first", // in-place | selected-first
+});
+```
+
 The easiest way to selecting a default value for an radio button field is by passing in `defaultValue`.
 
 ### optionLabel and optionValue

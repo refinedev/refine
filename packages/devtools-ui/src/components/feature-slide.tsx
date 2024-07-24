@@ -89,14 +89,14 @@ export const FeatureSlide = (props: { className?: string }) => {
           "re-relative",
         )}
       >
-        {slides.map((_slide, index) => {
+        {slides.map((slide, index) => {
           const active = index === slideIndex;
 
           return (
             <img
-              key={index}
-              src={slides[slideIndex].image}
-              alt={slides[slideIndex].title}
+              key={slide.title}
+              src={slide.image}
+              alt={slide.title}
               className={clsx(
                 "re-absolute re-top-0 re-left-0 re-w-full re-h-full re-object-contain",
                 active ? "re-visible" : "re-invisible",

@@ -45,41 +45,26 @@ const getProjectInfo = (path) => {
   const dependencies = Object.keys(packageJson.dependencies || {});
   const devDependencies = Object.keys(packageJson.devDependencies || {});
 
-  let port = 3000;
-  let command = `pnpm dev --scope ${projectName}`;
-  let additionalParams = "";
+  const allDependencies = [...dependencies, ...devDependencies];
 
-  // check for vite
-  if (dependencies.includes("vite") || devDependencies.includes("vite")) {
-    port = 5173;
+  const command = `pnpm start --scope ${projectName}`;
 
-    if (dependencies.includes("@refinedev/devtools")) {
-      additionalParams = "-- --devtools false";
-    }
+  let port;
+
+  if (allDependencies.includes("vite")) {
+    port = 4173;
   }
 
-  // check for next and remix
   if (
-    dependencies.includes("next") ||
-    devDependencies.includes("next") ||
-    dependencies.includes("@remix-run/node") ||
-    devDependencies.includes("@remix-run/node")
+    allDependencies.includes("next") ||
+    allDependencies.includes("@remix-run/node")
   ) {
     port = 3000;
-    command = `pnpm build --scope ${projectName} && pnpm run --filter ${projectName} start:prod`;
-  }
-
-  if (
-    dependencies.includes("react-scripts") ||
-    devDependencies.includes("react-scripts")
-  ) {
-    additionalParams = "--host 127.0.0.1";
   }
 
   return {
     port,
     command,
-    additionalParams,
   };
 };
 
@@ -97,11 +82,10 @@ const prettyLog = (bg, ...args) => {
 const getProjectsWithE2E = () => {
   return EXAMPLES.split(",")
     .map((path) => {
-      const dir = pathJoin(EXAMPLES_DIR, path);
-      const isDirectory = fs.statSync(dir).isDirectory();
-      const isConfigExists = fs.existsSync(pathJoin(dir, "cypress"));
+      const dir = pathJoin("./cypress/e2e", path);
+      const isDirectory = fs.existsSync(dir);
 
-      if (isDirectory && isConfigExists) {
+      if (isDirectory) {
         return path;
       }
     })
@@ -185,12 +169,9 @@ const runTests = async () => {
   for await (const path of examplesToRun) {
     console.log(`::group::Example ${path}`);
 
-    const { port, command, additionalParams } = getProjectInfo(
-      `${EXAMPLES_DIR}/${path}`,
-    );
+    const { port, command } = getProjectInfo(`${EXAMPLES_DIR}/${path}`);
     console.log("port", port);
     console.log("command", command);
-    console.log("additionalParams", additionalParams);
 
     prettyLog("blue", `Running for ${path} at port ${port}`);
 
@@ -200,9 +181,9 @@ const runTests = async () => {
 
     let failed = false;
 
-    // starting the dev server
+    // build and start example
     try {
-      start = exec(`${command} ${additionalParams}`);
+      start = exec(command);
 
       start.stdout.on("data", console.log);
       start.stderr.on("data", console.error);
@@ -233,12 +214,17 @@ const runTests = async () => {
 
     try {
       if (!failed) {
-        const params = `-- --record --group ${path}`;
-        const runner = `pnpm lerna run cypress:run --scope ${path} ${params}`;
+        const additionalParams = [
+          `--record --group ${path}`,
+          `--spec cypress/e2e/${path}`,
+          `--config baseUrl=http://localhost:${port}`,
+        ];
+
+        const runCommand = `pnpm cypress:run ${additionalParams.join(" ")} `;
 
         prettyLog("blue", `Running tests for ${path}`);
 
-        const { promise } = execPromise(runner);
+        const { promise } = execPromise(runCommand);
 
         await promise;
 

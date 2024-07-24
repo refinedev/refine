@@ -1,5 +1,15 @@
 # @refinedev/hasura
 
+## 6.6.6
+
+### Patch Changes
+
+- [#6052](https://github.com/refinedev/refine/pull/6052) [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd) Thanks [@aliemir](https://github.com/aliemir)! - fix(hasura): broken lodash import in bundle
+
+  ESM bundle of `@refinedev/hasura` was broken due to incorrect lodash import. Import has been replaced with subdirectory import to get handled properly in the bundling process.
+
+  Fixes [#6044](https://github.com/refinedev/refine/issues/6044)
+
 ## 6.6.4
 
 ### Patch Changes

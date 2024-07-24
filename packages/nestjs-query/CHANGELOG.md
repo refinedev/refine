@@ -1,5 +1,25 @@
 # @refinedev/nestjs-query
 
+## 1.3.2
+
+### Patch Changes
+
+- [#6023](https://github.com/refinedev/refine/pull/6023) [`82170288209653b096b996cf31854434d19c01cd`](https://github.com/refinedev/refine/commit/82170288209653b096b996cf31854434d19c01cd) Thanks [@yamadayutaka](https://github.com/yamadayutaka)! - fix: can specify 0 as filter value
+
+  The following values do not apply to the filter.
+
+  - null
+  - undefined
+  - NaN
+  - Infinity / -Infinity
+
+  The following values can apply to the filter.
+
+  - 0
+  - ""
+
+  Resolves #6022
+
 ## 1.3.0
 
 ### Minor Changes

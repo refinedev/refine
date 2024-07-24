@@ -1,5 +1,17 @@
 # @refinedev/devtools-shared
 
+## 1.1.11
+
+### Patch Changes
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - chore(devtools-shared): add login callback events
+
+  Added new events to handle login errors on the main devtools window rather than external windows. This change is accompanied by new event handlers in the `@refinedev/devtools-ui` and `@refinedev/devtools-server` packages.
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - chore(devtools): update devtools url fallback values
+
+  Updated fallback values for the Devtools URL and use single fallback value until its provided by the `@refinedev/devtools-server` when client is connected.
+
 ## 1.1.9
 
 ### Patch Changes

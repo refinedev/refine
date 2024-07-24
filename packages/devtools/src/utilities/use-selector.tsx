@@ -23,9 +23,7 @@ export const useSelector = (active: boolean) => {
   >([]);
 
   const fetchTraceItems = React.useCallback(async () => {
-    const response = await fetch(
-      `${devtoolsUrl ?? "http://localhost:5001"}/api/unique-trace-items`,
-    );
+    const response = await fetch(`${devtoolsUrl}/api/unique-trace-items`);
     const data = await response.json();
 
     return data.data as string[];

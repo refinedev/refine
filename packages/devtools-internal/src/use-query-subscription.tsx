@@ -7,11 +7,12 @@ import type { QueryClient } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { createQueryListener, createMutationListener } from "./listeners";
 
+const empty = {};
+const noop = () => empty;
+
 export const useQuerySubscription =
   __DEV_CONDITION__ !== "development"
-    ? () => {
-        return {};
-      }
+    ? noop
     : (queryClient: QueryClient) => {
         const { ws } = useContext(DevToolsContext);
         const queryCacheSubscription = React.useRef<() => void>();

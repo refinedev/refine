@@ -7,23 +7,24 @@ on:
 
 jobs:
   publish:
+    permissions:
+      contents: write
+      id-token: write
+      issues: read
+      pull-requests: write
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.ref }}-stable-release
       cancel-in-progress: true
     outputs:
       published: ${{ steps.changesets.outputs.published }}
+    env:
+      RELEASE_ONLY: ${{ secrets.RELEASE_ONLY }}
     steps:
-      - name: Workflow run cleanup action
-        uses: rokroskar/workflow-run-cleanup-action@v0.2.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.PANKOD_BOT_TOKEN }}
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
+      - uses: pnpm/action-setup@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 18
@@ -39,20 +40,25 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm lint:ci
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Syncpack
         run: pnpm sp lint
-      - name: Test
-        run: pnpm test:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Publint
         run: pnpm publint:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Are The Types Wrong
         run: pnpm attw:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
+      - name: Test
+        run: pnpm test:all
+        if: ${{ env.RELEASE_ONLY != 'true' }}
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          version: ./.github/workflows/scripts/update-lock.sh
-          publish: npm run changeset publish
+          version: pnpm version-packages
+          publish: pnpm changeset publish
           commit: "ci(changesets): version packages"
           title: "ci(changesets): version packages"
         env:

@@ -14,10 +14,10 @@ const authOptions = {
       clientSecret: "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",
     }),
     Auth0Provider({
-      clientId: "Be5vsLunFvpzPf4xfXtaMxrZUVBjjNPO",
+      clientId: "AcinJvjWp1Dr41gPcJeQ20r5vcsteks4",
       clientSecret:
-        "08F9X84FvzpsimV16CQvlQuwJOlqk-GqQgEdcq_3xzrn1K3UHnTCcRgMCwBW7api",
-      issuer: "https://dev-qg1ftdys736bk5i3.us.auth0.com",
+        "y3pj2KaTiNgING-5e8_JYmX_bIQSwvkp_XgDcA75sEPSSB2zmi0n-3UoTfH0pOTP",
+      issuer: "https://dev-y38p834gjptooc4g.us.auth0.com",
     }),
     KeycloakProvider({
       clientId: "refine-demo",

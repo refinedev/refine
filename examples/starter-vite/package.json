@@ -7,12 +7,12 @@
     "build": "tsc && refine build",
     "dev": "refine dev",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.34",
-    "@refinedev/core": "^4.51.0",
+    "@refinedev/cli": "^2.16.36",
+    "@refinedev/core": "^4.53.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

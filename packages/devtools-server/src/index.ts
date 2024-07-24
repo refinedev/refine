@@ -112,6 +112,19 @@ export const server = async ({
         });
       });
 
+      receive(
+        client as any,
+        DevtoolsEvent.DEVTOOLS_LOGIN_FAILURE,
+        ({ error, code }) => {
+          ws.clients.forEach((c) => {
+            send(c as any, DevtoolsEvent.DEVTOOLS_DISPLAY_LOGIN_FAILURE, {
+              error,
+              code,
+            });
+          });
+        },
+      );
+
       // close connected app if client disconnects
       client.on("close", (_, reason) => {
         if (__DEVELOPMENT__) {

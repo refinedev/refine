@@ -1,5 +1,13 @@
-import React from "react";
-import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
+import React, { useContext } from "react";
+import {
+  Layout,
+  Menu,
+  Grid,
+  Drawer,
+  Button,
+  theme,
+  ConfigProvider,
+} from "antd";
 import {
   DashboardOutlined,
   LogoutOutlined,
@@ -46,6 +54,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   } = useThemedLayoutContext();
 
   const isExistAuthentication = useIsExistAuthentication();
+  const direction = useContext(ConfigProvider.ConfigContext)?.direction;
   const routerType = useRouterType();
   const NewLink = useLink();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
@@ -84,7 +93,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         return (
           <CanAccess
             key={item.key}
-            resource={name.toLowerCase()}
+            resource={name}
             action="list"
             params={{
               resource: item,
@@ -113,7 +122,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{
             resource: item,
@@ -282,6 +291,15 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     siderStyles.height = "100vh";
     siderStyles.zIndex = 999;
   }
+  const renderClosingIcons = () => {
+    const iconProps = { style: { color: token.colorPrimary } };
+    const OpenIcon = direction === "rtl" ? RightOutlined : LeftOutlined;
+    const CollapsedIcon = direction === "rtl" ? LeftOutlined : RightOutlined;
+    const IconComponent = siderCollapsed ? CollapsedIcon : OpenIcon;
+
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+    return <IconComponent {...iconProps} />;
+  };
 
   return (
     <>
@@ -314,21 +332,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               backgroundColor: token.colorBgElevated,
             }}
           >
-            {siderCollapsed ? (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-              <RightOutlined
-                style={{
-                  color: token.colorPrimary,
-                }}
-              />
-            ) : (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
-              <LeftOutlined
-                style={{
-                  color: token.colorPrimary,
-                }}
-              />
-            )}
+            {renderClosingIcons()}
           </Button>
         }
       >
