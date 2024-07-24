@@ -17,7 +17,7 @@ export const DevtoolsPanel =
         const [browser, setBrowser] = React.useState<boolean>(false);
         const [visible, setVisible] = React.useState(false);
         const [placement] = React.useState<Placement>("bottom");
-        const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
+        const { httpUrl, ws } = React.useContext(DevToolsContext);
         const [width, setWidth] = React.useState<number>(0);
         const [selectorActive, setSelectorActive] = React.useState(false);
 
@@ -95,9 +95,9 @@ export const DevtoolsPanel =
               {({ resizing }) => (
                 <iframe
                   allow="clipboard-write;"
-                  src={devtoolsUrl}
+                  src={httpUrl}
                   srcDoc={
-                    devtoolsUrl
+                    httpUrl
                       ? undefined
                       : `
                             <html style="height:100%;padding:0;margin:0;">
