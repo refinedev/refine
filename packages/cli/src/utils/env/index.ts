@@ -1,6 +1,9 @@
 import type { NODE_ENV } from "@definitions/node";
 import * as dotenv from "dotenv";
-dotenv.config();
+
+const refineEnv: Record<string, string> = {};
+
+dotenv.config({ processEnv: refineEnv });
 
 const envSearchMap: Record<Exclude<NODE_ENV, "custom">, RegExp> = {
   development: /dev/i,
@@ -30,11 +33,19 @@ export const getNodeEnv = (): NODE_ENV => {
   return env;
 };
 
+const getEnvValue = (key: string, defaultValue?: string | number) => {
+  return process.env[key] || refineEnv[key] || defaultValue;
+};
+
 export const ENV = {
   NODE_ENV: getNodeEnv(),
-  REFINE_NO_TELEMETRY: process.env.REFINE_NO_TELEMETRY || "false",
-  UPDATE_NOTIFIER_IS_DISABLED:
-    process.env.UPDATE_NOTIFIER_IS_DISABLED || "false",
-  UPDATE_NOTIFIER_CACHE_TTL:
-    process.env.UPDATE_NOTIFIER_CACHE_TTL || 1000 * 60 * 60 * 24, // 24 hours,
+  REFINE_NO_TELEMETRY: getEnvValue("REFINE_NO_TELEMETRY", "false"),
+  UPDATE_NOTIFIER_IS_DISABLED: getEnvValue(
+    "UPDATE_NOTIFIER_IS_DISABLED",
+    "false",
+  ),
+  UPDATE_NOTIFIER_CACHE_TTL: getEnvValue(
+    "UPDATE_NOTIFIER_CACHE_TTL",
+    1000 * 60 * 60 * 24,
+  ),
 };
