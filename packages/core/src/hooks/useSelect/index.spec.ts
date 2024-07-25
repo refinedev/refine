@@ -315,7 +315,7 @@ describe("useSelect Hook", () => {
   it("should onSearchFromProp work as expected", async () => {
     const getListMock = jest.fn(() => Promise.resolve({ data: [], total: 0 }));
 
-    const { result } = renderHook(
+    const { result, rerender } = renderHook(
       () =>
         useSelect({
           resource: "posts",
@@ -342,21 +342,92 @@ describe("useSelect Hook", () => {
       },
     );
 
-    const { onSearch } = result.current;
+    await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(1));
 
-    onSearch("1");
-    await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(2);
+    result.current.onSearch("1");
+    // force custom `onSearch` to reinitialize, this should not change `current.onSearch`
+    rerender();
+    result.current.onSearch("2");
+    // force custom `onSearch` to reinitialize, this should not change `current.onSearch`
+    rerender();
+    result.current.onSearch("3");
+
+    await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(2));
+
+    result.current.onSearch("");
+
+    await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(3));
+
+    await waitFor(() =>
+      expect(result.current.queryResult.isSuccess).toBeTruthy(),
+    );
+  });
+
+  it("should respond to onSearch prop changes without breaking the debounce interval", async () => {
+    const getListMock = jest.fn(() => Promise.resolve({ data: [], total: 0 }));
+    const initialOnSearch = jest.fn().mockImplementation((v) => [
+      {
+        field: "title",
+        operator: "contains",
+        value: v,
+      },
+    ]);
+    const secondOnSearch = jest.fn().mockImplementation((v) => [
+      {
+        field: "title",
+        operator: "contains",
+        value: v,
+      },
+    ]);
+
+    const { result, rerender } = renderHook<
+      Parameters<typeof useSelect>[0],
+      ReturnType<typeof useSelect>
+    >((props) => useSelect(props), {
+      initialProps: {
+        resource: "posts",
+        onSearch: initialOnSearch,
+      },
+      wrapper: TestWrapper({
+        dataProvider: {
+          default: {
+            ...MockJSONServer.default!,
+            getList: getListMock,
+          },
+        },
+        resources: [{ name: "posts" }],
+      }) as any,
     });
 
-    onSearch("");
-    await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(3);
+    await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(1));
+
+    result.current.onSearch("1");
+
+    rerender({
+      resource: "posts",
+      onSearch: secondOnSearch,
     });
 
-    await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+    result.current.onSearch("2");
+
+    await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(2));
+    await waitFor(() => expect(initialOnSearch).toHaveBeenCalledTimes(0));
+    await waitFor(() => expect(secondOnSearch).toHaveBeenCalledTimes(1));
+
+    result.current.onSearch("");
+
+    rerender({
+      resource: "posts",
+      onSearch: initialOnSearch,
     });
+
+    await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(3));
+    await waitFor(() => expect(initialOnSearch).toHaveBeenCalledTimes(1));
+    await waitFor(() => expect(secondOnSearch).toHaveBeenCalledTimes(1));
+
+    await waitFor(() =>
+      expect(result.current.queryResult.isSuccess).toBeTruthy(),
+    );
   });
 
   it("should invoke queryOptions methods successfully", async () => {
