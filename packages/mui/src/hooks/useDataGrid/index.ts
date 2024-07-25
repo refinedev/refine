@@ -33,9 +33,13 @@ import {
   transformSortModelToCrudSorting,
 } from "@definitions";
 
+type DataGridPropsOverride = Omit<DataGridProps, "onFilterModelChange"> & {
+  onFilterModelChange: (model: GridFilterModel) => void;
+};
+
 type DataGridPropsType = Required<
   Pick<
-    DataGridProps,
+    DataGridPropsOverride,
     | "rows"
     | "loading"
     | "rowCount"

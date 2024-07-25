@@ -786,8 +786,8 @@ When the user filters a column, this function is called with the new filter mode
   {...dataGridProps}
   columns={columns}
   autoHeight
-  onFilterModelChange={(model, details) => {
-    dataGridProps.onFilterModelChange(model, details);
+  onFilterModelChange={(model) => {
+    dataGridProps.onFilterModelChange(model);
     // do something else
   }}
 />
