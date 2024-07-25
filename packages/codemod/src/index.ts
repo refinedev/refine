@@ -114,6 +114,10 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
+    name: "Refactor: { queryResult } = useShow() to { query } = useShow()",
+    value: "use-show-query-result",
+  },
+  {
     name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
     value: "refine3-to-refine4",
   },
