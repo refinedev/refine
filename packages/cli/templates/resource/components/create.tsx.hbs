@@ -1,3 +1,7 @@
+{{#if isNextJs}}
+"use client";
+{{/if}}
+
 {{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}Inferencer } from "@refinedev/inferencer/{{uiFramework}}";
 {{else}}
@@ -9,5 +13,5 @@ export const {{capitalize resource}}Create = () => {
     return <{{formatInferencerComponent uiFramework}}Inferencer />;
     {{else}}
     return <HeadlessInferencer />;
-    {{/if}}  
+    {{/if}}
 };

@@ -83,6 +83,10 @@ export const createResources = async (
     // get the project type
     const uiFramework = getUIFramework();
 
+    // if next.js, need to add the use client directive
+    const projectType = getProjectType();
+    const isNextJs = projectType === ProjectTypes.NEXTJS;
+
     const sourceDir = `${getCommandRootDir()}/../templates/resource/components`;
 
     // create temp dir
@@ -96,6 +100,7 @@ export const createResources = async (
       resource,
       actions: customActions || defaultActions,
       uiFramework,
+      isNextJs,
     };
 
     // compile dir
@@ -128,8 +133,7 @@ export const createResources = async (
     temp.cleanupSync();
 
     // if use Next.js, generate page files. This makes easier to use the resource
-    const projectType = getProjectType();
-    if (projectType === ProjectTypes.NEXTJS) {
+    if (isNextJs) {
       generateNextJsPages(
         resource,
         resourceFolderName,

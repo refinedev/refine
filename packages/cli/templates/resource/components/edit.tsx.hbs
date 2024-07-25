@@ -1,3 +1,7 @@
+{{#if isNextJs}}
+"use client";
+{{/if}}
+
 {{#if uiFramework}}
 import { {{formatInferencerComponent uiFramework}}Inferencer } from "@refinedev/inferencer/{{uiFramework}}";
 {{else}}
