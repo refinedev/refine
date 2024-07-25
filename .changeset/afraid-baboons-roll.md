@@ -10,3 +10,9 @@ import { useAutocomplete } from '@refinedev/mui';
 - const { queryResult, defaultValueQueryResult } = useAutocomplete();
 + const { query, defaultValueQuery } = useAutocomplete();
 ```
+
+> ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+>
+> ```bash
+> npx @refinedev/codemod@latest use-select-query-result
+> ```
