@@ -8,8 +8,8 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - app:/app
-      - /app/node_modules
+      - app:/app/refine
+      - /app/refine/node_modules
     networks:
       - dev-network
   devtools:
@@ -17,8 +17,8 @@ services:
       context: .
       dockerfile: Dockerfile.devtools
     volumes:
-      - app:/app
-      - /app/node_modules
+      - app:/app/refine
+      - /app/refine/node_modules
     networks:
       - dev-network
   nginx:

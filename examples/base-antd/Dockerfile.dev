@@ -2,9 +2,7 @@
 # We'll then use Nginx to reverse proxy the requests to the correct services.
 # We're running the application at port 5173 and we'll access it via http://my-app.local.
 # Use the official Node.js image as a parent image
-FROM node:18
-# Set the working directory
-WORKDIR /app
+FROM refinedev/node
 # Copy the package.json and package-lock.json
 COPY package*.json ./
 # Install dependencies
