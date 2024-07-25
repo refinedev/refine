@@ -114,7 +114,7 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
-    name: "Refactor: { queryResult } = useShow() to { query } = useShow()",
+    name: "Refactor[useShow]: { queryResult } to { query }",
     value: "use-show-query-result",
   },
   {
