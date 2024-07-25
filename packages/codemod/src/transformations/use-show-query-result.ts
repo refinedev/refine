@@ -18,7 +18,7 @@ export default function transformer(file: FileInfo, api: API): string {
           prop.shorthand = false;
           prop.value = j.identifier("queryResult");
         } else {
-          if (prop.key.name === prop.value.name) {
+          if (prop.key.name === prop?.value?.name) {
             prop.shorthand = true;
           }
         }
