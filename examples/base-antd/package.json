@@ -6,6 +6,7 @@
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
+    "docker": "refine dev --devtools false -- --host",
     "refine": "refine",
     "start": "refine start"
   },

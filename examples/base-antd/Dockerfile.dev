@@ -1,0 +1,17 @@
+# We're setting up our development server and running it on port 5173.
+# We'll then use Nginx to reverse proxy the requests to the correct services.
+# We're running the application at port 5173 and we'll access it via http://my-app.local.
+# Use the official Node.js image as a parent image
+FROM node:18
+# Set the working directory
+WORKDIR /app
+# Copy the package.json and package-lock.json
+COPY package*.json ./
+# Install dependencies
+RUN npm install
+# Copy the rest of the application
+COPY . .
+# Expose the port the app runs on
+EXPOSE 5173
+# Command to run the development server
+CMD ["npm", "run", "docker"]

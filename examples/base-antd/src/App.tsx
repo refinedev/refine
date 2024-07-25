@@ -29,7 +29,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <DevtoolsProvider>
+    <DevtoolsProvider url="http://devtools.local">
       <BrowserRouter>
         <GitHubBanner />
         <ConfigProvider theme={RefineThemes.Blue}>

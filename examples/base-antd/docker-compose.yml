@@ -1,0 +1,36 @@
+# We're setting up a development environment with two services: dev and devtools.
+# The dev service is the main service that runs the application.
+# The devtools service is the service that runs the Refine Devtools.
+version: "3"
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - app:/app
+      - /app/node_modules
+    networks:
+      - dev-network
+  devtools:
+    build:
+      context: .
+      dockerfile: Dockerfile.devtools
+    volumes:
+      - app:/app
+      - /app/node_modules
+    networks:
+      - dev-network
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - dev-network
+networks:
+  dev-network:
+    driver: bridge
+volumes:
+  app:
