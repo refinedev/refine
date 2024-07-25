@@ -16,7 +16,7 @@ import { join } from "path";
 import { plural } from "pluralize";
 import temp from "temp";
 
-const defaultActions = ["list", "create", "edit", "show"];
+export const defaultActions = ["list", "create", "edit", "show"];
 
 export const createResources = async (
   params: { actions?: string; path?: string },
