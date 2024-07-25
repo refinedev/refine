@@ -13063,9 +13063,6 @@ importers:
       '@refinedev/core':
         specifier: ^4.53.0
         version: link:../../packages/core
-      '@refinedev/devtools':
-        specifier: ^1.2.6
-        version: link:../../packages/devtools
       '@refinedev/remix-router':
         specifier: ^3.0.6
         version: link:../../packages/remix-router
@@ -47892,14 +47889,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)):
+  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)):
     dependencies:
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-module-imports': 7.24.3
       '@babel/plugin-syntax-jsx': 7.24.1(@babel/core@7.24.4)
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)
+      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)
     transitivePeerDependencies:
       - '@babel/core'
 
@@ -60582,18 +60579,18 @@ snapshots:
     dependencies:
       inline-style-parser: 0.1.1
 
-  styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0):
+  styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0):
     dependencies:
       '@babel/helper-module-imports': 7.24.3
       '@babel/traverse': 7.24.1(supports-color@5.5.0)
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0))
+      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0))
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
       react-is: 18.3.0
       shallowequal: 1.1.0
       supports-color: 5.5.0
@@ -62265,7 +62262,7 @@ snapshots:
       prop-types: 15.8.1
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.0)(react@16.14.0)
+      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.0)(react@18.3.0)
       tslib: 1.14.1
     transitivePeerDependencies:
       - '@babel/core'
