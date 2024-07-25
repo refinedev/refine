@@ -114,7 +114,7 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
-    name: "Refactor: { tableQueryResult } = useTable() to { tableQuery } = useTable()",
+    name: "Refactor[useTable, useDataGrid]: { tableQueryResult } to { tableQuery }",
     value: "use-table-query-result",
   },
   {
