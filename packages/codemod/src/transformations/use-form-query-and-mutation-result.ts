@@ -14,11 +14,16 @@ export default function transformer(file: FileInfo, api: API): string {
       const newName = renameMap[prop.key.name];
       if (newName) {
         prop.key.name = newName;
+
         if (prop.shorthand) {
           prop.shorthand = false;
           prop.value = j.identifier(
             prop.key.name === "query" ? "queryResult" : "mutationResult",
           );
+        } else {
+          if (prop.key.name === prop?.value?.name) {
+            prop.shorthand = true;
+          }
         }
       }
     }
