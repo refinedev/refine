@@ -21,7 +21,7 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
   const { formProps, saveButtonProps, onFinish } = useForm({
     redirect: "list",
   });
-  const { selectProps, query } = useCompaniesSelect();
+  const { selectProps, queryResult } = useCompaniesSelect();
 
   useEffect(() => {
     const companyId = searchParams.get("companyId");
@@ -107,7 +107,7 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
             <Select
               {...selectProps}
               options={
-                query.data?.data?.map(({ id, name, avatarUrl }) => ({
+                queryResult.data?.data?.map(({ id, name, avatarUrl }) => ({
                   value: id,
                   label: (
                     <SelectOptionWithAvatar

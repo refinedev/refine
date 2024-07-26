@@ -40,7 +40,7 @@ export const PostList: React.FC = () => {
 
   const {
     options,
-    query: { isLoading },
+    queryResult: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
     hasPagination: false,

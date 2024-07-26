@@ -79,7 +79,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [searchParams]);
 
-  const { selectProps, query } = useSelect<
+  const { selectProps, queryResult } = useSelect<
     GetFieldsFromList<SalesCompaniesSelectQuery>
   >({
     resource: "companies",
@@ -91,7 +91,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
 
   const { selectProps: stageSelectProps } = useDealStagesSelect();
 
-  const { selectProps: userSelectProps, query: userQueryResult } =
+  const { selectProps: userSelectProps, queryResult: userQueryResult } =
     useUsersSelect();
 
   const { data: user } = useGetIdentity<User>();
@@ -109,7 +109,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
       return null;
     }
 
-    const selectedCompany = query.data?.data?.find(
+    const selectedCompany = queryResult.data?.data?.find(
       (company) => company.id === companyId,
     );
 
@@ -240,7 +240,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
               placeholder="Please select company"
               {...selectProps}
               options={
-                query.data?.data?.map((company) => ({
+                queryResult.data?.data?.map((company) => ({
                   value: company.id,
                   label: (
                     <SelectOptionWithAvatar
