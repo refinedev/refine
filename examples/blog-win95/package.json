@@ -33,7 +33,7 @@
     "@tanstack/react-table": "^8.2.6",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-hook-form": "^7.30.0",
+    "react-hook-form": "^7.43.5",
     "react-router-dom": "^6.8.1",
     "react95": "^4.0.0",
     "styled-components": "^6.1.8"

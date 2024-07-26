@@ -29,10 +29,9 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
               display: "flex",
               flexDirection: "column",
               flex: 1,
-              minHeight: "100vh",
+              minWidth: "1px",
+              minHeight: "1px",
             },
-            { overflow: "auto" },
-            { overflow: "clip" },
           ]}
         >
           <HeaderToRender />
