@@ -24,7 +24,7 @@ export const PostEdit = () => {
   const [uploading, setUploading] = useState(false);
   const apiUrl = useApiUrl();
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query: queryResult },
     saveButtonProps,
     register,
     watch,

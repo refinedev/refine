@@ -12,7 +12,7 @@ import { useSelect } from "@refinedev/core";
 
 export const BlogPostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query: queryResult },
     saveButtonProps,
     register,
     resetField,
