@@ -30,16 +30,16 @@ import type { Account, AccountForm } from "@/types";
 export const AccountsPageEdit = () => {
   const { listUrl } = useNavigation();
 
-  const { formProps, query } = useForm<Account, HttpError, AccountForm>({
+  const { formProps, queryResult } = useForm<Account, HttpError, AccountForm>({
     redirect: false,
     meta: {
       populate: ["logo", "clients", "invoices.client"],
     },
   });
-  const account = query?.data?.data;
+  const account = queryResult?.data?.data;
   const clients = account?.clients || [];
   const invoices = account?.invoices || [];
-  const isLoading = query?.isLoading;
+  const isLoading = queryResult?.isLoading;
 
   return (
     <Show

@@ -26,7 +26,7 @@ export const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     control,
     formState: { errors },
-    refineCore: { onFinish, mutation },
+    refineCore: { onFinish, mutationResult },
   } = useForm<UpdateCustomerEmailFormData>({
     defaultValues: {
       email: customer.email,
@@ -39,7 +39,7 @@ export const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     },
   });
 
-  const { isLoading, isSuccess } = mutation;
+  const { isLoading, isSuccess } = mutationResult;
 
   useEffect(() => {
     reset({

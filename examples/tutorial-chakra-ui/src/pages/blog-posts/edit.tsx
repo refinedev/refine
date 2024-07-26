@@ -12,14 +12,14 @@ import { useSelect } from "@refinedev/core";
 
 export const BlogPostEdit = () => {
   const {
-    refineCore: { formLoading, query },
+    refineCore: { formLoading, queryResult },
     saveButtonProps,
     register,
     resetField,
     formState: { errors },
   } = useForm();
 
-  const blogPostsData = query?.data?.data;
+  const blogPostsData = queryResult?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",

@@ -22,7 +22,7 @@ type Props = {
 };
 
 export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
-  const { saveButtonProps, formProps, query } = useForm<
+  const { saveButtonProps, formProps, queryResult } = useForm<
     GetFields<UpdateUserMutation>,
     HttpError,
     GetVariables<UpdateUserMutationVariables>
@@ -35,13 +35,13 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
       gqlMutation: UPDATE_USER_MUTATION,
     },
   });
-  const { avatarUrl, name } = query?.data?.data || {};
+  const { avatarUrl, name } = queryResult?.data?.data || {};
 
   const closeModal = () => {
     setOpened(false);
   };
 
-  if (query?.isLoading) {
+  if (queryResult?.isLoading) {
     return (
       <Drawer
         open={opened}

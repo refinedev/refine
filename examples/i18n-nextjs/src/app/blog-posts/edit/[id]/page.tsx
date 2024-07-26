@@ -6,9 +6,9 @@ import { Form, Input, Select } from "antd";
 
 export default function BlogPostEdit() {
   const { translate: t } = useTranslation();
-  const { formProps, saveButtonProps, query } = useForm();
+  const { formProps, saveButtonProps, queryResult } = useForm({});
 
-  const blogPostsData = query?.data?.data;
+  const blogPostsData = queryResult?.data?.data;
 
   const { selectProps: categorySelectProps } = useSelect({
     resource: "categories",

@@ -4,7 +4,7 @@ import { useSelect } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, query },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     resetField,
@@ -13,7 +13,7 @@ export const PostEdit: React.FC = () => {
 
   const { options } = useSelect({
     resource: "categories",
-    defaultValue: query?.data?.data.category.id,
+    defaultValue: queryResult?.data?.data.category.id,
   });
 
   useEffect(() => {
@@ -38,7 +38,7 @@ export const PostEdit: React.FC = () => {
         {...register("category.id", {
           required: true,
         })}
-        defaultValue={query?.data?.data.category.id}
+        defaultValue={queryResult?.data?.data.category.id}
       >
         {options?.map((category) => (
           <option key={category.value} value={category.value}>

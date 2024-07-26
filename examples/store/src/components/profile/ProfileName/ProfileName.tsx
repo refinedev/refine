@@ -23,7 +23,7 @@ export const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     control,
     formState: { errors },
-    refineCore: { onFinish, mutation },
+    refineCore: { onFinish, mutationResult },
   } = useForm<UpdateCustomerNameFormData>({
     refineCoreProps: {
       action: "edit",
@@ -39,7 +39,7 @@ export const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
     },
   });
 
-  const { isLoading, isSuccess } = mutation;
+  const { isLoading, isSuccess } = mutationResult;
 
   useEffect(() => {
     reset({

@@ -5,11 +5,11 @@ import { Form, Input, Select } from "antd";
 import type { IInvoice } from "interfaces";
 
 export const InvoiceEdit = () => {
-  const { formProps, saveButtonProps, query } = useForm<IInvoice>({
+  const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
     metaData: { populate: ["company", "contact", "missions"] },
   });
 
-  const defaultValue = query?.data?.data;
+  const defaultValue = queryResult?.data?.data;
 
   const { selectProps: companySelectProps } = useSelect({
     resource: "companies",

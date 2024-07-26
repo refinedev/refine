@@ -6,11 +6,11 @@ import MDEditor from "@uiw/react-md-editor";
 import type { IPost } from "interfaces";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, query } = useForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<IPost>({
     resource: "categories",
-    defaultValue: query?.data?.data.category.id,
+    defaultValue: queryResult?.data?.data.category.id,
   });
 
   return (

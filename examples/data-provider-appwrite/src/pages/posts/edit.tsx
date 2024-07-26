@@ -12,11 +12,11 @@ import type { IPost, IPostVariables, ICategory } from "../../interfaces";
 import { normalizeFile, storage } from "../../utility";
 
 export const PostEdit = () => {
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<IPost, HttpError, IPostVariables>({
+  const { formProps, saveButtonProps, queryResult } = useForm<
+    IPost,
+    HttpError,
+    IPostVariables
+  >({
     queryOptions: {
       select: ({ data }) => {
         return {

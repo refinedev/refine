@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, query },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     resetField,
@@ -13,7 +13,7 @@ export const PostEdit: React.FC = () => {
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: query?.data?.data?.category?.id,
+    defaultValue: queryResult?.data?.data?.category?.id,
     optionLabel: "name",
     optionValue: "id",
   });

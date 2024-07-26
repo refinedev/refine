@@ -36,7 +36,7 @@ export const PostEdit: React.FC = () => {
     setFieldValue,
     values,
     errors,
-    refineCore: { query: queryResult },
+    refineCore: { queryResult },
   } = useForm<IPost, HttpError, FormValues>({
     initialValues: {
       title: "",

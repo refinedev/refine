@@ -21,7 +21,7 @@ export const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     control,
     formState: { errors },
-    refineCore: { onFinish, mutation },
+    refineCore: { onFinish, mutationResult },
   } = useForm<UpdateCustomerPhoneFormData>({
     refineCoreProps: {
       action: "edit",
@@ -35,7 +35,7 @@ export const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
     },
   });
 
-  const { isLoading, isSuccess } = mutation;
+  const { isLoading, isSuccess } = mutationResult;
 
   useEffect(() => {
     reset({

@@ -37,10 +37,10 @@ export const CourierEdit = () => {
     control,
     setValue,
     formState: { errors },
-    refineCore: { formLoading, query },
+    refineCore: { formLoading, queryResult },
     saveButtonProps,
   } = useForm<ICourier, HttpError, Nullable<ICourier>>();
-  const courier = query?.data?.data;
+  const courier = queryResult?.data?.data;
   const avatarInput: IFile[] | null = watch("avatar");
 
   const { autocompleteProps: storesAutoCompleteProps } =

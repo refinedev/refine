@@ -6,14 +6,14 @@ export const BlogPostEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, query },
+    refineCore: { onFinish, queryResult },
     register,
     handleSubmit,
     resetField,
     formState: { errors },
   } = useForm();
 
-  const blogPostsData = query?.data?.data;
+  const blogPostsData = queryResult?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",

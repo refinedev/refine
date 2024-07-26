@@ -30,7 +30,7 @@ import type { Invoice } from "@/types";
 export const ClientsPageEdit = () => {
   const { list } = useNavigation();
 
-  const { formProps, query } = useForm({
+  const { formProps, queryResult } = useForm({
     redirect: false,
     meta: {
       populate: ["account", "invoices.client", "invoices.account.logo"],
@@ -43,8 +43,8 @@ export const ClientsPageEdit = () => {
     optionValue: "id",
   });
 
-  const invoices = query?.data?.data?.invoices || [];
-  const isLoading = query?.isLoading;
+  const invoices = queryResult?.data?.data?.invoices || [];
+  const isLoading = queryResult?.isLoading;
 
   return (
     <Show

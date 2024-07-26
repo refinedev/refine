@@ -11,10 +11,10 @@ import type { IPost, ICategory, ITags } from "../../interfaces";
 import { normalizeFile } from "../../utility/normalize";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, query } = useForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
   const apiUrl = useApiUrl();
 
-  const postData = query?.data?.data;
+  const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: postData?.category.id,

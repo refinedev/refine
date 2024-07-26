@@ -31,7 +31,7 @@ export const PostEdit: React.FC = () => {
     setFieldValue,
     values,
     errors,
-    refineCore: { query },
+    refineCore: { queryResult },
   } = useForm<IPost, HttpError, FormValues>({
     initialValues: {
       title: "",
@@ -54,7 +54,7 @@ export const PostEdit: React.FC = () => {
 
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
-    defaultValue: query?.data?.data.category.id,
+    defaultValue: queryResult?.data?.data.category.id,
   });
 
   const handleOnDrop = (files: FileWithPath[]) => {

@@ -49,8 +49,8 @@ export const CourierEdit = () => {
 
   const t = useTranslate();
   const { list } = useNavigation();
-  const { formProps, query, saveButtonProps } = useForm<ICourier>();
-  const courier = query?.data?.data;
+  const { formProps, queryResult, saveButtonProps } = useForm<ICourier>();
+  const courier = queryResult?.data?.data;
 
   const { selectProps: storeSelectProps } = useSelect({
     resource: "stores",
@@ -135,7 +135,7 @@ export const CourierEdit = () => {
                 }}
               >
                 <CourierStatus
-                  isLoading={query?.isLoading}
+                  isLoading={queryResult?.isLoading}
                   value={
                     courier?.status || {
                       id: 3,

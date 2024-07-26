@@ -5,7 +5,7 @@ import { useBack, useSelect } from "@refinedev/core";
 export const PostEdit: React.FC = () => {
   const back = useBack();
   const {
-    refineCore: { onFinish, formLoading, query },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
@@ -15,15 +15,15 @@ export const PostEdit: React.FC = () => {
 
   const { options } = useSelect({
     resource: "categories",
-    defaultValue: query?.data?.data?.category?.id,
+    defaultValue: queryResult?.data?.data?.category?.id,
     queryOptions: {
-      enabled: !!query?.data?.data?.category?.id,
+      enabled: !!queryResult?.data?.data?.category?.id,
     },
   });
 
   useEffect(() => {
-    setValue("category.id", query?.data?.data?.category?.id);
-  }, [query?.data]);
+    setValue("category.id", queryResult?.data?.data?.category?.id);
+  }, [queryResult?.data]);
 
   return (
     <form onSubmit={handleSubmit(onFinish)}>
@@ -44,7 +44,7 @@ export const PostEdit: React.FC = () => {
         {...register("category.id", {
           required: true,
         })}
-        defaultValue={query?.data?.data.category.id}
+        defaultValue={queryResult?.data?.data.category.id}
       >
         {options?.map((category) => (
           <option key={category.value} value={category.value}>
@@ -67,13 +67,17 @@ export const PostEdit: React.FC = () => {
       {errors.content && <span id="content-error">This field is required</span>}
       <br />
 
-      {query?.data?.data?.thumbnail && (
+      {queryResult?.data?.data?.thumbnail && (
         <>
           <br />
           <label>Image: </label>
           <br />
 
-          <img src={query?.data?.data?.thumbnail} width={200} height={200} />
+          <img
+            src={queryResult?.data?.data?.thumbnail}
+            width={200}
+            height={200}
+          />
           <br />
           <br />
         </>

@@ -116,7 +116,7 @@ const columns = [
 export const ProductsServices = () => {
   const params = useParams<{ id: string }>();
 
-  const { formProps, autoSaveProps, query } = useForm<
+  const { formProps, autoSaveProps, queryResult } = useForm<
     GetFields<QuotesUpdateQuoteMutation>,
     HttpError,
     GetVariables<QuotesUpdateQuoteMutationVariables>
@@ -149,9 +149,9 @@ export const ProductsServices = () => {
     },
   });
 
-  const { isLoading = false, isFetching = false, refetch } = query ?? {};
+  const { isLoading = false, isFetching = false, refetch } = queryResult ?? {};
 
-  const { total, subTotal, items } = query?.data?.data ?? {};
+  const { total, subTotal, items } = queryResult?.data?.data ?? {};
 
   return (
     <div
@@ -415,7 +415,11 @@ const TaxForm = (props: {
 }) => {
   const params = useParams<{ id: string }>();
 
-  const { formProps, query } = useForm<Quote, HttpError, QuoteUpdateInput>({
+  const { formProps, queryResult } = useForm<
+    Quote,
+    HttpError,
+    QuoteUpdateInput
+  >({
     resource: "quotes",
     action: "edit",
     id: params.id,
@@ -433,7 +437,7 @@ const TaxForm = (props: {
     },
   });
 
-  const formLoading = query?.isLoading ?? false;
+  const formLoading = queryResult?.isLoading ?? false;
 
   if (formLoading) {
     return (

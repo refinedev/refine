@@ -20,12 +20,12 @@ export const EditPostDrawer: React.FC<
   getInputProps,
   errors,
   modal: { visible, close, title },
-  refineCore: { query },
+  refineCore: { queryResult },
   saveButtonProps,
 }) => {
   const { selectProps } = useSelect({
     resource: "categories",
-    defaultValue: query?.data?.data.category.id,
+    defaultValue: queryResult?.data?.data.category.id,
   });
 
   return (

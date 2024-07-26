@@ -4,15 +4,15 @@ import { useSelect, useForm, useNavigation } from "@refinedev/core";
 import type { IPost } from "../../interfaces";
 
 export const PostEdit: React.FC = () => {
-  const { formLoading, onFinish, redirect, query } = useForm<IPost>({
+  const { formLoading, onFinish, redirect, queryResult } = useForm<IPost>({
     redirect: false,
   });
 
-  const result = query?.data?.data;
+  const result = queryResult?.data?.data;
 
   const { options } = useSelect({
     resource: "categories",
-    defaultValue: query?.data?.data.category.id,
+    defaultValue: queryResult?.data?.data.category.id,
   });
 
   const [formValues, setFormValues] = useState({

@@ -30,7 +30,7 @@ export const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, query },
+    refineCore: { onFinish, queryResult },
     ...form
   } = useForm({
     refineCoreProps: {
@@ -47,7 +47,7 @@ export const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
     register,
     setValue,
   } = form;
-  const blogPostsData = query?.data?.data;
+  const blogPostsData = queryResult?.data?.data;
 
   const blogPostCategoryData = useOne({
     resource: "categories",

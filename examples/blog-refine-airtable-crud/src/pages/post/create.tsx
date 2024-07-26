@@ -4,7 +4,7 @@ import React from "react";
 
 export const PostCreate: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, query },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },
@@ -12,7 +12,7 @@ export const PostCreate: React.FC = () => {
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: query?.data?.data?.category?.[0],
+    defaultValue: queryResult?.data?.data?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
   });

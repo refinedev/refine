@@ -6,9 +6,9 @@ import { Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, query } = useForm();
+  const { formProps, saveButtonProps, queryResult } = useForm();
 
-  const postData = query?.data?.data;
+  const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect({
     resource: "categories",
     defaultValue: postData?.category.id,

@@ -25,7 +25,7 @@ import {
 export const SalesEditPage = () => {
   const { list } = useNavigation();
 
-  const { formProps, modalProps, close, query } = useModalForm<
+  const { formProps, modalProps, close, queryResult } = useModalForm<
     GetFields<SalesUpdateDealMutation>,
     HttpError,
     DealUpdateInput
@@ -53,7 +53,7 @@ export const SalesEditPage = () => {
   const { selectProps: userSelectProps, queryResult: userSelectQueryResult } =
     useUsersSelect();
 
-  const deal = query?.data?.data;
+  const deal = queryResult?.data?.data;
 
   const companyIdField = Form.useWatch("companyId", formProps.form);
 

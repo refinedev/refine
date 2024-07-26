@@ -7,13 +7,13 @@ import { Controller } from "react-hook-form";
 export const BlogPostEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { query, formLoading },
+    refineCore: { queryResult, formLoading },
     register,
     control,
     formState: { errors },
   } = useForm({});
 
-  const blogPostsData = query?.data?.data;
+  const blogPostsData = queryResult?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",
