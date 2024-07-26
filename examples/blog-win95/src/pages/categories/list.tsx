@@ -16,7 +16,7 @@ import {
 import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
-  const { tableQuery } = useTable<ICategory>({
+  const { tableQueryResult } = useTable<ICategory>({
     resource: "categories",
   });
 
@@ -35,7 +35,7 @@ export const CategoryList = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {tableQuery.data?.data.map((item) => {
+            {tableQueryResult.data?.data.map((item) => {
               return (
                 <TableRow key={item.id}>
                   <TableDataCell>{item.id}</TableDataCell>
@@ -60,7 +60,7 @@ export const CategoryList = () => {
             })}
           </TableBody>
         </Table>
-        {tableQuery.isLoading && (
+        {tableQueryResult.isLoading && (
           <div
             style={{
               display: "flex",

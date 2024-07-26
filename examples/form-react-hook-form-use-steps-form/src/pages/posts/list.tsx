@@ -3,7 +3,7 @@ import { useTable, useNavigation, useMany } from "@refinedev/core";
 import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const { tableQuery } = useTable<IPost>({
+  const { tableQueryResult } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
@@ -14,7 +14,7 @@ export const PostList: React.FC = () => {
   const { edit, create } = useNavigation();
 
   const categoryIds =
-    tableQuery?.data?.data.map((item) => item.category.id) ?? [];
+    tableQueryResult?.data?.data.map((item) => item.category.id) ?? [];
   const { data, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
@@ -37,7 +37,7 @@ export const PostList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {tableQueryResult.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

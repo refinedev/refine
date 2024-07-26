@@ -19,8 +19,8 @@ type ProductCardsProps = {
 export const ProductCards = ({ useTableResult }: ProductCardsProps) => {
   const { styles } = useStyles();
 
-  const products = useTableResult.tableQuery?.data?.data || [];
-  const isLoading = useTableResult.tableQuery.isLoading;
+  const products = useTableResult.tableQueryResult?.data?.data || [];
+  const isLoading = useTableResult.tableQueryResult.isLoading;
 
   return (
     <>

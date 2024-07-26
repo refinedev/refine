@@ -53,7 +53,7 @@ const statusOptions: { label: string; value: QuoteStatus }[] = [
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
   const screens = Grid.useBreakpoint();
 
-  const { tableProps, searchFormProps, filters, sorters, tableQuery } =
+  const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
     useTable<Quote, HttpError, { title: string }>({
       resource: "quotes",
       onSearch: (values) => {
@@ -127,7 +127,10 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                     // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
-                      <Spin size="small" spinning={tableQuery.isFetching} />
+                      <Spin
+                        size="small"
+                        spinning={tableQueryResult.isFetching}
+                      />
                     }
                     placeholder="Search by name"
                     onChange={debouncedOnChange}

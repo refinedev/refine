@@ -61,9 +61,9 @@ export const PostList: React.FC = () => {
     previousPage,
     setPageSize,
     getColumn,
-    refineCore: { tableQuery },
+    refineCore: { tableQueryResult },
   } = useTable<IPost>({ columns });
-  console.log({ tableQuery });
+  console.log({ tableQueryResult });
   const titleColumn = getColumn("title");
 
   return (

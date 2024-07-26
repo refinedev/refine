@@ -11,7 +11,7 @@ import type { IOrder, IOrderStatus } from "../../../interfaces";
 
 export const RecentSales = () => {
   const {
-    tableQuery,
+    tableQueryResult,
     pageCount,
     current,
     pageSize,
@@ -28,7 +28,7 @@ export const RecentSales = () => {
     },
   });
 
-  const orders = tableQuery?.data?.data;
+  const orders = tableQueryResult?.data?.data;
 
   const formatCurrency = (value: number) => {
     return value.toLocaleString("en-US", {
@@ -137,7 +137,7 @@ export const RecentSales = () => {
         }}
         sortField={sorters[0]?.field}
         sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-        loading={tableQuery?.isLoading}
+        loading={tableQueryResult?.isLoading}
         header={header}
       >
         <Column field="id" header="Id" sortable style={{ minWidth: "2rem" }} />

@@ -8,7 +8,7 @@ import type { IPost } from "../../interfaces";
 export const PostList: React.FC = () => {
   const { show, close, visible } = useModal();
   const [historyId, setHistoryId] = useState<number>();
-  const { tableQuery } = useTable<IPost>({
+  const { tableQueryResult } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
@@ -32,7 +32,7 @@ export const PostList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {tableQueryResult.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
