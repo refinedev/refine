@@ -20,7 +20,7 @@ export default function Example() {
         "@mui/x-data-grid": "^6.6.0",
         "react-router-dom": "latest",
         "react-router": "latest",
-        "react-hook-form": "^7.30.0",
+        "react-hook-form": "^7.43.5",
       }}
       startRoute="/products"
       files={{

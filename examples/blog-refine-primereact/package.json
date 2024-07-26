@@ -35,7 +35,7 @@
     "primereact": "^9.6.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-hook-form": "^7.30.0",
+    "react-hook-form": "^7.43.5",
     "react-router-dom": "^6.8.1"
   },
   "devDependencies": {

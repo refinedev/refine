@@ -4,9 +4,11 @@ description: We have curated a compilation of the 5 best React admin dashboard l
 slug: react-admin-dashboard
 authors: david_omotayo
 tags: [comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-03-17-react-dashboard-libraries%2Fsocial.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-03-17-react-dashboard-libraries/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 23, 2024, to add sections for use cases section.**
 
 ## Introduction
 
@@ -63,7 +65,7 @@ npm create refine-app@latest
 
 ### Stats
 
-- GitHub stars: +16K
+- GitHub stars: +27K
 - License: MIT
 - Links: [Demo](https://example.crm.refine.dev/) | [Documentation](https://refine.dev/tutorial) | [GitHub](https://github.com/refinedev/refine/tree/master/examples/app-crm)
 
@@ -212,12 +214,39 @@ npm run start
 - License: MIT
 - Links: [Demo](https://demo.themesberg.com/volt-react-dashboard/#/dashboard/overview) | [Documentation](https://demo.themesberg.com/volt-react-dashboard/#/) | [GitHub](https://github.com/themesberg/volt-react-dashboard)
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Use Cases
+
+I would like to point out a few use cases and real-world implementations where React admin dashboard libraries really shine. These are selected examples showing the application of these libraries in building powerful, effective, and user-friendly applications across industries.
+
+### E-Commerce Management
+
+- **Inventory Management:** Track and manage inventory levels, set reorder points, and monitor stock movements.
+- **Order Processing:** View, update and manage the orders, returns, and shipping information of customers.
+- **Sales Analytics:** Visualize the sales data, identify the trends, and prepare reports to guide the business in those decisions.
+
+### Healthcare Administration
+
+- **Patient Records:** Securely manage patient information, appointment schedules, and medical history.
+- **Billing Systems:** Manage the billing process, insurance claims, and payment tracking.
+- **Resource Allocation:** Monitor resource availability and the use of health resources: human, equipment, and facilities.
+
+### Education Management
+
+- **Student Information Systems:** For the maintenance of the record of students, enrollment, attendance, grades, and progress reports.
+- **Course Management:** Creation, updating, and organizing course materials, schedules, and assignments.
+- **Performance Analytics:** Analyze data about student performance for improving their weaknesses and bettering methods of teaching.
+
+### Financial Services
+
+- **Portfolio Management:** Manage investment portfolios; monitor the performance of assets; develop financial reports.
+- **Risk Assessment:** Monitoring and Assessment of financial risks, compliance, and regulatory requirements.
+- **Transaction Tracking:** Tracks and maintains records of financial transactions, account balances, and client information.
+
+### Logistics and Supply Chain
+
+- **Fleet Management:** Monitor the locations of vehicles, manage routes and track the status of deliveries at any point.
+- **Warehouse Management:** Optimizes warehouse operation, inventory levels, and shipment management.
+- **Supplier Coordination:** Contact suppliers, track ordered goods, and ensure that the goods are delivered on time.
 
 ## Conclusion
 
