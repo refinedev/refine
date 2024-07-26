@@ -3,7 +3,7 @@ title: Refine.new - Technical Architecture and Engineering Decisions Explored Pa
 description: We'll discuss the technical architecture, key-concepts, and engineering design decisions made during the development process of Refine.new.
 slug: refine-new-explored-part-1
 authors: batuhan
-tags: [refine]
+tags: [Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/social.png
 is_featured: true
 hide_table_of_contents: false
@@ -71,7 +71,7 @@ At the time of this post being written, 30.000+ users created more than 110.000 
 
 ## Why we build Refine.new?
 
-[Refine](https://github.com/refinedev/refine) is an open-source React meta-framework designed to create CRUD-centric web applications. We’ve started Refine because we wanted to have a framework that we can deliver hight quality apps without compromising the flexibility. We didn’t like being vendor locked to a certain UI library, react framework, any authentication or data layer.
+[Refine](https://github.com/refinedev/refine) is an open-source React meta-framework designed to create CRUD-centric web applications. We’ve started Refine because we wanted to have a framework that we can deliver high quality apps without compromising the flexibility. We didn’t like being vendor locked to a certain UI library, react framework, any authentication or data layer.
 
 Due to Refine’s flexible nature, there are thousands different ways you can use Refine by mixing and matching different libraries with different UI, Data, Auth layers.
 
