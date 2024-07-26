@@ -6,7 +6,7 @@ import type { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const { edit, list } = useNavigation();
   const {
-    query: { data },
+    queryResult: { data },
   } = useShow<ICategory>();
 
   const record = data?.data;

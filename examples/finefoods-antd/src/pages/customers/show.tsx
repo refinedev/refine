@@ -11,9 +11,9 @@ import {
 export const CustomerShow = () => {
   const { list } = useNavigation();
   const breakpoint = Grid.useBreakpoint();
-  const { query } = useShow<IUser>();
+  const { queryResult } = useShow<IUser>();
 
-  const { data } = query;
+  const { data } = queryResult;
   const user = data?.data;
 
   return (

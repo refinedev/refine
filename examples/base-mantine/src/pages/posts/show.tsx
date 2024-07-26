@@ -6,8 +6,8 @@ import { Title, Text, Badge, Flex } from "@mantine/core";
 import type { ICategory, IPost, ITag } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
-  const { query } = useShow<IPost>();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

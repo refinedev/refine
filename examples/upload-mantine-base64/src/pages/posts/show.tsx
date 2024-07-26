@@ -6,8 +6,8 @@ import { Title, Text } from "@mantine/core";
 import type { ICategory, IPost } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
-  const { query } = useShow<IPost>();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

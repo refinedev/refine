@@ -8,8 +8,8 @@ import type { ICompany } from "interfaces";
 const { Title, Text, Paragraph } = Typography;
 
 export const CompanyShow = () => {
-  const { query } = useShow<ICompany>();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow<ICompany>();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   return (

@@ -9,8 +9,8 @@ import type { IUser } from "../../interfaces";
 const { Title, Text } = Typography;
 
 export const UserShow = () => {
-  const { query } = useShow<IUser>();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow<IUser>();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   return (

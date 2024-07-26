@@ -6,8 +6,8 @@ import type { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 const { Title, Text } = Typography;
 
 export const TaskShow: React.FC = () => {
-  const { query } = useShow<ITask>();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow<ITask>();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   const { data: assigned } = useOne<IAuthUser>({

@@ -25,14 +25,14 @@ export const CalendarShowPage: React.FC = () => {
   const { id } = useResource();
   const { list } = useNavigation();
 
-  const { query } = useShow<Event>({
+  const { queryResult } = useShow<Event>({
     id,
     meta: {
       gqlQuery: CALENDAR_GET_EVENT_QUERY,
     },
   });
 
-  const { data, isLoading, isError, error } = query;
+  const { data, isLoading, isError, error } = queryResult;
 
   if (isError) {
     console.error("Error fetching event", error);

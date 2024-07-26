@@ -7,8 +7,8 @@ import { Typography } from "antd";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({

@@ -6,7 +6,7 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export const ContactShow = () => {
-  const { query } = useShow({
+  const { queryResult } = useShow({
     meta: {
       fields: [
         "id",
@@ -19,7 +19,7 @@ export const ContactShow = () => {
       ],
     },
   });
-  const { data, isLoading } = query;
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   return (

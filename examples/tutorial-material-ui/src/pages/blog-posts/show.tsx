@@ -10,8 +10,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 export const BlogPostShow = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow();
+  const { data, isLoading } = queryResult;
 
   const record = data?.data;
 

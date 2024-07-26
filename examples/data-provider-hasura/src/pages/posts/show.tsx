@@ -11,13 +11,13 @@ import { POST_QUERY } from "./queries";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { query } = useShow<GetFields<GetPostQuery>>({
+  const { queryResult } = useShow<GetFields<GetPostQuery>>({
     metaData: {
       gqlQuery: POST_QUERY,
     },
   });
 
-  const { data, isLoading } = query;
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   return (
@@ -27,7 +27,7 @@ export const PostShow = () => {
         extra: (
           <RefreshButton
             onClick={() => {
-              query.refetch();
+              queryResult.refetch();
             }}
           />
         ),

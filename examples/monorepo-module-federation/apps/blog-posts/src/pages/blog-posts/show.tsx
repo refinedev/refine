@@ -8,8 +8,8 @@ import type { ICategory, IPost } from "../../interfaces";
 const { Title, Text } = Typography;
 
 const PostShow = () => {
-  const { query } = useShow<IPost>();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow<IPost>();
+  const { data, isLoading } = queryResult;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } =

@@ -13,8 +13,8 @@ import Stack from "@mui/material/Stack";
 
 export const ProductShow = () => {
   const translate = useTranslate();
-  const { query } = useShow();
-  const { data, isLoading } = query;
+  const { queryResult } = useShow();
+  const { data, isLoading } = queryResult;
 
   const record = data?.data;
 

@@ -33,8 +33,8 @@ export const CustomerShow = () => {
   const go = useGo();
   const t = useTranslate();
 
-  const { query } = useShow<IUser>();
-  const user = query.data?.data;
+  const { queryResult } = useShow<IUser>();
+  const user = queryResult.data?.data;
 
   const { dataGridProps } = useDataGrid<
     IOrder,

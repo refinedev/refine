@@ -13,12 +13,12 @@ import { ChevronLeft, EditIcon, ListIcon } from "lucide-react";
 export const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
   const { edit, list } = useNavigation();
   const { id } = useResource();
-  const { query } = useShow({
+  const { queryResult } = useShow({
     meta: {
       populate: ["category"],
     },
   });
-  const { data } = query;
+  const { data } = queryResult;
 
   const record = data?.data;
 

@@ -56,7 +56,7 @@ export const ContactShowPage: React.FC = () => {
   const { list } = useNavigation();
   const { mutate } = useUpdate<Contact>();
   const { mutate: deleteMutation } = useDelete<Contact>();
-  const { query } = useShow<GetFields<ContactShowQuery>>({
+  const { queryResult } = useShow<GetFields<ContactShowQuery>>({
     meta: {
       gqlQuery: CONTACT_SHOW_QUERY,
     },
@@ -75,7 +75,7 @@ export const ContactShowPage: React.FC = () => {
     list("contacts");
   };
 
-  const { data, isLoading, isError } = query;
+  const { data, isLoading, isError } = queryResult;
 
   if (isError) {
     closeModal();

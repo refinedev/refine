@@ -13,8 +13,8 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export default function BlogPostShow() {
-  const { query } = useShow({});
-  const { data, isLoading } = query;
+  const { queryResult } = useShow({});
+  const { data, isLoading } = queryResult;
 
   const record = data?.data;
 

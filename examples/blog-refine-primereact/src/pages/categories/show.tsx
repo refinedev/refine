@@ -8,8 +8,8 @@ import type { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { query } = useShow<ICategory>();
-  const category = query?.data?.data;
+  const { queryResult } = useShow<ICategory>();
+  const category = queryResult?.data?.data;
 
   return (
     <Card

@@ -53,9 +53,9 @@ export const PostList = () => {
   // Show Modal
   const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
 
-  const { query, setShowId } = useShow<IPost>();
+  const { queryResult, setShowId } = useShow<IPost>();
 
-  const { data: showQueryResult } = query;
+  const { data: showQueryResult } = queryResult;
   const record = showQueryResult?.data;
 
   return (

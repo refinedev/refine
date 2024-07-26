@@ -40,11 +40,11 @@ export const ProductDrawerShow = (props: Props) => {
   const { token } = theme.useToken();
   const breakpoint = Grid.useBreakpoint();
 
-  const { query } = useShow<IProduct, HttpError>({
+  const { queryResult } = useShow<IProduct, HttpError>({
     resource: "products",
     id: props?.id, // when undefined, id will be read from the URL.
   });
-  const product = query.data?.data;
+  const product = queryResult.data?.data;
 
   const { data: categoryData } = useOne<ICategory, HttpError>({
     resource: "categories",
