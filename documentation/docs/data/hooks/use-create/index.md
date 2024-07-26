@@ -26,24 +26,6 @@ mutate({
 });
 ```
 
-Alternatively, you can pass the parameters directly to the `mutate` function:
-
-```tsx
-import { useCreate } from "@refinedev/core";
-
-const { mutate } = useCreate();
-
-mutate({
-  resource: "products",
-  values: {
-    name: "New Product",
-    material: "Wood",
-  },
-});
-```
-
-> 🚨 The mutate function always overrides the props of the `useCreate` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.
-
 ## Realtime Updates
 
 > This feature is only available if you use a [Live Provider](/docs/realtime/live-provider).
@@ -120,9 +102,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ## Mutation Parameters
 
-All these parameters also can be given to the `useCreate` hook directly as a prop. If you pass these parameters to the `mutate` function, it will override the values given to the hook.
-
-You can think of the parameters given to the `useCreate` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+Mutation parameters are passed to the `mutate` function and can also be provided as props to the `useCreate` hook. Parameters given to the `mutate` function override those from the hook. Think of the hook's parameters as default values, and the `mutate` function's parameters as specific or dynamic values for each mutation.
 
 ```tsx
 import { useCreate } from "@refinedev/core";

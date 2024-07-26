@@ -20,11 +20,6 @@ import { useCreateMany } from "@refinedev/core";
 
 const { mutate } = useCreateMany({
   resource: "products",
-  mutationOptions: {
-    onSuccess: () => {
-      /* do something after mutation success */
-    },
-  },
 });
 
 mutate({
@@ -40,37 +35,6 @@ mutate({
   ],
 });
 ```
-
-Alternatively, you can pass the parameters directly to the `mutate` function:
-
-```tsx
-import { useCreateMany } from "@refinedev/core";
-
-const { mutate } = useCreateMany();
-
-mutate(
-  {
-    resource: "products",
-    values: [
-      {
-        name: "Product 1",
-        material: "Wood",
-      },
-      {
-        name: "Product 2",
-        material: "Metal",
-      },
-    ],
-  },
-  {
-    onSuccess: () => {
-      /* do something after mutation success */
-    },
-  },
-);
-```
-
-> 🚨 The mutate function always overrides the props of the `useCreateMany` hook. Consider the hook's props as default values, while the mutate function's props are the values used for that specific mutation or dynamic values.
 
 ## Realtime Updates
 
@@ -140,9 +104,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ## Mutation Parameters
 
-All these parameters also can be given to the `useCreateMany` hook directly as a prop. If you pass these parameters to the `mutate` function, it will override the values given to the hook.
-
-You can think of the parameters given to the `useCreateMany` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+Mutation parameters are passed to the `mutate` function and can also be provided as props to the `useCreateMany` hook. Parameters given to the `mutate` function override those from the hook. Think of the hook's parameters as default values, and the `mutate` function's parameters as specific or dynamic values for each mutation.
 
 ```tsx
 import { useCreateMany } from "@refinedev/core";
