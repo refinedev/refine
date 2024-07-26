@@ -31,14 +31,19 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
   }, [search]);
 
   const scrollToItem = React.useCallback(() => {
-    const playgroundElement = document.getElementById("playground");
-    if (playgroundElement) {
-      playgroundElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
-    }
+    const scroller = () => {
+      const playgroundElement = document.getElementById("playground");
+      if (playgroundElement) {
+        playgroundElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      }
+    };
+
+    scroller();
+    setTimeout(scroller, 300);
   }, []);
 
   React.useEffect(() => {
