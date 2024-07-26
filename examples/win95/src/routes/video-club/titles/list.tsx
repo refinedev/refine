@@ -23,7 +23,7 @@ export const VideoClubPageBrowseTitles = () => {
   const navigate = useNavigate();
 
   const {
-    tableQueryResult: titlesQueryResult,
+    tableQuery: titlesQueryResult,
     pageCount,
     current,
     setCurrent,

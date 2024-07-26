@@ -3,7 +3,7 @@ import { useTable, useNavigation, useMany } from "@refinedev/core";
 import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const { tableQueryResult } = useTable<IPost>({
+  const { tableQuery: tableQueryResult } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
