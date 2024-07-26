@@ -20,15 +20,15 @@ import chalk from "chalk";
 type SelectedPackage = PackageDependency;
 
 enum Tag {
-  Wanted = "wanted",
-  Latest = "latest",
-  Next = "next",
+  WANTED = "wanted",
+  LATEST = "latest",
+  NEXT = "next",
 }
 
 enum InstallationType {
-  Wanted = "wanted",
-  Minor = "minor",
-  Interactive = "interactive",
+  WANTED = "wanted",
+  MINOR = "minor",
+  INTERACTIVE = "interactive",
 }
 
 interface OptionValues {
@@ -134,15 +134,15 @@ const action = async (options: OptionValues) => {
     },
   ]);
 
-  if (installationType === InstallationType.Interactive) {
+  if (installationType === InstallationType.INTERACTIVE) {
     selectedPackages = await promptInteractiveRefineUpdate(packages);
   }
-  if (installationType === InstallationType.Wanted) {
-    selectedPackages = await preparePackagesToInstall(Tag.Wanted, packages);
+  if (installationType === InstallationType.WANTED) {
+    selectedPackages = await preparePackagesToInstall(Tag.WANTED, packages);
   }
-  if (installationType === InstallationType.Minor) {
+  if (installationType === InstallationType.MINOR) {
     selectedPackages = await preparePackagesToInstall(
-      InstallationType.Minor,
+      InstallationType.MINOR,
       packages,
     );
   }
@@ -160,7 +160,7 @@ const preparePackagesToInstall = async (
   tag: Tag | InstallationType,
   packages: RefinePackageInstalledVersionData[],
 ): Promise<PackageDependency | null> => {
-  if (tag === Tag.Wanted) {
+  if (tag === Tag.WANTED) {
     const isAllPackagesAtWantedVersion = packages.every(
       (pkg) => pkg.current === pkg.wanted,
     );
@@ -178,21 +178,21 @@ const preparePackagesToInstall = async (
   for (const pkg of packages) {
     let version = pkg.latest;
 
-    if (tag === InstallationType.Minor) {
+    if (tag === InstallationType.MINOR) {
       const latestMinorVersion = await spinner(
         () => getLatestMinorVersionOfPackage(pkg.name, pkg.wanted),
         `Checking for the latest minor version of ${pkg.name}`,
       );
       version = `^${latestMinorVersion}`;
     }
-    if (tag === Tag.Wanted) {
+    if (tag === Tag.WANTED) {
       version = getWantedWithPreferredWildcard(pkg.name, pkg.wanted);
     }
-    if (tag === Tag.Latest) {
+    if (tag === Tag.LATEST) {
       version = `^${pkg.latest}`;
     }
-    if (tag === Tag.Next) {
-      version = Tag.Next;
+    if (tag === Tag.NEXT) {
+      version = Tag.NEXT;
     }
 
     packagesWithVersion[pkg.name] = version;
