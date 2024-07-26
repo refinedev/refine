@@ -8,7 +8,7 @@ export default function AuthPage() {
       //   showFiles
       initialPercentage={40}
       dependencies={{
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",

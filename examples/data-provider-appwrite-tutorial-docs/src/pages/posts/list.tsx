@@ -4,7 +4,7 @@ import {
   EditButton,
   ShowButton,
   getDefaultSortOrder,
-  DeleteButton,
+  TagField,
 } from "@refinedev/antd";
 import { Table, Space } from "antd";
 
@@ -14,7 +14,7 @@ export const PostList = () => {
   const { tableProps, sorters } = useTable<IPost>({
     initialSorter: [
       {
-        field: "$id",
+        field: "$createdAt",
         order: "asc",
       },
     ],
@@ -30,17 +30,25 @@ export const PostList = () => {
           width={100}
           defaultSortOrder={getDefaultSortOrder("id", sorters)}
         />
-        <Table.Column dataIndex="title" title="Title" sorter />
-
+        <Table.Column
+          dataIndex="title"
+          title="Title"
+          sorter
+          defaultSortOrder={getDefaultSortOrder("title", sorters)}
+        />
+        <Table.Column dataIndex={["category", "title"]} title="Category" />
+        <Table.Column
+          dataIndex="status"
+          title="Status"
+          render={(value) => <TagField value={value} />}
+        />
         <Table.Column<IPost>
           title="Actions"
           dataIndex="actions"
-          fixed="right"
           render={(_, record) => (
             <Space>
               <EditButton hideText size="small" recordItemId={record.id} />
               <ShowButton hideText size="small" recordItemId={record.id} />
-              <DeleteButton hideText size="small" recordItemId={record.id} />
             </Space>
           )}
         />
