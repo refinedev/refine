@@ -11,11 +11,13 @@ hide_table_of_contents: false
 
 ## Introduction
 
-[refine.new](http://refine.new) is a tool where you can generate [Refine](https://refine.dev/) boilerplates on the browser with a combination of different libraries. You can instantly see the app preview in the browser, share it with others and download the source code.
-
-In this post, we'll discuss the technical architecture, key-concepts, and engineering design decisions made during the development process of Refine.new. We'll provide insights for developers on the challenges we faced, the solutions we implemented, and the overall journey of building this tool.
+Hi I'm Batuhan, Tech Lead @ Refine. Today we'll discuss the technical architecture, key-concepts, and engineering design decisions made during the development process of Refine.new. We'll provide insights for developers on the challenges we faced, the solutions we implemented, and the overall journey of building this tool.
 
 This is the first of a two-part series. In part one, we will take time to share the planning and decision-making process involved in creating Refine.new as well as dealing with two big problems we identified. In part two, we get right into the detail of how these plans were brought to life in the implementation stage.
+
+## What is Refine.new?
+
+[refine.new](http://refine.new) is a tool where you can generate [Refine](https://refine.dev/) boilerplates on the browser with a combination of different libraries. You can instantly see the app preview in the browser, share it with others and download the source code.
 
  <div className="centered-image"  >
   <a href="https://refine.new/">
