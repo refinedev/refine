@@ -22,7 +22,7 @@ import { useStyles } from "./show.styled";
 export const InvoicesPageShow = () => {
   const { styles } = useStyles();
 
-  const { queryResult } = useShow<Invoice>({
+  const { query: queryResult } = useShow<Invoice>({
     meta: {
       populate: ["client", "account.logo"],
     },
