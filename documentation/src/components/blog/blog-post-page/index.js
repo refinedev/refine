@@ -107,7 +107,7 @@ export const BlogPostPageView = ({ children }) => {
       </div>
       <div className="not-prose">
         <img
-          className="w-full rounded-xl aspect-[894/468]"
+          className="w-full rounded-xl blog-lg:rounded-[2.25rem] aspect-[894/504]"
           src={`https://refine-web.imgix.net${frontMatter.image?.replace(
             "https://refine.ams3.cdn.digitaloceanspaces.com",
             "",
