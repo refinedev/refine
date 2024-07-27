@@ -217,8 +217,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Box mt={6} textAlign="center">
           <span>
             {translate(
-              "pages.login.buttons.noAccount",
-              "Don’t have an account?",
+              "pages.register.buttons.haveAccount",
+              "Have an account?",
             )}
           </span>
           <ChakraLink
