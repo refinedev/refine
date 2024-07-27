@@ -25,6 +25,7 @@
     "forgotPassword": {
       "__description": "These key are used by the <AuthPage type='forgotPassword' /> components.",
       "title": "Forgot your password?",
+      "signin": "Sign in",
       "fields": {
         "email": "Email"
       },
@@ -33,12 +34,15 @@
         "requiredEmail": "Email is required"
       },
       "buttons": {
-        "submit": "Send reset instructions"
+        "submit": "Send reset instructions",
+        "haveAccount": "Have an account?"
       }
     },
     "register": {
       "__description": "These keys are used by the <AuthPage type='register' /> components.",
       "title": "Sign up for your account",
+      "signin": "Sign in",
+      "divider": "or",
       "fields": {
         "email": "Email",
         "password": "Password"
