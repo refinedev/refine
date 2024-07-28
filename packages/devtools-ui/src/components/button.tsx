@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React from "react";
+import React, { Children } from "react";
 
 type Props = {
   children: React.ReactNode;
@@ -8,11 +8,12 @@ type Props = {
   type?: "button" | "submit";
   disabled?: boolean;
   loading?: boolean;
+  contentClassName?: string;
 };
 
 export const Button = React.forwardRef<HTMLButtonElement, Props>(
   function Button(
-    { children, onClick, className, type, disabled, loading },
+    { children, onClick, className, type, disabled, loading, contentClassName },
     ref,
   ) {
     return (
@@ -35,6 +36,16 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
       >
         <div
           className={clsx(
+            !loading && "re-visible",
+            loading && "re-invisible",
+            contentClassName,
+          )}
+        >
+          {children}
+        </div>
+        <div
+          className={clsx(
+            "re-rounded",
             !loading && "re-hidden",
             loading && "re-flex",
             "re-absolute",
@@ -48,11 +59,6 @@ export const Button = React.forwardRef<HTMLButtonElement, Props>(
               "re-spinner re-w-5 re-h-5 re-border-2 re-border-gray-200 re-border-t-alt-blue re-border-b-gray-200 re-border-solid re-rounded-full re-border-l-gray-200 re-border-r-gray-200 re-animate-spin",
             )}
           />
-        </div>
-        <div
-          className={clsx(loading && "re-invisible", !loading && "re-visible")}
-        >
-          {children}
         </div>
       </button>
     );
