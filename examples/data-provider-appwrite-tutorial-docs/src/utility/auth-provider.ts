@@ -1,7 +1,7 @@
+import { account } from "./appwriteClient";
+
 import type { AuthProvider } from "@refinedev/core";
 import type { AppwriteException } from "@refinedev/appwrite";
-import { v4 as uuidv4 } from "uuid";
-import { account } from "./";
 
 export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
@@ -13,24 +13,6 @@ export const authProvider: AuthProvider = {
       };
     } catch (e) {
       const { type, message, code } = e as AppwriteException;
-      return {
-        success: false,
-        error: {
-          message,
-          name: `${code} - ${type}`,
-        },
-      };
-    }
-  },
-  register: async ({ email, password }) => {
-    try {
-      await account.create(uuidv4(), email, password);
-      return {
-        success: true,
-        redirectTo: "/login",
-      };
-    } catch (error) {
-      const { type, message, code } = error as AppwriteException;
       return {
         success: false,
         error: {

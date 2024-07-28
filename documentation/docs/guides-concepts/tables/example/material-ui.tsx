@@ -7,7 +7,7 @@ export default function BaseMaterialUI() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "@mui/x-data-grid": "latest",
         "@mui/material": "latest",
         "@mui/system": "latest",
