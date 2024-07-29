@@ -169,6 +169,8 @@ const OnboardingForm = () => {
               return (
                 <Input
                   {...field}
+                  disabled={field.disabled || loading}
+                  loading={loading}
                   key={name}
                   label={label}
                   required={required}

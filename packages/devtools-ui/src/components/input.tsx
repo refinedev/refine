@@ -10,6 +10,8 @@ type Props = {
   className?: string;
   onBlur?: React.FocusEventHandler<HTMLInputElement> | undefined;
   error?: string;
+  disabled?: boolean;
+  loading?: boolean;
 };
 
 export const Input = ({
@@ -19,7 +21,10 @@ export const Input = ({
   value,
   onChange,
   className,
-  ...props
+  disabled,
+  error,
+  onBlur,
+  loading,
 }: Props) => {
   return (
     <label className={clsx(className, "re-relative")}>
@@ -39,15 +44,16 @@ export const Input = ({
         </span>
       )}
       <input
-        {...props}
+        disabled={disabled}
         type="text"
         placeholder={placeholder}
         value={value}
         onChange={(e) => onChange?.(e.target.value)}
+        onBlur={onBlur}
         className={clsx(
           "re-border",
-          !props.error && "re-border-gray-700",
-          props.error && "re-border-alt-red/80",
+          !error && "re-border-gray-700",
+          error && "re-border-alt-red/80",
           "re-bg-transparent",
           "re-rounded",
           "re-placeholder-gray-500",
@@ -59,7 +65,7 @@ export const Input = ({
         )}
       />
       <div className={clsx("re-absolute", "-re-bottom-5")}>
-        {props.error && (
+        {error && (
           <span
             className={clsx(
               "re-text-alt-red",
@@ -68,7 +74,7 @@ export const Input = ({
               "re-block",
             )}
           >
-            {props.error}
+            {error}
           </span>
         )}
       </div>
