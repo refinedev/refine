@@ -71,7 +71,7 @@ const PackageJsonCode = /* json */ `
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "refine dev",
+    "dev": "refine dev --devtools false -- --host",
     "devtools": "refine devtools",
     "refine": "refine"
   },
@@ -89,10 +89,7 @@ const DockerfileDevCode = /* dockerfile */ `
 # We're running the application at port 5173 and we'll access it via http://my-app.local.
 
 # Use the official Node.js image as a parent image
-FROM node:14
-
-# Set the working directory
-WORKDIR /
+FROM refinedev/node
 
 # Copy the package.json and package-lock.json
 COPY package*.json ./
@@ -107,7 +104,7 @@ COPY . .
 EXPOSE 5173
 
 # Command to run the development server
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "docker"]
 `.trim();
 
 const DockerfileDevtoolsCode = /* dockerfile */ `
@@ -116,10 +113,7 @@ const DockerfileDevtoolsCode = /* dockerfile */ `
 # We're running devtools at port 5001 and we'll access it via http://devtools.local.
 
 # Use the official Node.js image as a parent image
-FROM node:14
-
-# Set the working directory
-WORKDIR /
+FROM refinedev/node
 
 # Copy the package.json and package-lock.json
 COPY package*.json ./
@@ -141,27 +135,26 @@ const DockerComposeYmlCode = /* yaml */ `
 # We're setting up a development environment with two services: dev and devtools.
 # The dev service is the main service that runs the application.
 # The devtools service is the service that runs the Refine Devtools.
-
-version: '3'
+version: "3"
 services:
   dev:
     build:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - .:/
+      - app:/app/refine
+      - /app/refine/node_modules
     networks:
       - dev-network
-
   devtools:
     build:
       context: .
       dockerfile: Dockerfile.devtools
     volumes:
-      - .:/
+      - app:/app/refine
+      - /app/refine/node_modules
     networks:
       - dev-network
-
   nginx:
     image: nginx:latest
     ports:
@@ -170,26 +163,23 @@ services:
       - ./nginx.conf:/etc/nginx/nginx.conf
     networks:
       - dev-network
-
 networks:
   dev-network:
     driver: bridge
+volumes:
+  app:
 `.trim();
 
 const NginxConfCode = /* nginx */ `
 # We're setting up a reverse proxy to map the requests to the correct services.
 # Then we'll add the necessary aliases to the /etc/hosts file to make the services accessible via the domain names.
-
 events {
     worker_connections 1024;
 }
-
 http {
     server {
         listen 80;
-
         server_name my-app.local;
-
         location / {
             proxy_pass http://dev:5173;
             proxy_set_header Host $host;
@@ -198,12 +188,9 @@ http {
             proxy_set_header X-Forwarded-Proto $scheme;
         }
     }
-
     server {
         listen 80;
-
         server_name devtools.local;
-
         location / {
             proxy_pass http://devtools:5001;
             proxy_set_header Host $host;
