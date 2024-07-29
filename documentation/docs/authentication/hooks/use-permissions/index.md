@@ -35,7 +35,7 @@ const authProvider: AuthProvider = {
 };
 ```
 
-Get permissions data in the list page with `usePermissions` and check if the user has `"admin`" role:
+Get permissions data in the list page with `usePermissions` and check if the user has `"admin"` role:
 
 ```tsx title="pages/post/list"
 // highlight-next-line
