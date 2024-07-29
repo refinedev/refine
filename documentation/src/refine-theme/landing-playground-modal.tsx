@@ -81,14 +81,15 @@ export const LandingPlaygroundModal = ({ visible, close }) => {
   React.useEffect(() => {
     if (isActive && visible) {
       if (typeof document !== "undefined" && document.documentElement) {
+        const previous = document.documentElement.style.scrollBehavior;
         document.documentElement.style.scrollBehavior = "unset";
+
+        return () => {
+          setTimeout(() => {
+            document.documentElement.style.scrollBehavior = previous;
+          }, 300);
+        };
       }
-    } else {
-      setTimeout(() => {
-        if (typeof document !== "undefined" && document.documentElement) {
-          document.documentElement.style.scrollBehavior = "smooth";
-        }
-      }, 300);
     }
   }, [isActive, visible]);
 

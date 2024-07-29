@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("with-nextjs", () => {
-  const BASE_URL = "http://localhost:3000";
-
   const fillForm = () => {
     cy.fixture("mock-post").then((mockPost) => {
       cy.get("#title").clear();
@@ -63,7 +61,7 @@ describe("with-nextjs", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-    cy.visit(BASE_URL, {
+    cy.visit("/", {
       failOnStatusCode: false,
     });
   });
@@ -90,7 +88,7 @@ describe("with-nextjs", () => {
       login();
       cy.location("pathname").should("eq", "/");
 
-      cy.visit(`${BASE_URL}/test`, { failOnStatusCode: false });
+      cy.visit("/test", { failOnStatusCode: false });
       cy.location("pathname").should("eq", "/test");
       cy.clearAllCookies();
       cy.reload();
@@ -105,7 +103,7 @@ describe("with-nextjs", () => {
     });
 
     it("should redirect to /login?to= if user not authenticated", () => {
-      cy.visit(`${BASE_URL}/test-route`, { failOnStatusCode: false });
+      cy.visit("/test-route", { failOnStatusCode: false });
       cy.get(".ant-card-head-title > .ant-typography").contains(
         /sign in to your account/i,
       );
@@ -145,7 +143,7 @@ describe("with-nextjs", () => {
 
   describe("forgot password", () => {
     it("should throw error if forgot password email is wrong", () => {
-      cy.visit(`${BASE_URL}/forgot-password`, {
+      cy.visit("/forgot-password", {
         failOnStatusCode: false,
       });
       cy.get("#email").clear().type("test@test.com");
@@ -157,7 +155,7 @@ describe("with-nextjs", () => {
 
   describe("update password", () => {
     it("should throw error if update password is wrong", () => {
-      cy.visit(`${BASE_URL}/update-password`, {
+      cy.visit("/update-password", {
         failOnStatusCode: false,
       });
       cy.get("#password").clear().type("123456");

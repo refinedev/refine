@@ -442,6 +442,8 @@ const { defaultFormValuesLoading } = useForm({
 
 ## Return values
 
+`useDrawerForm` returns the same values from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) and additional values to work with [`<Drawer>`](https://ant.design/components/drawer/) components.
+
 ### show
 
 A function that opens the `<Drawer>`. It takes an optional `id` parameter. If `id` is provided, it will fetch the record data and fill the `<Form>` with it.
@@ -463,6 +465,14 @@ It contains the props needed by the `"delete"` button within the `<Drawer>` (dis
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
 
 It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) component such as [_`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc._](/docs/ui-integrations/ant-design/hooks/use-form#return-values)
+
+:::note Difference between `onFinish` and `formProps.onFinish`
+
+`onFinish` method returned directly from `useDrawerForm` is same with the `useForm`'s `onFinish`. When working with drawers, closing the drawer after submission and resetting the fields are necessary and to handle these, `formProps.onFinish` extends the `onFinish` method and handles the closing of the drawer and clearing the fields under the hood.
+
+If you're customizing the data before submitting it to your data provider, it's recommended to use `formProps.onFinish` and let it handle the operations after the submission.
+
+:::
 
 ### drawerProps
 

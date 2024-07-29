@@ -6,8 +6,6 @@ Cypress.on("uncaught:exception", () => {
 });
 
 describe("inferencer-chakra-ui", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const login = () => {
     cy.fixture("demo-auth-credentials").then((auth) => {
       cy.get("#email").clear();
@@ -27,7 +25,7 @@ describe("inferencer-chakra-ui", () => {
     cy.interceptGETCategories();
     cy.interceptGETCategory();
     cy.interceptGETBlogPosts();
-    cy.visit(BASE_URL);
+    cy.visit("/");
 
     login();
   });
@@ -211,7 +209,7 @@ describe("inferencer-chakra-ui", () => {
 
     // assert localStoage has changed
     cy.getAllLocalStorage().then((ls) => {
-      expect(ls[BASE_URL]["i18nextLng"]).to.eq("de");
+      expect(ls[Cypress.config("baseUrl")!]["i18nextLng"]).to.eq("de");
     });
 
     // reload the page and assert the language is persisted
@@ -238,7 +236,8 @@ describe("inferencer-chakra-ui", () => {
       const initialThemeFromHTML = $html.attr("data-theme")?.toString();
 
       cy.getAllLocalStorage().then((ls) => {
-        const initialThemeFromLS = ls[BASE_URL]["chakra-ui-color-mode"];
+        const initialThemeFromLS =
+          ls[Cypress.config("baseUrl")!]["chakra-ui-color-mode"];
 
         expect(initialThemeFromHTML).to.equal(initialThemeFromLS);
 
@@ -256,7 +255,7 @@ describe("inferencer-chakra-ui", () => {
 
         // assert theme is changed in local storage
         cy.getAllLocalStorage().then((ls) => {
-          const theme = ls[BASE_URL]["chakra-ui-color-mode"];
+          const theme = ls[Cypress.config("baseUrl")!]["chakra-ui-color-mode"];
           if (initialThemeFromLS === "dark") {
             expect(theme).to.equal("light");
           } else {
@@ -285,7 +284,7 @@ describe("inferencer-chakra-ui", () => {
 
         // assert theme is persisted in local storage
         cy.getAllLocalStorage().then((ls) => {
-          const theme = ls[BASE_URL]["chakra-ui-color-mode"];
+          const theme = ls[Cypress.config("baseUrl")!]["chakra-ui-color-mode"];
           if (initialThemeFromLS === "dark") {
             expect(theme).to.equal("light");
           } else {

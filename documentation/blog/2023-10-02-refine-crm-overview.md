@@ -4,7 +4,6 @@ description: We'll explore the key features of our CRM app, the technologies we 
 slug: react-crm-with-refine
 authors: necati
 tags: [Refine, react]
-is_featured: true
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-02-refine-crm-overview/social.jpg
 hide_table_of_contents: false
 ---

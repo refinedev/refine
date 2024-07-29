@@ -4,7 +4,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": false,
     "sourceMap": false,
-    "types": ["cypress", "chai"],
+    "types": ["cypress"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

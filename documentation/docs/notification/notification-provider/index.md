@@ -134,12 +134,12 @@ return (
   <TabItem value="chakra">
 
 ```tsx
-import { useNotificationProvider } from "@refinedev/chakra";
+import { useNotificationProvider } from "@refinedev/chakra-ui";
 
 return (
   <Refine
     //...
-    notificationProvider={notificationProvider()}
+    notificationProvider={useNotificationProvider}
   />
 );
 ```

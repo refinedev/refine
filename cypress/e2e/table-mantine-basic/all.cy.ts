@@ -5,7 +5,7 @@ describe("table-mantine-basic", () => {
   beforeEach(() => {
     cy.interceptGETPosts();
 
-    cy.visit("http://localhost:5173");
+    cy.visit("/");
   });
 
   it("should work with sorter", () => {

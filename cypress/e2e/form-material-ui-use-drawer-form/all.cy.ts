@@ -2,8 +2,6 @@
 /// <reference types="../../cypress/support" />
 
 describe("form-material-ui-use-drawer-form", () => {
-  const BASE_URL = "http://localhost:5173";
-
   const mockPost = {
     title:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
@@ -68,7 +66,7 @@ describe("form-material-ui-use-drawer-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.visit(BASE_URL);
+    cy.visit("/");
   });
 
   it("open - close drawer", () => {
