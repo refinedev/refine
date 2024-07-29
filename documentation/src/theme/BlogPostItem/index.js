@@ -38,7 +38,7 @@ export default function BlogPostItem({ className }) {
               src={`https://refine-web.imgix.net${frontMatter.image?.replace(
                 "https://refine.ams3.cdn.digitaloceanspaces.com",
                 "",
-              )}?h=432`}
+              )}?h=668`}
               alt={title}
               className={clsx(
                 "absolute inset-0 mt-0 h-full w-full rounded-[10px] object-cover",

@@ -13,12 +13,20 @@ import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router-v6";
-import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 
+import "@refinedev/antd/dist/reset.css";
+import { App as AntdApp, ConfigProvider } from "antd";
+
 import { appwriteClient, authProvider } from "./utility";
+
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
+import {
+  CategoryCreate,
+  CategoryList,
+  CategoryShow,
+  CategoryEdit,
+} from "./pages/categories";
 
 const App: React.FC = () => {
   return (
@@ -28,22 +36,32 @@ const App: React.FC = () => {
         <AntdApp>
           <Refine
             dataProvider={dataProvider(appwriteClient, {
-              databaseId: "6537bfaa2f54cd235e51",
+              databaseId: "default",
             })}
             liveProvider={liveProvider(appwriteClient, {
-              databaseId: "6537bfaa2f54cd235e51",
+              databaseId: "default",
             })}
             authProvider={authProvider}
             routerProvider={routerProvider}
             resources={[
               {
-                name: "6537bff1acea7f73acbf",
+                name: "blog_posts",
                 list: "/posts",
                 create: "/posts/create",
                 edit: "/posts/edit/:id",
                 show: "/posts/show/:id",
                 meta: {
-                  label: "Posts",
+                  label: "Blog Posts",
+                },
+              },
+              {
+                name: "categories",
+                list: "/categories",
+                create: "/categories/create",
+                show: "/categories/show/:id",
+                edit: "/categories/edit/:id",
+                meta: {
+                  label: "Categories",
                 },
               },
             ]}
@@ -69,9 +87,7 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={
-                    <NavigateToResource resource="6537bff1acea7f73acbf" />
-                  }
+                  element={<NavigateToResource resource="blog_posts" />}
                 />
 
                 <Route path="/posts">
@@ -80,22 +96,34 @@ const App: React.FC = () => {
                   <Route path="edit/:id" element={<PostEdit />} />
                   <Route path="show/:id" element={<PostShow />} />
                 </Route>
+                <Route path="/categories">
+                  <Route index element={<CategoryList />} />
+                  <Route path="create" element={<CategoryCreate />} />
+                  <Route path="edit/:id" element={<CategoryEdit />} />
+                  <Route path="show/:id" element={<CategoryShow />} />
+                </Route>
               </Route>
 
               <Route
                 element={
                   <Authenticated key="auth-pages" fallback={<Outlet />}>
-                    <NavigateToResource resource="6537bff1acea7f73acbf" />
+                    <NavigateToResource resource="blog_posts" />
                   </Authenticated>
                 }
               >
                 <Route
                   path="/login"
-                  element={<AuthPage forgotPasswordLink={false} />}
-                />
-                <Route
-                  path="/register"
-                  element={<AuthPage type="register" />}
+                  element={
+                    <AuthPage
+                      formProps={{
+                        initialValues: {
+                          remember: false,
+                          email: "demo@refine.dev",
+                          password: "demodemo",
+                        },
+                      }}
+                    />
+                  }
                 />
               </Route>
 

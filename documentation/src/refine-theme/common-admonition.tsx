@@ -122,6 +122,7 @@ export const Admonition = ({ type, title, children }: Props) => {
               "gap-2",
               "text-xs sm:text-base 2xl:text-base 2xl:leading-7",
               "font-semibold",
+              "admonition-header",
               clsText,
             )}
           >

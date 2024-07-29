@@ -234,13 +234,12 @@ export const finalFiles = {
 
 export const dependencies = {
   ...initialDependencies,
-  "@emotion/react": "latest",
-  "@emotion/styled": "latest",
-  "@mui/lab": "latest",
-  "@mui/material": "latest",
-  "@mui/x-data-grid": "latest",
-  "@mui/system": "latest",
-  "@refinedev/mui": "latest",
+  "@emotion/react": "11.11.4",
+  "@emotion/styled": "11.11.5",
+  "@mui/lab": "5.0.0-alpha.173",
+  "@mui/material": "5.16.5",
+  "@mui/x-data-grid": "6.19.11",
+  "@refinedev/mui": "5.0.0",
   "@refinedev/react-hook-form": "latest",
   "react-hook-form": "latest",
 };
