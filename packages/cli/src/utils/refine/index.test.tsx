@@ -56,9 +56,11 @@ test("Has default script", () => {
   ];
 
   testCases.forEach((testCase) => {
-    jest
-      .spyOn(utilsPackage, "getPackageJson")
-      .mockReturnValueOnce(testCase.input);
+    jest.spyOn(utilsPackage, "getPackageJson").mockReturnValueOnce({
+      name: "test",
+      version: "1.0.0",
+      ...testCase.input,
+    });
 
     const result = hasDefaultScript();
 

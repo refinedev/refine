@@ -39,7 +39,7 @@ export const displayManualInstallationCommand = async (
   requiredPackages: string[],
 ) => {
   const pm = await getPreferedPM();
-  const pmCommand = pmCommands[pm.name].install.join(" ");
+  const pmCommand = pmCommands[pm.name].add.join(" ");
   const packages = requiredPackages.join(" ");
   const command = `${pm.name} ${pmCommand} ${packages}`;
 
