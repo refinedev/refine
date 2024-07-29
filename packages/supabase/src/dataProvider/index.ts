@@ -39,26 +39,7 @@ export const dataProvider = (
       });
 
       filters?.map((item) => {
-        if (item.operator === "between") {
-          generateFilter(
-            {
-              field: item.field,
-              operator: "gte",
-              value: item.value[0],
-            },
-            query,
-          );
-          generateFilter(
-            {
-              field: item.field,
-              operator: "lte",
-              value: item.value[1],
-            },
-            query,
-          );
-        } else {
-          generateFilter(item, query);
-        }
+        generateFilter(item, query);
       });
 
       const { data, count, error } = await query;

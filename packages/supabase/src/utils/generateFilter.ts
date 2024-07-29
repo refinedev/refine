@@ -26,6 +26,15 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
       return query.lt(filter.field, filter.value);
     case "lte":
       return query.lte(filter.field, filter.value);
+    case "between":
+      if (filter.value.length !== 2) {
+        throw new Error(
+          `Unexpected length ${filter.value.length}. Between operator expects a range between 2 values.`,
+        );
+      }
+      return query
+        .gte(filter.field, filter.value[0])
+        .lte(filter.field, filter.value[1]);
     case "contains":
       return query.ilike(filter.field, `%${filter.value}%`);
     case "containss":
