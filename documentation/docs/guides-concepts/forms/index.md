@@ -113,9 +113,11 @@ const EditPage = () => {
     HttpError,
     FormValues
   >({
-    resource: "products",
-    action: "edit",
-    id: 123,
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
   });
 
   return (

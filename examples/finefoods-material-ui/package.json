@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
-    "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "start": "refine start"
   },
   "browserslist": {
     "production": [
@@ -48,7 +48,7 @@
     "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-hook-form": "^7.30.0",
+    "react-hook-form": "^7.43.5",
     "react-i18next": "^11.8.11",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.8.1",

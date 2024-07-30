@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "documentation/**"
+      - ".github/workflows/documentation.yml"
   push:
     branches:
       - master
@@ -32,6 +33,8 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: pnpm/action-setup@v3
         with:
           version: 9
@@ -70,21 +73,11 @@ jobs:
           git config --global user.email "bot@pankod.com"
           git config --global user.name "pankod-bot"
           LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm run deploy
-      - name: Wait for Netlify Deploy (Live Previews)
-        uses: probablyup/wait-for-netlify-action@3.2.0
-        id: waitForDeployment
-        if: github.ref != 'refs/heads/master'
-        continue-on-error: true
-        with:
-          site_id: ${{ secrets.NETLIFY_PREVIEW_SITE_ID }}
-          max_timeout: 1200
-        env:
-          NETLIFY_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       - name: Build Documentation
         if: github.ref != 'refs/heads/master'
         run: |
           cd documentation
-          LIVE_PREVIEW_URL=${{ steps.waitForDeployment.outputs.url }}/preview pnpm build
+          LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm build
       - name: Deploy to Netlify
         if: github.ref != 'refs/heads/master'
         id: netlify-deploy

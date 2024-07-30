@@ -19,8 +19,10 @@ import { AutoSaveIndicator, useForm } from "@refinedev/antd";
 
 const MyComponent = () => {
   const { autoSaveProps } = useForm({
-    autoSave: {
-      enabled: true,
+    refineCoreProps: {
+      autoSave: {
+        enabled: true,
+      },
     },
   });
 

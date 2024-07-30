@@ -117,8 +117,11 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: translate(
-                  "pages.login.errors.validEmail",
-                  "Invalid email address",
+                  "pages.forgotPassword.errors.validEmail",
+                  translate(
+                    "pages.login.errors.validEmail",
+                    "Invalid email address",
+                  ),
                 ),
               },
             })}
@@ -130,12 +133,18 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
           <Box my="6" display="flex" justifyContent="flex-end">
             <span>
               {translate(
-                "pages.register.buttons.haveAccount",
-                "Have an account?",
+                "pages.forgotPassword.buttons.haveAccount",
+                translate(
+                  "pages.register.buttons.haveAccount",
+                  "Have an account?",
+                ),
               )}
             </span>
             <ChakraLink color={importantTextColor} ml="1" as={Link} to="/login">
-              {translate("pages.login.signin", "Sign in")}
+              {translate(
+                "pages.forgotPassword.signin",
+                translate("pages.login.signin", "Sign in"),
+              )}
             </ChakraLink>
           </Box>
         )}

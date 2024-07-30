@@ -18,6 +18,22 @@ export const printUpdateWarningTable = async (
   const { table, width } = getVersionTable(data);
   console.log();
   console.log(center("Update Available", width));
+  console.log();
+  console.log(
+    `- ${chalk.yellow(
+      chalk.bold("Current"),
+    )}: The version of the package that is currently installed`,
+  );
+  console.log(
+    `- ${chalk.yellow(
+      chalk.bold("Wanted"),
+    )}: The maximum version of the package that satisfies the semver range specified in \`package.json\``,
+  );
+  console.log(
+    `- ${chalk.yellow(
+      chalk.bold("Latest"),
+    )}: The latest version of the package available on npm`,
+  );
   console.log(table);
   console.log(
     center(

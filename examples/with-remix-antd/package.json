@@ -5,11 +5,9 @@
   "sideEffects": false,
   "scripts": {
     "build": "refine build",
-    "cypress": "cypress open -C ./cypress.config.ts",
-    "cypress:run": "cypress run -C ./cypress.config.ts",
     "dev": "refine dev",
     "refine": "refine",
-    "start:prod": "refine start"
+    "start": "refine start"
   },
   "dependencies": {
     "@refinedev/antd": "^5.42.0",
@@ -31,7 +29,6 @@
     "@types/js-cookie": "^3.0.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
-    "cypress": "^13.6.3",
     "typescript": "^5.4.2"
   },
   "engines": {
