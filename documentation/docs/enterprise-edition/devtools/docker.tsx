@@ -112,7 +112,7 @@ const DockerfileDevtoolsCode = /* dockerfile */ `
 # We'll then use Nginx to reverse proxy the requests to the correct services.
 # We're running devtools at port 5001 and we'll access it via http://devtools.local.
 
-# Use the official Node.js image as a parent image
+# Use the Refine's Node.js image as a parent image
 FROM refinedev/node
 
 # Copy the package.json and package-lock.json
