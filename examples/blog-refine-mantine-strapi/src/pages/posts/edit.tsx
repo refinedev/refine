@@ -7,7 +7,7 @@ export const PostEdit = () => {
   const {
     getInputProps,
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
   } = useForm({
     initialValues: {
       id: "",

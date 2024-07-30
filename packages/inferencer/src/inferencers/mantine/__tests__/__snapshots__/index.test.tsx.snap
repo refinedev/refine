@@ -18638,7 +18638,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -19539,7 +19539,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token operator"

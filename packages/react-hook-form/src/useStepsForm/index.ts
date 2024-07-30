@@ -110,11 +110,11 @@ export const useStepsForm = <
     getValues,
     setValue,
     formState: { dirtyFields },
-    refineCore: { queryResult },
+    refineCore: { query },
   } = useHookFormResult;
 
   useEffect(() => {
-    const data = queryResult?.data?.data;
+    const data = query?.data?.data;
     if (!data) return;
 
     const registeredFields = Object.keys(getValues());
@@ -134,7 +134,7 @@ export const useStepsForm = <
         }
       }
     });
-  }, [queryResult?.data, current, setValue, getValues]);
+  }, [query?.data, current, setValue, getValues]);
 
   const go = (step: number) => {
     let targetStep = step;

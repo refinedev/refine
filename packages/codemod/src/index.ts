@@ -114,9 +114,14 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
+    name: "Refactor[useForm]: { queryResult, mutationResult } to { query, mutation }",
+    value: "use-form-query-and-mutation-result",
+  },
+  {
     name: "Refactor[useShow]: { queryResult } to { query }",
     value: "use-show-query-result",
   },
+  {
     name: "Refactor[useSelect, useAutocomplete, useCheckboxGroup, useRadioGroup]: { queryResult, defaultValueQueryResult } to { query, defaultValueQuery }",
     value: "use-select-query-result",
   },

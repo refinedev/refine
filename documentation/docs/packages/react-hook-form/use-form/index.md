@@ -207,7 +207,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     resetField,
@@ -216,7 +216,7 @@ export const PostEdit: React.FC = () => {
 
   const { options } = useSelect({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   useEffect(() => {
@@ -241,7 +241,7 @@ export const PostEdit: React.FC = () => {
         {...register("category.id", {
           required: true,
         })}
-        defaultValue={queryResult?.data?.data.category.id}
+        defaultValue={query?.data?.data.category.id}
       >
         {options?.map((category) => (
           <option key={category.value} value={category.value}>
@@ -261,17 +261,13 @@ export const PostEdit: React.FC = () => {
       {errors.content && <span>This field is required</span>}
       <br />
 
-      {queryResult?.data?.data?.thumbnail && (
+      {query?.data?.data?.thumbnail && (
         <>
           <br />
           <label>Image: </label>
           <br />
 
-          <img
-            src={queryResult?.data?.data?.thumbnail}
-            width={200}
-            height={200}
-          />
+          <img src={query?.data?.data?.thumbnail} width={200} height={200} />
           <br />
           <br />
         </>
@@ -376,7 +372,7 @@ render(<RefineHeadlessDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route. It can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
 
 In the following example, we'll show how to use `useForm` with `action: "edit"`.
 
@@ -446,7 +442,7 @@ render(<RefineHeadlessDemo />);
 
 You can think `action:clone` like save as. It's similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
 
 In the following example, we'll show how to use `useForm` with `action: "clone"`.
 
@@ -981,28 +977,28 @@ useForm({
 
 ## Return Values
 
-### queryResult
+### query
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `query` property.
 
 ```tsx
 const {
-  refineCore: { queryResult },
+  refineCore: { query },
 } = useForm();
 
-const { data } = queryResult;
+const { data } = query;
 ```
 
-### mutationResult
+### mutation
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutationResult` property."
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutation` property."
 
 ```tsx
 const {
-  refineCore: { mutationResult },
+  refineCore: { mutation },
 } = useForm();
 
-const { data } = mutationResult;
+const { data } = mutation;
 ```
 
 ### setId
@@ -1065,6 +1061,14 @@ Loading state of a modal. It's `true` when `useForm` is currently being submitte
 ### autoSaveProps
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
+
+### ~~mutationResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
+
+### ~~queryResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
 
 ## FAQ
 
@@ -1181,7 +1185,7 @@ Returns all the properties returned by [React Hook Form][react-hook-form] of the
 import { useForm } from "@refinedev/react-hook-form";
 
 const {
-    refineCore: { queryResult, ... },
+    refineCore: { query, ... },
 } = useForm({ ... });
 ```
 
