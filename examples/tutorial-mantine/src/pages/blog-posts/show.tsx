@@ -9,7 +9,7 @@ import {
 import { Title } from "@mantine/core";
 
 export const BlogPostShow = () => {
-  const { queryResult } = useShow();
+  const { query: queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
   const record = data?.data;

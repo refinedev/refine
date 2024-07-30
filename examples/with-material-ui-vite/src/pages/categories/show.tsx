@@ -3,7 +3,7 @@ import { useShow } from "@refinedev/core";
 import { Show, TextFieldComponent as TextField } from "@refinedev/mui";
 
 export const CategoryShow = () => {
-  const { queryResult } = useShow({});
+  const { query: queryResult } = useShow({});
   const { data, isLoading } = queryResult;
 
   const record = data?.data;

@@ -13,7 +13,7 @@ const { Title, Text } = Typography;
 const PostShow: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();
 
-  const { queryResult } = useShow({
+  const { query: queryResult } = useShow({
     queryOptions: {
       initialData,
     },

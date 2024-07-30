@@ -6,7 +6,7 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export const CompanyShow = () => {
-  const { queryResult } = useShow({
+  const { query: queryResult } = useShow({
     meta: {
       fields: [
         "id",

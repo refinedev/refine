@@ -24,7 +24,7 @@ export const RVCWebsitePageTitleDetails = ({ withBrowser = true }: Props) => {
   const { titleId } = useParams();
   const navigate = useNavigate();
 
-  const { queryResult } = useShow<VideoTitle>({
+  const { query: queryResult } = useShow<VideoTitle>({
     resource: "titles",
     id: titleId,
   });

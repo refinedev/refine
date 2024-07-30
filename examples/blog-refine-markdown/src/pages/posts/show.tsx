@@ -7,7 +7,7 @@ import { Tag, Typography } from "antd";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<IPost>();
+  const { query: queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

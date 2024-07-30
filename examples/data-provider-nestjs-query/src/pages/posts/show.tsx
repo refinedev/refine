@@ -10,7 +10,7 @@ import type { PostShowQuery } from "graphql/types";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<GetFields<PostShowQuery>>({
+  const { query: queryResult } = useShow<GetFields<PostShowQuery>>({
     metaData: {
       gqlQuery: POST_SHOW_QUERY,
     },
