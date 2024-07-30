@@ -11,7 +11,6 @@ import type { TraceType } from "./trace";
 export enum DevtoolsEvent {
   RELOAD = "devtools:reload",
   DEVTOOLS_INIT = "devtools:init",
-  DEVTOOLS_HANDSHAKE = "devtools:handshake",
   DEVTOOLS_ALREADY_CONNECTED = "devtools:already-connected",
   ACTIVITY = "devtools:send-activity",
   DEVTOOLS_ACTIVITY_UPDATE = "devtools:activity-update",
@@ -62,7 +61,6 @@ type ActivityPayload =
 export type DevtoolsEventPayloads = {
   [DevtoolsEvent.RELOAD]: {};
   [DevtoolsEvent.DEVTOOLS_INIT]: { url: string };
-  [DevtoolsEvent.DEVTOOLS_HANDSHAKE]: { url: string };
   [DevtoolsEvent.DEVTOOLS_ALREADY_CONNECTED]: { url: string };
   [DevtoolsEvent.ACTIVITY]: ActivityPayload;
   [DevtoolsEvent.DEVTOOLS_ACTIVITY_UPDATE]: {

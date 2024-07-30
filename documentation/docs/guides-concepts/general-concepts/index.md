@@ -484,11 +484,11 @@ For example, `useShow` hook can infer `resource` and `id` parameters from the cu
 import { useShow } from "@refinedev/core";
 
 export const ShowPage = () => {
-  // const { queryResult } = useShow({ resource: "products", id: 1 });
+  // const { query } = useShow({ resource: "products", id: 1 });
   // We don't need to pass "resource" and "id" parameters manually.
-  const { queryResult } = useShow();
+  const { query } = useShow();
 
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
 
   if (isLoading) {
     return <>Loading...</>;
@@ -732,9 +732,12 @@ export const App = () => {
 import { useShow } from "@refinedev/core";
 
 export const ShowPage = () => {
-  const { data, isLoading } = useShow({ {/* or useOne */}
-    resource: "products",
-    id: 1,
+  const {
+    query: { data, isLoading },
+    /* or use useOne */
+  } = useShow({
+    resource: "posts",
+    id: "1",
     // highlight-start
     meta: {
       fromHook: "Hello from hook.meta",

@@ -407,12 +407,12 @@ In some cases we only have `id`, it may be necessary to show it selected in the 
 
 ### Can I create the options manually?
 
-You can create a new `options` object with `queryResult`.
+You can create a new `options` object with `query`.
 
 ```tsx
-const { autocompleteProps, queryResult } = useAutocomplete();
+const { autocompleteProps, query } = useAutocomplete();
 
-const options = queryResult.data?.data.map((item) => ({
+const options = query.data?.data.map((item) => ({
   title: item.title,
   value: item.id,
 }));
@@ -447,8 +447,8 @@ By default, Refine does the search using the [`useList`](/docs/data/hooks/use-de
 | Property                   | Description                                    | Type                                                                                          |
 | -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | autocompleteProps          | Material UI Autocomplete props                 | [`AutoCompleteReturnValues`](#autocompletereturnvalues)                                       |
-| queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| query                      | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQuery          | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 | overtime                   | Overtime loading props                         | `{ elapsedTime?: number }`                                                                    |
 

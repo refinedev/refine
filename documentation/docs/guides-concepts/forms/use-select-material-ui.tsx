@@ -9,7 +9,7 @@ export default function UseSelectMaterialUI() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-hook-form": "latest",
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "@mui/material": "latest",
       }}
       startRoute="/"

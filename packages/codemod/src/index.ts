@@ -118,6 +118,14 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     value: "use-form-query-and-mutation-result",
   },
   {
+    name: "Refactor[useShow]: { queryResult } to { query }",
+    value: "use-show-query-result",
+  },
+  {
+    name: "Refactor[useSelect, useAutocomplete, useCheckboxGroup, useRadioGroup]: { queryResult, defaultValueQueryResult } to { query, defaultValueQuery }",
+    value: "use-select-query-result",
+  },
+  {
     name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
     value: "refine3-to-refine4",
   },

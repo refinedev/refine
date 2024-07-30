@@ -14,7 +14,7 @@ export default function NotificationMui() {
         "@mui/lab": "^5.0.0-alpha.85",
         "@mui/material": "^5.14.2",
         "@mui/system": "latest",
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
       }}
       startRoute="/"
       files={{

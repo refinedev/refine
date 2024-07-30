@@ -9,7 +9,7 @@ export default function Usage() {
       height={320}
       showOpenInCodeSandbox={false}
       dependencies={{
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",

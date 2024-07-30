@@ -5,17 +5,8 @@ import {
   ThemedLayoutV2,
   useNotificationProvider,
 } from "@refinedev/antd";
-import {
-  type AppwriteException,
-  dataProvider,
-  liveProvider,
-} from "@refinedev/appwrite";
-import {
-  type AuthProvider,
-  Authenticated,
-  GitHubBanner,
-  Refine,
-} from "@refinedev/core";
+import { dataProvider, liveProvider } from "@refinedev/appwrite";
+import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
@@ -27,92 +18,15 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import "@refinedev/antd/dist/reset.css";
 import { App as AntdApp, ConfigProvider } from "antd";
 
-import { account, appwriteClient } from "./utility";
+import { appwriteClient, authProvider } from "./utility";
 
 import { PostCreate, PostEdit, PostList, PostShow } from "./pages/posts";
-
-const authProvider: AuthProvider = {
-  login: async ({ email, password }) => {
-    try {
-      await account.createEmailSession(email, password);
-      return {
-        success: true,
-        redirectTo: "/",
-      };
-    } catch (e) {
-      const { type, message, code } = e as AppwriteException;
-      return {
-        success: false,
-        error: {
-          message,
-          name: `${code} - ${type}`,
-        },
-      };
-    }
-  },
-  logout: async () => {
-    try {
-      await account.deleteSession("current");
-    } catch (error: any) {
-      return {
-        success: false,
-        error,
-      };
-    }
-
-    return {
-      success: true,
-      redirectTo: "/login",
-    };
-  },
-  onError: async (error) => {
-    if (error?.code === 401) {
-      return {
-        logout: true,
-      };
-    }
-
-    return { error };
-  },
-  check: async () => {
-    try {
-      const session = await account.get();
-
-      if (session) {
-        return {
-          authenticated: true,
-        };
-      }
-    } catch (error: any) {
-      return {
-        authenticated: false,
-        error: error,
-        logout: true,
-        redirectTo: "/login",
-      };
-    }
-
-    return {
-      authenticated: false,
-      error: {
-        message: "Check failed",
-        name: "Session not found",
-      },
-      logout: true,
-      redirectTo: "/login",
-    };
-  },
-  getPermissions: async () => null,
-  getIdentity: async () => {
-    const user = await account.get();
-
-    if (user) {
-      return user;
-    }
-
-    return null;
-  },
-};
+import {
+  CategoryCreate,
+  CategoryList,
+  CategoryShow,
+  CategoryEdit,
+} from "./pages/categories";
 
 const App: React.FC = () => {
   return (
@@ -131,13 +45,23 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             resources={[
               {
-                name: "61c43ad33b857",
+                name: "blog_posts",
                 list: "/posts",
                 create: "/posts/create",
                 edit: "/posts/edit/:id",
                 show: "/posts/show/:id",
                 meta: {
-                  label: "Post",
+                  label: "Blog Posts",
+                },
+              },
+              {
+                name: "categories",
+                list: "/categories",
+                create: "/categories/create",
+                show: "/categories/show/:id",
+                edit: "/categories/edit/:id",
+                meta: {
+                  label: "Categories",
                 },
               },
             ]}
@@ -163,7 +87,7 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={<NavigateToResource resource="61c43ad33b857" />}
+                  element={<NavigateToResource resource="blog_posts" />}
                 />
 
                 <Route path="/posts">
@@ -172,12 +96,18 @@ const App: React.FC = () => {
                   <Route path="edit/:id" element={<PostEdit />} />
                   <Route path="show/:id" element={<PostShow />} />
                 </Route>
+                <Route path="/categories">
+                  <Route index element={<CategoryList />} />
+                  <Route path="create" element={<CategoryCreate />} />
+                  <Route path="edit/:id" element={<CategoryEdit />} />
+                  <Route path="show/:id" element={<CategoryShow />} />
+                </Route>
               </Route>
 
               <Route
                 element={
                   <Authenticated key="auth-pages" fallback={<Outlet />}>
-                    <NavigateToResource resource="61c43ad33b857" />
+                    <NavigateToResource resource="blog_posts" />
                   </Authenticated>
                 }
               >

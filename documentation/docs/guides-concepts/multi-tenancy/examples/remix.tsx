@@ -140,7 +140,9 @@ import React from "react";
 import { useShow } from "@refinedev/core";
 
 export default function ProductsShow() {
-  const { data, isLoading } = useShow();
+  const {
+    query: { data, isLoading },
+  } = useShow();
   const record = data?.data;
 
   if (isLoading) {

@@ -43,10 +43,16 @@ export const compile = (filePath: string, params: any): string => {
   return template(params);
 };
 
+/**
+ * compile all hbs files under the specified directory. recursively
+ */
 export const compileDir = (dirPath: string, params: any) => {
-  const files = readdirSync(dirPath);
+  const files = readdirSync(dirPath, { recursive: true });
 
-  files.forEach((file: string) => {
+  files.forEach((file: string | Buffer) => {
+    // the target file should be a handlebars file
+    if (typeof file !== "string" || !file.endsWith(".hbs")) return;
+
     const templateFilePath = `${dirPath}/${file}`;
     // create file
     const compiledFilePath = `${dirPath}/${file.replace(".hbs", "")}`;

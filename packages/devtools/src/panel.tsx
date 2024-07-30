@@ -10,6 +10,8 @@ import {
 
 import type { Placement } from "./interfaces/placement";
 
+const MAX_IFRAME_WAIT_TIME = 1500;
+
 export const DevtoolsPanel =
   __DEV_CONDITION__ !== "development"
     ? () => null
@@ -17,9 +19,12 @@ export const DevtoolsPanel =
         const [browser, setBrowser] = React.useState<boolean>(false);
         const [visible, setVisible] = React.useState(false);
         const [placement] = React.useState<Placement>("bottom");
-        const { devtoolsUrl, ws } = React.useContext(DevToolsContext);
+        const { httpUrl, ws } = React.useContext(DevToolsContext);
         const [width, setWidth] = React.useState<number>(0);
         const [selectorActive, setSelectorActive] = React.useState(false);
+        const [iframeStatus, setIframeStatus] = React.useState<
+          "loading" | "loaded" | "failed"
+        >("loading");
 
         const onSelectorHighlight = React.useCallback(
           (name: string) => {
@@ -32,10 +37,6 @@ export const DevtoolsPanel =
           },
           [ws],
         );
-
-        const onSelectorOpen = React.useCallback(() => {
-          setVisible(false);
-        }, []);
 
         React.useEffect(() => {
           if (selectorActive) {
@@ -68,6 +69,41 @@ export const DevtoolsPanel =
           return () => undefined;
         }, [browser]);
 
+        React.useEffect(() => {
+          if (iframeStatus !== "loaded") {
+            const onMessage = (event: MessageEvent) => {
+              if (event.data.type === "refine-devtools-iframe-loaded") {
+                setIframeStatus("loaded");
+              }
+            };
+
+            window.addEventListener("message", onMessage);
+
+            return () => {
+              window.removeEventListener("message", onMessage);
+            };
+          }
+
+          return () => 0;
+        }, []);
+
+        React.useEffect(() => {
+          let timeout: number;
+          if (iframeStatus === "loading") {
+            timeout = window.setTimeout(() => {
+              setIframeStatus("failed");
+              if (timeout) {
+                clearInterval(timeout);
+              }
+            }, MAX_IFRAME_WAIT_TIME);
+          }
+          return () => {
+            if (typeof timeout !== "undefined") {
+              clearInterval(timeout);
+            }
+          };
+        }, [iframeStatus]);
+
         if (!browser) {
           return null;
         }
@@ -95,17 +131,13 @@ export const DevtoolsPanel =
               {({ resizing }) => (
                 <iframe
                   allow="clipboard-write;"
-                  src={devtoolsUrl}
+                  src={httpUrl}
                   srcDoc={
-                    devtoolsUrl
-                      ? undefined
-                      : `
-                            <html style="height:100%;padding:0;margin:0;">
-                                <body style="display:flex;justify-content:center;height:100%;padding:24px;margin:0;align-items:center;box-sizing:border-box;">
-                                    <h1 style="font-family:ui-monospace,monospace;color:#CFD7E2;text-align:center;">Could not connect to the devtools server</h1>
-                                </body>
-                            </html>
-                        `
+                    httpUrl
+                      ? iframeStatus === "failed"
+                        ? failedConnectionContent
+                        : undefined
+                      : missingUrlContent
                   }
                   style={{
                     width: "100%",
@@ -121,3 +153,20 @@ export const DevtoolsPanel =
           </div>
         );
       };
+
+const missingUrlContent = `
+      <html style="height:100%;padding:0;margin:0;background:#14141F;">
+        <body style="background:#14141F;display:flex;justify-content:center;height:100%;padding:24px;margin:0;align-items:center;box-sizing:border-box;">
+          <h1 style="font-family:ui-monospace,monospace;font-weight:400;color:#CFD7E2;text-align:center;font-size:24px;">Could not connect to the devtools server.</h1>
+        </body>
+      </html>
+      `;
+
+const failedConnectionContent = `
+      <html style="height:100%;padding:0;margin:0;background:#14141F;">
+        <body style="background:#14141F;display:flex;flex-direction:column;justify-content:center;height:100%;padding:24px;margin:0;align-items:center;box-sizing:border-box;">
+          <h1 style="max-width:480px;min-width:480px;font-family:ui-monospace,monospace;font-weight:400;color:#CFD7E2;text-align:left;font-size:24px;margin-bottom:12px;line-height:24px;">Devtools Server is unreachable.</h1>
+          <p style="max-width:480px;font-family:ui-monospace,monospace;font-weight:400;color:#6C7793;text-align:left;font-size:16px;line-height:32px;">Please make sure Refine Devtools is running and <code style="background:#303450;color:#A3ADC2;padding:3px 6px;border-radius:4px;">&lt;DevtoolsProvider /&gt;</code> has valid <code style="background:#303450;color:#A3ADC2;padding:3px 6px;border-radius:4px;">url</code> prop. Environment variables may not always be available in browser depending on your project setup.</p>
+        </body>
+      </html>
+      `;

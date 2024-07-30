@@ -31,19 +31,28 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
   }, [search]);
 
   const scrollToItem = React.useCallback(() => {
-    const playgroundElement = document.getElementById("playground");
-    if (playgroundElement) {
-      playgroundElement.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "nearest",
-      });
-    }
+    const scroller = () => {
+      const playgroundElement = document.getElementById("playground");
+      if (playgroundElement) {
+        playgroundElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "nearest",
+        });
+      }
+    };
+
+    scroller();
+    setTimeout(scroller, 300);
   }, []);
 
   React.useEffect(() => {
     if (params.playground || hash === "#playground") {
-      scrollToItem();
+      if (params.playground === "browser") {
+        setWizardOpen(true);
+      } else {
+        scrollToItem();
+      }
     }
   }, [params.playground, hash]);
 
@@ -308,19 +317,23 @@ const LandingTryItWizardSection = ({
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
   const { colorMode } = useColorMode();
 
+  const postColorMode = React.useCallback(() => {
+    iframeRef.current.contentWindow?.postMessage(
+      {
+        type: "colorMode",
+        colorMode,
+      },
+      "*",
+    );
+  }, [colorMode]);
+
   React.useEffect(() => {
     // when color mode changes, post a message to the iframe
     // to update its color mode
     if (iframeRef.current) {
-      iframeRef.current.contentWindow?.postMessage(
-        {
-          type: "colorMode",
-          colorMode,
-        },
-        "*",
-      );
+      postColorMode();
     }
-  }, [colorMode, visible]);
+  }, [postColorMode]);
 
   return (
     <div
@@ -384,6 +397,9 @@ const LandingTryItWizardSection = ({
           <iframe
             ref={iframeRef}
             src="https://refine.new/embed-form"
+            onLoad={() => {
+              setTimeout(postColorMode, 50);
+            }}
             className={clsx(
               "scrollbar-hidden",
               "transition-opacity",
