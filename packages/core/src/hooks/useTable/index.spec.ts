@@ -473,7 +473,7 @@ describe("useTable Hook", () => {
     });
   });
 
-  it("shoukd work with tableQuery and tableQueryResult", async () => {
+  it("should work with tableQuery and tableQueryResult", async () => {
     const { result } = renderHook(() => useTable(), {
       wrapper: TestWrapper({
         dataProvider: MockJSONServer,
