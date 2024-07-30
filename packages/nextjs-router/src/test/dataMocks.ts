@@ -38,7 +38,7 @@ export const posts = [
 
 const MockDataProvider = () => {
   return {
-    create: () => Promise.resolve({ data: posts[0] }),
+    create: async () => ({ data: posts[0] }),
     createMany: () => Promise.resolve({ data: posts }),
     deleteOne: () => Promise.resolve({ data: posts[0] }),
     deleteMany: () => Promise.resolve({ data: [] }),
