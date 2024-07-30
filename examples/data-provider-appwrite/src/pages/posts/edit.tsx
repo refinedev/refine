@@ -13,12 +13,7 @@ export const PostEdit = () => {
     formProps,
     saveButtonProps,
     query: queryResult,
-  } = useForm<
-    IPost,
-    HttpError,
-    IPostVariables,
-    IPostVariables
-  >({
+  } = useForm<IPost, HttpError, IPostVariables, IPostVariables>({
     queryOptions: {
       select: ({ data }) => {
         return {

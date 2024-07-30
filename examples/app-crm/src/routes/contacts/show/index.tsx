@@ -54,8 +54,6 @@ export const ContactShowPage: React.FC = () => {
     "email" | "companyId" | "jobTitle" | "phone" | "timezone"
   >();
   const { list } = useNavigation();
-  const { mutate } = useUpdate<Contact>();
-  const { mutate: deleteMutation } = useDelete<Contact>();
   const { query: queryResult } = useShow<GetFields<ContactShowQuery>>({
     meta: {
       gqlQuery: CONTACT_SHOW_QUERY,
