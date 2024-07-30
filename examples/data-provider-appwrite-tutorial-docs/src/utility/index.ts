@@ -1,3 +1,4 @@
 export * from "./normalize";
 export * from "./appwriteClient";
-export * from "./authProvider";
+export * from "./status";
+export * from "./auth-provider";

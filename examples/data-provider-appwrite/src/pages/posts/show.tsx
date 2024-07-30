@@ -1,10 +1,8 @@
-import { useShow, useOne } from "@refinedev/core";
-
+import { useShow } from "@refinedev/core";
 import { Show, MarkdownField, ImageField } from "@refinedev/antd";
-
 import { Typography, Space } from "antd";
 
-import type { IPost, ICategory, IFile } from "../../interfaces";
+import type { IPost, IFile } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
@@ -15,29 +13,18 @@ export const PostShow = () => {
 
   const images = record?.images ? (JSON.parse(record.images) as IFile[]) : [];
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    useOne<ICategory>({
-      resource: "61c43adc284ac",
-      id: record?.categoryId || "",
-      queryOptions: {
-        enabled: !!record,
-      },
-    });
-
   return (
     <Show isLoading={isLoading}>
       <Title level={5}>Id</Title>
       <Text>{record?.id}</Text>
-
       <Title level={5}>Title</Title>
       <Text>{record?.title}</Text>
-
       <Title level={5}>Category</Title>
-      <Text>{categoryIsLoading ? "Loading..." : categoryData?.data.title}</Text>
-
+      <Text>{record?.category.title}</Text>
+      <Title level={5}>Status</Title>
+      <Text>{record?.status}</Text>
       <Title level={5}>Content</Title>
       <MarkdownField value={record?.content} />
-
       <Title level={5}>Images</Title>
       <Space wrap>
         {record?.images ? (

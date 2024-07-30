@@ -460,12 +460,12 @@ useSelect({
 
 ### Can I create the options manually?
 
-Sometimes it may not be enough to create `optionLabel` and `optionValue` options. In this case we create options with `queryResult`.
+Sometimes it may not be enough to create `optionLabel` and `optionValue` options. In this case we create options with `query`.
 
 ```tsx
-const { queryResult } = useSelect();
+const { query } = useSelect();
 
-const options = queryResult.data?.data.map((item) => ({
+const options = query.data?.data.map((item) => ({
   label: item.title,
   value: item.id,
 }));
@@ -496,8 +496,8 @@ return <Select options={options} />;
 | Property                   | Description                                    | Type                                                                                          |
 | -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | selectProps                | Mantine Select props                           | [`SelectPropsType`](#selectpropstype)                                                         |
-| queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| query                      | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQuery          | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 | overtime                   | Overtime loading props                         | `{ elapsedTime?: number }`                                                                    |
 

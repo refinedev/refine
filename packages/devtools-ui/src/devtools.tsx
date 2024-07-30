@@ -23,13 +23,14 @@ import { InitialLayout } from "./components/initial-layout";
 import { RaffleHandler } from "./components/raffle-handler";
 import { MonitorHighlightHandler } from "./components/monitor-highlight-handler";
 import { LocationChangeHandler } from "./components/location-change-handler";
+import { IframePageLoadHandler } from "./components/iframe-page-load-handler";
 import { getLastLocation } from "./utils/last-location";
 
 dayjs.extend(relativeTime);
 
 export const DevToolsApp = () => {
   return (
-    <DevToolsContextProvider __devtools>
+    <DevToolsContextProvider __devtools url={location.origin}>
       <ReloadOnChanges />
       <BrowserRouter>
         <Routes>
@@ -102,6 +103,7 @@ export const DevToolsApp = () => {
             <Route path="*" element={<Navigate to="/login" />} />
           </Route>
         </Routes>
+        <IframePageLoadHandler />
         <LocationChangeHandler />
         <MonitorHighlightHandler />
       </BrowserRouter>
