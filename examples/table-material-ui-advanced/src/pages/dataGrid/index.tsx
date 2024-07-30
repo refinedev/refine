@@ -17,7 +17,7 @@ export const BasicDataGrid: React.FC = () => {
 
   const {
     options,
-    queryResult: { isLoading },
+    query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
   });
