@@ -37,17 +37,18 @@ export const CompanyForm = () => {
   });
   const { avatarUrl, name } = queryResult?.data?.data || {};
 
-  const { selectProps: selectPropsUsers, queryResult: queryResultUsers } =
-    useSelect<GetFieldsFromList<UsersSelectQuery>>({
-      resource: "users",
-      optionLabel: "name",
-      pagination: {
-        mode: "off",
-      },
-      meta: {
-        gqlQuery: USERS_SELECT_QUERY,
-      },
-    });
+  const { selectProps: selectPropsUsers, query: queryResultUsers } = useSelect<
+    GetFieldsFromList<UsersSelectQuery>
+  >({
+    resource: "users",
+    optionLabel: "name",
+    pagination: {
+      mode: "off",
+    },
+    meta: {
+      gqlQuery: USERS_SELECT_QUERY,
+    },
+  });
 
   return (
     <Edit
