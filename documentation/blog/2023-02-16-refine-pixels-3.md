@@ -87,7 +87,7 @@ The `auth.users` table is concerned with authentication in our app. It is create
 
 <br />
 
-So, in order to create the `pubic.users` table, go ahead and run this SQL script in the SQL Editor of your **Supabase** project dashboard:
+So, in order to create the `public.users` table, go ahead and run this SQL script in the SQL Editor of your **Supabase** project dashboard:
 
 ```sql
 -- Create a table for public users
