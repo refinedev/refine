@@ -5,19 +5,19 @@ import "./index.mock";
 describe("updateMany", () => {
   it("correct response with meta", async () => {
     const { data } = await dataProvider(client, {
-      databaseId: "632455a0b8d017403ce9",
+      databaseId: "default",
     }).updateMany!({
-      resource: "632455a55dc72e1aa016",
-      ids: ["63245b0e9c8ea5620b4a", "632456c5998583bcb6d3	"],
+      resource: "blog_posts",
+      ids: ["669e49f3001cb7c76d6b", "669e49f30008c2067f82"],
       variables: {
-        title: "Batch",
+        title: "Lorem Ipsum",
       },
     });
 
-    expect(data[0].id).toEqual("63245b0e9c8ea5620b4a");
-    expect(data[0].title).toEqual("Batch");
+    expect(data[0].id).toEqual("669e49f3001cb7c76d6b");
+    expect(data[0].title).toEqual("Lorem Ipsum");
 
-    expect(data[1].id).toEqual("632456c5998583bcb6d3");
-    expect(data[1].title).toEqual("Batch");
+    expect(data[1].id).toEqual("669e49f30008c2067f82");
+    expect(data[1].title).toEqual("Lorem Ipsum");
   });
 });
