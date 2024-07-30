@@ -32,7 +32,8 @@ extend-ignore-re = [
     "RGBa",
     "Abd",
     '.*/refine.*\.jpg',
-    '.*/refine.*\.png'
+    '.*/refine.*\.png',
+    "refine dev"
 ]
 
 [files]

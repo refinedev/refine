@@ -1,6 +1,5 @@
 import WebSocket from "ws";
 import { SERVER_PORT } from "./constants";
-import { DevtoolsEvent, send } from "@refinedev/devtools-shared";
 import { bold, cyanBright } from "chalk";
 import type http from "http";
 
@@ -30,11 +29,6 @@ export const serveWs = (
   });
 
   ws.on("connection", (client) => {
-    // send client the devtools client url
-    send(client as any, DevtoolsEvent.DEVTOOLS_HANDSHAKE, {
-      url: `http://localhost:${SERVER_PORT}`,
-    });
-
     client.on("close", () => {
       client.terminate();
     });

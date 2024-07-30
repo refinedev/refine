@@ -244,8 +244,13 @@ import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 
 const App = () => {
   return (
-    // highlight-next-line
-    <DevtoolsProvider>
+    {/* highlight-start */}
+    <DevtoolsProvider
+      // If you're running devtools server on a different port or a domain, you can set the URL manually.
+      // Note that, custom domains and ports are only available in the Enterprise Edition.
+      // url="http://localhost:5001"
+    >
+    {/* highlight-end */}
       <Refine
       // ...
       >
@@ -277,7 +282,13 @@ As an alternative, you can also install the `@refinedev/devtools-server` package
 
 **Required Ports**
 
-Devtools server will run on port `5001`. Devtools will serve HTTP and WebSocket connections on this port. Make sure the port is available on your machine.
+Devtools server will run on port `5001` by default. Devtools will serve HTTP and WebSocket connections on this port. If you want to change the port, you can set the `REFINE_DEVTOOLS_PORT` environment variable to the desired port number.
+
+:::simple Enterprise Edition
+
+Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed. Checkout [Refine Devtools in Enterprise Edition](/docs/enterprise-edition/devtools) for more information.
+
+:::
 
 ## Using Inferencer
 
