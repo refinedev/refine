@@ -48,7 +48,7 @@ export const VideoClubPageTapeSelectTitle = ({
   const navigate = useNavigate();
 
   const {
-    tableQueryResult: titlesQueryResult,
+    tableQuery: titlesQueryResult,
     pageCount,
     current,
     setCurrent,

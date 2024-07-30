@@ -229,7 +229,7 @@ export const PostList: React.FC = () => {
       setCurrent,
       pageCount,
       current,
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
   } = useTable({
     columns,

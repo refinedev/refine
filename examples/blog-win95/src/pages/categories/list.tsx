@@ -16,7 +16,7 @@ import {
 import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
-  const { tableQueryResult } = useTable<ICategory>({
+  const { tableQuery: tableQueryResult } = useTable<ICategory>({
     resource: "categories",
   });
 

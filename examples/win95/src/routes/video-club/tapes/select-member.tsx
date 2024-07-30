@@ -40,7 +40,7 @@ export const VideoClubPageTapeSelectMember = (props: Props) => {
   const { create } = useNavigation();
 
   const {
-    tableQueryResult: membersQueryResult,
+    tableQuery: membersQueryResult,
     pageCount,
     current,
     setCurrent,
