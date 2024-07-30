@@ -601,11 +601,21 @@ useModalForm({
 
 ## Return Values
 
+`useModalForm` returns the same values from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) and additional values to work with [`<Modal>`][antd-modal] components.
+
 ### formProps
 
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
 
 It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) components such as [`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc.](/docs/ui-integrations/ant-design/hooks/use-form#return-values)
+
+:::note Difference between `onFinish` and `formProps.onFinish`
+
+`onFinish` method returned directly from `useModalForm` is same with the `useForm`'s `onFinish`. When working with modals, closing the modal after submission and resetting the fields are necessary and to handle these, `formProps.onFinish` extends the `onFinish` method and handles the closing of the modal and clearing the fields under the hood.
+
+If you're customizing the data before submitting it to your data provider, it's recommended to use `formProps.onFinish` and let it handle the operations after the submission.
+
+:::
 
 ### modalProps
 
@@ -660,8 +670,10 @@ A function that can close the `<Modal>`. It's useful when you want to close the 
 ```tsx
 const { close, modalProps, formProps, onFinish } = useModalForm();
 
-const onFinishHandler = (values) => {
-  onFinish(values);
+const onFinishHandler = async (values) => {
+  // Awaiting `onFinish` is important for features like unsaved changes notifier, invalidation, redirection etc.
+  // If you're using the `onFinish` from `formProps`, it will call the `close` internally.
+  await onFinish(values);
   close();
 };
 

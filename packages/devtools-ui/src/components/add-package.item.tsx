@@ -48,15 +48,17 @@ export const AddPackageItem = ({
           <Button
             onClick={onInstall}
             className={clsx(
-              "re-gap-2",
               "re-text-alt-blue",
               "re-bg-alt-blue",
               "re-bg-opacity-[0.15]",
+              "!re-px-2",
+            )}
+            contentClassName={clsx(
+              "re-gap-2",
               "re-flex-nowrap",
               "re-flex",
               "re-items-center",
               "re-justify-between",
-              "!re-px-2",
             )}
           >
             <PlusCircleIcon className="re-text-alt-blue" />

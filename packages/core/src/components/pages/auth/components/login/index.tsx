@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
 import { useActiveAuthProvider } from "@definitions/helpers";
-import { useLink, useLogin, useRouterContext, useRouterType } from "@hooks";
-import { useTranslate } from "@hooks/i18n";
+import {
+  useLink,
+  useLogin,
+  useRouterContext,
+  useRouterType,
+  useTranslate,
+} from "@hooks";
 
 import type { DivPropsType, FormPropsType } from "../..";
 import type { LoginFormTypes, LoginPageProps } from "../../types";
