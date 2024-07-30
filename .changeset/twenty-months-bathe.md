@@ -1,5 +1,5 @@
 ---
-"@refinedev/cli": minor
+"@refinedev/cli": patch
 "@refinedev/devtools-server": minor
 "@refinedev/devtools-shared": minor
 "@refinedev/devtools-ui": minor
