@@ -29,7 +29,7 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
     case "between":
       if (filter.value.length !== 2) {
         throw new Error(
-          `Unexpected length ${filter.value.length}. Between operator expects a range between 2 values.`,
+          `[@refinedev/supabase]: Unexpected length ${filter.value.length}. Between operator expects a range between 2 values.`,
         );
       }
       return query
