@@ -8,7 +8,7 @@ export default function UsageNextjs() {
       hidePreview
       showFiles
       dependencies={{
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-hook-form": "^4.8.12",
@@ -18,7 +18,7 @@ export default function UsageNextjs() {
         "@mui/material": "^5.14.2",
         "@mui/system": "latest",
         "@mui/x-data-grid": "^6.6.0",
-        "react-hook-form": "^7.30.0",
+        "react-hook-form": "^7.43.5",
         "@refinedev/nextjs-router": "latest",
       }}
       // template="nextjs"

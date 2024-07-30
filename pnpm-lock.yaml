@@ -46,7 +46,7 @@ importers:
         version: 7.6.0
       cypress:
         specifier: ^13.6.3
-        version: 13.8.1
+        version: 13.13.0
       glob:
         specifier: ^10.4.2
         version: 10.4.2
@@ -441,9 +441,6 @@ importers:
       autoprefixer:
         specifier: ^10.4.1
         version: 10.4.19(postcss@8.4.38)
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       eslint:
         specifier: ^8.24.0
         version: 8.57.0
@@ -711,9 +708,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -772,9 +766,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -833,9 +824,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -891,9 +879,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -943,9 +928,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1007,9 +989,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1135,9 +1114,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1202,9 +1178,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1315,9 +1288,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1376,9 +1346,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1501,9 +1468,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1556,7 +1520,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -1574,9 +1538,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -1961,7 +1922,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -2049,7 +2010,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -2198,7 +2159,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -2356,7 +2317,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -3182,7 +3143,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
@@ -3282,7 +3243,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
@@ -3379,7 +3340,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -3467,7 +3428,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -3886,7 +3847,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -4687,7 +4648,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -5224,9 +5185,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -5355,9 +5313,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -5413,9 +5368,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -5673,7 +5625,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -5967,7 +5919,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
@@ -6058,9 +6010,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6113,9 +6062,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6165,9 +6111,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6220,9 +6163,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6272,9 +6212,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6327,9 +6264,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6388,9 +6322,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6449,9 +6380,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6510,9 +6438,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6571,9 +6496,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6626,9 +6548,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6702,9 +6621,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6775,9 +6691,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6851,9 +6764,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -6924,9 +6834,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7003,9 +6910,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7055,7 +6959,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -7073,9 +6977,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7128,7 +7029,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -7146,9 +7047,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7198,7 +7096,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -7216,9 +7114,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7268,7 +7163,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -7286,9 +7181,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7338,7 +7230,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -7356,9 +7248,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7408,9 +7297,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7460,9 +7346,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7497,7 +7380,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -7515,9 +7398,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -7570,9 +7450,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -8060,7 +7937,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
@@ -8424,7 +8301,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
@@ -8741,9 +8618,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -8814,7 +8688,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -9332,9 +9206,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9393,9 +9264,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9466,9 +9334,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9521,7 +9386,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -9539,9 +9404,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9605,10 +9467,10 @@ importers:
         version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@medusajs/medusa':
         specifier: ^1.3.5
-        version: 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+        version: 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       '@medusajs/medusa-js':
         specifier: 1.3.3
-        version: 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+        version: 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.1
         version: 2.0.6(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9659,7 +9521,7 @@ importers:
         version: 4.17.21
       medusa-react:
         specifier: ^0.3.5
-        version: 0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0)
+        version: 0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0)
       next:
         specifier: ^14.1.0
         version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
@@ -9688,7 +9550,7 @@ importers:
         specifier: ^1.3.1
         version: 1.6.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-merge-refs:
         specifier: ^1.1.0
@@ -9788,9 +9650,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9849,9 +9708,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9904,9 +9760,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -9956,9 +9809,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10008,9 +9858,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10063,9 +9910,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10124,9 +9968,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10185,9 +10026,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10240,9 +10078,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10313,9 +10148,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10383,9 +10215,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10444,7 +10273,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -10462,9 +10291,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10526,9 +10352,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10596,9 +10419,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10651,7 +10471,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -10669,9 +10489,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10736,9 +10553,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10803,9 +10617,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10870,9 +10681,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10916,7 +10724,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -10934,9 +10742,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -10986,9 +10791,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^4.2.1
         version: 4.2.1(vite@5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4))
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -11589,7 +11391,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -11969,7 +11771,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -12420,7 +12222,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -12487,7 +12289,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -12896,7 +12698,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
@@ -13304,9 +13106,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.0
         version: 18.3.0
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13441,9 +13240,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.0
         version: 18.3.0
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13529,9 +13325,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.0
         version: 18.3.0
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13590,9 +13383,6 @@ importers:
       '@types/react-dom':
         specifier: ^18.0.0
         version: 18.3.0
-      cypress:
-        specifier: ^13.6.3
-        version: 13.8.1
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
@@ -13941,7 +13731,7 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
@@ -14019,6 +13809,9 @@ importers:
 
   packages/cli:
     dependencies:
+      '@npmcli/package-json':
+        specifier: ^5.2.0
+        version: 5.2.0
       '@refinedev/devtools-server':
         specifier: 1.1.34
         version: link:../devtools-server
@@ -14167,6 +13960,9 @@ importers:
       '@types/node-fetch':
         specifier: ^2.6.11
         version: 2.6.11
+      '@types/npmcli__package-json':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@types/pluralize':
         specifier: ^0.0.29
         version: 0.0.29
@@ -14195,8 +13991,8 @@ importers:
   packages/codemod:
     dependencies:
       '@npmcli/package-json':
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: ^5.2.0
+        version: 5.2.0
       chalk:
         specifier: ^4.1.2
         version: 4.1.2
@@ -14237,6 +14033,9 @@ importers:
       '@types/jscodeshift':
         specifier: ^0.11.11
         version: 0.11.11
+      '@types/npmcli__package-json':
+        specifier: ^4.0.4
+        version: 4.0.4
       jest:
         specifier: ^29.3.1
         version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
@@ -15090,7 +14889,7 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
@@ -15407,7 +15206,7 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
@@ -15665,7 +15464,7 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
@@ -15939,7 +15738,7 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.30.0
+        specifier: ^7.43.5
         version: 7.51.3(react@18.3.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
@@ -20898,13 +20697,13 @@ packages:
     resolution: {integrity: sha512-gp8pRXC2oOxu0DUE1/M3bYtb1b3/DbJ5aM113+XJBgfXdussRAsX0YOrOhdd8WvnAR6auDBvJomGAkLKA5ydxA==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  '@npmcli/package-json@3.0.0':
-    resolution: {integrity: sha512-NnuPuM97xfiCpbTEJYtEuKz6CFbpUHtaT0+5via5pQeI25omvQDFbp1GcGJ/c4zvL/WX0qbde6YiLgfZbWFgvg==}
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
-
   '@npmcli/package-json@4.0.1':
     resolution: {integrity: sha512-lRCEGdHZomFsURroh522YvA/2cVb9oPIJrjHanCJZkiasz1BzcnLr3tBJhlV7S86MBJBuAQ33is2D60YitZL2Q==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
+
+  '@npmcli/package-json@5.2.0':
+    resolution: {integrity: sha512-qe/kiqqkW0AGtvBjL8TJKZk/eBBSpnJkUWvHdQ9jM2lKHXRYYJuyNpJPlJw3c8QjC2ow6NZYiLExhUaeJelbxQ==}
+    engines: {node: ^16.14.0 || >=18.0.0}
 
   '@npmcli/promise-spawn@6.0.2':
     resolution: {integrity: sha512-gGq0NJkIGSwdbUt4yhdF8ZrmkGKVz9vAdVzpOfnom+V8PLSmSOVhZwbNvZZS1EYcJN5hzzKBxmmVVAInM6HQLg==}
@@ -23274,6 +23073,9 @@ packages:
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
 
+  '@types/npmcli__package-json@4.0.4':
+    resolution: {integrity: sha512-6QjlFUSHBmZJWuC08bz1ZCx6tm4t+7+OJXAdvM6tL2pI7n6Bh5SIp/YxQvnOLFf8MzCXs2ijyFgrzaiu1UFBGA==}
+
   '@types/papaparse@5.3.14':
     resolution: {integrity: sha512-LxJ4iEFcpqc6METwp9f6BV6VVc43m6MfH0VqFosHvrUgfXiFe6ww7R3itkOQ+TCK6Y+Iv/+RnnvtRZnkc5Kc9g==}
 
@@ -25513,8 +25315,8 @@ packages:
     resolution: {integrity: sha512-QTaY0XjjhTQOdguARF0lGKm5/mEq9PD9/VhZZegHDIBq2tQwgNpHc3dneD4mGo2iJs+fTKv5Bp0fZ+BRuY3Z0g==}
     engines: {node: '>= 0.1.90'}
 
-  cypress@13.8.1:
-    resolution: {integrity: sha512-Uk6ovhRbTg6FmXjeZW/TkbRM07KPtvM5gah1BIMp4Y2s+i/NMxgaLw0+PbYTOdw1+egE0FP3mWRiGcRkjjmhzA==}
+  cypress@13.13.0:
+    resolution: {integrity: sha512-ou/MQUDq4tcDJI2FsPaod2FZpex4kpIK43JJlcBgWrX8WX7R/05ZxGTuxedOuZBfxjZxja+fbijZGyxiLP6CFA==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
 
@@ -41836,13 +41638,13 @@ snapshots:
       - supports-color
       - tedious
 
-  '@medusajs/link-modules@0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)':
+  '@medusajs/link-modules@0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/types': 1.11.15
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
     transitivePeerDependencies:
       - '@mikro-orm/better-sqlite'
@@ -41915,9 +41717,9 @@ snapshots:
       - supports-color
       - tedious
 
-  '@medusajs/medusa-js@1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
+  '@medusajs/medusa-js@1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
     dependencies:
-      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       axios: 0.24.0
       form-data: 4.0.0
       qs: 6.12.1
@@ -41949,10 +41751,10 @@ snapshots:
       - tedious
       - typeorm
 
-  '@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
+  '@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
     dependencies:
       '@medusajs/core-flows': 0.0.8(@types/node@18.19.31)(pg@8.11.5)
-      '@medusajs/link-modules': 0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)
+      '@medusajs/link-modules': 0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)
       '@medusajs/medusa-cli': 1.3.22(@types/node@18.19.31)
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/orchestration': 0.5.6(@types/node@18.19.31)(pg@8.11.5)
@@ -41984,7 +41786,7 @@ snapshots:
       medusa-core-utils: 1.2.1
       medusa-interfaces: 1.3.9
       medusa-telemetry: 0.0.17
-      medusa-test-utils: 1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.19.2)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5)
+      medusa-test-utils: 1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.19.2)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5)
       morgan: 1.10.0
       multer: 1.4.5-lts.1
       node-schedule: 2.1.1
@@ -42092,8 +41894,8 @@ snapshots:
     dependencies:
       '@medusajs/types': 1.11.15
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
       bignumber.js: 9.1.2
       knex: 2.4.2(pg@8.11.5)
@@ -42145,19 +41947,6 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)':
-    dependencies:
-      acorn-loose: 8.3.0
-      acorn-walk: 8.2.0
-      dotenv: 16.3.1
-      fs-extra: 11.1.1
-      globby: 11.1.0
-      mikro-orm: 5.9.7
-      reflect-metadata: 0.1.13
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
-
   '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)':
     dependencies:
       acorn-loose: 8.3.0
@@ -42170,20 +41959,6 @@ snapshots:
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
-
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.3)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.3
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
 
   '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
@@ -42199,7 +41974,7 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
@@ -42213,55 +41988,7 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.3)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.3
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
-
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.5)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.5
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
-
   '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.5)
-      umzug: 3.3.1(@types/node@18.19.31)
-    transitivePeerDependencies:
-      - '@mikro-orm/entity-generator'
-      - '@types/node'
-      - better-sqlite3
-      - mssql
-      - mysql
-      - mysql2
-      - pg
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-
-  '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
@@ -42288,40 +42015,6 @@ snapshots:
       pg: 8.11.3
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-    transitivePeerDependencies:
-      - better-sqlite3
-      - mssql
-      - mysql
-      - mysql2
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
-      pg: 8.11.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-    transitivePeerDependencies:
-      - better-sqlite3
-      - mssql
-      - mysql
-      - mysql2
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
-      pg: 8.11.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
     transitivePeerDependencies:
       - better-sqlite3
       - mssql
@@ -43652,10 +43345,6 @@ snapshots:
 
   '@npmcli/node-gyp@3.0.0': {}
 
-  '@npmcli/package-json@3.0.0':
-    dependencies:
-      json-parse-even-better-errors: 3.0.1
-
   '@npmcli/package-json@4.0.1':
     dependencies:
       '@npmcli/git': 4.1.0
@@ -43664,6 +43353,18 @@ snapshots:
       json-parse-even-better-errors: 3.0.1
       normalize-package-data: 5.0.0
       proc-log: 3.0.0
+      semver: 7.6.0
+    transitivePeerDependencies:
+      - bluebird
+
+  '@npmcli/package-json@5.2.0':
+    dependencies:
+      '@npmcli/git': 5.0.6
+      glob: 10.4.2
+      hosted-git-info: 7.0.1
+      json-parse-even-better-errors: 3.0.1
+      normalize-package-data: 6.0.0
+      proc-log: 4.2.0
       semver: 7.6.0
     transitivePeerDependencies:
       - bluebird
@@ -46841,6 +46542,8 @@ snapshots:
 
   '@types/normalize-package-data@2.4.4': {}
 
+  '@types/npmcli__package-json@4.0.4': {}
+
   '@types/papaparse@5.3.14':
     dependencies:
       '@types/node': 18.19.31
@@ -49831,7 +49534,7 @@ snapshots:
       csv-stringify: 5.6.5
       stream-transform: 2.1.3
 
-  cypress@13.8.1:
+  cypress@13.13.0:
     dependencies:
       '@cypress/request': 3.0.1
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
@@ -50815,7 +50518,7 @@ snapshots:
 
   eslint-import-resolver-node@0.3.9:
     dependencies:
-      debug: 3.2.7(supports-color@5.5.0)
+      debug: 3.2.7(supports-color@8.1.1)
       is-core-module: 2.13.1
       resolve: 1.22.8
     transitivePeerDependencies:
@@ -50823,7 +50526,7 @@ snapshots:
 
   eslint-module-utils@2.8.1(@typescript-eslint/parser@5.48.0(eslint@8.57.0)(typescript@5.4.5))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
     dependencies:
-      debug: 3.2.7(supports-color@5.5.0)
+      debug: 3.2.7(supports-color@8.1.1)
     optionalDependencies:
       '@typescript-eslint/parser': 5.48.0(eslint@8.57.0)(typescript@5.4.5)
       eslint: 8.57.0
@@ -50833,7 +50536,7 @@ snapshots:
 
   eslint-module-utils@2.8.1(@typescript-eslint/parser@5.48.0(eslint@8.57.0)(typescript@5.5.3))(eslint-import-resolver-node@0.3.9)(eslint@8.57.0):
     dependencies:
-      debug: 3.2.7(supports-color@5.5.0)
+      debug: 3.2.7(supports-color@8.1.1)
     optionalDependencies:
       '@typescript-eslint/parser': 5.48.0(eslint@8.57.0)(typescript@5.5.3)
       eslint: 8.57.0
@@ -50855,7 +50558,7 @@ snapshots:
       array.prototype.findlastindex: 1.2.5
       array.prototype.flat: 1.3.2
       array.prototype.flatmap: 1.3.2
-      debug: 3.2.7(supports-color@5.5.0)
+      debug: 3.2.7(supports-color@8.1.1)
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
@@ -50882,7 +50585,7 @@ snapshots:
       array.prototype.findlastindex: 1.2.5
       array.prototype.flat: 1.3.2
       array.prototype.flatmap: 1.3.2
-      debug: 3.2.7(supports-color@5.5.0)
+      debug: 3.2.7(supports-color@8.1.1)
       doctrine: 2.1.0
       eslint: 8.57.0
       eslint-import-resolver-node: 0.3.9
@@ -55581,10 +55284,10 @@ snapshots:
 
   medusa-interfaces@1.3.9: {}
 
-  medusa-react@0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0):
+  medusa-react@0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
-      '@medusajs/medusa-js': 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa-js': 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       lodash: 4.17.21
       lodash-es: 4.17.21
       react: 18.3.0
@@ -55631,7 +55334,7 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  medusa-test-utils@1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.19.2)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5):
+  medusa-test-utils@1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.19.2)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5):
     dependencies:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
@@ -55640,7 +55343,7 @@ snapshots:
       medusa-core-utils: 1.2.1
       randomatic: 3.1.1
     optionalDependencies:
-      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       axios: 0.24.0
       express: 4.19.2
       get-port: 5.1.1

@@ -45,7 +45,7 @@ const isExampleAffected = (example, changedPackages) => {
 
 const isExampleModified = (example) => {
   const output = execSync(
-    `git diff --quiet HEAD origin/${BASE_REF} -- ${EXAMPLES_DIR}/${example} || echo changed`,
+    `git diff --quiet HEAD origin/${BASE_REF} -- ${EXAMPLES_DIR}/${example} cypress/e2e/${example} || echo changed`,
     { stdio: "pipe" },
   );
 
@@ -57,7 +57,7 @@ const hasPackageJson = (example) => {
 };
 
 const hasE2eTests = (example) => {
-  return fs.existsSync(path.join(EXAMPLES_DIR, example, "cypress.config.ts"));
+  return fs.existsSync(path.join("./cypress/e2e", example));
 };
 
 const isDirectory = (example) => {

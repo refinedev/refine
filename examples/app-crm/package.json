@@ -9,8 +9,8 @@
     "dev": "refine dev",
     "format": "prettier src --write",
     "lint": "eslint src --fix",
-    "preview": "refine start",
     "refine": "refine",
+    "start": "refine start",
     "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {
@@ -69,7 +69,6 @@
     "@typescript-eslint/parser": "5.48.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.1",
-    "cypress": "^13.6.3",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.29.1",

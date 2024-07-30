@@ -195,8 +195,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             >
               <span>
                 {translate(
-                  "pages.login.buttons.haveAccount",
-                  "Have an account?",
+                  "pages.register.buttons.haveAccount",
+                  translate(
+                    "pages.login.buttons.haveAccount",
+                    "Have an account?",
+                  ),
                 )}
               </span>
               <ChakraLink
@@ -206,7 +209,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 as={Link}
                 to="/login"
               >
-                {translate("pages.login.signin", "Sign in")}
+                {translate(
+                  "pages.register.signin",
+                  translate("pages.login.signin", "Sign in"),
+                )}
               </ChakraLink>
             </Box>
           )}
@@ -217,8 +223,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Box mt={6} textAlign="center">
           <span>
             {translate(
-              "pages.login.buttons.noAccount",
-              "Don’t have an account?",
+              "pages.register.buttons.haveAccount",
+              "Have an account?",
             )}
           </span>
           <ChakraLink
@@ -228,7 +234,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             fontWeight="bold"
             to="/login"
           >
-            {translate("pages.login.signin", "Sign in")}
+            {translate(
+              "pages.register.signin",
+              translate("pages.login.signin", "Sign in"),
+            )}
           </ChakraLink>
         </Box>
       )}

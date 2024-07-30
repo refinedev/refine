@@ -1,8 +1,12 @@
-import type { HttpError } from "@refinedev/core";
-import { Create, useForm } from "@refinedev/antd";
-import { Form, Input } from "antd";
+import { Create, useForm, useSelect } from "@refinedev/antd";
+import { Form, Input, Select, Upload } from "antd";
+import MDEditor from "@uiw/react-md-editor";
 
-import type { IPost, IPostVariables } from "../../interfaces";
+import { normalizeFile, statuses, storage } from "../../utility";
+
+import type { HttpError } from "@refinedev/core";
+import type { RcFile } from "antd/lib/upload/interface";
+import type { IPost, IPostVariables, ICategory } from "../../interfaces";
 
 export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<
@@ -11,9 +15,24 @@ export const PostCreate = () => {
     IPostVariables
   >();
 
+  const { selectProps: categorySelectProps } = useSelect<ICategory>({
+    resource: "categories",
+    optionLabel: "title",
+    optionValue: "id",
+  });
+
   return (
     <Create saveButtonProps={saveButtonProps}>
-      <Form {...formProps} layout="vertical">
+      <Form
+        {...formProps}
+        layout="vertical"
+        onFinish={(values) => {
+          formProps.onFinish?.({
+            ...values,
+            images: JSON.stringify(values.images),
+          });
+        }}
+      >
         <Form.Item
           label="Title"
           name="title"
@@ -25,7 +44,28 @@ export const PostCreate = () => {
         >
           <Input />
         </Form.Item>
-
+        <Form.Item
+          label="Category"
+          name="category"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select options={statuses} />
+        </Form.Item>
         <Form.Item
           label="Content"
           name="content"
@@ -35,7 +75,42 @@ export const PostCreate = () => {
             },
           ]}
         >
-          <Input.TextArea rows={5} />
+          <MDEditor data-color-mode="light" />
+        </Form.Item>
+        <Form.Item label="Images">
+          <Form.Item
+            name="images"
+            valuePropName="fileList"
+            normalize={normalizeFile}
+            noStyle
+          >
+            <Upload.Dragger
+              name="file"
+              listType="picture"
+              multiple
+              customRequest={async ({ file, onError, onSuccess }) => {
+                try {
+                  const rcFile = file as RcFile;
+
+                  const { $id } = await storage.createFile(
+                    "default",
+                    rcFile.name,
+                    rcFile,
+                  );
+
+                  const url = storage.getFileView("default", $id);
+
+                  onSuccess?.({ url }, new XMLHttpRequest());
+                } catch (error) {
+                  onError?.(new Error("Upload Error"));
+                }
+              }}
+            >
+              <p className="ant-upload-text">
+                Drag &amp; drop a file in this area
+              </p>
+            </Upload.Dragger>
+          </Form.Item>
         </Form.Item>
       </Form>
     </Create>

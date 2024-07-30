@@ -8,7 +8,7 @@ export default function AuthPage() {
       //   showFiles
       initialPercentage={40}
       dependencies={{
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
@@ -21,7 +21,7 @@ export default function AuthPage() {
         "@mui/x-data-grid": "^6.6.0",
         "react-router-dom": "latest",
         "react-router": "latest",
-        "react-hook-form": "^7.30.0",
+        "react-hook-form": "^7.43.5",
       }}
       startRoute="/login"
       files={{

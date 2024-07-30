@@ -1,10 +1,10 @@
 {
-  "include": ["../**/cypress/**/*.ts", "../**/cypress.config.ts"],
+  "include": ["./**/*.ts", "cypress.config.ts"],
   "compilerOptions": {
     "resolveJsonModule": true,
     "esModuleInterop": false,
     "sourceMap": false,
-    "types": ["cypress", "chai"],
+    "types": ["cypress"],
     "target": "ESNext",
     "useDefineForClassFields": true,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],

@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
-    "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "start": "refine start"
   },
   "browserslist": {
     "production": [
@@ -37,7 +37,7 @@
     "@refinedev/simple-rest": "^5.0.8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-hook-form": "^7.30.0",
+    "react-hook-form": "^7.43.5",
     "react-router-dom": "^6.8.1",
     "web-vitals": "^1.1.1",
     "yup": "^0.32.11"

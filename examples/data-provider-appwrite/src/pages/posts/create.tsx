@@ -1,14 +1,12 @@
-import type { HttpError } from "@refinedev/core";
-
 import { Create, useForm, useSelect } from "@refinedev/antd";
-
-import type { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
-
 import MDEditor from "@uiw/react-md-editor";
 
+import { normalizeFile, statuses, storage } from "../../utility";
+
+import type { HttpError } from "@refinedev/core";
+import type { RcFile } from "antd/lib/upload/interface";
 import type { IPost, IPostVariables, ICategory } from "../../interfaces";
-import { normalizeFile, storage } from "../../utility";
 
 export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<
@@ -18,7 +16,7 @@ export const PostCreate = () => {
   >();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    resource: "61c43adc284ac",
+    resource: "categories",
     optionLabel: "title",
     optionValue: "id",
   });
@@ -48,7 +46,7 @@ export const PostCreate = () => {
         </Form.Item>
         <Form.Item
           label="Category"
-          name="categoryId"
+          name="category"
           rules={[
             {
               required: true,
@@ -56,6 +54,17 @@ export const PostCreate = () => {
           ]}
         >
           <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select options={statuses} />
         </Form.Item>
         <Form.Item
           label="Content"

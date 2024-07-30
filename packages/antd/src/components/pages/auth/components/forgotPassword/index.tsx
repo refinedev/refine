@@ -151,8 +151,11 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
               }}
             >
               {translate(
-                "pages.register.buttons.haveAccount",
-                "Have an account? ",
+                "pages.forgotPassword.buttons.haveAccount",
+                translate(
+                  "pages.register.buttons.haveAccount",
+                  "Have an account? ",
+                ),
               )}{" "}
               <ActiveLink
                 style={{
@@ -161,7 +164,10 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                 }}
                 to="/login"
               >
-                {translate("pages.login.signin", "Sign in")}
+                {translate(
+                  "pages.forgotPassword.signin",
+                  translate("pages.login.signin", "Sign in"),
+                )}
               </ActiveLink>
             </Typography.Text>
           )}
