@@ -104,7 +104,7 @@ COPY . .
 EXPOSE 5173
 
 # Command to run the development server
-CMD ["npm", "run", "docker"]
+CMD ["npm", "run", "dev"]
 `.trim();
 
 const DockerfileDevtoolsCode = /* dockerfile */ `
