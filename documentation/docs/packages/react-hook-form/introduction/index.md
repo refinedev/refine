@@ -32,7 +32,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -41,7 +41,7 @@ export const PostEdit = () => {
       resource: "posts",
       action: "edit",
       id: 1,
-    }
+    },
   });
 
   return (
@@ -108,7 +108,7 @@ export const PostEdit: React.FC = () => {
       resource: "posts",
       action: "edit",
       id: 1,
-    }
+    },
   });
 
   return (

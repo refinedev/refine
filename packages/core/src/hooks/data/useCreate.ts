@@ -6,7 +6,7 @@ import {
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
-  type UseMutationResult,
+  type MutateOptions,
   useMutation,
 } from "@tanstack/react-query";
 
@@ -31,6 +31,7 @@ import type {
   IQueryKeys,
   MetaQuery,
 } from "../../contexts/data/types";
+import type { UseMutationResult } from "../../definitions/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
   type UseLoadingOvertimeOptionsProps,
@@ -42,11 +43,11 @@ export type UseCreateParams<TData, TError, TVariables> = {
   /**
    * Resource name for API data interactions
    */
-  resource: string;
+  resource?: string;
   /**
    * Values for mutation function
    */
-  values: TVariables;
+  values?: TVariables;
   /**
    * Meta data for `dataProvider`
    */
@@ -89,9 +90,10 @@ export type UseCreateProps<
       UseCreateParams<TData, TError, TVariables>,
       unknown
     >,
-    "mutationFn" | "onError" | "onSuccess"
+    "mutationFn"
   >;
-} & UseLoadingOvertimeOptionsProps;
+} & UseLoadingOvertimeOptionsProps &
+  UseCreateParams<TData, TError, TVariables>;
 
 /**
  * `useCreate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
@@ -111,6 +113,14 @@ export const useCreate = <
   TError extends HttpError = HttpError,
   TVariables = {},
 >({
+  resource: resourceFromProps,
+  values: valuesFromProps,
+  dataProviderName: dataProviderNameFromProps,
+  successNotification: successNotificationFromProps,
+  errorNotification: errorNotificationFromProps,
+  invalidates: invalidatesFromProps,
+  meta: metaFromProps,
+  metaData: metaDataFromProps,
   mutationOptions,
   overtimeOptions,
 }: UseCreateProps<TData, TError, TVariables> = {}): UseCreateReturnType<
@@ -136,19 +146,22 @@ export const useCreate = <
   } = useRefineContext();
   const { keys, preferLegacyKeys } = useKeys();
 
-  const mutation = useMutation<
+  const mutationResult = useMutation<
     CreateResponse<TData>,
     TError,
     UseCreateParams<TData, TError, TVariables>,
     unknown
   >({
     mutationFn: ({
-      resource: resourceName,
-      values,
-      meta,
-      metaData,
-      dataProviderName,
+      resource: resourceName = resourceFromProps,
+      values = valuesFromProps,
+      meta = metaFromProps,
+      metaData = metaDataFromProps,
+      dataProviderName = dataProviderNameFromProps,
     }: UseCreateParams<TData, TError, TVariables>) => {
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { resource, identifier } = select(resourceName);
 
       const combinedMeta = getMeta({
@@ -165,18 +178,20 @@ export const useCreate = <
         metaData: combinedMeta,
       });
     },
-    onSuccess: (
-      data,
-      {
-        resource: resourceName,
-        successNotification: successNotificationFromProp,
-        dataProviderName: dataProviderNameFromProp,
-        invalidates = ["list", "many"],
-        values,
-        meta,
-        metaData,
-      },
-    ) => {
+    onSuccess: (data, variables, context) => {
+      const {
+        resource: resourceName = resourceFromProps,
+        successNotification:
+          successNotificationFromProp = successNotificationFromProps,
+        dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
+        invalidates = invalidatesFromProps ?? ["list", "many"],
+        values = valuesFromProps,
+        meta = metaFromProps,
+        metaData = metaDataFromProps,
+      } = variables;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
 
@@ -247,15 +262,19 @@ export const useCreate = <
           ...rest,
         },
       });
+
+      mutationOptions?.onSuccess?.(data, variables, context);
     },
-    onError: (
-      err: TError,
-      {
-        resource: resourceName,
-        errorNotification: errorNotificationFromProp,
-        values,
-      },
-    ) => {
+    onError: (err: TError, variables, context) => {
+      const {
+        resource: resourceName = resourceFromProps,
+        errorNotification:
+          errorNotificationFromProp = errorNotificationFromProps,
+        values = valuesFromProps,
+      } = variables;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       checkError(err);
 
       const { identifier } = select(resourceName);
@@ -283,6 +302,8 @@ export const useCreate = <
         ),
         type: "error",
       });
+
+      mutationOptions?.onError?.(err, variables, context);
     },
     mutationKey: keys().data().mutation("create").get(preferLegacyKeys),
     ...mutationOptions,
@@ -291,6 +312,7 @@ export const useCreate = <
       ...getXRay("useCreate", preferLegacyKeys),
     },
   });
+  const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     isLoading: mutation.isLoading,
@@ -298,5 +320,44 @@ export const useCreate = <
     onInterval: overtimeOptions?.onInterval,
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  // this function is used to make the `variables` parameter optional
+  const handleMutation = (
+    variables?: UseCreateParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      CreateResponse<TData>,
+      TError,
+      UseCreateParams<TData, TError, TVariables>,
+      unknown
+    >,
+  ) => {
+    return mutate(variables || {}, options);
+  };
+
+  // this function is used to make the `variables` parameter optional
+  const handleMutateAsync = (
+    variables?: UseCreateParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      CreateResponse<TData>,
+      TError,
+      UseCreateParams<TData, TError, TVariables>,
+      unknown
+    >,
+  ) => {
+    return mutateAsync(variables || {}, options);
+  };
+
+  return {
+    ...mutation,
+    mutate: handleMutation,
+    mutateAsync: handleMutateAsync,
+    overtime: { elapsedTime },
+  };
 };
+
+const missingResourceError = new Error(
+  "[useCreate]: `resource` is not defined or not matched but is required",
+);
+
+const missingValuesError = new Error(
+  "[useCreate]: `values` is not provided but is required",
+);

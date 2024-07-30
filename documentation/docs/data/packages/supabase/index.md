@@ -758,21 +758,21 @@ import { supabaseClient, normalizeFile } from "utility";
 
 export const PostEdit: React.FC = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const { formProps, saveButtonProps, query } = useForm<IPost>({
     liveMode: "manual",
     onLiveEvent: () => {
       setIsDeprecated(true);
     },
   });
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: postData?.categoryId,
   });
 
   const handleRefresh = () => {
-    queryResult?.refetch();
+    query?.refetch();
     setIsDeprecated(false);
   };
 

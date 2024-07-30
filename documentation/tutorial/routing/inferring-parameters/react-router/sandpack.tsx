@@ -177,7 +177,7 @@ const CreateProductWithInference = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm();
+  const { onFinish, mutation } = useForm();
 
   const { options } = useSelect({
     resource: "categories",
@@ -220,7 +220,7 @@ export const CreateProduct = () => {
         ))}
       </select>
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );
@@ -231,9 +231,9 @@ const EditProductWithInference = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm();
+  const { onFinish, mutation, query } = useForm();
 
-  const record = queryResult.data?.data;
+  const record = query.data?.data;
 
   const { options } = useSelect({
     resource: "categories",
@@ -293,7 +293,7 @@ export const EditProduct = () => {
         ))}
       </select>
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );

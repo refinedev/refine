@@ -118,6 +118,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     value: "use-table-query-result",
   },
   {
+    name: "Refactor[useForm]: { queryResult, mutationResult } to { query, mutation }",
+    value: "use-form-query-and-mutation-result",
+  },
+  {
     name: "Refactor[useShow]: { queryResult } to { query }",
     value: "use-show-query-result",
   },

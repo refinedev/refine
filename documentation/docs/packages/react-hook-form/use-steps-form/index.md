@@ -212,7 +212,7 @@ const PostCreate: React.FC = () => {
 
 const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -221,7 +221,7 @@ const PostEdit: React.FC = () => {
 
   const { options } = useSelectShared({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   const renderFormByStep = (step: number) => {
@@ -257,7 +257,7 @@ const PostEdit: React.FC = () => {
               {...register("category.id", {
                 required: "This field is required",
               })}
-              defaultValue={queryResult?.data?.data.category.id}
+              defaultValue={query?.data?.data.category.id}
             >
               {options?.map((category) => (
                 <option key={category.value} value={category.value}>
@@ -522,7 +522,7 @@ const stepTitles = ["Title", "Status", "Category and content"];
 
 const PostEditPage: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -531,7 +531,7 @@ const PostEditPage: React.FC = () => {
 
   const { options } = useSelect<ICategory, HttpError>({
     resource: "categories",
-    defaultValue: queryResult?.data?.data.category.id,
+    defaultValue: query?.data?.data.category.id,
   });
 
   const renderFormByStep = (step: number) => {
@@ -567,7 +567,7 @@ const PostEditPage: React.FC = () => {
               {...register("category.id", {
                 required: "This field is required",
               })}
-              defaultValue={queryResult?.data?.data.category.id}
+              defaultValue={query?.data?.data.category.id}
             >
               {options?.map((category) => (
                 <option key={category.value} value={category.value}>

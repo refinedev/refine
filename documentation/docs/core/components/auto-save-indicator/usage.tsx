@@ -120,7 +120,7 @@ const EditTsxCode = /* jsx */ `import React from "react";
 import { useForm, useSelect, AutoSaveIndicator, HttpError, BaseKey } from "@refinedev/core";
 
 export const Edit: React.FC = () => {
-  const { queryResult, isLoading, onFinish, autoSaveProps, onFinishAutoSave } = useForm<
+  const { query, isLoading, onFinish, autoSaveProps, onFinishAutoSave } = useForm<
     IProduct,
     HttpError,
     FormValues
@@ -135,7 +135,7 @@ export const Edit: React.FC = () => {
     resource: "categories",
   });
 
-  const defaultValues = queryResult?.data?.data;
+  const defaultValues = query?.data?.data;
 
   return (
     <div className="page">

@@ -1,6 +1,6 @@
 import React from "react";
 import { Authenticated, Refine } from "@refinedev/core";
-import { RefineKbarProvider } from "@refinedev/kbar";
+import { RefineKbarProvider, RefineKbar } from "@refinedev/kbar";
 import {
   useNotificationProvider,
   ThemedLayoutV2,
@@ -286,6 +286,7 @@ const App: React.FC = () => {
             </Routes>
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
+            <RefineKbar />
           </Refine>
         </RefineKbarProvider>
       </ConfigProvider>

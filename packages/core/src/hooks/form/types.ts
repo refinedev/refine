@@ -226,7 +226,17 @@ export type UseFormReturnType<
 > = {
   id?: BaseKey;
   setId: Dispatch<SetStateAction<BaseKey | undefined>>;
+  query?: QueryObserverResult<GetOneResponse<TData>, TError>;
+  /**
+   * @deprecated use `query` instead
+   */
   queryResult?: QueryObserverResult<GetOneResponse<TData>, TError>;
+  mutation:
+    | UseUpdateReturnType<TResponse, TResponseError, TVariables>
+    | UseCreateReturnType<TResponse, TResponseError, TVariables>;
+  /**
+   * @deprecated use `mutation` instead
+   */
   mutationResult:
     | UseUpdateReturnType<TResponse, TResponseError, TVariables>
     | UseCreateReturnType<TResponse, TResponseError, TVariables>;
