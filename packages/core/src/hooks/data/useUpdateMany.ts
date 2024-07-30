@@ -486,6 +486,7 @@ export const useUpdateMany = <
         ids = idsFromProps,
         resource: resourceName = resourceFromProps,
         dataProviderName = dataProviderNameFromProps,
+        invalidates = invalidatesFromProps,
       } = variables;
       if (!ids) throw missingIdError;
       if (!resourceName) throw missingResourceError;
@@ -495,7 +496,7 @@ export const useUpdateMany = <
       // invalidate the cache for the list and many queries:
       invalidateStore({
         resource: identifier,
-        invalidates: ["list", "many"],
+        invalidates: invalidates ?? ["list", "many"],
         dataProviderName: pickDataProvider(
           identifier,
           dataProviderName,
@@ -506,7 +507,7 @@ export const useUpdateMany = <
       ids.forEach((id) =>
         invalidateStore({
           resource: identifier,
-          invalidates: ["detail"],
+          invalidates: invalidates ?? ["detail"],
           dataProviderName: pickDataProvider(
             identifier,
             dataProviderName,
