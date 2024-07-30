@@ -1244,6 +1244,37 @@ describe("useUpdateMany Hook [with params]", () => {
       );
     });
   });
+
+  it("should override default invalidate", async () => {
+    const invalidateStore = jest.fn();
+    jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
+
+    const { result } = renderHook(() => useUpdateMany(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        invalidates: ["resourceAll"],
+        resource: "posts",
+        ids: ["1", "2"],
+        values: {},
+      });
+    });
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy();
+    });
+
+    expect(invalidateStore).toHaveBeenCalledWith(
+      expect.objectContaining({
+        invalidates: ["resourceAll"],
+      }),
+    );
+  });
 });
 
 describe("useUpdateMany Hook [with props]", () => {
@@ -2595,6 +2626,42 @@ describe("useUpdateMany Hook [with props]", () => {
         ),
       );
     });
+  });
+
+  it("should override default invalidate", async () => {
+    const invalidateStore = jest.fn();
+    jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
+
+    const { result } = renderHook(
+      () =>
+        useUpdateMany({
+          resource: "posts",
+          invalidates: ["resourceAll"],
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    act(() => {
+      result.current.mutate({
+        ids: ["1", "2"],
+        values: {},
+      });
+    });
+
+    await waitFor(() => {
+      expect(result.current.isSuccess).toBeTruthy();
+    });
+
+    expect(invalidateStore).toHaveBeenCalledWith(
+      expect.objectContaining({
+        invalidates: ["resourceAll"],
+      }),
+    );
   });
 });
 
