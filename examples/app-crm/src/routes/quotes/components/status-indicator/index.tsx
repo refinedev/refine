@@ -16,19 +16,20 @@ interface Props {
 }
 
 export const StatusIndicator: FC<Props> = ({ id, status, style }) => {
-  const { mutate } = useUpdate<Quote, HttpError, QuoteUpdateInput>();
+  const { mutate } = useUpdate<Quote, HttpError, QuoteUpdateInput>({
+    resource: "quotes",
+    id,
+    mutationMode: "optimistic",
+    invalidates: [],
+    meta: {
+      gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
+    },
+  });
 
   const onStatusChange = (newStatus: Quote["status"]) => {
     mutate({
-      resource: "quotes",
-      id,
       values: {
         status: newStatus,
-      },
-      mutationMode: "optimistic",
-      invalidates: [],
-      meta: {
-        gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
       },
     });
   };

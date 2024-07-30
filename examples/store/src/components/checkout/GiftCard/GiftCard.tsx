@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { useInvalidate, useUpdate } from "@refinedev/core";
 
 import { Input, Button } from "@components";
-import { Cross, Trash } from "@components/icons";
+import { Cross } from "@components/icons";
 import clsx from "clsx";
 import { IconCoupon } from "@components/icons/icon-coupon";
 
@@ -19,14 +19,19 @@ interface GiftCardProps {
 export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
   const [view, setView] = React.useState<"pre" | "form" | "post">("pre");
   const invalidate = useInvalidate();
-  const { mutate, isLoading } = useUpdate();
-
-  const {
-    register,
-    handleSubmit,
-    formState: { touchedFields, errors },
-    setError,
-  } = useForm<GiftCardFormValues>();
+  const { mutate } = useUpdate({
+    resource: "carts",
+    id: cart.id,
+    mutationOptions: {
+      onSuccess: () => {
+        invalidate({
+          resource: "carts",
+          invalidates: ["detail"],
+          id: cart.id,
+        });
+      },
+    },
+  });
 
   const appliedGiftCard = useMemo(() => {
     if (!cart || !cart.gift_cards?.length) {
@@ -42,53 +47,10 @@ export const GiftCard: React.FC<GiftCardProps> = ({ cart }) => {
     }
   }, [appliedGiftCard]);
 
-  const onSubmit = (data: GiftCardFormValues) => {
-    mutate(
-      {
-        resource: "carts",
-        id: cart.id,
-        values: { gift_cards: [{ code: data.gift_card_code }] },
-      },
-      {
-        onSuccess: () => {
-          invalidate({
-            resource: "carts",
-            invalidates: ["detail"],
-            id: cart.id,
-          });
-        },
-        onError: () => {
-          setError(
-            "gift_card_code",
-            {
-              message: "Code is invalid",
-            },
-            {
-              shouldFocus: true,
-            },
-          );
-        },
-      },
-    );
-  };
-
   const onRemove = () => {
-    mutate(
-      {
-        resource: "carts",
-        id: cart.id,
-        values: { gift_cards: [] },
-      },
-      {
-        onSuccess: () => {
-          invalidate({
-            resource: "carts",
-            invalidates: ["detail"],
-            id: cart.id,
-          });
-        },
-      },
-    );
+    mutate({
+      values: { gift_cards: [] },
+    });
   };
 
   return (
@@ -161,8 +123,33 @@ const GiftCardForm = ({
   onClose: () => void;
   onSuccess: () => void;
 }) => {
-  const { mutate, isLoading } = useUpdate();
   const invalidate = useInvalidate();
+  const { mutate, isLoading } = useUpdate({
+    resource: "carts",
+    id: cart.id,
+
+    mutationOptions: {
+      onSuccess: () => {
+        invalidate({
+          resource: "carts",
+          invalidates: ["detail"],
+          id: cart.id,
+        });
+        onSuccess();
+      },
+      onError: () => {
+        setError(
+          "gift_card_code",
+          {
+            message: "Code is invalid",
+          },
+          {
+            shouldFocus: true,
+          },
+        );
+      },
+    },
+  });
 
   const {
     register,
@@ -173,34 +160,9 @@ const GiftCardForm = ({
   } = useForm<GiftCardFormValues>();
 
   const onSubmit = (data: GiftCardFormValues) => {
-    mutate(
-      {
-        resource: "carts",
-        id: cart.id,
-        values: { gift_cards: [{ code: data.gift_card_code }] },
-      },
-      {
-        onSuccess: () => {
-          invalidate({
-            resource: "carts",
-            invalidates: ["detail"],
-            id: cart.id,
-          });
-          onSuccess();
-        },
-        onError: () => {
-          setError(
-            "gift_card_code",
-            {
-              message: "Code is invalid",
-            },
-            {
-              shouldFocus: true,
-            },
-          );
-        },
-      },
-    );
+    mutate({
+      values: { gift_cards: [{ code: data.gift_card_code }] },
+    });
   };
 
   React.useEffect(() => {

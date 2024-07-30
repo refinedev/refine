@@ -9,15 +9,16 @@ It uses the `create` method as the **mutation function** from the [`dataProvider
 
 ## Usage
 
-The `useCreate` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values` and `resource` as parameters. These parameters will be passed to the `create` method from the `dataProvider` as parameters.
+The `useCreate` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
 
 ```tsx
 import { useCreate } from "@refinedev/core";
 
-const { mutate } = useCreate();
+const { mutate } = useCreate({
+  resource: "products",
+});
 
 mutate({
-  resource: "products",
   values: {
     name: "New Product",
     material: "Wood",
@@ -50,35 +51,25 @@ When the `useCreate` mutation runs successfully, it will call the `log` method f
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
 ```tsx
-useCreate({
+const { mutate } = useCreate({
+  resource: "products",
   mutationOptions: {
     retry: 3,
-  },
-});
-```
-
-`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
-
-```tsx
-const { mutate } = useCreate();
-
-mutate(
-  {
-    resource: "products",
-    values: {
-      name: "New Product",
-      material: "Wood",
-    },
-  },
-  {
-    onError: (error, variables, context) => {
-      // An error occurred!
-    },
     onSuccess: (data, variables, context) => {
       // Let's celebrate!
     },
+    onError: (error, variables, context) => {
+      // An error occurred!
+    },
   },
-);
+});
+
+mutate({
+  values: {
+    name: "New Product",
+    material: "Wood",
+  },
+});
 ```
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
@@ -110,6 +101,22 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
 ## Mutation Parameters
+
+Mutation parameters are passed to the `mutate` function and can also be provided as props to the `useCreate` hook. Parameters given to the `mutate` function override those from the hook. Think of the hook's parameters as default values, and the `mutate` function's parameters as specific or dynamic values for each mutation.
+
+```tsx
+import { useCreate } from "@refinedev/core";
+
+const { mutate } = useCreate({
+  /* parameters */
+});
+
+mutate({
+  /* this will override the parameters given to the useCreate hook */
+});
+```
+
+> 🚨 Parameters marked as required can be provided either as props to the `useCreate` hook or as parameters to the `mutate` function.
 
 ### resource <PropTag required />
 
