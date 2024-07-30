@@ -38,7 +38,6 @@ import { useUpdate } from "@refinedev/core";
 
 const { mutate } = useUpdate({
   resource: "products",
-  id: 1,
   successNotification: false,
   mutationMode: "optimistic",
   mutationOptions: {
@@ -50,6 +49,7 @@ const { mutate } = useUpdate({
 
 mutate({
   // also you can override the parameters given to the hook
+  id: 1,
   values: {
     name: "New Product",
     material: "Wood",
