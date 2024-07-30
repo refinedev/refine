@@ -25,7 +25,12 @@ import { getNameInitials } from "@/utilities";
 import { UPDATE_COMPANY_MUTATION } from "./queries";
 
 export const CompanyForm = () => {
-  const { saveButtonProps, formProps, formLoading, queryResult } = useForm<
+  const {
+    saveButtonProps,
+    formProps,
+    formLoading,
+    query: queryResult,
+  } = useForm<
     GetFields<UpdateCompanyMutation>,
     HttpError,
     GetVariables<UpdateCompanyMutationVariables>

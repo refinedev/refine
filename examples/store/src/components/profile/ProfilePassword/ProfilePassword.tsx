@@ -29,7 +29,7 @@ export const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     formState: { errors },
     setError,
-    refineCore: { onFinish, mutationResult },
+    refineCore: { onFinish, mutation: mutationResult },
   } = useForm<UpdateCustomerPasswordFormData>({
     refineCoreProps: {
       action: "edit",
