@@ -28,7 +28,7 @@ test("Validate interactive prompt", () => {
 test("Categorize UI Group", () => {
   const testCases = [
     {
-      input: [],
+      input: [] as any,
       output: null,
     },
     {

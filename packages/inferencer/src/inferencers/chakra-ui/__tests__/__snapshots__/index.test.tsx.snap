@@ -38932,7 +38932,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -39143,7 +39143,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token punctuation"

@@ -14,6 +14,13 @@ export const setupServer = (app: Express, onError: () => void) => {
             "Refine Devtools server",
           )} (http) failed to start. Port ${SERVER_PORT} is already in use.\n`,
         );
+        console.info(
+          `${cyanBright.bold(
+            "\u2139 ",
+          )}You can change the port by setting the ${bold(
+            "REFINE_DEVTOOLS_PORT",
+          )} environment variable.`,
+        );
       } else {
         console.error(
           `\n${cyanBright.bold("\u2717 ")}${bold(

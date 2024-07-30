@@ -202,10 +202,6 @@
     ---tutorial-card-bg-hover: var(--ifm-card-background-color);
 }
 
-html[data-active-page="index"] {
-    scroll-behavior: smooth;
-}
-
 html.docs-wrapper {
     scroll-behavior: initial !important;
 }
@@ -630,11 +626,6 @@ html.docs-wrapper {
 
 .navbar .navbar__items .navbar__item {
     @apply hidden xl:inline-block;
-}
-
-html[data-page="index"] {
-    scroll-snap-type: y mandatory;
-    scroll-behavior: smooth;
 }
 
 #__docusaurus .text-color-base {

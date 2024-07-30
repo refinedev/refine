@@ -123,7 +123,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                   color: token.colorTextLabel,
                 }}
               >
-                {translate("pages.login.divider", "or")}
+                {translate(
+                  "pages.register.divider",
+                  translate("pages.login.divider", "or"),
+                )}
               </Typography.Text>
             </Divider>
           )}
@@ -208,8 +211,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 }}
               >
                 {translate(
-                  "pages.login.buttons.haveAccount",
-                  "Have an account?",
+                  "pages.register.buttons.haveAccount",
+                  translate(
+                    "pages.login.buttons.haveAccount",
+                    "Have an account?",
+                  ),
                 )}{" "}
                 <ActiveLink
                   style={{
@@ -218,7 +224,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                   }}
                   to="/login"
                 >
-                  {translate("pages.login.signin", "Sign in")}
+                  {translate(
+                    "pages.register.signin",
+                    translate("pages.login.signin", "Sign in"),
+                  )}
                 </ActiveLink>
               </Typography.Text>
             )}
@@ -251,7 +260,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               fontSize: 12,
             }}
           >
-            {translate("pages.login.buttons.haveAccount", "Have an account?")}{" "}
+            {translate(
+              "pages.register.buttons.haveAccount",
+              translate("pages.login.buttons.haveAccount", "Have an account?"),
+            )}{" "}
             <ActiveLink
               style={{
                 fontWeight: "bold",
@@ -259,7 +271,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               }}
               to="/login"
             >
-              {translate("pages.login.signin", "Sign in")}
+              {translate(
+                "pages.register.signin",
+                translate("pages.login.signin", "Sign in"),
+              )}
             </ActiveLink>
           </Typography.Text>
         </div>

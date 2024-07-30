@@ -19,6 +19,10 @@ export type UseRadioGroupReturnType<
   radioGroupProps: Omit<React.ComponentProps<typeof Radio.Group>, "options"> & {
     options: TOption[];
   };
+  query: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -70,12 +74,7 @@ export const useRadioGroup = <
   TData,
   TOption
 > => {
-  const { queryResult, options } = useSelect<
-    TQueryFnData,
-    TError,
-    TData,
-    TOption
-  >({
+  const { query, options } = useSelect<TQueryFnData, TError, TData, TOption>({
     resource,
     sort,
     sorters,
@@ -100,6 +99,7 @@ export const useRadioGroup = <
       options,
       defaultValue,
     },
-    queryResult,
+    query,
+    queryResult: query,
   };
 };

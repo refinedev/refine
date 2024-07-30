@@ -131,7 +131,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 marginY: "16px",
               }}
             >
-              {translate("pages.login.divider", "or")}
+              {translate(
+                "pages.register.divider",
+                translate("pages.login.divider", "or"),
+              )}
             </Divider>
           )}
         </>
@@ -238,7 +241,13 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             }}
           >
             <Typography variant="body2" component="span" fontSize="12px">
-              {translate("pages.login.buttons.haveAccount", "Have an account?")}
+              {translate(
+                "pages.register.buttons.haveAccount",
+                translate(
+                  "pages.login.buttons.haveAccount",
+                  "Have an account?",
+                ),
+              )}
             </Typography>
             <MuiLink
               ml="4px"
@@ -250,7 +259,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               fontSize="12px"
               fontWeight="bold"
             >
-              {translate("pages.login.signin", "Sign in")}
+              {translate(
+                "pages.register.signin",
+                translate("pages.login.signin", "Sign in"),
+              )}
             </MuiLink>
           </Box>
         )}

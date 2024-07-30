@@ -1,7 +1,7 @@
 import { Account, Appwrite, Storage } from "@refinedev/appwrite";
 
 const APPWRITE_URL = "https://cloud.appwrite.io/v1";
-const APPWRITE_PROJECT = "6537bcde069d747b2abf";
+const APPWRITE_PROJECT = "6697687d002cbd31ba6b";
 
 const appwriteClient = new Appwrite();
 
@@ -10,9 +10,3 @@ const account = new Account(appwriteClient);
 const storage = new Storage(appwriteClient);
 
 export { appwriteClient, account, storage };
-
-/* const client = new Client();
-
-client
-    .setEndpoint('https://cloud.appwrite.io/v1')
-    .setProject('6537bcde069d747b2abf'); */

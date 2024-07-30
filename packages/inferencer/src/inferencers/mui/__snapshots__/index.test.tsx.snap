@@ -41691,7 +41691,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -41902,7 +41902,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token punctuation"

@@ -23,6 +23,7 @@
     },
     "forgotPassword": {
       "title": "Forgot your password?",
+      "signin": "Sign in",
       "fields": {
         "email": "Email"
       },
@@ -31,11 +32,14 @@
         "requiredEmail": "Email is required"
       },
       "buttons": {
-        "submit": "Send reset instructions"
+        "submit": "Send reset instructions",
+        "haveAccount": "Have an account?"
       }
     },
     "register": {
       "title": "Sign up for your account",
+      "signin": "Sign in",
+      "divider": "or",
       "fields": {
         "email": "Email",
         "password": "Password"
