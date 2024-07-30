@@ -338,14 +338,13 @@ export const AddPackageDrawer = ({
           >
             <Button
               onClick={() => updatePackage()}
-              className={clsx(
+              className={clsx("re-bg-alt-blue", "!re-pl-2")}
+              contentClassName={clsx(
                 "re-gap-2",
-                "re-bg-alt-blue",
                 "re-flex-nowrap",
                 "re-flex",
                 "re-items-center",
                 "re-justify-between",
-                "!re-pl-2",
               )}
             >
               {icon}
