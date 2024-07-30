@@ -49,7 +49,11 @@ export const CourierEdit = () => {
 
   const t = useTranslate();
   const { list } = useNavigation();
-  const { formProps, queryResult, saveButtonProps } = useForm<ICourier>();
+  const {
+    formProps,
+    query: queryResult,
+    saveButtonProps,
+  } = useForm<ICourier>();
   const courier = queryResult?.data?.data;
 
   const { selectProps: storeSelectProps } = useSelect({

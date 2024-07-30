@@ -21,7 +21,7 @@ export const ProfilePhone: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     control,
     formState: { errors },
-    refineCore: { onFinish, mutationResult },
+    refineCore: { onFinish, mutation: mutationResult },
   } = useForm<UpdateCustomerPhoneFormData>({
     refineCoreProps: {
       action: "edit",

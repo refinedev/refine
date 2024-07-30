@@ -894,7 +894,10 @@ module.exports = {
       type: "category",
       label: "Enterprise Edition",
       className: "category-as-header",
-      items: ["enterprise-edition/okta/index"],
+      items: [
+        "enterprise-edition/okta/index",
+        "enterprise-edition/devtools/index",
+      ],
     },
     // Migration Guide
     {

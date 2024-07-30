@@ -170,7 +170,15 @@ export type UseSelectReturnType<
   TError extends HttpError = HttpError,
   TOption extends BaseOption = BaseOption,
 > = {
+  query: QueryObserverResult<GetListResponse<TData>, TError>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  /**
+   * @deprecated Use `defaultValueQuery` instead
+   */
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
   onSearch: (value: string) => void;
   options: TOption[];
@@ -395,6 +403,8 @@ export const useSelect = <
   return {
     queryResult,
     defaultValueQueryResult,
+    query: queryResult,
+    defaultValueQuery: defaultValueQueryResult,
     options: combinedOptions,
     onSearch,
     overtime: { elapsedTime },

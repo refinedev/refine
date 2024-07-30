@@ -1563,6 +1563,48 @@ Default paths are:
 - `edit`: `/resources/edit/:id`
 - `show`: `/resources/show/:id`
 
+### How to change the document title?
+
+By default [`<DocumentTitleHandler/>`](#documenttitlehandler) component will generate the document title based on current resource and action with the "Refine" suffix. You can customize the title generation process by providing a custom `handler` function.
+
+```tsx
+import {
+  BrowserRouter,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { Refine } from "@refinedev/core";
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Refine
+      /* ... */
+      >
+        {/* ... */}
+        <DocumentTitleHandler
+          handler={({ action, params, resource }) => {
+            const id = params?.id ?? "";
+
+            const actionPrefixMatcher = {
+              create: "Create new ",
+              clone: `#${id} Clone ${resource?.meta?.label}`,
+              edit: `#${id} Edit ${resource?.meta?.label}`,
+              show: `#${id} Show ${resource?.meta?.label}`,
+              list: `${resource?.meta?.label}`,
+            };
+
+            const suffix = " | <Company Name>";
+            const title = actionPrefixMatcher[action || "list"] + suffix;
+
+            return title;
+          }}
+        />
+      </Refine>
+    </BrowserRouter>
+  );
+};
+```
+
 ## Example (`/app`)
 
 <CodeSandboxExample path="with-nextjs" />

@@ -7,7 +7,7 @@ import type { IUser } from "../../interfaces";
 const { Title, Text } = Typography;
 
 export const UserShow = () => {
-  const { queryResult } = useShow<IUser>();
+  const { query: queryResult } = useShow<IUser>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

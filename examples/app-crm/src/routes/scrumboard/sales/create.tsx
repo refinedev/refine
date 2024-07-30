@@ -79,7 +79,7 @@ export const SalesCreatePage: FC<PropsWithChildren> = ({ children }) => {
     }
   }, [searchParams]);
 
-  const { selectProps, queryResult } = useSelect<
+  const { selectProps, query: queryResult } = useSelect<
     GetFieldsFromList<SalesCompaniesSelectQuery>
   >({
     resource: "companies",

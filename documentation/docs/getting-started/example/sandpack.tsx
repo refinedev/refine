@@ -660,13 +660,13 @@ export const ProductEdit = () => {
   const translate = useTranslate();
   const {
     saveButtonProps,
-    refineCore: { queryResult, formLoading },
+    refineCore: { query, formLoading },
     register,
     control,
     formState: { errors },
   } = useForm<Product, HttpError, Product>();
 
-  const productsData = queryResult?.data?.data;
+  const productsData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",
@@ -904,7 +904,7 @@ import type { Product } from "./types";
 export const ProductShow: React.FC = () => {
   const translate = useTranslate();
   const {
-    queryResult: { data: productResult, isLoading },
+    query: { data: productResult, isLoading },
   } = useShow<Product>();
 
   const product = productResult?.data;
@@ -1164,7 +1164,7 @@ import type { Category } from "./types";
 export const CategoryShow = () => {
   const translate = useTranslate();
   const {
-    queryResult: { data: categoryResult, isLoading },
+    query: { data: categoryResult, isLoading },
   } = useShow<Category>();
 
   const category = categoryResult?.data;

@@ -13,7 +13,7 @@ import {
 
 export const OrderShow = () => {
   const t = useTranslate();
-  const { queryResult } = useShow<IOrder>();
+  const { query: queryResult } = useShow<IOrder>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
   const { mutate } = useUpdate({

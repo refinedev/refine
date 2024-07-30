@@ -13,7 +13,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostCreate = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query: queryResult },
     saveButtonProps,
     register,
     resetField,

@@ -55,24 +55,27 @@ export const useAutocomplete = <
 >(
   props: UseAutocompleteProps<TQueryFnData, TError, TData>,
 ): UseAutocompleteReturnType<TData> => {
-  const { queryResult, defaultValueQueryResult, onSearch, overtime } =
-    useSelectCore<TQueryFnData, TError, TData>(props);
+  const { query, defaultValueQuery, onSearch, overtime } = useSelectCore<
+    TQueryFnData,
+    TError,
+    TData
+  >(props);
 
   return {
     autocompleteProps: {
       options:
         props.selectedOptionsOrder === "selected-first"
           ? unionWith(
-              defaultValueQueryResult.data?.data || [],
-              queryResult.data?.data || [],
+              defaultValueQuery.data?.data || [],
+              query.data?.data || [],
               isEqual,
             )
           : unionWith(
-              queryResult.data?.data || [],
-              defaultValueQueryResult.data?.data || [],
+              query.data?.data || [],
+              defaultValueQuery.data?.data || [],
               isEqual,
             ),
-      loading: queryResult.isFetching || defaultValueQueryResult.isFetching,
+      loading: query.isFetching || defaultValueQuery.isFetching,
       onInputChange: (event, value) => {
         if (event?.type === "change") {
           onSearch(value);
@@ -83,8 +86,10 @@ export const useAutocomplete = <
       filterOptions: (x) => x,
     },
     onSearch,
-    queryResult,
-    defaultValueQueryResult,
+    query,
+    defaultValueQuery,
+    queryResult: query,
+    defaultValueQueryResult: defaultValueQuery,
     overtime,
   };
 };

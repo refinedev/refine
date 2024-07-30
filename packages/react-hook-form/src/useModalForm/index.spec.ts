@@ -204,7 +204,7 @@ describe("useModalForm Hook", () => {
       result.current.modal.submit({ test: "test" });
     });
 
-    await waitFor(() => result.current.refineCore.mutationResult.isSuccess);
+    await waitFor(() => result.current.refineCore.mutation.isSuccess);
 
     expect(result.current.getValues()).toStrictEqual({});
   });

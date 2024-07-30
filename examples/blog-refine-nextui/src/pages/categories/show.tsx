@@ -7,7 +7,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
+  const { query: queryResult } = useShow<ICategory>();
 
   const category = queryResult?.data?.data;
 

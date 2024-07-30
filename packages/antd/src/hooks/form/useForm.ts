@@ -262,7 +262,7 @@ export const useForm = <
     autoSave,
   });
 
-  const { formLoading, onFinish, queryResult, id, onFinishAutoSave } =
+  const { formLoading, onFinish, query, id, onFinishAutoSave } =
     useFormCoreResult;
 
   const { warnWhenUnsavedChanges: warnWhenUnsavedChangesRefine, setWarnWhen } =
@@ -270,11 +270,11 @@ export const useForm = <
   const warnWhenUnsavedChanges =
     warnWhenUnsavedChangesProp ?? warnWhenUnsavedChangesRefine;
 
-  // populate form with data when queryResult is ready or id changes
+  // populate form with data when query is ready or id changes
   // form populated via initialValues prop
   React.useEffect(() => {
     form.resetFields();
-  }, [queryResult?.data?.data, id]);
+  }, [query?.data?.data, id]);
 
   const onKeyUp = (event: React.KeyboardEvent<HTMLFormElement>) => {
     if (submitOnEnter && event.key === "Enter") {
@@ -315,7 +315,7 @@ export const useForm = <
         onFinish(values).catch((error) => error),
       onKeyUp,
       onValuesChange,
-      initialValues: queryResult?.data?.data,
+      initialValues: query?.data?.data,
     },
     saveButtonProps,
     defaultFormValuesLoading: formSF.defaultFormValuesLoading,

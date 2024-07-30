@@ -6,7 +6,7 @@ import type { IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const { edit, list } = useNavigation();
   const {
-    queryResult: { data },
+    query: { data },
   } = useShow<IProduct>();
 
   const record = data?.data;

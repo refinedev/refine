@@ -16,7 +16,7 @@ export const ProductEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query: queryResult },
     handleSubmit,
     control,
     formState: { errors },
