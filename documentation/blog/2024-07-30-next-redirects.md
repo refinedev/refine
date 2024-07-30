@@ -4,9 +4,11 @@ description: We'll examine the concept of URL redirection in Next.js and how red
 slug: next-js-redirect
 authors: michael
 tags: [nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-16-next-redirects/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-16-next-redirects/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on July 29, 2024, to add sections for Custom Redirects and Redirect Chains.**
 
 ## Introduction
 
@@ -19,6 +21,8 @@ Steps we'll cover:
 - [What is URL Redirection?](#what-is-url-redirection)
 - [How to make redirects in Next.js](#how-to-make-redirects-in-nextjs)
 - [Methods of Redirecting in Next.js](#methods-of-redirecting-in-nextjs)
+- [Custom Redirects](#custom-redirects)
+- [Performance Considerations](#performance-considerations)
 
 ## Prerequisites
 
@@ -321,12 +325,150 @@ export const getServerSideProps = async ({ res }) => {
 };
 ```
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Custom Redirects
+
+This is where you might specify to developers how they are to implement custom redirects based on certain criteria—be it user roles, authentication states, or certain actions by a user.
+
+### User Role-Based Redirects
+
+```tsx
+export async function getServerSideProps(context) {
+  const { userRole } = context.req;
+
+  if (userRole !== "admin") {
+    return {
+      redirect: {
+        destination: "/unauthorized",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+```
+
+### Authentication-Based Redirects
+
+```tsx
+export async function getServerSideProps(context) {
+  const { isAuthenticated } = context.req;
+
+  if (!isAuthenticated) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+```
+
+## Chains of Redirects
+
+Describe how you would handle multiple redirections without creating a redirect loop. In this section, please feel free to offer advice on how to design redirect logic that will not lead to such infinite loops and will allow the user to always complete the journey to their destination of interest.
+
+### Multiple Redirects
+
+```tsx
+export async function getServerSideProps(context) {
+  const { isAuthenticated, userRole } = context.req;
+
+  if (!isAuthenticated) {
+    return {
+      redirect: {
+        destination: "/login",
+        permanent: false,
+      },
+    };
+  }
+
+  if (userRole !== "admin") {
+    return {
+      redirect: {
+        destination: "/unauthorized",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+```
+
+## Performance Considerations
+
+You can also explore how redirects contribute to Next.js application performance.
+
+### Making User-Friendly Redirects
+
+- Use server-side redirects (via `getServerSideProps`) rather than navigating via the client.
+- Minimize redirects to reduce HTTP requests.
+
+## Redirections w.r.t Internationalization (i18n)
+
+If your application is localized for various languages, explain how to keep redirects for user language settings intact.
+
+### Linguistic Reductions
+
+```tsx
+export async function getServerSideProps({ req, res }) {
+  const { locale } = req;
+
+  if (locale === "fr") {
+    return {
+      redirect: {
+        destination: "/fr/welcome",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {}, // will be passed to the page component as props
+  };
+}
+```
+
+## SEO Best Practices
+
+So, make an attempt with me, and we will tell you how to make more graceful redirects. Discuss the importance of using the right HTTP status codes, and major pitfalls to avoid that may produce a rather destructive influence on the ranking of the website for search engines.
+
+### SEO Redirects
+
+- Permanent changes, for example, should be saved with 301 redirects to keep the SEO rankings.
+- They're attempting to avoid any diluting of link equity by redirecting to the chains.
+- Ensuring that each redirect drops the user on some piece of relevant content that is informative and engaging.
+
+## Test Redirects
+
+Include methodologies and tools for testing that redirects work as intended. It can cover automated testing using frameworks such as Cypress or manual testing hints.
+
+### Automated Redirect Testing
+
+```jsx
+describe("Redirects", () => {
+  it("should redirect to login if not authenticated", () => {
+    cy.visit("/");
+    cy.url().should("include", "/login");
+  });
+
+  it("should redirect to home if authenticated", () => {
+    cy.setCookie("isAuthenticated", "true");
+    cy.visit("/");
+    cy.url().should("include", "/home");
+  });
+});
+```
 
 ## Conclusion
 
