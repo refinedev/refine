@@ -904,7 +904,7 @@ import type { Product } from "./types";
 export const ProductShow: React.FC = () => {
   const translate = useTranslate();
   const {
-    queryResult: { data: productResult, isLoading },
+    query: { data: productResult, isLoading },
   } = useShow<Product>();
 
   const product = productResult?.data;
@@ -1164,7 +1164,7 @@ import type { Category } from "./types";
 export const CategoryShow = () => {
   const translate = useTranslate();
   const {
-    queryResult: { data: categoryResult, isLoading },
+    query: { data: categoryResult, isLoading },
   } = useShow<Category>();
 
   const category = categoryResult?.data;

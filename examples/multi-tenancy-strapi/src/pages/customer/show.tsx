@@ -29,7 +29,7 @@ export const CustomerShow = () => {
 
   const { styles } = useStyles();
 
-  const { queryResult } = useShow<CustomerExtended>({
+  const { query: queryResult } = useShow<CustomerExtended>({
     meta: {
       populate: ["orders.products.image"],
     },

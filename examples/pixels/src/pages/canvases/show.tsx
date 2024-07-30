@@ -33,7 +33,7 @@ export const CanvasShow: React.FC = () => {
   } = useIsAuthenticated();
 
   const {
-    queryResult: {
+    query: {
       data: { data: canvas } = {},
     },
   } = useShow<Canvas>();
