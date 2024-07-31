@@ -23,5 +23,5 @@ import { useSimpleList } from '@refinedev/antd';
 > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
 >
 > ```bash
-> npx @refinedev/codemod@latest use-simple-list-query-result
+> npx @refinedev/codemod@latest august2024-release
 > ```
