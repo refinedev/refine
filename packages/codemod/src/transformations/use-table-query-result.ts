@@ -26,7 +26,7 @@ export default function transformer(file: FileInfo, api: API): string {
     }
   };
 
-  ["useTable", "useDataGrid", "useSimpleList"].forEach((hookName) => {
+  ["useTable", "useDataGrid"].forEach((hookName) => {
     source
       .find(j.VariableDeclarator, {
         id: { type: "ObjectPattern" },

@@ -130,6 +130,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     value: "use-select-query-result",
   },
   {
+    name: "Refactor[useSimpleList]: { queryResult } to { query }",
+    value: "use-simple-list-query-result",
+  },
+  {
     name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
     value: "refine3-to-refine4",
   },
