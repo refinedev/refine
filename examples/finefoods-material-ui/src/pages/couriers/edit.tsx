@@ -37,7 +37,7 @@ export const CourierEdit = () => {
     control,
     setValue,
     formState: { errors },
-    refineCore: { formLoading, query: queryResult },
+    refineCore: { formLoading, queryResult },
     saveButtonProps,
   } = useForm<ICourier, HttpError, Nullable<ICourier>>();
   const courier = queryResult?.data?.data;

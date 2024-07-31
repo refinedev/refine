@@ -49,7 +49,7 @@ export const PostList = () => {
 
   // Show Drawer
   const [visibleShowDrawer, setVisibleShowDrawer] = useState<boolean>(false);
-  const { query: queryResult, showId, setShowId } = useShow<IPost>();
+  const { queryResult, showId, setShowId } = useShow<IPost>();
 
   const { data: showQueryResult, isLoading: showIsLoading } = queryResult;
   const record = showQueryResult?.data;

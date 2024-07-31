@@ -6,7 +6,7 @@ import { SponsorsBanner } from "../../components/banners";
 import type { Canvas } from "../../types";
 
 export const CanvasList: React.FC = () => {
-  const { listProps, query: queryResult } = useSimpleList<Canvas>({
+  const { listProps, queryResult } = useSimpleList<Canvas>({
     resource: "canvases",
     pagination: {
       pageSize: 12,

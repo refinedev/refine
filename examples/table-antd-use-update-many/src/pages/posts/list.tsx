@@ -28,13 +28,12 @@ export const PostList = () => {
 
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
 
-  const { mutate, isLoading: updateManyIsLoading } = useUpdateMany<IPost>({
-    resource: "posts",
-  });
+  const { mutate, isLoading: updateManyIsLoading } = useUpdateMany<IPost>();
 
   const updateSelectedItems = () => {
     mutate(
       {
+        resource: "posts",
         ids: selectedRowKeys.map(String),
         values: {
           status: "draft",

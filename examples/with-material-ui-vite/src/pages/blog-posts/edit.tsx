@@ -7,7 +7,7 @@ import { Controller } from "react-hook-form";
 export const BlogPostEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { query: queryResult, formLoading },
+    refineCore: { queryResult, formLoading },
     register,
     control,
     formState: { errors },

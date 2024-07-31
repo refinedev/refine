@@ -8,7 +8,7 @@ export const PostEdit: React.FC = () => {
   const {
     formLoading,
     onFinish,
-    query: queryResult,
+    queryResult,
     autoSaveProps,
     onFinishAutoSave,
   } = useForm<FormValues>({

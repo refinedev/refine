@@ -26,12 +26,7 @@ import type {
 import { POST_CATEGORIES_SELECT_QUERY, POST_UPDATE_MUTATION } from "./queries";
 
 export const PostEdit = () => {
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-    formLoading,
-  } = useForm<
+  const { formProps, saveButtonProps, queryResult, formLoading } = useForm<
     GetFields<UpdatePostMutation>,
     HttpError,
     GetVariables<UpdatePostMutationVariables>

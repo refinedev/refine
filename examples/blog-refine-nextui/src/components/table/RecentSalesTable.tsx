@@ -64,7 +64,7 @@ const getChipColor = (status: number) => {
 
 export const RecentSalesTable = () => {
   const {
-    tableQuery: tableQueryResult,
+    tableQueryResult,
     pageCount,
     current,
     pageSize,

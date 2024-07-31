@@ -71,14 +71,7 @@ export const VideoClubPageTapeReturn = () => {
     },
   });
 
-  const { mutate: checkout } = useUpdateMany<ExtendedRental>({
-    resource: "rentals",
-    mutationOptions: {
-      onSuccess: () => {
-        navigate("/video-club");
-      },
-    },
-  });
+  const { mutate: checkout } = useUpdateMany<ExtendedRental>();
 
   const handleOnRentalSelect = (rental: ExtendedRental) => {
     if (selectedRentals.includes(rental)) {
@@ -97,12 +90,20 @@ export const VideoClubPageTapeReturn = () => {
   };
 
   const handleCheckOut = () => {
-    checkout({
-      ids: selectedRentals.map((r) => r.id),
-      values: selectedRentals.map((r) => ({
-        returned_at: new Date(),
-      })),
-    });
+    checkout(
+      {
+        resource: "rentals",
+        ids: selectedRentals.map((r) => r.id),
+        values: selectedRentals.map((r) => ({
+          returned_at: new Date(),
+        })),
+      },
+      {
+        onSuccess: () => {
+          navigate("/video-club");
+        },
+      },
+    );
   };
 
   return (

@@ -25,7 +25,7 @@ export const PostList = () => {
   });
 
   const {
-    tableQuery: {
+    tableQueryResult: {
       data: { data } = { data: [] },
     },
   } = useTable<IPost>({

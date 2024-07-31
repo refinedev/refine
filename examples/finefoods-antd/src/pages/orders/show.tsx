@@ -13,17 +13,16 @@ import {
 
 export const OrderShow = () => {
   const t = useTranslate();
-  const { query: queryResult } = useShow<IOrder>();
+  const { queryResult } = useShow<IOrder>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
-  const { mutate } = useUpdate({
-    resource: "orders",
-    id: record?.id.toString(),
-  });
+  const { mutate } = useUpdate();
 
   const handleMutate = (status: { id: number; text: string }) => {
     if (record) {
       mutate({
+        resource: "orders",
+        id: record.id.toString(),
         values: {
           status,
         },

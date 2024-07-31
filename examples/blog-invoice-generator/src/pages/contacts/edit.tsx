@@ -5,11 +5,7 @@ import { Form, Select, Input } from "antd";
 import type { IContact } from "interfaces";
 
 export const ContactEdit = () => {
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<IContact>({
+  const { formProps, saveButtonProps, queryResult } = useForm<IContact>({
     metaData: { populate: ["client"] },
   });
 

@@ -36,7 +36,7 @@ export const CompanyInfoForm = () => {
     | "website"
   >();
 
-  const { query: queryResult } = useShow<Company>({
+  const { queryResult } = useShow<Company>({
     meta: {
       gqlQuery: COMPANY_INFO_QUERY,
     },

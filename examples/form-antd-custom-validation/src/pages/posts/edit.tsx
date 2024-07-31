@@ -19,7 +19,7 @@ interface PostUniqueCheckRequestQuery {
 }
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, query: queryResult } = useForm<IPost>();
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({

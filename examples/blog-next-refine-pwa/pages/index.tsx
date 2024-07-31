@@ -17,7 +17,7 @@ type ItemProp = {
 };
 
 const ProductList: React.FC<ItemProp> = ({ products }) => {
-  const { tableQuery: tableQueryResult } = useTable<IProduct>({
+  const { tableQueryResult } = useTable<IProduct>({
     resource: "products",
     queryOptions: {
       initialData: products,

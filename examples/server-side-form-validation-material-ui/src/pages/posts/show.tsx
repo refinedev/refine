@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 export const PostShow = () => {
-  const { query: queryResult } = useShow();
+  const { queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
   const record = data?.data;

@@ -37,14 +37,16 @@ export const SalesEditPage = () => {
     },
   });
 
-  const { selectProps: companySelectProps, query: companySelectQueryResult } =
-    useSelect<GetFieldsFromList<SalesCompaniesSelectQuery>>({
-      resource: "companies",
-      optionLabel: "name",
-      meta: {
-        gqlQuery: SALES_COMPANIES_SELECT_QUERY,
-      },
-    });
+  const {
+    selectProps: companySelectProps,
+    queryResult: companySelectQueryResult,
+  } = useSelect<GetFieldsFromList<SalesCompaniesSelectQuery>>({
+    resource: "companies",
+    optionLabel: "name",
+    meta: {
+      gqlQuery: SALES_COMPANIES_SELECT_QUERY,
+    },
+  });
 
   const { selectProps: stageSelectProps } = useDealStagesSelect();
 

@@ -12,7 +12,7 @@ const PostEdit: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();
 
   const {
-    refineCore: { onFinish, formLoading, query: queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     resetField,

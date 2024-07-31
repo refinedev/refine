@@ -12,7 +12,7 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { query: queryResult } = useShow<IProduct>();
+  const { queryResult } = useShow<IProduct>();
   const product = queryResult?.data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

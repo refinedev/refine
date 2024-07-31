@@ -13,7 +13,7 @@ type OrderPageProps = {
 };
 
 export const OrderDetail: React.FC<OrderPageProps> = ({ useShowProps }) => {
-  const { query: queryResult } = useShow<Order>({
+  const { queryResult } = useShow<Order>({
     resource: "orders",
     ...useShowProps,
   });

@@ -221,8 +221,8 @@ export const CourierList = ({ children }: PropsWithChildren) => {
               <FilterDropdown {...props}>
                 <InputMask mask="(999) 999 99 99">
                   {/* 
-                                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                                // @ts-ignore */}
+                                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                                    // @ts-ignore */}
                   {(props: InputProps) => <Input {...props} />}
                 </InputMask>
               </FilterDropdown>

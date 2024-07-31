@@ -18,7 +18,7 @@ import { TOKEN_KEY } from "../../constants";
 export const PostCreate = () => {
   const API_URL = useApiUrl();
 
-  const { formProps, saveButtonProps, query: queryResult } = useForm();
+  const { formProps, saveButtonProps, queryResult } = useForm();
 
   const postData = queryResult?.data?.data;
   const { selectProps } = useSelect({

@@ -16,7 +16,7 @@ export const OrderShow = () => {
 
   const { styles } = useStyles();
 
-  const { query: queryResult } = useShow<
+  const { queryResult } = useShow<
     Order & {
       products: Product[];
       customer: Customer;

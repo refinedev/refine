@@ -7,7 +7,7 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export default function CategoryShow() {
-  const { query: queryResult } = useShow({});
+  const { queryResult } = useShow({});
   const { data, isLoading } = queryResult;
 
   const record = data?.data;

@@ -44,7 +44,7 @@ export const PostList = () => {
     },
   });
 
-  const { selectProps: selectPropsCategory, query: queryResultCategory } =
+  const { selectProps: selectPropsCategory, queryResult: queryResultCategory } =
     useSelect({
       resource: "category",
       optionLabel: "title",

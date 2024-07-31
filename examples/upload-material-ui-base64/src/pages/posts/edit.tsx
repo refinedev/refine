@@ -19,7 +19,7 @@ export const PostEdit: React.FC = () => {
 
   const {
     saveButtonProps,
-    refineCore: { query: queryResult },
+    refineCore: { queryResult },
     register,
     control,
     formState: { errors },

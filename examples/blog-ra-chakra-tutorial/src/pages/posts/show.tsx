@@ -3,7 +3,7 @@ import { Show, NumberField, TextField, DateField } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
-  const { query: queryResult } = useShow({
+  const { queryResult } = useShow({
     metaData: {
       populate: ["category"],
     },

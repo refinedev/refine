@@ -53,49 +53,44 @@ const statusOptions: { label: string; value: QuoteStatus }[] = [
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
   const screens = Grid.useBreakpoint();
 
-  const {
-    tableProps,
-    searchFormProps,
-    filters,
-    sorters,
-    tableQuery: tableQueryResult,
-  } = useTable<Quote, HttpError, { title: string }>({
-    resource: "quotes",
-    onSearch: (values) => {
-      return [
-        {
-          field: "title",
-          operator: "contains",
-          value: values.title,
-        },
-      ];
-    },
-    filters: {
-      initial: [
-        {
-          field: "title",
-          value: "",
-          operator: "contains",
-        },
-        {
-          field: "status",
-          value: undefined,
-          operator: "in",
-        },
-      ],
-    },
-    sorters: {
-      initial: [
-        {
-          field: "createdAt",
-          order: "desc",
-        },
-      ],
-    },
-    meta: {
-      gqlQuery: QUOTES_TABLE_QUERY,
-    },
-  });
+  const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
+    useTable<Quote, HttpError, { title: string }>({
+      resource: "quotes",
+      onSearch: (values) => {
+        return [
+          {
+            field: "title",
+            operator: "contains",
+            value: values.title,
+          },
+        ];
+      },
+      filters: {
+        initial: [
+          {
+            field: "title",
+            value: "",
+            operator: "contains",
+          },
+          {
+            field: "status",
+            value: undefined,
+            operator: "in",
+          },
+        ],
+      },
+      sorters: {
+        initial: [
+          {
+            field: "createdAt",
+            order: "desc",
+          },
+        ],
+      },
+      meta: {
+        gqlQuery: QUOTES_TABLE_QUERY,
+      },
+    });
 
   const { selectProps: selectPropsCompanies } = useCompaniesSelect();
 

@@ -13,7 +13,7 @@ export const CategoryEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, query: queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     handleSubmit,
     control,
     formState: { errors },

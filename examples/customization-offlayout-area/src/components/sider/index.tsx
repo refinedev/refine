@@ -126,6 +126,7 @@ export const FixedSider: React.FC = () => {
       >
         <ThemedTitle collapsed={collapsed} />
       </div>
+
       <Menu
         style={{
           marginTop: "8px",

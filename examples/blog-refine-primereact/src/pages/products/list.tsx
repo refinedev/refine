@@ -24,7 +24,7 @@ const formatCurrency = (value: number) => {
 
 export const ProductList = () => {
   const {
-    tableQuery: tableQueryResult,
+    tableQueryResult,
     pageCount,
     current,
     pageSize,

@@ -18,7 +18,7 @@ export const ProductEdit = () => {
 
   const { styles, cx } = useStyles();
   const go = useGo();
-  const { query: queryResult } = useShow<ProductWithCategories>({
+  const { queryResult } = useShow<ProductWithCategories>({
     meta: {
       populate: ["category", "image"],
     },

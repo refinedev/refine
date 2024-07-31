@@ -9,11 +9,12 @@ import type { RcFile } from "antd/lib/upload/interface";
 import type { IPost, IPostVariables, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<IPost, HttpError, IPostVariables, IPostVariables>({
+  const { formProps, saveButtonProps, queryResult } = useForm<
+    IPost,
+    HttpError,
+    IPostVariables,
+    IPostVariables
+  >({
     queryOptions: {
       select: ({ data }) => {
         return {

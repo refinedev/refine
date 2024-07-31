@@ -4,12 +4,7 @@ import { useSelect, useForm, useNavigation } from "@refinedev/core";
 import type { IPost } from "../../interfaces";
 
 export const PostEdit: React.FC = () => {
-  const {
-    formLoading,
-    onFinish,
-    redirect,
-    query: queryResult,
-  } = useForm<IPost>({
+  const { formLoading, onFinish, redirect, queryResult } = useForm<IPost>({
     redirect: false,
   });
 

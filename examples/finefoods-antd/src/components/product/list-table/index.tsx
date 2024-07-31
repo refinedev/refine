@@ -62,7 +62,7 @@ export const ProductListTable = () => {
     },
   });
 
-  const { selectProps: categorySelectProps, query: queryResult } =
+  const { selectProps: categorySelectProps, queryResult } =
     useSelect<ICategory>({
       resource: "categories",
       optionLabel: "title",

@@ -18,11 +18,7 @@ import { supabaseClient, normalizeFile } from "../../utility";
 
 export const PostEdit = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<IPost>({
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
     liveMode: "manual",
     onLiveEvent: () => {
       setIsDeprecated(true);

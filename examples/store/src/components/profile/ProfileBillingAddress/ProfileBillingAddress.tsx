@@ -31,7 +31,7 @@ export const ProfileBillingAddress: React.FC<MyInformationProps> = ({
     reset,
     control,
     formState: { errors, touchedFields },
-    refineCore: { onFinish, mutation: mutationResult },
+    refineCore: { onFinish, mutationResult },
   } = useForm<UpdateCustomerNameFormData>({
     refineCoreProps: {
       action: "edit",

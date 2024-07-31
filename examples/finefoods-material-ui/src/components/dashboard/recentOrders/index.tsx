@@ -22,9 +22,7 @@ import { getUniqueListWithCount } from "../../../utils";
 export const RecentOrders: React.FC = () => {
   const t = useTranslate();
   const { show } = useNavigation();
-  const { mutate } = useUpdate({
-    resource: "orders",
-  });
+  const { mutate } = useUpdate();
   const { mutate: updatePassword } =
     useUpdatePassword<Record<string, string>>();
 
@@ -145,6 +143,7 @@ export const RecentOrders: React.FC = () => {
             showInMenu
             onClick={() => {
               mutate({
+                resource: "orders",
                 id,
                 values: {
                   status: {
@@ -163,6 +162,7 @@ export const RecentOrders: React.FC = () => {
             showInMenu
             onClick={() =>
               mutate({
+                resource: "orders",
                 id,
                 values: {
                   status: {

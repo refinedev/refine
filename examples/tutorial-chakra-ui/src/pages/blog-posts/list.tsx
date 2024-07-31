@@ -117,7 +117,7 @@ export const BlogPostList = () => {
       setCurrent,
       pageCount,
       current,
-      tableQuery: { data: tableData },
+      tableQueryResult: { data: tableData },
     },
   } = useTable({
     columns,

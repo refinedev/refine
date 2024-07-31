@@ -17,22 +17,23 @@ export const PostList: React.FC = () => {
     React.useState<GridRowSelectionModel>([]);
   const hasSelected = selectedRowKeys.length > 0;
 
-  const { mutate } = useUpdateMany<IPost>({
-    resource: "posts",
-    ids: selectedRowKeys.map(String),
-    mutationOptions: {
-      onSuccess: () => {
-        setSelectedRowKeys([]);
-      },
-    },
-  });
+  const { mutate } = useUpdateMany<IPost>();
 
   const updateSelectedItems = () => {
-    mutate({
-      values: {
-        status: "approved",
+    mutate(
+      {
+        resource: "posts",
+        ids: selectedRowKeys.map(String),
+        values: {
+          status: "approved",
+        },
       },
-    });
+      {
+        onSuccess: () => {
+          setSelectedRowKeys([]);
+        },
+      },
+    );
   };
 
   const { dataGridProps } = useDataGrid<IPost>({
@@ -41,7 +42,7 @@ export const PostList: React.FC = () => {
 
   const {
     options,
-    query: { isLoading },
+    queryResult: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
   });

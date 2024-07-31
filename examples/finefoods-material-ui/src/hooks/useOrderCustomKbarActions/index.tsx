@@ -20,16 +20,15 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
     order?.status.text === "On The Way";
 
   const [actions, setActions] = useState<Action[]>([]);
-  const { mutate } = useUpdate({
-    resource: "orders",
-    id: order?.id,
-  });
+  const { mutate } = useUpdate();
 
   const handleMutate = useCallback(
     (status: { id: number; text: string }) => {
       if (!order?.id) return;
 
       mutate({
+        resource: "orders",
+        id: order?.id,
         values: {
           status,
         },

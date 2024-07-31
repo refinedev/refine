@@ -49,7 +49,7 @@ const columns = [
 
 export const ProductList = () => {
   const {
-    tableQuery: tableQueryResult,
+    tableQueryResult,
     pageCount,
     current,
     pageSize,

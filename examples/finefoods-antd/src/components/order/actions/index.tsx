@@ -10,7 +10,7 @@ type OrderActionProps = {
 
 export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
   const t = useTranslate();
-  const { mutate } = useUpdate({ resource: "orders", id: record.id });
+  const { mutate } = useUpdate();
 
   const moreMenu = (record: IOrder) => (
     <Menu
@@ -38,6 +38,8 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
         }
         onClick={() => {
           mutate({
+            resource: "orders",
+            id: record.id,
             values: {
               status: {
                 id: 2,
@@ -72,6 +74,8 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
         }
         onClick={() =>
           mutate({
+            resource: "orders",
+            id: record.id,
             values: {
               status: {
                 id: 5,

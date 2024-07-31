@@ -25,12 +25,7 @@ import { getNameInitials } from "@/utilities";
 import { UPDATE_COMPANY_MUTATION } from "./queries";
 
 export const CompanyForm = () => {
-  const {
-    saveButtonProps,
-    formProps,
-    formLoading,
-    query: queryResult,
-  } = useForm<
+  const { saveButtonProps, formProps, formLoading, queryResult } = useForm<
     GetFields<UpdateCompanyMutation>,
     HttpError,
     GetVariables<UpdateCompanyMutationVariables>
@@ -42,18 +37,17 @@ export const CompanyForm = () => {
   });
   const { avatarUrl, name } = queryResult?.data?.data || {};
 
-  const { selectProps: selectPropsUsers, query: queryResultUsers } = useSelect<
-    GetFieldsFromList<UsersSelectQuery>
-  >({
-    resource: "users",
-    optionLabel: "name",
-    pagination: {
-      mode: "off",
-    },
-    meta: {
-      gqlQuery: USERS_SELECT_QUERY,
-    },
-  });
+  const { selectProps: selectPropsUsers, queryResult: queryResultUsers } =
+    useSelect<GetFieldsFromList<UsersSelectQuery>>({
+      resource: "users",
+      optionLabel: "name",
+      pagination: {
+        mode: "off",
+      },
+      meta: {
+        gqlQuery: USERS_SELECT_QUERY,
+      },
+    });
 
   return (
     <Edit

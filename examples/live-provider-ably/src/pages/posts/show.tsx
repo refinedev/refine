@@ -19,7 +19,7 @@ export const PostShow = () => {
     "deleted" | "updated" | undefined
   >();
 
-  const { query: queryResult } = useShow<IPost>({
+  const { queryResult } = useShow<IPost>({
     liveMode: "manual",
     onLiveEvent: (event) => {
       if (event.type === "deleted" || event.type === "updated") {

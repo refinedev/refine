@@ -4,7 +4,7 @@ import React from "react";
 
 export const PostCreate: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, query: queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     formState: { errors },

@@ -8,7 +8,7 @@ import type { IPost } from "../../interfaces";
 export const PostList: React.FC = () => {
   const { show, close, visible } = useModal();
   const [historyId, setHistoryId] = useState<number>();
-  const { tableQuery: tableQueryResult } = useTable<IPost>({
+  const { tableQueryResult } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",

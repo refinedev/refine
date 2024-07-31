@@ -22,11 +22,7 @@ type Props = {
 };
 
 export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
-  const {
-    saveButtonProps,
-    formProps,
-    query: queryResult,
-  } = useForm<
+  const { saveButtonProps, formProps, queryResult } = useForm<
     GetFields<UpdateUserMutation>,
     HttpError,
     GetVariables<UpdateUserMutationVariables>

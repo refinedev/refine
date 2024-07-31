@@ -18,6 +18,8 @@ export const ProductGridItem = ({ product }: Props) => {
     amount / 100
   ).toFixed(2)}`;
 
+  console.log("Amount", amount);
+
   return (
     <Link
       onClick={product ? undefined : (event) => event.preventDefault()}

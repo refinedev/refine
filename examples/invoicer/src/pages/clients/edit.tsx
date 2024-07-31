@@ -30,7 +30,7 @@ import type { Invoice } from "@/types";
 export const ClientsPageEdit = () => {
   const { list } = useNavigation();
 
-  const { formProps, query: queryResult } = useForm({
+  const { formProps, queryResult } = useForm({
     redirect: false,
     meta: {
       populate: ["account", "invoices.client", "invoices.account.logo"],

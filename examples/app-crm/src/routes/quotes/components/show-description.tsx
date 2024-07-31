@@ -15,11 +15,11 @@ const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 export const ShowDescription = () => {
   const params = useParams<{ id: string }>();
 
-  const {
-    formProps,
-    query: queryResult,
-    autoSaveProps,
-  } = useForm<Quote, HttpError, QuoteUpdateInput>({
+  const { formProps, queryResult, autoSaveProps } = useForm<
+    Quote,
+    HttpError,
+    QuoteUpdateInput
+  >({
     resource: "quotes",
     action: "edit",
     id: params.id,

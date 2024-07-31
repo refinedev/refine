@@ -10,7 +10,7 @@ export const PostEdit: React.FC = () => {
   const { resourceName, id } = useResource();
 
   const {
-    refineCore: { onFinish, formLoading, query: queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     resetField,

@@ -130,15 +130,8 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     };
   }, [stages, deals]);
 
-  const { mutate: updateDeal } = useUpdate({
-    resource: "deals",
-    successNotification: false,
-    mutationMode: "optimistic",
-  });
-  const { mutate: updateManyDeal } = useUpdateMany({
-    resource: "deals",
-    successNotification: false,
-  });
+  const { mutate: updateDeal } = useUpdate();
+  const { mutate: updateManyDeal } = useUpdateMany();
   const { mutate: deleteStage } = useDelete();
 
   const { unassignedStageTotalValue } = useMemo(() => {
@@ -176,10 +169,13 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
     updateDeal(
       {
+        resource: "deals",
         id: dealId,
         values: {
           stageId: stageId,
         },
+        successNotification: false,
+        mutationMode: "optimistic",
       },
       {
         onSuccess: () => {
@@ -223,10 +219,12 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
   const handleClearCards = (args: { dealsIds: string[] }) => {
     updateManyDeal({
+      resource: "deals",
       ids: args.dealsIds,
       values: {
         stageId: null,
       },
+      successNotification: false,
     });
   };
 

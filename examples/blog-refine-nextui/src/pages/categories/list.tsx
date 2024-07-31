@@ -44,7 +44,7 @@ const columns = [
 
 export const CategoryList = () => {
   const {
-    tableQuery: tableQueryResult,
+    tableQueryResult,
     pageCount,
     current,
     pageSize,

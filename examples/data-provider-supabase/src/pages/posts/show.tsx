@@ -19,7 +19,7 @@ const { Title, Text } = Typography;
 export const PostShow = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
 
-  const { query: queryResult } = useShow<IPost>({
+  const { queryResult } = useShow<IPost>({
     liveMode: "manual",
     onLiveEvent: () => {
       setIsDeprecated(true);

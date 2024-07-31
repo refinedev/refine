@@ -12,11 +12,7 @@ import type {
 import { CATEGORY_UPDATE_MUTATION } from "./queries";
 
 export const CategoryEdit = () => {
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<
+  const { formProps, saveButtonProps, queryResult } = useForm<
     GetFields<UpdateCategoryMutation>,
     HttpError,
     GetVariables<UpdateCategoryMutationVariables>

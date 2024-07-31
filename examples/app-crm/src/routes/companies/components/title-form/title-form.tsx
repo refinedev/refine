@@ -20,11 +20,7 @@ import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
 import styles from "./title-form.module.css";
 
 export const CompanyTitleForm = () => {
-  const {
-    formProps,
-    query: queryResult,
-    onFinish,
-  } = useForm<
+  const { formProps, queryResult, onFinish } = useForm<
     GetFields<CompanyTitleFormMutation>,
     HttpError,
     GetVariables<CompanyTitleFormMutationVariables>

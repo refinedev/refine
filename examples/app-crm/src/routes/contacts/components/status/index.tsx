@@ -99,16 +99,15 @@ const LifecycleStage: React.FC<{ status: ContactStatusType }> = ({
 };
 
 export const ContactStatus: React.FC<ContactStatusProps> = ({ contact }) => {
-  const { mutate } = useUpdate({
-    resource: "contacts",
-    mutationMode: "optimistic",
-    id: contact.id,
-  });
+  const { mutate } = useUpdate();
   const { status } = contact;
 
   const updateStatus = (status: ContactStatusEnum) => {
     const stage = statusToStage(status);
     mutate({
+      resource: "contacts",
+      mutationMode: "optimistic",
+      id: contact.id,
       values: {
         status,
         stage,

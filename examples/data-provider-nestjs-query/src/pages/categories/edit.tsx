@@ -7,11 +7,9 @@ import { CATEGORY_EDIT_MUTATION } from "./queries";
 import type { CategoryEditMutation } from "graphql/types";
 
 export const CategoryEdit = () => {
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<GetFields<CategoryEditMutation>>({
+  const { formProps, saveButtonProps, queryResult } = useForm<
+    GetFields<CategoryEditMutation>
+  >({
     metaData: {
       gqlMutation: CATEGORY_EDIT_MUTATION,
     },

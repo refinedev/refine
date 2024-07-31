@@ -8,7 +8,7 @@ import type { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { query: queryResult } = useShow<ICategory>();
+  const { queryResult } = useShow<ICategory>();
   const category = queryResult?.data?.data;
 
   return (

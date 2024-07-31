@@ -7,7 +7,7 @@ import type { ICommit } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const [next, setNext] = React.useState<string | undefined>(undefined);
-  const { dataGridProps, tableQuery: tableQueryResult } = useDataGrid<ICommit>({
+  const { dataGridProps, tableQueryResult } = useDataGrid<ICommit>({
     initialPageSize: 5,
     metaData: {
       cursor: {

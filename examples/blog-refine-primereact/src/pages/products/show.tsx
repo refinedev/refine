@@ -8,7 +8,7 @@ import type { ICategory, IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { query: queryResult } = useShow<IProduct>();
+  const { queryResult } = useShow<IProduct>();
   const product = queryResult?.data?.data;
 
   const { data: categoryData } = useOne<ICategory>({

@@ -19,7 +19,7 @@ export const VideoClubMemberPageEdit = () => {
 
   const {
     control,
-    refineCore: { onFinish, query: queryResult },
+    refineCore: { onFinish, queryResult },
     handleSubmit,
   } = useForm<Member>();
 

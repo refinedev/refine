@@ -75,10 +75,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
 
   const { selectProps, queryResult } = useUsersSelect();
 
-  const { mutateAsync: createManyMutateAsync } = useCreateMany({
-    resource: "contacts",
-    successNotification: false,
-  });
+  const { mutateAsync: createManyMutateAsync } = useCreateMany();
 
   return (
     <Modal
@@ -121,12 +118,14 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
 
             if ((values.contacts ?? [])?.length > 0) {
               await createManyMutateAsync({
+                resource: "contacts",
                 values:
                   values.contacts?.map((contact) => ({
                     ...contact,
                     companyId: createdCompany.id,
                     salesOwnerId: createdCompany.salesOwner.id,
                   })) ?? [],
+                successNotification: false,
               });
             }
 

@@ -18,7 +18,7 @@ import type {
 export const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { formLoading, query: queryResult },
+    refineCore: { formLoading, queryResult },
     register,
     control,
     formState: { errors },

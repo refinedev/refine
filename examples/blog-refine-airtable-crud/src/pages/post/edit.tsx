@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, query: queryResult },
+    refineCore: { onFinish, formLoading, queryResult },
     register,
     handleSubmit,
     resetField,

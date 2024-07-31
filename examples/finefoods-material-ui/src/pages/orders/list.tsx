@@ -27,7 +27,7 @@ import { RefineListView } from "../../components";
 
 export const OrderList = () => {
   const t = useTranslate();
-  const { mutate } = useUpdate({ resource: "orders" });
+  const { mutate } = useUpdate();
 
   const { dataGridProps, filters, sorters } = useDataGrid<
     IOrder,
@@ -121,6 +121,7 @@ export const OrderList = () => {
             showInMenu
             onClick={() => {
               mutate({
+                resource: "orders",
                 id,
                 values: {
                   status: {
@@ -139,6 +140,7 @@ export const OrderList = () => {
             showInMenu
             onClick={() =>
               mutate({
+                resource: "orders",
                 id,
                 values: {
                   status: {

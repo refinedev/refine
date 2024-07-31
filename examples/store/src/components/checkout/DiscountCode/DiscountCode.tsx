@@ -20,6 +20,7 @@ interface DiscountCodeProps {
 export const DiscountCode: React.FC<DiscountCodeProps> = ({ cart }) => {
   const [view, setView] = React.useState<"pre" | "form" | "post">("pre");
   const { id, discounts, region } = cart;
+  const { mutate, isLoading } = useUpdate();
   const invalidate = useInvalidate();
   const { mutate: removeDiscount } = useDelete();
 
@@ -138,31 +139,7 @@ const DiscountForm = ({
   onSuccess: () => void;
 }) => {
   const { id } = cart;
-  const { mutate, isLoading } = useUpdate({
-    resource: "carts",
-    id,
-    mutationOptions: {
-      onSuccess: async () => {
-        await invalidate({
-          resource: "carts",
-          invalidates: ["detail"],
-          id,
-        });
-        onSuccess();
-      },
-      onError: (err) => {
-        setError(
-          "discount_code",
-          {
-            message: err.message,
-          },
-          {
-            shouldFocus: true,
-          },
-        );
-      },
-    },
-  });
+  const { mutate, isLoading } = useUpdate();
   const invalidate = useInvalidate();
 
   const {
@@ -174,11 +151,36 @@ const DiscountForm = ({
   } = useForm<DiscountFormValues>();
 
   const onApply = (data: DiscountFormValues) => {
-    mutate({
-      values: {
-        discounts: [{ code: data.discount_code }],
+    mutate(
+      {
+        resource: "carts",
+        id,
+        values: {
+          discounts: [{ code: data.discount_code }],
+        },
       },
-    });
+      {
+        onSuccess: async () => {
+          await invalidate({
+            resource: "carts",
+            invalidates: ["detail"],
+            id,
+          });
+          onSuccess();
+        },
+        onError: (err) => {
+          setError(
+            "discount_code",
+            {
+              message: err.message,
+            },
+            {
+              shouldFocus: true,
+            },
+          );
+        },
+      },
+    );
   };
 
   React.useEffect(() => {

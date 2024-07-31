@@ -10,11 +10,7 @@ import type { IPost } from "../interfaces";
 const PostEdit: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();
 
-  const {
-    formProps,
-    saveButtonProps,
-    query: queryResult,
-  } = useForm<IPost>({
+  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
     queryOptions: {
       initialData,
     },

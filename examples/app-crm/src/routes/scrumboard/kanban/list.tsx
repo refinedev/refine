@@ -99,15 +99,8 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     };
   }, [tasks, stages]);
 
-  const { mutate: updateTask } = useUpdate<Task, HttpError, TaskUpdateInput>({
-    resource: "tasks",
-    successNotification: false,
-    mutationMode: "optimistic",
-  });
-  const { mutate: updateManyTask } = useUpdateMany({
-    resource: "tasks",
-    successNotification: false,
-  });
+  const { mutate: updateTask } = useUpdate<Task, HttpError, TaskUpdateInput>();
+  const { mutate: updateManyTask } = useUpdateMany();
   const { mutate: deleteStage } = useDelete();
 
   const handleOnDragEnd = (event: DragEndEvent) => {
@@ -124,10 +117,13 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     }
 
     updateTask({
+      resource: "tasks",
       id: taskId,
       values: {
         stageId: stageId,
       },
+      successNotification: false,
+      mutationMode: "optimistic",
     });
   };
 
@@ -163,10 +159,12 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
 
   const handleClearCards = (args: { taskIds: string[] }) => {
     updateManyTask({
+      resource: "tasks",
       ids: args.taskIds,
       values: {
         stageId: null,
       },
+      successNotification: false,
     });
   };
 

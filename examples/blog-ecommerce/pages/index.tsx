@@ -13,20 +13,15 @@ type ItemProps = {
 };
 
 export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
-  const {
-    tableQuery: tableQueryResult,
-    setFilters,
-    current,
-    setCurrent,
-    pageSize,
-  } = useTable<IProduct>({
-    resource: "products",
-    queryOptions: {
-      initialData: products,
-    },
-    initialPageSize: 9,
-    metaData: { populate: ["image"] },
-  });
+  const { tableQueryResult, setFilters, current, setCurrent, pageSize } =
+    useTable<IProduct>({
+      resource: "products",
+      queryOptions: {
+        initialData: products,
+      },
+      initialPageSize: 9,
+      metaData: { populate: ["image"] },
+    });
 
   const totalPageCount = Math.ceil(
     (tableQueryResult.data?.total ?? 0) / pageSize,
