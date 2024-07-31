@@ -2,7 +2,7 @@
 "@refinedev/codemod": minor
 ---
 
-feat: added `npx @refinedev/codemod@latest august2024-release` to automatically refactor all deprecated values to their new values on the august release #6154
+feat: added `npx @refinedev/codemod@latest rename-query-and-mutation-result` to automatically refactor all deprecated values to their new values on the august release #6154
 
 Following exameples are the changes that will be made:
 

@@ -14,5 +14,5 @@ import { useSelect } from '@refinedev/core';
 > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
 >
 > ```bash
-> npx @refinedev/codemod@latest august2024-release
+> npx @refinedev/codemod@latest rename-query-and-mutation-result
 > ```
