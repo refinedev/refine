@@ -1,13 +1,13 @@
-import type { API, FileInfo } from "jscodeshift";
+import type { Collection, JSCodeshift } from "jscodeshift";
 
 // ```diff
 // - const { queryResult } = useShow();
 // + const { query } = useShow();
 // ```
-export default function transformer(file: FileInfo, api: API): string {
-  const j = api.jscodeshift;
-  const source = j(file.source);
-
+export const renameUseShowQueryResult = (
+  j: JSCodeshift,
+  source: Collection,
+) => {
   const renameProperties = (prop) => {
     // just a type guard
     if ("shorthand" in prop && "key" in prop && "name" in prop.key) {
@@ -41,6 +41,4 @@ export default function transformer(file: FileInfo, api: API): string {
         });
       }
     });
-
-  return source.toSource();
-}
+};
