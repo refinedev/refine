@@ -26,7 +26,7 @@ export const ProfileEmail: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     control,
     formState: { errors },
-    refineCore: { onFinish, mutationResult },
+    refineCore: { onFinish, mutation: mutationResult },
   } = useForm<UpdateCustomerEmailFormData>({
     defaultValues: {
       email: customer.email,

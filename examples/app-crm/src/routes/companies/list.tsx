@@ -26,7 +26,7 @@ export const CompanyListPage: FC<PropsWithChildren> = ({ children }) => {
 
   const {
     tableProps,
-    tableQueryResult,
+    tableQuery: tableQueryResult,
     searchFormProps,
     filters,
     sorters,

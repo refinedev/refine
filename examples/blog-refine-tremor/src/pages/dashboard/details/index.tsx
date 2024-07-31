@@ -126,7 +126,7 @@ export const Details = () => {
     getHeaderGroups,
     getRowModel,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,

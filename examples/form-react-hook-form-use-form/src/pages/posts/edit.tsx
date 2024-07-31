@@ -5,7 +5,7 @@ import { useBack, useSelect } from "@refinedev/core";
 export const PostEdit: React.FC = () => {
   const back = useBack();
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query: queryResult },
     register,
     handleSubmit,
     formState: { errors },

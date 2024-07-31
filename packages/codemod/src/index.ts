@@ -114,7 +114,7 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
-    name: "[August 2024 Release]: Rename all deprecated values (queryResult, tableQueryResult, mutationResult) with new values (query, tableQuery, mutation).",
+    name: "[August 2024 Release]: Rename all deprecated values (queryResult, tableQueryResult, mutationResult) to (query, tableQuery, mutation).",
     value: "august2024-release",
   },
   {

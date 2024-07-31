@@ -23,7 +23,7 @@ const PropertyDetails = () => {
   const { data: user } = useGetIdentity({
     v3LegacyAuthProviderCompatible: true,
   });
-  const { queryResult } = useShow();
+  const { query: queryResult } = useShow();
   const { mutate } = useDelete();
   const { id } = useParams();
 

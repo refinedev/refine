@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 
 export const PostShow = () => {
   const { translate } = useTranslation();
-  const { queryResult } = useShow<IPost>();
+  const { query: queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

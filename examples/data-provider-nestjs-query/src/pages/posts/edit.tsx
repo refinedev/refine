@@ -15,10 +15,11 @@ import { CATEGORIES_SELECT_QUERY, POST_EDIT_MUTATION } from "./queries";
 import type { CategoriesSelectQuery, PostEditMutation } from "graphql/types";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
-    GetFields<PostEditMutation>,
-    HttpError
-  >({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<GetFields<PostEditMutation>, HttpError>({
     metaData: {
       gqlMutation: POST_EDIT_MUTATION,
     },

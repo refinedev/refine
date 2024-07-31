@@ -21,7 +21,7 @@ export const PostEdit: React.FC = () => {
   const apiUrl = useApiUrl();
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
     register,
     control,
     formState: { errors },

@@ -23,7 +23,7 @@ import type { IOrder } from "../../interfaces";
 export const OrderShow = () => {
   const t = useTranslate();
 
-  const { queryResult } = useShow<IOrder>();
+  const { query: queryResult } = useShow<IOrder>();
   const record = queryResult.data?.data;
   const canAcceptOrder = record?.status.text === "Pending";
   const canRejectOrder =

@@ -56,7 +56,7 @@ export const ContactShowPage: React.FC = () => {
   const { list } = useNavigation();
   const { mutate } = useUpdate<Contact>();
   const { mutate: deleteMutation } = useDelete<Contact>();
-  const { queryResult } = useShow<GetFields<ContactShowQuery>>({
+  const { query: queryResult } = useShow<GetFields<ContactShowQuery>>({
     meta: {
       gqlQuery: CONTACT_SHOW_QUERY,
     },

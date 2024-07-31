@@ -47,7 +47,7 @@ export const CompanyCreateModal = () => {
     },
   });
 
-  const { selectProps, queryResult } = useSelect<
+  const { selectProps, query: queryResult } = useSelect<
     GetFieldsFromList<UsersSelectQuery>
   >({
     resource: "users",
