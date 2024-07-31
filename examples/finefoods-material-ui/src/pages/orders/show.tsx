@@ -31,15 +31,16 @@ export const OrderShow = () => {
     record?.status.text === "Ready" ||
     record?.status.text === "On The Way";
 
-  const { mutate } = useUpdate();
+  const { mutate } = useUpdate({
+    resource: "orders",
+    id: record?.id.toString(),
+  });
 
   const theme = useTheme();
 
   const handleMutate = (status: { id: number; text: string }) => {
     if (record) {
       mutate({
-        resource: "orders",
-        id: record.id.toString(),
         values: {
           status,
         },

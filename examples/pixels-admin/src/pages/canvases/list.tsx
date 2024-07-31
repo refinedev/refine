@@ -34,7 +34,9 @@ export const CanvasList = () => {
       select: "*, pixels(id, canvas_id, user_id, x, y, color)",
     },
   });
-  const { mutate } = useUpdate<TCanvasPromoteResult>();
+  const { mutate } = useUpdate<TCanvasPromoteResult>({
+    resource: "canvases",
+  });
 
   return (
     <List>
@@ -153,7 +155,6 @@ export const CanvasList = () => {
                   type="primary"
                   onClick={() =>
                     mutate({
-                      resource: "canvases",
                       id: record.id,
                       values: {
                         is_featured: !record.is_featured,
