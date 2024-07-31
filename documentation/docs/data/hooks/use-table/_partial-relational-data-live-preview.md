@@ -38,8 +38,8 @@ interface IPost {
 }
 
 const PostList: React.FC = () => {
-  const { tableQueryResult } = useTable<IPost, HttpError>();
-  const posts = tableQueryResult?.data?.data ?? [];
+  const { tableQuery } = useTable<IPost, HttpError>();
+  const posts = tableQuery?.data?.data ?? [];
 
   // highlight-start
   // Fetches the category of each post. It uses the useMany hook to fetch the category data from the API.
@@ -57,7 +57,7 @@ const PostList: React.FC = () => {
   });
   // highlight-end
 
-  if (tableQueryResult?.isLoading) {
+  if (tableQuery?.isLoading) {
     return <div>Loading...</div>;
   }
 

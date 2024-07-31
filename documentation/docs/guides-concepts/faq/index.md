@@ -25,6 +25,7 @@ values={[
 import { useTable, useForm, useShow } from "@refinedev/core";
 
 // All "data" related hooks provided by Refine can use query' refetch function
+const { tableQuery: { refetch } } = useTable();
 const { tableQueryResult: { refetch } } = useTable();
 const { query: { refetch } } = useForm();
 ...

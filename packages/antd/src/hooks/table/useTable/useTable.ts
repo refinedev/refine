@@ -92,6 +92,7 @@ export const useTable = <
 > = {}): useTableReturnType<TData, TError, TSearchVariables> => {
   const {
     tableQueryResult,
+    tableQuery,
     current,
     setCurrent,
     pageSize,
@@ -279,6 +280,7 @@ export const useTable = <
       scroll: { x: true },
     },
     tableQueryResult,
+    tableQuery,
     sorters,
     sorter,
     filters,

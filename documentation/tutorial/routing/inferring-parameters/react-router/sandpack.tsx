@@ -29,7 +29,7 @@ import { Link } from "react-router-dom";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     current,
     setCurrent,
     pageCount,

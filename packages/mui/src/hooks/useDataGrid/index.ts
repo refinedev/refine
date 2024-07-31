@@ -171,6 +171,7 @@ export function useDataGrid<
 
   const {
     tableQueryResult,
+    tableQuery,
     current,
     setCurrent,
     pageSize,
@@ -321,6 +322,7 @@ export function useDataGrid<
 
   return {
     tableQueryResult,
+    tableQuery,
     dataGridProps: {
       disableRowSelectionOnClick: true,
       rows: data?.data || [],

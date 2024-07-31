@@ -15,7 +15,7 @@ const AllProperties = () => {
   const navigate = useNavigate();
 
   const {
-    tableQueryResult: { data, isLoading, isError },
+    tableQuery: { data, isLoading, isError },
     current,
     setCurrent,
     setPageSize,

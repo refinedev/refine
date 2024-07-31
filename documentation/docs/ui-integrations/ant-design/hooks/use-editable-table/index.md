@@ -340,7 +340,7 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 | ----------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | searchFormProps   | Ant Design [`<Form>`][form] props                       | [`FormProps<TSearchVariables>`][form]                                                |
 | tableProps        | Ant Design [`<Table>`][table] props                     | [`TableProps<TData>`][table]                                                         |
-| tableQueryResult  | Result of the `react-query`'s `useQuery`                | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| tableQuery        | Result of the `react-query`'s `useQuery`                | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
 | sorter            | Current sorting state                                   | [`CrudSorting`][crudsorting]                                                         |
 | filters           | Current filters state                                   | [`CrudFilters`][crudfilters]                                                         |
 | form              | Ant Design [`<Form>`][form] instance                    | [`FormInstance`][forminstance]                                                       |

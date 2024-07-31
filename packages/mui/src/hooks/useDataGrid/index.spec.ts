@@ -237,4 +237,25 @@ describe("useDataGrid Hook", () => {
 
     expect(newPost).toEqual(postToUpdate);
   });
+
+  it("should work with query and queryResult", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
+  });
 });

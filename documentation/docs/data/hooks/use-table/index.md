@@ -529,7 +529,7 @@ Use `filters.defaultBehavior` instead.
 
 ## Return Values
 
-### tableQueryResult
+### tableQuery
 
 Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
@@ -612,6 +612,10 @@ Use `sorters` instead.
 
 Use `setSorters` instead.
 
+### ~~tableQueryResult~~ <PropTag deprecated />
+
+Use [`tableQuery`](#tablequery) instead.
+
 ## FAQ
 
 ### How can I handle relational data?
@@ -626,7 +630,7 @@ First, you need to set `filters.mode: "off"`
 
 ```tsx
 import { useTable } from "@refinedev/core";
-const { tableQueryResult, filters, setFilters } = useTable({
+const { tableQuery, filters, setFilters } = useTable({
   filters: {
     mode: "off",
   },
@@ -639,13 +643,13 @@ Then, you can use the `filters` state to filter your data.
 // ...
 
 const List = () => {
-  const { tableQueryResult, filters } = useTable();
+  const { tableQuery, filters } = useTable();
 
   // ...
 
   const filteredData = useMemo(() => {
     if (filters.length === 0) {
-      return tableQueryResult.data;
+      return tableQuery.data;
     }
 
     // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
@@ -661,7 +665,7 @@ const List = () => {
         }
       });
     });
-  }, [tableQueryResult.data, filters]);
+  }, [tableQuery.data, filters]);
 };
 
 return (
@@ -684,7 +688,7 @@ First, you need to set `sorters.mode: "off"`
 
 ```tsx
 import { useTable } from "@refinedev/core";
-const { tableQueryResult, sorters, setSorters } = useTable({
+const { tableQuery, sorters, setSorters } = useTable({
   sorters: {
     mode: "off",
   },
@@ -697,16 +701,16 @@ Then, you can use the `sorters` state to sort your data.
 // ...
 import { useTable } from "@refinedev/core";
 const List = () => {
-  const { tableQueryResult, sorters } = useTable();
+  const { tableQuery, sorters } = useTable();
 
   // ...
 
   const sortedData = useMemo(() => {
     if (sorters.length === 0) {
-      return tableQueryResult.data;
+      return tableQuery.data;
     }
 
-    return tableQueryResult.data.sort((a, b) => {
+    return tableQuery.data.sort((a, b) => {
       const sorter = sorters[0];
 
       if (sorter.order === "asc") {
@@ -715,7 +719,7 @@ const List = () => {
         return a[sorter.field] < b[sorter.field] ? 1 : -1;
       }
     });
-  }, [tableQueryResult.data, sorters]);
+  }, [tableQuery.data, sorters]);
 
   return (
     <div>
@@ -753,7 +757,7 @@ errorNotification-default='"There was an error creating resource (status code: `
 
 | Property                      | Description                                                                           | Type                                                                                                                                              |
 | ----------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
+| tableQuery                    | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
 | current                       | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
 | pageCount                     | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
 | setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
