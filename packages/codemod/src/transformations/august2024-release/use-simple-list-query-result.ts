@@ -1,25 +1,21 @@
-import type { API, FileInfo } from "jscodeshift";
-
-export default function transformer(file: FileInfo, api: API): string {
-  const j = api.jscodeshift;
-  const source = j(file.source);
-
+import type { Collection, JSCodeshift } from "jscodeshift";
+// ```diff
+// - const { queryResult } = useSimpleList();
+// + const { query } = useSimpleList();
+// ```
+export const renameUseSimpleListQueryResult = (
+  j: JSCodeshift,
+  source: Collection,
+) => {
   const renameProperties = (prop) => {
     // just a type guard
     if ("shorthand" in prop && "key" in prop && "name" in prop.key) {
-      const renameMap = {
-        queryResult: "query",
-        mutationResult: "mutation",
-      };
-      const newName = renameMap[prop.key.name];
-      if (newName) {
-        prop.key.name = newName;
+      if (prop.key.name === "queryResult") {
+        prop.key.name = "query";
 
         if (prop.shorthand) {
           prop.shorthand = false;
-          prop.value = j.identifier(
-            prop.key.name === "query" ? "queryResult" : "mutationResult",
-          );
+          prop.value = j.identifier("queryResult");
         } else {
           if (prop.key.name === prop?.value?.name) {
             prop.shorthand = true;
@@ -32,7 +28,7 @@ export default function transformer(file: FileInfo, api: API): string {
   source
     .find(j.VariableDeclarator, {
       id: { type: "ObjectPattern" },
-      init: { callee: { name: "useForm" } },
+      init: { callee: { name: "useSimpleList" } },
     })
     .forEach((path) => {
       if ("properties" in path.node.id) {
@@ -53,6 +49,4 @@ export default function transformer(file: FileInfo, api: API): string {
         });
       }
     });
-
-  return source.toSource();
-}
+};

@@ -114,24 +114,8 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
-    name: "Refactor[useTable, useDataGrid]: { tableQueryResult } to { tableQuery }",
-    value: "use-table-query-result",
-  },
-  {
-    name: "Refactor[useForm]: { queryResult, mutationResult } to { query, mutation }",
-    value: "use-form-query-and-mutation-result",
-  },
-  {
-    name: "Refactor[useShow]: { queryResult } to { query }",
-    value: "use-show-query-result",
-  },
-  {
-    name: "Refactor[useSelect, useAutocomplete, useCheckboxGroup, useRadioGroup]: { queryResult, defaultValueQueryResult } to { query, defaultValueQuery }",
-    value: "use-select-query-result",
-  },
-  {
-    name: "Refactor[useSimpleList]: { queryResult } to { query }",
-    value: "use-simple-list-query-result",
+    name: "[August 2024 Release]: Rename all deprecated values (queryResult, tableQueryResult, mutationResult) with new values (query, tableQuery, mutation).",
+    value: "august2024-release",
   },
   {
     name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
