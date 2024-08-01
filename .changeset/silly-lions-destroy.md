@@ -5,4 +5,8 @@
 "@refinedev/mui": patch
 ---
 
-Consider null and undefined values in DateField
+fix(date-field): falsy values should render empty string
+
+Previously, `<DateField value={undefined} />` was rendering the current date. After this change, it will render empty string if a falsy value is provided.
+
+[Resolves #6216](https://github.com/refinedev/refine/issues/6216)
