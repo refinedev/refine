@@ -40,15 +40,19 @@ export const fieldDateTests = (
     });
 
     it("renders empty with given null", () => {
-      const { getByText } = render(<DateField value={null} />);
+      const { getByTestId } = render(
+        <DateField value={null} data-testid="date-field" />,
+      );
 
-      getByText("");
+      expect(getByTestId("date-field").textContent).toBe("");
     });
 
     it("renders empty with given undefined", () => {
-      const { getByText } = render(<DateField value={undefined} />);
+      const { getByTestId } = render(
+        <DateField value={undefined} data-testid="date-field" />,
+      );
 
-      getByText("");
+      expect(getByTestId("date-field").textContent).toBe("");
     });
 
     it("renders invalid date with given incorrect date", () => {
