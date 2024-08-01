@@ -18,17 +18,22 @@ export const CalendarEditPage: React.FC = () => {
   const { id } = useResource();
   const { list } = useNavigation();
 
-  const { formProps, saveButtonProps, form, onFinish, queryResult } =
-    useForm<Event>({
-      action: "edit",
-      id,
-      queryOptions: {
-        enabled: true,
-      },
-      meta: {
-        gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
-      },
-    });
+  const {
+    formProps,
+    saveButtonProps,
+    form,
+    onFinish,
+    query: queryResult,
+  } = useForm<Event>({
+    action: "edit",
+    id,
+    queryOptions: {
+      enabled: true,
+    },
+    meta: {
+      gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
+    },
+  });
 
   useEffect(() => {
     const startDate = queryResult?.data?.data.startDate;

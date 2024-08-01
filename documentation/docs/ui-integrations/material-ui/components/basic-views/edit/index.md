@@ -18,13 +18,13 @@ import { Controller } from "react-hook-form";
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     register,
     control,
     formState: { errors },
   } = useForm();
 
-  const samplesData = queryResult?.data?.data;
+  const samplesData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",
@@ -435,13 +435,13 @@ import { Controller } from "react-hook-form";
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     register,
     control,
     formState: { errors },
   } = useForm();
 
-  const samplesData = queryResult?.data?.data;
+  const samplesData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",
@@ -1203,7 +1203,7 @@ const SampleEdit = () => {
   const {
     saveButtonProps,
     refineCore: {
-      queryResult,
+      query,
       // highlight-next-line
       autoSaveProps,
     },
@@ -1220,7 +1220,7 @@ const SampleEdit = () => {
     // highlight-end
   });
 
-  const samplesData = queryResult?.data?.data;
+  const samplesData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",

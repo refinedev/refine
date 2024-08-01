@@ -4,7 +4,7 @@ import { Form, Input, Select, DatePicker } from "antd";
 import dayjs from "dayjs";
 
 export const BlogPostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm();
+  const { formProps, saveButtonProps, query: queryResult } = useForm();
 
   const blogPostsData = queryResult?.data?.data;
 

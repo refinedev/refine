@@ -171,7 +171,7 @@ const ShowTsxCode = `
 import { useShow, BaseKey } from "@refinedev/core";
 
 export const Show: React.FC = () => {
-    const { queryResult: { data, isLoading, isError } } = useShow<IProduct>({
+    const { query: { data, isLoading, isError } } = useShow<IProduct>({
     });
 
     if (isLoading) {
@@ -250,14 +250,14 @@ import React from "react";
 import { useForm, HttpError, BaseKey } from "@refinedev/core";
 
 export const Edit: React.FC = () => {
-    const { queryResult, formLoading, onFinish } = useForm<IProduct, HttpError, FormValues>({
+    const { query, formLoading, onFinish } = useForm<IProduct, HttpError, FormValues>({
         resource: "products",
         action: "edit",
         id: "123",
         redirect: "show", // redirect to show page after form submission, defaults to "list"
     });
 
-    const defaultValues = queryResult?.data?.data;
+    const defaultValues = query?.data?.data;
 
     const [values, setValues] = React.useState<FormValues>({
         name: defaultValues?.name || "",
@@ -314,14 +314,14 @@ import React from "react";
 import { useForm, HttpError, BaseKey } from "@refinedev/core";
 
 export const Clone: React.FC = () => {
-    const { queryResult, formLoading, onFinish } = useForm<IProduct, HttpError, FormValues>({
+    const { query, formLoading, onFinish } = useForm<IProduct, HttpError, FormValues>({
         resource: "products",
         action: "clone",
         id: "123",
         redirect: "show", // redirect to show page after form submission, defaults to "list"
     });
 
-    const defaultValues = queryResult?.data?.data;
+    const defaultValues = query?.data?.data;
 
     const [values, setValues] = React.useState<FormValues>({
         name: defaultValues?.name || "",

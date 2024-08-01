@@ -20,7 +20,24 @@ type CalendarManageCategoriesProps = {
 export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
   ({ saveSuccces, ...rest }) => {
     const [form] = Form.useForm();
-    const { mutate: createManyMutation } = useCreateMany();
+    const { mutate: createManyMutation } = useCreateMany({
+      resource: "eventCategories",
+      meta: {
+        gqlMutation: CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION,
+      },
+      successNotification: () => ({
+        key: "event-category-create",
+        message: "Successfully created categories",
+        description: "Successful",
+        type: "success",
+      }),
+      mutationOptions: {
+        onSuccess: () => {
+          saveSuccces?.();
+          form.resetFields();
+        },
+      },
+    });
     const { mutate: deleteMutation } = useDelete();
     const { data } = useList<GetFieldsFromList<EventCategoriesQuery>>({
       resource: "eventCategories",
@@ -89,27 +106,9 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
                 title,
               }));
 
-              createManyMutation(
-                {
-                  resource: "eventCategories",
-                  meta: {
-                    gqlMutation: CALENDAR_CREATE_EVENT_CATEGORIES_MUTATION,
-                  },
-                  values,
-                  successNotification: () => ({
-                    key: "event-category-create",
-                    message: "Successfully created categories",
-                    description: "Successful",
-                    type: "success",
-                  }),
-                },
-                {
-                  onSuccess: () => {
-                    saveSuccces?.();
-                    form.resetFields();
-                  },
-                },
-              );
+              createManyMutation({
+                values,
+              });
             }}
           >
             <Form.List name="title">

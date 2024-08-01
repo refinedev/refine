@@ -494,16 +494,10 @@ import { Button, Form, Input, Select, Steps } from "antd";
 const { Step } = Steps;
 
 const PostEditPage: React.FC = () => {
-  const {
-    current,
-    gotoStep,
-    stepsProps,
-    formProps,
-    saveButtonProps,
-    queryResult,
-  } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, query } =
+    useStepsForm<IPost, HttpError, IPost>();
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
     resource: "categories",
     defaultValue: postData?.category.id,
@@ -657,14 +651,8 @@ import { HttpError } from "@refinedev/core";
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-  const {
-    current,
-    gotoStep,
-    stepsProps,
-    formProps,
-    saveButtonProps,
-    queryResult,
-  } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, query } =
+    useStepsForm<IPost, HttpError, IPost>();
 
   return null;
 };
@@ -776,14 +764,8 @@ import {
 import React from "react";
 
 export const PostCreate: React.FC = () => {
-  const {
-    current,
-    gotoStep,
-    stepsProps,
-    formProps,
-    saveButtonProps,
-    queryResult,
-  } = useStepsForm<IPost, HttpError, IPost>();
+  const { current, gotoStep, stepsProps, formProps, saveButtonProps, query } =
+    useStepsForm<IPost, HttpError, IPost>();
 
   const { selectProps: categorySelectProps } = useSelect<ICategory, HttpError>({
     resource: "categories",
@@ -876,7 +858,7 @@ export const PostCreate: React.FC = () => {
     stepsProps,
     formProps,
     saveButtonProps,
-    queryResult,
+    query,
     submit,
   } = useStepsForm<IPost, HttpError, IPost>();
 

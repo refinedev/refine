@@ -3,7 +3,10 @@ import semverDiff from "semver-diff";
 import chalk from "chalk";
 import { findDuplicates } from "@utils/array";
 import { parsePackageNameAndVersion } from "@utils/package";
-import type { RefinePackageInstalledVersionData } from "@definitions/package";
+import type {
+  PackageDependency,
+  RefinePackageInstalledVersionData,
+} from "@definitions/package";
 
 type UIGroup = {
   patch: {
@@ -47,7 +50,18 @@ export const promptInteractiveRefineUpdate = async (
     },
   ]);
 
-  return answers.packages.length > 0 ? answers.packages : null;
+  if (answers.packages.length > 0) {
+    // convert to object for easy access
+    const packagesObject: PackageDependency = {};
+    answers.packages.forEach((pckg) => {
+      const { name, version } = parsePackageNameAndVersion(pckg);
+      packagesObject[name] = version ?? "latest";
+    });
+
+    return packagesObject;
+  }
+
+  return null;
 };
 
 export const validatePrompt = (input: string[]) => {
@@ -159,8 +173,8 @@ const createInquirerUI = (uiGroup: UIGroup) => {
       choices.push({
         name: `${pckg.name.padEnd(maxNameLength)} ${pckg.from.padStart(
           maxFromLength,
-        )} -> ${pckg.to}`,
-        value: `${pckg.name}@${pckg.to}`,
+        )} -> ^${pckg.to}`,
+        value: `${pckg.name}@^${pckg.to}`,
       });
     });
   }
@@ -173,8 +187,8 @@ const createInquirerUI = (uiGroup: UIGroup) => {
       choices.push({
         name: `${pckg.name.padEnd(maxNameLength)} ${pckg.from.padStart(
           maxFromLength,
-        )} -> ${pckg.to}`,
-        value: `${pckg.name}@${pckg.to}`,
+        )} -> ^${pckg.to}`,
+        value: `${pckg.name}@^${pckg.to}`,
       });
     });
   }
@@ -187,8 +201,8 @@ const createInquirerUI = (uiGroup: UIGroup) => {
       choices.push({
         name: `${pckg.name.padEnd(maxNameLength)} ${pckg.from.padStart(
           maxFromLength,
-        )} -> ${pckg.to}`,
-        value: `${pckg.name}@${pckg.to}`,
+        )} -> ^${pckg.to}`,
+        value: `${pckg.name}@^${pckg.to}`,
       });
     });
   }

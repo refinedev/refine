@@ -33,7 +33,7 @@ export const ContactsListPage: React.FC<Props> = ({ children }) => {
     filters,
     sorters,
     setFilters,
-    tableQueryResult,
+    tableQuery: tableQueryResult,
   } = useTable<
     GetFieldsFromList<ContactsListQuery>,
     HttpError,

@@ -58,7 +58,7 @@ import { useTable } from "@refinedev/core";
 export const ListProducts = () => {
   // highlight-start
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable({
     resource: "products",
     pagination: { current: 1, pageSize: 10 },
@@ -116,7 +116,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable({
     resource: "products",
     pagination: { current: 1, pageSize: 10 },
@@ -318,7 +318,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     // highlight-start
     current,
     setCurrent,
@@ -431,7 +431,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     current,
     setCurrent,
     pageCount,

@@ -220,7 +220,7 @@ import { Button } from "primereact/Button";
 
 export const Dashboard = () => {
   return (
-    <div className="flex justify-content-center">
+    <div className="justify-content-center flex">
       <Button label="Hello PrimeReact!" icon="pi pi-prime" />
     </div>
   );
@@ -338,14 +338,14 @@ export const KpiCard = ({
     if (total < trend) {
       return (
         <div className="text-green-500">
-          <span className="font-medium mr-2">+{calc}%</span>
+          <span className="mr-2 font-medium">+{calc}%</span>
         </div>
       );
     }
 
     return (
       <div className="text-pink-500">
-        <span className="font-medium mr-2">-{calc}%</span>
+        <span className="mr-2 font-medium">-{calc}%</span>
       </div>
     );
   };
@@ -354,15 +354,15 @@ export const KpiCard = ({
     <Card
       className={`shadow-1 border-left-3 border-${color}`}
       title={
-        <div className="flex justify-content-between">
+        <div className="justify-content-between flex">
           <div>
-            <span className="block font-bold text-xl mb-3">{title}</span>
-            <div className="text-900 font-medium text-2xl">
+            <span className="mb-3 block text-xl font-bold">{title}</span>
+            <div className="text-900 text-2xl font-medium">
               {formatTotal(total)}
             </div>
           </div>
           <div
-            className="flex align-items-center justify-content-center"
+            className="align-items-center justify-content-center flex"
             style={{ width: "2.5rem", height: "2.5rem" }}
           >
             <i className={`pi ${icon} text-${color} text-2xl`} />
@@ -797,7 +797,7 @@ import { IOrder, IOrderStatus } from "../../../interfaces";
 
 export const RecentSales = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -814,7 +814,7 @@ export const RecentSales = () => {
     },
   });
 
-  const orders = tableQueryResult?.data?.data;
+  const orders = tableQuery?.data?.data;
 
   const formatCurrency = (value: number) => {
     return value.toLocaleString("en-US", {
@@ -867,7 +867,7 @@ export const RecentSales = () => {
   };
 
   const header = (
-    <div className="flex justify-content-between">
+    <div className="justify-content-between flex">
       <Button
         type="button"
         icon="pi pi-filter-slash"
@@ -923,7 +923,7 @@ export const RecentSales = () => {
         }}
         sortField={sorters[0]?.field}
         sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-        loading={tableQueryResult?.isLoading}
+        loading={tableQuery?.isLoading}
         header={header}
       >
         <Column field="id" header="Id" sortable style={{ minWidth: "2rem" }} />
@@ -1126,7 +1126,7 @@ const formatCurrency = (value: number) => {
 
 export const ProductList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -1140,7 +1140,7 @@ export const ProductList = () => {
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const products = tableQueryResult?.data?.data;
+  const products = tableQuery?.data?.data;
 
   const { data: categoryData } = useMany<ICategory>({
     resource: "categories",
@@ -1206,7 +1206,7 @@ export const ProductList = () => {
   };
 
   const header = (
-    <div className="flex justify-content-between">
+    <div className="justify-content-between flex">
       <Button
         type="button"
         icon="pi pi-filter-slash"
@@ -1241,7 +1241,7 @@ export const ProductList = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex justify-content-between align-items-center">
+        <div className="justify-content-between align-items-center flex">
           <span className="p-card-title">Products</span>
           <Button
             icon="pi pi-plus"
@@ -1275,7 +1275,7 @@ export const ProductList = () => {
         }}
         sortField={sorters[0]?.field}
         sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-        loading={tableQueryResult?.isLoading}
+        loading={tableQuery?.isLoading}
         header={header}
       >
         <Column field="id" header="Id" sortable style={{ minWidth: "1rem" }} />
@@ -1474,7 +1474,7 @@ export const ProductCreate = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex align-items-center">
+        <div className="align-items-center flex">
           <Button
             onClick={goBack}
             icon="pi pi-arrow-left"
@@ -1581,7 +1581,7 @@ export const ProductCreate = () => {
             )}
           />
         </div>
-        <div className="flex justify-content-end">
+        <div className="justify-content-end flex">
           <Button label="Save" type="submit" loading={formLoading} />
         </div>
       </form>
@@ -1713,8 +1713,8 @@ export const ProductEdit = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex justify-content-between align-items-center">
-          <div className="flex align-items-center">
+        <div className="justify-content-between align-items-center flex">
+          <div className="align-items-center flex">
             <Button
               onClick={goBack}
               icon="pi pi-arrow-left"
@@ -1828,7 +1828,7 @@ export const ProductEdit = () => {
             )}
           />
         </div>
-        <div className="flex justify-content-end">
+        <div className="justify-content-end flex">
           <Button label="Save" type="submit" loading={formLoading} />
         </div>
       </form>
@@ -1941,7 +1941,7 @@ export const ProductShow = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex align-items-center">
+        <div className="align-items-center flex">
           <Button
             onClick={goBack}
             icon="pi pi-arrow-left"
@@ -2164,7 +2164,7 @@ import { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -2182,7 +2182,7 @@ export const CategoryList = () => {
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const categories = tableQueryResult?.data?.data;
+  const categories = tableQuery?.data?.data;
 
   const confirmDeleteProduct = (id: number) => {
     confirmDialog({
@@ -2228,7 +2228,7 @@ export const CategoryList = () => {
   };
 
   const header = (
-    <div className="flex justify-content-between">
+    <div className="justify-content-between flex">
       <Button
         type="button"
         icon="pi pi-filter-slash"
@@ -2263,7 +2263,7 @@ export const CategoryList = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex justify-content-between align-items-center">
+        <div className="justify-content-between align-items-center flex">
           <span className="p-card-title">Categories</span>
           <Button
             icon="pi pi-plus"
@@ -2297,7 +2297,7 @@ export const CategoryList = () => {
         }}
         sortField={sorters[0]?.field}
         sortOrder={sorters[0]?.order === "asc" ? 1 : -1}
-        loading={tableQueryResult?.isLoading}
+        loading={tableQuery?.isLoading}
         header={header}
       >
         <Column
@@ -2370,7 +2370,7 @@ export const CategoryCreate = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex align-items-center">
+        <div className="align-items-center flex">
           <Button
             onClick={goBack}
             icon="pi pi-arrow-left"
@@ -2404,7 +2404,7 @@ export const CategoryCreate = () => {
             )}
           />
         </div>
-        <div className="flex justify-content-end">
+        <div className="justify-content-end flex">
           <Button label="Save" type="submit" loading={formLoading} />
         </div>
       </form>
@@ -2459,8 +2459,8 @@ export const CategoryEdit = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex justify-content-between align-items-center">
-          <div className="flex align-items-center">
+        <div className="justify-content-between align-items-center flex">
+          <div className="align-items-center flex">
             <Button
               onClick={goBack}
               icon="pi pi-arrow-left"
@@ -2501,7 +2501,7 @@ export const CategoryEdit = () => {
             )}
           />
         </div>
-        <div className="flex justify-content-end">
+        <div className="justify-content-end flex">
           <Button label="Save" type="submit" loading={formLoading} />
         </div>
       </form>
@@ -2536,7 +2536,7 @@ export const CategoryShow = () => {
     <Card
       className="shadow-1"
       title={
-        <div className="flex align-items-center">
+        <div className="align-items-center flex">
           <Button
             onClick={goBack}
             icon="pi pi-arrow-left"
@@ -2838,7 +2838,7 @@ import { Breadcrumb } from "../breadcrumb";
 
 export const Layout: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <div className="min-h-screen surface-ground">
+    <div className="surface-ground min-h-screen">
       <Menu />
       <div className="p-3">
         <Breadcrumb />
@@ -2882,7 +2882,7 @@ export const Menu = () => {
   }));
 
   return (
-    <div className="sticky top-0 z-5">
+    <div className="z-5 sticky top-0">
       <TabMenu model={items} />
     </div>
   );
@@ -2933,7 +2933,7 @@ export const Breadcrumb = () => {
   }));
 
   return (
-    <BreadCrumb className="surface-ground pl-0 border-none" model={items} />
+    <BreadCrumb className="surface-ground border-none pl-0" model={items} />
   );
 };
 ```

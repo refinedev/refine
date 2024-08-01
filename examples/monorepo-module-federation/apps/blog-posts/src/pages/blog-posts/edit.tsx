@@ -8,13 +8,17 @@ import MDEditor from "@uiw/react-md-editor";
 import type { ICategory, IPost } from "../../interfaces";
 
 const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult, autoSaveProps } =
-    useForm<IPost>({
-      warnWhenUnsavedChanges: true,
-      autoSave: {
-        enabled: true,
-      },
-    });
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+    autoSaveProps,
+  } = useForm<IPost>({
+    warnWhenUnsavedChanges: true,
+    autoSave: {
+      enabled: true,
+    },
+  });
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({

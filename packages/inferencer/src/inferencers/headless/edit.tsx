@@ -357,7 +357,7 @@ export const renderer = ({
             : ""
         }
         const {
-            refineCore: { onFinish, formLoading, queryResult },
+            refineCore: { onFinish, formLoading, query },
             register,
             handleSubmit,
             setValue,
@@ -393,7 +393,7 @@ export const renderer = ({
             }
         );
     
-        const ${recordName} = queryResult?.data?.data;
+        const ${recordName} = query?.data?.data;
     
         ${relationHooksCode}
 

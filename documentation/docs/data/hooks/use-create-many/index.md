@@ -5,7 +5,7 @@ source: packages/core/src/hooks/data/useCreateMany.ts
 
 `useCreateMany` is used for creating multiple records. It is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation) and not only supports all features of the mutation but also adds some extra features.
 
-It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
+It uses the `createMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine />`.
 
 If your data provider does not have a `createMany` method, `useCreateMany` will use the `create` method instead. This is not recommended, since it will make requests one by one for each record.
 
@@ -13,15 +13,16 @@ It is better to implement the `createMany` method in the data provider.
 
 ## Usage
 
-The `useCreateMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values` and `resource` as parameters. These parameters will be passed to the `createMany` method from the `dataProvider` as parameters.
+The `useCreateMany` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
 
 ```tsx
 import { useCreateMany } from "@refinedev/core";
 
-const { mutate } = useCreateMany();
+const { mutate } = useCreateMany({
+  resource: "products",
+});
 
 mutate({
-  resource: "products",
   values: [
     {
       name: "Product 1",
@@ -66,37 +67,13 @@ useCreateMany({
   mutationOptions: {
     retry: 3,
   },
+  onSuccess: (data, variables, context) => {
+    // Let's celebrate!
+  },
+  onError: (error, variables, context) => {
+    // An error occurred!
+  },
 });
-```
-
-`mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
-
-```tsx
-const { mutate } = useCreateMany();
-
-mutate(
-  {
-    resource: "products",
-    values: [
-      {
-        name: "Product 1",
-        material: "Wood",
-      },
-      {
-        name: "Product 2",
-        material: "Metal",
-      },
-    ],
-  },
-  {
-    onError: (error, variables, context) => {
-      // An error occurred!
-    },
-    onSuccess: (data, variables, context) => {
-      // Let's celebrate!
-    },
-  },
-);
 ```
 
 ### overtimeOptions
@@ -126,6 +103,22 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
 ## Mutation Parameters
+
+Mutation parameters are passed to the `mutate` function and can also be provided as props to the `useCreateMany` hook. Parameters given to the `mutate` function override those from the hook. Think of the hook's parameters as default values, and the `mutate` function's parameters as specific or dynamic values for each mutation.
+
+```tsx
+import { useCreateMany } from "@refinedev/core";
+
+const { mutate } = useCreateMany({
+  /* parameters */
+});
+
+mutate({
+  /* this will override the parameters given to the useCreateMany hook */
+});
+```
+
+> 🚨 Parameters marked as required can be provided either as props to the `useCreateMany` hook or as parameters to the `mutate` function.
 
 ### resource <PropTag required />
 

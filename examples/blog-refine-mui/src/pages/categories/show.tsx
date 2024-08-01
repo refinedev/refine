@@ -11,7 +11,7 @@ import Stack from "@mui/material/Box";
 
 export const CategoryShow = () => {
   const translate = useTranslate();
-  const { queryResult } = useShow();
+  const { query: queryResult } = useShow();
   const { data, isLoading } = queryResult;
 
   const record = data?.data;

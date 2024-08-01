@@ -867,7 +867,7 @@ Endowed a due patience, we can see this in action among many others in the `@ref
 
 ```tsx title="node_modules/@refinedev/antd/src/hooks/table/useTable/useTable.ts"
 const {
-  tableQueryResult,
+  tableQuery,
   current,
   setCurrent,
   pageSize,

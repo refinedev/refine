@@ -472,6 +472,22 @@ describe("useTable Hook", () => {
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
+
+  it("should work with tableQuery and tableQueryResult", async () => {
+    const { result } = renderHook(() => useTable(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        routerProvider,
+      }),
+    });
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
+  });
 });
 
 describe("useTable Filters", () => {

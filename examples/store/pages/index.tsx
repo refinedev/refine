@@ -59,7 +59,7 @@ const Home = ({
   const selectedCategoryId = selectedCategory?.id;
 
   const {
-    tableQueryResult: { data: products, isLoading, isFetching },
+    tableQuery: { data: products, isLoading, isFetching },
     filters,
     setFilters,
   } = useTable<Product>({

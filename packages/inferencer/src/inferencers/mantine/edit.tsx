@@ -429,7 +429,7 @@ export const renderer = ({
     
     export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
-        const { getInputProps, saveButtonProps, setFieldValue, refineCore: { queryResult } } = useForm({
+        const { getInputProps, saveButtonProps, setFieldValue, refineCore: { query } } = useForm({
             initialValues: ${JSON.stringify(initialValues)},
             ${
               isCustomPage
@@ -457,7 +457,7 @@ export const renderer = ({
             }
         });
     
-        const ${recordName} = queryResult?.data?.data;
+        const ${recordName} = query?.data?.data;
     
         ${relationHooksCode}
 

@@ -1,7 +1,12 @@
 import { ProjectTypes } from "@definitions/projectTypes";
+import { ENV } from "@utils/env";
 import execa from "execa";
 
-export const runScript = async (binPath: string, args: string[]) => {
+export const runScript = async (
+  binPath: string,
+  args: string[],
+  env: Record<string, string> = {},
+) => {
   if (binPath === "unknown") {
     const supportedProjectTypes = Object.values(ProjectTypes)
       .filter((v) => v !== "unknown")
@@ -19,6 +24,8 @@ export const runScript = async (binPath: string, args: string[]) => {
     windowsHide: false,
     env: {
       FORCE_COLOR: "true",
+      REFINE_NO_TELEMETRY: ENV.REFINE_NO_TELEMETRY,
+      ...env,
       ...process.env,
     },
   });

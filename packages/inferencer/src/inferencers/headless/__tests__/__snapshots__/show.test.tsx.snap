@@ -818,7 +818,7 @@ exports[`HeadlessShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -932,7 +932,7 @@ exports[`HeadlessShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token punctuation"

@@ -12,7 +12,7 @@ import type { IPost, ICategory, Nullable, IStatus } from "../../interfaces";
 export const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query: queryResult, autoSaveProps },
     register,
     control,
     formState: { errors },

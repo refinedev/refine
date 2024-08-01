@@ -464,7 +464,7 @@ export const KpiCard = ({
   return (
     <Card className="p-5">
       <div>
-        <div className="flex justify-between mb-10">
+        <div className="mb-10 flex justify-between">
           <div>
             <p>{title}</p>
             <h1 className="text-lg font-bold">{formattedTotal}</h1>
@@ -575,9 +575,9 @@ export const DashboardPage: React.FC = () => {
   });
 
   return (
-    <main className="flex w-full flex-col mt-5 gap-3">
+    <main className="mt-5 flex w-full flex-col gap-3">
       <h1 className="font-bold">Dashboards</h1>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-stretch">
+      <div className="grid grid-cols-2 justify-items-stretch gap-4 md:grid-cols-3">
         <KpiCard
           title="Weekly Revenue"
           total={dailyRevenue?.data.total ?? 0}
@@ -1002,7 +1002,7 @@ const getChipColor = (status: number) => {
 
 export const RecentSalesTable = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -1024,7 +1024,7 @@ export const RecentSalesTable = () => {
     direction: "ascending",
   });
 
-  const orders = tableQueryResult?.data?.data ?? [];
+  const orders = tableQuery?.data?.data ?? [];
 
   const getCellContents = useCallback((columnKey: string, item: IOrder) => {
     if (columnKey === "id") return item.id;
@@ -1076,7 +1076,7 @@ export const RecentSalesTable = () => {
       }}
       topContent={
         <div className="flex justify-between gap-3">
-          <h2 className="font-bold whitespace-nowrap">Recent sales</h2>
+          <h2 className="whitespace-nowrap font-bold">Recent sales</h2>
           <Input
             isClearable
             className="w-full sm:max-w-[20%]"
@@ -1107,7 +1107,7 @@ export const RecentSalesTable = () => {
         </div>
       }
       bottomContent={
-        <div className="flex w-full gap-2 justify-center">
+        <div className="flex w-full justify-center gap-2">
           <Pagination
             isCompact
             showControls
@@ -1340,7 +1340,7 @@ const columns = [
 
 export const ProductList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -1359,7 +1359,7 @@ export const ProductList = () => {
     direction: "ascending",
   });
 
-  const products = tableQueryResult?.data?.data ?? [];
+  const products = tableQuery?.data?.data ?? [];
 
   const { data: categoryData } = useMany<ICategory>({
     resource: "categories",
@@ -1385,7 +1385,7 @@ export const ProductList = () => {
       if (columnKey === "actions") {
         return (
           <TableCell>
-            <div className="flex gap-4 items-center justify-end">
+            <div className="flex items-center justify-end gap-4">
               <Button
                 isIconOnly
                 size="sm"
@@ -1502,7 +1502,7 @@ export const ProductList = () => {
           </div>
         }
         bottomContent={
-          <div className="flex w-full gap-2 justify-center">
+          <div className="flex w-full justify-center gap-2">
             <Pagination
               isCompact
               showControls
@@ -1548,7 +1548,7 @@ export const ProductList = () => {
                 <TableColumn
                   allowsSorting={column.sortable}
                   key={column.key}
-                  className="text-end pr-16"
+                  className="pr-16 text-end"
                 >
                   {column.header}
                 </TableColumn>
@@ -1911,7 +1911,7 @@ export const ProductCreate = () => {
               }}
             />
           </div>
-          <div className="flex justify-content-end">
+          <div className="justify-content-end flex">
             <Button
               type="submit"
               isLoading={formLoading}
@@ -2138,7 +2138,7 @@ export const ProductEdit = () => {
               }}
             />
           </div>
-          <div className="flex justify-content-end">
+          <div className="justify-content-end flex">
             <Button
               type="submit"
               isLoading={formLoading}
@@ -2263,7 +2263,7 @@ export const ProductShow = () => {
           <h1 className="text-lg font-bold">Show product</h1>
         </div>
         <CardBody>
-          <CardHeader className="text-lg font-bold p-5">
+          <CardHeader className="p-5 text-lg font-bold">
             <h2>Product details</h2>
           </CardHeader>
           <CardBody>
@@ -2274,13 +2274,13 @@ export const ProductShow = () => {
                 alt={product.name}
               />
             ) : null}
-            <h2 className="text-base font-medium mt-3">Name</h2>
+            <h2 className="mt-3 text-base font-medium">Name</h2>
             <p>{product?.name}</p>
-            <h2 className="text-base font-medium mt-3">Price</h2>
+            <h2 className="mt-3 text-base font-medium">Price</h2>
             <p>{currencyFormatter.format(product?.price ?? 0)}</p>
-            <h2 className="text-base font-medium mt-3">Category</h2>
+            <h2 className="mt-3 text-base font-medium">Category</h2>
             <p>{categoryData?.data.title}</p>
-            <h2 className="text-base font-medium mt-3">Description</h2>
+            <h2 className="mt-3 text-base font-medium">Description</h2>
             <p>{product?.description}</p>
           </CardBody>
         </CardBody>
@@ -2415,7 +2415,7 @@ const columns = [
 
 export const CategoryList = () => {
   const {
-    tableQueryResult,
+    tableQuery,
     pageCount,
     current,
     pageSize,
@@ -2438,13 +2438,13 @@ export const CategoryList = () => {
     direction: "ascending",
   });
 
-  const categories = tableQueryResult?.data?.data ?? [];
+  const categories = tableQuery?.data?.data ?? [];
 
   const renderCell = useCallback((columnKey: string, item: IProduct) => {
     if (columnKey === "actions") {
       return (
         <TableCell>
-          <div className="flex gap-4 items-center justify-end">
+          <div className="flex items-center justify-end gap-4">
             <Button
               isIconOnly
               size="sm"
@@ -2523,7 +2523,7 @@ export const CategoryList = () => {
                 Create Category
               </Button>
             </div>
-            <div className="flex justify-end items-center">
+            <div className="flex items-center justify-end">
               <Input
                 isClearable
                 className="w-full sm:max-w-[20%]"
@@ -2555,7 +2555,7 @@ export const CategoryList = () => {
           </div>
         }
         bottomContent={
-          <div className="flex w-full gap-2 justify-center">
+          <div className="flex w-full justify-center gap-2">
             <Pagination
               isCompact
               showControls
@@ -2601,7 +2601,7 @@ export const CategoryList = () => {
                 <TableColumn
                   allowsSorting={column.sortable}
                   key={column.key}
-                  className="text-end pr-16"
+                  className="pr-16 text-end"
                 >
                   {column.header}
                 </TableColumn>
@@ -2731,7 +2731,7 @@ export const CategoryCreate = () => {
               }}
             />
           </div>
-          <div className="flex justify-content-end">
+          <div className="justify-content-end flex">
             <Button
               type="submit"
               isLoading={formLoading}
@@ -2833,7 +2833,7 @@ export const CategoryEdit = () => {
               }}
             />
           </div>
-          <div className="flex justify-content-end">
+          <div className="justify-content-end flex">
             <Button
               type="submit"
               isLoading={formLoading}
@@ -2902,16 +2902,16 @@ export const CategoryShow = () => {
           <h1 className="text-lg font-bold">Show Category</h1>
         </div>
         <CardBody>
-          <CardHeader className="text-lg font-bold p-5">
+          <CardHeader className="p-5 text-lg font-bold">
             <h2>Category details</h2>
           </CardHeader>
           <CardBody>
             {category?.cover ? (
               <Image src={category.cover} width={300} alt={category.title} />
             ) : null}
-            <h2 className="text-base font-medium mt-3">Id</h2>
+            <h2 className="mt-3 text-base font-medium">Id</h2>
             <p>{category?.id ?? 0}</p>
-            <h2 className="text-base font-medium mt-3">Title</h2>
+            <h2 className="mt-3 text-base font-medium">Title</h2>
             <p>{category?.title ?? ""}</p>
           </CardBody>
         </CardBody>
@@ -2968,16 +2968,16 @@ export const Menu = () => {
   const { menuItems } = useMenu();
   return (
     <nav className="mb-4">
-      <ul className="flex border-b-1 py-2">
+      <ul className="border-b-1 flex py-2">
         {menuItems.map((item) => (
           <li key={item.key} className="mr-4">
             <NavLink
               to={item.route ?? "/"}
               className={({ isActive, isPending }) => {
                 if (isActive) {
-                  return "text-center block text-blue-500 rounded hover:bg-gray-200 p-2";
+                  return "block rounded p-2 text-center text-blue-500 hover:bg-gray-200";
                 }
-                return "text-center block border-blue-500 rounded hover:bg-gray-200 p-2";
+                return "block rounded border-blue-500 p-2 text-center hover:bg-gray-200";
               }}
             >
               {item.label}
@@ -3005,7 +3005,7 @@ export const Breadcrumb = () => {
 
   return (
     <nav>
-      <ul className="breadcrumb flex gap-4 my-5">
+      <ul className="breadcrumb my-5 flex gap-4">
         {breadcrumbs.map((breadcrumb) => {
           return (
             <li key={`breadcrumb-${breadcrumb.label}`}>
