@@ -45,16 +45,16 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * Set the option's label value
    * @default `"title"`
    */
-  optionLabel?: keyof TData extends string
-    ? keyof TData
-    : never | ((item: TData) => string);
+  optionLabel?:
+    | (keyof TData extends string ? keyof TData : never)
+    | ((item: TData) => string);
   /**
    * Set the option's value
    * @default `"id"`
    */
-  optionValue?: keyof TData extends string
-    ? keyof TData
-    : never | ((item: TData) => string);
+  optionValue?:
+    | (keyof TData extends string ? keyof TData : never)
+    | ((item: TData) => string);
   /**
    * Field name to search for.
    * @description If provided `optionLabel` is a string, uses `optionLabel`'s value.
