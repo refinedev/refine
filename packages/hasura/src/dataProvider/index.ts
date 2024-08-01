@@ -8,6 +8,7 @@ import {
   generateSorting,
   getOperationFields,
   isMutation,
+  mergeHasuraFilters,
   metaFieldsToGqlFields,
   upperCaseValues,
 } from "../utils";
@@ -103,13 +104,26 @@ const dataProvider = (
         : camelCase(`${operation}_bool_exp`, { pascalCase: true });
 
       if (meta?.gqlQuery) {
-        const response = await client.request<BaseRecord>(meta.gqlQuery, {
-          where: {
+        const hasuraFilters = mergeHasuraFilters(
+          {
             id: {
               _in: ids,
             },
           },
-        });
+          meta?.gqlVariables?.where,
+        );
+
+        const variables = {
+          ...(meta.gqlVariables && meta.gqlVariables),
+          ...(hasuraFilters && {
+            where: hasuraFilters,
+          }),
+        };
+
+        const response = await client.request<BaseRecord>(
+          meta.gqlQuery,
+          variables,
+        );
         return {
           data: response[operation],
         };
@@ -159,7 +173,11 @@ const dataProvider = (
         ? generateSorting(sorters)
         : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
-      const hasuraFilters = generateFilters(filters, namingConvention);
+      let hasuraFilters = generateFilters(filters, namingConvention);
+      hasuraFilters = mergeHasuraFilters(
+        hasuraFilters,
+        meta?.gqlVariables?.where,
+      );
 
       let query;
       let variables;

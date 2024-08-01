@@ -5,7 +5,9 @@ import type {
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import setWith from "lodash/setWith";
+import cloneDeep from "lodash/cloneDeep";
 import type { NamingConvention } from "src/dataProvider";
+import type { BoolExp } from "./boolexp";
 
 export type HasuraFilterCondition =
   | "_and"
@@ -117,7 +119,7 @@ const convertHasuraOperatorToGraphqlDefaultNaming = (
 export const generateNestedFilterQuery = (
   filter: HasuraCrudFilter,
   namingConvention: NamingConvention = "hasura-default",
-): any => {
+): BoolExp => {
   const { operator } = filter;
 
   if (
@@ -154,10 +156,10 @@ export const generateNestedFilterQuery = (
   };
 };
 
-export const generateFilters: any = (
+export const generateFilters = (
   filters?: HasuraCrudFilters,
   namingConvention: NamingConvention = "hasura-default",
-) => {
+): BoolExp | undefined => {
   if (!filters) {
     return undefined;
   }
@@ -171,4 +173,30 @@ export const generateFilters: any = (
   );
 
   return nestedQuery;
+};
+
+export const mergeHasuraFilters = (
+  filters?: BoolExp,
+  metafilters?: BoolExp,
+): BoolExp | undefined => {
+  if (!filters || !metafilters) {
+    return filters;
+  }
+  const mergedFilters = cloneDeep(filters);
+
+  Object.entries(metafilters).forEach((filter) => {
+    const [k, v] = filter;
+    if (k === "_and" && mergedFilters._and) {
+      if (!Array.isArray(v)) {
+        throw new Error(
+          "@packages/hasura: unexpected value for BoolExp _and. Expected an Array.",
+        );
+      }
+      mergedFilters._and = mergedFilters._and.concat(v);
+    } else {
+      mergedFilters[k] = v;
+    }
+  });
+
+  return mergedFilters;
 };
