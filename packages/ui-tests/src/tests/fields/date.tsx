@@ -39,6 +39,22 @@ export const fieldDateTests = (
       getByText("5/20/2021");
     });
 
+    it("renders empty with given null", () => {
+      const { getByTestId } = render(
+        <DateField value={null} data-testid="date-field" />,
+      );
+
+      expect(getByTestId("date-field").textContent).toBe("");
+    });
+
+    it("renders empty with given undefined", () => {
+      const { getByTestId } = render(
+        <DateField value={undefined} data-testid="date-field" />,
+      );
+
+      expect(getByTestId("date-field").textContent).toBe("");
+    });
+
     it("renders invalid date with given incorrect date", () => {
       const { getByText } = render(<DateField value={new Date("test")} />);
 
