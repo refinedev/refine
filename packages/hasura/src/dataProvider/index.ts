@@ -194,6 +194,7 @@ const dataProvider = (
               : {
                   order_by: hasuraSorting,
                 })),
+          ...(meta.gqlVariables && meta.gqlVariables),
           ...(hasuraFilters && {
             where: hasuraFilters,
           }),
