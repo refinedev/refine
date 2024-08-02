@@ -6,14 +6,6 @@ import { existsSync, readFileSync, rmdirSync } from "fs-extra";
 const srcDirPath = `${__dirname}/../../../..`;
 
 describe("add", () => {
-  beforeEach(() => {
-    jest.spyOn(global.console, "log").mockImplementation(() => {});
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   it("should generate next js pages", () => {
     jest
       .spyOn(utilsProject, "getProjectType")
