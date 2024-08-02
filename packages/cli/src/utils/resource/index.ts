@@ -1,4 +1,5 @@
 import { ProjectTypes } from "@definitions/projectTypes";
+import camelCase from "camelcase";
 
 export const getResourcePath = (
   projectType: ProjectTypes,
@@ -53,4 +54,11 @@ export const getFilesPathByProject = (projectType?: ProjectTypes) => {
     default:
       return "./src";
   }
+};
+
+export const getComponentNameByResource = (resource: string): string => {
+  return camelCase(resource, {
+    preserveConsecutiveUppercase: true,
+    pascalCase: true,
+  });
 };

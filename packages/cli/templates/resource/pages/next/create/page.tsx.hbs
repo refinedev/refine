@@ -1,5 +1,5 @@
-import { {{capitalize resource}}Create } from "@components/{{resourceFolderName}}";
+import { {{getComponentNameByResource resource}}Create } from "@components/{{resourceFolderName}}";
 
-export default function {{capitalize resource}}CreatePage() {
-    return <{{capitalize resource}}Create />;
+export default function {{getComponentNameByResource resource}}CreatePage() {
+    return <{{getComponentNameByResource resource}}Create />;
 };
