@@ -76,7 +76,7 @@ export const createResources = async (
           resourceFolderName,
         )}) already exist!`,
       );
-      process.exit(0);
+      return;
     }
 
     // uppercase first letter
@@ -173,7 +173,7 @@ export const createResources = async (
 
   console.log();
   const isInferencerInstalled = await spinner(
-    () => isInstalled("@refinedev/inferencer"),
+    async () => await isInstalled("@refinedev/inferencer"),
     "Checking if '@refinedev/inferencer' package is installed...",
   );
   if (!isInferencerInstalled) {
