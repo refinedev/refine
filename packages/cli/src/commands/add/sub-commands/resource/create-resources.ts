@@ -58,6 +58,7 @@ export const createResources = async (
     actions = selectedActions.join(",");
   }
 
+  let isAtleastOneResourceCreated = false;
   resources.forEach((resourceName) => {
     const customActions = actions ? actions.split(",") : undefined;
     const resourceFolderName = plural(resourceName).toLowerCase();
@@ -78,6 +79,7 @@ export const createResources = async (
       );
       return;
     }
+    isAtleastOneResourceCreated = true;
 
     // uppercase first letter
     const resource = uppercaseFirstChar(resourceName);
@@ -171,18 +173,8 @@ export const createResources = async (
     );
   });
 
-  console.log();
-  const isInferencerInstalled = await spinner(
-    () => isInstalled("@refinedev/inferencer"),
-    "Checking if '@refinedev/inferencer' package is installed...",
-  );
-  if (!isInferencerInstalled) {
-    console.log("📦 Installing '@refinedev/inferencer' package...");
-    // await installPackages(
-    //   ["@refinedev/inferencer@latest"],
-    //   "add",
-    //   "✅ '@refinedev/inferencer' package installed successfully!",
-    // );
+  if (isAtleastOneResourceCreated) {
+    installInferencer();
   }
 
   return;
@@ -238,4 +230,20 @@ const generateNextJsPages = (
   // compile page files
   const compileParams = { resource, resourceFolderName };
   compileDir(resourcePageRootDirPath, compileParams);
+};
+
+export const installInferencer = async () => {
+  console.log();
+  const isInferencerInstalled = await spinner(
+    () => isInstalled("@refinedev/inferencer"),
+    "Checking if '@refinedev/inferencer' package is installed...",
+  );
+  if (!isInferencerInstalled) {
+    console.log("📦 Installing '@refinedev/inferencer' package...");
+    await installPackages(
+      ["@refinedev/inferencer@latest"],
+      "add",
+      "✅ '@refinedev/inferencer' package installed successfully!",
+    );
+  }
 };
