@@ -59,7 +59,7 @@ The seed round, supported by investors such as Senovo, 500 Emerging Europe, Palm
 
 In 2023, Refine also backed by YCombinator, solidifying its position as a promising venture.
 
-With over 30K monthly active developers using it and an impressive 25K+ GitHub stars earned in just a year and a half, Refine has gained significant popularity within the developer community.
+With over 32K+ monthly active developers using it and an impressive 27K+ GitHub stars earned in just a year and a half, Refine has gained significant popularity within the developer community.
 
 According to [OSS Insight data](https://ossinsight.io/collections/react-framework/), since the beginning of 2023, it has consistently ranked in the top three of trending React frameworks and web frameworks.
 
@@ -406,7 +406,7 @@ When it comes to documentation, Refine has more useful resources.
 ## Community Engagement
 
  <div className="centered-image">
-   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star2.png"  alt="react-admin-vs-refine" />
+   <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-12-react-admin-vs-refine/star-history-2.png"  alt="react-admin-vs-refine" />
 </div>
 
 <br/>
