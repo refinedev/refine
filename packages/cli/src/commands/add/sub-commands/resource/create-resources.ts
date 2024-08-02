@@ -173,16 +173,16 @@ export const createResources = async (
 
   console.log();
   const isInferencerInstalled = await spinner(
-    async () => await isInstalled("@refinedev/inferencer"),
+    () => isInstalled("@refinedev/inferencer"),
     "Checking if '@refinedev/inferencer' package is installed...",
   );
   if (!isInferencerInstalled) {
     console.log("📦 Installing '@refinedev/inferencer' package...");
-    await installPackages(
-      ["@refinedev/inferencer@latest"],
-      "add",
-      "✅ '@refinedev/inferencer' package installed successfully!",
-    );
+    // await installPackages(
+    //   ["@refinedev/inferencer@latest"],
+    //   "add",
+    //   "✅ '@refinedev/inferencer' package installed successfully!",
+    // );
   }
 
   return;
