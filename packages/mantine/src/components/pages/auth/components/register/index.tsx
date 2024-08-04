@@ -123,7 +123,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             <Divider
               my="md"
               labelPosition="center"
-              label={translate("pages.login.divider", "or")}
+              label={translate(
+                "pages.register.divider",
+                translate("pages.login.divider", "or"),
+              )}
             />
           )}
         </>

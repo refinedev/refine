@@ -383,10 +383,10 @@ const { ... } = useTable(
 And you will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
 ```ts
-const { tableQueryResult, current, pageSize, filters, sorters } = useTable();
+const { tableQuery, current, pageSize, filters, sorters } = useTable();
 
-console.log(tableQueryResult.data.data); // [{...}, {...}]
-console.log(tableQueryResult.data.total); // 32 - total number of unpaginated records
+console.log(tableQuery.data.data); // [{...}, {...}]
+console.log(tableQuery.data.total); // 32 - total number of unpaginated records
 console.log(current); // 1 - current page
 console.log(pageSize); // 2 - page size
 console.log(filters); // [{ field: "category.id", operator: "eq", value: "1" }]

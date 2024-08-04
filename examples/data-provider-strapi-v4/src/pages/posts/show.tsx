@@ -17,7 +17,7 @@ import { API_URL } from "../../constants";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<IPost>({
+  const { query: queryResult } = useShow<IPost>({
     metaData: { populate: ["category", "cover"] },
   });
 

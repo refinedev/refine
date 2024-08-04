@@ -155,7 +155,7 @@ describe("useDrawerForm Hook", () => {
       result.current.saveButtonProps.onClick?.({} as any);
     });
 
-    await waitFor(() => result.current.mutationResult.isSuccess);
+    await waitFor(() => result.current.mutation.isSuccess);
     await waitFor(() => expect(result.current.drawerProps.open).toBe(true));
   });
 
@@ -181,7 +181,7 @@ describe("useDrawerForm Hook", () => {
       result.current.saveButtonProps.onClick?.({} as any);
     });
 
-    await waitFor(() => result.current.mutationResult.isSuccess);
+    await waitFor(() => result.current.mutation.isSuccess);
 
     expect(result.current.formProps.form?.getFieldsValue()).toStrictEqual({});
   });

@@ -144,7 +144,7 @@ export const PostEdit: React.FC = () => {
   >();
   //highlight-end
 
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const { formProps, saveButtonProps, query } = useForm<IPost>({
     //highlight-start
     liveMode: "manual",
     onLiveEvent: (event) => {
@@ -157,7 +157,7 @@ export const PostEdit: React.FC = () => {
 
   //highlight-start
   const handleRefresh = () => {
-    queryResult?.refetch();
+    query?.refetch();
     setDeprecated(undefined);
   };
   //highlight-end

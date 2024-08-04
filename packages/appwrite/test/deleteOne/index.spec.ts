@@ -5,12 +5,12 @@ import "./index.mock";
 describe("deleteOne", () => {
   it("correct response with meta", async () => {
     const { data } = await dataProvider(client, {
-      databaseId: "632455a0b8d017403ce9",
+      databaseId: "default",
     }).deleteOne({
-      resource: "632455a55dc72e1aa016",
-      id: "63245af4d15590ca1984",
+      resource: "blog_posts",
+      id: "669e49f2000da6a5f6a6",
     });
 
-    expect(data.id).toEqual("63245af4d15590ca1984");
+    expect(data.id).toEqual("669e49f2000da6a5f6a6");
   });
 });

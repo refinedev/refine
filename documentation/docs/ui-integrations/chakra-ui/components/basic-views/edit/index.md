@@ -66,7 +66,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const PostEdit: React.FC = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     formState: { errors },
@@ -76,8 +76,8 @@ const PostEdit: React.FC = () => {
   const { options } = useSelect({
     resource: "categories",
 
-    defaultValue: queryResult?.data?.data.category.id,
-    queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+    defaultValue: query?.data?.data.category.id,
+    queryOptions: { enabled: !!query?.data?.data.category.id },
   });
 
   useEffect(() => {
@@ -1296,7 +1296,7 @@ const PostEdit: React.FC = () => {
   const {
     refineCore: {
       formLoading,
-      queryResult,
+      query,
       // highlight-next-line
       autoSaveProps,
     },
@@ -1317,8 +1317,8 @@ const PostEdit: React.FC = () => {
   const { options } = useSelect({
     resource: "categories",
 
-    defaultValue: queryResult?.data?.data.category.id,
-    queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+    defaultValue: query?.data?.data.category.id,
+    queryOptions: { enabled: !!query?.data?.data.category.id },
   });
 
   useEffect(() => {

@@ -329,7 +329,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { push } = useNavigation();
 
   return (
-    <div className="py-4 pr-4 flex min-h-screen flex-col border md:flex-row">
+    <div className="flex min-h-screen flex-col border py-4 pr-4 md:flex-row">
       <div className="mb-2 border-b py-2 md:w-2/12">
         <div className="container mx-auto">
           <div className="flex flex-col items-center gap-2">
@@ -561,7 +561,7 @@ export const PostList: React.FC = () => {
                 <th
                   key={header.id}
                   colSpan={header.colSpan}
-                  className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                 >
                   {flexRender(
                     header.column.columnDef.header,
@@ -580,7 +580,7 @@ export const PostList: React.FC = () => {
                   return (
                     <td
                       key={cell.id}
-                      className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                      className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -684,7 +684,7 @@ export const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
   } = useTable<IPost>({ columns });
 
@@ -726,7 +726,7 @@ export const PostList: React.FC = () => {
                 <th
                   key={idx}
                   colSpan={header.colSpan}
-                  className="py-3 px-6 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
+                  className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-700 "
                 >
                   {flexRender(
                     header.column.columnDef.header,
@@ -745,7 +745,7 @@ export const PostList: React.FC = () => {
                   return (
                     <td
                       key={idx}
-                      className="whitespace-nowrap py-2 px-6 text-sm font-medium text-gray-900"
+                      className="whitespace-nowrap px-6 py-2 text-sm font-medium text-gray-900"
                     >
                       {flexRender(
                         cell.column.columnDef.cell,
@@ -1526,7 +1526,7 @@ export const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,

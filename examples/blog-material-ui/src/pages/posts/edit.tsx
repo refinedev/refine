@@ -11,7 +11,7 @@ import type { IPost, ICategory, Nullable } from "interfaces";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query: queryResult },
     saveButtonProps,
     register,
     control,

@@ -9,17 +9,17 @@ import {
 } from "./selector-helpers";
 
 export const useSelector = (active: boolean) => {
-  const { devtoolsUrl } = React.useContext(DevToolsContext);
+  const { httpUrl } = React.useContext(DevToolsContext);
   const [selectableElements, setSelectableElements] = React.useState<
     SelectableElement[]
   >([]);
 
   const fetchTraceItems = React.useCallback(async () => {
-    const response = await fetch(`${devtoolsUrl}/api/unique-trace-items`);
+    const response = await fetch(`${httpUrl}/api/unique-trace-items`);
     const data = await response.json();
 
     return data.data as string[];
-  }, [devtoolsUrl]);
+  }, [httpUrl]);
 
   const prepareSelector = React.useCallback(async () => {
     const fetchedTraceItems = await fetchTraceItems();

@@ -5,7 +5,7 @@ export const BlogPostEdit = () => {
   const {
     getInputProps,
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
   } = useForm({
     initialValues: {
       id: "",

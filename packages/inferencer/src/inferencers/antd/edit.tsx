@@ -449,7 +449,7 @@ export const renderer = ({
     
     export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
-        const { formProps, saveButtonProps, queryResult } = useForm(${
+        const { formProps, saveButtonProps, query } = useForm(${
           isCustomPage
             ? `{
                       resource: "${resource.name}",
@@ -475,7 +475,7 @@ export const renderer = ({
               : ""
         });
     
-        const ${recordName} = queryResult?.data?.data;
+        const ${recordName} = query?.data?.data;
     
         ${relationHooksCode}
 

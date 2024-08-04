@@ -24,6 +24,10 @@ export type UseShowReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
 > = {
+  query: QueryObserverResult<GetOneResponse<TData>, TError>;
+  /**
+   * @deprecated Use `query` instead.
+   */
   queryResult: QueryObserverResult<GetOneResponse<TData>, TError>;
   showId?: BaseKey;
   setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;

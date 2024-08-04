@@ -21,13 +21,10 @@ interface IPost {
 }
 
 const PostList: React.FC = () => {
-  const { tableQueryResult, filters, setFilters } = useTable<
-    IPost,
-    HttpError
-  >();
+  const { tableQuery, filters, setFilters } = useTable<IPost, HttpError>();
 
   // Fetches the posts for the current page
-  const posts = tableQueryResult?.data?.data ?? [];
+  const posts = tableQuery?.data?.data ?? [];
 
   // Gets the current filter values for the fields
   // highlight-start
@@ -124,7 +121,7 @@ const PostList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {tableQuery.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

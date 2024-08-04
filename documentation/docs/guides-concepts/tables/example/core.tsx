@@ -48,16 +48,16 @@ import { useTable, pageCount, pageSize, current, setCurrent } from "@refinedev/c
 
 
 export const ProductTable: React.FC = () => {
-    const { tableQueryResult, pageCount, pageSize, current, setCurrent } = useTable<IProduct>({
+    const { tableQuery, pageCount, pageSize, current, setCurrent } = useTable<IProduct>({
         resource: "products",
         pagination: {
             current: 1, 
             pageSize: 10,
         },
     });
-    const posts = tableQueryResult?.data?.data ?? [];
+    const posts = tableQuery?.data?.data ?? [];
 
-    if (tableQueryResult?.isLoading) {
+    if (tableQuery?.isLoading) {
         return <div>Loading...</div>;
     }
 

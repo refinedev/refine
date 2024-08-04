@@ -205,7 +205,7 @@ import { useForm, useSelect, Edit } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
 export const EditProduct = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm({
+  const { formProps, saveButtonProps, query } = useForm({
     refineCoreProps: {
       redirect: "show",
     },
@@ -213,7 +213,7 @@ export const EditProduct = () => {
 
   const { selectProps } = useSelect({
     resource: "categories",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (

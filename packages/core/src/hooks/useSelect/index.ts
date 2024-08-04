@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import type {
   QueryObserverResult,
@@ -170,7 +170,15 @@ export type UseSelectReturnType<
   TError extends HttpError = HttpError,
   TOption extends BaseOption = BaseOption,
 > = {
+  query: QueryObserverResult<GetListResponse<TData>, TError>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  /**
+   * @deprecated Use `defaultValueQuery` instead
+   */
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
   onSearch: (value: string) => void;
   options: TOption[];
@@ -343,26 +351,6 @@ export const useSelect = <
     dataProviderName,
   });
 
-  const onSearch = (value: string) => {
-    if (onSearchFromProp) {
-      setSearch(onSearchFromProp(value));
-      return;
-    }
-
-    if (!value) {
-      setSearch([]);
-      return;
-    }
-
-    setSearch([
-      {
-        field: searchField,
-        operator: "contains",
-        value,
-      },
-    ]);
-  };
-
   const { elapsedTime } = useLoadingOvertime({
     isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
     interval: overtimeOptions?.interval,
@@ -380,11 +368,45 @@ export const useSelect = <
     [options, selectedOptions],
   );
 
+  /**
+   * To avoid any changes in the `onSearch` callback,
+   * We're storing `onSearchFromProp` in a ref and accessing it in the `onSearch` callback.
+   */
+  const onSearchFromPropRef = useRef(onSearchFromProp);
+
+  const onSearch = useMemo(() => {
+    return debounce((value: string) => {
+      if (onSearchFromPropRef.current) {
+        setSearch(onSearchFromPropRef.current(value));
+        return;
+      }
+
+      if (!value) {
+        setSearch([]);
+        return;
+      }
+
+      setSearch([
+        {
+          field: searchField,
+          operator: "contains",
+          value,
+        },
+      ]);
+    }, debounceValue);
+  }, [searchField, debounceValue]);
+
+  useEffect(() => {
+    onSearchFromPropRef.current = onSearchFromProp;
+  }, [onSearchFromProp]);
+
   return {
     queryResult,
     defaultValueQueryResult,
+    query: queryResult,
+    defaultValueQuery: defaultValueQueryResult,
     options: combinedOptions,
-    onSearch: debounce(onSearch, debounceValue),
+    onSearch,
     overtime: { elapsedTime },
   };
 };

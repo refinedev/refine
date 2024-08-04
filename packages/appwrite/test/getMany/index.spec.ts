@@ -5,16 +5,16 @@ import "./index.mock";
 describe("getMany", () => {
   it("correct response", async () => {
     const { data } = await dataProvider(client, {
-      databaseId: "632455a0b8d017403ce9",
+      databaseId: "default",
     }).getMany!({
-      resource: "632455a55dc72e1aa016",
-      ids: ["63245b3987e0f40c7988", "632456bf1eeb69a71a78"],
+      resource: "blog_posts",
+      ids: ["669e49f2003b4ed88818", "669e49f200345e903051"],
     });
 
-    expect(data[0].id).toEqual("63245b3987e0f40c7988");
-    expect(data[0].title).toEqual("Lorem");
+    expect(data[0].id).toEqual("669e49f2003b4ed88818");
+    expect(data[0].title).toEqual("Aut Cum Beatae");
 
-    expect(data[1].id).toEqual("632456bf1eeb69a71a78");
-    expect(data[1].title).toEqual("test");
+    expect(data[1].id).toEqual("669e49f200345e903051");
+    expect(data[1].title).toEqual("Quia Hic Nisi");
   });
 });

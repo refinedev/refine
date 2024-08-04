@@ -33,6 +33,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
+    "@npmcli/package-json": "^5.2.0",
     "@refinedev/devtools-server": "1.1.34",
     "boxen": "^5.1.2",
     "cardinal": "^2.1.1",
@@ -84,6 +85,7 @@
     "@types/marked": "^5.0.1",
     "@types/marked-terminal": "^3.1.5",
     "@types/node-fetch": "^2.6.11",
+    "@types/npmcli__package-json": "^4.0.4",
     "@types/pluralize": "^0.0.29",
     "@types/prettier": "^2.7.3",
     "@types/semver": "^7.5.8",
