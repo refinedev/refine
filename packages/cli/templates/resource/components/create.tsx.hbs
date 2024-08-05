@@ -8,7 +8,7 @@ import { {{formatInferencerComponent uiFramework}}Inferencer } from "@refinedev/
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 {{/if}}
 
-export const {{capitalize resource}}Create = () => {
+export const {{getComponentNameByResource resource}}Create = () => {
     {{#if uiFramework}}
     return <{{formatInferencerComponent uiFramework}}Inferencer />;
     {{else}}

@@ -6,7 +6,10 @@ import { existsSync, readFileSync, rmdirSync } from "fs-extra";
 const srcDirPath = `${__dirname}/../../../..`;
 
 describe("add", () => {
-  beforeEach(() => {
+  beforeAll(() => {
+    // usefull for speed up the tests.
+    jest.spyOn(console, "log").mockImplementation();
+
     jest.spyOn(testTargetModule, "installInferencer").mockImplementation();
   });
 
@@ -84,4 +87,76 @@ describe("add", () => {
     // cleanup
     rmdirSync(reactComponentRootDirPath, { recursive: true });
   });
+
+  it.each([
+    {
+      resourceName: "blog-posts",
+      folderName: "blog-posts",
+      componentNamesByActions: {
+        list: "BlogPostsList",
+        create: "BlogPostsCreate",
+        show: "BlogPostsShow",
+        edit: "BlogPostsEdit",
+      },
+    },
+    {
+      resourceName: "blog-post",
+      folderName: "blog-posts",
+      componentNamesByActions: {
+        list: "BlogPostList",
+        create: "BlogPostCreate",
+        show: "BlogPostShow",
+        edit: "BlogPostEdit",
+      },
+    },
+    {
+      resourceName: "product",
+      folderName: "products",
+      componentNamesByActions: {
+        list: "ProductList",
+        create: "ProductCreate",
+        show: "ProductShow",
+        edit: "ProductEdit",
+      },
+    },
+    {
+      resourceName: "blogPosts",
+      folderName: "blogposts",
+      componentNamesByActions: {
+        list: "BlogPostsList",
+        create: "BlogPostsCreate",
+        show: "BlogPostsShow",
+        edit: "BlogPostsEdit",
+      },
+    },
+  ])(
+    "should generate components and folders for '$resourceName'",
+    (testCase) => {
+      jest
+        .spyOn(utilsProject, "getProjectType")
+        .mockReturnValue(ProjectTypes.VITE);
+
+      jest
+        .spyOn(testTargetModule, "getCommandRootDir")
+        .mockReturnValue(srcDirPath);
+
+      const actions = ["list", "create", "show", "edit"] as const;
+      testTargetModule.createResources({ actions: actions.join(",") }, [
+        testCase.resourceName,
+      ]);
+
+      const reactComponentRootDirPath = `${srcDirPath}/pages`;
+
+      actions.forEach((action) => {
+        const componentFilePath = `${reactComponentRootDirPath}/${testCase.folderName}/${action}.tsx`;
+        const componentContent = readFileSync(componentFilePath, "utf-8");
+        expect(componentContent).toContain(
+          `const ${testCase.componentNamesByActions[action]} = () => {`,
+        );
+      });
+
+      // cleanup
+      rmdirSync(reactComponentRootDirPath, { recursive: true });
+    },
+  );
 });
