@@ -1,5 +1,46 @@
 # @refinedev/devtools
 
+## 1.2.7
+
+### Patch Changes
+
+- [#6228](https://github.com/refinedev/refine/pull/6228) [`4e375902943c356f269e9f596103fd681ee9afb8`](https://github.com/refinedev/refine/commit/4e375902943c356f269e9f596103fd681ee9afb8) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools): check both parent and child nodes for representation
+
+  Previously, Refine Devtools's X-Ray feature looked for the representation of the components by looking at the parent nodes until a proper `stateNode` was found. This was problematic when the parent node was not a proper HTML element. A lack of type checking caused the feature to break in runtime in some cases.
+
+  Adding only a type check for the `stateNode` is not enough since there may be cases where there are no proper HTML elements in the parent nodes. This change adds a check for the child nodes as well. This way, the feature will look for the representation in both the parent and child nodes.
+
+  First check for a representation node will be done in the child nodes. If a proper representation is not found, an element will be searched in the parent nodes. If a no proper representation is found in the parent nodes, `document.body` will be used as the representation.
+
+  [Resolves #6219](https://github.com/refinedev/refine/issues/6219)
+
+- [#6228](https://github.com/refinedev/refine/pull/6228) [`4e375902943c356f269e9f596103fd681ee9afb8`](https://github.com/refinedev/refine/commit/4e375902943c356f269e9f596103fd681ee9afb8) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools): styling issues in the X-Ray feature
+
+  A minimum size was set for the X-Ray feature's overlay to prevent it from being too small.
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - feat(devtools): ability to change the port of the devtools server
+
+  Now users can change the port of the devtools server by setting the `REFINE_DEVTOOLS_PORT` environment variable. Previously, the port was hardcoded to "5001" and could not be changed.
+
+  If you're using `@refinedev/cli`'s runner commands to start your development server, `REFINE_DEVTOOLS_PORT` will be propagated to your app with appropriate prefix. E.g. if you're using Vite, the environment variable will be `VITE_REFINE_DEVTOOLS_PORT` and it will be used by the `@refinedev/devtools`'s `<DevtoolsProvider />` component to connect to the devtools server.
+
+  - In Next.js apps, it will be prefixed with `NEXT_PUBLIC_`
+  - In Craco and Create React App apps, it will be prefixed with `REACT_APP_`
+  - In Remix apps and other custom setups, the environment variable will be used as is.
+
+  In some scenarios where the environment variables are not passed to the browser, you may need to manually set the Refine Devtools URL in the `<DevtoolsProvider />` component via the `url` prop. Remix apps do not automatically pass environment variables to the browser, so you will need to set the URL manually. If not set, the default URL will be used.
+
+  While the port can be changed, this feature also allows users to host the devtools server on a different machine or domain and provide the `<DevtoolsProvider />` with the custom domain URL. This such case will be useful if you're dockerizing your app and devtools server separately.
+
+  **Enterprise Edition**: Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed.
+
+  [Resolves #5111](https://github.com/refinedev/refine/issues/5111)
+
+- Updated dependencies [[`d7fb07e59ddcbef49437c64d3a92b3d47d850225`](https://github.com/refinedev/refine/commit/d7fb07e59ddcbef49437c64d3a92b3d47d850225), [`cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4`](https://github.com/refinedev/refine/commit/cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4), [`c3a75139f82de022b54855e87e200ab38c803af5`](https://github.com/refinedev/refine/commit/c3a75139f82de022b54855e87e200ab38c803af5), [`9806a3629256d73bdc18ae808dce217f0108aad2`](https://github.com/refinedev/refine/commit/9806a3629256d73bdc18ae808dce217f0108aad2), [`e2b467528f6a799c3219e3a8fefd4834a0ca0431`](https://github.com/refinedev/refine/commit/e2b467528f6a799c3219e3a8fefd4834a0ca0431), [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4), [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4)]:
+  - @refinedev/cli@2.16.37
+  - @refinedev/devtools-server@1.1.35
+  - @refinedev/devtools-shared@1.1.12
+
 ## 1.2.6
 
 ### Patch Changes

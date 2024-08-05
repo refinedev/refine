@@ -1,5 +1,20 @@
 # @refinedev/react-table
 
+## 5.6.13
+
+### Patch Changes
+
+- [#6233](https://github.com/refinedev/refine/pull/6233) [`a93eed09796b780557f6fecee0c2f1e7b4f9e93b`](https://github.com/refinedev/refine/commit/a93eed09796b780557f6fecee0c2f1e7b4f9e93b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: update `@refinedev/core` usage to reflect latest renamings.
+
+  > These changes applied on internal usage of `@refinedev/core` in `@refinedev/react-table` package.
+
+  ```diff
+  import { useTable } from '@refinedev/core';
+
+  - const { tableQueryResult} = useTable();
+  + const { tableQuery } = useTable();
+  ```
+
 ## 5.6.12
 
 ### Patch Changes

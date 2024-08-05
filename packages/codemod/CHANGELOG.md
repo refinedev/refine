@@ -1,5 +1,44 @@
 # @refinedev/codemod
 
+## 4.2.0
+
+### Minor Changes
+
+- [#6161](https://github.com/refinedev/refine/pull/6161) [`ff975374efcc05220be4411218c2daf7c19b8995`](https://github.com/refinedev/refine/commit/ff975374efcc05220be4411218c2daf7c19b8995) Thanks [@ritute](https://github.com/ritute)! - feat(react-hook-form): update version constraint from `^7.30.0` to `^7.43.5`
+
+  Update react-hook-form version to address runtime subscribe error
+
+  [Fixes #6139](https://github.com/refinedev/refine/issues/6139)
+
+- [#6214](https://github.com/refinedev/refine/pull/6214) [`77f2ee8c09f45b4b1d7a6305cb256a6a08a1fb61`](https://github.com/refinedev/refine/commit/77f2ee8c09f45b4b1d7a6305cb256a6a08a1fb61) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `npx @refinedev/codemod@latest rename-query-and-mutation-result` to automatically refactor all deprecated values to their new values on the august release #6154
+
+  Following exameples are the changes that will be made:
+
+  ```diff
+  - const { tableQueryResult } = useTable(); // or useDataGrid
+  + const { tableQuery } = useTable();
+  ```
+
+  ```diff
+  - const { queryResult } = useSimpleList();
+  + const { query } = useSimpleList()
+  ```
+
+  ```diff
+  - const { queryResult, mutationResult } = useForm();
+  + const { query, mutation } = useForm();
+  ```
+
+  ```diff
+  - const { queryResult } = useShow();
+  + const { query } = useShow();
+  ```
+
+  ```diff
+  - const { queryResult, defaultValueQueryResult } = useSelect(); // or useAutocomplete, useCheckboxGroup, useRadioGroup
+  + const { query, defaultValueQuery } = useSelect();
+  ```
+
 ## 4.1.10
 
 ### Patch Changes

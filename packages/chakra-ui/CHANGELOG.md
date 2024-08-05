@@ -1,5 +1,47 @@
 # @refinedev/chakra-ui
 
+## 2.32.0
+
+### Minor Changes
+
+- [#6161](https://github.com/refinedev/refine/pull/6161) [`ff975374efcc05220be4411218c2daf7c19b8995`](https://github.com/refinedev/refine/commit/ff975374efcc05220be4411218c2daf7c19b8995) Thanks [@ritute](https://github.com/ritute)! - feat(react-hook-form): update version constraint from `^7.30.0` to `^7.43.5`
+
+  Update react-hook-form version to address runtime subscribe error
+
+  [Fixes #6139](https://github.com/refinedev/refine/issues/6139)
+
+### Patch Changes
+
+- [#6199](https://github.com/refinedev/refine/pull/6199) [`5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece`](https://github.com/refinedev/refine/commit/5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece) Thanks [@aliemir](https://github.com/aliemir)! - fix(auth-page): fix wrong translation keys in `type="register"` and `type="forgotPassword"`
+
+  In `type="forgotPassword"`:
+
+  - `"pages.register.buttons.haveAccount"` is replaced with `"pages.forgotPassword.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.forgotPassword.signin"`
+
+  In `type="register"`:
+
+  - `"pages.login.divider"` is replaced with `"pages.register.divider"`
+  - `"pages.login.buttons.haveAccount"` is replaced with `"pages.register.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.register.signin"`
+
+  Wrong keys are kept as fallbacks in case the new keys are not found in the translation file. If you are using those keys in your project, make sure to update them accordingly. Fallback keys will be removed in future releases.
+
+  [Resolves #5816](https://github.com/refinedev/refine/issues/5816)
+
+- [#6217](https://github.com/refinedev/refine/pull/6217) [`aefd093cfd85096fdac36cd25073d14dfb12094f`](https://github.com/refinedev/refine/commit/aefd093cfd85096fdac36cd25073d14dfb12094f) Thanks [@webscriptmaster](https://github.com/webscriptmaster)! - fix(date-field): falsy values should render empty string
+
+  Previously, `<DateField value={undefined} />` was rendering the current date. After this change, it will render empty string if a falsy value is provided.
+
+  [Resolves #6216](https://github.com/refinedev/refine/issues/6216)
+
+- [#6199](https://github.com/refinedev/refine/pull/6199) [`5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece`](https://github.com/refinedev/refine/commit/5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece) Thanks [@aliemir](https://github.com/aliemir)! - fix(auth-page): fix wrong translation key in `type="register"`
+
+  Previously, sign in link in Register page was using wrong translation key "pages.register.buttons.noAccount". Now it is replaced with "pages.register.buttons.haveAccount".
+
+- Updated dependencies [[`ff975374efcc05220be4411218c2daf7c19b8995`](https://github.com/refinedev/refine/commit/ff975374efcc05220be4411218c2daf7c19b8995), [`a93eed09796b780557f6fecee0c2f1e7b4f9e93b`](https://github.com/refinedev/refine/commit/a93eed09796b780557f6fecee0c2f1e7b4f9e93b)]:
+  - @refinedev/react-hook-form@4.9.0
+
 ## 2.31.2
 
 ### Patch Changes

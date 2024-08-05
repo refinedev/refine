@@ -1,5 +1,13 @@
 # @refinedev/nestjs-query
 
+## 1.3.3
+
+### Patch Changes
+
+- [#6133](https://github.com/refinedev/refine/pull/6133) [`788c7d0b56617306ea1f3070f7f3aa73e1c59e59`](https://github.com/refinedev/refine/commit/788c7d0b56617306ea1f3070f7f3aa73e1c59e59) Thanks [@igordonin](https://github.com/igordonin)! - Custom requests now correctly support GET requests and makes uses of custom URL and headers.
+
+  Resolves #6112
+
 ## 1.3.2
 
 ### Patch Changes

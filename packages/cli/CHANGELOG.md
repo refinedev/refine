@@ -1,5 +1,71 @@
 # @refinedev/cli
 
+## 2.16.37
+
+### Patch Changes
+
+- [#6162](https://github.com/refinedev/refine/pull/6162) [`d7fb07e59ddcbef49437c64d3a92b3d47d850225`](https://github.com/refinedev/refine/commit/d7fb07e59ddcbef49437c64d3a92b3d47d850225) Thanks [@noritsune](https://github.com/noritsune)! - feat(cli): improve the resource add command to generate page files for Next.js
+
+  When using the add resource command in a project using Next.js, a page will be generated to perform the selected actions for that resource.
+
+  These pages simply display generated components that perform actions on the resource. The placement of page files assumes operation with the App Router. If you prefer to use the Page Router instead, you'll need to move them manually.
+
+  [Resolves #6091](https://github.com/refinedev/refine/issues/6091)
+
+- [#6221](https://github.com/refinedev/refine/pull/6221) [`cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4`](https://github.com/refinedev/refine/commit/cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Automatically install `@refinedev/inferencer` if missing after generating new resources.
+
+  [Resolves #6220](https://github.com/refinedev/refine/issues/6220)
+
+- [#6135](https://github.com/refinedev/refine/pull/6135) [`c3a75139f82de022b54855e87e200ab38c803af5`](https://github.com/refinedev/refine/commit/c3a75139f82de022b54855e87e200ab38c803af5) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `yarn refine update` removes semver range specifiers(`^`, `~`) from `package.json`. #6134
+
+- [#6226](https://github.com/refinedev/refine/pull/6226) [`9806a3629256d73bdc18ae808dce217f0108aad2`](https://github.com/refinedev/refine/commit/9806a3629256d73bdc18ae808dce217f0108aad2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `refine add resource` generating invalid React component name. #6225
+
+  `refine add resource blog-posts` command was generating invalid React component name when the resource name contains a hyphen. This issue has been fixed by converting the resource name to PascalCase before generating the React component name.
+
+  ```diff
+  - export const Blog-PostsList: React.FC = () => {};
+  + export const BlogPostsList: React.FC = () => {};
+  ```
+
+  [Resolves #6225](https://github.com/refinedev/refine/issues/6225)
+
+- [#6196](https://github.com/refinedev/refine/pull/6196) [`e2b467528f6a799c3219e3a8fefd4834a0ca0431`](https://github.com/refinedev/refine/commit/e2b467528f6a799c3219e3a8fefd4834a0ca0431) Thanks [@aliemir](https://github.com/aliemir)! - feat(cli): create base translation files for i18n provider in add provider command
+
+  Currently `refine add provider i18n` command is only creating a demo i18n provider implementation but misses the translation files. This PR adds the base translation files for the i18n provider which is used by Refine internally in hooks, notifications and components.
+
+  Now `locale/en.json` will be added with primarily used translation keys and values for the i18n provider.
+
+  [Resolves #5918](https://github.com/refinedev/refine/issues/5918)
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): avoid polluting `process.env` with unwanted environment variables
+
+  Previously, the `@refinedev/cli` used `dotenv` to load environment variables from `.env` files and populate `process.env`. This caused issues when the users app has a different convention for environment variables, e.g. `.env.development`, `.env.production`, etc.
+
+  Now, the `@refinedev/cli` will read the file but avoid populating `process.env` with the variables and keep the values in its scope without passing them to the child processes. This will prevent unwanted environment variables from being passed to the child processes and avoid conflicts with the user's environment variables.
+
+  [Resolves #5803](https://github.com/refinedev/refine/issues/5803)
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - feat(devtools): ability to change the port of the devtools server
+
+  Now users can change the port of the devtools server by setting the `REFINE_DEVTOOLS_PORT` environment variable. Previously, the port was hardcoded to "5001" and could not be changed.
+
+  If you're using `@refinedev/cli`'s runner commands to start your development server, `REFINE_DEVTOOLS_PORT` will be propagated to your app with appropriate prefix. E.g. if you're using Vite, the environment variable will be `VITE_REFINE_DEVTOOLS_PORT` and it will be used by the `@refinedev/devtools`'s `<DevtoolsProvider />` component to connect to the devtools server.
+
+  - In Next.js apps, it will be prefixed with `NEXT_PUBLIC_`
+  - In Craco and Create React App apps, it will be prefixed with `REACT_APP_`
+  - In Remix apps and other custom setups, the environment variable will be used as is.
+
+  In some scenarios where the environment variables are not passed to the browser, you may need to manually set the Refine Devtools URL in the `<DevtoolsProvider />` component via the `url` prop. Remix apps do not automatically pass environment variables to the browser, so you will need to set the URL manually. If not set, the default URL will be used.
+
+  While the port can be changed, this feature also allows users to host the devtools server on a different machine or domain and provide the `<DevtoolsProvider />` with the custom domain URL. This such case will be useful if you're dockerizing your app and devtools server separately.
+
+  **Enterprise Edition**: Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed.
+
+  [Resolves #5111](https://github.com/refinedev/refine/issues/5111)
+
+- Updated dependencies [[`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4)]:
+  - @refinedev/devtools-server@1.1.35
+
 ## 2.16.36
 
 ### Patch Changes
