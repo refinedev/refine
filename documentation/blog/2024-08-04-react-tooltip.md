@@ -4,9 +4,11 @@ description: We'll explore how to create a custom tooltip component in a React a
 slug: react-tooltip
 authors: david_omotayo
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-23-react-tooltip/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 05,2024 to add sections for Advanced Custom Tooltip Features and Performance Optimization.**
 
 ## Introduction
 
@@ -500,12 +502,170 @@ react-tooltip also provides a feature that allows you to create clickable toolti
 
 <br/>
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Bonus: Accessibility Improvements for Custom Tooltips
+
+I have been giving some thought to a few improvements that might help make our React application more accessible. Increasing accessibility will mean that the app is much more user-friendly and considerate, more especially to those users who might have a disability. Here are some ideas with simple examples in code.
+
+### Keyboard Navigation
+
+Keyboard navigation enables the user to get into the application with only their keyboard. You would need a focus management strategy for tooltips too. Perhaps there will be an instance when it will be okay for screen readers to access these tooltips, with the right ARIA roles and properties.
+
+```jsx
+const Tooltip = ({ message, position }) => (
+  <div role="tooltip" aria-label={message} tabIndex="0">
+    <span className={`tooltip tooltip-${position}`}>{message}</span>
+  </div>
+);
+
+const Menu = () => {
+  const { menuItems } = useMenu();
+
+  return (
+    <nav className="menu">
+      <ul>
+        {menuItems.map((item) => (
+          <li key={item.key} className="tooltip_element">
+            <NavLink to={item.route ?? "/"} tabIndex="0">
+              {item.label}
+            </NavLink>
+            <Tooltip message={`route to ${item.label}`} position="bottom" />
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+```
+
+### Screen Reader Support
+
+Add support for screen readers so the content within the tooltips is clear, but without overwhelming visual users with masses of unnecessary content. This could potentially be implemented using live regions in order to communicate dynamic content changes to screen readers.
+
+```jsx
+const Tooltip = ({ message, position }) => (
+  <div role="tooltip" aria-live="polite" tabIndex="0">
+    <span className={`tooltip tooltip-${position}`}>{message}</span>
+  </div>
+);
+
+const Menu = () => {
+  const { menuItems } = useMenu();
+
+  return (
+    <nav className="menu" aria-label="Main Navigation">
+      <ul>
+        {menuItems.map((item) => (
+          <li key={item.key} className="tooltip_element">
+            <NavLink
+              to={item.route ?? "/"}
+              aria-describedby={`tooltip-${item.key}`}
+              tabIndex="0"
+            >
+              {item.label}
+            </NavLink>
+            <Tooltip
+              id={`tooltip-${item.key}`}
+              message={`route to ${item.label}`}
+              position="bottom"
+            />
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+```
+
+## Performance Optimization for Custom Tooltips
+
+In this section, you will find some thoughts and examples of code that enhance our tooltips for greater efficiency and performance:
+
+### Lazy Loading Tooltips
+
+Lazy loading can have an improvement in performance. Loading tooltips only when needed will surely be useful for those with lots of content.
+
+**Example Code:**
+
+```jsx
+// Lazy loading Tooltip component using React.lazy
+const LazyTooltip = React.lazy(() => import("./Tooltip"));
+
+// Usage example with React.Suspense
+const Menu = () => {
+  const { menuItems } = useMenu();
+
+  return (
+    <nav className="menu">
+      <ul>
+        {menuItems.map((item) => (
+          <li key={item.key} className="tooltip_element">
+            <NavLink to={item.route ?? "/"}>{item.label}</NavLink>
+            <React.Suspense fallback={<div>Loading...</div>}>
+              <LazyTooltip
+                message={`route to ${item.label}`}
+                position="bottom"
+              />
+            </React.Suspense>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+};
+```
+
+### Reducing Re-rend
+
+Minimizing unnecessary re-renders in React will maximize its performance. We can leverage memoization techniques into the `React.memo`, `useCallback`, and `use.
+
+**Code Example:**
+
+```jsx
+// Memoizing Tooltip component
+const Tooltip = React.memo(({ message, position }) => (
+  <div role="tooltip" aria-label={message} tabIndex="0">
+    <span className={`tooltip tooltip-${position}`}>{message}</span>
+  </div>
+));
+
+// Using useCallback to memoize event handlers
+const MenuItem = React.memo(({ item }) => {
+  const handleMouseEnter = useCallback(() => {
+    // handle mouse enter
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    // handle mouse leave
+  }, []);
+
+  return (
+    <li
+      key={item.key}
+      className="tooltip_element"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <NavLink to={item.route ?? "/"}>{item.label}</NavLink>
+      <Tooltip message={`route to ${item.label}`} position="bottom" />
+    </li>
+  );
+});
+
+// Menu component
+const Menu = () => {
+  const { menuItems } = useMenu();
+
+  return (
+    <nav className="menu">
+      <ul>
+        {menuItems.map((item) => (
+          <MenuItem key={item.key} item={item} />
+        ))}
+      </ul>
+    </nav>
+  );
+};
+```
 
 ## Conclusion
 
