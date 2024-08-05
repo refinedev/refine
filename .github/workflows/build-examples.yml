@@ -5,6 +5,7 @@ on:
     paths:
       - "packages/**"
       - "examples/**"
+      - "cypress/e2e/**"
     types:
       - labeled
       - synchronize
