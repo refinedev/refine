@@ -29,7 +29,7 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
   const navigate = useNavigate();
 
   const {
-    tableQueryResult: membersQueryResult,
+    tableQuery: membersQueryResult,
     pageCount,
     current,
     setCurrent,

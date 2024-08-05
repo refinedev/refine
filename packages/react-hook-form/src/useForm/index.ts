@@ -193,11 +193,10 @@ export const useForm = <
     },
   });
 
-  const { queryResult, onFinish, formLoading, onFinishAutoSave } =
-    useFormCoreResult;
+  const { query, onFinish, formLoading, onFinishAutoSave } = useFormCoreResult;
 
   useEffect(() => {
-    const data = queryResult?.data?.data;
+    const data = query?.data?.data;
     if (!data) return;
 
     /**
@@ -219,7 +218,7 @@ export const useForm = <
         setValue(path as Path<TVariables>, dataValue);
       }
     });
-  }, [queryResult?.data, setValue, getValues]);
+  }, [query?.data, setValue, getValues]);
 
   useEffect(() => {
     const subscription = watch((values: any, { type }: { type?: any }) => {

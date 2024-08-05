@@ -22,6 +22,10 @@ export type UseCheckboxGroupReturnType<
   > & {
     options: TOption[];
   };
+  query: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -74,12 +78,7 @@ export const useCheckboxGroup = <
   TError,
   TData
 >): UseCheckboxGroupReturnType<TData, TOption> => {
-  const { queryResult, options } = useSelect<
-    TQueryFnData,
-    TError,
-    TData,
-    TOption
-  >({
+  const { query, options } = useSelect<TQueryFnData, TError, TData, TOption>({
     resource,
     sort,
     sorters,
@@ -103,6 +102,7 @@ export const useCheckboxGroup = <
       options,
       defaultValue,
     },
-    queryResult,
+    query,
+    queryResult: query,
   };
 };

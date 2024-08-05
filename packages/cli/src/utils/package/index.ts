@@ -4,9 +4,9 @@ import { existsSync, pathExists, readFileSync, readJSON } from "fs-extra";
 import globby from "globby";
 import path from "path";
 import preferredPM from "preferred-pm";
+import type { PackageJson } from "@definitions/package";
 
-// TODO: Add package.json type
-export const getPackageJson = (): any => {
+export const getPackageJson = (): PackageJson => {
   if (!existsSync("package.json")) {
     throw new Error("./package.json not found");
   }
@@ -14,28 +14,28 @@ export const getPackageJson = (): any => {
   return JSON.parse(readFileSync("package.json", "utf8"));
 };
 
-export const getDependencies = (): string[] => {
+export const getDependencies = () => {
   const packageJson = getPackageJson();
   return Object.keys(packageJson.dependencies || {});
 };
 
-export const getDependenciesWithVersion = (): string[] => {
+export const getDependenciesWithVersion = () => {
   const packageJson = getPackageJson();
-  return packageJson.dependencies;
+  return packageJson?.dependencies || {};
 };
 
-export const getDevDependencies = (): string[] => {
+export const getDevDependencies = () => {
   const packageJson = getPackageJson();
   return Object.keys(packageJson.devDependencies || {});
 };
 
-export const getAllDependencies = (): string[] => {
+export const getAllDependencies = () => {
   return [...getDependencies(), ...getDependencies()];
 };
 
-export const getScripts = (): Record<string, string> => {
+export const getScripts = () => {
   const packageJson = getPackageJson();
-  return packageJson.scripts;
+  return packageJson?.scripts || {};
 };
 
 export const getInstalledRefinePackages = async () => {
@@ -125,24 +125,28 @@ export const isPackageHaveRefineConfig = async (packagePath: string) => {
 
 export const pmCommands = {
   npm: {
-    install: ["install", "--save"],
-    installDev: ["install", "--save-dev"],
+    add: ["install", "--save"],
+    addDev: ["install", "--save-dev"],
     outdatedJson: ["outdated", "--json"],
+    install: ["install"],
   },
   yarn: {
-    install: ["add"],
-    installDev: ["add", "-D"],
+    add: ["add"],
+    addDev: ["add", "-D"],
     outdatedJson: ["outdated", "--json"],
+    install: ["install"],
   },
   pnpm: {
-    install: ["add"],
-    installDev: ["add", "-D"],
+    add: ["add"],
+    addDev: ["add", "-D"],
     outdatedJson: ["outdated", "--format", "json"],
+    install: ["install"],
   },
   bun: {
-    install: ["add"],
-    installDev: ["add", "--dev"],
+    add: ["add"],
+    addDev: ["add", "--dev"],
     outdatedJson: ["outdated", "--format", "json"],
+    install: ["install"],
   },
 };
 
@@ -159,11 +163,16 @@ export const getPreferedPM = async () => {
   return pm;
 };
 
-export const installPackages = async (packages: string[]) => {
+export const installPackages = async (
+  packages: string[],
+  type: "all" | "add" = "all",
+  successMessage = "All `Refine` packages updated  🎉",
+) => {
   const pm = await getPreferedPM();
 
   try {
-    const installCommand = pmCommands[pm.name].install;
+    const installCommand =
+      type === "all" ? pmCommands[pm.name].install : pmCommands[pm.name].add;
 
     const execution = execa(pm.name, [...installCommand, ...packages], {
       stdio: "inherit",
@@ -179,7 +188,7 @@ export const installPackages = async (packages: string[]) => {
 
     execution.on("exit", (exitCode) => {
       if (exitCode === 0) {
-        console.log("All `Refine` packages updated  🎉");
+        console.log(successMessage);
         return;
       }
 
@@ -194,7 +203,7 @@ export const installPackagesSync = async (packages: string[]) => {
   const pm = await getPreferedPM();
 
   try {
-    const installCommand = pmCommands[pm.name].install;
+    const installCommand = pmCommands[pm.name].add;
 
     const execution = execa.sync(pm.name, [...installCommand, ...packages], {
       stdio: "inherit",
@@ -284,4 +293,54 @@ export const hasIncomatiblePackages = (packages: string[]): boolean => {
   }
 
   return false;
+};
+
+export const getAllVersionsOfPackage = async (
+  packageName: string,
+): Promise<string[]> => {
+  const pm = "npm";
+
+  const { stdout, timedOut } = await execa(
+    pm,
+    ["view", packageName, "versions", "--json"],
+    {
+      reject: false,
+      timeout: 25 * 1000,
+    },
+  );
+
+  if (timedOut) {
+    console.log("❌ Timed out while checking for updates.");
+    process.exit(1);
+  }
+
+  let result:
+    | string[]
+    | {
+        error: {
+          code: string;
+        };
+      } = [];
+
+  try {
+    result = JSON.parse(stdout);
+    if (!result || "error" in result) {
+      console.log("❌ Something went wrong while checking for updates.");
+      process.exit(1);
+    }
+  } catch (error) {
+    console.log("❌ Something went wrong while checking for updates.");
+    process.exit(1);
+  }
+
+  return result;
+};
+
+export const isInstalled = async (packageName: string) => {
+  const installedPackages = await getInstalledRefinePackages();
+  if (!installedPackages) {
+    return false;
+  }
+
+  return installedPackages.some((pkg) => pkg.name === packageName);
 };

@@ -21,7 +21,15 @@ export type UseSelectReturnType<
       data: TOption[];
     }
   >;
+  query: QueryObserverResult<GetListResponse<TData>>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `defaultValueQuery` instead
+   */
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
 
@@ -47,8 +55,12 @@ export const useSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TOption> => {
-  const { queryResult, defaultValueQueryResult, onSearch, options } =
-    useSelectCore<TQueryFnData, TError, TData, TOption>(props);
+  const { query, defaultValueQuery, onSearch, options } = useSelectCore<
+    TQueryFnData,
+    TError,
+    TData,
+    TOption
+  >(props);
 
   return {
     selectProps: {
@@ -58,7 +70,9 @@ export const useSelect = <
       filterDataOnExactSearchMatch: true,
       clearable: true,
     },
-    queryResult,
-    defaultValueQueryResult,
+    query,
+    defaultValueQuery,
+    queryResult: query,
+    defaultValueQueryResult: defaultValueQuery,
   };
 };

@@ -26,9 +26,11 @@ export const DateField: React.FC<DateFieldProps> = ({
 }) => {
   return (
     <Typography variant="body2" {...rest}>
-      {dayjs(value)
-        .locale(locales || defaultLocale)
-        .format(dateFormat)}
+      {value
+        ? dayjs(value)
+            .locale(locales || defaultLocale)
+            .format(dateFormat)
+        : ""}
     </Typography>
   );
 };

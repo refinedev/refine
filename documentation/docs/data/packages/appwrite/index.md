@@ -204,10 +204,9 @@ const PostCreate: React.FC = () => {
 };
 
 const PostEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } =
-    RefineAntdUseForm<IPost>();
+  const { formProps, saveButtonProps, query } = RefineAntdUseForm<IPost>();
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = RefineAntdUseSelect<ICategory>({
     defaultValue: postData?.categoryId,
     resource: "61c43adc284ac",

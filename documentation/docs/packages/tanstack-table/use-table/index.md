@@ -523,7 +523,7 @@ It also have all return values of [TanStack Table](https://tanstack.com/table/v8
 
 ### refineCore
 
-#### tableQueryResult
+#### tableQuery
 
 Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 

@@ -193,7 +193,7 @@ export const PostList: React.FC = () => {
     previousPage,
     resetRowSelection,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
   } = useTable<IPost>({
     columns,

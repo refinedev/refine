@@ -22,7 +22,7 @@ import type { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query: queryResult },
     saveButtonProps,
     register,
     watch,

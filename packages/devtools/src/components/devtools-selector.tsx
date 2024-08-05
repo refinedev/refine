@@ -53,6 +53,7 @@ export const DevtoolsSelector = ({
           width: 100%;
           transform: rotate(0deg);
           transition: transform 0.2s ease-in-out;
+          line-height: 1;
         }
 
         .refine-devtools-selector-button:hover {

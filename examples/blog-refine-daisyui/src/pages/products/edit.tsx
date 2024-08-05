@@ -7,7 +7,7 @@ export const ProductEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query: queryResult },
     register,
     handleSubmit,
     setValue,

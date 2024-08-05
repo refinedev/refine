@@ -39,7 +39,7 @@ export const KanbanEditPage = () => {
   });
 
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow<GetFields<KanbanGetTaskQuery>>({
     meta: { gqlQuery: KANBAN_GET_TASK_QUERY },
   });

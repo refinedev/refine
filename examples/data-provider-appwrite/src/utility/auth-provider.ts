@@ -2,11 +2,10 @@ import { account } from "./appwriteClient";
 
 import type { AuthProvider } from "@refinedev/core";
 import type { AppwriteException } from "@refinedev/appwrite";
-
 export const authProvider: AuthProvider = {
   login: async ({ email, password }) => {
     try {
-      await account.createEmailSession(email, password);
+      await account.createEmailPasswordSession(email, password);
       return {
         success: true,
         redirectTo: "/",

@@ -17,9 +17,9 @@ interface IProduct {
 }
 
 const ProductShow: React.FC = () => {
-  const { queryResult } = useShow<IProduct>();
+  const { query } = useShow<IProduct>();
 
-  const { data, isLoading, isError } = queryResult;
+  const { data, isLoading, isError } = query;
   const product = data?.data;
 
   if (isLoading) {

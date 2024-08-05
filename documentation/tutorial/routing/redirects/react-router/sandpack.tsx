@@ -26,12 +26,12 @@ const EditProductWithCustomRedirect = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { onFinish, mutationResult, queryResult } = useForm({
+  const { onFinish, mutation, query } = useForm({
     // This will redirect to the show page after the mutation is successful.
     redirect: "show",
   });
 
-  const record = queryResult.data?.data;
+  const record = query.data?.data;
 
   const { options } = useSelect({
     resource: "categories",
@@ -91,7 +91,7 @@ export const EditProduct = () => {
         ))}
       </select>
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );
@@ -102,7 +102,7 @@ const CreateProductWithCustomRedirect = /* tsx */ `
 import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
-  const { onFinish, mutationResult } = useForm({
+  const { onFinish, mutation } = useForm({
     redirect: "edit",
   });
 
@@ -147,7 +147,7 @@ export const CreateProduct = () => {
         ))}
       </select>
 
-      {mutationResult.isSuccess && <span>successfully submitted!</span>}
+      {mutation.isSuccess && <span>successfully submitted!</span>}
       <button type="submit">Submit</button>
     </form>
   );

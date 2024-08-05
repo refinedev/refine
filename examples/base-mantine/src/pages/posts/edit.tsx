@@ -9,7 +9,7 @@ export const PostEdit: React.FC = () => {
     saveButtonProps,
     getInputProps,
     errors,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query: queryResult, autoSaveProps },
   } = useForm({
     initialValues: {
       title: "",

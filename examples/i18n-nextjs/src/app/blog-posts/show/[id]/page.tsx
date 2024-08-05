@@ -14,7 +14,7 @@ const { Title } = Typography;
 
 export default function BlogPostShow() {
   const { translate: t } = useTranslation();
-  const { queryResult } = useShow({});
+  const { query: queryResult } = useShow({});
   const { data, isLoading } = queryResult;
 
   const record = data?.data;

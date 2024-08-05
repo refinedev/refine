@@ -122,8 +122,11 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             <Group mt="md" position={loginLink ? "left" : "right"}>
               <Text size="xs">
                 {translate(
-                  "pages.login.forgotPassword.haveAccount",
-                  "Have an account?",
+                  "pages.forgotPassword.buttons.haveAccount",
+                  translate(
+                    "pages.login.forgotPassword.haveAccount",
+                    "Have an account? ",
+                  ),
                 )}{" "}
                 <Anchor component={ActiveLink as any} to="/login" weight={700}>
                   {translate("pages.forgotPassword.signin", "Sign in")}

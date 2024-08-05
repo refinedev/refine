@@ -36,12 +36,12 @@ const renderForm = ({
     const {
       formProps,
       saveButtonProps,
-      queryResult,
+      query,
       formLoading,
       defaultFormValuesLoading,
     } = useForm<IPost, HttpError, IPost>(formParams);
 
-    const postData = queryResult?.data?.data;
+    const postData = query?.data?.data;
     const { selectProps: categorySelectProps } = useSelect({
       resource: "categories",
       defaultValue: postData?.category?.id,

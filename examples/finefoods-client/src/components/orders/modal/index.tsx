@@ -12,7 +12,26 @@ export const OrdersModal: React.FC = () => {
   const go = useGo();
   const { setOrdersModalVisible } = useOrdesModalContext();
   const { orders, totalPrice, products, dispatch } = useBasketContext();
-  const { mutate } = useCreate<Order>();
+  const { mutate } = useCreate<Order>({
+    resource: "orders",
+    successNotification: false,
+    mutationOptions: {
+      onSuccess: (data) => {
+        go({
+          to: {
+            resource: "orders",
+            id: data.data.id,
+            action: "show",
+          },
+          type: "replace",
+        });
+        setOrdersModalVisible(false);
+        dispatch({
+          type: "resetBasket",
+        });
+      },
+    },
+  });
 
   const handleClickOutside = () => {
     setOrdersModalVisible(false);
@@ -79,32 +98,12 @@ export const OrdersModal: React.FC = () => {
               </div>
               <button
                 onClick={() =>
-                  mutate(
-                    {
-                      resource: "orders",
-                      values: {
-                        products,
-                        amount: totalPrice,
-                      },
-                      successNotification: false,
+                  mutate({
+                    values: {
+                      products,
+                      amount: totalPrice,
                     },
-                    {
-                      onSuccess: (data) => {
-                        go({
-                          to: {
-                            resource: "orders",
-                            id: data.data.id,
-                            action: "show",
-                          },
-                          type: "replace",
-                        });
-                        setOrdersModalVisible(false);
-                        dispatch({
-                          type: "resetBasket",
-                        });
-                      },
-                    },
-                  )
+                  })
                 }
                 className="bg-primary border-primary rounded-md border px-4 text-lg font-bold text-white transition-all hover:bg-orange-500 active:scale-95"
               >

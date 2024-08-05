@@ -94,7 +94,7 @@ export const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,

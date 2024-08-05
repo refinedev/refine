@@ -1,7 +1,7 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
-  type UseMutationResult,
+  type MutateOptions,
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
@@ -43,6 +43,7 @@ import type {
   QueryResponse,
   UpdateManyResponse,
 } from "../../contexts/data/types";
+import type { UseMutationResult } from "../../definitions/types";
 import {
   type UseLoadingOvertimeOptionsProps,
   type UseLoadingOvertimeReturnType,
@@ -76,15 +77,15 @@ export type OptimisticUpdateManyMapType<TData, TVariables> = {
     | boolean;
 };
 
-type UpdateManyParams<TData, TError, TVariables> = {
+export type UpdateManyParams<TData, TError, TVariables> = {
   /**
    * ids for mutation function
    */
-  ids: BaseKey[];
+  ids?: BaseKey[];
   /**
    * Resource name for API data interactions
    */
-  resource: string;
+  resource?: string;
   /**
    * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
    */
@@ -100,7 +101,7 @@ type UpdateManyParams<TData, TError, TVariables> = {
   /**
    * Values for mutation function
    */
-  values: TVariables;
+  values?: TVariables;
   /**
    * meta data for `dataProvider`
    */
@@ -158,9 +159,10 @@ export type UseUpdateManyProps<
       UpdateManyParams<TData, TError, TVariables>,
       UpdateContext<TData>
     >,
-    "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
+    "mutationFn" | "onMutate"
   >;
-} & UseLoadingOvertimeOptionsProps;
+} & UseLoadingOvertimeOptionsProps &
+  UpdateManyParams<TData, TError, TVariables>;
 
 /**
  * `useUpdateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple update mutations.
@@ -179,6 +181,19 @@ export const useUpdateMany = <
   TError extends HttpError = HttpError,
   TVariables = {},
 >({
+  ids: idsFromProps,
+  resource: resourceFromProps,
+  values: valuesFromProps,
+  dataProviderName: dataProviderNameFromProps,
+  successNotification: successNotificationFromProps,
+  errorNotification: errorNotificationFromProps,
+  meta: metaFromProps,
+  metaData: metaDataFromProps,
+  mutationMode: mutationModeFromProps,
+  undoableTimeout: undoableTimeoutFromProps,
+  onCancel: onCancelFromProps,
+  optimisticUpdateMap: optimisticUpdateMapFromProps,
+  invalidates: invalidatesFromProps,
   mutationOptions,
   overtimeOptions,
 }: UseUpdateManyProps<TData, TError, TVariables> = {}): UseUpdateManyReturnType<
@@ -209,23 +224,27 @@ export const useUpdateMany = <
   } = useRefineContext();
   const { keys, preferLegacyKeys } = useKeys();
 
-  const mutation = useMutation<
+  const mutationResult = useMutation<
     UpdateManyResponse<TData>,
     TError,
     UpdateManyParams<TData, TError, TVariables>,
     UpdateContext<TData>
   >({
     mutationFn: ({
-      ids,
-      values,
-      resource: resourceName,
-      onCancel,
-      mutationMode,
-      undoableTimeout,
-      meta,
-      metaData,
-      dataProviderName,
+      ids = idsFromProps,
+      values = valuesFromProps,
+      resource: resourceName = resourceFromProps,
+      onCancel = onCancelFromProps,
+      mutationMode = mutationModeFromProps,
+      undoableTimeout = undoableTimeoutFromProps,
+      meta = metaFromProps,
+      metaData = metaDataFromProps,
+      dataProviderName = dataProviderNameFromProps,
     }: UpdateManyParams<TData, TError, TVariables>) => {
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { resource, identifier } = select(resourceName);
 
       const combinedMeta = getMeta({
@@ -301,15 +320,23 @@ export const useUpdateMany = <
       return updatePromise;
     },
     onMutate: async ({
-      resource: resourceName,
-      ids,
-      values,
-      mutationMode,
-      dataProviderName,
-      meta,
-      metaData,
-      optimisticUpdateMap = { list: true, many: true, detail: true },
+      resource: resourceName = resourceFromProps,
+      ids = idsFromProps,
+      values = valuesFromProps,
+      mutationMode = mutationModeFromProps,
+      dataProviderName = dataProviderNameFromProps,
+      meta = metaFromProps,
+      metaData = metaDataFromProps,
+      optimisticUpdateMap = optimisticUpdateMapFromProps ?? {
+        list: true,
+        many: true,
+        detail: true,
+      },
     }) => {
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { identifier } = select(resourceName);
       const {
         gqlMutation: _,
@@ -454,17 +481,22 @@ export const useUpdateMany = <
         queryKey,
       };
     },
-    onSettled: (
-      _data,
-      _error,
-      { ids, resource: resourceName, dataProviderName },
-    ) => {
+    onSettled: (data, error, variables, context) => {
+      const {
+        ids = idsFromProps,
+        resource: resourceName = resourceFromProps,
+        dataProviderName = dataProviderNameFromProps,
+        invalidates = invalidatesFromProps,
+      } = variables;
+      if (!ids) throw missingIdError;
+      if (!resourceName) throw missingResourceError;
+
       const { identifier } = select(resourceName);
 
       // invalidate the cache for the list and many queries:
       invalidateStore({
         resource: identifier,
-        invalidates: ["list", "many"],
+        invalidates: invalidates ?? ["list", "many"],
         dataProviderName: pickDataProvider(
           identifier,
           dataProviderName,
@@ -475,7 +507,7 @@ export const useUpdateMany = <
       ids.forEach((id) =>
         invalidateStore({
           resource: identifier,
-          invalidates: ["detail"],
+          invalidates: invalidates ?? ["detail"],
           dataProviderName: pickDataProvider(
             identifier,
             dataProviderName,
@@ -489,20 +521,23 @@ export const useUpdateMany = <
         type: ActionTypes.REMOVE,
         payload: { id: ids, resource: identifier },
       });
+
+      mutationOptions?.onSettled?.(data, error, variables, context);
     },
-    onSuccess: (
-      data,
-      {
-        ids,
-        resource: resourceName,
-        meta,
-        metaData,
-        dataProviderName: dataProviderNameFromProp,
-        successNotification,
-        values,
-      },
-      context,
-    ) => {
+    onSuccess: (data, variables, context) => {
+      const {
+        ids = idsFromProps,
+        resource: resourceName = resourceFromProps,
+        values = valuesFromProps,
+        meta = metaFromProps,
+        metaData = metaDataFromProps,
+        dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
+        successNotification = successNotificationFromProps,
+      } = variables;
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
 
@@ -581,12 +616,20 @@ export const useUpdateMany = <
           ...rest,
         },
       });
+
+      mutationOptions?.onSuccess?.(data, variables, context);
     },
-    onError: (
-      err: TError,
-      { ids, resource: resourceName, errorNotification, values },
-      context,
-    ) => {
+    onError: (err: TError, variables, context) => {
+      const {
+        ids = idsFromProps,
+        resource: resourceName = resourceFromProps,
+        errorNotification = errorNotificationFromProps,
+        values = valuesFromProps,
+      } = variables;
+      if (!ids) throw missingIdError;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { identifier } = select(resourceName);
 
       // set back the queries to the context:
@@ -620,6 +663,8 @@ export const useUpdateMany = <
           type: "error",
         });
       }
+
+      mutationOptions?.onError?.(err, variables, context);
     },
     mutationKey: keys().data().mutation("updateMany").get(preferLegacyKeys),
     ...mutationOptions,
@@ -628,6 +673,7 @@ export const useUpdateMany = <
       ...getXRay("useUpdateMany", preferLegacyKeys),
     },
   });
+  const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     isLoading: mutation.isLoading,
@@ -635,5 +681,48 @@ export const useUpdateMany = <
     onInterval: overtimeOptions?.onInterval,
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  // this function is used to make the `variables` parameter optional
+  const handleMutation = (
+    variables?: UpdateManyParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      UpdateManyResponse<TData>,
+      TError,
+      UpdateManyParams<TData, TError, TVariables>,
+      UpdateContext<TData>
+    >,
+  ) => {
+    return mutate(variables || {}, options);
+  };
+
+  // this function is used to make the `variables` parameter optional
+  const handleMutateAsync = (
+    variables?: UpdateManyParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      UpdateManyResponse<TData>,
+      TError,
+      UpdateManyParams<TData, TError, TVariables>,
+      UpdateContext<TData>
+    >,
+  ) => {
+    return mutateAsync(variables || {}, options);
+  };
+
+  return {
+    ...mutation,
+    mutate: handleMutation,
+    mutateAsync: handleMutateAsync,
+    overtime: { elapsedTime },
+  };
 };
+
+const missingResourceError = new Error(
+  "[useUpdateMany]: `resource` is not defined or not matched but is required",
+);
+
+const missingIdError = new Error(
+  "[useUpdateMany]: `id` is not defined but is required in edit and clone actions",
+);
+
+const missingValuesError = new Error(
+  "[useUpdateMany]: `values` is not provided but is required",
+);

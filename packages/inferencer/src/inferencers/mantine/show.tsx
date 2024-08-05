@@ -640,7 +640,7 @@ export const renderer = ({
     
     export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
-        const { queryResult } = useShow(${
+        const { query } = useShow(${
           isCustomPage
             ? `{ 
                     resource: "${resource.name}", 
@@ -661,7 +661,7 @@ export const renderer = ({
                 )} }`
               : ""
         });
-        const { data, isLoading } = queryResult;
+        const { data, isLoading } = query;
     
         const ${recordName} = data?.data;
     

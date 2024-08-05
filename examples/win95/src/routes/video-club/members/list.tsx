@@ -25,7 +25,7 @@ export const VideoClubMemberPageList = () => {
   const navigate = useNavigate();
 
   const {
-    tableQueryResult: membersQueryResult,
+    tableQuery: membersQueryResult,
     pageCount,
     current,
     setCurrent,

@@ -21,7 +21,7 @@ export default function Usage() {
         "react-dom": "^18.0.0",
         "react-router": "latest",
         "react-router-dom": "^6.8.1",
-        "react-hook-form": "^7.30.0",
+        "react-hook-form": "^7.43.5",
       }}
       startRoute="/products"
       files={{
@@ -365,7 +365,7 @@ export const ProductList = () => {
             setCurrent,
             pageCount,
             current,
-            tableQueryResult: { data: tableData },
+            tableQuery: { data: tableData },
         },
     } = useTable({
         columns,

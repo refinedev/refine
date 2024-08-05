@@ -277,7 +277,7 @@ render(<RefineAntdDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route but that can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
 
 In the following example, we will show how to use `useForm` with `action: "edit"`.
 
@@ -352,7 +352,7 @@ render(<RefineAntdDemo />);
 
 You can think `action:clone` like "save as". It is also similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -989,24 +989,24 @@ It contains all the props needed by the `"submit"` button within the form (disab
 
 `formLoading` is the loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
 
-### queryResult
+### query
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `query` property.
 
 ```tsx
-const { queryResult } = useForm();
+const { query } = useForm();
 
-const { data } = queryResult;
+const { data } = query;
 ```
 
-### mutationResult
+### mutation
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutationResult` property.
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutation` property.
 
 ```tsx
-const { mutationResult } = useForm();
+const { mutation } = useForm();
 
-const { data } = mutationResult;
+const { data } = mutation;
 ```
 
 ### setId
@@ -1071,6 +1071,14 @@ If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, 
 ### defaultFormValuesLoading
 
 If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormValuesLoading` will be `true` until the function is resolved.
+
+### ~~mutationResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
+
+### ~~queryResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
 
 ## FAQ
 
@@ -1176,8 +1184,8 @@ You can use the `meta` property to pass common values to the mutation and the qu
 | formProps                | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                          |
 | saveButtonProps          | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
 | redirect                 | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
-| queryResult              | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
-| mutationResult           | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
+| query                    | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
+| mutation                 | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
 | formLoading              | Loading state of form request                           | `boolean`                                                                                                                                                        |
 | id                       | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
 | setId                    | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |

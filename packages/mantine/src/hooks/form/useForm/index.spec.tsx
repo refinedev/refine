@@ -21,7 +21,7 @@ const renderForm = ({
     const {
       saveButtonProps,
       getInputProps,
-      refineCore: { queryResult, formLoading },
+      refineCore: { query, formLoading },
     } = useForm({
       ...useFormProps,
       refineCoreProps: {
@@ -42,7 +42,7 @@ const renderForm = ({
 
     const { selectProps, queryResult: categoriesQueryResult } = useSelect({
       resource: "categories",
-      defaultValue: queryResult?.data?.data?.category?.id,
+      defaultValue: query?.data?.data?.category?.id,
     });
 
     if (formLoading || categoriesQueryResult.isLoading) {
