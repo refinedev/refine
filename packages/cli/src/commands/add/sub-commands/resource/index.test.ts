@@ -9,7 +9,7 @@ describe("add", () => {
   beforeAll(() => {
     // usefull for speed up the tests.
     jest.spyOn(console, "log").mockImplementation();
-    
+
     jest.spyOn(testTargetModule, "installInferencer").mockImplementation();
   });
 
