@@ -4,9 +4,11 @@ description: We'll learn how to unit test our component down to hooks and Contex
 slug: react-unit-testing
 authors: chidume_nnamdi
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-26-react-unit-testing/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-26-react-unit-testing/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 05, 2024 to add sections for Accessibility Testing and Custom Hooks Testing.**
 
 ## Introduction
 
@@ -631,6 +633,146 @@ If you intentionally make changes to the component's output and want to update t
 ```
 jest --updateSnapshot
 ```
+
+## Testing Performance with React Profiler
+
+I wanted to add some performance testing to our React app. This will help us ensure that our components are not only functional, but also performant.
+
+### Profiling with the React Profiler
+
+React Profiler is a tool to measure the performance of React components. To identify performance bottlenecks and optimize our components accordingly.
+
+```jsx
+import React, { Profiler } from "react";
+import { render } from "@testing-library/react";
+import MyComponent from "./MyComponent";
+
+const onRenderCallback = (
+  id, // the "id" prop of the Profiler tree that has just committed
+  phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+  actualDuration, // time spent rendering the committed update
+  baseDuration, // estimated time to render the entire subtree without memoization
+  startTime, // when React began rendering this update
+  commitTime, // when React committed this update
+  interactions, // the Set of interactions belonging to this update
+) => {
+  console.log({
+    id,
+    phase,
+    actualDuration,
+    baseDuration,
+    startTime,
+    commitTime,
+    interactions,
+  });
+};
+
+test("measures performance of MyComponent", () => {
+  render(
+    <Profiler id="MyComponent" onRender={onRenderCallback}>
+      <MyComponent />
+    </Profiler>,
+  );
+});
+```
+
+In this example, we wrap `MyComponent` inside a `Profiler` giving it an `onRenderCallback` function to log performance metrics so that we may pinpoint potential trouble spots.
+
+### Using Performance Tools
+
+We can use performance tools to analyze and optimize our React components effectively. Here are a couple:
+
+**React DevTools Profiler**
+
+The Profiler tab in React DevTools allows developers to record and analyze component performance during real time. This helps locate components that are re-rendering too frequently or take an excessively long time to render.
+
+**Lighthouse:** Lighthouse is an open-source automatic tool for increasing web page quality. It gives access to all the performance metrics and suggests changes you need to make.
+
+## Accessibility Testing
+
+### Ensuring Accessible Components
+
+The final expected outcome is that every component should be largely accessible in order to provide a great user experience for all, including those with disabilities. Here's a general outline and code samples of what we will cover:
+
+Ensuring Accessible Components We can automatically find and fix accessibility issues on components with the use of tooling like Axe. Axe is an engine used to run accessibility tests on web pages and other HTML interfaces.
+
+```tsx
+import React from "react";
+import { render } from "@testing-library/react";
+import { axe, toHaveNoViolations } from "jest-axe";
+
+expect.extend(toHaveNoViolations);
+
+const MyComponent = () => (
+  <div>
+    <h1>Hello, World!</h1>
+    <button>Click Me</button>
+  </div>
+);
+
+test("should have no accessibility violations", async () => {
+  const { container } = render(<MyComponent />);
+  const results = await axe(container);
+  expect(results).toHaveNoViolations();
+});
+```
+
+Here, we are using the axe library to check our component for accessibility issues. The toHaveNoViolations matcher helps us assert that there are no accessibility violations in our component.
+
+### Writing Tests for ARIA Roles and Properties
+
+Writing Tests for ARIA Roles and Properties ARIA (Accessible Rich Internet Applications) roles and properties help make content on the web more accessible to people with disabilities. Test your components' correct use of ARIA attributes.
+
+```tsx
+import React from "react";
+import { render } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+
+const AriaComponent = () => (
+  <div>
+    <button aria-label="Close">X</button>
+  </div>
+);
+
+test("button should have correct aria-label", () => {
+  const { getByLabelText } = render(<AriaComponent />);
+  const button = getByLabelText("Close");
+  expect(button).toBeInTheDocument();
+});
+```
+
+In this example we are using the aria-label attribute in order that the button is accessibly labelled. We then use the @testing-library/react getByLabelText to test that the button is accessible by its ARIA label.
+
+### Keyboard Navigation Testing
+
+Simulating keyboard events and verifying focus management ensures that users can navigate our application using the keyboard.
+
+```tsx
+import React from "react";
+import { render, fireEvent } from "@testing-library/react";
+import "@testing-library/jest-dom/extend-expect";
+
+const KeyboardComponent = () => (
+  <div>
+    <button>First Button</button>
+    <button>Second Button</button>
+  </div>
+);
+
+test("should navigate buttons using keyboard", () => {
+  const { getByText } = render(<KeyboardComponent />);
+  const firstButton = getByText("First Button");
+  const secondButton = getByText("Second Button");
+
+  firstButton.focus();
+  expect(firstButton).toHaveFocus();
+
+  fireEvent.keyDown(document, { key: "Tab" });
+  expect(secondButton).toHaveFocus();
+});
+```
+
+In this test, we simulate pressing the Tab key to shift focus from the first button to the second button. We use the `fireEvent` function of `@testing-library/react` for simulating keyboard events and use the `toHaveFocus` matcher for verification of focus management.
 
 ## Conclusion
 
