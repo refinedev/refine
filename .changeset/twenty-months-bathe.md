@@ -1,10 +1,10 @@
 ---
 "@refinedev/cli": patch
-"@refinedev/devtools-server": minor
-"@refinedev/devtools-shared": minor
-"@refinedev/devtools-ui": minor
-"@refinedev/devtools": minor
-"@refinedev/devtools-internal": minor
+"@refinedev/devtools-server": patch
+"@refinedev/devtools-shared": patch
+"@refinedev/devtools-ui": patch
+"@refinedev/devtools": patch
+"@refinedev/devtools-internal": patch
 ---
 
 feat(devtools): ability to change the port of the devtools server

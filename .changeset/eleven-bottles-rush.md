@@ -1,5 +1,5 @@
 ---
-"@refinedev/cli": minor
+"@refinedev/cli": patch
 ---
 
 feat: Automatically install `@refinedev/inferencer` if missing after generating new resources.

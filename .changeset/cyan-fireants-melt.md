@@ -1,5 +1,5 @@
 ---
-"@refinedev/cli": minor
+"@refinedev/cli": patch
 ---
 
 feat(cli): improve the resource add command to generate page files for Next.js
