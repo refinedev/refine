@@ -4,6 +4,22 @@ import { createPortal } from "react-dom";
 import { ApplyStyles } from "./apply-styles";
 import { SelectorIcon } from "./icons/selector-button";
 
+const MIN_SIZE = 22;
+
+const getPosition = (element: HTMLElement, document: Document) => {
+  const { top, left, width, height } = element.getBoundingClientRect();
+  const { scrollLeft, scrollTop } = document.documentElement;
+  const positionLeft = left + scrollLeft - Math.max(0, MIN_SIZE - width) / 2;
+  const positionTop = top + scrollTop - Math.max(0, MIN_SIZE - height) / 2;
+
+  return {
+    left: positionLeft,
+    top: positionTop,
+    width: Math.max(MIN_SIZE, width),
+    height: Math.max(MIN_SIZE, height),
+  };
+};
+
 const SelectableElement = ({
   element,
   name,
@@ -13,14 +29,7 @@ const SelectableElement = ({
   name: string;
   onSelect: (name: string) => void;
 }) => {
-  const [position] = React.useState(() => {
-    const { top, left, width, height } = element.getBoundingClientRect();
-    const { scrollLeft, scrollTop } = document.documentElement;
-    const positionLeft = left + scrollLeft;
-    const positionTop = top + scrollTop;
-
-    return { left: positionLeft, top: positionTop, width, height };
-  });
+  const [position] = React.useState(() => getPosition(element, document));
 
   const elementRef = React.useRef<HTMLButtonElement | null>(null);
 
@@ -28,15 +37,10 @@ const SelectableElement = ({
     // use scroll event listener
     const onScroll = debounce(
       () => {
-        const { top, left, width, height } = element.getBoundingClientRect();
-        const { scrollLeft, scrollTop } = document.documentElement;
-        const positionLeft = left + scrollLeft;
-        const positionTop = top + scrollTop;
-
-        elementRef.current?.style.setProperty("left", `${positionLeft}px`);
-        elementRef.current?.style.setProperty("top", `${positionTop}px`);
-        elementRef.current?.style.setProperty("width", `${width}px`);
-        elementRef.current?.style.setProperty("height", `${height}px`);
+        const nextPos = getPosition(element, document);
+        (["left", "top", "width", "height"] as const).forEach((prop) => {
+          elementRef.current?.style.setProperty(prop, `${nextPos[prop]}px`);
+        });
         elementRef.current?.style.setProperty("opacity", "1");
       },
       200,
@@ -246,6 +250,9 @@ export const SelectableElements = ({
           .selector-xray-box:hover .selector-xray-info-title {
             max-width: 200px;
             padding-right: 8px;
+          }
+          .selector-xray-box:hover .selector-xray-info-title {
+            z-index: 90;
           }
         `
         }
