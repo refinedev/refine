@@ -166,6 +166,7 @@ export const getPreferedPM = async () => {
 export const installPackages = async (
   packages: string[],
   type: "all" | "add" = "all",
+  successMessage = "All `Refine` packages updated  🎉",
 ) => {
   const pm = await getPreferedPM();
 
@@ -187,7 +188,7 @@ export const installPackages = async (
 
     execution.on("exit", (exitCode) => {
       if (exitCode === 0) {
-        console.log("All `Refine` packages updated  🎉");
+        console.log(successMessage);
         return;
       }
 
@@ -333,4 +334,13 @@ export const getAllVersionsOfPackage = async (
   }
 
   return result;
+};
+
+export const isInstalled = async (packageName: string) => {
+  const installedPackages = await getInstalledRefinePackages();
+  if (!installedPackages) {
+    return false;
+  }
+
+  return installedPackages.some((pkg) => pkg.name === packageName);
 };
