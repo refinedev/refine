@@ -15,6 +15,7 @@ import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
+import { DevtoolsProvider, DevtoolsPanel } from "@refinedev/devtools";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
@@ -26,55 +27,58 @@ const App: React.FC = () => {
       <ThemeProvider theme={RefineThemes.Blue}>
         <CssBaseline />
         <GlobalStyles styles={{ html: { WebkitFontSmoothing: "auto" } }} />
-        <RefineSnackbarProvider>
-          <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            notificationProvider={useNotificationProvider}
-            resources={[
-              {
-                name: "posts",
-                list: "/posts",
-                create: "/posts/create",
-                edit: "/posts/edit/:id",
-                show: "/posts/show/:id",
-                meta: {
-                  canDelete: true,
+        <DevtoolsProvider>
+          <RefineSnackbarProvider>
+            <Refine
+              routerProvider={routerProvider}
+              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+              notificationProvider={useNotificationProvider}
+              resources={[
+                {
+                  name: "posts",
+                  list: "/posts",
+                  create: "/posts/create",
+                  edit: "/posts/edit/:id",
+                  show: "/posts/show/:id",
+                  meta: {
+                    canDelete: true,
+                  },
                 },
-              },
-            ]}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-            }}
-          >
-            <Routes>
-              <Route
-                element={
-                  <ThemedLayoutV2>
-                    <Outlet />
-                  </ThemedLayoutV2>
-                }
-              >
+              ]}
+              options={{
+                syncWithLocation: true,
+                warnWhenUnsavedChanges: true,
+              }}
+            >
+              <Routes>
                 <Route
-                  index
-                  element={<NavigateToResource resource="posts" />}
-                />
+                  element={
+                    <ThemedLayoutV2>
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  }
+                >
+                  <Route
+                    index
+                    element={<NavigateToResource resource="posts" />}
+                  />
 
-                <Route path="/posts">
-                  <Route index element={<PostList />} />
-                  <Route path="create" element={<PostCreate />} />
-                  <Route path="edit/:id" element={<PostEdit />} />
-                  <Route path="show/:id" element={<PostShow />} />
+                  <Route path="/posts">
+                    <Route index element={<PostList />} />
+                    <Route path="create" element={<PostCreate />} />
+                    <Route path="edit/:id" element={<PostEdit />} />
+                    <Route path="show/:id" element={<PostShow />} />
+                  </Route>
+
+                  <Route path="*" element={<ErrorComponent />} />
                 </Route>
-
-                <Route path="*" element={<ErrorComponent />} />
-              </Route>
-            </Routes>
-            <UnsavedChangesNotifier />
-            <DocumentTitleHandler />
-          </Refine>
-        </RefineSnackbarProvider>
+              </Routes>
+              <DevtoolsPanel />
+              <UnsavedChangesNotifier />
+              <DocumentTitleHandler />
+            </Refine>
+          </RefineSnackbarProvider>
+        </DevtoolsProvider>
       </ThemeProvider>
     </BrowserRouter>
   );
