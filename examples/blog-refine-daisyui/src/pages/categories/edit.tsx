@@ -7,7 +7,7 @@ export const CategoryEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query: queryResult },
     register,
     handleSubmit,
     formState: { errors },

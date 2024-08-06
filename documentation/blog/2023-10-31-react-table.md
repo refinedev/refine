@@ -245,7 +245,7 @@ export const CategoryList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
   } = useTable({
     columns,
@@ -342,7 +342,7 @@ export const CategoryList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     //highlight-start
     getState,

@@ -8,7 +8,11 @@ import { TOKEN_KEY, API_URL } from "../../constants";
 import type { ICategory, IPost } from "../../interfaces";
 
 export const PostEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost>({
     metaData: { populate: ["category", "cover"] },
   });
 

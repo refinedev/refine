@@ -1,5 +1,15 @@
 # @refinedev/nestjsx-crud
 
+## 5.0.9
+
+### Patch Changes
+
+- [#6160](https://github.com/refinedev/refine/pull/6160) [`20499cac091de94dcb4856a5253c68f216f022aa`](https://github.com/refinedev/refine/commit/20499cac091de94dcb4856a5253c68f216f022aa) Thanks [@aishuarya](https://github.com/aishuarya)! - fix: update empty filter checks
+
+  Updated the conditions to properly check empty filters
+
+  [Fixes #6146](https://github.com/refinedev/refine/issues/6146)
+
 ## 5.0.8
 
 ### Patch Changes

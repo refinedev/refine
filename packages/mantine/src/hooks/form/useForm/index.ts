@@ -189,16 +189,15 @@ export const useForm = <
     },
   });
 
-  const { queryResult, formLoading, onFinish, onFinishAutoSave } =
-    useFormCoreResult;
+  const { query, formLoading, onFinish, onFinishAutoSave } = useFormCoreResult;
 
   useEffect(() => {
-    if (typeof queryResult?.data !== "undefined") {
+    if (typeof query?.data !== "undefined") {
       const fields: any = {};
 
       const registeredFields = flattenObjectKeys(rest.initialValues ?? {});
 
-      const data = queryResult?.data?.data ?? {};
+      const data = query?.data?.data ?? {};
 
       Object.keys(registeredFields).forEach((key) => {
         const hasValue = has(data, key);
@@ -212,7 +211,7 @@ export const useForm = <
       setValues(fields);
       resetDirty(fields);
     }
-  }, [queryResult?.data]);
+  }, [query?.data]);
 
   const isValuesChanged = isDirty();
 

@@ -124,7 +124,7 @@ export const BlogPostList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,

@@ -88,7 +88,7 @@ describe("useStepsForm Hook", () => {
         setValue,
         getValues,
         formState: { dirtyFields: mockDirtyFields },
-        refineCore: { queryResult: { data: { data: mockData } } },
+        refineCore: { query: { data: { data: mockData } } },
       });
 
       const { result } = renderHook(
@@ -107,9 +107,7 @@ describe("useStepsForm Hook", () => {
         expect(!result.current.refineCore.formLoading).toBeTruthy();
       });
 
-      expect(result.current.refineCore.queryResult?.data?.data).toEqual(
-        mockData,
-      );
+      expect(result.current.refineCore.query?.data?.data).toEqual(mockData);
 
       const setValueCallTimes =
         Object.keys(mockData).length - Object.keys(mockDirtyFields).length;

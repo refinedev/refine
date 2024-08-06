@@ -21,7 +21,7 @@ import { useTable, useMany, useNavigation } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     current,
     setCurrent,
     pageCount,

@@ -18,7 +18,7 @@ export default function UsageRemix() {
         "@mui/material": "^5.14.2",
         "@mui/system": "latest",
         "@mui/x-data-grid": "^6.6.0",
-        "react-hook-form": "^7.30.0",
+        "react-hook-form": "^7.43.5",
         "@refinedev/remix-router": "latest",
       }}
       startRoute="/products"

@@ -30,7 +30,7 @@ export const BlogPostEdit: React.FC<IResourceComponentsProps> = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query: queryResult },
     ...form
   } = useForm({
     refineCoreProps: {

@@ -11,7 +11,7 @@ import type { IOrder, IOrderStatus } from "../../../interfaces";
 
 export const RecentSales = () => {
   const {
-    tableQueryResult,
+    tableQuery: tableQueryResult,
     pageCount,
     current,
     pageSize,

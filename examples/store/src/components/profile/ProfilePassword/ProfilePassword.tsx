@@ -29,7 +29,7 @@ export const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     formState: { errors },
     setError,
-    refineCore: { onFinish, mutationResult },
+    refineCore: { onFinish, mutation: mutationResult },
   } = useForm<UpdateCustomerPasswordFormData>({
     refineCoreProps: {
       action: "edit",
@@ -45,23 +45,22 @@ export const ProfilePassword: React.FC<MyInformationProps> = ({ customer }) => {
     reset();
   }, [customer, reset]);
 
-  const { mutateAsync } = useCreate();
+  const { mutateAsync } = useCreate({
+    resource: "auth",
+    mutationOptions: {
+      onSuccess: () => {
+        return setIsValid(true);
+      },
+    },
+  });
 
   const updatePassword = async (data: UpdateCustomerPasswordFormData) => {
-    mutateAsync(
-      {
-        resource: "auth",
-        values: {
-          email: customer.email,
-          password: data.old_password,
-        },
+    mutateAsync({
+      values: {
+        email: customer.email,
+        password: data.old_password,
       },
-      {
-        onSuccess: () => {
-          return setIsValid(true);
-        },
-      },
-    );
+    });
 
     if (!isValid) {
       setError("old_password", {

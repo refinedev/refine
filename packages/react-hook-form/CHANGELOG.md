@@ -1,5 +1,28 @@
 # @refinedev/react-hook-form
 
+## 4.9.0
+
+### Minor Changes
+
+- [#6161](https://github.com/refinedev/refine/pull/6161) [`ff975374efcc05220be4411218c2daf7c19b8995`](https://github.com/refinedev/refine/commit/ff975374efcc05220be4411218c2daf7c19b8995) Thanks [@ritute](https://github.com/ritute)! - feat(react-hook-form): update version constraint from `^7.30.0` to `^7.43.5`
+
+  Update react-hook-form version to address runtime subscribe error
+
+  [Fixes #6139](https://github.com/refinedev/refine/issues/6139)
+
+### Patch Changes
+
+- [#6233](https://github.com/refinedev/refine/pull/6233) [`a93eed09796b780557f6fecee0c2f1e7b4f9e93b`](https://github.com/refinedev/refine/commit/a93eed09796b780557f6fecee0c2f1e7b4f9e93b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: update `@refinedev/core` usage to reflect latest renamings.
+
+  > These changes applied on internal usage of `@refinedev/core` in `@refinedev/react-hook-form` package.
+
+  ```diff
+  import { useForm } from '@refinedev/core';
+
+  - const { queryResult, mutationResult } = useForm();
+  + const { query, mutation} = useForm();
+  ```
+
 ## 4.8.20
 
 ### Patch Changes

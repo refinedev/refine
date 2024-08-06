@@ -116,7 +116,11 @@ const columns = [
 export const ProductsServices = () => {
   const params = useParams<{ id: string }>();
 
-  const { formProps, autoSaveProps, queryResult } = useForm<
+  const {
+    formProps,
+    autoSaveProps,
+    query: queryResult,
+  } = useForm<
     GetFields<QuotesUpdateQuoteMutation>,
     HttpError,
     GetVariables<QuotesUpdateQuoteMutationVariables>
@@ -415,7 +419,7 @@ const TaxForm = (props: {
 }) => {
   const params = useParams<{ id: string }>();
 
-  const { formProps, queryResult } = useForm<
+  const { formProps, query: queryResult } = useForm<
     Quote,
     HttpError,
     QuoteUpdateInput

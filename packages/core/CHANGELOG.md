@@ -1,5 +1,366 @@
 # @refinedev/core
 
+## 4.54.0
+
+### Minor Changes
+
+- [#6180](https://github.com/refinedev/refine/pull/6180) [`292cebc5a70f19400793292b79d1400fec114591`](https://github.com/refinedev/refine/commit/292cebc5a70f19400793292b79d1400fec114591) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useSelect`](https://refine.dev/docs/data/hooks/use-select/)'s `queryResult` and `defaultValueQueryResult` is deprecated, use `query` and `defaultValueQuery` instead. #6179
+
+  ```diff
+  import { useSelect } from '@refinedev/core';
+
+  - const { queryResult, defaultValueQueryResult } = useSelect();
+  + const { query, defaultValueQuery } = useSelect();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6116](https://github.com/refinedev/refine/pull/6116) [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [Mutation parameters](https://refine.dev/docs/data/hooks/use-update/#mutation-parameters) should be given as a prop to the `useUpdate` hook. #6102
+  From now on, you can pass mutation parameters to the `useUpdate` hook as a prop.
+
+  Old usage of `useUpdate` hook:
+
+  ```tsx
+  import { useUpdate } from "@refinedev/core";
+
+  const { mutate } = useUpdate();
+
+  mutate(
+    {
+      resource: "products",
+      id: 1,
+      mutationMode: "optimistic",
+      successNotification: false,
+      values: {
+        name: "New Product",
+        material: "Wood",
+      },
+    },
+    {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  );
+  ```
+
+  New usage of `useUpdate` hook:
+
+  ```tsx
+  import { useUpdate } from "@refinedev/core";
+
+  const { mutate } = useUpdate({
+    resource: "products",
+    successNotification: false,
+    mutationMode: "optimistic",
+    mutationOptions: {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  });
+
+  mutate({
+    // also you can override the parameters given to the hook
+    id: 1,
+    values: {
+      name: "New Product",
+      material: "Wood",
+    },
+  });
+  ```
+
+  You can think of the parameters given to the `useUpdate` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+
+  > 🚨 If you pass these parameters to the `mutate` function, it will override the values given to the hook.
+
+- [#6116](https://github.com/refinedev/refine/pull/6116) [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [Mutation parameters](https://refine.dev/docs/data/hooks/use-create/#mutation-parameters) should be given as a prop to the `useCreate` hook. #6113
+  From now on, you can pass mutation parameters to the `useCreate` hook as a prop.
+
+  Old usage of `useCreate` hook:
+
+  ```tsx
+  import { useCreate } from "@refinedev/core";
+
+  const { mutate } = useCreate();
+
+  mutate(
+    {
+      resource: "products",
+      values: {
+        name: "New Product",
+        material: "Wood",
+      },
+      mutationMode: "optimistic",
+      successNotification: false,
+    },
+    {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  );
+  ```
+
+  New usage of `useCreate` hook:
+
+  ```tsx
+  import { useCreate } from "@refinedev/core";
+
+  const { mutate } = useCreate({
+    resource: "products",
+    successNotification: false,
+    mutationMode: "optimistic",
+    mutationOptions: {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  });
+
+  mutate({
+    // also you can override the parameters given to the hook
+    values: {
+      name: "New Product",
+      material: "Wood",
+    },
+  });
+  ```
+
+  You can think of the parameters given to the `useCreate` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+
+  > 🚨 If you pass these parameters to the `mutate` function, it will override the values given to the hook.
+
+- [#6172](https://github.com/refinedev/refine/pull/6172) [`4967a51944c139d102fcfc04ada5a42c725ed7c2`](https://github.com/refinedev/refine/commit/4967a51944c139d102fcfc04ada5a42c725ed7c2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useTable`](https://refine.dev/docs/data/hooks/use-table/)'s `tableQueryResult` is deprecated, use `tableQuery` instead. #6169
+
+  ```diff
+  import { useTable } from '@refinedev/core';
+
+  - const { tableQueryResult } = useTable();
+  + const { tableQuery } = useTable();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6164](https://github.com/refinedev/refine/pull/6164) [`8ed027eec66c41c444f168f4f52e6b51057bc498`](https://github.com/refinedev/refine/commit/8ed027eec66c41c444f168f4f52e6b51057bc498) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useForm`](https://refine.dev/docs/data/hooks/use-form/)'s `queryResult` is deprecated, use `query` instead. #6163
+
+  ```diff
+  import { useForm } from '@refinedev/core';
+
+  - const { queryResult } = useForm();
+  + const { query } = useForm();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6116](https://github.com/refinedev/refine/pull/6116) [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [Mutation parameters](https://refine.dev/docs/data/hooks/use-create-many/#mutation-parameters) should be given as a prop to the `useCreateMany` hook. #6114
+  From now on, you can pass mutation parameters to the `useCreateMany` hook as a prop.
+
+  Old usage of `useCreateMany` hook:
+
+  ```tsx
+  import { useCreateMany } from "@refinedev/core";
+
+  const { mutate } = useCreateMany();
+
+  mutate(
+    {
+      resource: "products",
+      values: [
+        {
+          name: "Product 1",
+          material: "Wood",
+        },
+        {
+          name: "Product 2",
+          material: "Metal",
+        },
+      ],
+      mutationMode: "optimistic",
+      successNotification: false,
+    },
+    {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  );
+  ```
+
+  New usage of `useCreateMany` hook:
+
+  ```tsx
+  import { useCreateMany } from "@refinedev/core";
+
+  const { mutate } = useCreateMany({
+    resource: "products",
+    successNotification: false,
+    mutationMode: "optimistic",
+    mutationOptions: {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  });
+
+  mutate({
+    // also you can override the parameters given to the hook
+    values: [
+      {
+        name: "Product 1",
+        material: "Wood",
+      },
+      {
+        name: "Product 2",
+        material: "Metal",
+      },
+    ],
+  });
+  ```
+
+  You can think of the parameters given to the `useCreateMany` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+
+  > 🚨 If you pass these parameters to the `mutate` function, it will override the values given to the hook.
+
+- [#6174](https://github.com/refinedev/refine/pull/6174) [`2b73e40b0e18932f008842790065cdd386e9d270`](https://github.com/refinedev/refine/commit/2b73e40b0e18932f008842790065cdd386e9d270) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useShow`](https://refine.dev/docs/data/hooks/use-show/)'s `queryResult` is deprecated, use `query` instead. #6173
+
+  ```diff
+  import { useShow } from '@refinedev/core';
+
+  - const { queryResult } = useShow();
+  + const { query } = useShow();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6164](https://github.com/refinedev/refine/pull/6164) [`8ed027eec66c41c444f168f4f52e6b51057bc498`](https://github.com/refinedev/refine/commit/8ed027eec66c41c444f168f4f52e6b51057bc498) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useForm`](https://refine.dev/docs/data/hooks/use-form/)'s `mutationResult` is deprecated, use `mutation` instead. #6163
+
+  ```diff
+  import { useForm } from '@refinedev/core';
+
+  - const { mutationResult } = useForm();
+  + const { mutation } = useForm();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6125](https://github.com/refinedev/refine/pull/6125) [`61aa3464df0d95c30839726f455ed43e6854730b`](https://github.com/refinedev/refine/commit/61aa3464df0d95c30839726f455ed43e6854730b) Thanks [@Dominic-Preap](https://github.com/Dominic-Preap)! - fix: update debounce behavior on `onSearch` in `useSelect`
+
+  Now debounce behavior is working correctly on `onSearch` in `useSelect` when using inside `Controller` of react-hook-form.
+
+  Resolves [#6096](https://github.com/refinedev/refine/issues/6096)
+
+- [#6116](https://github.com/refinedev/refine/pull/6116) [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [Mutation parameters](https://refine.dev/docs/data/hooks/use-update-many/#mutation-parameters) should be given as a prop to the `useUpdateMany` hook. #6115
+  From now on, you can pass mutation parameters to the `useUpdateMany` hook as a prop.
+
+  Old usage of `useUpdateMany` hook:
+
+  ```tsx
+  import { useUpdateMany } from "@refinedev/core";
+
+  const { mutate } = useUpdateMany();
+
+  mutate(
+    {
+      resource: "products",
+      values: {
+        name: "New Product",
+        material: "Wood",
+      },
+      ids: [1, 2, 3],
+      mutationMode: "optimistic",
+      successNotification: false,
+    },
+    {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  );
+  ```
+
+  New usage of `useUpdateMany` hook:
+
+  ```tsx
+  import { useUpdateMany } from "@refinedev/core";
+
+  const { mutate } = useUpdateMany({
+    resource: "products",
+    successNotification: false,
+    mutationMode: "optimistic",
+    mutationOptions: {
+      onSuccess: () => {
+        /* do something after mutation success */
+      },
+    },
+  });
+
+  mutate({
+    ids: [1, 2, 3],
+    values: {
+      name: "New Product",
+      material: "Wood",
+    },
+    // also you can override the parameters given to the hook
+  });
+  ```
+
+  You can think of the parameters given to the `useUpdateMany` hook as default values, while the parameters given to the `mutate` function are the values used for that specific mutation or dynamic values.
+
+  > 🚨 If you pass these parameters to the `mutate` function, it will override the values given to the hook.
+
+### Patch Changes
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - Bump `@refinedev/devtools-internal` dependency to reflect the latest changes in the Refine Devtools.
+
+- [#6224](https://github.com/refinedev/refine/pull/6224) [`81703b62bafeb01a75290b99b3869ef96d04bd94`](https://github.com/refinedev/refine/commit/81703b62bafeb01a75290b99b3869ef96d04bd94) Thanks [@WananiAdib](https://github.com/WananiAdib)! - fix(core): fixed type issue in useSelect. #6223
+
+  Previously, the types would not allow functions to be passed as props. After this change, it will be possible.
+
+  [Resolves #6223](https://github.com/refinedev/refine/issues/6223)
+
+- [#6184](https://github.com/refinedev/refine/pull/6184) [`1f7976bd32da311367945370efccd7d9c9b102a7`](https://github.com/refinedev/refine/commit/1f7976bd32da311367945370efccd7d9c9b102a7) Thanks [@Sarfraz-droid](https://github.com/Sarfraz-droid)! - AuthPage in Next.js generates code with i18n but the folder hooks is not created. imported useTranslate from @hooks to fix the issue
+
+- [#6116](https://github.com/refinedev/refine/pull/6116) [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `invalidates` prop of `useUpdateMany` doesn't work. #6209
+
+  From now on, the `invalidates` prop of the `useUpdateMany` hook will work as expected.
+
+  ```tsx
+  const { mutate } = useUpdateMany({
+    resource: "posts",
+    invalidates: ["all"], // invalidates all queries of the "posts" resource
+  });
+
+  mutate({ ids: [1, 2, 3], values: { title: "new title" } });
+  ```
+
+- [#6154](https://github.com/refinedev/refine/pull/6154) [`fa2d7a4554da2d5fb2432a011941f9c157b59aba`](https://github.com/refinedev/refine/commit/fa2d7a4554da2d5fb2432a011941f9c157b59aba) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore(devtools): bump internal devtools dependency
+
+  Bump `@refinedev/devtools-internal` version.
+
+- Updated dependencies [[`ccddff6eba23286d4025a7301de3ebfc24b1b633`](https://github.com/refinedev/refine/commit/ccddff6eba23286d4025a7301de3ebfc24b1b633), [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4)]:
+  - @refinedev/devtools-internal@1.1.14
+
 ## 4.53.0
 
 ### Minor Changes

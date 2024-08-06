@@ -16,7 +16,11 @@ export const PostEdit = () => {
     "deleted" | "updated" | undefined
   >();
 
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost>({
     liveMode: "manual",
     onLiveEvent: (event) => {
       if (event.type === "deleted" || event.type === "updated") {

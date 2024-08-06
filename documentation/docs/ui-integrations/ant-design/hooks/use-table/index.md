@@ -705,9 +705,9 @@ const PostList: React.FC = () => {
 };
 ```
 
-### tableQueryResult
+### tableQuery
 
-`tableQueryResult` are the returned values from [`useList`](/docs/data/hooks/use-list) hook.
+`tableQuery` are the returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
 ### sorters
 
@@ -786,6 +786,10 @@ Use `sorters` instead.
 ### ~~setSorter~~ <PropTag deprecated />
 
 Use `setSorters` instead.
+
+### ~~tableQueryResult~~ <PropTag deprecated />
+
+Use [`tableQuery`](#tablequery) instead.
 
 ## FAQ
 
@@ -878,23 +882,23 @@ const ListPage = () => {
 
 ### Return values
 
-| Property         | Description                                                                           | Type                                                                                                                                              |
-| ---------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| searchFormProps  | Ant Design [`<Form>`][form] props                                                     | [`FormProps<TSearchVariables>`][form]                                                                                                             |
-| tableProps       | Ant Design [`<Table>`][table] props                                                   | [`TableProps<TData>`][table]                                                                                                                      |
-| tableQueryResult | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
-| totalPage        | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
-| current          | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
-| setCurrent       | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
-| pageSize         | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
-| setPageSize      | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
-| sorters          | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
-| setSorters       | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
-| ~~sorter~~       | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
-| ~~setSorter~~    | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
-| filters          | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
-| setFilters       | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
-| overtime         | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
+| Property        | Description                                                                           | Type                                                                                                                                              |
+| --------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| searchFormProps | Ant Design [`<Form>`][form] props                                                     | [`FormProps<TSearchVariables>`][form]                                                                                                             |
+| tableProps      | Ant Design [`<Table>`][table] props                                                   | [`TableProps<TData>`][table]                                                                                                                      |
+| tableQuery      | Result of the `react-query`'s `useQuery`                                              | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery]                                                              |
+| totalPage       | Total page count (returns `undefined` if pagination is disabled)                      | `number` \| `undefined`                                                                                                                           |
+| current         | Current page index state (returns `undefined` if pagination is disabled)              | `number` \| `undefined`                                                                                                                           |
+| setCurrent      | A function that changes the current (returns `undefined` if pagination is disabled)   | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| pageSize        | Current pageSize state (returns `undefined` if pagination is disabled)                | `number` \| `undefined`                                                                                                                           |
+| setPageSize     | A function that changes the pageSize. (returns `undefined` if pagination is disabled) | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                                                                                     |
+| sorters         | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
+| setSorters      | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
+| ~~sorter~~      | Current sorting state                                                                 | [`CrudSorting`][crudsorting]                                                                                                                      |
+| ~~setSorter~~   | A function that accepts a new sorters state.                                          | `(sorters: CrudSorting) => void`                                                                                                                  |
+| filters         | Current filters state                                                                 | [`CrudFilters`][crudfilters]                                                                                                                      |
+| setFilters      | A function that accepts a new filter state                                            | - `(filters: CrudFilters, behavior?: "merge" \| "replace" = "merge") => void` - `(setter: (previousFilters: CrudFilters) => CrudFilters) => void` |
+| overtime        | Overtime loading props                                                                | `{ elapsedTime?: number }`                                                                                                                        |
 
 <br />
 

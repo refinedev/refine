@@ -82,6 +82,7 @@ export const useShow = <
 
   return {
     queryResult,
+    query: queryResult,
     showId,
     setShowId,
     overtime: { elapsedTime },

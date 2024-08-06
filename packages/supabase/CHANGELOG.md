@@ -1,5 +1,13 @@
 # @refinedev/supabase
 
+## 5.9.3
+
+### Patch Changes
+
+- [#6206](https://github.com/refinedev/refine/pull/6206) [`399ff2f9b785a1eebf59235fe6a5663d8b943ad3`](https://github.com/refinedev/refine/commit/399ff2f9b785a1eebf59235fe6a5663d8b943ad3) Thanks [@Sergio16T](https://github.com/Sergio16T)! - feat: added support for between filter in supabase dataProvider. Maps values to gte & lte.
+
+  [Feat #6119](https://github.com/refinedev/refine/issues/6119)
+
 ## 5.9.2
 
 ### Patch Changes

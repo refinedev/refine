@@ -33,11 +33,17 @@ export const CanvasShow: React.FC = () => {
   } = useIsAuthenticated();
 
   const {
-    queryResult: {
+    query: {
       data: { data: canvas } = {},
     },
   } = useShow<Canvas>();
-  const { mutate } = useCreate();
+  const { mutate } = useCreate({
+    resource: "pixels",
+    successNotification: false,
+    meta: {
+      canvas,
+    },
+  });
   const { list, push } = useNavigation();
 
   const onSubmit = (x: number, y: number) => {
@@ -51,7 +57,6 @@ export const CanvasShow: React.FC = () => {
 
     if (typeof x === "number" && typeof y === "number" && canvas?.id) {
       mutate({
-        resource: "pixels",
         values: {
           x,
           y,
@@ -59,10 +64,6 @@ export const CanvasShow: React.FC = () => {
           canvas_id: canvas?.id,
           user_id: identity.id,
         },
-        meta: {
-          canvas,
-        },
-        successNotification: false,
       });
     }
   };

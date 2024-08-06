@@ -325,7 +325,7 @@ import { Form, Input, Select, InputNumber } from "antd";
 
 export const EditProduct = () => {
   // highlight-start
-  const { formProps, saveButtonProps, queryResult } = useForm({
+  const { formProps, saveButtonProps, query } = useForm({
     refineCoreProps: {
       redirect: "show",
     },
@@ -334,7 +334,7 @@ export const EditProduct = () => {
 
   const { selectProps } = useSelect({
     resource: "categories",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (

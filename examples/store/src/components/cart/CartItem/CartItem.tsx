@@ -18,15 +18,27 @@ interface CartItemProps {
 }
 
 export const CartItem: React.FC<CartItemProps> = ({ item }) => {
+  const { cart } = useCartContext();
+
   const { closeSidebarIfPresent } = useUI();
   const [removing, setRemoving] = useState(false);
   const [quantity, setQuantity] = useState<number>(item.quantity);
 
   const { mutateAsync: deleteMutate, isLoading: deleteIsLoading } = useDelete();
-  const { mutate: updateMutate, isLoading: updateIsLoading } = useUpdate();
+  const { mutate: updateMutate, isLoading: updateIsLoading } = useUpdate({
+    id: item.id,
+    resource: `carts/${cart?.id}/line-items`,
+    mutationOptions: {
+      onSuccess: () => {
+        invalidate({
+          resource: "carts",
+          invalidates: ["detail"],
+          id: cart?.id,
+        });
+      },
+    },
+  });
   const invalidate = useInvalidate();
-
-  const { cart } = useCartContext();
 
   const isLoading = useMemo(() => {
     return updateIsLoading || deleteIsLoading;
@@ -37,22 +49,9 @@ export const CartItem: React.FC<CartItemProps> = ({ item }) => {
   }, [isLoading]);
 
   const updateItem = (quantity: number) => {
-    return updateMutate(
-      {
-        resource: `carts/${cart?.id}/line-items`,
-        id: item.id,
-        values: { quantity },
-      },
-      {
-        onSuccess: () => {
-          invalidate({
-            resource: "carts",
-            invalidates: ["detail"],
-            id: cart?.id,
-          });
-        },
-      },
-    );
+    return updateMutate({
+      values: { quantity },
+    });
   };
 
   const handleChange = async ({

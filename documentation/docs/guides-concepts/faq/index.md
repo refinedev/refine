@@ -24,12 +24,13 @@ values={[
 ```tsx
 import { useTable, useForm, useShow } from "@refinedev/core";
 
-// All "data" related hooks provided by Refine can use queryResult' refetch function
+// All "data" related hooks provided by Refine can use query' refetch function
+const { tableQuery: { refetch } } = useTable();
 const { tableQueryResult: { refetch } } = useTable();
-const { queryResult: { refetch } } = useForm();
+const { query: { refetch } } = useForm();
 ...
 ...
-const { queryResult: { refetch } } = useShow();
+const { query: { refetch } } = useShow();
 ...
 ...
 ```

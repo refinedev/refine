@@ -26,7 +26,7 @@ export const VideoClubPageShowTitle = () => {
   const navigate = useNavigate();
 
   const {
-    queryResult: { data, isLoading, refetch },
+    query: { data, isLoading, refetch },
   } = useShow<
     Omit<ExtendedVideoTitle, "rentals"> & {
       rentals: (Rental & { member: Member })[];

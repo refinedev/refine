@@ -33,9 +33,13 @@ import {
   transformSortModelToCrudSorting,
 } from "@definitions";
 
+type DataGridPropsOverride = Omit<DataGridProps, "onFilterModelChange"> & {
+  onFilterModelChange: (model: GridFilterModel) => void;
+};
+
 type DataGridPropsType = Required<
   Pick<
-    DataGridProps,
+    DataGridPropsOverride,
     | "rows"
     | "loading"
     | "rowCount"
@@ -167,6 +171,7 @@ export function useDataGrid<
 
   const {
     tableQueryResult,
+    tableQuery,
     current,
     setCurrent,
     pageSize,
@@ -317,6 +322,7 @@ export function useDataGrid<
 
   return {
     tableQueryResult,
+    tableQuery,
     dataGridProps: {
       disableRowSelectionOnClick: true,
       rows: data?.data || [],

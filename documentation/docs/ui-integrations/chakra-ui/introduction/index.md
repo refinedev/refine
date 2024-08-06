@@ -113,7 +113,7 @@ export const ProductList = () => {
       setCurrent,
       pageCount,
       current,
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
   } = useTable<IProduct>({
     columns,

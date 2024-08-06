@@ -8,7 +8,7 @@ import {
 
 const REFINE_LIB_PATH = "@pankod/refine-react-hook-form";
 const REACT_HOOK_FORM_PATH = "react-hook-form";
-const REACT_HOOK_FORM_VERSION = "^7.30.0";
+const REACT_HOOK_FORM_VERSION = "^7.43.5";
 
 export const separateImportsReactHookForm = (
   j: JSCodeshift,

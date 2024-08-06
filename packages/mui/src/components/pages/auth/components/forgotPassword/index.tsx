@@ -140,8 +140,11 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             <Box textAlign="right" sx={{ mt: "24px" }}>
               <Typography variant="body2" component="span" fontSize="12px">
                 {translate(
-                  "pages.register.buttons.haveAccount",
-                  "Have an account?",
+                  "pages.forgotPassword.buttons.haveAccount",
+                  translate(
+                    "pages.register.buttons.haveAccount",
+                    "Have an account? ",
+                  ),
                 )}
               </Typography>{" "}
               <MuiLink
@@ -153,7 +156,10 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                 fontSize="12px"
                 color="primary.light"
               >
-                {translate("pages.login.signin", "Sign in")}
+                {translate(
+                  "pages.forgotPassword.signin",
+                  translate("pages.login.signin", "Sign in"),
+                )}
               </MuiLink>
             </Box>
           )}

@@ -11,7 +11,7 @@ import { POST_QUERY } from "./queries";
 const { Title, Text } = Typography;
 
 export const PostShow = () => {
-  const { queryResult } = useShow<GetFields<GetPostQuery>>({
+  const { query: queryResult } = useShow<GetFields<GetPostQuery>>({
     metaData: {
       gqlQuery: POST_QUERY,
     },
