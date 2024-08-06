@@ -1,5 +1,91 @@
 # @refinedev/antd
 
+## 5.43.0
+
+### Minor Changes
+
+- [#6180](https://github.com/refinedev/refine/pull/6180) [`292cebc5a70f19400793292b79d1400fec114591`](https://github.com/refinedev/refine/commit/292cebc5a70f19400793292b79d1400fec114591) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useSelect`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-select/)'s `queryResult` and `defaultValueQueryResult` is deprecated, use `query` and `defaultValueQuery` instead. #6179
+
+  ```diff
+  import { useSelect } from '@refinedev/antd';
+
+  - const { queryResult, defaultValueQueryResult } = useSelect();
+  + const { query, defaultValueQuery } = useSelect();
+  ```
+
+  feat: [`useCheckboxGroup`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-checkbox-group/)'s `queryResult` is deprecated, use `query` instead.
+
+  ```diff
+  import { useCheckboxGroup } from '@refinedev/antd';
+
+  - const { queryResult } = useCheckboxGroup();
+  + const { query } = useCheckboxGroup();
+  ```
+
+  feat: [`useRadioGroup`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-radio-group/)'s `queryResult` is deprecated, use `query` instead.
+
+  ```diff
+  import { useRadioGroup } from '@refinedev/antd';
+
+  - const { queryResult } = useRadioGroup();
+  + const { query } = useRadioGroup();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6172](https://github.com/refinedev/refine/pull/6172) [`4967a51944c139d102fcfc04ada5a42c725ed7c2`](https://github.com/refinedev/refine/commit/4967a51944c139d102fcfc04ada5a42c725ed7c2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useTable`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/)'s `tableQueryResult` is deprecated, use `tableQuery` instead. #6169
+
+  ```diff
+  import { useTable } from '@refinedev/core';
+
+  - const { tableQueryResult } = useTable();
+  + const { tableQuery } = useTable();
+  ```
+
+  feat: [`useSimpleList`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-simple-list/)'s `queryResult` is deprecated, use `query` instead. #6169
+
+  ```diff
+  import { useSimpleList } from '@refinedev/antd';
+
+  - const { queryResult } = useSimpleList();
+  + const { query } = useSimpleList();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+### Patch Changes
+
+- [#6199](https://github.com/refinedev/refine/pull/6199) [`5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece`](https://github.com/refinedev/refine/commit/5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece) Thanks [@aliemir](https://github.com/aliemir)! - fix(auth-page): fix wrong translation keys in `type="register"` and `type="forgotPassword"`
+
+  In `type="forgotPassword"`:
+
+  - `"pages.register.buttons.haveAccount"` is replaced with `"pages.forgotPassword.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.forgotPassword.signin"`
+
+  In `type="register"`:
+
+  - `"pages.login.divider"` is replaced with `"pages.register.divider"`
+  - `"pages.login.buttons.haveAccount"` is replaced with `"pages.register.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.register.signin"`
+
+  Wrong keys are kept as fallbacks in case the new keys are not found in the translation file. If you are using those keys in your project, make sure to update them accordingly. Fallback keys will be removed in future releases.
+
+  [Resolves #5816](https://github.com/refinedev/refine/issues/5816)
+
+- [#6217](https://github.com/refinedev/refine/pull/6217) [`aefd093cfd85096fdac36cd25073d14dfb12094f`](https://github.com/refinedev/refine/commit/aefd093cfd85096fdac36cd25073d14dfb12094f) Thanks [@webscriptmaster](https://github.com/webscriptmaster)! - fix(date-field): falsy values should render empty string
+
+  Previously, `<DateField value={undefined} />` was rendering the current date. After this change, it will render empty string if a falsy value is provided.
+
+  [Resolves #6216](https://github.com/refinedev/refine/issues/6216)
+
 ## 5.42.0
 
 ### Minor Changes
