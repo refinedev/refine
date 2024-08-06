@@ -4,7 +4,7 @@ const { globSync } = require("glob");
 
 const generateDeclarations = () => {
   execSync("tsc --project tsconfig.declarations.json", {
-    stdio: "inherit",
+    stdio: [process.stdin, process.stdout, process.stdout],
   });
 };
 
