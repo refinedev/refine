@@ -8,7 +8,7 @@ import dayjs from "dayjs";
 import { Text } from "@/components";
 import type { DashboardCalendarUpcomingEventsQuery } from "@/graphql/types";
 
-import { DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
+import { DASHBOARD_CALENDAR_UPCOMING_EVENTS_QUERY } from "./queries";
 
 export const CalendarUpcomingEvents = () => {
   const { data, isLoading } = useList<
@@ -32,7 +32,7 @@ export const CalendarUpcomingEvents = () => {
       },
     ],
     meta: {
-      gqlQuery: DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY,
+      gqlQuery: DASHBOARD_CALENDAR_UPCOMING_EVENTS_QUERY,
     },
   });
 
