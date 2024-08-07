@@ -105,6 +105,7 @@ const dataProvider = (
 
       if (meta?.gqlQuery) {
         const hasuraFilters = mergeHasuraFilters(
+          namingConvention,
           {
             id: {
               _in: ids,
@@ -174,15 +175,15 @@ const dataProvider = (
         : upperCaseValues(camelizeKeys(generateSorting(sorters)));
 
       let hasuraFilters = generateFilters(filters, namingConvention);
-      hasuraFilters = mergeHasuraFilters(
-        hasuraFilters,
-        meta?.gqlVariables?.where,
-      );
-
       let query;
       let variables;
 
       if (meta?.gqlQuery) {
+        hasuraFilters = mergeHasuraFilters(
+          namingConvention,
+          hasuraFilters,
+          meta?.gqlVariables?.where,
+        );
         query = meta.gqlQuery;
         variables = {
           ...hasuraPagination,

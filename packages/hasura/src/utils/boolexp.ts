@@ -47,6 +47,12 @@ interface JsonOperator extends GenericOperator<number | string | object> {
 
 export type Operator = NumberOperator | StringOperator | JsonOperator;
 
+export type MultiConditionFilter = "_and" | "_or";
+
+type HasuraOperator = NumberOperator & StringOperator & JsonOperator;
+
+export type HasuraOperatorKey = keyof HasuraOperator;
+
 export interface BoolExp {
   // @ts-ignore
   _and?: BoolExp[];

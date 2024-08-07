@@ -981,3 +981,532 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
       "84380de90e9e1cd0-BUD",
     ],
   );
+
+// Hasura-Default WithGQLVariables Nocks
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $order_by: [posts_order_by!], $where: posts_bool_exp) {\n  posts(offset: $offset, limit: $limit, order_by: $order_by, where: $where) {\n    id\n    title\n    category_id\n    created_at\n    category {\n      id\n      title\n    }\n  }\n  posts_aggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      order_by: { title: "asc" },
+      where: {
+        _and: [
+          { title: { _ilike: "%3%" } },
+          { title: { _ilike: "%Updated%" } },
+          { created_at: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+        _or: [
+          { content: { _eq: "CREATED content23" } },
+          { content: { _eq: "CREATED content1" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "0ad3a15a-3191-4f44-910f-bd210deaa589",
+            title: "updated title12345",
+            category_id: "0386c795-d8b2-40fd-b115-69ab60e7c098",
+            created_at: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "0386c795-d8b2-40fd-b115-69ab60e7c098",
+              title: "ok",
+            },
+          },
+          {
+            id: "1f85588c-7fc2-4223-b955-42909a7df4a8",
+            title: "updated title3",
+            category_id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+            created_at: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+              title: "turpis adipiscing lorem 123",
+            },
+          },
+        ],
+        posts_aggregate: { aggregate: { count: 2 } },
+      },
+    },
+    [
+      "Date",
+      "Wed, 07 Aug 2024 19:33:19 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "582",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "6abb7d86046b65a65c04f7b6c8607ae9",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8af9b297ccbac303-IAH",
+    ],
+  );
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $order_by: [posts_order_by!], $where: posts_bool_exp) {\n  posts(offset: $offset, limit: $limit, order_by: $order_by, where: $where) {\n    id\n    title\n    category_id\n    created_at\n    category {\n      id\n      title\n    }\n  }\n  posts_aggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      order_by: { title: "asc" },
+      where: {
+        _and: [
+          { title: { _ilike: "%3%" } },
+          { _not: { category: { title: { _eq: "ok" } } } },
+          { title: { _ilike: "%Updated%" } },
+          { created_at: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+        _or: [
+          { content: { _eq: "CREATED content23" } },
+          { content: { _eq: "CREATED content1" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "1f85588c-7fc2-4223-b955-42909a7df4a8",
+            title: "updated title3",
+            category_id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+            created_at: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+              title: "turpis adipiscing lorem 123",
+            },
+          },
+        ],
+        posts_aggregate: { aggregate: { count: 1 } },
+      },
+    },
+    [
+      "Date",
+      "Wed, 07 Aug 2024 19:26:50 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "335",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "275c6be25405ec9fe2b468dbf32769e4",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8af9a9167ca816b2-IAH",
+    ],
+  );
+// With GraphQL Variables GraphQL-Default
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) {\n  posts(offset: $offset, limit: $limit, orderBy: $orderBy, where: $where) {\n    id\n    title\n    categoryId\n    createdAt\n    category {\n      id\n      title\n    }\n  }\n  postsAggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      orderBy: { id: "DESC" },
+      where: {
+        _and: [
+          { title: { _ilike: "%3%" } },
+          { title: { _ilike: "%Updated%" } },
+          { createdAt: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+        _or: [
+          { content: { _eq: "CREATED content23" } },
+          { content: { _eq: "CREATED content1" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "1f85588c-7fc2-4223-b955-42909a7df4a8",
+            title: "updated title3",
+            categoryId: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+            createdAt: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+              title: "turpis adipiscing lorem 123",
+            },
+          },
+          {
+            id: "0ad3a15a-3191-4f44-910f-bd210deaa589",
+            title: "updated title12345",
+            categoryId: "0386c795-d8b2-40fd-b115-69ab60e7c098",
+            createdAt: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "0386c795-d8b2-40fd-b115-69ab60e7c098",
+              title: "ok",
+            },
+          },
+        ],
+        postsAggregate: { aggregate: { count: 2 } },
+      },
+    },
+    [
+      "Date",
+      "Wed, 07 Aug 2024 19:38:54 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "577",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "fad10c0aa807602012e4cd690b2dbc52",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8af9bac57b4116b9-IAH",
+    ],
+  );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) {\n  posts(offset: $offset, limit: $limit, orderBy: $orderBy, where: $where) {\n    id\n    title\n    categoryId\n    createdAt\n    category {\n      id\n      title\n    }\n  }\n  postsAggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      where: {
+        _and: [
+          { title: { _ilike: "%3%" } },
+          { _not: { category: { title: { _eq: "ok" } } } },
+          { title: { _ilike: "%Updated%" } },
+          { createdAt: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+        _or: [
+          { content: { _eq: "CREATED content23" } },
+          { content: { _eq: "CREATED content1" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "1f85588c-7fc2-4223-b955-42909a7df4a8",
+            title: "updated title3",
+            categoryId: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+            createdAt: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+              title: "turpis adipiscing lorem 123",
+            },
+          },
+        ],
+        postsAggregate: { aggregate: { count: 1 } },
+      },
+    },
+    [
+      "Date",
+      "Wed, 07 Aug 2024 19:26:52 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "332",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "5b1dcb20cfa8e2543916ac279e931741",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8af9a9212b4416c0-IAH",
+    ],
+  );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) {\n  posts(offset: $offset, limit: $limit, orderBy: $orderBy, where: $where) {\n    id\n    title\n    categoryId\n    createdAt\n    category {\n      id\n      title\n    }\n  }\n  postsAggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      where: {
+        _and: [
+          { title: { _ilike: "%3%" } },
+          {
+            _not: {
+              categoryId: { _eq: "ff454a95-d2d4-45b2-9eed-506c9d0fc282" },
+            },
+          },
+          { createdAt: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "7f690a87-db33-4a8f-b02d-e6d4a7241a9b",
+            title: "123",
+            categoryId: "adfd9627-9a4d-4bef-8ded-a927c800804d",
+            createdAt: "2024-01-08T11:19:58.060476+00:00",
+            category: {
+              id: "adfd9627-9a4d-4bef-8ded-a927c800804d",
+              title: "HK",
+            },
+          },
+          {
+            id: "a4e83c6a-1fa1-4814-b8bc-82b249b3f6d9",
+            title: "updated title3",
+            categoryId: "a08a1612-bee1-4e6f-b7d5-6fd40d7c3eb7",
+            createdAt: "2023-11-04T05:22:02.513672+00:00",
+            category: {
+              id: "a08a1612-bee1-4e6f-b7d5-6fd40d7c3eb7",
+              title: "test category2",
+            },
+          },
+          {
+            id: "7af17f71-1ddf-4969-bcec-565f05b16098",
+            title: "updated title3",
+            categoryId: "e27156c3-9998-434f-bd5b-2b078283ff26",
+            createdAt: "2024-01-04T12:19:46.663453+00:00",
+            category: {
+              id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+              title: "lorem1 integer tincidunty",
+            },
+          },
+          {
+            id: "d52e6a60-dfd2-4b2c-b443-62b64b6b3aa0",
+            title: "123",
+            categoryId: "0ea181ad-dd28-4844-bfc6-fd278e46710d",
+            createdAt: "2024-01-08T14:48:58.190456+00:00",
+            category: {
+              id: "0ea181ad-dd28-4844-bfc6-fd278e46710d",
+              title: "vulputate elementum nullam 222",
+            },
+          },
+          {
+            id: "0ad3a15a-3191-4f44-910f-bd210deaa589",
+            title: "updated title12345",
+            categoryId: "0386c795-d8b2-40fd-b115-69ab60e7c098",
+            createdAt: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "0386c795-d8b2-40fd-b115-69ab60e7c098",
+              title: "ok",
+            },
+          },
+        ],
+        postsAggregate: { aggregate: { count: 5 } },
+      },
+    },
+    [
+      "Date",
+      "Wed, 07 Aug 2024 19:38:56 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "fb0e304a931dc80ee9c019235d5fcfe6",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8af9bacd6d8516b9-IAH",
+    ],
+  );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) {\n  posts(offset: $offset, limit: $limit, orderBy: $orderBy, where: $where) {\n    id\n    title\n    categoryId\n    createdAt\n    category {\n      id\n      title\n    }\n  }\n  postsAggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      orderBy: { id: "ASC" },
+      where: {
+        _and: [
+          { title: { _ilike: "%3%" } },
+          { _not: { category: { title: { _eq: "ok" } } } },
+          {
+            _not: {
+              categoryId: { _eq: "ff454a95-d2d4-45b2-9eed-506c9d0fc282" },
+            },
+          },
+          { createdAt: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "7af17f71-1ddf-4969-bcec-565f05b16098",
+            title: "updated title3",
+            categoryId: "e27156c3-9998-434f-bd5b-2b078283ff26",
+            createdAt: "2024-01-04T12:19:46.663453+00:00",
+            category: {
+              id: "e27156c3-9998-434f-bd5b-2b078283ff26",
+              title: "lorem1 integer tincidunty",
+            },
+          },
+          {
+            id: "7f690a87-db33-4a8f-b02d-e6d4a7241a9b",
+            title: "123",
+            categoryId: "adfd9627-9a4d-4bef-8ded-a927c800804d",
+            createdAt: "2024-01-08T11:19:58.060476+00:00",
+            category: {
+              id: "adfd9627-9a4d-4bef-8ded-a927c800804d",
+              title: "HK",
+            },
+          },
+          {
+            id: "a4e83c6a-1fa1-4814-b8bc-82b249b3f6d9",
+            title: "updated title3",
+            categoryId: "a08a1612-bee1-4e6f-b7d5-6fd40d7c3eb7",
+            createdAt: "2023-11-04T05:22:02.513672+00:00",
+            category: {
+              id: "a08a1612-bee1-4e6f-b7d5-6fd40d7c3eb7",
+              title: "test category2",
+            },
+          },
+          {
+            id: "d52e6a60-dfd2-4b2c-b443-62b64b6b3aa0",
+            title: "123",
+            categoryId: "0ea181ad-dd28-4844-bfc6-fd278e46710d",
+            createdAt: "2024-01-08T14:48:58.190456+00:00",
+            category: {
+              id: "0ea181ad-dd28-4844-bfc6-fd278e46710d",
+              title: "vulputate elementum nullam 222",
+            },
+          },
+        ],
+        postsAggregate: { aggregate: { count: 4 } },
+      },
+    },
+    [
+      "Date",
+      "Wed, 07 Aug 2024 19:26:52 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "d477d66b180beb40ed01e67982c5c776",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8af9a9296dd816c0-IAH",
+    ],
+  );
