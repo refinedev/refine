@@ -467,7 +467,7 @@ export const DASHBOARD_TOTAL_COUNTS_QUERY = gql`
 `;
 
 // Query to get upcoming events
-export const DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY = gql`
+export const DASHBOARD_CALENDAR_UPCOMING_EVENTS_QUERY = gql`
   query DashboardCalendarUpcomingEvents(
     $filter: EventFilter!
     $sorting: [EventSort!]
