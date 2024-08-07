@@ -19,9 +19,63 @@ const themeOptionsBase: ThemeOptions = {
     },
   },
   components: {
+    MuiAvatarGroup: {
+      styleOverrides: {
+        root: {
+          flexWrap: "wrap",
+        },
+      },
+    },
+    MuiFormControl: {
+      styleOverrides: {
+        root: {
+          alignItems: "flex-start",
+          "& > .MuiFormLabel-root": {
+            marginBottom: "8px",
+          },
+        },
+      },
+    },
+    MuiFormGroup: {
+      styleOverrides: {
+        root: {
+          "&.MuiRadioGroup-root": {
+            gap: "8px",
+          },
+        },
+      },
+    },
+    MuiRadio: {
+      styleOverrides: {
+        root: {
+          padding: 0,
+          marginLeft: "12px",
+          marginRight: "8px",
+          color: slate[900],
+        },
+        sizeSmall: {
+          width: "16px",
+          height: "16px",
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        label: {
+          fontSize: "14px",
+          lineHeight: "24px",
+        },
+      },
+    },
     MuiButton: {
+      defaultProps: {
+        variant: "contained",
+        size: "large",
+      },
       styleOverrides: {
         sizeLarge: {
+          padding: "0px 16px",
+          minWidth: "80px",
           height: "40px",
         },
         root: {
@@ -72,6 +126,10 @@ const themeOptionsEmployee: ThemeOptions = {
       ...teal,
       main: teal[600],
     },
+    secondary: {
+      ...slate,
+      main: slate[900],
+    },
   },
 };
 
@@ -119,9 +177,6 @@ export const ThemeProvider = ({ children, role = Role.EMPLOYEE }: Props) => {
       break;
     case Role.MANAGER:
       selectedTheme = themeManager;
-      break;
-    case Role.ADMIN:
-      selectedTheme = themeAdmin;
       break;
     default:
       selectedTheme = themeEmployee;

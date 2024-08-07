@@ -26,13 +26,15 @@ import { employeeResources } from "@/providers/resources";
 import { BASE_URL } from "@/utilities/constants";
 import { axiosInstance } from "@/utilities/axios";
 
+import "./utilities/init-dayjs";
+
 const App: React.FC = () => {
   const selectedResources = employeeResources;
 
   return (
     <BrowserRouter>
       <ThemeProvider>
-        <RefineSnackbarProvider>
+        <RefineSnackbarProvider preventDuplicate>
           <Refine
             authProvider={authProvider}
             routerProvider={routerProvider}

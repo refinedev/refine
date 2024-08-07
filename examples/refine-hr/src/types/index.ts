@@ -1,23 +1,30 @@
 export type ResponseLogin = {
-  user: {
-    id: number;
-    createdAt: string;
-    updatedAt: string;
-    firstName: string;
-    lastName: string;
-    jobTitle: string;
-    role: string;
-    email: string;
-    address: string;
-    phone: string;
-    birthdate: string;
-    links: Array<any>;
-    customFields: {};
-    availableAnnualLeaveDays: number;
-  };
+  user: Employee;
   accessToken: string;
   refreshToken: string;
 };
+
+export type Employee = {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  avatarUrl: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  role: string;
+  email: string;
+  address: string;
+  phone: string;
+  birthdate: string;
+  links: UserLinks;
+  customFields: CustomFields;
+  availableAnnualLeaveDays: number;
+};
+
+export type UserLinks = Array<any>;
+
+export type CustomFields = {};
 
 export type Notification = {
   id: number;
@@ -37,6 +44,30 @@ export type TimeOff = {
   endsAt: string;
   notes: string | null;
   status: TimeOffStatus;
+};
+
+export type Poll = {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  question: string;
+  options: PollOption[];
+  status: PollStatus;
+  endedAt: string | null;
+  highestVotedAnswer: string | null;
+};
+
+export type PollOption = {
+  id: number;
+  order: number;
+  text: string;
+};
+
+export type PollAnswer = {
+  id: number;
+  createdAt: string;
+  updatedAt: string;
+  optionId: PollOption["id"];
 };
 
 export enum Role {

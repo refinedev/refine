@@ -1,6 +1,6 @@
 import type { AuthProvider } from "@refinedev/core";
 import { axiosInstance } from "@/utilities/axios";
-import type { ResponseLogin } from "@/types";
+import type { Employee, ResponseLogin } from "@/types";
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@/utilities/constants";
 
 export const authProvider: AuthProvider = {
@@ -10,8 +10,10 @@ export const authProvider: AuthProvider = {
         email,
       });
       const data = response.data;
+
       localStorage.setItem(ACCESS_TOKEN_KEY, data.accessToken);
       localStorage.setItem(REFRESH_TOKEN_KEY, data.refreshToken);
+      localStorage.setItem("user", JSON.stringify(data.user));
 
       return {
         success: true,
@@ -57,9 +59,10 @@ export const authProvider: AuthProvider = {
           redirectTo: "/login",
         },
   getPermissions: async () => ["admin"],
-  getIdentity: async () => ({
-    id: 1,
-    name: "Jane Doe",
-    avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
-  }),
+  getIdentity: async () => {
+    const response = await axiosInstance.get<Employee>("/me");
+    const data = response?.data;
+
+    return data;
+  },
 };

@@ -1,17 +1,75 @@
+import { useGetIdentity, useList } from "@refinedev/core";
+import { Box, Grid, Skeleton, Typography } from "@mui/material";
 import { AnnualLeaveIcon, CasualLeaveIcon, SickLeaveIcon } from "@/icons";
-import { Box, Grid, Typography } from "@mui/material";
+import {
+  TimeOffStatus,
+  type Employee,
+  timeOffType,
+  type TimeOff,
+} from "@/types";
 
 export const EmployeeLeaveCards = () => {
+  const { data: user, isLoading: isLoadingUser } = useGetIdentity<Employee>();
+
+  const { data: timeOffsSick, isLoading: isLoadingTimeOffsSick } =
+    useList<TimeOff>({
+      resource: "time-offs",
+      // we only need total number of sick leaves, so we can set pageSize to 1 to reduce the load
+      pagination: { pageSize: 1 },
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: TimeOffStatus.APPROVED,
+        },
+        {
+          field: "timeOffType",
+          operator: "eq",
+          value: timeOffType.SICK,
+        },
+      ],
+    });
+
+  const { data: timeOffsCasual, isLoading: isLoadingTimeOffsCasual } =
+    useList<TimeOff>({
+      resource: "time-offs",
+      // we only need total number of sick leaves, so we can set pageSize to 1 to reduce the load
+      pagination: { pageSize: 1 },
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: TimeOffStatus.APPROVED,
+        },
+        {
+          field: "timeOffType",
+          operator: "eq",
+          value: timeOffType.CASUAL,
+        },
+      ],
+    });
+
+  const loading =
+    isLoadingUser || isLoadingTimeOffsSick || isLoadingTimeOffsCasual;
+
   return (
     <Grid container spacing="24px">
       <Grid item xs={12} sm={4}>
-        <Card type="annual" value={20} />
+        <Card
+          loading={loading}
+          type="annual"
+          value={user?.availableAnnualLeaveDays || 0}
+        />
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Card type="sick" value={10} />
+        <Card loading={loading} type="sick" value={timeOffsSick?.total || 0} />
       </Grid>
       <Grid item xs={12} sm={4}>
-        <Card type="casual" value={5} />
+        <Card
+          loading={loading}
+          type="casual"
+          value={timeOffsCasual?.total || 0}
+        />
       </Grid>
     </Grid>
   );
@@ -20,6 +78,7 @@ export const EmployeeLeaveCards = () => {
 const Card = (props: {
   type: "annual" | "sick" | "casual";
   value: number;
+  loading?: boolean;
 }) => {
   const variantMap = {
     annual: {
@@ -87,18 +146,37 @@ const Card = (props: {
       </Box>
 
       <Box sx={{ marginTop: "8px", display: "flex", flexDirection: "column" }}>
-        <Typography
-          variant="caption"
-          sx={{
-            color: variantMap[props.type].descriptionColor,
-            fontSize: "24px",
-            lineHeight: "32px",
-            fontWeight: 600,
-          }}
-        >
-          {props.value}
-        </Typography>
-
+        {props.loading ? (
+          <Box
+            sx={{
+              width: "40%",
+              height: "32px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <Skeleton
+              variant="rounded"
+              sx={{
+                width: "100%",
+                height: "20px",
+              }}
+            />
+          </Box>
+        ) : (
+          <Typography
+            variant="caption"
+            sx={{
+              color: variantMap[props.type].descriptionColor,
+              fontSize: "24px",
+              lineHeight: "32px",
+              fontWeight: 600,
+            }}
+          >
+            {props.value}
+          </Typography>
+        )}
         <Typography
           variant="body1"
           sx={{

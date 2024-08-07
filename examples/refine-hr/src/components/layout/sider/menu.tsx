@@ -55,6 +55,7 @@ export const Menu = () => {
               >
                 <ListItemIcon
                   sx={{
+                    minWidth: "24px",
                     color: isSelected ? "primary.main" : "text.secondary",
                   }}
                 >

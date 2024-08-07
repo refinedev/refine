@@ -1,9 +1,12 @@
+import { Box, Grid } from "@mui/material";
+import { CreateButton } from "@refinedev/mui";
 import { EmployeeLeaveCards } from "@/components/employees/leave-cards";
 import { EmployeeNotifications } from "@/components/employees/notifications";
+import { EmployeePoll } from "@/components/employees/poll";
 import { PageHeader } from "@/components/layout/page-header";
 import { TimeOffIcon } from "@/icons";
-import { Box } from "@mui/material";
-import { CreateButton } from "@refinedev/mui";
+import { TimeOffs } from "@/components/time-offs";
+import { Celebrations } from "@/components/celebrations";
 
 export const PageEmployeeOverview = () => {
   return (
@@ -30,16 +33,24 @@ export const PageEmployeeOverview = () => {
         }}
       >
         <EmployeeLeaveCards />
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "24px",
-          }}
-        >
-          <EmployeeNotifications />
-          <EmployeeNotifications />
-        </Box>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={6}>
+            <EmployeeNotifications />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <EmployeePoll />
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={5}>
+            <TimeOffs />
+          </Grid>
+          <Grid item xs={12} md={7}>
+            <Celebrations />
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
