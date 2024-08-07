@@ -11,6 +11,8 @@ export const Layout = ({ children }: Props) => {
     <ThemedLayoutV2 Header={() => <Header />} Sider={() => <Sider />}>
       <Box
         sx={{
+          maxWidth: "1280px",
+          marginX: "auto",
           p: { xs: "16px", md: "8px", lg: "0px" },
         }}
       >

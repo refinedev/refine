@@ -19,6 +19,21 @@ const themeOptionsBase: ThemeOptions = {
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        sizeLarge: {
+          height: "40px",
+        },
+        root: {
+          fontSize: "14px",
+          lineHeight: "20px",
+          fontWeight: 500,
+          boxShadow: "none",
+          borderRadius: "6px",
+          textTransform: "capitalize",
+        },
+      },
+    },
     MuiSelect: {
       styleOverrides: {
         icon: {
@@ -31,12 +46,18 @@ const themeOptionsBase: ThemeOptions = {
     },
   },
   palette: {
-    grey: slate,
     text: {
       primary: slate[900],
       secondary: slate[500],
       disabled: slate[300],
     },
+    success: {
+      main: "#16A34A",
+    },
+    error: {
+      main: "#DC2626",
+    },
+    grey: slate,
     divider: slate[200],
     mode: "light",
   },

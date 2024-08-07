@@ -5,7 +5,7 @@ import {
   RefineSnackbarProvider,
   AuthPage,
 } from "@refinedev/mui";
-import dataProvider from "@refinedev/simple-rest";
+import dataProvider from "@refinedev/nestjsx-crud";
 import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -14,7 +14,7 @@ import routerProvider, {
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { PageOverview } from "@/pages/overview";
+import { PageEmployeeOverview } from "@/pages/overview";
 import { PageDummy } from "@/pages/dummy";
 
 import { Layout } from "@/components/layout";
@@ -57,7 +57,7 @@ const App: React.FC = () => {
                   </Authenticated>
                 }
               >
-                <Route index element={<PageOverview />} />
+                <Route index element={<PageEmployeeOverview />} />
                 <Route path="/my-info" element={<PageDummy />} />
                 <Route path="/time-off" element={<PageDummy />} />
                 <Route path="/calendar" element={<PageDummy />} />

@@ -9065,15 +9065,15 @@ importers:
       '@refinedev/mui':
         specifier: ^5.19.0
         version: link:../../packages/mui
+      '@refinedev/nestjsx-crud':
+        specifier: ^5.0.9
+        version: link:../../packages/nestjsx-crud
       '@refinedev/react-hook-form':
         specifier: ^4.8.20
         version: link:../../packages/react-hook-form
       '@refinedev/react-router-v6':
         specifier: ^4.5.11
         version: link:../../packages/react-router-v6
-      '@refinedev/simple-rest':
-        specifier: ^5.0.8
-        version: link:../../packages/simple-rest
       '@uiw/react-md-editor':
         specifier: ^3.19.5
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)

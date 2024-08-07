@@ -6,7 +6,7 @@ import { useThemedLayoutContext } from "@refinedev/mui";
 
 export const Sider = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { mobileSiderOpen, setMobileSiderOpen } = useThemedLayoutContext();
 
   if (isMobile) {

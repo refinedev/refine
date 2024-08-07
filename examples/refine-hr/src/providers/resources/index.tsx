@@ -10,7 +10,7 @@ import type { ResourceProps } from "@refinedev/core";
 
 export const employeeResources: ResourceProps[] = [
   {
-    name: "home",
+    name: "overview",
     list: "/",
     meta: {
       label: "Home",
@@ -28,6 +28,7 @@ export const employeeResources: ResourceProps[] = [
   {
     name: "time-off",
     list: "/time-off",
+    create: "/time-off/new",
     meta: {
       label: "Time Off",
       icon: <TimeOffIcon />,
