@@ -185,7 +185,7 @@ export const mergeHasuraFilters = (
   metaFilters?: BoolExp,
 ): BoolExp | undefined => {
   if ((filters && metaFilters) || metaFilters) {
-    const mergedFilters = cloneDeep(filters ?? { _and: [] });
+    const mergedFilters = filters ? cloneDeep(filters) : {};
 
     const entries = Object.entries(metaFilters);
     let andOperatorPresent = false;
@@ -202,6 +202,9 @@ export const mergeHasuraFilters = (
       arbitraryOperators.length > 1 ||
       (andOperatorPresent && arbitraryOperators.length)
     ) {
+      if (!mergedFilters._and) {
+        mergedFilters._and = [];
+      }
       console.warn(
         "@packages/hasura: multiple filters present. Group Multiple Parameters via _and. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
       );
@@ -225,9 +228,7 @@ export const mergeHasuraFilters = (
         mergedFilters[k] = v;
       }
     });
-
     return mergedFilters;
-  } else {
-    return filters;
   }
+  return filters;
 };
