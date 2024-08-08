@@ -105,7 +105,6 @@ const dataProvider = (
 
       if (meta?.gqlQuery) {
         const hasuraFilters = mergeHasuraFilters(
-          namingConvention,
           {
             id: {
               _in: ids,
@@ -180,7 +179,6 @@ const dataProvider = (
 
       if (meta?.gqlQuery) {
         hasuraFilters = mergeHasuraFilters(
-          namingConvention,
           hasuraFilters,
           meta?.gqlVariables?.where,
         );

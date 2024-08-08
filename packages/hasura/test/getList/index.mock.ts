@@ -1138,7 +1138,82 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
       "8af9a9167ca816b2-IAH",
     ],
   );
-// With GraphQL Variables GraphQL-Default
+
+nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $order_by: [posts_order_by!], $where: posts_bool_exp) {\n  posts(offset: $offset, limit: $limit, order_by: $order_by, where: $where) {\n    id\n    title\n    category_id\n    created_at\n    category {\n      id\n      title\n    }\n  }\n  posts_aggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      order_by: { title: "asc" },
+      where: {
+        _and: [
+          { _not: { category: { title: { _eq: "ok" } } } },
+          { title: { _ilike: "%Updated%" } },
+          { title: { _ilike: "%3%" } },
+          { created_at: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+        _or: [
+          { content: { _eq: "CREATED content23" } },
+          { content: { _eq: "CREATED content1" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "1f85588c-7fc2-4223-b955-42909a7df4a8",
+            title: "updated title3",
+            category_id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+            created_at: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+              title: "turpis adipiscing lorem 123",
+            },
+          },
+        ],
+        posts_aggregate: { aggregate: { count: 1 } },
+      },
+    },
+    [
+      "Date",
+      "Thu, 08 Aug 2024 16:34:18 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "335",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "d960685d8e9788972a21c3307787fa3a",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8b00e9bcb82ac305-IAH",
+    ],
+  );
+
+// GraphQL-Default with GraphQL Variables
 nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
   .post("/v1/graphql", {
     query:
@@ -1508,5 +1583,79 @@ nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
       "cloudflare",
       "CF-RAY",
       "8af9a9296dd816c0-IAH",
+    ],
+  );
+
+nock("https://ruling-redbird-23.hasura.app:443", { encodedQueryParams: true })
+  .post("/v1/graphql", {
+    query:
+      "query GetPosts($offset: Int!, $limit: Int!, $orderBy: [PostsOrderBy!], $where: PostsBoolExp) {\n  posts(offset: $offset, limit: $limit, orderBy: $orderBy, where: $where) {\n    id\n    title\n    categoryId\n    createdAt\n    category {\n      id\n      title\n    }\n  }\n  postsAggregate(where: $where) {\n    aggregate {\n      count\n    }\n  }\n}\n",
+    variables: {
+      limit: 10,
+      offset: 0,
+      orderBy: { title: "ASC" },
+      where: {
+        _and: [
+          { _not: { category: { title: { _eq: "ok" } } } },
+          { title: { _ilike: "%Updated%" } },
+          { title: { _ilike: "%3%" } },
+          { createdAt: { _gte: "2023-08-04T08:26:26.489116+00:00" } },
+        ],
+        _or: [
+          { content: { _eq: "CREATED content23" } },
+          { content: { _eq: "CREATED content1" } },
+        ],
+      },
+    },
+    operationName: "GetPosts",
+  })
+  .reply(
+    200,
+    {
+      data: {
+        posts: [
+          {
+            id: "1f85588c-7fc2-4223-b955-42909a7df4a8",
+            title: "updated title3",
+            categoryId: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+            createdAt: "2024-01-09T07:20:02.573986+00:00",
+            category: {
+              id: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
+              title: "turpis adipiscing lorem 123",
+            },
+          },
+        ],
+        postsAggregate: { aggregate: { count: 1 } },
+      },
+    },
+    [
+      "Date",
+      "Thu, 08 Aug 2024 16:39:01 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Content-Length",
+      "332",
+      "Connection",
+      "keep-alive",
+      "x-request-id",
+      "bf6a10d46e3bbe1ab3319f1650d404c2",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Security-Policy",
+      "upgrade-insecure-requests",
+      "Referrer-Policy",
+      "strict-origin-when-cross-origin",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "X-Content-Type-Options",
+      "nosniff",
+      "X-Frame-Options",
+      "SAMEORIGIN",
+      "X-XSS-Protection",
+      "0",
+      "Server",
+      "cloudflare",
+      "CF-RAY",
+      "8b00f0a3cd4216d1-IAH",
     ],
   );

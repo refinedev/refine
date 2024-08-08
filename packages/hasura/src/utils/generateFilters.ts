@@ -7,12 +7,7 @@ import camelcase from "camelcase";
 import setWith from "lodash/setWith";
 import cloneDeep from "lodash/cloneDeep";
 import type { NamingConvention } from "src/dataProvider";
-import type {
-  BoolExp,
-  HasuraOperatorKey,
-  MultiConditionFilter,
-  Operator,
-} from "./boolexp";
+import type { BoolExp, MultiConditionFilter } from "./boolexp";
 
 export type HasuraFilterCondition =
   | "_and"
@@ -121,12 +116,6 @@ const convertHasuraOperatorToGraphqlDefaultNaming = (
   return hasuraOperator ? `_${camelcase(hasuraOperator)}` : undefined;
 };
 
-const convertAdvancedHasuraOperatorToGraphqlDefaultNaming = (
-  hasuraOperator: HasuraOperatorKey,
-) => {
-  return `_${camelcase(hasuraOperator)}`;
-};
-
 export const generateNestedFilterQuery = (
   filter: HasuraCrudFilter,
   namingConvention: NamingConvention = "hasura-default",
@@ -186,109 +175,12 @@ export const generateFilters = (
   return nestedQuery;
 };
 
-function isAdvancedHasuraOperator(key: string): key is HasuraOperatorKey {
-  const keys: HasuraOperatorKey[] = [
-    "_eq",
-    "_neq",
-    "_gt",
-    "_gte",
-    "_lt",
-    "_lte",
-    "_in",
-    "_is_null",
-    "_ne",
-    "_nin",
-    "_ilike",
-    "_like",
-    "_nilike",
-    "_nlike",
-    "_nsimilar",
-    "_similar",
-    "_regex",
-    "_iregex",
-    "_nregex",
-    "_niregex",
-    "_contained_in",
-    "_contains",
-    "_has_key",
-    "_has_keys_any",
-    "_has_keys_all",
-  ];
-
-  return keys.includes(key as HasuraOperatorKey);
-}
-
 function isMultiConditionFilter(key: string): key is MultiConditionFilter {
   const keys: MultiConditionFilter[] = ["_and", "_or"];
   return keys.includes(key as MultiConditionFilter);
 }
 
-const convertNestedFiltersToGraphqlDefault = (
-  operator: string,
-  value: BoolExp | Operator | BoolExp[],
-): BoolExp => {
-  let hasuraOperator = operator;
-  if (!isMultiConditionFilter(hasuraOperator)) {
-    if (isAdvancedHasuraOperator(hasuraOperator)) {
-      hasuraOperator = convertAdvancedHasuraOperatorToGraphqlDefaultNaming(
-        operator as HasuraOperatorKey,
-      );
-      return {
-        [hasuraOperator]: value,
-      };
-    }
-
-    if (hasuraOperator === "_not") {
-      /*
-        e.g.
-          _not: {
-            created_at: { _lte: '2024-01-08T11:19:58.060476+00:00' },
-          },
-      */
-      if (Object.keys(value).length > 1) {
-        throw new Error(
-          "@packages/hasura: Hasura _not BoolExp object expects one key/value pair.",
-        );
-      }
-      const [k, v] = Object.entries(value)[0];
-      return {
-        _not: convertNestedFiltersToGraphqlDefault(k, v),
-      };
-    }
-
-    hasuraOperator = camelcase(operator); // Key references TableColumn
-    if (Object.keys(value).length > 1) {
-      throw new Error(
-        "@packages/hasura: Hasura tableColumn BoolExp object expects one key/value pair.",
-      );
-    }
-    const [k, v] = Object.entries(value)[0];
-    return {
-      [hasuraOperator]: convertNestedFiltersToGraphqlDefault(k, v),
-    };
-  }
-
-  if (!Array.isArray(value)) {
-    throw new Error(
-      '@packages/hasura: BoolExp Operators "_and | _or" expect a value of type BoolExp[] when present.',
-    );
-  }
-
-  return {
-    [hasuraOperator]: value.map((f) => {
-      if (Object.keys(f).length > 1) {
-        throw new Error(
-          "@packages/hasura: Hasura _and | _or BoolExp[] object expects one key/value pair.",
-        );
-      }
-      const [k, v] = Object.entries(f)[0];
-      return convertNestedFiltersToGraphqlDefault(k, v);
-    }),
-  };
-};
-
 export const mergeHasuraFilters = (
-  namingConvention: NamingConvention = "hasura-default",
   filters?: BoolExp,
   metaFilters?: BoolExp,
 ): BoolExp | undefined => {
@@ -296,20 +188,8 @@ export const mergeHasuraFilters = (
     return filters;
   }
   const mergedFilters = cloneDeep(filters);
-  const defaultNamingConvention = namingConvention === "hasura-default";
-  let finalMetaFilters = metaFilters;
 
-  if (!defaultNamingConvention) {
-    const metaFilterList: BoolExp[] = Object.entries(metaFilters).map(
-      (filter) => {
-        const [k, v] = filter;
-        return convertNestedFiltersToGraphqlDefault(k, v);
-      },
-    );
-    finalMetaFilters = Object.assign({}, ...metaFilterList);
-  }
-
-  const entries = Object.entries(finalMetaFilters);
+  const entries = Object.entries(metaFilters);
   let andOperatorPresent = false;
 
   const arbitraryOperators = entries.filter((f) => {

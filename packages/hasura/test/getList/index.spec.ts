@@ -247,6 +247,11 @@ describe("with gqlQuery", () => {
 });
 
 describe("with gqlVariables", () => {
+  beforeEach(() => {
+    jest.spyOn(console, "warn").mockImplementation(() => {
+      return;
+    });
+  });
   describe("hasura-default", () => {
     it("correct filter and sort response with BoolExp _and & _or", async () => {
       const client = createClient("hasura-default");
@@ -426,7 +431,98 @@ describe("with gqlVariables", () => {
 
       expect(data[0]["title"]).toBe("updated title3");
     });
+    it("correct filter and sort response without provided CRUD filters", async () => {
+      const client = createClient("hasura-default");
+
+      const { data, total } = await dataProvider(client, {
+        namingConvention: "hasura-default",
+      }).getList({
+        resource: "posts",
+        sorters: [
+          {
+            field: "title",
+            order: "asc",
+          },
+        ],
+        meta: {
+          gqlQuery: gql`
+                      query GetPosts(
+                          $offset: Int!
+                          $limit: Int!
+                          $order_by: [posts_order_by!]
+                          $where: posts_bool_exp
+                      ) {
+                          posts(
+                              offset: $offset
+                              limit: $limit
+                              order_by: $order_by
+                              where: $where
+                          ) {
+                              id
+                              title
+                              category_id
+                              created_at
+                              category {
+                                  id
+                                  title
+                              }
+                          }
+                          posts_aggregate(where: $where) {
+                              aggregate {
+                                  count
+                              }
+                          }
+                      }
+                  `,
+          gqlVariables: {
+            where: {
+              _and: [
+                {
+                  _not: {
+                    category: { title: { _eq: "ok" } },
+                  },
+                },
+                {
+                  title: {
+                    _ilike: "%Updated%",
+                  },
+                },
+                {
+                  title: {
+                    _ilike: "%3%",
+                  },
+                },
+                {
+                  created_at: {
+                    _gte: "2023-08-04T08:26:26.489116+00:00",
+                  },
+                },
+              ],
+              _or: [
+                {
+                  content: {
+                    _eq: "CREATED content23",
+                  },
+                },
+                {
+                  content: {
+                    _eq: "CREATED content1",
+                  },
+                },
+              ],
+            },
+          },
+        },
+      });
+
+      expect(data[0]["id"]).toBe("1f85588c-7fc2-4223-b955-42909a7df4a8");
+      expect(data[0]["category"].title).toBe("turpis adipiscing lorem 123");
+      expect(total).toBe(1);
+
+      expect(data[0]["title"]).toBe("updated title3");
+    });
   });
+
   describe("graphql-default", () => {
     it("correct response w/ filter by title and sort by id DESC, with gqlVariables.where BoolExp _and & _or", async () => {
       const client = createClient("graphql-default");
@@ -450,34 +546,34 @@ describe("with gqlVariables", () => {
         ],
         meta: {
           gqlQuery: gql`
-              query GetPosts(
-                  $offset: Int!
-                  $limit: Int!
-                  $orderBy: [PostsOrderBy!]
-                  $where: PostsBoolExp
-              ) {
-                  posts(
-                      offset: $offset
-                      limit: $limit
-                      orderBy: $orderBy
-                      where: $where
-                  ) {
-                      id
-                      title
-                      categoryId
-                      createdAt
-                      category {
-                          id
-                          title
-                      }
-                  }
-                  postsAggregate(where: $where) {
-                      aggregate {
-                          count
-                      }
-                  }
-              }
-          `,
+                query GetPosts(
+                    $offset: Int!
+                    $limit: Int!
+                    $orderBy: [PostsOrderBy!]
+                    $where: PostsBoolExp
+                ) {
+                    posts(
+                        offset: $offset
+                        limit: $limit
+                        orderBy: $orderBy
+                        where: $where
+                    ) {
+                        id
+                        title
+                        categoryId
+                        createdAt
+                        category {
+                            id
+                            title
+                        }
+                    }
+                    postsAggregate(where: $where) {
+                        aggregate {
+                            count
+                        }
+                    }
+                }
+            `,
           gqlVariables: {
             where: {
               _and: [
@@ -487,7 +583,7 @@ describe("with gqlVariables", () => {
                   },
                 },
                 {
-                  created_at: {
+                  createdAt: {
                     _gte: "2023-08-04T08:26:26.489116+00:00",
                   },
                 },
@@ -532,34 +628,34 @@ describe("with gqlVariables", () => {
         ],
         meta: {
           gqlQuery: gql`
-              query GetPosts(
-                  $offset: Int!
-                  $limit: Int!
-                  $orderBy: [PostsOrderBy!]
-                  $where: PostsBoolExp
-              ) {
-                  posts(
-                      offset: $offset
-                      limit: $limit
-                      orderBy: $orderBy
-                      where: $where
-                  ) {
-                      id
-                      title
-                      categoryId
-                      createdAt
-                      category {
-                          id
-                          title
-                      }
-                  }
-                  postsAggregate(where: $where) {
-                      aggregate {
-                          count
-                      }
-                  }
-              }
-          `,
+                query GetPosts(
+                    $offset: Int!
+                    $limit: Int!
+                    $orderBy: [PostsOrderBy!]
+                    $where: PostsBoolExp
+                ) {
+                    posts(
+                        offset: $offset
+                        limit: $limit
+                        orderBy: $orderBy
+                        where: $where
+                    ) {
+                        id
+                        title
+                        categoryId
+                        createdAt
+                        category {
+                            id
+                            title
+                        }
+                    }
+                    postsAggregate(where: $where) {
+                        aggregate {
+                            count
+                        }
+                    }
+                }
+            `,
           gqlVariables: {
             where: {
               _not: {
@@ -572,7 +668,7 @@ describe("with gqlVariables", () => {
                   },
                 },
                 {
-                  created_at: {
+                  createdAt: {
                     _gte: "2023-08-04T08:26:26.489116+00:00",
                   },
                 },
@@ -600,7 +696,7 @@ describe("with gqlVariables", () => {
 
       expect(data[0]["title"]).toBe("updated title3");
     });
-    it("correctly builds _and _not nested filters", async () => {
+    it("correctly send request with _and _not nested filters", async () => {
       const client = createClient("graphql-default");
 
       const { data, total } = await dataProvider(client, {
@@ -616,46 +712,46 @@ describe("with gqlVariables", () => {
         ],
         meta: {
           gqlQuery: gql`
-              query GetPosts(
-                  $offset: Int!
-                  $limit: Int!
-                  $orderBy: [PostsOrderBy!]
-                  $where: PostsBoolExp
-              ) {
-                  posts(
-                      offset: $offset
-                      limit: $limit
-                      orderBy: $orderBy
-                      where: $where
-                  ) {
-                      id
-                      title
-                      categoryId
-                      createdAt
-                      category {
-                          id
-                          title
-                      }
-                  }
-                  postsAggregate(where: $where) {
-                      aggregate {
-                          count
-                      }
-                  }
-              }
-          `,
+                query GetPosts(
+                    $offset: Int!
+                    $limit: Int!
+                    $orderBy: [PostsOrderBy!]
+                    $where: PostsBoolExp
+                ) {
+                    posts(
+                        offset: $offset
+                        limit: $limit
+                        orderBy: $orderBy
+                        where: $where
+                    ) {
+                        id
+                        title
+                        categoryId
+                        createdAt
+                        category {
+                            id
+                            title
+                        }
+                    }
+                    postsAggregate(where: $where) {
+                        aggregate {
+                            count
+                        }
+                    }
+                }
+            `,
           gqlVariables: {
             where: {
               _and: [
                 {
                   _not: {
-                    category_id: {
+                    categoryId: {
                       _eq: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
                     },
                   },
                 },
                 {
-                  created_at: {
+                  createdAt: {
                     _gte: "2023-08-04T08:26:26.489116+00:00",
                   },
                 },
@@ -671,7 +767,7 @@ describe("with gqlVariables", () => {
 
       expect(data[0]["title"]).toBe("123");
     });
-    it("accurately sends request with multiple _not filters. nested _not filters are accurately camelcased.", async () => {
+    it("accurately sends request with multiple _not filters.", async () => {
       const client = createClient("graphql-default");
 
       const { data, total } = await dataProvider(client, {
@@ -693,34 +789,34 @@ describe("with gqlVariables", () => {
         ],
         meta: {
           gqlQuery: gql`
-              query GetPosts(
-                  $offset: Int!
-                  $limit: Int!
-                  $orderBy: [PostsOrderBy!]
-                  $where: PostsBoolExp
-              ) {
-                  posts(
-                      offset: $offset
-                      limit: $limit
-                      orderBy: $orderBy
-                      where: $where
-                  ) {
-                      id
-                      title
-                      categoryId
-                      createdAt
-                      category {
-                          id
-                          title
-                      }
-                  }
-                  postsAggregate(where: $where) {
-                      aggregate {
-                          count
-                      }
-                  }
-              }
-          `,
+                query GetPosts(
+                    $offset: Int!
+                    $limit: Int!
+                    $orderBy: [PostsOrderBy!]
+                    $where: PostsBoolExp
+                ) {
+                    posts(
+                        offset: $offset
+                        limit: $limit
+                        orderBy: $orderBy
+                        where: $where
+                    ) {
+                        id
+                        title
+                        categoryId
+                        createdAt
+                        category {
+                            id
+                            title
+                        }
+                    }
+                    postsAggregate(where: $where) {
+                        aggregate {
+                            count
+                        }
+                    }
+                }
+            `,
           gqlVariables: {
             where: {
               _and: [
@@ -731,13 +827,13 @@ describe("with gqlVariables", () => {
                 },
                 {
                   _not: {
-                    category_id: {
+                    categoryId: {
                       _eq: "ff454a95-d2d4-45b2-9eed-506c9d0fc282",
                     },
                   },
                 },
                 {
-                  created_at: {
+                  createdAt: {
                     _gte: "2023-08-04T08:26:26.489116+00:00",
                   },
                 },
@@ -753,5 +849,95 @@ describe("with gqlVariables", () => {
 
       expect(data[0]["title"]).toBe("updated title3");
     });
+  });
+  it("correct filter and sort response without provided CRUD filters", async () => {
+    const client = createClient("graphql-default");
+
+    const { data, total } = await dataProvider(client, {
+      namingConvention: "graphql-default",
+    }).getList({
+      resource: "posts",
+      sorters: [
+        {
+          field: "title",
+          order: "asc",
+        },
+      ],
+      meta: {
+        gqlQuery: gql`
+          query GetPosts(
+              $offset: Int!
+              $limit: Int!
+              $orderBy: [PostsOrderBy!]
+              $where: PostsBoolExp
+          ) {
+              posts(
+                  offset: $offset
+                  limit: $limit
+                  orderBy: $orderBy
+                  where: $where
+              ) {
+                  id
+                  title
+                  categoryId
+                  createdAt
+                  category {
+                      id
+                      title
+                  }
+              }
+              postsAggregate(where: $where) {
+                  aggregate {
+                      count
+                  }
+              }
+          }
+      `,
+        gqlVariables: {
+          where: {
+            _and: [
+              {
+                _not: {
+                  category: { title: { _eq: "ok" } },
+                },
+              },
+              {
+                title: {
+                  _ilike: "%Updated%",
+                },
+              },
+              {
+                title: {
+                  _ilike: "%3%",
+                },
+              },
+              {
+                createdAt: {
+                  _gte: "2023-08-04T08:26:26.489116+00:00",
+                },
+              },
+            ],
+            _or: [
+              {
+                content: {
+                  _eq: "CREATED content23",
+                },
+              },
+              {
+                content: {
+                  _eq: "CREATED content1",
+                },
+              },
+            ],
+          },
+        },
+      },
+    });
+
+    expect(data[0]["id"]).toBe("1f85588c-7fc2-4223-b955-42909a7df4a8");
+    expect(data[0]["category"].title).toBe("turpis adipiscing lorem 123");
+    expect(total).toBe(1);
+
+    expect(data[0]["title"]).toBe("updated title3");
   });
 });
