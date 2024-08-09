@@ -9,9 +9,8 @@ interface GenericOperator<T> {
   _lt?: T;
   _lte?: T;
   _in?: Array<T>;
-  _is_null?: boolean;
-  _ne?: T;
   _nin?: Array<T>;
+  _is_null?: boolean;
 }
 
 /** expression to compare columns of type Int. All fields are combined with logical 'AND'. */

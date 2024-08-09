@@ -184,51 +184,51 @@ export const mergeHasuraFilters = (
   filters?: BoolExp,
   metaFilters?: BoolExp,
 ): BoolExp | undefined => {
-  if ((filters && metaFilters) || metaFilters) {
-    const mergedFilters = filters ? cloneDeep(filters) : {};
-
-    const entries = Object.entries(metaFilters);
-    let andOperatorPresent = false;
-
-    const arbitraryOperators = entries.filter((f) => {
-      const [k] = f;
-      if (k === "_and") {
-        andOperatorPresent = true;
-      }
-      return !isMultiConditionFilter(k);
-    });
-
-    if (
-      arbitraryOperators.length > 1 ||
-      (andOperatorPresent && arbitraryOperators.length)
-    ) {
-      if (!mergedFilters._and) {
-        mergedFilters._and = [];
-      }
-      console.warn(
-        "@packages/hasura: multiple filters present. Group Multiple Parameters via _and. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
-      );
-    }
-
-    entries.forEach((filter) => {
-      const [k, v] = filter;
-
-      if (!isMultiConditionFilter(k) && mergedFilters._and) {
-        // Group Multiple Parameters Together
-        mergedFilters._and = mergedFilters._and.concat({ [k]: v });
-      } else if (k === "_and" && mergedFilters._and) {
-        // Merge _and conditions from both groups of Hasura Filters
-        if (!Array.isArray(v)) {
-          throw new Error(
-            "@packages/hasura: unexpected value for BoolExp _and. Expected an Array.",
-          );
-        }
-        mergedFilters._and = mergedFilters._and.concat(v);
-      } else {
-        mergedFilters[k] = v;
-      }
-    });
-    return mergedFilters;
+  if (!metaFilters) {
+    return filters;
   }
-  return filters;
+  const mergedFilters = filters ? cloneDeep(filters) : {};
+
+  const entries = Object.entries(metaFilters);
+  let andOperatorPresent = false;
+
+  const arbitraryOperators = entries.filter((f) => {
+    const [k] = f;
+    if (k === "_and") {
+      andOperatorPresent = true;
+    }
+    return !isMultiConditionFilter(k);
+  });
+
+  if (
+    arbitraryOperators.length > 1 ||
+    (andOperatorPresent && arbitraryOperators.length)
+  ) {
+    if (!mergedFilters._and) {
+      mergedFilters._and = [];
+    }
+    console.warn(
+      "@packages/hasura: multiple filters present. Group Multiple Parameters via _and. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
+    );
+  }
+
+  entries.forEach((filter) => {
+    const [k, v] = filter;
+
+    if (!isMultiConditionFilter(k) && mergedFilters._and) {
+      // Group Multiple Parameters Together
+      mergedFilters._and = mergedFilters._and.concat({ [k]: v });
+    } else if (k === "_and" && mergedFilters._and) {
+      // Merge _and conditions from both groups of Hasura Filters
+      if (!Array.isArray(v)) {
+        throw new Error(
+          "@packages/hasura: unexpected value for BoolExp _and. Expected an Array.",
+        );
+      }
+      mergedFilters._and = mergedFilters._and.concat(v);
+    } else {
+      mergedFilters[k] = v;
+    }
+  });
+  return mergedFilters;
 };
