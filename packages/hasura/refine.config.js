@@ -33,6 +33,10 @@ module.exports = {
             dest: "./providers/hasura/utils/index.ts",
           },
           {
+            src: "./src/utils/index.ts",
+            dest: "./providers/hasura/utils/boolExp.ts",
+          },
+          {
             src: "./src/utils/camelizeKeys.ts",
             dest: "./providers/hasura/utils/camelizeKeys.ts",
           },
@@ -77,13 +81,13 @@ module.exports = {
                     "x-hasura-role": "public",
                 },
             });
-            
+
             const gqlDataProvider = dataProvider(client, {
                 namingConvention: "graphql-default",
             });
 
-            
-            // Refine supports GraphQL subscriptions out-of-the-box. For more detailed information, please visit here: 
+
+            // Refine supports GraphQL subscriptions out-of-the-box. For more detailed information, please visit here:
             // https://refine.dev/docs/core/providers/live-provider/
             // const WS_URL = "ws://flowing-mammal-24.hasura.app/v1/graphql";
             // const gqlWebSocketClient = graphqlWS.createClient({

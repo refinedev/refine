@@ -96,6 +96,90 @@ export type GraphQLQueryOptions = {
    * ```
    */
   gqlMutation?: DocumentNode;
+
+  /**
+   * @description GraphQL Variables to be used for more advanced query filters by data providers. If filters correspond to table columns,
+   *  these variables will not be presented in the initial filters selected and will not be reset or set by table column filtering.
+   * @optional
+   * @example
+   * ```tsx
+   * import gql from "graphql-tag";
+   * import { useTable } from "@refinedev/antd";
+   * import type { GetFieldsFromList } from "@refinedev/hasura";
+   * import type { GetPostsQuery } from "graphql/types";
+   *
+   *    const POSTS_QUERY = gql`
+   *      query GetPosts(
+   *          $offset: Int!
+   *          $limit: Int!
+   *          $order_by: [posts_order_by!]
+   *          $where: posts_bool_exp
+   *      ) {
+   *          posts(
+   *              offset: $offset
+   *              limit: $limit
+   *              order_by: $order_by
+   *              where: $where
+   *          ) {
+   *              id
+   *              title
+   *              category {
+   *                  id
+   *                  title
+   *              }
+   *          }
+   *          posts_aggregate(where: $where) {
+   *              aggregate {
+   *                  count
+   *              }
+   *          }
+   *      } `;
+   *
+   *
+   *   export const PostList = () => {
+   *     const { tableProps } = useTable<
+   *       GetFieldsFromList<GetPostsQuery>
+   *     >({
+   *       meta: {
+   *         gqlQuery: POSTS_QUERY,
+   *         gqlVariables: {
+   *           where: {
+   *             _and: [
+   *               {
+   *                 title: {
+   *                   _ilike: "%Updated%",
+   *                 },
+   *               },
+   *               {
+   *                 created_at: {
+   *                   _gte: "2023-08-04T08:26:26.489116+00:00"
+   *                 }
+   *               }
+   *             ],
+   *             _or: [
+   *               {
+   *                 content: {
+   *                   _eq: 'CREATED content23',
+   *                 }
+   *               },
+   *               {
+   *                 content: {
+   *                   _eq: 'CREATED content1',
+   *                 }
+   *               }
+   *             ],
+   *           },
+   *         },
+   *       }
+   *     });
+   *    return ( <Table {...tableProps}/>);
+   *  }
+   *
+   * ```
+   */
+  gqlVariables?: {
+    [key: string]: any;
+  };
 };
 
 export type MetaQuery = {

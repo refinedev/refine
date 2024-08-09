@@ -5,7 +5,9 @@ import type {
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import setWith from "lodash/setWith";
+import cloneDeep from "lodash/cloneDeep";
 import type { NamingConvention } from "src/dataProvider";
+import type { BoolExp, MultiConditionFilter } from "./boolexp";
 
 export type HasuraFilterCondition =
   | "_and"
@@ -117,7 +119,7 @@ const convertHasuraOperatorToGraphqlDefaultNaming = (
 export const generateNestedFilterQuery = (
   filter: HasuraCrudFilter,
   namingConvention: NamingConvention = "hasura-default",
-): any => {
+): BoolExp => {
   const { operator } = filter;
 
   if (
@@ -154,10 +156,10 @@ export const generateNestedFilterQuery = (
   };
 };
 
-export const generateFilters: any = (
+export const generateFilters = (
   filters?: HasuraCrudFilters,
   namingConvention: NamingConvention = "hasura-default",
-) => {
+): BoolExp | undefined => {
   if (!filters) {
     return undefined;
   }
@@ -171,4 +173,62 @@ export const generateFilters: any = (
   );
 
   return nestedQuery;
+};
+
+function isMultiConditionFilter(key: string): key is MultiConditionFilter {
+  const keys: MultiConditionFilter[] = ["_and", "_or"];
+  return keys.includes(key as MultiConditionFilter);
+}
+
+export const mergeHasuraFilters = (
+  filters?: BoolExp,
+  metaFilters?: BoolExp,
+): BoolExp | undefined => {
+  if (!metaFilters) {
+    return filters;
+  }
+  const mergedFilters = filters ? cloneDeep(filters) : {};
+
+  const entries = Object.entries(metaFilters);
+  let andOperatorPresent = false;
+
+  const arbitraryOperators = entries.filter((f) => {
+    const [k] = f;
+    if (k === "_and") {
+      andOperatorPresent = true;
+    }
+    return !isMultiConditionFilter(k);
+  });
+
+  if (
+    arbitraryOperators.length > 1 ||
+    (andOperatorPresent && arbitraryOperators.length)
+  ) {
+    if (!mergedFilters._and) {
+      mergedFilters._and = [];
+    }
+    console.warn(
+      "@packages/hasura: multiple filters present. Group Multiple Parameters via _and. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
+    );
+  }
+
+  entries.forEach((filter) => {
+    const [k, v] = filter;
+
+    if (!isMultiConditionFilter(k) && mergedFilters._and) {
+      // Group Multiple Parameters Together
+      mergedFilters._and = mergedFilters._and.concat({ [k]: v });
+    } else if (k === "_and" && mergedFilters._and) {
+      // Merge _and conditions from both groups of Hasura Filters
+      if (!Array.isArray(v)) {
+        throw new Error(
+          "@packages/hasura: unexpected value for BoolExp _and. Expected an Array.",
+        );
+      }
+      mergedFilters._and = mergedFilters._and.concat(v);
+    } else {
+      mergedFilters[k] = v;
+    }
+  });
+  return mergedFilters;
 };
