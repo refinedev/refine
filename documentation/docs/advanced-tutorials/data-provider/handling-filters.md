@@ -275,3 +275,92 @@ Data providers that support `or` and `and` filtering logic are as follows:
 - [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
 
 :::
+
+## Handle Custom GraphQL Variables
+
+The [GraphQLQueryOptions](https://refine.dev/docs/core/interface-references/#graphqlqueryoptions) property `gqlVariables` enables dynamic gqlVariables to be passed to the data provider for more advanced GraphQL queries.
+
+Packages that support custom GraphQL variables for more advanced filtering are as follows:
+
+- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+
+The following data providers do not yet support `meta.gqlVariables`;
+
+- [Nestjs-Query](https://github.com/refinedev/refine/tree/master/packages/nestjs-query)
+- [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+
+```tsx
+// Hasura Data Provider Example
+import gql from "graphql-tag";
+import { useTable } from "@refinedev/antd";
+import type { GetFieldsFromList } from "@refinedev/hasura";
+import type { GetPostsQuery } from "graphql/types";
+
+const POSTS_QUERY = gql`
+    query GetPosts(
+        $offset: Int!
+        $limit: Int!
+        $order_by: [posts_order_by!]
+        $where: posts_bool_exp
+    ) {
+        posts(
+            offset: $offset
+            limit: $limit
+            order_by: $order_by
+            where: $where
+        ) {
+            id
+            title
+            content
+            category_id
+            created_at
+            category {
+                id
+                title
+            }
+        }
+        posts_aggregate(where: $where) {
+            aggregate {
+                count
+            }
+        }
+    }
+`;
+
+export const PostList = () => {
+  const { tableProps } = useTable<
+  GetFieldsFromList<GetPostsQuery>
+  >({
+  meta: {
+    gqlQuery: POSTS_QUERY,
+    gqlVariables: {
+      where: {
+        _and: [
+          {
+            _not: {
+              category: { title: { _eq: "ok" } },
+            },
+          },
+          {
+            title: {
+              _ilike: "%Updated%",
+            },
+          },
+          {
+            title: {
+              _ilike: "%3%",
+            },
+          },
+          {
+            created_at: {
+              _gte: "2023-08-04T08:26:26.489116+00:00",
+            },
+          },
+        ],
+      },
+    },
+  });
+  return ( <Table {...tableProps}/> );
+}
+
+```

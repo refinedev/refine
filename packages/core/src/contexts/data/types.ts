@@ -156,18 +156,6 @@ export type GraphQLQueryOptions = {
    *                 }
    *               }
    *             ],
-   *             _or: [
-   *               {
-   *                 content: {
-   *                   _eq: 'CREATED content23',
-   *                 }
-   *               },
-   *               {
-   *                 content: {
-   *                   _eq: 'CREATED content1',
-   *                 }
-   *               }
-   *             ],
    *           },
    *         },
    *       }
