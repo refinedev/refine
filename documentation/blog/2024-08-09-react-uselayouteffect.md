@@ -4,9 +4,11 @@ description: We'll explore the useLayoutEffect hook in-depth, how it differs fro
 slug: uselayouteffect-vs-useeffect
 authors: wisdom_ekpotu
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-02-react-uselayouteffect/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-02-react-uselayouteffect/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 09, 2024, to add sections on Testing Components that Use `useLayoutEffect` and Performance Optimization Strategies.**
 
 ## Introduction
 
@@ -24,10 +26,12 @@ Steps we'll cover:
 - [Introducing the `useLayoutEffect` hook?](#introducing-the-uselayouteffect-hook)
 - [How does the `useLayoutEffect` hook work](#how-does-the-uselayouteffect-hook-work)
 - [When should you use the `useLayoutEffect` hook?](#when-should-you-use-the-uselayouteffect-hook)
+
 - [Comparing `useEffect` to `useLayoutEffect`](#comparing-useeffect-to-uselayouteffect)
 - [Benefits of using the `useLayoutEffect` hook](#benefits-of-using-the-uselayouteffect-hook)
 - [Pitfalls of using the `useLayoutEffect` hook](#pitfalls-of-using-the-uselayouteffect-hook)
 - [Best Practices for using `useLayoutEffect`](#best-practices-for-using-uselayouteffect)
+- [Choosing the Right Hook](#choosing-the-right-hook)
 
 ## What are side effects in React?
 
@@ -259,6 +263,172 @@ When using the `useLayoutEffect` hook in React, it's important to follow best pr
 ## Choosing the Right Hook
 
 There is no right or wrong hook to use it all depends on your specific use case. So I would recommend starting with the`useeffect` hook and switching over when it causes a problem.
+
+## Test React components using `useLayoutEffect`
+
+I wanted to share some thoughts on how we can write effective tests for our components using `useLayoutEffect` hooks in our React applications. Testing is sometimes a bit burdensome because of the fact that `useLayoutEffect` is synchronous, but if we take the right approach, we can make sure that our components behave as we expect. Here's a breakdown of some strategies:
+
+### React Testing Library
+
+React Testing Library is a popular choice to test React components. As `useLayoutEffect` runs synchronously, that is an important thing to work with in our tests. For the test, we can render a component and right away verify that the side effects have occurred as expected.
+
+```tsx
+import React, { useLayoutEffect, useRef } from "react";
+import { render, screen } from "@testing-library/react";
+
+function AutoFocusInput() {
+  const inputRef = useRef(null);
+
+  useLayoutEffect(() => {
+    inputRef.current.focus();
+  }, []);
+
+  return <input ref={inputRef} data-testid="auto-focus-input" />;
+}
+
+test("focuses the input field on render", () => {
+  render(<AutoFocusInput />);
+  const input = screen.getByTestId("auto-focus-input");
+
+  expect(input).toHaveFocus();
+});
+```
+
+### Mocking `useLayoutEffect`
+
+Sometimes you would need to mock `useLayoutEffect` to test how it interacts with other hooks or isolate its behavior. You can use Jest to mock the hook, allowing you to control its execution during tests and simulate different scenarios.
+
+```tsx
+import React, { useLayoutEffect } from "react";
+import { render } from "@testing-library/react";
+import { jest } from "@jest/globals";
+
+const MyComponent = () => {
+  useLayoutEffect(() => {
+    console.log("useLayoutEffect called");
+  }, []);
+
+  return <div>Test Component</div>;
+};
+
+test("mocks useLayoutEffect", () => {
+  const useLayoutEffectMock = jest.spyOn(React, "useLayoutEffect");
+  useLayoutEffectMock.mockImplementation(() => {
+    console.log("Mocked useLayoutEffect");
+  });
+
+  render(<MyComponent />);
+
+  expect(useLayoutEffectMock).toHaveBeenCalledTimes(1);
+  useLayoutEffectMock.mockRestore();
+});
+```
+
+### Testing Manipulating the DOM
+
+If `useLayoutEffect` is being used to manipulate the DOM for measuring elements or applying styles, it's extremely important to assert these changes in your tests. This will make sure the side effects which your hook applies happen as expected.
+
+```tsx
+import React, { useLayoutEffect, useRef } from "react";
+import { render, screen } from "@testing-library/react";
+
+const MeasureComponent = () => {
+  const boxRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const box = boxRef.current;
+    box.style.width = "200px";
+  }, []);
+
+  return (
+    <div ref={boxRef} data-testid="measured-box">
+      Box
+    </div>
+  );
+};
+
+test("applies styles to the element", () => {
+  render(<MeasureComponent />);
+  const box = screen.getByTestId("measured-box");
+
+  expect(box).toHaveStyle("width: 200px");
+});
+```
+
+### Dealing with Cleanup Effects
+
+Similarly, when testing components that have an effect in `useLayoutEffect`, it is important to ensure they clean up properly. This means you need to check if all event listeners are removed and, if there were any, their side effects on the DOM are removed once the component is unmounted.
+
+```tsx
+import React, { useLayoutEffect, useRef } from "react";
+import { render, unmountComponentAtNode } from "@testing-library/react";
+
+const EventListenerComponent = () => {
+  const divRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const handleScroll = () => {
+      console.log("Scrolling...");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return <div ref={divRef}>Scroll Event Listener</div>;
+};
+
+test("removes event listener on unmount", () => {
+  const { unmount } = render(<EventListenerComponent />);
+
+  const spy = jest.spyOn(window, "removeEventListener");
+  unmount();
+
+  expect(spy).toHaveBeenCalledWith("scroll", expect.any(Function));
+  spy.mockRestore();
+});
+```
+
+### Timers and Asynchronous Operations
+
+If the `useLayoutEffect` depends on some async operation or running timers, then with the help of test utilities, such as Jest's fake timers, you are sure the behaviour is tested right. You will be able to manipulate time better and determine the side effects that should happen with that delay.
+
+```tsx
+import React, { useLayoutEffect, useRef } from "react";
+import { render, screen } from "@testing-library/react";
+
+jest.useFakeTimers();
+
+const DelayedEffectComponent = () => {
+  const ref = useRef(null);
+
+  useLayoutEffect(() => {
+    setTimeout(() => {
+      ref.current.textContent = "Updated Text";
+    }, 2000);
+  }, []);
+
+  return (
+    <div ref={ref} data-testid="delayed-box">
+      Initial Text
+    </div>
+  );
+};
+
+test("updates text after delay", () => {
+  render(<DelayedEffectComponent />);
+  const box = screen.getByTestId("delayed-box");
+
+  expect(box).toHaveTextContent("Initial Text");
+
+  jest.advanceTimersByTime(2000);
+
+  expect(box).toHaveTextContent("Updated Text");
+});
+```
 
 ## Conclusion
 
