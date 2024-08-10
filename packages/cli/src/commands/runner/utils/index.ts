@@ -22,6 +22,10 @@ export const getRunnerDescription = (runner: "dev" | "start" | "build") => {
     projectType = "remix-serve" as ProjectTypes;
   }
 
+  if (projectType === ProjectTypes.REMIX_SPA && runner === "start") {
+    projectType = ProjectTypes.VITE;
+  }
+
   return `It runs: \`${projectType} ${command.join(
     " ",
   )}\`. Also accepts all the arguments \`${projectType}\` accepts.`;

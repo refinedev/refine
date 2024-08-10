@@ -50,6 +50,15 @@ export const projectScripts = {
       return require.resolve(`.bin/${binName}`);
     },
   },
+  [ProjectTypes.REMIX_SPA]: {
+    getDev: (args: string[]) => ["vite:dev", ...args],
+    getStart: (args: string[]) => ["preview", ...args],
+    getBuild: (args: string[]) => ["vite:build", ...args],
+    getBin: (type?: "dev" | "start" | "build") => {
+      const binName = type === "start" ? "vite" : "remix";
+      return require.resolve(`.bin/${binName}`);
+    },
+  },
   [ProjectTypes.CRACO]: {
     getDev: (args: string[]) => ["start", ...args],
     getStart: (args: string[]) => ["start", ...args],

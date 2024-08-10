@@ -21,7 +21,10 @@ export const ReactRouterIntegration: Integration = {
       disabled = `Can't be used with Next.js. https://nextjs.org/docs/app/building-your-application/routing`;
     }
 
-    if (projectType === ProjectTypes.REMIX) {
+    if (
+      projectType === ProjectTypes.REMIX ||
+      projectType === ProjectTypes.REMIX_SPA
+    ) {
       disabled = `Can't be used with Remix. https://remix.run/docs/en/main/discussion/routes`;
     }
 
