@@ -10,7 +10,7 @@ This package exports following hooks to manage your forms:
 
 - [`useForm`][use-form-react-hook-form]
 - [`useModalForm`](/docs/packages/list-of-packages)
-- [`useStepsFrom`](/docs/packages/list-of-packages)
+- [`useStepsForm`](/docs/packages/list-of-packages)
 
 ## Installation
 

@@ -4,9 +4,11 @@ description: We'll delve into the Next.js alpha feature Server actions and data 
 slug: next-js-server-actions-and-data-fetching
 authors: victor_uma
 tags: [nextjs]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-29-next-js-server-actions/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-29-next-js-server-actions/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 07, 2024, to add sections on Security Considerations and SWR.**
 
 ## Overview
 
@@ -290,6 +292,195 @@ In the code above, we define a component `MyComponent` that fetches users from t
 
 Note that when making requests to API routes from the client-side code, you can use relative URLs like `/api/users` since Next.js automatically routes requests to the appropriate API route.
 Next.js API routes provide a powerful mechanism to handle server actions seamlessly within your application. Whether you need to fetch data, perform data mutations, or handle authentication, API routes enable you to define custom server endpoints with ease.
+
+## Bonus: Securing API Routes in Our Next.js App
+
+Just wanted to share some key practices in making sure our Next.js application is secure, especially with regard to the server actions and API routes.
+
+### Protecting API Endpoints
+
+First, we need to ensure that API routes are kept safe from unauthorized access. Here's what we can do:
+
+#### JWT Authentication
+
+We could authenticate users through JSON Web Tokens (JWT). When a user logs in, we will issue a token for them to send along with their requests.
+
+```tsx
+import jwt from "jsonwebtoken";
+
+export default function handler(req, res) {
+  const { method } = req;
+  if (method === "POST") {
+    const { username, password } = req.body;
+    // Verify user credentials
+    if (username === "user" && password === "pass") {
+      const token = jwt.sign({ username }, process.env.JWT_SECRET, {
+        expiresIn: "1h",
+      });
+      res.status(200).json({ token });
+    } else {
+      res.status(401).json({ message: "Invalid credentials" });
+    }
+  } else {
+    res.setHeader("Allow", ["POST"]);
+    res.status(405).end(`Method ${method} Not Allowed`);
+  }
+}
+```
+
+#### Authorization Middleware
+
+We will write a middleware that will check these tokens before giving access to any of our routes.
+
+```tsx
+import jwt from "jsonwebtoken";
+
+export default function handler(req, res) {
+  const { authorization } = req.headers;
+  if (!authorization) {
+    return res.status(401).json({ message: "Authorization header missing" });
+  }
+
+  const token = authorization.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    // Proceed with the request
+  } catch (error) {
+    return res.status(401).json({ message: "Invalid token" });
+  }
+}
+```
+
+### Data Validation and Sanitization
+
+Next, it's very important to validate and sanitize incoming data so that security risks like SQL injection or XSS attacks are avoided.
+
+#### Validation of Data with Yup
+
+The data validation can be done with the help of libraries like Yup to check for the desired type of data.
+
+```tsx
+import { object, string } from "yup";
+
+const schema = object({
+  username: string().required().min(3).max(50),
+  password: string().required().min(6),
+});
+
+export default async function handler(req, res) {
+  try {
+    await schema.validate(req.body);
+    // Process the validated data
+    res.status(200).json({ message: "Data is valid" });
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+}
+```
+
+#### Sanitizing Data
+
+We should also sanitize user inputs so as to exclude all injurious content.
+
+```tsx
+import { sanitize } from "dompurify";
+
+export default function handler(req, res) {
+  const { username, password } = req.body;
+  const sanitizedUsername = sanitize(username);
+  const sanitizedPassword = sanitize(password);
+
+  // Use sanitized data
+  res.status(200).json({ message: "Data sanitized" });
+}
+```
+
+## Bonus: Using SWR to Fetch Data Efficiently with Next.js
+
+This will be the time when I will introduce you to one of the greatest data-fetching tools for our Next.js projects: SWR. Using SWR, we manage data fetching efficiently, ensuring that the UI stays fast and responsive while new data is fetched.
+
+### SWR (Stale-While-Revalidate)
+
+#### Introduction to SWR
+
+SWR is a React Hooks library for remote data fetching. When working with this library, fetching data can be made really simple and assured that it is up-to-date with live data at any time. The acronym SWR stands for "Stale-While-Revalidate": a strategy in which the component exhibits stale data while it continues to revalidate in the background.
+
+#### SWR for Data Fetching
+
+Below is a simple example of how we might use SWR in our components.
+
+```javascript
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+function MyComponent() {
+  const { data, error } = useSWR("/api/data", fetcher);
+
+  if (error) return <div>Failed to load data</div>;
+  if (!data) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <p>{data.message}</p>
+    </div>
+  );
+}
+```
+
+Here the function of `useSWR` is to take a key (the URL to fetch) and a fetcher function: it will automatically handle the fetch, error, and revalidation process.
+
+#### Fetch User Data
+
+```javascript
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+function UserProfile() {
+  const { data, error } = useSWR("/api/user", fetcher);
+
+  if (error) return <div>Failed to load user data</div>;
+  if (!data) return <div>Loading user data...</div>;
+
+  return (
+    <div>
+      <h1>{data.name}</h1>
+      <p>{data.email}</p>
+    </div>
+  );
+}
+```
+
+#### Managing Pagination
+
+```javascript
+import useSWR from "swr";
+
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+const PaginatedList = ({ page }) => {
+  const { data, error } = useSWR(`/api/items?page=${page}`, fetcher);
+
+  if (error) return <div>Failed to load items</div>;
+  if (!data) return <div>Loading items...</div>;
+
+  return (
+    <ul>
+      {data.items.map((item) => (
+        <li key={item.id}>{item.name}</li>
+      ))}
+    </ul>
+  );
+};
+```
+
+#### Benefits of SWR
+
+- **Automatic Caching and Revalidation**: SWR, in the background, caches the data and automatically revalidates it, making the UI fast, live, and always updated.
+- **Simple focus**: Abstract away fetching data; make our code more clean and maintainable.
+- **Error Handling**: SWR has error handling built-in, so it's fairly trivial to deal with data fetching failures.
 
 ## Conclusion
 
