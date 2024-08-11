@@ -1,4 +1,5 @@
 import gql from "graphql-tag";
+import type { DocumentNode } from "graphql";
 import dataProvider from "../../src/index";
 import { createClient } from "../gqlClient";
 import "./index.mock";
@@ -192,9 +193,9 @@ describe("with gqlQuery", () => {
 
 describe("with gqlVariables", () => {
   describe.each(["hasura-default", "graphql-default"] as const)(
-    "updateMany with %s naming convention",
+    "getMany with %s naming convention",
     (namingConvention) => {
-      let gqlQuery;
+      let gqlQuery: DocumentNode;
       if (namingConvention === "hasura-default") {
         gqlQuery = gql`
             query GetPosts($where: posts_bool_exp!) {

@@ -188,31 +188,31 @@ export const mergeHasuraFilters = (
     return filters;
   }
   const mergedFilters = filters ? cloneDeep(filters) : {};
-
-  const entries = Object.entries(metaFilters);
-  let andOperatorPresent = false;
-
-  const arbitraryOperators = entries.filter((f) => {
+  const gqlVariableFilters = Object.entries(metaFilters);
+  const arbitraryOperators = gqlVariableFilters.filter((f) => {
     const [k] = f;
-    if (k === "_and") {
-      andOperatorPresent = true;
-    }
     return !isMultiConditionFilter(k);
   });
 
   if (
     arbitraryOperators.length > 1 ||
-    (andOperatorPresent && arbitraryOperators.length)
+    (metaFilters._and && arbitraryOperators.length)
   ) {
     if (!mergedFilters._and) {
       mergedFilters._and = [];
     }
+  }
+
+  if (
+    arbitraryOperators.length > 1 ||
+    ((metaFilters._and || metaFilters._or) && arbitraryOperators.length)
+  ) {
     console.warn(
-      "@packages/hasura: multiple filters present. Group Multiple Parameters via _and. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
+      "@packages/hasura: multiple filters present. Group multiple parameters using the _and or the _or operator. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
     );
   }
 
-  entries.forEach((filter) => {
+  gqlVariableFilters.forEach((filter) => {
     const [k, v] = filter;
 
     if (!isMultiConditionFilter(k) && mergedFilters._and) {
