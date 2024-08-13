@@ -2,8 +2,8 @@
 "@refinedev/supabase": patch
 ---
 
-fix: issue with parsed values when using ConditionalFilter on Supabase DataProvider #6239
+fix(supabase): issue with parsed values when using conditional filters
 
-Fixed ConditionalFilter parsed values while using contains, containss, startswith and endswith on Supabase DataProvider Filters
+Fixed conditional filter's parsed values while using `contains`, `containss`, `startswith` and `endswith`.
 
-Fixes #6239
+[Fixes #6239](https://github.com/refinedev/refine/issues/6239)
