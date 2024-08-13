@@ -4,9 +4,11 @@ description: We'll create a custom notification provider in a Refine application
 slug: react-toastify
 authors: joseph_mawa
 tags: [react, Refine]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-01-react-toastify/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 09, 2024 to add sections for Performance Considerations with Notifications.**
 
 ## Introduction
 
@@ -457,6 +459,83 @@ export const notificationProvider: NotificationProvider = {
 
 You can preview the notification by editing a record. Refine will make updates and display a notification. You can also change the mutation mode of the application to `undoable` using the `options` prop of the Refine component to display the custom component above.
 
+## Performance Considerations with Notifications
+
+I would like to share some ideas about the performance considerations of notifications.
+
+When enabling notifications, we should always remember the performance and, of course, remember that our application can grow larger and more complex. Here's a list of a few things I think we should consider:
+
+### Lazy Loading React-Toastify
+
+Since the `react-toastify` library is a third-party package, we can apply lazy loading to it. This would mean that it loads on demand, potentially reducing the initial load time for our application.
+
+```tsx
+import React, { lazy, Suspense } from "react";
+
+const ToastContainer = lazy(() =>
+  import("react-toastify").then((module) => ({
+    default: module.ToastContainer,
+  })),
+);
+
+function App() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ToastContainer />
+      {/* Other components */}
+    </Suspense>
+  );
+}
+```
+
+### Optimize Toast Rendering
+
+If our application is posting tons of toasts, rendering them one after the other can be an issue. It might be worth the effort to batch or limit active toasts to avoid performance bottlenecks.
+
+```tsx
+import { toast } from "react-toastify";
+
+function notify() {
+  if (toast.isActive("my-toast-id")) return;
+
+  toast("New message received!", {
+    toastId: "my-toast-id", // Use a specific ID to prevent duplicate toasts
+    autoClose: 3000,
+    limit: 3, // Limit the number of toasts on screen
+  });
+}
+```
+
+### Customization of Auto Close Timings
+
+Customization of auto-close timings for notifications according to their importance level helps in maintaining the responsiveness of the UI. For example, lower durations for non-critical notifications will keep the screen clear and memory usage low.
+
+```tsx
+import { toast } from "react-toastify";
+
+function notify() {
+  // Less critical notification
+  toast.info("Information message", {
+    autoClose: 2000, // Shorter duration
+  });
+
+  // Critical notification
+  toast.error("Error occurred!", {
+    autoClose: 8000, // Longer duration for important messages
+  });
+}
+```
+
+### Monitoring Performance
+We should also look to establish some monitoring regarding the performance implications of notifications over time as more and more features are put in. This way, we can detect a slowdown at an early stage and correct it before it becomes a bigger problem.
+
+```tsx
+console.time("Toast Render Time");
+toast.success("Operation successful!", {
+  onOpen: () => console.timeEnd("Toast Render Time"),
+});
+```
+
 ## Conclusion
 
 Having a notification system is inevitable when building complex distributed systems. It notifies users when an event or changes occur in the database.
@@ -464,16 +543,3 @@ Having a notification system is inevitable when building complex distributed sys
 Refine comes with a robust and customizable notification system when you use one of the supported UI or design systems like Material UI, Chakra UI, and Mantine.
 
 Refine gives you the flexibility to build a custom notification provider using a notification library like react-toastify if the built-in notification system of the supported UI or design system doesn't meet your needs.
-
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
-
-## Live CodeSandbox Example
-
- <CodeSandboxExample path="blog-react-toastify" />
-
----
