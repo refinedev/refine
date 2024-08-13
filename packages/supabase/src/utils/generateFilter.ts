@@ -63,11 +63,11 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
               value = `%${value}%`;
             }
 
-            if(item.operator === "startswith") {
+            if (item.operator === "startswith") {
               value = `${value}%`;
             }
 
-            if(item.operator === "endswith") {
+            if (item.operator === "endswith") {
               value = `%${value}`;
             }
 
