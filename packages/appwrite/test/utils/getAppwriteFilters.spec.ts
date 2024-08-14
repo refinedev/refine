@@ -31,15 +31,73 @@ describe("getAppwriteFilters", () => {
     });
   });
 
-  it('should not generate Appwrite filters for "or" and "and" operators', () => {
+  it('should generate Appwrite filters for "or" and "and" operators', () => {
     const filters = [
-      { operator: "or", filters: [] },
-      { operator: "and", filters: [] },
+      {
+        operator: "or",
+        filters: [
+          {
+            operator: "eq",
+            field: "name",
+            value: "John",
+          },
+          {
+            operator: "lt",
+            field: "age",
+            value: 30,
+          },
+        ],
+      },
+      {
+        operator: "and",
+        filters: [
+          {
+            operator: "eq",
+            field: "name",
+            value: "John",
+          },
+          {
+            operator: "lt",
+            field: "age",
+            value: 30,
+          },
+        ],
+      },
     ];
 
     getAppwriteFilters(filters as any);
 
-    expect(generateFilter).toHaveBeenCalledTimes(0);
+    expect(generateFilter).toHaveBeenCalledTimes(2);
+    expect(generateFilter).toHaveBeenNthCalledWith(1, {
+      operator: "or",
+      filters: [
+        {
+          operator: "eq",
+          field: "name",
+          value: "John",
+        },
+        {
+          operator: "lt",
+          field: "age",
+          value: 30,
+        },
+      ],
+    });
+    expect(generateFilter).toHaveBeenNthCalledWith(2, {
+      operator: "and",
+      filters: [
+        {
+          operator: "eq",
+          field: "name",
+          value: "John",
+        },
+        {
+          operator: "lt",
+          field: "age",
+          value: 30,
+        },
+      ],
+    });
   });
 
   it('should replace "id" field with "$id"', () => {
