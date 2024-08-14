@@ -59,6 +59,18 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
               value = `{${item.value.map((val: any) => `"${val}"`).join(",")}}`;
             }
 
+            if (item.operator === "contains" || item.operator === "containss") {
+              value = `%${value}%`;
+            }
+
+            if (item.operator === "startswith") {
+              value = `${value}%`;
+            }
+
+            if (item.operator === "endswith") {
+              value = `%${value}`;
+            }
+
             return `${item.field}.${mapOperator(item.operator)}.${value}`;
           }
           return;
