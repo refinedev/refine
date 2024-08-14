@@ -4,9 +4,11 @@ description: We'll be looking at the basics of React Query, how to use it, and w
 slug: react-query-guide
 authors: marvel_ken
 tags: [react, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-query-intro/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 12, 2024 to add sections for Advanced Querying Techniques and Background Data Synchronization.**
 
 ## Introduction
 
@@ -16,14 +18,12 @@ Now, imagine a solution that takes these challenges and turns them into a breeze
 
 Steps we'll cover:
 
-- [Article Objective](#article-objective)
-- [Prerequisite](#prerequisite)
 - [What is React Query?](#what-is-react-query)
 - [Querying Data](#querying-data)
 - [Why use React Query?](#why-use-react-query)
-  - [Performing basic data fetching](#performing-basic-data-fetching)
 - [Mutating Data](#mutating-data)
 - [React Query and Frameworks](#react-query-and-frameworks)
+- [Bonus: Subject: Advanced Querying Techniques using React Query](#bonus-subject-advanced-querying-techniques-using-react-query)
 
 ## Article Objective
 
@@ -341,6 +341,99 @@ The `useUpdate` hook in Refine is an extended version of the `useMutation` hook 
 On the other hand, the `useList` hook in Refine is an extended version of the `useQuery` hook from React Query. It is used when you need to fetch data according to sort, filter, pagination, etc., from a `resource`.
 
 If you are in search of a framework that utilizes the power React query has got, Refine is an absolutely great choice as it solves issues concerning data querying and server state management complexity.
+
+## Bonus: Subject: Advanced Querying Techniques using React Query
+
+Let's walk through some advanced querying techniques with React Query that can help us manage more complex data-fetching scenarios in our apps. These will allow us to handle cases such as pagination, infinite scrolling, and dependent queries more efficiently.
+
+### React Query Pagination
+
+Pagination is a fundamental necessity for huge datasets. Paginating with React Query is very easy. We can query many pages of data from our server in the following way: we are passing in a query key while creating the query with the page number, meaning each page will be cached independently by React Query, and it will only be fetched when another request with a new page number comes for the data that is wanted.
+
+We can define the option `keepPreviousData`, which keeps the page's previous data while loading the new one.
+
+```tsx
+const fetchPosts = async (page = 1) => {
+  const response = await axios.get(`/api/posts?page=${page}`);
+  return response.data;
+};
+
+const { data, isLoading, isError } = useQuery(
+  ["posts", page],
+  () => fetchPosts(page),
+  {
+    keepPreviousData: true,
+  },
+);
+```
+
+### Infinite Scroll
+
+By default, the infinite scrolling feature fetches more data as a user scrolls toward the end of the page. It works really well for social media feeds or item lists. Implementing the same in React Query by using the `useInfiniteQuery` hook is rather simple. Our call with `useInfiniteQuery` will be to fetch and append additional pages of data each time the user scrolls. This initializes our call, which will determine when to fire another fetch, in order to load more information onto those infinite pages.
+
+```tsx
+const fetchPosts = async ({ pageParam = 1 }) => {
+  const response = await axios.get(`/api/posts?page=${pageParam}`);
+  return response.data;
+};
+
+const { data, fetchNextPage, hasNextPage } = useInfiniteQuery(
+  "posts",
+  fetchPosts,
+  {
+    getNextPageParam: (lastPage, allPages) => lastPage.nextPage ?? false,
+  },
+);
+
+useEffect(() => {
+  if (hasNextPage) {
+    fetchNextPage();
+  }
+}, [fetchNextPage, hasNextPage]);
+```
+
+### Dependent Queries
+
+Queries become dependent when one query should be run based on data being fetched from another. React Query empowers us to do the same with the help of the `enabled` configuration field. Now we can conditionally run our queries based on the results of others.
+
+For instance, first fetching a user's detail before retrieving posts belonging to this user will have a query dependent upon the other one. This will make it fetch in the right order.
+
+```tsx
+const { data: user, isLoading: isUserLoading } = useQuery("user", fetchUser);
+
+const { data: posts, isLoading: isPostsLoading } = useQuery(
+  ["posts", user?.id],
+  () => fetchPosts(user.id),
+  {
+    enabled: !!user?.id,
+  },
+);
+```
+
+### Parallel Queries
+
+Sometimes we need to run multiple queries at the same time, even if they are not dependent on each other. It makes the process of performing parallel queries really simple, with little configuration being utilized when needing to do this with React Query. This allows us to run multiple queries at the same time for different sets of data, managing their loading and error states individually.
+
+```tsx
+const { data: posts, isLoading: isPostsLoading } = useQuery(
+  "posts",
+  fetchPosts,
+);
+const { data: comments, isLoading: isCommentsLoading } = useQuery(
+  "comments",
+  fetchComments,
+);
+```
+
+### Background Data Synchronization
+
+React Query enables us to do all the automatic behind-the-scenes refetching of data and then update the UI—so the user is never without the information, knowing that it's not in real time. In such a case, we could do things like small tweaks around the implementation with `refetchOnWindowFocus` so our data remains fresh whenever a user focuses back into our window. This becomes very helpful for any applications for which there is key functionality needed for data consistency.
+
+```tsx
+const { data, isLoading } = useQuery("posts", fetchPosts, {
+  refetchOnWindowFocus: true,
+});
+```
 
 ## Conclusion
 
