@@ -15,7 +15,7 @@ describe("replaceIdWithAppwriteId", () => {
     });
   });
 
-  it("should replace the id with appwrite id with complex filter", () => {
+  it("should only replace the first layer of id with appwrite id", () => {
     const result = replaceIdWithAppwriteId({
       field: "id",
       operator: "eq",
@@ -32,7 +32,7 @@ describe("replaceIdWithAppwriteId", () => {
       operator: "eq",
       value: [
         {
-          field: "$id",
+          field: "id",
           operator: "eq",
           value: "John Doe",
         },

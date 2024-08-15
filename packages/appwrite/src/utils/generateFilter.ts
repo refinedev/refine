@@ -1,5 +1,6 @@
 import type { CrudFilter } from "@refinedev/core";
 import { Query } from "appwrite";
+import { replaceIdWithAppwriteId } from "./replaceIdWithAppwriteId";
 
 /**
  * Generate a filter string for Appwrite from Refine's filter
@@ -13,6 +14,8 @@ export const generateFilter = (filter: CrudFilter, deep = 10): string => {
   if (nextDeep < 0) {
     throw new Error("Max deep reached");
   }
+
+  filter = replaceIdWithAppwriteId(filter);
 
   switch (filter.operator) {
     // Logical operators
