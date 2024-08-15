@@ -4,7 +4,7 @@
   <ShortName>Refine</ShortName>
   <Description>Search Refine</Description>
   <InputEncoding>UTF-8</InputEncoding>
-  <Image width="16" height="16" type="image/x-icon">https://refine.dev/img/refine_favicon.svg</Image>
+  <Image width="16" height="16" type="image/x-icon">https://refine.dev/img/favicon.ico</Image>
   <Url type="text/html" method="get" template="https://refine.dev/search?q={searchTerms}"/>
   <Url type="application/opensearchdescription+xml" rel="self" template="https://refine.dev/opensearch.xml" />
   <moz:SearchForm>https://refine.dev/</moz:SearchForm>
