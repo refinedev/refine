@@ -181,6 +181,19 @@ describe("generateFilter", () => {
     );
   });
 
+  it("should replace 'id' field with '$id'", () => {
+    const filter = {
+      operator: "eq",
+      field: "id",
+      value: "123",
+    } as CrudFilter;
+    const expected = Query.equal("$id", "123");
+
+    const result = generateFilter(filter);
+
+    expect(result).toEqual(expected);
+  });
+
   it("should throw an error for unsupported operator", () => {
     const filter = {
       operator: "unsupported",

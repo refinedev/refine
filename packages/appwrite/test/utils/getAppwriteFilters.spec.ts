@@ -100,21 +100,6 @@ describe("getAppwriteFilters", () => {
     });
   });
 
-  it('should replace "id" field with "$id"', () => {
-    const filters: CrudFilter[] = [
-      { operator: "eq", field: "id", value: "123" },
-    ];
-
-    getAppwriteFilters(filters);
-
-    expect(generateFilter).toHaveBeenCalledTimes(1);
-    expect(generateFilter).toHaveBeenCalledWith({
-      operator: "eq",
-      field: "$id",
-      value: "123",
-    });
-  });
-
   it("should return an empty array when no filters are provided", () => {
     const result = getAppwriteFilters(undefined);
 
