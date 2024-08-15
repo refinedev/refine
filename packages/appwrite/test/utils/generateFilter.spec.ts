@@ -53,27 +53,16 @@ describe("generateFilter", () => {
         filter: { operator: "endswith", field: "name", value: "John" },
         expected: Query.endsWith("name", "John"),
       },
-      {
-        filter: {
-          operator: "or",
-          value: [
-            {
-              operator: "eq",
-              field: "name",
-              value: "John",
-            },
-            {
-              operator: "lt",
-              field: "age",
-              value: 30,
-            },
-          ],
-        },
-        expected: Query.or([
-          Query.equal("name", "John"),
-          Query.lessThan("age", 30),
-        ]),
-      },
+    ];
+
+    testCases.forEach(({ filter, expected }) => {
+      const result = generateFilter(filter);
+      expect(result).toEqual(expected);
+    });
+  });
+
+  it("should correctly handle 'or' and 'and' operators with only one element", () => {
+    const testCases: { filter: CrudFilter; expected: any }[] = [
       {
         filter: {
           operator: "or",
@@ -108,6 +97,78 @@ describe("generateFilter", () => {
     });
   });
 
+  it("should correctly handle nested 'or' and 'and' operators", () => {
+    const testCases: { filter: CrudFilter; expected: any }[] = [
+      {
+        filter: {
+          operator: "or",
+          value: [
+            {
+              operator: "eq",
+              field: "name",
+              value: "John",
+            },
+            {
+              operator: "or",
+              value: [
+                {
+                  operator: "eq",
+                  field: "name",
+                  value: "Tom",
+                },
+                {
+                  operator: "lt",
+                  field: "age",
+                  value: 30,
+                },
+              ],
+            },
+          ],
+        },
+        expected: Query.or([
+          Query.equal("name", "John"),
+          Query.or([Query.equal("name", "Tom"), Query.lessThan("age", 30)]),
+        ]),
+      },
+      {
+        filter: {
+          operator: "and",
+          value: [
+            {
+              operator: "eq",
+              field: "name",
+              value: "John",
+            },
+            {
+              operator: "and",
+              value: [
+                {
+                  operator: "eq",
+                  field: "name",
+                  value: "Tom",
+                },
+                {
+                  operator: "lt",
+                  field: "age",
+                  value: 30,
+                },
+              ],
+            },
+          ],
+        },
+        expected: Query.and([
+          Query.equal("name", "John"),
+          Query.and([Query.equal("name", "Tom"), Query.lessThan("age", 30)]),
+        ]),
+      },
+    ];
+
+    testCases.forEach(({ filter, expected }) => {
+      const result = generateFilter(filter);
+      expect(result).toEqual(expected);
+    });
+  });
+
   it("should throw an error when value array has only one element for 'between' operator", () => {
     const filter = {
       operator: "between",
@@ -129,5 +190,15 @@ describe("generateFilter", () => {
     expect(() => generateFilter(filter as any)).toThrowError(
       `Operator ${filter.operator} is not supported`,
     );
+  });
+
+  it("should throw an error when max deep is reached", () => {
+    const filter = {
+      operator: "eq",
+      field: "name",
+      value: "John",
+    } as CrudFilter;
+
+    expect(() => generateFilter(filter, 0)).toThrowError("Max deep reached");
   });
 });
