@@ -13,7 +13,8 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
         "appearance-none",
         "focus:outline-none",
         "border-none",
-        "bg-refine-blue bg-opacity-10 dark:bg-opacity-20",
+        "bg-refine-react-light-link bg-opacity-10",
+        "dark:bg-refine-react-dark-link dark:bg-opacity-20",
         "p-2",
         "rounded-[40px]",
         "gap-2",
@@ -36,7 +37,8 @@ export const TutorialUpdateFileButton = ({ onClick }: Props) => {
         "after:origin-[15%_center]",
         "active:after:brightness-90",
         "after:transition-all after:duration-200 after:ease-in-out",
-        "after:bg-refine-blue",
+        "after:bg-refine-react-light-link",
+        "dark:after:bg-refine-react-dark-link",
         "group",
       )}
       onClick={onClick}
