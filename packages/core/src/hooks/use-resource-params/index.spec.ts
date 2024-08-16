@@ -8,6 +8,8 @@ import {
 
 import { useResourceParams } from ".";
 
+import type { BaseKey } from "../../contexts/data/types";
+
 describe("useResourceParams Hook", () => {
   describe("with routerProvider", () => {
     it("returns undefined when routerProvider doesn't have params", () => {
@@ -404,6 +406,152 @@ describe("useResourceParams Hook", () => {
           }),
         );
       });
+    });
+
+    it("should reflect changes in id prop immediately", async () => {
+      const { result, rerender } = renderHook(
+        ({ id }) => useResourceParams({ id }),
+        {
+          wrapper: TestWrapper({}),
+          initialProps: {
+            id: undefined,
+          } as { id?: BaseKey },
+        },
+      );
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          resource: undefined,
+          id: undefined,
+          action: undefined,
+          formAction: "create",
+          identifier: undefined,
+        }),
+      );
+
+      rerender({ id: "123" });
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          resource: undefined,
+          id: "123",
+          action: undefined,
+          formAction: "create",
+          identifier: undefined,
+        }),
+      );
+    });
+
+    it("should reflect both id prop changes and setId invocations", async () => {
+      const { result, rerender } = renderHook(
+        ({ id }) => useResourceParams({ id }),
+        {
+          wrapper: TestWrapper({}),
+          initialProps: {
+            id: undefined,
+          } as { id?: BaseKey },
+        },
+      );
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          resource: undefined,
+          id: undefined,
+          action: undefined,
+          formAction: "create",
+          identifier: undefined,
+        }),
+      );
+
+      act(() => {
+        result.current.setId("123");
+      });
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          resource: undefined,
+          id: "123",
+          action: undefined,
+          formAction: "create",
+          identifier: undefined,
+        }),
+      );
+
+      rerender({ id: "456" });
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          resource: undefined,
+          id: "456",
+          action: undefined,
+          formAction: "create",
+          identifier: undefined,
+        }),
+      );
+    });
+
+    it("should respect value set by setId method", async () => {
+      const { result, rerender } = renderHook(
+        ({ id }) => useResourceParams({ id }),
+        {
+          wrapper: TestWrapper({}),
+          initialProps: {
+            id: "123",
+          } as { id?: BaseKey },
+        },
+      );
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          id: "123",
+        }),
+      );
+
+      act(() => {
+        result.current.setId(undefined);
+      });
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          id: undefined,
+        }),
+      );
+
+      rerender({ id: "456" });
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          id: "456",
+        }),
+      );
+    });
+
+    it("should provide id prop in setId setter", async () => {
+      const { result, rerender } = renderHook(
+        ({ id }) => useResourceParams({ id }),
+        {
+          wrapper: TestWrapper({}),
+          initialProps: {
+            id: "123",
+          } as { id?: BaseKey },
+        },
+      );
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          id: "123",
+        }),
+      );
+
+      act(() => {
+        result.current.setId((prev) => (Number(prev) + 1).toString());
+      });
+
+      expect(result.current).toMatchObject(
+        expect.objectContaining({
+          id: "124",
+        }),
+      );
     });
   });
 

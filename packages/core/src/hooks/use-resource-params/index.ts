@@ -64,7 +64,7 @@ export function useResourceParams(props?: Props): ResourceParams {
 
   const [id, setId] = React.useState<BaseKey | undefined>(defaultId);
 
-  React.useEffect(() => setId(defaultId), [defaultId]);
+  React.useMemo(() => setId(defaultId), [defaultId]);
 
   const formAction = React.useMemo(() => {
     if (!isSameResource && !props?.action) {
