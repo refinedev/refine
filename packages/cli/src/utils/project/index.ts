@@ -36,6 +36,11 @@ export const getProjectType = (platform?: ProjectTypes): ProjectTypes => {
     dependencies.includes("@remix-run/react") ||
     devDependencies.includes("@remix-run/react")
   ) {
+    // check for remix-vite
+    if (dependencies.includes("vite") || devDependencies.includes("vite")) {
+      return ProjectTypes.REMIX_VITE;
+    }
+
     return ProjectTypes.REMIX;
   }
 

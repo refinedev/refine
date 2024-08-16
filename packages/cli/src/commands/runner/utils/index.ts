@@ -18,12 +18,16 @@ export const getRunnerDescription = (runner: "dev" | "start" | "build") => {
       break;
   }
 
-  if (projectType === ProjectTypes.REMIX && runner === "start") {
-    projectType = "remix-serve" as ProjectTypes;
-  }
-
-  if (projectType === ProjectTypes.REMIX_SPA && runner === "start") {
-    projectType = ProjectTypes.VITE;
+  if (runner === "start") {
+    switch (projectType) {
+      case ProjectTypes.REMIX:
+      case ProjectTypes.REMIX_VITE:
+        projectType = "remix-serve" as ProjectTypes;
+        break;
+      case ProjectTypes.REMIX_SPA:
+        projectType = ProjectTypes.VITE;
+        break;
+    }
   }
 
   return `It runs: \`${projectType} ${command.join(

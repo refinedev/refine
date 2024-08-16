@@ -21,6 +21,7 @@ export const AntDesignIntegration: Integration = {
       [
         ProjectTypes.NEXTJS,
         ProjectTypes.REMIX,
+        ProjectTypes.REMIX_VITE,
         ProjectTypes.REMIX_SPA,
       ].includes(projectType)
     ) {
