@@ -5,8 +5,10 @@ slug: react-websocket-tutorial-nodejs
 authors: frank_joseph
 tags: [react]
 hide_table_of_contents: false
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/social-2.png
 ---
+
+**This article was last updated on August 15, 2024, to add sections for WebSocket Protocols and Subprotocols, Security Considerations with WebSockets, and Error Handling and Reconnection Strategies.**
 
 ## Introduction
 
@@ -20,11 +22,9 @@ Steps we'll cover:
 - [Unleashing the Power of WebSockets using Node.js and React](#unleashing-the-power-of-websockets-using-nodejs-and-react)
 - [Accessing the Code](#accessing-the-code)
 - [Run the application after Setting up the Environment](#run-the-application-after-setting-up-the-environment)
-  - [Understanding the WebSocket Handshake](#understanding-the-websocket-handshake)
-  - [Managing Client Connections](#managing-client-connections)
-  - [Establishing the Handshake at the Client Level](#establishing-the-handshake-at-the-client-level)
-  - [Real-time Message Transmission](#real-time-message-transmission)
-  - [Handling Disconnections](#handling-disconnections)
+- [Understanding the Code\*\*](#understanding-the-code)
+- [Security Considerations with WebSockets](#security-considerations-with-websockets)
+- [Bonus: WebSocket Protocols and Subprotocols](#bonus-websocket-protocols-and-subprotocols)
 
 ## Why WebSocket?
 
@@ -329,6 +329,226 @@ When user closes the browser window or refreshes the page, application will disc
  <div className="centered-image">
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-16-react-web-socket/handling-disconnections.png"  alt="react-websocket-nodejs" />
 </div>
+
+## Security Considerations with WebSockets
+
+I would like to briefly share my thoughts on security considerations while working with WebSockets, since we are currently using it in our project. This is a great technique for real-time communication, and there are a few security considerations that need to be taken care of so that our application is secure.
+
+### WSS: WebSocket Secure Connections
+
+Please be sure to use secure websocket connections (wss://) not just plain websocket connections (ws://). This would be the equivalent of using HTTPS not HTTP. Secure websocket connections actually encrypt the data travelling between the two points and, for this reason, help secure it from being man-in-the-middled to abuse.
+
+```tsx
+const ws = new WebSocket("wss://example.com/socket");
+```
+
+```tsx
+const https = require("https");
+const WebSocket = require("ws");
+const server = https.createServer({
+  /* SSL options */
+});
+const wss = new WebSocket.Server({ server });
+
+server.listen(8080, () => {
+  console.log("Secure WebSocket server is running on port 8080");
+});
+```
+
+### Put in Place Authentication and Authorization
+
+Unlike HTTP requests, the WebSocket connection is long-lived and continues to stay open as long as needed. It should also be made sure that opening a WebSocket connection can only be done by an authenticated user. This can be achieved by validating tokens—like JWTs—while a handshake is performed. Finally, these with authorization checks are also responsible for making sure that data reached by all users is allowed.
+
+```tsx
+const token = "your_jwt_token";
+const ws = new WebSocket(`wss://example.com/socket?token=${token}`);
+```
+
+```tsx
+const url = require("url");
+const jwt = require("jsonwebtoken");
+
+wss.on("connection", (ws, req) => {
+  const queryParams = url.parse(req.url, true).query;
+  const token = queryParams.token;
+
+  try {
+    const decoded = jwt.verify(token, "your_secret_key");
+    ws.user = decoded.user; // Attach user info to WebSocket instance
+    console.log("User authenticated:", ws.user);
+  } catch (err) {
+    ws.close(1008, "Unauthorized"); // Close connection with Unauthorized status
+  }
+});
+```
+
+### Protection from Cross-Site WebSocket Hijacking
+
+In a cross-site WebSocket hijack attack, an attacker manipulates a user's browser into opening a WebSocket connection to a server using the user's credentials. Mitigation involves using the authentication tokens as well as other WebSocket messages by doing validation on the server side.
+
+```tsx
+ws.onmessage = (event) => {
+  const message = JSON.parse(event.data);
+  if (message.token !== validToken) {
+    ws.close(1008, "Unauthorized");
+  } else {
+    // Process message
+  }
+};
+```
+
+```tsx
+ws.on("message", (message) => {
+  const data = JSON.parse(message);
+  try {
+    const decoded = jwt.verify(data.token, "your_secret_key");
+    // Proceed with the message processing
+  } catch (err) {
+    ws.close(1008, "Unauthorized");
+  }
+});
+```
+
+### Rate Limiting and Message Validation
+
+While it is true that WebSockets allow for real-time data exchange, one should implement rate limiting in order to avoid abuses such as server flooding with messages. In addition, valid content of messages about to be sent can prevent injections and the like.
+
+```tsx
+const rateLimit = require("express-rate-limit");
+
+const limiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute
+  max: 100, // Limit each IP to 100 requests per windowMs
+});
+
+app.use("/socket", limiter);
+
+wss.on("connection", (ws) => {
+  ws.on("message", (message) => {
+    try {
+      const data = JSON.parse(message);
+      // Validate the message content
+      if (typeof data !== "object" || !data.action) {
+        throw new Error("Invalid message format");
+      }
+      // Process the message
+    } catch (err) {
+      ws.send(JSON.stringify({ error: "Invalid message" }));
+    }
+  });
+});
+```
+
+### Close Connections Gracefully
+
+This could avert the possibility of resource leakage and reduce the attack surface for attacks in a heavily used application with a large user base. Properly close WebSocket connections: that is, closing should only be done when it is no longer needed.
+
+```tsx
+ws.on("close", () => {
+  console.log("Connection closed");
+  // Clean up resources, e.g., remove user from active users list
+});
+
+process.on("SIGINT", () => {
+  wss.clients.forEach((client) => {
+    client.close(1000, "Server shutting down");
+  });
+  server.close(() => {
+    console.log("Server shut down gracefully");
+    process.exit(0);
+  });
+});
+```
+
+## Bonus: WebSocket Protocols and Subprotocols
+
+### What Is WebSocket Protocols?
+
+WebSocket is full-duplex, single TCP connection-oriented, request-response-wise unsynchronized. On the contrary, it always has a connection open between the client and server, unlike HTTP, in which connections are opened as needed. WebSocket involves continuous communication between the two parties, a feature that can be beneficial for many applications: chat applications, live notifications, or shared tools.
+
+### Subprotocols Understanding
+
+Subprotocols are actually an extension of the WebSocket protocol, describing a certain format or, in more detail, the structure of messaging inside the WebSocket connection. Subprotocols allow the client and server to agree on one particular protocol for their data exchange, which is sometimes quite important to remember so that both parties can understand and process the messages properly.
+
+An alternative way to look at subprotocols is to consider them as languages within the WebSocket connection. So, while WebSocket is the medium of communication, the subprotocols are the agreed-upon languages to be spoken between two parties—like English, or Spanish.
+
+### Popular WebSocket Subprotocols
+
+Some common popular sub-protocols that you are likely to come across
+
+- **STOMP (Simple Text Oriented Messaging Protocol):** This is mainly applied to messaging applications. It provides a simple, text-based protocol for messages that can be easily understood and quickly implemented.
+
+- **MQTT (Message Queuing Telemetry Transport):** A lightweight messaging protocol, one of the several applied in low-bandwidth, high-latency networks. It is, therefore, in essence, the most commonly used protocol in IoT applications.
+- **WAMP (Web Application Messaging Protocol):** This is a protocol that supports RPC (remote procedure call) and Publish/Subscribe communication patterns in a routed way. It provides a good fit for applications with more structured messaging patterns.
+
+### 4. Realizing Subprotocols through WebSocket Connection
+
+During the creation of a WebSocket connection, a subprotocol to be used is specified for both the client and server. This sets things up so that both the client and server know how to format and interpret the messages in the exchange of information.
+
+**Client-Side Example:**
+
+```javascript
+// Specify the desired subprotocol during connection
+const ws = new WebSocket("wss://example.com/socket", ["mqtt"]);
+
+ws.onopen = () => {
+  console.log("WebSocket connection established with MQTT subprotocol.");
+};
+
+ws.onmessage = (message) => {
+  // Handle incoming messages according to the MQTT protocol
+  console.log("Received message:", message.data);
+};
+```
+
+**Server Side Example (Node.js with ws library):**
+
+In the example above, there is an agreement between the client and the server to use the subprotocol of MQTT to the effect that the transmitted messages will be properly formatted and understood at either end.
+
+```javascript
+const WebSocket = require("ws");
+
+const wss = new WebSocket.Server({ port: 8080 });
+
+wss.on("connection", (ws, req) => {
+  const subprotocol = ws.protocol;
+
+  console.log(`Client connected using subprotocol: ${subprotocol}`);
+
+  ws.on("message", (message) => {
+    // Process message according to the selected subprotocol
+    console.log("Received:", message);
+  });
+
+  ws.send("Welcome to the WebSocket server!");
+});
+```
+
+### 5. Custom Subprotocols
+
+You will sometimes have to define your own subprotocol with fixed ideas for your particular needs. This makes it necessary for you to implement certain custom message format, meaning that both the client and server should be appropriately used.
+
+```tsx
+// Custom subprotocol: 'myCustomProtocol'
+// Messages could be JSON objects with a specific structure
+
+const ws = new WebSocket("wss://example.com/socket", ["myCustomProtocol"]);
+
+ws.onmessage = (message) => {
+  const data = JSON.parse(message.data);
+  if (data.type === "greeting") {
+    console.log("Received greeting:", data.content);
+  }
+};
+```
+
+You would then parse incoming messages on the server side using this custom structure to make sure that the application logic interprets them correctly. ### 6. Select the Correct Sub Protocol Choose sub-protocols that would be appropriate to satisfy your application-specific requirements.
+
+For example:
+
+- **STOMP** is good for messaging apps where a lightweight, readable protocol is needed.
+- **MQTT** is applicable to constrained IoT devices with limited bandwidth.
+- **WAMP**: Can go fine together with applications which are based on structured RPC or Pub/Sub patterns.
 
 ## Conclusion
 Full-duplex bidirectional real-time communication is an important aspect of modern web development. WebSockets provides the relevant and most efficient means to achieve real-time communication. In this article, we explored the concept of WebSockets, its benefits, why it is superior to other traditional HTTP methods, and why developers should adopt WebSockets. Finally, we illustrated how to integrate WebSockets into React and Node.js applications.

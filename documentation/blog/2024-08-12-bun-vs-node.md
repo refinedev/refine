@@ -4,11 +4,13 @@ description: We'll go over the new Bun runtime that has created a buzz in the te
 slug: bun-js-vs-node
 authors: victor_uma
 tags: [javascript, dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/social-2.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-04-bun-vs-node/social-3.png
 hide_table_of_contents: false
 ---
 
-#
+**This article was last updated on August 12, 2024 to add sections for Cross-Platform Support and Comparison with Other Runtimes (e.g., Deno).**
+
+## Introduction
 
 Do you want to try out a new runtime environment? [Bun](https://bun.sh/) is the new Javascript runtime that claims to be better than [Node.js](https://nodejs.org/en). This article will show how we can test this with benchmark scores.
 
@@ -30,12 +32,12 @@ In this tutorial, we will go over the new Bun runtime that has created a buzz in
 Steps we'll cover:
 
 - [What is a runtime](#what-is-a-runtime)
-  - [The Javascript runtime](#the-javascript-runtime)
 - [What is Bun](#what-is-bun)
 - [Why is Bun Fast](#why-is-bun-fast)
 - [Installing the Bun runtime](#installing-the-bun-runtime)
 - [How does Bun compare with Node](#how-does-bun-compare-with-node)
 - [Benchmarking Bun](#benchmarking-bun)
+- [Comparison of Bun with Other JavaScript Runtimes (e.g., Deno and Node.js)](#comparison-of-bun-with-other-javascript-runtimes-eg-deno-and-nodejs)
 
 ## What is a runtime
 
@@ -204,13 +206,130 @@ We can now see and compare Bun speed to Node. If you want to go further you can 
 k6 run --vus 10 --duration 30s script.js
 ```
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Cross-Platform Support with Bun and Node.js
 
-## Conclusion
+I wanted to discuss the cross-platform support of Bun and Node.js, which I think is a really critical point that we should consider when choosing a runtime for our projects. Here, I've pointed out performance across various operating systems with some command examples:
+
+### Node.js Cross-Platform Support
+
+Over the last ten years, Node.js has become one of the prominent things to all OSs—macOS, Linux, or Windows. At such time, this makes Node.js a very reliable choice for any developer working with diverse environments. Here are some key points:
+
+- **macOS and Linux**: Node.js works very well on Unix-based systems like macOS and Linux. It fits so well into things such as shell scripting, package management with npm, or Yarn, and many other tools more at home most typically in these environments.
+
+```bash
+# macOS/Linux
+If you are using macOS or Linux, Node.js can be installed using
+curl -fsSL https://deb.nodesource.com/setup_14.x | sudo
+sudo apt-get install -y nodejs
+```
+
+- **Windows**: Node.js also interfaces very well with Windows; it has native installers and is properly integrated, even though this also implies being able to properly work with Windows Subsystem for Linux. The Node.js team has worked out most of the historical differences in path handling and command execution.
+
+```powershell
+## Installing Node.js on Windows with the Node.js Installer
+winget install OpenJS.NodeJS
+```
+
+- **ARM and Other Architectures**: Node.js supports a bunch of processor architectures, including ARM. The major importance here is due to the fact that the devices like Raspberry Pis and Apple M1/M2 are seeing increased adoption.
+
+```bash
+# Install Node.js on Raspberry Pi, which has an ARM architecture
+curl -fsSL https://deb.nodesource.com/setup_14.x | sudo
+sudo apt-get install -y nodejs
+```
+
+### Bun Cross-Platform Support
+
+Bun is a pretty new runtime for which many impressive gains have been made in terms of performance and features; cross-platform support is still young. Here's an overview of its current state:
+
+- **macOS**: Bun works great with macOS, especially on Apple's M1/M2 chips. Its performance is at the best level with this platform, and it provides a good service for developers working on macOS.
+
+```bash
+# Install Bun on macOS
+curl -fsSL https://bun.sh/install | bash
+```
+
+- **Linux**: Bun also works on Linux but, since it's newer, there might be some rough edges, or things could be not as good as with Node.js in terms of community tooling.
+
+```bash
+# Install Bun on Linux
+curl -fsSL https://bun.sh/install | bash
+```
+
+- **Windows**: Windows support for Bun is still very new. It should be possible to run Bun on Windows, but you might require WSL or possibly come across other limitations when running on a native Windows environment.
+
+```bash
+# Install Bun on Windows using WSL
+curl -fsSL https://bun.sh/install | bash
+```
+
+- **ARM and Other Architectures**: Bun is being gradually developed to work with a growing number of architectures; ARM is one example. However, the performance and stability on these architectures have not reached that of Node.js quite yet.
+
+```bash
+# Install Bun on ARM architecture
+curl -fsSL https://bun.sh/install | bash
+```
+
+## Comparison of Bun with Other JavaScript Runtimes (e.g., Deno and Node.js)
+
+It will be good to benchmark Bun vs. other JavaScript runtimes like Deno and Node.js. That might put us in perspective about how Bun compares to other JavaScript run-times out there so that we can make a little more educated decision about our use case for the project. Here is a rundown of comparison:
+
+### Overview of Runtimes
+
+- **Node.js**: This is the most established JavaScript runtime, best known for its vast ecosystem, mature tooling, and solid community support. It is based on the V8 JavaScript engine and has been the primary runtime utilized for server-side JavaScript over the last decade.
+
+- **Deno**: Deno is a new runtime created by Ryan Dahl, the original creator of Node.js. It tries to fix some problems in Node.js, such as security issues and dependency management. Built using V8 and Rust, with its primary focus being on having modern features—like having out-of-the-box support for TypeScript, secured by default, and an inbuilt package manager—this is Deno.
+
+- **Bun**: Bun is a newcomer to the JavaScript runtime arena, focusing on performance, speed, and developer experience. It's built with the Zig programming language and uses WebKit's JavaScriptCore engine. It comes with built-in tools, such as a bundler, transpiler, and test runner, to make everything easy for developers.
+
+### Performance
+
+- **Node.js**: Known for good performance in general, especially with I/O-bound applications. It relies on V8, which is optimized around the best possible speed and efficiency, meaning that in certain scenarios it may not be as fast as some newer runtimes.
+
+- **Deno**: Deno is comparable in performance to Node.js, and it has some advantages in certain areas, such as cold start times and memory usage. Because it uses Rust for the core runtime, it will be that much more memory-safe and, sometimes, even faster.
+
+- **Bun**: Bun is particularly speed-optimized with very fast start-up and execution time compared to Node.js and Deno. It achieves this with the help of JavaScriptCore engine and lightweight design, making it an excellent choice for performance-critical applications.
+
+### Security
+
+- **Node.js**: Security features are not turned on by default for Node.js; hence, developers need to be proactive for securing their application—careful management of dependencies and configuration of runtime to avoid basic security pitfalls.
+
+- **Deno**: Security is one of the things that are greatly advertised by Deno. Deno runs by default in a secured, sandboxed environment with explicit permission required for file, network, and environment access, thus reducing the risks of vulnerabilities from third-party packages.
+
+- **Bun**: Bun is yet to mature for its security model. It might have the best of a few security characteristics, but it still may not match Deno's inbuilt protection. A developer using Bun has to be extra cautious in practicing security, more so because it's a younger runtime than Deno, and the community is quite smaller.
+
+### Ecosystem and Tooling
+
+- **Node.js**: It has a very large ecosystem since it contains millions of packages available via npm. Also, it is very flexible in use; this is because mature tooling is provided to do anything with it, from build processes to deployment.
+
+- **Deno**: Growing quickly in an ecosystem, Deno is on its expanding front yet stands way much smaller than Node.js. The module system in Deno is decentralized — it fetches packages directly from URLs as compared to the centralized repository in npm. This allows more fragmentation but then, even better flexibility.
+
+- **Bun**: Bun aims to be a middle ground with a built-in bundler, transpiler, and test runner that reduces the amount of external dependencies but also makes developing easy. However, it is emerging and doesn't have as many third-party packages as Node.js does.
+
+### TypeScript Support
+
+- **Node.js**: Although Node.js does not come natively with TypeScript, it plays along very well with TypeScript due to the commonly used transpilers Babel or using the TypeScript compiler (tsc). And now due to the strong community support, the TypeScript is being welcomed on strongly, and most of the packages have TypeScript definitions.
+
+- **Deno**: Deno was designed from the ground up with TypeScript being a first-class language; there isn't any need for the user to need special configuration. This makes it good for developers looking to use TypeScript without any extra setup.
+
+- **Bun**: Bun also supports native TypeScript. One can do author in TypeScript without any need for additional configuration or tooling. This helps greatly in easing the pain in the adoption of TypeScript within projects that make use of Bun.
+
+### Community and Adoption
+
+- **Node.js**: The largest and most active community, extensive documentation, tutorials, and support—literally, it is applied in any work, from small projects to enterprise-level applications.
+
+- **Deno**: Around Deno, a community is developing very quickly, mostly for developers who are using modern JavaScript features and focusing on security. Although not as big as the Node.js ecosystem, it has a more alive and friendly community and is more focused on modern best practices.
+
+- **Bun**: It is quite a new runtime, so naturally the community around it is small, albeit rapidly developing. It generates a lot of interest due to claims of performance, but it might take yet a while for adoption on the level of Node.js and even Deno.
+
+Final words;
+
+- **Node.js**: Good for developers who need a stable, fully-supported runtime with rich features in tools and libraries.
+
+- **Deno**: A good option for a security-centric project looking for JavaScript features at the forefront with first-class TypeScript integration. This is also a good alternative for developers who don't want to get lost in the way package management is done in Node.js.
+
+- **Bun**: Ideal for developers with the need for maximum performance, fast startup time, and all-in-one development based on built-in tools; however, its ecosystem is still in maturity, so at this stage, it can better match with critical performance or smaller projects.
+
+### Conclusion
 
 In conclusion, Bun and Node.js are two JavaScript runtimes that offer different approaches and features for developers. Bun focuses on delivering fast startup times, optimized performance, and a lightweight design with integrated tools like a bundler and transpiler. It utilizes the JavaScriptCore engine from WebKit to achieve its performance goals. On the other hand, Node.js has a larger ecosystem, extensive community support, and compatibility with a wide range of programming languages. It relies on the V8 engine and offers a rich set of third-party tools and libraries. Choosing between Bun and Node.js depends on factors such as performance requirements, specific project needs, and the availability of suitable tooling and community support. Ultimately, developers can leverage the strengths of each runtime to build robust and efficient JavaScript applications.
