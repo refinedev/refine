@@ -20,6 +20,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   DeleteButton,
@@ -34,6 +35,7 @@ import {
 } from "@components";
 import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
+import { alpha } from "@mui/system";
 
 /**
  * `<Show>` provides us a layout for displaying the page.
@@ -148,7 +150,29 @@ export const Show: React.FC<ShowProps> = ({
   );
 
   return (
-    <Card {...(wrapperProps ?? {})}>
+    <Card
+      {...(wrapperProps ?? {})}
+      sx={{
+        position: "relative",
+        ...wrapperProps?.sx,
+      }}
+    >
+      {isLoading && (
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            // this is needed to support custom themes, dark mode etc.
+            bgcolor: (theme) => alpha(theme.palette.background.paper, 0.4),
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {breadcrumbComponent}
       <CardHeader
         sx={{
