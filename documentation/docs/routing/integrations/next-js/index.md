@@ -668,7 +668,7 @@ First let's create our [AuthProvider](/docs/authentication/auth-provider)
 
 let's install the `nookies` packages in our project.
 
-<InstallPackagesCommand args="@refinedev/nookies"/>
+<InstallPackagesCommand args="nookies"/>
 
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
