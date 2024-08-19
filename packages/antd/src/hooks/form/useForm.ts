@@ -49,7 +49,7 @@ export type UseFormProps<
   /**
    * Disables server-side validation
    * @default false
-   * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
+   * @see {@link https://refine.dev/docs/guides-concepts/forms/#server-side-validation-}
    */
   disableServerSideValidation?: boolean;
 } & AutoSaveProps<TVariables> &
