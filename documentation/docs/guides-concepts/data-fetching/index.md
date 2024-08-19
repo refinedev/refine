@@ -202,7 +202,7 @@ Refine expects errors to be extended from [HttpError](/docs/core/interface-refer
 When implemented correctly, Refine offers several advantages in error handling:
 
 - **Notification**: If you have [`notificationProvider` ](/docs/notification/notification-provider), Refine will automatically show a notification when an error occurs.
-- **Server-Side Validation**: Shows [errors coming from the API](/docs/guides-concepts/forms/#server-side-validation-) on the corresponding form fields.
+- **Server-Side Validation**: Shows [errors coming from the API](/docs/advanced-tutorials/forms/server-side-form-validation/) on the corresponding form fields.
 - **Optimistic Updates**: Instantly update UI when you send a mutation and automatically revert the changes if an error occurs during the mutation.
 
 <ErrorHandling />
@@ -384,7 +384,7 @@ After obtaining the token, we'll use Axios interceptors to include the token in 
 
 ## TanStack Query `QueryClient`
 
-To modify the [`QueryClient`](https://tanstack.com/query/latest/docs/react/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/docs/core/refine-component) component.
+To modify the [`QueryClient`](https://tanstack.com/query/v4/docs/reference/QueryClient) instance, you can use the `reactQuery` prop of the [`<Refine />`](/docs/core/refine-component) component.
 
 ## `dataProvider` interface
 
