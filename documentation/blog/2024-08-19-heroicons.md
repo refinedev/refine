@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-18-heroicons/
 hide_table_of_contents: false
 ---
 
+**This article was last updated on August 19, 2024, to add sections on Customizing Heroicons and Optimizing Icon Performance.**
+
 ## Introduction
 
 [Heroicons](https://heroicons.com) are SVG-based icons packaged by the creators of TailwindCSS. They come in two size variants, `20`, which is suitable for small buttons and form elements, and a `24` size, that is useful for primary navigation buttons like call to action and hero sections. `24` size comes as `solid` and `outline`.
@@ -24,14 +26,9 @@ The existing navbar is available in [this repository](https://github.com/anewman
 
 Steps we'll cover:
 
-- [Install Heroicons](#install-heroicons)
 - [A Navbar with Heroicons](#a-navbar-with-heroicons)
-  - [Adding and Styling Heroicons with TailwindCSS](#adding-and-styling-heroicons-with-tailwindcss)
-  - [Using Regular TailwindCSS Utilities with Heroicons](#using-regular-tailwindcss-utilities-with-heroicons)
-  - [Using `SVG` Related TailwindCSS Utilities with Heroicons](#using-svg-related-tailwindcss-utilities-with-heroicons)
-  - [Using non-TailwindCSS Classes with Heroicons](#using-non-tailwindcss-classes-with-heroicons)
-  - [Applying Native `<svg>` Properties to Heroicons](#applying-native-svg-properties-to-heroicons)
-  - [Applying Responsive TailwindCSS Utils to Heroicons](#applying-responsive-tailwindcss-utils-to-heroicons)
+- [Customizing Heroicons](#customizing-heroicons)
+- [Optimizing Icon Performance](#optimizing-icon-performance)
 
 ## Preparation
 
@@ -78,7 +75,7 @@ const Navbar = () => {
         </a>
       </div>
       <div
-        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+        className={`${menuHidden} border-t border-slate-500 text-amber-50 transition-all duration-1000 ease-in-out md:border-none`}
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
@@ -116,7 +113,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
+        className={`absolute right-4 top-3 rounded border border-orange-400 p-1 text-slate-500 hover:bg-orange-200 hover:text-slate-300 md:hidden`}
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">
@@ -167,41 +164,41 @@ body {
 }
 
 .navbar {
-  @apply sticky top-0 mx-auto px-2 w-full h-auto bg-slate-600 flex flex-col justify-start md:flex-row md:justify-between md:items-center;
+  @apply sticky top-0 mx-auto flex h-auto w-full flex-col justify-start bg-slate-600 px-2 md:flex-row md:items-center md:justify-between;
 }
 
 .brand-wrapper {
-  @apply h-14 bg-slate-600 w-full flex justify-start items-center flex-1 self-start;
+  @apply flex h-14 w-full flex-1 items-center justify-start self-start bg-slate-600;
 }
 
 .brand {
   max-width: 12rem;
   color: var(--primary-color);
-  @apply text-4xl p-2;
+  @apply p-2 text-4xl;
 }
 
 .items-strip {
-  @apply my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center;
+  @apply my-2 flex flex-col items-start justify-start md:flex-row md:items-center md:justify-start;
 }
 
 .items-left {
-  @apply mx-2 p-2 order-last md:order-none flex justify-center items-center;
+  @apply order-last mx-2 flex items-center justify-center p-2 md:order-none;
 }
 
 .items-list {
-  @apply flex flex-col md:flex-row md:justify-start md:items-center;
+  @apply flex flex-col md:flex-row md:items-center md:justify-start;
 }
 
 .nav-item {
-  @apply mx-2 p-1 rounded lg:mx-8 w-full lg:w-auto hover:scale-105 hover:backdrop-brightness-125 hover:shadow transition-all;
+  @apply mx-2 w-full rounded p-1 transition-all hover:scale-105 hover:shadow hover:backdrop-brightness-125 lg:mx-8 lg:w-auto;
 }
 
 .nav-link {
-  @apply text-center p-1 flex justify-start items-center;
+  @apply flex items-center justify-start p-1 text-center;
 }
 
 .text-input {
-  @apply py-0.5 px-2 border rounded-l text-slate-800;
+  @apply rounded-l border px-2 py-0.5 text-slate-800;
 }
 
 .avatar {
@@ -280,7 +277,7 @@ const Navbar = () => {
         </a>
       </div>
       <div
-        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+        className={`${menuHidden} border-t border-slate-500 text-amber-50 transition-all duration-1000 ease-in-out md:border-none`}
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
@@ -290,7 +287,7 @@ const Navbar = () => {
               placeholder="Find donald trump or something..."
             />
             {/*highlight-next-line*/}
-            <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
+            <MagnifyingGlassIcon className="mx-1 h-6 w-6 stroke-orange-400" />
           </div>
           <div id="right">
             <ul className="items-list">
@@ -298,7 +295,7 @@ const Navbar = () => {
                 <a href="/">
                   {/*highlight-next-line*/}
                   <UserIcon
-                    className="h-8 w-8 glow"
+                    className="glow h-8 w-8"
                     stroke="pink"
                     strokeWidth={1.2}
                   />
@@ -324,7 +321,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
+        className={`absolute right-4 top-3 rounded border border-orange-400 p-1 text-slate-500 hover:bg-orange-200 hover:text-slate-300 md:hidden`}
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">
@@ -350,7 +347,7 @@ As discussed below, we are using three types of CSS classes.
 We can use regular Tailwind CSS utilities like `h-6 w-6`:
 
 ```tsx
-<MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
+<MagnifyingGlassIcon className="mx-1 h-6 w-6 stroke-orange-400" />
 ```
 
 In this case, we are using spacing utilities for height, width and margin.
@@ -376,7 +373,7 @@ Internally, `stroke-{color}-{saturation}` value is relayed to the `stroke` prope
 We can use non-Tailwind classes as well:
 
 ```tsx
-<UserIcon className="h-8 w-8 glow" stroke="pink" strokeWidth={1.2} />
+<UserIcon className="glow h-8 w-8" stroke="pink" strokeWidth={1.2} />
 ```
 
 For the `<UserIcon />`, we are applying a `glow` class that animates the icon with a glow `filter`. It's completely custom CSS and looks like this:
@@ -419,7 +416,7 @@ With the above changes Heroicons and their styles, the navbar looks like this:
 Notice also that we are applying `stroke` and `strokeWidth` to `<UserIcon />`:
 
 ```tsx
-<UserIcon className="h-8 w-8 glow" stroke="pink" strokeWidth={1.2} />
+<UserIcon className="glow h-8 w-8" stroke="pink" strokeWidth={1.2} />
 ```
 
 Native `<svg>` properties passed to Heroicons also get relayed to the `<svg>` element inside.
@@ -463,7 +460,7 @@ const Navbar = () => {
         </a>
       </div>
       <div
-        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+        className={`${menuHidden} border-t border-slate-500 text-amber-50 transition-all duration-1000 ease-in-out md:border-none`}
       >
         <div id="items" className="items-strip">
           <div id="left" className="items-left">
@@ -472,14 +469,14 @@ const Navbar = () => {
               type="email"
               placeholder="Find Donald  or something..."
             />
-            <MagnifyingGlassIcon className="h-6 w-6 mx-1 stroke-orange-400" />
+            <MagnifyingGlassIcon className="mx-1 h-6 w-6 stroke-orange-400" />
           </div>
           <div id="right">
             <ul className="items-list">
               <li className="nav-item md:order-last">
                 <a href="/">
                   <UserIcon
-                    className="h-8 w-8 glow"
+                    className="glow h-8 w-8"
                     stroke="pink"
                     strokeWidth={1.2}
                   />
@@ -511,7 +508,7 @@ const Navbar = () => {
         </div>
       </div>
       <div
-        className={`absolute top-3 right-4 p-1 border border-orange-400 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-orange-200`}
+        className={`absolute right-4 top-3 rounded border border-orange-400 p-1 text-slate-500 hover:bg-orange-200 hover:text-slate-300 md:hidden`}
         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
       >
         <a href="/">
@@ -532,6 +529,206 @@ With `md:hidden lg:block` we are changing the visibility of the icon using respo
 ```tsx
 <UserGroupIcon className="h-6 w-6 md:hidden lg:block" />
 ```
+
+## Customizing Heroicons
+
+Customizing Heroicons to your application's design and branding is possible, and here are a few advanced ways of enhancing them:
+
+### Advanced SVG Manipulations
+
+- **Path Adjustments**: Direct editing of SVG path data to create custom shapes or adjust a default one. It's done by editing the `d` attribute within the `<path>` tag of an SVG that describes the outline for the icon.
+
+```tsx
+import React from "react";
+
+const CustomIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    className="h-6 w-6"
+  >
+    <path
+      d="M12 2a10 10 0 110 20 10 10 0 010-20zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+    />
+  </svg>
+);
+
+export default CustomIcon;
+```
+
+- **Transformations**: By applying a few transformations such as scaling, rotation, or skewing, you can change some elements in an SVG. For this purpose, the `transform` attribute is used. To rotate an icon, for example, the `<svg>` element could have `transform="rotate(45)"`. This would rotate the icon by 45°.
+
+```tsx
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
+
+const RotatedIcon = () => (
+  <ArrowPathIcon className="h-8 w-8" transform="rotate(45)" stroke="blue" />
+);
+```
+
+- **Animations**: You can animate your Heroicons using CSS or JavaScript. For example, you can create an animation with a `stroke-width` or continuous rotation by applying CSS properties to `@keyframes`.
+
+```tsx
+import { ArrowRightIcon } from "@heroicons/react/24/outline";
+
+const AnimatedIcon = () => (
+  <ArrowRightIcon className="h-8 w-8 animate-bounce text-red-500" />
+);
+```
+
+### Theming Icons
+
+- **Dynamic Styling with TailwindCSS**: You're able to do dynamic classes with TailwindCSS, which means you toggle classes depending on some user actions or the state of your app. For example, you can change the color of an icon when it is hovered over, or if some condition is true, by using conditional class names.
+
+```tsx
+import { StarIcon } from "@heroicons/react/24/solid";
+
+const ThemedIcon = ({ isActive }) => (
+  <StarIcon
+    className={`h-6 w-6 ${isActive ? "text-yellow-500" : "text-gray-300"}`}
+  />
+);
+```
+
+- **Dark Mode**: Implement dark mode support. This can easily be done in TailwindCSS with the `dark:` modifier. You can, for instance, define fill colors as `fill-current text-gray-900 dark:text-gray-100` for both light and dark modes.
+
+```tsx
+import { MoonIcon } from "@heroicons/react/24/outline";
+
+const DarkModeIcon = () => (
+  <MoonIcon className="h-6 w-6 text-gray-900 dark:text-gray-100" />
+);
+```
+
+- **Custom Themes**: TailwindCSS can also be extended by adding custom themes that allow imposing specific styles onto the Heroicons. This is done by defining new color schemes, stroke widths, and various other properties inside a Tailwind configuration file, then applying those new properties to the Heroicon.
+
+```tsx
+// tailwind.config.js
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        customBlue: "#1fb6ff",
+      },
+    },
+  },
+};
+```
+
+```tsx
+import { CogIcon } from "@heroicons/react/24/solid";
+
+const CustomThemedIcon = () => <CogIcon className="text-customBlue h-6 w-6" />;
+```
+
+This way, you will be able to design unique branded icons that are fully integrated into the design language of your application, thus boosting the general user experience.
+
+## Optimizing Icon Performance
+
+The point of icon performance optimization, especially in web applications, is to improve user experience and speed up the time taken to load. Here are a few ways to go about that with some practical examples:
+
+### Use SVG Icons Over Icon Fonts
+
+SVG icons are typically more performant compared to icon fonts because they don't carry the overhead of loading an entire set of fonts when you need just a few icons. Additionally, SVGs are much more scalable and customizable.
+
+Avoid using FontAwesome, and instead use SVGs directly or libraries like Heroicons.
+
+```jsx
+import { StarIcon } from "@heroicons/react/24/solid";
+
+const ExampleIcon = () => <StarIcon className="h-6 w-6 text-yellow-500" />;
+```
+
+Here, `StarIcon` is used as an SVG so that only the necessary icon is loaded, minimizing load times and improving performance.
+
+### Optimize SVG Files
+
+Reducing file size means optimizing SVG files: removing unnecessary metadata, lowering the precision of paths, and simplifying shapes.
+
+Use tools like [SVGO](https://github.com/svg/svgo) to optimize SVG files beforehand.
+
+```bash
+npx svgo input.svg -o output.svg
+```
+
+This command reduces the size of the `input.svg` file by optimizing it and removing unnecessary elements.
+
+### Lazy Load Icons
+
+In an application that uses a large number of icons, lazy loading ensures that only the necessary icons are loaded when needed rather than all at once, improving performance.
+
+```jsx
+import React, { Suspense, lazy } from "react";
+
+const StarIcon = lazy(() => import("@heroicons/react/24/solid/StarIcon"));
+
+const LazyLoadedIcon = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <StarIcon className="h-6 w-6 text-yellow-500" />
+  </Suspense>
+);
+```
+
+This approach defers loading the `StarIcon` until it’s actually needed, reducing the initial load time.
+
+### Minimize the Use of Multiple Icon Sets
+
+Loading multiple icon libraries together can significantly increase your JavaScript bundle size. Stick to a single icon set whenever possible, or simply use the ones you really need.
+
+```jsx
+import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
+
+const Navbar = () => (
+  <nav>
+    <HomeIcon className="h-6 w-6 text-blue-500" />
+    <UserIcon className="h-6 w-6 text-green-500" />
+  </nav>
+);
+```
+
+This approach avoids unnecessary imports, keeping the bundle size minimal.
+
+#### Leverage a CDN
+
+If you are using popular icon sets like Heroicons or FontAwesome, consider loading your icons with a CDN. This can cache the contents effectively and reduce the load on your server.
+
+```html
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+```
+
+This method serves icons from a globally distributed CDN, reducing latency and improving load times.
+
+#### Sprite Sheets for Multiple Icons
+
+When dealing with projects that require lots of icons, combining them all into a single SVG sprite sheet is recommended. This approach saves multiple HTTP requests, which ultimately decreases page load times.
+
+```tsx
+<svg class="hidden">
+  <symbol id="icon-home" viewBox="0 0 24 24">
+<!-- SVG Path -->
+  </symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24">
+<!-- SVG Path -->
+  </symbol>
+ </svg>
+
+ <svg class="icon">
+  <use xlink:href="#icon-home"></use>
+ </svg>
+ <svg class="icon">
+  <use xlink:href="#icon-user"></use>
+ </svg>
+```
+
+This technique allows multiple icons to be loaded in a single HTTP request, reducing overall load time.
 
 ## Summary
 

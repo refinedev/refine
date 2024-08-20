@@ -4,9 +4,11 @@ description: This post is about how to use TailwindCSS Flex classes effectively 
 slug: tailwind-flex
 authors: abdullah_numan
 tags: [tailwind, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-11-tailwind-flex/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 19, 2024, to add sections on Flexbox Accessibility Considerations and Best Practices for Performance Optimization.**
 
 ## Introduction
 
@@ -25,12 +27,14 @@ Before starting, though, let's talk about the prerequisites that need to be mana
 Steps we'll cover:
 
 - [Starter Files](#starter-files)
-  - [`<Navbar />` Component](#navbar--component)
 - [Styling a Navbar with TailwindCSS classes](#styling-a-navbar-with-tailwindcss-classes)
-  - [Nav Items with Tailwind Flex](#nav-items-with-tailwind-flex)
-  - [Ordering List Items with Tailwind Flex](#ordering-list-items-with-tailwind-flex)
-  - [Search Bar](#search-bar)
-  - [Positioning Navbar Logo with Tailwind Flex](#positioning-navbar-logo-with-tailwind-flex)
+- [Flexbox Accessibility Considerations](#flexbox-accessibility-considerations)
+- [Best Practices for Performance Optimization](#best-practices-for-performance-optimization)
+- [Avoid Layout Shifts](#avoid-layout-shifts)
+- [Use Tailwind's JIT (Just-In-Time) Mode](#use-tailwinds-jit-just-in-time-mode)
+- [Optimize for Critical Rendering Path](#optimize-for-critical-rendering-path)
+- [Lazy Load Non-essential Content](#lazy-load-non-essential-content)
+- [PurgeCSS with Tailwind](#purgecss-with-tailwind)
 
 ## Prerequisites
 
@@ -147,7 +151,7 @@ const Navbar = () => {
         </a>
       </div>
       <div
-        className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+        className={`${menuHidden} border-t border-slate-500 text-amber-50 transition-all duration-1000 ease-in-out md:border-none`}
       >
         <div id="items" className="my-2">
           <div className="left mx-2 p-2">
@@ -250,29 +254,29 @@ body {
 }
 
 .navbar {
-  @apply fixed mx-auto px-2 w-full h-auto bg-slate-600;
+  @apply fixed mx-auto h-auto w-full bg-slate-600 px-2;
 }
 
 .nav-wrapper {
-  @apply h-14 bg-slate-600 w-full;
+  @apply h-14 w-full bg-slate-600;
 }
 
 .brand {
   max-width: 12rem;
   color: var(--primary-color);
-  @apply block text-4xl mx-2 py-2;
+  @apply mx-2 block py-2 text-4xl;
 }
 
 .nav-item {
-  @apply mx-2 p-1 rounded lg:mx-8 w-full lg:w-auto hover:scale-105 hover:backdrop-brightness-125 hover:shadow transition-all;
+  @apply mx-2 w-full rounded p-1 transition-all hover:scale-105 hover:shadow hover:backdrop-brightness-125 lg:mx-8 lg:w-auto;
 }
 
 .nav-link {
-  @apply text-center p-1;
+  @apply p-1 text-center;
 }
 
 .text-input {
-  @apply py-0.5 px-2 border rounded-l text-slate-800;
+  @apply rounded-l border px-2 py-0.5 text-slate-800;
 }
 
 .avatar {
@@ -309,7 +313,7 @@ import React from "react";
 export const HamburgerIcon = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
   return (
     <div
-      className={`absolute top-3 right-4 p-1 border border-slate-500 rounded md:hidden text-slate-500 hover:text-slate-300 hover:bg-slate-500`}
+      className={`absolute right-4 top-3 rounded border border-slate-500 p-1 text-slate-500 hover:bg-slate-500 hover:text-slate-300 md:hidden`}
       onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
     >
       <a href="/">
@@ -319,7 +323,7 @@ export const HamburgerIcon = ({ isMobileMenuOpen, setIsMobileMenuOpen }) => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="h-6 w-6"
         >
           <path
             strokeLinecap="round"
@@ -356,7 +360,7 @@ export const Avatar = () => {
 export const SearchIcon = () => {
   return (
     <button
-      className="px-2 py-0.5 border rounded-r hover:rounded-r hover:border-slate-400 hover:bg-slate-500 transition ease-in-out duration-50"
+      className="duration-50 rounded-r border px-2 py-0.5 transition ease-in-out hover:rounded-r hover:border-slate-400 hover:bg-slate-500"
       href="/"
     >
       <svg
@@ -454,7 +458,7 @@ Next, we look at the sibling of the container of the list we just "flexed" - the
 ```tsx
 <div
   //highlight-start
-  className="left mx-2 p-2 flex justify-center items-center"
+  className="left mx-2 flex items-center justify-center p-2"
   //highlight-end
 >
   <input
@@ -472,12 +476,12 @@ Then, we want to correctly position the search bar and the nav list items. We wa
 <div
   id="items"
   //highlight-start
-  className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
+  className="my-2 flex flex-col items-start justify-start md:flex-row md:items-center md:justify-start"
   //highlight-end
 >
   <div
     //highlight-start
-    className="left mx-2 p-2 order-last md:order-none flex justify-center items-center"
+    className="left order-last mx-2 flex items-center justify-center p-2 md:order-none"
     //highlight-end
   >
     <input
@@ -490,7 +494,7 @@ Then, we want to correctly position the search bar and the nav list items. We wa
   <div>
     <ul
       id="right"
-      className="flex flex-col md:flex-row md:justify-start md:items-center"
+      className="flex flex-col md:flex-row md:items-center md:justify-start"
     >
       <li className="nav-item md:order-last">
         <a href="/">
@@ -557,22 +561,22 @@ And now, in the parent `nav` element, for screens larger than `md`, let's make t
 ```tsx
 <nav
   //highlight-start
-  className="navbar flex flex-col justify-start md:flex-row md:justify-between md:items-center"
+  className="navbar flex flex-col justify-start md:flex-row md:items-center md:justify-between"
   //highlight-end
 >
-  <div className="nav-wrapper flex justify-start items-center flex-1 self-start">
+  <div className="nav-wrapper flex flex-1 items-center justify-start self-start">
     <a className="brand" href="/">
       <img src={TailzupLogo} width={180} height={62} alt="tailzup-logo" />
     </a>
   </div>
   <div
-    className={`${menuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+    className={`${menuHidden} border-t border-slate-500 text-amber-50 transition-all duration-1000 ease-in-out md:border-none`}
   >
     <div
       id="items"
-      className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
+      className="my-2 flex flex-col items-start justify-start md:flex-row md:items-center md:justify-start"
     >
-      <div className="left mx-2 p-2 order-last md:order-none flex justify-center items-center">
+      <div className="left order-last mx-2 flex items-center justify-center p-2 md:order-none">
         <input
           className="text-input"
           type="email"
@@ -583,7 +587,7 @@ And now, in the parent `nav` element, for screens larger than `md`, let's make t
       <div>
         <ul
           id="right"
-          className="flex flex-col md:flex-row md:justify-start md:items-center"
+          className="flex flex-col md:flex-row md:items-center md:justify-start"
         >
           <li className="nav-item md:order-last">
             <a href="/">
@@ -644,10 +648,10 @@ const Navbar = () => {
   const isMenuHidden = !isMobileMenuOpen ? "hidden md:block" : "";
 
   return (
-    <nav className=" navbar flex flex-col justify-start md:flex-row md:justify-between md:items-center">
+    <nav className=" navbar flex flex-col justify-start md:flex-row md:items-center md:justify-between">
       <div
         id="brand-wrapper"
-        className="nav-wrapper flex flex-nowrap justify-start items-center flex-1 self-start
+        className="nav-wrapper flex flex-1 flex-nowrap items-center justify-start self-start
 "
       >
         <a className="brand" href="/">
@@ -655,13 +659,13 @@ const Navbar = () => {
         </a>
       </div>
       <div
-        className={`${isMenuHidden} border-t border-slate-500 md:border-none text-amber-50 transition-all ease-in-out duration-1000`}
+        className={`${isMenuHidden} border-t border-slate-500 text-amber-50 transition-all duration-1000 ease-in-out md:border-none`}
       >
         <div
           id="items"
-          className="my-2 flex flex-col justify-start items-start md:flex-row md:justify-start md:items-center"
+          className="my-2 flex flex-col items-start justify-start md:flex-row md:items-center md:justify-start"
         >
-          <div className="left mx-2 p-2 order-last md:order-none flex justify-center items-center">
+          <div className="left order-last mx-2 flex items-center justify-center p-2 md:order-none">
             <input
               className="text-input"
               type="email"
@@ -672,7 +676,7 @@ const Navbar = () => {
           <div>
             <ul
               id="right"
-              className="flex flex-col md:flex-row md:justify-start md:items-center"
+              className="flex flex-col md:flex-row md:items-center md:justify-start"
             >
               <li className="nav-item md:order-last">
                 <a href="/">
@@ -710,6 +714,142 @@ export default Navbar;
 ```
 
 </details>
+
+## Flexbox Accessibility Considerations
+
+I've been working on making our Flexbox layouts more accessible, and I wanted to share some best practices that I found.
+
+### Keyboard Navigation
+
+Make sure that all the elements in a Flexbox container are reachable by keyboard navigation, with an order of tabbing that is logical and moves through the interface in a meaningful way. We'll do this by managing the `tabindex` attribute such that users move logically through our interface.
+
+```tsx
+<div class="flex-container" tabindex="0">
+  <div class="flex-item" tabindex="0">
+    Item 1
+  </div>
+  <div class="flex-item" tabindex="0">
+    Item 2
+  </div>
+  <div class="flex-item" tabindex="0">
+    Item 3
+  </div>
+</div>
+```
+
+### Focus Management
+
+It is good to handle the `focus` states and more than that, when layouts are dynamic and content may change its place, it's best to manage `focus` through JavaScript or utilities like the Tailwind ones related to `focus`, in order to highlight elements that get focused.
+
+```tsx
+<button class="focus:outline-none focus:ring-2 focus:ring-blue-500">
+  Click Me
+</button>
+```
+
+### ARIA Roles and Labels
+
+For better compatibility with screen readers, the use of appropriate ARIA roles is needed—such as `role="navigation"` for navbars—and labeling interactive elements by using `aria-label` to describe their purpose. This will help users understand the layout structure better.
+
+```tsx
+<nav aria-label="Main Navigation" role="navigation">
+  <ul class="flex">
+    <li>
+      <a href="/" aria-label="Home">
+        Home
+      </a>
+    </li>
+    <li>
+      <a href="/about" aria-label="About Us">
+        About
+      </a>
+    </li>
+    <li>
+      <a href="/contact" aria-label="Contact Us">
+        Contact
+      </a>
+    </li>
+  </ul>
+</nav>
+```
+
+### Responsive Considerations
+
+As our Flexbox layout will change for sure according to device width, we must ensure that such change remains accessible. For example: If a menu is going to collapse in smaller screens, make sure there's always a way to expose it clearly, either by a button or link, which will then be marked up with the `aria-expanded` attribute.
+
+```tsx
+<button aria-expanded="false" aria-controls="menu" class="md:hidden">
+    Menu
+</button>
+<nav id="menu" class="hidden md:flex">
+    <!-- menu items here -->
+</nav>
+```
+
+## Best Practices for Performance Optimization
+
+I was thinking about squeezing the most performance out of our project since we are using a lot of Flexbox and TailwindCSS. Here are a few tips and tricks that may help us keep our layout fast and responsive:
+
+## Avoid Layout Shifts
+
+One thing we must be careful of is layout shifts, which can occur when our elements move around on the page while it is loading. We should give explicit sizes to our Flexbox containers and items. For example:
+
+```css
+.flex-item {
+  width: 100px;
+  height: 100px;
+}
+```
+
+Sizing definitions inform the browser how to assign space, which reduces the likelihood of unexpected shifts.
+
+## Use Tailwind's JIT (Just-In-Time) Mode
+
+The JIT mode from Tailwind can really help boost performance, as we only generate CSS that is actually in use. That potentially shrinks down the size of the CSS files, hence boosting the loading time of your pages. You enable it by tweaking your `tailwind.config.js` file:
+
+```javascript
+module.exports = {
+  mode: "jit",
+  // The rest of your Tailwind config
+};
+```
+
+## Optimize for Critical Rendering Path
+
+Load the critical content first above-the-fold. In other words, don't be render blocking for any CSS or JS file above-the-fold. Some ways to do this is to directly inline critical CSS in the HTML:
+
+```html
+<style>
+  .critical-class {
+    /* Critical CSS here */
+  }
+</style>
+```
+
+By doing so, the browser ensures that critical content gets loaded first, hence improving the perceived load time.
+
+## Lazy Load Non-essential Content
+
+Use lazy loading for images and any non-essential content so that they load only once in view. This reduces the initial load time and saves bandwidth. Here is how we can do it:
+
+```html
+<img src="image.jpg" loading="lazy" alt="Description" />
+```
+
+This attribute ensures that the image is loaded only when it is about to become visible.
+
+## PurgeCSS with Tailwind
+
+Lastly, PurgeCSS allows us to discard any unused CSS classes in our codebase, making the file smaller. Using PurgeCSS in our Tailwind setup becomes easy through configuration in the `tailwind.config.js`:
+
+```javascript
+module.exports = {
+  purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
+  // the rest of your Tailwind config
+};
+```
+
+These steps should help us optimize our layout and improve performances across the board. Let me know if you have any other ideas or maybe we should try implementing these!
 
 ## Summary
 

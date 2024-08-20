@@ -12,6 +12,16 @@ it("should get provider path", () => {
     alias: "~/providers",
   });
 
+  expect(getProviderPath(ProjectTypes.REMIX_VITE)).toEqual({
+    path: "app/providers",
+    alias: "~/providers",
+  });
+
+  expect(getProviderPath(ProjectTypes.REMIX_SPA)).toEqual({
+    path: "app/providers",
+    alias: "~/providers",
+  });
+
   expect(getProviderPath(ProjectTypes.VITE)).toEqual({
     path: "src/providers",
     alias: "providers",

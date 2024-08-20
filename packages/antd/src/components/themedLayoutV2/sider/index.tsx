@@ -232,7 +232,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         <Drawer
           open={mobileSiderOpen}
           onClose={() => setMobileSiderOpen(false)}
-          placement="left"
+          placement={direction === "rtl" ? "right" : "left"}
           closable={false}
           width={200}
           bodyStyle={{

@@ -1,4 +1,4 @@
-import preferredPM from "preferred-pm";
+import { detect } from "package-manager-detector";
 import execa from "execa";
 
 export const updatePackage = async (
@@ -6,11 +6,10 @@ export const updatePackage = async (
   projectPath: string = process.cwd(),
 ) => {
   try {
-    const { name: pm } = (await preferredPM(projectPath)) ?? {
-      name: "npm",
-    };
+    const detected = await detect({ cwd: projectPath });
+    const [pm] = (detected?.agent || "npm").split("@");
 
-    const { failed } = await execa(pm ?? "npm", [
+    const { failed } = await execa(pm, [
       "install",
       ...packages.map((p) => `${p}@latest`),
     ]);

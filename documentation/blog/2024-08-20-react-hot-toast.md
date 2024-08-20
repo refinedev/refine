@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-06-react-hot-
 hide_table_of_contents: false
 ---
 
+**This article was last updated on August 20, 2024, to add sections on Accessibility Considerations and Testing Toast Notifications.**
+
 ## Introduction
 
 Building data-intensive enterprise web applications entails coalescing numerous features that have proven to be cumbersome to develop.
@@ -23,15 +25,11 @@ In this article, we'll introduce Refine and explore how to set up a Refine appli
 Steps we'll cover:
 
 - [What is react-hot-toast](#what-is-react-hot-toast)
-- [What is Refine](#what-is-refine)
-- [Set up a Refine app](#set-up-a-refine-app)
 - [What is Refine notification provider](#what-is-refine-notification-provider)
 - [Create custom notification provider with react-hot-toast](#create-custom-notification-provider-with-react-hot-toast)
-  - [Install react-hot-toast](#install-react-hot-toast)
-  - [Set up a notification provider](#set-up-a-notification-provider)
-  - [Integrating react-hot-toast](#integrating-react-hot-toast)
-  - [Positioning your toast notifications](#positioning-your-toast-notifications)
+- [Accessibility Considerations](#accessibility-considerations)
 - [Dismissing React Hot Toast Notifications](#dismissing-react-hot-toast-notifications)
+- [Testing React Hot Toast Notifications](#testing-react-hot-toast-notifications)
 
 ## What is react-hot-toast
 
@@ -473,9 +471,133 @@ toast.success("Successfully logged in", {
 
 <br/>
 
+## Accessibility Considerations
+
+I wanted to bring forward some accessibility considerations about our toast notifications so they are easy to be used by everyone. Here are a few key points, with examples:
+
+### Screen Reader Support
+
+We need to make sure that our notifications are accessible via screen readers. We can use ARIA roles and live regions to announce notifications.
+
+```tsx
+import { toast } from "react-hot-toast";
+
+toast.success("Operation successful!", {
+  ariaProps: {
+    role: "alert",
+    "aria-live": "assertive",
+  },
+});
+```
+
+### Keyboard Navigation
+
+The users should be able to interact with notifications via their keyboards. In fact, we can provide a control within the notification, which is focusable, that when activated using the `Enter` key can be dismissed.
+
+```tsx
+toast((t) => (
+  <div>
+    Operation successful!
+    <button onClick={() => toast.dismiss(t.id)} aria-label="Dismiss">
+      Dismiss
+    </button>
+  </div>
+));
+```
+
+### Contrast and Visibility
+
+We have to be sure that the text in the notifications has a good contrast with the background for easy readability. We can do this by using high contrast ratio colors.
+
+```tsx
+toast.success("Success!", {
+  style: {
+    background: "#333",
+    color: "#fff",
+  },
+});
+```
+
+### Non-Intrusive Design
+
+Notifications should be simple and not get in the way of what the user is doing. We can even make it possible for the user to get rid of notifications or to turn off notifications in their entirety.
+
+```tsx
+toast("This is a non-intrusive notification.", {
+  duration: 4000,
+  position: "bottom-right",
+});
+```
+
 ## Dismissing React Hot Toast Notifications
 
 We can make toast notifications go away by setting a time or using the 'dismiss' button. To use this button, you need the toast's special ID or the toast itself. You usually get the toast when you show the notification. To get rid of one toast, use the 'dismiss' function with its ID. To get rid of all toasts, just use the function without any ID.
+
+## Testing React Hot Toast Notifications
+
+It's very important that toast notifications work across many scenarios. So, my simple approach toward testing toast notifications in a React application would be:
+
+### Check Display
+
+Confirm that the toast notification is displayed upon trigger. This is generally concerned with ensuring that, when triggered, the screen can display the toast message.
+
+```javascript
+const toastMessage = "This is a test toast";
+
+toast(toastMessage);
+expect(screen.getByText(toastMessage)).toBeInTheDocument();
+```
+
+### Test Different Types
+
+Verify different types of toast messages (for example, success, error) to be of the correct style and message.
+
+```javascript
+toast.success("Success message");
+expect(screen.getByText("Success message")).toHaveClass("toast-success");
+
+toast.error("Error message");
+expect(screen.getByText("Error message")).toHaveClass("toast-error");
+```
+
+### Positioning
+
+Place the toast at the correct position on the screen (e.g., top-right, bottom-center).
+
+```javascript
+toast("Position test", { position: "top-right" });
+
+expect(screen.getByText("Position test")).toHaveStyle({
+  position: "absolute",
+  top: "0",
+  right: "0",
+});
+```
+
+### Auto Dismiss
+
+Make sure that the toast vanishes after a given period of time if set as auto-dismiss.
+
+```javascript
+jest.useFakeTimers();
+
+const toastId = toast("Auto-dismiss test", { duration: 3000 });
+expect(toast.isActive(toastId)).toBeTruthy();
+
+jest.advanceTimersByTime(3000);
+expect(toast.isActive(toastId)).toBeFalsy();
+```
+
+### Manual Dismissal
+
+Verify that the toast can be manually dismissed by a user or programmatically.
+
+```javascript
+const toastId = toast("Dismiss test");
+
+toast.dismiss(toastId);
+expect(screen.queryByText("Dismiss test")).toBeNull();
+```
 
 ## Conclusion
 
