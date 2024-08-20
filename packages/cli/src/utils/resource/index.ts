@@ -11,6 +11,8 @@ export const getResourcePath = (
         alias: "../src/components",
       };
     case ProjectTypes.REMIX:
+    case ProjectTypes.REMIX_VITE:
+    case ProjectTypes.REMIX_SPA:
       return {
         path: "app/components",
         alias: "~/components",
@@ -34,6 +36,8 @@ export const getProviderPath = (
         alias: "../src/providers",
       };
     case ProjectTypes.REMIX:
+    case ProjectTypes.REMIX_VITE:
+    case ProjectTypes.REMIX_SPA:
       return {
         path: "app/providers",
         alias: "~/providers",
@@ -50,6 +54,8 @@ export const getProviderPath = (
 export const getFilesPathByProject = (projectType?: ProjectTypes) => {
   switch (projectType) {
     case ProjectTypes.REMIX:
+    case ProjectTypes.REMIX_VITE:
+    case ProjectTypes.REMIX_SPA:
       return "./app";
     default:
       return "./src";
