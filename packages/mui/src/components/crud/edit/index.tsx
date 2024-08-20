@@ -20,6 +20,9 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { alpha } from "@mui/system";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -165,7 +168,29 @@ export const Edit: React.FC<EditProps> = ({
   );
 
   return (
-    <Card {...(wrapperProps ?? {})}>
+    <Card
+      {...(wrapperProps ?? {})}
+      sx={{
+        position: "relative",
+        ...wrapperProps?.sx,
+      }}
+    >
+      {isLoading && (
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            // this is needed to support custom themes, dark mode etc.
+            bgcolor: (theme) => alpha(theme.palette.background.paper, 0.4),
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {breadcrumbComponent}
       <CardHeader
         sx={{
