@@ -24,30 +24,12 @@ In this article, we'll introduce Refine and explore how to set up a Refine appli
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
 - [What is react-hot-toast](#what-is-react-hot-toast)
-- [What is Refine](#what-is-refine)
-- [Set up a Refine app](#set-up-a-refine-app)
 - [What is Refine notification provider](#what-is-refine-notification-provider)
 - [Create custom notification provider with react-hot-toast](#create-custom-notification-provider-with-react-hot-toast)
-  - [Install react-hot-toast](#install-react-hot-toast)
-  - [Set up a notification provider](#set-up-a-notification-provider)
-  - [Integrating react-hot-toast](#integrating-react-hot-toast)
-  - [Positioning your toast notifications](#positioning-your-toast-notifications)
 - [Accessibility Considerations](#accessibility-considerations)
-  - [Screen Reader Support](#screen-reader-support)
-  - [Keyboard Navigation](#keyboard-navigation)
-  - [Contrast and Visibility](#contrast-and-visibility)
-  - [Non-Intrusive Design](#non-intrusive-design)
 - [Dismissing React Hot Toast Notifications](#dismissing-react-hot-toast-notifications)
 - [Testing React Hot Toast Notifications](#testing-react-hot-toast-notifications)
-  - [Check Display](#check-display)
-  - [Test Different Types](#test-different-types)
-  - [Positioning](#positioning)
-  - [Auto Dismiss](#auto-dismiss)
-  - [Manual Dismissal](#manual-dismissal)
-- [Conclusion](#conclusion)
-- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## What is react-hot-toast
 
