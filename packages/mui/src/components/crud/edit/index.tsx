@@ -20,6 +20,9 @@ import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { alpha } from "@mui/system";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -37,7 +40,6 @@ import {
 } from "@components";
 import type { EditProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
-import { alpha, CircularProgress } from "@mui/material";
 
 /**
  * `<Edit>` provides us a layout for displaying the page.

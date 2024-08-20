@@ -18,9 +18,11 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { alpha } from "@mui/system";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import CircularProgress from "@mui/material/CircularProgress";
 
 import {
   DeleteButton,
@@ -35,7 +37,6 @@ import {
 } from "@components";
 import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
-import { alpha } from "@mui/system";
 
 /**
  * `<Show>` provides us a layout for displaying the page.
