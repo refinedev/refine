@@ -4,9 +4,11 @@ description: We will explore the process of integrating the markdown editor into
 slug: react-markdown
 authors: david_omotayo
 tags: [react, Refine]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-08-24-react-markdown/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on August 16, 2024, to add sections on Advanced Markdown Customization and Performance Optimization.**
 
 ## Introduction
 
@@ -20,13 +22,10 @@ Steps we'll cover:
 
 - [What is react-md-editor](#what-is-react-md-editor)
 - [Using the MDEditor component](#using-the-mdeditor-component)
-- [Custom toolbar](#custom-toolbar)
-- [commands prop](#commands-prop)
-- [extraCommands prop](#extracommands-prop)
-- [Adding custom preview](#adding-custom-preview)
-- [KaTeX preview](#katex-preview)
+- [Advanced Customization](#advanced-customization)
 - [Sanitize Markdown](#sanitize-markdown)
 - [rehype-sanitize plugin](#rehype-sanitize-plugin)
+- [Optimizing Performance in Markdown Editor](#optimizing-performance-in-markdown-editor)
 
 ## What is react-md-editor
 
@@ -407,6 +406,98 @@ Now, if we input KaTeX expressions into the editor, they will be previewed as ma
 
 <br/>
 
+## Advanced Customization
+
+I hope these ideas can help us make a head start on how to make changes to the Markdown editor and the way advanced customization features could be added. Here is what I had in my mind in regard to direction, along with some examples of the code:
+
+### Syntax Highlighting Customization
+
+We can add **Prism.js** for more detailed syntax highlighting in our Markdown editor. A quick example for that would be:
+
+```javascript
+import ReactMarkdown from "react-markdown";
+import Prism from "prismjs";
+import "prismjs/themes/prism-tomorrow.css";
+
+function MarkdownEditor({ content }) {
+  return (
+    <ReactMarkdown
+      children={content}
+      components={{
+        code({ node, inline, className, children, ...props }) {
+          const match = /language-(\w+)/.exec(className || "");
+          return !inline && match ? (
+            <pre className={className} style={{ backgroundColor: "#282c34" }}>
+              <code
+                dangerouslySetInnerHTML={{
+                  __html: Prism.highlight(
+                    children,
+                    Prism.languages[match[1]],
+                    match[1],
+                  ),
+                }}
+              />
+            </pre>
+          ) : (
+            <code className={className} {...props}>
+              {children}
+            </code>
+          );
+        },
+      }}
+    />
+  );
+}
+```
+
+This code uses Prism.js to highlight the syntax for code blocks in the Markdown editor.
+
+### Additions to the Markdown
+
+Extend the functionality of our Markdown editor by supporting additional custom Markdown syntax, using **Markdown-it** plugins. Here's how we would do it:
+
+```javascript
+import MarkdownIt from "markdown-it";
+import emoji from "markdown-it-emoji";
+import footnote from "markdown-it-footnote";
+
+const md = new MarkdownIt().use(emoji).use(footnote);
+
+const MarkdownWithExtensions = ({ content }) => (
+  <div dangerouslySetInnerHTML={{ __html: md.render(content) }} />
+);
+```
+
+It is also supposed to make it possible so that along with the setting, this way, our Markdown editor includes the support for emojis and footnotes.
+
+### Theming and Custom Commands
+
+We could even have a new toolbar commands, or themes for our markdown editor. To show a simple one:
+
+```javascript
+import MDEditor, { commands } from "@uiw/react-md-editor";
+
+const MyCustomCommand = {
+  name: "custom",
+  keyCommand: "custom",
+  buttonProps: { "aria-label": "Add Custom" },
+  icon: (
+    <svg width="12" height="12" viewBox="0 0 20 20">
+      <circle cx="10" cy="10" r="10" fill="currentColor" />
+    </svg>
+  ),
+  execute: (state, api) => {
+    api.replaceSelection("**Custom Content**");
+  },
+};
+
+<MDEditor
+  commands={[...commands, MyCustomCommand]}
+  value={value}
+  onChange={setValue}
+/>;
+```
+
 ## Sanitize Markdown
 
 Markdown inputs need to be parsed into HTML elements before they can be rendered in a browser. However, this parsing process can create a potential vulnerability for cross-site scripting (XSS) attacks.
@@ -462,12 +553,91 @@ After integrating rehype-sanitize:
 
 <br/>
 
+## Optimizing Performance in Markdown Editor
+
+I've been thinking over some optimizations on how we could optimize the performance of our Markdown editor to be quicker and more responsive. Here are a few ideas with corresponding examples:
+
+### Markdown Editor with Lazy Loading
+
+This can be improved by reducing load times, especially on pages where the Markdown editor is not imminently needed, using lazy loading in a way that loads the editor only upon user interaction.
+
+```javascript
+import React, { Suspense, lazy } from "react";
+
+const MDEditor = lazy(() => import("@uiw/react-md-editor"));
+
+function App() {
+  return (
+    <div>
+      <h1>My App</h1>
+      <Suspense fallback={<div>Loading editor...</div>}>
+        <MDEditor />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+The following script loads the Markdown editor only when it is really needed and at a deferred time, therefore saving on the initial load time of the page.
+
+### Code Splitting and Dynamic Imports
+
+Further to the loading optimization, one can include code splitting with dynamic imports. Code can be split into small parts with the dynamic import technique in such a way that each of these parts will load only when it's required.
+
+```javascript
+const loadEditor = async () => {
+  import("@uiw/react-md-editor").then((MDEditor) => {
+    // Setting the editor or re-rendering the state to update
+  });
+};
+```
+
+We can lazy load the Markdown editor on demand by using dynamic imports, which helps to keep our main bundle small in size and generally improves performance.
+
+### Optimizing Big Documents
+
+To address the performance issue, the editor could render only the visible portions of a big Markdown document by using techniques such as virtual scrolling.
+
+```javascript
+import { FixedSizeList as List } from "react-window";
+
+const LargeDocument = ({ lines }) => {
+  return (
+    <List height={500} itemCount={lines.length} itemSize={20} width={"100%"}>
+      {({ index, style }) => <div style={style}>{lines[index]}</div>}
+    </List>
+  );
+};
+```
+
+One would not put a great rendering load on the browser for large documents and gain performance. This is the sample of how to use react-window to render only visible lines of a large document.
+
+### User Input Debouncing for the Markdown Editor
+
+We will implement debounce, which will avoid frequent updates in big documents, therefore allowing a more real-time, responsive editor. In essence, we will make the editor responsive by reducing re-renders.
+
+```javascript
+import { useState, useCallback } from "react";
+import debounce from "lodash.debounce";
+
+function MarkdownEditor() {
+  const [content, setContent] = useState("");
+
+  const handleChange = useCallback(
+    debounce((value) => {
+      setContent(value);
+    }, 300),
+    [],
+  );
+
+  return <MDEditor value={content} onChange={handleChange} />;
+}
+```
+
+So, what that code actually does is throttle the state update until the user stops typing. It waits for 300 ms after you've stopped typing to change the state. This way, it could avoid unnecessary re-renders and increment performance.
+
 ## Conclusion
 
 We have covered a substantial amount on integrating a markdown editor into a React application using the `uiw/react-md-editor` library. However, there is much more to explore with the markdown editor.
 
 For a comprehensive understanding and implementation of advanced features, I recommend referring to the official [documentation](https://uiwjs.github.io/react-md-editor/). It is essential to consult the documentation and explore the examples provided by the library's creators to gain detailed instructions and discover additional usage options.
-
-## Live CodeSandbox Example
-
-<CodeSandboxExample path="blog-refine-markdown" />
