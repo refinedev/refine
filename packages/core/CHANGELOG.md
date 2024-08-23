@@ -1929,7 +1929,7 @@
   };
   ```
 
-  [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/guides-concepts/forms/#server-side-validation-)
+  [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/)
 
 - [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `disableServerSideValidation` to the refine options for globally disabling server-side validation.
 
@@ -2056,7 +2056,7 @@
   };
   ```
 
-  [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/guides-concepts/forms/#server-side-validation-)
+  [Refer to the server-side form validation documentation for more information. →](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/)
 
 - [#4652](https://github.com/refinedev/refine/pull/4652) [`96af6d25b7a`](https://github.com/refinedev/refine/commit/96af6d25b7a870a3c1c6fd33c30e0ca2224ed411) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added `disableServerSideValidation` to the refine options for globally disabling server-side validation.
 
