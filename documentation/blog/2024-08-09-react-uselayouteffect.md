@@ -394,7 +394,7 @@ test("removes event listener on unmount", () => {
 
 ### Timers and Asynchronous Operations
 
-If the `useLayoutEffect` depends on some async operation or running timers, then with the help of test utilities, such as Jest's fake timers, you are sure the behaviour is tested right. You will be able to manipulate time better and determine the side effects that should happen with that delay.
+If the `useLayoutEffect` depends on some async operation or running timers, then with the help of test utilities, such as Jest's fake timers, you are sure the behavior is tested right. You will be able to manipulate time better and determine the side effects that should happen with that delay.
 
 ```tsx
 import React, { useLayoutEffect, useRef } from "react";

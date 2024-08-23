@@ -198,7 +198,7 @@ jobs:
 
 Turborepo effectively integrates with package managers like npm, yarn, and pnpm, making it possible to manage dependencies in one centralized place. The add-on nature of Turborepo allows you to use the main features of your favorite package manager while using Turborepo's advanced features for task execution and caching.
 
-1. **Setup**: Install dependencies using your favourite package manager.
+1. **Setup**: Install dependencies using your favorite package manager.
 
 2. **Configuration**: Configure Turborepo to understand and work with the package manager's lock file and workspace settings.
 

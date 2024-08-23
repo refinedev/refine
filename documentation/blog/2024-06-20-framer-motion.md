@@ -587,7 +587,7 @@ We may use the `useTransform` to define a new motion value called opacity. By sp
 
 #### Use cases of the useTransform hook.
 
-An example is to utilise the `useTransform` hook to animate the background parameters of an element on hover.
+An example is to utilize the `useTransform` hook to animate the background parameters of an element on hover.
 
 **Code:**
 

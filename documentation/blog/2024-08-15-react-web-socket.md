@@ -336,7 +336,7 @@ I would like to briefly share my thoughts on security considerations while worki
 
 ### WSS: WebSocket Secure Connections
 
-Please be sure to use secure websocket connections (wss://) not just plain websocket connections (ws://). This would be the equivalent of using HTTPS not HTTP. Secure websocket connections actually encrypt the data travelling between the two points and, for this reason, help secure it from being man-in-the-middled to abuse.
+Please be sure to use secure websocket connections (wss://) not just plain websocket connections (ws://). This would be the equivalent of using HTTPS not HTTP. Secure websocket connections actually encrypt the data traveling between the two points and, for this reason, help secure it from being man-in-the-middled to abuse.
 
 ```tsx
 const ws = new WebSocket("wss://example.com/socket");
