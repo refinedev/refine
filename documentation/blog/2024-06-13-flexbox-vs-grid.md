@@ -270,7 +270,7 @@ Use grid:
 
 You should just ensure that the combination of both CSS Grid and Flexbox is not at the cost of web page loading or running performance. Grids can sometimes be complicated, requiring a bit more work from the rendering engine; when there are large layouts, it may take more time to render them. Flexbox should be faster than Grid for simple one-dimensional layouts.
 
-### Optimisation Tips
+### Optimization Tips
 
 The following will serve you to keep your web pages running smoothly:
 

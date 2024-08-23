@@ -1048,7 +1048,7 @@ const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 `onFinish` is a function that is called when the form is submitted. It will call the appropriate mutation based on the `action` property.
 You can override the default behavior by passing an `onFinish` function in the hook's options.
 
-For example you can [change values before sending to the API](/docs/packages/list-of-packages#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
+For example you can [change values before sending to the API](/docs/packages/react-hook-form/use-form/#how-can-i-change-the-form-data-before-submitting-it-to-the-api).
 
 ### saveButtonProps
 

@@ -97,7 +97,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     AuthPage
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -123,7 +123,7 @@ const App: React.FC = () => {
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
                     <Refine
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",

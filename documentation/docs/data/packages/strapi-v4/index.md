@@ -1204,7 +1204,7 @@ By default, `@refinedev/strapi-v4` transforms the error response from Strapi int
 
 Thus, `useForm` will automatically set the error message for each field that has a validation error.
 
-[Refer to the server-side form validation documentation for more information &#8594 ](/docs/advanced-tutorials/forms/server-side-form-validation).
+[Refer to the server-side form validation documentation for more information &#8594 ](/docs/guides-concepts/forms/#server-side-validation-).
 
 ## Example
 

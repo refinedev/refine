@@ -178,7 +178,9 @@ You can either use the `dataProviderName` prop in data hooks and data-related co
 
 ```tsx
 useTable({
-  dataProviderName: "example",
+  meta: {
+    dataProviderName: "example",
+  },
 });
 ```
 
@@ -241,6 +243,7 @@ The `getList` method is used to get a list of resources with sorting, filtering,
 Refine will consume this method using the [`useList`][use-list] or [`useInfiniteList`][use-infinite-list] data hook.
 
 #### Retrieving the Total Row Count
+
 - Different data providers have specific ways to determine the total row count, and these are just some examples:
   - **Simple REST Providers:** The `x-total-count` header is commonly used to get the row count.
   - **GraphQL Providers:** The total count is often sourced from specific data fields, like `response.data.pageInfo.total`.
@@ -266,6 +269,7 @@ getList: async ({ resource, pagination, sorters, filters, meta }) => {
     total,
   };
 };
+```
 
 :::tip
 

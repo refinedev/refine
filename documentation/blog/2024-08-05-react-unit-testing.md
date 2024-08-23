@@ -741,7 +741,7 @@ test("button should have correct aria-label", () => {
 });
 ```
 
-In this example we are using the aria-label attribute in order that the button is accessibly labelled. We then use the @testing-library/react getByLabelText to test that the button is accessible by its ARIA label.
+In this example we are using the aria-label attribute in order that the button is accessibly labeled. We then use the @testing-library/react getByLabelText to test that the button is accessible by its ARIA label.
 
 ### Keyboard Navigation Testing
 
