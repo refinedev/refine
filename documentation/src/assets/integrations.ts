@@ -33,6 +33,7 @@ import {
   UseGenerated,
   Kinde,
   PocketBase,
+  ShadCnUI,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -68,6 +69,20 @@ export const integrations: IntegrationsType = {
         " <strong>Mantine UI</strong> Framework support. 20+ framework-specific hooks and components incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.",
       url: "https://www.npmjs.com/package/@refinedev/mantine",
       status: "stable",
+    },
+    {
+      name: "Shadcn UI",
+      icon: ShadCnUI,
+      description:
+        "<strong>Shadcn UI</strong> integration. Table, Form, Layout, Notification and CRUD components.",
+      url: "https://npmjs.com/package/@ferdiunal/refine-shadcn",
+      status: "stable",
+      contributors: [
+        {
+          name: "ferdiunal",
+          url: "https://github.com/ferdiunal",
+        },
+      ],
     },
   ],
   "data-provider-packages": [
