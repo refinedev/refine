@@ -16,7 +16,7 @@ These integrations are made to provide solutions for common use cases such as me
 - [Material UI with `@refinedev/mui`](/docs/ui-integrations/material-ui/introduction)
 - [Chakra UI with `@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction)
 - [Mantine with `@refinedev/mantine`](/docs/ui-integrations/mantine/introduction)
-- [Shadcn UI with `@ferdiunal/refine-shadcn`](https://github.com/ferdiunal/refine-shadcn?tab=readme-ov-file#useage)
+- [Shadcn UI with `@ferdiunal/refine-shadcn`](https://github.com/ferdiunal/refine-shadcn)
 
 ## Prebuilt Components
 
