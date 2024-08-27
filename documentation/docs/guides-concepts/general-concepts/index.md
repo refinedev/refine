@@ -8,7 +8,7 @@ Refine is an extensible framework designed for rapidly building web applications
 
 Instead of being limited to a set of pre-styled components, **Refine** provides collections of helper `hooks`, `components` and `providers` and more. Since business logic and UI are completely decoupled, you can customize UI without constraints.
 
-It means, **Refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to it's headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
+It means, **Refine** just works _seamlessly_ with any _custom designs_ or _UI frameworks_. Thanks to its headless architecture, you can use popular CSS frameworks like [TailwindCSS](https://tailwindcss.com/) or even create your own styles from scratch.
 
 Refine also provides integrations with [Ant Design](https://ant.design/), [Material UI](https://mui.com/material-ui/getting-started/overview/), [Mantine](https://mantine.dev/), and [Chakra UI](https://chakra-ui.com/) to get you started quickly. These libraries are set of components which are nicely integrated with headless `@refinedev/core` package.
 

@@ -790,7 +790,7 @@ This structure will let you show errors in the form fields with out of the box i
 
 React-admin also provides a similar feature but it does not have the i18n support out of the box.
 
-Check out the [Server Side Validation](https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/) documentation for more information about Refine's server side validation features.
+Check out the [Server Side Validation](https://refine.dev/docs/guides-concepts/forms/#server-side-validation-) documentation for more information about Refine's server side validation features.
 
 ### Auto Save
 

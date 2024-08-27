@@ -83,7 +83,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 ### defaultValue
 
 ```tsx
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "languages",
   // highlight-next-line
   defaultValue: 1,
@@ -98,7 +98,7 @@ const { selectProps } = useRadioGroup({
 - `"selected-first"`: sort `selectedOptions` at the top.
 
 ```tsx
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "languages",
   // highlight-next-line
   defaultValue: 1,
@@ -212,7 +212,7 @@ const { radioGroupProps } = useRadioGroup({
 `fetchSize` is the amount of records to fetch in checkboxes.
 
 ```tsx
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "languages",
   // highlight-next-line
   fetchSize: 20,
@@ -243,7 +243,7 @@ const { radioGroupProps } = useRadioGroup({
 For example, lets say that we have 1000 post records:
 
 ```ts
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "categories",
   // highlight-next-line
   pagination: { current: 3, pageSize: 8 },

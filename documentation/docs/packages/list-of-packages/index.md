@@ -12,8 +12,8 @@ To learn more about UI Libraries and integrations, check out [UI Libraries](/doc
 
 - [`@refinedev/antd`](/docs/ui-integrations/ant-design/introduction) - [Ant Design](https://ant.design/) System UI Framework support. **20+** framework-specific `hooks` and  `components`  incl. Table, Form, Select, Menu, Layout, Notification and CRUD components.
 - [`@refinedev/mui`](/docs/ui-integrations/material-ui/introduction) - [Material UI](https://mui.com/material-ui/getting-started/overview/) Framework support. **20+** framework-specific `hooks` and  `components`  incl. DataGrid (+ Pro), AutoComplete, Menu, Layout, Notification and CRUD components.
-- [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific **hooks** and **components** incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.
-- [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) - [Chakra UI](https://chakra-ui.com/) UI Framework support. **20+** framework-specific **components** incl. Menu, Layout, Notification and CRUD components.
+- [`@refinedev/mantine`](/docs/ui-integrations/mantine/introduction) - [Mantine](https://mantine.dev/) UI Framework support. **20+** framework-specific `hooks` and `components` incl. Table, Form, AutoComplete, Menu, Layout, Notification and CRUD components.
+- [`@refinedev/chakra-ui`](/docs/ui-integrations/chakra-ui/introduction) - [Chakra UI](https://chakra-ui.com/) UI Framework support. **20+** framework-specific `components` incl. Menu, Layout, Notification and CRUD components.
 
 ### Data Provider Packages:
 

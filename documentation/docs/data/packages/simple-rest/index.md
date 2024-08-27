@@ -123,7 +123,7 @@ In some cases, you may need to customize the data provider to work with a REST A
    const App = () => {
      return (
        <Refine
-         dataProvider={dataProvider}
+         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
          /* ... */
        />
      );

@@ -43,7 +43,7 @@ import type { AppProps } from "next/app";
 import {
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -60,7 +60,7 @@ function App({ Component, pageProps }: AppProps) {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     resources={[
                         {
                         name: "products",

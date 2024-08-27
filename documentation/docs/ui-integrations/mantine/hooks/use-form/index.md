@@ -1161,7 +1161,7 @@ You can use `meta` property to pass common values to the mutation and the query.
 
 ### How can I handle server-side form validation?
 
-[Refer to the Server-Side form validation documentation for more information. →](/docs/advanced-tutorials/forms/server-side-form-validation/#example-with-mantine-useform)
+[Refer to the Server-Side form validation documentation for more information. →](/docs/guides-concepts/forms/#server-side-validation-#example-with-mantine-useform)
 
 ## API Reference
 

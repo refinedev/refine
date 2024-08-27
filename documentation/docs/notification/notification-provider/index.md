@@ -51,7 +51,7 @@ const App = () => {
   return (
     <Refine
       //highlight-next-line
-      notificationProvider={useNotificationProvider}
+      notificationProvider={notificationProvider}
       /* ... */
     >
       {/* ... */}
@@ -139,7 +139,7 @@ import { useNotificationProvider } from "@refinedev/chakra-ui";
 return (
   <Refine
     //...
-    notificationProvider={useNotificationProvider}
+    notificationProvider={useNotificationProvider()}
   />
 );
 ```

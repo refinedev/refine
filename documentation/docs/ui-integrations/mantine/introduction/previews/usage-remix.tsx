@@ -105,7 +105,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { RefineThemes, ThemedLayoutV2, notificationProvider } from "@refinedev/mantine";
+import { RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
@@ -130,7 +130,7 @@ export default function App() {
                     routerProvider={routerProvider}
                     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
                     authProvider={authProvider}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     resources={[
                     {
                         name: "products",

@@ -424,7 +424,7 @@ const modalForm = useModalForm({
 Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
 ```tsx
-useForm({
+useModalForm({
   defaultFormValues: {
     title: "Hello World",
   },
@@ -436,7 +436,7 @@ Also, it can be provided as an async function to fetch the default values. The l
 > 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
 
 ```tsx
-const { defaultFormValuesLoading } = useForm({
+const { defaultFormValuesLoading } = useModalForm({
   defaultFormValues: async () => {
     const response = await fetch("https://my-api.com/posts/1");
     const data = await response.json();

@@ -233,7 +233,7 @@ useForm({ meta: { headers: { "x-greetings": "hello world" } } });
 Meta data values to be used in the internal `useOne` call for the `edit` and `clone` actions. These values will take precedence over the `meta` values.
 
 ```tsx
-useForm({ meta: { headers: { "x-greetings": "hello mars" } } });
+useForm({ queryMeta: { headers: { "x-greetings": "hello mars" } } });
 ```
 
 ### mutationMeta
@@ -241,7 +241,7 @@ useForm({ meta: { headers: { "x-greetings": "hello mars" } } });
 Meta data values to be used in the internal `useCreate` and `useUpdate` calls for form submissions. These values will take precedence over the `meta` values.
 
 ```tsx
-useForm({ meta: { headers: { "x-greetings": "hello pluto" } } });
+useForm({ mutationMeta: { headers: { "x-greetings": "hello pluto" } } });
 ```
 
 ### queryOptions
