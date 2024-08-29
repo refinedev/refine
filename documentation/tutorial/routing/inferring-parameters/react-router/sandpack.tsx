@@ -162,7 +162,7 @@ import { useShow } from "@refinedev/core";
 
 export const ShowProduct = () => {
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow();
 
   if (isLoading) {

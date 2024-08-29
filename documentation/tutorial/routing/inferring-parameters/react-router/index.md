@@ -62,7 +62,7 @@ export const ShowProduct = () => {
   // removed-line
   const { data, isLoading } = useOne({ resource: "products", id: 123 });
   // added-line
-  const { queryResult } = useShow();
+  const { query } = useShow();
 
   /* ... */
 };

@@ -139,7 +139,7 @@ export const ListProducts = () => {
 
   const {
     options: categories,
-    queryResult: { isLoading },
+    query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
     pagination: false,
@@ -240,7 +240,7 @@ import Stack from "@mui/material/Stack";
 
 export const ShowProduct = () => {
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow();
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
