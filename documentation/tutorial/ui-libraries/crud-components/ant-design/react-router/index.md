@@ -195,7 +195,7 @@ import { TextField, NumberField, MarkdownField, Show } from "@refinedev/antd";
 import { Typography } from "antd";
 
 export const ShowProduct = () => {
-    const { queryResult: { data, isLoading } } = useShow();
+    const { query: { data, isLoading } } = useShow();
 
     const { data: categoryData, isLoading: categoryIsLoading } =
     useOne({
