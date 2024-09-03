@@ -53,17 +53,17 @@ describe("REACT_SCRIPT project type", () => {
   });
 });
 
-describe("Vite project type", () => {
+describe("VITE project type", () => {
   const projectType = ProjectTypes.VITE;
 
   describe("getDev with empty args", () => {
-    test('should return array with only "start" if args is empty', () => {
+    test('should return array with only "dev" if args is empty', () => {
       expect(projectScripts[projectType].getDev([])).toEqual(["dev"]);
     });
   });
 
   describe("getStart with empty args", () => {
-    test('should return array with only "start" if args is empty', () => {
+    test('should return array with only "preview" if args is empty', () => {
       expect(projectScripts[projectType].getStart([])).toEqual(["preview"]);
     });
   });
@@ -75,7 +75,7 @@ describe("Vite project type", () => {
   });
 
   describe("getDev", () => {
-    test('should prepend "start" to the args array', () => {
+    test('should prepend "dev" to the args array', () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getDev(args)).toEqual([
         "dev",
@@ -85,7 +85,7 @@ describe("Vite project type", () => {
   });
 
   describe("getStart", () => {
-    test('should prepend "start" to the args array', () => {
+    test('should prepend "preview" to the args array', () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getStart(args)).toEqual([
         "preview",
@@ -105,11 +105,11 @@ describe("Vite project type", () => {
   });
 });
 
-describe("Next.js project type", () => {
+describe("NEXTJS project type", () => {
   const projectType = ProjectTypes.NEXTJS;
 
   describe("getDev with empty args", () => {
-    test('should return array with only "start" if args is empty', () => {
+    test('should return array with only "dev" if args is empty', () => {
       expect(projectScripts[projectType].getDev([])).toEqual(["dev"]);
     });
   });
@@ -127,7 +127,7 @@ describe("Next.js project type", () => {
   });
 
   describe("getDev", () => {
-    test('should prepend "start" to the args array', () => {
+    test('should prepend "dev" to the args array', () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getDev(args)).toEqual([
         "dev",
@@ -157,11 +157,11 @@ describe("Next.js project type", () => {
   });
 });
 
-describe("Remix project type", () => {
+describe("REMIX project type", () => {
   const projectType = ProjectTypes.REMIX;
 
   describe("getDev with empty args", () => {
-    test('should return array with only "start" if args is empty', () => {
+    test('should return array with only "dev" if args is empty', () => {
       expect(projectScripts[projectType].getDev([])).toEqual(["dev"]);
     });
   });
@@ -183,7 +183,7 @@ describe("Remix project type", () => {
   });
 
   describe("getDev", () => {
-    test('should prepend "start" to the args array', () => {
+    test('should prepend "dev" to the args array', () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getDev(args)).toEqual([
         "dev",
@@ -204,6 +204,111 @@ describe("Remix project type", () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getBuild(args)).toEqual([
         "build",
+        ...args,
+      ]);
+    });
+  });
+});
+
+describe("REMIX_VITE project type", () => {
+  const projectType = ProjectTypes.REMIX_VITE;
+
+  describe("getDev with empty args", () => {
+    test('should return array with only "vite:dev" if args is empty', () => {
+      expect(projectScripts[projectType].getDev([])).toEqual(["vite:dev"]);
+    });
+  });
+
+  describe("getStart with empty args", () => {
+    test("should return default", () => {
+      const logSpy = jest.spyOn(console, "warn");
+      expect(projectScripts[projectType].getStart([])).toEqual([
+        "./build/server/index.js",
+      ]);
+      expect(logSpy).toHaveBeenCalled();
+    });
+  });
+
+  describe("getBuild with empty args", () => {
+    test('should return array with only "vite:build" if args is empty', () => {
+      expect(projectScripts[projectType].getBuild([])).toEqual(["vite:build"]);
+    });
+  });
+
+  describe("getDev", () => {
+    test('should prepend "vite:dev" to the args array', () => {
+      const args = ["--arg1", "--arg2"];
+      expect(projectScripts[projectType].getDev(args)).toEqual([
+        "vite:dev",
+        ...args,
+      ]);
+    });
+  });
+
+  describe("getStart", () => {
+    test("should return args", () => {
+      const args = ["--arg1", "--arg2"];
+      expect(projectScripts[projectType].getStart(args)).toEqual([...args]);
+    });
+  });
+
+  describe("getBuild", () => {
+    test('should prepend "vite:build" to the args array', () => {
+      const args = ["--arg1", "--arg2"];
+      expect(projectScripts[projectType].getBuild(args)).toEqual([
+        "vite:build",
+        ...args,
+      ]);
+    });
+  });
+});
+
+describe("REMIX_SPA project type", () => {
+  const projectType = ProjectTypes.REMIX_SPA;
+
+  describe("getDev with empty args", () => {
+    test('should return array with only "vite:dev" if args is empty', () => {
+      expect(projectScripts[projectType].getDev([])).toEqual(["vite:dev"]);
+    });
+  });
+
+  describe("getStart with empty args", () => {
+    test('should return array with only "preview" if args is empty', () => {
+      expect(projectScripts[projectType].getStart([])).toEqual(["preview"]);
+    });
+  });
+
+  describe("getBuild with empty args", () => {
+    test('should return array with only "vite:build" if args is empty', () => {
+      expect(projectScripts[projectType].getBuild([])).toEqual(["vite:build"]);
+    });
+  });
+
+  describe("getDev", () => {
+    test('should prepend "vite:dev" to the args array', () => {
+      const args = ["--arg1", "--arg2"];
+      expect(projectScripts[projectType].getDev(args)).toEqual([
+        "vite:dev",
+        ...args,
+      ]);
+    });
+  });
+
+  describe("getStart", () => {
+    test('should prepend "preview" to the args array', () => {
+      const args = ["--arg1", "--arg2"];
+      expect(projectScripts[projectType].getStart(args)).toEqual([
+        "preview",
+        ...args,
+      ]);
+    });
+  });
+
+  describe("getBuild", () => {
+    test('should prepend "vite:build" to the args array', () => {
+      const args = ["--arg1", "--arg2"];
+      expect(projectScripts[projectType].getBuild(args)).toEqual([
+        "vite:build",
         ...args,
       ]);
     });
@@ -318,39 +423,39 @@ describe("UNKNOWN project type", () => {
   const projectType = ProjectTypes.UNKNOWN;
 
   describe("getDev with empty args", () => {
-    test('should return array with only "start" if args is empty', () => {
+    test("should return empty array if args is empty", () => {
       expect(projectScripts[projectType].getDev([])).toEqual([]);
     });
   });
 
   describe("getStart with empty args", () => {
-    test('should return array with only "start" if args is empty', () => {
+    test("should return empty array if args is empty", () => {
       expect(projectScripts[projectType].getStart([])).toEqual([]);
     });
   });
 
   describe("getBuild with empty args", () => {
-    test('should return array with only "build" if args is empty', () => {
+    test("should return empty array if args is empty", () => {
       expect(projectScripts[projectType].getBuild([])).toEqual([]);
     });
   });
 
   describe("getDev", () => {
-    test('should prepend "start" to the args array', () => {
+    test("should return the args array as is", () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getDev(args)).toEqual([...args]);
     });
   });
 
   describe("getStart", () => {
-    test('should prepend "start" to the args array', () => {
+    test("should return the args array as is", () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getStart(args)).toEqual([...args]);
     });
   });
 
   describe("getBuild", () => {
-    test('should prepend "build" to the args array', () => {
+    test("should return the args array as is", () => {
       const args = ["--arg1", "--arg2"];
       expect(projectScripts[projectType].getBuild(args)).toEqual([...args]);
     });

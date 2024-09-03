@@ -1999,3 +1999,77 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       'h3=":443"; ma=86400',
     ],
   );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+  encodedQueryParams: true,
+})
+  .get("/rest/v1/posts")
+  .query({
+    select: "%2A",
+    offset: "0",
+    limit: "10",
+    or: "%28title.ilike.%25Black+Psorotichia%25%2Ccontent.ilike.%25Sed+sagittis%25%29",
+  })
+  .reply(
+    200,
+    [
+      {
+        id: 1,
+        title: "Black Psorotichia Lichen",
+        slug: "61a31089-c85d-48a0-a4be-d5dce5c96b6a",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
+        content:
+          "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+        categoryId: 7,
+        images: null,
+      },
+      {
+        id: 13,
+        title: "Dust Lichen",
+        slug: "ca038c02-0c6f-417b-aaf8-6f51b777d1f5",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
+        content:
+          "Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem.\n\nSed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.",
+        categoryId: 7,
+        images: null,
+      },
+    ],
+    [
+      "Date",
+      "Thu, 25 Apr 2024 07:26:59 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Content-Range",
+      "0-1/2",
+      "CF-Ray",
+      "879c9ba35d5b68ae-IST",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Access-Control-Allow-Origin",
+      "*",
+      "Content-Location",
+      "/posts?limit=10&offset=0&or=%28title.ilike.%25Black+Psorotichia%25%2Ccontent.ilike.%25Sed+sagittis%25%29&select=%2A",
+      "Strict-Transport-Security",
+      "max-age=15552000; includeSubDomains",
+      "Vary",
+      "Accept-Encoding",
+      "Via",
+      "kong/2.8.1",
+      "content-profile",
+      "public",
+      "sb-gateway-version",
+      "1",
+      "x-kong-proxy-latency",
+      "1",
+      "x-kong-upstream-latency",
+      "3",
+      "Server",
+      "cloudflare",
+      "alt-svc",
+      'h3=":443"; ma=86400',
+    ],
+  );

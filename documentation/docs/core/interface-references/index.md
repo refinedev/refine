@@ -207,6 +207,9 @@ import type { DocumentNode } from "graphql";
 type GraphQLQueryOptions = {
   gqlQuery?: DocumentNode;
   gqlMutation?: DocumentNode;
+  gqlVariables?: {
+    [key: string]: any;
+  };
 };
 ```
 

@@ -399,6 +399,34 @@ describe("filtering", () => {
     expect(total).toBe(6);
   });
 
+  it("contains operator should work correctly with or", async () => {
+    const { data, total } = await dataProvider(supabaseClient).getList({
+      resource: "posts",
+      filters: [
+        {
+          operator: "or",
+          value: [
+            {
+              field: "title",
+              operator: "contains",
+              value: "Black Psorotichia",
+            },
+            {
+              field: "content",
+              operator: "contains",
+              value: "Sed sagittis",
+            },
+          ],
+        },
+      ],
+    });
+
+    expect(data).toHaveLength(2);
+    expect(data[0].title).toBe("Black Psorotichia Lichen");
+    expect(data[1].title).toBe("Dust Lichen");
+    expect(total).toBe(2);
+  });
+
   it("should change schema", async () => {
     const { data } = await dataProvider(supabaseClient).getList({
       resource: "posts",
