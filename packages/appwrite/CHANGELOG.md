@@ -1,5 +1,15 @@
 # @refinedev/appwrite
 
+## 7.0.1
+
+### Patch Changes
+
+- [#6256](https://github.com/refinedev/refine/pull/6256) [`7ac2fc2013c8f38741831d3b65b23abe5f6fe1b2`](https://github.com/refinedev/refine/commit/7ac2fc2013c8f38741831d3b65b23abe5f6fe1b2) Thanks [@soranoo](https://github.com/soranoo)! - feat(appwrite): add support to conditional filters and missing logical filters
+
+  Add Support to `and`, `or`, `between`, `null`, `nnull`, `startswith` and `endswith` operators
+
+  [Resolves #6252](https://github.com/refinedev/refine/issues/6252)
+
 ## 7.0.0
 
 ### Major Changes

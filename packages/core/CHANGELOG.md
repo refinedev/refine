@@ -1,5 +1,19 @@
 # @refinedev/core
 
+## 4.54.1
+
+### Patch Changes
+
+- [#6260](https://github.com/refinedev/refine/pull/6260) [`05b944a75f3a907c0df7b30591a5c5fbbc3cc3f7`](https://github.com/refinedev/refine/commit/05b944a75f3a907c0df7b30591a5c5fbbc3cc3f7) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): `useResourceParams` not reflecting `id` prop changes immediately
+
+  `useResourceParams` hook was not reflecting the changes in the `id` prop immediately. This was due to the `id` state being set in the `useEffect` hook. This PR fixes the issue by setting the `id` state properly during render rather than after the render is complete.
+
+  [Fixes #6259](https://github.com/refinedev/refine/issues/6259)
+
+- [#6222](https://github.com/refinedev/refine/pull/6222) [`ec24fe0f37aa9b92991bf105719f6f42bb68d63c`](https://github.com/refinedev/refine/commit/ec24fe0f37aa9b92991bf105719f6f42bb68d63c) Thanks [@Sergio16T](https://github.com/Sergio16T)! - feat: added support for meta.gqlVariables to hasura dataProvider. Updated GraphQLQueryOptions to include optional field gqlVariables
+
+  [Feat #5864](https://github.com/refinedev/refine/issues/5864)
+
 ## 4.54.0
 
 ### Minor Changes

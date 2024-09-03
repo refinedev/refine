@@ -1,5 +1,14 @@
 # @refinedev/devtools-server
 
+## 1.1.36
+
+### Patch Changes
+
+- [#6253](https://github.com/refinedev/refine/pull/6253) [`6963e591f8f307aee9362d5dfff99972eb64bf03`](https://github.com/refinedev/refine/commit/6963e591f8f307aee9362d5dfff99972eb64bf03) Thanks [@aliemir](https://github.com/aliemir)! - chore(devtools-server): replace `preferred-pm` with `package-manager-detector` #6242
+
+  `preferred-pm` has 24 dependencies: https://npmgraph.js.org/?q=preferred-pm
+  `package-manager-detector` has no dependencies: https://npmgraph.js.org/?q=package-manager-detector
+
 ## 1.1.35
 
 ### Patch Changes

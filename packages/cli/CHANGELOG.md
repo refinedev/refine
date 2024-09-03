@@ -1,5 +1,20 @@
 # @refinedev/cli
 
+## 2.16.38
+
+### Patch Changes
+
+- [#6246](https://github.com/refinedev/refine/pull/6246) [`f5501f93a818d6e5811aa94cb354d77a2b1eb1ff`](https://github.com/refinedev/refine/commit/f5501f93a818d6e5811aa94cb354d77a2b1eb1ff) Thanks [@YusukeSano](https://github.com/YusukeSano)! - feat: added scripts for Remix SPA Mode
+
+  It is now possible to execute the Remix SPA Mode script by selecting it from the platform options.
+
+  Two new project types are added `remix-vite` and `remix-spa`. `remix-vite` is Remix + Vite and `remix-spa` is Remix + Vite SPA Mode. While `remix-vite` type can be inferred from the project configuration without needing to specify it in the command, `remix-spa` type needs to be specified explicitly.
+
+  [Resolves #6127](https://github.com/refinedev/refine/issues/6127)
+
+- Updated dependencies [[`6963e591f8f307aee9362d5dfff99972eb64bf03`](https://github.com/refinedev/refine/commit/6963e591f8f307aee9362d5dfff99972eb64bf03)]:
+  - @refinedev/devtools-server@1.1.36
+
 ## 2.16.37
 
 ### Patch Changes

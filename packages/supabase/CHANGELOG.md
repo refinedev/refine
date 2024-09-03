@@ -1,5 +1,15 @@
 # @refinedev/supabase
 
+## 5.9.4
+
+### Patch Changes
+
+- [#6240](https://github.com/refinedev/refine/pull/6240) [`697561ba04abfb570ae978066668583096ea24c0`](https://github.com/refinedev/refine/commit/697561ba04abfb570ae978066668583096ea24c0) Thanks [@pkarc](https://github.com/pkarc)! - fix(supabase): issue with parsed values when using conditional filters
+
+  Fixed conditional filter's parsed values while using `contains`, `containss`, `startswith` and `endswith`.
+
+  [Fixes #6239](https://github.com/refinedev/refine/issues/6239)
+
 ## 5.9.3
 
 ### Patch Changes

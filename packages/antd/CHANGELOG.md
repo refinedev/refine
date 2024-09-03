@@ -1,5 +1,15 @@
 # @refinedev/antd
 
+## 5.43.1
+
+### Patch Changes
+
+- [#6245](https://github.com/refinedev/refine/pull/6245) [`7ba4ea1ffdd2e2ed2f0ed2b1ee386dab5015dd2d`](https://github.com/refinedev/refine/commit/7ba4ea1ffdd2e2ed2f0ed2b1ee386dab5015dd2d) Thanks [@youssefsiam38](https://github.com/youssefsiam38)! - fix(antd): rtl support for mobile sider trigger and drawer placement
+
+  `<ThemedLayoutV2 />` has RTL support but it lacks the mobile sider trigger and drawer placement. This change places the drawer depending on the preferred direction. It also adds RTL support for the styling of the mobile sider trigger.
+
+  [Fixes #6263](https://github.com/refinedev/refine/issues/6263)
+
 ## 5.43.0
 
 ### Minor Changes

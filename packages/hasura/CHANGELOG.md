@@ -1,5 +1,13 @@
 # @refinedev/hasura
 
+## 6.6.7
+
+### Patch Changes
+
+- [#6222](https://github.com/refinedev/refine/pull/6222) [`ec24fe0f37aa9b92991bf105719f6f42bb68d63c`](https://github.com/refinedev/refine/commit/ec24fe0f37aa9b92991bf105719f6f42bb68d63c) Thanks [@Sergio16T](https://github.com/Sergio16T)! - feat: added support for meta.gqlVariables to hasura dataProvider. Updated GraphQLQueryOptions to include optional field gqlVariables
+
+  [Feat #5864](https://github.com/refinedev/refine/issues/5864)
+
 ## 6.6.6
 
 ### Patch Changes
