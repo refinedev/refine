@@ -4,11 +4,13 @@ description: We'll explore React design patterns and examine how they might impr
 slug: react-design-patterns
 authors: peter_osah
 tags: [dev-tools]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-17-react-patterns/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-17-react-patterns/social-2.png
 hide_table_of_contents: false
 ---
 
-## Introduction:
+**This article was last updated on September 05, 2024, to add sections on Error Boundaries Pattern, Lazy Loading Components, and Memoization Patterns (Memo, useMemo, useCallback).**
+
+## Introduction
 
 React developers can save time and effort by using design patterns, which provide a quick approach to addressing problems using tested-and-trusted solutions. They enable cohesive modules with lower coupling, which in turn helps React developers create maintainable, scalable, and efficient applications. In this article, we will explore React design patterns and examine how they might improve the development of React applications.
 
@@ -21,7 +23,9 @@ Steps we'll cover
 - [Component enhancement with HOCs (higher-order components)](#component-enhancement-with-hocs-higher-order-components)
 - [Compound Components](#compound-components)
 - [Prop combination](#prop-combination)
+- [Lazy Loading Components in React](#lazy-loading-components-in-react)
 - [Controlled inputs](#controlled-inputs)
+- [Error Boundaries Pattern in React](#error-boundaries-pattern-in-react)
 - [Manage custom components with forwardRefs](#manage-custom-components-with-fowardrefs)
 
 ## Container and presentation patterns
@@ -454,6 +458,40 @@ function ControlledInput() {
 }
 ```
 
+## Error Boundaries Pattern in React
+
+I would like to introduce you to this note on the **Error Boundaries Pattern** in React; it's really crucial to help errors in our apps become gentle.
+
+An error in React means if a component crashes, it can break the whole UI. This doesn't bode well for a good user experience. Error boundaries help us trap these JavaScript errors anywhere in the tree of a component and show a fallback UI without breaking the whole app.
+
+We can create an error boundary using a class component, and define lifecycle methods `componentDidCatch` and `getDerivedStateFromError`. Here's a small simple example:
+
+```tsx
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props;
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.log(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong</h1>;
+    }
+    return this.props.children;
+  }
+}
+```
+
+We can wrap any component with `ErrorBoundary`, and if it crashes, users will see a fallback message instead of a broken app. This pattern is awesome for catching problems and informing the user in a friendly manner, rather than just letting the app crash.
+
 ## Manage custom components with forwardRefs
 
 A higher-order component called a ForwardRef takes another component as input and outputs a new component that passes the original component's ref. By doing this, the child component's ref, which can be used to retrieve the underlying DOM node or component instance, is made accessible to the parent component.
@@ -481,6 +519,92 @@ const ParentComponent = () => {
 ```
 
 In the code above, we triggered the focus of another component `<CustomInput/>` from our component `<ParentComponent/>` using `forwardRefs`.
+
+## Lazy Loading Components in React
+
+Lazy loading components in React feels to me like a very nice pattern for better performance in our applications, especially when dealing with huge components or routes.
+
+The alternative is eager loading, which will load the needed components in advance. That means lazy loading reduces initial loading time and improves the user experience in general.
+
+In React, the process of lazy loading is implemented using `React.lazy()` and `Suspense`. Here's an example:
+
+```tsx
+import React, { Suspense } from "react";
+
+const MyComponent = React.lazy(() => import("./MyComponent"));
+
+function App() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <MyComponent />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+In this example, `MyComponent` will only be fetched once it's rendered, and meanwhile, the user sees a fallback like "Loading…". This pattern is especially useful for components that are not immediately visible on the page (e.g., in routes or modals). It's a simple yet potent way for more app optimization, especially for those projects that are more involved.
+
+## Bonus: Memoization Patterns in React
+
+I'd like to share some quick insights on memoization patterns in React: `React.memo`, `useMemo`, and `useCallback`. These are great tools for optimization, avoiding unnecessary re-renders that can be quite a performance cost.
+
+1. **`React.memo`**: This is a higher-order component that wraps around functional components and forbids them from re-rendering unless their props change. It can come in really handy while working with components that require a re-render based on some particular props update.
+
+   Example:
+
+   ```tsx
+   const MyComponent = React.memo(({ count }) => {
+     console.log("Component rendered");
+     return <div>{count}</div>;
+   });
+   ```
+
+   Now `MyComponent` will only rerender when the `count` prop changes.
+
+2. **`useMemo`**: This hook memoizes the result of a function so that it will only be recomputed if its dependencies have been changed. It's useful for expensive computations where the result does not need to be recalculated on every render.
+
+   Example:
+
+   ```tsx
+   const expensiveCalculation = (num) => {
+     console.log("Calculating...");
+     return num * 2;
+   };
+
+   const MyComponent = ({ number }) => {
+     const calculatedValue = useMemo(
+       () => expensiveCalculation(number),
+       [number],
+     );
+
+     return <div>{calculatedValue}</div>;
+   };
+   ```
+
+   The `expensiveCalculation` function will be called every time `number` changes, and not on each render.
+
+3. **`useCallback`**: This hook is quite like `useMemo` but for memoizing functions. This one comes in handy when you have to pass down callbacks into child components in such a manner that they do not get recreated on every render of the parent component.
+
+   Example:
+
+   ```tsx
+   const MyComponent = ({ handleClick }) => {
+     console.log("Component rendered");
+     return <button onClick={handleClick}>Click me</button>;
+   };
+
+   const ParentComponent = () => {
+     const handleClick = useCallback(() => {
+       console.log("Button clicked");
+     }, []);
+
+     return <MyComponent handleClick={handleClick} />;
+   };
+   ```
+
+   Here, `handleClick` is memoized, and thus it won't be re-created every render. These memoization patterns will be useful for optimal performance during complex UI interaction and while working with large sets of data.
 
 # Conclusion
 
