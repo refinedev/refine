@@ -124,4 +124,4 @@ An edit form can be made by using the `<Edit>` component instead of `<Create>` w
 
 ## Example
 
-<CodeSandboxExample path="upload-antd-multipart" />
+<CodeSandboxExample path="upload-antd-base64" />
