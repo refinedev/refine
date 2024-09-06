@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-31-react-tabl
 hide_table_of_contents: false
 ---
 
+**This article was last updated on September 06, 2024, to add sections on Advanced Column Customization and Accessibility Features in React Table.**
+
 ## Introduction
 
 Most tables we use in real-world applications come with features such as filtering, sorting, and selection. Therefore, building tables from the ground up using plain markup and vanilla JavaScript can be tedious and challenging.
@@ -20,13 +22,13 @@ You can use it with Vanilla JavaScript or popular front-end frameworks like Reac
 
 What we'll cover in this article:
 
+- [Introduction](#introduction)
 - [What is TanStack table](#what-is-tanstack-table)
 - [What is React Table](#what-is-react-table)
 - [How to use React Table](#how-to-use-react-table)
 - [How to use React Table with Refine](#how-to-use-react-table-with-refine)
-  - [Pagination](#pagination)
-  - [Sorting](#sorting)
-  - [Filtering](#filtering)
+- [Advanced Column Customization in React Table](#advanced-column-customization-in-react-table)
+- [Accessibility Features in React Table](#accessibility-features-in-react-table)
 
 ## What is TanStack table
 
@@ -720,6 +722,187 @@ You will now see a search field that you can use to search for an entry in the t
 </div>
 
 There are several features of React Table that we haven't explored in this section. Check out the documentation.
+
+## Advanced Column Customization in React Table
+
+I wanted to share some tips on **Advanced Column Customization** in React Table, which can really help us build more interactive and dynamic tables.
+
+### 1. **Custom Cell Rendering**
+
+With React Table, we can render each cell the way we want. This one is perfect if we are about to display customized content or any formatting according to need. As you can see, we have the ability to render each cell with customization according to our needs.
+
+Here is an example:
+
+```javascript
+const columns = [
+  {
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => <div>{row.original.name}</div>,
+  },
+  {
+    accessorKey: "age",
+    header: "Age",
+    cell: ({ row }) => (
+      <span>{row.original.age >= 18 ? "Adult" : "Minor"}</span>
+    ),
+  },
+];
+```
+
+In this case, we are customizing the way names are displayed and adding some logic to determine if a person is an adult or minor.
+
+### 2. **Conditionally Rendering in Columns**
+
+We can also utilize some conditional logic to render some different content in the table based on a condition check. This is useful when we want to show status indicators, for example.
+
+```javascript
+const columns = [
+  {
+    status: {
+      header: "Status",
+      cell: ({ row }) => (
+        <span
+          style={{
+            color: row.original.status === "active" ? "green" : "red",
+          }}
+        >
+          {row.original.status}
+        </span>
+      ),
+    },
+  },
+];
+```
+
+In this case, the text color for the above example changes according to the status value, so the user can have a visual representation of the item's status.
+
+### 3. **Dynamic Columns**
+
+It is great to support dynamic column generation in React Table for handling dynamic data structures when you do not know the columns beforehand.
+
+```javascript
+const data = [
+  { name: "Alice", sales: 30, marketing: 20 },
+  { name: "Bob", sales: 50, marketing: 30 },
+];
+
+const columns = Object.keys(data[0]).map((key) => ({
+  accessorKey: key,
+  header: key.charAt(0).toUpperCase() + key.slice(1),
+}));
+```
+
+This approach dynamically creates columns based on the keys present in the data, making it easier to work with dynamic or unknown datasets.
+
+### 4. **Grouping Columns**
+
+We can group the columns with a more hierarchical structure within our table. It's quite useful when there is some relation between fields of data.
+
+```javascript
+const columns = [
+  {
+    header: "Personal Info",
+    columns: [
+      { accessorKey: "firstName", header: "First Name" },
+      { accessorKey: "lastName", header: "Last Name" },
+    ],
+  },
+  {
+    header: "Job Info",
+    columns: [
+      { accessorKey: "position", header: "Position" },
+      { accessorKey: "department", header: "Department" },
+    ],
+  },
+];
+```
+
+With column grouping, it is possible to structure the table in a more logical manner and create visible logical divisions between the categories of data.
+
+## Accessibility Features in React Table
+
+I wanted to talk about making **React Table** more accessible. Web accessibility, or a11y, is something that is very important, and React Table has many features that help ensure our tables are usable by all, including those who use screen readers or keyboard navigation.
+
+### 1. **ARIA Attributes**
+
+It is possible to manually add **ARIA attributes** in React Table. These attributes help assistive technologies (ATs) understand the structure of the table. For instance, applying `role="table"` on the main `<table>` element and `role="columnheader"` on each header element allows screen readers to announce the table content correctly.
+
+```javascript
+<table role="table">
+  <thead>
+    <tr>
+      <th role="columnheader">Name</th>
+      <th role="columnheader">Age</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td role="cell">Alice</td>
+      <td role="cell">25</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 2. **Keyboard Navigation**
+
+For keyboard users, we need to ensure that all interactive elements are **focusable** and tabbable. This can be done by ensuring that all focusable elements have clear `tabindex` attributes.
+
+Additionally, using the `onKeyDown` event creates a more robust keyboard-navigable experience on some elements.
+
+```javascript
+<button tabindex="0" onKeyDown={handleKeyDown}>
+  Edit
+</button>
+```
+
+### 3. **Responsive Tables**
+
+React Table does not handle responsiveness out of the box, but with the addition of custom CSS, it's easy to make our tables mobile-friendly. By using media queries or changing the table layout (like stacking rows), accessibility is ensured for all users, no matter the device they are using.
+
+```css
+@media (max-width: 600px) {
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+}
+```
+
+### 4. **Readable Focus Styles**
+
+It's important to maintain proper **focus visibility** for users navigating the table by keyboard. We should ensure that when any row or cell in the table receives focus, there is a clear visual indication, like highlighting or a border around the cell.
+
+```css
+td:focus {
+  outline: 2px solid blue;
+}
+```
+
+### 5. **Custom Screen Reader Messages**
+
+For more complex tables (e.g., with sorting, filtering, or pagination), we can add **custom announcements** for screen readers. A potential solution is to update `aria-live` regions dynamically to announce content changes.
+
+```javascript
+<div aria-live="polite">
+  {isSorted && "Table sorted by Name in ascending order"}
+</div>
+```
+
+### 6. **Descriptive Headers**
+
+Ensure that table headers are clear and descriptive, as users rely on them for context to understand the data in each column. Use the `aria-sort` attribute on sortable columns to indicate the current sorting direction for screen reader users.
+
+```javascript
+<th role="columnheader" aria-sort="ascending">
+  Name
+</th>
+```
 
 ## Conclusion
 
