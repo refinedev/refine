@@ -12,12 +12,36 @@ Refine uses this hook internally in data hooks to `subscribe` Realtime data. You
 ```tsx
 import { useSubscription } from "@refinedev/core";
 
-useSubscription({
-    channel: "channel-name",
-    types: ["event-name", "another-event-name"]
-    onLiveEvent: (event) => {},
-    dataProviderName: "default",
-});
+const MyComponent = () => {
+    const [isSubscribed, setIsSubscribed] = useState(true);
+
+    const handleLiveEvent = (event) => {
+        console.log("Live event received:", event);
+        if (event.type === "create") {
+            // Handle creation
+        }
+        if (event.type === "update") {
+            // Handle update
+        }
+    };
+
+    useSubscription({
+        channel: "orders",
+        types: ["create", "update"],
+        onLiveEvent: handleLiveEvent,
+        enabled: isSubscribed,  // Dynamically enable/disable subscription
+        params: { userId: 123 }, // Additional filtering or context
+    });
+
+    return (
+        <div>
+            <button onClick={() => setIsSubscribed(!isSubscribed)}>
+                {isSubscribed ? "Unsubscribe" : "Subscribe"}
+            </button>
+        </div>
+    );
+};
+
 
 ```
 
