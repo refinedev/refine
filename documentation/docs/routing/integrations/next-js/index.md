@@ -107,7 +107,7 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable<IPost>();
 
   const tableData = data?.data;
@@ -174,7 +174,7 @@ export default function CategoryList() {
   // `categories` resource will be inferred from the route.
   // Because we've defined `/categories` as the `list` action of the `categories` resource.
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable<ICategory>();
 
   const tableData = data?.data;
@@ -320,7 +320,7 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable<IPost>();
 
   const tableData = data?.data;
@@ -383,7 +383,7 @@ export default function CategoryList() {
   // `categories` resource will be inferred from the route.
   // Because we've defined `/categories` as the `list` action of the `categories` resource.
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable<ICategory>();
 
   const tableData = data?.data;
@@ -668,7 +668,7 @@ First let's create our [AuthProvider](/docs/authentication/auth-provider)
 
 let's install the `nookies` packages in our project.
 
-<InstallPackagesCommand args="@refinedev/nookies"/>
+<InstallPackagesCommand args="nookies"/>
 
 We will set/destroy cookies in the `login`, `logout` and `check` functions of our `AuthProvider`.
 
@@ -1086,7 +1086,7 @@ export const getServerSideProps = async () => {
 
 export default function Posts({ posts }: { posts: GetListResponse<IPost> }) {
   const {
-    tableQueryResult: { data },
+    tableQuery: { data },
   } = useTable<IPost>({
     queryOptions: {
       initialData: posts,
@@ -1562,6 +1562,48 @@ Default paths are:
 - `create`: `/resources/create`
 - `edit`: `/resources/edit/:id`
 - `show`: `/resources/show/:id`
+
+### How to change the document title?
+
+By default [`<DocumentTitleHandler/>`](#documenttitlehandler) component will generate the document title based on current resource and action with the "Refine" suffix. You can customize the title generation process by providing a custom `handler` function.
+
+```tsx
+import {
+  BrowserRouter,
+  DocumentTitleHandler,
+} from "@refinedev/react-router-v6";
+import { Refine } from "@refinedev/core";
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <Refine
+      /* ... */
+      >
+        {/* ... */}
+        <DocumentTitleHandler
+          handler={({ action, params, resource }) => {
+            const id = params?.id ?? "";
+
+            const actionPrefixMatcher = {
+              create: "Create new ",
+              clone: `#${id} Clone ${resource?.meta?.label}`,
+              edit: `#${id} Edit ${resource?.meta?.label}`,
+              show: `#${id} Show ${resource?.meta?.label}`,
+              list: `${resource?.meta?.label}`,
+            };
+
+            const suffix = " | <Company Name>";
+            const title = actionPrefixMatcher[action || "list"] + suffix;
+
+            return title;
+          }}
+        />
+      </Refine>
+    </BrowserRouter>
+  );
+};
+```
 
 ## Example (`/app`)
 

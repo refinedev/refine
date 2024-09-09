@@ -1,9 +1,9 @@
-import { CrudOperators } from "@refinedev/core";
+import type { CrudOperators } from "@refinedev/core";
 import { mapOperator } from "../../src/utils";
 
 describe("mapOperator", () => {
   it("should return correct mapping for given operator", () => {
-    const operatorMappings: Record<CrudOperators, string> = {
+    const operatorMappings: Partial<Record<CrudOperators, string>> = {
       ne: "_ne",
       gte: "_gte",
       lte: "_lte",

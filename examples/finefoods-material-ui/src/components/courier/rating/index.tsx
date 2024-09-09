@@ -1,5 +1,5 @@
 import Rating from "@mui/material/Rating";
-import { ICourier, IReview } from "../../../interfaces";
+import type { ICourier, IReview } from "../../../interfaces";
 import { useList } from "@refinedev/core";
 
 type Props = {

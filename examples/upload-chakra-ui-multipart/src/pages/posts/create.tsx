@@ -18,7 +18,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import Upload from "rc-upload";
 import { IconFileUpload } from "@tabler/icons-react";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostCreate = () => {
   const [uploading, setUploading] = useState(false);

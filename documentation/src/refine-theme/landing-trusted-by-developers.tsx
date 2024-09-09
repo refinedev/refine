@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { FC, useEffect, useLayoutEffect, useRef } from "react";
+import React, { type FC, useEffect, useLayoutEffect, useRef } from "react";
 import {
   OracleIcon,
   SalesforceIcon,

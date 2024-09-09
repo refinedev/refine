@@ -130,4 +130,22 @@ describe("render hook default options", () => {
 
     expect(mockFunc).toBeCalled();
   });
+
+  it("should work with queryResult and query", async () => {
+    const { result } = renderHook(
+      () =>
+        useRadioGroup({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.queryResult.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.query).toEqual(result.current.queryResult);
+  });
 });

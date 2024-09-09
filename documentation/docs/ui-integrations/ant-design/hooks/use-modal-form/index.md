@@ -421,12 +421,26 @@ const modalForm = useModalForm({
 
 ### defaultFormValues
 
-Default values for the form. Use this to pre-populate the form with data that needs to be displayed. This property is only available for `"create"` action.
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
 
 ```tsx
-const modalForm = useModalForm({
+useModalForm({
   defaultFormValues: {
     title: "Hello World",
+  },
+});
+```
+
+Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the [`defaultFormValuesLoading`](#defaultformvaluesloading) state returned from the hook.
+
+> 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
+
+```tsx
+const { defaultFormValuesLoading } = useModalForm({
+  defaultFormValues: async () => {
+    const response = await fetch("https://my-api.com/posts/1");
+    const data = await response.json();
+    return data;
   },
 });
 ```
@@ -587,11 +601,21 @@ useModalForm({
 
 ## Return Values
 
+`useModalForm` returns the same values from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form#return-values) and additional values to work with [`<Modal>`][antd-modal] components.
+
 ### formProps
 
 It's required to manage `<Form>` state and actions. Under the hood the `formProps` came from [`useForm`][antd-use-form].
 
 It contains the props to manage the [Antd `<Form>`](https://ant.design/components/form#api) components such as [`onValuesChange`, `initialValues`, `onFieldsChange`, `onFinish` etc.](/docs/ui-integrations/ant-design/hooks/use-form#return-values)
+
+:::note Difference between `onFinish` and `formProps.onFinish`
+
+`onFinish` method returned directly from `useModalForm` is same with the `useForm`'s `onFinish`. When working with modals, closing the modal after submission and resetting the fields are necessary and to handle these, `formProps.onFinish` extends the `onFinish` method and handles the closing of the modal and clearing the fields under the hood.
+
+If you're customizing the data before submitting it to your data provider, it's recommended to use `formProps.onFinish` and let it handle the operations after the submission.
+
+:::
 
 ### modalProps
 
@@ -646,8 +670,10 @@ A function that can close the `<Modal>`. It's useful when you want to close the 
 ```tsx
 const { close, modalProps, formProps, onFinish } = useModalForm();
 
-const onFinishHandler = (values) => {
-  onFinish(values);
+const onFinishHandler = async (values) => {
+  // Awaiting `onFinish` is important for features like unsaved changes notifier, invalidation, redirection etc.
+  // If you're using the `onFinish` from `formProps`, it will call the `close` internally.
+  await onFinish(values);
   close();
 };
 
@@ -763,6 +789,10 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
+### defaultFormValuesLoading
+
+If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormValuesLoading` will be `true` until the function is resolved.
+
 ## FAQ
 
 ### How can I change the form data before submitting it to the API?
@@ -844,9 +874,10 @@ export const UserCreate: React.FC = () => {
 | id                       | Record id for edit action                                                                                      | [`BaseKey`][basekey] \| `undefined`                                                                                                                        |
 | setId                    | `id` setter                                                                                                    | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                           |
 | queryResult              | Result of the query of a record                                                                                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                              |
-| mutationResult           | Result of the mutation triggered by submitting the form                                                        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
+| mutation                 | Result of the mutation triggered by submitting the form                                                        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 | overtime                 | Overtime loading props                                                                                         | `{ elapsedTime?: number }`                                                                                                                                 |
 | autoSaveProps            | Auto save props                                                                                                | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                    |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                                                                       | `boolean`                                                                                                                                                  |
 
 ## Example
 

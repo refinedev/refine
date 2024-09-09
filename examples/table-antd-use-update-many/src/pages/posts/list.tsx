@@ -11,7 +11,7 @@ import {
 
 import { Table, Space, Button } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps } = useTable<IPost>();
@@ -28,12 +28,13 @@ export const PostList = () => {
 
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
 
-  const { mutate, isLoading: updateManyIsLoading } = useUpdateMany<IPost>();
+  const { mutate, isLoading: updateManyIsLoading } = useUpdateMany<IPost>({
+    resource: "posts",
+  });
 
   const updateSelectedItems = () => {
     mutate(
       {
-        resource: "posts",
         ids: selectedRowKeys.map(String),
         values: {
           status: "draft",

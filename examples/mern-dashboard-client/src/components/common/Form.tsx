@@ -9,7 +9,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 
-import { FormProps } from "interfaces/common";
+import type { FormProps } from "interfaces/common";
 import CustomButton from "./CustomButton";
 
 const Form = ({

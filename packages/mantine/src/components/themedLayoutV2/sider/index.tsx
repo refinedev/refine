@@ -1,7 +1,7 @@
-import React, { CSSProperties } from "react";
+import React, { type CSSProperties } from "react";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
@@ -15,11 +15,10 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import {
-  AppShell,
   NavLink,
   ScrollArea,
   Tooltip,
-  TooltipProps,
+  type TooltipProps,
   Flex,
   Burger,
   Box,
@@ -30,7 +29,7 @@ import { IconList, IconPower, IconDashboard } from "@tabler/icons-react";
 import { ThemedTitleV2 as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import type { RefineThemedLayoutV2SiderProps } from "../types";
 import { useColorScheme, useMediaQuery } from "@mantine/hooks";
 
 const defaultNavIcon = <IconList size={20} />;
@@ -98,7 +97,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{
             resource: item,

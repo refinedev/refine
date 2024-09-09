@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { SVGProps } from "react";
+import React, { type SVGProps } from "react";
 import { TriangleDownIcon } from "@site/src/refine-theme/icons/triangle-down";
 import { Menu, Transition } from "@headlessui/react";
 
@@ -7,7 +7,6 @@ import { useHistory } from "@docusaurus/router";
 
 /* @ts-expect-error Imports through webpack aliases does not work */
 import data from "@tutorial-navigation/tutorial-navigation-data.json";
-/* @ts-expect-error `/internal` is not directly exported but required in this case */
 import { useDoc } from "@docusaurus/theme-common/internal";
 
 import { useTutorialParameters } from "../context/tutorial-parameter-context";
@@ -174,7 +173,8 @@ export const TutorialParameterDropdown = ({
                               "no-underline",
                               {
                                 "text-white hover:text-white": isActive,
-                                "bg-refine-blue": isActive,
+                                "bg-refine-react-light-link dark:bg-refine-react-dark-link":
+                                  isActive,
                                 "text-gray-300 dark:text-gray-700": !isActive,
                                 "hover:bg-gray-600 hover:dark:bg-gray-100 hover:text-gray-300 dark:hover:text-gray-700":
                                   !isActive,

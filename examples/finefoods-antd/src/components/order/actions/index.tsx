@@ -2,7 +2,7 @@ import { useTranslate, useUpdate } from "@refinedev/core";
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
 import { Dropdown, Menu } from "antd";
 import { TableActionButton } from "../../tableActionButton";
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 
 type OrderActionProps = {
   record: IOrder;
@@ -10,7 +10,7 @@ type OrderActionProps = {
 
 export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
   const t = useTranslate();
-  const { mutate } = useUpdate();
+  const { mutate } = useUpdate({ resource: "orders", id: record.id });
 
   const moreMenu = (record: IOrder) => (
     <Menu
@@ -27,6 +27,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
         }}
         disabled={record.status.text !== "Pending"}
         icon={
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           <CheckCircleOutlined
             style={{
               color: "#52c41a",
@@ -37,8 +38,6 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
         }
         onClick={() => {
           mutate({
-            resource: "orders",
-            id: record.id,
             values: {
               status: {
                 id: 2,
@@ -59,6 +58,7 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
           fontWeight: 500,
         }}
         icon={
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           <CloseCircleOutlined
             style={{
               color: "#EE2A1E",
@@ -72,8 +72,6 @@ export const OrderActions: React.FC<OrderActionProps> = ({ record }) => {
         }
         onClick={() =>
           mutate({
-            resource: "orders",
-            id: record.id,
             values: {
               status: {
                 id: 5,

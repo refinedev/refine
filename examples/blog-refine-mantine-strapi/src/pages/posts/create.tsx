@@ -1,7 +1,7 @@
 import { Create, useForm, useSelect, Select } from "@refinedev/mantine";
 import { TextInput } from "@mantine/core";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const PostCreate = () => {
   const {

@@ -9866,7 +9866,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
 <DocumentFragment>
   <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
       <nav
         aria-label="breadcrumb"
@@ -24770,7 +24770,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
 <DocumentFragment>
   <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
       <nav
         aria-label="breadcrumb"
@@ -26222,7 +26222,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -26613,7 +26613,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token operator"
@@ -40779,7 +40779,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
 <DocumentFragment>
   <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
       <nav
         aria-label="breadcrumb"
@@ -41691,7 +41691,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -41902,7 +41902,7 @@ exports[`MuiInferencer should match the snapshot 4`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token punctuation"

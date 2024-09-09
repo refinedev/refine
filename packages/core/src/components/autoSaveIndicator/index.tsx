@@ -2,9 +2,9 @@ import React from "react";
 
 import { useTranslate } from "@hooks/i18n";
 
-import { BaseRecord, HttpError } from "../../contexts/data/types";
-import { AutoSaveIndicatorElements } from "../../hooks/form/types";
-import { UseUpdateReturnType } from "../../hooks/data/useUpdate";
+import type { BaseRecord, HttpError } from "../../contexts/data/types";
+import type { AutoSaveIndicatorElements } from "../../hooks/form/types";
+import type { UseUpdateReturnType } from "../../hooks/data/useUpdate";
 
 export type AutoSaveIndicatorProps<
   TData extends BaseRecord = BaseRecord,
@@ -32,10 +32,24 @@ export type AutoSaveIndicatorProps<
 export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
   status,
   elements: {
-    success = <Message key="autoSave.success" defaultMessage="saved" />,
-    error = <Message key="autoSave.error" defaultMessage="auto save failure" />,
-    loading = <Message key="autoSave.loading" defaultMessage="saving..." />,
-    idle = <Message key="autoSave.idle" defaultMessage="waiting for changes" />,
+    success = (
+      <Message translationKey="autoSave.success" defaultMessage="saved" />
+    ),
+    error = (
+      <Message
+        translationKey="autoSave.error"
+        defaultMessage="auto save failure"
+      />
+    ),
+    loading = (
+      <Message translationKey="autoSave.loading" defaultMessage="saving..." />
+    ),
+    idle = (
+      <Message
+        translationKey="autoSave.idle"
+        defaultMessage="waiting for changes"
+      />
+    ),
   } = {},
 }) => {
   switch (status) {
@@ -51,13 +65,13 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
 };
 
 const Message = ({
-  key,
+  translationKey,
   defaultMessage,
 }: {
-  key: string;
+  translationKey: string;
   defaultMessage: string;
 }) => {
   const translate = useTranslate();
 
-  return <span>{translate(key, defaultMessage)}</span>;
+  return <span>{translate(translationKey, defaultMessage)}</span>;
 };

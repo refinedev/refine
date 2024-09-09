@@ -1,4 +1,4 @@
-import { FC } from "react";
+import type { FC } from "react";
 import { useLocation } from "react-router-dom";
 
 import { useGo, useNavigation } from "@refinedev/core";
@@ -25,6 +25,7 @@ export const ListTitleButton: FC<ListTitleButtonProps> = ({
   return (
     <Button
       type="primary"
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<PlusCircleOutlined />}
       onClick={() => {
         return go({

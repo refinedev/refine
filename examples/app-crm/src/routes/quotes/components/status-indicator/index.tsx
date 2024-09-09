@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import React, { type FC } from "react";
 
-import { HttpError, useUpdate } from "@refinedev/core";
+import { type HttpError, useUpdate } from "@refinedev/core";
 
 import cn from "classnames";
 
-import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
+import type { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
 import { QUOTES_UPDATE_QUOTE_MUTATION } from "../../queries";
 import styles from "./index.module.css";
@@ -16,19 +16,20 @@ interface Props {
 }
 
 export const StatusIndicator: FC<Props> = ({ id, status, style }) => {
-  const { mutate } = useUpdate<Quote, HttpError, QuoteUpdateInput>();
+  const { mutate } = useUpdate<Quote, HttpError, QuoteUpdateInput>({
+    resource: "quotes",
+    id,
+    mutationMode: "optimistic",
+    invalidates: [],
+    meta: {
+      gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
+    },
+  });
 
   const onStatusChange = (newStatus: Quote["status"]) => {
     mutate({
-      resource: "quotes",
-      id,
       values: {
         status: newStatus,
-      },
-      mutationMode: "optimistic",
-      invalidates: [],
-      meta: {
-        gqlMutation: QUOTES_UPDATE_QUOTE_MUTATION,
       },
     });
   };

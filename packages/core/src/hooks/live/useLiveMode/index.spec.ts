@@ -3,7 +3,7 @@ import { renderHook } from "@testing-library/react";
 import { defaultRefineOptions } from "@contexts/refine";
 import { TestWrapper } from "@test";
 
-import { IRefineContextProvider } from "../../../contexts/refine/types";
+import type { IRefineContextProvider } from "../../../contexts/refine/types";
 import { useLiveMode } from "./";
 
 const mockRefineProvider: IRefineContextProvider = {

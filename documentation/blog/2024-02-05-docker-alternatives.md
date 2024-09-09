@@ -283,7 +283,7 @@ This will build the Dockerfile in the current directory with Buildkit, creating 
 
 ## **Comparison Chart**
 
-Below is a comparison table summarizing the key differences between all the Docker alternatives disussed above.
+Below is a comparison table summarizing the key differences between all the Docker alternatives discussed above.
 
 | Feature           | Docker                                | containerd                                    | LXD                                             | BuildKit                                | Podman                        | buildah                           | runc                                                          |
 | ----------------- | ------------------------------------- | --------------------------------------------- | ----------------------------------------------- | --------------------------------------- | ----------------------------- | --------------------------------- | ------------------------------------------------------------- |

@@ -11,7 +11,7 @@ import {
 
 import { Typography, Space, Alert, Button } from "antd";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 import { useState } from "react";
 
 const { Title, Text } = Typography;
@@ -19,7 +19,7 @@ const { Title, Text } = Typography;
 export const PostShow = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
 
-  const { queryResult } = useShow<IPost>({
+  const { query: queryResult } = useShow<IPost>({
     liveMode: "manual",
     onLiveEvent: () => {
       setIsDeprecated(true);

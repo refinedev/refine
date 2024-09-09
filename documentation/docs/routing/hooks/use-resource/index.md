@@ -42,11 +42,15 @@ The `resource` object.
 
 Resource name of the `resource` object.
 
-### id
+### ~~id~~ <PropTag deprecated />
+
+> Use [`useResourceParams`](/docs/routing/hooks/use-resource-params) instead.
 
 `id` parameter of the current route.
 
-### action
+### ~~action~~ <PropTag deprecated />
+
+> Use [`useResourceParams`](/docs/routing/hooks/use-resource-params) instead.
 
 `action` from the current route if there is a match.
 

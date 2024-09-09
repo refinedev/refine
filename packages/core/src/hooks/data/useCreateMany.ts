@@ -1,7 +1,7 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  UseMutationOptions,
-  UseMutationResult,
+  type UseMutationOptions,
+  type MutateOptions,
   useMutation,
 } from "@tanstack/react-query";
 
@@ -23,23 +23,24 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseRecord,
   CreateManyResponse,
   HttpError,
   IQueryKeys,
   MetaQuery,
 } from "../../contexts/data/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { UseMutationResult } from "../../definitions/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
-type useCreateManyParams<TData, TError, TVariables> = {
-  resource: string;
-  values: TVariables[];
+export type UseCreateManyParams<TData, TError, TVariables> = {
+  resource?: string;
+  values?: TVariables[];
   meta?: MetaQuery;
   metaData?: MetaQuery;
   dataProviderName?: string;
@@ -53,7 +54,7 @@ export type UseCreateManyReturnType<
 > = UseMutationResult<
   CreateManyResponse<TData>,
   TError,
-  useCreateManyParams<TData, TError, TVariables>,
+  UseCreateManyParams<TData, TError, TVariables>,
   unknown
 >;
 
@@ -66,11 +67,12 @@ export type UseCreateManyProps<
     UseMutationOptions<
       CreateManyResponse<TData>,
       TError,
-      useCreateManyParams<TData, TError, TVariables>
+      UseCreateManyParams<TData, TError, TVariables>
     >,
-    "mutationFn" | "onError" | "onSuccess"
+    "mutationFn"
   >;
-} & UseLoadingOvertimeOptionsProps;
+} & UseLoadingOvertimeOptionsProps &
+  UseCreateManyParams<TData, TError, TVariables>;
 
 /**
  * `useCreateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple create mutations.
@@ -89,6 +91,14 @@ export const useCreateMany = <
   TError extends HttpError = HttpError,
   TVariables = {},
 >({
+  resource: resourceFromProps,
+  values: valuesFromProps,
+  dataProviderName: dataProviderNameFromProps,
+  successNotification: successNotificationFromProps,
+  errorNotification: errorNotificationFromProps,
+  meta: metaFromProps,
+  metaData: metaDataFromProps,
+  invalidates: invalidatesFromProps,
   mutationOptions,
   overtimeOptions,
 }: UseCreateManyProps<TData, TError, TVariables> = {}): UseCreateManyReturnType<
@@ -110,18 +120,21 @@ export const useCreateMany = <
   } = useRefineContext();
   const { keys, preferLegacyKeys } = useKeys();
 
-  const mutation = useMutation<
+  const mutationResult = useMutation<
     CreateManyResponse<TData>,
     TError,
-    useCreateManyParams<TData, TError, TVariables>
+    UseCreateManyParams<TData, TError, TVariables>
   >({
     mutationFn: ({
-      resource: resourceName,
-      values,
-      meta,
-      metaData,
-      dataProviderName,
-    }: useCreateManyParams<TData, TError, TVariables>) => {
+      resource: resourceName = resourceFromProps,
+      values = valuesFromProps,
+      meta = metaFromProps,
+      metaData = metaDataFromProps,
+      dataProviderName = dataProviderNameFromProps,
+    }: UseCreateManyParams<TData, TError, TVariables>) => {
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { resource, identifier } = select(resourceName);
 
       const combinedMeta = getMeta({
@@ -152,18 +165,19 @@ export const useCreateMany = <
         ),
       );
     },
-    onSuccess: (
-      response,
-      {
-        resource: resourceName,
-        successNotification,
-        dataProviderName: dataProviderNameFromProp,
-        invalidates = ["list", "many"],
-        values,
-        meta,
-        metaData,
-      },
-    ) => {
+    onSuccess: (response, variables, context) => {
+      const {
+        resource: resourceName = resourceFromProps,
+        successNotification = successNotificationFromProps,
+        dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
+        invalidates = invalidatesFromProps ?? ["list", "many"],
+        values = valuesFromProps,
+        meta = metaFromProps,
+        metaData = metaDataFromProps,
+      } = variables;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { resource, identifier } = select(resourceName);
       const resourcePlural = textTransformers.plural(identifier);
 
@@ -234,11 +248,18 @@ export const useCreateMany = <
           ...rest,
         },
       });
+
+      mutationOptions?.onSuccess?.(response, variables, context);
     },
-    onError: (
-      err: TError,
-      { resource: resourceName, errorNotification, values },
-    ) => {
+    onError: (err: TError, variables, context) => {
+      const {
+        resource: resourceName = resourceFromProps,
+        errorNotification = errorNotificationFromProps,
+        values = valuesFromProps,
+      } = variables;
+      if (!values) throw missingValuesError;
+      if (!resourceName) throw missingResourceError;
+
       const { identifier } = select(resourceName);
 
       const notificationConfig =
@@ -259,6 +280,8 @@ export const useCreateMany = <
         ),
         type: "error",
       });
+
+      mutationOptions?.onError?.(err, variables, context);
     },
     mutationKey: keys().data().mutation("createMany").get(preferLegacyKeys),
     ...mutationOptions,
@@ -267,6 +290,7 @@ export const useCreateMany = <
       ...getXRay("useCreateMany", preferLegacyKeys),
     },
   });
+  const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     isLoading: mutation.isLoading,
@@ -274,5 +298,44 @@ export const useCreateMany = <
     onInterval: overtimeOptions?.onInterval,
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  // this function is used to make the `variables` parameter optional
+  const handleMutation = (
+    variables?: UseCreateManyParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      CreateManyResponse<TData>,
+      TError,
+      UseCreateManyParams<TData, TError, TVariables>,
+      unknown
+    >,
+  ) => {
+    return mutate(variables || {}, options);
+  };
+
+  // this function is used to make the `variables` parameter optional
+  const handleMutateAsync = (
+    variables?: UseCreateManyParams<TData, TError, TVariables>,
+    options?: MutateOptions<
+      CreateManyResponse<TData>,
+      TError,
+      UseCreateManyParams<TData, TError, TVariables>,
+      unknown
+    >,
+  ) => {
+    return mutateAsync(variables || {}, options);
+  };
+
+  return {
+    ...mutation,
+    mutate: handleMutation,
+    mutateAsync: handleMutateAsync,
+    overtime: { elapsedTime },
+  };
 };
+
+const missingResourceError = new Error(
+  "[useCreateMany]: `resource` is not defined or not matched but is required",
+);
+
+const missingValuesError = new Error(
+  "[useCreateMany]: `values` is not provided but is required",
+);

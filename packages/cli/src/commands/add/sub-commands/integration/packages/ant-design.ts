@@ -1,6 +1,6 @@
 import { ProjectTypes } from "@definitions/projectTypes";
 
-import { Integration } from ".";
+import type { Integration } from ".";
 import { runTransformer } from "../run-transformer";
 import { prettifyChoice } from "../utils/prettify-choice";
 
@@ -17,7 +17,14 @@ export const AntDesignIntegration: Integration = {
     const description = "Setup Ant Design with Refine";
     let disabled;
 
-    if ([ProjectTypes.NEXTJS, ProjectTypes.REMIX].includes(projectType)) {
+    if (
+      [
+        ProjectTypes.NEXTJS,
+        ProjectTypes.REMIX,
+        ProjectTypes.REMIX_VITE,
+        ProjectTypes.REMIX_SPA,
+      ].includes(projectType)
+    ) {
       disabled =
         "Automatic setup only available Vite for now. See the documentation for manual installation: https://refine.dev/docs/ui-integrations/ant-design/introduction/#installation";
     }

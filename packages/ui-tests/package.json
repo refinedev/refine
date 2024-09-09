@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/ui-tests",
-  "version": "1.14.2",
+  "version": "1.14.9",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",
@@ -21,20 +21,22 @@
   "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
   "scripts": {
-    "build": "tsup",
+    "attw": "attw --pack .",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/core": "^4.48.0",
-    "@refinedev/ui-types": "^1.22.4",
+    "@refinedev/core": "^4.53.0",
+    "@refinedev/ui-types": "^1.22.9",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
+    "@testing-library/dom": "^8.5.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
@@ -58,6 +60,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "829f5a516f98c06f666d6be3e6e6099c75c07719"
+  }
 }

@@ -1,5 +1,5 @@
-import { MetaQuery } from "@refinedev/core";
-import { DocumentNode, visit, SelectionSetNode } from "graphql";
+import type { MetaQuery } from "@refinedev/core";
+import { type DocumentNode, visit, type SelectionSetNode } from "graphql";
 
 export const getOperationFields = (documentNode: DocumentNode) => {
   const fieldLines: string[] = [];

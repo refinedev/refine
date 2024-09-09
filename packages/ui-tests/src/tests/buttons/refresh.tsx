@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  RefineRefreshButtonProps,
+  type RefineRefreshButtonProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
@@ -77,8 +77,17 @@ export const buttonRefreshTests = (
       expect(refresh).toHaveBeenCalledTimes(1);
     });
 
-    it("should invalidates when button is clicked", async () => {
-      jest.clearAllMocks();
+    /**
+     * Previously `useInvalidate` was imported directly inside the UI packages,
+     * which then can be mocked and tested through jest.
+     * Now we've switched to `useRefreshButton` from `@refinedev/core`
+     * which calls `useInvalidate` internally.
+     * We can't test the internal function calls of `useInvalidate` anymore.
+     * Extensive tests on the logic of the `useRefreshButton` which powers the `RefreshButton` are already covered in the core package.
+     */
+    xit("should invalidates when button is clicked", async () => {
+      jest.resetAllMocks();
+      jest.restoreAllMocks();
 
       const { getByText } = render(
         <Routes>

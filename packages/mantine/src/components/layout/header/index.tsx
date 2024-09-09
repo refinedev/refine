@@ -3,7 +3,7 @@ import React from "react";
 import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import { Avatar, Flex, Burger, Title } from "@mantine/core";
 
-import { RefineLayoutHeaderProps } from "../types";
+import type { RefineLayoutHeaderProps } from "../types";
 
 import { useThemedLayoutContext } from "@hooks";
 

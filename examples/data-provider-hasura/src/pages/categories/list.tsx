@@ -8,8 +8,8 @@ import {
 
 import { Table } from "antd";
 
-import { GetCategoriesQuery } from "graphql/types";
-import { GetFieldsFromList } from "@refinedev/hasura";
+import type { GetCategoriesQuery } from "graphql/types";
+import type { GetFieldsFromList } from "@refinedev/hasura";
 import { CATEGORIES_QUERY } from "./queries";
 
 export const CategoryList = () => {

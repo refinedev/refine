@@ -1,5 +1,220 @@
 # @refinedev/mantine
 
+## 2.33.0
+
+### Minor Changes
+
+- [#6180](https://github.com/refinedev/refine/pull/6180) [`292cebc5a70f19400793292b79d1400fec114591`](https://github.com/refinedev/refine/commit/292cebc5a70f19400793292b79d1400fec114591) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useSelect`](https://refine.dev/docs/ui-integrations/mantine/hooks/use-select/)'s `queryResult` and `defaultValueQueryResult` is deprecated, use `query` and `defaultValueQuery` instead. #6179
+
+  ```diff
+  import { useSelect } from '@refinedev/mantine';
+
+  - const { queryResult, defaultValueQueryResult } = useSelect();
+  + const { query, defaultValueQuery } = useSelect();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+### Patch Changes
+
+- [#6199](https://github.com/refinedev/refine/pull/6199) [`5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece`](https://github.com/refinedev/refine/commit/5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece) Thanks [@aliemir](https://github.com/aliemir)! - fix(auth-page): fix wrong translation keys in `type="register"` and `type="forgotPassword"`
+
+  In `type="forgotPassword"`:
+
+  - `"pages.register.buttons.haveAccount"` is replaced with `"pages.forgotPassword.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.forgotPassword.signin"`
+
+  In `type="register"`:
+
+  - `"pages.login.divider"` is replaced with `"pages.register.divider"`
+  - `"pages.login.buttons.haveAccount"` is replaced with `"pages.register.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.register.signin"`
+
+  Wrong keys are kept as fallbacks in case the new keys are not found in the translation file. If you are using those keys in your project, make sure to update them accordingly. Fallback keys will be removed in future releases.
+
+  [Resolves #5816](https://github.com/refinedev/refine/issues/5816)
+
+- [#6217](https://github.com/refinedev/refine/pull/6217) [`aefd093cfd85096fdac36cd25073d14dfb12094f`](https://github.com/refinedev/refine/commit/aefd093cfd85096fdac36cd25073d14dfb12094f) Thanks [@webscriptmaster](https://github.com/webscriptmaster)! - fix(date-field): falsy values should render empty string
+
+  Previously, `<DateField value={undefined} />` was rendering the current date. After this change, it will render empty string if a falsy value is provided.
+
+  [Resolves #6216](https://github.com/refinedev/refine/issues/6216)
+
+## 2.32.2
+
+### Patch Changes
+
+- [#6021](https://github.com/refinedev/refine/pull/6021) [`55cd0662b1e3ff8f8410eba812e80130afe75d14`](https://github.com/refinedev/refine/commit/55cd0662b1e3ff8f8410eba812e80130afe75d14) Thanks [@JayBhensdadia](https://github.com/JayBhensdadia)! - fix: ensure Sider component handles various resource name formats correctly
+
+  Updated Sider component to correctly handle lowercase and camelcased resource names, enhancing usability and functionality.
+
+  Fixes #6004
+
+- [#6064](https://github.com/refinedev/refine/pull/6064) [`b516c18b828ba8823561d0fefc4afe02b45ce332`](https://github.com/refinedev/refine/commit/b516c18b828ba8823561d0fefc4afe02b45ce332) Thanks [@aliemir](https://github.com/aliemir)! - fix(auto-save-indicator): replace reserved `key` prop with `translationKey` in <Message /> components
+
+  `<AutoSaveIndicator />` components from UI libraries have been using a `<Message />` component internally that uses a `key` prop. Since `key` is a reserved prop in React, it was causing a warning in the console. This change replaces the `key` prop with `translationKey` to avoid the warning.
+
+  Resolves [#6067](https://github.com/refinedev/refine/issues/6067)
+
+## 2.32.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: use global values by default for app title and app icon
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. For `<ThemedLayoutV2 />` and `<AuthPage />` components, these values will be used by default. While users can use `options.title` to pass global values for app icon and app name, option to override through `<ThemedTitleV2 />` component is still available for users to override these values in specific use cases.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+  Then, `<ThemedLayoutV2 />` and `<AuthPage />` components will display `<MyIcon />` and `"Refine App"` as app icon and app name respectively.
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/ui-types@1.22.9
+
+## 2.31.0
+
+### Minor Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772) Thanks [@aliemir](https://github.com/aliemir)! - feat: use global values by default for app title and app icon
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. For `<ThemedLayoutV2 />` and `<AuthPage />` components, these values will be used by default. While users can use `options.title` to pass global values for app icon and app name, option to override through `<ThemedTitleV2 />` component is still available for users to override these values in specific use cases.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+  Then, `<ThemedLayoutV2 />` and `<AuthPage />` components will display `<MyIcon />` and `"Refine App"` as app icon and app name respectively.
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d)]:
+  - @refinedev/ui-types@1.22.8
+
+## 2.30.2
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/ui-types@1.22.7
+
+## 2.30.1
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/ui-types@1.22.6
+
+## 2.30.0
+
+### Minor Changes
+
+- [#5761](https://github.com/refinedev/refine/pull/5761) [`399911617b2`](https://github.com/refinedev/refine/commit/399911617b2bb044e4ed9a348daba5c802d790e6) Thanks [@aliemir](https://github.com/aliemir)! - Migrated from outdated `@tabler/icons@1` to `@tabler/icons-react@3` to make sure we're using the latest available version of the library without requiring users to pin to a deprecated version.
+
+  If your project doesn't include `@tabler/icons` you won't be affected by this change. If you're using `@tabler/icons@1` in your project, you may need to update your dependency to latest version of `@tabler/icons-react` to avoid conflicting dependencies. Practically, this should not introduce any breaking changes to your project and all the icons in `@tabler/icons@1` should also be available in the latest version of `@tabler/icons-react`.
+
+### Patch Changes
+
+- [#5737](https://github.com/refinedev/refine/pull/5737) [`4e8188a6652`](https://github.com/refinedev/refine/commit/4e8188a665209b0d0b77aef27c795a29b9513226) Thanks [@aliemir](https://github.com/aliemir)! - chore: updated content of `README.md` to include installation, usage and scaffolding instructions.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: `@tabler/icons-react` imports in CJS builds
+
+  imports from `@tabler/icons-react` end up requiring the ESM build in CJS environments, to prevent this we've added added an esbuild plugin to replace the imports with the correct path for CJS bundles.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: `dayjs` imports in ESM bundles
+
+  dayjs imports in ESM bundles were not being correctly resolved, this has been fixed by adding an esbuild plugin to replace the imports with the correct path for ESM bundles.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the `lodash-es` imports for ESM builds to access the exports properly.
+
+- [#5714](https://github.com/refinedev/refine/pull/5714) [`38f129f40ee`](https://github.com/refinedev/refine/commit/38f129f40eea109c9b89b23a8fd3f217964330c7) Thanks [@aliemir](https://github.com/aliemir)! - Due to the bug fix made in the `@refinedev/core`, `onFinishAutoSave`'s returned promise can now reject and should be handled accordingly. Updated `useForm`'s auto save handler to catch the rejection without breaking the application.
+
+  Additionally due to the same changes, `onFinish` should also be handled accordingly. Updated `useForm`'s `saveButtonProps.onClick` to catch the rejection without breaking the application.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: broken eslint plugin for removing test ids from components
+
+  Eslint plugin to remove test ids from components was broken and might miss some test ids to be included in the bundles.
+
+- [#5808](https://github.com/refinedev/refine/pull/5808) [`10ba9c34490`](https://github.com/refinedev/refine/commit/10ba9c344900d0fa4af7120c24b3b007081a4c39) Thanks [@aliemir](https://github.com/aliemir)! - refactor: moved internal logic of buttons to respective hooks from `@refinedev/core`
+
+  We've moved the internal logic of buttons to their respective hooks in the `@refinedev/core` package to ensure consistency and reduce duplication. This change will make it easier to manage and maintain the buttons across different UI integrations of Refine. This will also benefit the users who want to customize the buttons via `swizzle` option or create their own buttons withouth having to duplicate the logic.
+
+- [#5755](https://github.com/refinedev/refine/pull/5755) [`404b2ef5e1b`](https://github.com/refinedev/refine/commit/404b2ef5e1b8fed469eeab753bac8736ed3fe58e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: incorrect type imports
+
+- Updated dependencies [[`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927)]:
+  - @refinedev/ui-types@1.22.5
+
 ## 2.29.5
 
 ### Patch Changes

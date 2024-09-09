@@ -1,4 +1,4 @@
-import { TPixel } from "./pixel";
+import type { TPixel } from "./pixel";
 
 export type TCanvas = {
   id: string;

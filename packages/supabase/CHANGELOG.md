@@ -1,5 +1,91 @@
 # @refinedev/supabase
 
+## 5.9.4
+
+### Patch Changes
+
+- [#6240](https://github.com/refinedev/refine/pull/6240) [`697561ba04abfb570ae978066668583096ea24c0`](https://github.com/refinedev/refine/commit/697561ba04abfb570ae978066668583096ea24c0) Thanks [@pkarc](https://github.com/pkarc)! - fix(supabase): issue with parsed values when using conditional filters
+
+  Fixed conditional filter's parsed values while using `contains`, `containss`, `startswith` and `endswith`.
+
+  [Fixes #6239](https://github.com/refinedev/refine/issues/6239)
+
+## 5.9.3
+
+### Patch Changes
+
+- [#6206](https://github.com/refinedev/refine/pull/6206) [`399ff2f9b785a1eebf59235fe6a5663d8b943ad3`](https://github.com/refinedev/refine/commit/399ff2f9b785a1eebf59235fe6a5663d8b943ad3) Thanks [@Sergio16T](https://github.com/Sergio16T)! - feat: added support for between filter in supabase dataProvider. Maps values to gte & lte.
+
+  [Feat #6119](https://github.com/refinedev/refine/issues/6119)
+
+## 5.9.2
+
+### Patch Changes
+
+- [#6025](https://github.com/refinedev/refine/pull/6025) [`f4e61b0fae7e78d0c63c09453f4bd11b4c6f8b09`](https://github.com/refinedev/refine/commit/f4e61b0fae7e78d0c63c09453f4bd11b4c6f8b09) Thanks [@youssefsiam38](https://github.com/youssefsiam38)! - fix supabase sorting with nested embedded resources
+
+## 5.9.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - Added ina and nina CrudOperators. Added filtering by these operators to Supabase data provider
+  #5902
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 5.8.0
+
+### Minor Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`a39f1952554120893ea83db904037917fc293dc6`](https://github.com/refinedev/refine/commit/a39f1952554120893ea83db904037917fc293dc6) Thanks [@aliemir](https://github.com/aliemir)! - Added ina and nina CrudOperators. Added filtering by these operators to Supabase data provider
+  #5902
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 5.7.10
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+## 5.7.9
+
+### Patch Changes
+
+- [#5841](https://github.com/refinedev/refine/pull/5841) [`7b13515b3c0`](https://github.com/refinedev/refine/commit/7b13515b3c0feba36a7f2d89cc9e8a4455a2c4ca) Thanks [@issa012](https://github.com/issa012)! - fix: in methods update, updateMany, create, createMany, meta.select changed to "\*". Resolves #5679
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+## 5.7.8
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
 ## 5.7.7
 
 ### Patch Changes

@@ -21,7 +21,7 @@ import {
   Spin,
 } from "antd";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
@@ -53,7 +53,7 @@ export const PostList = () => {
   // Show Modal
   const [visibleShowModal, setVisibleShowModal] = useState<boolean>(false);
 
-  const { queryResult, setShowId } = useShow<IPost>();
+  const { query: queryResult, setShowId } = useShow<IPost>();
 
   const { data: showQueryResult } = queryResult;
   const record = showQueryResult?.data;

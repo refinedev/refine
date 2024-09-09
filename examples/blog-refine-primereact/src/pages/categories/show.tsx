@@ -3,12 +3,12 @@ import { useBack, useShow } from "@refinedev/core";
 import { Card } from "primereact/card";
 import { Button } from "primereact/button";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
+  const { query: queryResult } = useShow<ICategory>();
   const category = queryResult?.data?.data;
 
   return (

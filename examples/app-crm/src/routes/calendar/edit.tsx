@@ -6,27 +6,34 @@ import { useNavigation, useResource } from "@refinedev/core";
 import { Modal } from "antd";
 import dayjs from "dayjs";
 
-import { Event } from "@/graphql/schema.types";
-
 import { CalendarForm } from "./components";
 import { CALENDAR_UPDATE_EVENT_MUTATION } from "./queries";
+import type { GetFields } from "@refinedev/nestjs-query";
+import type { UpdateEventMutation } from "../../graphql/types";
+
+type Event = GetFields<UpdateEventMutation>;
 
 export const CalendarEditPage: React.FC = () => {
   const [isAllDayEvent, setIsAllDayEvent] = useState(false);
   const { id } = useResource();
   const { list } = useNavigation();
 
-  const { formProps, saveButtonProps, form, onFinish, queryResult } =
-    useForm<Event>({
-      action: "edit",
-      id,
-      queryOptions: {
-        enabled: true,
-      },
-      meta: {
-        gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
-      },
-    });
+  const {
+    formProps,
+    saveButtonProps,
+    form,
+    onFinish,
+    query: queryResult,
+  } = useForm<Event>({
+    action: "edit",
+    id,
+    queryOptions: {
+      enabled: true,
+    },
+    meta: {
+      gqlMutation: CALENDAR_UPDATE_EVENT_MUTATION,
+    },
+  });
 
   useEffect(() => {
     const startDate = queryResult?.data?.data.startDate;

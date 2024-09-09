@@ -1,7 +1,7 @@
-import { CrudSorting, MetaQuery, Pagination } from "@refinedev/core";
+import type { CrudSorting, MetaQuery, Pagination } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 
-import { HasuraCrudFilters, generateFilters } from "./generateFilters";
+import { type HasuraCrudFilters, generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
 import { getOperationFields } from "./graphql";
 

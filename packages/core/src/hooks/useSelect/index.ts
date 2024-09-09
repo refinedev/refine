@@ -1,6 +1,9 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import type {
+  QueryObserverResult,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import debounce from "lodash/debounce";
 import get from "lodash/get";
 import uniqBy from "lodash/uniqBy";
@@ -8,7 +11,7 @@ import uniqBy from "lodash/uniqBy";
 import { pickNotDeprecated } from "@definitions/helpers";
 import { useList, useMany, useMeta } from "@hooks";
 
-import {
+import type {
   BaseKey,
   BaseOption,
   BaseRecord,
@@ -21,15 +24,17 @@ import {
   Pagination,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { BaseListProps } from "../data/useList";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { BaseListProps } from "../data/useList";
 import { useResource } from "../resource/useResource/index";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
+
+export type SelectedOptionsOrder = "in-place" | "selected-first";
 
 export type UseSelectProps<TQueryFnData, TError, TData> = {
   /**
@@ -40,16 +45,16 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * Set the option's label value
    * @default `"title"`
    */
-  optionLabel?: keyof TData extends string
-    ? keyof TData
-    : never | ((item: TData) => string);
+  optionLabel?:
+    | (keyof TData extends string ? keyof TData : never)
+    | ((item: TData) => string);
   /**
    * Set the option's value
    * @default `"id"`
    */
-  optionValue?: keyof TData extends string
-    ? keyof TData
-    : never | ((item: TData) => string);
+  optionValue?:
+    | (keyof TData extends string ? keyof TData : never)
+    | ((item: TData) => string);
   /**
    * Field name to search for.
    * @description If provided `optionLabel` is a string, uses `optionLabel`'s value.
@@ -81,6 +86,11 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * Adds extra `options`
    */
   defaultValue?: BaseKey | BaseKey[];
+  /**
+   * Allow us to sort the selection options
+   * @default `in-place`
+   */
+  selectedOptionsOrder?: SelectedOptionsOrder;
   /**
    * The number of milliseconds to delay
    * @default `300`
@@ -160,7 +170,15 @@ export type UseSelectReturnType<
   TError extends HttpError = HttpError,
   TOption extends BaseOption = BaseOption,
 > = {
+  query: QueryObserverResult<GetListResponse<TData>, TError>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>, TError>;
+  /**
+   * @deprecated Use `defaultValueQuery` instead
+   */
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
   onSearch: (value: string) => void;
   options: TOption[];
@@ -210,6 +228,7 @@ export const useSelect = <
     hasPagination = false,
     liveMode,
     defaultValue = [],
+    selectedOptionsOrder = "in-place",
     onLiveEvent,
     onSearch: onSearchFromProp,
     liveParams,
@@ -332,26 +351,6 @@ export const useSelect = <
     dataProviderName,
   });
 
-  const onSearch = (value: string) => {
-    if (onSearchFromProp) {
-      setSearch(onSearchFromProp(value));
-      return;
-    }
-
-    if (!value) {
-      setSearch([]);
-      return;
-    }
-
-    setSearch([
-      {
-        field: searchField,
-        operator: "contains",
-        value,
-      },
-    ]);
-  };
-
   const { elapsedTime } = useLoadingOvertime({
     isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
     interval: overtimeOptions?.interval,
@@ -359,15 +358,55 @@ export const useSelect = <
   });
 
   const combinedOptions = useMemo(
-    () => uniqBy([...options, ...selectedOptions], "value"),
+    () =>
+      uniqBy(
+        selectedOptionsOrder === "in-place"
+          ? [...options, ...selectedOptions]
+          : [...selectedOptions, ...options],
+        "value",
+      ),
     [options, selectedOptions],
   );
+
+  /**
+   * To avoid any changes in the `onSearch` callback,
+   * We're storing `onSearchFromProp` in a ref and accessing it in the `onSearch` callback.
+   */
+  const onSearchFromPropRef = useRef(onSearchFromProp);
+
+  const onSearch = useMemo(() => {
+    return debounce((value: string) => {
+      if (onSearchFromPropRef.current) {
+        setSearch(onSearchFromPropRef.current(value));
+        return;
+      }
+
+      if (!value) {
+        setSearch([]);
+        return;
+      }
+
+      setSearch([
+        {
+          field: searchField,
+          operator: "contains",
+          value,
+        },
+      ]);
+    }, debounceValue);
+  }, [searchField, debounceValue]);
+
+  useEffect(() => {
+    onSearchFromPropRef.current = onSearchFromProp;
+  }, [onSearchFromProp]);
 
   return {
     queryResult,
     defaultValueQueryResult,
+    query: queryResult,
+    defaultValueQuery: defaultValueQueryResult,
     options: combinedOptions,
-    onSearch: debounce(onSearch, debounceValue),
+    onSearch,
     overtime: { elapsedTime },
   };
 };

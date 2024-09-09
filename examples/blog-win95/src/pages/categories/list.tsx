@@ -13,10 +13,10 @@ import {
   Hourglass,
 } from "react95";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryList = () => {
-  const { tableQueryResult } = useTable<ICategory>({
+  const { tableQuery: tableQueryResult } = useTable<ICategory>({
     resource: "categories",
   });
 

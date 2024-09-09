@@ -478,6 +478,10 @@ button.sp-button.sp-icon-standalone[title="Open in CodeSandbox"]:has(svg + span)
     @apply text-gray-700 dark:text-gray-100;
 }
 
+.admonition .admonition-header code {
+    text-transform: none;
+}
+
 h4 > del:has(code:only-child) {
     @apply no-underline;
 }

@@ -10,7 +10,7 @@ import {
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
   HamburgerMenu,
-  RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/mantine";
 import { IconLanguage, IconMoonStars, IconSun } from "@tabler/icons-react";
 import i18n from "i18next";

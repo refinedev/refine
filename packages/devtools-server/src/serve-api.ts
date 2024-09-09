@@ -1,13 +1,13 @@
 import type { Express } from "express";
 import { json } from "express";
 import uniq from "lodash/uniq";
-import {
+import type {
   AvailablePackageType,
   Feed,
   PackageType,
 } from "@refinedev/devtools-shared";
 
-import { Data } from "./create-db";
+import type { Data } from "./create-db";
 import { getFeed } from "./feed/get-feed";
 import { getAllPackages } from "./packages/get-all-packages";
 import { getAvailablePackages } from "./packages/get-available-packages";
@@ -131,17 +131,23 @@ export const serveApi = (app: Express, db: Data) => {
   });
 
   app.get("/api/project-id/status", async (_, res) => {
+    const CODES = {
+      OK: 0,
+      NOT_FOUND: 1,
+      ERROR: 2,
+    };
+
     const projectId = await getProjectIdFromPackageJson();
 
     if (projectId) {
-      res.status(200).json({ projectId });
+      res.status(200).json({ projectId, status: CODES.OK });
       return;
     }
     if (projectId === false) {
-      res.status(404).json({ projectId: null });
+      res.status(200).json({ projectId: null, status: CODES.NOT_FOUND });
       return;
     }
-    res.status(500).json({ projectId: null });
+    res.status(200).json({ projectId: null, status: CODES.ERROR });
     return;
   });
 

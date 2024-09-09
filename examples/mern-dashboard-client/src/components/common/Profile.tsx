@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
 
-import { ProfileProps, PropertyProps } from "interfaces/common";
+import type { ProfileProps, PropertyProps } from "interfaces/common";
 import PropertyCard from "./PropertyCard";
 
 function checkImage(url: any) {

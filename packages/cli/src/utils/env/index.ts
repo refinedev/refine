@@ -1,6 +1,9 @@
-import { NODE_ENV } from "@definitions/node";
+import type { NODE_ENV } from "@definitions/node";
 import * as dotenv from "dotenv";
-dotenv.config();
+
+const refineEnv: Record<string, string> = {};
+
+dotenv.config({ processEnv: refineEnv });
 
 const envSearchMap: Record<Exclude<NODE_ENV, "custom">, RegExp> = {
   development: /dev/i,
@@ -30,17 +33,16 @@ export const getNodeEnv = (): NODE_ENV => {
   return env;
 };
 
+const getEnvValue = (key: string): string | undefined => {
+  return process.env[key] || refineEnv[key];
+};
+
 export const ENV = {
   NODE_ENV: getNodeEnv(),
-  REFINE_NO_TELEMETRY: process.env.REFINE_NO_TELEMETRY || "false",
+  REFINE_NO_TELEMETRY: getEnvValue("REFINE_NO_TELEMETRY") || "false",
   UPDATE_NOTIFIER_IS_DISABLED:
-    process.env.UPDATE_NOTIFIER_IS_DISABLED || "false",
+    getEnvValue("UPDATE_NOTIFIER_IS_DISABLED") || "false",
   UPDATE_NOTIFIER_CACHE_TTL:
-    process.env.UPDATE_NOTIFIER_CACHE_TTL || 1000 * 60 * 60 * 24, // 24 hours,
-  REFINE_PROXY_DOMAIN: process.env.REFINE_PROXY_DOMAIN || "https://refine.dev",
-  REFINE_PROXY_TARGET:
-    process.env.REFINE_PROXY_TARGET || "http://localhost:3000",
-  REFINE_PROXY_PORT: process.env.REFINE_PROXY_PORT || "7313",
-  REFINE_PROXY_REWRITE_URL:
-    process.env.REFINE_REWRITE_URL || "http://localhost:7313",
+    getEnvValue("UPDATE_NOTIFIER_CACHE_TTL") || 1000 * 60 * 60 * 24,
+  REFINE_DEVTOOLS_PORT: getEnvValue("REFINE_DEVTOOLS_PORT"),
 };

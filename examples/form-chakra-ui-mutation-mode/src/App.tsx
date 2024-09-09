@@ -1,4 +1,4 @@
-import { GitHubBanner, MutationMode, Refine } from "@refinedev/core";
+import { GitHubBanner, type MutationMode, Refine } from "@refinedev/core";
 import {
   ErrorComponent,
   ThemedLayoutV2,

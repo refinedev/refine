@@ -153,7 +153,7 @@ export const ProductList = () => {
       setCurrent,
       pageCount,
       current,
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
   } = useTable({
     columns,
@@ -223,8 +223,8 @@ import {
 } from "@refinedev/mantine";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
 
   const record = data?.data;
 

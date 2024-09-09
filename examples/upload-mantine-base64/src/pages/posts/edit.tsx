@@ -1,12 +1,16 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { useState } from "react";
 import { Edit, useForm, useSelect, Select } from "@refinedev/mantine";
 import { TextInput, Text, SimpleGrid, Image } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import { Dropzone, IMAGE_MIME_TYPE, FileWithPath } from "@mantine/dropzone";
+import {
+  Dropzone,
+  IMAGE_MIME_TYPE,
+  type FileWithPath,
+} from "@mantine/dropzone";
 
 import { convertBase64 } from "../../utils";
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 interface FormValues {
   title: string;
@@ -27,7 +31,7 @@ export const PostEdit: React.FC = () => {
     setFieldValue,
     values,
     errors,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
   } = useForm<IPost, HttpError, FormValues>({
     initialValues: {
       title: "",

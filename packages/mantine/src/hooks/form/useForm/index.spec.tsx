@@ -5,7 +5,7 @@ import { useForm } from ".";
 import { Select, TextInput } from "@mantine/core";
 import { useSelect } from "@hooks/useSelect";
 import { Edit } from "@components/crud";
-import { IRefineOptions, HttpError } from "@refinedev/core";
+import type { IRefineOptions, HttpError } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
 
 const renderForm = ({
@@ -21,7 +21,7 @@ const renderForm = ({
     const {
       saveButtonProps,
       getInputProps,
-      refineCore: { queryResult, formLoading },
+      refineCore: { query, formLoading },
     } = useForm({
       ...useFormProps,
       refineCoreProps: {
@@ -42,7 +42,7 @@ const renderForm = ({
 
     const { selectProps, queryResult: categoriesQueryResult } = useSelect({
       resource: "categories",
-      defaultValue: queryResult?.data?.data?.category?.id,
+      defaultValue: query?.data?.data?.category?.id,
     });
 
     if (formLoading || categoriesQueryResult.isLoading) {

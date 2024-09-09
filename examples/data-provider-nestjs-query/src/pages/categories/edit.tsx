@@ -1,15 +1,17 @@
 import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input } from "antd";
 
 import { CATEGORY_EDIT_MUTATION } from "./queries";
-import { CategoryEditMutation } from "graphql/types";
+import type { CategoryEditMutation } from "graphql/types";
 
 export const CategoryEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
-    GetFields<CategoryEditMutation>
-  >({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<GetFields<CategoryEditMutation>>({
     metaData: {
       gqlMutation: CATEGORY_EDIT_MUTATION,
     },

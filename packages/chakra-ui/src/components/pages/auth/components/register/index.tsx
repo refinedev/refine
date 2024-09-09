@@ -5,15 +5,15 @@ import {
   useLink,
   useRouterContext,
   useRegister,
-  RegisterPageProps,
-  RegisterFormTypes,
-  BaseRecord,
-  HttpError,
+  type RegisterPageProps,
+  type RegisterFormTypes,
+  type BaseRecord,
+  type HttpError,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   Divider,
   FormControl,
@@ -28,7 +28,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type RegisterProps = RegisterPageProps<
@@ -148,7 +148,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               type="text"
               placeholder="Email"
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredEmail",
+                  "Email is required",
+                ),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: translate(
@@ -170,7 +173,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               type="password"
               placeholder="Password"
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.register.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
             />
             <FormErrorMessage>{`${errors.password?.message}`}</FormErrorMessage>
@@ -189,8 +195,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             >
               <span>
                 {translate(
-                  "pages.login.buttons.haveAccount",
-                  "Have an account?",
+                  "pages.register.buttons.haveAccount",
+                  translate(
+                    "pages.login.buttons.haveAccount",
+                    "Have an account?",
+                  ),
                 )}
               </span>
               <ChakraLink
@@ -200,7 +209,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 as={Link}
                 to="/login"
               >
-                {translate("pages.login.signin", "Sign in")}
+                {translate(
+                  "pages.register.signin",
+                  translate("pages.login.signin", "Sign in"),
+                )}
               </ChakraLink>
             </Box>
           )}
@@ -211,8 +223,8 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Box mt={6} textAlign="center">
           <span>
             {translate(
-              "pages.login.buttons.noAccount",
-              "Don’t have an account?",
+              "pages.register.buttons.haveAccount",
+              "Have an account?",
             )}
           </span>
           <ChakraLink
@@ -222,7 +234,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             fontWeight="bold"
             to="/login"
           >
-            {translate("pages.login.signin", "Sign in")}
+            {translate(
+              "pages.register.signin",
+              translate("pages.login.signin", "Sign in"),
+            )}
           </ChakraLink>
         </Box>
       )}

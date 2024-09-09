@@ -1,5 +1,88 @@
 # @refinedev/appwrite
 
+## 7.0.1
+
+### Patch Changes
+
+- [#6256](https://github.com/refinedev/refine/pull/6256) [`7ac2fc2013c8f38741831d3b65b23abe5f6fe1b2`](https://github.com/refinedev/refine/commit/7ac2fc2013c8f38741831d3b65b23abe5f6fe1b2) Thanks [@soranoo](https://github.com/soranoo)! - feat(appwrite): add support to conditional filters and missing logical filters
+
+  Add Support to `and`, `or`, `between`, `null`, `nnull`, `startswith` and `endswith` operators
+
+  [Resolves #6252](https://github.com/refinedev/refine/issues/6252)
+
+## 7.0.0
+
+### Major Changes
+
+- [#6138](https://github.com/refinedev/refine/pull/6138) [`d4809d6e9cfd7b311ab8ba1fa27c21cb50e1bc17`](https://github.com/refinedev/refine/commit/d4809d6e9cfd7b311ab8ba1fa27c21cb50e1bc17) Thanks [@soranoo](https://github.com/soranoo)! - feat(package/appwrite): update `Appwrite` SDK to `v15`
+
+  Updated `appwrite` SDK version to `v15` to match latest server version. Depending on your server version upgrading to this version should be safe but may require some changes in your codebase if you are using `appwrite` SDK directly.
+
+  If you're using the `data-provider-appwrite` example as base or created your app using the `create-refine-app` CLI, your auth provider implementation may require a small change in the `login` method:
+
+  ```diff
+  -      await account.createEmailSession(email, password);
+  +      await account.createEmailPasswordSession(email, password);
+  ```
+
+  [Resolves #6090](https://github.com/refinedev/refine/issues/6090)
+
+## 6.5.3
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.5.2
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.5.1
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+## 6.5.0
+
+### Minor Changes
+
+- [#5886](https://github.com/refinedev/refine/pull/5886) [`f3ddcce0bf5`](https://github.com/refinedev/refine/commit/f3ddcce0bf59a8847347f911e710b8d216eb2699) Thanks [@abdelrahman-essawy](https://github.com/abdelrahman-essawy)! - fix: add ability to customize default permission without explicitly passing them on each mutation
+
+  fixing an issue which didn't allow users to override the default `readPermissions` / `writePermissions` values `Role.any()`, by passing `defaultReadPermissions` / `defaultWritePermissions` OR by passing `meta?.readPermissions` / `meta?.writePermissions`.
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+## 6.4.8
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
 ## 6.4.7
 
 ### Patch Changes

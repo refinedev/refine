@@ -1,7 +1,7 @@
 import React from "react";
-import { ConfigType } from "dayjs";
+import type { ConfigType } from "dayjs";
 
-import { RefineFieldDateProps } from "@refinedev/ui-types";
+import type { RefineFieldDateProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
@@ -37,6 +37,22 @@ export const fieldDateTests = (
       rerender(<DateField value={new Date("2021-05-20")} format="l" />);
 
       getByText("5/20/2021");
+    });
+
+    it("renders empty with given null", () => {
+      const { getByTestId } = render(
+        <DateField value={null} data-testid="date-field" />,
+      );
+
+      expect(getByTestId("date-field").textContent).toBe("");
+    });
+
+    it("renders empty with given undefined", () => {
+      const { getByTestId } = render(
+        <DateField value={undefined} data-testid="date-field" />,
+      );
+
+      expect(getByTestId("date-field").textContent).toBe("");
     });
 
     it("renders invalid date with given incorrect date", () => {

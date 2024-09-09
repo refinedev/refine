@@ -1,11 +1,11 @@
 import { SaveButton, useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { CloseOutlined } from "@ant-design/icons";
 import { Button, Card, Drawer, Form, Input, Spin } from "antd";
 
-import {
+import type {
   UpdateUserMutation,
   UpdateUserMutationVariables,
 } from "@/graphql/types";
@@ -22,7 +22,11 @@ type Props = {
 };
 
 export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
-  const { saveButtonProps, formProps, queryResult } = useForm<
+  const {
+    saveButtonProps,
+    formProps,
+    query: queryResult,
+  } = useForm<
     GetFields<UpdateUserMutation>,
     HttpError,
     GetVariables<UpdateUserMutationVariables>
@@ -82,6 +86,7 @@ export const AccountSettings = ({ opened, setOpened, userId }: Props) => {
         <Text strong>Account Settings</Text>
         <Button
           type="text"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<CloseOutlined />}
           onClick={() => closeModal()}
         />

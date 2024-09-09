@@ -1,4 +1,3 @@
-import { LoginFlow } from "@ory/client";
 import {
   DevToolsContext,
   DevtoolsEvent,
@@ -12,7 +11,7 @@ import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
 import { GithubIcon } from "src/components/icons/github";
 import { GoogleIcon } from "src/components/icons/google";
 import { LogoIcon } from "src/components/icons/logo";
-import { ory } from "src/utils/ory";
+import { AUTH_TRIGGER_API_PATH } from "src/utils/constants";
 
 export const Login = () => {
   return (
@@ -70,28 +69,10 @@ const providers = [
 const LoginForm = (props: { className?: string }) => {
   const { ws } = React.useContext(DevToolsContext);
   const [searchParams] = useSearchParams();
-  const [flowData, setFlowData] = React.useState<LoginFlow | null>(null);
+  const errorParam = searchParams.get("error");
+  const [sentError, setSentError] = React.useState<string | null>(null);
 
-  const error = searchParams.get("error");
-
-  const generateAuthFlow = React.useCallback(async () => {
-    try {
-      const redirectUrl = `${window.location.origin}/after-login`;
-
-      const { data } = await ory.createNativeLoginFlow({
-        refresh: true,
-        returnTo: redirectUrl,
-      });
-
-      setFlowData(data);
-    } catch (_error) {
-      console.error(_error);
-    }
-  }, [typeof window]);
-
-  React.useEffect(() => {
-    generateAuthFlow();
-  }, [generateAuthFlow]);
+  const error = errorParam || sentError;
 
   React.useEffect(() => {
     if (ws) {
@@ -100,6 +81,20 @@ const LoginForm = (props: { className?: string }) => {
         DevtoolsEvent.DEVTOOLS_RELOAD_AFTER_LOGIN,
         () => {
           window.location.reload();
+        },
+      );
+      return unsub;
+    }
+    return () => 0;
+  }, [ws]);
+
+  React.useEffect(() => {
+    if (ws) {
+      const unsub = receive(
+        ws,
+        DevtoolsEvent.DEVTOOLS_DISPLAY_LOGIN_FAILURE,
+        (payload) => {
+          setSentError(payload.error);
         },
       );
       return unsub;
@@ -121,7 +116,7 @@ const LoginForm = (props: { className?: string }) => {
       )}
     >
       <LogoIcon height={60} width={252} />
-      <form
+      <div
         className={clsx(
           "re-w-full",
           "re-flex",
@@ -130,23 +125,13 @@ const LoginForm = (props: { className?: string }) => {
           "re-justify-center",
           "re-gap-4",
         )}
-        action={flowData?.ui?.action}
-        method={flowData?.ui?.method}
-        target="_blank"
       >
-        <input
-          type="hidden"
-          name="csrf_token"
-          value={(flowData?.ui.nodes[2].attributes as any)?.value}
-        />
         {providers.map(({ name, icon, label }) => (
-          <button
+          <a
             key={name}
-            id={name}
-            name="provider"
-            type="submit"
-            value={name}
-            disabled={!flowData}
+            href={`${AUTH_TRIGGER_API_PATH}?provider=${name}`}
+            target="_blank"
+            rel="noreferrer"
             className={clsx(
               "re-w-full",
               "re-py-2.5",
@@ -165,25 +150,25 @@ const LoginForm = (props: { className?: string }) => {
           >
             {icon}
             <span>{label}</span>
-          </button>
+          </a>
         ))}
-        {error && (
-          <div
-            className={clsx(
-              "re-bg-alt-yellow",
-              "re-bg-opacity-20",
-              "re-border-2",
-              "re-border-alt-yellow",
-              "re-text-alt-yellow",
-              "re-text-xs",
-              "re-p-3",
-              "re-rounded",
-            )}
-          >
-            {error}
-          </div>
-        )}
-      </form>
+      </div>
+      {error && (
+        <div
+          className={clsx(
+            "re-bg-alt-yellow",
+            "re-bg-opacity-20",
+            "re-border-2",
+            "re-border-alt-yellow",
+            "re-text-alt-yellow",
+            "re-text-xs",
+            "re-p-3",
+            "re-rounded",
+          )}
+        >
+          {error}
+        </div>
+      )}
     </div>
   );
 };

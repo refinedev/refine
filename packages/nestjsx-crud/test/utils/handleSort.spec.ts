@@ -1,5 +1,5 @@
-import { RequestQueryBuilder, QuerySort } from "@nestjsx/crud-request";
-import { CrudFilters, CrudSorting } from "@refinedev/core";
+import { RequestQueryBuilder, type QuerySort } from "@nestjsx/crud-request";
+import type { CrudFilters, CrudSorting } from "@refinedev/core";
 import { handleFilter, generateSort, handleSort } from "../../src/utils";
 
 describe("handleSort", () => {

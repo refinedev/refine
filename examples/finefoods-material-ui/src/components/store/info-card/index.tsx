@@ -1,11 +1,11 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { useTranslate } from "@refinedev/core";
 import {
   Box,
   Divider,
   Paper,
   Skeleton,
-  SxProps,
+  type SxProps,
   Typography,
   useTheme,
 } from "@mui/material";
@@ -13,7 +13,7 @@ import ArrowDropDownCircleOutlinedIcon from "@mui/icons-material/ArrowDropDownCi
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import PlaceOutlinedIcon from "@mui/icons-material/PlaceOutlined";
 import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
-import { IStore } from "../../../interfaces";
+import type { IStore } from "../../../interfaces";
 import { StoreStatus } from "../status";
 
 type Props = {

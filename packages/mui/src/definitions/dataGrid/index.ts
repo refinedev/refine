@@ -5,7 +5,7 @@ import type {
 } from "@mui/x-data-grid";
 import { GridLogicOperator } from "@mui/x-data-grid";
 
-import {
+import type {
   CrudFilters,
   CrudOperators,
   CrudSorting,
@@ -34,7 +34,7 @@ export const transformCrudSortingToSortModel = (
 
 export const transformMuiOperatorToCrudOperator = (
   operatorValue?: string,
-): Exclude<CrudOperators, "or"> => {
+): Exclude<CrudOperators, "or" | "and"> => {
   if (!operatorValue) {
     return "eq";
   }
@@ -72,7 +72,7 @@ export const transformMuiOperatorToCrudOperator = (
     case "isNotEmpty":
       return "nnull";
     default:
-      return operatorValue as Exclude<CrudOperators, "or">;
+      return operatorValue as Exclude<CrudOperators, "or" | "and">;
   }
 };
 
@@ -81,11 +81,13 @@ export const transformFilterModelToCrudFilters = ({
   logicOperator,
 }: GridFilterModel): CrudFilters => {
   const filters = items.map(({ field, value, operator }) => {
-    return {
+    const filter: LogicalFilter = {
       field: field,
       value: ["isEmpty", "isNotEmpty"].includes(operator) ? true : value ?? "",
       operator: transformMuiOperatorToCrudOperator(operator),
     };
+
+    return filter;
   });
 
   if (logicOperator === GridLogicOperator.Or) {

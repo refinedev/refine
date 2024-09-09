@@ -2,7 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import { useList } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { useWatch } from "react-hook-form";
-import {
+import type {
   Country,
   Customer,
   Region,
@@ -31,7 +31,7 @@ export const ProfileBillingAddress: React.FC<MyInformationProps> = ({
     reset,
     control,
     formState: { errors, touchedFields },
-    refineCore: { onFinish, mutationResult },
+    refineCore: { onFinish, mutation: mutationResult },
   } = useForm<UpdateCustomerNameFormData>({
     refineCoreProps: {
       action: "edit",

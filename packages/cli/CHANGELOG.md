@@ -1,5 +1,222 @@
 # @refinedev/cli
 
+## 2.16.38
+
+### Patch Changes
+
+- [#6246](https://github.com/refinedev/refine/pull/6246) [`f5501f93a818d6e5811aa94cb354d77a2b1eb1ff`](https://github.com/refinedev/refine/commit/f5501f93a818d6e5811aa94cb354d77a2b1eb1ff) Thanks [@YusukeSano](https://github.com/YusukeSano)! - feat: added scripts for Remix SPA Mode
+
+  It is now possible to execute the Remix SPA Mode script by selecting it from the platform options.
+
+  Two new project types are added `remix-vite` and `remix-spa`. `remix-vite` is Remix + Vite and `remix-spa` is Remix + Vite SPA Mode. While `remix-vite` type can be inferred from the project configuration without needing to specify it in the command, `remix-spa` type needs to be specified explicitly.
+
+  [Resolves #6127](https://github.com/refinedev/refine/issues/6127)
+
+- Updated dependencies [[`6963e591f8f307aee9362d5dfff99972eb64bf03`](https://github.com/refinedev/refine/commit/6963e591f8f307aee9362d5dfff99972eb64bf03)]:
+  - @refinedev/devtools-server@1.1.36
+
+## 2.16.37
+
+### Patch Changes
+
+- [#6162](https://github.com/refinedev/refine/pull/6162) [`d7fb07e59ddcbef49437c64d3a92b3d47d850225`](https://github.com/refinedev/refine/commit/d7fb07e59ddcbef49437c64d3a92b3d47d850225) Thanks [@noritsune](https://github.com/noritsune)! - feat(cli): improve the resource add command to generate page files for Next.js
+
+  When using the add resource command in a project using Next.js, a page will be generated to perform the selected actions for that resource.
+
+  These pages simply display generated components that perform actions on the resource. The placement of page files assumes operation with the App Router. If you prefer to use the Page Router instead, you'll need to move them manually.
+
+  [Resolves #6091](https://github.com/refinedev/refine/issues/6091)
+
+- [#6221](https://github.com/refinedev/refine/pull/6221) [`cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4`](https://github.com/refinedev/refine/commit/cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Automatically install `@refinedev/inferencer` if missing after generating new resources.
+
+  [Resolves #6220](https://github.com/refinedev/refine/issues/6220)
+
+- [#6135](https://github.com/refinedev/refine/pull/6135) [`c3a75139f82de022b54855e87e200ab38c803af5`](https://github.com/refinedev/refine/commit/c3a75139f82de022b54855e87e200ab38c803af5) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `yarn refine update` removes semver range specifiers(`^`, `~`) from `package.json`. #6134
+
+- [#6226](https://github.com/refinedev/refine/pull/6226) [`9806a3629256d73bdc18ae808dce217f0108aad2`](https://github.com/refinedev/refine/commit/9806a3629256d73bdc18ae808dce217f0108aad2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `refine add resource` generating invalid React component name. #6225
+
+  `refine add resource blog-posts` command was generating invalid React component name when the resource name contains a hyphen. This issue has been fixed by converting the resource name to PascalCase before generating the React component name.
+
+  ```diff
+  - export const Blog-PostsList: React.FC = () => {};
+  + export const BlogPostsList: React.FC = () => {};
+  ```
+
+  [Resolves #6225](https://github.com/refinedev/refine/issues/6225)
+
+- [#6196](https://github.com/refinedev/refine/pull/6196) [`e2b467528f6a799c3219e3a8fefd4834a0ca0431`](https://github.com/refinedev/refine/commit/e2b467528f6a799c3219e3a8fefd4834a0ca0431) Thanks [@aliemir](https://github.com/aliemir)! - feat(cli): create base translation files for i18n provider in add provider command
+
+  Currently `refine add provider i18n` command is only creating a demo i18n provider implementation but misses the translation files. This PR adds the base translation files for the i18n provider which is used by Refine internally in hooks, notifications and components.
+
+  Now `locale/en.json` will be added with primarily used translation keys and values for the i18n provider.
+
+  [Resolves #5918](https://github.com/refinedev/refine/issues/5918)
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): avoid polluting `process.env` with unwanted environment variables
+
+  Previously, the `@refinedev/cli` used `dotenv` to load environment variables from `.env` files and populate `process.env`. This caused issues when the users app has a different convention for environment variables, e.g. `.env.development`, `.env.production`, etc.
+
+  Now, the `@refinedev/cli` will read the file but avoid populating `process.env` with the variables and keep the values in its scope without passing them to the child processes. This will prevent unwanted environment variables from being passed to the child processes and avoid conflicts with the user's environment variables.
+
+  [Resolves #5803](https://github.com/refinedev/refine/issues/5803)
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - feat(devtools): ability to change the port of the devtools server
+
+  Now users can change the port of the devtools server by setting the `REFINE_DEVTOOLS_PORT` environment variable. Previously, the port was hardcoded to "5001" and could not be changed.
+
+  If you're using `@refinedev/cli`'s runner commands to start your development server, `REFINE_DEVTOOLS_PORT` will be propagated to your app with appropriate prefix. E.g. if you're using Vite, the environment variable will be `VITE_REFINE_DEVTOOLS_PORT` and it will be used by the `@refinedev/devtools`'s `<DevtoolsProvider />` component to connect to the devtools server.
+
+  - In Next.js apps, it will be prefixed with `NEXT_PUBLIC_`
+  - In Craco and Create React App apps, it will be prefixed with `REACT_APP_`
+  - In Remix apps and other custom setups, the environment variable will be used as is.
+
+  In some scenarios where the environment variables are not passed to the browser, you may need to manually set the Refine Devtools URL in the `<DevtoolsProvider />` component via the `url` prop. Remix apps do not automatically pass environment variables to the browser, so you will need to set the URL manually. If not set, the default URL will be used.
+
+  While the port can be changed, this feature also allows users to host the devtools server on a different machine or domain and provide the `<DevtoolsProvider />` with the custom domain URL. This such case will be useful if you're dockerizing your app and devtools server separately.
+
+  **Enterprise Edition**: Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed.
+
+  [Resolves #5111](https://github.com/refinedev/refine/issues/5111)
+
+- Updated dependencies [[`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4)]:
+  - @refinedev/devtools-server@1.1.35
+
+## 2.16.36
+
+### Patch Changes
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - chore(cli): remove unused command
+
+  Previously `@refinedev/cli` had a `proxy` command that is no longer in use and not required in any of the projects. This change removes the command from the CLI without a fallback.
+
+- [#6039](https://github.com/refinedev/refine/pull/6039) [`24db047aea42e307a9662c46fde50ea69ca8c381`](https://github.com/refinedev/refine/commit/24db047aea42e307a9662c46fde50ea69ca8c381) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): type imports are breaking the code structure on swizzle
+
+  When exporting elements with `swizzle` command, it will try to replace and combine imports from Refine packages. This process was broken if the target file was using `import type` syntax. This PR updates swizzle command to handle `import type` syntax separately.
+
+  Resolves [#6035](https://github.com/refinedev/refine/issues/6035)
+
+- Updated dependencies [[`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd)]:
+  - @refinedev/devtools-server@1.1.34
+
+## 2.16.34
+
+### Patch Changes
+
+- [#6059](https://github.com/refinedev/refine/pull/6059) [`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools): failing authentication checks
+
+  Devtools was failing on determining the auth status and always ended up redirecting to the login page or the onboarding step regardless of the actual authentication status.
+
+  Resolves [#6047](https://github.com/refinedev/refine/issues/6047)
+
+- Updated dependencies [[`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0)]:
+  - @refinedev/devtools-server@1.1.32
+
+## 2.16.33
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: remove hardcoded path prefix from bin resolve for remix run command.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: capitalize Refine
+
+  Capitalized "Refine" in the user-facing texts
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(cli): prevent exit on devtools error
+
+  Updated the `dev` command's devtools runner logic to prevent the process from exiting when devtools server fails to start. Previously, the process would exit if devtools server failed to start regardless of the development server's status.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(cli): prompt to update all in `update` command
+
+  Previously, if users doesn't provide `--all` option, `update` command will display an interactive prompt to pick which packages to update. Now, before displaying the prompt, it will ask if users want to update all packages.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/devtools-server@1.1.31
+
+## 2.16.32
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`45b68cc3450618468e938f9540dc52ff088b555a`](https://github.com/refinedev/refine/commit/45b68cc3450618468e938f9540dc52ff088b555a) Thanks [@aliemir](https://github.com/aliemir)! - fix: remove hardcoded path prefix from bin resolve for remix run command.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`429009db854653ab3ca00fbfb84561de38b3a255`](https://github.com/refinedev/refine/commit/429009db854653ab3ca00fbfb84561de38b3a255) Thanks [@aliemir](https://github.com/aliemir)! - fix: capitalize Refine
+
+  Capitalized "Refine" in the user-facing texts
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): prevent exit on devtools error
+
+  Updated the `dev` command's devtools runner logic to prevent the process from exiting when devtools server fails to start. Previously, the process would exit if devtools server failed to start regardless of the development server's status.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`429009db854653ab3ca00fbfb84561de38b3a255`](https://github.com/refinedev/refine/commit/429009db854653ab3ca00fbfb84561de38b3a255) Thanks [@aliemir](https://github.com/aliemir)! - feat(cli): prompt to update all in `update` command
+
+  Previously, if users doesn't provide `--all` option, `update` command will display an interactive prompt to pick which packages to update. Now, before displaying the prompt, it will ask if users want to update all packages.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`429009db854653ab3ca00fbfb84561de38b3a255`](https://github.com/refinedev/refine/commit/429009db854653ab3ca00fbfb84561de38b3a255), [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863), [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d), [`bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e`](https://github.com/refinedev/refine/commit/bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e)]:
+  - @refinedev/devtools-server@1.1.30
+
+## 2.16.31
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies []:
+  - @refinedev/devtools-server@1.1.29
+
+## 2.16.30
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`a9dbd808782`](https://github.com/refinedev/refine/commit/a9dbd808782212ed0bf6cf4401f85b675975a744)]:
+  - @refinedev/devtools-server@1.1.28
+
+## 2.16.29
+
+### Patch Changes
+
+- Updated dependencies [[`aedc6a2961c`](https://github.com/refinedev/refine/commit/aedc6a2961cfe69309d4e14292147a858f94e3bf)]:
+  - @refinedev/devtools-server@1.1.27
+
+## 2.16.28
+
+### Patch Changes
+
+- [#5807](https://github.com/refinedev/refine/pull/5807) [`b20a18e4dfc`](https://github.com/refinedev/refine/commit/b20a18e4dfc97481be865a2a012ea1c588bd76c6) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update jscodeshift version to 0.15.2
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5799](https://github.com/refinedev/refine/pull/5799) [`33a8a80d80f`](https://github.com/refinedev/refine/commit/33a8a80d80f160101907ad3a6e808b9d04b80107) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update semver package version to 7.5.2.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+- [#5739](https://github.com/refinedev/refine/pull/5739) [`e9bbb1aa5af`](https://github.com/refinedev/refine/commit/e9bbb1aa5af94125cf0de562b3154302373a308f) Thanks [@aliemir](https://github.com/aliemir)! - Removed redundant usage of `IResourceComponentsProps` type in component templates of `add resource` command. This type only works with legacy routers and `<RefineRoutes />` component, its usage outside of these scopes are unnecessary.
+
+- Updated dependencies [[`b20a18e4dfc`](https://github.com/refinedev/refine/commit/b20a18e4dfc97481be865a2a012ea1c588bd76c6), [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`51f368eab1a`](https://github.com/refinedev/refine/commit/51f368eab1a72e2134981e999dc0b3e26e2b74e8), [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927)]:
+  - @refinedev/devtools-server@1.1.26
+
 ## 2.16.27
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextInput, Menu, ActionIcon, Stack, Group } from "@mantine/core";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons-react";
-import { Column } from "@tanstack/react-table";
+import type { Column } from "@tanstack/react-table";
 
 export const ColumnFilter: React.FC<{ column: Column<any, any> }> = ({
   column,

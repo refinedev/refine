@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  RefineDeleteButtonProps,
+  type RefineDeleteButtonProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 

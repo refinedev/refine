@@ -116,7 +116,7 @@ const ListProductsWithUseTableTsxCode = /* tsx */ `
 import { useTable } from "@refinedev/core";
 
 export const ListProducts = () => {
-  const { tableQueryResult: { data, isLoading } } = useTable({
+  const { tableQuery: { data, isLoading } } = useTable({
     resource: "products",
     pagination: { current: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
@@ -161,7 +161,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
   } = useTable({
     resource: "products",
     pagination: { current: 1, pageSize: 10 },
@@ -422,7 +422,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     current,
     setCurrent,
     pageCount,
@@ -511,7 +511,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     current,
     setCurrent,
     pageCount,

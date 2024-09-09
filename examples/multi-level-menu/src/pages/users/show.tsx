@@ -2,12 +2,12 @@ import { useShow } from "@refinedev/core";
 import { Show, EmailField, ImageField } from "@refinedev/antd";
 import { Typography, Space } from "antd";
 
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
 export const UserShow = () => {
-  const { queryResult } = useShow<IUser>();
+  const { query: queryResult } = useShow<IUser>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

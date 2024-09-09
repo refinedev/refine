@@ -18,6 +18,9 @@ import CardHeader from "@mui/material/CardHeader";
 import IconButton from "@mui/material/IconButton";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { alpha } from "@mui/system";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
@@ -27,12 +30,12 @@ import {
   ListButton,
   EditButton,
   Breadcrumb,
-  ListButtonProps,
-  EditButtonProps,
-  DeleteButtonProps,
-  RefreshButtonProps,
+  type ListButtonProps,
+  type EditButtonProps,
+  type DeleteButtonProps,
+  type RefreshButtonProps,
 } from "@components";
-import { ShowProps } from "../types";
+import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
@@ -148,7 +151,29 @@ export const Show: React.FC<ShowProps> = ({
   );
 
   return (
-    <Card {...(wrapperProps ?? {})}>
+    <Card
+      {...(wrapperProps ?? {})}
+      sx={{
+        position: "relative",
+        ...wrapperProps?.sx,
+      }}
+    >
+      {isLoading && (
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            // this is needed to support custom themes, dark mode etc.
+            bgcolor: (theme) => alpha(theme.palette.background.paper, 0.4),
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {breadcrumbComponent}
       <CardHeader
         sx={{

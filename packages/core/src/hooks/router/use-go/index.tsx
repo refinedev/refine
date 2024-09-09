@@ -3,9 +3,9 @@ import React, { useCallback, useContext } from "react";
 import { RouterContext } from "@contexts/router";
 import { useResource } from "@hooks/resource";
 
-import { BaseKey } from "../../../contexts/data/types";
-import { IResourceItem } from "../../../contexts/resource/types";
-import {
+import type { BaseKey } from "../../../contexts/data/types";
+import type { IResourceItem } from "../../../contexts/resource/types";
+import type {
   Action,
   GoConfig as GoConfigBase,
 } from "../../../contexts/router/types";

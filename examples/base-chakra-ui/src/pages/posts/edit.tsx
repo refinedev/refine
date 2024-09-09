@@ -11,11 +11,11 @@ import {
 import { useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult, autoSaveProps },
+    refineCore: { formLoading, query: queryResult, autoSaveProps },
     saveButtonProps,
     register,
     formState: { errors },

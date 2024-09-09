@@ -18,7 +18,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
-import {
+import type {
   ImportElement,
   InferencerResultComponent,
   InferField,
@@ -640,7 +640,7 @@ export const renderer = ({
         ${useTranslateHook}
         const { edit, list } = useNavigation();
         ${isCustomPage ? "" : "const { id } = useResource();"}
-        const { queryResult } = useShow(${
+        const { query } = useShow(${
           isCustomPage
             ? `{ 
                     resource: "${resource.name}", 
@@ -661,7 +661,7 @@ export const renderer = ({
                 )} }`
               : ""
         });
-        const { data, isLoading } = queryResult;
+        const { data, isLoading } = query;
 
         const ${recordName} = data?.data;
     

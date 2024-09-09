@@ -15,7 +15,7 @@ import {
 
 import { Table, Form, Select, Input, Drawer, Space, Typography } from "antd";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
@@ -49,7 +49,7 @@ export const PostList = () => {
 
   // Show Drawer
   const [visibleShowDrawer, setVisibleShowDrawer] = useState<boolean>(false);
-  const { queryResult, showId, setShowId } = useShow<IPost>();
+  const { query: queryResult, showId, setShowId } = useShow<IPost>();
 
   const { data: showQueryResult, isLoading: showIsLoading } = queryResult;
   const record = showQueryResult?.data;

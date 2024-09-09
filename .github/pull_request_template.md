@@ -15,7 +15,7 @@ Please check if your PR fulfills the following requirements:
 
 ## What is the new behavior?
 
-fixes # (issue)
+fixes (issue)
 
 ## Notes for reviewers
 

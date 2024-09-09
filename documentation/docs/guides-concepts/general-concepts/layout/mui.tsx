@@ -12,7 +12,7 @@ export function MaterialUILayout() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
         "@refinedev/inferencer": "latest",
-        "@refinedev/mui": "latest",
+        "@refinedev/mui": "5.0.0",
         "react-router-dom": "latest",
         "react-router": "latest",
         "@emotion/react": "^11.8.2",
@@ -167,8 +167,8 @@ import {
 } from "@refinedev/mui";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
 
   const record = data?.data;
 

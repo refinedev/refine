@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  ForgotPasswordPageProps,
-  ForgotPasswordFormTypes,
+  type ForgotPasswordPageProps,
+  type ForgotPasswordFormTypes,
   useRouterType,
   useLink,
 } from "@refinedev/core";
@@ -19,8 +19,8 @@ import {
   Anchor,
   Button,
   Text,
-  BoxProps,
-  CardProps,
+  type BoxProps,
+  type CardProps,
   Group,
   useMantineTheme,
 } from "@mantine/core";
@@ -33,7 +33,7 @@ import {
   titleStyles,
   pageTitleStyles,
 } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 
 type ResetPassworProps = ForgotPasswordPageProps<
   BoxProps,
@@ -115,6 +115,22 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             {...getInputProps("email")}
           />
 
+          {loginLink ?? (
+            <Group mt="md" justify={loginLink ? "left" : "right"}>
+              <Text size="xs">
+                {translate(
+                  "pages.forgotPassword.buttons.haveAccount",
+                  translate(
+                    "pages.login.forgotPassword.haveAccount",
+                    "Have an account? ",
+                  ),
+                )}{" "}
+                <Anchor component={ActiveLink as any} to="/login" weight={700}>
+                  {translate("pages.forgotPassword.signin", "Sign in")}
+                </Anchor>
+              </Text>
+            </Group>
+          )}
           <Button mt="lg" fullWidth size="md" type="submit" loading={isLoading}>
             {translate(
               "pages.forgotPassword.buttons.submit",
@@ -123,19 +139,6 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
           </Button>
         </form>
       </FormProvider>
-      {loginLink ?? (
-        <Group mt="md" justify="center">
-          <Text size="xs">
-            {translate(
-              "pages.login.forgotPassword.haveAccount",
-              "Have an account?",
-            )}{" "}
-            <Anchor component={ActiveLink as any} to="/login" weight={700}>
-              {translate("pages.forgotPassword.signin", "Sign in")}
-            </Anchor>
-          </Text>
-        </Group>
-      )}
     </Card>
   );
 

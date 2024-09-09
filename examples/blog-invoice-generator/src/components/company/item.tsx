@@ -7,7 +7,7 @@ import {
 
 import { Card, Typography } from "antd";
 
-import { ICompany } from "interfaces";
+import type { ICompany } from "interfaces";
 import { API_URL } from "../../constants";
 
 const { Title, Text } = Typography;

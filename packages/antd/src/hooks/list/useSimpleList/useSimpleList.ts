@@ -1,18 +1,18 @@
 import { Children, createElement, Fragment } from "react";
-import { ListProps, FormProps, Form, Grid } from "antd";
+import { type ListProps, type FormProps, Form, Grid } from "antd";
 
 import {
-  BaseRecord,
-  CrudFilters,
-  HttpError,
+  type BaseRecord,
+  type CrudFilters,
+  type HttpError,
   useTable as useTableCore,
-  useTableProps as useTablePropsCore,
-  useTableReturnType,
+  type useTableProps as useTablePropsCore,
+  type useTableReturnType,
   pickNotDeprecated,
 } from "@refinedev/core";
 import { useLiveMode } from "@refinedev/core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
-import { PaginationConfig } from "antd/lib/pagination";
+import type { PaginationConfig } from "antd/lib/pagination";
 
 export type useSimpleListProps<TQueryFnData, TError, TSearchVariables, TData> =
   useTablePropsCore<TQueryFnData, TError, TData> & {
@@ -23,9 +23,13 @@ export type useSimpleListReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
   TSearchVariables = unknown,
   TData extends BaseRecord = TQueryFnData,
-> = Omit<useTableReturnType<TData>, "tableQueryResult"> & {
+> = Omit<useTableReturnType<TData>, "tableQueryResult" | "tableQuery"> & {
   listProps: ListProps<TData>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: useTableReturnType["tableQueryResult"];
+  query: useTableReturnType["tableQuery"];
   searchFormProps: FormProps<TSearchVariables>;
 };
 
@@ -91,6 +95,7 @@ export const useSimpleList = <
     setSorters,
     createLinkForSyncWithLocation,
     tableQueryResult: queryResult,
+    tableQuery: query,
     overtime,
   } = useTableCore({
     resource,
@@ -208,6 +213,7 @@ export const useSimpleList = <
       loading: liveMode === "auto" ? isLoading : !isFetched,
       pagination: antdPagination(),
     },
+    query,
     queryResult,
     filters,
     setFilters,

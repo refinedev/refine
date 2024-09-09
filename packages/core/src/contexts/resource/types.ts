@@ -1,8 +1,8 @@
-import { ComponentType, ReactNode } from "react";
+import type { ComponentType, ReactNode } from "react";
 
-import { UseQueryResult } from "@tanstack/react-query";
+import type { UseQueryResult } from "@tanstack/react-query";
 
-import { ILogData } from "../auditLog/types";
+import type { ILogData } from "../auditLog/types";
 
 /**
  * Resource route components

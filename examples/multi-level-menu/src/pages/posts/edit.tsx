@@ -4,10 +4,14 @@ import { Form, Input, Select } from "antd";
 import { useForm, useSelect } from "@refinedev/antd";
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost>({
     warnWhenUnsavedChanges: true,
   });
 

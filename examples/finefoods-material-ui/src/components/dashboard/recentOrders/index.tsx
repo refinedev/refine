@@ -11,14 +11,20 @@ import CheckOutlined from "@mui/icons-material/CheckOutlined";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
-import { IOrder } from "../../../interfaces";
+import {
+  DataGrid,
+  GridActionsCellItem,
+  type GridColDef,
+} from "@mui/x-data-grid";
+import type { IOrder } from "../../../interfaces";
 import { getUniqueListWithCount } from "../../../utils";
 
 export const RecentOrders: React.FC = () => {
   const t = useTranslate();
   const { show } = useNavigation();
-  const { mutate } = useUpdate();
+  const { mutate } = useUpdate({
+    resource: "orders",
+  });
   const { mutate: updatePassword } =
     useUpdatePassword<Record<string, string>>();
 
@@ -139,7 +145,6 @@ export const RecentOrders: React.FC = () => {
             showInMenu
             onClick={() => {
               mutate({
-                resource: "orders",
                 id,
                 values: {
                   status: {
@@ -158,7 +163,6 @@ export const RecentOrders: React.FC = () => {
             showInMenu
             onClick={() =>
               mutate({
-                resource: "orders",
                 id,
                 values: {
                   status: {

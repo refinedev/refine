@@ -10,7 +10,7 @@ import {
 import { useGetIdentity } from "@refinedev/core";
 import {
   HamburgerMenu,
-  RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/mantine";
 import { IconMoonStars, IconSun } from "@tabler/icons-react";
 import React from "react";

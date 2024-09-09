@@ -1,6 +1,6 @@
 import { NumberField, useSimpleList } from "@refinedev/antd";
 import { Typography, Avatar, List as AntdList, Flex } from "antd";
-import { ITrendingProducts } from "../../../interfaces";
+import type { ITrendingProducts } from "../../../interfaces";
 import {
   Rank1Icon,
   Rank2Icon,
@@ -8,7 +8,7 @@ import {
   Rank4Icon,
   Rank5Icon,
 } from "../../icons";
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 
 export const TrendingMenu: React.FC = () => {
   const { listProps } = useSimpleList<ITrendingProducts>({
@@ -91,7 +91,7 @@ export const TrendingMenu: React.FC = () => {
                         margin: 0,
                         fontSize: 24,
                       }}
-                      strong={index <= 2 ? true : false}
+                      strong={index <= 2}
                     >
                       {item.product?.name}
                     </Typography.Paragraph>

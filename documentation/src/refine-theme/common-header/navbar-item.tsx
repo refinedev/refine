@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 
-import { NavbarItemType } from "./constants";
+import type { NavbarItemType } from "./constants";
 import { TwoTonedCloudIcon } from "../icons/popover";
 
 type NavbarItemProps = {

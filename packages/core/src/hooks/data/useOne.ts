@@ -1,13 +1,14 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import {
-  QueryObserverResult,
-  UseQueryOptions,
+  type QueryObserverResult,
+  type UseQueryOptions,
   useQuery,
 } from "@tanstack/react-query";
 
 import {
   pickDataProvider,
   pickNotDeprecated,
+  prepareQueryContext,
   useActiveAuthProvider,
 } from "@definitions";
 import {
@@ -21,7 +22,7 @@ import {
   useTranslate,
 } from "@hooks";
 
-import {
+import type {
   BaseKey,
   BaseRecord,
   GetOneResponse,
@@ -29,11 +30,11 @@ import {
   MetaQuery,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
@@ -174,25 +175,17 @@ export const useOne = <
         ...(preferredMeta || {}),
       })
       .get(preferLegacyKeys),
-    queryFn: ({ queryKey, pageParam, signal }) =>
+    queryFn: (context) =>
       getOne<TQueryFnData>({
         resource: resource?.name ?? "",
         id: id!,
         meta: {
           ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
+          queryContext: prepareQueryContext(context),
         },
         metaData: {
           ...combinedMeta,
-          queryContext: {
-            queryKey,
-            pageParam,
-            signal,
-          },
+          queryContext: prepareQueryContext(context),
         },
       }),
     ...queryOptions,
@@ -246,7 +239,7 @@ export const useOne = <
     },
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useOne", preferLegacyKeys),
+      ...getXRay("useOne", preferLegacyKeys, resource?.name),
     },
   });
 

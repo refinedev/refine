@@ -1,5 +1,5 @@
 import React from "react";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Create, useForm, useSelect } from "@refinedev/antd";
 

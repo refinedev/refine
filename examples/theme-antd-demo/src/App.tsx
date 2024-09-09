@@ -8,7 +8,7 @@ import {
   AuthPage,
 } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";
-import { ConfigProvider, ThemeConfig, theme } from "antd";
+import { ConfigProvider, type ThemeConfig, theme } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,
@@ -74,7 +74,7 @@ const App: React.FC = () => {
                 </Authenticated>
               }
             >
-              <Route index element={<NavigateToResource resource="posts" />} />;
+              <Route index element={<NavigateToResource resource="posts" />} />
               <Route path="/posts">
                 <Route index element={<PostList />} />
                 <Route path="create" element={<PostCreate />} />
@@ -100,6 +100,7 @@ const App: React.FC = () => {
                         name: "google",
                         label: "Sign in with Google",
                         icon: (
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           <GoogleOutlined
                             style={{
                               fontSize: 14,
@@ -112,6 +113,7 @@ const App: React.FC = () => {
                         name: "github",
                         label: "Sign in with GitHub",
                         icon: (
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           <GithubOutlined
                             style={{
                               fontSize: 14,
@@ -134,6 +136,7 @@ const App: React.FC = () => {
                         name: "google",
                         label: "Sign in with Google",
                         icon: (
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           <GoogleOutlined
                             style={{
                               fontSize: 14,
@@ -146,6 +149,7 @@ const App: React.FC = () => {
                         name: "github",
                         label: "Sign in with GitHub",
                         icon: (
+                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           <GithubOutlined
                             style={{
                               fontSize: 14,

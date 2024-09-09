@@ -4,13 +4,14 @@ import {
   CardExpiryElement,
   CardNumberElement,
 } from "@stripe/react-stripe-js";
-import {
+import type {
   StripeCardCvcElementOptions,
   StripeCardExpiryElementOptions,
   StripeCardNumberElementOptions,
 } from "@stripe/stripe-js";
 
 import s from "./PaymentStripe.module.css";
+import clsx from "clsx";
 
 export const PaymentStripe: React.FC = () => {
   const useOptions:
@@ -18,6 +19,15 @@ export const PaymentStripe: React.FC = () => {
     | StripeCardExpiryElementOptions
     | StripeCardCvcElementOptions = useMemo(() => {
     return {
+      classes: {
+        base: clsx(
+          "text-gray-darkest",
+          "py-3",
+          "px-3",
+          "rounded-lg",
+          "border border-gray-dark",
+        ),
+      },
       style: {
         base: {
           fontFamily: "Inter, sans-serif",
@@ -33,9 +43,9 @@ export const PaymentStripe: React.FC = () => {
 
   return (
     <div>
-      <div className="relative flex w-full flex-col text-white">
+      <div className="relative flex w-full flex-col gap-8">
         <CardNumber options={useOptions as StripeCardNumberElementOptions} />
-        <div className="relative mt-12 flex items-center gap-x-4">
+        <div className="relative flex items-center gap-8">
           <CardExpiry options={useOptions as StripeCardExpiryElementOptions} />
           <CardCVC options={useOptions as StripeCardCvcElementOptions} />
         </div>
@@ -50,9 +60,13 @@ const CardNumber = ({
   options: StripeCardNumberElementOptions;
 }) => {
   return (
-    <div className={s.paymentInput}>
-      <span className={s.paymentLabel}>Card number</span>
-      <CardNumberElement options={options} />
+    <div className={clsx("flex", "flex-col", "gap-2")}>
+      <span className={clsx("text-gray-darkest")}>Card number</span>
+      <CardNumberElement
+        options={{
+          ...options,
+        }}
+      />
     </div>
   );
 };
@@ -63,8 +77,8 @@ const CardExpiry = ({
   options: StripeCardExpiryElementOptions;
 }) => {
   return (
-    <div className={s.paymentInput}>
-      <span className={s.paymentLabel}>Expiration date</span>
+    <div className={clsx("flex", "flex-col", "gap-2", "w-40")}>
+      <span className={clsx("text-gray-darkest")}>Expiration date</span>
       <CardExpiryElement options={options} />
     </div>
   );
@@ -72,8 +86,8 @@ const CardExpiry = ({
 
 const CardCVC = ({ options }: { options: StripeCardCvcElementOptions }) => {
   return (
-    <div className={s.paymentInput}>
-      <span className={s.paymentLabel}>CVC</span>
+    <div className={clsx("flex", "flex-col", "gap-2", "w-40")}>
+      <span className={clsx("text-gray-darkest")}>CVC</span>
       <CardCvcElement options={{ ...options, placeholder: "123" }} />
     </div>
   );

@@ -1,4 +1,11 @@
-import { Form, Input, ModalProps, FormProps, Modal, InputNumber } from "antd";
+import {
+  Form,
+  Input,
+  type ModalProps,
+  type FormProps,
+  Modal,
+  InputNumber,
+} from "antd";
 
 type CreateMissionProps = {
   modalProps: ModalProps;

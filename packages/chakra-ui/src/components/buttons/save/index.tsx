@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -7,7 +7,7 @@ import {
 import { IconButton, Button } from "@chakra-ui/react";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
-import { SaveButtonProps } from "../types";
+import type { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `}.
@@ -21,12 +21,12 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   return hideText ? (
     <IconButton
       colorScheme="green"
-      aria-label={translate("buttons.save", "Save")}
+      aria-label={label}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
       {...rest}
@@ -41,7 +41,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       className={RefineButtonClassNames.SaveButton}
       {...rest}
     >
-      {children ?? translate("buttons.save", "Save")}
+      {children ?? label}
     </Button>
   );
 };

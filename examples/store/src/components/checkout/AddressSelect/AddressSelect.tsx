@@ -1,6 +1,6 @@
 import { Fragment, useMemo, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
-import { Address } from "@medusajs/medusa";
+import type { Address } from "@medusajs/medusa";
 import { isEqual, omit } from "lodash";
 import { useWatch } from "react-hook-form";
 import cn from "clsx";
@@ -59,17 +59,19 @@ export const AddressSelect: React.FC<AddressSelectProps> = ({ addresses }) => {
   return (
     <Listbox onChange={handleSelect} value={selected}>
       <div className="relative">
-        <Listbox.Button className={s.button}>
+        <Listbox.Button
+          className={cn(s.button, "rounded-lg", "text-gray-darkest")}
+        >
           {({ open }) => (
             <>
-              <span className="block truncate">
+              <span className="block truncate text-gray-darkest">
                 {selectedAddress
                   ? selectedAddress.address_1
                   : "Choose an address"}
               </span>
               <ChevronDown
                 size={16}
-                className={cn({
+                className={cn("text-gray-dark", {
                   "rotate-180 transform": open,
                 })}
               />

@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -8,7 +8,7 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 import ImportExportOutlined from "@mui/icons-material/ImportExportOutlined";
 
-import { ExportButtonProps } from "../types";
+import type { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} with a default export icon and a default text with "Export".
@@ -23,7 +23,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   svgIconProps,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useExportButton();
 
   const { sx, ...restProps } = rest;
 
@@ -41,7 +41,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       {hideText ? (
         <ImportExportOutlined fontSize="small" {...svgIconProps} />
       ) : (
-        children ?? translate("buttons.export", "Export")
+        children ?? label
       )}
     </LoadingButton>
   );

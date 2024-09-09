@@ -9,14 +9,18 @@ import {
 import { Alert, Form, Input, Select } from "antd";
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
   const [deprecated, setDeprecated] = useState<
     "deleted" | "updated" | undefined
   >();
 
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost>({
     liveMode: "manual",
     onLiveEvent: (event) => {
       if (event.type === "deleted" || event.type === "updated") {

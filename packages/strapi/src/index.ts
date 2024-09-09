@@ -1,3 +1,3 @@
-export * from "./dataProvider";
-export * from "./helpers";
-export * from "./hooks";
+export * from "./dataProvider.js";
+export * from "./helpers/index.js";
+export * from "./hooks/index.js";

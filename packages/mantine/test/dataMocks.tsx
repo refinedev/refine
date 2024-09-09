@@ -1,6 +1,6 @@
 import React from "react";
 
-import {
+import type {
   Action,
   AuthProvider,
   IResourceItem,
@@ -9,7 +9,7 @@ import {
 } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
-import { IRouterContext } from "@refinedev/core/dist/interfaces";
+// import { IRouterContext } from "@refinedev/core/dist/interfaces";
 
 export const posts = [
   {

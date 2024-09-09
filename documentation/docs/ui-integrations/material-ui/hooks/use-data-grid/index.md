@@ -232,11 +232,108 @@ return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
 
 When `filterModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are filtered in `<DataGrid>` headers.
 
+:::simple Finding the filter value
+
+Refine provides the [`getDefaultFilter`](https://github.com/refinedev/refine/blob/716656d9ad3deb169c32685cdebbfd46bac44beb/packages/core/src/definitions/table/index.ts#L166) function, You can use this function to find the filter value for the specific field.
+
+```tsx
+import { getDefaultFilter } from "@refinedev/core";
+import { useDataGrid } from "@refinedev/mui";
+
+const MyComponent = () => {
+  const { filters } = useDataGrid({
+    filters: {
+      initial: [
+        {
+          field: "name",
+          operator: "contains",
+          value: "John Doe",
+        },
+      ],
+    },
+  });
+
+  const nameFilterValue = getDefaultFilter("name", filters, "contains");
+  console.log(nameFilterValue); // "John Doe"
+
+  return {
+    /** ... */
+  };
+};
+```
+
+:::
+
 ## Realtime Updates
 
 > [`LiveProvider`](/docs/realtime/live-provider) is required for this prop to work.
 
 When the `useDataGrid` hook is mounted, it will call the `subscribe` method from the `liveProvider` with some parameters such as `channel`, `resource` etc. It is useful when you want to subscribe to live updates.
+
+## Editing
+
+The `useDataGrid` hook extends the editing capabilities provided by the [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) component from MUI. To enable column editing, set `editable: "true"` on specific column definitions.
+
+`useDataGrid` leverages [`useUpdate`](https://refine.dev/docs/data/hooks/use-update/) for direct integration with update operations. This change enhances performance and simplifies the interaction model by directly using the update mechanisms provided by Refine.
+
+Here is how you can define columns to be editable:
+
+```tsx
+const columns = React.useMemo<GridColDef<IPost>[]>(
+  () => [
+    {
+      field: "title",
+      headerName: "Title",
+      minWidth: 400,
+      flex: 1,
+      editable: true,
+    },
+  ],
+  [],
+);
+```
+
+### Handling Updates
+
+With the integration of `useUpdate`, processRowUpdate from [`<DataGrid>`](https://mui.com/x/react-data-grid/editing/) directly interacts with the backend. This method attempts to update the row with the new values, handling the update logic internally.
+
+The hook now simplifies the handling of updates by removing the need for managing form state transitions explicitly:
+
+```tsx
+const {
+  dataGridProps,
+  formProps: { processRowUpdate, formLoading },
+} = useDataGrid<IPost>();
+```
+
+By default, when a cell edit is initiated and completed, the processRowUpdate function will be triggered, which will now use the mutate function from useUpdate to commit changes.
+
+```tsx
+const processRowUpdate = async (newRow: TData, oldRow: TData) => {
+  try {
+    await new Promise((resolve, reject) => {
+      mutate(
+        {
+          resource: resourceFromProp as string,
+          id: newRow.id as string,
+          values: newRow,
+        },
+        {
+          onError: (error) => {
+            reject(error);
+          },
+          onSuccess: (data) => {
+            resolve(data);
+          },
+        },
+      );
+    });
+    return newRow;
+  } catch (error) {
+    return oldRow;
+  }
+};
+```
 
 ## Properties
 
@@ -689,8 +786,8 @@ When the user filters a column, this function is called with the new filter mode
   {...dataGridProps}
   columns={columns}
   autoHeight
-  onFilterModelChange={(model, details) => {
-    dataGridProps.onFilterModelChange(model, details);
+  onFilterModelChange={(model) => {
+    dataGridProps.onFilterModelChange(model);
     // do something else
   }}
 />
@@ -730,7 +827,7 @@ Indicates whether the data is being fetched.
 
 Returns pagination configuration values(pageSize, current, setCurrent, etc.).
 
-### tableQueryResult
+### tableQuery
 
 Returned values from [`useList`](/docs/data/hooks/use-list) hook.
 
@@ -812,6 +909,10 @@ Use `sorters` instead.
 
 Use `setSorters` instead.
 
+### ~~tableQueryResult~~ <PropTag deprecated />
+
+Use [`tableQuery`](#tablequery) instead.
+
 ## FAQ
 
 ### How can I handle relational data?
@@ -864,7 +965,7 @@ useDataGrid({
 | Property                      | Description                                                                                        | Type                                                                                 |
 | ----------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
 | dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                              | `DataGridPropsType`\*                                                                |
-| tableQueryResult              | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
+| tableQuery                    | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
 | search                        | It sends the parameters it receives to its `onSearch` function                                     | `(value: TSearchVariables) => Promise<void>`                                         |
 | current                       | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
 | totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                   | `number` \| `undefined`                                                              |

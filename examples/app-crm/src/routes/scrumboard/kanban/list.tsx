@@ -1,21 +1,21 @@
-import { FC, PropsWithChildren, useMemo } from "react";
+import { type FC, type PropsWithChildren, useMemo } from "react";
 
 import {
-  HttpError,
+  type HttpError,
   useDelete,
   useList,
   useNavigation,
   useUpdate,
   useUpdateMany,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { DragEndEvent } from "@dnd-kit/core";
-import { MenuProps } from "antd";
+import type { DragEndEvent } from "@dnd-kit/core";
+import type { MenuProps } from "antd";
 
-import { TaskUpdateInput } from "@/graphql/schema.types";
-import { KanbanTasksQuery, KanbanTaskStagesQuery } from "@/graphql/types";
+import type { TaskUpdateInput } from "@/graphql/schema.types";
+import type { KanbanTasksQuery, KanbanTaskStagesQuery } from "@/graphql/types";
 
 import {
   KanbanAddCardButton,
@@ -99,8 +99,15 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     };
   }, [tasks, stages]);
 
-  const { mutate: updateTask } = useUpdate<Task, HttpError, TaskUpdateInput>();
-  const { mutate: updateManyTask } = useUpdateMany();
+  const { mutate: updateTask } = useUpdate<Task, HttpError, TaskUpdateInput>({
+    resource: "tasks",
+    successNotification: false,
+    mutationMode: "optimistic",
+  });
+  const { mutate: updateManyTask } = useUpdateMany({
+    resource: "tasks",
+    successNotification: false,
+  });
   const { mutate: deleteStage } = useDelete();
 
   const handleOnDragEnd = (event: DragEndEvent) => {
@@ -117,13 +124,10 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
     }
 
     updateTask({
-      resource: "tasks",
       id: taskId,
       values: {
         stageId: stageId,
       },
-      successNotification: false,
-      mutationMode: "optimistic",
     });
   };
 
@@ -159,12 +163,10 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
 
   const handleClearCards = (args: { taskIds: string[] }) => {
     updateManyTask({
-      resource: "tasks",
       ids: args.taskIds,
       values: {
         stageId: null,
       },
-      successNotification: false,
     });
   };
 
@@ -175,12 +177,14 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
       {
         label: "Edit status",
         key: "1",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <EditOutlined />,
         onClick: () => handleEditStage({ stageId: column.id }),
       },
       {
         label: "Clear all cards",
         key: "2",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <ClearOutlined />,
         disabled: !hasItems,
         onClick: () =>
@@ -192,6 +196,7 @@ export const KanbanPage: FC<PropsWithChildren> = ({ children }) => {
         danger: true,
         label: "Delete status",
         key: "3",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <DeleteOutlined />,
         disabled: hasItems,
         onClick: () => handleDeleteStage({ stageId: column.id }),

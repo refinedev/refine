@@ -1,4 +1,6 @@
-import React, { PropsWithChildren, useState } from "react";
+"use client";
+
+import React, { type PropsWithChildren, useState } from "react";
 
 export const OrdersModalContext = React.createContext<{
   ordersModalVisible: boolean;

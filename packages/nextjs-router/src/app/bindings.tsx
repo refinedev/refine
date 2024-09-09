@@ -1,14 +1,14 @@
 import {
-  GoConfig,
-  RouterBindings,
+  type GoConfig,
+  type RouterBindings,
   ResourceContext,
   matchResourceFromRoute,
-  ParseResponse,
+  type ParseResponse,
 } from "@refinedev/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { parse, stringify } from "qs";
-import React, { ComponentProps, useContext } from "react";
+import qs from "qs";
+import React, { type ComponentProps, useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
 import { convertToNumberIfPossible } from "src/common/convert-to-number-if-possible";
 
@@ -46,7 +46,7 @@ export const routerBindings: RouterBindings = {
 
         const urlQuery = {
           ...(keepQuery
-            ? parse(searchParamsObj.toString(), {
+            ? qs.parse(searchParamsObj.toString(), {
                 ignoreQueryPrefix: true,
               })
             : {}),
@@ -65,7 +65,7 @@ export const routerBindings: RouterBindings = {
         const hasUrlQuery = Object.keys(urlQuery).length > 0;
 
         const fullPath = `${urlTo}${
-          hasUrlQuery ? stringify(urlQuery, stringifyConfig) : ""
+          hasUrlQuery ? qs.stringify(urlQuery, stringifyConfig) : ""
         }${hasUrlHash ? urlHash : ""}`;
 
         if (type === "path") {
@@ -109,7 +109,7 @@ export const routerBindings: RouterBindings = {
 
     const parsedParams = React.useMemo(() => {
       const searchParams = searchParamsObj.toString();
-      return parse(searchParams, { ignoreQueryPrefix: true });
+      return qs.parse(searchParams, { ignoreQueryPrefix: true });
     }, [searchParamsObj]);
 
     const fn = React.useCallback(() => {

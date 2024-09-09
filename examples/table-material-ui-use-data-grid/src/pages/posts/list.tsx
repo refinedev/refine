@@ -1,19 +1,20 @@
-import { Option, useSelect } from "@refinedev/core";
+import { type Option, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
 import {
   DataGrid,
-  GridColDef,
-  GridValueFormatterParams,
+  type GridColDef,
+  type GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({
     initialCurrent: 1,
     initialPageSize: 10,
+    editable: true,
     initialSorter: [
       {
         field: "title",
@@ -32,7 +33,7 @@ export const PostList: React.FC = () => {
 
   const {
     options,
-    queryResult: { isLoading },
+    query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
   });
@@ -45,7 +46,13 @@ export const PostList: React.FC = () => {
         type: "number",
         width: 50,
       },
-      { field: "title", headerName: "Title", minWidth: 400, flex: 1 },
+      {
+        field: "title",
+        headerName: "Title",
+        minWidth: 400,
+        flex: 1,
+        editable: true,
+      },
       {
         field: "category.id",
         headerName: "Category",

@@ -1,9 +1,9 @@
 import {
   MantineProvider,
   createTheme,
-  MantineColorsTuple,
-  MantineThemeOverride,
-  MantineTheme,
+  type MantineColorsTuple,
+  type MantineThemeOverride,
+  type MantineTheme,
   MantineThemeColors,
 } from "@mantine/core";
 

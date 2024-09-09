@@ -150,4 +150,4 @@ In short, while low-code can kickstart app development, relying on it without un
 
 Low-code platforms are ideal for quick prototyping and involving non-technical users in app creation. However, as project complexity increases, the limitations of low-code platforms become apparent, often leading to challenges in scalability and customization.
 
-Despite these challenges, low-code remains a usefull tool for certain use cases, underscoring the importance of choosing the right approach based on project requirements. Ultimately, while low-code platforms offer a promising route for fast and accessible app development, they may not always be the best choice for more complex, long-term software projects.
+Despite these challenges, low-code remains a useful tool for certain use cases, underscoring the importance of choosing the right approach based on project requirements. Ultimately, while low-code platforms offer a promising route for fast and accessible app development, they may not always be the best choice for more complex, long-term software projects.

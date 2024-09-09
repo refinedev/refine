@@ -1,10 +1,6 @@
 import MDXComponents from "@theme-original/MDXComponents";
 
 import { BannerRandom } from "@site/src/components/banner/banner-random";
-import DiscordBanner from "@site/src/components/blog/discord-banner";
-import GithubBanner from "@site/src/components/blog/github-banner";
-import PromotionBanner from "@site/src/components/blog/promotion";
-import TwitterBanner from "@site/src/components/blog/twitter-banner";
 import Checklist from "@site/src/components/checklist";
 import ChecklistItem from "@site/src/components/checklist-item";
 import CodeSandboxExample from "@site/src/components/codesandbox-example";
@@ -35,14 +31,10 @@ export default {
   Checklist: Checklist,
   ChecklistItem: ChecklistItem,
   UIConditional: UIConditional,
-  DiscordBanner: DiscordBanner,
-  GithubBanner: GithubBanner,
-  TwitterBanner: TwitterBanner,
   PropsTable: PropsTable,
   PropTag: PropTag,
   details: CommonDetails,
   summary: CommonSummary,
-  PromotionBanner: PromotionBanner,
   Tabs: CommonTabs,
   TabItem: CommonTabItem,
   blockquote: Blockquote,

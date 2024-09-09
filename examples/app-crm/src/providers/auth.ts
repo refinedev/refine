@@ -1,4 +1,4 @@
-import { AuthProvider } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
 import type { User } from "@/graphql/schema.types";
 import { disableAutoLogin, enableAutoLogin } from "@/hooks";

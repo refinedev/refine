@@ -1,7 +1,7 @@
 import React from "react";
 import {
-  ForgotPasswordPageProps,
-  ForgotPasswordFormTypes,
+  type ForgotPasswordPageProps,
+  type ForgotPasswordFormTypes,
   useRouterType,
   useLink,
 } from "@refinedev/core";
@@ -14,9 +14,9 @@ import {
   Form,
   Input,
   Button,
-  LayoutProps,
-  CardProps,
-  FormProps,
+  type LayoutProps,
+  type CardProps,
+  type FormProps,
   theme,
 } from "antd";
 import {
@@ -112,7 +112,13 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
           name="email"
           label={translate("pages.forgotPassword.fields.email", "Email")}
           rules={[
-            { required: true },
+            {
+              required: true,
+              message: translate(
+                "pages.forgotPassword.errors.requiredEmail",
+                "Email is required",
+              ),
+            },
             {
               type: "email",
               message: translate(
@@ -145,8 +151,11 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
               }}
             >
               {translate(
-                "pages.register.buttons.haveAccount",
-                "Have an account? ",
+                "pages.forgotPassword.buttons.haveAccount",
+                translate(
+                  "pages.register.buttons.haveAccount",
+                  "Have an account? ",
+                ),
               )}{" "}
               <ActiveLink
                 style={{
@@ -155,7 +164,10 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
                 }}
                 to="/login"
               >
-                {translate("pages.login.signin", "Sign in")}
+                {translate(
+                  "pages.forgotPassword.signin",
+                  translate("pages.login.signin", "Sign in"),
+                )}
               </ActiveLink>
             </Typography.Text>
           )}

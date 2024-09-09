@@ -1,5 +1,5 @@
 import path from "path";
-import { API, FileInfo } from "jscodeshift";
+import type { API, FileInfo } from "jscodeshift";
 import PackageJson from "@npmcli/package-json";
 
 import { addV3LegacyAuthProviderCompatibleTrueToAuthHooks } from "./v4/add-v3LegacyAuthProviderCompatible-true-to-auth-hooks";

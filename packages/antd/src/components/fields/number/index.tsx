@@ -9,7 +9,7 @@ function toLocaleStringSupportsOptions() {
   );
 }
 
-import { NumberFieldProps } from "../types";
+import type { NumberFieldProps } from "../types";
 
 /**
  * This field is used to display a number formatted according to the browser locale, right aligned. and uses {@link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl `Intl`} to display date format.

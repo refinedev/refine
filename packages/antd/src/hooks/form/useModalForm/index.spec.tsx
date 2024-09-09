@@ -134,7 +134,7 @@ describe("useModalForm Hook", () => {
       result.current.formProps.onFinish?.({});
     });
 
-    await waitFor(() => result.current.mutationResult.isSuccess);
+    await waitFor(() => result.current.mutation.isSuccess);
 
     await waitFor(() => expect(result.current.modalProps.open).toBe(false));
 
@@ -185,7 +185,7 @@ describe("useModalForm Hook", () => {
       result.current.modalProps.onOk?.({} as any);
     });
 
-    await waitFor(() => result.current.mutationResult.isSuccess);
+    await waitFor(() => result.current.mutation.isSuccess);
 
     expect(result.current.formProps.form?.getFieldsValue()).toStrictEqual({});
   });

@@ -1,7 +1,7 @@
-import { LogicalFilter } from "@refinedev/core";
+import type { LogicalFilter } from "@refinedev/core";
 import { isContainsOperator, isContainssOperator } from "./isContainsOperator";
 import { isSimpleOperator, simpleOperatorMapping } from "./isSimpleOperator";
-import { Formula } from "@qualifyze/airtable-formulator";
+import type { Formula } from "@qualifyze/airtable-formulator";
 
 export const generateLogicalFilterFormula = (
   filter: LogicalFilter,

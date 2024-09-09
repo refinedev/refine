@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { useOne } from "@refinedev/core";
-import { Order } from "@medusajs/medusa";
+import type { Order } from "@medusajs/medusa";
 
-import { IS_BROWSER } from "@lib/isBrowser";
+import { IS_BROWSER } from "src/contants";
 import { SEO } from "@components/common";
 import { SkeletonOrderConfirmed } from "@components/skeletons";
 import { OrderDetailsTemplate } from "@components/orders/OrderDetailsTemplate";
+import clsx from "clsx";
+import { LoadingDots } from "@components/ui";
 
 const Details: React.FC = () => {
   const router = useRouter();
@@ -22,7 +24,25 @@ const Details: React.FC = () => {
   });
 
   if (isLoading) {
-    return <SkeletonOrderConfirmed />;
+    return (
+      <>
+        <div
+          className={clsx(
+            "flex",
+            "lg:hidden",
+            "items-center",
+            "justify-center",
+            "py-40",
+            "text-gray-darkest",
+          )}
+        >
+          <LoadingDots />
+        </div>
+        <div className={clsx("hidden", "lg:block")}>
+          <SkeletonOrderConfirmed />
+        </div>
+      </>
+    );
   }
 
   if (isError) {
@@ -30,7 +50,25 @@ const Details: React.FC = () => {
       router.replace("/404");
     }
 
-    return <SkeletonOrderConfirmed />;
+    return (
+      <>
+        <div
+          className={clsx(
+            "flex",
+            "lg:hidden",
+            "items-center",
+            "justify-center",
+            "py-40",
+            "text-gray-darkest",
+          )}
+        >
+          <LoadingDots />
+        </div>
+        <div className={clsx("hidden", "lg:block")}>
+          <SkeletonOrderConfirmed />
+        </div>
+      </>
+    );
   }
 
   if (isSuccess) {

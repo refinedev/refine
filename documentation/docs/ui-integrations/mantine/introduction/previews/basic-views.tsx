@@ -63,7 +63,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider
+    useNotificationProvider
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -86,7 +86,7 @@ const App: React.FC = () => {
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">
                     <Refine
-                        notificationProvider={notificationProvider}
+                        notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
                         dataProvider={dataProvider(
                             "https://api.fake-rest.refine.dev",
@@ -203,7 +203,7 @@ export const ProductList = () => {
             setCurrent,
             pageCount,
             current,
-            tableQueryResult: { data: tableData },
+            tableQuery: { data: tableData },
         },
     } = useTable({
         columns,

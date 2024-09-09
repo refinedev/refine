@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { transformHttpError } from "../../src/utils/transformHttpError";
 import * as _transformErrorMessages from "../../src/utils/transformErrorMessages";
 

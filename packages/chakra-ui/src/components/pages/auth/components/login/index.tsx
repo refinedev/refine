@@ -1,20 +1,20 @@
 import React from "react";
 import {
-  LoginPageProps,
-  LoginFormTypes,
+  type LoginPageProps,
+  type LoginFormTypes,
   useRouterType,
   useLink,
   useRouterContext,
   useLogin,
   useTranslate,
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
   Heading,
-  BoxProps,
+  type BoxProps,
   VStack,
   Button,
   Divider,
@@ -31,7 +31,7 @@ import { useForm } from "@refinedev/react-hook-form";
 import { FormProvider } from "react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type LoginProps = LoginPageProps<
@@ -155,7 +155,10 @@ export const LoginPage: React.FC<LoginProps> = ({
               placeholder="Email"
               type="text"
               {...register("email", {
-                required: true,
+                required: translate(
+                  "pages.login.errors.requiredEmail",
+                  "Email is required",
+                ),
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: translate(
@@ -177,7 +180,10 @@ export const LoginPage: React.FC<LoginProps> = ({
               type="password"
               placeholder="Password"
               {...register("password", {
-                required: true,
+                required: translate(
+                  "pages.login.errors.requiredPassword",
+                  "Password is required",
+                ),
               })}
             />
             <FormErrorMessage>{`${errors.password?.message}`}</FormErrorMessage>

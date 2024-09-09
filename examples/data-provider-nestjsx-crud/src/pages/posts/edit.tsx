@@ -7,11 +7,11 @@ import { Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory, ITags } from "../../interfaces";
+import type { IPost, ICategory, ITags } from "../../interfaces";
 import { normalizeFile } from "../../utility/normalize";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+  const { formProps, saveButtonProps, query: queryResult } = useForm<IPost>();
   const apiUrl = useApiUrl();
 
   const postData = queryResult?.data?.data;

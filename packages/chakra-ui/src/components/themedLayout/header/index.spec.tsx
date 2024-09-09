@@ -1,7 +1,7 @@
 import React from "react";
 import { render, TestWrapper } from "@test";
 import { ThemedHeader } from "./index";
-import { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
+import type { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
 
 const mockLegacyAuthProvider: LegacyAuthProvider = {
   login: () => Promise.resolve(),

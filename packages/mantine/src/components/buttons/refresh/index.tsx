@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  useTranslate,
-  useResource,
-  useInvalidate,
-  queryKeys,
-  pickDataProvider,
-} from "@refinedev/core";
+import { useRefreshButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -14,9 +8,7 @@ import { ActionIcon, Button } from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { RefreshButtonProps } from "../types";
-
-import { useQueryClient } from "@tanstack/react-query";
+import type { RefreshButtonProps } from "../types";
 
 /**
  * `<RefreshButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
@@ -37,39 +29,23 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
   metaData: _metaData,
   ...rest
 }) => {
-  const translate = useTranslate();
-
-  const queryClient = useQueryClient();
-  const invalidates = useInvalidate();
-
-  const { resources, identifier, id } = useResource(
-    resourceNameFromProps ?? propResourceNameOrRouteName,
-  );
-
-  const isInvalidating = !!queryClient.isFetching({
-    queryKey: queryKeys(
-      identifier,
-      pickDataProvider(identifier, dataProviderName, resources),
-    ).detail(recordItemId ?? id),
+  const {
+    onClick: onRefresh,
+    label,
+    loading,
+  } = useRefreshButton({
+    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    id: recordItemId,
+    dataProviderName,
   });
-
-  const handleInvalidate = () => {
-    invalidates({
-      id: recordItemId ?? id,
-      invalidates: ["detail"],
-      dataProviderName,
-      resource: identifier,
-    });
-  };
 
   const { variant, styles: _styles, vars, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
-      onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        onClick ? onClick(e) : handleInvalidate();
-      }}
-      loading={isInvalidating}
+      onClick={onClick ? onClick : onRefresh}
+      loading={loading}
+      aria-label={label}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}
       variant={mapButtonVariantToActionIconVariant(variant, "default")}
@@ -81,16 +57,14 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     <Button
       variant={variant || "default"}
       leftSection={<IconRefresh size={18} {...svgIconProps} />}
-      loading={isInvalidating}
-      onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        onClick ? onClick(e) : handleInvalidate();
-      }}
+      loading={loading}
+      onClick={onClick ? onClick : onRefresh}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}
       vars={vars}
       {...rest}
     >
-      {children ?? translate("buttons.refresh", "Refresh")}
+      {children ?? label}
     </Button>
   );
 };

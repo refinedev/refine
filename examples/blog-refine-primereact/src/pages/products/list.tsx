@@ -13,7 +13,7 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { confirmDialog } from "primereact/confirmdialog";
 
-import { ICategory, IProduct } from "../../interfaces";
+import type { ICategory, IProduct } from "../../interfaces";
 
 const formatCurrency = (value: number) => {
   return value.toLocaleString("en-US", {
@@ -24,7 +24,7 @@ const formatCurrency = (value: number) => {
 
 export const ProductList = () => {
   const {
-    tableQueryResult,
+    tableQuery: tableQueryResult,
     pageCount,
     current,
     pageSize,

@@ -7,11 +7,11 @@ import { Tag } from "primereact/tag";
 import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 
-import { IOrder, IOrderStatus } from "../../../interfaces";
+import type { IOrder, IOrderStatus } from "../../../interfaces";
 
 export const RecentSales = () => {
   const {
-    tableQueryResult,
+    tableQuery: tableQueryResult,
     pageCount,
     current,
     pageSize,

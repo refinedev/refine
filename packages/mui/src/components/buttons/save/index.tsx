@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -8,7 +8,7 @@ import {
 import LoadingButton from "@mui/lab/LoadingButton";
 import SaveOutlined from "@mui/icons-material/SaveOutlined";
 
-import { SaveButtonProps } from "../types";
+import type { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component.
@@ -22,7 +22,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   const { sx, ...restProps } = rest;
 
@@ -38,7 +38,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       {hideText ? (
         <SaveOutlined fontSize="small" {...svgIconProps} />
       ) : (
-        children ?? translate("buttons.save", "Save")
+        children ?? label
       )}
     </LoadingButton>
   );

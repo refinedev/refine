@@ -1,9 +1,9 @@
 import {
   useSelect as useSelectCore,
-  HttpError,
-  UseSelectProps,
-  UseSelectReturnType,
-  BaseRecord,
+  type HttpError,
+  type UseSelectProps,
+  type UseSelectReturnType,
+  type BaseRecord,
 } from "@refinedev/core";
 
 import type { AutocompleteProps } from "@mui/material/Autocomplete";
@@ -55,17 +55,27 @@ export const useAutocomplete = <
 >(
   props: UseAutocompleteProps<TQueryFnData, TError, TData>,
 ): UseAutocompleteReturnType<TData> => {
-  const { queryResult, defaultValueQueryResult, onSearch, overtime } =
-    useSelectCore<TQueryFnData, TError, TData>(props);
+  const { query, defaultValueQuery, onSearch, overtime } = useSelectCore<
+    TQueryFnData,
+    TError,
+    TData
+  >(props);
 
   return {
     autocompleteProps: {
-      options: unionWith(
-        queryResult.data?.data || [],
-        defaultValueQueryResult.data?.data || [],
-        isEqual,
-      ),
-      loading: queryResult.isFetching || defaultValueQueryResult.isFetching,
+      options:
+        props.selectedOptionsOrder === "selected-first"
+          ? unionWith(
+              defaultValueQuery.data?.data || [],
+              query.data?.data || [],
+              isEqual,
+            )
+          : unionWith(
+              query.data?.data || [],
+              defaultValueQuery.data?.data || [],
+              isEqual,
+            ),
+      loading: query.isFetching || defaultValueQuery.isFetching,
       onInputChange: (event, value) => {
         if (event?.type === "change") {
           onSearch(value);
@@ -76,8 +86,10 @@ export const useAutocomplete = <
       filterOptions: (x) => x,
     },
     onSearch,
-    queryResult,
-    defaultValueQueryResult,
+    query,
+    defaultValueQuery,
+    queryResult: query,
+    defaultValueQueryResult: defaultValueQuery,
     overtime,
   };
 };

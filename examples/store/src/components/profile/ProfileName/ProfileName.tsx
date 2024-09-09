@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 import { useForm } from "@refinedev/react-hook-form";
 
 import { useWatch } from "react-hook-form";
@@ -23,7 +23,7 @@ export const ProfileName: React.FC<MyInformationProps> = ({ customer }) => {
     reset,
     control,
     formState: { errors },
-    refineCore: { onFinish, mutationResult },
+    refineCore: { onFinish, mutation: mutationResult },
   } = useForm<UpdateCustomerNameFormData>({
     refineCoreProps: {
       action: "edit",

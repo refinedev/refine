@@ -128,7 +128,7 @@ import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
-import { RefineThemes, ThemedLayoutV2, notificationProvider } from "@refinedev/mantine";
+import { RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
@@ -166,7 +166,7 @@ function App({ Component, pageProps }: ExtendedAppProps) {
         <Refine
           routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          notificationProvider={notificationProvider}
+          notificationProvider={useNotificationProvider}
           authProvider={authProvider}
           resources={[
             {
@@ -262,7 +262,7 @@ export default function ProductList() {
           setCurrent,
           pageCount,
           current,
-          tableQueryResult: { data: tableData },
+          tableQuery: { data: tableData },
       },
   } = useTable({
       columns,

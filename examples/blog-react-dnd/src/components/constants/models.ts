@@ -1,4 +1,4 @@
-import { ColumnTypes } from "./enums";
+import type { ColumnTypes } from "./enums";
 
 export interface OrderProps {
   id: number;

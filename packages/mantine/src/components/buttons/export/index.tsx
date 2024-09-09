@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -8,7 +8,7 @@ import { ActionIcon, Button } from "@mantine/core";
 import { IconFileExport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { ExportButtonProps } from "../types";
+import type { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `} component with a default export icon and a default text with "Export".
@@ -23,7 +23,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   svgIconProps,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useExportButton();
 
   const { variant, styles, vars, ...commonProps } = rest;
 
@@ -32,6 +32,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       size="md"
       variant={mapButtonVariantToActionIconVariant(variant, "default")}
       loading={loading}
+      aria-label={label}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
       {...commonProps}
@@ -48,7 +49,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
-      {children ?? translate("buttons.export", "Export")}
+      {children ?? label}
     </Button>
   );
 };

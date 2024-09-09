@@ -143,8 +143,8 @@ import React from "react";
 import { useForm } from "@refinedev/core";
 
 export const ProductEdit: React.FC = () => {
-  const { formLoading, onFinish, queryResult } = useForm();
-  const defaultValues = queryResult?.data?.data;
+  const { formLoading, onFinish, query } = useForm();
+  const defaultValues = query?.data?.data;
 
   const onSubmit = (e) => {
     e.preventDefault();

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslate, useUpdate } from "@refinedev/core";
 import {
-  Action,
+  type Action,
   createAction,
   Priority,
   useRegisterActions,
@@ -9,7 +9,7 @@ import {
 import CheckOutlined from "@mui/icons-material/CheckOutlined";
 import CloseOutlined from "@mui/icons-material/CloseOutlined";
 
-import { IOrder } from "../../interfaces";
+import type { IOrder } from "../../interfaces";
 
 export const useOrderCustomKbarActions = (order?: IOrder): void => {
   const t = useTranslate();
@@ -20,15 +20,16 @@ export const useOrderCustomKbarActions = (order?: IOrder): void => {
     order?.status.text === "On The Way";
 
   const [actions, setActions] = useState<Action[]>([]);
-  const { mutate } = useUpdate();
+  const { mutate } = useUpdate({
+    resource: "orders",
+    id: order?.id,
+  });
 
   const handleMutate = useCallback(
     (status: { id: number; text: string }) => {
       if (!order?.id) return;
 
       mutate({
-        resource: "orders",
-        id: order?.id,
         values: {
           status,
         },

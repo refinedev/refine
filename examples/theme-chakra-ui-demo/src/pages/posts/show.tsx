@@ -3,10 +3,10 @@ import { Show, MarkdownField } from "@refinedev/chakra-ui";
 
 import { Heading, Text, Spacer } from "@chakra-ui/react";
 
-import { ICategory, IPost } from "../../interfaces";
+import type { ICategory, IPost } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
+  const { query: queryResult } = useShow<IPost>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

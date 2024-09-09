@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useLocation } from "@docusaurus/router";
 import { AnimatePresence, motion } from "framer-motion";
 import {
-  SurveyOption,
+  type SurveyOption,
   SurveyTypeEnum,
   useRefineCloudSurveyAPI,
 } from "../hooks/use-refine-cloud-survey-api";
@@ -40,6 +40,7 @@ export const DocSurveyWidget = ({ className }: Props) => {
     setTimeout(() => {
       refWidget.current?.scrollIntoView({
         behavior: "smooth",
+        block: "center",
       });
     }, 150);
 
@@ -90,6 +91,7 @@ export const DocSurveyWidget = ({ className }: Props) => {
         "bg-gray-100 dark:bg-gray-700",
         "border border-gray-300 dark:border-gray-700",
         "rounded-[28px]",
+        isSurveyTextVisible && "rounded-b-[20px]",
         (isSurveyTextVisible || isFinished) && "h-[286px] sm:h-[242px]",
         !isSurveyTextVisible && !isFinished && "h-[114px] sm:h-[58px]",
         "transition-all duration-200 ease-in-out",
@@ -113,7 +115,7 @@ export const DocSurveyWidget = ({ className }: Props) => {
               className={clsx(
                 "w-full",
                 "mt-4",
-                isSurveyTextVisible && "h-[128px] block",
+                isSurveyTextVisible && "h-[128px] flex",
                 !isSurveyTextVisible && "h-[0px] hidden",
                 "transition-all duration-200 ease-in-out",
               )}
@@ -140,6 +142,7 @@ const SurveyOptions = (props: {
   return (
     <div
       className={clsx(
+        "flex-shrink-0",
         "w-full",
         "flex flex-col sm:flex-row",
         "items-center justify-between",
@@ -193,7 +196,15 @@ const SurveyText = (props: {
   const [text, setText] = useState("");
   return (
     <form
-      className={clsx("w-full", "h-full", "flex", "flex-col", props.className)}
+      className={clsx(
+        "flex-1",
+        "w-full",
+        "h-full",
+        "flex",
+        "flex-col",
+        "gap-2",
+        props.className,
+      )}
       onSubmit={(e) => {
         e.preventDefault();
         props.onSubmit(text);
@@ -213,7 +224,7 @@ const SurveyText = (props: {
           "border",
           "dark:border-gray-700",
           "border-gray-300",
-          "rounded-lg",
+          "rounded-xl",
           "resize-none",
         )}
         placeholder="Your emoji tells us how you feel. If you have any additional thoughts or suggestions, we'd love to hear them!"
@@ -222,7 +233,7 @@ const SurveyText = (props: {
           setText(e.currentTarget.value);
         }}
       />
-      <div className={clsx("flex", "items-center", "justify-end", "mt-2")}>
+      <div className={clsx("flex", "items-center", "justify-end", "mt-0")}>
         <button
           type="submit"
           className={clsx(
@@ -230,6 +241,8 @@ const SurveyText = (props: {
             "text-xs",
             "text-white ",
             "bg-gray-600",
+            "bg-refine-react-light-link",
+            "dark:bg-refine-react-dark-link",
             "border",
             "border-transparent",
             "rounded-full",

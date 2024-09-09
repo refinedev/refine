@@ -83,10 +83,27 @@ If you have multiple resources with the same name, you can pass the `identifier`
 ### defaultValue
 
 ```tsx
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "languages",
   // highlight-next-line
   defaultValue: 1,
+});
+```
+
+### selectedOptionsOrder
+
+`selectedOptionsOrder` allows us to sort `selectedOptions` on `defaultValue`. It can be:
+
+- `"in-place"`: sort `selectedOptions` at the bottom. It is by default.
+- `"selected-first"`: sort `selectedOptions` at the top.
+
+```tsx
+const { radioGroupProps } = useRadioGroup({
+  resource: "languages",
+  // highlight-next-line
+  defaultValue: 1,
+  // highlight-next-line
+  selectedOptionsOrder: "selected-first", // in-place | selected-first
 });
 ```
 
@@ -134,7 +151,7 @@ Can be used to specify which field will be searched with value given to `onSearc
 ```tsx
 const { onSearch } = useRadioGroup({ searchField: "name" });
 
-onSearch("John"); // Searchs by `name` field with value John.
+onSearch("John"); // Searches by `name` field with value John.
 ```
 
 By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `title` field otherwise.
@@ -143,14 +160,14 @@ By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `t
 // When `optionLabel` is string.
 const { onSearch } = useRadioGroup({ optionLabel: "name" });
 
-onSearch("John"); // Searchs by `name` field with value John.
+onSearch("John"); // Searches by `name` field with value John.
 
 // When `optionLabel` is function.
 const { onSearch } = useRadioGroup({
   optionLabel: (item) => `${item.id} - ${item.name}`,
 });
 
-onSearch("John"); // Searchs by `title` field with value John.
+onSearch("John"); // Searches by `title` field with value John.
 ```
 
 ### filters
@@ -195,7 +212,7 @@ const { radioGroupProps } = useRadioGroup({
 `fetchSize` is the amount of records to fetch in checkboxes.
 
 ```tsx
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "languages",
   // highlight-next-line
   fetchSize: 20,
@@ -226,7 +243,7 @@ const { radioGroupProps } = useRadioGroup({
 For example, lets say that we have 1000 post records:
 
 ```ts
-const { selectProps } = useRadioGroup({
+const { radioGroupProps } = useRadioGroup({
   resource: "categories",
   // highlight-next-line
   pagination: { current: 3, pageSize: 8 },

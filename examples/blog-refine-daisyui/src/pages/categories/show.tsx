@@ -1,12 +1,12 @@
 import React from "react";
 import { useShow, useNavigation } from "@refinedev/core";
 import { ArrowLeftIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryShow = () => {
   const { edit, list } = useNavigation();
   const {
-    queryResult: { data },
+    query: { data },
   } = useShow<ICategory>();
 
   const record = data?.data;

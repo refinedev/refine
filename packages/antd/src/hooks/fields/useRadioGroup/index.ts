@@ -1,15 +1,15 @@
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { QueryObserverResult } from "@tanstack/react-query";
 import type { Radio } from "antd";
 
 import {
-  BaseKey,
-  BaseOption,
-  BaseRecord,
-  GetListResponse,
-  HttpError,
+  type BaseKey,
+  type BaseOption,
+  type BaseRecord,
+  type GetListResponse,
+  type HttpError,
   pickNotDeprecated,
   useSelect,
-  UseSelectProps,
+  type UseSelectProps,
 } from "@refinedev/core";
 
 export type UseRadioGroupReturnType<
@@ -19,6 +19,10 @@ export type UseRadioGroupReturnType<
   radioGroupProps: Omit<React.ComponentProps<typeof Radio.Group>, "options"> & {
     options: TOption[];
   };
+  query: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -60,6 +64,7 @@ export const useRadioGroup = <
   pagination,
   liveMode,
   defaultValue,
+  selectedOptionsOrder,
   onLiveEvent,
   liveParams,
   meta,
@@ -69,12 +74,7 @@ export const useRadioGroup = <
   TData,
   TOption
 > => {
-  const { queryResult, options } = useSelect<
-    TQueryFnData,
-    TError,
-    TData,
-    TOption
-  >({
+  const { query, options } = useSelect<TQueryFnData, TError, TData, TOption>({
     resource,
     sort,
     sorters,
@@ -86,6 +86,7 @@ export const useRadioGroup = <
     pagination,
     liveMode,
     defaultValue,
+    selectedOptionsOrder,
     onLiveEvent,
     liveParams,
     meta: pickNotDeprecated(meta, metaData),
@@ -98,6 +99,7 @@ export const useRadioGroup = <
       options,
       defaultValue,
     },
-    queryResult,
+    query,
+    queryResult: query,
   };
 };

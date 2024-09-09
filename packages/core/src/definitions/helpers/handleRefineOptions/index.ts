@@ -1,10 +1,10 @@
-import { QueryClient, QueryClientConfig } from "@tanstack/react-query";
+import type { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 
 import { defaultRefineOptions } from "@contexts/refine";
 
-import { MutationMode } from "../../../contexts/data/types";
-import { LiveModeProps } from "../../../contexts/live/types";
-import {
+import type { MutationMode } from "../../../contexts/data/types";
+import type { LiveModeProps } from "../../../contexts/live/types";
+import type {
   IRefineContextOptions,
   IRefineOptions,
 } from "../../../contexts/refine/types";
@@ -87,6 +87,16 @@ export const handleRefineOptions = ({
       defaultRefineOptions.disableServerSideValidation,
     projectId: options?.projectId,
     useNewQueryKeys: options?.useNewQueryKeys,
+    title: {
+      icon:
+        typeof options?.title?.icon === "undefined"
+          ? defaultRefineOptions.title.icon
+          : options?.title?.icon,
+      text:
+        typeof options?.title?.text === "undefined"
+          ? defaultRefineOptions.title.text
+          : options?.title?.text,
+    },
   };
 
   const disableTelemetryWithDefault =

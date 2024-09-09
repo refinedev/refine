@@ -1,5 +1,130 @@
 # @refinedev/mantine
 
+## 4.7.0
+
+### Minor Changes
+
+- [#6161](https://github.com/refinedev/refine/pull/6161) [`ff975374efcc05220be4411218c2daf7c19b8995`](https://github.com/refinedev/refine/commit/ff975374efcc05220be4411218c2daf7c19b8995) Thanks [@ritute](https://github.com/ritute)! - feat(react-hook-form): update version constraint from `^7.30.0` to `^7.43.5`
+
+  Update react-hook-form version to address runtime subscribe error
+
+  [Fixes #6139](https://github.com/refinedev/refine/issues/6139)
+
+### Patch Changes
+
+- [#6174](https://github.com/refinedev/refine/pull/6174) [`2b73e40b0e18932f008842790065cdd386e9d270`](https://github.com/refinedev/refine/commit/2b73e40b0e18932f008842790065cdd386e9d270) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: inferencer now uses `query` a instead of the deprecated `queryResult` when generating code for `useShow`. #6173
+
+- [#6164](https://github.com/refinedev/refine/pull/6164) [`8ed027eec66c41c444f168f4f52e6b51057bc498`](https://github.com/refinedev/refine/commit/8ed027eec66c41c444f168f4f52e6b51057bc498) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: inferencer now uses `query` and `mutation` instead of the deprecated `queryResult` and `mutationResult` when generating code for `useForm`. #6163
+
+- Updated dependencies [[`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4), [`81703b62bafeb01a75290b99b3869ef96d04bd94`](https://github.com/refinedev/refine/commit/81703b62bafeb01a75290b99b3869ef96d04bd94), [`292cebc5a70f19400793292b79d1400fec114591`](https://github.com/refinedev/refine/commit/292cebc5a70f19400793292b79d1400fec114591), [`1f7976bd32da311367945370efccd7d9c9b102a7`](https://github.com/refinedev/refine/commit/1f7976bd32da311367945370efccd7d9c9b102a7), [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94), [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94), [`4967a51944c139d102fcfc04ada5a42c725ed7c2`](https://github.com/refinedev/refine/commit/4967a51944c139d102fcfc04ada5a42c725ed7c2), [`8ed027eec66c41c444f168f4f52e6b51057bc498`](https://github.com/refinedev/refine/commit/8ed027eec66c41c444f168f4f52e6b51057bc498), [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94), [`2b73e40b0e18932f008842790065cdd386e9d270`](https://github.com/refinedev/refine/commit/2b73e40b0e18932f008842790065cdd386e9d270), [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94), [`fa2d7a4554da2d5fb2432a011941f9c157b59aba`](https://github.com/refinedev/refine/commit/fa2d7a4554da2d5fb2432a011941f9c157b59aba), [`8ed027eec66c41c444f168f4f52e6b51057bc498`](https://github.com/refinedev/refine/commit/8ed027eec66c41c444f168f4f52e6b51057bc498), [`61aa3464df0d95c30839726f455ed43e6854730b`](https://github.com/refinedev/refine/commit/61aa3464df0d95c30839726f455ed43e6854730b), [`7e71f12b81954fd3a59678d7fcccd7b557879a94`](https://github.com/refinedev/refine/commit/7e71f12b81954fd3a59678d7fcccd7b557879a94)]:
+  - @refinedev/core@4.54.0
+
+## 4.6.6
+
+### Patch Changes
+
+- [#6099](https://github.com/refinedev/refine/pull/6099) [`ba8117f6060253dc1d589d69acba79d7c89e94c6`](https://github.com/refinedev/refine/commit/ba8117f6060253dc1d589d69acba79d7c89e94c6) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: remove graphql-tag from peer dependencies. fixes #6100
+
+- [#6052](https://github.com/refinedev/refine/pull/6052) [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd) Thanks [@aliemir](https://github.com/aliemir)! - fix(inferencer): broken lodash import in bundle
+
+  ESM bundle of `@refinedev/inferencer` was broken due to incorrect lodash import. Import has been replaced with subdirectory import to get handled properly in the bundling process.
+
+- Updated dependencies [[`853bef97ed7baf59e74c98fc54c0ed11624fb491`](https://github.com/refinedev/refine/commit/853bef97ed7baf59e74c98fc54c0ed11624fb491), [`b86648f42cd849a506e4c32d740de26b72681f72`](https://github.com/refinedev/refine/commit/b86648f42cd849a506e4c32d740de26b72681f72), [`4265ae2509f79af9dbca8d52daf5c2f1b4a50a51`](https://github.com/refinedev/refine/commit/4265ae2509f79af9dbca8d52daf5c2f1b4a50a51), [`b516c18b828ba8823561d0fefc4afe02b45ce332`](https://github.com/refinedev/refine/commit/b516c18b828ba8823561d0fefc4afe02b45ce332)]:
+  - @refinedev/core@4.53.0
+
+## 4.6.4
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - lock the `ant-design/icons` version to `5.0.1`
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/core@4.51.0
+
+## 4.6.3
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`cff950ba8b66143f5c08c3ef9f4cd112a9dc7448`](https://github.com/refinedev/refine/commit/cff950ba8b66143f5c08c3ef9f4cd112a9dc7448) Thanks [@aliemir](https://github.com/aliemir)! - lock the `ant-design/icons` version to `5.0.1`
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`a39f1952554120893ea83db904037917fc293dc6`](https://github.com/refinedev/refine/commit/a39f1952554120893ea83db904037917fc293dc6), [`208f77177f9821ee1860ffe031e6b2a9645d1bb6`](https://github.com/refinedev/refine/commit/208f77177f9821ee1860ffe031e6b2a9645d1bb6), [`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772), [`84cac61b84ab872394424ebf358eeb380f40121d`](https://github.com/refinedev/refine/commit/84cac61b84ab872394424ebf358eeb380f40121d), [`4cc74478cbec8caa3023a50ce62f1d5b2f7158a5`](https://github.com/refinedev/refine/commit/4cc74478cbec8caa3023a50ce62f1d5b2f7158a5), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d)]:
+  - @refinedev/core@4.50.0
+
+## 4.6.2
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/core@4.49.2
+
+## 4.6.1
+
+### Patch Changes
+
+- [#5887](https://github.com/refinedev/refine/pull/5887) [`113c1337bf0`](https://github.com/refinedev/refine/commit/113c1337bf02ecf22b4beb459b06a6acadc0e11d) Thanks [@aliemir](https://github.com/aliemir)! - chore: remove version lock from @ant-design/icons 5.0.1 to ^5.0.1
+
+- [#5836](https://github.com/refinedev/refine/pull/5836) [`cc6285ddf96`](https://github.com/refinedev/refine/commit/cc6285ddf963a31417d87cf9b3688aa8f61ddbb5) Thanks [@aliemir](https://github.com/aliemir)! - fix: inferencer now should work with ESM builds
+
+  Fixed the issue with `prism-react-renderer` theme imports not being resolved correctly in ESM builds.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`0a76576da0f`](https://github.com/refinedev/refine/commit/0a76576da0f18c6db372e737c610ad462b56ff21), [`8d2dd4376f6`](https://github.com/refinedev/refine/commit/8d2dd4376f672786d4722d3dee09e6344f1002e4), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f), [`9a0c1c8414a`](https://github.com/refinedev/refine/commit/9a0c1c8414a7b228378c234468396e6288cdb6f0)]:
+  - @refinedev/core@4.49.1
+
+## 4.6.0
+
+### Minor Changes
+
+- [#5761](https://github.com/refinedev/refine/pull/5761) [`399911617b2`](https://github.com/refinedev/refine/commit/399911617b2bb044e4ed9a348daba5c802d790e6) Thanks [@aliemir](https://github.com/aliemir)! - Migrated from outdated `@tabler/icons@1` to `@tabler/icons-react@3` to make sure we're using the latest available version of the library without requiring users to pin to a deprecated version.
+
+  If your project doesn't include `@tabler/icons` you won't be affected by this change. If you're using `@tabler/icons@1` in your project, you may need to update your dependency to latest version of `@tabler/icons-react` to avoid conflicting dependencies. Practically, this should not introduce any breaking changes to your project and all the icons in `@tabler/icons@1` should also be available in the latest version of `@tabler/icons-react`.
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: `@tabler/icons-react` imports in CJS builds
+
+  imports from `@tabler/icons-react` end up requiring the ESM build in CJS environments, to prevent this we've added added an esbuild plugin to replace the imports with the correct path for CJS bundles.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the `lodash-es` imports for ESM builds to access the exports properly.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+- [#5739](https://github.com/refinedev/refine/pull/5739) [`e9bbb1aa5af`](https://github.com/refinedev/refine/commit/e9bbb1aa5af94125cf0de562b3154302373a308f) Thanks [@aliemir](https://github.com/aliemir)! - Removed redundant usage of `IResourceComponentsProps` type in generated components. This type only works with legacy routers and `<RefineRoutes />` component, its usage outside of these scopes are unnecessary.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: broken eslint plugin for removing test ids from components
+
+  Eslint plugin to remove test ids from components was broken and might miss some test ids to be included in the bundles.
+
+- Updated dependencies [[`4e8188a6652`](https://github.com/refinedev/refine/commit/4e8188a665209b0d0b77aef27c795a29b9513226), [`10ba9c34490`](https://github.com/refinedev/refine/commit/10ba9c344900d0fa4af7120c24b3b007081a4c39), [`2b5ac6f5409`](https://github.com/refinedev/refine/commit/2b5ac6f5409b7b175c453793224a531e644f6513), [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`404b2ef5e1b`](https://github.com/refinedev/refine/commit/404b2ef5e1b8fed469eeab753bac8736ed3fe58e), [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927), [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`10ba9c34490`](https://github.com/refinedev/refine/commit/10ba9c344900d0fa4af7120c24b3b007081a4c39), [`38f129f40ee`](https://github.com/refinedev/refine/commit/38f129f40eea109c9b89b23a8fd3f217964330c7), [`f32512b9042`](https://github.com/refinedev/refine/commit/f32512b90427cbb97b28e9d5445dcd343067aa7e)]:
+  - @refinedev/core@4.49.0
+
 ## 4.5.21
 
 ### Patch Changes

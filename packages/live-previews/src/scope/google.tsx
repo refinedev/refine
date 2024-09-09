@@ -15,7 +15,7 @@ const MockGoogleButton = () => {
         background: "#3871E0",
         borderRadius: "4px",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         padding: "2px",
         paddingRight: "12px",

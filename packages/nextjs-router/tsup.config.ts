@@ -1,5 +1,6 @@
-import { defineConfig, Options } from "tsup";
+import { defineConfig, type Options } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+import { nextJsEsmReplacePlugin } from "../shared/next-js-esm-replace-plugin";
 
 const sharedConfig: Partial<Options> = {
   outDir: "dist",
@@ -22,11 +23,11 @@ const sharedConfig: Partial<Options> = {
         return resolved;
       },
     }),
+    nextJsEsmReplacePlugin,
   ],
-  onSuccess: "npm run types",
 };
 
-export default defineConfig([
+export default defineConfig((options) => [
   {
     entry: {
       index: "src/index.ts",
@@ -38,6 +39,7 @@ export default defineConfig([
       };
     },
     ...sharedConfig,
+    onSuccess: options.watch ? "pnpm types" : undefined,
   },
   {
     entry: {
@@ -50,5 +52,6 @@ export default defineConfig([
       "parse-table-params": "src/common/parse-table-params.ts",
     },
     ...sharedConfig,
+    onSuccess: options.watch ? "pnpm types" : undefined,
   },
 ]);

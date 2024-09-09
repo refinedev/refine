@@ -7,14 +7,14 @@ import {
   Input,
   Select,
 } from "@chakra-ui/react";
-import { HttpError, useSelect } from "@refinedev/core";
+import { type HttpError, useSelect } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query: queryResult },
     saveButtonProps,
     register,
     formState: { errors },

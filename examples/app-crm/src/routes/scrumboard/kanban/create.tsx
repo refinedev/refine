@@ -2,11 +2,11 @@ import { useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";
-import { GetFields } from "@refinedev/nestjs-query";
+import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input, Modal } from "antd";
 
-import { KanbanCreateTaskMutation } from "@/graphql/types";
+import type { KanbanCreateTaskMutation } from "@/graphql/types";
 
 import { KANBAN_CREATE_TASK_MUTATION } from "./queries";
 

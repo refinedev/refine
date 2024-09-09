@@ -88,7 +88,7 @@ export const EditPage: React.FC = () => {
     const {
         saveButtonProps,
         getInputProps,
-        refineCore: { queryResult: productQueryResult },
+        refineCore: { query: productQuery },
     } = useForm<IProduct>({
         initialValues: {
             name: "",
@@ -102,7 +102,7 @@ export const EditPage: React.FC = () => {
             action: "edit",
         },
     });
-    const product = productQueryResult?.data?.data;
+    const product = productQuery?.data?.data;
 
     const { selectProps, queryResult: categoriesQueryResult } =
         useSelect<ICategory>({

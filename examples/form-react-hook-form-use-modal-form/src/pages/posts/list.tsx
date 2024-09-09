@@ -1,11 +1,11 @@
-import { HttpError, useTable } from "@refinedev/core";
+import { type HttpError, useTable } from "@refinedev/core";
 import { useModalForm } from "@refinedev/react-hook-form";
 
 import { CreatePost, EditPost } from "../../components";
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
-  const { tableQueryResult } = useTable<IPost>({
+  const { tableQuery: tableQueryResult } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",

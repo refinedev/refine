@@ -23,7 +23,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
-import {
+import type {
   InferencerResultComponent,
   InferField,
   ImportElement,
@@ -363,7 +363,7 @@ export const renderer = ({
     
     export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
-        const { formProps, saveButtonProps, queryResult } = useForm(${
+        const { formProps, saveButtonProps, query } = useForm(${
           isCustomPage
             ? `{
                       resource: "${resource.name}",

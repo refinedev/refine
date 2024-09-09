@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useImportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -8,7 +8,7 @@ import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { ImportButtonProps } from "../types";
+import type { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.
@@ -24,7 +24,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useImportButton();
 
   const { variant, styles, vars, ...commonProps } = rest;
 
@@ -34,6 +34,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
       {hideText ? (
         <ActionIcon
           variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          aria-label={label}
           component="span"
           loading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
@@ -53,7 +54,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
           vars={vars}
           {...rest}
         >
-          {children ?? translate("buttons.import", "Import")}
+          {children ?? label}
         </Button>
       )}
     </label>

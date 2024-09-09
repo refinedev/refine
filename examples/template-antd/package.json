@@ -7,15 +7,15 @@
     "build": "tsc && refine build",
     "dev": "refine dev",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "refine start",
-    "refine": "refine"
+    "refine": "refine",
+    "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.37.5",
-    "@refinedev/cli": "^2.16.27",
-    "@refinedev/core": "^4.48.0",
-    "@refinedev/react-router-v6": "^4.5.6",
-    "@refinedev/simple-rest": "^5.0.3",
+    "@refinedev/antd": "^5.43.1",
+    "@refinedev/cli": "^2.16.38",
+    "@refinedev/core": "^4.54.1",
+    "@refinedev/react-router-v6": "^4.6.0",
+    "@refinedev/simple-rest": "^5.0.8",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.8.1"

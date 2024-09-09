@@ -128,7 +128,7 @@ import { Refine, Authenticated } from "@refinedev/core";
 import {
     ErrorComponent,
     ThemedLayoutV2,
-    notificationProvider,
+    useNotificationProvider,
     AuthPage
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
@@ -148,7 +148,7 @@ const App: React.FC = () => {
         <BrowserRouter>
             <ThemeProvider>
                 <Refine
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     routerProvider={routerProvider}
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
@@ -287,7 +287,7 @@ export const ProductList = () => {
             setCurrent,
             pageCount,
             current,
-            tableQueryResult: { data: tableData },
+            tableQuery: { data: tableData },
         },
     } = useTable({
         columns,

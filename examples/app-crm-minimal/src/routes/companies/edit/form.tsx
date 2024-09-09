@@ -1,6 +1,6 @@
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import {
+import type { HttpError } from "@refinedev/core";
+import type {
   GetFields,
   GetFieldsFromList,
   GetVariables,
@@ -10,8 +10,12 @@ import { Form, Input, InputNumber, Select } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar } from "@/components";
 import { USERS_SELECT_QUERY } from "@/graphql/queries";
-import { BusinessType, CompanySize, Industry } from "@/graphql/schema.types";
-import {
+import type {
+  BusinessType,
+  CompanySize,
+  Industry,
+} from "@/graphql/schema.types";
+import type {
   UpdateCompanyMutation,
   UpdateCompanyMutationVariables,
   UsersSelectQuery,
@@ -21,7 +25,12 @@ import { getNameInitials } from "@/utilities";
 import { UPDATE_COMPANY_MUTATION } from "./queries";
 
 export const CompanyForm = () => {
-  const { saveButtonProps, formProps, formLoading, queryResult } = useForm<
+  const {
+    saveButtonProps,
+    formProps,
+    formLoading,
+    query: queryResult,
+  } = useForm<
     GetFields<UpdateCompanyMutation>,
     HttpError,
     GetVariables<UpdateCompanyMutationVariables>
@@ -33,17 +42,18 @@ export const CompanyForm = () => {
   });
   const { avatarUrl, name } = queryResult?.data?.data || {};
 
-  const { selectProps: selectPropsUsers, queryResult: queryResultUsers } =
-    useSelect<GetFieldsFromList<UsersSelectQuery>>({
-      resource: "users",
-      optionLabel: "name",
-      pagination: {
-        mode: "off",
-      },
-      meta: {
-        gqlQuery: USERS_SELECT_QUERY,
-      },
-    });
+  const { selectProps: selectPropsUsers, query: queryResultUsers } = useSelect<
+    GetFieldsFromList<UsersSelectQuery>
+  >({
+    resource: "users",
+    optionLabel: "name",
+    pagination: {
+      mode: "off",
+    },
+    meta: {
+      gqlQuery: USERS_SELECT_QUERY,
+    },
+  });
 
   return (
     <Edit

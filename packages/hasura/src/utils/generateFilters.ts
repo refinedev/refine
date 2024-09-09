@@ -1,11 +1,13 @@
-import {
+import type {
   ConditionalFilter,
   CrudOperators,
   LogicalFilter,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import setWith from "lodash/setWith";
-import { NamingConvention } from "src/dataProvider";
+import cloneDeep from "lodash/cloneDeep";
+import type { NamingConvention } from "src/dataProvider";
+import type { BoolExp, MultiConditionFilter } from "./boolexp";
 
 export type HasuraFilterCondition =
   | "_and"
@@ -47,9 +49,8 @@ export type HasuraCrudFilter = HasuraLogicalFilter | HasuraConditionalFilter;
 
 export type HasuraCrudFilters = HasuraCrudFilter[];
 
-const hasuraFilters: Record<
-  HasuraCrudOperators,
-  HasuraFilterCondition | undefined
+const hasuraFilters: Partial<
+  Record<HasuraCrudOperators, HasuraFilterCondition | undefined>
 > = {
   eq: "_eq",
   ne: "_neq",
@@ -67,8 +68,6 @@ const hasuraFilters: Record<
   or: "_or",
   and: "_and",
   not: "_not",
-  between: undefined,
-  nbetween: undefined,
   nnull: "_is_null",
   startswith: "_iregex",
   nstartswith: "_iregex",
@@ -120,7 +119,7 @@ const convertHasuraOperatorToGraphqlDefaultNaming = (
 export const generateNestedFilterQuery = (
   filter: HasuraCrudFilter,
   namingConvention: NamingConvention = "hasura-default",
-): any => {
+): BoolExp => {
   const { operator } = filter;
 
   if (
@@ -157,10 +156,10 @@ export const generateNestedFilterQuery = (
   };
 };
 
-export const generateFilters: any = (
+export const generateFilters = (
   filters?: HasuraCrudFilters,
   namingConvention: NamingConvention = "hasura-default",
-) => {
+): BoolExp | undefined => {
   if (!filters) {
     return undefined;
   }
@@ -174,4 +173,62 @@ export const generateFilters: any = (
   );
 
   return nestedQuery;
+};
+
+function isMultiConditionFilter(key: string): key is MultiConditionFilter {
+  const keys: MultiConditionFilter[] = ["_and", "_or"];
+  return keys.includes(key as MultiConditionFilter);
+}
+
+export const mergeHasuraFilters = (
+  filters?: BoolExp,
+  metaFilters?: BoolExp,
+): BoolExp | undefined => {
+  if (!metaFilters) {
+    return filters;
+  }
+  const mergedFilters = filters ? cloneDeep(filters) : {};
+  const gqlVariableFilters = Object.entries(metaFilters);
+  const arbitraryOperators = gqlVariableFilters.filter((f) => {
+    const [k] = f;
+    return !isMultiConditionFilter(k);
+  });
+
+  if (
+    arbitraryOperators.length > 1 ||
+    (metaFilters._and && arbitraryOperators.length)
+  ) {
+    if (!mergedFilters._and) {
+      mergedFilters._and = [];
+    }
+  }
+
+  if (
+    arbitraryOperators.length > 1 ||
+    ((metaFilters._and || metaFilters._or) && arbitraryOperators.length)
+  ) {
+    console.warn(
+      "@packages/hasura: multiple filters present. Group multiple parameters using the _and or the _or operator. Tip: You can use the _or and _and operators along with the _not operator to create arbitrarily complex boolean expressions involving multiple filtering criteria.",
+    );
+  }
+
+  gqlVariableFilters.forEach((filter) => {
+    const [k, v] = filter;
+
+    if (!isMultiConditionFilter(k) && mergedFilters._and) {
+      // Group Multiple Parameters Together
+      mergedFilters._and = mergedFilters._and.concat({ [k]: v });
+    } else if (k === "_and" && mergedFilters._and) {
+      // Merge _and conditions from both groups of Hasura Filters
+      if (!Array.isArray(v)) {
+        throw new Error(
+          "@packages/hasura: unexpected value for BoolExp _and. Expected an Array.",
+        );
+      }
+      mergedFilters._and = mergedFilters._and.concat(v);
+    } else {
+      mergedFilters[k] = v;
+    }
+  });
+  return mergedFilters;
 };

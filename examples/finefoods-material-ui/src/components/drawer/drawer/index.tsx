@@ -1,5 +1,5 @@
-import BaseDrawer, { DrawerProps } from "@mui/material/Drawer";
-import { PropsWithChildren } from "react";
+import BaseDrawer, { type DrawerProps } from "@mui/material/Drawer";
+import type { PropsWithChildren } from "react";
 import gray from "@mui/material/colors/grey";
 import { useColorModeContext } from "../../../contexts";
 

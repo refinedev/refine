@@ -9,7 +9,11 @@ import {
 } from "@test";
 
 import { useTable } from ".";
-import { CrudFilter, CrudSort, Pagination } from "../../contexts/data/types";
+import type {
+  CrudFilter,
+  CrudSort,
+  Pagination,
+} from "../../contexts/data/types";
 import * as useRouterType from "../../contexts/router/picker";
 
 const defaultPagination = {
@@ -467,6 +471,22 @@ describe("useTable Hook", () => {
       expect(!result.current.tableQueryResult.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
+  });
+
+  it("should work with tableQuery and tableQueryResult", async () => {
+    const { result } = renderHook(() => useTable(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        routerProvider,
+      }),
+    });
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
   });
 });
 

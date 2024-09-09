@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { TestWrapper } from "../../test";
 import { useTable } from "./index";
@@ -438,9 +438,7 @@ describe("useTable Hook", () => {
         mode === "server" ? undefined : expect.any(Function),
       );
 
-      expect(result.current.options.manualSorting).toEqual(
-        mode === "server" ? true : false,
-      );
+      expect(result.current.options.manualSorting).toEqual(mode === "server");
     },
   );
 
@@ -466,9 +464,7 @@ describe("useTable Hook", () => {
         mode === "server" ? undefined : expect.any(Function),
       );
 
-      expect(result.current.options.manualFiltering).toEqual(
-        mode === "server" ? true : false,
-      );
+      expect(result.current.options.manualFiltering).toEqual(mode === "server");
     },
   );
 });

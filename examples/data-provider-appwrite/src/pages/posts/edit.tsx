@@ -1,27 +1,25 @@
-import React from "react";
-import { HttpError } from "@refinedev/core";
-
 import { Edit, useForm, useSelect } from "@refinedev/antd";
-
-import { RcFile } from "antd/lib/upload/interface";
 import { Form, Input, Select, Upload } from "antd";
-
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, IPostVariables, ICategory } from "../../interfaces";
-import { normalizeFile, storage } from "../../utility";
+import { normalizeFile, storage, statuses } from "../../utility";
+
+import type { HttpError } from "@refinedev/core";
+import type { RcFile } from "antd/lib/upload/interface";
+import type { IPost, IPostVariables, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
-    IPost,
-    HttpError,
-    IPostVariables
-  >({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost, HttpError, IPostVariables, IPostVariables>({
     queryOptions: {
       select: ({ data }) => {
         return {
           data: {
             ...data,
+            category: data.category.$id,
             images: data.images ? JSON.parse(data.images) : undefined,
           },
         };
@@ -30,9 +28,10 @@ export const PostEdit = () => {
   });
 
   const postData = queryResult?.data?.data;
+
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    resource: "61c43adc284ac",
-    defaultValue: postData?.categoryId,
+    resource: "categories",
+    defaultValue: postData?.category,
     optionLabel: "title",
     optionValue: "id",
   });
@@ -62,7 +61,7 @@ export const PostEdit = () => {
         </Form.Item>
         <Form.Item
           label="Category"
-          name="categoryId"
+          name="category"
           rules={[
             {
               required: true,
@@ -70,6 +69,17 @@ export const PostEdit = () => {
           ]}
         >
           <Select {...categorySelectProps} />
+        </Form.Item>
+        <Form.Item
+          label="Status"
+          name="status"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Select options={statuses} />
         </Form.Item>
         <Form.Item
           label="Content"
@@ -99,7 +109,7 @@ export const PostEdit = () => {
 
                   const { $id } = await storage.createFile(
                     "default",
-                    rcFile.name,
+                    rcFile.uid,
                     rcFile,
                   );
 

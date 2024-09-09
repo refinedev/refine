@@ -1,13 +1,13 @@
 import React from "react";
 import {
-  IResourceComponentsProps,
+  type IResourceComponentsProps,
   useNavigation,
   useMany,
-  GetManyResponse,
+  type GetManyResponse,
 } from "@refinedev/core";
 
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/table/data-table";

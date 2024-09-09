@@ -2,13 +2,13 @@ import { Edit, useForm, useSelect, Select } from "@refinedev/mantine";
 import { TextInput, Text } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
     errors,
   } = useForm({
     initialValues: {

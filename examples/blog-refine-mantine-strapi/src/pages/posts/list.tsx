@@ -1,10 +1,10 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import { List, DateField, EditButton, DeleteButton } from "@refinedev/mantine";
 import { Table, Pagination, Group } from "@mantine/core";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const columns = React.useMemo<ColumnDef<IPost>[]>(

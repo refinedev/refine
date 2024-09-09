@@ -6,8 +6,8 @@
   "scripts": {
     "build": "tsc && refine build",
     "dev": "refine dev",
-    "preview": "refine start",
     "refine": "refine",
+    "start": "refine start",
     "test": "jest"
   },
   "browserslist": {
@@ -23,14 +23,10 @@
     ]
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.27",
-    "@refinedev/core": "^4.48.0",
-    "@refinedev/react-router-v6": "^4.5.6",
-    "@refinedev/supabase": "^5.7.7",
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^14.1.1",
-    "@types/jest": "^29.2.4",
+    "@refinedev/cli": "^2.16.38",
+    "@refinedev/core": "^4.54.1",
+    "@refinedev/react-router-v6": "^4.6.0",
+    "@refinedev/supabase": "^5.9.4",
     "daisyui": "^3.5.1",
     "react": "^18.0.0",
     "react-daisyui": "^4.1.0",
@@ -40,6 +36,10 @@
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.1.1",
+    "@testing-library/user-event": "^14.1.1",
+    "@types/jest": "^29.2.4",
     "@types/node": "^18.16.2",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",

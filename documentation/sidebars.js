@@ -227,6 +227,7 @@ module.exports = {
           collapsed: false,
           label: "Hooks",
           items: [
+            "routing/hooks/use-resource-params/index",
             "routing/hooks/use-resource/index",
             "routing/hooks/use-go/index",
             "routing/hooks/use-back/index",
@@ -441,6 +442,7 @@ module.exports = {
             "core/hooks/utilities/use-breadcrumb/index",
             "core/hooks/utilities/use-import/index",
             "core/hooks/utilities/use-export/index",
+            "core/hooks/utilities/buttons/index",
           ],
         },
       ],
@@ -892,7 +894,10 @@ module.exports = {
       type: "category",
       label: "Enterprise Edition",
       className: "category-as-header",
-      items: ["enterprise-edition/okta/index"],
+      items: [
+        "enterprise-edition/okta/index",
+        "enterprise-edition/devtools/index",
+      ],
     },
     // Migration Guide
     {

@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   DndContext,
-  DragEndEvent,
+  type DragEndEvent,
   MouseSensor,
   TouchSensor,
   useSensor,

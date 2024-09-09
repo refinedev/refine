@@ -144,7 +144,7 @@ export const PostEdit: React.FC = () => {
   >();
   //highlight-end
 
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const { formProps, saveButtonProps, query } = useForm<IPost>({
     //highlight-start
     liveMode: "manual",
     onLiveEvent: (event) => {
@@ -157,7 +157,7 @@ export const PostEdit: React.FC = () => {
 
   //highlight-start
   const handleRefresh = () => {
-    queryResult?.refetch();
+    query?.refetch();
     setDeprecated(undefined);
   };
   //highlight-end
@@ -285,7 +285,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
       return (
         <CanAccess
           key={route}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{ resource: item }}
         >
@@ -514,7 +514,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
       return (
         <CanAccess
           key={key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{ resource: item }}
         >

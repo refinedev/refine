@@ -1,4 +1,4 @@
-import { JSCodeshift, Collection, JSXAttribute } from "jscodeshift";
+import type { JSCodeshift, Collection, JSXAttribute } from "jscodeshift";
 
 const legacyMap = {
   "@pankod/refine-react-router-v6": "@pankod/refine-react-router-v6/legacy",

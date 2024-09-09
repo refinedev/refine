@@ -1,4 +1,4 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import {
   List,
   useDrawerForm,
@@ -10,7 +10,7 @@ import {
 } from "@refinedev/antd";
 import { Space, Table } from "antd";
 
-import { IClient, IContact } from "../../interfaces";
+import { type IClient, IContact } from "../../interfaces";
 import { CreateClient, EditClient } from "../../components/client";
 
 export const ClientList = () => {
@@ -51,7 +51,7 @@ export const ClientList = () => {
         <Table {...tableProps} rowKey="id">
           <Table.Column dataIndex="id" title="ID" sorter />
           <Table.Column<IClient> dataIndex="name" title="Name" sorter />
-          <Table.Column<IContact[]>
+          <Table.Column<IClient>
             dataIndex={["contacts"]}
             title="Contacts"
             render={(values) =>

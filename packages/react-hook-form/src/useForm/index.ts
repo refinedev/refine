@@ -4,19 +4,19 @@ import has from "lodash/has";
 
 import {
   useForm as useHookForm,
-  UseFormProps as UseHookFormProps,
-  UseFormReturn,
-  FieldValues,
-  UseFormHandleSubmit,
-  Path,
+  type UseFormProps as UseHookFormProps,
+  type UseFormReturn,
+  type FieldValues,
+  type UseFormHandleSubmit,
+  type Path,
 } from "react-hook-form";
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useForm as useFormCore,
   useWarnAboutChange,
-  UseFormProps as UseFormCoreProps,
-  UseFormReturnType as UseFormReturnTypeCore,
+  type UseFormProps as UseFormCoreProps,
+  type UseFormReturnType as UseFormReturnTypeCore,
   useTranslate,
   useRefineContext,
   flattenObjectKeys,
@@ -193,11 +193,10 @@ export const useForm = <
     },
   });
 
-  const { queryResult, onFinish, formLoading, onFinishAutoSave } =
-    useFormCoreResult;
+  const { query, onFinish, formLoading, onFinishAutoSave } = useFormCoreResult;
 
   useEffect(() => {
-    const data = queryResult?.data?.data;
+    const data = query?.data?.data;
     if (!data) return;
 
     /**
@@ -219,7 +218,7 @@ export const useForm = <
         setValue(path as Path<TVariables>, dataValue);
       }
     });
-  }, [queryResult?.data, setValue, getValues]);
+  }, [query?.data, setValue, getValues]);
 
   useEffect(() => {
     const subscription = watch((values: any, { type }: { type?: any }) => {

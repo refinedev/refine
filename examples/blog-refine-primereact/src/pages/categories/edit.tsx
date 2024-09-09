@@ -1,4 +1,4 @@
-import { HttpError, useBack } from "@refinedev/core";
+import { type HttpError, useBack } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
@@ -7,13 +7,13 @@ import { Card } from "primereact/card";
 import { InputText } from "primereact/inputtext";
 import { classNames } from "primereact/utils";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 export const CategoryEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query: queryResult },
     handleSubmit,
     control,
     formState: { errors },

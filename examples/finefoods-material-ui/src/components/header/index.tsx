@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, ReactNode } from "react";
+import { useState, useEffect, useContext, type ReactNode } from "react";
 import {
   useList,
   useTranslate,
@@ -6,7 +6,10 @@ import {
   useGetLocale,
   useSetLocale,
 } from "@refinedev/core";
-import { RefineThemedLayoutV2HeaderProps, HamburgerMenu } from "@refinedev/mui";
+import {
+  type RefineThemedLayoutV2HeaderProps,
+  HamburgerMenu,
+} from "@refinedev/mui";
 import AppBar from "@mui/material/AppBar";
 import IconButton from "@mui/material/IconButton";
 import Link from "@mui/material/Link";
@@ -24,7 +27,7 @@ import SearchOutlined from "@mui/icons-material/SearchOutlined";
 import BrightnessHighIcon from "@mui/icons-material/BrightnessHigh";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import i18n from "../../i18n";
-import { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
+import type { IOrder, IStore, ICourier, IIdentity } from "../../interfaces";
 import { ColorModeContext } from "../../contexts";
 
 interface IOptions {
@@ -128,7 +131,6 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
     },
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: should run when `value` changed
   useEffect(() => {
     setOptions([]);
     refetchOrders();

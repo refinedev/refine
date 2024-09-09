@@ -1,5 +1,5 @@
 import { useBack, useShow } from "@refinedev/core";
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 import { Button, Card, CardHeader, CardBody, Image } from "@nextui-org/react";
 
 import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
@@ -7,7 +7,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
+  const { query: queryResult } = useShow<ICategory>();
 
   const category = queryResult?.data?.data;
 

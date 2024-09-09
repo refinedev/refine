@@ -2,7 +2,7 @@ import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 
 import {
-  AuthProvider,
+  type AuthProvider,
   Authenticated,
   GitHubBanner,
   Refine,

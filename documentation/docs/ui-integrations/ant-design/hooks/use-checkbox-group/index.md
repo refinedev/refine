@@ -91,6 +91,23 @@ const { selectProps } = useCheckboxGroup({
 });
 ```
 
+### selectedOptionsOrder
+
+`selectedOptionsOrder` allows us to sort `selectedOptions` on `defaultValue`. It can be:
+
+- `"in-place"`: sort `selectedOptions` at the bottom. It is by default.
+- `"selected-first"`: sort `selectedOptions` at the top.
+
+```tsx
+const { selectProps } = useCheckboxGroup({
+  resource: "languages",
+  // highlight-next-line
+  defaultValue: [1, 2],
+  // highlight-next-line
+  selectedOptionsOrder: "selected-first", // in-place | selected-first
+});
+```
+
 The easiest way to select default values for checkbox fields is by passing in `defaultValue`.
 
 ### optionLabel and optionValue
@@ -135,7 +152,7 @@ Can be used to specify which field will be searched with value given to `onSearc
 ```tsx
 const { onSearch } = useCheckboxGroup({ searchField: "name" });
 
-onSearch("John"); // Searchs by `name` field with value John.
+onSearch("John"); // Searches by `name` field with value John.
 ```
 
 By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `title` field otherwise.
@@ -144,14 +161,14 @@ By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `t
 // When `optionLabel` is string.
 const { onSearch } = useCheckboxGroup({ optionLabel: "name" });
 
-onSearch("John"); // Searchs by `name` field with value John.
+onSearch("John"); // Searches by `name` field with value John.
 
 // When `optionLabel` is function.
 const { onSearch } = useCheckboxGroup({
   optionLabel: (item) => `${item.id} - ${item.name}`,
 });
 
-onSearch("John"); // Searchs by `title` field with value John.
+onSearch("John"); // Searches by `title` field with value John.
 ```
 
 ### filters
@@ -260,3 +277,7 @@ Use `sorters` instead.
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
+
+```
+
+```

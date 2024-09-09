@@ -15,8 +15,8 @@ import { Button, Typography, Spin, Modal } from "antd";
 import { CanvasItem, DisplayCanvas } from "../../components/canvas";
 import { ColorSelect } from "../../components/color-select";
 import { AvatarPanel } from "../../components/avatar";
-import { colors } from "../../utility";
-import { Canvas } from "../../types";
+import type { colors } from "../../utility";
+import type { Canvas } from "../../types";
 import { LogList } from "../../components/logs";
 
 const { Title } = Typography;
@@ -33,11 +33,17 @@ export const CanvasShow: React.FC = () => {
   } = useIsAuthenticated();
 
   const {
-    queryResult: {
+    query: {
       data: { data: canvas } = {},
     },
   } = useShow<Canvas>();
-  const { mutate } = useCreate();
+  const { mutate } = useCreate({
+    resource: "pixels",
+    successNotification: false,
+    meta: {
+      canvas,
+    },
+  });
   const { list, push } = useNavigation();
 
   const onSubmit = (x: number, y: number) => {
@@ -51,7 +57,6 @@ export const CanvasShow: React.FC = () => {
 
     if (typeof x === "number" && typeof y === "number" && canvas?.id) {
       mutate({
-        resource: "pixels",
         values: {
           x,
           y,
@@ -59,10 +64,6 @@ export const CanvasShow: React.FC = () => {
           canvas_id: canvas?.id,
           user_id: identity.id,
         },
-        meta: {
-          canvas,
-        },
-        successNotification: false,
       });
     }
   };
@@ -76,6 +77,7 @@ export const CanvasShow: React.FC = () => {
             onClick={() => list("canvases")}
             style={{ textTransform: "uppercase" }}
           >
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <LeftOutlined />
             Back
           </Button>

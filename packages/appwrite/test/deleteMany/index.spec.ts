@@ -5,13 +5,13 @@ import "./index.mock";
 describe("deleteMany", () => {
   it("correct response", async () => {
     const { data } = await dataProvider(client, {
-      databaseId: "632455a0b8d017403ce9",
+      databaseId: "default",
     }).deleteMany!({
-      resource: "632455a55dc72e1aa016",
-      ids: ["63245b3987e0f40c7988", "63245b2f163591192f81"],
+      resource: "blog_posts",
+      ids: ["669e49f100329300407a", "669e49f1002d284f333d"],
     });
 
-    expect(data[0].id).toEqual("63245b3987e0f40c7988");
-    expect(data[1].id).toEqual("63245b2f163591192f81");
+    expect(data[0].id).toEqual("669e49f100329300407a");
+    expect(data[1].id).toEqual("669e49f1002d284f333d");
   });
 });

@@ -24,7 +24,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
-import {
+import type {
   InferencerResultComponent,
   InferField,
   ImportElement,
@@ -357,7 +357,7 @@ export const renderer = ({
             : ""
         }
         const {
-            refineCore: { onFinish, formLoading, queryResult },
+            refineCore: { onFinish, formLoading, query },
             register,
             handleSubmit,
             setValue,
@@ -393,7 +393,7 @@ export const renderer = ({
             }
         );
     
-        const ${recordName} = queryResult?.data?.data;
+        const ${recordName} = query?.data?.data;
     
         ${relationHooksCode}
 

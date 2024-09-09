@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "antd";
 
-import { UrlFieldProps } from "../types";
+import type { UrlFieldProps } from "../types";
 
 /**
  * This field lets you embed a link. It uses Ant Design's {@link https://ant.design/components/typography/ `<Typography.Link>`} component.

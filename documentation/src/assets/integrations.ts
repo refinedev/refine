@@ -1,4 +1,4 @@
-import { IntegrationsType } from "../types/integrations";
+import type { IntegrationsType } from "../types/integrations";
 import {
   Ably,
   Airtable,
@@ -33,6 +33,7 @@ import {
   UseGenerated,
   Kinde,
   PocketBase,
+  ShadCnUI,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -379,6 +380,20 @@ export const integrations: IntegrationsType = {
         {
           name: "hirenf14",
           url: "https://github.com/hirenf14/refine-auth-kinde-react",
+        },
+      ],
+    },
+    {
+      name: "Shadcn UI",
+      icon: ShadCnUI,
+      description:
+        "<strong>Shadcn UI</strong> integration. Table, Form, Layout, Notification and CRUD components.",
+      url: "https://npmjs.com/package/@ferdiunal/refine-shadcn",
+      status: "stable",
+      contributors: [
+        {
+          name: "ferdiunal",
+          url: "https://github.com/ferdiunal",
         },
       ],
     },

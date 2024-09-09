@@ -1,13 +1,13 @@
-import React, { ComponentProps } from "react";
+import React, { type ComponentProps } from "react";
 import {
-  GoConfig,
-  ParseResponse,
-  RouterBindings,
+  type GoConfig,
+  type ParseResponse,
+  type RouterBindings,
   matchResourceFromRoute,
   ResourceContext,
 } from "@refinedev/core";
 import { useCallback, useContext } from "react";
-import { parse, stringify } from "qs";
+import qs from "qs";
 import {
   useNavigate,
   useLocation,
@@ -42,7 +42,7 @@ export const routerBindings: RouterBindings = {
         const urlQuery = {
           ...(keepQuery &&
             existingSearch &&
-            parse(existingSearch, { ignoreQueryPrefix: true })),
+            qs.parse(existingSearch, { ignoreQueryPrefix: true })),
           ...query,
         };
 
@@ -63,7 +63,7 @@ export const routerBindings: RouterBindings = {
         const urlTo = to || "";
 
         const fullPath = `${urlTo}${
-          hasUrlQuery ? stringify(urlQuery, stringifyConfig) : ""
+          hasUrlQuery ? qs.stringify(urlQuery, stringifyConfig) : ""
         }${hasUrlHash ? urlHash : ""}`;
 
         if (type === "path") {
@@ -104,7 +104,7 @@ export const routerBindings: RouterBindings = {
     }
 
     const fn = useCallback(() => {
-      const parsedSearch = parse(search, { ignoreQueryPrefix: true });
+      const parsedSearch = qs.parse(search, { ignoreQueryPrefix: true });
 
       const combinedParams = {
         ...params,

@@ -1,6 +1,6 @@
 import { useShow, useNavigation } from "@refinedev/core";
 import { Flex, Grid } from "antd";
-import { IUser } from "../../interfaces";
+import type { IUser } from "../../interfaces";
 import {
   CustomerInfoList,
   CustomerInfoSummary,
@@ -11,7 +11,7 @@ import {
 export const CustomerShow = () => {
   const { list } = useNavigation();
   const breakpoint = Grid.useBreakpoint();
-  const { queryResult } = useShow<IUser>();
+  const { query: queryResult } = useShow<IUser>();
 
   const { data } = queryResult;
   const user = data?.data;

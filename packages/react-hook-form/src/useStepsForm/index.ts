@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { FieldValues, Path } from "react-hook-form";
-import { BaseRecord, HttpError } from "@refinedev/core";
+import type { FieldValues, Path } from "react-hook-form";
+import type { BaseRecord, HttpError } from "@refinedev/core";
 import get from "lodash/get";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 
 export type UseStepsFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -110,11 +110,11 @@ export const useStepsForm = <
     getValues,
     setValue,
     formState: { dirtyFields },
-    refineCore: { queryResult },
+    refineCore: { query },
   } = useHookFormResult;
 
   useEffect(() => {
-    const data = queryResult?.data?.data;
+    const data = query?.data?.data;
     if (!data) return;
 
     const registeredFields = Object.keys(getValues());
@@ -134,7 +134,7 @@ export const useStepsForm = <
         }
       }
     });
-  }, [queryResult?.data, current, setValue, getValues]);
+  }, [query?.data, current, setValue, getValues]);
 
   const go = (step: number) => {
     let targetStep = step;

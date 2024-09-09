@@ -1,5 +1,5 @@
 import React from "react";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -8,7 +8,7 @@ import { ActionIcon, Button } from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { SaveButtonProps } from "../types";
+import type { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Mantine {@link https://mantine.dev/core/button `<Button> `}.
@@ -22,13 +22,14 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   const { variant, styles, vars, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
       variant={mapButtonVariantToActionIconVariant(variant, "filled")}
+      aria-label={label}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
       {...commonProps}
@@ -44,7 +45,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       vars={vars}
       {...rest}
     >
-      {children ?? translate("buttons.save", "Save")}
+      {children ?? label}
     </Button>
   );
 };

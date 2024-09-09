@@ -1,0 +1,98 @@
+name: Documentation
+
+on:
+  pull_request:
+    paths:
+      - "documentation/**"
+      - ".github/workflows/documentation.yml"
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  typos:
+    name: Check spelling using typos
+    runs-on: ubuntu-latest
+    concurrency:
+      group: docs-typos-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - name: Check out code.
+        uses: actions/checkout@v4
+      - name: typos
+        id: check_for_typos
+        uses: crate-ci/typos@master
+        with:
+          config: ./typos.toml
+  deploy_documentation:
+    name: Documentation Deploy
+    runs-on: ubuntu-latest
+    concurrency:
+      group: docs-deploy-${{ github.ref }}
+      cancel-in-progress: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: pnpm
+      - name: Add key to allow access to repository
+        env:
+          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo "${{ secrets.GH_PAGES_DEPLOY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          cat <<EOT >> ~/.ssh/config
+          Host github.com
+          HostName github.com
+          IdentityFile ~/.ssh/id_rsa
+          EOT
+      - name: Install & build dependencies
+        run: pnpm install
+      - name: Install dependencies (Docs)
+        run: |
+          cd documentation
+          pnpm install
+      - name: Release to GitHub Pages
+        if: github.ref == 'refs/heads/master'
+        env:
+          USE_SSH: true
+          GIT_USER: pankod-bot
+          NODE_ENV: production
+          NODE_OPTIONS: "--max_old_space_size=4096"
+        run: |
+          cd documentation
+          git config --global user.email "bot@pankod.com"
+          git config --global user.name "pankod-bot"
+          LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm run deploy
+      - name: Build Documentation
+        if: github.ref != 'refs/heads/master'
+        run: |
+          cd documentation
+          LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm build
+      - name: Deploy to Netlify
+        if: github.ref != 'refs/heads/master'
+        id: netlify-deploy
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: "./documentation/build"
+          github-token: ${{ secrets.PANKOD_BOT_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
+          enable-pull-request-comment: false
+          overwrites-pull-request-comment: false
+          github-deployment-environment: "deploy-preview-website-${{ github.event.number }}"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        timeout-minutes: 15
+      - name: Check Existing Links in Documentation
+        if: ${{ github.ref != 'refs/heads/master' && steps.netlify-deploy.outputs.deploy-url }}
+        run: DEPLOY_URL=${{ steps.netlify-deploy.outputs.deploy-url }} SITEMAP_URL=${{steps.netlify-deploy.outputs.deploy-url}}/sitemap.xml node ./.github/workflows/scripts/check-existing-doc-links.js

@@ -1,21 +1,22 @@
 import React, { lazy, Suspense, useEffect, useRef, useState } from "react";
 
 import { useList } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { LeftOutlined, RightOutlined } from "@ant-design/icons";
-import FullCalendar from "@fullcalendar/react";
+import type FullCalendar from "@fullcalendar/react";
 import { Button, Card, Grid, Radio } from "antd";
 import dayjs from "dayjs";
 
 import { Text } from "@/components";
-import { Event } from "@/graphql/schema.types";
-import { CalendarEventsQuery } from "@/graphql/types";
+import type { CalendarEventsQuery } from "@/graphql/types";
 
 import styles from "./index.module.css";
 import { CALENDAR_EVENTS_QUERY } from "./queries";
 
 const FullCalendarWrapper = lazy(() => import("./full-calendar"));
+
+type Event = GetFieldsFromList<CalendarEventsQuery>;
 
 type View =
   | "dayGridMonth"
@@ -51,7 +52,7 @@ export const Calendar: React.FC<CalendarProps> = ({
     }
   }, [md]);
 
-  const { data } = useList<GetFieldsFromList<CalendarEventsQuery>>({
+  const { data } = useList<Event>({
     pagination: {
       mode: "off",
     },
@@ -87,6 +88,7 @@ export const Calendar: React.FC<CalendarProps> = ({
               calendarRef.current?.getApi().prev();
             }}
             shape="circle"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<LeftOutlined />}
           />
           <Button
@@ -94,6 +96,7 @@ export const Calendar: React.FC<CalendarProps> = ({
               calendarRef.current?.getApi().next();
             }}
             shape="circle"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<RightOutlined />}
           />
           <Text className={styles.title} size="lg">

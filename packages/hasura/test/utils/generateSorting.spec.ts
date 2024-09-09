@@ -1,4 +1,4 @@
-import { CrudSorting } from "@refinedev/core";
+import type { CrudSorting } from "@refinedev/core";
 import { generateSorting } from "../../src/utils";
 
 describe("generateSorting", () => {

@@ -14,7 +14,7 @@ export const ProductEdit = () => {
   const translate = useTranslate();
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
     register,
     control,
     formState: { errors },

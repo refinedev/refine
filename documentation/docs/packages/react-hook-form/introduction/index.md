@@ -10,7 +10,7 @@ This package exports following hooks to manage your forms:
 
 - [`useForm`][use-form-react-hook-form]
 - [`useModalForm`](/docs/packages/list-of-packages)
-- [`useStepsFrom`](/docs/packages/list-of-packages)
+- [`useStepsForm`](/docs/packages/list-of-packages)
 
 ## Installation
 
@@ -32,14 +32,16 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostEdit = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<IPost, HttpError>({
-    resource: "posts",
-    action: "edit",
-    id: 1,
+    refineCoreProps: {
+      resource: "posts",
+      action: "edit",
+      id: 1,
+    },
   });
 
   return (
@@ -102,9 +104,11 @@ export const PostEdit: React.FC = () => {
     control,
     formState: { errors },
   } = useForm<IPost, HttpError>({
-    resource: "posts",
-    action: "edit",
-    id: 1,
+    refineCoreProps: {
+      resource: "posts",
+      action: "edit",
+      id: 1,
+    },
   });
 
   return (

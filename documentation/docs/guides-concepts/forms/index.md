@@ -25,7 +25,7 @@ To learn more about the usage and see `useForm` in action, check out the referen
 import { useForm } from "@refinedev/core";
 
 const EditPage = () => {
-  const { queryResult, formLoading, onFinish } = useForm<
+  const { query, formLoading, onFinish } = useForm<
     IProduct,
     HttpError,
     FormValues
@@ -35,7 +35,7 @@ const EditPage = () => {
     id: 123,
   });
 
-  const record = queryResult.data?.data;
+  const record = query.data?.data;
 
   const onSubmit = (event) => {
     const data = Object.fromEntries(new FormData(event.target).entries());
@@ -69,7 +69,7 @@ import { useForm } from "@refinedev/react-hook-form";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -108,14 +108,16 @@ import { useForm, Edit } from "@refinedev/antd";
 import { Form, Input } from "antd";
 
 const EditPage = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
+  const { formProps, saveButtonProps, query } = useForm<
     IProduct,
     HttpError,
     FormValues
   >({
-    resource: "products",
-    action: "edit",
-    id: 123,
+    refineCoreProps: {
+      resource: "products",
+      action: "edit",
+      id: 123,
+    },
   });
 
   return (
@@ -144,7 +146,7 @@ import { TextInput } from "@mantine/core";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -195,7 +197,7 @@ import { Button, Box, TextField } from "@mui/material";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     saveButtonProps,
@@ -243,7 +245,7 @@ import { FormControl, FormLabel, Input, Button } from "@chakra-ui/react";
 
 const EditPage = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     saveButtonProps,

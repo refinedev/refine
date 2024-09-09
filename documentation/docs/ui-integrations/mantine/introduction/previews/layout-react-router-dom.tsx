@@ -49,7 +49,7 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    notificationProvider,
+    useNotificationProvider,
     AuthPage
 } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
@@ -70,7 +70,7 @@ export default function App() {
                 <Refine
                     routerProvider={routerProvider}
                     dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                    notificationProvider={notificationProvider}
+                    notificationProvider={useNotificationProvider}
                     resources={[
                         {
                             name: "products",
@@ -145,7 +145,7 @@ export const ProductList = () => {
             setCurrent,
             pageCount,
             current,
-            tableQueryResult: { data: tableData },
+            tableQuery: { data: tableData },
         },
     } = useTable({
         columns,

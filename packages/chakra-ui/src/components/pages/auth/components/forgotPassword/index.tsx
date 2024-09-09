@@ -5,14 +5,14 @@ import {
   useRouterType,
   useRouterContext,
   useForgotPassword,
-  ForgotPasswordFormTypes,
-  ForgotPasswordPageProps,
-  BaseRecord,
-  HttpError,
+  type ForgotPasswordFormTypes,
+  type ForgotPasswordPageProps,
+  type BaseRecord,
+  type HttpError,
 } from "@refinedev/core";
 import {
   Box,
-  BoxProps,
+  type BoxProps,
   Button,
   FormControl,
   FormErrorMessage,
@@ -25,7 +25,7 @@ import {
 import { useForm } from "@refinedev/react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
-import { FormPropsType } from "../..";
+import type { FormPropsType } from "../..";
 import { ThemedTitleV2 } from "@components";
 
 type ForgotPasswordProps = ForgotPasswordPageProps<
@@ -110,12 +110,18 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             id="email"
             type="text"
             {...register("email", {
-              required: true,
+              required: translate(
+                "pages.forgotPassword.errors.requiredEmail",
+                "Email is required",
+              ),
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                 message: translate(
-                  "pages.login.errors.validEmail",
-                  "Invalid email address",
+                  "pages.forgotPassword.errors.validEmail",
+                  translate(
+                    "pages.login.errors.validEmail",
+                    "Invalid email address",
+                  ),
                 ),
               },
             })}
@@ -127,12 +133,18 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
           <Box my="6" display="flex" justifyContent="flex-end">
             <span>
               {translate(
-                "pages.register.buttons.haveAccount",
-                "Have an account?",
+                "pages.forgotPassword.buttons.haveAccount",
+                translate(
+                  "pages.register.buttons.haveAccount",
+                  "Have an account?",
+                ),
               )}
             </span>
             <ChakraLink color={importantTextColor} ml="1" as={Link} to="/login">
-              {translate("pages.login.signin", "Sign in")}
+              {translate(
+                "pages.forgotPassword.signin",
+                translate("pages.login.signin", "Sign in"),
+              )}
             </ChakraLink>
           </Box>
         )}

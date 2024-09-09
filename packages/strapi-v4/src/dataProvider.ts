@@ -1,6 +1,6 @@
-import { DataProvider as IDataProvider, HttpError } from "@refinedev/core";
-import { AxiosInstance } from "axios";
-import { stringify } from "qs";
+import type { DataProvider as IDataProvider, HttpError } from "@refinedev/core";
+import type { AxiosInstance } from "axios";
+import qs from "qs";
 import {
   axiosInstance,
   generateFilter,
@@ -41,7 +41,7 @@ export const DataProvider = (
     };
 
     const { data } = await httpClient.get(
-      `${url}?${stringify(query, {
+      `${url}?${qs.stringify(query, {
         encodeValuesOnly: true,
       })}&${queryFilters}`,
     );
@@ -78,7 +78,7 @@ export const DataProvider = (
     };
 
     const { data } = await httpClient.get(
-      `${url}?${stringify(query, {
+      `${url}?${qs.stringify(query, {
         encodeValuesOnly: true,
       })}&${queryFilters}`,
     );
@@ -199,7 +199,7 @@ export const DataProvider = (
       publicationState,
     };
 
-    const url = `${apiUrl}/${resource}/${id}?${stringify(query, {
+    const url = `${apiUrl}/${resource}/${id}?${qs.stringify(query, {
       encode: false,
     })}`;
 
@@ -248,7 +248,7 @@ export const DataProvider = (
     if (sorters) {
       const sortQuery = generateSort(sorters);
       if (sortQuery.length > 0) {
-        requestUrl = `${requestUrl}&${stringify({
+        requestUrl = `${requestUrl}&${qs.stringify({
           sort: sortQuery.join(","),
         })}`;
       }
@@ -260,7 +260,7 @@ export const DataProvider = (
     }
 
     if (query) {
-      requestUrl = `${requestUrl}&${stringify(query)}`;
+      requestUrl = `${requestUrl}&${qs.stringify(query)}`;
     }
 
     let axiosResponse;

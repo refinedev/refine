@@ -18,12 +18,12 @@ import {
   Card,
 } from "../../components";
 import { RefineListView } from "../../components";
-import { IOrder } from "../../interfaces";
+import type { IOrder } from "../../interfaces";
 
 export const OrderShow = () => {
   const t = useTranslate();
 
-  const { queryResult } = useShow<IOrder>();
+  const { query: queryResult } = useShow<IOrder>();
   const record = queryResult.data?.data;
   const canAcceptOrder = record?.status.text === "Pending";
   const canRejectOrder =
@@ -31,15 +31,16 @@ export const OrderShow = () => {
     record?.status.text === "Ready" ||
     record?.status.text === "On The Way";
 
-  const { mutate } = useUpdate();
+  const { mutate } = useUpdate({
+    resource: "orders",
+    id: record?.id.toString(),
+  });
 
   const theme = useTheme();
 
   const handleMutate = (status: { id: number; text: string }) => {
     if (record) {
       mutate({
-        resource: "orders",
-        id: record.id.toString(),
         values: {
           status,
         },

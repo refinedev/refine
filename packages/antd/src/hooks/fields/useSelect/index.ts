@@ -1,14 +1,14 @@
-import { SelectProps } from "antd/lib/select";
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { SelectProps } from "antd/lib/select";
+import type { QueryObserverResult } from "@tanstack/react-query";
 
 import {
   useSelect as useSelectCore,
-  BaseRecord,
-  GetManyResponse,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
-  BaseOption,
+  type BaseRecord,
+  type GetManyResponse,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
+  type BaseOption,
 } from "@refinedev/core";
 
 export type UseSelectReturnType<
@@ -16,7 +16,15 @@ export type UseSelectReturnType<
   TOption extends BaseOption = BaseOption,
 > = {
   selectProps: SelectProps<TOption>;
+  query: QueryObserverResult<GetListResponse<TData>>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `defaultValueQuery` instead
+   */
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
 
@@ -39,18 +47,24 @@ export const useSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TOption> => {
-  const { queryResult, defaultValueQueryResult, onSearch, options } =
-    useSelectCore<TQueryFnData, TError, TData, TOption>(props);
+  const { query, defaultValueQuery, onSearch, options } = useSelectCore<
+    TQueryFnData,
+    TError,
+    TData,
+    TOption
+  >(props);
 
   return {
     selectProps: {
       options,
       onSearch,
-      loading: defaultValueQueryResult.isFetching,
+      loading: defaultValueQuery.isFetching,
       showSearch: true,
       filterOption: false,
     },
-    queryResult,
-    defaultValueQueryResult,
+    query,
+    defaultValueQuery,
+    queryResult: query,
+    defaultValueQueryResult: defaultValueQuery,
   };
 };

@@ -1,4 +1,4 @@
-import {
+import type {
   CreateButtonProps,
   DeleteButtonProps,
   EditButtonProps,
@@ -6,8 +6,8 @@ import {
   RefreshButtonProps,
   SaveButtonProps,
 } from "../buttons/types";
-import { BoxProps, CardProps, GroupProps } from "@mantine/core";
-import {
+import type { BoxProps, CardProps, GroupProps } from "@mantine/core";
+import type {
   RefineCrudCreateProps,
   RefineCrudEditProps,
   RefineCrudListProps,

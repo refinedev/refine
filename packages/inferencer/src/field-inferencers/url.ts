@@ -1,4 +1,4 @@
-import { FieldInferencer } from "../types";
+import type { FieldInferencer } from "../types";
 
 const urlRegexp = /^(https?|ftp):\/\/(-\.)?([^\s/?\.#-]+\.?)+(\/[^\s]*)?$/i;
 

@@ -26,7 +26,7 @@ import {
   MantineCreateInferencer,
   MantineEditInferencer,
   MantineShowInferencer,
-  InferField,
+  type InferField,
 } from "@refinedev/inferencer/mantine";
 
 import { Header } from "./components/header";

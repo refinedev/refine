@@ -11,15 +11,15 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
-import { HttpError } from "@refinedev/core";
+import type { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
+import type { HttpError } from "@refinedev/core";
 
 export const PostEdit: React.FC = () => {
   const [isUploadLoading, setIsUploadLoading] = useState(false);
 
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query: queryResult },
     register,
     control,
     formState: { errors },

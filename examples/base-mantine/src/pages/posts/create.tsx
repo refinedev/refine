@@ -8,7 +8,7 @@ import {
 } from "@refinedev/mantine";
 import { TextInput, Text } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import { ITag } from "../../interfaces";
+import type { ITag } from "../../interfaces";
 
 export const PostCreate: React.FC = () => {
   const { saveButtonProps, getInputProps, errors } = useForm({

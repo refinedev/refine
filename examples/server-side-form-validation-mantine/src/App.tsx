@@ -1,7 +1,7 @@
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
 
-import { GitHubBanner, HttpError, Refine } from "@refinedev/core";
+import { GitHubBanner, type HttpError, Refine } from "@refinedev/core";
 import {
   ThemedLayoutV2,
   ErrorComponent,

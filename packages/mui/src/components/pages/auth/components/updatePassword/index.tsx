@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
-  UpdatePasswordFormTypes,
-  UpdatePasswordPageProps,
+  type UpdatePasswordFormTypes,
+  type UpdatePasswordPageProps,
   useActiveAuthProvider,
 } from "@refinedev/core";
 
@@ -19,14 +19,14 @@ import type { BoxProps } from "@mui/material/Box";
 import type { CardContentProps } from "@mui/material/CardContent";
 
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useTranslate,
   useUpdatePassword,
 } from "@refinedev/core";
 
 import { layoutStyles, titleStyles } from "../styles";
-import { FormPropsType } from "../../index";
+import type { FormPropsType } from "../../index";
 import { ThemedTitleV2 } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
@@ -110,7 +110,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         >
           <TextField
             {...register("password", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredPassword",
+                "Password required",
+              ),
             })}
             id="password"
             margin="normal"
@@ -132,7 +135,10 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
           <TextField
             {...register("confirmPassword", {
-              required: true,
+              required: translate(
+                "pages.updatePassword.errors.requiredConfirmPassword",
+                "Confirm Password is required",
+              ),
               validate: (value?: string) => {
                 if (watch("password") !== value) {
                   return translate(

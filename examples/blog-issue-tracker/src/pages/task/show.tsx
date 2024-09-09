@@ -1,12 +1,12 @@
 import { useShow, useOne } from "@refinedev/core";
 import { Show, DateField } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
-import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
+import type { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 
 const { Title, Text } = Typography;
 
 export const TaskShow: React.FC = () => {
-  const { queryResult } = useShow<ITask>();
+  const { query: queryResult } = useShow<ITask>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

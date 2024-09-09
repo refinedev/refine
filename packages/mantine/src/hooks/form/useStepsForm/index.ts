@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { BaseRecord, HttpError } from "@refinedev/core";
+import type { BaseRecord, HttpError } from "@refinedev/core";
 
-import { useForm, UseFormProps, UseFormReturnType } from "../useForm";
+import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 
 export type UseStepsFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -63,7 +63,7 @@ export type UseStepsFormProps<
 export const useStepsForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, any> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,

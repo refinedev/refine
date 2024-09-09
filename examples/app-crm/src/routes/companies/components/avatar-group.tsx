@@ -1,6 +1,6 @@
-import { FC } from "react";
+import type { FC } from "react";
 
-import { AvatarProps, Space, Tooltip } from "antd";
+import { type AvatarProps, Space, Tooltip } from "antd";
 
 import { CustomAvatar, Text } from "@/components";
 

@@ -71,10 +71,10 @@ This utility class causes an element to scale and fade, much like a radar ping o
 <div class="flex justify-center">
   <span class="relative flex h-16 w-16">
     <span
-      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"
+      class="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"
     ></span>
     <span
-      class="relative inline-flex rounded-full h-16 w-16 bg-blue-500"
+      class="relative inline-flex h-16 w-16 rounded-full bg-blue-500"
     ></span>
   </span>
 </div>
@@ -94,7 +94,7 @@ This utility class makes an element fade in and out gradually – This class is 
 
 ```html
 <div class="flex justify-center">
-  <div class="animate-pulse rounded-full bg-blue-400 h-16 w-16"></div>
+  <div class="h-16 w-16 animate-pulse rounded-full bg-blue-400"></div>
 </div>
 ```
 
@@ -112,7 +112,7 @@ This utility class adds a bounce animation to an element. It is useful for eleme
 
 ```html
 <div class="flex justify-center">
-  <div class="animate-bounce rounded-full bg-blue-500 h-16 w-16"></div>
+  <div class="h-16 w-16 animate-bounce rounded-full bg-blue-500"></div>
 </div>
 ```
 
@@ -223,7 +223,7 @@ Next, we add the animation to the markup. To define a custom animation utility c
 ```html
 <div class="flex justify-center">
   <img
-    class="relative w-16 h-16 animate-refine-slide"
+    class="animate-refine-slide relative h-16 w-16"
     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRixkXz-MD-PkV6BOiGL5SAkJi9XGAyE9lLLQ&usqp=CAU"
   />
 </div>
@@ -293,7 +293,7 @@ For example, if you want to create a one-off "wiggle" animation, you can declare
 ```html
 <div class="flex justify-center">
   <div
-    class="animate-[wiggle_1s_ease-in-out_infinite] rounded-full bg-blue-500 h-16 w-16"
+    class="h-16 w-16 animate-[wiggle_1s_ease-in-out_infinite] rounded-full bg-blue-500"
   ></div>
 </div>
 ```
@@ -306,5 +306,5 @@ For example, if you want to create a one-off "wiggle" animation, you can declare
 
 ## Conclusion
 
-In this article, We took a dive into `Tailwind` built-in utility classes for animation as well as how to use `Tailwind` CSS's theme configuration feature to add custom animations. We also learnt how to create one-off animations with `Tailwind` arbitrary values.
+In this article, We took a dive into `Tailwind` built-in utility classes for animation as well as how to use `Tailwind` CSS's theme configuration feature to add custom animations. We also learned how to create one-off animations with `Tailwind` arbitrary values.
 Tailwind is an excellent `CSS` framework, and its utility-first approach, combined with its theme extension features, makes it popular among developers.

@@ -1,4 +1,4 @@
-import { RefineHook, TraceType } from "@refinedev/devtools-shared";
+import type { RefineHook, TraceType } from "@refinedev/devtools-shared";
 import { getTrace } from "./get-trace";
 import { getResourcePath } from "./get-resource-path";
 
@@ -7,9 +7,15 @@ export type XRayResponse = {
   trace: TraceType[];
   resourcePath: string | null;
   legacyKey: boolean;
+  resourceName?: string;
 };
 
-export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
+export function getXRay(
+  hookName: string,
+  legacyKey: boolean,
+  resourceName?: string,
+  excludeFromTrace?: string[],
+): XRayResponse {
   if (__DEV_CONDITION__ !== "development") {
     return {
       hookName: "",
@@ -18,7 +24,7 @@ export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
       legacyKey: false,
     };
   }
-  const trace = getTrace().slice(1);
+  const trace = getTrace(excludeFromTrace).slice(1);
 
   const resourcePath = getResourcePath(hookName as RefineHook, legacyKey);
 
@@ -27,5 +33,6 @@ export function getXRay(hookName: string, legacyKey: boolean): XRayResponse {
     trace,
     resourcePath,
     legacyKey,
+    resourceName,
   };
 }

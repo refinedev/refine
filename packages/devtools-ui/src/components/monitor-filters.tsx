@@ -8,7 +8,7 @@ import { FilterField } from "./filter-field";
 import { CheckboxGroup } from "./checkbox-group";
 import { scopes } from "@refinedev/devtools-shared";
 import { MonitorAppliedFilterGroup } from "./monitor-applied-filter-group";
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 
 export type Filters = {
   scope: string[];
@@ -154,10 +154,6 @@ export const MonitorFilters = ({
         "re-ml-4",
         "!re-px-2",
         "!re-py-2",
-        "re-flex",
-        "re-items-center",
-        "re-justify-center",
-        "re-gap-2",
         "re-bg-alt-blue",
         "re-bg-opacity-[0.15]",
         "!re-text-alt-blue",
@@ -165,6 +161,12 @@ export const MonitorFilters = ({
         hasFilters && "re-rounded-tr-none",
         hasFilters && "re-rounded-br-none",
         hasFilters && "re-border-r re-border-r-gray-700",
+      )}
+      contentClassName={clsx(
+        "re-flex",
+        "re-items-center",
+        "re-justify-center",
+        "re-gap-2",
       )}
       onClick={onToggle}
     >

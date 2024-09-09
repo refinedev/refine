@@ -1,22 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Button } from "antd";
 import { EyeOutlined } from "@ant-design/icons";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  AccessControlContext,
-} from "@refinedev/core";
+import { useShowButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ShowButtonProps } from "../types";
+import type { ShowButtonProps } from "../types";
 
 /**
  * `<ShowButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
@@ -36,63 +27,21 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-
-  const { showUrl: generateShowUrl } = useNavigation();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const translate = useTranslate();
-
-  const { id, resource } = useResource(
-    resourceNameFromProps ?? propResourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "show",
-    params: { id: recordItemId ?? id, resource },
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
+  const { to, label, title, hidden, disabled, LinkComponent } = useShowButton({
+    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    id: recordItemId,
+    accessControl,
+    meta,
   });
 
-  const createButtonDisabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const showUrl =
-    resource && (recordItemId || id)
-      ? generateShowUrl(resource, recordItemId! ?? id!, meta)
-      : "";
-
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
+  if (hidden) return null;
 
   return (
-    <ActiveLink
-      to={showUrl}
+    <LinkComponent
+      to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (data?.can === false) {
+        if (disabled) {
           e.preventDefault();
           return;
         }
@@ -103,15 +52,16 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       }}
     >
       <Button
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<EyeOutlined />}
-        disabled={data?.can === false}
-        title={createButtonDisabledTitle()}
+        disabled={disabled}
+        title={title}
         data-testid={RefineButtonTestIds.ShowButton}
         className={RefineButtonClassNames.ShowButton}
         {...rest}
       >
-        {!hideText && (children ?? translate("buttons.show", "Show"))}
+        {!hideText && (children ?? label)}
       </Button>
-    </ActiveLink>
+    </LinkComponent>
   );
 };

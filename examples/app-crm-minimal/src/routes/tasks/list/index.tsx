@@ -1,12 +1,17 @@
 import React from "react";
 
-import { HttpError, useList, useNavigation, useUpdate } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import {
+  type HttpError,
+  useList,
+  useNavigation,
+  useUpdate,
+} from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
-import { DragEndEvent } from "@dnd-kit/core";
+import type { DragEndEvent } from "@dnd-kit/core";
 
-import { TaskUpdateInput } from "@/graphql/schema.types";
-import { TasksQuery, TaskStagesQuery } from "@/graphql/types";
+import type { TaskUpdateInput } from "@/graphql/schema.types";
+import type { TasksQuery, TaskStagesQuery } from "@/graphql/types";
 
 import { KanbanAddCardButton } from "../components";
 import { KanbanBoard, KanbanBoardContainer } from "./kanban/board";
@@ -90,7 +95,14 @@ export const TasksListPage = ({ children }: React.PropsWithChildren) => {
     };
   }, [tasks, stages]);
 
-  const { mutate: updateTask } = useUpdate<Task, HttpError, TaskUpdateInput>();
+  const { mutate: updateTask } = useUpdate<Task, HttpError, TaskUpdateInput>({
+    resource: "tasks",
+    mutationMode: "optimistic",
+    successNotification: false,
+    meta: {
+      gqlMutation: UPDATE_TASK_STAGE_MUTATION,
+    },
+  });
 
   const handleOnDragEnd = (event: DragEndEvent) => {
     let stageId = event.over?.id as undefined | string | null;
@@ -106,15 +118,9 @@ export const TasksListPage = ({ children }: React.PropsWithChildren) => {
     }
 
     updateTask({
-      resource: "tasks",
       id: taskId,
       values: {
         stageId: stageId,
-      },
-      successNotification: false,
-      mutationMode: "optimistic",
-      meta: {
-        gqlMutation: UPDATE_TASK_STAGE_MUTATION,
       },
     });
   };

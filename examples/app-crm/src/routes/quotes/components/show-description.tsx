@@ -2,11 +2,11 @@ import { lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Form, Spin } from "antd";
 
-import { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
+import type { Quote, QuoteUpdateInput } from "@/graphql/schema.types";
 
 import { QUOTES_UPDATE_QUOTE_MUTATION } from "../queries";
 
@@ -15,11 +15,11 @@ const MDEditor = lazy(() => import("@uiw/react-md-editor"));
 export const ShowDescription = () => {
   const params = useParams<{ id: string }>();
 
-  const { formProps, queryResult, autoSaveProps } = useForm<
-    Quote,
-    HttpError,
-    QuoteUpdateInput
-  >({
+  const {
+    formProps,
+    query: queryResult,
+    autoSaveProps,
+  } = useForm<Quote, HttpError, QuoteUpdateInput>({
     resource: "quotes",
     action: "edit",
     id: params.id,
@@ -59,7 +59,7 @@ export const ShowDescription = () => {
               bottom: "32px",
               right: "32px",
             }}
-            spinning={autoSaveProps?.status === "loading" ?? true}
+            spinning={autoSaveProps?.status === "loading"}
           />
         </div>
       </div>

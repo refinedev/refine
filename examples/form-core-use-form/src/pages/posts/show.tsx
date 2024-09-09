@@ -1,9 +1,9 @@
 import { useShow } from "@refinedev/core";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
+  const { query: queryResult } = useShow<IPost>();
   const { data } = queryResult;
   const record = data?.data;
 

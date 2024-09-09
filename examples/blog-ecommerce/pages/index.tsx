@@ -1,10 +1,10 @@
-import { GetServerSideProps } from "next";
-import { GetListResponse, useTable } from "@refinedev/core";
+import type { GetServerSideProps } from "next";
+import { type GetListResponse, useTable } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { Button, SimpleGrid, Flex, Text } from "@chakra-ui/react";
 
 import { API_URL } from "src/constants";
-import { IProduct, IStore } from "src/interfaces";
+import type { IProduct, IStore } from "src/interfaces";
 import { ProductCard, FilterButton } from "src/components";
 
 type ItemProps = {
@@ -13,15 +13,20 @@ type ItemProps = {
 };
 
 export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
-  const { tableQueryResult, setFilters, current, setCurrent, pageSize } =
-    useTable<IProduct>({
-      resource: "products",
-      queryOptions: {
-        initialData: products,
-      },
-      initialPageSize: 9,
-      metaData: { populate: ["image"] },
-    });
+  const {
+    tableQuery: tableQueryResult,
+    setFilters,
+    current,
+    setCurrent,
+    pageSize,
+  } = useTable<IProduct>({
+    resource: "products",
+    queryOptions: {
+      initialData: products,
+    },
+    initialPageSize: 9,
+    metaData: { populate: ["image"] },
+  });
 
   const totalPageCount = Math.ceil(
     (tableQueryResult.data?.total ?? 0) / pageSize,

@@ -4,8 +4,12 @@ import {
   getDefaultSortOrder,
   ShowButton,
 } from "@refinedev/antd";
-import { CrudFilters, CrudSorting, getDefaultFilter } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import {
+  type CrudFilters,
+  type CrudSorting,
+  getDefaultFilter,
+} from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { PhoneOutlined } from "@ant-design/icons";
 import { Button, Input, Select, Space, Table, type TableProps } from "antd";
@@ -17,12 +21,13 @@ import {
   Text,
 } from "@/components";
 import { ContactStatusEnum } from "@/enums";
-import { Contact } from "@/graphql/schema.types";
-import { ContactsListQuery } from "@/graphql/types";
+import type { ContactsListQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 
+type Contact = GetFieldsFromList<ContactsListQuery>;
+
 type Props = {
-  tableProps: TableProps<GetFieldsFromList<ContactsListQuery>>;
+  tableProps: TableProps<Contact>;
   filters: CrudFilters;
   sorters: CrudSorting;
 };
@@ -139,6 +144,7 @@ export const TableView: React.FC<Props> = ({
             <Button
               size="small"
               href="tel:1234567890"
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<PhoneOutlined />}
             />
             <DeleteButton hideText size="small" recordItemId={record.id} />

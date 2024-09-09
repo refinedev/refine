@@ -1,13 +1,13 @@
 import React from "react";
 import { Button, Upload } from "antd";
 import { ImportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@refinedev/core";
+import { useImportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ImportButtonProps } from "../types";
+import type { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/antd/hooks/import/useImport `useImport`} hook and is meant to be used as it's upload button.
@@ -21,18 +21,21 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
   buttonProps,
   hideText = false,
   children,
+  loading,
 }) => {
-  const translate = useTranslate();
+  const { label } = useImportButton();
 
   return (
     <Upload {...uploadProps}>
       <Button
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<ImportOutlined />}
         data-testid={RefineButtonTestIds.ImportButton}
         className={RefineButtonClassNames.ImportButton}
+        loading={loading}
         {...buttonProps}
       >
-        {!hideText && (children ?? translate("buttons.import", "Import"))}
+        {!hideText && (children ?? label)}
       </Button>
     </Upload>
   );

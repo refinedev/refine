@@ -241,7 +241,7 @@ import { Typography } from "antd";
 
 export const ShowProduct = () => {
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow();
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -289,7 +289,9 @@ import { Form, Input, Select, InputNumber } from "antd";
 
 export const CreateProduct = () => {
   const { formProps, saveButtonProps } = useForm({
-    redirect: "edit",
+    refineCoreProps: {
+      redirect: "edit",
+    },
   });
 
   const { selectProps } = useSelect({
@@ -325,13 +327,15 @@ import { useForm, useSelect, SaveButton } from "@refinedev/antd";
 import { Form, Input, Select, InputNumber } from "antd";
 
 export const EditProduct = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm({
-    redirect: "show",
+  const { formProps, saveButtonProps, query } = useForm({
+    refineCoreProps: {
+      redirect: "show",
+    },
   });
 
   const { selectProps } = useSelect({
     resource: "categories",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (

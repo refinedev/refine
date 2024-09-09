@@ -3,16 +3,16 @@ import { BrowserRouter } from "react-router-dom";
 
 import {
   Refine,
-  I18nProvider,
-  AccessControlProvider,
-  LegacyAuthProvider,
-  DataProvider,
-  NotificationProvider,
-  IResourceItem,
-  AuthProvider,
-  IRouterProvider,
-  RouterBindings,
-  IRefineOptions,
+  type I18nProvider,
+  type AccessControlProvider,
+  type LegacyAuthProvider,
+  type DataProvider,
+  type NotificationProvider,
+  type IResourceItem,
+  type AuthProvider,
+  type IRouterProvider,
+  type RouterBindings,
+  type IRefineOptions,
 } from "@refinedev/core";
 
 import { mockRouterBindings, MockJSONServer } from "@test";
@@ -47,7 +47,7 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
   props: ITestWrapperProps,
 ) => React.FC<{ children?: React.ReactNode }> = ({
-  routerProvider,
+  routerProvider = mockRouterBindings(),
   legacyRouterProvider,
   dataProvider,
   authProvider,
@@ -80,8 +80,8 @@ export const TestWrapper: (
           <Refine
             dataProvider={dataProvider ?? MockJSONServer}
             i18nProvider={i18nProvider}
-            routerProvider={routerProvider}
-            legacyRouterProvider={legacyRouterProvider ?? MockRouterProvider}
+            routerProvider={legacyRouterProvider ? undefined : routerProvider}
+            legacyRouterProvider={legacyRouterProvider}
             authProvider={authProvider}
             legacyAuthProvider={legacyAuthProvider}
             notificationProvider={notificationProvider}

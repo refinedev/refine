@@ -17,11 +17,14 @@ import CardContent from "@mui/material/CardContent";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import CircularProgress from "@mui/material/CircularProgress";
+
+import { alpha } from "@mui/system";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-import { Breadcrumb, SaveButton, SaveButtonProps } from "@components";
-import { CreateProps } from "../types";
+import { Breadcrumb, SaveButton, type SaveButtonProps } from "@components";
+import type { CreateProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**
@@ -78,7 +81,29 @@ export const Create: React.FC<CreateProps> = ({
   const defaultFooterButtons = <SaveButton {...saveButtonProps} />;
 
   return (
-    <Card {...(wrapperProps ?? {})}>
+    <Card
+      {...(wrapperProps ?? {})}
+      sx={{
+        position: "relative",
+        ...wrapperProps?.sx,
+      }}
+    >
+      {isLoading && (
+        <Box
+          sx={{
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            zIndex: (theme) => theme.zIndex.drawer + 1,
+            // this is needed to support custom themes, dark mode etc.
+            bgcolor: (theme) => alpha(theme.palette.background.paper, 0.4),
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       {breadcrumbComponent}
       <CardHeader
         sx={{

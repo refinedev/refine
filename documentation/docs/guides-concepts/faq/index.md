@@ -24,12 +24,13 @@ values={[
 ```tsx
 import { useTable, useForm, useShow } from "@refinedev/core";
 
-// All "data" related hooks provided by Refine can use queryResult' refetch function
+// All "data" related hooks provided by Refine can use query' refetch function
+const { tableQuery: { refetch } } = useTable();
 const { tableQueryResult: { refetch } } = useTable();
-const { queryResult: { refetch } } = useForm();
+const { query: { refetch } } = useForm();
 ...
 ...
-const { queryResult: { refetch } } = useShow();
+const { query: { refetch } } = useShow();
 ...
 ...
 ```
@@ -406,7 +407,7 @@ Still, there two common errors that you may encounter when working with Refine i
 
 - `401 (Unauthorized) from :5001/api/.auth/sessions/whoami` - This error is related with the Refine's Devtools and logged if there are no active authentication sessions in Devtools. You can get rid of this error by logging in to the Devtools.
 
-- Numerous `404 (Not Found)` errors when using Refine's Inferencer - These errors are related with the Inferencer component since the main logic behing Inferencer components are to infer the data structure from the API. When trying to infer the data structure, Inferencer may send requests to the API to determine relationships between resources. You can safely ignore these errors as they are not affecting the functionality of the application. To learn more about the functionality of Inferencer, check out the [How the fields are inferred? section in Inferencer docs](/docs/packages/inferencer/#how-the-fields-are-inferred).
+- Numerous `404 (Not Found)` errors when using Refine's Inferencer - These errors are related with the Inferencer component since the main logic behind Inferencer components are to infer the data structure from the API. When trying to infer the data structure, Inferencer may send requests to the API to determine relationships between resources. You can safely ignore these errors as they are not affecting the functionality of the application. To learn more about the functionality of Inferencer, check out the [How the fields are inferred? section in Inferencer docs](/docs/packages/inferencer/#how-the-fields-are-inferred).
 
 If you have any other network errors thrown by Refine and have no relation with the above mentioned errors or not caused by your project's logic, please reach out to us via [GitHub Issues](https://github.com/refinedev/refine/issues) or our [Discord Community](https://discord.gg/refine).
 

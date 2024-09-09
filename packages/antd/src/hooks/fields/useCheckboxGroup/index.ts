@@ -1,15 +1,15 @@
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { QueryObserverResult } from "@tanstack/react-query";
 import type { Checkbox } from "antd";
 
 import {
-  BaseRecord,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
+  type BaseRecord,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
   useSelect,
-  BaseKey,
+  type BaseKey,
   pickNotDeprecated,
-  BaseOption,
+  type BaseOption,
 } from "@refinedev/core";
 
 export type UseCheckboxGroupReturnType<
@@ -22,6 +22,10 @@ export type UseCheckboxGroupReturnType<
   > & {
     options: TOption[];
   };
+  query: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
 };
 
@@ -63,6 +67,7 @@ export const useCheckboxGroup = <
   pagination,
   liveMode,
   defaultValue,
+  selectedOptionsOrder,
   onLiveEvent,
   liveParams,
   meta,
@@ -73,12 +78,7 @@ export const useCheckboxGroup = <
   TError,
   TData
 >): UseCheckboxGroupReturnType<TData, TOption> => {
-  const { queryResult, options } = useSelect<
-    TQueryFnData,
-    TError,
-    TData,
-    TOption
-  >({
+  const { query, options } = useSelect<TQueryFnData, TError, TData, TOption>({
     resource,
     sort,
     sorters,
@@ -90,6 +90,7 @@ export const useCheckboxGroup = <
     pagination,
     liveMode,
     defaultValue,
+    selectedOptionsOrder,
     onLiveEvent,
     liveParams,
     meta: pickNotDeprecated(meta, metaData),
@@ -101,6 +102,7 @@ export const useCheckboxGroup = <
       options,
       defaultValue,
     },
-    queryResult,
+    query,
+    queryResult: query,
   };
 };

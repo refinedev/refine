@@ -1,5 +1,469 @@
 # @refinedev/antd
 
+## 5.43.1
+
+### Patch Changes
+
+- [#6245](https://github.com/refinedev/refine/pull/6245) [`7ba4ea1ffdd2e2ed2f0ed2b1ee386dab5015dd2d`](https://github.com/refinedev/refine/commit/7ba4ea1ffdd2e2ed2f0ed2b1ee386dab5015dd2d) Thanks [@youssefsiam38](https://github.com/youssefsiam38)! - fix(antd): rtl support for mobile sider trigger and drawer placement
+
+  `<ThemedLayoutV2 />` has RTL support but it lacks the mobile sider trigger and drawer placement. This change places the drawer depending on the preferred direction. It also adds RTL support for the styling of the mobile sider trigger.
+
+  [Fixes #6263](https://github.com/refinedev/refine/issues/6263)
+
+## 5.43.0
+
+### Minor Changes
+
+- [#6180](https://github.com/refinedev/refine/pull/6180) [`292cebc5a70f19400793292b79d1400fec114591`](https://github.com/refinedev/refine/commit/292cebc5a70f19400793292b79d1400fec114591) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useSelect`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-select/)'s `queryResult` and `defaultValueQueryResult` is deprecated, use `query` and `defaultValueQuery` instead. #6179
+
+  ```diff
+  import { useSelect } from '@refinedev/antd';
+
+  - const { queryResult, defaultValueQueryResult } = useSelect();
+  + const { query, defaultValueQuery } = useSelect();
+  ```
+
+  feat: [`useCheckboxGroup`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-checkbox-group/)'s `queryResult` is deprecated, use `query` instead.
+
+  ```diff
+  import { useCheckboxGroup } from '@refinedev/antd';
+
+  - const { queryResult } = useCheckboxGroup();
+  + const { query } = useCheckboxGroup();
+  ```
+
+  feat: [`useRadioGroup`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-radio-group/)'s `queryResult` is deprecated, use `query` instead.
+
+  ```diff
+  import { useRadioGroup } from '@refinedev/antd';
+
+  - const { queryResult } = useRadioGroup();
+  + const { query } = useRadioGroup();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+- [#6172](https://github.com/refinedev/refine/pull/6172) [`4967a51944c139d102fcfc04ada5a42c725ed7c2`](https://github.com/refinedev/refine/commit/4967a51944c139d102fcfc04ada5a42c725ed7c2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`useTable`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/)'s `tableQueryResult` is deprecated, use `tableQuery` instead. #6169
+
+  ```diff
+  import { useTable } from '@refinedev/core';
+
+  - const { tableQueryResult } = useTable();
+  + const { tableQuery } = useTable();
+  ```
+
+  feat: [`useSimpleList`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-simple-list/)'s `queryResult` is deprecated, use `query` instead. #6169
+
+  ```diff
+  import { useSimpleList } from '@refinedev/antd';
+
+  - const { queryResult } = useSimpleList();
+  + const { query } = useSimpleList();
+  ```
+
+  > ✨ You can use `@refinedev/codemod` to automatically migrate your codebase. Simply run the following command in your project's root directory:
+  >
+  > ```bash
+  > npx @refinedev/codemod@latest rename-query-and-mutation-result
+  > ```
+
+### Patch Changes
+
+- [#6199](https://github.com/refinedev/refine/pull/6199) [`5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece`](https://github.com/refinedev/refine/commit/5a8e94aa4afe0faf3ea1de93a4b00e0b44dd1ece) Thanks [@aliemir](https://github.com/aliemir)! - fix(auth-page): fix wrong translation keys in `type="register"` and `type="forgotPassword"`
+
+  In `type="forgotPassword"`:
+
+  - `"pages.register.buttons.haveAccount"` is replaced with `"pages.forgotPassword.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.forgotPassword.signin"`
+
+  In `type="register"`:
+
+  - `"pages.login.divider"` is replaced with `"pages.register.divider"`
+  - `"pages.login.buttons.haveAccount"` is replaced with `"pages.register.buttons.haveAccount"`
+  - `"pages.login.signin"` is replaced with `"pages.register.signin"`
+
+  Wrong keys are kept as fallbacks in case the new keys are not found in the translation file. If you are using those keys in your project, make sure to update them accordingly. Fallback keys will be removed in future releases.
+
+  [Resolves #5816](https://github.com/refinedev/refine/issues/5816)
+
+- [#6217](https://github.com/refinedev/refine/pull/6217) [`aefd093cfd85096fdac36cd25073d14dfb12094f`](https://github.com/refinedev/refine/commit/aefd093cfd85096fdac36cd25073d14dfb12094f) Thanks [@webscriptmaster](https://github.com/webscriptmaster)! - fix(date-field): falsy values should render empty string
+
+  Previously, `<DateField value={undefined} />` was rendering the current date. After this change, it will render empty string if a falsy value is provided.
+
+  [Resolves #6216](https://github.com/refinedev/refine/issues/6216)
+
+## 5.42.0
+
+### Minor Changes
+
+- [#6074](https://github.com/refinedev/refine/pull/6074) [`311dcdc454ee6914218a59198b5d423a4f8e5456`](https://github.com/refinedev/refine/commit/311dcdc454ee6914218a59198b5d423a4f8e5456) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: [`useDrawerForm`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-drawer-form/)'s `submit` and `form` props are not working (#6082).
+
+  - `submit` prop is removed from `useDrawerForm` hook. Instead, you can use `onFinish` prop to handle the form submission.
+    https://refine.dev/docs/guides-concepts/forms/#modifying-data-before-submission
+
+  - `form` prop is removed from `useDrawerForm` hook.
+    The purpose of `useDrawerForm` is to create a `form` instance. Because of that `form` instance cannot be passed as a prop.
+
+- [#6071](https://github.com/refinedev/refine/pull/6071) [`853bef97ed7baf59e74c98fc54c0ed11624fb491`](https://github.com/refinedev/refine/commit/853bef97ed7baf59e74c98fc54c0ed11624fb491) Thanks [@Dominic-Preap](https://github.com/Dominic-Preap)! - feat: add `selectedOptionsOrder` in `useSelect`
+
+  Now with `selectedOptionsOrder`, you can sort `selectedOptions` at the top of list when use `useSelect` with `defaultValue`.
+
+  Resolves [#6061](https://github.com/refinedev/refine/issues/6061)
+
+- [#6074](https://github.com/refinedev/refine/pull/6074) [`311dcdc454ee6914218a59198b5d423a4f8e5456`](https://github.com/refinedev/refine/commit/311dcdc454ee6914218a59198b5d423a4f8e5456) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useForm`'s `defaultFormValues` prop is not working (#5727).
+
+  From now on, `useForm`, `useDrawerForm`, and `useModalForm` hooks accept the `defaultFormValues` prop to pre-populate the form with data that needs to be displayed.
+
+  ```tsx
+  useForm({
+    defaultFormValues: {
+      title: "Hello World",
+    },
+  });
+  ```
+
+  Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the `defaultFormValuesLoading` state returned from the hook.
+
+  > 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
+
+  ```tsx
+  const { defaultFormValuesLoading } = useForm({
+    defaultFormValues: async () => {
+      const response = await fetch("https://my-api.com/posts/1");
+      const data = await response.json();
+      return data;
+    },
+  });
+  ```
+
+### Patch Changes
+
+- [#6021](https://github.com/refinedev/refine/pull/6021) [`55cd0662b1e3ff8f8410eba812e80130afe75d14`](https://github.com/refinedev/refine/commit/55cd0662b1e3ff8f8410eba812e80130afe75d14) Thanks [@JayBhensdadia](https://github.com/JayBhensdadia)! - fix: ensure Sider component handles various resource name formats correctly
+
+  Updated Sider component to correctly handle lowercase and camelcased resource names, enhancing usability and functionality.
+
+  Fixes #6004
+
+- [#5984](https://github.com/refinedev/refine/pull/5984) [`658891c413b1fc83b75905919eabc94f08482e61`](https://github.com/refinedev/refine/commit/658891c413b1fc83b75905919eabc94f08482e61) Thanks [@ApsMJ23](https://github.com/ApsMJ23)! - fix(antd): use appropriate icons for RTL direction layouts
+
+  Previously CRUD components and `<ThemedSiderV2 />` component used hardcoded icons which doesn't fit well for RTL layouts. This PR uses Ant Design's `ConfigProvider` context to use `direction` to determine the appropriate icons for RTL layouts.
+
+  **Example**
+
+  ```tsx
+  import { ConfigProvider } from 'antd';
+  import { Refine } from '@refinedev/antd';
+
+  const App = () => (
+    <ConfigProvider direction="rtl">
+      <Refine
+          {/* ... */}
+      />
+    </ConfigProvider>
+  );
+  ```
+
+  When any CRUD component or `<ThemedSiderV2 />` component is rendered, the icons will be rendered with respect to the `direction` prop of `ConfigProvider`.
+
+- [#6064](https://github.com/refinedev/refine/pull/6064) [`b516c18b828ba8823561d0fefc4afe02b45ce332`](https://github.com/refinedev/refine/commit/b516c18b828ba8823561d0fefc4afe02b45ce332) Thanks [@aliemir](https://github.com/aliemir)! - fix(auto-save-indicator): replace reserved `key` prop with `translationKey` in <Message /> components
+
+  `<AutoSaveIndicator />` components from UI libraries have been using a `<Message />` component internally that uses a `key` prop. Since `key` is a reserved prop in React, it was causing a warning in the console. This change replaces the `key` prop with `translationKey` to avoid the warning.
+
+  Resolves [#6067](https://github.com/refinedev/refine/issues/6067)
+
+## 5.40.0
+
+### Minor Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: use global values by default for app title and app icon
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. For `<ThemedLayoutV2 />` and `<AuthPage />` components, these values will be used by default. While users can use `options.title` to pass global values for app icon and app name, option to override through `<ThemedTitleV2 />` component is still available for users to override these values in specific use cases.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+  Then, `<ThemedLayoutV2 />` and `<AuthPage />` components will display `<MyIcon />` and `"Refine App"` as app icon and app name respectively.
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - lock the `ant-design/icons` version to `5.0.1`
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: unpin `antd` version that was causing build issues
+
+  With `antd`'s `5.17.0` version, Next.js apps were stuck in the build process. To prevent this from breaking all Refine apps with Next.js, we've pinned the version to `5.16.5` as a workaround. Since then, the issue has been resolved by updating an internal dependency of `antd`, we no longer need to pin the version.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat(antd): search form in useTable should work with syncWithLocation
+
+  Even though the form is managed by `useTable` hook from `@refinedev/antd`. It wasn't respecting the `syncWithLocation` prop to set values accordingly at initial render when registered fields are matching with the query params. Now it will look for matching fields and set values accordingly from synced filters.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: Filtering [`<Table />`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/) with [`<FilterDropdown />`](https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown) and [`<DatePicker />`](https://ant.design/components/date-picker) doesn't work with `syncWithLocation`. #5933
+
+  feat: Added [`rangePickerFilterMapper`](https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown/#rangepickerfiltermapper) utility function to convert `selectedKeys` to satisfy both the Refine and [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker).
+
+  Usage example:
+
+  ```tsx
+  import { getDefaultFilter } from "@refinedev/core";
+  import {
+    DateField,
+    FilterDropdown,
+    rangePickerFilterMapper,
+    useTable,
+  } from "@refinedev/antd";
+  import { Table, DatePicker } from "antd";
+
+  export const Posts = () => {
+    const { tableProps, filters } = useTable({
+      filters: {
+        initial: [
+          {
+            field: "created_at",
+            value: ["2022-01-01", "2022-01-31"],
+            operator: "between",
+          },
+        ],
+      },
+    });
+
+    return (
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex="createdAt"
+          title="Created At"
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(selectedKeys, event) => {
+                return rangePickerFilterMapper(selectedKeys, event);
+              }}
+            >
+              <DatePicker.RangePicker />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={getDefaultFilter(
+            "created_at",
+            filters,
+            "between",
+          )}
+        />
+      </Table>
+    );
+  };
+  ```
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/ui-types@1.22.9
+
+## 5.39.0
+
+### Minor Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772) Thanks [@aliemir](https://github.com/aliemir)! - feat: use global values by default for app title and app icon
+
+  Now `<Refine />` component accepts `options.title` prop that can be used to set app icon and app name globally. For `<ThemedLayoutV2 />` and `<AuthPage />` components, these values will be used by default. While users can use `options.title` to pass global values for app icon and app name, option to override through `<ThemedTitleV2 />` component is still available for users to override these values in specific use cases.
+
+  ```tsx
+  import { Refine } from "@refinedev/core";
+
+  const MyIcon = () => <svg>{/* ... */}</svg>;
+
+  const App = () => {
+    return (
+      <Refine
+        options={{
+          title: {
+            icon: <MyIcon />,
+            text: "Refine App",
+          },
+        }}
+      >
+        {/* ... */}
+      </Refine>
+    );
+  };
+  ```
+
+  Then, `<ThemedLayoutV2 />` and `<AuthPage />` components will display `<MyIcon />` and `"Refine App"` as app icon and app name respectively.
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`cff950ba8b66143f5c08c3ef9f4cd112a9dc7448`](https://github.com/refinedev/refine/commit/cff950ba8b66143f5c08c3ef9f4cd112a9dc7448) Thanks [@aliemir](https://github.com/aliemir)! - lock the `ant-design/icons` version to `5.0.1`
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`fa31883601d3d0abd690dac62eed94487091022b`](https://github.com/refinedev/refine/commit/fa31883601d3d0abd690dac62eed94487091022b) Thanks [@aliemir](https://github.com/aliemir)! - chore: unpin `antd` version that was causing build issues
+
+  With `antd`'s `5.17.0` version, Next.js apps were stuck in the build process. To prevent this from breaking all Refine apps with Next.js, we've pinned the version to `5.16.5` as a workaround. Since then, the issue has been resolved by updating an internal dependency of `antd`, we no longer need to pin the version.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`fc1f7d91b1aa987c29a700b5227e744b27aeddda`](https://github.com/refinedev/refine/commit/fc1f7d91b1aa987c29a700b5227e744b27aeddda) Thanks [@aliemir](https://github.com/aliemir)! - feat(antd): search form in useTable should work with syncWithLocation
+
+  Even though the form is managed by `useTable` hook from `@refinedev/antd`. It wasn't respecting the `syncWithLocation` prop to set values accordingly at initial render when registered fields are matching with the query params. Now it will look for matching fields and set values accordingly from synced filters.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`f91bbb4a5c81cb8d22756ef05f6def9bd1a4ca12`](https://github.com/refinedev/refine/commit/f91bbb4a5c81cb8d22756ef05f6def9bd1a4ca12) Thanks [@aliemir](https://github.com/aliemir)! - fix: Filtering [`<Table />`](https://refine.dev/docs/ui-integrations/ant-design/hooks/use-table/) with [`<FilterDropdown />`](https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown) and [`<DatePicker />`](https://ant.design/components/date-picker) doesn't work with `syncWithLocation`. #5933
+
+  feat: Added [`rangePickerFilterMapper`](https://refine.dev/docs/ui-integrations/ant-design/components/filter-dropdown/#rangepickerfiltermapper) utility function to convert `selectedKeys` to satisfy both the Refine and [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker).
+
+  Usage example:
+
+  ```tsx
+  import { getDefaultFilter } from "@refinedev/core";
+  import {
+    DateField,
+    FilterDropdown,
+    rangePickerFilterMapper,
+    useTable,
+  } from "@refinedev/antd";
+  import { Table, DatePicker } from "antd";
+
+  export const Posts = () => {
+    const { tableProps, filters } = useTable({
+      filters: {
+        initial: [
+          {
+            field: "created_at",
+            value: ["2022-01-01", "2022-01-31"],
+            operator: "between",
+          },
+        ],
+      },
+    });
+
+    return (
+      <Table {...tableProps} rowKey="id">
+        <Table.Column dataIndex="id" title="ID" />
+        <Table.Column dataIndex="title" title="Title" />
+        <Table.Column
+          dataIndex="createdAt"
+          title="Created At"
+          filterDropdown={(props) => (
+            <FilterDropdown
+              {...props}
+              mapValue={(selectedKeys, event) => {
+                return rangePickerFilterMapper(selectedKeys, event);
+              }}
+            >
+              <DatePicker.RangePicker />
+            </FilterDropdown>
+          )}
+          defaultFilteredValue={getDefaultFilter(
+            "created_at",
+            filters,
+            "between",
+          )}
+        />
+      </Table>
+    );
+  };
+  ```
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`903ea231538b00ce02ddc9394c72848ec1e90772`](https://github.com/refinedev/refine/commit/903ea231538b00ce02ddc9394c72848ec1e90772), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d)]:
+  - @refinedev/ui-types@1.22.8
+
+## 5.38.1
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/ui-types@1.22.7
+
+## 5.38.0
+
+### Minor Changes
+
+- [#5868](https://github.com/refinedev/refine/pull/5868) [`a82ef6afc15`](https://github.com/refinedev/refine/commit/a82ef6afc1512631ca3f7936818d646e4c7d0725) Thanks [@Ac-Srikanth](https://github.com/Ac-Srikanth)! - feat: add message prop for required auth input fields for the above packages.
+
+  Now you can provide custom required messages with translate feature for all auth input fields(Login, register, forget password,update password).
+
+  Resolves #[5855](https://github.com/refinedev/refine/issues/5855)
+
+### Patch Changes
+
+- [#5887](https://github.com/refinedev/refine/pull/5887) [`113c1337bf0`](https://github.com/refinedev/refine/commit/113c1337bf02ecf22b4beb459b06a6acadc0e11d) Thanks [@aliemir](https://github.com/aliemir)! - chore: remove version lock from @ant-design/icons 5.0.1 to ^5.0.1
+
+- [#5920](https://github.com/refinedev/refine/pull/5920) [`df0dad6ca46`](https://github.com/refinedev/refine/commit/df0dad6ca46ac86574722723daa543fab849c406) Thanks [@aliemir](https://github.com/aliemir)! - fix: lock `antd` version to `5.16.5` due to broken builds in `5.17.0`
+
+  In the latest release of `antd` package, Next.js apps are failing to build or taking extremely long time to build. Until this issue is fixed in the `antd` package, we are locking the version to `5.16.5` to prevent any build issues.
+
+  Related issue [antd/#48758](https://github.com/ant-design/ant-design/issues/48758)
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/ui-types@1.22.6
+
+## 5.37.6
+
+### Patch Changes
+
+- [#5737](https://github.com/refinedev/refine/pull/5737) [`4e8188a6652`](https://github.com/refinedev/refine/commit/4e8188a665209b0d0b77aef27c795a29b9513226) Thanks [@aliemir](https://github.com/aliemir)! - chore: updated content of `README.md` to include installation, usage and scaffolding instructions.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: `dayjs` imports in ESM bundles
+
+  dayjs imports in ESM bundles were not being correctly resolved, this has been fixed by adding an esbuild plugin to replace the imports with the correct path for ESM bundles.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - fix: broken eslint plugin for removing test ids from components
+
+  Eslint plugin to remove test ids from components was broken and might miss some test ids to be included in the bundles.
+
+- [#5808](https://github.com/refinedev/refine/pull/5808) [`10ba9c34490`](https://github.com/refinedev/refine/commit/10ba9c344900d0fa4af7120c24b3b007081a4c39) Thanks [@aliemir](https://github.com/aliemir)! - refactor: moved internal logic of buttons to respective hooks from `@refinedev/core`
+
+  We've moved the internal logic of buttons to their respective hooks in the `@refinedev/core` package to ensure consistency and reduce duplication. This change will make it easier to manage and maintain the buttons across different UI integrations of Refine. This will also benefit the users who want to customize the buttons via `swizzle` option or create their own buttons withouth having to duplicate the logic.
+
+- [#5714](https://github.com/refinedev/refine/pull/5714) [`38f129f40ee`](https://github.com/refinedev/refine/commit/38f129f40eea109c9b89b23a8fd3f217964330c7) Thanks [@aliemir](https://github.com/aliemir)! - Due to the bug fix made in the `@refinedev/core`, `onFinishAutoSave`'s returned promise can now reject and should be handled accordingly. Updated `useForm`'s auto save handler to catch the rejection without breaking the application.
+
+- [#5755](https://github.com/refinedev/refine/pull/5755) [`404b2ef5e1b`](https://github.com/refinedev/refine/commit/404b2ef5e1b8fed469eeab753bac8736ed3fe58e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: incorrect type imports
+
+- Updated dependencies [[`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927)]:
+  - @refinedev/ui-types@1.22.5
+
 ## 5.37.5
 
 ### Patch Changes

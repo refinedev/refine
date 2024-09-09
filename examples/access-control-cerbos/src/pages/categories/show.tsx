@@ -4,12 +4,12 @@ import { Show } from "@refinedev/antd";
 
 import { Typography } from "antd";
 
-import { ICategory } from "../../interfaces";
+import type { ICategory } from "../../interfaces";
 
 const { Title, Text } = Typography;
 
 export const CategoryShow = () => {
-  const { queryResult } = useShow<ICategory>();
+  const { query: queryResult } = useShow<ICategory>();
   const { data, isLoading } = queryResult;
   const record = data?.data;
 

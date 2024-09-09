@@ -1,18 +1,22 @@
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
 
 import { Form, Input } from "antd";
 
-import { GetFields, GetVariables } from "@refinedev/hasura";
-import {
+import type { GetFields, GetVariables } from "@refinedev/hasura";
+import type {
   UpdateCategoryMutation,
   UpdateCategoryMutationVariables,
 } from "graphql/types";
 import { CATEGORY_UPDATE_MUTATION } from "./queries";
 
 export const CategoryEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<
     GetFields<UpdateCategoryMutation>,
     HttpError,
     GetVariables<UpdateCategoryMutationVariables>

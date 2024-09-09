@@ -42,7 +42,7 @@ export const ListProducts = () => {
 
   const {
     options: categories,
-    queryResult: { isLoading },
+    query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
     pagination: false,
@@ -69,7 +69,7 @@ export const ListProducts = () => {
         flex: 0.5,
         type: "singleSelect",
         valueOptions: categories,
-        valueFormatter: (params) => params.value,
+        valueFormatter: (params) => params?.value,
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
@@ -143,7 +143,7 @@ import Stack from "@mui/material/Stack";
 
 export const ShowProduct = () => {
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow();
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
@@ -307,13 +307,13 @@ export const EditProduct = () => {
     register,
     control,
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     formState: { errors },
   } = useForm();
 
   const { autocompleteProps } = useAutocomplete({
     resource: "categories",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (

@@ -1,4 +1,5 @@
-import { Payment, PaymentStatus } from "@medusajs/medusa";
+import type { Payment, PaymentStatus } from "@medusajs/medusa";
+import clsx from "clsx";
 
 interface PaymentDetailsProps {
   payments: Payment[];
@@ -8,7 +9,9 @@ interface PaymentDetailsProps {
 export const PaymentDetails: React.FC<PaymentDetailsProps> = ({ payments }) => {
   return (
     <div>
-      <h2 className="text-base-semi">Payment</h2>
+      <h2 className={clsx("font-medium", "text-base", "text-gray-darkest")}>
+        Payment
+      </h2>
       <div className="my-2">
         {payments.map((p) => {
           switch (p.provider_id) {

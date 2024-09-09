@@ -1,5 +1,91 @@
 # @refinedev/hasura
 
+## 6.6.7
+
+### Patch Changes
+
+- [#6222](https://github.com/refinedev/refine/pull/6222) [`ec24fe0f37aa9b92991bf105719f6f42bb68d63c`](https://github.com/refinedev/refine/commit/ec24fe0f37aa9b92991bf105719f6f42bb68d63c) Thanks [@Sergio16T](https://github.com/Sergio16T)! - feat: added support for meta.gqlVariables to hasura dataProvider. Updated GraphQLQueryOptions to include optional field gqlVariables
+
+  [Feat #5864](https://github.com/refinedev/refine/issues/5864)
+
+## 6.6.6
+
+### Patch Changes
+
+- [#6052](https://github.com/refinedev/refine/pull/6052) [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd) Thanks [@aliemir](https://github.com/aliemir)! - fix(hasura): broken lodash import in bundle
+
+  ESM bundle of `@refinedev/hasura` was broken due to incorrect lodash import. Import has been replaced with subdirectory import to get handled properly in the bundling process.
+
+  Fixes [#6044](https://github.com/refinedev/refine/issues/6044)
+
+## 6.6.4
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type.
+
+  All fields in the [`CrudOperators`](https://github.com/refinedev/refine/blob/master/packages/core/src/contexts/data/types.ts#L218) interface must be used in the [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type, but some fields may not be supported by Hasura. To resolve this, the object type has been changed to partial.
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.6.3
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`c6f04637a890fced05adae0a2533bb554c1de428`](https://github.com/refinedev/refine/commit/c6f04637a890fced05adae0a2533bb554c1de428) Thanks [@aliemir](https://github.com/aliemir)! - fix: [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type.
+
+  All fields in the [`CrudOperators`](https://github.com/refinedev/refine/blob/master/packages/core/src/contexts/data/types.ts#L218) interface must be used in the [`hasuraFilters`](https://github.com/refinedev/refine/blob/master/packages/hasura/src/utils/generateFilters.ts) object type, but some fields may not be supported by Hasura. To resolve this, the object type has been changed to partial.
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.6.2
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+## 6.6.1
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+## 6.6.0
+
+### Minor Changes
+
+- [#5723](https://github.com/refinedev/refine/pull/5723) [`c498239e90a`](https://github.com/refinedev/refine/commit/c498239e90a8da6e30556bde6429358980aadaa7) Thanks [@rilrom](https://github.com/rilrom)! - feat: implement \_not operator in hasura filters #5689
+
+  Hasura users can now use the \_not operator as a conditional filter.
+
+  Resolves #5689
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - Fixed the `lodash-es` imports for ESM builds to access the exports properly.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
 ## 6.5.1
 
 ### Patch Changes

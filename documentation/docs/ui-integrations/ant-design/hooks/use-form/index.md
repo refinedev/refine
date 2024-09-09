@@ -277,7 +277,7 @@ render(<RefineAntdDemo />);
 
 `action: "edit"` is used for editing an existing record. It requires the `id` for determining the record to edit. By default, it uses the `id` from the route but that can be changed with the `setId` function or `id` property.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it updates the record with [`useUpdate`](/docs/data/hooks/use-update).
 
 In the following example, we will show how to use `useForm` with `action: "edit"`.
 
@@ -352,7 +352,7 @@ render(<RefineAntdDemo />);
 
 You can think `action:clone` like "save as". It is also similar to `action:edit` but it creates a new record instead of updating the existing one.
 
-It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `queryResult` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
+It fetches the record data according to the `id` with [`useOne`](/docs/data/hooks/use-one) and returns the `query` for you to fill the form. After the form is submitted, it creates a new record with [`useCreate`](/docs/data/hooks/use-create).
 
 ```tsx live url=http://localhost:3000/clone/123 previewHeight=420px
 setInitialRoutes(["/posts/clone/123"]);
@@ -433,7 +433,9 @@ render(<RefineAntdDemo />);
 
 ```tsx
 useForm({
-  resource: "categories",
+  refineCoreProps: {
+    resource: "categories",
+  },
 });
 ```
 
@@ -446,8 +448,10 @@ import { useParsed } from "@refinedev/core";
 const { id } = useParsed();
 
 useForm({
-  resource: "custom-resource",
-  id,
+  refineCoreProps: {
+    resource: "custom-resource",
+    id,
+  },
 });
 ```
 
@@ -457,7 +461,9 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/antd";
 
 const { setId } = useForm({
-  resource: "custom-resource",
+  refineCoreProps: {
+    resource: "custom-resource",
+  },
 });
 
 setId("123");
@@ -475,9 +481,11 @@ It is useful when you want to `edit` or `clone` a `resource` from a different pa
 
 ```tsx
 useForm({
-  action: "edit", // or clone
-  resource: "categories",
-  id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  refineCoreProps: {
+    action: "edit", // or clone
+    resource: "categories",
+    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
+  },
 });
 ```
 
@@ -489,7 +497,9 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-  redirect: false,
+  refineCoreProps: {
+    redirect: false,
+  },
 });
 ```
 
@@ -506,8 +516,10 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  onMutationSuccess: (data, variables, context, isAutoSave) => {
-    console.log({ data, variables, context, isAutoSave });
+  refineCoreProps: {
+    onMutationSuccess: (data, variables, context, isAutoSave) => {
+      console.log({ data, variables, context, isAutoSave });
+    },
   },
 });
 ```
@@ -525,8 +537,10 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  onMutationError: (data, variables, context, isAutoSave) => {
-    console.log({ data, variables, context, isAutoSave });
+  refineCoreProps: {
+    onMutationError: (data, variables, context, isAutoSave) => {
+      console.log({ data, variables, context, isAutoSave });
+    },
   },
 });
 ```
@@ -542,7 +556,9 @@ By default it's invalidates following queries from the current `resource`:
 
 ```tsx
 useForm({
-  invalidates: ["list", "many", "detail"],
+  refineCoreProps: {
+    invalidates: ["list", "many", "detail"],
+  },
 });
 ```
 
@@ -554,7 +570,9 @@ If you want to use a different `dataProvider` on all resource pages, you can use
 
 ```tsx
 useForm({
-  dataProviderName: "second-data-provider",
+  refineCoreProps: {
+    dataProviderName: "second-data-provider",
+  },
 });
 ```
 
@@ -565,7 +583,9 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-  mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  refineCoreProps: {
+    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
+  },
 });
 ```
 
@@ -579,12 +599,14 @@ useForm({
 
 ```tsx
 useForm({
-  successNotification: (data, values, resource) => {
-    return {
-      message: `Post Successfully created with ${data.title}`,
-      description: "Success with no errors",
-      type: "success",
-    };
+  refineCoreProps: {
+    successNotification: (data, values, resource) => {
+      return {
+        message: `Post Successfully created with ${data.title}`,
+        description: "Success with no errors",
+        type: "success",
+      };
+    },
   },
 });
 ```
@@ -597,14 +619,16 @@ useForm({
 
 ```tsx
 useForm({
-  action: "create",
-  resource: "post",
-  errorNotification: (data, values, resource) => {
-    return {
-      message: `Something went wrong when deleting ${data.id}`,
-      description: "Error",
-      type: "error",
-    };
+  refineCoreProps: {
+    action: "create",
+    resource: "post",
+    errorNotification: (data, values, resource) => {
+      return {
+        message: `Something went wrong when deleting ${data.id}`,
+        description: "Error",
+        type: "error",
+      };
+    },
   },
 });
 ```
@@ -631,8 +655,10 @@ In the following example, we pass the `headers` property in the `meta` object to
 
 ```tsx
 useForm({
-  meta: {
-    headers: { "x-meta-data": "true" },
+  refineCoreProps: {
+    meta: {
+      headers: { "x-meta-data": "true" },
+    },
   },
 });
 
@@ -661,8 +687,10 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-  queryMeta: {
-    querySpecificValue: "someValue",
+  refineCoreProps: {
+    queryMeta: {
+      querySpecificValue: "someValue",
+    },
   },
 });
 ```
@@ -675,8 +703,10 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-  mutationMeta: {
-    mutationSpecificValue: "someValue",
+  refineCoreProps: {
+    mutationMeta: {
+      mutationSpecificValue: "someValue",
+    },
   },
 });
 ```
@@ -689,8 +719,10 @@ In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one
 
 ```tsx
 useForm({
-  queryOptions: {
-    retry: 3,
+  refineCoreProps: {
+    queryOptions: {
+      retry: 3,
+    },
   },
 });
 ```
@@ -701,8 +733,10 @@ In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/data/hook
 
 ```tsx
 useForm({
-  createMutationOptions: {
-    retry: 3,
+  refineCoreProps: {
+    createMutationOptions: {
+      retry: 3,
+    },
   },
 });
 ```
@@ -713,8 +747,10 @@ In the `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook 
 
 ```tsx
 useForm({
-  updateMutationOptions: {
-    retry: 3,
+  refineCoreProps: {
+    updateMutationOptions: {
+      retry: 3,
+    },
   },
 });
 ```
@@ -727,7 +763,9 @@ It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhen
 
 ```tsx
 useForm({
-  warnWhenUnsavedChanges: true,
+  refineCoreProps: {
+    warnWhenUnsavedChanges: true,
+  },
 });
 ```
 
@@ -737,7 +775,9 @@ When it's true, `submitOnEnter` will submit the form when the enter key is press
 
 ```tsx
 useForm({
-  submitOnEnter: true,
+  refineCoreProps: {
+    submitOnEnter: true,
+  },
 });
 ```
 
@@ -749,7 +789,9 @@ useForm({
 
 ```tsx
 useForm({
-  liveMode: "auto",
+  refineCoreProps: {
+    liveMode: "auto",
+  },
 });
 ```
 
@@ -761,8 +803,10 @@ useForm({
 
 ```tsx
 useForm({
-  onLiveEvent: (event) => {
-    console.log(event);
+  refineCoreProps: {
+    onLiveEvent: (event) => {
+      console.log(event);
+    },
   },
 });
 ```
@@ -782,11 +826,13 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useForm({
-  //...
-  overtimeOptions: {
-    interval: 1000,
-    onInterval(elapsedInterval) {
-      console.log(elapsedInterval);
+  refineCoreProps: {
+    //...
+    overtimeOptions: {
+      interval: 1000,
+      onInterval(elapsedInterval) {
+        console.log(elapsedInterval);
+      },
     },
   },
 });
@@ -817,8 +863,10 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`. By defa
 
 ```tsx
 useForm({
-  autoSave: {
-    enabled: true,
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+    },
   },
 });
 ```
@@ -829,10 +877,12 @@ Set the debounce time for the `autoSave` prop. By default, it is `1000` millisec
 
 ```tsx
 useForm({
-  autoSave: {
-    enabled: true,
-    // highlight-next-line
-    debounce: 2000,
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      debounce: 2000,
+    },
   },
 });
 ```
@@ -843,16 +893,18 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useForm({
-  autoSave: {
-    enabled: true,
-    // highlight-start
-    onFinish: (values) => {
-      return {
-        foo: "bar",
-        ...values,
-      };
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-start
+      onFinish: (values) => {
+        return {
+          foo: "bar",
+          ...values,
+        };
+      },
+      // highlight-end
     },
-    // highlight-end
   },
 });
 ```
@@ -863,10 +915,38 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-  autoSave: {
-    enabled: true,
-    // highlight-next-line
-    invalidateOnUnmount: true,
+  refineCoreProps: {
+    autoSave: {
+      enabled: true,
+      // highlight-next-line
+      invalidateOnUnmount: true,
+    },
+  },
+});
+```
+
+### defaultFormValues
+
+Default values for the form. Use this to pre-populate the form with data that needs to be displayed.
+
+```tsx
+useForm({
+  defaultFormValues: {
+    title: "Hello World",
+  },
+});
+```
+
+Also, it can be provided as an async function to fetch the default values. The loading state can be tracked using the [`defaultFormValuesLoading`](#defaultformvaluesloading) state returned from the hook.
+
+> 🚨 When `action` is "edit" or "clone" a race condition with `async defaultFormValues` may occur. In this case, the form values will be the result of the last completed operation.
+
+```tsx
+const { defaultFormValuesLoading } = useForm({
+  defaultFormValues: async () => {
+    const response = await fetch("https://my-api.com/posts/1");
+    const data = await response.json();
+    return data;
   },
 });
 ```
@@ -909,24 +989,24 @@ It contains all the props needed by the `"submit"` button within the form (disab
 
 `formLoading` is the loading state of a modal. It's `true` when `useForm` is currently being submitted or data is being fetched for the `"edit"` or `"clone"` mode.
 
-### queryResult
+### query
 
-If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `queryResult` property.
+If the `action` is set to `"edit"` or `"clone"` or if a `resource` with an `id` is provided, `useForm` will call [`useOne`](/docs/data/hooks/use-one) and set the returned values as the `query` property.
 
 ```tsx
-const { queryResult } = useForm();
+const { query } = useForm();
 
-const { data } = queryResult;
+const { data } = query;
 ```
 
-### mutationResult
+### mutation
 
-When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutationResult` property.
+When in `"create"` or `"clone"` mode, `useForm` will call [`useCreate`](/docs/data/hooks/use-create). When in `"edit"` mode, it will call [`useUpdate`](/docs/data/hooks/use-update) and set the resulting values as the `mutation` property.
 
 ```tsx
-const { mutationResult } = useForm();
+const { mutation } = useForm();
 
-const { data } = mutationResult;
+const { data } = mutation;
 ```
 
 ### setId
@@ -988,6 +1068,18 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
+### defaultFormValuesLoading
+
+If [`defaultFormValues`](#defaultformvalues) is an async function, `defaultFormValuesLoading` will be `true` until the function is resolved.
+
+### ~~mutationResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
+
+### ~~queryResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
+
 ## FAQ
 
 ### How can Invalidate other resources?
@@ -1003,14 +1095,16 @@ const PostEdit = () => {
   const invalidate = useInvalidate();
 
   useForm({
-    // highlight-start
-    onMutationSuccess: (data, variables, context) => {
-      invalidate({
-        resource: "users",
-        invalidates: ["resourceAll"],
-      });
+    refineCoreProps: {
+      // highlight-start
+      onMutationSuccess: (data, variables, context) => {
+        invalidate({
+          resource: "users",
+          invalidates: ["resourceAll"],
+        });
+      },
+      // highlight-end
     },
-    // highlight-end
   });
 
   // ---
@@ -1083,20 +1177,21 @@ You can use the `meta` property to pass common values to the mutation and the qu
 
 ### Return values
 
-| Property        | Description                                             | Type                                                                                                                                                             |
-| --------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| onFinish        | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                   |
-| form            | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                               |
-| formProps       | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                          |
-| saveButtonProps | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
-| redirect        | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
-| queryResult     | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
-| mutationResult  | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
-| formLoading     | Loading state of form request                           | `boolean`                                                                                                                                                        |
-| id              | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
-| setId           | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |
-| overtime        | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                       |
-| autoSaveProps   | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                          |
+| Property                 | Description                                             | Type                                                                                                                                                             |
+| ------------------------ | ------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| onFinish                 | Triggers the mutation                                   | `(values?: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                   |
+| form                     | Ant Design form instance                                | [`FormInstance`](https://ant.design/components/form/#FormInstance)                                                                                               |
+| formProps                | Ant Design form props                                   | [`FormProps`](https://ant.design/components/form/#Form)                                                                                                          |
+| saveButtonProps          | Props for a submit button                               | `{ disabled: boolean; onClick: () => void; loading?:boolean; }`                                                                                                  |
+| redirect                 | Redirect function for custom redirections               | `(redirect:` `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,`idFromFunction?:` [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
+| query                    | Result of the query of a record                         | [`QueryObserverResult<T>`](https://react-query.tanstack.com/reference/useQuery)                                                                                  |
+| mutation                 | Result of the mutation triggered by submitting the form | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                                 |
+| formLoading              | Loading state of form request                           | `boolean`                                                                                                                                                        |
+| id                       | Record id for `clone` and `create` action               | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                             |
+| setId                    | `id` setter                                             | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                                 |
+| overtime                 | Overtime loading props                                  | `{ elapsedTime?: number }`                                                                                                                                       |
+| autoSaveProps            | Auto save props                                         | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                          |
+| defaultFormValuesLoading | DefaultFormValues loading status of form                | `boolean`                                                                                                                                                        |
 
 ## Example
 

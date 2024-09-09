@@ -11,7 +11,7 @@ import {
 } from "@refinedev/antd";
 import { Space, Table } from "antd";
 
-import { IPost, ICategory, IPostFile } from "../../interfaces";
+import type { IPost, ICategory, IPostFile } from "../../interfaces";
 
 export const PostList = () => {
   const { tableProps } = useTable<IPost>();

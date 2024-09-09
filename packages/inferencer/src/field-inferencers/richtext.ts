@@ -1,4 +1,4 @@
-import { FieldInferencer } from "../types";
+import type { FieldInferencer } from "../types";
 
 export const richtextInfer: FieldInferencer = (key, value) => {
   const isLongText = typeof value === "string" && value.length > 100;

@@ -8,17 +8,21 @@ import {
   useSelect,
 } from "@refinedev/antd";
 
-import { RcFile } from "antd/lib/upload/interface";
+import type { RcFile } from "antd/lib/upload/interface";
 import { Alert, Button, Form, Input, Select, Upload } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 import { supabaseClient, normalizeFile } from "../../utility";
 
 export const PostEdit = () => {
   const [isDeprecated, setIsDeprecated] = useState(false);
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>({
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost>({
     liveMode: "manual",
     onLiveEvent: () => {
       setIsDeprecated(true);

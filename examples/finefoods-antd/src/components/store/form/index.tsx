@@ -2,7 +2,7 @@ import { Col, Row, Spin } from "antd";
 import { StoreMap } from "../map";
 import { useStoreForm } from "./useStoreForm";
 import { StoreFormFields } from "./fields";
-import { UseFormProps } from "@refinedev/antd";
+import type { UseFormProps } from "@refinedev/antd";
 import { StoreCourierTable } from "../courier-table";
 
 type Props = {

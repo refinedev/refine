@@ -1,11 +1,11 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
-import { ICategory, IPost } from "../../interfaces/post";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
+import type { ICategory, IPost } from "../../interfaces/post";
 import {
   useNavigation,
   useDelete,
-  GetManyResponse,
+  type GetManyResponse,
   useMany,
 } from "@refinedev/core";
 
@@ -94,7 +94,7 @@ export const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      tableQueryResult: { data: tableData },
+      tableQuery: { data: tableData },
     },
     getState,
     setPageIndex,

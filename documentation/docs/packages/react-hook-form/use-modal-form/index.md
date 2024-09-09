@@ -118,7 +118,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-  const { tableQueryResult } = useTable<IPost>({
+  const { tableQuery } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -142,7 +142,7 @@ const PostList = () => {
   });
   // highlight-end
 
-  const loading = tableQueryResult?.isLoading;
+  const loading = tableQuery?.isLoading;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -186,7 +186,7 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {tableQuery.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
@@ -232,7 +232,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-  const { tableQueryResult } = useTable<IPost>({
+  const { tableQuery } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -256,7 +256,7 @@ const PostList = () => {
   });
   // highlight-end
 
-  const loading = tableQueryResult?.isLoading;
+  const loading = tableQuery?.isLoading;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -300,7 +300,7 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {tableQuery.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
@@ -369,7 +369,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-  const { tableQueryResult } = useTable<IPost>({
+  const { tableQuery } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
@@ -391,7 +391,7 @@ const PostList = () => {
   });
   // highlight-end
 
-  const loading = tableQueryResult?.isLoading;
+  const loading = tableQuery?.isLoading;
 
   if (loading) {
     return <div>Loading...</div>;
@@ -435,7 +435,7 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data.map((post) => (
+          {tableQuery.data?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

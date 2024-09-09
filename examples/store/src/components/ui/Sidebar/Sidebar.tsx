@@ -1,5 +1,5 @@
-import { useEffect, useRef, PropsWithChildren } from "react";
-import cn from "clsx";
+import { useEffect, useRef, type PropsWithChildren } from "react";
+import cn, { clsx } from "clsx";
 
 import { disableBodyScroll, clearAllBodyScrollLocks } from "body-scroll-lock";
 
@@ -47,8 +47,8 @@ export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({
       <div className="absolute inset-0 overflow-hidden">
         <div className={s.backdrop} onClick={onClose} />
         <section className="absolute inset-y-0 right-0 flex w-full max-w-full outline-none md:w-auto md:pl-10">
-          <div className="h-full w-full md:w-screen md:max-w-md">
-            <div className={s.sidebar} ref={contentRef}>
+          <div className="h-full w-full md:w-screen md:max-w-md py-4 px-4">
+            <div className={clsx(s.sidebar, "rounded-2xl")} ref={contentRef}>
               {children}
             </div>
           </div>

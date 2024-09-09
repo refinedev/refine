@@ -1,5 +1,5 @@
-import { CrudFilters, CrudFilter } from "@refinedev/core";
-import { RequestQueryBuilder, SCondition } from "@nestjsx/crud-request";
+import type { CrudFilters, CrudFilter } from "@refinedev/core";
+import type { RequestQueryBuilder, SCondition } from "@nestjsx/crud-request";
 import { mapOperator } from "./mapOperator";
 
 export const generateSearchFilter = (filters: CrudFilters): SCondition => {
@@ -36,7 +36,7 @@ export const handleFilter = (
   query: RequestQueryBuilder,
   filters?: CrudFilters,
 ) => {
-  if (filters) {
+  if (Array.isArray(filters) && filters.length > 0) {
     query.search(generateSearchFilter(filters));
   }
   return query;

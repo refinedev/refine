@@ -1,12 +1,15 @@
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 
 import { Button, Form, Select, Space } from "antd";
 
-import { Task } from "@/graphql/schema.types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { KANBAN_UPDATE_TASK_MUTATION } from "../../kanban/queries";
+import type { GetFields } from "@refinedev/nestjs-query";
+import type { KanbanUpdateTaskMutation } from "../../../../graphql/types";
+
+type Task = GetFields<KanbanUpdateTaskMutation>;
 
 type Props = {
   initialValues: {

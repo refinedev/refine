@@ -1,6 +1,6 @@
-import { MetaQuery, Pagination, CrudSorting } from "@refinedev/core";
+import type { MetaQuery, Pagination, CrudSorting } from "@refinedev/core";
 import {
-  HasuraCrudFilters,
+  type HasuraCrudFilters,
   generateUseListSubscription,
   genereteUseListSubscription,
 } from "../../src/utils";

@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
-import { HttpError, useList, useTranslate } from "@refinedev/core";
+import { type HttpError, useList, useTranslate } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -11,7 +11,7 @@ import {
   CategoryStatus,
   CustomTooltip,
 } from "../../components";
-import { ICategory, IProduct } from "../../interfaces";
+import type { ICategory, IProduct } from "../../interfaces";
 
 export const CategoryList = () => {
   const t = useTranslate();
@@ -54,7 +54,6 @@ export const CategoryList = () => {
                 Array.from({ length: 10 }).map((_, index) => {
                   return (
                     <Skeleton
-                      // biome-ignore lint/suspicious/noArrayIndexKey: <Skeleton /> not important to have unique key
                       key={index}
                       sx={{
                         width: "32px",

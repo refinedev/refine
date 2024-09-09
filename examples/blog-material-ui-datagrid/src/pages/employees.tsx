@@ -1,6 +1,6 @@
 import React from "react";
 import { useDataGrid, List } from "@refinedev/mui";
-import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef, GridToolbar } from "@mui/x-data-grid";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 

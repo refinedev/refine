@@ -1,11 +1,12 @@
 import clsx from "clsx";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button } from "src/components/button";
 import { LogoIcon } from "src/components/icons/logo";
 import { Input } from "src/components/input";
 import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
-import { MeUpdateVariables } from "src/interfaces/api";
+import type { MeUpdateVariables } from "src/interfaces/api";
 import { getMe, updateMe } from "src/utils/me";
 
 export const Onboarding = () => {
@@ -79,24 +80,56 @@ const links = [
 ];
 
 const OnboardingForm = () => {
-  const [values, setValues] = React.useState<MeUpdateVariables>({
-    name: "",
-    jobTitle: "",
-    company: "",
-  });
+  const [loading, setLoading] = React.useState(false);
+  const { handleSubmit, control, setValue, setError, formState } =
+    useForm<MeUpdateVariables>({
+      defaultValues: {
+        name: "",
+        jobTitle: "",
+        company: "",
+      },
+    });
 
   const navigate = useNavigate();
 
-  const fetchMe = React.useCallback(() => {
-    return getMe().then((me) => {
+  const fetchMe = React.useCallback(async () => {
+    setLoading(true);
+    try {
+      const me = await getMe();
       if (me && typeof me.name === "string") {
-        setValues((p) => ({
-          ...p,
-          name: me.name as string,
-        }));
+        setValue("name", me.name);
+        setValue("jobTitle", me?.jobTitle || "");
+        setValue("company", me?.company || "");
+        return;
       }
-    });
+    } catch (error: any) {
+      setError("root", {
+        message: error?.message || genericError,
+      });
+    } finally {
+      setLoading(false);
+    }
   }, []);
+
+  const onSubmit = async (values: MeUpdateVariables) => {
+    try {
+      setLoading(true);
+      const me = await updateMe(values);
+      if (!me) {
+        setError("root", {
+          message: genericError,
+        });
+      }
+
+      return navigate("/overview");
+    } catch (error: any) {
+      setError("root", {
+        message: error?.message || genericError,
+      });
+      setLoading(false);
+    }
+    setLoading(false);
+  };
 
   React.useEffect(() => {
     fetchMe();
@@ -115,7 +148,8 @@ const OnboardingForm = () => {
       )}
     >
       <LogoIcon height={60} width={252} />
-      <div
+      <form
+        onSubmit={handleSubmit(onSubmit)}
         className={clsx(
           "re-flex",
           "re-flex-col",
@@ -126,40 +160,55 @@ const OnboardingForm = () => {
         )}
       >
         {inputs.map(({ name, label, required, placeholder }) => (
-          <Input
+          <Controller<MeUpdateVariables>
             key={name}
-            label={label}
-            required={required}
-            placeholder={placeholder}
-            value={values[name]}
-            onChange={(value) =>
-              setValues((prev) => ({
-                ...prev,
-                [name]: value,
-              }))
-            }
-            className="re-w-full"
+            name={name}
+            control={control}
+            rules={{ required: required && "This field is required" }}
+            render={({ field }) => {
+              return (
+                <Input
+                  {...field}
+                  disabled={field.disabled || loading}
+                  loading={loading}
+                  key={name}
+                  label={label}
+                  required={required}
+                  placeholder={placeholder}
+                  className="re-w-full"
+                  error={formState.errors[name]?.message}
+                />
+              );
+            }}
           />
         ))}
         <div
           className={clsx(
+            "re-relative",
             "re-w-full",
             "re-flex",
             "re-items-center",
             "re-justify-end",
           )}
         >
-          <Button
-            onClick={() => {
-              updateMe(values).then(() => {
-                navigate("/overview");
-              });
-            }}
+          <div
+            className={clsx(
+              "re-absolute",
+              "re-w-56",
+              "re-left-0 -re-top-4 re-bottom-1",
+            )}
           >
+            {formState.errors.root && (
+              <span className="re-text-alt-red re-text-xs">
+                {formState.errors.root.message}
+              </span>
+            )}
+          </div>
+          <Button type="submit" disabled={loading} loading={loading}>
             Continue
           </Button>
         </div>
-      </div>
+      </form>
       <div
         className={clsx(
           "re-flex",
@@ -183,3 +232,6 @@ const OnboardingForm = () => {
     </div>
   );
 };
+
+const genericError =
+  "An error occurred. If it continues, please open a GitHub issue or contact us on Discord.";

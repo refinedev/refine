@@ -4,7 +4,7 @@ exports[`MuiEditInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
       <div
         class="MuiCardHeader-root"
@@ -1390,7 +1390,7 @@ exports[`MuiEditInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 queryResult 
+                 query 
               </span>
               <span
                 class="token punctuation"
@@ -1593,7 +1593,7 @@ exports[`MuiEditInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 queryResult
+                 query
               </span>
               <span
                 class="token operator"

@@ -2,13 +2,13 @@ import {
   Box,
   Button,
   Group,
-  MantineThemeOverride,
+  type MantineThemeOverride,
   Modal,
   useMantineColorScheme,
 } from "@mantine/core";
 import { useModal } from "@refinedev/core";
 import { RefineThemes } from "@refinedev/mantine";
-import { FC } from "react";
+import type { FC } from "react";
 
 type ThemeName = keyof typeof RefineThemes;
 

@@ -1,5 +1,176 @@
 # @refinedev/devtools
 
+## 1.2.8
+
+### Patch Changes
+
+- Updated dependencies [[`6963e591f8f307aee9362d5dfff99972eb64bf03`](https://github.com/refinedev/refine/commit/6963e591f8f307aee9362d5dfff99972eb64bf03), [`f5501f93a818d6e5811aa94cb354d77a2b1eb1ff`](https://github.com/refinedev/refine/commit/f5501f93a818d6e5811aa94cb354d77a2b1eb1ff)]:
+  - @refinedev/devtools-server@1.1.36
+  - @refinedev/cli@2.16.38
+
+## 1.2.7
+
+### Patch Changes
+
+- [#6228](https://github.com/refinedev/refine/pull/6228) [`4e375902943c356f269e9f596103fd681ee9afb8`](https://github.com/refinedev/refine/commit/4e375902943c356f269e9f596103fd681ee9afb8) Thanks [@aliemir](https://github.com/aliemir)! - refactor(devtools): check both parent and child nodes for representation
+
+  Previously, Refine Devtools's X-Ray feature looked for the representation of the components by looking at the parent nodes until a proper `stateNode` was found. This was problematic when the parent node was not a proper HTML element. A lack of type checking caused the feature to break in runtime in some cases.
+
+  Adding only a type check for the `stateNode` is not enough since there may be cases where there are no proper HTML elements in the parent nodes. This change adds a check for the child nodes as well. This way, the feature will look for the representation in both the parent and child nodes.
+
+  First check for a representation node will be done in the child nodes. If a proper representation is not found, an element will be searched in the parent nodes. If a no proper representation is found in the parent nodes, `document.body` will be used as the representation.
+
+  [Resolves #6219](https://github.com/refinedev/refine/issues/6219)
+
+- [#6228](https://github.com/refinedev/refine/pull/6228) [`4e375902943c356f269e9f596103fd681ee9afb8`](https://github.com/refinedev/refine/commit/4e375902943c356f269e9f596103fd681ee9afb8) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools): styling issues in the X-Ray feature
+
+  A minimum size was set for the X-Ray feature's overlay to prevent it from being too small.
+
+- [#6185](https://github.com/refinedev/refine/pull/6185) [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4) Thanks [@aliemir](https://github.com/aliemir)! - feat(devtools): ability to change the port of the devtools server
+
+  Now users can change the port of the devtools server by setting the `REFINE_DEVTOOLS_PORT` environment variable. Previously, the port was hardcoded to "5001" and could not be changed.
+
+  If you're using `@refinedev/cli`'s runner commands to start your development server, `REFINE_DEVTOOLS_PORT` will be propagated to your app with appropriate prefix. E.g. if you're using Vite, the environment variable will be `VITE_REFINE_DEVTOOLS_PORT` and it will be used by the `@refinedev/devtools`'s `<DevtoolsProvider />` component to connect to the devtools server.
+
+  - In Next.js apps, it will be prefixed with `NEXT_PUBLIC_`
+  - In Craco and Create React App apps, it will be prefixed with `REACT_APP_`
+  - In Remix apps and other custom setups, the environment variable will be used as is.
+
+  In some scenarios where the environment variables are not passed to the browser, you may need to manually set the Refine Devtools URL in the `<DevtoolsProvider />` component via the `url` prop. Remix apps do not automatically pass environment variables to the browser, so you will need to set the URL manually. If not set, the default URL will be used.
+
+  While the port can be changed, this feature also allows users to host the devtools server on a different machine or domain and provide the `<DevtoolsProvider />` with the custom domain URL. This such case will be useful if you're dockerizing your app and devtools server separately.
+
+  **Enterprise Edition**: Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed.
+
+  [Resolves #5111](https://github.com/refinedev/refine/issues/5111)
+
+- Updated dependencies [[`d7fb07e59ddcbef49437c64d3a92b3d47d850225`](https://github.com/refinedev/refine/commit/d7fb07e59ddcbef49437c64d3a92b3d47d850225), [`cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4`](https://github.com/refinedev/refine/commit/cbf2fd70a6a0d54722b6541c948ce8cb3f682fb4), [`c3a75139f82de022b54855e87e200ab38c803af5`](https://github.com/refinedev/refine/commit/c3a75139f82de022b54855e87e200ab38c803af5), [`9806a3629256d73bdc18ae808dce217f0108aad2`](https://github.com/refinedev/refine/commit/9806a3629256d73bdc18ae808dce217f0108aad2), [`e2b467528f6a799c3219e3a8fefd4834a0ca0431`](https://github.com/refinedev/refine/commit/e2b467528f6a799c3219e3a8fefd4834a0ca0431), [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4), [`603c73eb7d376fc2357a577f5921f844a8f444e4`](https://github.com/refinedev/refine/commit/603c73eb7d376fc2357a577f5921f844a8f444e4)]:
+  - @refinedev/cli@2.16.37
+  - @refinedev/devtools-server@1.1.35
+  - @refinedev/devtools-shared@1.1.12
+
+## 1.2.6
+
+### Patch Changes
+
+- [#6098](https://github.com/refinedev/refine/pull/6098) [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a) Thanks [@aliemir](https://github.com/aliemir)! - chore(devtools): update devtools url fallback values
+
+  Updated fallback values for the Devtools URL and use single fallback value until its provided by the `@refinedev/devtools-server` when client is connected.
+
+- Updated dependencies [[`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`24db047aea42e307a9662c46fde50ea69ca8c381`](https://github.com/refinedev/refine/commit/24db047aea42e307a9662c46fde50ea69ca8c381), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a`](https://github.com/refinedev/refine/commit/8bc2c1c6790d1e098ce0d98e01f608e3310f7b4a), [`50d21076928ca738ec54cc5bcd17fad2683653dd`](https://github.com/refinedev/refine/commit/50d21076928ca738ec54cc5bcd17fad2683653dd)]:
+  - @refinedev/devtools-server@1.1.34
+  - @refinedev/cli@2.16.36
+  - @refinedev/devtools-shared@1.1.11
+
+## 1.2.4
+
+### Patch Changes
+
+- [#6059](https://github.com/refinedev/refine/pull/6059) [`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0) Thanks [@aliemir](https://github.com/aliemir)! - fix(devtools): failing authentication checks
+
+  Devtools was failing on determining the auth status and always ended up redirecting to the login page or the onboarding step regardless of the actual authentication status.
+
+  Resolves [#6047](https://github.com/refinedev/refine/issues/6047)
+
+- Updated dependencies [[`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0), [`ad42665ad9ccb07f6090da353377d016b67acdd0`](https://github.com/refinedev/refine/commit/ad42665ad9ccb07f6090da353377d016b67acdd0)]:
+  - @refinedev/devtools-server@1.1.32
+  - @refinedev/cli@2.16.34
+
+## 1.2.3
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046), [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046)]:
+  - @refinedev/cli@2.16.33
+  - @refinedev/devtools-server@1.1.31
+  - @refinedev/devtools-shared@1.1.9
+
+## 1.2.2
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+- Updated dependencies [[`45b68cc3450618468e938f9540dc52ff088b555a`](https://github.com/refinedev/refine/commit/45b68cc3450618468e938f9540dc52ff088b555a), [`429009db854653ab3ca00fbfb84561de38b3a255`](https://github.com/refinedev/refine/commit/429009db854653ab3ca00fbfb84561de38b3a255), [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863), [`429009db854653ab3ca00fbfb84561de38b3a255`](https://github.com/refinedev/refine/commit/429009db854653ab3ca00fbfb84561de38b3a255), [`bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e`](https://github.com/refinedev/refine/commit/bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e), [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863), [`6c22ece19f44ca2b99ad70543f9ee40b4b139863`](https://github.com/refinedev/refine/commit/6c22ece19f44ca2b99ad70543f9ee40b4b139863), [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d), [`bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e`](https://github.com/refinedev/refine/commit/bb89dc34bf6ef061d0bcdcf0cb3173fe7014ae5e)]:
+  - @refinedev/cli@2.16.32
+  - @refinedev/devtools-server@1.1.30
+  - @refinedev/devtools-shared@1.1.8
+
+## 1.2.1
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+- Updated dependencies [[`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d)]:
+  - @refinedev/cli@2.16.31
+  - @refinedev/devtools-shared@1.1.7
+  - @refinedev/devtools-server@1.1.29
+
+## 1.2.0
+
+### Minor Changes
+
+- [#5898](https://github.com/refinedev/refine/pull/5898) [`93c35d82a9c`](https://github.com/refinedev/refine/commit/93c35d82a9c412372d50d476f6e96ad5861181a3) Thanks [@aliemir](https://github.com/aliemir)! - feat: devtools selector with all selectables
+
+  Updated devtools selector to display all available elements instead of relying on the user's pointer to select the element.
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- Updated dependencies [[`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`1c9a95f22ab`](https://github.com/refinedev/refine/commit/1c9a95f22ab8c3f1d1e48c7c889227ce1d9160cf), [`a9dbd808782`](https://github.com/refinedev/refine/commit/a9dbd808782212ed0bf6cf4401f85b675975a744), [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f)]:
+  - @refinedev/devtools-server@1.1.28
+  - @refinedev/devtools-shared@1.1.6
+  - @refinedev/cli@2.16.30
+
+## 1.1.37
+
+### Patch Changes
+
+- [#5823](https://github.com/refinedev/refine/pull/5823) [`aedc6a2961c`](https://github.com/refinedev/refine/commit/aedc6a2961cfe69309d4e14292147a858f94e3bf) Thanks [@aliemir](https://github.com/aliemir)! - fix: broken lodash imports in ESM builds
+
+  Fixed lodash imports in ESM builds which requires `lodash-es` imports to use `.js` extension to work properly unless the bundler is configured to handle non-fully-specified imports.
+
+  Resolves [#5822](https://github.com/refinedev/refine/issues/5822)
+
+- Updated dependencies [[`aedc6a2961c`](https://github.com/refinedev/refine/commit/aedc6a2961cfe69309d4e14292147a858f94e3bf)]:
+  - @refinedev/devtools-server@1.1.27
+  - @refinedev/cli@2.16.29
+
+## 1.1.36
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+- Updated dependencies [[`b20a18e4dfc`](https://github.com/refinedev/refine/commit/b20a18e4dfc97481be865a2a012ea1c588bd76c6), [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45), [`51f368eab1a`](https://github.com/refinedev/refine/commit/51f368eab1a72e2134981e999dc0b3e26e2b74e8), [`33a8a80d80f`](https://github.com/refinedev/refine/commit/33a8a80d80f160101907ad3a6e808b9d04b80107), [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927), [`e9bbb1aa5af`](https://github.com/refinedev/refine/commit/e9bbb1aa5af94125cf0de562b3154302373a308f)]:
+  - @refinedev/cli@2.16.28
+  - @refinedev/devtools-server@1.1.26
+  - @refinedev/devtools-shared@1.1.5
+
 ## 1.1.35
 
 ### Patch Changes

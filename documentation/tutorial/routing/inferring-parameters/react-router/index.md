@@ -27,7 +27,7 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQueryResult: { data, isLoading },
+    tableQuery: { data, isLoading },
     current,
     setCurrent,
     pageCount,
@@ -62,7 +62,7 @@ export const ShowProduct = () => {
   // removed-line
   const { data, isLoading } = useOne({ resource: "products", id: 123 });
   // added-line
-  const { queryResult } = useShow();
+  const { query } = useShow();
 
   /* ... */
 };
@@ -81,7 +81,7 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const EditProduct = () => {
   // removed-line
-  const { onFinish, mutationResult, queryResult } = useForm({
+  const { onFinish, mutation, query } = useForm({
     // removed-line
     action: "edit",
     // removed-line
@@ -91,7 +91,7 @@ export const EditProduct = () => {
     // removed-line
   });
   // added-line
-  const { onFinish, mutationResult, queryResult } = useForm();
+  const { onFinish, mutation, query } = useForm();
 
   /* ... */
 };
@@ -110,7 +110,7 @@ import { useForm, useSelect } from "@refinedev/core";
 
 export const CreateProduct = () => {
   // removed-line
-  const { onFinish, mutationResult } = useForm({
+  const { onFinish, mutation } = useForm({
     // removed-line
     action: "create",
     // removed-line
@@ -118,7 +118,7 @@ export const CreateProduct = () => {
     // removed-line
   });
   // added-line
-  const { onFinish, mutationResult } = useForm();
+  const { onFinish, mutation } = useForm();
 
   /* ... */
 };

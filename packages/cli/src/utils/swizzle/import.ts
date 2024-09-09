@@ -1,5 +1,5 @@
 const packageRegex =
-  /import(?:(?:(?:[ \n\t]+([^ *\n\t\{\},]+)[ \n\t]*(?:,|[ \n\t]+))?([ \n\t]*\{(?:[ \n\t]*[^ \n\t"'\{\}]+[ \n\t]*,?)+\})?[ \n\t]*)|[ \n\t]*\*[ \n\t]*as[ \n\t]+([^ \n\t\{\}]+)[ \n\t]+)from[ \n\t]*(?:['"])([^'"\n]+)(?:['"])(?:;?)/g;
+  /import(?:\s+(type))?\s*(?:([^\s\{\},]+)\s*(?:,\s*)?)?(\{[^}]+\})?\s*(?:\*\s*as\s+([^\s\{\}]+)\s*)?from\s*['"]([^'"]+)['"];?/g;
 
 const nameChangeRegex = /((?:\w|\s|_)*)( as )((?:\w|\s|_)*)( |,)?/g;
 
@@ -9,6 +9,7 @@ export type ImportMatch = {
   defaultImport?: string;
   namedImports?: string;
   namespaceImport?: string;
+  isType?: boolean;
 };
 
 export type NameChangeMatch = {
@@ -26,6 +27,7 @@ export const getImports = (content: string): Array<ImportMatch> => {
   for (const match of matches) {
     const [
       statement,
+      typePrefix,
       defaultImport,
       namedImports,
       namespaceImport,
@@ -33,6 +35,7 @@ export const getImports = (content: string): Array<ImportMatch> => {
     ] = match;
 
     imports.push({
+      isType: typePrefix === "type",
       statement,
       importPath,
       ...(defaultImport && { defaultImport }),
@@ -114,17 +117,20 @@ export const reorderImports = (content: string): string => {
   const allImports = getImports(content);
   // remove `import type` imports
   const allModuleImports = allImports.filter(
-    (importMatch) => !importMatch.statement.includes("import type "),
+    (importMatch) => !importMatch.isType,
   );
-  const typeImports = allImports.filter((importMatch) =>
-    importMatch.statement.includes("import type"),
-  );
+  const typeImports = allImports.filter((importMatch) => importMatch.isType);
 
   const importsWithBeforeContent: ImportMatch[] = [];
   const importsWithoutBeforeContent: ImportMatch[] = [];
 
+  // // remove all type imports
+  typeImports.forEach((importMatch) => {
+    newContent = newContent.replace(`${importMatch.statement}\n`, "");
+  });
+
   allModuleImports.forEach((importMatch) => {
-    if (isImportHasBeforeContent(content, importMatch)) {
+    if (isImportHasBeforeContent(newContent, importMatch)) {
       importsWithBeforeContent.push(importMatch);
     } else {
       importsWithoutBeforeContent.push(importMatch);
@@ -138,11 +144,6 @@ export const reorderImports = (content: string): string => {
 
   // remove all the imports without comments before
   importsWithoutBeforeContent.forEach((importMatch) => {
-    newContent = newContent.replace(importMatch.statement, "");
-  });
-
-  // remove all type imports
-  typeImports.forEach((importMatch) => {
     newContent = newContent.replace(importMatch.statement, "");
   });
 
@@ -250,9 +251,10 @@ export const reorderImports = (content: string): string => {
   const joinedModuleImports = sortedImports
     .map(([, importLine]) => importLine)
     .join("");
-  const joinedTypeImports = typeImports
-    .map((importMatch) => importMatch.statement)
-    .join("\n");
+  const joinedTypeImports = [
+    ...typeImports.map((importMatch) => importMatch.statement),
+    "",
+  ].join("\n");
 
   newContent =
     newContent.substring(0, insertionPoint) +

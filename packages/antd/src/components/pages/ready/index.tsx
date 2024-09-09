@@ -1,5 +1,5 @@
 import * as React from "react";
-import { RefineReadyPageProps } from "@refinedev/ui-types";
+import type { RefineReadyPageProps } from "@refinedev/ui-types";
 import { Row, Col, Typography, Space, Button } from "antd";
 import { ReadOutlined, FolderOutlined, TeamOutlined } from "@ant-design/icons";
 
@@ -62,6 +62,7 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
           style={{ marginTop: "70px", justifyContent: "center" }}
         >
           <a href="https://refine.dev" target="_blank" rel="noreferrer">
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <Button size="large" icon={<ReadOutlined />}>
               Documentation
             </Button>
@@ -71,11 +72,13 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             target="_blank"
             rel="noreferrer"
           >
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <Button size="large" icon={<FolderOutlined />}>
               Examples
             </Button>
           </a>
           <a href="https://discord.gg/refine" target="_blank" rel="noreferrer">
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <Button size="large" icon={<TeamOutlined />}>
               Community
             </Button>

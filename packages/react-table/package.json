@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-table",
-  "version": "5.6.7",
+  "version": "5.6.13",
   "private": false,
   "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
   "repository": {
@@ -31,9 +31,10 @@
     "src"
   ],
   "scripts": {
-    "build": "tsup",
+    "attw": "attw --pack .",
+    "build": "tsup && node ../shared/generate-declarations.js",
     "dev": "tsup --watch",
-    "prepare": "npm run build",
+    "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
     "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
@@ -43,14 +44,15 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.48.0",
+    "@refinedev/core": "^4.54.0",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
     "react-router-dom": "^6.8.1",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "tsup": "^6.7.0"
+    "tsup": "^6.7.0",
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.46.1",
@@ -63,6 +65,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "gitHead": "17dd5af3e4c9f7f09e1e707362c6f5a9d1cab8a8"
+  }
 }

@@ -1,7 +1,7 @@
-import { UseFormReturnType, getValueFromEvent } from "@refinedev/antd";
+import { type UseFormReturnType, getValueFromEvent } from "@refinedev/antd";
 import { Avatar, Flex, Form, Upload } from "antd";
 import { useApiUrl } from "@refinedev/core";
-import { ICourier } from "../../../interfaces";
+import type { ICourier } from "../../../interfaces";
 import { useStyles } from "./styled";
 import { CloudUploadOutlined } from "@ant-design/icons";
 
@@ -63,6 +63,7 @@ export const CourierFormItemAvatar = ({
           />
           {showUploadOverlay && !disabled && (
             <div className={styles.overlay}>
+              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <CloudUploadOutlined className={styles.overlayIcon} />
             </div>
           )}

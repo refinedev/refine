@@ -12,7 +12,7 @@ import spinner from "@utils/spinner";
 import boxen from "boxen";
 import cardinal from "cardinal";
 import chalk from "chalk";
-import { Argument, Command } from "commander";
+import { Argument, type Command } from "commander";
 import dedent from "dedent";
 import semver from "semver";
 
@@ -27,7 +27,7 @@ const load = (program: Command) => {
   return program
     .command("devtools")
     .description(
-      "Start or install refine's devtools server; it starts on port 5001.",
+      "Start or install Refine Devtools server; it starts on port 5001.",
     )
     .addArgument(
       new Argument("[command]", "devtools related commands")
@@ -38,8 +38,8 @@ const load = (program: Command) => {
       "after",
       `
 Commands:
-    start     Start refine's devtools server
-    init      Install refine's devtools client and adds it to your project
+    start     Start Refine Devtools server
+    init      Install Refine Devtools client and adds it to your project
 `,
     )
     .action(action);
@@ -64,7 +64,7 @@ const devtoolsInstaller = async () => {
     "Checking if devtools is installed...",
   );
   if (isInstalled) {
-    console.log("🎉 refine devtools is already installed");
+    console.log("🎉 Refine Devtools is already installed");
     return;
   }
 
@@ -75,7 +75,7 @@ const devtoolsInstaller = async () => {
     return;
   }
 
-  console.log("🌱 Installing refine devtools...");
+  console.log("🌱 Installing Refine Devtools...");
   const packagesToInstall = ["@refinedev/devtools@latest"];
   // we should update core package if it is lower than minRefineCoreVersionForDevtools
   if (
@@ -83,7 +83,7 @@ const devtoolsInstaller = async () => {
     semver.lt(corePackage.version, minRefineCoreVersionForDevtools)
   ) {
     packagesToInstall.push("@refinedev/core@latest");
-    console.log("🌱 refine core package is being updated for devtools...");
+    console.log("🌱 Refine core package is being updated for devtools...");
   }
   await installPackagesSync(packagesToInstall);
 
@@ -94,13 +94,13 @@ const devtoolsInstaller = async () => {
   console.log("🌱 Adding devtools component to your project....");
   await addDevtoolsComponent();
   console.log(
-    "✅ refine devtools package and components added to your project",
+    "✅ Refine Devtools package and components added to your project",
   );
   // if core package is updated, we should show the updated version
   if (packagesToInstall.includes("@refinedev/core@latest")) {
     const updatedCorePackage = await getRefineCorePackage();
     console.log(
-      `✅ refine core package updated from ${
+      `✅ Refine core package updated from ${
         corePackage?.version ?? "unknown"
       } to ${updatedCorePackage?.version ?? "unknown"}`,
     );
@@ -164,7 +164,9 @@ const devtoolsInstaller = async () => {
   }
 };
 
-export const devtoolsRunner = async () => {
+export const devtoolsRunner = async ({
+  exitOnError = true,
+}: { exitOnError?: boolean } = {}) => {
   const corePackage = await getRefineCorePackage();
 
   if (corePackage) {
@@ -174,7 +176,7 @@ export const devtoolsRunner = async () => {
 
     if (semver.lt(corePackage.version, minRefineCoreVersionForDevtools)) {
       console.log(
-        `🚨 You're using an old version of refine(${corePackage.version}). refine version should be @4.42.0 or higher to use devtools.`,
+        `🚨 You're using an old version of Refine(${corePackage.version}). Refine version should be @4.42.0 or higher to use devtools.`,
       );
       const pm = await getPreferedPM();
       console.log(
@@ -184,7 +186,13 @@ export const devtoolsRunner = async () => {
     }
   }
 
-  server();
+  server({
+    onError: () => {
+      if (exitOnError) {
+        process.exit(1);
+      }
+    },
+  }).catch((e) => {});
 };
 
 const getRefineCorePackage = async () => {
@@ -209,9 +217,9 @@ export const validateCorePackageIsNotDeprecated = async ({
 }) => {
   if (pkg.name === "@pankod/refine-core" || semver.lt(pkg.version, "4.0.0")) {
     console.log(
-      `🚨 You're using an old version of refine(${pkg.version}). refine version should be @4.42.0 or higher to use devtools.`,
+      `🚨 You're using an old version of Refine(${pkg.version}). Refine version should be @4.42.0 or higher to use devtools.`,
     );
-    console.log("You can follow migration guide to update refine.");
+    console.log("You can follow migration guide to update Refine.");
     console.log(
       chalk.blue("https://refine.dev/docs/migration-guide/3x-to-4x/"),
     );

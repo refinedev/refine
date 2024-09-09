@@ -1,7 +1,8 @@
-import React, { CSSProperties } from "react";
+import React from "react";
+import type { CSSProperties } from "react";
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
@@ -19,11 +20,11 @@ import {
   NavLink,
   ScrollArea,
   Tooltip,
-  TooltipProps,
   useMantineTheme,
   Burger,
   Flex,
 } from "@mantine/core";
+import type { TooltipProps } from "@mantine/core";
 
 import {
   IconList,
@@ -33,7 +34,7 @@ import {
   IconPower,
   IconDashboard,
 } from "@tabler/icons-react";
-import { RefineLayoutSiderProps } from "../types";
+import type { RefineLayoutSiderProps } from "../types";
 
 import { RefineTitle as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
@@ -100,7 +101,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{
             resource: item,

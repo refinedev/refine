@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-export const DASHBORAD_CALENDAR_UPCOMING_EVENTS_QUERY = gql`
+export const DASHBOARD_CALENDAR_UPCOMING_EVENTS_QUERY = gql`
   query DashboardCalendarUpcomingEvents(
     $filter: EventFilter!
     $sorting: [EventSort!]

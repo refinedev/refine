@@ -1,5 +1,21 @@
 # create-refine-app
 
+## 1.12.6
+
+### Patch Changes
+
+- [#5925](https://github.com/refinedev/refine/pull/5925) [`b840c4b224e`](https://github.com/refinedev/refine/commit/b840c4b224e7f4984f2135068da2041e8bb7c6ca) Thanks [@aliemir](https://github.com/aliemir)! - chore: update `superplate-cli` dependency to latest
+
+  This updates the `superplate-cli` and includes a fix for the re-initializing git repository issue. Now when a new project is created, it will check if the current directory is a git repository and if it is, it will not re-initialize it.
+
+## 1.12.5
+
+### Patch Changes
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+  fixed: Some type errors are fixed due to the TypeScript upgrade.
+
 ## 1.12.4
 
 ### Patch Changes

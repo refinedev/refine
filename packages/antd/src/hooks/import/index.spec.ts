@@ -1,4 +1,4 @@
-import { RcFile, UploadFile } from "antd/lib/upload/interface";
+import type { RcFile, UploadFile } from "antd/lib/upload/interface";
 import { act } from "react-dom/test-utils";
 import { notification } from "antd";
 import { renderHook } from "@testing-library/react";

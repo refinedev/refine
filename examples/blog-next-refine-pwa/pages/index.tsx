@@ -1,6 +1,6 @@
-import { GetServerSideProps } from "next";
+import type { GetServerSideProps } from "next";
 import dataProvider from "@refinedev/simple-rest";
-import { GetListResponse, useTable } from "@refinedev/core";
+import { type GetListResponse, useTable } from "@refinedev/core";
 
 import ProductCards from "@components/ProductCards";
 
@@ -17,7 +17,7 @@ type ItemProp = {
 };
 
 const ProductList: React.FC<ItemProp> = ({ products }) => {
-  const { tableQueryResult } = useTable<IProduct>({
+  const { tableQuery: tableQueryResult } = useTable<IProduct>({
     resource: "products",
     queryOptions: {
       initialData: products,

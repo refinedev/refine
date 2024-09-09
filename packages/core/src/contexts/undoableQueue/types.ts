@@ -1,4 +1,4 @@
-import { BaseKey } from "../data/types";
+import type { BaseKey } from "../data/types";
 
 export enum ActionTypes {
   ADD = "ADD",

@@ -20,7 +20,7 @@ const siteConfig = {
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
-  favicon: "img/refine_favicon.svg",
+  favicon: "img/favicon.ico",
   scripts: [
     "https://platform.twitter.com/widgets.js",
     {
@@ -139,7 +139,6 @@ const siteConfig = {
       };
     },
     "./plugins/docgen.js",
-    "./plugins/examples.js",
     ...(process.env.DISABLE_BLOG
       ? []
       : [
@@ -160,7 +159,6 @@ const siteConfig = {
             },
           ],
         ]),
-    "./plugins/intercom.js",
     "./plugins/clarity.js",
     "./plugins/templates.js",
     "./plugins/example-redirects.js",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
+import { type ITreeMenu, CanAccess, useMenu } from "@refinedev/core";
 
 import {
   UnorderedListOutlined,
@@ -36,6 +36,7 @@ export const FixedSider: React.FC = () => {
         return (
           <SubMenu
             key={route}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? <UnorderedListOutlined />}
             title={label}
           >
@@ -48,7 +49,7 @@ export const FixedSider: React.FC = () => {
       return (
         <CanAccess
           key={route}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{ resource: item }}
         >
@@ -57,6 +58,7 @@ export const FixedSider: React.FC = () => {
             style={{
               textTransform: "capitalize",
             }}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
             <Link to={route || "/"}>{label}</Link>
@@ -93,12 +95,14 @@ export const FixedSider: React.FC = () => {
           }}
         >
           {collapsed ? (
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <RightOutlined
               style={{
                 color: token.colorPrimary,
               }}
             />
           ) : (
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <LeftOutlined
               style={{
                 color: token.colorPrimary,
@@ -122,7 +126,6 @@ export const FixedSider: React.FC = () => {
       >
         <ThemedTitle collapsed={collapsed} />
       </div>
-
       <Menu
         style={{
           marginTop: "8px",

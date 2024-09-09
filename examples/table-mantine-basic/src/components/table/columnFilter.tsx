@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TextInput, Menu, ActionIcon, Stack, Group } from "@mantine/core";
 import { IconFilter, IconX, IconCheck } from "@tabler/icons-react";
 
-import { ColumnButtonProps } from "../../interfaces";
+import type { ColumnButtonProps } from "../../interfaces";
 
 export const ColumnFilter: React.FC<ColumnButtonProps> = ({ column }) => {
   // eslint-disable-next-line

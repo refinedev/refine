@@ -17,12 +17,12 @@ interface IProduct {
 }
 
 const ProductShow: React.FC = () => {
-  const { queryResult } = useShow<IProduct>();
+  const { query } = useShow<IProduct>();
 
-  const { data, isLoading, isError } = queryResult;
+  const { data, isFetching, isError, refetch } = query;
   const product = data?.data;
 
-  if (isLoading) {
+  if (isFetching) {
     return <div>Loading...</div>;
   }
 
@@ -36,6 +36,7 @@ const ProductShow: React.FC = () => {
       <p>id: {product?.id}</p>
       <p>name: {product?.name}</p>
       <p>material: {product?.material}</p>
+      <button onClick={refetch}>Refresh</button>
     </div>
   );
 };

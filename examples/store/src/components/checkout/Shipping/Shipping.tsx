@@ -1,11 +1,11 @@
 import React from "react";
-import cn from "clsx";
+import clsx from "clsx";
 import { RadioGroup } from "@headlessui/react";
 import { Controller, useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { Cart } from "@medusajs/medusa";
+import type { Cart } from "@medusajs/medusa";
 
-import { StepContainer, Radio } from "@components";
+import { StepContainer, Radio, LoadingDots } from "@components";
 import { Spinner } from "@components/icons";
 import { useCheckout } from "@lib/context";
 
@@ -57,22 +57,14 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
   } = useCheckout();
 
   return (
-    <StepContainer
-      className="bg-accent-2"
-      index={sameBilling ? 2 : 3}
-      title="Delivery"
-      closedState={
-        <div className="text-small-regular text-primary px-8 pb-8">
-          <p>Enter your address to see available delivery options.</p>
-        </div>
-      }
-    >
+    <StepContainer index={sameBilling ? 2 : 3} title="Delivery">
+      <div className="bg-gray-normal h-px w-full" />
       <Controller
         name="soId"
         control={control}
         render={({ field: { value, onChange } }) => {
           return (
-            <div className="bg-primary">
+            <div className="py-4 relative w-full">
               <RadioGroup
                 value={value}
                 onChange={(value: string) => handleChange(value, onChange)}
@@ -83,25 +75,48 @@ export const Shipping: React.FC<ShippingProps> = ({ cart }) => {
                       <RadioGroup.Option
                         key={option.value}
                         value={option.value}
-                        className={cn(s.radio, {
-                          "bg-accent-1": option.value === value,
-                        })}
                       >
-                        <div className="flex items-center gap-x-4 ">
-                          <Radio checked={value === option.value} />
-                          <span className="text-base-regular">
+                        <div
+                          className={clsx(
+                            "flex",
+                            "items-center",
+                            "justify-between",
+                          )}
+                        >
+                          {/* <Radio checked={value === option.value} /> */}
+                          <span
+                            className={clsx(
+                              "flex-1",
+                              "text-base",
+                              "font-semibold",
+                              "text-gray-darkest",
+                            )}
+                          >
                             {option.label}
                           </span>
+                          <span
+                            className={clsx(
+                              "flex-shrink-0",
+                              "text-base",
+                              "text-gray-darker",
+                            )}
+                          >
+                            {option.price}
+                          </span>
                         </div>
-                        <span className="text-primary justify-self-end">
-                          {option.price}
-                        </span>
                       </RadioGroup.Option>
                     );
                   })
                 ) : (
-                  <div className={s.spinner}>
-                    <Spinner />
+                  <div
+                    className={clsx(
+                      "py-4",
+                      "mx-auto",
+                      "flex",
+                      "justify-center",
+                    )}
+                  >
+                    <LoadingDots />
                   </div>
                 )}
               </RadioGroup>

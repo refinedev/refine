@@ -124,7 +124,7 @@ import React from "react";
 
 export const ProductList: React.FC = ({ tableProps }) => {
   const {
-    tableQueryResult,
+    tableQuery,
     isLoading,
     current,
     setCurrent,
@@ -150,7 +150,7 @@ export const ProductList: React.FC = ({ tableProps }) => {
           </tr>
         </thead>
         <tbody>
-          {tableQueryResult.data?.data?.map((record) => (
+          {tableQuery.data?.data?.map((record) => (
             <tr key={record.id}>
               <td>{record.id}</td>
               <td>{record.name}</td>

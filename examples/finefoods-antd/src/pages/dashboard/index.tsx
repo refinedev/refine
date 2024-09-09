@@ -1,4 +1,4 @@
-import { Row, Col, theme, Dropdown, MenuProps, Button, Flex } from "antd";
+import { Row, Col, theme, Dropdown, type MenuProps, Button, Flex } from "antd";
 import { useTranslation } from "react-i18next";
 
 import {
@@ -26,7 +26,7 @@ import { useMemo, useState } from "react";
 import { List, NumberField } from "@refinedev/antd";
 import { useApiUrl, useCustom } from "@refinedev/core";
 import dayjs from "dayjs";
-import { ISalesChart } from "../../interfaces";
+import type { ISalesChart } from "../../interfaces";
 
 type DateFilter = "lastWeek" | "lastMonth";
 
@@ -200,6 +200,7 @@ export const DashboardPage: React.FC = () => {
             {t(
               `dashboard.filter.date.${DATE_FILTERS[selecetedDateFilter].text}`,
             )}
+            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <DownOutlined />
           </Button>
         </Dropdown>
@@ -211,6 +212,7 @@ export const DashboardPage: React.FC = () => {
             <Col xl={{ span: 10 }} lg={24} md={24} sm={24} xs={24}>
               <CardWithPlot
                 icon={
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   <DollarCircleOutlined
                     style={{
                       fontSize: 14,
@@ -238,6 +240,7 @@ export const DashboardPage: React.FC = () => {
             <Col xl={{ span: 7 }} lg={12} md={24} sm={24} xs={24}>
               <CardWithPlot
                 icon={
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   <ShoppingOutlined
                     style={{
                       fontSize: 14,
@@ -259,6 +262,7 @@ export const DashboardPage: React.FC = () => {
             <Col xl={{ span: 7 }} lg={12} md={24} sm={24} xs={24}>
               <CardWithPlot
                 icon={
+                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   <UserOutlined
                     style={{
                       fontSize: 14,
@@ -270,7 +274,7 @@ export const DashboardPage: React.FC = () => {
                 rightSlot={
                   <Flex align="center" gap={8}>
                     <NumberField
-                      value={newCustomers.trend / 100}
+                      value={newCustomers.trend}
                       options={{
                         style: "percent",
                         minimumFractionDigits: 2,
@@ -298,6 +302,7 @@ export const DashboardPage: React.FC = () => {
               padding: 0,
             }}
             icon={
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <ClockCircleOutlined
                 style={{
                   fontSize: 14,
@@ -318,6 +323,7 @@ export const DashboardPage: React.FC = () => {
               padding: 0,
             }}
             icon={
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <ClockCircleOutlined
                 style={{
                   fontSize: 14,
@@ -336,6 +342,7 @@ export const DashboardPage: React.FC = () => {
               padding: "1px 0px 0px 0px",
             }}
             icon={
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <ShoppingOutlined
                 style={{
                   fontSize: 14,
@@ -354,6 +361,7 @@ export const DashboardPage: React.FC = () => {
               padding: 0,
             }}
             icon={
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <RiseOutlined
                 style={{
                   fontSize: 14,

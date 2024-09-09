@@ -1,16 +1,5 @@
-import React, { useContext } from "react";
-import {
-  useCan,
-  useNavigation,
-  useTranslate,
-  useUserFriendlyName,
-  useResource,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  pickNotDeprecated,
-  AccessControlContext,
-} from "@refinedev/core";
+import React from "react";
+import { useListButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
@@ -19,7 +8,7 @@ import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
-import { ListButtonProps } from "../types";
+import type { ListButtonProps } from "../types";
 
 /**
  * `<ListButton>` is using uses Mantine {@link https://mantine.dev/core/button `<Button> `} component.
@@ -39,65 +28,23 @@ export const ListButton: React.FC<ListButtonProps> = ({
   onClick,
   ...rest
 }) => {
-  const accessControlContext = useContext(AccessControlContext);
-
-  const accessControlEnabled =
-    accessControl?.enabled ??
-    accessControlContext.options.buttons.enableAccessControl;
-
-  const hideIfUnauthorized =
-    accessControl?.hideIfUnauthorized ??
-    accessControlContext.options.buttons.hideIfUnauthorized;
-  const { listUrl: generateListUrl } = useNavigation();
-  const routerType = useRouterType();
-  const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const getUserFriendlyName = useUserFriendlyName();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-
-  const translate = useTranslate();
-
-  const { resource, identifier } = useResource(
-    resourceNameFromProps ?? resourceNameOrRouteName,
-  );
-
-  const { data } = useCan({
-    resource: resource?.name,
-    action: "list",
-    queryOptions: {
-      enabled: accessControlEnabled,
-    },
-    params: {
-      resource,
-    },
+  const { to, label, title, disabled, hidden, LinkComponent } = useListButton({
+    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    accessControl,
+    meta,
   });
 
-  const disabledTitle = () => {
-    if (data?.can) return "";
-    if (data?.reason) return data.reason;
-
-    return translate(
-      "buttons.notAccessTitle",
-      "You don't have permission to access",
-    );
-  };
-
-  const listUrl = resource ? generateListUrl(resource, meta) : "";
+  if (hidden) return null;
 
   const { variant, styles, vars, ...commonProps } = rest;
 
-  if (accessControlEnabled && hideIfUnauthorized && !data?.can) {
-    return null;
-  }
-
   return (
     <Anchor
-      component={ActiveLink as any}
-      to={listUrl}
+      component={LinkComponent as any}
+      to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (data?.can === false) {
+        if (disabled) {
           e.preventDefault();
           return;
         }
@@ -110,8 +57,8 @@ export const ListButton: React.FC<ListButtonProps> = ({
       {hideText ? (
         <ActionIcon
           variant={mapButtonVariantToActionIconVariant(variant, "default")}
-          disabled={data?.can === false}
-          title={disabledTitle()}
+          disabled={disabled}
+          title={title}
           data-testid={RefineButtonTestIds.ListButton}
           className={RefineButtonClassNames.ListButton}
           {...commonProps}
@@ -121,30 +68,15 @@ export const ListButton: React.FC<ListButtonProps> = ({
       ) : (
         <Button
           variant={variant || "default"}
-          disabled={data?.can === false}
+          disabled={disabled}
           leftSection={<IconList size={18} {...svgIconProps} />}
-          title={disabledTitle()}
+          title={title}
           data-testid={RefineButtonTestIds.ListButton}
           className={RefineButtonClassNames.ListButton}
           vars={vars}
           {...rest}
         >
-          {children ??
-            translate(
-              `${
-                identifier ?? resourceNameFromProps ?? resourceNameOrRouteName
-              }.titles.list`,
-              getUserFriendlyName(
-                resource?.meta?.label ??
-                  resource?.label ??
-                  identifier ??
-                  pickNotDeprecated(
-                    resourceNameFromProps,
-                    resourceNameOrRouteName,
-                  ),
-                "plural",
-              ),
-            )}
+          {children ?? label}
         </Button>
       )}
     </Anchor>

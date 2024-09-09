@@ -30,7 +30,7 @@ import { ErrorComponent } from "./error";
 import { LoadingComponent } from "./loading";
 import { SharedCodeViewer } from "../../components/shared-code-viewer";
 
-import {
+import type {
   ImportElement,
   InferencerResultComponent,
   InferField,
@@ -638,15 +638,10 @@ export const renderer = ({
 
   return jsx`
     ${printImports(imports)}
-<<<<<<< HEAD
-
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-=======
 
     export const ${COMPONENT_NAME} = () => {
->>>>>>> upstream/releases/april
         ${useTranslateHook}
-        const { queryResult } = useShow(${
+        const { query } = useShow(${
           isCustomPage
             ? `{
                     resource: "${resource.name}",
@@ -667,8 +662,8 @@ export const renderer = ({
                 )} }`
               : ""
         });
-        const { data, isLoading } = queryResult;
-
+        const { data, isLoading } = query;
+    
         const ${recordName} = data?.data;
 
         ${relationHooksCode}

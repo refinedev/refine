@@ -10,7 +10,8 @@ export const TutorialCreateFileButton = ({ name, onClick }: Props) => {
   return (
     <button
       className={clsx(
-        "bg-refine-blue bg-opacity-10 dark:bg-opacity-20",
+        "bg-refine-react-light-link bg-opacity-10",
+        "dark:bg-refine-react-dark-link dark:bg-opacity-20",
         "p-2",
         "rounded-[40px]",
         "gap-2",
@@ -33,7 +34,8 @@ export const TutorialCreateFileButton = ({ name, onClick }: Props) => {
         "after:origin-[85%_center]",
         "active:after:brightness-90",
         "after:transition-all after:duration-200 after:ease-in-out",
-        "after:bg-refine-blue",
+        "after:bg-refine-react-light-link",
+        "dark:after:bg-refine-react-dark-link",
         "group",
       )}
       onClick={onClick}
@@ -67,10 +69,12 @@ export const TutorialCreateFileButton = ({ name, onClick }: Props) => {
           "text-gray-0",
           "px-2",
           "rounded-[24px]",
-          "bg-refine-blue",
+          "bg-refine-react-light-link",
+          "dark:bg-refine-react-dark-link",
           "font-jetBrains-mono",
-          "group-hover:brightness-125",
-          "transition-[filter] duration-200 ease-in-out",
+          "group-hover:bg-refine-react-dark-link",
+          "dark:group-hover:bg-refine-react-light-link",
+          "transition-colors duration-200 ease-in-out",
         )}
       >
         {name}

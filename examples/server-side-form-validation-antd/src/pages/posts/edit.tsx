@@ -1,19 +1,19 @@
 import React from "react";
-import { HttpError } from "@refinedev/core";
+import type { HttpError } from "@refinedev/core";
 import { Edit, useForm, useSelect } from "@refinedev/antd";
 
 import { Form, Input, Select } from "antd";
 
 import MDEditor from "@uiw/react-md-editor";
 
-import { IPost, ICategory } from "../../interfaces";
+import type { IPost, ICategory } from "../../interfaces";
 
 export const PostEdit = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<
-    IPost,
-    HttpError,
-    IPost
-  >();
+  const {
+    formProps,
+    saveButtonProps,
+    query: queryResult,
+  } = useForm<IPost, HttpError, IPost>();
 
   const postData = queryResult?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({

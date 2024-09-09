@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "@refinedev/react-hook-form";
-import { HttpError, useLogin } from "@refinedev/core";
+import { type HttpError, useLogin } from "@refinedev/core";
 
 import { Info } from "@components/icons";
 import { Logo, Button, Input } from "@components/ui";
@@ -57,8 +57,8 @@ const SignUpView: React.FC = () => {
       className="flex w-80 flex-col justify-between p-3"
       onSubmit={handleSubmit(onFinish)}
     >
-      <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full bg-[#2A2A42]">
-        <Logo short />
+      <div className="mx-auto flex h-32 w-32 items-center justify-center rounded-full">
+        <Logo className="text-brand" />
       </div>
       <div className="flex flex-col space-y-4">
         <div className="pt-1 text-xs text-rose-500">

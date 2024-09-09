@@ -1,4 +1,4 @@
-import {
+import type {
   DevtoolsEvent,
   DevtoolsEventPayloads,
 } from "@refinedev/devtools-shared";

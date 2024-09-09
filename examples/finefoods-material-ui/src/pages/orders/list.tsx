@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import {
-  HttpError,
+  type HttpError,
   useExport,
   useNavigation,
   useTranslate,
@@ -12,18 +12,22 @@ import {
   NumberField,
   useDataGrid,
 } from "@refinedev/mui";
-import { DataGrid, GridActionsCellItem, GridColDef } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridActionsCellItem,
+  type GridColDef,
+} from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
 import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 import Paper from "@mui/material/Paper";
 import { OrderStatus, OrderTableColumnProducts } from "../../components/order";
-import { IOrder, IOrderFilterVariables } from "../../interfaces";
+import type { IOrder, IOrderFilterVariables } from "../../interfaces";
 import { RefineListView } from "../../components";
 
 export const OrderList = () => {
   const t = useTranslate();
-  const { mutate } = useUpdate();
+  const { mutate } = useUpdate({ resource: "orders" });
 
   const { dataGridProps, filters, sorters } = useDataGrid<
     IOrder,
@@ -117,7 +121,6 @@ export const OrderList = () => {
             showInMenu
             onClick={() => {
               mutate({
-                resource: "orders",
                 id,
                 values: {
                   status: {
@@ -136,7 +139,6 @@ export const OrderList = () => {
             showInMenu
             onClick={() =>
               mutate({
-                resource: "orders",
                 id,
                 values: {
                   status: {

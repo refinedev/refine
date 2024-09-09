@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 
-import { QueryObserverResult, UseQueryOptions } from "@tanstack/react-query";
+import type {
+  QueryObserverResult,
+  UseQueryOptions,
+} from "@tanstack/react-query";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 import qs from "qs";
@@ -28,7 +31,7 @@ import {
   useSyncWithLocation,
 } from "@hooks";
 
-import {
+import type {
   BaseRecord,
   CrudFilter,
   CrudSort,
@@ -38,12 +41,12 @@ import {
   Pagination,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
-import { BaseListProps } from "../data/useList";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { BaseListProps } from "../data/useList";
 import {
-  UseLoadingOvertimeOptionsProps,
-  UseLoadingOvertimeReturnType,
+  type UseLoadingOvertimeOptionsProps,
+  type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
@@ -198,6 +201,10 @@ export type useTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
 > = {
+  tableQuery: QueryObserverResult<GetListResponse<TData>, TError>;
+  /**
+   * @deprecated `tableQueryResult` is deprecated. Use `tableQuery` instead.
+   */
   tableQueryResult: QueryObserverResult<GetListResponse<TData>, TError>;
   /**
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
@@ -556,6 +563,7 @@ export function useTable<
 
   return {
     tableQueryResult: queryResult,
+    tableQuery: queryResult,
     sorters,
     setSorters: setSortWithUnion,
     sorter: sorters,

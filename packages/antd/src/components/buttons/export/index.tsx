@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "antd";
 import { ExportOutlined } from "@ant-design/icons";
-import { useTranslate } from "@refinedev/core";
+import { useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { ExportButtonProps } from "../types";
+import type { ExportButtonProps } from "../types";
 
 /**
  * `<ExportButton>` is an Ant Design {@link https://ant.design/components/button/ `<Button>`} with a default export icon and a default text with "Export".
@@ -20,17 +20,18 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useExportButton();
 
   return (
     <Button
       type="default"
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<ExportOutlined />}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
-      {!hideText && (children ?? translate("buttons.export", "Export"))}
+      {!hideText && (children ?? label)}
     </Button>
   );
 };

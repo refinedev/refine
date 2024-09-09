@@ -608,10 +608,6 @@
     {
       "type": "category",
       "label": "Examples",
-      "link": {
-        "type": "doc",
-        "id": "examples/examples"
-      },
       "items": [
         "examples/real-world-example",
         {
@@ -771,10 +767,7 @@
         {
           "type": "category",
           "label": "Multitenancy",
-          "items": [
-            "examples/multi-tenancy/appwrite",
-            "examples/multi-tenancy/strapi-v4"
-          ]
+          "items": ["examples/multi-tenancy/strapi-v4"]
         },
         {
           "type": "category",
@@ -947,10 +940,7 @@
         {
           "type": "category",
           "label": "Multitenancy",
-          "items": [
-            "advanced-tutorials/multi-tenancy/appwrite",
-            "advanced-tutorials/multi-tenancy/strapi-v4"
-          ]
+          "items": ["advanced-tutorials/multi-tenancy/strapi-v4"]
         },
         "advanced-tutorials/mutation-mode",
         {

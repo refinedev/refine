@@ -1,7 +1,7 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { useDelete, useNavigation } from "@refinedev/core";
-import { ColumnDef, flexRender } from "@tanstack/react-table";
+import { type ColumnDef, flexRender } from "@tanstack/react-table";
 import {
   Table,
   TableBody,
@@ -19,7 +19,7 @@ import {
   ScrollView,
 } from "react95";
 
-import { IPost } from "../../interfaces";
+import type { IPost } from "../../interfaces";
 
 export const PostList = () => {
   const { edit } = useNavigation();
@@ -97,7 +97,7 @@ export const PostList = () => {
     setPageIndex,
     setPageSize,
     refineCore: {
-      tableQueryResult: { isLoading },
+      tableQuery: { isLoading },
     },
   } = useTable<IPost>({
     columns,

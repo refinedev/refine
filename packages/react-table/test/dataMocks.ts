@@ -1,4 +1,4 @@
-import { LegacyRouterProvider } from "@refinedev/core";
+import type { LegacyRouterProvider } from "@refinedev/core";
 import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
 
 export const posts = [

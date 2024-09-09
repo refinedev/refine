@@ -1,19 +1,19 @@
 import React, { useEffect } from "react";
 import {
   useForm as useMantineForm,
-  UseFormReturnType as UseMantineFormReturnType,
+  type UseFormReturnType as UseMantineFormReturnType,
 } from "@mantine/form";
 import get from "lodash/get";
 import has from "lodash/has";
 import set from "lodash/set";
-import { UseFormInput } from "@mantine/form/lib/types";
+import type { UseFormInput } from "@mantine/form/lib/types";
 import {
-  BaseRecord,
-  HttpError,
+  type BaseRecord,
+  type HttpError,
   useForm as useFormCore,
   useWarnAboutChange,
-  UseFormProps as UseFormCoreProps,
-  UseFormReturnType as UseFormReturnTypeCore,
+  type UseFormProps as UseFormCoreProps,
+  type UseFormReturnType as UseFormReturnTypeCore,
   useTranslate,
   useRefineContext,
   flattenObjectKeys,
@@ -85,7 +85,7 @@ export type UseFormProps<
 export const useForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, any> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
@@ -189,16 +189,15 @@ export const useForm = <
     },
   });
 
-  const { queryResult, formLoading, onFinish, onFinishAutoSave } =
-    useFormCoreResult;
+  const { query, formLoading, onFinish, onFinishAutoSave } = useFormCoreResult;
 
   useEffect(() => {
-    if (typeof queryResult?.data !== "undefined") {
+    if (typeof query?.data !== "undefined") {
       const fields: any = {};
 
       const registeredFields = flattenObjectKeys(rest.initialValues ?? {});
 
-      const data = queryResult?.data?.data ?? {};
+      const data = query?.data?.data ?? {};
 
       Object.keys(registeredFields).forEach((key) => {
         const hasValue = has(data, key);
@@ -212,7 +211,7 @@ export const useForm = <
       setValues(fields);
       resetDirty(fields);
     }
-  }, [queryResult?.data]);
+  }, [query?.data]);
 
   const isValuesChanged = isDirty();
 

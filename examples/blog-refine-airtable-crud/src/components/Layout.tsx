@@ -1,4 +1,4 @@
-import { useMenu, useNavigation, LayoutProps } from "@refinedev/core";
+import { useMenu, useNavigation, type LayoutProps } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router-v6/legacy";
 
 const { Link } = routerProvider;

@@ -16,47 +16,44 @@ jobs:
     name: Lint
     steps:
       - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Install Dependencies
+        run: |
+          pnpm install -w
       - name: lint
         run: |
-          npm ci
-          npm run lint:ci
+          pnpm lint:ci
+      - name: syncpack
+        run: pnpm sp lint
   build:
     runs-on: ubuntu-latest
     concurrency:
       group: ${{ github.ref }}-pr-build
       cancel-in-progress: true
-    strategy:
-      matrix:
-        node-version: [18.x]
-    name: Bootstrap and Test
+    name: Build & Test
     steps:
       - uses: actions/checkout@v4
-      - name: Cache node_modules
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-node-modules
+      - uses: pnpm/action-setup@v3
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+          version: 9
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Install & Bootstrap
-        run: |
-          npm ci
-          npm run bootstrap:all
-          npm run build:all
-      - name: Test
-        run: |
-          npm run test:all -- --skip-nx-cache
+          node-version: 18
+          cache: "pnpm"
+      - name: Install & Build
+        run: pnpm install
       - name: Publint
-        run: |
-          npm run publint:all
+        run: pnpm publint:all
+      - name: Are The Types Wrong
+        run: pnpm attw:all
+      - name: Test
+        run: pnpm test:all --skip-nx-cache
 
   tsdoc-check:
     runs-on: ubuntu-latest
@@ -66,7 +63,6 @@ jobs:
       cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
       - name: Check TSDoc Links
         run: npx tsdoc-link-check --patterns packages/**

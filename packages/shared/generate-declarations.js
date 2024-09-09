@@ -1,16 +1,15 @@
 const { execSync } = require("child_process");
+const fs = require("fs");
+const { globSync } = require("glob");
 
 const generateDeclarations = () => {
   execSync("tsc --project tsconfig.declarations.json", {
-    stdio: "inherit",
+    stdio: [process.stdin, process.stdout, process.stdout],
   });
 };
 
 const getAllDtsFiles = (outDir) => {
-  const files = execSync(`find ${outDir} -name "*.d.ts"`)
-    .toString()
-    .split("\n")
-    .filter((file) => file.length > 0);
+  const files = globSync(`${outDir}/**/*.d.ts`);
 
   return files;
 };
@@ -24,11 +23,10 @@ const organizeExtensionsForDts = (dtsFile) => {
   const mtsFile = dtsFile.replace(".d.ts", ".d.mts");
   const mtsMapFile = mapFile.replace(".d.ts.map", ".d.mts.map");
 
-  execSync(`cp ${dtsFile} ${ctsFile}`);
-  execSync(`cp ${mapFile} ${ctsMapFile}`);
-
-  execSync(`cp ${dtsFile} ${mtsFile}`);
-  execSync(`cp ${mapFile} ${mtsMapFile}`);
+  fs.copyFileSync(dtsFile, ctsFile);
+  fs.copyFileSync(mapFile, ctsMapFile);
+  fs.copyFileSync(dtsFile, mtsFile);
+  fs.copyFileSync(dtsFile, mtsMapFile);
 };
 
 const main = () => {

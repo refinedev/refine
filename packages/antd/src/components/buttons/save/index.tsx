@@ -1,13 +1,13 @@
 import React from "react";
 import { Button } from "antd";
 import { SaveOutlined } from "@ant-design/icons";
-import { useTranslate } from "@refinedev/core";
+import { useSaveButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { SaveButtonProps } from "../types";
+import type { SaveButtonProps } from "../types";
 
 /**
  * `<SaveButton>` uses Ant Design's {@link https://ant.design/components/button/ `<Button>`} component.
@@ -20,17 +20,18 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   children,
   ...rest
 }) => {
-  const translate = useTranslate();
+  const { label } = useSaveButton();
 
   return (
     <Button
       type="primary"
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<SaveOutlined />}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
       {...rest}
     >
-      {!hideText && (children ?? translate("buttons.save", "Save"))}
+      {!hideText && (children ?? label)}
     </Button>
   );
 };

@@ -11,11 +11,11 @@ import {
 } from "@test";
 import { posts } from "@test/dataMocks";
 
-import { IResourceItem } from "../../contexts/resource/types";
+import type { IResourceItem } from "../../contexts/resource/types";
 import * as pickResource from "../../definitions/helpers/pick-resource";
 import * as useResourceWithRoute from "../resource/useResourceWithRoute";
 
-import { useShow } from "./useShow";
+import { useShow } from "./index";
 
 const routerProvider = mockRouterProvider({
   action: "show",
@@ -408,6 +408,17 @@ describe("useShow Hook", () => {
     await waitFor(() => {
       expect(!result.current.queryResult.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
+    });
+  });
+
+  it("should work with queryResult and query", async () => {
+    const { result } = renderHook(() => useShow(), {
+      wrapper: WrapperWithRoute,
+    });
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+      expect(result.current.query).toEqual(result.current.queryResult);
     });
   });
 });

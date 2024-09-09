@@ -85,7 +85,7 @@ Can be used to specify which field will be searched with value given to `onSearc
 ```tsx
 const { onSearch } = useSelect({ searchField: "name" });
 
-onSearch("John"); // Searchs by `name` field with value John.
+onSearch("John"); // Searches by `name` field with value John.
 ```
 
 By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `title` field otherwise.
@@ -94,14 +94,14 @@ By default, it uses `optionLabel`'s value, if `optionLabel` is a string. Uses `t
 // When `optionLabel` is string.
 const { onSearch } = useSelect({ optionLabel: "name" });
 
-onSearch("John"); // Searchs by `name` field with value John.
+onSearch("John"); // Searches by `name` field with value John.
 
 // When `optionLabel` is function.
 const { onSearch } = useSelect({
   optionLabel: (item) => `${item.id} - ${item.name}`,
 });
 
-onSearch("John"); // Searchs by `title` field with value John.
+onSearch("John"); // Searches by `title` field with value John.
 ```
 
 ### sorters
@@ -154,6 +154,20 @@ Since the `useMany` query is used to query the necessary data, the `defaultValue
 ```tsx
 useSelect({
   defaultValue: 1, // or [1, 2]
+});
+```
+
+### selectedOptionsOrder
+
+`selectedOptionsOrder` allows us to sort `selectedOptions` on `defaultValue`. It can be:
+
+- `"in-place"`: sort `selectedOptions` at the bottom. It is by default.
+- `"selected-first"`: sort `selectedOptions` at the top.
+
+```tsx
+useSelect({
+  defaultValue: 1, // or [1, 2]
+  selectedOptionsOrder: "selected-first", // in-place | selected-first
 });
 ```
 
@@ -457,12 +471,12 @@ useSelect({
 
 ### Can I create the options manually?
 
-Sometimes it may not be enough to create `optionLabel` and `optionValue` options. In this case we create options with `queryResult`.
+Sometimes it may not be enough to create `optionLabel` and `optionValue` options. In this case we create options with `query`.
 
 ```tsx
-const { queryResult } = useSelect();
+const { query } = useSelect();
 
-const options = queryResult.data?.data.map((item) => ({
+const options = query.data?.data.map((item) => ({
   label: item.title,
   value: item.id,
 }));
@@ -493,8 +507,8 @@ return <Select options={options} />;
 | Property                   | Description                                    | Type                                                                                          |
 | -------------------------- | ---------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | selectProps                | Ant design Select props                        | [`Select`](https://ant.design/components/select/#API)                                         |
-| queryResult                | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
-| defaultValueQueryResult    | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| query                      | Result of the query of a record                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| defaultValueQuery          | Result of the query of a `defaultValue` record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 | defaultValueQueryOnSuccess | Default value onSuccess method                 | `() => void`                                                                                  |
 | overtime                   | Overtime loading props                         | `{ elapsedTime?: number }`                                                                    |
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useNotificationProvider } from "@refinedev/antd";
-import { AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
+import { type AuthBindings, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
 import { SessionProvider, signIn, signOut, useSession } from "next-auth/react";

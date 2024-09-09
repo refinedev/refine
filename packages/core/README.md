@@ -38,7 +38,7 @@
 
 <br/>
 
-[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/new-diagram.jpg)](https://refine.dev)
+[![how-refine-works](https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/diagram-3.png)](https://refine.dev)
 
 ## What is Refine?
 
@@ -174,6 +174,7 @@ You can take a look at some live examples that can be built using **Refine** fro
 - [Fully-functional CRM Application](https://refine.dev/templates/crm-application/)
 - [Fully-functional Admin Panel](https://refine.dev/templates/react-admin-panel/)
 - [Win95 Style Admin panel 🪟](https://refine.dev/templates/win-95-style-admin-panel/)
+- [PDF Invoice Generator](https://refine.dev/templates/react-pdf-invoice-generator/)
 - [Medium Clone - Real World Example](https://refine.dev/templates/react-crud-app/)
 - [Multitenancy Example](https://refine.dev/templates/multitenancy-strapi/)
 - [Storefront](https://refine.dev/templates/next-js-ecommerce-store/)

@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { AvailablePackageType } from "@refinedev/devtools-shared";
+import type { AvailablePackageType } from "@refinedev/devtools-shared";
 
 import { CloseIcon } from "./icons/close";
 import { SearchIcon } from "./icons/search";
@@ -198,7 +198,7 @@ export const AddPackageDrawer = ({
               "re-font-semibold",
             )}
           >
-            Explore refine packages
+            Explore Refine packages
           </div>
           <button
             type="button"
@@ -338,14 +338,13 @@ export const AddPackageDrawer = ({
           >
             <Button
               onClick={() => updatePackage()}
-              className={clsx(
+              className={clsx("re-bg-alt-blue", "!re-pl-2")}
+              contentClassName={clsx(
                 "re-gap-2",
-                "re-bg-alt-blue",
                 "re-flex-nowrap",
                 "re-flex",
                 "re-items-center",
                 "re-justify-between",
-                "!re-pl-2",
               )}
             >
               {icon}

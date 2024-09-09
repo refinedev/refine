@@ -2,7 +2,11 @@ import { ory } from "./ory";
 
 export const isAuthenticated = async () => {
   try {
-    await ory.toSession();
+    const response = await ory.toSession();
+    const authenticatedHeader = response.headers["refine-is-authenticated"];
+    if (authenticatedHeader === "false") {
+      return false;
+    }
     return true;
   } catch (error: any) {
     return false;

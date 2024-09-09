@@ -1,12 +1,12 @@
 import React from "react";
 import { cleanFilePath } from "src/utils/clean-file-path";
-import { Activity } from "src/interfaces/activity";
+import type { Activity } from "src/interfaces/activity";
 import clsx from "clsx";
 import { getOwners } from "src/utils/get-owners";
 import { DevToolsContext } from "@refinedev/devtools-shared";
 
 export const Owners = ({ activity }: { activity: Activity }) => {
-  const { devtoolsUrl } = React.useContext(DevToolsContext);
+  const { httpUrl } = React.useContext(DevToolsContext);
 
   const owners = getOwners(activity);
 
@@ -15,7 +15,7 @@ export const Owners = ({ activity }: { activity: Activity }) => {
       {owners.map((owner, i) => {
         const cleanPath = cleanFilePath(owner.file);
 
-        const openerUrl = `${devtoolsUrl}/open-in-editor/${cleanPath}?line=${
+        const openerUrl = `${httpUrl}/open-in-editor/${cleanPath}?line=${
           owner.line ?? 1
         }&column=${owner.column ?? 1}`;
 

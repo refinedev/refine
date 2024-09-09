@@ -55,7 +55,7 @@ import { useSelect } from "@refinedev/core";
 
 export const EditPage: React.FC = () => {
     const {
-        refineCore: { onFinish, formLoading, queryResult: productQueryResult },
+        refineCore: { onFinish, formLoading, query: productQuery },
         register,
         handleSubmit,
     } = useForm<IProduct>({
@@ -65,7 +65,7 @@ export const EditPage: React.FC = () => {
             action: "edit",
         },
     });
-    const product = productQueryResult?.data?.data;
+    const product = productQuery?.data?.data;
 
     const { options, queryResult: categoriesQueryResult } =
         useSelect<ICategory>({

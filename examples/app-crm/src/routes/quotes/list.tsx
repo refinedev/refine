@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react";
+import type { FC, PropsWithChildren } from "react";
 
 import {
   DeleteButton,
@@ -9,8 +9,8 @@ import {
   ShowButton,
   useTable,
 } from "@refinedev/antd";
-import { getDefaultFilter, HttpError } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import { getDefaultFilter, type HttpError } from "@refinedev/core";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Form, Grid, Input, Select, Space, Spin, Table } from "antd";
@@ -25,13 +25,15 @@ import {
   QuoteStatusTag,
   Text,
 } from "@/components";
-import { Quote, QuoteStatus } from "@/graphql/schema.types";
-import { QuotesTableQuery } from "@/graphql/types";
+import type { QuoteStatus } from "@/graphql/schema.types";
+import type { QuotesTableQuery } from "@/graphql/types";
 import { useCompaniesSelect } from "@/hooks/useCompaniesSelect";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 import { currencyNumber } from "@/utilities";
 
 import { QUOTES_TABLE_QUERY } from "./queries";
+
+type Quote = GetFieldsFromList<QuotesTableQuery>;
 
 const statusOptions: { label: string; value: QuoteStatus }[] = [
   {
@@ -51,46 +53,49 @@ const statusOptions: { label: string; value: QuoteStatus }[] = [
 export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
   const screens = Grid.useBreakpoint();
 
-  const { tableProps, searchFormProps, filters, sorters, tableQueryResult } =
-    useTable<GetFieldsFromList<QuotesTableQuery>, HttpError, { title: string }>(
-      {
-        resource: "quotes",
-        onSearch: (values) => {
-          return [
-            {
-              field: "title",
-              operator: "contains",
-              value: values.title,
-            },
-          ];
+  const {
+    tableProps,
+    searchFormProps,
+    filters,
+    sorters,
+    tableQuery: tableQueryResult,
+  } = useTable<Quote, HttpError, { title: string }>({
+    resource: "quotes",
+    onSearch: (values) => {
+      return [
+        {
+          field: "title",
+          operator: "contains",
+          value: values.title,
         },
-        filters: {
-          initial: [
-            {
-              field: "title",
-              value: "",
-              operator: "contains",
-            },
-            {
-              field: "status",
-              value: undefined,
-              operator: "in",
-            },
-          ],
+      ];
+    },
+    filters: {
+      initial: [
+        {
+          field: "title",
+          value: "",
+          operator: "contains",
         },
-        sorters: {
-          initial: [
-            {
-              field: "createdAt",
-              order: "desc",
-            },
-          ],
+        {
+          field: "status",
+          value: undefined,
+          operator: "in",
         },
-        meta: {
-          gqlQuery: QUOTES_TABLE_QUERY,
+      ],
+    },
+    sorters: {
+      initial: [
+        {
+          field: "createdAt",
+          order: "desc",
         },
-      },
-    );
+      ],
+    },
+    meta: {
+      gqlQuery: QUOTES_TABLE_QUERY,
+    },
+  });
 
   const { selectProps: selectPropsCompanies } = useCompaniesSelect();
 
@@ -114,10 +119,17 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 marginTop: screens.xs ? "1.6rem" : undefined,
               }}
             >
-              <Form {...searchFormProps} layout="inline">
+              <Form
+                {...searchFormProps}
+                initialValues={{
+                  title: getDefaultFilter("title", filters, "contains"),
+                }}
+                layout="inline"
+              >
                 <Form.Item name="title" noStyle>
                   <Input
                     size="large"
+                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
                       <Spin

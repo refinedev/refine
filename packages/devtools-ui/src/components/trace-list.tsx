@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import { TraceType } from "@refinedev/devtools-shared";
+import type { TraceType } from "@refinedev/devtools-shared";
 
 export const TraceList = ({ trace }: { trace?: TraceType[] }) => {
   return (

@@ -1,12 +1,13 @@
 import { ProjectTypes } from "@definitions/projectTypes";
-import { getProjectType } from "@utils/project";
-import { Command, Option } from "commander";
+import { getDevtoolsEnvKeyByProjectType, getProjectType } from "@utils/project";
+import { type Command, Option } from "commander";
 import { updateNotifier } from "src/update-notifier";
 import { devtoolsRunner } from "src/commands/devtools";
 import { projectScripts } from "../projectScripts";
 import { runScript } from "../runScript";
 import { getPlatformOptionDescription, getRunnerDescription } from "../utils";
-import { isDevtoolsInstalled } from "@utils/package";
+import { isDevtoolsInstalled } from "src/utils/package";
+import { ENV } from "src/utils/env";
 
 const dev = (program: Command) => {
   return program
@@ -26,7 +27,7 @@ const dev = (program: Command) => {
     .addOption(
       new Option(
         "-d, --devtools <devtools>",
-        "Start refine's devtools server",
+        "Start Refine Devtools server",
       ).default("true", "true if devtools is installed"),
     )
     .argument("[args...]")
@@ -44,15 +45,22 @@ const action = async (
 
   await updateNotifier();
 
+  const devtoolsPortEnvKey = getDevtoolsEnvKeyByProjectType(projectType);
+
   const devtoolsDefault = await isDevtoolsInstalled();
 
   const devtools = params.devtools === "false" ? false : devtoolsDefault;
 
   if (devtools) {
-    devtoolsRunner();
+    devtoolsRunner({ exitOnError: false });
   }
 
-  runScript(binPath, command);
+  const envWithDevtoolsPort =
+    devtools && ENV.REFINE_DEVTOOLS_PORT
+      ? { [devtoolsPortEnvKey]: ENV.REFINE_DEVTOOLS_PORT }
+      : undefined;
+
+  runScript(binPath, command, envWithDevtoolsPort);
 };
 
 export default dev;

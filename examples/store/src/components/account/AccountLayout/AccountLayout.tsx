@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
+import React, { type PropsWithChildren } from "react";
 import { useGetIdentity } from "@refinedev/core";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 
 import { AccountNav, LoadingDots, UnderlineLink } from "@components";
 

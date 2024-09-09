@@ -2,13 +2,13 @@ import { useLocation, useSearchParams } from "react-router-dom";
 
 import { useModalForm } from "@refinedev/antd";
 import {
-  CreateResponse,
-  HttpError,
+  type CreateResponse,
+  type HttpError,
   useCreateMany,
   useGetToPath,
   useGo,
 } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import {
   DeleteOutlined,
@@ -30,14 +30,15 @@ import {
 } from "antd";
 
 import { SelectOptionWithAvatar } from "@/components";
-import { Company } from "@/graphql/schema.types";
-import {
+import type {
   CreateCompanyMutation,
   CreateCompanyMutationVariables,
 } from "@/graphql/types";
 import { useUsersSelect } from "@/hooks/useUsersSelect";
 
 import { COMPANY_CREATE_MUTATION } from "./queries";
+
+type Company = GetFields<CreateCompanyMutation>;
 
 type Props = {
   isOverModal?: boolean;
@@ -57,7 +58,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
   const go = useGo();
 
   const { formProps, modalProps, close, onFinish } = useModalForm<
-    GetFields<CreateCompanyMutation>,
+    Company,
     HttpError,
     FormValues
   >({
@@ -74,7 +75,10 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
 
   const { selectProps, queryResult } = useUsersSelect();
 
-  const { mutateAsync: createManyMutateAsync } = useCreateMany();
+  const { mutateAsync: createManyMutateAsync } = useCreateMany({
+    resource: "contacts",
+    successNotification: false,
+  });
 
   return (
     <Modal
@@ -100,6 +104,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
       }}
       title="Add new company"
       width={512}
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       closeIcon={<LeftOutlined />}
     >
       <Form
@@ -116,14 +121,12 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
 
             if ((values.contacts ?? [])?.length > 0) {
               await createManyMutateAsync({
-                resource: "contacts",
                 values:
                   values.contacts?.map((contact) => ({
                     ...contact,
                     companyId: createdCompany.id,
                     salesOwnerId: createdCompany.salesOwner.id,
                   })) ?? [],
-                successNotification: false,
               });
             }
 
@@ -179,6 +182,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                   <Col span={11}>
                     <Form.Item noStyle {...restField} name={[name, "name"]}>
                       <Input
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         addonBefore={<UserOutlined />}
                         placeholder="Contact name"
                       />
@@ -187,6 +191,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                   <Col span={11}>
                     <Form.Item noStyle name={[name, "email"]}>
                       <Input
+                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         addonBefore={<MailOutlined />}
                         placeholder="Contact email"
                       />
@@ -194,6 +199,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                   </Col>
                   <Col span={2}>
                     <Button
+                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<DeleteOutlined />}
                       onClick={() => remove(name)}
                     />
@@ -201,6 +207,7 @@ export const CompanyCreatePage = ({ isOverModal }: Props) => {
                 </Row>
               ))}
               <Typography.Link onClick={() => add()}>
+                {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                 <PlusCircleOutlined /> Add new contacts
               </Typography.Link>
             </Space>

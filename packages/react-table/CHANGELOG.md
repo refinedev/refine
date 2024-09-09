@@ -1,5 +1,97 @@
 # @refinedev/react-table
 
+## 5.6.13
+
+### Patch Changes
+
+- [#6233](https://github.com/refinedev/refine/pull/6233) [`a93eed09796b780557f6fecee0c2f1e7b4f9e93b`](https://github.com/refinedev/refine/commit/a93eed09796b780557f6fecee0c2f1e7b4f9e93b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: update `@refinedev/core` usage to reflect latest renamings.
+
+  > These changes applied on internal usage of `@refinedev/core` in `@refinedev/react-table` package.
+
+  ```diff
+  import { useTable } from '@refinedev/core';
+
+  - const { tableQueryResult} = useTable();
+  + const { tableQuery } = useTable();
+  ```
+
+## 5.6.12
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 5.6.11
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 5.6.10
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+## 5.6.9
+
+### Patch Changes
+
+- [#5862](https://github.com/refinedev/refine/pull/5862) [`7c22b8eaca0`](https://github.com/refinedev/refine/commit/7c22b8eaca02ac6d74409b36354c4c269f2c7954) Thanks [@aliemir](https://github.com/aliemir)! - fix: updated column filter transformation logic to handle conditional filters
+
+  `useTable` hook was ignoring the conditional filters with `"and"` and `"or"` operators, causing custom filtering logic inside the table to not work as expected and omitting the filters from the query. This PR enables working with conditionenal filters and fixes the disappearing filters issue.
+
+  To customize the `key` value of the conditional filter, you can use the `filterKey` property in the column's `meta` property. This property will be used as the key for the filter when setting the filter value to the table from `@refinedev/core`'s filter state and when setting the filter value to the filter state from the table.
+
+  ```tsx
+  // An example of how to use the `filterKey` property in the column's `meta` property
+  const columns: ColumnDef<IPost> = [
+    {
+      id: "title",
+      header: "Title",
+      accessorKey: "title",
+      meta: {
+        // This is optional, if not defined column id will be used as the key
+        filterKey: "titleFilter",
+        // If operator is not `'eq'` or `'in'`, make sure to set the `filterOperator` property
+        filterOperator: "and",
+      },
+    },
+  ];
+  ```
+
+  Resolves [#5856](https://github.com/refinedev/refine/issues/5856)
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+## 5.6.8
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
+- [#5755](https://github.com/refinedev/refine/pull/5755) [`404b2ef5e1b`](https://github.com/refinedev/refine/commit/404b2ef5e1b8fed469eeab753bac8736ed3fe58e) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: incorrect type imports
+
 ## 5.6.7
 
 ### Patch Changes

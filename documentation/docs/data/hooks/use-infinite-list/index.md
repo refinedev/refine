@@ -27,6 +27,18 @@ The `useInfiniteList` hook supports pagination properties just like [`useList`](
 
 Dynamically changing the `pagination` properties will trigger a new request. The `fetchNextPage` method will increase the `pagination.current` property by one and trigger a new request as well.
 
+### Retrieving the Total Row Count
+
+When the `getList` method is called via `useInfiniteList`, it should ideally return the total count of rows (`rowCount`). The way this count is obtained depends on the data provider in use:
+
+- **REST Providers:** Commonly obtain the total count from the `x-total-count` header.
+- **GraphQL Providers:** Often source the count from specific data fields like `pageInfo.total`.
+- **Other Providers:** Follow their own practices for obtaining the total count.
+
+If the data provider doesn't return a specific count, the `getList` method may fall back to using the length of the paginated data array as the `rowCount`.
+
+For more information on how this works, refer to the [`getList` method documentation](https://refine.dev/docs/data/data-provider/#getlist).
+
 ```ts
 import { useInfiniteList } from "@refinedev/core";
 

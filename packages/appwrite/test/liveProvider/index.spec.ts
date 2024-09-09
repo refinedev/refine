@@ -1,4 +1,4 @@
-import { Client as Appwrite } from "appwrite";
+import type { Client as Appwrite } from "appwrite";
 import { liveProvider } from "../../src";
 
 const mockClient: Appwrite = {
@@ -13,13 +13,13 @@ describe("liveProvider", () => {
     const dummyCallback = () => undefined;
 
     provider?.subscribe({
-      channel: "resources/testChannel",
+      channel: "resources/blog_posts",
       types: ["*"],
       callback: dummyCallback,
     });
 
     expect(mockClient.subscribe).toHaveBeenCalledWith(
-      "databases.default.collections.testChannel.documents",
+      "databases.default.collections.blog_posts.documents",
       expect.any(Function),
     );
   });
@@ -29,7 +29,7 @@ describe("liveProvider", () => {
     const dummyCallback = () => undefined;
 
     provider?.subscribe({
-      channel: "resources/testChannel",
+      channel: "resources/blog_posts",
       types: ["*"],
       callback: dummyCallback,
       params: {
@@ -39,8 +39,8 @@ describe("liveProvider", () => {
 
     expect(mockClient.subscribe).toHaveBeenCalledWith(
       [
-        "databases.default.collections.testChannel.documents.a",
-        "databases.default.collections.testChannel.documents.b",
+        "databases.default.collections.blog_posts.documents.a",
+        "databases.default.collections.blog_posts.documents.b",
       ],
       expect.any(Function),
     );
@@ -65,7 +65,7 @@ describe("liveProvider", () => {
     const dummyCallback = jest.fn();
 
     provider?.subscribe({
-      channel: "resources/testChannel",
+      channel: "resources/blog_posts",
       types: ["*"],
       callback: dummyCallback,
       params: {
@@ -77,7 +77,7 @@ describe("liveProvider", () => {
 
     expect(dummyCallback).toHaveBeenCalledWith({
       type: "created",
-      channel: "resources/testChannel",
+      channel: "resources/blog_posts",
       date: new Date(testDate),
       payload: "test",
     });
@@ -93,7 +93,7 @@ describe("liveProvider", () => {
     const unsubscribeFunction = jest.fn();
 
     provider?.subscribe({
-      channel: "resources/testChannel",
+      channel: "resources/blog_posts",
       types: ["*"],
       callback: dummyCallback,
       params: {

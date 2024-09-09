@@ -2,9 +2,9 @@ import ErrorStackParser from "error-stack-parser";
 import { cleanStack } from "./clean-stack";
 import { isRefineStack } from "./is-refine-stack";
 import { getPackageNameFromFilename } from "./get-package-name-from-filename";
-import { TraceType } from "@refinedev/devtools-shared";
+import type { TraceType } from "@refinedev/devtools-shared";
 
-export function getTrace() {
+export function getTrace(excludeFromTrace?: string[]) {
   if (__DEV_CONDITION__ !== "development") {
     return [];
   }
@@ -24,7 +24,8 @@ export function getTrace() {
             packageName: getPackageNameFromFilename(frame.fileName),
           }) as TraceType,
       )
-      .filter((trace) => trace.function);
+      .filter((trace) => trace.function)
+      .filter((trace) => !excludeFromTrace?.includes(trace.function ?? ""));
     return traces.slice(1);
   } catch (error) {
     return [];

@@ -1,6 +1,6 @@
-import { Form, FormItemProps } from "antd";
+import { Form, type FormItemProps } from "antd";
 import { useStyles } from "./styled";
-import { PropsWithChildren } from "react";
+import type { PropsWithChildren } from "react";
 
 type Props = {
   formItemProps?: FormItemProps;

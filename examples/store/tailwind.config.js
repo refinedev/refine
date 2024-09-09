@@ -1,12 +1,20 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./pages/**/*.{js,ts,jsx,tsx}", "./src/**/*.{js,ts,jsx,tsx}"],
   safelist: ["outline-none"],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)", ...defaultTheme.fontFamily.sans],
+      },
       screens: {
         "2xsmall": "320px",
         xsmall: "512px",
+        drawer: "580px",
         small: "1024px",
+        "max-content": "1240px",
         medium: "1280px",
         large: "1440px",
         xlarge: "1680px",
@@ -20,6 +28,16 @@ module.exports = {
         "8xl": "1920px",
       },
       colors: {
+        brand: "#0080FF",
+        gray: {
+          lightest: "#FFFFFF", // 0
+          lighter: "#F4F8FB", // 50
+          light: "#EDF2F7", // 100
+          normal: "#DEE5ED", // 200
+          dark: "#A3ADC2", // 400
+          darker: "#6C7793", // 500
+          darkest: "#14141F", // 900
+        },
         primary: "var(--primary)",
         "primary-2": "var(--primary-2)",
         secondary: "var(--secondary)",
@@ -58,7 +76,7 @@ module.exports = {
         secondary: "var(--text-secondary)",
       },
       boxShadow: {
-        "outline-normal": "0 0 0 2px var(--accent-2)",
+        "outline-normal": "0 0 0 1px #A3ADC2",
         magical:
           "rgba(0, 0, 0, 0.02) 0px 30px 30px, rgba(0, 0, 0, 0.03) 0px 0px 8px, rgba(0, 0, 0, 0.05) 0px 1px 0px",
       },

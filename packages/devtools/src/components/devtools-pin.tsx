@@ -2,43 +2,24 @@ import React from "react";
 import { DevtoolsSelector } from "./devtools-selector";
 import { DevtoolsIcon } from "./icons/devtools-icon";
 import { SelectorButtonIcon } from "./icons/selector-button";
+import { ApplyStyles } from "./apply-styles";
 
 type Props = {
   onClick?: () => void;
   groupHover?: boolean;
   onSelectorHighlight: (name: string) => void;
-  onSelectorOpen: () => void;
+  selectorActive: boolean;
+  setSelectorActive: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const DevtoolsPin = ({
   onClick,
   onSelectorHighlight,
-  onSelectorOpen,
+  selectorActive,
+  setSelectorActive,
 }: Props) => {
-  const [hover, setHover] = React.useState(false);
-
   return (
-    <div
-      onMouseOver={() => setHover(true)}
-      onMouseOut={() => setHover(false)}
-      style={{
-        position: "relative",
-        userSelect: "none",
-        WebkitUserSelect: "none",
-        background: "none",
-        border: "none",
-        padding: 0,
-        paddingRight: "1px",
-        margin: 0,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "pointer",
-        color: hover ? "#0FBDBD" : "#6C7793",
-        transition: "color 0.1s ease-in-out",
-      }}
-      onClick={onClick}
-    >
+    <div role="button" className="devtools-selector-pin-box" onClick={onClick}>
       <DevtoolsIcon />
       <DevtoolsSelector
         style={{
@@ -55,9 +36,38 @@ export const DevtoolsPin = ({
             style={{ pointerEvents: "none" }}
           />
         }
-        onSelectorOpen={onSelectorOpen}
         onHighlight={onSelectorHighlight}
+        active={selectorActive}
+        setActive={setSelectorActive}
       />
+      <ApplyStyles>
+        {
+          /* css */ `
+            .devtools-selector-pin-box {
+              z-index: 9999;
+              position: relative;
+              user-select: none;
+              -webkit-user-select: none;
+              background: none;
+              border: none;
+              padding: 0;
+              margin: 0;
+              appearance: none;
+              padding-right: 1px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+              color: #6C7793;
+              transition: color 0.1s ease-in-out;
+            }
+
+            .devtools-selector-pin-box:hover {
+              color: #0FBDBD;
+            }
+          `
+        }
+      </ApplyStyles>
     </div>
   );
 };

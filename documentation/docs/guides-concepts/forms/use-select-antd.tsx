@@ -79,7 +79,7 @@ export const EditPage: React.FC = () => {
     const {
         formProps,
         saveButtonProps,
-        queryResult: productResult,
+        query: productResult,
     } = useForm<IProduct>({
         resource: "products",
         id: 1,

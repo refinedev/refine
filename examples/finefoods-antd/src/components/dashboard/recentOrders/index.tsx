@@ -4,7 +4,7 @@ import { Typography, Table, theme, Space, Flex } from "antd";
 
 import { OrderActions } from "../../../components";
 
-import { IOrder } from "../../../interfaces";
+import type { IOrder } from "../../../interfaces";
 import { useStyles } from "./styled";
 import { getUniqueListWithCount } from "../../../utils";
 
@@ -136,7 +136,7 @@ export const RecentOrders: React.FC = () => {
         render={(amount) => {
           return (
             <NumberField
-              value={amount / 100}
+              value={amount}
               style={{
                 whiteSpace: "nowrap",
               }}

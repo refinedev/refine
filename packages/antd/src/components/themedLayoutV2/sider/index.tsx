@@ -1,5 +1,13 @@
-import React from "react";
-import { Layout, Menu, Grid, Drawer, Button, theme } from "antd";
+import React, { useContext } from "react";
+import {
+  Layout,
+  Menu,
+  Grid,
+  Drawer,
+  Button,
+  theme,
+  ConfigProvider,
+} from "antd";
 import {
   DashboardOutlined,
   LogoutOutlined,
@@ -13,7 +21,7 @@ import {
   useLogout,
   useTitle,
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useRouterContext,
   useMenu,
@@ -26,7 +34,7 @@ import {
 } from "@refinedev/core";
 
 import { drawerButtonStyles } from "./styles";
-import { RefineThemedLayoutV2SiderProps } from "../types";
+import type { RefineThemedLayoutV2SiderProps } from "../types";
 import { ThemedTitleV2 } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
@@ -46,6 +54,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   } = useThemedLayoutContext();
 
   const isExistAuthentication = useIsExistAuthentication();
+  const direction = useContext(ConfigProvider.ConfigContext)?.direction;
   const routerType = useRouterType();
   const NewLink = useLink();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
@@ -84,7 +93,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         return (
           <CanAccess
             key={item.key}
-            resource={name.toLowerCase()}
+            resource={name}
             action="list"
             params={{
               resource: item,
@@ -92,6 +101,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           >
             <Menu.SubMenu
               key={item.key}
+              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={icon ?? <UnorderedListOutlined />}
               title={label}
             >
@@ -112,7 +122,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{
             resource: item,
@@ -120,6 +130,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         >
           <Menu.Item
             key={item.key}
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
             style={linkStyle}
           >
@@ -157,6 +168,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     <Menu.Item
       key="logout"
       onClick={() => handleLogout()}
+      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<LogoutOutlined />}
     >
       {translate("buttons.logout", "Logout")}
@@ -164,6 +176,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   );
 
   const dashboard = hasDashboard ? (
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
       <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
       {!siderCollapsed && selectedKey === "/" && (
@@ -219,7 +232,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         <Drawer
           open={mobileSiderOpen}
           onClose={() => setMobileSiderOpen(false)}
-          placement="left"
+          placement={direction === "rtl" ? "right" : "left"}
           closable={false}
           width={200}
           bodyStyle={{
@@ -256,6 +269,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           style={drawerButtonStyles}
           size="large"
           onClick={() => setMobileSiderOpen(true)}
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<BarsOutlined />}
         />
       </>
@@ -277,6 +291,15 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     siderStyles.height = "100vh";
     siderStyles.zIndex = 999;
   }
+  const renderClosingIcons = () => {
+    const iconProps = { style: { color: token.colorPrimary } };
+    const OpenIcon = direction === "rtl" ? RightOutlined : LeftOutlined;
+    const CollapsedIcon = direction === "rtl" ? LeftOutlined : RightOutlined;
+    const IconComponent = siderCollapsed ? CollapsedIcon : OpenIcon;
+
+    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
+    return <IconComponent {...iconProps} />;
+  };
 
   return (
     <>
@@ -309,19 +332,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               backgroundColor: token.colorBgElevated,
             }}
           >
-            {siderCollapsed ? (
-              <RightOutlined
-                style={{
-                  color: token.colorPrimary,
-                }}
-              />
-            ) : (
-              <LeftOutlined
-                style={{
-                  color: token.colorPrimary,
-                }}
-              />
-            )}
+            {renderClosingIcons()}
           </Button>
         }
       >

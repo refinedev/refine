@@ -1,6 +1,11 @@
-import { ReactChild, ReactNode } from "react";
-import { AnchorProps, ChipProps, TextProps, TooltipProps } from "@mantine/core";
-import {
+import type { ReactChild, ReactNode } from "react";
+import type {
+  AnchorProps,
+  ChipProps,
+  TextProps,
+  TooltipProps,
+} from "@mantine/core";
+import type {
   RefineFieldBooleanProps,
   RefineFieldDateProps,
   RefineFieldEmailProps,
@@ -11,9 +16,9 @@ import {
   RefineFieldTextProps,
   RefineFieldUrlProps,
 } from "@refinedev/ui-types";
-import { IconProps } from "@tabler/icons-react";
-import { ConfigType } from "dayjs";
-import { ReactMarkdownOptions } from "react-markdown";
+import type { IconProps } from "@tabler/icons-react";
+import type { ConfigType } from "dayjs";
+import type { ReactMarkdownOptions } from "react-markdown";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
   unknown,

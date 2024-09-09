@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 import { useForm } from "@refinedev/antd";
-import { HttpError } from "@refinedev/core";
-import { GetFields, GetVariables } from "@refinedev/nestjs-query";
+import type { HttpError } from "@refinedev/core";
+import type { GetFields, GetVariables } from "@refinedev/nestjs-query";
 
 import { EditOutlined } from "@ant-design/icons";
 import { Button, Form, Select, Skeleton, Space } from "antd";
 
 import { CustomAvatar, SelectOptionWithAvatar, Text } from "@/components";
-import { User } from "@/graphql/schema.types";
-import {
+import type { User } from "@/graphql/schema.types";
+import type {
   CompanyTitleFormMutation,
   CompanyTitleFormMutationVariables,
 } from "@/graphql/types";
@@ -20,7 +20,11 @@ import { COMPANY_TITLE_FORM_MUTATION, COMPANY_TITLE_QUERY } from "./queries";
 import styles from "./title-form.module.css";
 
 export const CompanyTitleForm = () => {
-  const { formProps, queryResult, onFinish } = useForm<
+  const {
+    formProps,
+    query: queryResult,
+    onFinish,
+  } = useForm<
     GetFields<CompanyTitleFormMutation>,
     HttpError,
     GetVariables<CompanyTitleFormMutationVariables>
@@ -97,6 +101,7 @@ const TitleInput = ({
       editable={{
         onChange,
         triggerType: ["text", "icon"],
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <EditOutlined className={styles.titleEditIcon} />,
       }}
     >
@@ -151,6 +156,7 @@ const SalesOwnerInput = ({
           <Text>{salesOwner?.name}</Text>
           <Button
             type="link"
+            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<EditOutlined className={styles.salesOwnerInputEditIcon} />}
           />
         </>

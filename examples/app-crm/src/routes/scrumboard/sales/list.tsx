@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useMemo } from "react";
+import { type FC, type PropsWithChildren, useMemo } from "react";
 
 import {
   useDelete,
@@ -7,14 +7,14 @@ import {
   useUpdate,
   useUpdateMany,
 } from "@refinedev/core";
-import { GetFieldsFromList } from "@refinedev/nestjs-query";
+import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { ClearOutlined, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { DragEndEvent } from "@dnd-kit/core";
-import { MenuProps } from "antd";
+import type { DragEndEvent } from "@dnd-kit/core";
+import type { MenuProps } from "antd";
 
 import { Text } from "@/components";
-import { SalesDealsQuery, SalesDealStagesQuery } from "@/graphql/types";
+import type { SalesDealsQuery, SalesDealStagesQuery } from "@/graphql/types";
 import { currencyNumber } from "@/utilities";
 
 import {
@@ -130,8 +130,15 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
     };
   }, [stages, deals]);
 
-  const { mutate: updateDeal } = useUpdate();
-  const { mutate: updateManyDeal } = useUpdateMany();
+  const { mutate: updateDeal } = useUpdate({
+    resource: "deals",
+    successNotification: false,
+    mutationMode: "optimistic",
+  });
+  const { mutate: updateManyDeal } = useUpdateMany({
+    resource: "deals",
+    successNotification: false,
+  });
   const { mutate: deleteStage } = useDelete();
 
   const { unassignedStageTotalValue } = useMemo(() => {
@@ -169,13 +176,10 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
     updateDeal(
       {
-        resource: "deals",
         id: dealId,
         values: {
           stageId: stageId,
         },
-        successNotification: false,
-        mutationMode: "optimistic",
       },
       {
         onSuccess: () => {
@@ -219,12 +223,10 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
 
   const handleClearCards = (args: { dealsIds: string[] }) => {
     updateManyDeal({
-      resource: "deals",
       ids: args.dealsIds,
       values: {
         stageId: null,
       },
-      successNotification: false,
     });
   };
 
@@ -235,12 +237,14 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
       {
         label: "Edit status",
         key: "1",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <EditOutlined />,
         onClick: () => handleEditStage({ stageId: column.id }),
       },
       {
         label: "Clear all cards",
         key: "2",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <ClearOutlined />,
         disabled: !hasItems,
         onClick: () =>
@@ -252,6 +256,7 @@ export const SalesPage: FC<PropsWithChildren> = ({ children }) => {
         danger: true,
         label: "Delete status",
         key: "3",
+        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <DeleteOutlined />,
         disabled: hasItems,
         onClick: () => handleDeleteStage({ stageId: column.id }),

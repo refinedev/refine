@@ -244,8 +244,13 @@ import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
 
 const App = () => {
   return (
-    // highlight-next-line
-    <DevtoolsProvider>
+    {/* highlight-start */}
+    <DevtoolsProvider
+      // If you're running devtools server on a different port or a domain, you can set the URL manually.
+      // Note that, custom domains and ports are only available in the Enterprise Edition.
+      // url="http://localhost:5001"
+    >
+    {/* highlight-end */}
       <Refine
       // ...
       >
@@ -260,6 +265,30 @@ const App = () => {
 ```
 
 <Image src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/devtools-demo.gif" />
+
+**Running Devtools Server**
+
+Devtools will boot up a server to operate both on your app and have control over your project's source code to provide you with the best experience. If you're using `@refinedev/cli`'s `refine dev` command, it will automatically start the devtools server for you if you have `@refinedev/devtools` installed.
+
+If you want to start devtools server manually, you can use the following command:
+
+```bash
+refine devtools start
+```
+
+If you're running the devtools manually, you can disable the automatic start of the devtools server by passing `--devtools=false` flag to the `refine dev` command.
+
+As an alternative, you can also install the `@refinedev/devtools-server` package and use `refine-devtools` command to start the server.
+
+**Required Ports**
+
+Devtools server will run on port `5001` by default. Devtools will serve HTTP and WebSocket connections on this port. If you want to change the port, you can set the `REFINE_DEVTOOLS_PORT` environment variable to the desired port number.
+
+:::simple Enterprise Edition
+
+Refine Devtools running on ports other than "5001" is only available in the Enterprise Edition. If you're using the Community Edition, Refine Devtools will not work if the port is changed. Checkout [Refine Devtools in Enterprise Edition](/docs/enterprise-edition/devtools) for more information.
+
+:::
 
 ## Using Inferencer
 

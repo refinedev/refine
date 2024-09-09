@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  IResourceComponentsProps,
+  type IResourceComponentsProps,
   useNavigation,
   useOne,
   useResource,
@@ -13,7 +13,7 @@ import { ChevronLeft, EditIcon, ListIcon } from "lucide-react";
 export const BlogPostShow: React.FC<IResourceComponentsProps> = () => {
   const { edit, list } = useNavigation();
   const { id } = useResource();
-  const { queryResult } = useShow({
+  const { query: queryResult } = useShow({
     meta: {
       populate: ["category"],
     },

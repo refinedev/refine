@@ -84,7 +84,7 @@ If we open the app in our code editor, we can see that **Refine**'s optional pac
 
 ```json title="package.json"
 "dependencies": {
-    "@ant-design/icons": "^5.0.1",
+    "@ant-design/icons": "5.0.1",
     "@react-pdf/renderer": "^3.1.8",
     // highlight-start
     "@refinedev/antd": "^5.3.10",

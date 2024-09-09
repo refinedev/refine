@@ -5,7 +5,7 @@ import { Layout as AntdLayout, AutoComplete, Input, Typography } from "antd";
 import routerProvider from "@refinedev/react-router-v6/legacy";
 import debounce from "lodash/debounce";
 
-import { ICategory, IOptions, IPost } from "../interfaces";
+import type { ICategory, IOptions, IPost } from "../interfaces";
 
 const { Link } = routerProvider;
 const { Text } = Typography;
@@ -106,6 +106,7 @@ export const Header: React.FC = () => {
         <Input
           size="large"
           placeholder="Search posts or categories"
+          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           suffix={<SearchOutlined />}
         />
       </AutoComplete>

@@ -1,15 +1,15 @@
-import { SelectProps } from "@mantine/core";
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { SelectProps } from "@mantine/core";
+import type { QueryObserverResult } from "@tanstack/react-query";
 
 import {
   useSelect as useSelectCore,
-  BaseRecord,
-  GetManyResponse,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
-  BaseOption,
-  Prettify,
+  type BaseRecord,
+  type GetManyResponse,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
+  type BaseOption,
+  type Prettify,
 } from "@refinedev/core";
 
 export type UseSelectReturnType<
@@ -21,7 +21,15 @@ export type UseSelectReturnType<
       data: TOption[];
     }
   >;
+  query: QueryObserverResult<GetListResponse<TData>>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  /**
+   * @deprecated Use `query` instead
+   */
   queryResult: QueryObserverResult<GetListResponse<TData>>;
+  /**
+   * @deprecated Use `defaultValueQuery` instead
+   */
   defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
 };
 
@@ -47,8 +55,12 @@ export const useSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TOption> => {
-  const { queryResult, defaultValueQueryResult, onSearch, options } =
-    useSelectCore<TQueryFnData, TError, TData, TOption>(props);
+  const { query, defaultValueQuery, onSearch, options } = useSelectCore<
+    TQueryFnData,
+    TError,
+    TData,
+    TOption
+  >(props);
 
   return {
     selectProps: {
@@ -57,7 +69,9 @@ export const useSelect = <
       searchable: true,
       clearable: true,
     },
-    queryResult,
-    defaultValueQueryResult,
+    query,
+    defaultValueQuery,
+    queryResult: query,
+    defaultValueQueryResult: defaultValueQuery,
   };
 };

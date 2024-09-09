@@ -11,8 +11,8 @@ import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import FileUploadIcon from "@mui/icons-material/FileUpload";
 
-import { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
-import { HttpError } from "@refinedev/core";
+import type { ICategory, IPost, IStatus, Nullable } from "../../interfaces";
+import type { HttpError } from "@refinedev/core";
 
 export const PostCreate: React.FC = () => {
   const [isUploadLoading, setIsUploadLoading] = useState(false);

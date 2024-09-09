@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useOne } from "@refinedev/core";
-import { Customer } from "@medusajs/medusa";
+import type { Customer } from "@medusajs/medusa";
 
 import { Button, LoadingDots } from "@components";
 import { OrderCard } from "../OrderCard";

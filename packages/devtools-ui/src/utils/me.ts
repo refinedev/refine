@@ -1,4 +1,6 @@
-import {
+import { REFINE_API_URL } from "./constants";
+
+import type {
   MeResponse,
   MeUpdateVariables,
   RaffleResponse,
@@ -6,11 +8,15 @@ import {
 
 export const getMe = async () => {
   try {
-    const response = await fetch("/api/.refine/users/me");
+    const response = await fetch(`${REFINE_API_URL}/users/me`);
 
-    const data = (await response.json()) as MeResponse;
+    if (response.ok) {
+      const data = (await response.json()) as MeResponse;
 
-    return data;
+      return data;
+    }
+
+    return null;
   } catch (_) {
     //
   }
@@ -20,7 +26,7 @@ export const getMe = async () => {
 
 export const updateMe = async (variables: MeUpdateVariables) => {
   try {
-    const { status } = await fetch("/api/.refine/users/me", {
+    const { status } = await fetch(`${REFINE_API_URL}/users/me`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -41,10 +47,7 @@ export const updateMe = async (variables: MeUpdateVariables) => {
 
 export const raffle = async (): Promise<RaffleResponse> => {
   try {
-    const response = await fetch(
-      // TODO: Change to real endpoint
-      "/api/.refine/users/me/raffle",
-    );
+    const response = await fetch(`${REFINE_API_URL}/users/me/raffle`);
 
     const data = (await response.json()) as RaffleResponse;
 
@@ -57,7 +60,7 @@ export const raffle = async (): Promise<RaffleResponse> => {
 
 export const acknowledgeRaffle = async () => {
   try {
-    await fetch("/api/.refine/users/me/raffle/acknowledge");
+    await fetch(`${REFINE_API_URL}/users/me/raffle/acknowledge`);
   } catch (_) {
     //
   }

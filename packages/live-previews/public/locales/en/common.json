@@ -10,7 +10,9 @@
         "password": "Password"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Invalid email address",
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required"
       },
       "buttons": {
         "submit": "Login",
@@ -21,24 +23,31 @@
     },
     "forgotPassword": {
       "title": "Forgot your password?",
+      "signin": "Sign in",
       "fields": {
         "email": "Email"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Invalid email address",
+        "requiredEmail": "Email is required"
       },
       "buttons": {
-        "submit": "Send reset instructions"
+        "submit": "Send reset instructions",
+        "haveAccount": "Have an account?"
       }
     },
     "register": {
       "title": "Sign up for your account",
+      "signin": "Sign in",
+      "divider": "or",
       "fields": {
         "email": "Email",
         "password": "Password"
       },
       "errors": {
-        "validEmail": "Invalid email address"
+        "validEmail": "Invalid email address",
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required"
       },
       "buttons": {
         "submit": "Register",
@@ -52,7 +61,9 @@
         "confirmPassword": "Confirm new password"
       },
       "errors": {
-        "confirmPasswordNotMatch": "Passwords do not match"
+        "confirmPasswordNotMatch": "Passwords do not match",
+        "requiredPassword": "Password required",
+        "requiredConfirmPassword": "Confirm password is required"
       },
       "buttons": {
         "submit": "Update"

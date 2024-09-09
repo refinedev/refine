@@ -21,7 +21,7 @@ import Dashboard from "@mui/icons-material/Dashboard";
 
 import {
   CanAccess,
-  ITreeMenu,
+  type ITreeMenu,
   useIsExistAuthentication,
   useLogout,
   useTitle,
@@ -36,7 +36,7 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 
-import { RefineThemedLayoutSiderProps } from "../types";
+import type { RefineThemedLayoutSiderProps } from "../types";
 
 import { ThemedTitle as DefaultTitle } from "@components";
 
@@ -111,7 +111,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         return (
           <CanAccess
             key={item.key}
-            resource={name.toLowerCase()}
+            resource={name}
             action="list"
             params={{
               resource: item,
@@ -193,7 +193,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
       return (
         <CanAccess
           key={item.key}
-          resource={name.toLowerCase()}
+          resource={name}
           action="list"
           params={{ resource: item }}
         >

@@ -14,9 +14,9 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 
-import { CreateButton, Breadcrumb, CreateButtonProps } from "@components";
+import { CreateButton, Breadcrumb, type CreateButtonProps } from "@components";
 
-import { ListProps } from "../types";
+import type { ListProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 /**

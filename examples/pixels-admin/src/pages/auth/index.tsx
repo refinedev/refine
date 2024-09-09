@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { AuthPage as AntdAuthPage, AuthProps } from "@refinedev/antd";
+import { AuthPage as AntdAuthPage, type AuthProps } from "@refinedev/antd";
 import { Image } from "antd";
 
 import { StackBanner } from "../../components/banners";

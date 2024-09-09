@@ -131,7 +131,7 @@ import { useForm } from "@refinedev/core";
 
 export const ProductCreate = () => {
     const {
-        mutationResult: { error },
+        mutation: { error },
         formLoading,
         onFinish,
     } = useForm();

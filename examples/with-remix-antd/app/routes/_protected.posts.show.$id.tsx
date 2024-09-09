@@ -3,9 +3,9 @@ import { Show } from "@refinedev/antd";
 import { Typography, Tag } from "antd";
 import dataProvider from "@refinedev/simple-rest";
 import { useLoaderData } from "@remix-run/react";
-import { json, LoaderFunctionArgs } from "@remix-run/node";
+import { json, type LoaderFunctionArgs } from "@remix-run/node";
 
-import { ICategory, IPost } from "../interfaces";
+import type { ICategory, IPost } from "../interfaces";
 import { API_URL } from "~/constants";
 
 const { Title, Text } = Typography;
@@ -13,7 +13,7 @@ const { Title, Text } = Typography;
 const PostShow: React.FC = () => {
   const { initialData } = useLoaderData<typeof loader>();
 
-  const { queryResult } = useShow({
+  const { query: queryResult } = useShow({
     queryOptions: {
       initialData,
     },

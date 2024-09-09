@@ -233,7 +233,7 @@ useForm({ meta: { headers: { "x-greetings": "hello world" } } });
 Meta data values to be used in the internal `useOne` call for the `edit` and `clone` actions. These values will take precedence over the `meta` values.
 
 ```tsx
-useForm({ meta: { headers: { "x-greetings": "hello mars" } } });
+useForm({ queryMeta: { headers: { "x-greetings": "hello mars" } } });
 ```
 
 ### mutationMeta
@@ -241,7 +241,7 @@ useForm({ meta: { headers: { "x-greetings": "hello mars" } } });
 Meta data values to be used in the internal `useCreate` and `useUpdate` calls for form submissions. These values will take precedence over the `meta` values.
 
 ```tsx
-useForm({ meta: { headers: { "x-greetings": "hello pluto" } } });
+useForm({ mutationMeta: { headers: { "x-greetings": "hello pluto" } } });
 ```
 
 ### queryOptions
@@ -406,20 +406,20 @@ A boolean value indicating the loading state of the form. It will reflect the lo
 const { formLoading } = useForm({ ... });
 ```
 
-### mutationResult
+### mutation
 
 Result of the mutation triggered by calling `onFinish`. Depending on the action, it will be the result of `useCreate` or `useUpdate` hooks.
 
 ```tsx
-const { mutationResult: { data, error, isLoading } } = useForm({ ... });
+const { mutation: { data, error, isLoading } } = useForm({ ... });
 ```
 
-### queryResult
+### query
 
 In `edit` and `clone` actions, result of the query of a record. It will be the result of `useOne` hook.
 
 ```tsx
-const { queryResult: { data, error, isLoading } } = useForm({ ... });
+const { query: { data, error, isLoading } } = useForm({ ... });
 ```
 
 ### setId
@@ -460,6 +460,14 @@ An object with `data`, `error` and `status` values that can be used for the auto
 const { autoSaveProps: { data, error, status } } = useForm({ ... });
 ```
 
+### ~~mutationResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
+
+### ~~queryResult~~ <PropTag deprecated />
+
+This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
+
 ## API Reference
 
 ### Properties
@@ -485,14 +493,14 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 ### Return values
 
-| Property       | Description                                            | Type                                                                                                                                                         |
-| -------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| onFinish       | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                |
-| queryResult    | Result of the query of a record                        | [`QueryObserverResult<TData, TError>`](https://react-query.tanstack.com/reference/useQuery)                                                                  |
-| mutationResult | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                             |
-| formLoading    | Loading state of form request                          | `boolean`                                                                                                                                                    |
-| id             | Record id for `clone` and `create` action              | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                         |
-| setId          | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                             |
-| redirect       | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
-| overtime       | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                   |
-| autoSaveProps  | Auto save props                                        | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                      |
+| Property      | Description                                            | Type                                                                                                                                                         |
+| ------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| onFinish      | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                |
+| query         | Result of the query of a record                        | [`QueryObserverResult<TData, TError>`](https://react-query.tanstack.com/reference/useQuery)                                                                  |
+| mutation      | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                             |
+| formLoading   | Loading state of form request                          | `boolean`                                                                                                                                                    |
+| id            | Record id for `clone` and `create` action              | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                         |
+| setId         | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                             |
+| redirect      | Redirect function for custom redirections              | (redirect: `"list"`\|`"edit"`\|`"show"`\|`"create"`\| `false` ,idFromFunction?: [`BaseKey`](/docs/core/interface-references#basekey)\|`undefined`) => `data` |
+| overtime      | Overtime loading props                                 | `{ elapsedTime?: number }`                                                                                                                                   |
+| autoSaveProps | Auto save props                                        | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                      |

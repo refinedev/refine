@@ -18,8 +18,8 @@ import {
   useTranslate,
 } from "@refinedev/core";
 import { IconArrowLeft } from "@tabler/icons-react";
-import { SaveButton, Breadcrumb, SaveButtonProps } from "@components";
-import { CreateProps } from "../types";
+import { SaveButton, Breadcrumb, type SaveButtonProps } from "@components";
+import type { CreateProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
 export const Create: React.FC<CreateProps> = (props) => {

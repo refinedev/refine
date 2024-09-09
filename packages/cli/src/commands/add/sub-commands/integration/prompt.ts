@@ -1,7 +1,7 @@
 import inquirer from "inquirer";
 
 import { getProjectType } from "@utils/project";
-import { availableIntegrations, IntegrationId } from "./packages";
+import { availableIntegrations, type IntegrationId } from "./packages";
 
 export const buildIntegrationChoices = () => {
   const projectType = getProjectType();

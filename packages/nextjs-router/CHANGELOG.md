@@ -1,5 +1,112 @@
 # @refinedev/nextjs-router
 
+## 6.1.0
+
+### Minor Changes
+
+- [#6159](https://github.com/refinedev/refine/pull/6159) [`ad401d52957bf831e47707e86cb1e2f8b8c20f4b`](https://github.com/refinedev/refine/commit/ad401d52957bf831e47707e86cb1e2f8b8c20f4b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: [`<DocumentTitleHandler/>`](https://refine.dev/docs/routing/integrations/next-js/#documenttitlehandler) should populated `resource.meta.label` field if it's not provided on the Refine's resource definition.
+  From now on, users be able to use the `resource.meta.label` field to customize document title more easily.
+
+  ```tsx
+  import {
+    BrowserRouter,
+    DocumentTitleHandler,
+  } from "@refinedev/react-router-v6";
+  import { Refine } from "@refinedev/core";
+
+  const App = () => {
+    return (
+      <BrowserRouter>
+        <Refine
+        /* ... */
+        >
+          {/* ... */}
+          <DocumentTitleHandler
+            handler={({ action, params, resource }) => {
+              const id = params?.id ?? "";
+
+              const actionPrefixMatcher = {
+                create: "Create new ",
+                clone: `#${id} Clone ${resource?.meta?.label}`,
+                edit: `#${id} Edit ${resource?.meta?.label}`,
+                show: `#${id} Show ${resource?.meta?.label}`,
+                list: `${resource?.meta?.label}`,
+              };
+
+              const suffix = " | <Company Name>";
+              const title = actionPrefixMatcher[action || "list"] + suffix;
+
+              return title;
+            }}
+          />
+        </Refine>
+      </BrowserRouter>
+    );
+  };
+  ```
+
+## 6.0.6
+
+### Patch Changes
+
+- [`6bd14228760d3e1e205ea9248e427f9afa2ec046`](https://github.com/refinedev/refine/commit/6bd14228760d3e1e205ea9248e427f9afa2ec046) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.0.5
+
+### Patch Changes
+
+- [#5945](https://github.com/refinedev/refine/pull/5945) [`90930b381d8d369c63bc59beedf69c391875166d`](https://github.com/refinedev/refine/commit/90930b381d8d369c63bc59beedf69c391875166d) Thanks [@aliemir](https://github.com/aliemir)! - chore: added `type` qualifier to imports used as type only.
+
+  ```diff
+  - import { A } from "./example.ts";
+  + import type { A } from "./example.ts";
+  ```
+
+## 6.0.4
+
+### Patch Changes
+
+- [#5928](https://github.com/refinedev/refine/pull/5928) [`db9756e7908`](https://github.com/refinedev/refine/commit/db9756e79086ff80774ee75d570d610bf0d5d76d) Thanks [@aliemir](https://github.com/aliemir)! - fix: type errors on typescript <5
+
+  Due to the changes in #5881, typescript users below version 5 are facing type errors. This PR fixes the type errors by updating the file extensions required by the `d.mts` declaration files to provide a compatible declarations for both typescript 4 and 5 users.
+
+## 6.0.3
+
+### Patch Changes
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: `/parse-table-params` export in node10 module resolutions
+
+  `/parse-table-params` subpath export is not correctly resolved by `node10` module resolutions.
+
+- [#5850](https://github.com/refinedev/refine/pull/5850) [`c2ef59bf82f`](https://github.com/refinedev/refine/commit/c2ef59bf82f80a1963dfc2fbbb0fb896e961cc7b) Thanks [@aliemir](https://github.com/aliemir)! - fix: replace imports of `qs` with default imports
+
+  Updated `qs` imports and usage to prevent issues with ESM builds and to ensure correctly importing the module.
+
+- [#5881](https://github.com/refinedev/refine/pull/5881) [`ba719f6ea26`](https://github.com/refinedev/refine/commit/ba719f6ea264ee87226f42de900a754e81f1f22f) Thanks [@aliemir](https://github.com/aliemir)! - fix: declaration files in node10, node16 and nodenext module resolutions
+
+- [#5849](https://github.com/refinedev/refine/pull/5849) [`8a8f88b2c30`](https://github.com/refinedev/refine/commit/8a8f88b2c30fefd4fed91ce4a378e7828524d085) Thanks [@aliemir](https://github.com/aliemir)! - fix: replace `next/*` imports with extensions in ESM builds
+
+  Updated imports from `next/*` to `next/*.js` to prevent issues with ESM builds and to ensure correctly importing the module.
+
+## 6.0.2
+
+### Patch Changes
+
+- [#5765](https://github.com/refinedev/refine/pull/5765) [`0c197d82393`](https://github.com/refinedev/refine/commit/0c197d823939ae1fd4e0ee4b5a422322853b1e45) Thanks [@aliemir](https://github.com/aliemir)! - refactor: package bundles and package.json configuration for exports
+
+  Previously, Refine packages had exported ESM and CJS bundles with same `.js` extension and same types for both with `.d.ts` extensions. This was causing issues with bundlers and compilers to pick up the wrong files for the wrong environment. Now we're outputting ESM bundles with `.mjs` extension and CJS bundles with `.cjs` extension. Also types are now exported with both `.d.mts` and `.d.cts` extensions.
+
+  In older versions ESM and CJS outputs of some packages were using wrong imports/requires to dependencies causing errors in some environments. This will be fixed since now we're also enforcing the module type with extensions.
+
+  Above mentioned changes also supported with changes in `package.json` files of the packages to support the new extensions and types. All Refine packages now include `exports` fields in their configuration to make sure the correct bundle is picked up by the bundlers and compilers.
+
+- [#5754](https://github.com/refinedev/refine/pull/5754) [`56ed144a0f5`](https://github.com/refinedev/refine/commit/56ed144a0f5af218fd9e6edbfd999ae433329927) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: TypeScript upgraded to [v5.x.x](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-5-0.html). #5752
+
 ## 6.0.1
 
 ### Patch Changes

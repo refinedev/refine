@@ -9,7 +9,7 @@ import type {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
-import {
+import type {
   BaseKey,
   BaseRecord,
   GetOneResponse,
@@ -17,13 +17,17 @@ import {
   MetaQuery,
   Prettify,
 } from "../../contexts/data/types";
-import { LiveModeProps } from "../../contexts/live/types";
-import { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { LiveModeProps } from "../../contexts/live/types";
+import type { SuccessErrorNotification } from "../../contexts/notification/types";
 
 export type UseShowReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
 > = {
+  query: QueryObserverResult<GetOneResponse<TData>, TError>;
+  /**
+   * @deprecated Use `query` instead.
+   */
   queryResult: QueryObserverResult<GetOneResponse<TData>, TError>;
   showId?: BaseKey;
   setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
