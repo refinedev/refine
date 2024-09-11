@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-27-pnpm-guide
 hide_table_of_contents: false
 ---
 
+**This article was last updated on September 11, 2024, to add sections on Advantages of pnpm in Monorepos, Optimizing CI/CD with pnpm and pnpm’s Dependency Audit and Security Features.**
+
 ## Introduction
 
 When working with Node, npm is the default package manager. It is bundled with modern, official versions of Node. However, there are several alternatives to npm. Some of these alternatives include pnpm and yarn.
@@ -225,6 +227,30 @@ If the `scripts` field of your `package.json` file has the script below, you can
 }
 ```
 
+## Why pnpm is Great for Monorepos
+
+I'd quickly like to share my thoughts on why **pnpm** is such a great monorepo management tool.
+
+One of the main advantages of pnpm is that it offers support for **workspaces**. With pnpm, you can handle multiple packages inside a single repository. It installs dependencies for all packages at once but links them together instead of duplicating them in each package’s `node_modules` folder. This saves disk space and speeds up installation times.
+
+Here’s how pnpm can assist monorepos:
+
+### Shared Dependencies
+
+pnpm links packages from a global store, so we avoid having multiple copies of the same dependency across different packages, saving a lot of space—especially in large projects.
+
+### Installation Efficiency
+
+The installation process is efficient since pnpm installs all packages together, downloading only the files that are unique and haven’t been cached yet.
+
+### Hoisting Dependencies
+
+pnpm strictly hoists dependencies so each package gets precisely the version of a dependency it needs. This prevents version conflicts and ensures consistency across projects.
+
+### Automatic Linking
+
+Packages inside the monorepo are automatically linked with pnpm. If we’re working on a package that depends on another package within the repository, changes are reflected instantly.
+
 ## Comparing npm and pnpm
 
 As hinted above, pnpm is an efficient alternative to npm. In this section, we will draw some parallels between npm and pnpm by exploring their differences and similarities.
@@ -270,6 +296,64 @@ Check the pnpm documentation for other commands you can use to manage installed 
 ### Support for workspaces and monorepos
 
 Both npm and pnpm have built-in support for workspaces. The workspace feature in npm and pnpm has capabilities for managing monorepos.
+
+## Efficiency in CI/CD by using pnpm
+
+I wanted to share some thoughts on how we can use **pnpm** to optimize our **CI/CD pipelines**, which could help improve build times.
+
+### Faster Dependency Installation
+
+pnpm's global store approach for managing dependencies is faster than npm. By caching dependencies across builds, we can avoid downloading them repeatedly, saving a lot of time. Most CI/CD platforms, like GitHub Actions or Jenkins, support dependency caching.
+
+Here's an example of caching pnpm dependencies in a GitHub Actions workflow:
+
+```yaml
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+      - name: Cache pnpm store
+        uses: actions/cache@v2
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('pnpm-lock.yaml') }}
+      - name: Install dependencies with pnpm
+        run: pnpm install
+```
+
+By caching the `pnpm-store`, we save time by avoiding reinstalling all dependencies during each CI run.
+
+### Parallelization of Tasks
+
+One of pnpm's key features is the ability to parallelize scripts, which speeds up CI processes, especially for monorepos. The `pnpm run --recursive` command runs tasks in all packages simultaneously, reducing build times for large projects.
+
+```sh
+pnpm run --recursive build
+```
+
+### Consistent Lockfiles
+
+pnpm lockfile (`pnpm-lock.yaml`) is more deterministic, ensuring that builds are consistent across environments and helping to avoid dependency issues during deployments.
+
+### Smaller Disk Usage
+
+Since pnpm uses hard links for dependencies in its global store, it saves disk space, particularly in large projects. This is useful for CI systems with limited storage.
+
+### Node Version Management
+
+pnpm includes built-in support for managing Node.js versions, which simplifies setup in CI/CD pipelines. We can specify the exact Node.js version for builds, ensuring consistency across environments.
+
+```bash
+pnpm env use --global 16
+```
+
+Integrating pnpm into our CI/CD pipelines will drastically reduce build times, improve consistency, and save resources.
 
 ## Conclusion
 
