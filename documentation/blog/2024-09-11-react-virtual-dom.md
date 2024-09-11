@@ -8,8 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virt
 hide_table_of_contents: false
 ---
 
-Here’s the sentence adapted for the Virtual DOM article:
-
 **This article was last updated on September 11, 2024, to add sections on Impact of Virtual DOM on Rendering Performance and Common Pitfalls with the Virtual DOM**
 
 ## Introduction
