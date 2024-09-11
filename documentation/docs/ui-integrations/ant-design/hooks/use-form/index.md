@@ -775,7 +775,7 @@ When it's true, `submitOnEnter` will submit the form when the enter key is press
 
 ```tsx
 useForm({
-    submitOnEnter: true,
+  submitOnEnter: true,
 });
 ```
 
