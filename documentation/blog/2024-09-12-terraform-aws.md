@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-28-terraform-
 hide_table_of_contents: false
 ---
 
+**This article was last updated on September 12, 2024, to add sections on State Management in Terraform, Using Terraform Modules, Managing Secrets and Sensitive Data, Workspaces for Multi-Environment Management, Security Best Practices, Automating Terraform with CI/CD, Handling Resource Dependencies, and Cost Estimation with Terraform.**
+
 ## Introduction
 
 Managing infrastructure across multiple environments and regions can be an operational headache for teams as applications scale. Provisioning resources manually is boring and time-consuming while scripting the process requires significant engineering effort.
@@ -20,14 +22,18 @@ Whether you're already using AWS or looking to explore it with an IaC approach, 
 
 Steps we'll cover:
 
-- [AWS Account and Credentials](#aws-account-and-credentials)
-- [AWS CLI](#aws-cli)
-- [Terraform](#terraform)
 - [Configuring AWS Credentials](#configuring-aws-credentials)
-  - [Access Keys and Secret Keys](#access-keys-and-secret-keys)
-  - [~/.aws/credentials File](#awscredentials-file)
 - [Creating a Simple Configuration](#creating-a-simple-configuration)
+- [State Management in Terraform](#state-management-in-terraform)
+- [Terraform Workspaces for Multi-Environment Management](#terraform-workspaces-for-multi-environment-management)
+- [Security Best Practices](#security-best-practices)
+- [Automating Terraform with CI/CD Pipelines](#automating-terraform-with-cicd-pipelines)
+- [Handling Resource Dependencies](#handling-resource-dependencies)
 - [Modifying Infrastructure](#modifying-infrastructure)
+- [Cleaning Up](#cleaning-up)
+- [Cost Estimation with Terraform](#cost-estimation-with-terraform)
+- [Managing Secrets and Sensitive Data](#managing-secrets-and-sensitive-data)
+- [Using Terraform Modules](#using-terraform-modules)
 
 ## Prerequisites
 
@@ -165,6 +171,103 @@ Terraform reads your config file and outlines what infrastructure it will create
 
 Run `terraform apply` and Terraform will call out to AWS and create the EC2 instance.
 
+## State Management in Terraform
+
+Terraform maintains a **state file** that tracks the infrastructure it manages. To ensure consistency and collaboration across teams, we can recommend storing this state file in a remote backend like **AWS S3**, which prevents conflicts when multiple team members are working on the same infrastructure.
+
+Example of remote state configuration with S3:
+
+```hcl
+terraform {
+  backend "s3" {
+    bucket = "my-terraform-state-bucket"
+    key    = "terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+```
+
+By configuring remote state, team members can access the same state file, avoiding overwrites.
+
+## Terraform Workspaces for Multi-Environment Management
+
+A section on **workspaces** will show how users can manage different environments (dev, staging, production) within the same configuration. Workspaces allow Terraform to handle separate states for each environment without duplicating configuration files.
+
+Example of using workspaces:
+
+```bash
+terraform workspace new dev
+terraform workspace new prod
+terraform workspace select dev
+```
+
+## Security Best Practices
+
+It’s important to highlight enforcing security best practices using **IAM roles and policies**. We could also introduce **Terraform Sentinel** to enforce security policies during the `plan` and `apply` stages.
+
+Example of assigning an IAM role to an EC2 instance:
+
+```hcl
+resource "aws_iam_instance_profile" "ec2_profile" {
+  name = "example_profile"
+  role = aws_iam_role.ec2_role.name
+}
+
+resource "aws_instance" "example" {
+  ami           = "ami-0fc5d935ebf8bc3bc"
+  instance_type = "t2.micro"
+  iam_instance_profile = aws_iam_instance_profile.ec2_profile.name
+}
+```
+
+## Automating Terraform with CI/CD Pipelines
+
+Integrating Terraform into CI/CD pipelines like **GitHub Actions** or **Jenkins** will automate infrastructure deployments. A section could include a GitHub Actions workflow example that automates `terraform plan` and `terraform apply`.
+
+Example of a GitHub Actions workflow:
+
+```yaml
+name: Terraform Apply
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+      - name: Terraform Init
+        run: terraform init
+      - name: Terraform Plan
+        run: terraform plan
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+```
+
+This allows teams to automate infrastructure provisioning and management, ensuring faster, more reliable deployments.
+
+## Handling Resource Dependencies
+
+While Terraform automatically manages resource dependencies, users may need to explicitly define dependencies in some cases. A section on using `depends_on` will help clarify resource creation order.
+
+Example of managing resource dependencies:
+
+```hcl
+resource "aws_instance" "web" {
+  ami           = "ami-0fc5d935ebf8bc3bc"
+  instance_type = "t2.micro"
+}
+
+resource "aws_elb" "web_elb" {
+  depends_on = [aws_instance.web]
+  instances  = [aws_instance.web.id]
+}
+```
+
 ## Modifying Infrastructure
 
 A key advantage of infrastructure as code is how you can evolve your stack over time through code changes.
@@ -221,6 +324,57 @@ This is a key advantage over console-based provisioning. With all your infrastru
 Properly cleaning up infrastructure keeps your accounts lean, extends the experience to production-grade workflows, and surfaces gaps in your understanding. Make sure to always destroy your test environments when finished experimenting!
 
 You can recreate your stack easily at any time by running `terraform apply`. Your configuration code serves as the single source of truth.
+
+## Cost Estimation with Terraform
+
+Finally, we could include a section on cost estimation using tools like **Infracost**. This helps users estimate the cost of infrastructure before deployment, preventing unexpected AWS bills.
+
+Example of cost estimation with Infracost:
+
+```bash
+infracost breakdown --path=./path_to_your_terraform
+```
+
+This provides insight into the cost impact of infrastructure decisions.
+
+## Managing Secrets and Sensitive Data
+
+Handling secrets like AWS access keys securely is crucial. We can include a section on managing sensitive data using **environment variables** or **AWS Secrets Manager**. This ensures sensitive information isn’t hardcoded in configuration files.
+
+Example of using environment variables for secrets:
+
+```bash
+export AWS_ACCESS_KEY_ID=<your_access_key>
+export AWS_SECRET_ACCESS_KEY=<your_secret_key>
+```
+
+In the Terraform configuration:
+
+```hcl
+variable "secret_key" {
+  type      = string
+  sensitive = true
+}
+```
+
+## Using Terraform Modules
+
+Modules help you **re-use and organize infrastructure code**, which is particularly useful for repetitive tasks like setting up EC2 instances or VPCs. A section on creating and using modules will help users keep their code DRY (Don’t Repeat Yourself).
+
+Example of using a module for EC2 instances:
+
+```hcl
+module "ec2_instance" {
+  source        = "./modules/ec2"
+  instance_type = "t2.micro"
+  ami           = "ami-0fc5d935ebf8bc3bc"
+  tags = {
+    Name = "refine-dev"
+  }
+}
+```
+
+By reusing modules, users can create standardized components and avoid redundant code.
 
 ## Conclusion
 
