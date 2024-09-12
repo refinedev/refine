@@ -4,9 +4,11 @@ description: We'll explore the key differences between GraphQL and REST, and dis
 slug: graphql-vs-rest
 authors: chidume_nnamdi
 tags: [dev-tools, comparison]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-03-graphql-vs-rest/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-03-graphql-vs-rest/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on September 12, 2024, to add sections on Error Handling, Batching Multiple Requests, Versioning, and Caching Strategies.**
 
 ## Introduction
 
@@ -16,13 +18,16 @@ In this article, we will explore the key differences between GraphQL and REST, a
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
+- [Architectural Style](#architectural-style)
 - [Architectural Style](#architectural-style)
 - [Data Fetching](#data-fetching)
 - [Flexibility and Efficiency](#flexibility-and-efficiency)
+- [Caching](#caching)
 - [Performance](#performance)
 - [Use Cases](#use-cases)
 - [Summary of differences: REST vs. GraphQL](#summary-of-differences-rest-vs-graphql)
+- [Batching Multiple Requests](#batching-multiple-requests)
+- [Versioning](#versioning)
 
 ## Architectural Style
 
@@ -245,6 +250,63 @@ In REST, we must make two separate requests to fetch the user and the article.
 
 ```
 
+### Error Handling
+
+Both REST and GraphQL handle errors differently. Here's how:
+
+### REST Error Handling
+
+REST typically uses **HTTP status codes** to indicate the success or failure of an API request. Good examples of it are `200 OK` being a successful response while `404 Not Found` and `500 Internal Server Error` spelling out errors.
+
+```json
+GET /users/12345
+
+HTTP/1.1 404 Not Found
+Content-Type: application/json
+
+{
+  "error": {
+    "code": 404,
+    "message": "User not found"
+  }
+}
+```
+
+### Error Handling in GraphQL
+
+In GraphQL, the errors will be part of the response body, contrary to trying to map them through HTTP status codes. When an error occurs in any part of the execution of a GraphQL query, it can return back individual errors for fields or operations in that query.
+
+```graphql
+{
+  user(id: "12345") {
+    name
+    email
+  }
+}
+
+# Response
+
+{
+  "data": {
+    "user": null
+  },
+  "errors": [
+    {
+      "message": "User not found",
+      "locations": [
+        {
+          "line": 2,
+          "column": 3
+        }
+      ],
+      "path": ["user"]
+    }
+  ]
+}
+```
+
+The snippet above shows a case where the `user` in the request did not exist; however, the response is valid because there is an existing `data` object and an `errors` array indicating that the `user` does not exist.
+
 ## Flexibility and Efficiency
 
 In this section, we will discuss the flexibility and efficiency of GraphQL and REST.
@@ -284,6 +346,35 @@ GraphQL gives clients fine-grained control over the response structure. Clients 
 
 Caching proves to be difficult with GraphQL. The dynamic nature of GraphQL queries makes it challenging to cache responses. The same query may be executed with different arguments, resulting in different responses. Caching becomes more complex as responses are no longer uniform, and caching mechanisms must account for the variability in queries.
 This can lead to cache invalidation issues and can be challenging to manage. Although tools and libraries have emerged to address these challenges, caching in GraphQL requires careful consideration.
+
+## Caching
+
+The approaches to caching are also very different in REST and GraphQL. REST builds on top of HTTP caching. Since REST is strongly typed, it provides with it built-in GraphQL caching. It does not have to be advanced as in the case of GraphQL, though. The above structure pertains to REST caching. REST APIs can also leverage such in-built HTTP cache mechanisms, among which there are **ETags** and **Cache-Control** headers.
+
+```http
+GET /users/12345
+Cache-Control: max-age=3600
+ETag: "abc123"
+```
+
+This tells the client to cache the response for one hour (`3600` seconds) and only request updates if the `ETag` is changed.
+
+### GraphQL Caching
+
+This might be a bit more complicated with GraphQL, since one query typically requests data from various resources, so HTTP-level caching won't work well. Instead, it would be client-side caching tools like Apollo Client or Relay.
+
+**Apollo Client Example**:
+
+```js
+const cache = new InMemoryCache();
+
+const client = new ApolloClient({
+  uri: "https://example.com/graphql",
+  cache,
+});
+```
+
+Apollo Client will take care of caching the responses to all of those queries according to a unique identifier, for example, the user `id`.
 
 ## Performance
 
@@ -335,6 +426,109 @@ Also, GraphQL is best suited for real-time applications. Your social media appli
 | **Flexibility and Efficiency** | Very easy to setup but becomes less efficient when the resources grows over time.   | High flexible to adapt to any project but difficult to work with at first. |
 | **Performance**                | Great in performance but under-performs when it involves complex resource fetching. | Has high performance but underperforms in terms of caching.                |
 | **Use Cases**                  | Used mainly for not-too complex applications and also for CRUD project.             | Excels greatly in complex projects and especially chat apps.               |
+
+## Batching Multiple Requests
+
+One of the upsides to using GraphQL is that it allows for batching multiple requests in a single query, while REST typically requires multiple HTTP requests for each resource.
+
+### REST (Multiple Requests)
+
+```http
+# Getting data of the user
+GET /users/12345
+
+{
+  "id": 12345,
+  "name": "John Doe"
+}
+
+# Getting user's posts
+GET /users/12345/posts
+
+[
+  { "id": 1, "title": "First Post" },
+  { "id": 2, "title": "Second Post" }
+]
+```
+
+It will require two different requests for getting the user and his post.
+
+### GraphQL (Single Request)
+
+```graphql
+{
+  user(id: "12345") {
+    name
+    posts {
+      title
+    }
+  }
+}
+
+# Response
+
+{
+  "data": {
+    "user": {
+      "name": "John Doe",
+      "posts": [
+        { "title": "First Post" },
+        { "title": "Second Post" }
+      ]
+    }
+  }
+}
+```
+
+In GraphQL, the record for a user and their posts is fetched with a single request, reducing network overhead.
+
+## Versioning
+
+Versioning in APIs is dealt with quite differently between REST and GraphQL. REST generally requires versioning for changes, where GraphQL manages this transparently.
+
+### REST Versioning
+
+REST APIs typically use versioning in the URL to handle changes to the API as time goes on.
+
+```http
+# Version 1
+GET /api/v1/users/12345
+
+# Version 2
+GET /api/v2/users/12345
+```
+
+Each version can bring breaking changes, and clients would need updates to use the correct version of the API.
+
+### GraphQL Versioning
+
+GraphQL does not need versioning because you can deprecate the specific fields and introduce new ones without breaking existing queries.
+
+```graphql
+{
+  user(id: "12345") {
+    name
+    email
+    phoneNumber @deprecated(reason: "Use `mobileNumber` instead")
+    mobileNumber
+  }
+}
+
+# Response
+
+{
+  "data": {
+    "user": {
+      "name": "John Doe",
+      "email": "john@example.com",
+      "phoneNumber": null,
+      "mobileNumber": "123-456-7890"
+    }
+  }
+}
+```
+
+GraphQL helps clients use deprecated fields while newer clients can use updated fields.
 
 ## Conclusion
 
