@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-23-react-virt
 hide_table_of_contents: false
 ---
 
+**This article was last updated on September 11, 2024, to add sections on Impact of Virtual DOM on Rendering Performance and Common Pitfalls with the Virtual DOM**
+
 ## Introduction
 
 The virtual DOM (Virtual Document Object Model) is a programming concept in which a "virtual" representation of a user interface is preserved in memory and synchronized with the browser's DOM (Document Object Model) via a library.
@@ -20,10 +22,11 @@ Steps we'll cover:
 - [What is the DOM?](#what-is-the-dom)
 - [Drawbacks in updating the DOM](#drawbacks-in-updating-the-dom)
 - [React's Virtual DOM Implementation](#reacts-virtual-dom-implementation)
-  - [Components of the Virtual DOM](#components-of-the-virtual-dom)
 - [React Virtual DOM vs. real DOM](#react-virtual-dom-vs-real-dom)
 - [The Role of the Virtual DOM in React's Reconciliation](#the-role-of-the-virtual-dom-in-reacts-reconciliation)
+- [How Virtual DOM Boosts Rendering Performance\*\*](#how-virtual-dom-boosts-rendering-performance)
 - [React virtual DOM vs. shadow DOM](#react-virtual-dom-vs-shadow-dom)
+- [Common Problems with React Virtual DOM and How to Avoid Them](#common-problems-with-react-virtual-dom-and-how-to-avoid-them)
 - [Real DOM vs. virtual DOM vs. shadow DOM](#real-dom-vs-virtual-dom-vs-shadow-dom)
 
 ## What is the DOM?
@@ -352,6 +355,33 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 );
 ```
 
+## How Virtual DOM Boosts Rendering Performance\*\*
+
+I wanted to explain how the Virtual DOM helps improve React's rendering performance.
+
+The React Virtual DOM can be thought of as a lightweight copy of the actual DOM. Whenever the state or props change, before making updates to the real DOM, React first updates the Virtual DOM, calculating the differences between the previous and current states—a process called **diffing**.
+
+After identifying the differences, React only applies the necessary updates to the real DOM. This makes the rendering process more efficient since, instead of re-rendering the entire page, only the parts of the DOM that require changes are updated.
+
+Here’s a simple example:
+
+```tsx
+function App() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+}
+```
+
+In this case, clicking the button doesn’t cause the entire `<div>` to re-render. React only updates the `<p>` element that displays the count, thanks to Virtual DOM diffing. Without the Virtual DOM, making small, frequent changes that directly manipulate the real DOM would be inefficient for applications with complex UIs.
+
+The Virtual DOM significantly reduces the cost of updating the UI, resulting in faster rendering and better performance—especially when there are frequent updates or many interactive elements.
+
 **N/B:** The `ReactDOM.render()` function works differently from the regular `render()` function in class components. While `ReactDOM.render` ensures the update of the real DOM, `render()` in class components simply creates a React Element from JSX.
 
 ## React virtual DOM vs. shadow DOM
@@ -393,6 +423,58 @@ To see the shadow DOM, utilize Chrome DevTools and enable the `Show user agent s
 **_A code snippet showing the shadow DOM of the input range function_**
 
 Meanwhile, the virtual DOM is a lightweight representation of the DOM that optimizes updates to the real DOM.
+
+## Common Problems with React Virtual DOM and How to Avoid Them
+
+I wanted to share some common issues we might encounter with React’s **Virtual DOM** and how we can avoid them.
+
+### Too Many Re-renders
+
+- **Problem**: The Virtual DOM in React is designed for efficient rendering, but unnecessary re-renders can still cause performance issues.
+- **Solution**: Use `React.memo()` or, for class components, `shouldComponentUpdate()` to ensure components only update when their props or state actually change.
+
+```tsx
+const MyComponent = React.memo(({ count }) => <p>Count: {count}</p>);
+```
+
+### Improper Use of Keys in Lists
+
+- **Problem**: Failing to use **unique keys** for list items can cause inefficient updates and even break the app's behavior.
+- **Solution**: Always assign a unique `key` to each element in a list. Avoid using array indices as keys unless you’re sure the list items won’t change positions.
+
+```tsx
+const items = ["Item 1", "Item 2", "Item 3"];
+return (
+  <ul>
+    {items.map((item) => (
+      <li key={item}>{item}</li>
+    ))}
+  </ul>
+);
+```
+
+### Deeply Nested Components
+
+- **Problem**: Too many nested components or a complex component tree can slow down the Virtual DOM’s diffing process.
+- **Solution**: Keep the component structure as flat as possible and break large components into smaller, reusable ones. This improves React’s diffing efficiency.
+
+### Avoiding Inline Functions and Objects
+
+- **Problem**: Inline functions and objects create new references on each render, leading to unnecessary re-renders.
+- **Solution**: Move functions and objects outside the component or use `useCallback` and `useMemo` to memoize them.
+
+```tsx
+const handleClick = useCallback(() => {
+  console.log("Clicked");
+}, []);
+
+return <button onClick={handleClick}>Click Me</button>;
+```
+
+### Ignoring Performance Tools
+
+- **Problem**: Not using React’s performance tools makes it difficult to identify performance bottlenecks.
+- **Solution**: Use **React DevTools** to profile component updates and see which components are re-rendering unnecessarily. This helps pinpoint Virtual DOM-related performance issues.
 
 ## Real DOM vs. virtual DOM vs. shadow DOM
 
