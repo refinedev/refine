@@ -16,7 +16,7 @@ const siteConfig = {
   title: "Refine",
   tagline: "Build your React-based CRUD applications, without constraints",
   url: "https://refine.dev",
-  baseUrl: "/blog",
+  baseUrl: "/",
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
@@ -148,7 +148,7 @@ const siteConfig = {
               blogTitle: "Blog",
               blogDescription:
                 "A resource for Refine, front-end ecosystem, and web development",
-              routeBasePath: "/blog2",
+              routeBasePath: "/blog",
               postsPerPage: 12,
               blogSidebarTitle: "All posts",
               blogSidebarCount: 0,
