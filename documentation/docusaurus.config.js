@@ -16,7 +16,7 @@ const siteConfig = {
   title: "Refine",
   tagline: "Build your React-based CRUD applications, without constraints",
   url: "https://refine.dev",
-  baseUrl: "/",
+  baseUrl: "/blog2",
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
