@@ -50,7 +50,7 @@ The `<Link />` component takes all the props from the [`routerProvider.Link`](/d
 
 When `go` prop is provided, this component will use [`useGo`](/docs/routing/hooks/use-go/) to create the URL to navigate to. It's accepts all the props that `useGo.go` accepts.
 
-It's usefull to use this prop when you want to navigate to a resource with a specific action.
+It's useful to use this prop when you want to navigate to a resource with a specific action.
 
 :::caution
 
