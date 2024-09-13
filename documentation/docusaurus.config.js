@@ -15,8 +15,8 @@ const thumbsUpDownFeedbackWidget = require("./plugins/thumbs-up-down-feedback-wi
 const siteConfig = {
   title: "Refine",
   tagline: "Build your React-based CRUD applications, without constraints",
-  url: "https://refine.dev",
-  baseUrl: "/test",
+  url: "https://excelnode.com/blog",
+  baseUrl: "/",
   projectName: "refine",
   organizationName: "refinedev",
   trailingSlash: true,
