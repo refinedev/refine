@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-13-stylex-pos
 hide_table_of_contents: false
 ---
 
-**This article was last updated on September 16, 2024, to add sections on Advanced Stylex Techniques, Performance Considerations, Dynamic Styles with JavaScript, and Using Custom CSS Variables for Theming.**
+**This article was last updated on September 16, 2024, to add sections on Advanced Stylex Techniques, Performance Considerations, and Using Custom CSS Variables for Theming.**
 
 ## Introduction
 
