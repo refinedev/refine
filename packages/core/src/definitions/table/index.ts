@@ -72,14 +72,16 @@ export const compareFilters = (
     return (
       ("field" in left ? left.field : undefined) ===
         ("field" in right ? right.field : undefined) &&
-      left.operator === right.operator
+      left.operator === right.operator &&
+      left.value === right.value
     );
   }
 
   return (
     ("key" in left ? left.key : undefined) ===
       ("key" in right ? right.key : undefined) &&
-    left.operator === right.operator
+    left.operator === right.operator &&
+    left.value === right.value
   );
 };
 
