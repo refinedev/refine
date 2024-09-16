@@ -202,7 +202,7 @@ export const transformCrudFiltersToFilterModel = (
           field: field,
           operator: transformCrudOperatorToMuiOperator(operator, columnType),
           value: value === "" ? undefined : value,
-          id: field + operator,
+          id: field + operator + gridFilterItems.length,
         });
       });
     } else {
@@ -213,7 +213,7 @@ export const transformCrudFiltersToFilterModel = (
           field: field,
           operator: transformCrudOperatorToMuiOperator(operator, columnType),
           value: value === "" ? undefined : value,
-          id: field + operator,
+          id: field + operator + gridFilterItems.length,
         });
       });
     }
