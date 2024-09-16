@@ -2,7 +2,9 @@
 "@refinedev/nestjsx-crud": patch
 ---
 
-Add between operator
+feat: add `between` filter operator
+
+Add between operator support to `CrudFilters`
 
 ```ts
 import { useTable } from "@refinedev/core";
@@ -19,3 +21,5 @@ useTable({
   },
 });
 ```
+
+[Resolves #6334](https://github.com/refinedev/refine/issues/6334)
