@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-13-stylex-pos
 hide_table_of_contents: false
 ---
 
+**This article was last updated on September 16, 2024, to add sections on Advanced Stylex Techniques, Performance Considerations, and Using Custom CSS Variables for Theming.**
+
 ## Introduction
 
 [**Stylex**](https://stylexjs.com/docs/learn/) is a recently (as of Dec 2023) open sourced CSS-in-JS solution developed by Meta. It allows writing atomic inline CSS styles inside React/JavaScript components, and combines the power of static CSS thanks to globally accessible CSS variables. Stylex facilitates collision-free CSS by creating unique class identifiers for each style and by mitigating specificity issues with minimal usage of collision contributors (such as pseudo-classes). These make Stylex much more deterministic, reliable and scalable than other CSS-in-JS solutions like Emotion.
@@ -19,6 +21,15 @@ With Stylex, we can go about defining colocated styles in a React component, man
 In this introductory post, we cover how to define and use Stylex styles using the [`stylex.create`](https://stylexjs.com/docs/api/javascript/create/) and [`stylex.props`](https://stylexjs.com/docs/api/javascript/props/) APIs in an already set up Next.js application. We expend efforts to understand some of the quirks of writing collision-free inline CSS with Stylex. While doing so, we come across snippets implementing simple style declarations, style declarations with imported Stylex variables, conditional styling as well as a responsive component using media queries. We also explore how to create variables with the [`stylex.defineVars`](https://stylexjs.com/docs/api/javascript/defineVars/) API and use them inside components.
 
 We are using [this example Next.js app](https://github.com/facebook/stylex/blob/main/apps/nextjs-example) from Facebook as a base and tweaking it to build our own page and component. If you need to, please feel free to clone it, use it locally and adopt your own from it.
+
+Step by step, we will be covering the following topics:
+
+- [CSS-in-JS with Stylex and TypeScript](#css-in-js-with-stylex-and-typescript)
+- [Styling a Next.js App with Stylex](#styling-a-nextjs-app-with-stylex)
+- [Stylex Performance Benefits](#stylex-performance-benefits)
+- [Using Stylex Variables in a Next.js App](#using-stylex-variables-in-a-nextjs-app)
+- [Statically Typed Styles in Stylex](#statically-typed-styles-in-stylex)
+- [Advanced Stylex Techniques – Path to Better Flexibility](#advanced-stylex-techniques--path-to-better-flexibility)
 
 ## CSS-in-JS with Stylex and TypeScript
 
@@ -425,6 +436,68 @@ Notice, for each style applied, we are invoking the `stylex.props` method and pa
 
 We are able to pass multiple styles to `stylex.props()` and all get merged into a single class. When specificity becomes an issue in the merge, the last style gets ranked the most. Please feel free to learn more in [this section of the docs](https://stylexjs.com/docs/learn/styling-ui/using-styles/#merging-styles).
 
+## Stylex Performance Benefits
+
+I have been digging into some of the performance-related aspects of **Stylex**, and some clear advantages do seem to be there, actually—mostly concerning fast and efficient performance in terms of apps.
+
+### Atomic CSS for Smaller Bundle Size
+
+One big advantage is that **Stylex** utilizes atomic CSS in that for each style rule, it generates tiny, reusable CSS classes. That keeps the final CSS bundle smaller since it avoids duplication of styles. For example:
+
+```javascript
+// Using Stylex to create atomic styles
+const style = stylex.create({
+  button: {
+    backgroundColor: "blue", // Reusable class for background color
+    color: "white", // Reusable class for text color
+    padding: "12px",
+  },
+  text: {
+    fontSize: "16px", // Reusable font size class
+    color: "black",
+  },
+});
+```
+
+In this case, Stylex generates CSS classes for `backgroundColor` first, then for `color`, and finally, for `fontSize`. Now, if somewhere else in your code, you use `backgroundColor: "blue"`, Stylex can avoid generating a class. It uses this already existing class; hence, that keeps the CSS bundle size smaller.
+
+### Static Analysis for Faster Performance
+
+Another big advantage of Stylex is the fact that it does a lot of **static analysis at compile-time**. Whereas something like **Styled Components** or **Emotion** would generate styles dynamically at runtime, Stylex is generating everything at build time. This greatly reduces runtime overhead and is therefore a big win for performance, especially important for bigger apps.
+
+Here is one example:
+
+```typescript
+// Stylex creates styles at compile-time
+const style = stylex.create({
+  card: {
+    margin: "24px",
+    padding: "16px",
+    border: "1px solid #ddd",
+  },
+});
+```
+
+With Stylex, this code compiles down to static CSS at build time. At render time, there isn't any extra browser overhead, which is often the case with other CSS-in-JS solutions that correctly do on-the-fly CSS generation.
+
+### Reduced Specificity Issues
+
+One sweet thing about Stylex: It reduces specificity problems. By not having deep nesting and crazy pseudo-class use, Stylex keeps CSS lean, which is easy for the browser to process. Here is an example where we add pseudo-classes:
+
+```javascript
+const buttonStyle = stylex.create({
+  button: {
+    color: "white",
+    backgroundColor: "blue",
+    ":hover": {
+      backgroundColor: "darkblue", // Hover effect without specificity change
+    },
+  },
+});
+```
+
+All of these pseudo-classes in Stylex are handled efficiently without increasing specificity, making it easier to manage styles in larger apps.
+
 ## Using Stylex Variables in a Next.js App
 
 As seen above, we are already using the global Stylex variable, `$`, in our `<Home />` component:
@@ -492,6 +565,126 @@ export default function Card({ featuredBg, children }: Props) {
 ```
 
 Static typing of Stylex styles allows them to be typed accurately and provide type-safety and stability to our codebase.
+
+## Advanced Stylex Techniques – Path to Better Flexibility
+
+Lately, I've been fiddling around with some more advanced Stylex techniques that could really help drive some dynamism and flexibility into our styles—especially when it comes to those really complex layouts or UI components. Let me show you a few examples.
+
+### Conditional Styling with Props
+
+As mentioned earlier, with Stylex, we can conditionally apply styles depending on props. That becomes really useful when we want to apply different styles upon the state of or the context a component operates under.
+
+Here is an example where we style a button differently depending on whether it has a class of "primary" or "secondary":
+
+```tsx
+const buttonStyles = stylex.create({
+  primary: {
+    backgroundColor: "blue",
+    color: "white",
+  },
+  secondary: {
+    backgroundColor: "gray",
+    color: "black",
+  },
+});
+
+function Button({ type }) {
+  const style =
+    type === "primary" ? buttonStyles.primary : buttonStyles.secondary;
+  return <button {...stylex.props(style)}>Click Me</button>;
+}
+```
+
+In this example, this button would apply either the primary or secondary style according to a `type` prop. This makes it quite easy to handle different design variations inside one single component.
+
+### Media Queries for Responsive Design
+
+Another good feature is how Stylex handles **media queries**. We are able to define styles for different screen sizes directly within the function `stylex.create()`. That's great for building responsive components.
+
+Here's an example:
+
+```tsx
+const MEDIA_MOBILE = "@media (max-width: 600px)";
+
+const cardStyles = stylex.create({
+  card: {
+    padding: "24px",
+    backgroundColor: "lightgray",
+    [MEDIA_MOBILE]: {
+      padding: "12px", // Adjust padding for mobile
+      backgroundColor: "darkgray", // Change background on mobile
+    },
+  },
+});
+
+function Card() {
+  return <div {...stylex.props(cardStyles.card)}>Responsive Card</div>;
+}
+```
+
+With that, the card would adjust its padding along with its background color when viewed on small-sized screens. It's very easy to manage responsive designs with Stylex without developing separate CSS files.
+
+### Dynamic Styles with JavaScript
+
+Sometimes the styles should be dynamic, depending on a condition, like user interactions or state changes. In these cases, Stylex allows mixing JavaScript logic with style props.
+
+The following example shows a box whose height will change dynamically based on a slider value:
+
+```tsx
+const boxStyles = stylex.create({
+  box: {
+    backgroundColor: "lightblue",
+    transition: "height 0.3s",
+  },
+});
+
+function DynamicBox() {
+  const [height, setHeight] = React.useState(100);
+
+  return (
+    <div>
+      <input
+        type="range"
+        min="100"
+        max="300"
+        value={height}
+        onChange={(e) => setHeight(e.target.value)}
+      />
+      <div {...stylex.props(boxStyles.box)} style={{ height: `${height}px` }}>
+        Dynamic Box
+      </div>
+    </div>
+  );
+}
+```
+
+In this example, the value of `height` is dynamically updated based on user input, and the box smoothly resizes.
+
+### Theming with Custom CSS Variables
+
+We can also use Stylex's `defineVars` to define our own **CSS variables**, which makes theming so much easier. You define a theme—like dark or light mode—and apply it globally across your app.
+
+Here's how to define and use variables for theming:
+
+```tsx
+const themeVars = stylex.defineVars({
+  primaryColor: "#007bff",
+  backgroundColor: "#ffffff",
+});
+
+const themeStyles = stylex.create({
+  container: {
+    backgroundColor: themeVars.backgroundColor,
+    color: themeVars.primaryColor,
+  },
+});
+
+function ThemedComponent() {
+  return <div {...stylex.props(themeStyles.container)}>Themed Component</div>;
+}
+```
+
+Now, you can toggle the `themeVars` to apply dark mode by editing the value of the variables. This is super flexible when you need to handle global styles or theme changes.
 
 ## Summary
 
