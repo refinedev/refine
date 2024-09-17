@@ -433,9 +433,7 @@ render(<RefineAntdDemo />);
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    resource: "categories",
-  },
+  resource: "categories",
 });
 ```
 
@@ -448,10 +446,8 @@ import { useParsed } from "@refinedev/core";
 const { id } = useParsed();
 
 useForm({
-  refineCoreProps: {
-    resource: "custom-resource",
-    id,
-  },
+  resource: "custom-resource",
+  id,
 });
 ```
 
@@ -461,9 +457,7 @@ Or you can use the `setId` function to set the `id` value.
 import { useForm } from "@refinedev/antd";
 
 const { setId } = useForm({
-  refineCoreProps: {
-    resource: "custom-resource",
-  },
+  resource: "custom-resource",
 });
 
 setId("123");
@@ -481,11 +475,9 @@ It is useful when you want to `edit` or `clone` a `resource` from a different pa
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    action: "edit", // or clone
-    resource: "categories",
-    id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
-  },
+  action: "edit", // or clone
+  resource: "categories",
+  id: 1, // <BASE_URL_FROM_DATA_PROVIDER>/categories/1
 });
 ```
 
@@ -497,9 +489,7 @@ It can be set to `"show" | "edit" | "list" | "create"` or `false` to prevent the
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    redirect: false,
-  },
+  redirect: false,
 });
 ```
 
@@ -516,10 +506,8 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onMutationSuccess: (data, variables, context, isAutoSave) => {
-      console.log({ data, variables, context, isAutoSave });
-    },
+  onMutationSuccess: (data, variables, context, isAutoSave) => {
+    console.log({ data, variables, context, isAutoSave });
   },
 });
 ```
@@ -537,10 +525,8 @@ It receives the following parameters:
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onMutationError: (data, variables, context, isAutoSave) => {
-      console.log({ data, variables, context, isAutoSave });
-    },
+  onMutationError: (data, variables, context, isAutoSave) => {
+    console.log({ data, variables, context, isAutoSave });
   },
 });
 ```
@@ -556,9 +542,7 @@ By default it's invalidates following queries from the current `resource`:
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    invalidates: ["list", "many", "detail"],
-  },
+  invalidates: ["list", "many", "detail"],
 });
 ```
 
@@ -570,9 +554,7 @@ If you want to use a different `dataProvider` on all resource pages, you can use
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    dataProviderName: "second-data-provider",
-  },
+  dataProviderName: "second-data-provider",
 });
 ```
 
@@ -583,9 +565,7 @@ Each mode corresponds to a different type of user experience.
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
-  },
+  mutationMode: "undoable", // "pessimistic" | "optimistic" | "undoable",
 });
 ```
 
@@ -599,14 +579,12 @@ useForm({
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    successNotification: (data, values, resource) => {
-      return {
-        message: `Post Successfully created with ${data.title}`,
-        description: "Success with no errors",
-        type: "success",
-      };
-    },
+  successNotification: (data, values, resource) => {
+    return {
+      message: `Post Successfully created with ${data.title}`,
+      description: "Success with no errors",
+      type: "success",
+    };
   },
 });
 ```
@@ -619,16 +597,14 @@ useForm({
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    action: "create",
-    resource: "post",
-    errorNotification: (data, values, resource) => {
-      return {
-        message: `Something went wrong when deleting ${data.id}`,
-        description: "Error",
-        type: "error",
-      };
-    },
+  action: "create",
+  resource: "post",
+  errorNotification: (data, values, resource) => {
+    return {
+      message: `Something went wrong when deleting ${data.id}`,
+      description: "Error",
+      type: "error",
+    };
   },
 });
 ```
@@ -655,10 +631,8 @@ In the following example, we pass the `headers` property in the `meta` object to
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    meta: {
-      headers: { "x-meta-data": "true" },
-    },
+  meta: {
+    headers: { "x-meta-data": "true" },
   },
 });
 
@@ -687,10 +661,8 @@ In addition to the [`meta`](#meta) property, you can also pass the `queryMeta` p
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    queryMeta: {
-      querySpecificValue: "someValue",
-    },
+  queryMeta: {
+    querySpecificValue: "someValue",
   },
 });
 ```
@@ -703,10 +675,8 @@ In addition to the [`meta`](#meta) property, you can also pass the `mutationMeta
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    mutationMeta: {
-      mutationSpecificValue: "someValue",
-    },
+  mutationMeta: {
+    mutationSpecificValue: "someValue",
   },
 });
 ```
@@ -719,10 +689,8 @@ In the `edit` and `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    queryOptions: {
-      retry: 3,
-    },
+  queryOptions: {
+    retry: 3,
   },
 });
 ```
@@ -733,10 +701,8 @@ In the `create` and `clone` modes, Refine uses the [`useCreate`](/docs/data/hook
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    createMutationOptions: {
-      retry: 3,
-    },
+  createMutationOptions: {
+    retry: 3,
   },
 });
 ```
@@ -747,10 +713,8 @@ In the `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook 
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    updateMutationOptions: {
-      retry: 3,
-    },
+  updateMutationOptions: {
+    retry: 3,
   },
 });
 ```
@@ -763,9 +727,7 @@ It can be set globally in [`Refine config`](/docs/core/refine-component#warnwhen
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    warnWhenUnsavedChanges: true,
-  },
+  warnWhenUnsavedChanges: true,
 });
 ```
 
@@ -775,9 +737,7 @@ When it's true, `submitOnEnter` will submit the form when the enter key is press
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    submitOnEnter: true,
-  },
+  submitOnEnter: true,
 });
 ```
 
@@ -789,9 +749,7 @@ useForm({
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    liveMode: "auto",
-  },
+  liveMode: "auto",
 });
 ```
 
@@ -803,10 +761,8 @@ useForm({
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    onLiveEvent: (event) => {
-      console.log(event);
-    },
+  onLiveEvent: (event) => {
+    console.log(event);
   },
 });
 ```
@@ -826,13 +782,11 @@ Return `overtime` object from this hook. `elapsedTime` is the elapsed time in mi
 
 ```tsx
 const { overtime } = useForm({
-  refineCoreProps: {
-    //...
-    overtimeOptions: {
-      interval: 1000,
-      onInterval(elapsedInterval) {
-        console.log(elapsedInterval);
-      },
+  //...
+  overtimeOptions: {
+    interval: 1000,
+    onInterval(elapsedInterval) {
+      console.log(elapsedInterval);
     },
   },
 });
@@ -863,10 +817,8 @@ To enable the `autoSave` feature, set the `enabled` parameter to `true`. By defa
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    autoSave: {
-      enabled: true,
-    },
+  autoSave: {
+    enabled: true,
   },
 });
 ```
@@ -877,12 +829,10 @@ Set the debounce time for the `autoSave` prop. By default, it is `1000` millisec
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    autoSave: {
-      enabled: true,
-      // highlight-next-line
-      debounce: 2000,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    debounce: 2000,
   },
 });
 ```
@@ -893,18 +843,16 @@ If you want to modify the data before sending it to the server, you can use `onF
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    autoSave: {
-      enabled: true,
-      // highlight-start
-      onFinish: (values) => {
-        return {
-          foo: "bar",
-          ...values,
-        };
-      },
-      // highlight-end
+  autoSave: {
+    enabled: true,
+    // highlight-start
+    onFinish: (values) => {
+      return {
+        foo: "bar",
+        ...values,
+      };
     },
+    // highlight-end
   },
 });
 ```
@@ -915,12 +863,10 @@ This prop is useful when you want to invalidate the `list`, `many` and `detail` 
 
 ```tsx
 useForm({
-  refineCoreProps: {
-    autoSave: {
-      enabled: true,
-      // highlight-next-line
-      invalidateOnUnmount: true,
-    },
+  autoSave: {
+    enabled: true,
+    // highlight-next-line
+    invalidateOnUnmount: true,
   },
 });
 ```
@@ -1095,16 +1041,14 @@ const PostEdit = () => {
   const invalidate = useInvalidate();
 
   useForm({
-    refineCoreProps: {
-      // highlight-start
-      onMutationSuccess: (data, variables, context) => {
-        invalidate({
-          resource: "users",
-          invalidates: ["resourceAll"],
-        });
-      },
-      // highlight-end
+    // highlight-start
+    onMutationSuccess: (data, variables, context) => {
+      invalidate({
+        resource: "users",
+        invalidates: ["resourceAll"],
+      });
     },
+    // highlight-end
   });
 
   // ---

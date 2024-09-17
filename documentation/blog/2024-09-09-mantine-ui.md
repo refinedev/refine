@@ -4,15 +4,27 @@ description: Let's explore Mantine UI React Component Library.
 slug: mantine-ui-react
 authors: marvel_ken
 tags: [mantine, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-11-mantine-ui/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-11-mantine-ui/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on September 09, 2024, to add sections on Advanced Responsive Design, Built-in Accessibility Features, Testing Mantine Applications, and Mantine’s Customization and Theming Options.**
 
 ## Introduction
 
 [Mantine](https://mantine.dev) is a lightweight and easy-to-use library that provides a wide range of components and hooks for building high-performance web applications. It is built on top of React and TypeScript, making it a great choice for building modern web applications.
 
-Steps we'll take in this article: -[Setting Up Mantine UI](#setting-up-mantine-ui) -[Mantine UI Hooks](#mantine-ui-hooks) -[Why Mantine UI?](#why-mantine-ui) -[Mantine UI Components](#mantine-ui-components) -[Exploring the Use Case of Mantine Component](#exploring-the-use-case-of-mantine-component)
+Steps we'll be taking in this article:
+
+- [Setting Up Mantine UI](#setting-up-mantine-ui)
+- [Mantine UI Hooks](#mantine-ui-hooks)
+- [Why Mantine UI?](#why-mantine-ui)
+- [Mantine UI Components](#mantine-ui-components)
+- [Exploring the Use Case of Mantine Component](#exploring-the-use-case-of-mantine-component)
+- [Responsive Design Made Easy with Mantine](#responsive-design-made-easy-with-mantine)
+- [Accessibility Features in Mantine UI\*\*](#accessibility-features-in-mantine-ui)
+- [Bonus: Testing Mantine Applications with Jest and React Testing Library](#bonus-testing-mantine-applications-with-jest-and-react-testing-library)
+- [Theming and Customization](#theming-and-customization)
 
 ## Setting Up Mantine UI
 
@@ -493,6 +505,79 @@ export default function App() {
 
 <br/>
 
+## Responsive Design Made Easy with Mantine
+
+I wanted to share some insights on how we can use Mantine to make our applications more responsive and mobile-friendly. Mantine comes with built-in tools that help us handle different screen sizes easily, ensuring our applications look great on all devices.
+
+Here are a few key features Mantine offers for responsive design:
+
+### Grid System
+
+Mantine’s grid system makes it simple to create responsive layouts. With the `Col` and `Grid` components, we can easily control how many columns a component should span at different screen sizes.
+
+```tsx
+<Grid>
+  <Col span={12} md={6} lg={4}>
+    <div>Content 1</div>
+  </Col>
+  <Col span={12} md={6} lg={4}>
+    <div>Content 2</div>
+  </Col>
+  <Col span={12} md={12} lg={4}>
+    <div>Content 3</div>
+  </Col>
+</Grid>
+```
+
+Here, each column adjusts based on the screen size—taking up the full width on small screens, half width on medium screens, and one-third width on larger screens.
+
+### Media Queries
+
+We can also use media queries directly in Mantine to adjust styles based on the viewport size. This allows us to make text or other elements responsive with minimal effort.
+
+```tsx
+const useStyles = createStyles((theme) => ({
+  responsiveText: {
+    fontSize: theme.fontSizes.sm,
+
+    [theme.fn.largerThan("md")]: {
+      fontSize: theme.fontSizes.lg,
+    },
+  },
+}));
+
+function ResponsiveText() {
+  const { classes } = useStyles();
+  return <div className={classes.responsiveText}>This text is responsive!</div>;
+}
+```
+
+### Flexbox Utilities
+
+Mantine also provides helpful flexbox utilities, which make it easy to build flexible layouts that adapt to different screen sizes.
+
+```tsx
+<Flex justify="space-between" wrap="wrap">
+  <Button>Button 1</Button>
+  <Button>Button 2</Button>
+  <Button>Button 3</Button>
+</Flex>
+```
+
+In this example, the buttons will automatically wrap on smaller screens.
+
+### Responsive Typography and Spacing
+
+Mantine allows us to adjust typography and spacing based on screen size, ensuring our content is readable and looks good across all devices.
+
+```tsx
+<Text size="sm" md={{ size: "lg" }}>
+  This text will be small on mobile and large on desktops.
+</Text>
+```
+
+By using Mantine’s built-in responsive design features, we can easily create layouts that work well on both mobile and desktop devices.
+
 **Notifications**
 Mantine's notifications and modals provide user feedback and interactive dialogues. Notifications offer informative or alerting messages to users, while modals and popovers facilitate interactive tasks, ensuring a seamless user experience. Let’s look at how this is implemented below:
 
@@ -580,7 +665,171 @@ export default function App() {
 
 <br/>
 
-**Theming and Customization**
+## Accessibility Features in Mantine UI\*\*
+
+I wanted to share some insights on Mantine’s built-in accessibility features that can really help us make our application more inclusive.
+
+Mantine ensures its components are accessible by default and adhere to **WCAG** guidelines. For example, components like buttons, forms, and modals come with pre-configured ARIA attributes, making them easy for screen readers to interpret. This means we don’t have to manually add ARIA roles and attributes to most interactive elements.
+
+For instance, the `Modal` and `TextInput` components are automatically configured with the appropriate roles and labels, simplifying the process of making the UI accessible to all users:
+
+```tsx
+<Modal
+  opened={opened}
+  onClose={close}
+  title="Subscribe"
+  aria-labelledby="modal-title"
+>
+  <h1 id="modal-title">Join Our Newsletter</h1>
+  <TextInput aria-label="Email address" placeholder="Enter your email" />
+</Modal>
+```
+
+## Bonus: Testing Mantine Applications with Jest and React Testing Library
+
+I wanted to share some best practices for testing Mantine components using **Jest** and **React Testing Library**. Writing tests for Mantine components ensures our UI behaves as expected and helps catch issues early.
+
+### Unit Testing with Jest
+
+You can write unit tests for individual Mantine components like buttons, modals, or forms. Jest works seamlessly with Mantine.
+
+```jsx
+import { render, screen } from "@testing-library/react";
+import { Button } from "@mantine/core";
+
+test("renders Mantine Button with correct label", () => {
+  render(<Button>Click me</Button>);
+  const buttonElement = screen.getByText(/Click me/i);
+  expect(buttonElement).toBeInTheDocument();
+});
+```
+
+### Testing User Interactions
+
+With React Testing Library, you can simulate user actions like button clicks and form submissions, which is helpful for testing interactive Mantine components.
+
+```jsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "@mantine/core";
+
+test("button click triggers event handler", () => {
+  const handleClick = jest.fn();
+  render(<Button onClick={handleClick}>Click me</Button>);
+
+  const buttonElement = screen.getByText(/Click me/i);
+  fireEvent.click(buttonElement);
+
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
+```
+
+### Testing Forms and Validation
+
+Mantine’s form components can be tested for validation behavior by simulating form submissions and input changes.
+
+```jsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { TextInput, Button } from "@mantine/core";
+import { useForm } from "@mantine/form";
+
+function TestForm() {
+  const form = useForm({
+    initialValues: { email: "" },
+    validate: {
+      email: (value) => (/\S+@\S+/.test(value) ? null : "Invalid email"),
+    },
+  });
+  return (
+    <form onSubmit={form.onSubmit(() => {})}>
+      <TextInput label="Email" {...form.getInputProps("email")} />
+      <Button type="submit">Submit</Button>
+    </form>
+  );
+}
+
+test("form shows validation error for invalid email", () => {
+  render(<TestForm />);
+  fireEvent.change(screen.getByLabelText(/Email/i), {
+    target: { value: "invalid-email" },
+  });
+  fireEvent.click(screen.getByText(/Submit/i));
+  expect(screen.getByText(/Invalid email/i)).toBeInTheDocument();
+});
+```
+
+### Snapshot Testing
+
+Snapshot tests ensure the UI doesn’t change unexpectedly. You can capture the rendered output of Mantine components and compare it against future changes.
+
+```jsx
+import { render } from "@testing-library/react";
+import { Button } from "@mantine/core";
+
+test("Button matches snapshot", () => {
+  const { asFragment } = render(<Button>Snapshot Button</Button>);
+  expect(asFragment()).toMatchSnapshot();
+});
+```
+
+### Testing Modals and Popovers
+
+Modals and popovers can be tested for conditional rendering by checking if they open and close correctly.
+
+```jsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Modal, Button } from "@mantine/core";
+import { useState } from "react";
+
+function ModalExample() {
+  const [opened, setOpened] = useState(false);
+  return (
+    <>
+      <Button onClick={() => setOpened(true)}>Open Modal</Button>
+      <Modal
+        opened={opened}
+        onClose={() => setOpened(false)}
+        title="Test Modal"
+      >
+        Modal content
+      </Modal>
+    </>
+  );
+}
+
+test("modal opens and closes correctly", () => {
+  render(<ModalExample />);
+  fireEvent.click(screen.getByText(/Open Modal/i));
+  expect(screen.getByText(/Modal content/i)).toBeInTheDocument();
+  fireEvent.click(screen.getByLabelText(/Close modal/i));
+  expect(screen.queryByText(/Modal content/i)).not.toBeInTheDocument();
+});
+```
+
+### Mocking Mantine Hooks
+
+If you're using Mantine hooks like `useForm` or `useClipboard`, you can mock them to test their behavior.
+
+```jsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { useClipboard } from "@mantine/hooks";
+
+jest.mock("@mantine/hooks", () => ({
+  useClipboard: jest.fn(),
+}));
+
+test("useClipboard hook is called", () => {
+  const copy = jest.fn();
+  useClipboard.mockReturnValue({ copy, copied: false });
+
+  render(<button onClick={() => copy("text")}>Copy text</button>);
+  fireEvent.click(screen.getByText(/Copy text/i));
+
+  expect(copy).toHaveBeenCalledWith("text");
+});
+```
+
+## Theming and Customization
+
 Mantine allows extensive theming and customization, allowing developers to align the UI with the brand identity. The `MantineProvider` component wraps the entire application, providing a context for theme customization. Themes include color schemes, typography, spacing, and other design elements, enabling a consistent look and feel across components.
 
 ```tsx
@@ -596,3 +845,7 @@ function App() {
   );
 }
 ```
+
+## Conclusion
+
+Mantine UI is one of the popular tools to help in building modern React applications. It's comprised of many pre-built components, helpful hooks, and easy-to-customize themes. With this, development becomes faster and more straightforward. Whether you are dealing with responsive design, state management, or need to improve user interaction, Mantine will definitely help you create great and easy-to-use interfaces without a lot of effort.
