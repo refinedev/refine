@@ -9,10 +9,10 @@ export default function NotificationMantine() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@mantine/notifications": "^7.5.1",
+        "@mantine/notifications": "^7.12.2",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^7.5.1",
-        "@mantine/hooks": "^7.5.1",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
         "@refinedev/mantine": "^2.28.21",
       }}
       startRoute="/"
