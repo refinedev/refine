@@ -1,7 +1,6 @@
 // @see https://github.com/thymikee/jest-preset-angular/issues/336#issuecomment-1536232102
 // @see https://github.com/orgs/mantinedev/discussions/467
 const attributesToClean: { [key: string]: RegExp[] } = {
-  class: [/^m-.*$/, /^css-.*$/],
   id: [/^mantine-.*$/],
   for: [/^mantine-.*$/],
   "aria-describedby": [/^mantine-.*$/],

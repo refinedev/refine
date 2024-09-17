@@ -1,9 +1,8 @@
 import React from "react";
 import { AppShell } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
 
 import {
-  RefineThemedLayoutV2Props,
+  type RefineThemedLayoutV2Props,
   ThemedLayoutContextProvider,
 } from "@refinedev/mantine";
 

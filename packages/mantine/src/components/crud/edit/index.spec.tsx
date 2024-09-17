@@ -45,7 +45,7 @@ const renderEdit = (
 };
 
 describe("Edit", () => {
-  crudEditTests.bind(this)(Edit);
+  crudEditTests.bind(this)(Edit, TestWrapper);
 
   it("should render optional mutationMode with mutationModeProp prop", async () => {
     const container = renderEdit(<Edit mutationMode="undoable" />);

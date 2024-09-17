@@ -52,8 +52,6 @@ function App({ Component, pageProps }: AppProps) {
     return (
         <MantineProvider
             theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
         >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
             <NotificationsProvider position="top-right">

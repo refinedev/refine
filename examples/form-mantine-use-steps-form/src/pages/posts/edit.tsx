@@ -9,7 +9,7 @@ import {
   Space,
 } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import { DatePicker } from "@mantine/dates";
+import { DatePickerInput } from "@mantine/dates";
 import dayjs from "dayjs";
 
 export const PostEdit: React.FC = () => {
@@ -101,7 +101,7 @@ export const PostEdit: React.FC = () => {
             ]}
           />
 
-          <DatePicker
+          <DatePickerInput
             id="createdAt"
             placeholder="CreatedAt"
             {...getInputProps("createdAt")}

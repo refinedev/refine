@@ -7,91 +7,442 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
   >
     @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
   </style>
-  <div />
-  <div
-    class="m_4451eb3a mantine-Center-root"
-    style="min-height: 300px;"
-  >
+  <div>
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      class="m_66836ed3 mantine-Alert-root"
-      id=""
-      role="alert"
-      style="--alert-bg: var(--mantine-color-red-light); --alert-color: var(--mantine-color-red-light-color); --alert-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+      class="m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
     >
       <div
-        class="m_a5d60502 mantine-Alert-wrapper"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: space-between; --group-wrap: wrap;"
       >
         <div
-          class="m_667f2a6a mantine-Alert-icon"
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
-          <svg
-            class="tabler-icon tabler-icon-alert-circle "
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          <h3
+            class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
+            data-order="3"
+            style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
           >
-            <path
-              d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"
-            />
-            <path
-              d="M12 8v4"
-            />
-            <path
-              d="M12 16h.01"
-            />
-          </svg>
+            Posts
+          </h3>
         </div>
         <div
-          class="m_667c2793 mantine-Alert-body"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+        />
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class="m_d57069b5 mantine-ScrollArea-root"
+          style="--sa-corner-width: 0px; --sa-corner-height: 0px;"
         >
           <div
-            class="m_6a03f287 mantine-Alert-title"
+            class="m_c0783ff9 mantine-ScrollArea-viewport"
+            data-scrollbars="xy"
+            style="overflow-x: scroll; overflow-y: scroll;"
           >
-            <span
-              class="m_698f4f23 mantine-Alert-label"
-              id=""
+            <div
+              style="min-width: 100%; display: table;"
             >
-              Error
-            </span>
-          </div>
-          <div
-            class="m_7fa78076 mantine-Alert-message"
-            id=""
-          >
-            <div>
-              <p>
-                An error occured while rendering the generated component.You can check the generated code from the below "Show Code" button and fix the error manually.
-              </p>
-              
-                                    
-              <p>
-                If you think this is a bug, please report the issue at 
-                <a
-                  href="https://github.com/refinedev/refine/issues"
-                  rel="noopener noreferrer"
-                  target="_blank"
+              <table
+                class="m_b23fa0ef mantine-Table-table"
+                style="--table-vertical-spacing: calc(0.4375rem * var(--mantine-scale));"
+              >
+                <thead
+                  class="m_b242d975 mantine-Table-thead"
                 >
-                  https://github.com/refinedev/refine/issues
-                </a>
-              </p>
-              
-                                    
-              <p>
-                Exception:
-              </p>
-              
-                                    
-              <code>
-                SyntaxError: Unexpected token (9:1)
-              </code>
+                  <tr
+                    class="m_4e7aa4fd mantine-Table-tr"
+                    data-hover="true"
+                    data-with-row-border="true"
+                  >
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Id
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Title
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Slug
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Content
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Hit
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Category
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      User
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Status
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Status Color
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Created At
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Published At
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Image
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Tags
+                    </th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
+                      Language
+                    </th>
+                  </tr>
+                </thead>
+                <tbody
+                  class="m_b2404537 mantine-Table-tbody"
+                >
+                  <tr
+                    class="m_4e7aa4fd mantine-Table-tr"
+                    data-hover="true"
+                    data-with-row-border="true"
+                  >
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      11
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      Nobis exercitationem officia quia est.
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      provident-culpa-facere
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p>
+                        Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      920557
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      Numquam Saepe Illo
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      Eriberto Leannon
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      draft
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      orange
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        04/02/2022
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        08/10/2021
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <div
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+                      >
+                        <img
+                          class="m_9e117634 mantine-Image-root"
+                          src="http://loremflickr.com/640/480/abstract"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <div
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+                      >
+                        <div
+                          class="m_f59ffda3 mantine-Chip-root"
+                        >
+                          <input
+                            class="m_bde07329 mantine-Chip-input"
+                            id=""
+                            type="checkbox"
+                            value=""
+                          />
+                          <label
+                            class="m_fa109255 m_be049a53 mantine-Chip-label"
+                            for=""
+                          >
+                            <span>
+                              Nobis Et Ut
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      2
+                    </td>
+                  </tr>
+                  <tr
+                    class="m_4e7aa4fd mantine-Table-tr"
+                    data-hover="true"
+                    data-with-row-border="true"
+                  >
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      21
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      Eaque in nesciunt.
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      quod-quos-commodi
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p>
+                        Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      175149
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      Sit Natus Voluptatibus
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      Tressie Reichel
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      published
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      lime
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        09/24/2022
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
+                      >
+                        09/01/2021
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <div
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+                      >
+                        <img
+                          class="m_9e117634 mantine-Image-root"
+                          src="http://loremflickr.com/640/480/abstract"
+                        />
+                      </div>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <div
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+                      >
+                        <div
+                          class="m_f59ffda3 mantine-Chip-root"
+                        >
+                          <input
+                            class="m_bde07329 mantine-Chip-input"
+                            id=""
+                            type="checkbox"
+                            value=""
+                          />
+                          <label
+                            class="m_fa109255 m_be049a53 mantine-Chip-label"
+                            for=""
+                          >
+                            <span>
+                              Error Eos Et
+                            </span>
+                          </label>
+                        </div>
+                        <div
+                          class="m_f59ffda3 mantine-Chip-root"
+                        >
+                          <input
+                            class="m_bde07329 mantine-Chip-input"
+                            id=""
+                            type="checkbox"
+                            value=""
+                          />
+                          <label
+                            class="m_fa109255 m_be049a53 mantine-Chip-label"
+                            for=""
+                          >
+                            <span>
+                              Nobis Et Ut
+                            </span>
+                          </label>
+                        </div>
+                      </div>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      2
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: right; --group-wrap: wrap;"
+        >
+          <div
+            class="m_4addd315 mantine-Pagination-root"
+          >
+            <div
+              class="m_4081bf90 mantine-Group-root"
+              style="--group-gap: calc(0.5rem * var(--mantine-scale)); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+            >
+              <button
+                class="mantine-focus-auto m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
+                data-disabled="true"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  class="mantine-rotate-rtl"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.219 8l3.3 3.3-.943.943L5.333 8l4.243-4.243.943.943-3.3 3.3z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+              <button
+                aria-current="page"
+                class="mantine-focus-auto mantine-active m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
+                data-active="true"
+                data-with-padding="true"
+                type="button"
+              >
+                1
+              </button>
+              <button
+                class="mantine-focus-auto m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
+                data-disabled="true"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  class="mantine-rotate-rtl"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.781 8l-3.3-3.3.943-.943L10.667 8l-4.243 4.243-.943-.943 3.3-3.3z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
@@ -268,6 +619,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 ;
               </span>
               <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
               >
@@ -323,6 +685,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               >
                 ;
               </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -395,6 +768,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               >
                 ;
               </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -526,6 +910,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 ;
               </span>
               <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
               >
@@ -544,8 +939,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -560,8 +963,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -576,8 +987,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -592,8 +1011,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -608,8 +1035,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -624,8 +1059,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -640,8 +1083,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -649,10 +1100,22 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 TagField
               </span>
               <span
-                class="token imports"
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
               >
-                 
+                ,
               </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -687,6 +1150,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               >
                 ;
               </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -769,52 +1243,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;&lt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;&lt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;&lt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token constant"
-                style="color: rgb(100, 102, 149);"
-              >
-                HEAD
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -827,185 +1255,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                    
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                export
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                const
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                PostList
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                React
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                .
-              </span>
-              <span
-                class="token constant"
-                style="color: rgb(100, 102, 149);"
-              >
-                FC
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                IResourceComponentsProps
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token arrow operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =&gt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token plain"
               />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              />
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ===
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ===
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-                style="display: inline-block;"
-              >
-                
-
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                    
-              </span>
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -1094,71 +1344,8 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
               >
-                &gt;&gt;&gt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;&gt;&gt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 upstream
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                /
-              </span>
-              <span
-                class="token plain"
-              >
-                releases
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                /
-              </span>
-              <span
-                class="token plain"
-              >
-                april
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        
+                    
               </span>
               <span
                 class="token keyword"
@@ -1252,6 +1439,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 (
               </span>
               <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                        
+              </span>
+              <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -1298,16 +1498,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               >
                             
               </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -1325,7 +1515,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -1361,7 +1551,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -1397,7 +1587,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -1433,23 +1623,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -1468,25 +1654,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
                 {
               </span>
               <span
@@ -1500,7 +1667,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -1536,7 +1703,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -1572,7 +1739,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -1608,23 +1775,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -1643,25 +1806,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
                 {
               </span>
               <span
@@ -1675,7 +1819,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -1711,7 +1855,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -1747,7 +1891,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -1783,23 +1927,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -1818,25 +1958,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
                 {
               </span>
               <span
@@ -1850,7 +1971,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -1886,7 +2007,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -1922,7 +2043,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -1958,7 +2079,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -2059,6 +2180,25 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                        
+              </span>
+              <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -2073,8 +2213,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                            
               </span>
               <span
                 class="token tag attr-name"
@@ -2093,12 +2242,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 {
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
               </span>
               <span
                 class="token tag script language-javascript generic-function function"
@@ -2129,12 +2272,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 (
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
               </span>
               <span
                 class="token tag script language-javascript punctuation"
@@ -2215,12 +2352,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 "..."
               </span>
               <span
-                class="token tag script language-javascript"
-                style="color: rgb(78, 201, 176);"
-              >
-                 
-              </span>
-              <span
                 class="token tag script language-javascript punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -2229,8 +2360,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                        
               </span>
               <span
                 class="token tag punctuation"
@@ -2249,13 +2389,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                                    
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                }
+                )
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
               </span>
               <span
                 class="token plain"
@@ -2275,6 +2421,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -2293,6 +2445,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
                 ,
               </span>
               <span
@@ -2306,7 +2464,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -2325,7 +2483,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -2361,7 +2519,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -2397,7 +2555,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -2433,36 +2591,13 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                            
               </span>
               <span
                 class="token punctuation"
@@ -2481,7 +2616,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -2500,7 +2635,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -2536,7 +2671,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -2572,7 +2707,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -2608,7 +2743,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -2706,7 +2841,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -2785,7 +2920,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            categoryData
+                                        categoryData
               </span>
               <span
                 class="token operator"
@@ -2820,7 +2955,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token punctuation"
@@ -2857,7 +2992,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -2932,7 +3067,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
@@ -3047,7 +3182,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token punctuation"
@@ -3084,7 +3219,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -3142,7 +3277,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token punctuation"
@@ -3155,25 +3290,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
               </span>
               <span
                 class="token plain"
@@ -3192,6 +3308,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
                 ,
               </span>
               <span
@@ -3205,7 +3327,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -3224,7 +3346,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -3260,7 +3382,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -3296,7 +3418,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -3332,7 +3454,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -3430,7 +3552,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -3509,7 +3631,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            userData
+                                        userData
               </span>
               <span
                 class="token operator"
@@ -3544,7 +3666,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token punctuation"
@@ -3581,7 +3703,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -3656,7 +3778,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
@@ -3771,7 +3893,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token punctuation"
@@ -3808,7 +3930,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -3819,7 +3941,26 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 user
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                        user
               </span>
               <span
                 class="token operator"
@@ -3894,12 +4035,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 "Loading..."
               </span>
               <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
                 class="token plain"
               />
             </div>
@@ -3916,13 +4051,13 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                }
+                )
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                ,
+                ;
               </span>
               <span
                 class="token plain"
@@ -3942,6 +4077,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -3960,6 +4101,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
                 ,
               </span>
               <span
@@ -3973,7 +4120,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -3992,7 +4139,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -4028,7 +4175,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -4064,7 +4211,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -4100,23 +4247,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -4135,25 +4278,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
                 {
               </span>
               <span
@@ -4167,7 +4291,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -4203,7 +4327,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -4239,7 +4363,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -4275,23 +4399,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
               </span>
               <span
                 class="token plain"
@@ -4310,25 +4430,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
                 {
               </span>
               <span
@@ -4342,7 +4443,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -4378,7 +4479,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -4414,7 +4515,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -4450,7 +4551,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -4641,6 +4742,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 /&gt;
               </span>
               <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
                 class="token plain"
               />
             </div>
@@ -4660,23 +4767,10 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 }
               </span>
               <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                }
+                ,
               </span>
               <span
                 class="token plain"
@@ -4695,6 +4789,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
                 ,
               </span>
               <span
@@ -4708,7 +4808,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -4727,7 +4827,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -4763,7 +4863,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -4799,7 +4899,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -4835,7 +4935,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -5026,6 +5126,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 /&gt;
               </span>
               <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
                 class="token plain"
               />
             </div>
@@ -5045,23 +5151,10 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 }
               </span>
               <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                }
+                ,
               </span>
               <span
                 class="token plain"
@@ -5080,6 +5173,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
                 ,
               </span>
               <span
@@ -5093,7 +5192,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -5112,7 +5211,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -5148,7 +5247,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -5184,7 +5283,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -5219,8 +5318,10 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
+                style="display: inline-block;"
               >
-                                    
+                
+
               </span>
             </div>
             <div
@@ -5230,7 +5331,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -5317,7 +5418,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
+                                    
               </span>
               <span
                 class="token keyword"
@@ -5347,7 +5448,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                        
               </span>
               <span
                 class="token keyword"
@@ -5377,7 +5478,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                
+                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -5444,7 +5545,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                    
+                                                
               </span>
               <span
                 class="token punctuation"
@@ -5579,7 +5680,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                        
+                                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -5596,8 +5697,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                                        
               </span>
               <span
                 class="token tag attr-name"
@@ -5644,8 +5754,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                                        
               </span>
               <span
                 class="token tag attr-name"
@@ -5680,8 +5799,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                                        
               </span>
               <span
                 class="token tag attr-name"
@@ -5752,8 +5880,17 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -5772,7 +5909,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                    
+                                                
               </span>
               <span
                 class="token punctuation"
@@ -5803,7 +5940,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                
+                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -5834,13 +5971,19 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 )
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
               </span>
               <span
                 class="token plain"
@@ -5853,7 +5996,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                         
+                                    
               </span>
               <span
                 class="token punctuation"
@@ -5907,8 +6050,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 
+                                        
               </span>
               <span
                 class="token keyword"
@@ -5932,17 +6083,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 ;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
               </span>
               <span
                 class="token plain"
@@ -5976,34 +6116,11 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               >
                                 
               </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                            
               </span>
               <span
                 class="token punctuation"
@@ -6022,7 +6139,32 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            
               </span>
               <span
                 class="token punctuation"
@@ -6041,7 +6183,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -6077,7 +6219,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -6113,7 +6255,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -6149,7 +6291,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                                
               </span>
               <span
                 class="token function-variable function"
@@ -6664,6 +6806,15 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               >
                  item
               </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
             </div>
             <div
               class="token-line"
@@ -6710,6 +6861,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 )
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
               </span>
               <span
                 class="token plain"
@@ -7115,6 +7272,12 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 )
               </span>
               <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
                 class="token plain"
               />
             </div>
@@ -7132,48 +7295,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 }
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                            
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                            
               </span>
               <span
                 class="token punctuation"
@@ -7192,7 +7313,32 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            
               </span>
               <span
                 class="token punctuation"
@@ -7211,7 +7357,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    id
+                                id
               </span>
               <span
                 class="token operator"
@@ -7247,7 +7393,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    accessorKey
+                                accessorKey
               </span>
               <span
                 class="token operator"
@@ -7283,7 +7429,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    header
+                                header
               </span>
               <span
                 class="token operator"
@@ -7319,17 +7465,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                            
               </span>
               <span
                 class="token punctuation"
@@ -7338,18 +7474,14 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 }
               </span>
               <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
               <span
                 class="token plain"
-              >
-                            
-              </span>
+              />
             </div>
             <div
               class="token-line"
@@ -7374,8 +7506,16 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 
+                        
               </span>
               <span
                 class="token punctuation"
@@ -7388,6 +7528,25 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 ]
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                    
               </span>
               <span
                 class="token punctuation"
@@ -7424,7 +7583,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token keyword"
@@ -7454,7 +7613,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            getHeaderGroups
+                        getHeaderGroups
               </span>
               <span
                 class="token punctuation"
@@ -7473,7 +7632,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            getRowModel
+                        getRowModel
               </span>
               <span
                 class="token punctuation"
@@ -7492,7 +7651,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            setOptions
+                        setOptions
               </span>
               <span
                 class="token punctuation"
@@ -7511,7 +7670,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            refineCore
+                        refineCore
               </span>
               <span
                 class="token operator"
@@ -7541,7 +7700,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                setCurrent
+                            setCurrent
               </span>
               <span
                 class="token punctuation"
@@ -7560,7 +7719,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                pageCount
+                            pageCount
               </span>
               <span
                 class="token punctuation"
@@ -7579,7 +7738,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                current
+                            current
               </span>
               <span
                 class="token punctuation"
@@ -7598,7 +7757,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                tableQueryResult
+                            tableQueryResult
               </span>
               <span
                 class="token operator"
@@ -7656,7 +7815,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
+                        
               </span>
               <span
                 class="token punctuation"
@@ -7681,7 +7840,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token punctuation"
@@ -7734,7 +7893,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            columns
+                        columns
               </span>
               <span
                 class="token punctuation"
@@ -7753,17 +7912,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        
+                    
               </span>
               <span
                 class="token punctuation"
@@ -7806,17 +7955,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token keyword"
@@ -7870,16 +8009,8 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                                
+                 
               </span>
               <span
                 class="token function"
@@ -7910,7 +8041,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    resource
+                        resource
               </span>
               <span
                 class="token operator"
@@ -7946,7 +8077,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    ids
+                        ids
               </span>
               <span
                 class="token operator"
@@ -8094,7 +8225,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    queryOptions
+                        queryOptions
               </span>
               <span
                 class="token operator"
@@ -8124,7 +8255,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        enabled
+                            enabled
               </span>
               <span
                 class="token operator"
@@ -8182,7 +8313,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                        
               </span>
               <span
                 class="token punctuation"
@@ -8207,17 +8338,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token punctuation"
@@ -8247,8 +8368,10 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
+                style="display: inline-block;"
               >
-                                
+                
+
               </span>
             </div>
             <div
@@ -8258,7 +8381,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                    
               </span>
               <span
                 class="token keyword"
@@ -8312,16 +8435,8 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                                
+                 
               </span>
               <span
                 class="token function"
@@ -8352,7 +8467,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    resource
+                        resource
               </span>
               <span
                 class="token operator"
@@ -8388,7 +8503,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    ids
+                        ids
               </span>
               <span
                 class="token operator"
@@ -8536,7 +8651,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    queryOptions
+                        queryOptions
               </span>
               <span
                 class="token operator"
@@ -8566,7 +8681,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        enabled
+                            enabled
               </span>
               <span
                 class="token operator"
@@ -8624,7 +8739,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                        
               </span>
               <span
                 class="token punctuation"
@@ -8649,17 +8764,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token punctuation"
@@ -8689,8 +8794,10 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
+                style="display: inline-block;"
               >
-                                
+                
+
               </span>
             </div>
             <div
@@ -8700,7 +8807,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                    
               </span>
               <span
                 class="token keyword"
@@ -8754,16 +8861,8 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                                
+                 
               </span>
               <span
                 class="token function"
@@ -8794,7 +8893,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    resource
+                        resource
               </span>
               <span
                 class="token operator"
@@ -8830,7 +8929,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    ids
+                        ids
               </span>
               <span
                 class="token operator"
@@ -9026,7 +9125,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    queryOptions
+                        queryOptions
               </span>
               <span
                 class="token operator"
@@ -9056,7 +9155,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        enabled
+                            enabled
               </span>
               <span
                 class="token operator"
@@ -9114,7 +9213,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
+                        
               </span>
               <span
                 class="token punctuation"
@@ -9139,17 +9238,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token punctuation"
@@ -9179,16 +9268,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                                
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -9202,7 +9281,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token function"
@@ -9272,7 +9351,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
+                        
               </span>
               <span
                 class="token spread operator"
@@ -9302,7 +9381,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            meta
+                        meta
               </span>
               <span
                 class="token operator"
@@ -9332,7 +9411,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                            
               </span>
               <span
                 class="token spread operator"
@@ -9373,7 +9452,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                categoryData
+                            categoryData
               </span>
               <span
                 class="token punctuation"
@@ -9383,20 +9462,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              >
-                 userData
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              >
-                 tagsData
-              </span>
+              />
             </div>
             <div
               class="token-line"
@@ -9405,7 +9471,45 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
+                            userData
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            tagsData
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                        
               </span>
               <span
                 class="token punctuation"
@@ -9430,7 +9534,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token punctuation"
@@ -9479,7 +9583,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token keyword"
@@ -9509,7 +9613,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
+                        
               </span>
               <span
                 class="token tag punctuation"
@@ -9540,7 +9644,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -9571,7 +9675,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                    
+                                
               </span>
               <span
                 class="token tag punctuation"
@@ -9614,7 +9718,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        
+                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -9645,7 +9749,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
@@ -9739,7 +9843,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                
+                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -9818,7 +9922,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                    
+                                                
               </span>
               <span
                 class="token punctuation"
@@ -9910,7 +10014,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                        
+                                                    
               </span>
               <span
                 class="token keyword"
@@ -9940,7 +10044,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                            
+                                                        
               </span>
               <span
                 class="token tag punctuation"
@@ -10019,7 +10123,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                                
+                                                            
               </span>
               <span
                 class="token punctuation"
@@ -10062,17 +10166,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token plain"
               />
             </div>
             <div
@@ -10082,7 +10175,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                    
+                                                                
               </span>
               <span
                 class="token function"
@@ -10107,7 +10200,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                        header
+                                                                    header
               </span>
               <span
                 class="token punctuation"
@@ -10119,19 +10212,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token property-access"
               >
                 column
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                                                            
               </span>
               <span
                 class="token punctuation"
@@ -10155,7 +10235,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                            
+                                                                        
               </span>
               <span
                 class="token punctuation"
@@ -10185,7 +10265,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                        header
+                                                                    header
               </span>
               <span
                 class="token punctuation"
@@ -10228,25 +10308,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                    
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
                                                                 
               </span>
               <span
@@ -10272,7 +10333,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                            
+                                                        
               </span>
               <span
                 class="token tag punctuation"
@@ -10303,7 +10364,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                        
+                                                    
               </span>
               <span
                 class="token punctuation"
@@ -10328,7 +10389,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                    
+                                                
               </span>
               <span
                 class="token punctuation"
@@ -10359,7 +10420,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                
+                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -10390,7 +10451,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
@@ -10421,7 +10482,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        
+                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -10452,7 +10513,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        
+                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -10483,7 +10544,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
@@ -10588,7 +10649,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                
+                                            
               </span>
               <span
                 class="token keyword"
@@ -10618,7 +10679,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                    
+                                                
               </span>
               <span
                 class="token tag punctuation"
@@ -10697,7 +10758,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                        
+                                                    
               </span>
               <span
                 class="token punctuation"
@@ -10802,7 +10863,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                            
+                                                        
               </span>
               <span
                 class="token keyword"
@@ -10832,7 +10893,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                
+                                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -10911,7 +10972,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                                    
+                                                                
               </span>
               <span
                 class="token punctuation"
@@ -10942,7 +11003,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                        cell
+                                                                    cell
               </span>
               <span
                 class="token punctuation"
@@ -10994,7 +11055,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                        cell
+                                                                    cell
               </span>
               <span
                 class="token punctuation"
@@ -11037,7 +11098,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                                    
+                                                                
               </span>
               <span
                 class="token punctuation"
@@ -11062,7 +11123,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                                
+                                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -11093,7 +11154,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                            
+                                                        
               </span>
               <span
                 class="token punctuation"
@@ -11118,7 +11179,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                        
+                                                    
               </span>
               <span
                 class="token punctuation"
@@ -11149,7 +11210,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                                    
+                                                
               </span>
               <span
                 class="token tag punctuation"
@@ -11180,7 +11241,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                
+                                            
               </span>
               <span
                 class="token punctuation"
@@ -11205,7 +11266,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
+                                        
               </span>
               <span
                 class="token punctuation"
@@ -11236,7 +11297,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                        
+                                    
               </span>
               <span
                 class="token tag punctuation"
@@ -11267,7 +11328,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                    
+                                
               </span>
               <span
                 class="token tag punctuation"
@@ -11298,7 +11359,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -11341,7 +11402,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -11358,17 +11419,8 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
               >
-                                  
+                 
               </span>
               <span
                 class="token tag attr-name"
@@ -11403,17 +11455,8 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
               >
-                                  
+                 
               </span>
               <span
                 class="token tag attr-name"
@@ -11446,21 +11489,6 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 "
               </span>
               <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                                
-              </span>
-              <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -11477,7 +11505,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                  
+                                
               </span>
               <span
                 class="token tag punctuation"
@@ -11504,7 +11532,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                      
+                                    
               </span>
               <span
                 class="token tag attr-name"
@@ -11549,7 +11577,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                      
+                                    
               </span>
               <span
                 class="token tag attr-name"
@@ -11594,7 +11622,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                      
+                                    
               </span>
               <span
                 class="token tag attr-name"
@@ -11639,7 +11667,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                  
+                                
               </span>
               <span
                 class="token tag punctuation"
@@ -11658,7 +11686,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -11689,7 +11717,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                            
+                        
               </span>
               <span
                 class="token tag punctuation"
@@ -11720,7 +11748,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token punctuation"
@@ -11744,9 +11772,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                    
-              </span>
+              />
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -11758,6 +11784,21 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+                style="display: inline-block;"
+              >
+                
+
               </span>
             </div>
           </pre>

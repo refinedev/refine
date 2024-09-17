@@ -25,7 +25,7 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 
 const App = () => {
   return (
-    <MantineProvider theme={LightTheme} withNormalizeCSS withGlobalStyles>
+    <MantineProvider theme={LightTheme}>
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -114,11 +114,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider
-      theme={RefineThemes.Blue}
-      withNormalizeCSS
-      withGlobalStyles
-    >
+    <MantineProvider theme={RefineThemes.Blue}>
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -177,11 +173,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider
-      theme={RefineThemes.Blue}
-      withNormalizeCSS
-      withGlobalStyles
-    >
+    <MantineProvider theme={RefineThemes.Blue}>
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -240,11 +232,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider
-      theme={RefineThemes.Blue}
-      withNormalizeCSS
-      withGlobalStyles
-    >
+    <MantineProvider theme={RefineThemes.Blue}>
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine
@@ -303,11 +291,7 @@ const API_URL = "https://api.fake-rest.refine.dev";
 
 const App: React.FC = () => {
   return (
-    <MantineProvider
-      theme={RefineThemes.Blue}
-      withNormalizeCSS
-      withGlobalStyles
-    >
+    <MantineProvider theme={RefineThemes.Blue}>
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <BrowserRouter>
         <Refine

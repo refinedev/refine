@@ -80,8 +80,6 @@ const App: React.FC = () => {
         <BrowserRouter>
             <MantineProvider
                 theme={RefineThemes.Blue}
-                withNormalizeCSS
-                withGlobalStyles
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
                 <NotificationsProvider position="top-right">

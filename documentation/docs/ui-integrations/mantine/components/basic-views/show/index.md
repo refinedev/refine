@@ -12,11 +12,7 @@ setRefineProps({
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider
-      theme={MantineCore.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
+    <MantineCore.MantineProvider theme={MantineCore.LightTheme}>
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <MantineNotifications.NotificationsProvider position="top-right">
         {children}

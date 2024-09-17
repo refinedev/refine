@@ -139,7 +139,7 @@ export const Create: React.FC<CreateProps> = (props) => {
       <Box pt="sm" {...contentProps}>
         {children}
       </Box>
-      <Group align="right" gap="xs" mt="md" {...footerButtonProps}>
+      <Group justify="right" gap="xs" mt="md" {...footerButtonProps}>
         {footerButtons}
       </Group>
     </Card>

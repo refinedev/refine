@@ -112,8 +112,6 @@ export const ThemeProvider = ({ children }) => (
         // Available themes: Blue, Purple, Magenta, Red, Orange, Yellow, Green
         // Change the line below to change the theme
         theme={RefineThemes.Magenta}
-        withNormalizeCSS
-        withGlobalStyles
     >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
         <NotificationsProvider position="top-right">

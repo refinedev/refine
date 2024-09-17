@@ -6,12 +6,15 @@ import {
   mockLegacyRouterProvider,
   mockRouterBindings,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
 
 export const pageErrorTests = (
   ErrorPage: React.ComponentType<RefineErrorPageProps>,
+  TestWrapper: (
+    props: any,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Error Page", () => {
     it("should render successfully", async () => {

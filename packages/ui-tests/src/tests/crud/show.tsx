@@ -4,13 +4,22 @@ import {
   type RefineCrudShowProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import type { AccessControlProvider } from "@refinedev/core";
 
-import { type ITestWrapperProps, render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
+
+const defaultTestWrapperProps = {
+  routerInitialEntries: ["/posts/show/1"],
+};
 
 const renderShow = (
   show: React.ReactNode,
-  accessControlProvider?: AccessControlProvider,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }>,
   wrapperProps?: ITestWrapperProps,
 ) => {
   return render(
@@ -19,12 +28,7 @@ const renderShow = (
     </Routes>,
     {
       wrapper: TestWrapper(
-        wrapperProps
-          ? wrapperProps
-          : {
-              routerInitialEntries: ["/posts/show/1"],
-              accessControlProvider,
-            },
+        wrapperProps ? wrapperProps : defaultTestWrapperProps,
       ),
     },
   );
@@ -34,6 +38,9 @@ export const crudShowTests = (
   Show: React.ComponentType<
     RefineCrudShowProps<any, any, any, any, any, {}, any, any, any, any>
   >,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Show", () => {
     beforeAll(() => {
@@ -41,7 +48,7 @@ export const crudShowTests = (
     });
 
     it("should render children", async () => {
-      const { getByText } = renderShow(<Show>Something</Show>);
+      const { getByText } = renderShow(<Show>Something</Show>, TestWrapper);
 
       getByText("Something");
     });
@@ -61,6 +68,7 @@ export const crudShowTests = (
             return <>{defaultButtons}</>;
           }}
         />,
+        TestWrapper,
       );
 
       expect(queryByTestId(RefineButtonTestIds.EditButton)).not.toBeNull();
@@ -77,6 +85,7 @@ export const crudShowTests = (
             </>
           }
         />,
+        TestWrapper,
       );
 
       await findByText("New Save Button");
@@ -84,26 +93,29 @@ export const crudShowTests = (
     });
 
     it("should render default title successfuly", async () => {
-      const { getByText } = renderShow(<Show />);
+      const { getByText } = renderShow(<Show />, TestWrapper);
 
       getByText("Show Post");
     });
 
     it("should not render title when is false", async () => {
-      const { queryByText } = renderShow(<Show title={false} />);
+      const { queryByText } = renderShow(<Show title={false} />, TestWrapper);
 
       const text = queryByText("Show Post");
       expect(text).not.toBeInTheDocument();
     });
 
     it("should render optional title with title prop", async () => {
-      const { getByText } = renderShow(<Show title="Test Title" />);
+      const { getByText } = renderShow(
+        <Show title="Test Title" />,
+        TestWrapper,
+      );
 
       getByText("Test Title");
     });
 
     it("should render optional resource with resource prop", async () => {
-      const { getByText } = render(
+      const { getByText, container } = render(
         <Routes>
           <Route path="/:resource" element={<Show resource="posts" />} />
         </Routes>,

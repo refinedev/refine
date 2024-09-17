@@ -345,13 +345,8 @@ export const renderer = ({
 
   return jsx`
     ${printImports(imports)}
-<<<<<<< HEAD
-
-    export const ${COMPONENT_NAME}: React.FC<IResourceComponentsProps> = () => {
-=======
 
     export const ${COMPONENT_NAME} = () => {
->>>>>>> upstream/releases/april
         ${useTranslateHook}
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { formLoading } } = useForm({
             initialValues: ${JSON.stringify(initialValues)},

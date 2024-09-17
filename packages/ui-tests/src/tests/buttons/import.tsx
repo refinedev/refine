@@ -4,10 +4,17 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
 
 export const buttonImportTests = (
   ImportButton: React.ComponentType<RefineImportButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Import Button", () => {
     const parseMock = jest.fn();
@@ -51,7 +58,9 @@ export const buttonImportTests = (
     });
 
     it("should render without text show only icon", async () => {
-      const { container, queryByText } = render(<ImportButton hideText />);
+      const { container, queryByText } = render(<ImportButton hideText />, {
+        wrapper: TestWrapper({}),
+      });
 
       expect(container).toBeTruthy();
       expect(queryByText("Import")).not.toBeInTheDocument();

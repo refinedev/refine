@@ -4,10 +4,17 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
 
 export const buttonExportTests = (
   ExportButton: React.ComponentType<RefineExportButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Export Button", () => {
     beforeAll(() => {
@@ -45,7 +52,9 @@ export const buttonExportTests = (
     });
 
     it("should render without text show only icon", async () => {
-      const { container, queryByText } = render(<ExportButton hideText />);
+      const { container, queryByText } = render(<ExportButton hideText />, {
+        wrapper: TestWrapper({}),
+      });
 
       expect(container).toBeTruthy();
 

@@ -140,7 +140,7 @@ describe("inferencer-mantine", () => {
         expect(body.content).to.equal(mockPost.content);
         expect(body.status).to.equal("status");
         expect(body.createdAt).to.equal(todayString);
-        expect(body.category.id).to.equal(1);
+        expect(body.category.id).to.equal("1");
 
         cy.getMantineNotification().should("contain", "Success");
         cy.location("pathname").should("eq", "/blog-posts");
@@ -199,7 +199,7 @@ describe("inferencer-mantine", () => {
         expect(body.content).to.equal(mockPost.content);
         expect(body.status).to.equal("status");
         expect(body.createdAt).to.equal(todayString);
-        expect(body.category.id).to.equal(2);
+        expect(body.category.id).to.equal("2");
 
         cy.getMantineNotification().should("contain", "Success");
         cy.location("pathname").should("eq", "/blog-posts");
@@ -241,7 +241,9 @@ describe("inferencer-mantine", () => {
     // find initial  theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
       const initialTheme =
-        ls[Cypress.config("baseUrl")!]["mantine-color-scheme"]?.toString();
+        ls[Cypress.config("baseUrl")!][
+          "mantine-color-scheme-value"
+        ]?.toString();
 
       console.log(initialTheme);
 
@@ -259,12 +261,12 @@ describe("inferencer-mantine", () => {
         if (initialTheme === "dark") {
           expect(cy.get(".tabler-icon-moon-stars").should("exist"));
           expect(
-            ls[Cypress.config("baseUrl")!]["mantine-color-scheme"],
+            ls[Cypress.config("baseUrl")!]["mantine-color-scheme-value"],
           ).to.contains("light");
         } else {
           expect(cy.get(".tabler-icon-sun").should("exist"));
           expect(
-            ls[Cypress.config("baseUrl")!]["mantine-color-scheme"],
+            ls[Cypress.config("baseUrl")!]["mantine-color-scheme-value"],
           ).to.contains("dark");
         }
       });

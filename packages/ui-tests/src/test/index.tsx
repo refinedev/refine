@@ -73,7 +73,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
   }
 
   return ({ children }: React.PropsWithChildren<{}>): React.ReactElement => {
-    const ret = (
+    return (
       <BrowserRouter>
         <Refine
           options={{
@@ -95,17 +95,6 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
         </Refine>
       </BrowserRouter>
     );
-
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (window.MantineProvider) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      const MantineProvider = window.MantineProvider;
-      return <MantineProvider>{ret}</MantineProvider>;
-    }
-
-    return ret;
   };
 };
 export {
@@ -121,5 +110,3 @@ export {
 
 // re-export everything
 export * from "@testing-library/react";
-
-export { customRender as render } from "./render";

@@ -2,22 +2,22 @@ import React from "react";
 import { Button } from "@mantine/core";
 import { pageReadyTests } from "@refinedev/ui-tests";
 
-import { render } from "@test";
+import { render, TestWrapper } from "@test";
 
 import { ReadyPage } from "./index";
 
 describe("ReadyPage", () => {
-  pageReadyTests.bind(this)(ReadyPage);
+  pageReadyTests.bind(this)(ReadyPage, TestWrapper);
 
   it("should render 3 texts", async () => {
-    const { getByText } = render(<ReadyPage />);
+    const { getByText } = render(<ReadyPage />, { wrapper: TestWrapper({}) });
 
     getByText("Welcome on board");
     getByText("Your configuration is completed.");
   });
 
   it("should render 3 buttons", async () => {
-    const { getByText } = render(<ReadyPage />);
+    const { getByText } = render(<ReadyPage />, { wrapper: TestWrapper({}) });
 
     expect(Button).toBeDefined();
 

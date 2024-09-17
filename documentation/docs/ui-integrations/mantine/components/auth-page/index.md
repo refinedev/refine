@@ -152,11 +152,7 @@ import { DashboardPage } from "./pages/dashboard";
 const App = () => {
   return (
     <BrowserRouter>
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
+      <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           routerProvider={routerProvider}
@@ -235,11 +231,7 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
   return (
     <BrowserRouter>
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
+      <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           routerProvider={routerProvider}
@@ -335,11 +327,7 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
   return (
     <BrowserRouter>
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
+      <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           routerProvider={routerProvider}
@@ -436,11 +424,7 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
   return (
     <BrowserRouter>
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
+      <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           routerProvider={routerProvider}
@@ -541,11 +525,7 @@ import { DashboardPage } from "pages/dashboard";
 const App = () => {
   return (
     <BrowserRouter>
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
+      <MantineProvider theme={RefineThemes.Blue}>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           routerProvider={routerProvider}

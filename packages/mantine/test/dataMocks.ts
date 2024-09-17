@@ -51,6 +51,30 @@ const MockDataProvider = () => {
 
 export const MockJSONServer = MockDataProvider() as any;
 
+export const MockRouterProvider = {
+  useHistory: () => {
+    const navigate = useNavigate();
+
+    return {
+      push: navigate,
+      replace: (path: string) => {
+        navigate(path, { replace: true });
+      },
+      goBack: () => {
+        navigate(-1);
+      },
+    };
+  },
+  useLocation,
+  useParams: () => {
+    const params = useParams();
+
+    return params as any;
+  },
+  Link,
+  Prompt: () => null,
+};
+
 export const mockRouterBindings = ({
   pathname,
   params,

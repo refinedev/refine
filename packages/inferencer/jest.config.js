@@ -12,6 +12,8 @@ module.exports = {
   moduleNameMapper: {
     ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
     "\\.css$": "identity-obj-proxy",
+    // Add this line to map .cjs files correctly
+    "^(.*)\\.cjs$": "$1.cjs",
     "^(..?/.+).js?$": "$1",
   },
   displayName: "inferencer",

@@ -182,8 +182,8 @@ export const PostList: React.FC = () => {
 
   return (
     <>
-      <CreatePostModal {...createModalForm} />
-      <EditPostModal {...editModalForm} />
+      <CreatePostModal form={createModalForm} />
+      <EditPostModal form={editModalForm} />
       <ScrollArea>
         <List createButtonProps={{ onClick: () => showCreateModal() }}>
           <Table highlightOnHover>

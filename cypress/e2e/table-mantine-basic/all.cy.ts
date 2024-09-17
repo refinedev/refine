@@ -93,7 +93,7 @@ describe("table-mantine-basic", () => {
   });
 
   it("should work with pagination", () => {
-    cy.get(".mantine-Pagination-item").contains("2").click();
+    cy.get(".mantine-Pagination-control").contains("2").click();
 
     cy.url().should("include", "current=2");
 

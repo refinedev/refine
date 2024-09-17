@@ -1,16 +1,18 @@
-import { MultiSelectProps } from "@mantine/core";
-import { QueryObserverResult } from "@tanstack/react-query";
+import type { MultiSelectProps } from "@mantine/core";
+import type { QueryObserverResult } from "@tanstack/react-query";
 
 import {
   useSelect as useSelectCore,
-  BaseRecord,
-  GetManyResponse,
-  GetListResponse,
-  HttpError,
-  UseSelectProps,
-  BaseOption,
-  Prettify,
+  type BaseRecord,
+  type GetManyResponse,
+  type GetListResponse,
+  type HttpError,
+  type UseSelectProps,
+  type BaseOption,
+  type Prettify,
 } from "@refinedev/core";
+import { useCallback } from "react";
+import { getOptionValue } from "../../utils";
 
 export type UseMultiSelectReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -21,8 +23,8 @@ export type UseMultiSelectReturnType<
       data: TOption[];
     }
   >;
-  queryResult: QueryObserverResult<GetListResponse<TData>>;
-  defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+  query: QueryObserverResult<GetListResponse<TData>>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
 };
 
 export const useMultiSelect = <
@@ -33,8 +35,21 @@ export const useMultiSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseMultiSelectReturnType<TData, TOption> => {
-  const { queryResult, defaultValueQueryResult, onSearch, options } =
-    useSelectCore<TQueryFnData, TError, TData, TOption>(props);
+  const { optionValue = "id" } = props;
+  const getOptionValueCallback = useCallback(
+    (item: TData): string => getOptionValue(item, optionValue),
+    [optionValue],
+  );
+
+  const { query, defaultValueQuery, onSearch, options } = useSelectCore<
+    TQueryFnData,
+    TError,
+    TData,
+    TOption
+  >({
+    ...props,
+    optionValue: getOptionValueCallback,
+  });
 
   return {
     selectProps: {
@@ -43,7 +58,7 @@ export const useMultiSelect = <
       searchable: true,
       clearable: true,
     },
-    queryResult,
-    defaultValueQueryResult,
+    query,
+    defaultValueQuery,
   };
 };

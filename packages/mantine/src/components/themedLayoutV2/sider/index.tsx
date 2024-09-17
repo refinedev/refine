@@ -211,7 +211,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         <Burger
           opened={mobileSiderOpen}
           onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
-          hiddenFrom="sm"
+          hiddenFrom="md"
           size="sm"
           style={{
             marginLeft: "auto",

@@ -1057,16 +1057,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -1411,16 +1411,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -2919,16 +2919,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -4545,19 +4545,19 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/code-highlight':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -6576,16 +6576,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/rte':
         specifier: ^5.4.1
@@ -6649,16 +6649,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -6719,16 +6719,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/rte':
         specifier: ^5.4.1
@@ -6792,16 +6792,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -6862,19 +6862,19 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/dates':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(dayjs@1.11.10)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -7691,16 +7691,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -8162,16 +8162,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -9292,16 +9292,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -10106,16 +10106,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -10176,16 +10176,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -11023,16 +11023,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -11300,16 +11300,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -11656,16 +11656,16 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -12055,19 +12055,19 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/dropzone':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -12128,19 +12128,19 @@ importers:
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/dropzone':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
@@ -14853,16 +14853,16 @@ importers:
         specifier: ^11.8.1
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mui/lab':
         specifier: ^5.0.0-alpha.85
@@ -15092,16 +15092,16 @@ importers:
         specifier: ^11.8.1
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mui/icons-material':
         specifier: ^5.8.3
@@ -15284,20 +15284,17 @@ importers:
 
   packages/mantine:
     dependencies:
-      '@emotion/react':
-        specifier: ^11.8.2
-        version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
       '@mantine/core':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@mantine/form':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/hooks':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(react@18.3.0)
       '@mantine/notifications':
-        specifier: ^7.5.1
+        specifier: ^7.12.2
         version: 7.12.2(@mantine/core@7.12.2(@mantine/hooks@7.12.2(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@7.12.2(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/ui-types':
         specifier: ^1.22.9
@@ -19074,9 +19071,6 @@ packages:
     peerDependencies:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
-
-  '@floating-ui/utils@0.2.1':
-    resolution: {integrity: sha512-9TANp6GPoMtYzQdt54kfAyMmz1+osLlXdg2ENroU7zzrtflTLrrC/lgrIfaSe+Wu0b89GKccT7vxXA0MoAIO+Q==}
 
   '@floating-ui/utils@0.2.7':
     resolution: {integrity: sha512-X8R8Oj771YRl/w+c1HqAC1szL8zWQRwFvgDwT129k9ACdBoud/+/rX9V0qiMl6LWUdP9voC2nDVZYPMQQsb6eA==}
@@ -39659,12 +39653,12 @@ snapshots:
 
   '@floating-ui/core@1.6.0':
     dependencies:
-      '@floating-ui/utils': 0.2.1
+      '@floating-ui/utils': 0.2.7
 
   '@floating-ui/dom@1.6.3':
     dependencies:
       '@floating-ui/core': 1.6.0
-      '@floating-ui/utils': 0.2.1
+      '@floating-ui/utils': 0.2.7
 
   '@floating-ui/react-dom@1.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
@@ -39699,8 +39693,6 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       tabbable: 6.2.0
-
-  '@floating-ui/utils@0.2.1': {}
 
   '@floating-ui/utils@0.2.7': {}
 
@@ -41667,8 +41659,8 @@ snapshots:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/types': 1.11.15
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
     transitivePeerDependencies:
       - '@mikro-orm/better-sqlite'
@@ -41917,9 +41909,9 @@ snapshots:
   '@medusajs/utils@1.11.8(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
       '@medusajs/types': 1.11.15
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
       bignumber.js: 9.1.2
       knex: 2.4.2(pg@8.11.5)
@@ -41971,7 +41963,7 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)':
+  '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)':
     dependencies:
       acorn-loose: 8.3.0
       acorn-walk: 8.2.0
@@ -41981,17 +41973,17 @@ snapshots:
       mikro-orm: 5.9.7
       reflect-metadata: 0.1.13
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
 
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.3)
       sqlstring: 2.3.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       pg: 8.11.3
     transitivePeerDependencies:
       - pg-native
@@ -42000,21 +41992,21 @@ snapshots:
 
   '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.5)
       sqlstring: 2.3.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       pg: 8.11.5
     transitivePeerDependencies:
       - pg-native
       - supports-color
       - tedious
 
-  '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)':
+  '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.5)
@@ -42032,13 +42024,13 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))':
+  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
       pg: 8.11.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
     transitivePeerDependencies:
       - better-sqlite3
       - mssql
@@ -55289,8 +55281,8 @@ snapshots:
     dependencies:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       medusa-core-utils: 1.2.1
       randomatic: 3.1.1
     optionalDependencies:

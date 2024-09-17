@@ -26,6 +26,12 @@ export const ThemedHeader: React.FC<RefineThemedLayoutHeaderProps> = () => {
   const borderColor =
     colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[2];
 
+  const shouldRenderHeader = user && (user.name || user.avatar);
+
+  if (!shouldRenderHeader) {
+    return null;
+  }
+
   return (
     <AppShell.Header
       zIndex={199}

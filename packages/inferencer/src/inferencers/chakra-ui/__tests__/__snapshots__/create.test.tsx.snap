@@ -4,20 +4,20 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class=""
+      class="css-1mdbftt"
     >
       <div
-        class=""
+        class="css-15izviv"
       >
         <div
-          class=""
+          class="css-gqssyb"
         >
           <div
-            class="chakra-stack"
+            class="chakra-stack css-1igwmid"
           >
             <button
               aria-label="back"
-              class="chakra-button"
+              class="chakra-button css-p7mkev"
               type="button"
             >
               <svg
@@ -46,106 +46,106 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
               </svg>
             </button>
             <h3
-              class="chakra-heading refine-pageHeader-title"
+              class="chakra-heading refine-pageHeader-title css-0"
             >
               Create Post
             </h3>
           </div>
         </div>
         <div
-          class=""
+          class="css-i08qke"
         />
       </div>
       <div
-        class=""
+        class="css-0"
       >
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r0:"
             id="field-:r0:-label"
           >
             Title
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r0:"
             name="title"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r1:"
             id="field-:r1:-label"
           >
             Slug
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r1:"
             name="slug"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r2:"
             id="field-:r2:-label"
           >
             Content
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r2:"
             name="content"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r3:"
             id="field-:r3:-label"
           >
             Hit
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r3:"
             name="hit"
             type="number"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r4:"
             id="field-:r4:-label"
           >
             Category
           </label>
           <div
-            class="chakra-select__wrapper"
+            class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              class="chakra-select"
+              class="chakra-select css-1ik61og"
               id="field-:r4:"
               name="category.id"
             >
@@ -166,7 +166,7 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper"
+              class="chakra-select__icon-wrapper css-162mkon"
             >
               <svg
                 aria-hidden="true"
@@ -185,21 +185,21 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r5:"
             id="field-:r5:-label"
           >
             User
           </label>
           <div
-            class="chakra-select__wrapper"
+            class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              class="chakra-select"
+              class="chakra-select css-1ik61og"
               id="field-:r5:"
               name="user.id"
             >
@@ -220,7 +220,7 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper"
+              class="chakra-select__icon-wrapper css-162mkon"
             >
               <svg
                 aria-hidden="true"
@@ -239,91 +239,91 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r6:"
             id="field-:r6:-label"
           >
             Status
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r6:"
             name="status"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r7:"
             id="field-:r7:-label"
           >
             Status Color
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r7:"
             name="status_color"
             type="text"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r8:"
             id="field-:r8:-label"
           >
             Created At
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r8:"
             name="createdAt"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:r9:"
             id="field-:r9:-label"
           >
             Published At
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:r9:"
             name="publishedAt"
           />
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:ra:"
             id="field-:ra:-label"
           >
             Tags
           </label>
           <div
-            class="chakra-select__wrapper"
+            class="chakra-select__wrapper css-42b2qy"
           >
             <select
-              class="chakra-select"
+              class="chakra-select css-1ik61og"
               id="field-:ra:"
               name="tags"
             >
@@ -344,7 +344,7 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
               </option>
             </select>
             <div
-              class="chakra-select__icon-wrapper"
+              class="chakra-select__icon-wrapper css-162mkon"
             >
               <svg
                 aria-hidden="true"
@@ -363,18 +363,18 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
           </div>
         </div>
         <div
-          class="chakra-form-control"
+          class="chakra-form-control css-h82jag"
           role="group"
         >
           <label
-            class="chakra-form__label"
+            class="chakra-form__label css-uvho5g"
             for="field-:rb:"
             id="field-:rb:-label"
           >
             Language
           </label>
           <input
-            class="chakra-input"
+            class="chakra-input css-0"
             id="field-:rb:"
             name="language"
             type="number"
@@ -382,14 +382,14 @@ exports[`ChakraCreateInferencer should match the snapshot 1`] = `
         </div>
       </div>
       <div
-        class=""
+        class="css-e6thd7"
       >
         <button
-          class="chakra-button refine-save-button"
+          class="chakra-button refine-save-button css-4xx2wk"
           type="button"
         >
           <span
-            class="chakra-button__icon"
+            class="chakra-button__icon css-1wh2kri"
           >
             <svg
               aria-hidden="true"

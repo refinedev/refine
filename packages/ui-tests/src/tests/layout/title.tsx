@@ -1,10 +1,17 @@
 import React from "react";
 import type { RefineLayoutTitleProps } from "@refinedev/ui-types";
 
-import { render, TestWrapper } from "@test";
+import {
+  render,
+  TestWrapper as DefaultTestWrapper,
+  type ITestWrapperProps,
+} from "@test";
 
 export const layoutTitleTests = (
   TitleElement: React.ComponentType<RefineLayoutTitleProps>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Title Element", () => {
     it("should render successfully", async () => {

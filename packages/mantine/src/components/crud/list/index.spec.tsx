@@ -32,7 +32,7 @@ describe("<List/>", () => {
     });
   });
 
-  crudListTests.bind(this)(List);
+  crudListTests.bind(this)(List, TestWrapper);
 
   it("should customize default buttons with default props", async () => {
     const { queryByTestId } = renderList(

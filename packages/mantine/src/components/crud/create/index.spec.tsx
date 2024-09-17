@@ -22,7 +22,7 @@ const renderCreate = (create: ReactNode) => {
 };
 
 describe("Create", () => {
-  crudCreateTests.bind(this)(Create);
+  crudCreateTests.bind(this)(Create, TestWrapper);
 
   it("should render breadcrumb", async () => {
     const { getAllByLabelText } = render(

@@ -2,16 +2,20 @@ import React, { type FC } from "react";
 
 import {
   fireEvent,
+  type ITestWrapperProps,
   mockAuthProvider,
   mockLegacyAuthProvider,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
 import type { UpdatePasswordPageProps } from "@refinedev/core";
 
 export const pageUpdatePasswordTests = (
   UpdatePasswordPage: FC<UpdatePasswordPageProps<any, any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Update Password Page", () => {
     it("should render card title", async () => {

@@ -3,16 +3,20 @@ import type { ForgotPasswordPageProps } from "@refinedev/core";
 
 import {
   fireEvent,
+  type ITestWrapperProps,
   mockAuthProvider,
   mockRouterBindings,
   MockRouterProvider,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
 
 export const pageForgotPasswordTests = (
   ForgotPasswordPage: FC<ForgotPasswordPageProps<any, any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Forgot Password Page", () => {
     it("should render card title", async () => {

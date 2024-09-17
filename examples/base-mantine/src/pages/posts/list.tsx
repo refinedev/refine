@@ -52,6 +52,7 @@ export const PostList: React.FC = () => {
                   { label: "Draft", value: "draft" },
                   { label: "Rejected", value: "rejected" },
                 ]}
+                comboboxProps={{ withinPortal: false }}
                 {...props}
               />
             );
@@ -138,12 +139,12 @@ export const PostList: React.FC = () => {
     <ScrollArea>
       <List>
         <Table highlightOnHover>
-          <thead>
+          <Table.Thead>
             {getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <Table.Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th key={header.id}>
+                    <Table.Th key={header.id}>
                       {!header.isPlaceholder && (
                         <Group gap="xs" wrap="nowrap">
                           <Box>
@@ -158,30 +159,30 @@ export const PostList: React.FC = () => {
                           </Group>
                         </Group>
                       )}
-                    </th>
+                    </Table.Th>
                   );
                 })}
-              </tr>
+              </Table.Tr>
             ))}
-          </thead>
-          <tbody>
+          </Table.Thead>
+          <Table.Tbody>
             {getRowModel().rows.map((row) => {
               return (
-                <tr key={row.id}>
+                <Table.Tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <Table.Td key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext(),
                         )}
-                      </td>
+                      </Table.Td>
                     );
                   })}
-                </tr>
+                </Table.Tr>
               );
             })}
-          </tbody>
+          </Table.Tbody>
         </Table>
 
         <Group mt="md" justify="right">

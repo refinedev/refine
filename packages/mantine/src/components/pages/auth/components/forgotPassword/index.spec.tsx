@@ -6,7 +6,7 @@ import { ForgotPasswordPage } from ".";
 import { MockAuthProvider, TestWrapper } from "@test/index";
 
 describe("Auth Page Forgot Password", () => {
-  pageForgotPasswordTests.bind(this)(ForgotPasswordPage);
+  pageForgotPasswordTests.bind(this)(ForgotPasswordPage, TestWrapper);
 
   it("should run 'onSubmit' callback if it is passed", async () => {
     const onSubmit = jest.fn();

@@ -7,94 +7,612 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
   >
     @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
   </style>
-  <div />
-  <div
-    class="m_4451eb3a mantine-Center-root"
-    style="min-height: 300px;"
-  >
+  <div>
     <div
-      aria-describedby=""
-      aria-labelledby=""
-      class="m_66836ed3 mantine-Alert-root"
-      id=""
-      role="alert"
-      style="--alert-bg: var(--mantine-color-red-light); --alert-color: var(--mantine-color-red-light-color); --alert-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+      class="m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
     >
       <div
-        class="m_a5d60502 mantine-Alert-wrapper"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
       >
         <div
-          class="m_667f2a6a mantine-Alert-icon"
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
-          <svg
-            class="tabler-icon tabler-icon-alert-circle "
-            fill="none"
-            height="24"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            viewBox="0 0 24 24"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg"
+          <div
+            class="m_4081bf90 mantine-Group-root"
+            style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
           >
-            <path
-              d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0"
-            />
-            <path
-              d="M12 8v4"
-            />
-            <path
-              d="M12 16h.01"
-            />
-          </svg>
+            <button
+              class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
+              style="--ai-color: var(--mantine-color-white);"
+              type="button"
+            >
+              <span
+                class="m_8d3afb97 mantine-ActionIcon-icon"
+              >
+                <svg
+                  class="tabler-icon tabler-icon-arrow-left "
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 12l14 0"
+                  />
+                  <path
+                    d="M5 12l6 6"
+                  />
+                  <path
+                    d="M5 12l6 -6"
+                  />
+                </svg>
+              </span>
+            </button>
+            <h3
+              class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
+              data-order="3"
+              style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
+            >
+              Create Post
+            </h3>
+          </div>
         </div>
         <div
-          class="m_667c2793 mantine-Alert-body"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+        />
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
-          <div
-            class="m_6a03f287 mantine-Alert-title"
-          >
-            <span
-              class="m_698f4f23 mantine-Alert-label"
-              id=""
-            >
-              Error
-            </span>
-          </div>
-          <div
-            class="m_7fa78076 mantine-Alert-message"
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
             id=""
           >
-            <div>
-              <p>
-                An error occured while rendering the generated component.You can check the generated code from the below "Show Code" button and fix the error manually.
-              </p>
-              
-                                    
-              <p>
-                If you think this is a bug, please report the issue at 
-                <a
-                  href="https://github.com/refinedev/refine/issues"
-                  rel="noopener noreferrer"
-                  target="_blank"
+            Title
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="title"
+              data-variant="default"
+              id=""
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
+          >
+            Slug
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="slug"
+              data-variant="default"
+              id=""
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-Textarea-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Textarea-label"
+            for=""
+            id=""
+          >
+            Content
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-Textarea-wrapper"
+            data-multiline="true"
+            data-variant="default"
+          >
+            <textarea
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Textarea-input"
+              data-no-overflow="true"
+              data-path="content"
+              data-variant="default"
+              id=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
+          >
+            Hit
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm);"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-path="hit"
+              data-variant="default"
+              id=""
+              inputmode="numeric"
+              type="text"
+              value=""
+            />
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
+            >
+              <div
+                class="m_95e17d22 mantine-NumberInput-controls"
+              >
+                <button
+                  aria-hidden="true"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
+                  tabindex="-1"
+                  type="button"
                 >
-                  https://github.com/refinedev/refine/issues
-                </a>
-              </p>
-              
-                                    
-              <p>
-                Exception:
-              </p>
-              
-                                    
-              <code>
-                SyntaxError: Unexpected token (6:1)
-              </code>
+                  <svg
+                    fill="none"
+                    style="transform: rotate(180deg);"
+                    viewBox="0 0 15 15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button
+                  aria-hidden="true"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 15 15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-Select-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+            for=""
+            id=""
+          >
+            Category
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: none;"
+          >
+            <input
+              aria-controls=""
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              autocomplete="off"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
+              data-path="category.id"
+              data-variant="default"
+              id=""
+              value=""
+            />
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-Select-section"
+              data-position="right"
+            >
+              <svg
+                class="m_2943220b mantine-ComboboxChevron-chevron"
+                data-combobox-chevron="true"
+                fill="none"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <input
+          type="hidden"
+          value=""
+        />
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-Select-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+            for=""
+            id=""
+          >
+            User
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: none;"
+          >
+            <input
+              aria-controls=""
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              autocomplete="off"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
+              data-path="user.id"
+              data-variant="default"
+              id=""
+              value=""
+            />
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-Select-section"
+              data-position="right"
+            >
+              <svg
+                class="m_2943220b mantine-ComboboxChevron-chevron"
+                data-combobox-chevron="true"
+                fill="none"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <input
+          type="hidden"
+          value=""
+        />
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
+          >
+            Status
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="status"
+              data-variant="default"
+              id=""
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
+          >
+            Status Color
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="status_color"
+              data-variant="default"
+              id=""
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
+          >
+            Created At
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="createdAt"
+              data-variant="default"
+              id=""
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
+          >
+            Published At
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="publishedAt"
+              data-variant="default"
+              id=""
+              value=""
+            />
+          </div>
+        </div>
+        <div
+          class="m_46b77525 mantine-InputWrapper-root mantine-MultiSelect-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
+            for=""
+            id=""
+          >
+            Tags
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
+            data-multiline="true"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: none;"
+          >
+            <div
+              class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
+              data-variant="default"
+            >
+              <div
+                class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
+              >
+                <input
+                  aria-controls=""
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  autocomplete="off"
+                  class="mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field"
+                  data-path="tags"
+                  data-type="visible"
+                  id=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-MultiSelect-section"
+              data-position="right"
+            >
+              <svg
+                class="m_2943220b mantine-ComboboxChevron-chevron"
+                data-combobox-chevron="true"
+                fill="none"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <input
+          type="hidden"
+          value=""
+        />
+        <div
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
+        >
+          <label
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
+          >
+            Language
+          </label>
+          <div
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm);"
+          >
+            <input
+              aria-invalid="false"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-path="language"
+              data-variant="default"
+              id=""
+              inputmode="numeric"
+              type="text"
+              value=""
+            />
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
+            >
+              <div
+                class="m_95e17d22 mantine-NumberInput-controls"
+              >
+                <button
+                  aria-hidden="true"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    style="transform: rotate(180deg);"
+                    viewBox="0 0 15 15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button
+                  aria-hidden="true"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 15 15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: right; --group-wrap: wrap;"
+      >
+        <button
+          class="mantine-focus-auto mantine-active refine-save-button m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+          data-variant="filled"
+          data-with-left-section="true"
+          style="--button-bg: var(--mantine-color-blue-filled); --button-hover: var(--mantine-color-blue-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
+          type="button"
+        >
+          <span
+            class="m_80f1301b mantine-Button-inner"
+          >
+            <span
+              class="m_a74036a mantine-Button-section"
+              data-position="left"
+            >
+              <svg
+                class="tabler-icon tabler-icon-device-floppy "
+                fill="none"
+                height="18"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                width="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
+                />
+                <path
+                  d="M12 14m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"
+                />
+                <path
+                  d="M14 4l0 4l-6 0l0 -4"
+                />
+              </svg>
+            </span>
+            <span
+              class="m_811560b9 mantine-Button-label"
+            >
+              Save
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   </div>
@@ -268,6 +786,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 ;
               </span>
               <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
               >
@@ -286,8 +815,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -302,8 +839,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useForm
+                    useForm
               </span>
               <span
                 class="token imports punctuation"
@@ -313,8 +858,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useSelect
+                    useSelect
               </span>
               <span
                 class="token imports punctuation"
@@ -324,8 +877,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 useMultiSelect
+                    useMultiSelect
               </span>
               <span
                 class="token imports punctuation"
@@ -335,8 +896,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -351,8 +920,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
               >
-                 
+                    
               </span>
               <span
                 class="token imports maybe-class-name"
@@ -360,10 +937,22 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 MultiSelect
               </span>
               <span
-                class="token imports"
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
               >
-                 
+                ,
               </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              />
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -398,6 +987,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               >
                 ;
               </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -506,52 +1106,6 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;&lt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;&lt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;&lt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token constant"
-                style="color: rgb(100, 102, 149);"
-              >
-                HEAD
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -564,185 +1118,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                    
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                export
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                const
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                PostCreate
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                React
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                .
-              </span>
-              <span
-                class="token constant"
-                style="color: rgb(100, 102, 149);"
-              >
-                FC
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token maybe-class-name"
-              >
-                IResourceComponentsProps
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token arrow operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =&gt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token plain"
               />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              />
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ===
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ===
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-                style="display: inline-block;"
-              >
-                
-
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                    
-              </span>
               <span
                 class="token keyword"
                 style="color: rgb(86, 156, 214);"
@@ -831,71 +1207,8 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              />
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
               >
-                &gt;&gt;&gt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;&gt;&gt;
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
-              </span>
-              <span
-                class="token plain"
-              >
-                 upstream
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                /
-              </span>
-              <span
-                class="token plain"
-              >
-                releases
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                /
-              </span>
-              <span
-                class="token plain"
-              >
-                april
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        
+                    
               </span>
               <span
                 class="token keyword"
@@ -916,8 +1229,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 getInputProps
+                        getInputProps
               </span>
               <span
                 class="token punctuation"
@@ -927,8 +1248,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 saveButtonProps
+                        saveButtonProps
               </span>
               <span
                 class="token punctuation"
@@ -938,8 +1267,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 setFieldValue
+                        setFieldValue
               </span>
               <span
                 class="token punctuation"
@@ -949,8 +1286,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 refineCore
+                        refineCore
               </span>
               <span
                 class="token operator"
@@ -981,9 +1326,23 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 }
               </span>
               <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
                 class="token plain"
               >
-                 
+                    
               </span>
               <span
                 class="token punctuation"
@@ -1036,7 +1395,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            initialValues
+                        initialValues
               </span>
               <span
                 class="token operator"
@@ -1056,15 +1415,28 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 {
               </span>
               <span
-                class="token string-property property"
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                "title"
+                            title
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
                 :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
               </span>
               <span
                 class="token string"
@@ -1079,15 +1451,28 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 ,
               </span>
               <span
-                class="token string-property property"
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                "slug"
+                            slug
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
                 :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
               </span>
               <span
                 class="token string"
@@ -1102,15 +1487,28 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 ,
               </span>
               <span
-                class="token string-property property"
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                "content"
+                            content
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
                 :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
               </span>
               <span
                 class="token string"
@@ -1125,15 +1523,28 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 ,
               </span>
               <span
-                class="token string-property property"
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                "hit"
+                            hit
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
                 :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
               </span>
               <span
                 class="token string"
@@ -1148,15 +1559,28 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 ,
               </span>
               <span
-                class="token string-property property"
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                "category"
+                            category
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
                 :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
               </span>
               <span
                 class="token punctuation"
@@ -1165,15 +1589,20 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 {
               </span>
               <span
-                class="token string-property property"
+                class="token plain"
               >
-                "id"
+                 id
               </span>
               <span
                 class="token operator"
                 style="color: rgb(212, 212, 212);"
               >
                 :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
               </span>
               <span
                 class="token string"
@@ -1182,200 +1611,9 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 ""
               </span>
               <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
+                class="token plain"
               >
-                }
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "user"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "id"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                ""
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "status"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                ""
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "status_color"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                ""
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "createdAt"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                ""
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "publishedAt"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                ""
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "tags"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                [
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ]
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token string-property property"
-              >
-                "language"
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                :
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                ""
+                 
               </span>
               <span
                 class="token punctuation"
@@ -1400,8 +1638,289 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
+                            user
               </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              >
+                 id
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                ""
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            status
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                ""
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            status_color
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                ""
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            createdAt
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                ""
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            publishedAt
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                ""
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            tags
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                [
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ]
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            language
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                ""
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
             </div>
             <div
               class="token-line"
@@ -1411,6 +1930,31 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="token plain"
               >
                         
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                    
               </span>
               <span
                 class="token punctuation"
@@ -1453,17 +1997,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token keyword"
@@ -1517,16 +2051,8 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                                
+                 
               </span>
               <span
                 class="token function"
@@ -1557,7 +2083,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    resource
+                        resource
               </span>
               <span
                 class="token operator"
@@ -1593,27 +2119,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token punctuation"
@@ -1643,8 +2149,10 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
+                style="display: inline-block;"
               >
-                            
+                
+
               </span>
             </div>
             <div
@@ -1654,7 +2162,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                    
               </span>
               <span
                 class="token keyword"
@@ -1708,16 +2216,8 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                                
+                 
               </span>
               <span
                 class="token function"
@@ -1748,7 +2248,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    resource
+                        resource
               </span>
               <span
                 class="token operator"
@@ -1784,7 +2284,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    optionLabel
+                        optionLabel
               </span>
               <span
                 class="token operator"
@@ -1820,17 +2320,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token punctuation"
@@ -1860,8 +2350,10 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
+                style="display: inline-block;"
               >
-                            
+                
+
               </span>
             </div>
             <div
@@ -1871,7 +2363,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                
+                    
               </span>
               <span
                 class="token keyword"
@@ -1925,16 +2417,8 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                                
+                 
               </span>
               <span
                 class="token function"
@@ -1965,7 +2449,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    resource
+                        resource
               </span>
               <span
                 class="token operator"
@@ -2001,27 +2485,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                    
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
+                    
               </span>
               <span
                 class="token punctuation"
@@ -2051,16 +2515,6 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                            
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -2074,7 +2528,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token keyword"
@@ -2104,7 +2558,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            
+                        
               </span>
               <span
                 class="token tag punctuation"
@@ -2207,7 +2661,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -2355,55 +2809,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain-text"
-              >
-                &lt;TextInput mt="sm" label="Slug" 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token spread operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ...
-              </span>
-              <span
-                class="token method function property-access"
-                style="color: rgb(220, 220, 170);"
-              >
-                getInputProps
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "slug"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
               <span
                 class="token plain-text"
               >
-                 /&gt;
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -2415,7 +2830,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                Textarea
+                TextInput
               </span>
               <span
                 class="token tag"
@@ -2481,7 +2896,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="token tag attr-value"
                 style="color: rgb(206, 145, 120);"
               >
-                Content
+                Slug
               </span>
               <span
                 class="token tag attr-value punctuation"
@@ -2496,6 +2911,190 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token tag spread operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ...
+              </span>
+              <span
+                class="token tag spread method function property-access"
+                style="color: rgb(220, 220, 170);"
+              >
+                getInputProps
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token tag spread string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "slug"
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                Textarea
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                mt
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                sm
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                label
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                Content
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
@@ -2504,8 +3103,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -2552,8 +3160,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -2563,55 +3180,16 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain-text"
-              >
-                &lt;NumberInput mt="sm" label="Hit" 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token spread operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ...
-              </span>
-              <span
-                class="token method function property-access"
-                style="color: rgb(220, 220, 170);"
-              >
-                getInputProps
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "hit"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
               <span
                 class="token plain-text"
               >
-                /&gt;
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -2623,7 +3201,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                Select
+                NumberInput
               </span>
               <span
                 class="token tag"
@@ -2689,7 +3267,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="token tag attr-value"
                 style="color: rgb(206, 145, 120);"
               >
-                Category
+                Hit
               </span>
               <span
                 class="token tag attr-value punctuation"
@@ -2702,6 +3280,190 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 style="color: rgb(78, 201, 176);"
               >
                  
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token tag spread operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ...
+              </span>
+              <span
+                class="token tag spread method function property-access"
+                style="color: rgb(220, 220, 170);"
+              >
+                getInputProps
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token tag spread string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "hit"
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                Select
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                mt
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                sm
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                label
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                Category
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -2748,8 +3510,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -2778,8 +3549,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -2789,83 +3569,248 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
               >
-                &lt;Select mt="sm" label="User" 
+                            
               </span>
               <span
-                class="token punctuation"
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                Select
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                mt
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                sm
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                label
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                User
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 {
               </span>
               <span
-                class="token spread operator"
+                class="token tag spread operator"
                 style="color: rgb(212, 212, 212);"
               >
                 ...
               </span>
               <span
-                class="token method function property-access"
+                class="token tag spread method function property-access"
                 style="color: rgb(220, 220, 170);"
               >
                 getInputProps
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 (
               </span>
               <span
-                class="token string"
+                class="token tag spread string"
                 style="color: rgb(206, 145, 120);"
               >
                 "user.id"
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 )
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
               </span>
               <span
-                class="token plain-text"
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 {
               </span>
               <span
-                class="token spread operator"
+                class="token tag spread operator"
                 style="color: rgb(212, 212, 212);"
               >
                 ...
               </span>
               <span
-                class="token plain"
+                class="token tag spread"
+                style="color: rgb(78, 201, 176);"
               >
                 userSelectProps
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
               </span>
               <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
                 class="token plain-text"
               >
-                 /&gt;
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -3013,55 +3958,209 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
               >
-                &lt;TextInput mt="sm" label="Status Color" 
+                            
               </span>
               <span
-                class="token punctuation"
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                TextInput
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                mt
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                sm
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                label
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                Status Color
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 {
               </span>
               <span
-                class="token spread operator"
+                class="token tag spread operator"
                 style="color: rgb(212, 212, 212);"
               >
                 ...
               </span>
               <span
-                class="token method function property-access"
+                class="token tag spread method function property-access"
                 style="color: rgb(220, 220, 170);"
               >
                 getInputProps
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 (
               </span>
               <span
-                class="token string"
+                class="token tag spread string"
                 style="color: rgb(206, 145, 120);"
               >
                 "status_color"
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 )
               </span>
               <span
-                class="token punctuation"
+                class="token tag spread punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
               </span>
               <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
                 class="token plain-text"
               >
-                 /&gt;
+                            
               </span>
               <span
                 class="token punctuation"
@@ -3148,7 +4247,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -3165,8 +4264,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag attr-name"
@@ -3201,8 +4309,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag attr-name"
@@ -3237,8 +4354,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -3285,14 +4411,36 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                            
               </span>
               <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                            
               </span>
               <span
                 class="token punctuation"
@@ -3379,7 +4527,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain-text"
               >
-                                
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -3396,8 +4544,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag attr-name"
@@ -3432,8 +4589,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag attr-name"
@@ -3468,8 +4634,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -3516,14 +4691,36 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                            
               </span>
               <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                            
               </span>
               <span
                 class="token punctuation"
@@ -3600,6 +4797,19 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 }
               </span>
               <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                            
+              </span>
+              <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -3614,8 +4824,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag attr-name"
@@ -3650,8 +4869,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag attr-name"
@@ -3686,8 +4914,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -3734,8 +4971,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                                
               </span>
               <span
                 class="token tag spread punctuation"
@@ -3764,8 +5010,17 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               >
-                 
+                            
               </span>
               <span
                 class="token tag punctuation"
@@ -3775,56 +5030,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain-text"
-              >
-                &lt;NumberInput mt="sm" label="Language" 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token spread operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ...
-              </span>
-              <span
-                class="token method function property-access"
-                style="color: rgb(220, 220, 170);"
-              >
-                getInputProps
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token string"
-                style="color: rgb(206, 145, 120);"
-              >
-                "language"
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain-text"
-              >
-                /&gt;
-              </span>
+              />
             </div>
             <div
               class="token-line"
@@ -3834,6 +5040,199 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="token plain-text"
               >
                             
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                NumberInput
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                mt
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                sm
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                label
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                Language
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                                
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token tag spread operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                ...
+              </span>
+              <span
+                class="token tag spread method function property-access"
+                style="color: rgb(220, 220, 170);"
+              >
+                getInputProps
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token tag spread string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "language"
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token tag spread punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                        
               </span>
               <span
                 class="token tag punctuation"
@@ -3864,7 +5263,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        
+                    
               </span>
               <span
                 class="token punctuation"
@@ -3888,9 +5287,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                    
-              </span>
+              />
               <span
                 class="token punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -3902,6 +5299,21 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+                style="display: inline-block;"
+              >
+                
+
               </span>
             </div>
           </pre>

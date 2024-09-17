@@ -66,8 +66,6 @@ export default function App() {
       <body>
         <MantineProvider
             theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
         >
           <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
           <NotificationsProvider position="top-right">

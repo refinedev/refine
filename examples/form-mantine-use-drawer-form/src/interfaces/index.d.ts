@@ -21,3 +21,10 @@ export interface FilterElementProps {
   value: any; // eslint-disable-line
   onChange: (value: any) => void; // eslint-disable-line
 }
+
+export interface PostFormValues extends Record<string, any> {
+  title: string;
+  content: string;
+  status: string;
+  category: { id: string };
+}

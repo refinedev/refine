@@ -19,7 +19,7 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
   return (
     <AppShell
       header={{ height: 50 }}
-      navbar={{ width: 200, breakpoint: "sm", collapsed: { mobile: true } }}
+      navbar={{ width: 200, breakpoint: "md", collapsed: { mobile: true } }}
       padding="md"
     >
       <AppShell.Header>

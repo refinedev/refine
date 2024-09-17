@@ -9,13 +9,17 @@ import {
   fireEvent,
   MockJSONServer,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
+  type ITestWrapperProps,
 } from "@test";
 import { Route, Routes } from "react-router-dom";
 
 export const buttonDeleteTests = (
   DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
     beforeAll(() => {

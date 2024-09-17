@@ -1,17 +1,24 @@
-import {
-  Create,
-  useForm,
-  useSelect,
-  Select,
-  useMultiSelect,
-  MultiSelect,
-} from "@refinedev/mantine";
-import { TextInput, Text } from "@mantine/core";
+import { Create, useForm, useSelect, useMultiSelect } from "@refinedev/mantine";
+import { TextInput, Text, Select, MultiSelect } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
-import type { ITag } from "../../interfaces";
+import type { IPost, ITag } from "../../interfaces";
+import type { HttpError } from "@refinedev/core";
+
+type IPostVariables = {
+  title: string;
+  status: string;
+  category: {
+    id: string;
+  };
+  content: string;
+};
 
 export const PostCreate: React.FC = () => {
-  const { saveButtonProps, getInputProps, errors } = useForm({
+  const { saveButtonProps, getInputProps, errors } = useForm<
+    IPost,
+    HttpError,
+    IPostVariables
+  >({
     initialValues: {
       title: "",
       status: "",
