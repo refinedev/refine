@@ -43,6 +43,8 @@ export const mapOperator = (operator: CrudOperators): ComparisonOperator => {
       return CondOperator.ENDS_LOW;
     case "endswiths":
       return CondOperator.ENDS;
+    case "between":
+      return CondOperator.BETWEEN;
   }
 
   return CondOperator.EQUALS;

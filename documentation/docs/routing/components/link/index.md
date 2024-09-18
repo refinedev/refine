@@ -4,7 +4,7 @@ title: <Link />
 
 `<Link />` is a component that is used to navigate to different pages in your application.
 
-It's uses [`routerProvider.Link`](/docs/routing/router-provider/#link) under the hood, if [`routerProvider`](/docs/routing/router-provider) is not provided, it will be use [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) HTML element.
+It uses [`routerProvider.Link`](/docs/routing/router-provider/#link) under the hood, if [`routerProvider`](/docs/routing/router-provider) is not provided, it will be use [`<a>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) HTML element.
 
 ## Usage
 
@@ -20,7 +20,7 @@ const MyComponent = () => {
       <Link
         go={{
           query: {
-            // `useTable` or `useDataGrid` automatically use this filters to fetch data if `syncWithLocation` is true.
+            // `useTable` or `useDataGrid` automatically uses these filters to fetch data if `syncWithLocation` is true.
             filters: [
               {
                 operator: "eq",
@@ -44,7 +44,8 @@ const MyComponent = () => {
 
 ## Props
 
-The `<Link />` component takes all the props from the [`routerProvider.Link`](/docs/routing/router-provider/#link) and the props that an `<a>` HTML element uses.
+The `<Link />` component takes all the props from the [`routerProvider.Link`](/docs/routing/router-provider/#link) and the props that an `<a>` HTML element uses. In addition to these props, it also accepts the `go`
+and `to` props to navigate to a specific `resource` defined in the `<Refine />` component.
 
 ### go
 
@@ -76,9 +77,11 @@ const MyComponent = () => {
     // Omit 'to' prop from LinkProps (required by react-router-dom) since we use the 'go' prop
     <Link<Omit<LinkProps, "to">>
       // Props from "react-router-dom"
+      // highlight-start
       replace={true}
       unstable_viewTransition={true}
       preventScrollReset={true}
+      // highlight-end
       // Props from "@refinedev/core"
       go={{
         to: {
