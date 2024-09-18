@@ -21,3 +21,5 @@ export const Sider = () => {
   return <div>{/* ... */}</div>;
 };
 ```
+
+[Fixes #6352](https://github.com/refinedev/refine/issues/6352)
