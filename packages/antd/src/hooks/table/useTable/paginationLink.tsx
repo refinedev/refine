@@ -11,8 +11,7 @@ export const PaginationLink = ({ to, element }: PaginationLinkProps) => {
   const routerType = useRouterType();
   const Link = useLink();
 
-  const ActiveLink =
-    routerType === "legacy" ? LegacyLink : (Link as unknown as React.FC<any>);
+  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   return (
     <ActiveLink
