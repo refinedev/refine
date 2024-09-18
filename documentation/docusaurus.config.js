@@ -225,6 +225,9 @@ const siteConfig = {
       apiKey: "cd0188125dcd31fb4b011b5e536d963a",
       indexName: "refine",
       contextualSearch: true,
+      searchParameters: {
+        attributesToHighlight: ["hierarchy.lvl0", "hierarchy"],
+      },
     },
     metadata: [
       {
