@@ -1,4 +1,4 @@
-import { ComboboxData, ComboboxItem } from "@mantine/core";
+import type { ComboboxData, ComboboxItem } from "@mantine/core";
 
 export const isString = (value: any) =>
   typeof value === "string" || value instanceof String;

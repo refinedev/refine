@@ -1,9 +1,9 @@
 import React, { useMemo } from "react";
 
 import {
-  ComboboxItem,
+  type ComboboxItem,
   Select as MantineSelect,
-  SelectProps,
+  type SelectProps,
 } from "@mantine/core";
 
 import { getValue, convertOptions } from "./utils";

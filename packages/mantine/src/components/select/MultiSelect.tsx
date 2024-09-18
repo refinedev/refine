@@ -1,8 +1,8 @@
 import React, { useMemo } from "react";
 
 import {
-  ComboboxItem,
-  MultiSelectProps,
+  type ComboboxItem,
+  type MultiSelectProps,
   MultiSelect as MantineMultiSelect,
 } from "@mantine/core";
 

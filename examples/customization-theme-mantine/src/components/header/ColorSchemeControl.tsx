@@ -2,7 +2,7 @@ import React from "react";
 import cx from "clsx";
 import { useMantineColorScheme, useComputedColorScheme } from "@mantine/core";
 import { IconSun, IconMoon } from "@tabler/icons-react";
-import { UnstyledButton, Tooltip, BoxProps } from "@mantine/core";
+import { UnstyledButton, Tooltip, type BoxProps } from "@mantine/core";
 import classes from "./ColorSchemeControl.module.css";
 
 export interface HeaderControlProps extends BoxProps {

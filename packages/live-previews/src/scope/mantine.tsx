@@ -9,7 +9,7 @@ import * as MantineHooks from "@mantine/hooks";
 import * as MantineForm from "@mantine/form";
 import * as MantineNotifications from "@mantine/notifications";
 import axios from "axios";
-import { MantineThemeOverride } from "@mantine/core";
+import type { MantineThemeOverride } from "@mantine/core";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
