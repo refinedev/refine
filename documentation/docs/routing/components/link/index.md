@@ -77,9 +77,11 @@ const MyComponent = () => {
     // Omit 'to' prop from LinkProps (required by react-router-dom) since we use the 'go' prop
     <Link<Omit<LinkProps, "to">>
       // Props from "react-router-dom"
+      // highlight-start
       replace={true}
       unstable_viewTransition={true}
       preventScrollReset={true}
+      // highlight-end
       // Props from "@refinedev/core"
       go={{
         to: {
