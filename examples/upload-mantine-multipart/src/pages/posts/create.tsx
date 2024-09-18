@@ -12,7 +12,7 @@ import {
 
 import type { IPost } from "../../interfaces";
 
-interface FormValues {
+interface FormValues extends Record<string, unknown> {
   title: string;
   status: string;
   category: {
