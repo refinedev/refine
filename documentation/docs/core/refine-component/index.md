@@ -720,6 +720,8 @@ Callback to handle all live events.
 
 ## ~~catchAll~~ <PropTag deprecated />
 
+| 🚨 Use the `<CustomErrorPage />` component in your routes instead.
+
 When the app is navigated to a non-existent route, Refine shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
 
 ```tsx title="App.tsx"
@@ -735,6 +737,8 @@ const App = () => (
 ```
 
 ## ~~LoginPage~~ <PropTag deprecated />
+
+| 🚨 Use the `<AuthPage />` component in your routes instead.
 
 Refine has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
 
@@ -753,6 +757,8 @@ const App = () => (
 ```
 
 ## ~~DashboardPage~~ <PropTag deprecated />
+
+| 🚨 Use the `<CustomDashboardPage />` component in your routes instead.
 
 A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on the root route.
 
@@ -790,11 +796,15 @@ const App = () => (
 
 ## ~~Sider~~ <PropTag deprecated />
 
+| 🚨 Use `Sider` prop of `<ThemedLayoutV2 />` component instead.
+
 The default sidebar can be customized by using Refine hooks and passing custom components to the `Sider` property.
 
 > For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
 
 ## ~~Footer~~ <PropTag deprecated />
+
+| 🚨 Use `Footer` prop of `<ThemedLayoutV2 />` component instead.
 
 The default app footer can be customized by passing the `Footer` property.
 
@@ -812,7 +822,7 @@ const App = () => (
 
 ## ~~Header~~ <PropTag deprecated />
 
-The default app header can be customized by passing the `Header` property.
+| 🚨 Use `Header` prop of `<ThemedLayoutV2 />` component instead.
 
 ```tsx title="App.tsx"
 // highlight-next-line
@@ -827,6 +837,8 @@ const App = () => (
 ```
 
 ## ~~Layout~~ <PropTag deprecated />
+
+| 🚨 Use `<ThemedLayoutV2 />` as children of `<Refine />` instead.
 
 The default layout can be customized by passing the `Layout` property.
 
@@ -873,6 +885,8 @@ const App = () => (
 
 ## ~~OffLayoutArea~~ <PropTag deprecated />
 
+| 🚨 Use `OffLayoutArea` prop of `<ThemedLayoutV2 />` component instead.
+
 The component wanted to be placed out of the app layout structure can be set by passing to the `OffLayoutArea` prop.
 
 ```tsx title="App.tsx"
@@ -887,6 +901,8 @@ const App = () => (
 ```
 
 ## ~~Title~~ <PropTag deprecated />
+
+| 🚨 Use `Title` prop of `<ThemedLayoutV2 />` component instead.
 
 The app title can be set by passing the `Title` property.
 
