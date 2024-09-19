@@ -23,6 +23,9 @@ import dataProvider from "@refinedev/simple-rest";
 import axios from "axios";
 // highlight-end
 
+// highlight-start
+const httpClient = axios.create();
+
 const App = () => {
   return (
     <Refine
