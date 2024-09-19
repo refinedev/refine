@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-13-react-memo
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 16, 2024 to reflect the latest changes to the React memo API and to provide a more detailed explanation of how React.memo() works._**
+**This article was last updated on September 19, 2024, to add sections on Deep vs Shallow Comparison in Memoization, Profiling Components in DevTools, and Best Practices for Using `React.memo()`.**
 
 ## Introduction
 
@@ -22,18 +22,14 @@ Steps we'll cover in this post:
 
 - [What is Memoization?](#what-is-memoization)
 - [Why Memoization in React?](#why-memoization-in-react)
-  - [Excessive Re-rendering Due to Ancestor Re-rendering](#excessive-re-rendering-due-to-ancestor-re-rendering)
-  - [Expensive Utilities](#expensive-utilities)
-  - [Passing Callbacks to Children](#passing-callbacks-to-children)
 - [Memoization in React](#memoization-in-react)
 - [About the React Memoization Series](#about-the-react-memoization-series)
+- [Project Overview](#project-overview)
 - [Memoizing a Functional Component using `React.memo()`](#memoizing-a-functional-component-using-reactmemo)
-  - [What is `React.memo` ?](#what-is-reactmemo-)
-  - [React.memo() - How to Memoize Component Props](#reactmemo---how-to-memoize-component-props)
-  - [When to Use `React.memo`](#when-to-use-reactmemo)
-  - [When Not to Use `React.memo`](#when-not-to-use-reactmemo)
-  - [React.memo: Prop Comparison](#reactmemo-prop-comparison)
-  - [Using React Memo with Custom Comparators](#using-react-memo-with-custom-comparators)
+- [Best Practices for Using `React.memo()`](#best-practices-for-using-reactmemo)
+- [You can Profile Components in DevTools](#you-can-profile-components-in-devtools)
+- [Bonus: Deep vs Shallow Comparison in Memoization](#bonus-deep-vs-shallow-comparison-in-memoization)
+- [Live Example](#live-example)
 
 ## What is Memoization?
 
@@ -356,6 +352,89 @@ When we click on the `Sign Out` button in the navbar, we can see in the console 
 
 This is now because **React memo** caches the props passed to the component and checks for incoming changes. Notice the Boolean value of `signedIn` printed to the console. A change in `signedIn`'s state renews the memoization and a re-render of the component is triggered.
 
+## Best Practices for Using `React.memo()`
+
+I wanted to share a few best practices for using `React.memo()` with some code examples. These can help improve the performance of our React components:
+
+### Use it for frequently re-rendered components
+
+If a component is being re-rendered unnecessarily due to its parent re-rendering, `React.memo()` can help. For example, if we have a component like this:
+
+```jsx
+const Post = ({ title, content }) => {
+  console.log("Rendering Post component");
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>{content}</p>
+    </div>
+  );
+};
+
+export default Post;
+```
+
+We can prevent unnecessary re-renders by wrapping it with `React.memo()`:
+
+```jsx
+const Post = React.memo(({ title, content }) => {
+  console.log("Rendering Post component");
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>{content}</p>
+    </div>
+  );
+});
+
+export default Post;
+```
+
+Now, this component will only re-render if its `title` or `content` props change.
+
+### Avoid overusing `React.memo()`
+
+It’s important not to use `React.memo()` everywhere. If a component’s props change frequently, memoization can add more overhead than improvement. Use it only when the props don't change often.
+
+### Shallow comparison only
+
+By default, `React.memo()` performs a shallow comparison of props. If you’re passing complex objects or arrays, you might need to write a custom comparison function. For example:
+
+```jsx
+const Post = React.memo(
+  ({ title, content }) => {
+    console.log("Rendering Post component");
+    return (
+      <div>
+        <h1>{title}</h1>
+        <p>{content}</p>
+      </div>
+    );
+  },
+  (prevProps, nextProps) => {
+    return prevProps.title === nextProps.title; // Custom comparison
+  },
+);
+```
+
+In this example, we are only checking if the `title` has changed. The component will only re-render if the `title` prop changes, even if `content` changes.
+
+### Don’t memoize static or rarely updated components
+
+If a component is static or doesn’t receive changing props, there’s no need to use `React.memo()`. For example, this component doesn’t benefit from memoization:
+
+```jsx
+const Footer = () => {
+  return <footer>Footer content</footer>;
+};
+
+// No need to memoize here
+```
+
+Memoization would add unnecessary complexity without improving performance.
+
+By following these best practices and using `React.memo()` in the right situations, we can optimize performance without adding extra overhead.
+
 ### When to Use `React.memo`
 
 This is actually what we want. Because we don't want `<Post />` to re-render when we don't need it to, and we want to re-render it when we need it to.
@@ -415,6 +494,115 @@ Here, we are omitting `signedIn` from the comparison by including only `post`. N
 <br/>
 
 This is because, our `customComparator` checks for equality of incoming values of only `post` and excludes `signedIn` from the comparison.
+
+## You can Profile Components in DevTools
+
+I wanted to share some tips on **Profiling Components in DevTools** to help us identify and fix performance bottlenecks in our React app.
+
+**Opening the React Profiler**
+
+- Install the **React Developer Tools** extension for Chrome or Firefox.
+- Open **DevTools** (`F12` or `Ctrl + Shift + I`), go to the **Profiler** tab, and click **"Record"** before interacting with the app.
+
+**Capturing Component Renders**
+
+Interact with the app while recording (e.g., clicking buttons, changing state). The Profiler will track which components re-render and how long each takes.
+
+**Analyzing Results**
+
+After recording, view the timeline to inspect:
+
+- **Render Time**: Time taken for each component render.
+- **Render Reason**: Prop or state changes causing re-renders.
+
+**Optimizing Slow Renders**
+
+If a component (e.g., `Post`) is re-rendering unnecessarily, wrap it in `React.memo()` to prevent it from re-rendering when props haven't changed.
+
+**Highlight Updates**
+
+Enable **"Highlight Updates"** in the **React** tab to visually see components that re-render, making it easier to spot unnecessary updates.
+
+Using the Profiler, we can quickly identify and optimize slow re-renders.
+
+## Bonus: Deep vs Shallow Comparison in Memoization
+
+I wanted to go over deep vs shallow comparison in memoization and how that affects performance optimization in React, especially when using `React.memo()` and other memoization techniques.
+
+### Shallow Comparison
+
+By default, React does **shallow comparison** to check if a component’s props have changed to decide whether to re-render it. Shallow comparison means React checks for changes only at the top level of an object or array and doesn't go into nested properties.
+
+For example:
+
+```jsx
+const person1 = { name: "John" };
+const person2 = { name: "John" };
+
+console.log(person1 === person2); // false - because of different object references
+```
+
+Even though `person1` and `person2` have the same data, during a shallow comparison, they are considered different because the reference is compared, not the content.
+
+```jsx
+const Post = React.memo(({ title, content }) => {
+  console.log("Rendering Post component");
+  return (
+    <div>
+      <h1>{title}</h1>
+      <p>{content}</p>
+    </div>
+  );
+});
+```
+
+If the `title` and `content` props are **primitives** (like strings or numbers), the shallow comparison works as expected. But if they are **objects** or **arrays**, even a slight change in the reference (e.g., creating a new object) will trigger a re-render.
+
+### Deep Comparison
+
+A deep comparison goes beyond top-level properties and checks all nested properties. It's a bit heavier since every level of the object or array has to be checked.
+
+React doesn't perform deep comparisons by default in `React.memo()` because it can be slow, especially with deeply nested objects or large arrays.
+
+### Custom Comparators for Deep Comparison
+
+If shallow comparison isn’t enough (for example, when passing complex objects as props), we can provide a custom comparator function in `React.memo()` to implement **deep comparison**.
+
+Here’s a custom comparator for deep comparison:
+
+```jsx
+import React from "react";
+import { isEqual } from "lodash";
+
+const Post = ({ post }) => {
+  console.log("Rendering Post component");
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.content}</p>
+    </div>
+  );
+};
+
+const customComparator = (prevProps, nextProps) => {
+  return isEqual(prevProps.post, nextProps.post); // Deep comparison using lodash
+};
+
+export default React.memo(Post, customComparator);
+```
+
+Here, we’re using `lodash`'s `isEqual()` function to deep compare the entire `post` object. This helps avoid unnecessary re-renders when only the reference changes, but the data inside remains the same.
+
+### When to Use Deep Comparison
+
+- **Complex Data Structures**: When passing large or deeply nested objects as props, and you don’t want to re-render components unnecessarily.
+- **Performance Trade-offs**: Deep comparison might be slower than a shallow comparison, so it’s important to measure and ensure that the performance gain from avoiding re-renders outweighs the cost of deep comparison.
+
+### Best Practices
+
+- Use shallow comparison whenever possible to keep performance high.
+- Only use deep comparison when you’re sure the props involve deeply nested objects that don’t change often.
+- Use libraries like `lodash` or `deep-equal` for effective deep comparisons.
 
 ## Summary
 
