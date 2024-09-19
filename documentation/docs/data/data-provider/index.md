@@ -703,7 +703,7 @@ Refine will consume:
 
 ### How can I customize existing data providers?
 
-[Refer to the "Create Data Provider with Swizzle" section in the tutorial for more information →][swizzle-a-data-provider]
+[You can swizzle the data provider using the Refine CLI and customize it as needed.][swizzle-a-data-provider]
 
 ### How I can override a specific method of Data Providers?
 
@@ -732,9 +732,9 @@ const myDataProvider = {
 ```
 
 [basekey]: /docs/core/interface-references#basekey
-[create-a-data-provider]: /docs/data/data-provider
-[swizzle-a-data-provider]: /docs/packages/cli
-[data-provider-tutorial]: /docs/data/data-provider
+[create-a-data-provider]: https://refine.dev/tutorial/essentials/data-fetching/intro/#creating-a-data-provider
+[swizzle-a-data-provider]: /docs/packages/cli/#swizzle
+[data-provider-tutorial]: https://refine.dev/tutorial/essentials/data-fetching/intro/
 [use-api-url]: /docs/data/hooks/use-api-url
 [use-create]: /docs/data/hooks/use-create
 [use-create-many]: /docs/data/hooks/use-create
