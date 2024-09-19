@@ -758,7 +758,7 @@ const App = () => (
 
 ## ~~DashboardPage~~ <PropTag deprecated />
 
-| 🚨 Use the `<DashboardPage />` component in your routes instead.
+| 🚨 Use the `<CustomDashboardPage />` component in your routes instead.
 
 A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on the root route.
 
