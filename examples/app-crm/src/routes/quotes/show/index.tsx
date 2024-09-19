@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-import { useModal, useOne } from "@refinedev/core";
+import { useModal, useOne, Link } from "@refinedev/core";
 
 import { EditOutlined, LeftOutlined } from "@ant-design/icons";
 import { Button, Space } from "antd";
@@ -43,7 +43,14 @@ export const QuotesShowPage = () => {
   return (
     <>
       <div className={styles.container}>
-        <Link to="/quotes">
+        <Link
+          go={{
+            to: {
+              resource: "quotes",
+              action: "list",
+            },
+          }}
+        >
           {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <Button icon={<LeftOutlined />}>Quotes</Button>
         </Link>

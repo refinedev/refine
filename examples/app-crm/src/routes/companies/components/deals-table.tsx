@@ -1,8 +1,8 @@
 import { type FC, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { EditButton, FilterDropdown, useTable } from "@refinedev/antd";
-import { useNavigation, useOne } from "@refinedev/core";
+import { Link, useOne } from "@refinedev/core";
 import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
@@ -34,7 +34,6 @@ type Props = {
 type Deal = GetFieldsFromList<CompanyDealsTableQuery>;
 
 export const CompanyDealsTable: FC<Props> = ({ style }) => {
-  const { listUrl } = useNavigation();
   const params = useParams();
 
   const { tableProps, filters, setFilters } = useTable<Deal>({
@@ -150,7 +149,14 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
           }}
         >
           <Text>No deals yet</Text>
-          <Link to={listUrl("deals")}>
+          <Link
+            go={{
+              to: {
+                resource: "deals",
+                action: "list",
+              },
+            }}
+          >
             {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <PlusCircleOutlined
               style={{
