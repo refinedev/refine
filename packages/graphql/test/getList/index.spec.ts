@@ -5,7 +5,7 @@ import "./index.mock";
 
 describe("getList", () => {
   it("correct response", async () => {
-    const { data } = await dataProvider(client).getList({
+    const { data, total } = await dataProvider(client).getList({
       resource: "posts",
       meta: {
         fields: ["id", "title"],

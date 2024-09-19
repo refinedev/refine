@@ -43,6 +43,51 @@ const App = () => (
 );
 ```
 
+### Options
+
+It's also possible to pas a 2nd parameter to GraphQL data provider. These options are `getCount` and `getData`.
+
+You can use them to extract response from your GraphQL response.
+
+Let's say you have the following query:
+
+```graphql
+query PostList($where: JSON, $sort: String) {
+  allPosts(where: $where, sort: $sort) {
+    id
+    title
+    content
+    category {
+      id
+    }
+  }
+}
+```
+
+By default, our data provider expects a plural form of the resource in the response, so if you have `allPosts`, you would need to swizzle GraphQL data provider and customize it yourself. With these options, we help you extract data from your response. So you don't need to create custom data provider for relatively simple cases.
+
+```ts
+import dataProvider, {
+  GraphQLClient,
+  defaultGetDataFunc,
+} from "@refinedev/graphql";
+import camelCase from "camelcase";
+
+const client = new GraphQLClient("https://api.example.com/graphql");
+
+const dp = dataProvider(client, {
+  getData: ({ method, params, response }) => {
+    if (method === "getList") {
+      const key = camelCase(`all-${params.resource}`); // -> allPosts
+
+      return response[key];
+    }
+
+    return defaultGetDataFunc({ method, params, response });
+  },
+});
+```
+
 ## Realtime
 
 `@refinedev/graphql` also provides a `liveProvider` to enable realtime features of Refine. These features are powered by GraphQL subscriptions and uses [`graphql-ws`](https://the-guild.dev/graphql/ws) to handle the connections.

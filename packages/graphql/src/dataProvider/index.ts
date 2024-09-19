@@ -1,4 +1,9 @@
-import type { DataProvider, BaseRecord } from "@refinedev/core";
+import type {
+  DataProvider,
+  BaseRecord,
+  GetListResponse,
+  GetManyResponse,
+} from "@refinedev/core";
 import { GraphQLClient } from "graphql-request";
 import * as gql from "gql-query-builder";
 import pluralize from "pluralize";
@@ -10,10 +15,22 @@ import {
   getOperationFields,
   isMutation,
 } from "../utils";
+import {
+  defaultGetCountFunc,
+  defaultGetDataFunc,
+  type GraphQLDataProviderOptions,
+} from "./options";
 
-const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
+const dataProvider = (
+  client: GraphQLClient,
+  options: GraphQLDataProviderOptions = {
+    getCount: defaultGetCountFunc,
+    getData: defaultGetDataFunc,
+  },
+): Required<DataProvider> => {
   return {
-    getList: async ({ resource, pagination, sorters, filters, meta }) => {
+    getList: async (params) => {
+      const { resource, pagination, sorters, filters, meta } = params;
       const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
       const sortBy = generateSort(sorters);
@@ -24,7 +41,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const operation = meta?.operation ?? camelResource;
 
       if (meta?.gqlQuery) {
-        const response = await client.request<BaseRecord>(meta.gqlQuery, {
+        const response = await client.request<BaseRecord[]>(meta.gqlQuery, {
           ...meta?.variables,
           sort: sortBy,
           where: filterBy,
@@ -37,8 +54,12 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         });
 
         return {
-          data: response[operation],
-          total: response[operation].count,
+          data: options.getData({
+            method: "getList",
+            params,
+            response,
+          }) as BaseRecord[],
+          total: options.getCount({ params, response }),
         };
       }
 
@@ -58,27 +79,30 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
         fields: meta?.fields,
       });
 
-      const response = await client.request<BaseRecord>(query, variables);
+      const response = await client.request<GetListResponse>(query, variables);
 
       return {
-        data: response[operation],
-        total: response[operation].count,
+        data: options.getData({ method: "getList", params, response }),
+        total: options.getCount({ params, response }),
       };
     },
 
-    getMany: async ({ resource, ids, meta }) => {
+    getMany: async (params) => {
+      const { resource, ids, meta } = params;
+
       const camelResource = camelCase(resource);
 
       const operation = meta?.operation ?? camelResource;
 
       if (meta?.gqlQuery) {
-        const response = await client.request<BaseRecord>(meta.gqlQuery, {
+        const response = await client.request<GetManyResponse>(meta.gqlQuery, {
           where: {
             id_in: ids,
           },
         });
+
         return {
-          data: response[operation],
+          data: options.getData({ method: "getList", params, response }),
         };
       }
 
@@ -96,7 +120,7 @@ const dataProvider = (client: GraphQLClient): Required<DataProvider> => {
       const response = await client.request<BaseRecord>(query, variables);
 
       return {
-        data: response[operation],
+        data: options.getData({ method: "getList", params, response }),
       };
     },
 
