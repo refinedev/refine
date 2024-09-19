@@ -106,7 +106,7 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             >
               <LandingStartActionIcon />
               <span className={clsx("text-base", "font-semibold")}>
-                Get started
+                See Docs
               </span>
             </Link>
             <LandingCopyCommandButton
