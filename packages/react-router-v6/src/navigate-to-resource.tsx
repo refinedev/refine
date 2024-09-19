@@ -16,6 +16,12 @@ export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
 
   const toResource = resource || resources.find((r) => r.list);
 
+  console.log({
+    resource,
+    resources,
+    toResource,
+  });
+
   if (toResource) {
     const path = getToPath({
       resource: toResource,
