@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-16-react-use-
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 17, 2024 to reflect the latest changes to the React useMemo API and to provide a more explanations of how React.useMemo() works._**
+**This article was last updated on September 19, 2024, to add sections on the latest changes to the React useMemo API and provide more detailed explanations of how `useMemo()` works.**
 
 ## Introduction
 
@@ -26,13 +26,13 @@ In this post, we dive into the details of the **useMemo** hook with an extension
 
 Steps we'll cover:
 
-- [What is React useMemo?](#what-is-react-usememo-)
-  - [Resource Intensive Functions in React: Why Use React `useMemo`?](#resource-intensive-functions-in-react-why-use-react-usememo-)
+- [What is React useMemo ?](#what-is-react-usememo-)
 - [Optimizing Expensive Utility Functions with React `useMemo` Hook](#optimizing-expensive-utility-functions-with-react-usememo-hook)
 - [React useMemo: How to Cache the Value of Expensive Utilities](#react-usememo-how-to-cache-the-value-of-expensive-utilities)
 - [Using React useMemo with Dependencies](#using-react-usememo-with-dependencies)
-  - [When to Use React `useMemo()`](#when-to-use-react-usememo)
-  - [When Not to Use React `useMemo`](#when-not-to-use-react-usememo)
+- [More Use Cases for `useMemo()` Hook](#more-use-cases-for-usememo-hook)
+- [Bonus: Best Practices for Using `useMemo()` in React](#bonus-best-practices-for-using-usememo-in-react)
+- [Live Example](#live-example)
 
 ## What is React useMemo ?
 
@@ -131,9 +131,9 @@ const Blog = ({ signedIn }) => {
 
   return (
     <div className="container">
-      <h1 className="m-1 p-1 text-center heading-lg">Memoization in React</h1>
+      <h1 className="heading-lg m-1 p-1 text-center">Memoization in React</h1>
       <div className="m-1 p-2 ">
-        <div className="my-1 p-2 box">
+        <div className="box my-1 p-2">
           <div className="latest-posts-top">
             <h3 className="heading-md my-1 p-1">Latest posts</h3>
             <div className="p-1">{localTime}</div>
@@ -257,6 +257,178 @@ It is also important to know that **useMemo** returns a value, as opposed to a f
 ### When Not to Use React `useMemo`
 
 `useMemo()` is preferred for memoizing a value rather than a callback function. We should not use `useMemo` for memoizing a function such as a callback.
+
+## More Use Cases for `useMemo()` Hook
+
+I wanted to share some advanced use cases for the `useMemo()` hook that might be useful in our projects. I’ve added some code examples for clarity.
+
+### Handling Large Data Processing
+
+It's great for situations when we’re working with large datasets (like sorting or filtering) and want to avoid recalculating the data when it hasn’t changed. Here’s an example of sorting a big list:
+
+```javascript
+import React, { useMemo } from "react";
+
+const LargeDataComponent = ({ data }) => {
+  const sortedData = useMemo(() => {
+    console.log("Sorting data...");
+    return data.sort((a, b) => a.value - b.value);
+  }, [data]);
+
+  return (
+    <div>
+      {sortedData.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+};
+```
+
+In this case, `sortedData` will only be recalculated when `data` changes. Otherwise, the cached sorted result is reused.
+
+### Improving API Responses
+
+We can use `useMemo()` to cache API responses, so we avoid making the same API calls multiple times with the same parameters. Here's how:
+
+```javascript
+import React, { useMemo, useState, useEffect } from "react";
+
+const fetchData = async (query) => {
+  const response = await fetch(`https://api.example.com/data?search=${query}`);
+  return response.json();
+};
+
+const APIComponent = ({ query }) => {
+  const [data, setData] = useState([]);
+
+  const memoizedData = useMemo(() => {
+    return fetchData(query);
+  }, [query]);
+
+  useEffect(() => {
+    memoizedData.then((result) => setData(result));
+  }, [memoizedData]);
+
+  return (
+    <div>
+      {data.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+};
+```
+
+Here, `useMemo()` stores the API response based on the `query`. The API will only be called again when the `query` changes, saving resources.
+
+### Pagination and Data Display
+
+`useMemo()` can also be useful for pagination to cache already loaded pages of data, avoiding unnecessary recalculations when flipping through pages. Here’s an example:
+
+```javascript
+import React, { useMemo, useState } from "react";
+
+const PaginationComponent = ({ data, currentPage, itemsPerPage }) => {
+  const paginatedData = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return data.slice(startIndex, endIndex);
+  }, [currentPage, data, itemsPerPage]);
+
+  return (
+    <div>
+      {paginatedData.map((item) => (
+        <div key={item.id}>{item.name}</div>
+      ))}
+    </div>
+  );
+};
+```
+
+Here, we are only recalculating the data for the current page and not reprocessing the entire dataset each time the page changes.
+
+## Bonus: Best Practices for Using `useMemo()` in React
+
+I thought I'd share some best practices for using `useMemo()` in React to help optimize our components without overcomplicating the code. Here are a few key points:
+
+### Use `useMemo()` Only for Expensive Calculations
+
+The main purpose of `useMemo()` is to avoid re-executing expensive functions unnecessarily. If the calculation isn't costly performance-wise, it's better not to use `useMemo()`, as it adds extra complexity.
+
+```javascript
+const sortedData = useMemo(() => {
+  return data.sort((a, b) => a.value - b.value);
+}, [data]);
+```
+
+Here, sorting large data is expensive, so memoizing the result is useful. However, if the operation is lightweight, `useMemo()` isn't necessary.
+
+### Avoid Overusing `useMemo()`
+
+Using `useMemo()` too much can make the code harder to read and maintain. The rule of thumb is to only apply it where it truly improves performance.
+
+#### Example (Not needed):
+
+```javascript
+const simpleCalculation = useMemo(() => {
+  return number * 2;
+}, [number]);
+```
+
+In this case, multiplying a number by 2 is inexpensive, and using `useMemo()` here would be unnecessary.
+
+### Always Include Dependencies Properly
+
+Ensure that all necessary dependencies are included in the array to prevent unwanted bugs. `useMemo()` will only recalculate when one of the dependencies changes, so missing a dependency can lead to stale data or incorrect behavior.
+
+#### Example:
+
+```javascript
+const filteredData = useMemo(() => {
+  return data.filter((item) => item.active);
+}, [data]); // Always ensure the dependency (data) is included
+```
+
+### Don’t Use `useMemo()` to Memoize Functions
+
+`useMemo()` is for memoizing values, not functions. If you need to memoize a function, use the `useCallback()` hook instead.
+
+#### Correct Example (using `useCallback()`):
+
+```javascript
+const handleClick = useCallback(() => {
+  console.log("Button clicked");
+}, []);
+```
+
+### Use it for Expensive Object or Array Creation
+
+If you’re creating complex objects or arrays in your component, especially those that involve computations, `useMemo()` can help by memoizing the created object or array so it’s not recreated on every render.
+
+```javascript
+const userPreferences = useMemo(() => {
+  return { theme: "dark", language: "en" };
+}, []);
+```
+
+### Use `useMemo()` for Derived State
+
+When the state is derived from props or other states, `useMemo()` can prevent unnecessary recalculations.
+
+```javascript
+const fullName = useMemo(() => {
+  return `${firstName} ${lastName}`;
+}, [firstName, lastName]);
+```
+
+Here, `useMemo()` ensures that `fullName` is only recalculated when `firstName` or `lastName` changes.
+
+- Use `useMemo()` for expensive calculations (like sorting, filtering).
+- Avoid overusing it—only apply where performance gain is significant.
+- Always include dependencies accurately.
+- Use `useCallback()` for memoizing functions, not `useMemo()`.
+- Apply `useMemo()` for heavy object or array creation.
 
 ## Summary
 
