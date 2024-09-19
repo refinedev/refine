@@ -18,14 +18,21 @@ Simple REST package exports a function that accepts `apiUrl` and `httpClient` pa
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
-// highlight-next-line
+// highlight-start
 import dataProvider from "@refinedev/simple-rest";
+import axios from "axios";
+// highlight-end
+
+// highlight-start
+const httpClient = axios.create();
 
 const App = () => {
   return (
     <Refine
-      // highlight-next-line
-      dataProvider={dataProvider("<API_URL>")}
+      // highlight-start
+      // `httpClient` is optional.
+      dataProvider={(dataProvider("<API_URL>"), httpClient)}
+      // highlight-end
       /* ... */
     />
   );
