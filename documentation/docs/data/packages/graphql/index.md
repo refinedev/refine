@@ -69,7 +69,7 @@ By default, our data provider expects a plural form of the resource in the respo
 ```ts
 import dataProvider, {
   GraphQLClient,
-  defaultGetDataFunc,
+  defaultGetDataFn,
 } from "@refinedev/graphql";
 import camelCase from "camelcase";
 
@@ -83,7 +83,7 @@ const dp = dataProvider(client, {
       return response[key];
     }
 
-    return defaultGetDataFunc({ method, params, response });
+    return defaultGetDataFn({ method, params, response });
   },
 });
 ```

@@ -1,4 +1,4 @@
-import { defaultGetDataFunc } from "../../src/dataProvider/options";
+import { defaultGetDataFn } from "../../src/dataProvider/options";
 
 describe("default options", () => {
   describe("default get data", () => {
@@ -6,7 +6,7 @@ describe("default options", () => {
       const post = { id: 1, name: "John" };
 
       it("should return correct response with resource name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "create",
           params: { resource: "posts", variables: { name: "John" } },
           response: {
@@ -18,7 +18,7 @@ describe("default options", () => {
       });
 
       it("should return correct response with operation name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "create",
           params: {
             resource: "posts",
@@ -38,7 +38,7 @@ describe("default options", () => {
       const post = { id: 1, name: "John" };
 
       it("should return correct response with resource name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "deleteOne",
           params: { resource: "posts", id: 1, variables: { name: "John" } },
           response: {
@@ -50,7 +50,7 @@ describe("default options", () => {
       });
 
       it("should return correct response with operation name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "deleteOne",
           params: {
             resource: "posts",
@@ -70,7 +70,7 @@ describe("default options", () => {
     describe("getList", () => {
       const posts = [{ id: 1 }];
       it("should return correct response with resource name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "getList",
           params: { resource: "posts", meta: {} },
           response: {
@@ -82,7 +82,7 @@ describe("default options", () => {
       });
 
       it("should return correct response with operation name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "getList",
           params: { resource: "posts", meta: { operation: "allPosts" } },
           response: {
@@ -98,7 +98,7 @@ describe("default options", () => {
       const post = { id: 1, name: "John" };
 
       it("should return correct response with resource name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "getOne",
           params: { resource: "posts", id: 1 },
           response: {
@@ -110,7 +110,7 @@ describe("default options", () => {
       });
 
       it("should return correct response with operation name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "getOne",
           params: {
             resource: "posts",
@@ -130,7 +130,7 @@ describe("default options", () => {
       const post = { id: 1, name: "Alexander" };
 
       it("should return correct response with resource name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "update",
           params: {
             resource: "posts",
@@ -146,7 +146,7 @@ describe("default options", () => {
       });
 
       it("should return correct response with operation name", () => {
-        const result = defaultGetDataFunc({
+        const result = defaultGetDataFn({
           method: "update",
           params: {
             resource: "posts",

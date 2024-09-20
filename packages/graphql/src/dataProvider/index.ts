@@ -16,16 +16,19 @@ import {
   isMutation,
 } from "../utils";
 import {
-  defaultGetCountFunc,
-  defaultGetDataFunc,
+  defaultGetCountFn,
+  defaultGetDataFn,
   type GraphQLDataProviderOptions,
 } from "./options";
 
 const dataProvider = (
   client: GraphQLClient,
-  options: GraphQLDataProviderOptions = {
-    getCount: defaultGetCountFunc,
-    getData: defaultGetDataFunc,
+  {
+    getCount = defaultGetCountFn,
+    getData = defaultGetDataFn,
+  }: GraphQLDataProviderOptions = {
+    getCount: defaultGetCountFn,
+    getData: defaultGetDataFn,
   },
 ): Required<DataProvider> => {
   return {
@@ -54,12 +57,8 @@ const dataProvider = (
         });
 
         return {
-          data: options.getData({
-            method: "getList",
-            params,
-            response,
-          }) as BaseRecord[],
-          total: options.getCount({ params, response }),
+          data: getData({ method: "getList", params, response }),
+          total: getCount({ params, response }),
         };
       }
 
@@ -82,8 +81,8 @@ const dataProvider = (
       const response = await client.request<GetListResponse>(query, variables);
 
       return {
-        data: options.getData({ method: "getList", params, response }),
-        total: options.getCount({ params, response }),
+        data: getData({ method: "getList", params, response }),
+        total: getCount({ params, response }),
       };
     },
 
@@ -102,7 +101,7 @@ const dataProvider = (
         });
 
         return {
-          data: options.getData({ method: "getList", params, response }),
+          data: getData({ method: "getMany", params, response }),
         };
       }
 
@@ -120,7 +119,7 @@ const dataProvider = (
       const response = await client.request<BaseRecord>(query, variables);
 
       return {
-        data: options.getData({ method: "getList", params, response }),
+        data: getData({ method: "getList", params, response }),
       };
     },
 
