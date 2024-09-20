@@ -24,6 +24,12 @@ export const accessControlProvider: AccessControlBindings = {
       };
     }
 
+    if (user.role === Role.MANAGER) {
+      return {
+        can: true,
+      };
+    }
+
     if (action === "employee") {
       return {
         can: user.role === Role.EMPLOYEE,
