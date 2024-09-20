@@ -416,24 +416,25 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
   return (
     <ShowcaseWrapper
       className={className}
-      render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/base_render.png"
+      render="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/base_render.png"
       highlights={[
         {
-          x: 268,
-          y: 184,
-          width: 496,
-          height: 260,
+          x: 244,
+          y: 254,
+          width: 520,
+          height: 296,
           render:
-            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/inbox.png",
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/notifications.png",
           codePosition: "right",
           code: `
                                 import { useList } from "@refinedev/core";
 
                                 const { data } = useList({
                                     resource: "notifications",
+                                    liveMode: "auto",
                                     filters: [
                                         {
-                                            field: "is_read",
+                                            field: "isRead",
                                             operator: "eq",
                                             value: false
                                         },
@@ -447,62 +448,103 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
           width: 200,
           height: 344,
           render:
-            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/sider.png",
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/menu.png",
           codePosition: "right",
           code: `
-                                import { useMenu } from "@refinedev/core";
-                                import Link from "next/link";
+                import { useMenu, Link, CanAccess } from "@refinedev/core";
+                import { List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 
-                                const { menuItems } = useMenu();
-
-                                return menuItems.map((item) => (
-                                    <Link to={item.route}>
-                                        {item.icon}
-                                        {item.label}
-                                    </Link>
-                                ));
-                                `,
+                const Sider = () => {
+                  const { menuItems, selectedKey } = useMenu();
+                  return (
+                      <List>
+                        {menuItems.map((item) => (
+                          <CanAccess key={item.key} action="list" resource={item.name}>
+                            <ListItem>
+                              <ListItemButton component={Link} selected={selectedKey === item.key} to={item.route}>
+                                <ListItemIcon>{item.icon}</ListItemIcon>
+                                <ListItemText>{item.label}</ListItemText>
+                              </ListItemButton>
+                            </ListItem>
+                          </CanAccess>
+                        ))}
+                      </List>
+                  );
+                };
+            `,
         },
         {
           x: 788,
-          y: 184,
-          width: 332,
-          height: 260,
+          y: 254,
+          width: 356,
+          height: 296,
           render:
-            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/poll.png",
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/poll.png",
           codePosition: "left",
           code: `
-                                import { useList } from "@refinedev/core";
+                        import { useList } from "@refinedev/core";
 
-                                const { data } = useList({
-                                    resource: "polls",
-                                    filters: [
-                                        { field: "is_active", operator: "eq", value: true },
-                                    ],
-                                    pagination: { current: 1, pageSize: 1 }
-                                });
+                        const { data } = useList({
+                          resource: "polls",
+                          filters: [{ field: "status", operator: "eq", value: "active" }],
+                          pagination: { current: 1, pageSize: 1 },
+                          liveMode: "auto",
+                        });
                                 `,
         },
         {
-          x: 736,
-          y: 24,
-          width: 384,
-          height: 112,
+          x: 978,
+          y: 22,
+          width: 166,
+          height: 36,
           render:
-            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr/timer.png",
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/request-time-off.png",
           codePosition: "left",
           code: `
-                                import { useGetIdentity, useUpdate } from "@refinedev/core";
+                    import { CreateButton } from "@refinedev/mui";
+                    import { TimeOffIcon } from "@/icons";
 
-                                const { data: { activeTaskId } } = useGetIdentity();
-
-                                const { mutate } = useUpdate();
-
-                                const onBreak = () => mutate({
-                                    resource: "tasks",
-                                    id: activeTaskId,
-                                    values: { is_paused: true },
-                                });
+                    <CreateButton resource="time-offs" startIcon={<TimeOffIcon />}>
+                      Request Time Off
+                    </CreateButton>
+                                `,
+        },
+        {
+          x: 552,
+          y: 78,
+          width: 284,
+          height: 128,
+          render:
+            "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/sick-leave.png",
+          codePosition: "left",
+          code: `
+                    import { useGetIdentity, useList } from "@refinedev/core";
+                  
+                    const { data: { employeeId } } = useGetIdentity();
+                  
+                    const { data } = useList({
+                      resource: "time-offs", 
+                      pagination: { current: 1, pageSize: 1 },
+                      filters: [
+                        {
+                          field: "employeeId",
+                          operator: "eq",
+                          value: employeeId,
+                        },
+                        {
+                          field: "status",
+                          operator: "eq",
+                          value: "approved",
+                        },
+                        {
+                          field: "type",
+                          operator: "eq",
+                          value: "sick-leave",
+                        },
+                      ],
+                    });
+                  
+                    const totalSickLeave = data?.total;
                                 `,
         },
       ]}
