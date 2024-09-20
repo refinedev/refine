@@ -18,15 +18,15 @@ export const accessControlProvider: AccessControlBindings = {
     // if the resource does not have a scope, it is not accessible
     if (!scope) return { can: false };
 
-    if (action === "manager") {
-      return {
-        can: user.role === Role.MANAGER,
-      };
-    }
-
     if (user.role === Role.MANAGER) {
       return {
         can: true,
+      };
+    }
+
+    if (action === "manager") {
+      return {
+        can: user.role === Role.MANAGER,
       };
     }
 
