@@ -22,10 +22,22 @@ export const RequestsListItem = ({
 }: Props) => {
   return (
     <Box
+      role="button"
+      onClick={onClick}
       sx={(theme) => ({
-        height: "auto",
-        [theme.breakpoints.up("md")]: {
-          height: "80px",
+        cursor: "pointer",
+        paddingRight: "24px",
+        paddingLeft: "24px",
+
+        paddingTop: "4px",
+        paddingBottom: "4px",
+        [theme.breakpoints.up("sm")]: {
+          paddingTop: "12px",
+          paddingBottom: "12px",
+        },
+
+        "&:hover": {
+          backgroundColor: theme.palette.action.hover,
         },
       })}
     >
@@ -73,6 +85,7 @@ export const RequestsListItem = ({
                 display: "flex",
                 alignItems: "center",
                 gap: "8px",
+                minWidth: "260px",
               }}
             >
               {descriptionIcon}

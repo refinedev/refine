@@ -89,6 +89,10 @@ const TimeOffsList = () => {
       icon={<TimeOffIcon width={24} height={24} />}
       sx={{
         flex: 1,
+        paddingBottom: "0px",
+      }}
+      sxChildren={{
+        padding: 0,
       }}
     >
       <RequestsList
