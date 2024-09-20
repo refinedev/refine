@@ -445,8 +445,8 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
         {
           x: 12,
           y: 174,
-          width: 200,
-          height: 344,
+          width: 204,
+          height: 360,
           render:
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/hr2/menu.png",
           codePosition: "right",
@@ -543,7 +543,6 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
                         },
                       ],
                     });
-                  
                     const totalSickLeave = data?.total;
                                 `,
         },
