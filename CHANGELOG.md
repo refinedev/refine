@@ -17,14 +17,14 @@ Features
   - CanAccess
   - ErrorPage
   - Authentication Pages
-  - Login
-  - Logout
-  - Register
-  - ForgotPassword
-  - UpdatePassword
+    - `Login`
+    - `Logout`
+    - `Register`
+    - `ForgotPassword`
+    - `UpdatePassword`
 
 - #### Added `@pankod/refine-inferencer` package
-  - `@pankod/refine-inferencer` is a package that provides a way to automatically generate views for resources based on the data structure.
+  - `@pankod/refine-inferencer` automatically generates views for resources based on data structures.
   - [Refer to Inferencer Docs for more information](https://refine.dev/docs/packages/documentation/inferencer/)
 
 ### Minor Changes
@@ -68,8 +68,8 @@ Features
   - Added support for experimental `appDir` option in `next.config.js` to allow for the latest Next.js features.
 
   ## `pages` directory
+  Current support for the `pages` directory remains unchanged and will continue to work as long as `Next.js`.js supports it.
 
-  Current support for `pages` directory has not changed and will continue to work as before. It will be supported as long as `Next.js` continues to support and prompts it as the stable way of working with `Next.js`.
 
   ## `appDir` option
 
@@ -119,7 +119,7 @@ Features
 
   **Warning**
 
-  Please note that, unlike the `routerProvider` from the `@pankod/refine-nextjs-router`, `routerProvider` from `@pankod/refine-nextjs-router/app` is a function and you need to bind `params` to make it work properly.
+  Please note that, unlike the `routerProvider` from the `@pankod/refine-nextjs-router`, The `routerProvider` from `@pankod/refine-nextjs-router/app` is a function and requires binding `params` for proper functionality.
 
   ```tsx
   // app/[[...refine]]/page.tsx
@@ -133,11 +133,11 @@ Features
 
   **Warning**
 
-  You need to add `"use client";` directive to both `layout.tsx` and `page.tsx` inside `app/[[...refine]]` directory.
+  Additionally, add the `"use client";` directive to both `layout.tsx` and `page.tsx` inside `app/[[...refine]]` directory.
 
   **Warning**
 
-  `checkAuthentication` does not work with `appDir`. We're aiming to release a substitute for it using middleware but for now its not included in this release.
+  `checkAuthentication` does not work with `appDir`. We are working on a middleware solution for future releases.
 
 ### Patch Changes
 
