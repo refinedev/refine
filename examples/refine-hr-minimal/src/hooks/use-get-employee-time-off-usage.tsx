@@ -3,7 +3,7 @@ import { type TimeOff, TimeOffStatus, TimeOffType } from "@/types";
 import { useMemo } from "react";
 import dayjs from "dayjs";
 
-export const useGetEmployeeUsedTimeOffs = ({
+export const useGetEmployeeTimeOffUsage = ({
   employeeId,
 }: { employeeId?: number }) => {
   const query = useList<TimeOff>({

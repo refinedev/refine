@@ -17,7 +17,7 @@ import {
   type TimeOff,
 } from "@/types";
 import { RequestTypeIcon, ThumbsDownIcon, ThumbsUpIcon } from "@/icons";
-import { useGetEmployeeUsedTimeOffs } from "@/hooks/useGetEmployeeUsedTimeOffs";
+import { useGetEmployeeTimeOffUsage } from "@/hooks/use-get-employee-time-off-usage";
 
 type Props = {
   open: boolean;
@@ -39,7 +39,7 @@ export const TimeOffRequestModal = ({
   onClose,
   onSuccess,
 }: Props) => {
-  const employeeUsedTimeOffs = useGetEmployeeUsedTimeOffs({
+  const employeeUsedTimeOffs = useGetEmployeeTimeOffUsage({
     employeeId: timeOff?.employee.id,
   });
 
