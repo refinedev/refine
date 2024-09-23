@@ -115,7 +115,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
       bodyStyle={{ padding: 0 }}
       title={
         <Space size="middle">
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <AuditOutlined />
           <Text>Deals</Text>
 
@@ -151,7 +150,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
         >
           <Text>No deals yet</Text>
           <Link to={listUrl("deals")}>
-            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <PlusCircleOutlined
               style={{
                 marginRight: 4,
@@ -174,7 +172,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
           <Table.Column
             title="Deal Title"
             dataIndex="title"
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => (
               <FilterDropdown {...props}>
@@ -242,7 +239,6 @@ export const CompanyDealsTable: FC<Props> = ({ style }) => {
                   hideText
                   size="small"
                   resource="deals"
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<ExportOutlined />}
                 />
               );

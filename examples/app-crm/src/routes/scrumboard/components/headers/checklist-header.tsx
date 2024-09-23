@@ -14,7 +14,6 @@ export const ChecklistHeader = ({ checklist = [] }: Props) => {
 
   return (
     <Space size={15} align="start" style={{ marginBottom: "12px" }}>
-      {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
       <CheckSquareOutlined />
       <Text strong>Checklist </Text>
       <Text type="secondary">

@@ -35,13 +35,11 @@ export const CustomerInfoList = ({ customer }: Props) => {
         dataSource={[
           {
             title: t("users.fields.gsm"),
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon: <PhoneOutlined />,
             value: <Typography.Text>{customer?.gsm}</Typography.Text>,
           },
           {
             title: t("users.fields.addresses"),
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon: <EnvironmentOutlined />,
             value: (
               <Space direction="vertical">
@@ -51,14 +49,12 @@ export const CustomerInfoList = ({ customer }: Props) => {
                   return (
                     <Space key={index}>
                       {isFirst ? (
-                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         <CheckCircleOutlined
                           style={{
                             color: token.colorSuccess,
                           }}
                         />
                       ) : (
-                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         <RightCircleOutlined
                           style={{
                             color: token.colorTextTertiary,
@@ -83,13 +79,11 @@ export const CustomerInfoList = ({ customer }: Props) => {
           },
           {
             title: t("users.fields.isActive.label"),
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon: <UserOutlined />,
             value: <UserStatus value={!!customer?.isActive} />,
           },
           {
             title: t("users.fields.createdAt"),
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon: <CalendarOutlined />,
             value: (
               <Typography.Text>

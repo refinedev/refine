@@ -37,7 +37,6 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
       <Card
         title={
           <span>
-            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <FlagOutlined style={{ color: token.colorPrimary }} />
             <Text size="sm" style={{ marginLeft: ".5rem" }}>
               Categories
@@ -48,7 +47,6 @@ export const CalendarCategories: React.FC<CalendarCategoriesProps> = ({
           <Button
             shape="circle"
             onClick={() => show()}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<SettingOutlined />}
           />
         }

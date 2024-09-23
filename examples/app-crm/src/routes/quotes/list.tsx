@@ -129,7 +129,6 @@ export const QuotesListPage: FC<PropsWithChildren> = ({ children }) => {
                 <Form.Item name="title" noStyle>
                   <Input
                     size="large"
-                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     prefix={<SearchOutlined className="anticon tertiary" />}
                     suffix={
                       <Spin

@@ -88,7 +88,6 @@ export const Calendar: React.FC<CalendarProps> = ({
               calendarRef.current?.getApi().prev();
             }}
             shape="circle"
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<LeftOutlined />}
           />
           <Button
@@ -96,7 +95,6 @@ export const Calendar: React.FC<CalendarProps> = ({
               calendarRef.current?.getApi().next();
             }}
             shape="circle"
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={<RightOutlined />}
           />
           <Text className={styles.title} size="lg">

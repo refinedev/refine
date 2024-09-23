@@ -53,7 +53,6 @@ export const AlgoliaSearch: React.FC = () => {
           className={styles.input}
           size="large"
           prefix={
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               className={cn(styles.inputPrefix, "secondary", "tertiary")}
             />

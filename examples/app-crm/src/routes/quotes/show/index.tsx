@@ -44,7 +44,6 @@ export const QuotesShowPage = () => {
     <>
       <div className={styles.container}>
         <Link to="/quotes">
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <Button icon={<LeftOutlined />}>Quotes</Button>
         </Link>
         <div className={styles.divider} />
@@ -61,7 +60,6 @@ export const QuotesShowPage = () => {
             <Suspense>
               <PdfExport />
             </Suspense>
-            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <Button icon={<EditOutlined />} onClick={() => show()}>
               Edit
             </Button>

@@ -50,7 +50,6 @@ export const ActionCell = ({ record }: { record: Audit }) => {
       >
         <Button
           size="small"
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<ZoomInOutlined />}
           onClick={() => setOpened((prev) => !prev)}
         >

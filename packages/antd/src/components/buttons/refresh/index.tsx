@@ -35,7 +35,6 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
   return (
     <Button
       onClick={onClick}
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<RedoOutlined spin={loading} />}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}

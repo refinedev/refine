@@ -17,7 +17,6 @@ export const KanbanAddStageButton: FC<PropsWithChildren<Props>> = ({
     <Button
       type="dashed"
       size="large"
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<PlusSquareOutlined className="secondary md" />}
       style={{
         marginTop: "16px",

@@ -61,7 +61,6 @@ const PdfExport = () => {
         loading={loading}
         onClick={pdfOpenHandler}
         type="primary"
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon={<FilePdfOutlined />}
       >
         Convert to PDF

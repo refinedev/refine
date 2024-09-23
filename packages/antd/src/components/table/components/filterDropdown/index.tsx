@@ -94,7 +94,6 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
       <div style={{ marginBottom: 15 }}>{childrenWithProps}</div>
       <Space>
         <Button type="primary" size="small" onClick={() => onFilter()}>
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <FilterOutlined /> {translate("buttons.filter", "Filter")}
         </Button>
         <Button danger size="small" onClick={() => clearFilter()}>

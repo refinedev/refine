@@ -112,7 +112,6 @@ export const CourierList = ({ children }: PropsWithChildren) => {
               </Typography.Text>
             )}
             filterIcon={(filtered) => (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <SearchOutlined
                 style={{
                   color: filtered ? token.colorPrimary : undefined,
@@ -146,7 +145,6 @@ export const CourierList = ({ children }: PropsWithChildren) => {
             dataIndex="name"
             title={t("couriers.fields.name.label")}
             filterIcon={(filtered) => (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <SearchOutlined
                 style={{
                   color: filtered ? token.colorPrimary : undefined,
@@ -175,7 +173,6 @@ export const CourierList = ({ children }: PropsWithChildren) => {
               );
             }}
             filterIcon={(filtered) => (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <SearchOutlined
                 style={{
                   color: filtered ? token.colorPrimary : undefined,
@@ -209,7 +206,6 @@ export const CourierList = ({ children }: PropsWithChildren) => {
             key="gsm"
             title={t("couriers.fields.gsm.label")}
             filterIcon={(filtered) => (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <SearchOutlined
                 style={{
                   color: filtered ? token.colorPrimary : undefined,
@@ -266,7 +262,6 @@ export const CourierList = ({ children }: PropsWithChildren) => {
             render={(_, record: ICourier) => {
               return (
                 <EditButton
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<EyeOutlined />}
                   hideText
                   recordItemId={record.id}
