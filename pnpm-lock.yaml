@@ -282,8 +282,8 @@ importers:
   examples/app-crm:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -490,8 +490,8 @@ importers:
         specifier: ^1.17.2
         version: 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -663,8 +663,8 @@ importers:
   examples/auth-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -1188,8 +1188,8 @@ importers:
   examples/auth-otp:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -1661,8 +1661,8 @@ importers:
   examples/blog-invoice-generator:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@react-pdf/renderer':
         specifier: ^3.1.8
         version: 3.4.4(encoding@0.1.13)(react@18.3.0)
@@ -1753,10 +1753,10 @@ importers:
     dependencies:
       '@ant-design/charts':
         specifier: ^1.2.0
-        version: 1.4.3(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+        version: 1.4.3(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@craco/craco':
         specifier: ^7.1.0
         version: 7.1.0(@types/node@18.19.31)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.4.5)
@@ -2633,8 +2633,8 @@ importers:
   examples/blog-refine-antd-dynamic-form:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -2773,8 +2773,8 @@ importers:
   examples/blog-refine-digital-ocean:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -3007,8 +3007,8 @@ importers:
   examples/blog-refine-markdown:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -3951,8 +3951,8 @@ importers:
   examples/command-palette-kbar:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -4279,8 +4279,8 @@ importers:
   examples/customization-offlayout-area:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -5326,8 +5326,8 @@ importers:
   examples/data-provider-supabase:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -5659,8 +5659,8 @@ importers:
         specifier: ^1.2.7
         version: 1.4.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7463,8 +7463,8 @@ importers:
   examples/i18n-nextjs:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7557,8 +7557,8 @@ importers:
   examples/i18n-react:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -7807,8 +7807,8 @@ importers:
   examples/inferencer-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -7986,8 +7986,8 @@ importers:
   examples/inferencer-graphql-hasura:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -8521,8 +8521,8 @@ importers:
   examples/live-provider-ably:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/ably':
         specifier: ^4.1.8
         version: link:../../packages/ably
@@ -8804,8 +8804,8 @@ importers:
   examples/multi-tenancy-strapi:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -8920,8 +8920,8 @@ importers:
   examples/pixels:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -8975,8 +8975,8 @@ importers:
   examples/pixels-admin:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -9042,8 +9042,8 @@ importers:
   examples/refine-week-invoice-generator:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@react-pdf/renderer':
         specifier: ^3.1.8
         version: 3.4.4(encoding@0.1.13)(react@18.3.0)
@@ -9106,8 +9106,8 @@ importers:
   examples/search:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -9663,8 +9663,8 @@ importers:
   examples/table-antd-table-filter:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -11422,8 +11422,8 @@ importers:
   examples/tutorial-antd:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -12790,8 +12790,8 @@ importers:
   examples/with-nextjs:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -12863,8 +12863,8 @@ importers:
   examples/with-nextjs-next-auth:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -13552,11 +13552,11 @@ importers:
   packages/antd:
     dependencies:
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/pro-layout':
-        specifier: 7.17.12
-        version: 7.17.12(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^7.20.2
+        version: 7.20.2(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/ui-types':
         specifier: ^1.22.9
         version: link:../ui-types
@@ -14826,8 +14826,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(react@18.3.0)
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@chakra-ui/react':
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -15062,8 +15062,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(react@18.3.0)
       '@ant-design/icons':
-        specifier: 5.0.1
-        version: 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^5.5.1
+        version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@auth0/auth0-react':
         specifier: ^1.5.0
         version: 1.12.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -16375,15 +16375,15 @@ packages:
   '@ant-design/icons-svg@4.4.2':
     resolution: {integrity: sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==}
 
-  '@ant-design/icons@5.0.1':
-    resolution: {integrity: sha512-ZyF4ksXCcdtwA/1PLlnFLcF/q8/MhwxXhKHh4oCHDA4Ip+ZzAHoICtyp4wZWfiCVDP0yuz3HsjyvuldHFb3wjA==}
+  '@ant-design/icons@5.3.7':
+    resolution: {integrity: sha512-bCPXTAg66f5bdccM4TT21SQBDO1Ek2gho9h3nO9DAKXJP4sq+5VBjrQMSxMVXSB3HyEz+cUbHQ5+6ogxCOpaew==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  '@ant-design/icons@5.3.7':
-    resolution: {integrity: sha512-bCPXTAg66f5bdccM4TT21SQBDO1Ek2gho9h3nO9DAKXJP4sq+5VBjrQMSxMVXSB3HyEz+cUbHQ5+6ogxCOpaew==}
+  '@ant-design/icons@5.5.1':
+    resolution: {integrity: sha512-0UrM02MA2iDIgvLatWrj6YTCYe0F/cwXvVE0E2SqGrL7PZireQwgEKTKBisWpZyal5eXZLvuM98kju6YtYne8w==}
     engines: {node: '>=8'}
     peerDependencies:
       react: '>=16.0.0'
@@ -16410,24 +16410,24 @@ packages:
       react: '>=16.8.4'
       react-dom: '>=16.8.4'
 
-  '@ant-design/pro-layout@7.17.12':
-    resolution: {integrity: sha512-iqA1Iks7pqHJUhWp13jKy3ORvCMho3lLIBheru0nIlO3S10/BF+UbJABch+PJLZPLrXesJomqT1mq7VnFUFElQ==}
+  '@ant-design/pro-layout@7.20.2':
+    resolution: {integrity: sha512-a97k8P2sbprPXcBOG8p1g/0bP5kLBiC3+GSj0oxSWjUelAKzI9Q448tLOIfLjDcokxOvPRCEcCAlRg+mCKZVPg==}
     peerDependencies:
-      antd: '>=4.23.0 || >=5.0.0'
+      antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-provider@2.13.3':
-    resolution: {integrity: sha512-qkD/qA5NsLRxQTDdkgfviTZbsC0BeHahNTbJiZdwVwYMMLBzg0C1ptnHm4ofKdXt0EzARg/WG5EjaVOtvs/sFw==}
+  '@ant-design/pro-provider@2.14.9':
+    resolution: {integrity: sha512-4UJr6AHyWKsrhx2KfdkpRQCgjc75oDUDhMHGA2OWqQVI16sMQfeZf6KYfmeiG3Dal1QKFOtSibCdH5G2CDvWlg==}
     peerDependencies:
-      antd: '>=4.23.0 || >=5.0.0'
+      antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-utils@2.14.12':
-    resolution: {integrity: sha512-hPNO/PFOeWCWl2p/VxM6JIeKvqAPJCheqh8kw0HuPfGpAmr6k8Wf4G9/6er5rmfYryObW11OOmBSyXTxM9sWUg==}
+  '@ant-design/pro-utils@2.15.18':
+    resolution: {integrity: sha512-t/7i57tIYrQPlo2uIchWsXcvtQfBi72uQF9mLFS4C8f3nEKJFiEMWg2m+7JDgencTkpQmP7qmmfT1/6qXJcOvA==}
     peerDependencies:
-      antd: '>=4.23.0 || >=5.0.0'
+      antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
@@ -17557,6 +17557,10 @@ packages:
 
   '@babel/runtime@7.24.6':
     resolution: {integrity: sha512-Ja18XcETdEl5mzzACGd+DKgaGJzPTCow7EglgwTmHdwokzDFYh/MHua6lU6DV/hjF2IaOJ4oX2nqnjG7RElKOw==}
+    engines: {node: '>=6.9.0'}
+
+  '@babel/runtime@7.25.6':
+    resolution: {integrity: sha512-VBj9MYyDb9tuLq7yzqjgzt6Q+IBQLrGZfdjOekyEirZPHxXWoTSGUTMrpsfi58Up73d13NfYLv8HT9vmznjzhQ==}
     engines: {node: '>=6.9.0'}
 
   '@babel/template@7.24.0':
@@ -30706,8 +30710,9 @@ packages:
   path-to-regexp@0.1.10:
     resolution: {integrity: sha512-7lf7qcQidTku0Gu3YDPc8DJ1q7OOucfa/BSsIwjuh56VU7katFvuM8hULfkwB3Fns/rsVF7PwPKVw1sl5KQS9w==}
 
-  path-to-regexp@2.4.0:
-    resolution: {integrity: sha512-G6zHoVqC6GGTQkZwF4lkuEyMbVOjoBKAEybQUypI1WTkqinCOrq2x6U2+phkJ1XsEMTy4LjtwPI7HW+NVrRR2w==}
+  path-to-regexp@8.0.0:
+    resolution: {integrity: sha512-GAWaqWlTjYK/7SVpIUA6CTxmcg65SP30sbjdCvyYReosRkk7Z/LyHWwkK3Vu0FcIi0FNTADUs4eh1AsU5s10cg==}
+    engines: {node: '>=16'}
 
   path-type@3.0.0:
     resolution: {integrity: sha512-T2ZUsdZFHgA3u4e5PfPbjd7HDDpxPnQb5jN0SrDsjNSuVXHJqtwTnWqG0B1jZrgmJ/7lj1EmVIByWt1gxGkWvg==}
@@ -35733,11 +35738,11 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@ant-design/charts@1.4.3(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@ant-design/charts@1.4.3(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
-      '@ant-design/flowchart': 1.2.2(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+      '@ant-design/flowchart': 1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       '@ant-design/graphs': 1.4.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/maps': 1.0.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/plots': 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -35768,14 +35773,14 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       stylis: 4.3.2
 
-  '@ant-design/flowchart@1.2.2(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@ant-design/flowchart@1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/layout': 0.1.31
       '@antv/x6': 1.35.0
       '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow': 1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+      '@antv/xflow': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       lodash: 4.17.21
       react: 18.3.0
@@ -35799,7 +35804,7 @@ snapshots:
 
   '@ant-design/icons-svg@4.4.2': {}
 
-  '@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/icons@5.3.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/colors': 7.0.2
       '@ant-design/icons-svg': 4.4.2
@@ -35809,11 +35814,11 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/icons@5.3.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/colors': 7.0.2
       '@ant-design/icons-svg': 4.4.2
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       classnames: 2.5.1
       rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
@@ -35844,27 +35849,27 @@ snapshots:
       react-content-loader: 5.1.4(react@18.3.0)
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/pro-layout@7.17.12(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-layout@7.20.2(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-provider': 2.13.3(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-utils': 2.14.12(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@babel/runtime': 7.24.4
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-provider': 2.14.9(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-utils': 2.15.18(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.24.6
       '@umijs/route-utils': 4.0.1
       '@umijs/use-params': 1.0.9(react@18.3.0)
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      lodash.merge: 4.6.2
+      lodash-es: 4.17.21
       omit.js: 2.0.2
-      path-to-regexp: 2.4.0
+      path-to-regexp: 8.0.0
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.39.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       swr: 2.2.5(react@18.3.0)
       warning: 4.0.3
 
-  '@ant-design/pro-provider@2.13.3(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-provider@2.14.9(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/cssinjs': 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@babel/runtime': 7.24.6
@@ -35875,15 +35880,15 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       swr: 2.2.5(react@18.3.0)
 
-  '@ant-design/pro-utils@2.14.12(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-utils@2.15.18(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-provider': 2.13.3(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-provider': 2.14.9(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@babel/runtime': 7.24.6
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       dayjs: 1.11.10
-      lodash.merge: 4.6.2
+      lodash-es: 4.17.21
       rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -36401,9 +36406,9 @@ snapshots:
       mousetrap: 1.6.5
       utility-types: 3.11.0
 
-  '@antv/xflow-core@1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@antv/xflow-core@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6': 1.35.0
       '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -36419,13 +36424,13 @@ snapshots:
       reflect-metadata: 0.1.14
       rxjs: 6.6.7
 
-  '@antv/xflow-extension@1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@antv/xflow-extension@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6': 1.35.0
       '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/xflow-hook': 1.0.52
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
@@ -36447,15 +36452,15 @@ snapshots:
     dependencies:
       toposort: 2.0.2
 
-  '@antv/xflow@1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@antv/xflow@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
-      '@ant-design/icons': 5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/layout': 0.1.31
       '@antv/x6': 1.35.0
       '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow-extension': 1.1.52(@ant-design/icons@5.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/xflow-extension': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       '@antv/xflow-hook': 1.1.52
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       lodash: 4.17.21
@@ -37881,6 +37886,10 @@ snapshots:
       regenerator-runtime: 0.14.1
 
   '@babel/runtime@7.24.6':
+    dependencies:
+      regenerator-runtime: 0.14.1
+
+  '@babel/runtime@7.25.6':
     dependencies:
       regenerator-runtime: 0.14.1
 
@@ -47551,7 +47560,7 @@ snapshots:
     dependencies:
       '@ant-design/colors': 7.0.2
       '@ant-design/cssinjs': 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/icons': 5.3.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/react-slick': 1.1.2(react@18.3.0)
       '@babel/runtime': 7.24.4
       '@ctrl/tinycolor': 3.6.1
@@ -57103,7 +57112,7 @@ snapshots:
 
   path-to-regexp@0.1.10: {}
 
-  path-to-regexp@2.4.0: {}
+  path-to-regexp@8.0.0: {}
 
   path-type@3.0.0:
     dependencies:
