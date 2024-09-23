@@ -1,8 +1,8 @@
 import { type FC, useMemo } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { FilterDropdown, ShowButton, useTable } from "@refinedev/antd";
-import { useNavigation } from "@refinedev/core";
+import { Link } from "@refinedev/core";
 import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import {
@@ -28,7 +28,6 @@ type Props = {
 type Quote = GetFieldsFromList<CompanyQuotesTableQuery>;
 
 export const CompanyQuotesTable: FC<Props> = ({ style }) => {
-  const { listUrl } = useNavigation();
   const params = useParams();
 
   const { tableProps, filters, setFilters } = useTable<Quote>({
@@ -116,7 +115,14 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
           }}
         >
           <Text>No quotes yet</Text>
-          <Link to={listUrl("quotes")}>
+          <Link
+            go={{
+              to: {
+                resource: "quotes",
+                action: "list",
+              },
+            }}
+          >
             <PlusCircleOutlined
               style={{
                 marginRight: 4,

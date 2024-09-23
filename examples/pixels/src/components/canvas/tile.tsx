@@ -1,7 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@refinedev/core";
 import { Skeleton } from "antd";
-
 import { CanvasItem, DisplayCanvas } from "./index";
 import { Contributors } from "../../components/avatar";
 import type { Canvas } from "../../types";
@@ -18,7 +17,13 @@ export const CanvasTile: React.FC<CanvasTileProps> = ({ canvas }) => {
           <Link
             key={canvas.id}
             className="canvas-item"
-            to={`/canvases/show/${canvas.id}`}
+            go={{
+              to: {
+                resource: "canvases",
+                action: "show",
+                id: canvas.id,
+              },
+            }}
           >
             <CanvasItem
               canvas={canvas}
