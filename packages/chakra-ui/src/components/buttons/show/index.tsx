@@ -12,7 +12,7 @@ import type { ShowButtonProps } from "../types";
 /**
  * `<ShowButton>` uses Chakra UI {@link https://chakra-ui.com/docs/components/button `<Button> `} component.
  * It uses the {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#show `show`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
- * It can be useful when red sirecting the app to the show page with the record id route of resource.
+ * It can be useful when redirecting the app to the show page with the record id route of resource.
  *
  * @see {@link https://refine.dev/docs/api-reference/chakra-ui/components/buttons/show-button} for more details.
  */
