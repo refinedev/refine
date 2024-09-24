@@ -44,7 +44,7 @@ const dataProvider = (
       const operation = meta?.operation ?? camelResource;
 
       if (meta?.gqlQuery) {
-        const response = await client.request<BaseRecord[]>(meta.gqlQuery, {
+        const response = await client.request<BaseRecord>(meta.gqlQuery, {
           ...meta?.variables,
           sort: sortBy,
           where: filterBy,
@@ -78,7 +78,7 @@ const dataProvider = (
         fields: meta?.fields,
       });
 
-      const response = await client.request<GetListResponse>(query, variables);
+      const response = await client.request<BaseRecord>(query, variables);
 
       return {
         data: getData({ method: "getList", params, response }),
@@ -94,7 +94,7 @@ const dataProvider = (
       const operation = meta?.operation ?? camelResource;
 
       if (meta?.gqlQuery) {
-        const response = await client.request<GetManyResponse>(meta.gqlQuery, {
+        const response = await client.request<BaseRecord>(meta.gqlQuery, {
           where: {
             id_in: ids,
           },
