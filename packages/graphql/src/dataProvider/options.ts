@@ -1,7 +1,9 @@
 import type {
   BaseRecord,
   CreateParams,
+  CreateResponse,
   DeleteOneParams,
+  DeleteOneResponse,
   GetListParams,
   GetListResponse,
   GetManyParams,
@@ -9,11 +11,12 @@ import type {
   GetOneParams,
   GetOneResponse,
   UpdateParams,
+  UpdateResponse,
 } from "@refinedev/core";
 import camelCase from "camelcase";
 import pluralize from "pluralize";
 
-type GraphQLGetDataFunctionParams = { response: Record<string, any> } & (
+type GraphQLGetDataFunctionParams = { response: BaseRecord } & (
   | { method: "getList"; params: GetListParams }
   | { method: "create"; params: CreateParams }
   | { method: "update"; params: UpdateParams }
@@ -23,12 +26,12 @@ type GraphQLGetDataFunctionParams = { response: Record<string, any> } & (
 );
 
 type ResponseMap = {
-  getList: GetListResponse<any>;
-  getOne: GetOneResponse<any>;
-  getMany: GetManyResponse<any>;
-  create: CreateParams;
-  update: UpdateParams;
-  deleteOne: DeleteOneParams;
+  getList: GetListResponse<any>["data"];
+  getOne: GetOneResponse<any>["data"];
+  getMany: GetManyResponse<any>["data"];
+  create: CreateResponse<any>["data"];
+  update: UpdateResponse<any>["data"];
+  deleteOne: DeleteOneResponse<any>["data"];
 };
 
 type InferResponse<T extends GraphQLGetDataFunctionParams> = T extends {
@@ -43,10 +46,10 @@ type GraphQLGetDataFunction = (
   params: GraphQLGetDataFunctionParams,
 ) => InferResponse<typeof params>;
 
-type GraphQLGetCountFunctionParams = Partial<{
+type GraphQLGetCountFunctionParams = {
   response: Record<string, any>;
   params: GetListParams;
-}>;
+};
 
 type GraphQLGetCountFunction = (
   params: GraphQLGetCountFunctionParams,
