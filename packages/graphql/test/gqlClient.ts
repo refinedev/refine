@@ -1,14 +1,8 @@
-import { GraphQLClient } from "graphql-request";
+import { Client, fetchExchange } from "@urql/core";
+import nock from "nock";
 
-const API_URL = "https://api.strapi.refine.dev/graphql";
+export const API_URL = "https://api.nestjs-query.refine.dev/graphql";
 
-const client = new GraphQLClient(API_URL);
-
-client.setHeader(
-  "Authorization",
-  "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzEwMjU0NjcwLCJleHAiOjE3MTI4NDY2NzB9.Ivs2gsrKrZjNf-4dewSxocIlaQo2RLWAXx7AkdMZYvQ",
-);
-
-client.setHeader("Accept-Encoding", "identity");
+const client = new Client({ url: API_URL, exchanges: [fetchExchange] });
 
 export default client;

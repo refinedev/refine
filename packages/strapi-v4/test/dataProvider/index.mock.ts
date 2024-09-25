@@ -8,9 +8,8 @@ nock("http://localhost:1337", { encodedQueryParams: true })
   .reply(
     200,
     {
-      data: {
-        id: 20,
-        attributes: {
+      data: [
+        {
           title: "foo",
           content: "bar",
           createdAt: "2021-12-14T11:45:49.631Z",
@@ -18,8 +17,7 @@ nock("http://localhost:1337", { encodedQueryParams: true })
           publishedAt: "2021-12-14T11:45:49.621Z",
           locale: "en",
         },
-      },
-      meta: {},
+      ],
     },
     [
       "Content-Security-Policy",

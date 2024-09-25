@@ -1,220 +1,159 @@
-import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import "./index.mock";
+import { gql } from "@urql/core";
+import "./getList.mock";
+
+const gqlQuery = gql`
+  query BlogPosts($paging: OffsetPaging!, $filter: BlogPostFilter!, $sorting: [BlogPostSort!]!) {
+    blogPosts(paging: $paging, filter: $filter, sorting: $sorting) {
+      nodes {
+        id
+        title
+        status
+      }
+      totalCount
+    }
+  }
+`;
 
 describe("getList", () => {
-  it("correct response", async () => {
-    const { data } = await dataProvider(client).getList({
-      resource: "posts",
+  it("default params", async () => {
+    const { data, total } = await dataProvider(client).getList({
+      resource: "blogPosts",
       meta: {
-        fields: ["id", "title"],
+        gqlQuery: gqlQuery,
       },
     });
-    expect(data[0].id).toBe("21");
-    expect(data[0].title).toBe("Another New Post");
+
+    expect(data[0].id).toBe("1");
+    expect(data.length).toBe(10);
+    expect(total).toBe(502);
   });
 
-  it("correct sorting response", async () => {
-    const { data } = await dataProvider(client).getList({
-      resource: "posts",
-      sorters: [
-        {
-          field: "id",
-          order: "asc",
+  describe("pagination", () => {
+    it("current", async () => {
+      const { data } = await dataProvider(client).getList({
+        resource: "blogPosts",
+        meta: {
+          gqlQuery: gqlQuery,
         },
-      ],
-      meta: {
-        fields: ["id", "title"],
-      },
+        pagination: {
+          current: 2,
+        },
+      });
+
+      expect(data[0].id).toBe("11");
     });
 
-    expect(data[0].id).toBe("7");
-    expect(data[0].title).toBe("GraphQl 3");
+    it("pageSize", async () => {
+      const { data } = await dataProvider(client).getList({
+        resource: "blogPosts",
+        meta: {
+          gqlQuery: gqlQuery,
+        },
+        pagination: {
+          pageSize: 2,
+        },
+      });
+
+      expect(data.length).toBe(2);
+    });
+
+    describe("mode", () => {
+      it("off", async () => {
+        const { data } = await dataProvider(client).getList({
+          resource: "blogPosts",
+          meta: {
+            gqlQuery: gqlQuery,
+          },
+          pagination: {
+            mode: "off",
+          },
+        });
+
+        expect(data.length).toBe(502);
+      });
+
+      it("server", async () => {
+        const { data } = await dataProvider(client).getList({
+          resource: "blogPosts",
+          meta: {
+            gqlQuery: gqlQuery,
+          },
+          pagination: {
+            mode: "server",
+          },
+        });
+      });
+    });
   });
 
-  it("correct filter response", async () => {
-    const { data } = await dataProvider(client).getList({
-      resource: "posts",
-      filters: [
-        {
-          field: "id",
-          operator: "eq",
-          value: "907",
+  describe("sorters", () => {
+    it("sort by id desc", async () => {
+      const { data } = await dataProvider(client).getList({
+        resource: "blogPosts",
+        meta: {
+          gqlQuery: gqlQuery,
         },
-      ],
-      meta: {
-        fields: ["title"],
-      },
-    });
+        sorters: [{ field: "id", order: "desc" }],
+      });
 
-    expect(data[0].title).toBe(
-      "Molestias iste voluptatem velit sed voluptate aut voluptatibus explicabo.",
-    );
+      expect(data[0].id).toBe("502");
+    });
   });
 
-  it("correct filter and sort response", async () => {
-    const response = await dataProvider(client).getList({
-      resource: "posts",
-      filters: [
-        {
-          field: "category",
-          operator: "eq",
-          value: "8",
+  describe("filters", () => {
+    it("default", async () => {
+      const { data } = await dataProvider(client).getList({
+        resource: "blogPosts",
+        meta: {
+          gqlQuery: gqlQuery,
         },
-      ],
-      sorters: [
-        {
-          field: "title",
-          order: "asc",
-        },
-      ],
-      meta: {
-        fields: ["id", "title", { category: ["id", "title"] }],
-      },
+        filters: [{ field: "status", operator: "eq", value: "DRAFT" }],
+      });
+
+      data.map((d) => expect(d.status).toBe("DRAFT"));
     });
 
-    expect(response.data[0].id).toBe("349");
-    expect(response.data[0].category.title).toBe("Test");
-  });
-});
-
-describe("getList gql", () => {
-  it("correct response", async () => {
-    const { data } = await dataProvider(client).getList({
-      resource: "posts",
-      meta: {
-        gqlQuery: gql`
-              query {
-                posts {
-                  id
-                  title
-                }
-              }
-            `,
-      },
-    });
-    expect(data[0].id).toBe("6200");
-    expect(data[0].title).toBe("test");
-  });
-
-  it("correct sorting response", async () => {
-    const { data } = await dataProvider(client).getList({
-      resource: "posts",
-      sorters: [
-        {
-          field: "id",
-          order: "desc",
+    it("and", async () => {
+      const { data } = await dataProvider(client).getList({
+        resource: "blogPosts",
+        meta: {
+          gqlQuery: gqlQuery,
         },
-      ],
-      meta: {
-        gqlQuery: gql`
-              query ($sort: String) {
-                posts(sort: $sort) {
-                  id
-                  title
-                }
-              }
-            `,
-      },
+        filters: [
+          {
+            operator: "and",
+            value: [
+              { field: "status", operator: "eq", value: "DRAFT" },
+              { field: "id", operator: "lt", value: 3 },
+            ],
+          },
+        ],
+      });
+
+      expect(data.length).toBe(1);
+      expect(data[0].status).toBe("DRAFT");
     });
 
-    expect(data[0].id).toBe("10031");
-    expect(data[0].title).toBe("test");
-  });
-
-  it("correct filter response", async () => {
-    const { data } = await dataProvider(client).getList({
-      resource: "posts",
-      filters: [
-        {
-          field: "id",
-          operator: "eq",
-          value: "5403",
+    it("or", async () => {
+      const { data } = await dataProvider(client).getList({
+        resource: "blogPosts",
+        meta: {
+          gqlQuery: gqlQuery,
         },
-      ],
-      meta: {
-        gqlQuery: gql`
-              query ($where: JSON) {
-                posts(where: $where) {
-                  id
-                  title
-                }
-              }
-            `,
-      },
+        filters: [
+          {
+            operator: "or",
+            value: [
+              { field: "status", operator: "eq", value: "DRAFT" },
+              { field: "status", operator: "eq", value: "PUBLISHED" },
+            ],
+          },
+        ],
+      });
+
+      data.map((d) => expect(d.status).not.toBe("REJECTED"));
     });
-
-    expect(data[0].title).toBe("test");
-  });
-
-  it("correct filter and sort response", async () => {
-    const response = await dataProvider(client).getList({
-      resource: "posts",
-      filters: [
-        {
-          field: "category",
-          operator: "eq",
-          value: "19",
-        },
-      ],
-      sorters: [
-        {
-          field: "title",
-          order: "asc",
-        },
-      ],
-      meta: {
-        gqlQuery: gql`
-              query ($where: JSON, $sort: String) {
-                posts(where: $where, sort: $sort) {
-                  id
-                  title
-                  category {
-                    id
-                    title
-                  }
-                }
-              }
-            `,
-      },
-    });
-
-    expect(response.data[0].id).toBe("2121");
-    expect(response.data[0].category.title).toBe("New Category");
-
-    const response2 = await dataProvider(client).getList({
-      resource: "posts",
-      filters: [
-        {
-          field: "category",
-          operator: "eq",
-          value: "19",
-        },
-      ],
-      sorters: [
-        {
-          field: "title",
-          order: "desc",
-        },
-      ],
-      meta: {
-        gqlQuery: gql`
-              query ($where: JSON, $sort: String) {
-                posts(where: $where, sort: $sort) {
-                  id
-                  title
-                  category {
-                    id
-                    title
-                  }
-                }
-              }
-            `,
-      },
-    });
-
-    expect(response2.data[0].id).toBe("6223");
-    expect(response2.data[0].category.title).toBe("New Category");
   });
 });

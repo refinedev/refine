@@ -7,7 +7,7 @@ import type {
 import * as gql from "gql-query-builder";
 import camelCase from "camelcase";
 import { generateSort } from "./generateSort";
-import { generateFilter } from "./generateFilter";
+import { buildFilters } from "./buildFilters";
 
 type GenerateUseListSubscriptionParams = {
   resource: string;
@@ -33,7 +33,7 @@ export const generateUseListSubscription = ({
   const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
 
   const sortBy = generateSort(sorters);
-  const filterBy = generateFilter(filters);
+  const filterBy = buildFilters(filters || []);
 
   const camelResource = camelCase(resource);
 

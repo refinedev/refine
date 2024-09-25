@@ -1,328 +1,55 @@
-import type {
-  DataProvider,
-  BaseRecord,
-  GetListResponse,
-  GetManyResponse,
-} from "@refinedev/core";
-import { GraphQLClient } from "graphql-request";
-import * as gql from "gql-query-builder";
+import type { BaseRecord, CreateResponse, DataProvider } from "@refinedev/core";
+import type { Client } from "@urql/core";
 import pluralize from "pluralize";
 import camelCase from "camelcase";
 import gqlTag from "graphql-tag";
-import {
-  generateFilter,
-  generateSort,
-  getOperationFields,
-  isMutation,
-} from "../utils";
-import {
-  defaultGetCountFn,
-  defaultGetDataFn,
-  type GraphQLDataProviderOptions,
-} from "./options";
+import { getOperationFields, isMutation } from "../utils";
+import { poptions } from "./newOptions";
 
 const dataProvider = (
-  client: GraphQLClient,
-  {
-    getCount = defaultGetCountFn,
-    getData = defaultGetDataFn,
-  }: GraphQLDataProviderOptions = {
-    getCount: defaultGetCountFn,
-    getData: defaultGetDataFn,
-  },
+  client: Client,
+  options: typeof poptions = poptions,
 ): Required<DataProvider> => {
   return {
-    getList: async (params) => {
-      const { resource, pagination, sorters, filters, meta } = params;
-      const { current = 1, pageSize = 10, mode = "server" } = pagination ?? {};
+    create: async (params) => {
+      const { variables, meta } = params;
 
-      const sortBy = generateSort(sorters);
-      const filterBy = generateFilter(filters);
-
-      const camelResource = camelCase(resource);
-
-      const operation = meta?.operation ?? camelResource;
-
-      if (meta?.gqlQuery) {
-        const response = await client.request<BaseRecord>(meta.gqlQuery, {
-          ...meta?.variables,
-          sort: sortBy,
-          where: filterBy,
-          ...(mode === "server"
-            ? {
-                start: (current - 1) * pageSize,
-                limit: pageSize,
-              }
-            : {}),
-        });
-
-        return {
-          data: getData({ method: "getList", params, response }),
-          total: getCount({ params, response }),
-        };
-      }
-
-      const { query, variables } = gql.query({
-        operation,
-        variables: {
-          ...meta?.variables,
-          sort: sortBy,
-          where: { value: filterBy, type: "JSON" },
-          ...(mode === "server"
-            ? {
-                start: (current - 1) * pageSize,
-                limit: pageSize,
-              }
-            : {}),
-        },
-        fields: meta?.fields,
-      });
-
-      const response = await client.request<BaseRecord>(query, variables);
-
-      return {
-        data: getData({ method: "getList", params, response }),
-        total: getCount({ params, response }),
-      };
-    },
-
-    getMany: async (params) => {
-      const { resource, ids, meta } = params;
-
-      const camelResource = camelCase(resource);
-
-      const operation = meta?.operation ?? camelResource;
-
-      if (meta?.gqlQuery) {
-        const response = await client.request<BaseRecord>(meta.gqlQuery, {
-          where: {
-            id_in: ids,
-          },
-        });
-
-        return {
-          data: getData({ method: "getMany", params, response }),
-        };
-      }
-
-      const { query, variables } = gql.query({
-        operation,
-        variables: {
-          where: {
-            value: { id_in: ids },
-            type: "JSON",
-          },
-        },
-        fields: meta?.fields,
-      });
-
-      const response = await client.request<BaseRecord>(query, variables);
-
-      return {
-        data: getData({ method: "getList", params, response }),
-      };
-    },
-
-    create: async ({ resource, variables, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelCreateName = camelCase(`create-${singularResource}`);
-
-      const inputType = meta?.inputType ?? `${camelCreateName}Input`;
-
-      const operation = meta?.operation ?? camelCreateName;
       const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
-      if (gqlOperation) {
-        const response = await client.request<BaseRecord>(gqlOperation, {
-          input: {
-            data: variables || {},
-          },
-        });
-
-        return {
-          data: response[operation][singularResource],
-        };
+      if (!gqlOperation) {
+        throw new Error("Operation is required.");
       }
 
-      const { query, variables: gqlVariables } = gql.mutation({
-        operation,
-        variables: {
-          input: {
-            value: { data: variables },
-            type: inputType,
-          },
-        },
-        fields: meta?.fields ?? [
-          {
-            operation: singularResource,
-            fields: ["id"],
-            variables: {},
-          },
-        ],
-      });
-      const response = await client.request<BaseRecord>(query, gqlVariables);
+      const response = await client
+        .mutation(gqlOperation, options.create.buildVariables(params))
+        .toPromise();
+
+      const rrr = options.create.dataMapper(response, params);
+
+      console.log("RRRR ", rrr);
 
       return {
-        data: response[operation][singularResource],
-      };
+        data: rrr,
+      } as any;
     },
+    createMany: async (params) => {
+      const { meta } = params;
 
-    createMany: async ({ resource, variables, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelCreateName = camelCase(`create-${singularResource}`);
-
-      const inputType = meta?.operation ?? `${camelCreateName}Input`;
-
-      const operation = meta?.operation ?? camelCreateName;
       const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
-      if (gqlOperation) {
-        const response = await Promise.all(
-          variables.map(async (param) => {
-            const result = await client.request<BaseRecord>(gqlOperation, {
-              input: {
-                data: param || {},
-              },
-            });
-
-            return result[operation][singularResource];
-          }),
-        );
-
-        return {
-          data: response,
-        };
+      if (!gqlOperation) {
+        throw new Error("Operation is required.");
       }
 
-      const response = await Promise.all(
-        variables.map(async (param) => {
-          const { query, variables: gqlVariables } = gql.mutation({
-            operation,
-            variables: {
-              input: {
-                value: { data: param },
-                type: inputType,
-              },
-            },
-            fields: meta?.fields ?? [
-              {
-                operation: singularResource,
-                fields: ["id"],
-                variables: {},
-              },
-            ],
-          });
-          const result = await client.request<BaseRecord>(query, gqlVariables);
-
-          return result[operation][singularResource];
-        }),
+      const response = await client.mutation<BaseRecord>(
+        gqlOperation,
+        options.createMany.buildVariables(params, variables),
       );
-      return {
-        data: response,
-      };
-    },
-
-    update: async ({ resource, id, variables, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelUpdateName = camelCase(`update-${singularResource}`);
-
-      const inputType = meta?.operation ?? `${camelUpdateName}Input`;
-
-      const operation = meta?.operation ?? camelUpdateName;
-      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
-
-      if (gqlOperation) {
-        const response = await client.request<BaseRecord>(gqlOperation, {
-          id,
-          data: {
-            ...variables,
-          },
-        });
-
-        return {
-          data: response[operation][singularResource],
-        };
-      }
-
-      const { query, variables: gqlVariables } = gql.mutation({
-        operation,
-        variables: {
-          input: {
-            value: { where: { id }, data: variables },
-            type: inputType,
-          },
-        },
-        fields: meta?.fields ?? [
-          {
-            operation: singularResource,
-            fields: ["id"],
-            variables: {},
-          },
-        ],
-      });
-      const response = await client.request<BaseRecord>(query, gqlVariables);
 
       return {
-        data: response[operation][singularResource],
+        data: response[operation],
       };
     },
-
-    updateMany: async ({ resource, ids, variables, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelUpdateName = camelCase(`update-${singularResource}`);
-
-      const operation = meta?.operation ?? camelUpdateName;
-      const inputType = meta?.operation ?? `${camelUpdateName}Input`;
-
-      if (meta?.gqlMutation) {
-        const response = await Promise.all(
-          ids.map(async (id) => {
-            if (!meta?.gqlMutation) return null;
-
-            const result = await client.request<BaseRecord>(meta.gqlMutation, {
-              input: {
-                value: { where: { id }, data: variables },
-                type: inputType,
-              },
-            });
-
-            return result[operation][singularResource];
-          }),
-        );
-
-        return {
-          data: response,
-        };
-      }
-
-      const response = await Promise.all(
-        ids.map(async (id) => {
-          const { query, variables: gqlVariables } = gql.mutation({
-            operation,
-            variables: {
-              input: {
-                value: { where: { id }, data: variables },
-                type: inputType,
-              },
-            },
-            fields: meta?.fields ?? [
-              {
-                operation: singularResource,
-                fields: ["id"],
-                variables: {},
-              },
-            ],
-          });
-          const result = await client.request<BaseRecord>(query, gqlVariables);
-
-          return result[operation][singularResource];
-        }),
-      );
-      return {
-        data: response,
-      };
-    },
-
     getOne: async ({ resource, id, meta }) => {
       const singularResource = pluralize.singular(resource);
       const camelResource = camelCase(singularResource);
@@ -348,92 +75,111 @@ const dataProvider = (
                     `;
         }
 
-        const response = await client.request<BaseRecord>(query, {
-          id,
-        });
+        const response = await client
+          .query(query, {
+            id,
+          })
+          .toPromise();
 
         return {
-          data: response[operation],
+          data: response.data[operation],
         };
       }
 
-      const { query, variables } = gql.query({
-        operation,
-        variables: {
-          id: { value: id, type: "ID", required: true },
-        },
-        fields: meta?.fields,
-      });
-
-      const response = await client.request<BaseRecord>(query, variables);
-
-      return {
-        data: response[operation],
-      };
+      return { data: {} };
     },
+    getList: async (params) => {
+      const { meta } = params;
 
-    deleteOne: async ({ resource, id, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelDeleteName = camelCase(`delete-${singularResource}`);
+      const paging = options.getList.buildPagination(params);
+      const sorting = options.getList.buildSorters(params);
+      const filter = options.getList.buildFilters(params);
 
-      const operation = meta?.operation ?? camelDeleteName;
-      const inputType = meta?.operation ?? `${camelDeleteName}Input`;
-
-      if (meta?.gqlMutation) {
-        const response = await client.request<BaseRecord>(meta.gqlMutation, {
-          input: {
-            where: { id },
-          },
-        });
+      if (meta?.gqlQuery) {
+        const response = await client
+          .query(meta.gqlQuery, {
+            sorting,
+            filter,
+            paging,
+            ...meta?.variables,
+          })
+          .toPromise();
 
         return {
-          data: response[operation][singularResource],
+          data: options.getList.dataMapper(response, params),
+          total: options.getList.countMapper(response, params),
         };
       }
 
-      const { query, variables } = gql.mutation({
-        operation,
-        variables: {
-          input: {
-            value: { where: { id } },
-            type: inputType,
-          },
-        },
-        fields: meta?.fields ?? [
-          {
-            operation: singularResource,
-            fields: ["id"],
-            variables: {},
-          },
-        ],
-      });
+      return { data: [], total: 0 };
+    },
+    getMany: async (params) => {
+      const { ids, meta } = params;
 
-      const response = await client.request<BaseRecord>(query, variables);
+      if (meta?.gqlQuery) {
+        const response = await client
+          .query(meta.gqlQuery, {
+            where: {
+              id_in: ids,
+            },
+          })
+          .toPromise();
+
+        return {
+          data: options.getMany.dataMapper(response, params),
+        };
+      }
+
+      return { data: [] };
+    },
+    update: async ({ resource, id, variables, meta }) => {
+      const singularResource = pluralize.singular(resource);
+      const camelUpdateName = camelCase(`update-${singularResource}`);
+
+      const operation = meta?.operation ?? camelUpdateName;
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+      if (gqlOperation) {
+        const response = await client
+          .mutation(gqlOperation, {
+            id,
+            data: {
+              ...variables,
+            },
+          })
+          .toPromise();
+
+        return {
+          data: response.data[operation][singularResource],
+        };
+      }
 
       return {
-        data: response[operation][singularResource],
+        data: {},
       };
     },
-
-    deleteMany: async ({ resource, ids, meta }) => {
+    updateMany: async ({ resource, ids, variables, meta }) => {
       const singularResource = pluralize.singular(resource);
-      const camelDeleteName = camelCase(`delete-${singularResource}`);
+      const camelUpdateName = camelCase(`update-${singularResource}`);
 
-      const operation = meta?.operation ?? camelDeleteName;
-      const inputType = meta?.operation ?? `${camelDeleteName}Input`;
+      const operation = meta?.operation ?? camelUpdateName;
+      const inputType = meta?.operation ?? `${camelUpdateName}Input`;
 
       if (meta?.gqlMutation) {
         const response = await Promise.all(
           ids.map(async (id) => {
             if (!meta?.gqlMutation) return null;
 
-            const result = await client.request<BaseRecord>(meta.gqlMutation, {
-              input: {
-                where: { id },
-              },
-            });
+            const result = await client
+              .mutation(meta.gqlMutation, {
+                input: {
+                  value: { where: { id }, data: variables },
+                  type: inputType,
+                },
+              })
+              .toPromise();
 
-            return result[operation][singularResource];
+            return result.data[operation][singularResource];
           }),
         );
 
@@ -442,94 +188,84 @@ const dataProvider = (
         };
       }
 
-      const response = await Promise.all(
-        ids.map(async (id) => {
-          const { query, variables: gqlVariables } = gql.mutation({
-            operation,
-            variables: {
-              input: {
-                value: { where: { id } },
-                type: inputType,
-              },
+      return { data: [] };
+    },
+    deleteOne: async ({ resource, id, meta }) => {
+      const singularResource = pluralize.singular(resource);
+      const camelDeleteName = camelCase(`delete-${singularResource}`);
+
+      const operation = meta?.operation ?? camelDeleteName;
+
+      if (meta?.gqlMutation) {
+        const response = await client
+          .mutation(meta.gqlMutation, {
+            input: {
+              where: { id },
             },
-            fields: meta?.fields ?? [
-              {
-                operation: singularResource,
-                fields: ["id"],
-                variables: {},
-              },
-            ],
-          });
-          const result = await client.request<BaseRecord>(query, gqlVariables);
+          })
+          .toPromise();
 
-          return result[operation][singularResource];
-        }),
-      );
-      return {
-        data: response,
-      };
-    },
-
-    getApiUrl: () => {
-      throw Error("Not implemented on refine-graphql data provider.");
-    },
-
-    custom: async ({ url, method, headers, meta }) => {
-      let gqlClient = client;
-
-      if (url) {
-        gqlClient = new GraphQLClient(url, { headers });
+        return {
+          data: response.data[operation][singularResource],
+        };
       }
 
-      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+      return { data: {} };
+    },
+    deleteMany: async ({ resource, ids, meta }) => {
+      const singularResource = pluralize.singular(resource);
+      const camelDeleteName = camelCase(`delete-${singularResource}`);
 
-      if (gqlOperation) {
-        const response: any = await client.request(
-          gqlOperation,
-          meta?.variables ?? {},
+      const operation = meta?.operation ?? camelDeleteName;
+
+      if (meta?.gqlMutation) {
+        const response = await Promise.all(
+          ids.map(async (id) => {
+            if (!meta?.gqlMutation) return null;
+
+            const result = await client
+              .mutation(meta.gqlMutation, {
+                input: {
+                  where: { id },
+                },
+              })
+              .toPromise();
+
+            return result.data[operation][singularResource];
+          }),
         );
 
-        return { data: response };
+        return {
+          data: response,
+        };
       }
 
-      if (meta) {
-        if (meta.operation) {
-          if (method === "get") {
-            const { query, variables } = gql.query({
-              operation: meta.operation,
-              fields: meta.fields,
-              variables: meta.variables,
-            });
+      return { data: [] };
+    },
+    custom: async ({ url, meta }) => {
+      if (meta?.gqlMutation) {
+        const response = await client
+          .mutation(meta.gqlMutation, meta?.variables ?? {}, { url })
+          .toPromise();
 
-            const response = await gqlClient.request<BaseRecord>(
-              query,
-              variables,
-            );
-
-            return {
-              data: response[meta.operation],
-            };
-          }
-          const { query, variables } = gql.mutation({
-            operation: meta.operation,
-            fields: meta.fields,
-            variables: meta.variables,
-          });
-
-          const response = await gqlClient.request<BaseRecord>(
-            query,
-            variables,
-          );
-
-          return {
-            data: response[meta.operation],
-          };
-        }
-        throw Error("GraphQL operation name required.");
+        return { data: response.data };
       }
-      throw Error(
-        "GraphQL need to operation, fields and variables values in meta object.",
-      );
+
+      if (meta?.gqlQuery) {
+        const response = await client
+          .query(meta.gqlQuery, meta?.variables ?? {}, { url })
+          .toPromise();
+
+        return { data: response.data };
+      }
+
+      // if raw ?? restful one for example.
+      return { data: {} };
+
+      // throw new Error("GraphQL operation is required.");
+    },
+    getApiUrl: () => {
+      throw Error("Not implemented on refine-graphql data provider.");
     },
   };
 };

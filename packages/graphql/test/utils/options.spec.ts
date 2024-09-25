@@ -1,4 +1,7 @@
+import dataProvider, { GraphQLClient } from "../../src";
 import { defaultGetDataFn } from "../../src/dataProvider/options";
+
+const client = new GraphQLClient("asdasd");
 
 describe("default options", () => {
   describe("default get data", () => {
