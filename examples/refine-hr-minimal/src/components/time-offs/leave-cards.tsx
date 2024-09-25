@@ -8,17 +8,9 @@ import {
   type TimeOff,
 } from "@/types";
 
-type Props = {
-  employeeId?: number;
-};
-
-export const TimeOffLeaveCards = (props: Props) => {
+export const TimeOffLeaveCards = () => {
   const { data: employee, isLoading: isLoadingEmployee } =
-    useGetIdentity<Employee>({
-      queryOptions: {
-        enabled: !props.employeeId,
-      },
-    });
+    useGetIdentity<Employee>();
 
   const { data: timeOffsSick, isLoading: isLoadingTimeOffsSick } =
     useList<TimeOff>({
