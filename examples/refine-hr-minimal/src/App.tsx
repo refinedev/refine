@@ -27,7 +27,7 @@ import { queryClient } from "@/providers/query-client";
 import { BASE_URL } from "@/utilities/constants";
 import { axiosInstance } from "@/utilities/axios";
 
-import { TimeOffIcon, RequestsIcon } from "./icons";
+import { TimeOffIcon, RequestsIcon } from "@/icons";
 
 import { Role } from "@/types";
 
