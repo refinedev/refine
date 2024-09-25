@@ -21,3 +21,4 @@ export * from "./three-dots";
 export * from "./delete";
 export * from "./close-rectangle";
 export * from "./popover-tip";
+export * from "./requests";

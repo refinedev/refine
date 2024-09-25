@@ -14,7 +14,6 @@ import { PageEmployeeTimeOffsList } from "@/pages/employee/time-offs/list";
 import { PageEmployeeTimeOffsCreate } from "@/pages/employee/time-offs/create";
 import { PageManagerRequestsList } from "@/pages/manager/requests/list";
 import { PageManagerRequestsTimeOffsEdit } from "@/pages/manager/requests/time-offs/edit";
-
 import { PageLogin } from "@/pages/login";
 
 import { Layout } from "@/components/layout";
@@ -24,10 +23,11 @@ import { authProvider } from "@/providers/auth-provider";
 import { accessControlProvider } from "@/providers/access-control";
 import { useNotificationProvider } from "@/providers/notification-provider";
 import { queryClient } from "@/providers/query-client";
-import { resources } from "@/providers/resources";
 
 import { BASE_URL } from "@/utilities/constants";
 import { axiosInstance } from "@/utilities/axios";
+
+import { TimeOffIcon, RequestsIcon } from "./icons";
 
 import { Role } from "@/types";
 
@@ -43,7 +43,43 @@ const App: React.FC = () => {
             routerProvider={routerProvider}
             dataProvider={dataProvider(BASE_URL, axiosInstance)}
             notificationProvider={useNotificationProvider}
-            resources={resources}
+            resources={[
+              {
+                name: "employee",
+                meta: {
+                  scope: Role.EMPLOYEE,
+                },
+              },
+              {
+                name: "manager",
+                meta: {
+                  scope: Role.MANAGER,
+                },
+              },
+              {
+                name: "time-offs",
+                list: "/employee/time-offs",
+                create: "/employee/time-offs/new",
+                meta: {
+                  parent: "employee",
+                  scope: Role.EMPLOYEE,
+                  label: "Time Off",
+                  icon: <TimeOffIcon />,
+                },
+              },
+              {
+                name: "time-offs",
+                list: "/manager/requests",
+                edit: "/manager/requests/:id/edit",
+                identifier: "requests",
+                meta: {
+                  parent: "manager",
+                  scope: Role.MANAGER,
+                  label: "Requests",
+                  icon: <RequestsIcon />,
+                },
+              },
+            ]}
             accessControlProvider={accessControlProvider}
             options={{
               reactQuery: {

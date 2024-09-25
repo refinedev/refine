@@ -14,12 +14,6 @@ import { TimeOffStatus } from "@/types";
 export const Menu = () => {
   const { menuItems, selectedKey } = useMenu();
 
-  const sortedMenuItems = useMemo(() => {
-    return menuItems.sort(
-      (a, b) => (a.meta?.order ?? 0) - (b.meta?.order ?? 0),
-    );
-  }, [menuItems.length]);
-
   return (
     <nav aria-label="resource list">
       <List
@@ -27,7 +21,7 @@ export const Menu = () => {
           paddingY: "24px",
         }}
       >
-        {sortedMenuItems.map((item, i) => {
+        {menuItems.map((item, i) => {
           return (
             <CanAccess
               key={item.key}
