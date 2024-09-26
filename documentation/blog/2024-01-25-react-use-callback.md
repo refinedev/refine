@@ -25,14 +25,29 @@ In this post, we explore how to use React `useCallback` in order to memoize a fu
 
 Steps we'll cover:
 
+- [Introduction](#introduction)
 - [What is React `useCallback` ?](#what-is-react-usecallback-)
   - [Why Use React `useCallback` Hook?](#why-use-react-usecallback-hook)
 - [Memoize Functions with React `useCallback`: Ensuring A Callback's Referential Equality](#memoize-functions-with-react-usecallback-ensuring-a-callbacks-referential-equality)
+  - [Project Content Overview](#project-content-overview)
+  - [Code Investigation](#code-investigation)
   - [Referential Inequality of Callbacks: Observing Unnecessary Re-renders](#referential-inequality-of-callbacks-observing-unnecessary-re-renders)
   - [Memoizing an Event Listener with `useCallback()`](#memoizing-an-event-listener-with-usecallback)
   - [React `useCallback` with Dependencies](#react-usecallback-with-dependencies)
+- [useCallback vs useMemo](#usecallback-vs-usememo)
+  - [useCallback vs useMemo](#usecallback-vs-usememo-1)
+    - [**useCallback**](#usecallback)
+    - [**useMemo**](#usememo)
+    - [**Key Differences**](#key-differences)
+    - [**When to Use useCallback**](#when-to-use-usecallback)
+    - [**When to Use useMemo**](#when-to-use-usememo)
+    - [**Analogy**](#analogy)
+    - [**Practical Example**](#practical-example)
 - [When to Use React `useCallback`](#when-to-use-react-usecallback)
+  - [Other Cases](#other-cases)
 - [When Not to Use React's `useCallback` Hook](#when-not-to-use-reacts-usecallback-hook)
+- [Summary](#summary)
+- [Example](#example)
 
 ## What is React `useCallback` ?
 
@@ -92,7 +107,7 @@ const UserPostsIndex = ({ signedIn }) => {
   }, []);
 
   return (
-    <div className="my-1 p-2 box">
+    <div className="box my-1 p-2">
       <div className="m-1 py-1">
         <h2 className="heading-md">Your Posts</h2>
         <p className="m-1 p-1">{signedIn ? `Signed in` : `Signed out `}</p>
@@ -125,7 +140,7 @@ const UserPostsList = ({ userPosts, deletePost }) => {
   return (
     <div className="px-1">
       {userPosts.map((post) => (
-        <div key={post.id} className="my-1 box flex-row">
+        <div key={post.id} className="box my-1 flex-row">
           <UserPost post={post} />
           <button
             className="btn btn-danger"
@@ -154,9 +169,9 @@ const UserPost = ({ post }) => {
   // console.log('Rendering UserPost component')
 
   return (
-    <div className="my-1 flex-row-left">
+    <div className="flex-row-left my-1">
       <a href={`#${post.title}`} className="">
-        <h4 id={post.title} className="px-2 font-sm font-bold">
+        <h4 id={post.title} className="font-sm px-2 font-bold">
           {post.title}
         </h4>
       </a>
@@ -237,6 +252,92 @@ This is because `useCallback()` caches and produces the same copy of `deletePost
 ### React `useCallback` with Dependencies
 
 Notice we are passing a dependency in the array passed as the second argument of `useCallback`. With `userPosts` as a dependency, we want a change in `userPosts` to trigger a renewal of the function memo. So, every time the value of `userPosts` changes, a new `deletePost` function object will be created in `<UserPostsIndex />` and `<UserPostsList />` will be re-rendered.
+
+## useCallback vs useMemo
+
+I thought it might be helpful to add a section to our article comparing and contrasting `useCallback` and `useMemo`. Many devs, including myself from time to time, get confused as to when to use which.
+
+### useCallback vs useMemo
+
+Understanding the difference between `useCallback` and `useMemo` goes a long way in optimizing React applications. What follows is a simple comparison that should make their purposes clear and when each should be used.
+
+#### **useCallback**
+
+`useCallback` memoizes a function definition so that it doesn't get recreated on every render unless its dependencies change.
+
+Comes in handy when you want to pass some callback functions to a child component wrapped with `React.memo` to avoid unnecessary re-renders.
+
+```jsx
+let handleClick = useCallback(() => {
+  // Function logic here
+}, [dependencies]);
+```
+
+In the example, `handleClick` will have the same reference on every render unless dependencies change.
+
+#### **useMemo**
+
+`useMemo` memoizes the result of a function call, caching the value that would be returned.
+Perfect for expensive calculations that you don't want to recompute on every render unless certain dependencies change.
+
+```jsx
+const computedValue = useMemo(() => {
+  return expensiveCalculation(data);
+}, [data]);
+```
+
+Here, `computedValue` would only be re-evaluated when `data` changes.
+
+#### **Key Differences**
+
+- **What They Return**:
+  - `useCallback` returns a memoized **function**.
+  - `useMemo` returns a memoized **value**.
+- **Main Usefulness**:
+  - `useCallback` prevents unnecessary re-creations of functions.
+  - `useMemo` avoids recalculating a value when it is not necessary.
+
+#### **When to Use useCallback**
+
+- **Preventing Re-renders of Children**: When implementing the `useCallback` hook with a function passed as a prop to a child that is optimized by `React.memo`, it ensures the reference of that function does not get recreated unnecessarily.
+- **Event Handlers**: If functions are created on every render—event handlers, for example—you can keep its reference by using `useCallback`.
+
+#### **When to Use useMemo**
+
+- **Expensive Computations**: When you have a function that performs a heavy computation, and you want to avoid it running on each render.
+- **Derived Data**: Computed result based on props or state which should not re-run unless the dependencies change.
+
+#### **Analogy**
+
+- Think of `useCallback` as memoizing the **function itself**, whereas `useMemo` memoizes the **result of the function**.
+
+#### **Practical Example**
+
+For instance, consider the following filtering list scenario:
+
+- **Using useMemo**:
+
+  ```jsx
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => item.active);
+  }, [items]);
+
+  return <ItemList items={filteredItems} />;
+  ```
+
+  Here, `filteredItems` is re-evaluated only when `items` change.
+
+- **With useCallback**:
+
+  ```jsx
+  const getFilteredItems = useCallback(() => {
+    return items.filter((item) => item.active);
+  }, [items]);
+
+  return <ItemList getItems={getFilteredItems} />;
+  ```
+
+  In this case, `getFilteredItems` doesn't change its function reference if `items` haven't changed.
 
 ## When to Use React `useCallback`
 
