@@ -1,8 +1,7 @@
 import { type FC, useState } from "react";
 import { useHits, useSearchBox } from "react-instantsearch";
-import { Link } from "react-router-dom";
 
-import { useNavigation, useResource } from "@refinedev/core";
+import { useNavigation, useResource, Link } from "@refinedev/core";
 
 import { SearchOutlined } from "@ant-design/icons";
 import { Input, List, Popover, Tag, Typography } from "antd";
@@ -124,16 +123,16 @@ export const AlgoliaSearchResult: FC<SearchResultProps> = ({ onHitClick }) => {
     return label;
   };
 
-  const getResourceLink = (item: Hit) => {
+  const getLinkAction = (item: Hit) => {
     if (["contacts", "quotes", "events", "user"].includes(item.resource)) {
-      return showUrl(item.resource, item.id);
+      return "show";
     }
 
     if (["tasks", "deals", "companies"].includes(item.resource)) {
-      return editUrl(item.resource, item.id);
+      return "edit";
     }
 
-    return "";
+    return "show";
   };
 
   return (
@@ -146,7 +145,15 @@ export const AlgoliaSearchResult: FC<SearchResultProps> = ({ onHitClick }) => {
       dataSource={hits}
       renderItem={(item) => {
         return (
-          <Link to={getResourceLink(item)}>
+          <Link
+            go={{
+              to: {
+                resource: item.resource,
+                id: item.id,
+                action: getLinkAction(item),
+              },
+            }}
+          >
             <List.Item className={styles.listItem} onClick={onHitClick}>
               <List.Item.Meta
                 avatar={
