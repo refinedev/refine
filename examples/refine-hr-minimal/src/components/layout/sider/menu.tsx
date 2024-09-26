@@ -1,5 +1,6 @@
-import { type ReactNode, useMemo } from "react";
-import { useLink, useMenu, CanAccess, useList } from "@refinedev/core";
+import type { ReactNode } from "react";
+import { useMenu, CanAccess, useList } from "@refinedev/core";
+import { Link } from "react-router-dom";
 import {
   Box,
   List,
@@ -74,8 +75,6 @@ const MenuItem = ({
   label,
   rightSlot,
 }: MenuItemProps) => {
-  const Link = useLink();
-
   return (
     <ListItem
       disablePadding
