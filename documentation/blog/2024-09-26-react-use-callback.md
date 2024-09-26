@@ -4,11 +4,11 @@ description: Improve app performance with React useCallback() hook.
 slug: react-usecallback-guide
 authors: abdullah_numan
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-20-react-use-callback/social-2.png
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 25, 2024 to expand code examples add more real use-cases for React useCallback hook._**
+**_This article was last updated on January 25, 2024 to include comparisons between useCallback and useMeme and how to use useCallback with other hooks._**
 
 ## Introduction
 
@@ -27,26 +27,10 @@ Steps we'll cover:
 
 - [Introduction](#introduction)
 - [What is React `useCallback` ?](#what-is-react-usecallback-)
-  - [Why Use React `useCallback` Hook?](#why-use-react-usecallback-hook)
-- [Memoize Functions with React `useCallback`: Ensuring A Callback's Referential Equality](#memoize-functions-with-react-usecallback-ensuring-a-callbacks-referential-equality)
-  - [Project Content Overview](#project-content-overview)
-  - [Code Investigation](#code-investigation)
-  - [Referential Inequality of Callbacks: Observing Unnecessary Re-renders](#referential-inequality-of-callbacks-observing-unnecessary-re-renders)
-  - [Memoizing an Event Listener with `useCallback()`](#memoizing-an-event-listener-with-usecallback)
-  - [React `useCallback` with Dependencies](#react-usecallback-with-dependencies)
 - [useCallback vs useMemo](#usecallback-vs-usememo)
-  - [useCallback vs useMemo](#usecallback-vs-usememo-1)
-    - [**useCallback**](#usecallback)
-    - [**useMemo**](#usememo)
-    - [**Key Differences**](#key-differences)
-    - [**When to Use useCallback**](#when-to-use-usecallback)
-    - [**When to Use useMemo**](#when-to-use-usememo)
-    - [**Analogy**](#analogy)
-    - [**Practical Example**](#practical-example)
 - [When to Use React `useCallback`](#when-to-use-react-usecallback)
-  - [Other Cases](#other-cases)
 - [When Not to Use React's `useCallback` Hook](#when-not-to-use-reacts-usecallback-hook)
-- [Summary](#summary)
+- [Bonus:useCallback with Other Hooks](#bonususecallback-with-other-hooks)
 - [Example](#example)
 
 ## What is React `useCallback` ?
@@ -255,9 +239,7 @@ Notice we are passing a dependency in the array passed as the second argument of
 
 ## useCallback vs useMemo
 
-I thought it might be helpful to add a section to our article comparing and contrasting `useCallback` and `useMemo`. Many devs, including myself from time to time, get confused as to when to use which.
-
-### useCallback vs useMemo
+Many devs, including myself from time to time, get confused as to when to use which.
 
 Understanding the difference between `useCallback` and `useMemo` goes a long way in optimizing React applications. What follows is a simple comparison that should make their purposes clear and when each should be used.
 
@@ -350,6 +332,102 @@ React `useCallback()` is also used to cache callbacks in debouncing, as well as 
 ## When Not to Use React's `useCallback` Hook
 
 We should not use the `useCallback` hook for memoizing the value of a function. We should also avoid overusing `useCallback` since the hook itself contributes to the component's cost. It is recommended to use the `useCallback` hook only in cases referential equality of the function is important.
+
+## Bonus:useCallback with Other Hooks
+
+I thought it would be worth adding a section to our article about how `useCallback` can be used with other React Hooks.
+
+Knowing how `useCallback` works with other React Hooks will make it easier to write good-performing, efficient components. Following are ways that we can combine `useCallback` with other Hooks.
+
+#### **useCallback and useEffect**
+
+When we use `useEffect`, we need to include functions in the dependency array as well. If this function changes at each render, that also will make the `useEffect` run unnecessarily. This is where we wrap up the function with `useCallback`.
+
+```jsx
+import React, { useState, useEffect, useCallback } from "react";
+
+function SearchComponent() {
+  const [query, setQuery] = useState("");
+
+  const fetchResults = useCallback(() => {
+    // Fetch data based on query
+  }, [query]);
+
+  useEffect(() => {
+    fetchResults();
+  }, [fetchResults]);
+
+  return <input value={query} onChange={(e) => setQuery(e.target.value)} />;
+}
+```
+
+Above, in the example, `fetchResults` is memoized with `useCallback`, which means that it only changes when `query` changes, so `useEffect` does not run on every render.
+
+#### **useCallback and useMemo**
+
+While `useCallback` memoizes functions, `useMemo` memoizes values. Sometimes, we may want to use both to optimize our components.
+
+```jsx
+const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
+
+const handleClick = useCallback(() => {
+  doSomethingWith(memoizedValue);
+}, [memoizedValue]);
+```
+
+Here, we memoize an expensive computation using `useMemo`, then take that value and memoize a function that uses it with `useCallback`.
+
+#### **useCallback and useContext**
+
+With context, passing down functions may cause re-renders when the function reference changes. Using `useCallback` allows us to prevent unnecessary updates in context consumers.
+
+```jsx
+const MyContext = React.createContext();
+
+function MyProvider({ children }) {
+  const [state, setState] = useState(0);
+
+  const increment = useCallback(() => {
+    setState((prev) => prev + 1);
+  }, []);
+
+  return (
+    <MyContext.Provider value={{ state, increment }}>
+      {children}
+    </MyContext.Provider>
+  );
+}
+
+function ChildComponent() {
+  const { state, increment } = useContext(MyContext);
+  // ChildComponent won't re-render unless state or increment changes
+}
+```
+
+By memoizing `increment`, we make sure that the context value isn't changed when it doesn't need to be, thereby optimizing the components consuming the context.
+
+#### **useCallback and Custom Hooks**
+
+When writing custom Hooks, we can always use `useCallback` to memoize functions returned by the hook so that consuming components get stable function references.
+
+```jsx
+function useWindowWidth() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  const handleResize = useCallback(() => {
+    setWidth(window.innerWidth);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [handleResize]);
+
+  return width;
+}
+```
+
+In this custom hook, we memoize `handleResize` with `useCallback`, so that the event listener isn't set anew after every render.
 
 ## Summary
 
