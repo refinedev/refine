@@ -1,108 +1,60 @@
-import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import "./index.mock";
+import { gql } from "@urql/core";
+import "./createMany.mock";
+
+const gqlMutation = gql`
+  mutation CreateManyBlogPosts(
+    $input: CreateManyBlogPostsInput!
+  ) {
+    createManyBlogPosts(input: $input) {
+        id
+        title
+        content
+        category {
+            id
+        }
+    }
+  }
+`;
 
 describe("createMany", () => {
-  it("correct response with meta", async () => {
-    const { data } = await dataProvider(client).createMany!({
-      resource: "posts",
-      variables: [
-        {
-          title: "foo",
-          content: "bar",
-          category: "2",
-        },
-        {
-          title: "foo-2",
-          content: "bar-2",
-          category: "3",
-        },
-      ],
-      meta: {
-        fields: [
-          {
-            operation: "post",
-            fields: ["id", "title", "content", { category: ["id"] }],
-            variables: {},
-          },
-        ],
-      },
-    });
-
-    expect(data[0].id).toEqual("45");
-    expect(data[0].title).toEqual("foo");
-    expect(data[0].content).toEqual("bar");
-    expect(data[0].category.id).toEqual("2");
-
-    expect(data[1].id).toEqual("46");
-    expect(data[1].title).toEqual("foo-2");
-    expect(data[1].content).toEqual("bar-2");
-    expect(data[1].category.id).toEqual("3");
-  });
-
-  it("correct response without meta", async () => {
-    const { data } = await dataProvider(client).createMany!({
-      resource: "posts",
-      variables: [
-        {
-          title: "foo",
-          content: "bar",
-          category: "2",
-        },
-        {
-          title: "foo-2",
-          content: "bar-2",
-          category: "3",
-        },
-      ],
-    });
-
-    expect(data[0].id).toEqual("48");
-    expect(data[1].id).toEqual("47");
-  });
-});
-
-describe("createMany gql", () => {
-  it("correct response", async () => {
+  it("with correct params", async () => {
     const { data } = await dataProvider(client).createMany({
-      resource: "posts",
+      resource: "blogPosts",
       variables: [
         {
-          title: "test",
-          content: "test",
-          category: "19",
+          title: "foo1",
+          content: "bar1",
+          status: "DRAFT",
+          categoryId: "1",
         },
         {
-          title: "test2",
-          content: "test2",
-          category: "20",
+          title: "foo2",
+          content: "bar2",
+          status: "DRAFT",
+          categoryId: "2",
         },
       ],
       meta: {
-        gqlQuery: gql`
-          mutation createPost($input: createPostInput!) {
-            createPost (input: $input) {
-              post {
-                id
-                title
-                content
-                category {
-                  id
-                }
-              }
-            }
-          }
-        `,
+        gqlMutation,
       },
     });
 
-    expect(data[0].title).toEqual("test");
-    expect(data[0].content).toEqual("test");
-    expect(data[0].category.id).toEqual("19");
+    console.log("DATA ", data);
 
-    expect(data[1].title).toEqual("test2");
-    expect(data[1].content).toEqual("test2");
-    expect(data[1].category.id).toEqual("20");
+    expect(data[0].title).toEqual("foo1");
+    expect(data[0].content).toEqual("bar1");
+    expect(data[0].category.id).toEqual("1");
+
+    expect(data[1].title).toEqual("foo2");
+    expect(data[1].content).toEqual("bar2");
+    expect(data[1].category.id).toEqual("2");
+  });
+
+  it("without mutation", async () => {
+    expect(
+      dataProvider(client).createMany({ resource: "blogPosts", variables: [] }),
+    ).rejects.toEqual(new Error("Operation is required."));
   });
 });

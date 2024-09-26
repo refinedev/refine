@@ -15,7 +15,7 @@ const gqlMutation = gql`
 `;
 
 describe("create", () => {
-  it("stuff", async () => {
+  it("with correct params", async () => {
     const { data } = await dataProvider(client).create({
       resource: "blogPosts",
       variables: {
@@ -33,49 +33,9 @@ describe("create", () => {
     expect(data.content).toEqual("bar");
   });
 
-  //   it("correct response without meta", async () => {
-  //     const { data } = await dataProvider(client).create({
-  //       resource: "posts",
-  //       variables: {
-  //         title: "foo",
-  //         content: "bar",
-  //         category: "2",
-  //       },
-  //     });
-
-  //     expect(data.id).toEqual("44");
-  //   });
-  // });
-
-  // describe("create gql", () => {
-  //   it("correct response", async () => {
-  //     const { data } = await dataProvider(client).create({
-  //       resource: "posts",
-  //       variables: {
-  //         title: "test",
-  //         content: "test",
-  //         category: "19",
-  //       },
-  //       meta: {
-  //         gqlQuery: gql`
-  //           mutation createPost($input: createPostInput!) {
-  //             createPost (input: $input) {
-  //               post {
-  //                 id
-  //                 title
-  //                 content
-  //                 category {
-  //                   id
-  //                 }
-  //               }
-  //             }
-  //           }
-  //         `,
-  //       },
-  //     });
-
-  //     expect(data.title).toEqual("test");
-  //     expect(data.content).toEqual("test");
-  //     expect(data.category.id).toEqual("19");
-  //   });
+  it("without mutation", async () => {
+    expect(
+      dataProvider(client).create({ resource: "blogPosts", variables: {} }),
+    ).rejects.toEqual(new Error("Operation is required."));
+  });
 });

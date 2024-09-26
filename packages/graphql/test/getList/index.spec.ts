@@ -27,7 +27,7 @@ describe("getList", () => {
 
     expect(data[0].id).toBe("1");
     expect(data.length).toBe(10);
-    expect(total).toBe(502);
+    expect(total).toBe(507);
   });
 
   describe("pagination", () => {
@@ -71,7 +71,7 @@ describe("getList", () => {
           },
         });
 
-        expect(data.length).toBe(502);
+        expect(data.length).toBe(507);
       });
 
       it("server", async () => {
@@ -98,7 +98,7 @@ describe("getList", () => {
         sorters: [{ field: "id", order: "desc" }],
       });
 
-      expect(data[0].id).toBe("502");
+      expect(data[0].id).toBe("507");
     });
   });
 
@@ -126,13 +126,13 @@ describe("getList", () => {
             operator: "and",
             value: [
               { field: "status", operator: "eq", value: "DRAFT" },
-              { field: "id", operator: "lt", value: 3 },
+              { field: "id", operator: "lt", value: 10 },
             ],
           },
         ],
       });
 
-      expect(data.length).toBe(1);
+      expect(data.length).toBe(4);
       expect(data[0].status).toBe("DRAFT");
     });
 
