@@ -38,8 +38,7 @@ export const PageEmployeeTimeOffsCreate = () => {
   });
   const isManager = useCanData?.can;
 
-  const { data: employee, isLoading: employeeLoading } =
-    useGetIdentity<Employee>();
+  const { data: employee } = useGetIdentity<Employee>();
 
   const {
     refineCore: { formLoading, onFinish },

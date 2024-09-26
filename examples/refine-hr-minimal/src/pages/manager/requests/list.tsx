@@ -1,13 +1,6 @@
 import type { PropsWithChildren, ReactNode } from "react";
 import { useGo, useInfiniteList } from "@refinedev/core";
-import InfiniteScroll from "react-infinite-scroll-component";
-import {
-  Box,
-  Button,
-  CircularProgress,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import dayjs from "dayjs";
 import { Frame } from "@/components/frame";
 import { PageHeader } from "@/components/layout/page-header";

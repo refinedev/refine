@@ -1,11 +1,15 @@
-import { Authenticated, CanAccess, Refine } from "@refinedev/core";
+import {
+  Authenticated,
+  CanAccess,
+  ErrorComponent,
+  Refine,
+} from "@refinedev/core";
 import { DevtoolsProvider, DevtoolsPanel } from "@refinedev/devtools";
-import { ErrorComponent } from "@refinedev/mui";
 import dataProvider from "@refinedev/nestjsx-crud";
 import routerProvider, {
-  NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
+  NavigateToResource,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
@@ -27,7 +31,7 @@ import { queryClient } from "@/providers/query-client";
 import { BASE_URL } from "@/utilities/constants";
 import { axiosInstance } from "@/utilities/axios";
 
-import { TimeOffIcon, RequestsIcon } from "@/icons";
+import { RequestsIcon, TimeOffIcon } from "@/icons";
 
 import { Role } from "@/types";
 
@@ -54,6 +58,7 @@ const App: React.FC = () => {
                 name: "manager",
                 meta: {
                   scope: Role.MANAGER,
+                  order: 1,
                 },
               },
               {
@@ -103,14 +108,7 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={
-                    <CanAccess
-                      action="manager"
-                      fallback={<NavigateToResource resource="time-offs" />}
-                    >
-                      <NavigateToResource resource="requests" />
-                    </CanAccess>
-                  }
+                  element={<NavigateToResource resource="time-offs" />}
                 />
 
                 <Route
@@ -118,12 +116,7 @@ const App: React.FC = () => {
                   element={
                     <ThemeProvider role={Role.EMPLOYEE}>
                       <Layout>
-                        <CanAccess
-                          action="employee"
-                          fallback={<NavigateToResource resource="requests" />}
-                        >
-                          <Outlet />
-                        </CanAccess>
+                        <Outlet />
                       </Layout>
                     </ThemeProvider>
                   }
@@ -136,47 +129,42 @@ const App: React.FC = () => {
                     />
                   </Route>
                 </Route>
+              </Route>
 
+              <Route
+                path="manager"
+                element={
+                  <ThemeProvider role={Role.MANAGER}>
+                    <Layout>
+                      <CanAccess
+                        action="manager"
+                        fallback={<NavigateToResource resource="time-offs" />}
+                      >
+                        <Outlet />
+                      </CanAccess>
+                    </Layout>
+                  </ThemeProvider>
+                }
+              >
                 <Route
-                  path="manager"
+                  path="requests"
                   element={
-                    <ThemeProvider role={Role.MANAGER}>
-                      <Layout>
-                        <CanAccess
-                          action="manager"
-                          fallback={<NavigateToResource resource="time-offs" />}
-                        >
-                          <Outlet />
-                        </CanAccess>
-                      </Layout>
-                    </ThemeProvider>
+                    <PageManagerRequestsList>
+                      <Outlet />
+                    </PageManagerRequestsList>
                   }
                 >
                   <Route
-                    path="requests"
-                    element={
-                      <PageManagerRequestsList>
-                        <Outlet />
-                      </PageManagerRequestsList>
-                    }
-                  >
-                    <Route
-                      path=":id/edit"
-                      element={<PageManagerRequestsTimeOffsEdit />}
-                    />
-                  </Route>
+                    path=":id/edit"
+                    element={<PageManagerRequestsTimeOffsEdit />}
+                  />
                 </Route>
               </Route>
 
               <Route
                 element={
                   <Authenticated key="auth-pages" fallback={<Outlet />}>
-                    <CanAccess
-                      action="manager"
-                      fallback={<NavigateToResource resource="time-offs" />}
-                    >
-                      <NavigateToResource resource="requests" />
-                    </CanAccess>
+                    <NavigateToResource resource="time-offs" />
                   </Authenticated>
                 }
               >
@@ -195,6 +183,7 @@ const App: React.FC = () => {
                 <Route path="*" element={<ErrorComponent />} />
               </Route>
             </Routes>
+
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
             <Toaster position="bottom-right" reverseOrder={false} />
