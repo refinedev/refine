@@ -20,7 +20,11 @@ export const poptions = {
   },
   createMany: {
     dataMapper: (response, params) => {
-      const key = `createMany${camelcase(resource, { pascalCase: true })}`;
+      const key = `createMany${camelcase(params.resource, {
+        pascalCase: true,
+      })}`;
+
+      return response.data[key];
     },
     buildVariables: (params) => {
       return {
@@ -64,16 +68,46 @@ export const poptions = {
     },
   },
   getMany: {
-    dataMapper: (response, params) => [],
+    buildFilter: (params) => {
+      return { id: { in: params.ids } };
+    },
+    dataMapper: (response, params) => {
+      const key = camelcase(resource);
+
+      return response.data[operation].nodes;
+    },
   },
   update: {
-    dataMapper: (response, params) => {},
+    dataMapper: (response, params) => {
+      const key = `updateOne${camelcase(singular(resource), {
+        pascalCase: true,
+      })}`;
+
+      return response.data[key];
+    },
+    buildVariables: (params) => {
+      return {
+        id: params.id,
+        update: params.variables,
+      };
+    },
   },
   updateMany: {
     dataMapper: (response, params) => {},
   },
   deleteOne: {
-    dataMapper: (response, params) => {},
+    dataMapper: (response, params) => {
+      const key = camelcase(singular(resource), {
+        pascalCase: true,
+      });
+
+      return response.data[key];
+    },
+    buildVariables: (params) => {
+      return {
+        input: { id: params.id },
+      };
+    },
   },
   deleteMany: {
     dataMapper: (response, params) => {},

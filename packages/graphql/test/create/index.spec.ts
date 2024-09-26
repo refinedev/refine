@@ -1,7 +1,7 @@
 import { gql } from "@urql/core";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import "./index.mock";
+import "./create.mock";
 
 const gqlMutation = gql`
   mutation CreateBlogPost($input: CreateOneBlogPostInput!) {

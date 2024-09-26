@@ -24,12 +24,10 @@ const dataProvider = (
         .mutation(gqlOperation, options.create.buildVariables(params))
         .toPromise();
 
-      const rrr = options.create.dataMapper(response, params);
-
-      console.log("RRRR ", rrr);
+      const data = options.create.dataMapper(response, params);
 
       return {
-        data: rrr,
+        data,
       } as any;
     },
     createMany: async (params) => {
@@ -43,12 +41,12 @@ const dataProvider = (
 
       const response = await client.mutation<BaseRecord>(
         gqlOperation,
-        options.createMany.buildVariables(params, variables),
+        options.createMany.buildVariables(params),
       );
 
       return {
-        data: response[operation],
-      };
+        data: options.createMany.dataMapper(response, params),
+      } as any;
     },
     getOne: async ({ resource, id, meta }) => {
       const singularResource = pluralize.singular(resource);
@@ -114,48 +112,36 @@ const dataProvider = (
       return { data: [], total: 0 };
     },
     getMany: async (params) => {
-      const { ids, meta } = params;
+      const { meta } = params;
 
-      if (meta?.gqlQuery) {
-        const response = await client
-          .query(meta.gqlQuery, {
-            where: {
-              id_in: ids,
-            },
-          })
-          .toPromise();
-
-        return {
-          data: options.getMany.dataMapper(response, params),
-        };
+      if (!meta?.gqlQuery) {
+        throw new Error("Operation is required.");
       }
 
-      return { data: [] };
-    },
-    update: async ({ resource, id, variables, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelUpdateName = camelCase(`update-${singularResource}`);
-
-      const operation = meta?.operation ?? camelUpdateName;
-      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
-
-      if (gqlOperation) {
-        const response = await client
-          .mutation(gqlOperation, {
-            id,
-            data: {
-              ...variables,
-            },
-          })
-          .toPromise();
-
-        return {
-          data: response.data[operation][singularResource],
-        };
-      }
+      const response = await client
+        .query(meta.gqlQuery, {
+          filter: options.getMany.buildFilter(params),
+        })
+        .toPromise();
 
       return {
-        data: {},
+        data: options.getMany.dataMapper(response, params),
+      };
+    },
+    update: async (params) => {
+      const { meta } = params;
+      const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
+
+      if (!gqlOperation) {
+        throw new Error("Operation is required.");
+      }
+
+      const response = await client
+        .mutation(gqlOperation, options.update.buildVariables(params))
+        .toPromise();
+
+      return {
+        data: options.update.dataMapper(response, params),
       };
     },
     updateMany: async ({ resource, ids, variables, meta }) => {
@@ -190,27 +176,22 @@ const dataProvider = (
 
       return { data: [] };
     },
-    deleteOne: async ({ resource, id, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelDeleteName = camelCase(`delete-${singularResource}`);
+    deleteOne: async (params) => {
+      const { meta } = params;
 
-      const operation = meta?.operation ?? camelDeleteName;
+      if (!meta?.gqlMutation) {
+        throw new Error("Operation is required.");
+      }
 
       if (meta?.gqlMutation) {
         const response = await client
-          .mutation(meta.gqlMutation, {
-            input: {
-              where: { id },
-            },
-          })
+          .mutation(meta.gqlMutation, options.deleteOne.buildVariables(params))
           .toPromise();
 
         return {
-          data: response.data[operation][singularResource],
-        };
+          data: options.deleteOne.dataMapper(response, params),
+        } as any;
       }
-
-      return { data: {} };
     },
     deleteMany: async ({ resource, ids, meta }) => {
       const singularResource = pluralize.singular(resource);
