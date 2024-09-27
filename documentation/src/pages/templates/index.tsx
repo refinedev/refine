@@ -278,6 +278,7 @@ const dataTemplates: {
   description: string;
   image: string;
   to: string;
+  enterprise: boolean;
   integrations: (Integration["uiFrameworks"] | Integration["backends"])[];
 }[] = [
   {
@@ -287,6 +288,7 @@ const dataTemplates: {
       "A comprehensive CRM app built using Refine, Ant Design, and GraphQL. It includes authentication, a dashboard, and over 10 CRUD interfaces, ranging from charts and sales kanban boards to user administration.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-crm.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Ant Design",
@@ -303,12 +305,36 @@ const dataTemplates: {
     ],
   },
   {
+    to: "/templates/hr-application",
+    title: "HR Management App Example",
+    description:
+      "HR management app example built with Refine, demonstrating how quickly enterprise-level tools can be developed. This template features leave management, employee directory, and expense tracking.",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-hr.png",
+    enterprise: true,
+    integrations: [
+      {
+        label: "Material UI",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Antd width={16} height={16} {...props} />
+        ),
+      },
+      {
+        label: "Rest API",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <RestWithoutText width={16} height={16} {...props} />
+        ),
+      },
+    ],
+  },
+  {
     to: "/templates/next-js-tailwind",
     title: "E-Commerce Application Storefront",
     description:
       "A Headless storefront example built with Refine and Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-storefront.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Headless",
@@ -331,6 +357,7 @@ const dataTemplates: {
       "A comprehensive Admin panel template built using Refine and Material UI demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-material-ui.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Material UI",
@@ -353,6 +380,7 @@ const dataTemplates: {
       "A comprehensive Admin panel template built using Refine and Ant design demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-ant-design.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Ant Design",
@@ -375,6 +403,7 @@ const dataTemplates: {
       "A complete headless e-commerce template was built on top of Medusa with Refine. Features a fully working solution with product listings, a shopping cart, and checkout. Supports SSR with NextJS.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/swag-store.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Headless",
@@ -397,6 +426,7 @@ const dataTemplates: {
       "It is a funny app built with Refine and Supabase, along with a Realtime feature.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/pixels.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Ant Design",
@@ -419,6 +449,7 @@ const dataTemplates: {
       "The Internal Tool template features a PDF Invoice Generator along with CRUD functionalities.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/invoicer.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Ant Design",
@@ -441,6 +472,7 @@ const dataTemplates: {
       "With the headless architecture of Refine, you have the flexibility to implement any custom design!",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/video-club.png",
+    enterprise: false,
     integrations: [
       {
         label: "Headless",
@@ -462,6 +494,7 @@ const dataTemplates: {
     description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by Refine!`,
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/realworld.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Headless",
@@ -484,6 +517,7 @@ const dataTemplates: {
       "Implementing multitenancy architecture in Refine applications.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Ant Design",
@@ -506,6 +540,7 @@ const dataTemplates: {
       "Complete internal tool template built with Ant Design. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/ant-design-template.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Ant Design",
@@ -528,6 +563,7 @@ const dataTemplates: {
       "Complete internal tool template built with Material UI. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/material-ui-template.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Material UI",
@@ -550,6 +586,7 @@ const dataTemplates: {
       "Complete internal tool template built with Chakra UI. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/chakra-ui-template.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Chakra UI",
@@ -572,6 +609,7 @@ const dataTemplates: {
       "Complete internal tool template built with Mantine. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/mantine-template.jpg",
+    enterprise: false,
     integrations: [
       {
         label: "Mantine",

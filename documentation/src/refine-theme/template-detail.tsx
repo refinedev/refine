@@ -20,7 +20,8 @@ type Props = {
     title: string;
     description: string;
     images: string[];
-    runOnYourLocalPath: string;
+    runOnYourLocalPath: string | null;
+    enterprise: boolean;
     liveDemo: string;
     github: string;
     tutorial: string;
@@ -81,6 +82,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
           </div>
           <div
             className={clsx(
+              "relative",
               "flex",
               "mt-8 landing-sm:mt-12 landing-md:mt-16",
               "-mx-4 landing-sm:-mx-0",
@@ -93,6 +95,21 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               src={data.images[0]}
               alt={data.title}
             />
+            {data.enterprise && (
+              <div
+                className={clsx(
+                  "absolute",
+                  "-top-2",
+                  "-right-2 landing-sm:right-[9px]",
+                )}
+              >
+                <img
+                  src="/assets/badge-enterprise.png"
+                  alt="enterprise badge"
+                  className="w-[248px] h-[248px]"
+                />
+              </div>
+            )}
           </div>
 
           <div
@@ -183,9 +200,11 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                   "landing-lg:pl-4 landing-lg:pr-6",
                 )}
               >
-                <div className={clsx("mb-2 landing-sm:mb-4")}>
-                  <CommonRunLocalPrompt path={data.runOnYourLocalPath} />
-                </div>
+                {data.runOnYourLocalPath && (
+                  <div className={clsx("mb-2 landing-sm:mb-4")}>
+                    <CommonRunLocalPrompt path={data.runOnYourLocalPath} />
+                  </div>
+                )}
                 <div className={clsx("not-prose")}>
                   <h2
                     className={clsx(
@@ -439,6 +458,9 @@ const integrationToIconMap = {
   Vite: (props: SVGProps<SVGSVGElement>) => <Icons.Vite {...props} />,
   "Nestjs-query": (props: SVGProps<SVGSVGElement>) => (
     <Icons.Graphql {...props} />
+  ),
+  "Nestjsx-CRUD": (props: SVGProps<SVGSVGElement>) => (
+    <Icons.RestWithoutText {...props} />
   ),
 };
 
