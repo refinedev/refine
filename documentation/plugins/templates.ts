@@ -38,9 +38,10 @@ const templates = [
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.png",
     ],
-    runOnYourLocalPath: "app-crm",
+    runOnYourLocalPath: null,
+    edition: "Enterprise",
     liveDemo: "https://example.crm.refine.dev/",
-    github: "https://github.com/refinedev/refine/tree/master/examples/app-crm",
+    github: null,
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Nestjs-query",
@@ -149,6 +150,7 @@ By using this app as a starting point, companies can build a customized HR platf
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-storefront.png",
     ],
     runOnYourLocalPath: "finefoods-client",
+    edition: "Community",
     liveDemo: "https://example.refine.dev/",
     github:
       "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
@@ -175,6 +177,7 @@ The source code is also open-source; feel free to use or inspect it to discover 
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-material-ui.png",
     ],
     runOnYourLocalPath: "finefoods-material-ui",
+    edition: "Community",
     liveDemo: "https://example.mui.admin.refine.dev",
     github:
       "https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui",
@@ -225,6 +228,7 @@ This admin panel template can be used in for various app requirements like B2B a
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-finefoods-ant-design.png",
     ],
     runOnYourLocalPath: "finefoods-antd",
+    edition: "Community",
     liveDemo: "https://example.admin.refine.dev",
     github:
       "https://github.com/refinedev/refine/tree/master/examples/finefoods-antd",
@@ -277,6 +281,7 @@ This admin panel template can be used in for various app requirements like B2B a
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-store.png",
     ],
     runOnYourLocalPath: "store",
+    edition: "Community",
     liveDemo: "https://store.refine.dev/",
     github: "https://github.com/refinedev/refine/tree/master/examples/store",
     reactPlatform: "Next.js",
@@ -310,6 +315,7 @@ With its production-ready status, this template offers a solid foundation for bu
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-pixels.png",
     ],
     runOnYourLocalPath: "pixels",
+    edition: "Community",
     liveDemo: "https://pixels.refine.dev/",
     github: "https://github.com/refinedev/refine/tree/master/examples/pixels",
     tutorial: "https://refine.dev/week-of-refine-supabase/",
@@ -340,6 +346,7 @@ We built this template to demonstrate how the Refine framework simplifies and sp
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-invoice-generator.png",
     ],
     runOnYourLocalPath: "invoicer",
+    edition: "Community",
     liveDemo: "https://refine-invoicer-8mk7d.ondigitalocean.app/",
     github: "https://github.com/refinedev/refine/tree/master/examples/invoicer",
     reactPlatform: "Vite",
@@ -369,6 +376,7 @@ We built this template to showcase the efficiency and ease of using the Refine f
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/video-club-win95.png",
     ],
     runOnYourLocalPath: "win95",
+    edition: "Community",
     liveDemo: "https://videoclub.refine.dev",
     github: "https://github.com/refinedev/refine/tree/master/examples/win95",
     reactPlatform: "Vite",
@@ -388,6 +396,7 @@ The source code of the CRUD app is also open-source; feel free to use or inspect
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-realworld.png",
     ],
     runOnYourLocalPath: "real-world-example",
+    edition: "Community",
     liveDemo: "https://refine-real-world.netlify.app/",
     github: "https://github.com/refinedev/real-world-example",
     reactPlatform: "Vite",
@@ -421,6 +430,7 @@ Since the source code of this RealWorld app is open-source, you have the freedom
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.png",
     ],
     runOnYourLocalPath: "multi-tenancy-strapi",
+    edition: "Community",
     liveDemo: "https://multi-tenancy-strapi.refine.dev",
     github:
       "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
@@ -444,6 +454,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-ant-design-template.png",
     ],
     runOnYourLocalPath: "auth-antd",
+    edition: "Community",
     liveDemo:
       "https://codesandbox.io/p/sandbox/github/refinedev/refine/tree/master/examples/auth-antd",
     github:
@@ -464,6 +475,7 @@ Complete internal tool template built with Material UI. Features authentication 
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-material-ui-template.png",
     ],
     runOnYourLocalPath: "auth-material-ui",
+    edition: "Community",
     liveDemo:
       "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-material-ui",
     github:
@@ -484,6 +496,7 @@ Complete internal tool template built with Material UI. Features authentication 
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-mantine-template.png",
     ],
     runOnYourLocalPath: "auth-mantine",
+    edition: "Community",
     liveDemo:
       "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-mantine",
     github:
@@ -504,6 +517,7 @@ Complete internal tool template built with Mantine. Features authentication and 
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-chakra-ui-template.png",
     ],
     runOnYourLocalPath: "auth-chakra-ui",
+    edition: "Community",
     liveDemo:
       "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-chakra-ui",
     github:
