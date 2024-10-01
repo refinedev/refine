@@ -93,13 +93,15 @@ This CRM app template can be used in for various app requirements like B2B appli
     slug: "hr-application",
     title: "HR Management App Example",
     images: [
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-crm.png",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-hr.png",
     ],
-    runOnYourLocalPath: "app-hr",
+    runOnYourLocalPath: null,
+    github: null,
     liveDemo: "https://refine-hr.netlify.app",
     reactPlatform: "Vite",
     uiFramework: "Material UI",
     dataProvider: "Nestjsx-CRUD",
+    edition: "Enterprise",
     authProvider: "Custom",
     description: `Demonstrating Refine's Capabilities for Building Enterprise-Level HR Management App
 
