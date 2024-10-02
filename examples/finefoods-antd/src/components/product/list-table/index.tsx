@@ -107,7 +107,6 @@ export const ProductListTable = () => {
           </Typography.Text>
         )}
         filterIcon={(filtered) => (
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           <SearchOutlined
             style={{
               color: filtered ? token.colorPrimary : undefined,
@@ -144,7 +143,6 @@ export const ProductListTable = () => {
         dataIndex="name"
         key="name"
         filterIcon={(filtered) => (
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           <SearchOutlined
             style={{
               color: filtered ? token.colorPrimary : undefined,
@@ -175,7 +173,6 @@ export const ProductListTable = () => {
         key="description"
         width={432}
         filterIcon={(filtered) => (
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           <SearchOutlined
             style={{
               color: filtered ? token.colorPrimary : undefined,
@@ -304,7 +301,6 @@ export const ProductListTable = () => {
         render={(_, record: IProduct) => {
           return (
             <Button
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<EyeOutlined />}
               onClick={() => {
                 return go({

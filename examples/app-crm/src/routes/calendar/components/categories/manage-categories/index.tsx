@@ -83,7 +83,6 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
               >
                 <Button
                   type="text"
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<DeleteOutlined className="tertiary" />}
                 />
               </Popconfirm>
@@ -130,7 +129,6 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
                         onClick={() => {
                           remove(field.name);
                         }}
-                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         icon={<DeleteOutlined className="tertiary" />}
                       />
                     </div>
@@ -139,7 +137,6 @@ export const CalendarManageCategories: React.FC<CalendarManageCategoriesProps> =
                   <div className={styles.category}>
                     <Button
                       type="link"
-                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<PlusOutlined />}
                       onClick={() => {
                         add();

@@ -95,7 +95,6 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
       bodyStyle={{ padding: 0 }}
       title={
         <Space size="middle">
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <ContainerOutlined />
           <Text>Quotes</Text>
 
@@ -124,7 +123,6 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
               },
             }}
           >
-            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <PlusCircleOutlined
               style={{
                 marginRight: 4,
@@ -146,7 +144,6 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
           <Table.Column
             title="Quote Title"
             dataIndex="title"
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => (
               <FilterDropdown {...props}>
@@ -214,7 +211,6 @@ export const CompanyQuotesTable: FC<Props> = ({ style }) => {
                   hideText
                   size="small"
                   resource="contacts"
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<ExportOutlined />}
                 />
               );

@@ -30,7 +30,6 @@ export const CompaniesMap: React.FC = () => {
             gap: "8px",
           }}
         >
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <GlobalOutlined />
           <Text size="sm" style={{ marginLeft: ".5rem" }}>
             Companies
@@ -40,7 +39,6 @@ export const CompaniesMap: React.FC = () => {
       extra={
         <Button
           onClick={() => list("companies")}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<RightCircleOutlined />}
         >
           See all companies

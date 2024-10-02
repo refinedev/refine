@@ -169,7 +169,6 @@ export const SalesEditPage = () => {
             <Form.Item label="Deal value" name="value">
               <InputNumber
                 min={0}
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 addonBefore={<DollarOutlined />}
                 placeholder="0,00"
                 formatter={(value) =>

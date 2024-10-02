@@ -72,7 +72,6 @@ export const Create: React.FC<CreateProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        ghost={false}
         backIcon={goBackFromProps}
         onBack={
           action !== "list" || typeof action !== "undefined"

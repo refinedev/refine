@@ -72,7 +72,6 @@ export const Sider: React.FC = () => {
           >
             <SubMenu
               key={item.key}
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={icon ?? <UnorderedListOutlined />}
               title={label}
             >
@@ -98,7 +97,6 @@ export const Sider: React.FC = () => {
         >
           <Menu.Item
             key={item.key}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
             <Link to={route ?? ""}>{label}</Link>
@@ -184,7 +182,6 @@ export const Sider: React.FC = () => {
           style={drawerButtonStyles}
           size="large"
           onClick={() => setMobileSiderOpen(true)}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<BarsOutlined />}
         />
       </>
@@ -231,14 +228,12 @@ export const Sider: React.FC = () => {
             }}
           >
             {siderCollapsed ? (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <RightOutlined
                 style={{
                   color: token.colorPrimary,
                 }}
               />
             ) : (
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <LeftOutlined
                 style={{
                   color: token.colorPrimary,

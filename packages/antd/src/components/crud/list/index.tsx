@@ -69,7 +69,6 @@ export const List: React.FC<ListProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        ghost={false}
         title={
           title ??
           translate(

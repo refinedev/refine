@@ -65,7 +65,6 @@ export const PostList = () => {
         <Table.Column
           dataIndex="title"
           title="Title"
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           defaultFilteredValue={getDefaultFilter("title", filters, "contains")}
           filterDropdown={(props) => (

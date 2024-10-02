@@ -46,7 +46,6 @@ export const Login: React.FC = () => {
         ]}
       >
         <Input
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           prefix={<PhoneOutlined style={{ color: "#00000040" }} />}
           maxLength={10}
           placeholder="(___)___-____"
@@ -81,7 +80,6 @@ export const Login: React.FC = () => {
         <Input
           type="password"
           maxLength={4}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           prefix={<NumberOutlined style={{ color: "#00000040" }} />}
         />
       </Form.Item>

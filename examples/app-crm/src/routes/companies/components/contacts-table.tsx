@@ -118,7 +118,6 @@ export const CompanyContactsTable: FC = () => {
       bodyStyle={{ padding: 0 }}
       title={
         <Space size="middle">
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <TeamOutlined />
           <Text>Contacts</Text>
 
@@ -175,7 +174,6 @@ export const CompanyContactsTable: FC = () => {
                 </Space>
               );
             }}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => (
               <FilterDropdown {...props}>
@@ -186,7 +184,6 @@ export const CompanyContactsTable: FC = () => {
           <Table.Column
             title="Title"
             dataIndex="jobTitle"
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => (
               <FilterDropdown {...props}>
@@ -220,13 +217,11 @@ export const CompanyContactsTable: FC = () => {
                   <Button
                     size="small"
                     href={`mailto:${record.email}`}
-                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<MailOutlined />}
                   />
                   <Button
                     size="small"
                     href={`tel:${record.phone}`}
-                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<PhoneOutlined />}
                   />
                   <ShowButton
@@ -234,7 +229,6 @@ export const CompanyContactsTable: FC = () => {
                     recordItemId={value}
                     size="small"
                     resource="contacts"
-                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<ExportOutlined />}
                   />
                 </Space>
@@ -335,7 +329,6 @@ const ContactForm = () => {
                         name={[name, "name"]}
                       >
                         <Input
-                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           addonBefore={<UserOutlined />}
                           placeholder="Contact name"
                         />
@@ -356,7 +349,6 @@ const ContactForm = () => {
                         name={[name, "email"]}
                       >
                         <Input
-                          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                           addonBefore={<MailOutlined />}
                           placeholder="Contact email"
                         />
@@ -364,7 +356,6 @@ const ContactForm = () => {
                     </Col>
                     <Col span={2}>
                       <Button
-                        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                         icon={<DeleteOutlined />}
                         onClick={() => remove(name)}
                       />
@@ -374,7 +365,6 @@ const ContactForm = () => {
               })}
               <Button
                 type="link"
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PlusCircleOutlined />}
                 onClick={() => add()}
                 style={{

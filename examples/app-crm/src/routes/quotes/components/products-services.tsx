@@ -269,7 +269,6 @@ export const ProductsServices = () => {
                                   marginTop: "4px",
                                 }}
                                 danger
-                                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                                 icon={<DeleteOutlined />}
                                 onClick={() => remove(field.name)}
                               />
@@ -280,7 +279,6 @@ export const ProductsServices = () => {
                     })}
                     <Button
                       type="link"
-                      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                       icon={<PlusCircleOutlined />}
                       onClick={() =>
                         add({

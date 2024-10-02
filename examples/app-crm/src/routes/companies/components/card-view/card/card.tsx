@@ -97,7 +97,6 @@ export const CompanyCard: FC<Props> = ({ company }) => {
               {
                 label: "View company",
                 key: "1",
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <EyeOutlined />,
                 onClick: () => {
                   edit("companies", company.id);
@@ -107,7 +106,6 @@ export const CompanyCard: FC<Props> = ({ company }) => {
                 danger: true,
                 label: "Delete company",
                 key: "2",
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <DeleteOutlined />,
                 onClick: () => {
                   mutate({
@@ -130,7 +128,6 @@ export const CompanyCard: FC<Props> = ({ company }) => {
               right: 0,
             }}
             icon={
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               <MoreOutlined
                 style={{
                   transform: "rotate(90deg)",

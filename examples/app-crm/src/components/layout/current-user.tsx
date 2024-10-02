@@ -42,7 +42,6 @@ export const CurrentUser: React.FC = () => {
       >
         <Button
           style={{ textAlign: "left" }}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<SettingOutlined />}
           type="text"
           block
@@ -52,7 +51,6 @@ export const CurrentUser: React.FC = () => {
         </Button>
         <Button
           style={{ textAlign: "left" }}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<LogoutOutlined />}
           type="text"
           danger

@@ -94,7 +94,6 @@ export const ContactCreatePage: React.FC<PropsWithChildren> = ({
               <Button
                 style={{ paddingLeft: 0 }}
                 type="link"
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<PlusCircleOutlined />}
                 onClick={() => {
                   replace("company-create?to=/contacts/create");

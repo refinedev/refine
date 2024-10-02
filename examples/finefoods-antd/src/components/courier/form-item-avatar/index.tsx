@@ -63,7 +63,6 @@ export const CourierFormItemAvatar = ({
           />
           {showUploadOverlay && !disabled && (
             <div className={styles.overlay}>
-              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               <CloudUploadOutlined className={styles.overlayIcon} />
             </div>
           )}

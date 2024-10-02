@@ -107,7 +107,6 @@ export const Notifications: React.FC = () => {
       overlayStyle={{ width: 400 }}
     >
       <Badge dot>
-        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <Button shape="circle" icon={<BellOutlined />} style={{ border: 0 }} />
       </Badge>
     </Popover>

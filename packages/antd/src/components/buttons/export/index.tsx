@@ -25,7 +25,6 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
   return (
     <Button
       type="default"
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<ExportOutlined />}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}

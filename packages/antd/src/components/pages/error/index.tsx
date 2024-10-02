@@ -52,7 +52,6 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
             </Typography.Text>
             {errorMessage && (
               <Tooltip title={errorMessage}>
-                {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                 <InfoCircleOutlined data-testid="error-component-tooltip" />
               </Tooltip>
             )}

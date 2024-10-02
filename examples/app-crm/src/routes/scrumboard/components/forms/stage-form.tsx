@@ -75,7 +75,6 @@ export const StageForm = ({ initialValues, isLoading }: Props) => {
         initialValues={initialValues}
       >
         <Space size={5}>
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <FlagOutlined />
           <Form.Item noStyle name={["stage", "id"]}>
             <Select

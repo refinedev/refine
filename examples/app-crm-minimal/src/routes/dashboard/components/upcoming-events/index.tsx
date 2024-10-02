@@ -53,7 +53,6 @@ export const CalendarUpcomingEvents = () => {
             gap: "8px",
           }}
         >
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <CalendarOutlined />
           <Text size="sm" style={{ marginLeft: ".7rem" }}>
             Upcoming events
