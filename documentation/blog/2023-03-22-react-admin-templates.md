@@ -57,7 +57,7 @@ Overall, the Refine CRM admin template is an excellent choice for businesses tha
 
 **Live example:** https://example.crm.refine.dev/
 
-**Source code**: https://github.com/refinedev/refine/tree/master/examples/app-crm
+**Template**: https://refine.dev/templates/crm-application/
 
 ## 2. Elstar
 

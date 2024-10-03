@@ -14,7 +14,7 @@ I want to introduce our newest example app – a full-fledged React CRM (Custome
 
 👉 [Live Demo](https://example.crm.refine.dev/)
 
-👉 [You can find the source code on GitHub here](https://github.com/refinedev/refine/tree/master/examples/app-crm)
+👉 [Template](https://refine.dev/templates/crm-application/)
 
 This example is open-source, which means anyone can freely utilize and customize the source code as they see fit. It's not just another application; it's a comprehensive solution that boasts all the features and functionalities required for an accurate enterprise-level application.
 
@@ -33,10 +33,24 @@ We'll explore the key features of our CRM app, the technologies we used, and how
 
 Step we'll cover:
 
+- [Introduction](#introduction)
 - [Key Features of the CRM App](#key-features-of-the-crm-app)
+  - [Dashboard](#dashboard)
+  - [Calendar Integration](#calendar-integration)
+  - [Scrumboard-Project Kanban](#scrumboard-project-kanban)
+  - [Sales Pipeline](#sales-pipeline)
+  - [Companies](#companies)
+  - [Contacts](#contacts)
+  - [Quotes](#quotes)
+  - [Administration](#administration)
+  - [Authentication \& Authorization](#authentication--authorization)
 - [Technologies Used](#technologies-used)
+  - [1. Refine](#1-refine)
+  - [2. Ant Design](#2-ant-design)
+  - [3. GraphQL](#3-graphql)
 - [Best Practices and Ecosystem Integration](#best-practices-and-ecosystem-integration)
 - [Where Can You Use This CRM As A Reference Template?](#where-can-you-use-this-crm-as-a-reference-template)
+- [Conclusion](#conclusion)
 
 ## Key Features of the CRM App
 

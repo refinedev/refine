@@ -6,7 +6,6 @@ on:
       - "examples/finefoods-antd/**"
       - "examples/finefoods-client/**"
       - "examples/finefoods-material-ui/**"
-      - "examples/app-crm/**"
       - "examples/pixels/**"
       - "examples/invoicer/**"
     types:
@@ -24,25 +23,24 @@ jobs:
       examples: ${{ steps.filter.outputs.changes }}
       all_examples: ${{ steps.deploy-previews-label.outputs.all_examples }}
     steps:
-    - uses: actions/checkout@v4
-    - name: Get PR labels
-      id: pr-labels
-      uses: joerick/pr-labels-action@v1.0.9
-    - name: 'Check deploy previews label'
-      if: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-previews ') }}
-      id: deploy-previews-label
-      run: echo 'all_examples=["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' >> $GITHUB_OUTPUT
-    - uses: dorny/paths-filter@v3
-      if: ${{ !contains(steps.pr-labels.outputs.labels, ' deploy-previews ') }}
-      id: filter
-      with:
-        filters: |
-          'finefoods-antd': 'examples/finefoods-antd/**'
-          'finefoods-client': 'examples/finefoods-client/**'
-          'finefoods-material-ui': 'examples/finefoods-material-ui/**'
-          'app-crm': 'examples/app-crm/**'
-          'pixels': 'examples/pixels/**'
-          'invoicer': 'examples/invoicer/**'
+      - uses: actions/checkout@v4
+      - name: Get PR labels
+        id: pr-labels
+        uses: joerick/pr-labels-action@v1.0.9
+      - name: "Check deploy previews label"
+        if: ${{ contains(steps.pr-labels.outputs.labels, ' deploy-previews ') }}
+        id: deploy-previews-label
+        run: echo 'all_examples=["finefoods-antd", "finefoods-client", "finefoods-material-ui", "app-crm", "pixels", "invoicer"]' >> $GITHUB_OUTPUT
+      - uses: dorny/paths-filter@v3
+        if: ${{ !contains(steps.pr-labels.outputs.labels, ' deploy-previews ') }}
+        id: filter
+        with:
+          filters: |
+            'finefoods-antd': 'examples/finefoods-antd/**'
+            'finefoods-client': 'examples/finefoods-client/**'
+            'finefoods-material-ui': 'examples/finefoods-material-ui/**'
+            'pixels': 'examples/pixels/**'
+            'invoicer': 'examples/invoicer/**'
 
   deploy_previews:
     runs-on: ubuntu-latest
