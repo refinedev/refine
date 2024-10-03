@@ -9039,7 +9039,7 @@ importers:
         specifier: ^5.1.6
         version: 5.2.10(@types/node@18.19.31)(sass@1.75.0)(terser@5.30.4)
 
-  examples/refine-hr-community:
+  examples/refine-hr-ce:
     dependencies:
       '@emotion/react':
         specifier: ^11.8.2
