@@ -57,10 +57,6 @@ npm create refine-app@latest -- --example refine-hr-ce
 
 [![Open refine-hr-ce example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/refine-hr-ce?view=preview&theme=dark&codemirror=1)
 
-<br/>
-
-[![Open refine-hr-community example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/refine-hr-community?view=preview&theme=dark&codemirror=1)
-
 ## Screenshots
 
 ![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/login.png)
