@@ -18,7 +18,8 @@
 </br>
 </br>
 
-<div align="center"><strong>Build your <a href="https://reactjs.org/">React</a>-based CRUD applications, without constraints.</strong><br>An open source, headless web application framework developed with flexibility in mind.
+<div align="center">Build your React-based internal tools, admin panels, dashboards, B2B apps with flexibility in mind.
+An open-source, headless React meta-framework, developed with a commitment to best practices, flexibility, minimal tech debt, and team alignment, could be a perfect fit for dynamic environments.
 
 <br />
 <br />
@@ -26,9 +27,25 @@
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
 [![Twitter Follow](https://img.shields.io/twitter/follow/refine_dev?style=social)](https://twitter.com/refine_dev)
 
-<a href="https://www.producthunt.com/posts/refine-3?utm_source=badge-top-post-badge&utm_medium=badge&utm_souce=badge-refine&#0045;3" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/top-post-badge.svg?post_id=362220&theme=light&period=daily" alt="refine - 100&#0037;&#0032;open&#0032;source&#0032;React&#0032;framework&#0032;to&#0032;build&#0032;web&#0032;apps&#0032;3x&#0032;faster | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
-
 </div>
+
+## About
+
+Demonstrating Refine's Capabilities for Building Enterprise-Level HR Tools
+
+HR Management App Example built using [Refine](https://refine.dev/), [Material UI](https://mui.com/material-ui/) and Deploying to [Digital Ocean Platform](https://www.digitalocean.com/)
+
+⭐ **You can view the live demo of the application [here](https://refine-hr-community-4nihf.ondigitalocean.app).**
+
+## Features
+
+- **Login page**: Allows users to log in as either a manager or an employee. Managers have access to the `Time Off` and `Requests` pages, while employees only have access to the `Time Off` page.
+
+- **Time Off pages**: Allows employees to request, view, and cancel their time off. Also managers can assign new time offs.
+
+- **Requests page**: Accessible only to HR managers for approving or rejecting time off requests.
+
+- **Access Control**: Different roles have different access levels to the application.
 
 ## Try this example on your local
 
@@ -41,3 +58,28 @@ npm create refine-app@latest -- --example refine-hr-community
 <br/>
 
 [![Open refine-hr-community example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/refine-hr-community?view=preview&theme=dark&codemirror=1)
+
+## Screenshots
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/login.png)
+
+ <br />
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/manager-dashboard.png)
+
+ <br />
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/employee-request.png)
+
+ <br />
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/manager-approve.png)
+
+ <br />
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/manager.png)
+<br />
+
+![Login Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/refine-hr-do/request-edit.png)
+
+ <br />
