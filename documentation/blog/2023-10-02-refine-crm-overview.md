@@ -33,7 +33,6 @@ We'll explore the key features of our CRM app, the technologies we used, and how
 
 Step we'll cover:
 
-- [Introduction](#introduction)
 - [Key Features of the CRM App](#key-features-of-the-crm-app)
 - [Technologies Used](#technologies-used)
 - [Best Practices and Ecosystem Integration](#best-practices-and-ecosystem-integration)
