@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
 import { EditInferencer, renderer } from "../edit";
+import { MantineProvider } from "@mantine/core";
 
 describe("MantineEditInferencer", () => {
   it("should match the snapshot", async () => {
@@ -25,14 +26,16 @@ describe("MantineEditInferencer", () => {
     });
 
     const rendering = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/:resource/edit/:id"
-            element={<EditInferencer resource="posts" />}
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/:resource/edit/:id"
+              element={<EditInferencer resource="posts" />}
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     await act(async () => {

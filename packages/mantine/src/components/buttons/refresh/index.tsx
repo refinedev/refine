@@ -39,7 +39,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     dataProviderName,
   });
 
-  const { variant, styles: _styles, ...commonProps } = rest;
+  const { variant, styles: _styles, vars, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
@@ -48,23 +48,20 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
       aria-label={label}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}
-      {...(variant
-        ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
-          }
-        : { variant: "default" })}
+      variant={mapButtonVariantToActionIconVariant(variant, "default")}
       {...commonProps}
     >
       <IconRefresh size={18} {...svgIconProps} />
     </ActionIcon>
   ) : (
     <Button
-      variant="default"
-      leftIcon={<IconRefresh size={18} {...svgIconProps} />}
+      variant={variant || "default"}
+      leftSection={<IconRefresh size={18} {...svgIconProps} />}
       loading={loading}
       onClick={onClick ? onClick : onRefresh}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}
+      vars={vars}
       {...rest}
     >
       {children ?? label}

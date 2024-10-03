@@ -1,5 +1,12 @@
-import { Edit, useForm, useSelect } from "@refinedev/mantine";
-import { Select, TextInput, Text, MultiSelect } from "@mantine/core";
+import {
+  Edit,
+  useForm,
+  useSelect,
+  Select,
+  useMultiSelect,
+  MultiSelect,
+} from "@refinedev/mantine";
+import { TextInput, Text } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
 import type { ICategory, ITag } from "../../interfaces";
@@ -29,7 +36,7 @@ export const PostEdit: React.FC = () => {
     defaultValue: queryResult?.data?.data.category.id,
   });
 
-  const { selectProps: tagSelectProps } = useSelect<ITag>({
+  const { selectProps: tagSelectProps } = useMultiSelect<ITag>({
     resource: "tags",
     defaultValue: defaultTags,
     queryOptions: {
@@ -75,11 +82,8 @@ export const PostEdit: React.FC = () => {
           label="Tags"
           placeholder="Pick multiple"
           defaultValue={defaultTags}
-          filter={(value, _selected, item) => {
-            return !!item.label?.toLowerCase().includes(value);
-          }}
         />
-        <Text mt={8} weight={500} size="sm" color="#212529">
+        <Text mt={8} fw={500} size="sm" color="#212529">
           Content
         </Text>
         <MDEditor

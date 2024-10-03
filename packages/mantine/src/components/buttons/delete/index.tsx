@@ -62,7 +62,31 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const [opened, setOpened] = useState(false);
 
-  const { variant, styles, ...commonProps } = rest;
+  // const onConfirm = () => {
+  //   if ((recordItemId ?? id) && identifier) {
+  //     setWarnWhen(false);
+  //     setOpened(false);
+  //     mutate(
+  //       {
+  //         id: recordItemId ?? id ?? "",
+  //         resource: identifier,
+  //         mutationMode,
+  //         successNotification,
+  //         errorNotification,
+  //         meta: pickNotDeprecated(meta, metaData),
+  //         metaData: pickNotDeprecated(meta, metaData),
+  //         dataProviderName,
+  //       },
+  //       {
+  //         onSuccess: (value) => {
+  //           onSuccess?.(value);
+  //         },
+  //       },
+  //     );
+  //   }
+  // };
+
+  const { variant, styles, vars, ...commonProps } = rest;
 
   if (hidden) return null;
 
@@ -85,11 +109,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             loading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
-            {...(variant
-              ? {
-                  variant: mapButtonVariantToActionIconVariant(variant),
-                }
-              : { variant: "outline" })}
+            variant={mapButtonVariantToActionIconVariant(variant, "outline")}
             {...commonProps}
           >
             <IconTrash size={18} {...svgIconProps} />
@@ -102,9 +122,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             disabled={loading || disabled}
             loading={loading}
             title={title}
-            leftIcon={<IconTrash size={18} {...svgIconProps} />}
+            leftSection={<IconTrash size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
+            vars={vars}
             {...rest}
           >
             {children ?? label}
@@ -112,10 +133,8 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         )}
       </Popover.Target>
       <Popover.Dropdown py="xs">
-        <Text size="sm" weight="bold">
-          {confirmTitle ?? defaultConfirmTitle}
-        </Text>
-        <Group position="center" noWrap spacing="xs" mt="xs">
+        <Text>{confirmTitle ?? defaultConfirmTitle}</Text>
+        <Group mt="xs">
           <Button onClick={() => setOpened(false)} variant="default" size="xs">
             {confirmCancelText ?? defaultCancelLabel}
           </Button>

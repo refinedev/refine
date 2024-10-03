@@ -3,8 +3,9 @@ import {
   type UseModalFormReturnType,
   useSelect,
   SaveButton,
+  Select,
 } from "@refinedev/mantine";
-import { Modal, TextInput, Select, Box, Text } from "@mantine/core";
+import { Modal, TextInput, Box, Text } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
 interface FormValues {
@@ -14,13 +15,15 @@ interface FormValues {
   category: { id: string };
 }
 
-export const CreatePostModal: React.FC<
-  UseModalFormReturnType<BaseRecord, HttpError, FormValues>
-> = ({
-  getInputProps,
-  errors,
-  modal: { visible, close, title },
-  saveButtonProps,
+export const CreatePostModal: React.FC<{
+  form: UseModalFormReturnType<BaseRecord, HttpError, FormValues>;
+}> = ({
+  form: {
+    getInputProps,
+    errors,
+    modal: { visible, close, title },
+    saveButtonProps,
+  },
 }) => {
   const { selectProps } = useSelect({
     resource: "categories",
@@ -55,7 +58,7 @@ export const CreatePostModal: React.FC<
         {...getInputProps("category.id")}
         {...selectProps}
       />
-      <Text mt={8} weight={500} size="sm" color="#212529">
+      <Text mt={8} fw={500} size="sm" c="#212529">
         Content
       </Text>
       <MDEditor
@@ -64,11 +67,11 @@ export const CreatePostModal: React.FC<
         {...getInputProps("content")}
       />
       {errors.content && (
-        <Text mt={2} weight={500} size="xs" color="red">
+        <Text mt={2} fw={500} size="xs" c="red">
           {errors.content}
         </Text>
       )}
-      <Box mt={8} sx={{ display: "flex", justifyContent: "flex-end" }}>
+      <Box mt={8} style={{ display: "flex", justifyContent: "flex-end" }}>
         <SaveButton {...saveButtonProps} />
       </Box>
     </Modal>

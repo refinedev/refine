@@ -2,302 +2,387 @@
 
 exports[`MantineInferencer should match the snapshot 1`] = `
 <DocumentFragment>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
+  </style>
   <div>
     <div
-      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+      class="m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
     >
       <div
-        class="mantine-Group-root mantine-1dn2tzg"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: space-between; --group-wrap: wrap;"
       >
         <div
-          class="mantine-Stack-root mantine-zyu68o"
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
           <div
             aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
+            class="m_8b3717df mantine-Breadcrumbs-root"
           />
           <h3
-            class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+            class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
+            data-order="3"
+            style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
           />
         </div>
         <div
-          class="mantine-Group-root mantine-1g4q40w"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         />
       </div>
       <div
-        class="mantine-1r0zdw0"
+        class=""
       >
         <div
-          class="mantine-ScrollArea-root mantine-jghxib"
-          dir="ltr"
-          style="position: relative; --radix-scroll-area-corner-width: 0px; --radix-scroll-area-corner-height: 0px;"
+          class="m_d57069b5 mantine-ScrollArea-root"
+          style="--sa-corner-width: 0px; --sa-corner-height: 0px;"
         >
-          <style>
-            [data-radix-scroll-area-viewport]{scrollbar-width:none;-ms-overflow-style:none;-webkit-overflow-scrolling:touch;}[data-radix-scroll-area-viewport]::-webkit-scrollbar{display:none}
-          </style>
           <div
-            class="mantine-xlwgkm mantine-ScrollArea-viewport"
-            data-radix-scroll-area-viewport=""
+            class="m_c0783ff9 mantine-ScrollArea-viewport"
+            data-scrollbars="xy"
             style="overflow-x: scroll; overflow-y: scroll;"
           >
             <div
               style="min-width: 100%; display: table;"
             >
               <table
-                class="mantine-Table-root mantine-1xyd53g"
-                data-hover="true"
+                class="m_b23fa0ef mantine-Table-table"
+                style="--table-vertical-spacing: calc(0.4375rem * var(--mantine-scale));"
               >
-                <thead>
-                  <tr>
-                    <th>
+                <thead
+                  class="m_b242d975 mantine-Table-thead"
+                >
+                  <tr
+                    class="m_4e7aa4fd mantine-Table-tr"
+                    data-hover="true"
+                    data-with-row-border="true"
+                  >
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Id
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Title
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Slug
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Content
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Hit
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Category
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       User
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Status
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Status Color
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Created At
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Published At
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Image
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Tags
                     </th>
-                    <th>
+                    <th
+                      class="m_4e7aa4f3 mantine-Table-th"
+                    >
                       Language
                     </th>
                   </tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>
+                <tbody
+                  class="m_b2404537 mantine-Table-tbody"
+                >
+                  <tr
+                    class="m_4e7aa4fd mantine-Table-tr"
+                    data-hover="true"
+                    data-with-row-border="true"
+                  >
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       11
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       Nobis exercitationem officia quia est.
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       provident-culpa-facere
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       <p>
                         Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
                       </p>
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       920557
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       Numquam Saepe Illo
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       Eriberto Leannon
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       draft
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       orange
                     </td>
-                    <td>
-                      <div
-                        class="mantine-Text-root mantine-1pbxw0k"
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
                       >
                         04/02/2022
-                      </div>
+                      </p>
                     </td>
-                    <td>
-                      <div
-                        class="mantine-Text-root mantine-1pbxw0k"
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
                       >
                         08/10/2021
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <div
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+                      >
+                        <img
+                          class="m_9e117634 mantine-Image-root"
+                          src="http://loremflickr.com/640/480/abstract"
+                        />
                       </div>
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       <div
-                        class="mantine-Group-root mantine-1g4q40w"
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
                       >
                         <div
-                          class="mantine-Image-root mantine-r5ruyt"
-                          style="width: 100%;"
-                        >
-                          <figure
-                            class="mantine-11nhzn5 mantine-Image-figure"
-                          >
-                            <div
-                              class="mantine-qqmv3w mantine-Image-imageWrapper"
-                            >
-                              <img
-                                class="mantine-3y8yz3 mantine-Image-image"
-                                src="http://loremflickr.com/640/480/abstract"
-                                style="object-fit: cover; width: 100%; height: auto;"
-                              />
-                            </div>
-                          </figure>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        class="mantine-Group-root mantine-1g4q40w"
-                      >
-                        <div
-                          class="mantine-Chip-root mantine-15po0m8"
+                          class="m_f59ffda3 mantine-Chip-root"
                         >
                           <input
-                            class="mantine-106387w mantine-Chip-input"
-                            id="mantine-rv"
+                            class="m_bde07329 mantine-Chip-input"
+                            id=""
                             type="checkbox"
                             value=""
                           />
                           <label
-                            class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
-                            data-variant="outline"
-                            for="mantine-rv"
+                            class="m_fa109255 m_be049a53 mantine-Chip-label"
+                            for=""
                           >
-                            Nobis Et Ut
+                            <span>
+                              Nobis Et Ut
+                            </span>
                           </label>
                         </div>
                       </div>
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       2
                     </td>
                   </tr>
-                  <tr>
-                    <td>
+                  <tr
+                    class="m_4e7aa4fd mantine-Table-tr"
+                    data-hover="true"
+                    data-with-row-border="true"
+                  >
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       21
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       Eaque in nesciunt.
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       quod-quos-commodi
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       <p>
                         Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
                       </p>
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       175149
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       Sit Natus Voluptatibus
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       Tressie Reichel
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       published
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       lime
                     </td>
-                    <td>
-                      <div
-                        class="mantine-Text-root mantine-1pbxw0k"
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
                       >
                         09/24/2022
-                      </div>
+                      </p>
                     </td>
-                    <td>
-                      <div
-                        class="mantine-Text-root mantine-1pbxw0k"
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <p
+                        class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
                       >
                         09/01/2021
+                      </p>
+                    </td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
+                      <div
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+                      >
+                        <img
+                          class="m_9e117634 mantine-Image-root"
+                          src="http://loremflickr.com/640/480/abstract"
+                        />
                       </div>
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       <div
-                        class="mantine-Group-root mantine-1g4q40w"
+                        class="m_4081bf90 mantine-Group-root"
+                        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
                       >
                         <div
-                          class="mantine-Image-root mantine-r5ruyt"
-                          style="width: 100%;"
-                        >
-                          <figure
-                            class="mantine-11nhzn5 mantine-Image-figure"
-                          >
-                            <div
-                              class="mantine-qqmv3w mantine-Image-imageWrapper"
-                            >
-                              <img
-                                class="mantine-3y8yz3 mantine-Image-image"
-                                src="http://loremflickr.com/640/480/abstract"
-                                style="object-fit: cover; width: 100%; height: auto;"
-                              />
-                            </div>
-                          </figure>
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <div
-                        class="mantine-Group-root mantine-1g4q40w"
-                      >
-                        <div
-                          class="mantine-Chip-root mantine-15po0m8"
+                          class="m_f59ffda3 mantine-Chip-root"
                         >
                           <input
-                            class="mantine-106387w mantine-Chip-input"
-                            id="mantine-r10"
+                            class="m_bde07329 mantine-Chip-input"
+                            id=""
                             type="checkbox"
                             value=""
                           />
                           <label
-                            class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
-                            data-variant="outline"
-                            for="mantine-r10"
+                            class="m_fa109255 m_be049a53 mantine-Chip-label"
+                            for=""
                           >
-                            Error Eos Et
+                            <span>
+                              Error Eos Et
+                            </span>
                           </label>
                         </div>
                         <div
-                          class="mantine-Chip-root mantine-15po0m8"
+                          class="m_f59ffda3 mantine-Chip-root"
                         >
                           <input
-                            class="mantine-106387w mantine-Chip-input"
-                            id="mantine-r11"
+                            class="m_bde07329 mantine-Chip-input"
+                            id=""
                             type="checkbox"
                             value=""
                           />
                           <label
-                            class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
-                            data-variant="outline"
-                            for="mantine-r11"
+                            class="m_fa109255 m_be049a53 mantine-Chip-label"
+                            for=""
                           >
-                            Nobis Et Ut
+                            <span>
+                              Nobis Et Ut
+                            </span>
                           </label>
                         </div>
                       </div>
                     </td>
-                    <td>
+                    <td
+                      class="m_4e7aa4ef mantine-Table-td"
+                    >
                       2
                     </td>
                   </tr>
@@ -306,58 +391,62 @@ exports[`MantineInferencer should match the snapshot 1`] = `
             </div>
           </div>
         </div>
-        <br />
         <div
-          class="mantine-Group-root mantine-uemwr9"
-          role="navigation"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: right; --group-wrap: wrap;"
         >
-          <button
-            aria-disabled="true"
-            class="mantine-109t3tn mantine-Pagination-item"
-            disabled=""
-            type="button"
+          <div
+            class="m_4addd315 mantine-Pagination-root"
           >
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
+            <div
+              class="m_4081bf90 mantine-Group-root"
+              style="--group-gap: calc(0.5rem * var(--mantine-scale)); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
             >
-              <path
-                d="M7.219 8l3.3 3.3-.943.943L5.333 8l4.243-4.243.943.943-3.3 3.3z"
-                fill="currentColor"
-              />
-            </svg>
-          </button>
-          <button
-            aria-current="page"
-            class="mantine-109t3tn mantine-Pagination-item"
-            data-active="true"
-            tabindex="0"
-            type="button"
-          >
-            1
-          </button>
-          <button
-            aria-disabled="true"
-            class="mantine-109t3tn mantine-Pagination-item"
-            disabled=""
-            type="button"
-          >
-            <svg
-              fill="none"
-              height="16"
-              viewBox="0 0 16 16"
-              width="16"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8.781 8l-3.3-3.3.943-.943L10.667 8l-4.243 4.243-.943-.943 3.3-3.3z"
-                fill="currentColor"
-              />
-            </svg>
-          </button>
+              <button
+                class="mantine-focus-auto m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
+                data-disabled="true"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  class="mantine-rotate-rtl"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M7.219 8l3.3 3.3-.943.943L5.333 8l4.243-4.243.943.943-3.3 3.3z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+              <button
+                aria-current="page"
+                class="mantine-focus-auto mantine-active m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
+                data-active="true"
+                data-with-padding="true"
+                type="button"
+              >
+                1
+              </button>
+              <button
+                class="mantine-focus-auto m_326d024a mantine-Pagination-control m_87cf2631 mantine-UnstyledButton-root"
+                data-disabled="true"
+                disabled=""
+                type="button"
+              >
+                <svg
+                  class="mantine-rotate-rtl"
+                  viewBox="0 0 16 16"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M8.781 8l-3.3-3.3.943-.943L10.667 8l-4.243 4.243-.943-.943 3.3-3.3z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -5415,7 +5504,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                spacing
+                gap
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"
@@ -6858,7 +6947,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                spacing
+                gap
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"
@@ -9743,10 +9832,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                thead
+                Table.Thead
               </span>
               <span
                 class="token tag punctuation"
@@ -9868,10 +9957,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                tr
+                Table.Tr
               </span>
               <span
                 class="token tag"
@@ -10069,10 +10158,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                th
+                Table.Th
               </span>
               <span
                 class="token tag"
@@ -10358,10 +10447,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;/
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                th
+                Table.Th
               </span>
               <span
                 class="token tag punctuation"
@@ -10445,10 +10534,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;/
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                tr
+                Table.Tr
               </span>
               <span
                 class="token tag punctuation"
@@ -10507,10 +10596,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;/
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                thead
+                Table.Thead
               </span>
               <span
                 class="token tag punctuation"
@@ -10538,10 +10627,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                tbody
+                Table.Tbody
               </span>
               <span
                 class="token tag punctuation"
@@ -10704,10 +10793,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                tr
+                Table.Tr
               </span>
               <span
                 class="token tag"
@@ -10918,10 +11007,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                td
+                Table.Td
               </span>
               <span
                 class="token tag"
@@ -11148,10 +11237,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;/
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                td
+                Table.Td
               </span>
               <span
                 class="token tag punctuation"
@@ -11235,10 +11324,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;/
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                tr
+                Table.Tr
               </span>
               <span
                 class="token tag punctuation"
@@ -11322,10 +11411,10 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 &lt;/
               </span>
               <span
-                class="token tag"
+                class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                tbody
+                Table.Tbody
               </span>
               <span
                 class="token tag punctuation"
@@ -11405,36 +11494,11 @@ exports[`MantineInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain-text"
+                style="display: inline-block;"
               >
-                            
+                
+
               </span>
-              <span
-                class="token tag punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                br
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                 
-              </span>
-              <span
-                class="token tag punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                /&gt;
-              </span>
-              <span
-                class="token plain-text"
-              />
             </div>
             <div
               class="token-line"
@@ -11455,28 +11519,19 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag class-name"
                 style="color: rgb(78, 201, 176);"
               >
-                Pagination
+                Group
               </span>
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
               >
-                                
+                 
               </span>
               <span
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                position
+                justify
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"
@@ -11505,6 +11560,73 @@ exports[`MantineInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                mt
+              </span>
+              <span
+                class="token tag attr-value punctuation attr-equals"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag attr-value"
+                style="color: rgb(206, 145, 120);"
+              >
+                md
+              </span>
+              <span
+                class="token tag attr-value punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                "
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                                
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                Pagination
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
               />
             </div>
             <div
@@ -11515,7 +11637,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                
+                                    
               </span>
               <span
                 class="token tag attr-name"
@@ -11560,13 +11682,13 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                
+                                    
               </span>
               <span
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                page
+                value
               </span>
               <span
                 class="token tag script language-javascript script-punctuation punctuation"
@@ -11605,7 +11727,7 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                                
+                                    
               </span>
               <span
                 class="token tag attr-name"
@@ -11650,13 +11772,44 @@ exports[`MantineInferencer should match the snapshot 1`] = `
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
               >
-                            
+                                
               </span>
               <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;/
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                Group
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
               </span>
               <span
                 class="token plain-text"
@@ -11845,168 +11998,197 @@ exports[`MantineInferencer should match the snapshot 1`] = `
 
 exports[`MantineInferencer should match the snapshot 2`] = `
 <DocumentFragment>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
+  </style>
   <div>
     <div
-      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+      class="m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
     >
       <div
-        class="mantine-Group-root mantine-1dn2tzg"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
       >
         <div
-          class="mantine-Stack-root mantine-zyu68o"
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
           <div
             aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
+            class="m_8b3717df mantine-Breadcrumbs-root"
           />
           <div
-            class="mantine-Group-root mantine-1g4q40w"
+            class="m_4081bf90 mantine-Group-root"
+            style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
           >
             <button
-              class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1lgihd9"
+              class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
+              style="--ai-color: var(--mantine-color-white);"
               type="button"
             >
-              <svg
-                class="tabler-icon tabler-icon-arrow-left "
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
+              <span
+                class="m_8d3afb97 mantine-ActionIcon-icon"
               >
-                <path
-                  d="M5 12l14 0"
-                />
-                <path
-                  d="M5 12l6 6"
-                />
-                <path
-                  d="M5 12l6 -6"
-                />
-              </svg>
+                <svg
+                  class="tabler-icon tabler-icon-arrow-left "
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 12l14 0"
+                  />
+                  <path
+                    d="M5 12l6 6"
+                  />
+                  <path
+                    d="M5 12l6 -6"
+                  />
+                </svg>
+              </span>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
+              data-order="3"
+              style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
             >
               Create 
             </h3>
           </div>
         </div>
         <div
-          class="mantine-Group-root mantine-1g4q40w"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         />
       </div>
       <div
-        class="mantine-1r0zdw0"
+        class=""
       >
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-r0"
-            id="mantine-r0-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Title
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-r0"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="title"
+              data-variant="default"
+              id=""
               value=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-r1"
-            id="mantine-r1-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Slug
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-r1"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="slug"
+              data-variant="default"
+              id=""
               value=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-Textarea-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-Textarea-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-Textarea-label mantine-ittua2"
-            for="mantine-r2"
-            id="mantine-r2-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Textarea-label"
+            for=""
+            id=""
           >
             Content
           </label>
           <div
-            class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-Textarea-wrapper"
+            data-multiline="true"
+            data-variant="default"
           >
             <textarea
               aria-invalid="false"
-              class="mantine-Input-input mantine-Textarea-input mantine-1cp6ct5"
-              id="mantine-r2"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Textarea-input"
+              data-no-overflow="true"
+              data-path="content"
+              data-variant="default"
+              id=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
-            for="mantine-r3"
-            id="mantine-r3-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
           >
             Hit
           </label>
           <div
-            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm);"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-rum3t1"
-              id="mantine-r3"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-path="hit"
+              data-variant="default"
+              id=""
               inputmode="numeric"
-              step="1"
               type="text"
               value=""
             />
             <div
-              class="mantine-1cwybh2 mantine-Input-rightSection mantine-NumberInput-rightSection"
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
             >
               <div
-                class="mantine-1mzslog mantine-NumberInput-rightSection"
+                class="m_95e17d22 mantine-NumberInput-controls"
               >
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-f73we9"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     style="transform: rotate(180deg);"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -12019,15 +12201,14 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 </button>
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlDown mantine-1kz3j3d"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -12043,315 +12224,312 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-Select-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-Select-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-Select-label mantine-ittua2"
-            for="mantine-r4"
-            id="mantine-r4-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+            for=""
+            id=""
           >
             Category
           </label>
           <div
-            aria-controls="mantine-r4"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class=""
-            role="combobox"
-            tabindex="-1"
+            class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: none;"
           >
             <input
-              type="hidden"
+              aria-controls=""
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              autocomplete="off"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
+              data-path="category.id"
+              data-variant="default"
+              id=""
               value=""
             />
             <div
-              class="mantine-Input-wrapper mantine-Select-wrapper mantine-12sbrde"
+              class="m_82577fc2 mantine-Input-section mantine-Select-section"
+              data-position="right"
             >
-              <input
-                aria-autocomplete="list"
-                aria-invalid="false"
-                autocomplete="off"
-                class="mantine-Input-input mantine-Select-input mantine-149ccxv"
-                data-mantine-stop-propagation="false"
-                id="mantine-r4"
-                type="search"
-                value=""
-              />
-              <div
-                class="mantine-uquezq mantine-Input-rightSection mantine-Select-rightSection"
+              <svg
+                class="m_2943220b mantine-ComboboxChevron-chevron"
+                data-combobox-chevron="true"
+                fill="none"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  data-chevron="true"
-                  fill="none"
-                  height="18"
-                  style="color: rgb(134, 142, 150);"
-                  viewBox="0 0 15 15"
-                  width="18"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
-                    fill="currentColor"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
+                <path
+                  clip-rule="evenodd"
+                  d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </div>
           </div>
         </div>
+        <input
+          type="hidden"
+          value=""
+        />
         <div
-          class="mantine-InputWrapper-root mantine-Select-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-Select-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-Select-label mantine-ittua2"
-            for="mantine-r6"
-            id="mantine-r6-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+            for=""
+            id=""
           >
             User
           </label>
           <div
-            aria-controls="mantine-r6"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class=""
-            role="combobox"
-            tabindex="-1"
+            class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: none;"
           >
             <input
-              type="hidden"
+              aria-controls=""
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              autocomplete="off"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
+              data-path="user.id"
+              data-variant="default"
+              id=""
               value=""
             />
             <div
-              class="mantine-Input-wrapper mantine-Select-wrapper mantine-12sbrde"
+              class="m_82577fc2 mantine-Input-section mantine-Select-section"
+              data-position="right"
             >
-              <input
-                aria-autocomplete="list"
-                aria-invalid="false"
-                autocomplete="off"
-                class="mantine-Input-input mantine-Select-input mantine-149ccxv"
-                data-mantine-stop-propagation="false"
-                id="mantine-r6"
-                type="search"
-                value=""
-              />
-              <div
-                class="mantine-uquezq mantine-Input-rightSection mantine-Select-rightSection"
+              <svg
+                class="m_2943220b mantine-ComboboxChevron-chevron"
+                data-combobox-chevron="true"
+                fill="none"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  data-chevron="true"
-                  fill="none"
-                  height="18"
-                  style="color: rgb(134, 142, 150);"
-                  viewBox="0 0 15 15"
-                  width="18"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
-                    fill="currentColor"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
+                <path
+                  clip-rule="evenodd"
+                  d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </div>
           </div>
         </div>
+        <input
+          type="hidden"
+          value=""
+        />
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-r8"
-            id="mantine-r8-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Status
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-r8"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="status"
+              data-variant="default"
+              id=""
               value=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-r9"
-            id="mantine-r9-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Status Color
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-r9"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="status_color"
+              data-variant="default"
+              id=""
               value=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-ra"
-            id="mantine-ra-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Created At
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-ra"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="createdAt"
+              data-variant="default"
+              id=""
               value=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-rb"
-            id="mantine-rb-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Published At
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-rb"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="publishedAt"
+              data-variant="default"
+              id=""
               value=""
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-MultiSelect-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-MultiSelect-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-MultiSelect-label mantine-ittua2"
-            for="mantine-rc"
-            id="mantine-rc-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
+            for=""
+            id=""
           >
             Tags
           </label>
           <div
-            aria-controls="mantine-rc"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class="mantine-qqmv3w mantine-MultiSelect-wrapper"
-            role="combobox"
-            tabindex="-1"
+            class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
+            data-multiline="true"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: none;"
           >
-            <input
-              type="hidden"
-              value=""
-            />
             <div
-              class="mantine-Input-wrapper mantine-MultiSelect-wrapper mantine-12sbrde"
-              style="overflow: hidden;"
+              class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
+              data-variant="default"
             >
               <div
-                aria-invalid="false"
-                class="mantine-Input-input mantine-MultiSelect-input mantine-zunujd"
+                class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
               >
-                <div
-                  class="mantine-j220w7 mantine-MultiSelect-values"
-                >
-                  <input
-                    autocomplete="off"
-                    class="mantine-MultiSelect-searchInput mantine-MultiSelect-searchInputEmpty mantine-zmh4e"
-                    data-mantine-stop-propagation="false"
-                    id="mantine-rc"
-                    type="search"
-                    value=""
-                  />
-                </div>
+                <input
+                  aria-controls=""
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  autocomplete="off"
+                  class="mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field"
+                  data-path="tags"
+                  data-type="visible"
+                  id=""
+                  type="text"
+                  value=""
+                />
               </div>
-              <div
-                class="mantine-uquezq mantine-Input-rightSection mantine-MultiSelect-rightSection"
+            </div>
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-MultiSelect-section"
+              data-position="right"
+            >
+              <svg
+                class="m_2943220b mantine-ComboboxChevron-chevron"
+                data-combobox-chevron="true"
+                fill="none"
+                viewBox="0 0 15 15"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <svg
-                  data-chevron="true"
-                  fill="none"
-                  height="18"
-                  style="color: rgb(134, 142, 150);"
-                  viewBox="0 0 15 15"
-                  width="18"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    clip-rule="evenodd"
-                    d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
-                    fill="currentColor"
-                    fill-rule="evenodd"
-                  />
-                </svg>
-              </div>
+                <path
+                  clip-rule="evenodd"
+                  d="M4.93179 5.43179C4.75605 5.60753 4.75605 5.89245 4.93179 6.06819C5.10753 6.24392 5.39245 6.24392 5.56819 6.06819L7.49999 4.13638L9.43179 6.06819C9.60753 6.24392 9.89245 6.24392 10.0682 6.06819C10.2439 5.89245 10.2439 5.60753 10.0682 5.43179L7.81819 3.18179C7.73379 3.0974 7.61933 3.04999 7.49999 3.04999C7.38064 3.04999 7.26618 3.0974 7.18179 3.18179L4.93179 5.43179ZM10.0682 9.56819C10.2439 9.39245 10.2439 9.10753 10.0682 8.93179C9.89245 8.75606 9.60753 8.75606 9.43179 8.93179L7.49999 10.8636L5.56819 8.93179C5.39245 8.75606 5.10753 8.75606 4.93179 8.93179C4.75605 9.10753 4.75605 9.39245 4.93179 9.56819L7.18179 11.8182C7.35753 11.9939 7.64245 11.9939 7.81819 11.8182L10.0682 9.56819Z"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
             </div>
           </div>
         </div>
+        <input
+          type="hidden"
+          value=""
+        />
         <div
-          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
-            for="mantine-re"
-            id="mantine-re-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
           >
             Language
           </label>
           <div
-            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm);"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-rum3t1"
-              id="mantine-re"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-path="language"
+              data-variant="default"
+              id=""
               inputmode="numeric"
-              step="1"
               type="text"
               value=""
             />
             <div
-              class="mantine-1cwybh2 mantine-Input-rightSection mantine-NumberInput-rightSection"
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
             >
               <div
-                class="mantine-1mzslog mantine-NumberInput-rightSection"
+                class="m_95e17d22 mantine-NumberInput-controls"
               >
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-f73we9"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     style="transform: rotate(180deg);"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -12364,15 +12542,14 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 </button>
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlDown mantine-1kz3j3d"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -12389,18 +12566,22 @@ exports[`MantineInferencer should match the snapshot 2`] = `
         </div>
       </div>
       <div
-        class="mantine-Group-root mantine-n0y6vz"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: right; --group-wrap: wrap;"
       >
         <button
-          class="mantine-UnstyledButton-root mantine-Button-root refine-save-button mantine-4xmesm"
-          data-button="true"
+          class="mantine-focus-auto mantine-active refine-save-button m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+          data-variant="filled"
+          data-with-left-section="true"
+          style="--button-bg: var(--mantine-color-blue-filled); --button-hover: var(--mantine-color-blue-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
           type="button"
         >
-          <div
-            class="mantine-3xbgk5 mantine-Button-inner"
+          <span
+            class="m_80f1301b mantine-Button-inner"
           >
             <span
-              class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+              class="m_a74036a mantine-Button-section"
+              data-position="left"
             >
               <svg
                 class="tabler-icon tabler-icon-device-floppy "
@@ -12426,11 +12607,11 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               </svg>
             </span>
             <span
-              class="mantine-qo1k2 mantine-Button-label"
+              class="m_811560b9 mantine-Button-label"
             >
               Save
             </span>
-          </div>
+          </span>
         </button>
       </div>
     </div>
@@ -12572,48 +12753,9 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                  
               </span>
               <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token imports"
-              >
-                 
-              </span>
-              <span
                 class="token imports maybe-class-name"
               >
-                Create
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              >
-                 useForm
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              >
-                 useSelect 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
+                React
               </span>
               <span
                 class="token plain"
@@ -12635,7 +12777,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="token string"
                 style="color: rgb(206, 145, 120);"
               >
-                "@refinedev/mantine"
+                "react"
               </span>
               <span
                 class="token punctuation"
@@ -12687,7 +12829,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               <span
                 class="token imports maybe-class-name"
               >
-                TextInput
+                Create
               </span>
               <span
                 class="token imports punctuation"
@@ -12706,12 +12848,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               <span
                 class="token imports"
               >
-                    
-              </span>
-              <span
-                class="token imports maybe-class-name"
-              >
-                Textarea
+                    useForm
               </span>
               <span
                 class="token imports punctuation"
@@ -12730,12 +12867,26 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               <span
                 class="token imports"
               >
-                    
+                    useSelect
               </span>
               <span
-                class="token imports maybe-class-name"
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
               >
-                NumberInput
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              >
+                    useMultiSelect
               </span>
               <span
                 class="token imports punctuation"
@@ -12802,6 +12953,115 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               <span
                 class="token imports"
               />
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/mantine"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                TextInput
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                Textarea
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                NumberInput
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -14291,7 +14551,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="token function"
                 style="color: rgb(220, 220, 170);"
               >
-                useSelect
+                useMultiSelect
               </span>
               <span
                 class="token punctuation"
@@ -16039,7 +16299,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="token comment"
                 style="color: rgb(106, 153, 85);"
               >
-                /* 
+                /*
               </span>
             </div>
             <div
@@ -16070,9 +16330,10 @@ exports[`MantineInferencer should match the snapshot 2`] = `
             >
               <span
                 class="token comment"
-                style="color: rgb(106, 153, 85);"
+                style="display: inline-block; color: rgb(106, 153, 85);"
               >
-                                    
+                
+
               </span>
             </div>
             <div
@@ -16318,7 +16579,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="token comment"
                 style="color: rgb(106, 153, 85);"
               >
-                /* 
+                /*
               </span>
             </div>
             <div
@@ -16349,9 +16610,10 @@ exports[`MantineInferencer should match the snapshot 2`] = `
             >
               <span
                 class="token comment"
-                style="color: rgb(106, 153, 85);"
+                style="display: inline-block; color: rgb(106, 153, 85);"
               >
-                                    
+                
+
               </span>
             </div>
             <div
@@ -16597,7 +16859,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="token comment"
                 style="color: rgb(106, 153, 85);"
               >
-                /* 
+                /*
               </span>
             </div>
             <div
@@ -16628,9 +16890,10 @@ exports[`MantineInferencer should match the snapshot 2`] = `
             >
               <span
                 class="token comment"
-                style="color: rgb(106, 153, 85);"
+                style="display: inline-block; color: rgb(106, 153, 85);"
               >
-                                
+                
+
               </span>
             </div>
             <div
@@ -16867,51 +17130,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
               </span>
               <span
                 class="token tag spread punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                                
-              </span>
-              <span
-                class="token tag attr-name"
-                style="color: rgb(156, 220, 254);"
-              >
-                filterDataOnExactSearchMatch
-              </span>
-              <span
-                class="token tag script language-javascript script-punctuation punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token tag script language-javascript keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                undefined
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
@@ -17317,70 +17535,89 @@ exports[`MantineInferencer should match the snapshot 2`] = `
 
 exports[`MantineInferencer should match the snapshot 3`] = `
 <DocumentFragment>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
+  </style>
   <div>
     <div
-      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+      class="m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
     >
       <div
-        class="mantine-Group-root mantine-1dn2tzg"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: space-between; --group-wrap: wrap;"
       >
         <div
-          class="mantine-Stack-root mantine-zyu68o"
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
           <div
             aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
+            class="m_8b3717df mantine-Breadcrumbs-root"
           />
           <div
-            class="mantine-Group-root mantine-1g4q40w"
+            class="m_4081bf90 mantine-Group-root"
+            style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
           >
             <button
-              class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1lgihd9"
+              class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
+              style="--ai-color: var(--mantine-color-white);"
               type="button"
             >
-              <svg
-                class="tabler-icon tabler-icon-arrow-left "
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
+              <span
+                class="m_8d3afb97 mantine-ActionIcon-icon"
               >
-                <path
-                  d="M5 12l14 0"
-                />
-                <path
-                  d="M5 12l6 6"
-                />
-                <path
-                  d="M5 12l6 -6"
-                />
-              </svg>
+                <svg
+                  class="tabler-icon tabler-icon-arrow-left "
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 12l14 0"
+                  />
+                  <path
+                    d="M5 12l6 6"
+                  />
+                  <path
+                    d="M5 12l6 -6"
+                  />
+                </svg>
+              </span>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
+              data-order="3"
+              style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
             >
               Edit 
             </h3>
           </div>
         </div>
         <div
-          class="mantine-Group-root mantine-1g4q40w"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         >
           <button
-            class="mantine-UnstyledButton-root mantine-Button-root refine-refresh-button mantine-1gzbrws"
-            data-button="true"
+            class="mantine-focus-auto mantine-active refine-refresh-button m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+            data-variant="default"
+            data-with-left-section="true"
+            style="--button-bg: var(--mantine-color-default); --button-hover: var(--mantine-color-default-hover); --button-color: var(--mantine-color-default-color); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
             type="button"
           >
-            <div
-              class="mantine-3xbgk5 mantine-Button-inner"
+            <span
+              class="m_80f1301b mantine-Button-inner"
             >
               <span
-                class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+                class="m_a74036a mantine-Button-section"
+                data-position="left"
               >
                 <svg
                   class="tabler-icon tabler-icon-refresh "
@@ -17403,148 +17640,219 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 </svg>
               </span>
               <span
-                class="mantine-qo1k2 mantine-Button-label"
+                class="m_811560b9 mantine-Button-label"
               >
                 Refresh
               </span>
-            </div>
+            </span>
           </button>
         </div>
       </div>
       <div
-        class="mantine-1r0zdw0"
+        class=""
       >
         <div
-          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
-            for="mantine-rf"
-            id="mantine-rf-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
           >
             Id
           </label>
           <div
-            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-disabled="true"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm); --input-right-section-pointer-events: none;"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-Input-disabled mantine-NumberInput-disabled mantine-13fwyki"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-disabled="true"
+              data-path="id"
+              data-variant="default"
               disabled=""
-              id="mantine-rf"
+              id=""
               inputmode="numeric"
-              step="1"
               type="text"
               value="11"
             />
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
+            >
+              <div
+                class="m_95e17d22 mantine-NumberInput-controls"
+              >
+                <button
+                  aria-hidden="true"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
+                  disabled=""
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    style="transform: rotate(180deg);"
+                    viewBox="0 0 15 15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+                <button
+                  aria-hidden="true"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
+                  disabled=""
+                  tabindex="-1"
+                  type="button"
+                >
+                  <svg
+                    fill="none"
+                    viewBox="0 0 15 15"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-rg"
-            id="mantine-rg-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Title
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-rg"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="title"
+              data-variant="default"
+              id=""
               value="Nobis exercitationem officia quia est."
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-rh"
-            id="mantine-rh-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Slug
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-rh"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="slug"
+              data-variant="default"
+              id=""
               value="provident-culpa-facere"
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-Textarea-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-Textarea-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-Textarea-label mantine-ittua2"
-            for="mantine-ri"
-            id="mantine-ri-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Textarea-label"
+            for=""
+            id=""
           >
             Content
           </label>
           <div
-            class="mantine-Input-wrapper mantine-Textarea-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-Textarea-wrapper"
+            data-multiline="true"
+            data-variant="default"
           >
             <textarea
               aria-invalid="false"
-              class="mantine-Input-input mantine-Textarea-input mantine-1cp6ct5"
-              id="mantine-ri"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Textarea-input"
+              data-no-overflow="true"
+              data-path="content"
+              data-variant="default"
+              id=""
             >
               Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
             </textarea>
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
-            for="mantine-rj"
-            id="mantine-rj-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
           >
             Hit
           </label>
           <div
-            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm);"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-rum3t1"
-              id="mantine-rj"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-path="hit"
+              data-variant="default"
+              id=""
               inputmode="numeric"
-              step="1"
               type="text"
               value="920557"
             />
             <div
-              class="mantine-1cwybh2 mantine-Input-rightSection mantine-NumberInput-rightSection"
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
             >
               <div
-                class="mantine-1mzslog mantine-NumberInput-rightSection"
+                class="m_95e17d22 mantine-NumberInput-controls"
               >
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-f73we9"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     style="transform: rotate(180deg);"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -17557,15 +17865,14 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 </button>
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlDown mantine-1kz3j3d"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -17581,358 +17888,367 @@ exports[`MantineInferencer should match the snapshot 3`] = `
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-Select-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-Select-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-Select-label mantine-ittua2"
-            for="mantine-rk"
-            id="mantine-rk-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+            for=""
+            id=""
           >
             Category
           </label>
           <div
-            aria-controls="mantine-rk"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class=""
-            role="combobox"
-            tabindex="-1"
+            class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: all;"
           >
             <input
-              type="hidden"
-              value="16"
+              aria-controls=""
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              autocomplete="off"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
+              data-path="category.id"
+              data-variant="default"
+              id=""
+              value="Numquam Saepe Illo"
             />
             <div
-              class="mantine-Input-wrapper mantine-Select-wrapper mantine-12sbrde"
+              class="m_82577fc2 mantine-Input-section mantine-Select-section"
+              data-position="right"
             >
-              <input
-                aria-autocomplete="list"
-                aria-invalid="false"
-                autocomplete="off"
-                class="mantine-Input-input mantine-Select-input mantine-149ccxv"
-                data-mantine-stop-propagation="false"
-                id="mantine-rk"
-                type="search"
-                value="Numquam Saepe Illo"
-              />
-              <div
-                class="mantine-163ph1f mantine-Input-rightSection mantine-Select-rightSection"
+              <button
+                aria-hidden="true"
+                class="mantine-focus-auto mantine-active m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                data-size="sm"
+                data-variant="transparent"
+                style="--cb-size: var(--cb-size-sm);"
+                tabindex="-1"
+                type="button"
               >
-                <button
-                  class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-tzgcu0"
-                  tabindex="0"
-                  type="button"
+                <svg
+                  fill="none"
+                  viewBox="0 0 15 15"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    fill="none"
-                    height="14"
-                    viewBox="0 0 15 15"
-                    width="14"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
+                  <path
+                    clip-rule="evenodd"
+                    d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
+        <input
+          type="hidden"
+          value="16"
+        />
         <div
-          class="mantine-InputWrapper-root mantine-Select-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-Select-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-Select-label mantine-ittua2"
-            for="mantine-rm"
-            id="mantine-rm-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-Select-label"
+            for=""
+            id=""
           >
             User
           </label>
           <div
-            aria-controls="mantine-rm"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class=""
-            role="combobox"
-            tabindex="-1"
+            class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: all;"
           >
             <input
-              type="hidden"
-              value="21"
+              aria-controls=""
+              aria-haspopup="listbox"
+              aria-invalid="false"
+              autocomplete="off"
+              class="m_8fb7ebe7 mantine-Input-input mantine-Select-input"
+              data-path="user.id"
+              data-variant="default"
+              id=""
+              value="Eriberto"
             />
             <div
-              class="mantine-Input-wrapper mantine-Select-wrapper mantine-12sbrde"
+              class="m_82577fc2 mantine-Input-section mantine-Select-section"
+              data-position="right"
             >
-              <input
-                aria-autocomplete="list"
-                aria-invalid="false"
-                autocomplete="off"
-                class="mantine-Input-input mantine-Select-input mantine-149ccxv"
-                data-mantine-stop-propagation="false"
-                id="mantine-rm"
-                type="search"
-                value="Eriberto"
-              />
-              <div
-                class="mantine-163ph1f mantine-Input-rightSection mantine-Select-rightSection"
+              <button
+                aria-hidden="true"
+                class="mantine-focus-auto mantine-active m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                data-size="sm"
+                data-variant="transparent"
+                style="--cb-size: var(--cb-size-sm);"
+                tabindex="-1"
+                type="button"
               >
-                <button
-                  class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-tzgcu0"
-                  tabindex="0"
-                  type="button"
+                <svg
+                  fill="none"
+                  viewBox="0 0 15 15"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  <svg
-                    fill="none"
-                    height="14"
-                    viewBox="0 0 15 15"
-                    width="14"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
+                  <path
+                    clip-rule="evenodd"
+                    d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
+        <input
+          type="hidden"
+          value="21"
+        />
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-ro"
-            id="mantine-ro-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Status
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-ro"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="status"
+              data-variant="default"
+              id=""
               value="draft"
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-rp"
-            id="mantine-rp-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Status Color
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-rp"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="status_color"
+              data-variant="default"
+              id=""
               value="orange"
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-rq"
-            id="mantine-rq-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Created At
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-rq"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="createdAt"
+              data-variant="default"
+              id=""
               value="2022-04-02T08:25:44.933Z"
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-TextInput-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-TextInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-TextInput-label mantine-ittua2"
-            for="mantine-rr"
-            id="mantine-rr-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-TextInput-label"
+            for=""
+            id=""
           >
             Published At
           </label>
           <div
-            class="mantine-Input-wrapper mantine-TextInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-TextInput-wrapper"
+            data-variant="default"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-TextInput-input mantine-1g14e8k"
-              id="mantine-rr"
-              type="text"
+              class="m_8fb7ebe7 mantine-Input-input mantine-TextInput-input"
+              data-path="publishedAt"
+              data-variant="default"
+              id=""
               value="2021-08-10T08:07:39.705Z"
             />
           </div>
         </div>
         <div
-          class="mantine-InputWrapper-root mantine-MultiSelect-root mantine-e8sh7b"
+          class="m_46b77525 mantine-InputWrapper-root mantine-MultiSelect-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-MultiSelect-label mantine-ittua2"
-            for="mantine-rs"
-            id="mantine-rs-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-MultiSelect-label"
+            for=""
+            id=""
           >
             Tags
           </label>
           <div
-            aria-controls="mantine-rs"
-            aria-expanded="false"
-            aria-haspopup="listbox"
-            class="mantine-qqmv3w mantine-MultiSelect-wrapper"
-            role="combobox"
-            tabindex="-1"
+            class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
+            data-multiline="true"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-pointer-events: all;"
           >
-            <input
-              type="hidden"
-              value="9"
-            />
             <div
-              class="mantine-Input-wrapper mantine-MultiSelect-wrapper mantine-12sbrde"
-              style="overflow: hidden;"
+              class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
+              data-variant="default"
             >
               <div
-                aria-invalid="false"
-                class="mantine-Input-input mantine-MultiSelect-input mantine-zunujd"
+                class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
               >
-                <div
-                  class="mantine-j220w7 mantine-MultiSelect-values"
+                <span
+                  class="m_44da308b mantine-MultiSelect-pill m_7cda1cd6 mantine-Pill-root"
+                  data-variant="default"
+                  data-with-remove="true"
                 >
-                  <div
-                    class="mantine-MultiSelect-defaultValue mantine-MultiSelect-value mantine-fqghar"
-                    value="9"
+                  <span
+                    class="m_1e0e6180 mantine-Pill-label"
                   >
-                    <span
-                      class="mantine-rsiguj mantine-MultiSelect-defaultValueLabel"
+                    Nobis Et Ut
+                  </span>
+                  <button
+                    aria-hidden="true"
+                    class="mantine-focus-auto mantine-active m_ae386778 mantine-Pill-remove m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                    data-variant="transparent"
+                    tabindex="-1"
+                    type="button"
+                  >
+                    <svg
+                      fill="none"
+                      viewBox="0 0 15 15"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      Nobis Et Ut
-                    </span>
-                    <button
-                      aria-hidden="true"
-                      class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-MultiSelect-defaultValueRemove mantine-zo2naa"
-                      tabindex="-1"
-                      type="button"
-                    >
-                      <svg
-                        fill="none"
-                        height="11"
-                        viewBox="0 0 15 15"
-                        width="11"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <input
-                    autocomplete="off"
-                    class="mantine-MultiSelect-searchInput mantine-MultiSelect-searchInputInputHidden mantine-1pfwsds"
-                    data-mantine-stop-propagation="false"
-                    id="mantine-rs"
-                    type="search"
-                    value=""
+                      <path
+                        clip-rule="evenodd"
+                        d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                        fill="currentColor"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </span>
+                <input
+                  aria-controls=""
+                  aria-haspopup="listbox"
+                  aria-invalid="false"
+                  autocomplete="off"
+                  class="mantine-MultiSelect-inputField m_45c4369d mantine-PillsInputField-field"
+                  data-path="tags"
+                  data-type="visible"
+                  id=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="m_82577fc2 mantine-Input-section mantine-MultiSelect-section"
+              data-position="right"
+            >
+              <button
+                aria-hidden="true"
+                class="mantine-focus-auto mantine-active m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                data-size="sm"
+                data-variant="transparent"
+                style="--cb-size: var(--cb-size-sm);"
+                tabindex="-1"
+                type="button"
+              >
+                <svg
+                  fill="none"
+                  viewBox="0 0 15 15"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                    fill="currentColor"
+                    fill-rule="evenodd"
                   />
-                </div>
-              </div>
-              <div
-                class="mantine-163ph1f mantine-Input-rightSection mantine-MultiSelect-rightSection"
-              >
-                <button
-                  class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-tzgcu0"
-                  tabindex="0"
-                  type="button"
-                >
-                  <svg
-                    fill="none"
-                    height="14"
-                    viewBox="0 0 15 15"
-                    width="14"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                </button>
-              </div>
+                </svg>
+              </button>
             </div>
           </div>
         </div>
+        <input
+          type="hidden"
+          value="9"
+        />
         <div
-          class="mantine-InputWrapper-root mantine-NumberInput-root mantine-e8sh7b"
+          class="m_e2f5cd4e m_46b77525 mantine-InputWrapper-root mantine-NumberInput-root"
         >
           <label
-            class="mantine-InputWrapper-label mantine-NumberInput-label mantine-ittua2"
-            for="mantine-ru"
-            id="mantine-ru-label"
+            class="m_8fdc1311 mantine-InputWrapper-label mantine-NumberInput-label"
+            for=""
+            id=""
           >
             Language
           </label>
           <div
-            class="mantine-Input-wrapper mantine-NumberInput-wrapper mantine-12sbrde"
+            class="m_6c018570 mantine-Input-wrapper mantine-NumberInput-wrapper"
+            data-variant="default"
+            data-with-right-section="true"
+            style="--input-right-section-width: var(--ni-right-section-width-sm);"
           >
             <input
               aria-invalid="false"
-              class="mantine-Input-input mantine-NumberInput-input mantine-rum3t1"
-              id="mantine-ru"
+              class="m_8fb7ebe7 mantine-Input-input mantine-NumberInput-input"
+              data-path="language"
+              data-variant="default"
+              id=""
               inputmode="numeric"
-              step="1"
               type="text"
               value="2"
             />
             <div
-              class="mantine-1cwybh2 mantine-Input-rightSection mantine-NumberInput-rightSection"
+              class="m_82577fc2 mantine-Input-section mantine-NumberInput-section"
+              data-position="right"
             >
               <div
-                class="mantine-1mzslog mantine-NumberInput-rightSection"
+                class="m_95e17d22 mantine-NumberInput-controls"
               >
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlUp mantine-f73we9"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="up"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     style="transform: rotate(180deg);"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -17945,15 +18261,14 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 </button>
                 <button
                   aria-hidden="true"
-                  class="mantine-NumberInput-control mantine-NumberInput-controlDown mantine-1kz3j3d"
+                  class="mantine-focus-auto m_80b4b171 mantine-NumberInput-control m_87cf2631 mantine-UnstyledButton-root"
+                  data-direction="down"
                   tabindex="-1"
                   type="button"
                 >
                   <svg
                     fill="none"
-                    height="14"
                     viewBox="0 0 15 15"
-                    width="14"
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
@@ -17970,18 +18285,22 @@ exports[`MantineInferencer should match the snapshot 3`] = `
         </div>
       </div>
       <div
-        class="mantine-Group-root mantine-n0y6vz"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: right; --group-wrap: wrap;"
       >
         <button
-          class="mantine-UnstyledButton-root mantine-Button-root refine-save-button mantine-4xmesm"
-          data-button="true"
+          class="mantine-focus-auto mantine-active refine-save-button m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+          data-variant="filled"
+          data-with-left-section="true"
+          style="--button-bg: var(--mantine-color-blue-filled); --button-hover: var(--mantine-color-blue-filled-hover); --button-color: var(--mantine-color-white); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
           type="button"
         >
-          <div
-            class="mantine-3xbgk5 mantine-Button-inner"
+          <span
+            class="m_80f1301b mantine-Button-inner"
           >
             <span
-              class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+              class="m_a74036a mantine-Button-section"
+              data-position="left"
             >
               <svg
                 class="tabler-icon tabler-icon-device-floppy "
@@ -18007,11 +18326,11 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               </svg>
             </span>
             <span
-              class="mantine-qo1k2 mantine-Button-label"
+              class="m_811560b9 mantine-Button-label"
             >
               Save
             </span>
-          </div>
+          </span>
         </button>
       </div>
     </div>
@@ -18153,48 +18472,9 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                  
               </span>
               <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token imports"
-              >
-                 
-              </span>
-              <span
                 class="token imports maybe-class-name"
               >
-                Edit
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              >
-                 useForm
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token imports"
-              >
-                 useSelect 
-              </span>
-              <span
-                class="token imports punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
+                React
               </span>
               <span
                 class="token plain"
@@ -18216,7 +18496,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 class="token string"
                 style="color: rgb(206, 145, 120);"
               >
-                "@refinedev/mantine"
+                "react"
               </span>
               <span
                 class="token punctuation"
@@ -18268,7 +18548,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               <span
                 class="token imports maybe-class-name"
               >
-                NumberInput
+                Edit
               </span>
               <span
                 class="token imports punctuation"
@@ -18287,12 +18567,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               <span
                 class="token imports"
               >
-                    
-              </span>
-              <span
-                class="token imports maybe-class-name"
-              >
-                TextInput
+                    useForm
               </span>
               <span
                 class="token imports punctuation"
@@ -18311,12 +18586,26 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               <span
                 class="token imports"
               >
-                    
+                    useSelect
               </span>
               <span
-                class="token imports maybe-class-name"
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
               >
-                Textarea
+                ,
+              </span>
+              <span
+                class="token imports"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token imports"
+              >
+                    useMultiSelect
               </span>
               <span
                 class="token imports punctuation"
@@ -18383,6 +18672,115 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               <span
                 class="token imports"
               />
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                from
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "@refinedev/mantine"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              />
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                import
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                NumberInput
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                TextInput
+              </span>
+              <span
+                class="token imports punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
+              <span
+                class="token imports maybe-class-name"
+              >
+                Textarea
+              </span>
+              <span
+                class="token imports"
+              >
+                 
+              </span>
               <span
                 class="token imports punctuation"
                 style="color: rgb(212, 212, 212);"
@@ -20123,7 +20521,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 class="token function"
                 style="color: rgb(220, 220, 170);"
               >
-                useSelect
+                useMultiSelect
               </span>
               <span
                 class="token punctuation"
@@ -22045,7 +22443,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 class="token comment"
                 style="color: rgb(106, 153, 85);"
               >
-                /* 
+                /*
               </span>
             </div>
             <div
@@ -22076,9 +22474,10 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             >
               <span
                 class="token comment"
-                style="color: rgb(106, 153, 85);"
+                style="display: inline-block; color: rgb(106, 153, 85);"
               >
-                                    
+                
+
               </span>
             </div>
             <div
@@ -22324,7 +22723,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 class="token comment"
                 style="color: rgb(106, 153, 85);"
               >
-                /* 
+                /*
               </span>
             </div>
             <div
@@ -22355,9 +22754,10 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             >
               <span
                 class="token comment"
-                style="color: rgb(106, 153, 85);"
+                style="display: inline-block; color: rgb(106, 153, 85);"
               >
-                                    
+                
+
               </span>
             </div>
             <div
@@ -22603,7 +23003,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                 class="token comment"
                 style="color: rgb(106, 153, 85);"
               >
-                /* 
+                /*
               </span>
             </div>
             <div
@@ -22634,9 +23034,10 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             >
               <span
                 class="token comment"
-                style="color: rgb(106, 153, 85);"
+                style="display: inline-block; color: rgb(106, 153, 85);"
               >
-                                
+                
+
               </span>
             </div>
             <div
@@ -22873,51 +23274,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
               </span>
               <span
                 class="token tag spread punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                                
-              </span>
-              <span
-                class="token tag attr-name"
-                style="color: rgb(156, 220, 254);"
-              >
-                filterDataOnExactSearchMatch
-              </span>
-              <span
-                class="token tag script language-javascript script-punctuation punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token tag script language-javascript keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                undefined
-              </span>
-              <span
-                class="token tag script language-javascript punctuation"
                 style="color: rgb(212, 212, 212);"
               >
                 }
@@ -23323,70 +23679,89 @@ exports[`MantineInferencer should match the snapshot 3`] = `
 
 exports[`MantineInferencer should match the snapshot 4`] = `
 <DocumentFragment>
+  <style
+    data-mantine-styles="classes"
+  >
+    @media (max-width: 35.99375em) {.mantine-visible-from-xs {display: none !important;}}@media (min-width: 36em) {.mantine-hidden-from-xs {display: none !important;}}@media (max-width: 47.99375em) {.mantine-visible-from-sm {display: none !important;}}@media (min-width: 48em) {.mantine-hidden-from-sm {display: none !important;}}@media (max-width: 61.99375em) {.mantine-visible-from-md {display: none !important;}}@media (min-width: 62em) {.mantine-hidden-from-md {display: none !important;}}@media (max-width: 74.99375em) {.mantine-visible-from-lg {display: none !important;}}@media (min-width: 75em) {.mantine-hidden-from-lg {display: none !important;}}@media (max-width: 87.99375em) {.mantine-visible-from-xl {display: none !important;}}@media (min-width: 88em) {.mantine-hidden-from-xl {display: none !important;}}
+  </style>
   <div>
     <div
-      class="mantine-Paper-root mantine-Card-root mantine-xoj88x"
+      class="m_e615b15f mantine-Card-root m_1b7284a3 mantine-Paper-root"
     >
       <div
-        class="mantine-Group-root mantine-1dn2tzg"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: space-between; --group-wrap: wrap;"
       >
         <div
-          class="mantine-Stack-root mantine-zyu68o"
+          class="m_6d731127 mantine-Stack-root"
+          style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
           <div
             aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
+            class="m_8b3717df mantine-Breadcrumbs-root"
           />
           <div
-            class="mantine-Group-root mantine-1g4q40w"
+            class="m_4081bf90 mantine-Group-root"
+            style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
           >
             <button
-              class="mantine-UnstyledButton-root mantine-ActionIcon-root mantine-1lgihd9"
+              class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
+              style="--ai-color: var(--mantine-color-white);"
               type="button"
             >
-              <svg
-                class="tabler-icon tabler-icon-arrow-left "
-                fill="none"
-                height="24"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                width="24"
-                xmlns="http://www.w3.org/2000/svg"
+              <span
+                class="m_8d3afb97 mantine-ActionIcon-icon"
               >
-                <path
-                  d="M5 12l14 0"
-                />
-                <path
-                  d="M5 12l6 6"
-                />
-                <path
-                  d="M5 12l6 -6"
-                />
-              </svg>
+                <svg
+                  class="tabler-icon tabler-icon-arrow-left "
+                  fill="none"
+                  height="24"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M5 12l14 0"
+                  />
+                  <path
+                    d="M5 12l6 6"
+                  />
+                  <path
+                    d="M5 12l6 -6"
+                  />
+                </svg>
+              </span>
             </button>
             <h3
-              class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
+              class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
+              data-order="3"
+              style="--title-fw: var(--mantine-h3-font-weight); --title-lh: var(--mantine-h3-line-height); --title-fz: var(--mantine-h3-font-size);"
             >
               Show 
             </h3>
           </div>
         </div>
         <div
-          class="mantine-Group-root mantine-1g4q40w"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         >
           <button
-            class="mantine-UnstyledButton-root mantine-Button-root refine-refresh-button mantine-1gzbrws"
-            data-button="true"
+            class="mantine-focus-auto mantine-active refine-refresh-button m_77c9d27d mantine-Button-root m_87cf2631 mantine-UnstyledButton-root"
+            data-variant="default"
+            data-with-left-section="true"
+            style="--button-bg: var(--mantine-color-default); --button-hover: var(--mantine-color-default-hover); --button-color: var(--mantine-color-default-color); --button-bd: calc(0.0625rem * var(--mantine-scale)) solid var(--mantine-color-default-border);"
             type="button"
           >
-            <div
-              class="mantine-3xbgk5 mantine-Button-inner"
+            <span
+              class="m_80f1301b mantine-Button-inner"
             >
               <span
-                class="mantine-Button-icon mantine-Button-leftIcon mantine-1g4orza"
+                class="m_a74036a mantine-Button-section"
+                data-position="left"
               >
                 <svg
                   class="tabler-icon tabler-icon-refresh "
@@ -23409,49 +23784,57 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                 </svg>
               </span>
               <span
-                class="mantine-qo1k2 mantine-Button-label"
+                class="m_811560b9 mantine-Button-label"
               >
                 Refresh
               </span>
-            </div>
+            </span>
           </button>
         </div>
       </div>
       <div
-        class="mantine-1r0zdw0"
+        class=""
       >
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Id
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           11
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Title
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           Nobis exercitationem officia quia est.
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Slug
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           provident-culpa-facere
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1lbhkzp"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size);"
         >
           Content
         </h5>
@@ -23459,150 +23842,161 @@ exports[`MantineInferencer should match the snapshot 4`] = `
           Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
         </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Hit
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           920,557
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Category
         </h5>
         Numquam Saepe Illo
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           User
         </h5>
         Eriberto Leannon
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Status
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           draft
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Status Color
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           orange
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Created At
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           04/02/2022
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Published At
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           08/10/2021
-        </div>
+        </p>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Image
         </h5>
         <div
-          class="mantine-Group-root mantine-1g4q40w"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         >
-          <div
-            class="mantine-Image-root mantine-1sqfmsp"
-            style="width: 100%;"
-          >
-            <figure
-              class="mantine-11nhzn5 mantine-Image-figure"
-            >
-              <div
-                class="mantine-qqmv3w mantine-Image-imageWrapper"
-              >
-                <img
-                  class="mantine-3y8yz3 mantine-Image-image"
-                  src="http://loremflickr.com/640/480/abstract"
-                  style="object-fit: cover; width: 100%; height: auto;"
-                />
-              </div>
-            </figure>
-          </div>
+          <img
+            class="m_9e117634 mantine-Image-root"
+            src="http://loremflickr.com/640/480/abstract"
+          />
         </div>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Tags
         </h5>
         <div
-          class="mantine-Group-root mantine-1g4q40w"
+          class="m_4081bf90 mantine-Group-root"
+          style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
         >
           <div
-            class="mantine-Chip-root mantine-15po0m8"
+            class="m_f59ffda3 mantine-Chip-root"
           >
             <input
-              class="mantine-106387w mantine-Chip-input"
-              id="mantine-r12"
+              class="m_bde07329 mantine-Chip-input"
+              id=""
               type="checkbox"
               value=""
             />
             <label
-              class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
-              data-variant="outline"
-              for="mantine-r12"
+              class="m_fa109255 m_be049a53 mantine-Chip-label"
+              for=""
             >
-              Error Eos Et
+              <span>
+                Error Eos Et
+              </span>
             </label>
           </div>
           <div
-            class="mantine-Chip-root mantine-15po0m8"
+            class="m_f59ffda3 mantine-Chip-root"
           >
             <input
-              class="mantine-106387w mantine-Chip-input"
-              id="mantine-r13"
+              class="m_bde07329 mantine-Chip-input"
+              id=""
               type="checkbox"
               value=""
             />
             <label
-              class="__mantine-ref-label mantine-543i07 mantine-Chip-label"
-              data-variant="outline"
-              for="mantine-r13"
+              class="m_fa109255 m_be049a53 mantine-Chip-label"
+              for=""
             >
-              Nobis Et Ut
+              <span>
+                Nobis Et Ut
+              </span>
             </label>
           </div>
         </div>
         <h5
-          class="mantine-Text-root mantine-Title-root mantine-1sxu3jo"
+          class="m_8a5d1357 mantine-Title-root"
+          data-order="5"
+          style="--title-fw: var(--mantine-h5-font-weight); --title-lh: var(--mantine-h5-line-height); --title-fz: var(--mantine-h5-font-size); margin-block: var(--mantine-spacing-xs);"
         >
           Language
         </h5>
-        <div
-          class="mantine-Text-root mantine-1pbxw0k"
+        <p
+          class="mantine-focus-auto m_b6d8b162 mantine-Text-root"
         >
           2
-        </div>
+        </p>
       </div>
       <div
-        class="mantine-Group-root mantine-n0y6vz"
+        class="m_4081bf90 mantine-Group-root"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
       />
     </div>
   </div>
@@ -28875,7 +29269,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                spacing
+                gap
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"
@@ -29743,7 +30137,7 @@ exports[`MantineInferencer should match the snapshot 4`] = `
                 class="token tag attr-name"
                 style="color: rgb(156, 220, 254);"
               >
-                spacing
+                gap
               </span>
               <span
                 class="token tag attr-value punctuation attr-equals"
