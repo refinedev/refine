@@ -1,8 +1,0 @@
-{
-  "port": 5173,
-  "container": {
-    "node": 16,
-    "port": 5173,
-    "startScript": "start"
-  }
-}
