@@ -53,8 +53,6 @@ The app connected to GraphQL API through Refine's Nestjs-query data provider, an
 
 We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques.
 
-The source code of the CRM app is also open-source; feel free to use or inspect it to discover how Refine works. Being production-ready, you can either build your own CRM internal tool using it as a code base or directly implement it as is.
-
 
 ### Key Features:
 
@@ -113,7 +111,7 @@ While not a product, this template demonstrates how quickly and efficiently simi
 
 Our HR app example is designed for enterprise companies needs, which is why its source code is only available to Refine enterprise users. 
 
-However, our CRM app and other example apps, which are open source, are built using the same best practices. Even if you don’t have access to the HR app's source code, you can still explore the capabilities of Refine through our other complete app examples.
+Even if you don’t have access to the HR app's source code, you can still explore the capabilities of Refine through our other complete app examples.
 
 ### Key Features:
 
