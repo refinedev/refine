@@ -20,7 +20,7 @@
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
     "@tanstack/react-table": "^8.2.6",
-    "cookie": "^0.5.0",
+    "cookie": "^0.7.0",
     "js-cookie": "^3.0.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
