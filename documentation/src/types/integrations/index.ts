@@ -15,3 +15,9 @@ export type contributor = {
   name: string;
   url: string;
 };
+
+export enum TemplateEdition {
+  All = "All",
+  Enterprise = "Enterprise",
+  Community = "Community",
+}

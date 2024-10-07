@@ -14,7 +14,7 @@ I want to introduce our newest example app – a full-fledged React CRM (Custome
 
 👉 [Live Demo](https://example.crm.refine.dev/)
 
-👉 [You can find the source code on GitHub here](https://github.com/refinedev/refine/tree/master/examples/app-crm)
+👉 [Template](https://refine.dev/templates/crm-application/)
 
 This example is open-source, which means anyone can freely utilize and customize the source code as they see fit. It's not just another application; it's a comprehensive solution that boasts all the features and functionalities required for an accurate enterprise-level application.
 

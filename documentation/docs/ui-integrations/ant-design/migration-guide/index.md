@@ -167,7 +167,7 @@ Ant Design removed `less`, uses and recommends `CSS-in-JS` instead. You need to 
 
 ### Compile errors
 
-Some users repored ([issue#1](https://discord.com/channels/837692625737613362/1056236230641209396/1056236230641209396), [issue#2](https://discord.com/channels/837692625737613362/1056592183702061177/1056592183702061177)) compile errors after upgrading from `@refinedev/antd@3.x.x` to `@refinedev/antd@4.x.x`. They also provided solutions.
+Some users reported ([issue#1](https://discord.com/channels/837692625737613362/1056236230641209396/1056236230641209396), [issue#2](https://discord.com/channels/837692625737613362/1056592183702061177/1056592183702061177)) compile errors after upgrading from `@refinedev/antd@3.x.x` to `@refinedev/antd@4.x.x`. They also provided solutions.
 
 #### Solution 1
 

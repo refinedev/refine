@@ -1,18 +1,27 @@
-import React, { type FC, type PropsWithChildren, type SVGProps } from "react";
+import React, {
+  Fragment,
+  useState,
+  type FC,
+  type PropsWithChildren,
+  type SVGProps,
+} from "react";
 import clsx from "clsx";
 import Link from "@docusaurus/Link";
-import { CommonLayout } from "@site/src/refine-theme/common-layout";
-import { CommonHeader } from "@site/src/refine-theme/common-header";
-import { LandingFooter } from "@site/src/refine-theme/landing-footer";
-import { CommonCircleChevronLeft } from "./common-circle-chevron-left";
-import { ShareIcon } from "./icons/share";
-import * as Icons from "@site/src/assets/integration-icons";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkRehype from "remark-rehype";
+import { CommonLayout } from "@site/src/refine-theme/common-layout";
+import { CommonHeader } from "@site/src/refine-theme/common-header";
+import { LandingFooter } from "@site/src/refine-theme/landing-footer";
+import { EnterpriseTemplateContactUsModal } from "./enterprise-template-contact-us-modal";
+import { CommonCircleChevronLeft } from "./common-circle-chevron-left";
+import { ShareIcon } from "./icons/share";
+import * as Icons from "@site/src/assets/integration-icons";
 import { CommonRunLocalPrompt } from "./common-run-local-prompt";
 import { GithubIcon } from "./icons/github";
 import { TutorialIcon } from "./icons/tutorial";
+import { LockedIcon } from "./icons/locked";
+import { TemplateEdition } from "../types/integrations";
 
 type Props = {
   data: {
@@ -20,9 +29,10 @@ type Props = {
     title: string;
     description: string;
     images: string[];
-    runOnYourLocalPath: string;
+    runOnYourLocalPath: string | null;
+    edition: TemplateEdition;
     liveDemo: string;
-    github: string;
+    github: string | null;
     tutorial: string;
     reactPlatform: string;
     uiFramework: string;
@@ -81,6 +91,7 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
           </div>
           <div
             className={clsx(
+              "relative",
               "flex",
               "mt-8 landing-sm:mt-12 landing-md:mt-16",
               "-mx-4 landing-sm:-mx-0",
@@ -93,6 +104,21 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
               src={data.images[0]}
               alt={data.title}
             />
+            {data.edition === TemplateEdition.Enterprise && (
+              <div
+                className={clsx(
+                  "absolute",
+                  "-top-2",
+                  "-right-2 landing-sm:right-[9px]",
+                )}
+              >
+                <img
+                  src="/assets/badge-enterprise.png"
+                  alt="enterprise badge"
+                  className="w-[248px] h-[248px]"
+                />
+              </div>
+            )}
           </div>
 
           <div
@@ -149,19 +175,11 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                     </span>
                   </ProjectLink>
                 )}
-                {data.github && (
-                  <ProjectLink to={data.github}>
-                    <GithubIcon width={16} height={16} />
-                    <span
-                      className={clsx(
-                        "font-semibold",
-                        "text-xs landing-md:text-base",
-                      )}
-                    >
-                      Source code
-                    </span>
-                  </ProjectLink>
-                )}
+                {data.github ? (
+                  <SourceCode url={data.github} />
+                ) : data.edition === TemplateEdition.Enterprise ? (
+                  <SourceCodeLocked data={data} />
+                ) : null}
               </div>
               <Integrations
                 svgId="mobile"
@@ -183,9 +201,11 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
                   "landing-lg:pl-4 landing-lg:pr-6",
                 )}
               >
-                <div className={clsx("mb-2 landing-sm:mb-4")}>
-                  <CommonRunLocalPrompt path={data.runOnYourLocalPath} />
-                </div>
+                {data.runOnYourLocalPath && (
+                  <div className={clsx("mb-2 landing-sm:mb-4")}>
+                    <CommonRunLocalPrompt path={data.runOnYourLocalPath} />
+                  </div>
+                )}
                 <div className={clsx("not-prose")}>
                   <h2
                     className={clsx(
@@ -235,15 +255,23 @@ export const TemplatesDetail: FC<Props> = ({ data }) => {
   );
 };
 
-const ProjectLink: FC<PropsWithChildren<{ to: string }>> = ({
-  to,
-  children,
-}) => {
+const ProjectLink: FC<
+  PropsWithChildren<{ to?: string; onClick?: () => void }>
+> = ({ to, onClick, children }) => {
+  const Component = to ? Link : "button";
+  const props = to
+    ? {
+        to,
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : {
+        onClick,
+      };
+
   return (
-    <Link
-      to={to}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Component
+      {...props}
       className={clsx(
         "select-none",
         "group/project-link-button",
@@ -255,8 +283,12 @@ const ProjectLink: FC<PropsWithChildren<{ to: string }>> = ({
         "pl-2 py-2 pr-3",
         "landing-md:pl-3 landing-md:py-3 landing-md:pr-6",
         "rounded-full",
-        "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
-        "dark:text-refine-cyan-alt text-refine-blue",
+        to && "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
+        to && "dark:text-refine-cyan-alt text-refine-blue",
+        !to &&
+          "dark:text-refine-enterprise-purple-5 text-refine-enterprise-purple-2",
+        !to &&
+          "dark:bg-refine-enterprise-purple-5/10 bg-refine-enterprise-purple-2/10",
         "hover:no-underline",
         "overflow-hidden",
       )}
@@ -280,10 +312,13 @@ const ProjectLink: FC<PropsWithChildren<{ to: string }>> = ({
           "group-hover/project-link-button:opacity-100",
           "group-hover/project-link-button:scale-100",
           "pointer-events-none",
-          "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+          to &&
+            "bg-landing-copy-command-hover-bg-light dark:bg-landing-copy-command-hover-bg-dark",
+          !to &&
+            "bg-enterprise-copy-command-hover-bg-light dark:bg-enterprise-copy-command-hover-bg-dark",
         )}
       />
-    </Link>
+    </Component>
   );
 };
 
@@ -363,6 +398,39 @@ const IntegrationBadge = (props: {
   );
 };
 
+const SourceCode = (props: { url: string }) => {
+  return (
+    <ProjectLink to={props.url}>
+      <GithubIcon width={16} height={16} />
+      <span className={clsx("font-semibold", "text-xs landing-md:text-base")}>
+        Source code
+      </span>
+    </ProjectLink>
+  );
+};
+
+const SourceCodeLocked = (props: { data: Props["data"] }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <ProjectLink onClick={() => setIsModalOpen(true)}>
+        <LockedIcon width={16} height={16} />
+        <span className={clsx("font-semibold", "text-xs landing-md:text-base")}>
+          Source code
+        </span>
+      </ProjectLink>
+
+      <EnterpriseTemplateContactUsModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        title={props.data.title}
+        utmMedium={props.data.slug}
+      />
+    </>
+  );
+};
+
 const integrationToIconMap = {
   Ably: (props: SVGProps<SVGSVGElement>) => <Icons.Ably {...props} />,
   Airtable: (props: SVGProps<SVGSVGElement>) => <Icons.Airtable {...props} />,
@@ -439,6 +507,9 @@ const integrationToIconMap = {
   Vite: (props: SVGProps<SVGSVGElement>) => <Icons.Vite {...props} />,
   "Nestjs-query": (props: SVGProps<SVGSVGElement>) => (
     <Icons.Graphql {...props} />
+  ),
+  "Nestjsx-CRUD": (props: SVGProps<SVGSVGElement>) => (
+    <Icons.RestWithoutText {...props} />
   ),
 };
 
