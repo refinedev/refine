@@ -39,14 +39,14 @@ export const defaultOptions = {
     },
   },
   createMany: {
-    dataMapper: (response: BaseRecord, params: CreateManyParams) => {
+    dataMapper: (response: BaseRecord, params: CreateManyParams<any>) => {
       const key = `createMany${camelcase(params.resource, {
         pascalCase: true,
       })}`;
 
       return response.data[key];
     },
-    buildVariables: (params: CreateManyParams) => {
+    buildVariables: (params: CreateManyParams<any>) => {
       return {
         input: {
           [camelcase(params.resource)]: params.variables,
@@ -136,7 +136,7 @@ export const defaultOptions = {
     },
   },
   updateMany: {
-    dataMapper: (response: BaseRecord, params: UpdateManyParams) => {
+    dataMapper: (response: BaseRecord, params: UpdateManyParams<any>) => {
       const pascalResource = camelcase(params.resource, {
         pascalCase: true,
       });
@@ -144,7 +144,7 @@ export const defaultOptions = {
       const key = `updateMany${pascalResource}`;
       return response.data[key];
     },
-    buildVariables: (params: UpdateManyParams) => {
+    buildVariables: (params: UpdateManyParams<any>) => {
       const { ids, variables } = params;
 
       return { input: { filter: { id: { in: ids } }, update: variables } };
@@ -170,7 +170,7 @@ export const defaultOptions = {
     },
   },
   deleteMany: {
-    dataMapper: (response: BaseRecord, params: DeleteManyParams) => {
+    dataMapper: (response: BaseRecord, params: DeleteManyParams<any>) => {
       const pascalResource = camelcase(params.resource, {
         pascalCase: true,
       });
@@ -179,7 +179,7 @@ export const defaultOptions = {
 
       return response.data[key];
     },
-    buildVariables: (params: DeleteManyParams) => {
+    buildVariables: (params: DeleteManyParams<any>) => {
       const { ids } = params;
 
       return {

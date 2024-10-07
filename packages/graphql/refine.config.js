@@ -60,7 +60,7 @@ module.exports = {
 
               const client = new Client({ url: API_URL, exchanges: [fetchExchange] });
 
-              const wsClient = createClient({url: WS_URL})
+              const wsClient = createClient({ url: WS_URL })
 
               const App = () => {
                   return (
