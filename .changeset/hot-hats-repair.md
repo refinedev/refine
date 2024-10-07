@@ -1,8 +1,10 @@
 ---
-"@refinedev/graphql": minor
+"@refinedev/graphql": major
 ---
 
-feat: add default fetcher function. TBC Later.
+feat: add default options that can be overriden piece by piece.
 
-[Resolves #5943](https://github.com/refinedev/refine/issues/5943)
+drop support for usage with `meta.fields`.
+
 [Resolves #5942](https://github.com/refinedev/refine/issues/5942)
+[Resolves #5943](https://github.com/refinedev/refine/issues/5943)
