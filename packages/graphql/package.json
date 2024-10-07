@@ -42,10 +42,7 @@
   "dependencies": {
     "@urql/core": "^5.0.6",
     "camelcase": "^6.2.0",
-    "gql-query-builder": "^3.5.5",
     "graphql": "^15.6.1",
-    "graphql-request": "^5.2.0",
-    "graphql-tag": "^2.12.6",
     "graphql-ws": "^5.9.1",
     "lodash": "^4.17.21",
     "pluralize": "^8.0.0"
@@ -66,9 +63,7 @@
     "typescript": "^5.4.2"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
-    "gql-query-builder": "^3.5.5",
-    "graphql-request": "^5.2.0",
+    "@refinedev/core": "^4.54.1",
     "graphql-ws": "^5.9.1"
   },
   "engines": {

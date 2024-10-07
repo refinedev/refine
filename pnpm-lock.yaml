@@ -14592,18 +14592,9 @@ importers:
       camelcase:
         specifier: ^6.2.0
         version: 6.3.0
-      gql-query-builder:
-        specifier: ^3.5.5
-        version: 3.8.0
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
-      graphql-request:
-        specifier: ^5.2.0
-        version: 5.2.0(encoding@0.1.13)(graphql@15.8.0)
-      graphql-tag:
-        specifier: ^2.12.6
-        version: 2.12.6(graphql@15.8.0)
       graphql-ws:
         specifier: ^5.9.1
         version: 5.16.0(graphql@15.8.0)
@@ -47618,7 +47609,7 @@ snapshots:
 
   broadcast-channel@3.7.0:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       detect-node: 2.1.0
       js-sha3: 0.8.0
       microseconds: 0.2.0
@@ -54330,7 +54321,7 @@ snapshots:
 
   match-sorter@6.3.4:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       remove-accents: 0.5.0
 
   material-colors@1.2.6: {}
@@ -58309,7 +58300,7 @@ snapshots:
 
   react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       broadcast-channel: 3.7.0
       match-sorter: 6.3.4
       react: 18.3.0
@@ -61370,7 +61361,7 @@ snapshots:
 
   unload@2.2.0:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       detect-node: 2.1.0
 
   unpipe@1.0.0: {}
