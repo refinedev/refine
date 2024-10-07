@@ -1,5 +1,30 @@
-import type { CrudOperators, LogicalFilter, CrudFilter } from "@refinedev/core";
+import type {
+  CrudOperators,
+  LogicalFilter,
+  CrudFilter,
+  GetListParams,
+  CrudSort,
+  Pagination,
+} from "@refinedev/core";
 import set from "lodash/set";
+
+export const buildSorters = (sorters: CrudSort[] = []) => {
+  return sorters.map((s) => ({
+    field: s.field,
+    direction: s.order.toUpperCase(),
+  }));
+};
+
+export const buildPagination = (pagination: Pagination = {}) => {
+  if (pagination.mode === "off") return { limit: 2147483647 };
+
+  const { pageSize = 10, current = 1 } = pagination;
+
+  return {
+    limit: pageSize,
+    offset: (current - 1) * pageSize,
+  };
+};
 
 const operatorMap: { [key: string]: string } = {
   eq: "eq",

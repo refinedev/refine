@@ -10,11 +10,15 @@ import type {
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import { singular } from "pluralize";
-import { buildFilters, getOperationFields } from "../utils";
+import {
+  buildFilters,
+  buildPagination,
+  buildSorters,
+  getOperationFields,
+} from "../utils";
 import { gql } from "@urql/core";
 
-export type GraphQLDataProviderOptions<TVariables extends {} = {}> =
-  typeof defaultOptions;
+export type GraphQLDataProviderOptions = typeof defaultOptions;
 
 export const defaultOptions = {
   create: {
@@ -98,28 +102,10 @@ export const defaultOptions = {
     countMapper: (response: BaseRecord, params: GetListParams) => {
       return response.data[params.resource].totalCount;
     },
-    buildSorters: (params: GetListParams) => {
-      const { sorters = [] } = params;
-
-      return sorters.map((s) => ({
-        field: s.field,
-        direction: s.order.toUpperCase(),
-      }));
-    },
+    buildSorters: (params: GetListParams) => buildSorters(params.sorters),
     buildFilters: (params: GetListParams) => buildFilters(params.filters),
-    buildPagination: (params: GetListParams) => {
-      const { pagination = {} } = params;
-
-      // maximum value of 32 bit signed integer
-      if (pagination.mode === "off") return { limit: 2147483647 };
-
-      const { pageSize = 10, current = 1 } = pagination;
-
-      return {
-        limit: pageSize,
-        offset: (current - 1) * pageSize,
-      };
-    },
+    buildPagination: (params: GetListParams) =>
+      buildPagination(params.pagination),
   },
   getMany: {
     buildFilter: (params: GetManyParams) => {
