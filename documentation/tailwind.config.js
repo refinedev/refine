@@ -36,6 +36,7 @@ module.exports = {
           "enterprise-purple-2": "#8000ff",
           "enterprise-purple-3": "#E6CCFF",
           "enterprise-purple-4": "#3C216A",
+          "enterprise-purple-5": "#BF80FF",
           "blue-alt": "#6EB3F7",
           "blue-2": "#58AFDF",
           "blue-2-light": "#E6F7FF",
@@ -153,6 +154,8 @@ module.exports = {
         tagTile: "3px -2px 8px 0 rgba(42, 42, 66, 0.25)",
         startTiles: "4px 8px 16px rgba(42, 42, 66, 0.25)",
         menuItem: "2px 4px 8px rgba(36, 36, 54, 0.2)",
+        "enterprise-modal":
+          "0px 0.8px 2px rgba(0, 0, 0, 0.064), 0px 2.7px 6.7px rgba(0, 0, 0, 0.096), 0px 12px 30px rgba(0, 0, 0, 0.16)",
         "menu-dark": "0px 0px 0px 4px rgba(48, 52, 80, 0.25)",
         "menu-light": "0px 0px 0px 4px rgba(222, 229, 237, 0.25)",
         "menu-blog-dark": "0px 0px 0px 4px #4449551A",
@@ -428,6 +431,12 @@ module.exports = {
         ],
         "landing-copy-command-hover-bg-light": [
           "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
+        ],
+        "enterprise-copy-command-hover-bg-dark": [
+          "radial-gradient(transparent 30%, rgba(128, 0, 255, 0.30))",
+        ],
+        "enterprise-copy-command-hover-bg-light": [
+          "radial-gradient(transparent 30%, rgba(128, 0, 255, 0.1))",
         ],
         "enterprise-cta-dark": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
