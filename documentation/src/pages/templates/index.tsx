@@ -344,6 +344,29 @@ const dataTemplates: {
     ],
   },
   {
+    to: "/templates/hr-application",
+    title: "HR Management App Example",
+    description:
+      "HR management app example built with Refine, demonstrating how quickly enterprise-level tools can be developed. This template features leave management, employee directory, and expense tracking.",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-hr.png",
+    edition: TemplateEdition.Enterprise,
+    integrations: [
+      {
+        label: "Material UI",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Antd width={16} height={16} {...props} />
+        ),
+      },
+      {
+        label: "Rest API",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <RestWithoutText width={16} height={16} {...props} />
+        ),
+      },
+    ],
+  },
+  {
     to: "/templates/next-js-tailwind",
     title: "E-Commerce Application Storefront",
     description:

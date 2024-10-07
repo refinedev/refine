@@ -53,8 +53,6 @@ The app connected to GraphQL API through Refine's Nestjs-query data provider, an
 
 We built this template to demonstrate how the Refine framework simplifies and speeds up development. It is a valuable resource, offering insights into Refine's best practices and modern development techniques.
 
-The source code of the CRM app is also open-source; feel free to use or inspect it to discover how Refine works. Being production-ready, you can either build your own CRM internal tool using it as a code base or directly implement it as is.
-
 
 ### Key Features:
 
@@ -87,6 +85,62 @@ This CRM app template can be used in for various app requirements like B2B appli
 - Patient Management Systems
 - Health Information Exchange (HIE) Systems
 - Pharmacy Management Systems
+`,
+  },
+  {
+    slug: "hr-application",
+    title: "HR Management App Example",
+    images: [
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-refine-hr.png",
+    ],
+    runOnYourLocalPath: null,
+    github: null,
+    liveDemo: "https://refine-hr.netlify.app",
+    reactPlatform: "Vite",
+    uiFramework: "Material UI",
+    dataProvider: "Nestjsx-CRUD",
+    edition: "Enterprise",
+    authProvider: "Custom",
+    description: `Demonstrating Refine's Capabilities for Building Enterprise-Level HR Management App
+
+This HR management app, built with Refine, is an example designed to showcase the framework’s flexibility and power in creating enterprise-level internal tools like managing employee information, leave requests, polls, and more. 
+
+While not a product, this template demonstrates how quickly and efficiently similar complex apps can be developed using Refine, serving as both a learning resource and inspiration for building your own applications.
+
+### Enterprise Needs in Focus
+
+Our HR app example is designed for enterprise companies needs, which is why its source code is only available to Refine enterprise users. 
+
+Even if you don’t have access to the HR app's source code, you can still explore the capabilities of Refine through our other complete app examples.
+
+### Key Features:
+
+- **Leave Management**: Track and assign annual, sick, and casual leave, with options for requesting time off via a calendar interface.
+- **Employee Directory**: Visualize organizational hierarchies and manage employee details with ease.
+- **Expense Management**: Submit and manage expense requests for travel, training, meals, and more.
+- **Polls and Surveys**: Conduct employee surveys and collect valuable insights on benefits and company policies.
+- **Calendar Integration**: View and manage time off and upcoming events in an easy-to-use calendar format.
+- **Notifications**: Receive real-time notifications on leave approvals, expense status, and important company announcements.
+
+### Suitable for Internal HR Tool-Oriented Needs
+
+This HR app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
+
+- **Recruitment and Applicant Tracking Systems (ATS)**  
+- **Employee Engagement Platforms**  
+- **Compensation and Benefits Management Tools**  
+- **Workforce Planning and Time Tracking Solutions**  
+- **Compliance Management Systems**  
+- **Employee Self-Service Portals**  
+- **Succession Planning Tools**  
+- **Employee Wellness and Assistance Programs**  
+- **HR Analytics and Reporting Tools**  
+- **Performance Review and Incentive Management Systems**  
+- **Training and Development Management**  
+- **Onboarding and Offboarding Solutions**  
+- **Payroll Management Tools**
+
+By using this app as a starting point, companies can build a customized HR platform that suits their specific internal processes, speeding up development and reducing the complexity of building from scratch.
 `,
   },
   {
