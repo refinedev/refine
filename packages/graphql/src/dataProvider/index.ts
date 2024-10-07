@@ -1,18 +1,15 @@
-import type { BaseRecord, CreateResponse, DataProvider } from "@refinedev/core";
+import type { BaseRecord, DataProvider } from "@refinedev/core";
 import type { Client } from "@urql/core";
-import pluralize from "pluralize";
-import camelCase from "camelcase";
-import gqlTag from "graphql-tag";
-import { getOperationFields, isMutation } from "../utils";
-import { poptions } from "./newOptions";
+import { isMutation } from "../utils";
+import { defaultOptions, type GraphQLDataProviderOptions } from "./options";
 
 const dataProvider = (
   client: Client,
-  options: typeof poptions = poptions,
+  options: GraphQLDataProviderOptions = defaultOptions,
 ): Required<DataProvider> => {
   return {
     create: async (params) => {
-      const { variables, meta } = params;
+      const { meta } = params;
 
       const gqlOperation = meta?.gqlMutation ?? meta?.gqlQuery;
 
@@ -28,7 +25,7 @@ const dataProvider = (
 
       return {
         data,
-      } as any;
+      };
     },
     createMany: async (params) => {
       const { meta } = params;
@@ -46,70 +43,55 @@ const dataProvider = (
 
       return {
         data: options.createMany.dataMapper(response, params),
-      } as any;
+      };
     },
-    getOne: async ({ resource, id, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelResource = camelCase(singularResource);
+    getOne: async (params) => {
+      const { id, meta } = params;
 
-      const operation = meta?.operation ?? camelResource;
       const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
-      const pascalOperation = camelCase(operation, {
-        pascalCase: true,
-      });
 
-      if (gqlOperation) {
-        let query = gqlOperation;
-
-        if (isMutation(gqlOperation)) {
-          const stringFields = getOperationFields(gqlOperation);
-
-          query = gqlTag`
-                        query Get${pascalOperation}($id: $uuid!) {
-                            ${operation}(id: $id) {
-                            ${stringFields}
-                            }
-                        }
-                    `;
-        }
-
-        const response = await client
-          .query(query, {
-            id,
-          })
-          .toPromise();
-
-        return {
-          data: response.data[operation],
-        };
+      if (!gqlOperation) {
+        throw new Error("Operation is required.");
       }
 
-      return { data: {} };
+      let query = gqlOperation;
+
+      if (isMutation(gqlOperation)) {
+        query = options.getOne.convertMutationToQuery(params);
+      }
+
+      const response = await client
+        .query(query, options.getOne.buildVariables(params))
+        .toPromise();
+
+      return {
+        data: options.getOne.dataMapper(response, params),
+      };
     },
     getList: async (params) => {
       const { meta } = params;
+
+      if (!meta?.gqlQuery) {
+        throw new Error("Operation is required.");
+      }
 
       const paging = options.getList.buildPagination(params);
       const sorting = options.getList.buildSorters(params);
       const filter = options.getList.buildFilters(params);
 
-      if (meta?.gqlQuery) {
-        const response = await client
-          .query(meta.gqlQuery, {
-            sorting,
-            filter,
-            paging,
-            ...meta?.variables,
-          })
-          .toPromise();
+      const response = await client
+        .query(meta.gqlQuery, {
+          sorting,
+          filter,
+          paging,
+          ...meta?.variables,
+        })
+        .toPromise();
 
-        return {
-          data: options.getList.dataMapper(response, params),
-          total: options.getList.countMapper(response, params),
-        };
-      }
-
-      return { data: [], total: 0 };
+      return {
+        data: options.getList.dataMapper(response, params),
+        total: options.getList.countMapper(response, params),
+      };
     },
     getMany: async (params) => {
       const { meta } = params;
@@ -119,9 +101,7 @@ const dataProvider = (
       }
 
       const response = await client
-        .query(meta.gqlQuery, {
-          filter: options.getMany.buildFilter(params),
-        })
+        .query(meta.gqlQuery, { filter: options.getMany.buildFilter(params) })
         .toPromise();
 
       return {
@@ -144,37 +124,18 @@ const dataProvider = (
         data: options.update.dataMapper(response, params),
       };
     },
-    updateMany: async ({ resource, ids, variables, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelUpdateName = camelCase(`update-${singularResource}`);
+    updateMany: async (params) => {
+      const { meta } = params;
 
-      const operation = meta?.operation ?? camelUpdateName;
-      const inputType = meta?.operation ?? `${camelUpdateName}Input`;
-
-      if (meta?.gqlMutation) {
-        const response = await Promise.all(
-          ids.map(async (id) => {
-            if (!meta?.gqlMutation) return null;
-
-            const result = await client
-              .mutation(meta.gqlMutation, {
-                input: {
-                  value: { where: { id }, data: variables },
-                  type: inputType,
-                },
-              })
-              .toPromise();
-
-            return result.data[operation][singularResource];
-          }),
-        );
-
-        return {
-          data: response,
-        };
+      if (!meta?.gqlMutation) {
+        throw new Error("Operation is required.");
       }
 
-      return { data: [] };
+      const response = await client
+        .mutation(meta.gqlMutation, options.updateMany.buildVariables(params))
+        .toPromise();
+
+      return { data: options.updateMany.dataMapper(response, params) };
     },
     deleteOne: async (params) => {
       const { meta } = params;
@@ -183,45 +144,28 @@ const dataProvider = (
         throw new Error("Operation is required.");
       }
 
-      if (meta?.gqlMutation) {
-        const response = await client
-          .mutation(meta.gqlMutation, options.deleteOne.buildVariables(params))
-          .toPromise();
+      const response = await client
+        .mutation(meta.gqlMutation, options.deleteOne.buildVariables(params))
+        .toPromise();
 
-        return {
-          data: options.deleteOne.dataMapper(response, params),
-        } as any;
-      }
+      return {
+        data: options.deleteOne.dataMapper(response, params),
+      };
     },
-    deleteMany: async ({ resource, ids, meta }) => {
-      const singularResource = pluralize.singular(resource);
-      const camelDeleteName = camelCase(`delete-${singularResource}`);
+    deleteMany: async (params) => {
+      const { meta } = params;
 
-      const operation = meta?.operation ?? camelDeleteName;
-
-      if (meta?.gqlMutation) {
-        const response = await Promise.all(
-          ids.map(async (id) => {
-            if (!meta?.gqlMutation) return null;
-
-            const result = await client
-              .mutation(meta.gqlMutation, {
-                input: {
-                  where: { id },
-                },
-              })
-              .toPromise();
-
-            return result.data[operation][singularResource];
-          }),
-        );
-
-        return {
-          data: response,
-        };
+      if (!meta?.gqlMutation) {
+        throw new Error("Operation is required.");
       }
 
-      return { data: [] };
+      const response = await client
+        .mutation(meta.gqlMutation, options.deleteMany.buildVariables(params))
+        .toPromise();
+
+      return {
+        data: options.deleteMany.dataMapper(response, params),
+      };
     },
     custom: async ({ url, meta }) => {
       if (meta?.gqlMutation) {
@@ -240,10 +184,7 @@ const dataProvider = (
         return { data: response.data };
       }
 
-      // if raw ?? restful one for example.
       return { data: {} };
-
-      // throw new Error("GraphQL operation is required.");
     },
     getApiUrl: () => {
       throw Error("Not implemented on refine-graphql data provider.");

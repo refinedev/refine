@@ -1,115 +1,208 @@
 import type {
   BaseRecord,
-  CreateParams,
-  CreateResponse,
-  DeleteOneParams,
-  DeleteOneResponse,
+  CreateManyParams,
+  DeleteManyParams,
   GetListParams,
-  GetListResponse,
   GetManyParams,
-  GetManyResponse,
   GetOneParams,
-  GetOneResponse,
-  UpdateParams,
-  UpdateResponse,
+  UpdateManyParams,
+  DataProvider,
 } from "@refinedev/core";
-import camelCase from "camelcase";
-import pluralize from "pluralize";
+import camelcase from "camelcase";
+import { singular } from "pluralize";
+import { buildFilters, getOperationFields } from "../utils";
+import { gql } from "@urql/core";
 
-type GraphQLGetDataFunctionParams = { response: BaseRecord } & (
-  | { method: "getList"; params: GetListParams }
-  | { method: "create"; params: CreateParams }
-  | { method: "update"; params: UpdateParams }
-  | { method: "getOne"; params: GetOneParams }
-  | { method: "deleteOne"; params: DeleteOneParams }
-  | { method: "getMany"; params: GetManyParams }
-);
+export type GraphQLDataProviderOptions<TVariables extends {} = {}> =
+  typeof defaultOptions;
 
-type ResponseMap = {
-  getList: GetListResponse<any>["data"];
-  getOne: GetOneResponse<any>["data"];
-  getMany: GetManyResponse<any>["data"];
-  create: CreateResponse<any>["data"];
-  update: UpdateResponse<any>["data"];
-  deleteOne: DeleteOneResponse<any>["data"];
-};
+export const defaultOptions = {
+  create: {
+    dataMapper: (
+      response: BaseRecord,
+      params: DataProvider["create"]["arguments"],
+    ) => {
+      const key = `createOne${camelcase(singular(params.resource), {
+        pascalCase: true,
+      })}`;
 
-type InferResponse<T extends GraphQLGetDataFunctionParams> = T extends {
-  method: infer M;
-}
-  ? M extends keyof ResponseMap
-    ? ResponseMap[M]
-    : never
-  : never;
+      return response.data[key];
+    },
+    buildVariables: (params: DataProvider["create"]["arguments"]) => {
+      return {
+        input: { [singular(params.resource)]: params.variables },
+      };
+    },
+  },
+  createMany: {
+    dataMapper: (response: BaseRecord, params: CreateManyParams) => {
+      const key = `createMany${camelcase(params.resource, {
+        pascalCase: true,
+      })}`;
 
-type GraphQLGetDataFunction = (
-  params: GraphQLGetDataFunctionParams,
-) => InferResponse<typeof params>;
+      return response.data[key];
+    },
+    buildVariables: (params: CreateManyParams) => {
+      return {
+        input: {
+          [camelcase(params.resource)]: params.variables,
+        },
+      };
+    },
+  },
+  getOne: {
+    dataMapper: (response: BaseRecord, params: GetOneParams) => {
+      const key = camelcase(singular(params.resource));
 
-type GraphQLGetCountFunctionParams = {
-  response: Record<string, any>;
-  params: GetListParams;
-};
+      return response.data[key];
+    },
+    buildVariables: (params: GetOneParams) => {
+      return {
+        id: params.id,
+      };
+    },
+    // Besides useOne hook, getOne hook is also consumed by `useForm`.
+    // useForm hook has an optional gqlQuery field, we may only get `gqlMutation`.
+    // For this reason, we need to convert mutation to query to get initial data on edit.
+    convertMutationToQuery: (params: GetOneParams) => {
+      const { resource, meta } = params;
+      const gqlOperation = meta?.gqlQuery ?? meta?.gqlMutation;
 
-type GraphQLGetCountFunction = (
-  params: GraphQLGetCountFunctionParams,
-) => number;
+      if (!gqlOperation) {
+        throw new Error("Operation is required.");
+      }
 
-export type GraphQLDataProviderOptions = Partial<{
-  getData: GraphQLGetDataFunction;
-  getCount: GraphQLGetCountFunction;
-}>;
+      const stringFields = getOperationFields(gqlOperation);
 
-export const defaultGetDataFn: GraphQLGetDataFunction = ({
-  method,
-  params,
-  response,
-}) => {
-  const singularResource = pluralize.singular(params.resource);
+      const pascalCaseOperation = camelcase(singular(resource), {
+        pascalCase: true,
+      });
 
-  switch (method) {
-    case "create": {
-      const camelCreateName = camelCase(`create-${singularResource}`);
-      const operation = params.meta?.operation ?? camelCreateName;
+      const operation = camelcase(singular(resource));
 
-      return response[operation][singularResource];
-    }
-    case "deleteOne": {
-      const camelDeleteName = camelCase(`delete-${singularResource}`);
+      const query = gql`
+        query Get${pascalCaseOperation}($id: ID!) {
+          ${operation}(id: $id) {
+            ${stringFields}
+          }
+        }
+      `;
 
-      const operation = params.meta?.operation ?? camelDeleteName;
+      return query;
+    },
+  },
+  getList: {
+    dataMapper: (response: BaseRecord, params: GetListParams) => {
+      return response.data[params.resource].nodes;
+    },
+    countMapper: (response: BaseRecord, params: GetListParams) => {
+      return response.data[params.resource].totalCount;
+    },
+    buildSorters: (params: GetListParams) => {
+      const { sorters = [] } = params;
 
-      return response[operation][singularResource];
-    }
-    case "getList": {
-      const camelResource = camelCase(params.resource);
-      const operation = params.meta?.operation ?? camelResource;
+      return sorters.map((s) => ({
+        field: s.field,
+        direction: s.order.toUpperCase(),
+      }));
+    },
+    buildFilters: (params: GetListParams) => buildFilters(params.filters),
+    buildPagination: (params: GetListParams) => {
+      const { pagination = {} } = params;
 
-      return response[operation] ?? [];
-    }
-    case "getOne": {
-      const camelResource = camelCase(singularResource);
+      // maximum value of 32 bit signed integer
+      if (pagination.mode === "off") return { limit: 2147483647 };
 
-      const operation = params.meta?.operation ?? camelResource;
+      const { pageSize = 10, current = 1 } = pagination;
 
-      return response[operation];
-    }
-    case "update": {
-      const camelUpdateName = camelCase(`update-${singularResource}`);
-      const operation = params.meta?.operation ?? camelUpdateName;
+      return {
+        limit: pageSize,
+        offset: (current - 1) * pageSize,
+      };
+    },
+  },
+  getMany: {
+    buildFilter: (params: GetManyParams) => {
+      return { id: { in: params.ids } };
+    },
+    dataMapper: (response: BaseRecord, params: GetManyParams) => {
+      const key = camelcase(params.resource);
 
-      return response[operation][singularResource];
-    }
-  }
-};
+      return response.data[key].nodes;
+    },
+  },
+  update: {
+    dataMapper: (
+      response: BaseRecord,
+      params: DataProvider["update"]["arguments"],
+    ) => {
+      const key = `updateOne${camelcase(singular(params.resource), {
+        pascalCase: true,
+      })}`;
 
-export const defaultGetCountFn: GraphQLGetCountFunction = ({
-  params,
-  response,
-}): number => {
-  const camelResource = camelCase(params.resource);
+      return response.data[key];
+    },
+    buildVariables: (params: DataProvider["update"]["arguments"]) => {
+      return {
+        id: params.id,
+        update: params.variables,
+      };
+    },
+  },
+  updateMany: {
+    dataMapper: (response: BaseRecord, params: UpdateManyParams) => {
+      const pascalResource = camelcase(params.resource, {
+        pascalCase: true,
+      });
 
-  const operation = params.meta?.operation ?? camelResource;
+      const key = `updateMany${pascalResource}`;
+      return response.data[key];
+    },
+    buildVariables: (params: UpdateManyParams) => {
+      const { ids, variables } = params;
 
-  return response[operation]?.totalCount ?? 0;
+      return { input: { filter: { id: { in: ids } }, update: variables } };
+    },
+  },
+  deleteOne: {
+    dataMapper: (
+      response: BaseRecord,
+      params: DataProvider["deleteOne"]["arguments"],
+    ) => {
+      const pascalResource = camelcase(singular(params.resource), {
+        pascalCase: true,
+      });
+
+      const key = `deleteOne${pascalResource}`;
+
+      return response.data[key];
+    },
+    buildVariables: (params: DataProvider["deleteOne"]["arguments"]) => {
+      return {
+        input: { id: params.id },
+      };
+    },
+  },
+  deleteMany: {
+    dataMapper: (response: BaseRecord, params: DeleteManyParams) => {
+      const pascalResource = camelcase(params.resource, {
+        pascalCase: true,
+      });
+
+      const key = `deleteMany${pascalResource}`;
+
+      return response.data[key];
+    },
+    buildVariables: (params: DeleteManyParams) => {
+      const { ids } = params;
+
+      return {
+        input: {
+          filter: {
+            id: { in: ids },
+          },
+        },
+      };
+    },
+  },
 };
