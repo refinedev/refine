@@ -4,11 +4,11 @@ description: We will discuss what React server components are as well as how to 
 slug: react-server-components
 authors: peter_osah
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-09-react-server-components/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-09-react-server-components/social-3.png
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 25, 2024 to add new usecases and clear definition for React Server Components_**
+**_This article was last updated on October 07, 2024 to include sections on Hydration, Performance Benefits, and Error Handling for React Server Components._**
 
 ## Introduction
 
@@ -23,9 +23,11 @@ Steps we'll follow:
 - [Differences between React server components and client components](#differences-between-react-server-components-and-client-components)
 - [Differences between React server components and server-side rendering(SSR) in React](#differences-between-react-server-components-and-server-side-renderingssr-in-react)
 - [Using server components in a React application](#using-server-components-in-a-react-application)
+- [Error Boundaries in React Server Components](#error-boundaries-in-react-server-components)
 - [When to use React server components?](#when-to-use-react-server-components)
 - [Using server components in a Next.js application](#using-server-components-in-a-nextjs-application)
 - [Pros and Cons of React server components](#pros-and-cons-of-react-server-components)
+- [Bonus: Hydration and React Server Components](#bonus-hydration-and-react-server-components)
 
 ## What are React server components?
 
@@ -207,12 +209,12 @@ const PostEditor = ({ blogPost }) => {
 
   return (
     <div>
-      <div className="md:mx-auto px-6 md:px-0 mt-10 md:w-9/12">
+      <div className="mt-10 px-6 md:mx-auto md:w-9/12 md:px-0">
         <h1 className="my-4 text-center">Create Post</h1>
 
         <form onSubmit={submitPost}>
           <div className="mt-8">
-            <label className="text-white mb-2"> Title </label>
+            <label className="mb-2 text-white"> Title </label>
             <input
               type="text"
               placeholder=""
@@ -223,7 +225,7 @@ const PostEditor = ({ blogPost }) => {
           </div>
 
           <div className="mt-8">
-            <label className="text-white mb-2">Add your Blog content</label>
+            <label className="mb-2 text-white">Add your Blog content</label>
             <textarea
               value={post.content}
               required
@@ -231,10 +233,10 @@ const PostEditor = ({ blogPost }) => {
             ></textarea>
           </div>
 
-          <div className="flex justify-end mt-8">
+          <div className="mt-8 flex justify-end">
             <button
               type="submit"
-              className="px-4 py-4 bg-[#0e9f64] c-white border-radius"
+              className="c-white border-radius bg-[#0e9f64] px-4 py-4"
             >
               Create Post
             </button>
@@ -284,6 +286,39 @@ const ServerComponent1 = () => {
   );
 };
 ```
+
+## Error Boundaries in React Server Components
+
+Some thoughts concerning error handling in React Server Components, as we work with them quite a bit. Here are some key things to keep in mind:
+
+### Catching Errors on the Server Level
+
+The beauty of it is that in RSCs, we can handle errors on the server before they even reach the client. Great, because at least we can return either the fallback UI or the error message and not affect the client-side code. We just have to make sure to handle API or database failures with aplomb so the user doesn’t see broken components.
+For instance, on an RSC, which fetches data from a random API, we can wrap our data fetch inside a try-catch block:
+
+```tsx
+const BlogPost = async ({ id }) => {
+  try {
+    const post = await db.posts.get(id);
+    return <div>{post.title}</div>;
+  } catch (error) {
+    console.error("Error fetching post:", error);
+    return <div>Something went wrong. Please try again later.</div>;
+  }
+};
+```
+
+#### User Feedback
+
+It is always good to return users clear feedback when something goes wrong. Even though things are handled on the server side by the RSCs, we should always return a friendly message on the UI in case of an error; that way they know something went wrong, and we are working on it.
+
+#### Logging and Monitoring
+
+And, of course, log the errors server-side! Since RSCs run on the server, it’s a heck of a lot easier to track errors and performance metrics. We can plug in logging services like Sentry to automatically detect and report issues to us. That gives us far better insight into what’s actually going wrong and helps us fix issues much quicker.
+
+#### Fallbacks for Non-Critical Data
+
+For non-vital areas of the UI, we can render fallback content or even loading states. If the data is not important, instead of rendering an error, we could always render a default component until the issue is resolved. Here, at least the app is not fully broken, and users can still interact with it for core functionalities.
 
 ## When to use React server components?
 
@@ -349,12 +384,12 @@ const PostEditor = ({ blogPost }) => {
 
   return (
     <div>
-      <div className="md:mx-auto px-6 md:px-0 mt-10 md:w-9/12">
+      <div className="mt-10 px-6 md:mx-auto md:w-9/12 md:px-0">
         <h1 className="my-4 text-center">Create Post</h1>
 
         <form onSubmit={submitPost}>
           <div className="mt-8">
-            <label className="text-white mb-2"> Title </label>
+            <label className="mb-2 text-white"> Title </label>
             <input
               type="text"
               placeholder=""
@@ -365,7 +400,7 @@ const PostEditor = ({ blogPost }) => {
           </div>
 
           <div className="mt-8">
-            <label className="text-white mb-2">Add your Blog content</label>
+            <label className="mb-2 text-white">Add your Blog content</label>
             <textarea
               value={post.content}
               required
@@ -373,10 +408,10 @@ const PostEditor = ({ blogPost }) => {
             ></textarea>
           </div>
 
-          <div className="flex justify-end mt-8">
+          <div className="mt-8 flex justify-end">
             <button
               type="submit"
-              className="px-4 py-4 bg-[#0e9f64] c-white border-radius"
+              className="c-white border-radius bg-[#0e9f64] px-4 py-4"
             >
               Create Post
             </button>
@@ -406,6 +441,139 @@ In this section, we will explore the pros and cons of React Server Components.
 
 - You can only use React Server components with meta React frameworks. At the moment, you can only use it with Next.js. You can't use it with vanilla React.
 - RSCs can be complex, unintuitive and difficult to get right. RSCs introduce a new mental model. The shift in paradigm comes with significant learning overhead.
+
+## Bonus: Hydration and React Server Components
+
+In React, hydration means attaching React’s event listeners to already rendered HTML on the client side in order to make it interactive. React Server Components (RSCs) are rendered only on the server, so they don’t need hydration. Client components, however, require hydration since they handle interactions such as clicks and inputs.
+
+### Basic Hydration Setup
+
+For interactive components, they must be client components. React will hydrate them once the page loads. Server components, on the other hand, generate only HTML and don’t have any interactive behavior, so they aren’t hydrated.
+
+Here’s an example:
+
+```tsx
+// ServerComponent.tsx - This won't be hydrated
+export const ServerComponent = async () => {
+  const data = await fetchSomeData();
+
+  return (
+    <div>
+      <h1>{data.title}</h1>
+      <p>{data.description}</p>
+    </div>
+  );
+};
+```
+
+This ServerComponent is rendered on the server, and no JavaScript is sent to the client for this component. It outputs static HTML and is never hydrated.
+
+```tsx
+// ClientComponent.tsx - This will be hydrated
+"use client"; // Flagging it as a client component
+
+import { useState } from "react";
+
+export const ClientComponent = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>Increment: {count}</button>
+    </div>
+  );
+};
+```
+
+The ClientComponent is marked as ‘use client’, so React will hydrate this component on the client, making it interactive—updating the count when the button is clicked.
+
+### Hydration in Next.js with Server and Client Components
+
+By default, components in a Next.js app are server components, and client components must be explicitly declared. Hydration occurs only for client components. Here’s an example using both server and client components:
+
+```tsx
+// app/BlogPage.tsx - Next.js Example using both Server and Client components
+
+import { ServerComponent } from "./ServerComponent";
+import { ClientComponent } from "./ClientComponent";
+
+export default function BlogPage() {
+  return (
+    <div>
+      {/* ServerComponent will be rendered as static HTML on the server */}
+      <ServerComponent />
+
+      {/* ClientComponent will be hydrated on the client for interactivity */}
+      <ClientComponent />
+    </div>
+  );
+}
+```
+
+In this example:
+
+ServerComponent is rendered as static HTML on the server.
+ClientComponent is hydrated on the client after the page loads, making the button interactive.
+
+### How Hydration Works: A Deeper Look
+
+React Server Components don’t send any JavaScript to the client. The server provides fully-rendered HTML, and hydration applies only to client components, which handle things like button clicks and form submissions.
+
+Here’s how hydration works for a client component:
+
+- 1. The static HTML for the client component is already rendered on the page.
+- 2. After React’s JavaScript bundle is downloaded, React looks for the existing HTML markup and attaches event listeners to the DOM nodes.
+- 3. Now, the component becomes interactive.
+
+```tsx
+// ClientComponent.tsx
+"use client";
+
+import { useState } from "react";
+
+export const Counter = () => {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+```
+
+In the example above:
+
+When the page loads, React will hydrate the Counter component, attaching the onClick handler to the button. The button becomes interactive after hydration.
+
+### Why Hydration Is Not Needed for Server Components
+
+Server components are static and don’t include any logic for interactivity. They don’t require hydration because they don’t run on the client. This reduces the amount of JavaScript the client has to download, improving performance.
+
+```tsx
+// ServerComponent.tsx - Non-interactive server component
+
+export const StaticContent = async () => {
+  const data = await fetch("https://api.example.com/data");
+  const result = await data.json();
+
+  return (
+    <div>
+      <h1>{result.title}</h1>
+      <p>{result.description}</p>
+    </div>
+  );
+};
+```
+
+The ServerComponent fetches data and renders it as HTML on the server. It doesn’t include any JavaScript that needs to be sent to the client.
+
+### Improving Performance with Reduced Hydration
+
+One of the key performance benefits of React Server Components is the reduced need for hydration. Since server components don’t include JavaScript, the client has less work to do, and page load times are faster.
+
+To avoid excessive hydration, we should only use client components when necessary (e.g., for interactivity like forms and buttons). Server components should handle static content or non-interactive logic to keep the client bundle small.
 
 ## Conclusion.
 
