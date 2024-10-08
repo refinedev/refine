@@ -5,7 +5,7 @@ module.exports = {
     items: [
       {
         group: "Providers",
-        label: "Strapi V4",
+        label: "Strapi v4",
         requiredPackages: ["axios@1.6.2, qs@6.10.1"],
         files: [
           {
