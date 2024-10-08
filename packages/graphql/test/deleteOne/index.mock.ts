@@ -1,117 +1,31 @@
 import nock from "nock";
 
-nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
+nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
   .post("/graphql", {
+    operationName: "DeleteOneBlogPost",
     query:
-      "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id, title }\n  }\n    }",
-    variables: { input: { where: { id: "43" } } },
+      "mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n  deleteOneBlogPost(input: $input) {\n    id\n    title\n  }\n}",
+    variables: { input: { id: "42" } },
   })
-  .reply(200, { data: { deletePost: { post: { id: "43", title: "foo" } } } }, [
-    "Server",
-    "nginx/1.17.10",
-    "Date",
-    "Fri, 17 Sep 2021 08:58:32 GMT",
-    "Content-Type",
-    "application/json",
-    "Content-Length",
-    "59",
-    "Connection",
-    "close",
-    "Vary",
-    "Origin",
-    "Strict-Transport-Security",
-    "max-age=31536000; includeSubDomains",
-    "X-Frame-Options",
-    "SAMEORIGIN",
-    "X-Powered-By",
-    "Strapi <strapi.io>",
-    "X-Response-Time",
-    "85ms",
-  ]);
-
-nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-  .post("/graphql", {
-    query:
-      "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id }\n  }\n    }",
-    variables: { input: { where: { id: "48" } } },
-  })
-  .reply(200, { data: { deletePost: { post: { id: "48" } } } }, [
-    "Server",
-    "nginx/1.17.10",
-    "Date",
-    "Fri, 17 Sep 2021 08:39:15 GMT",
-    "Content-Type",
-    "application/json",
-    "Content-Length",
-    "45",
-    "Connection",
-    "close",
-    "Vary",
-    "Origin",
-    "Strict-Transport-Security",
-    "max-age=31536000; includeSubDomains",
-    "X-Frame-Options",
-    "SAMEORIGIN",
-    "X-Powered-By",
-    "Strapi <strapi.io>",
-    "X-Response-Time",
-    "70ms",
-  ]);
-
-nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-  .post("/graphql", {
-    query:
-      "mutation ($input: deletePostInput) {\n      deletePost (input: $input) {\n    post  { id, title }\n  }\n    }",
-    variables: { input: { where: { id: "43" } } },
-  })
-  .reply(200, { data: { deletePost: { post: { id: "43", title: "foo" } } } }, [
-    "Server",
-    "nginx/1.17.10",
-    "Date",
-    "Fri, 17 Sep 2021 08:58:32 GMT",
-    "Content-Type",
-    "application/json",
-    "Content-Length",
-    "59",
-    "Connection",
-    "close",
-    "Vary",
-    "Origin",
-    "Strict-Transport-Security",
-    "max-age=31536000; includeSubDomains",
-    "X-Frame-Options",
-    "SAMEORIGIN",
-    "X-Powered-By",
-    "Strapi <strapi.io>",
-    "X-Response-Time",
-    "85ms",
-  ]);
-
-nock("https://api.strapi.refine.dev:443", { encodedQueryParams: true })
-  .post("/graphql", {
-    query:
-      "mutation ($input: deletePostInput!) {\n  deletePost(input: $input) {\n    post {\n      id\n    }\n  }\n}\n",
-    variables: { input: { where: { id: "10045" } } },
-  })
-  .reply(200, { data: { deletePost: { post: { id: "10045" } } } }, [
-    "Date",
-    "Tue, 12 Mar 2024 21:36:15 GMT",
-    "Content-Type",
-    "application/json",
-    "Content-Length",
-    "359",
-    "Connection",
-    "close",
-    "Vary",
-    "Accept-Encoding",
-    "Vary",
-    "Origin",
-    "Strict-Transport-Security",
-    "max-age=31536000; includeSubDomains",
-    "X-Frame-Options",
-    "SAMEORIGIN",
-    "X-Powered-By",
-    "Strapi <strapi.io>",
-    "X-Response-Time",
-    "16ms",
-  ]);
+  .reply(
+    200,
+    {
+      data: {
+        deleteOneBlogPost: {
+          id: null,
+          title: "Id cupiditate veritatis ea odio totam at deleniti.",
+        },
+      },
+    },
+    {
+      "access-control-allow-origin": "*",
+      "cache-control": "no-store",
+      connection: "keep-alive",
+      "content-length": "104",
+      "content-type": "application/graphql-response+json; charset=utf-8",
+      date: "Tue, 08 Oct 2024 14:08:33 GMT",
+      etag: 'W/"68-TDuJj7/vFePG+kD7NzTYthPx/TU"',
+      "strict-transport-security": "max-age=15724800; includeSubDomains",
+      "x-powered-by": "Express",
+    },
+  );

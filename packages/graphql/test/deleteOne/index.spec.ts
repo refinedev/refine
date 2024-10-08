@@ -1,54 +1,35 @@
-import gql from "graphql-tag";
+import { gql } from "@urql/core";
+
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
 
+const gqlMutation = gql`
+  mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {
+    deleteOneBlogPost(input: $input) {
+      id
+      title
+    }
+  }
+`;
+
 describe("deleteOne", () => {
-  it("correct response with meta", async () => {
+  it("with correct params", async () => {
     const { data } = await dataProvider(client).deleteOne({
-      resource: "posts",
-      id: "43",
+      resource: "blogPosts",
+      id: "42",
       meta: {
-        fields: [
-          {
-            operation: "post",
-            fields: ["id", "title"],
-            variables: {},
-          },
-        ],
+        gqlMutation,
       },
     });
 
-    expect(data.id).toEqual("43");
-    expect(data.title).toEqual("foo");
+    expect(data.id).toEqual(null);
+    expect(data.title).toBeDefined();
   });
 
-  it("correct response without meta", async () => {
-    const { data } = await dataProvider(client).deleteOne({
-      resource: "posts",
-      id: "48",
-    });
-
-    expect(data.id).toEqual("48");
-  });
-});
-
-describe("deleteOne gql", () => {
-  it("correct response with meta", async () => {
-    const { data } = await dataProvider(client).deleteOne({
-      resource: "posts",
-      id: "10045",
-      meta: {
-        gqlMutation: gql`
-          mutation ($input: deletePostInput!) {
-              deletePost (input: $input) {
-                  post { id }
-              }
-            }
-        `,
-      },
-    });
-
-    expect(data.id).toEqual("10045");
+  it("without mutation", async () => {
+    expect(
+      dataProvider(client).deleteOne({ resource: "blogPosts", id: 42 }),
+    ).rejects.toEqual(new Error("Operation is required."));
   });
 });

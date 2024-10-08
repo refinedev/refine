@@ -41,8 +41,6 @@ describe("createMany", () => {
       },
     });
 
-    console.log("DATA ", data);
-
     expect(data[0].title).toEqual("foo1");
     expect(data[0].content).toEqual("bar1");
     expect(data[0].category.id).toEqual("1");

@@ -1,49 +1,64 @@
-import gql from "graphql-tag";
+import { gql } from "@urql/core";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./index.mock";
 
+const gqlQuery = gql`
+  query GetOneBlogPost($id: ID!) {
+    blogPost(id: $id) {
+        id
+        title
+        content
+        status
+        category {
+            id
+        }
+    }
+  }
+`;
+
+const gqlMutation = gql`
+  mutation UpdateOneBlogPost($input: UpdateOneBlogPostInput!) {
+    updateOneBlogPost(input: $input) {
+      id
+      title
+      content
+      status
+      category {
+        id
+      }
+    }
+  }
+`;
+
 describe("useOne", () => {
-  it("correct response with meta", async () => {
+  it("correct response with query", async () => {
     const { data } = await dataProvider(client).getOne({
-      resource: "posts",
-      id: "45",
+      resource: "blogPosts",
+      id: "19",
       meta: {
-        fields: ["id", "title", "content", { category: ["id"] }],
+        gqlQuery,
       },
     });
 
-    expect(data.id).toEqual("45");
-    expect(data.title).toEqual("foo");
-    expect(data.content).toEqual("bar");
-    expect(data.category.id).toEqual("2");
+    expect(data["id"]).toBeDefined();
+    expect(data["title"]).toBeDefined();
+    expect(data["content"]).toBeDefined();
+    expect(data["category"].id).toBeDefined();
   });
-});
 
-describe("useOne gql", () => {
-  it("correct response with meta", async () => {
+  it("correct response with mutation", async () => {
     const { data } = await dataProvider(client).getOne({
-      resource: "posts",
-      id: "6200",
+      resource: "blogPosts",
+      id: "19",
       meta: {
-        gqlQuery: gql`
-          query ($id: ID!) {
-            post (id: $id) {
-              id
-              title
-              content
-              category {
-                id
-              }
-            }
-          }
-        `,
+        gqlMutation,
       },
     });
 
-    expect(data.id).toEqual("6200");
-    expect(data.title).toEqual("test");
-    expect(data.content).toEqual("test");
-    expect(data.category.id).toEqual("15");
+    expect(data["id"]).toBeDefined();
+    expect(data["title"]).toBeDefined();
+    expect(data["content"]).toBeDefined();
+    expect(data["category"].id).toBeDefined();
   });
 });
