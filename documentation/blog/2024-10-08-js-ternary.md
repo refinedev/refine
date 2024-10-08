@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-15-js-ternary
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 24, 2024 to add more detailed information and implementation of JavaScript Ternary Operator_**
+**_TThis article was last updated on October 08, 2024 to include deeper performance considerations, technical insights on how JavaScript engines process the Ternary Operator, and examples illustrating the use of the operator in complex scenarios such as handling asynchronous operations._**
 
 ## Introduction
 
@@ -16,6 +16,7 @@ This post is about the Ternary Operator in JavaScript. We discuss what the terna
 
 Steps we'll cover:
 
+- [Introduction](#introduction)
 - [What is JavaScript Ternary Operator ?](#what-is-javascript-ternary-operator-)
 - [How JS Ternary Operator Works](#how-js-ternary-operator-works)
   - [What are Truthy/Falsy Values ?](#what-are-truthyfalsy-values-)
@@ -25,7 +26,14 @@ Steps we'll cover:
   - [Handling Nullish Values with JS Ternary Operator](#handling-nullish-values-with-js-ternary-operator)
   - [JavaScript Ternary Operator: When The Return Value Rules](#javascript-ternary-operator-when-the-return-value-rules)
   - [Chaining Ternary Operators in JavaScript](#chaining-ternary-operators-in-javascript)
+- [Bonus: Quick Ternary Operator Tips for Beginners](#bonus-quick-ternary-operator-tips-for-beginners)
+- [Performance considerations](#performance-considerations)
+  - [Performance Comparison: if/else vs. Ternary Operator](#performance-comparison-ifelse-vs-ternary-operator)
+    - [using if/else](#using-ifelse)
+    - [Using Ternary Operator](#using-ternary-operator)
+    - [Benchmark Example](#benchmark-example)
 - [JavaScript Ternary Operator Best Practices](#javascript-ternary-operator-best-practices)
+- [Summary](#summary)
 
 ## What is JavaScript Ternary Operator ?
 
@@ -212,6 +220,124 @@ console.log(grade(10)); // F
 ```
 
 Here, we chained an additional conditional operator into the third operand at each level.
+
+## Bonus: Quick Ternary Operator Tips for Beginners
+
+I wanted to share a few quick insights about the JavaScript Ternary Operator that might be useful:
+
+1. Using Ternary Operator for Short-Circuiting Logic
+
+Sometimes we use ternary operators to simplify code and short-circuit logic. It’s a quick way to check a condition and return something based on it without writing an if/else block. For example:
+
+const result = condition ? 'Value if true' : 'Value if false';
+
+This can be super helpful when you want to make quick decisions based on a condition without too much boilerplate.
+
+2. Error Handling with Ternary Operators
+
+We can also use the ternary operator for error handling. For example, if we want to check if a value exists before performing an action, we can use a ternary operator to handle errors or defaults:
+
+const data = response ? response.data : 'No data available';
+
+It’s a simple way to avoid undefined errors or fallback to default values when something goes wrong.
+
+3. Ternary Operator in JSX for Conditional Rendering
+
+In React, the ternary operator is commonly used in JSX for conditional rendering. Instead of using if/else, we can conditionally render components or HTML like this:
+
+```jsx
+return <div>{isLoggedIn ? <Dashboard /> : <Login />}</div>;
+```
+
+This makes React code cleaner and more readable by keeping conditional logic inline.
+
+Just following up with a couple more tips on the JavaScript Ternary Operator that might come in handy:
+
+4. Handling Nullish Values with Ternary Operator
+
+Sometimes we deal with null or undefined values, and the ternary operator can help handle those cases efficiently. For instance:
+
+```
+const result = value !== null && value !== undefined ? value : 'Default value';
+```
+
+This ensures that if value is null or undefined, we can fall back on a default value, making the code safer and preventing unexpected errors.
+
+5. Chaining Ternary Operators for Multiple Conditions
+
+Though it’s not always the most readable, you can chain ternary operators to handle multiple conditions. It works like an inline if/else if/else block. Here’s an example:
+
+```tsx
+const grade = score > 90 ? "A" : score > 80 ? "B" : score > 70 ? "C" : "F";
+```
+
+This can be helpful for small decision trees, but we should avoid over-complicating the logic as it can reduce readability.
+
+## Performance considerations
+
+We can get into more detail with performance considerations of the JavaScript Ternary Operator, notably how the JavaScript engines process the operator technically.
+
+Ternary Operator from the Point of View of a JavaScript Engine
+JavaScript engines, such as V8, used in Chrome and Node.js, offer Just-In-Time compilation. Modern JavaScript engines have optimized both if/else statements and the ternary operator to be relatively fast. Nevertheless, there are performance and optimization advantages to the ternary operator:
+
+**Simplification of code:**
+
+Notice how the ternary operator reduces the bloat of your code by taking large conditional logic and putting it into a single line. This allows JavaScript engines more easily to optimize it because smaller, more predictable code is often better inlined - execution is faster.
+
+**Control Flow Branch Prediction:**
+
+Ternary operators are conciser and result in better predictability of the engine, especially for simple use cases, since modern CPUs utilize branch prediction that tries to forecast the outcome of a condition for faster execution. So one comparison in a ternary operator may cause fewer mispredictions, especially in performance-critical applications.
+
+**Faster generation of byte code:**
+
+During compilation by JIT, the JavaScript engine compiles code to bytecode. Usually, bytecode for the ternary operator is somewhat more efficient compared to bytecode for an equivalent if/else statement because the ternary operator returns a value in one logical step without requiring multiple jumps in the control flow.
+
+### Performance Comparison: if/else vs. Ternary Operator
+
+Generally speaking, the performance difference between if/else versus the ternary operator for most uses is negligible. Of course, we may want to run some performance tests-PRIMARY-to confirm this, especially if we’re using either one of these in tight loops.
+
+Let me elaborate with an example:
+
+#### using if/else
+
+```js
+let result;
+if (Condition) {
+  result = trueValue;
+} else {
+  result = falseValue;
+}
+```
+
+#### Using Ternary Operator
+
+```js
+let result = condition ? trueValue : falseValue;
+```
+
+Both snippets work in the same way, but the ternary operator creates less bytecode because it needs fewer instructions to evaluate and return.
+
+#### Benchmark Example
+
+Here’s how we might benchmark the ternary operator against if/else in Node.js:
+
+```js
+console.time("ternary");
+for (let i = 0; i < 1e7; i++) {
+  let result = i % 2 === 0 ? "even" : "odd";
+}
+console.timeEnd("ternary");
+
+console.time("ifElse");
+for (let i = 0; i < 1e7; i++) {
+  let result;
+  if (i % 2 === 0) result = "even";
+  else result = "odd";
+}
+console.timeEnd("ifElse");
+```
+
+When benchmarking this, it is usually observed that the ternary operator may be very slightly faster than if/else because of simpler control flow and fewer bytecode instructions. However, in real-world applications, the difference is so tiny usually that readability and maintainability are more important than such micro-optimizations.
 
 ## JavaScript Ternary Operator Best Practices
 
