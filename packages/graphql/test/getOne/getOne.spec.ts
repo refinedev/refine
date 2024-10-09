@@ -1,7 +1,7 @@
 import { gql } from "@urql/core";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import "./index.mock";
+import "./getOne.mock";
 
 const gqlQuery = gql`
   query GetOneBlogPost($id: ID!) {

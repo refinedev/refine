@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import "./index.mock";
+import "./custom.mock";
 
 describe("custom", () => {
   it("correct get query response", async () => {
