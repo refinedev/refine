@@ -130,8 +130,10 @@ export const defaultOptions = {
     },
     buildVariables: (params: DataProvider["update"]["arguments"]) => {
       return {
-        id: params.id,
-        update: params.variables,
+        input: {
+          id: params.id,
+          update: params.variables,
+        },
       };
     },
   },

@@ -858,10 +858,12 @@ describe("defaultOptions.update", () => {
       };
 
       const expectedVariables = {
-        id: 1,
-        update: {
-          title: "Updated Blog Post",
-          content: "This is the updated content of the blog post.",
+        input: {
+          id: 1,
+          update: {
+            title: "Updated Blog Post",
+            content: "This is the updated content of the blog post.",
+          },
         },
       };
 
@@ -879,9 +881,11 @@ describe("defaultOptions.update", () => {
       };
 
       const expectedVariables = {
-        id: 1,
-        update: {
-          name: "Updated Category",
+        input: {
+          id: 1,
+          update: {
+            name: "Updated Category",
+          },
         },
       };
 
