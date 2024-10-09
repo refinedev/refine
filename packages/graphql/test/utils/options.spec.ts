@@ -1,5 +1,5 @@
-import { gql } from "@urql/core";
-import type { CrudSort, GetListParams } from "@refinedev/core";
+import { gql, type OperationResult } from "@urql/core";
+import type { BaseRecord, CrudSort, GetListParams } from "@refinedev/core";
 
 import { defaultOptions } from "../../src/dataProvider/options";
 
@@ -14,12 +14,15 @@ describe("defaultOptions.create", () => {
             content: "This is a sample blog post content.",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
+        variables: {},
       };
 
       const result = defaultOptions.create.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         title: "Sample Blog Post",
@@ -35,12 +38,15 @@ describe("defaultOptions.create", () => {
             name: "Sample Category",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
+        variables: {},
       };
 
       const result = defaultOptions.create.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         name: "Sample Category",
@@ -111,7 +117,8 @@ describe("defaultOptions.createMany", () => {
             },
           ],
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
         variables: [
@@ -127,6 +134,7 @@ describe("defaultOptions.createMany", () => {
       };
 
       const result = defaultOptions.createMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -155,7 +163,8 @@ describe("defaultOptions.createMany", () => {
             },
           ],
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
         variables: [
@@ -169,6 +178,7 @@ describe("defaultOptions.createMany", () => {
       };
 
       const result = defaultOptions.createMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -260,13 +270,15 @@ describe("defaultOptions.getOne", () => {
             content: "This is a sample blog post content.",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
         id: 1,
       };
 
       const result = defaultOptions.getOne.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         title: "Sample Blog Post",
@@ -282,13 +294,15 @@ describe("defaultOptions.getOne", () => {
             name: "Sample Category",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
         id: 1,
       };
 
       const result = defaultOptions.getOne.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         name: "Sample Category",
@@ -421,12 +435,14 @@ describe("defaultOptions.getList", () => {
             ],
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
       };
 
       const result = defaultOptions.getList.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -457,12 +473,14 @@ describe("defaultOptions.getList", () => {
             ],
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
       };
 
       const result = defaultOptions.getList.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -484,12 +502,13 @@ describe("defaultOptions.getList", () => {
             totalCount: 42,
           },
         },
-      };
+      } as OperationResult;
       const params = {
         resource: "blogPosts",
       };
 
       const result = defaultOptions.getList.countMapper(response, params);
+
       expect(result).toEqual(42);
     });
 
@@ -500,12 +519,14 @@ describe("defaultOptions.getList", () => {
             totalCount: 17,
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
       };
 
       const result = defaultOptions.getList.countMapper(response, params);
+
       expect(result).toEqual(17);
     });
   });
@@ -526,6 +547,7 @@ describe("defaultOptions.getList", () => {
       ];
 
       const result = defaultOptions.getList.buildSorters(params);
+
       expect(result).toEqual(expectedSorters);
     });
 
@@ -538,6 +560,7 @@ describe("defaultOptions.getList", () => {
       const expectedSorters: CrudSort[] = [];
 
       const result = defaultOptions.getList.buildSorters(params);
+
       expect(result).toEqual(expectedSorters);
     });
   });
@@ -554,6 +577,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
 
@@ -568,6 +592,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
 
@@ -582,6 +607,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
 
@@ -596,6 +622,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
 
@@ -623,6 +650,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
 
@@ -635,6 +663,7 @@ describe("defaultOptions.getList", () => {
       const expectedFilters = {};
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
 
@@ -650,6 +679,7 @@ describe("defaultOptions.getList", () => {
       const expectedFilters = {};
 
       const result = defaultOptions.getList.buildFilters(params);
+
       expect(result).toEqual(expectedFilters);
     });
   });
@@ -670,6 +700,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildPagination(params);
+
       expect(result).toEqual(expectedPagination);
     });
 
@@ -688,6 +719,7 @@ describe("defaultOptions.getList", () => {
       };
 
       const result = defaultOptions.getList.buildPagination(params);
+
       expect(result).toEqual(expectedPagination);
     });
   });
@@ -706,6 +738,7 @@ describe("defaultOptions.getMany", () => {
       };
 
       const result = defaultOptions.getMany.buildFilter(params);
+
       expect(result).toEqual(expectedFilter);
     });
 
@@ -720,6 +753,7 @@ describe("defaultOptions.getMany", () => {
       };
 
       const result = defaultOptions.getMany.buildFilter(params);
+
       expect(result).toEqual(expectedFilter);
     });
   });
@@ -743,13 +777,15 @@ describe("defaultOptions.getMany", () => {
             ],
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
         ids: [1, 2],
       };
 
       const result = defaultOptions.getMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -780,13 +816,15 @@ describe("defaultOptions.getMany", () => {
             ],
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
         ids: [1, 2],
       };
 
       const result = defaultOptions.getMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -812,12 +850,14 @@ describe("defaultOptions.update", () => {
             content: "This is the updated content of the blog post.",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
       };
 
       const result = defaultOptions.update.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         title: "Updated Blog Post",
@@ -833,12 +873,14 @@ describe("defaultOptions.update", () => {
             name: "Updated Category",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
       };
 
       const result = defaultOptions.update.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         name: "Updated Category",
@@ -868,6 +910,7 @@ describe("defaultOptions.update", () => {
       };
 
       const result = defaultOptions.update.buildVariables(params);
+
       expect(result).toEqual(expectedVariables);
     });
 
@@ -890,6 +933,7 @@ describe("defaultOptions.update", () => {
       };
 
       const result = defaultOptions.update.buildVariables(params);
+
       expect(result).toEqual(expectedVariables);
     });
   });
@@ -913,7 +957,8 @@ describe("defaultOptions.updateMany", () => {
             },
           ],
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
         ids: [1, 2],
@@ -928,6 +973,7 @@ describe("defaultOptions.updateMany", () => {
       };
 
       const result = defaultOptions.updateMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -956,7 +1002,8 @@ describe("defaultOptions.updateMany", () => {
             },
           ],
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
         ids: [1, 2],
@@ -971,6 +1018,7 @@ describe("defaultOptions.updateMany", () => {
       };
 
       const result = defaultOptions.updateMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -1006,6 +1054,7 @@ describe("defaultOptions.updateMany", () => {
       };
 
       const result = defaultOptions.updateMany.buildVariables(params);
+
       expect(result).toEqual(expectedVariables);
     });
 
@@ -1028,6 +1077,7 @@ describe("defaultOptions.updateMany", () => {
       };
 
       const result = defaultOptions.updateMany.buildVariables(params);
+
       expect(result).toEqual(expectedVariables);
     });
   });
@@ -1044,12 +1094,14 @@ describe("defaultOptions.deleteOne", () => {
             content: "This is the content of the deleted blog post.",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
       };
 
       const result = defaultOptions.deleteOne.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         title: "Deleted Blog Post",
@@ -1065,12 +1117,14 @@ describe("defaultOptions.deleteOne", () => {
             name: "Deleted Category",
           },
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
       };
 
       const result = defaultOptions.deleteOne.dataMapper(response, params);
+
       expect(result).toEqual({
         id: 1,
         name: "Deleted Category",
@@ -1127,13 +1181,15 @@ describe("defaultOptions.deleteMany", () => {
             },
           ],
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "blogPosts",
         ids: [1, 2],
       };
 
       const result = defaultOptions.deleteMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -1162,13 +1218,15 @@ describe("defaultOptions.deleteMany", () => {
             },
           ],
         },
-      };
+      } as OperationResult;
+
       const params = {
         resource: "categories",
         ids: [1, 2],
       };
 
       const result = defaultOptions.deleteMany.dataMapper(response, params);
+
       expect(result).toEqual([
         {
           id: 1,
@@ -1216,6 +1274,7 @@ describe("defaultOptions.deleteMany", () => {
       };
 
       const result = defaultOptions.deleteMany.buildVariables(params);
+
       expect(result).toEqual(expectedVariables);
     });
   });

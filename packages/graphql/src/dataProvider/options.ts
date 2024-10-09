@@ -1,3 +1,4 @@
+import { gql, type OperationResult } from "@urql/core";
 import type {
   BaseRecord,
   CreateManyParams,
@@ -7,44 +8,50 @@ import type {
   GetOneParams,
   UpdateManyParams,
   DataProvider,
+  CustomParams,
+  CreateParams,
+  UpdateParams,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import { singular } from "pluralize";
+
 import {
   buildFilters,
   buildPagination,
   buildSorters,
   getOperationFields,
 } from "../utils";
-import { gql } from "@urql/core";
 
 export type GraphQLDataProviderOptions = typeof defaultOptions;
 
 export const defaultOptions = {
   create: {
-    dataMapper: (
-      response: BaseRecord,
-      params: DataProvider["create"]["arguments"],
-    ) => {
+    dataMapper: (response: OperationResult<any>, params: CreateParams<any>) => {
       const key = `createOne${camelcase(singular(params.resource), {
         pascalCase: true,
       })}`;
 
-      return response.data[key];
+      return response.data?.[key];
     },
-    buildVariables: (params: DataProvider["create"]["arguments"]) => {
+    buildVariables: (params: CreateParams<any>) => {
       return {
-        input: { [singular(params.resource)]: params.variables },
+        input: {
+          [singular(params.resource)]:
+            params.variables ?? params?.meta?.gqlVariables,
+        },
       };
     },
   },
   createMany: {
-    dataMapper: (response: BaseRecord, params: CreateManyParams<any>) => {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: CreateManyParams<any>,
+    ) => {
       const key = `createMany${camelcase(params.resource, {
         pascalCase: true,
       })}`;
 
-      return response.data[key];
+      return response.data?.[key];
     },
     buildVariables: (params: CreateManyParams<any>) => {
       return {
@@ -55,10 +62,10 @@ export const defaultOptions = {
     },
   },
   getOne: {
-    dataMapper: (response: BaseRecord, params: GetOneParams) => {
+    dataMapper: (response: OperationResult<any>, params: GetOneParams) => {
       const key = camelcase(singular(params.resource));
 
-      return response.data[key];
+      return response.data?.[key];
     },
     buildVariables: (params: GetOneParams) => {
       return {
@@ -96,11 +103,11 @@ export const defaultOptions = {
     },
   },
   getList: {
-    dataMapper: (response: BaseRecord, params: GetListParams) => {
-      return response.data[params.resource].nodes;
+    dataMapper: (response: OperationResult<any>, params: GetListParams) => {
+      return response.data?.[params.resource].nodes;
     },
-    countMapper: (response: BaseRecord, params: GetListParams) => {
-      return response.data[params.resource].totalCount;
+    countMapper: (response: OperationResult<any>, params: GetListParams) => {
+      return response.data?.[params.resource].totalCount;
     },
     buildSorters: (params: GetListParams) => buildSorters(params.sorters),
     buildFilters: (params: GetListParams) => buildFilters(params.filters),
@@ -111,50 +118,60 @@ export const defaultOptions = {
     buildFilter: (params: GetManyParams) => {
       return { id: { in: params.ids } };
     },
-    dataMapper: (response: BaseRecord, params: GetManyParams) => {
+    dataMapper: (response: OperationResult<any>, params: GetManyParams) => {
       const key = camelcase(params.resource);
 
-      return response.data[key].nodes;
+      return response.data?.[key].nodes;
     },
   },
   update: {
     dataMapper: (
-      response: BaseRecord,
+      response: OperationResult<any>,
       params: DataProvider["update"]["arguments"],
     ) => {
       const key = `updateOne${camelcase(singular(params.resource), {
         pascalCase: true,
       })}`;
 
-      return response.data[key];
+      return response.data?.[key];
     },
-    buildVariables: (params: DataProvider["update"]["arguments"]) => {
+    buildVariables: (params: UpdateParams<any>) => {
       return {
         input: {
           id: params.id,
           update: params.variables,
+          ...params.meta?.gqlVariables,
         },
       };
     },
   },
   updateMany: {
-    dataMapper: (response: BaseRecord, params: UpdateManyParams<any>) => {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: UpdateManyParams<any>,
+    ) => {
       const pascalResource = camelcase(params.resource, {
         pascalCase: true,
       });
 
       const key = `updateMany${pascalResource}`;
-      return response.data[key];
+      return response.data?.[key];
     },
     buildVariables: (params: UpdateManyParams<any>) => {
       const { ids, variables } = params;
 
-      return { input: { filter: { id: { in: ids } }, update: variables } };
+      return {
+        input: {
+          filter: { id: { in: ids } },
+          update: variables,
+          ...params.meta?.gqlVariables,
+        },
+      };
     },
   },
   deleteOne: {
     dataMapper: (
-      response: BaseRecord,
+      response: OperationResult<any>,
       params: DataProvider["deleteOne"]["arguments"],
     ) => {
       const pascalResource = camelcase(singular(params.resource), {
@@ -163,7 +180,7 @@ export const defaultOptions = {
 
       const key = `deleteOne${pascalResource}`;
 
-      return response.data[key];
+      return response.data?.[key];
     },
     buildVariables: (params: DataProvider["deleteOne"]["arguments"]) => {
       return {
@@ -172,14 +189,17 @@ export const defaultOptions = {
     },
   },
   deleteMany: {
-    dataMapper: (response: BaseRecord, params: DeleteManyParams<any>) => {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: DeleteManyParams<any>,
+    ) => {
       const pascalResource = camelcase(params.resource, {
         pascalCase: true,
       });
 
       const key = `deleteMany${pascalResource}`;
 
-      return response.data[key];
+      return response.data?.[key];
     },
     buildVariables: (params: DeleteManyParams<any>) => {
       const { ids } = params;
@@ -189,8 +209,17 @@ export const defaultOptions = {
           filter: {
             id: { in: ids },
           },
+          ...params.meta?.gqlVariables,
         },
       };
     },
+  },
+  custom: {
+    dataMapper: (response: OperationResult<any>, params: CustomParams) =>
+      response.data ?? response.error?.message,
+    buildVariables: (params: CustomParams) => ({
+      ...params?.meta?.variables,
+      ...params?.meta?.gqlVariables,
+    }),
   },
 };

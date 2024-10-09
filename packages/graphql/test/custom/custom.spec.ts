@@ -3,99 +3,86 @@ import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./custom.mock";
 
+const gqlQuery = gql`
+  query GetOneBlogPost($id: ID!) {
+    blogPost(id: $id) {
+        id
+        title
+        content
+        status
+        category {
+            id
+        }
+    }
+  }
+`;
+
+const gqlMutation = gql`
+  mutation UpdateOneBlogPost($input: UpdateOneBlogPostInput!) {
+    updateOneBlogPost(input: $input) {
+      id
+      title
+      content
+      status
+      category {
+        id
+      }
+    }
+  }
+`;
+
 describe("custom", () => {
-  it("correct get query response", async () => {
-    const response = await dataProvider(client).custom?.({
-      url: "",
-      method: "get",
-      meta: {
-        operation: "posts",
-        variables: {
-          sort: "id:asc",
-          where: { value: { title_contains: "foo" }, type: "JSON" },
-        },
-        fields: ["id", "title", { category: ["id"] }],
-      },
-    });
-
-    expect(response?.data[0].id).toBe("21");
-    expect(response?.data[0].title).toBe("updated-foo-2");
-  });
-
-  it("correct get mutation response", async () => {
-    const response = await dataProvider(client).custom?.({
-      url: "",
-      method: "post",
-      meta: {
-        operation: "updatePost",
-        variables: {
-          input: {
-            value: {
-              where: { id: "32" },
-              data: { title: "custom-foo" },
-            },
-            type: "updatePostInput",
+  describe("with correct params", () => {
+    describe("with gqlQuery", () => {
+      it("works as expected", async () => {
+        const { data } = await dataProvider(client).custom({
+          url: "",
+          method: "get",
+          meta: {
+            gqlQuery,
+            gqlVariables: { id: 113 },
           },
-        },
-        fields: [
-          {
-            operation: "post",
-            fields: ["id", "title"],
-            variables: {},
-          },
-        ],
-      },
+        });
+
+        expect(data.blogPost).toBeInstanceOf(Object);
+      });
     });
-
-    expect(response?.data.post.id).toBe("32");
-    expect(response?.data.post.title).toBe("custom-foo");
-  });
-});
-
-describe("custom gql", () => {
-  it("correct get query response", async () => {
-    const response = await dataProvider(client).custom({
-      url: "",
-      method: "get",
-      meta: {
-        gqlQuery: gql`
-          query ($where: JSON, $sort: String) {
-            posts(where: $where, sort: $sort) {
-              id
-              title
-            }
-          }
-        `,
-        variables: {
-          sort: "id:asc",
-          where: { title_contains: "foo" },
-        },
-      },
-    });
-
-    expect(response?.data.posts[0].id).toBe("1090");
-    expect(response?.data.posts[0].title).toBe("foo");
   });
 
-  it("correct get mutation response", async () => {
-    const response = await dataProvider(client).custom({
-      url: "",
-      method: "post",
-      meta: {
-        gqlMutation: gql`
-          mutation ($input: updatePostInput) {
-              updatePost (input: $input) {
-                  post  { id, title }
-              }
-            }
-        `,
-        variables: {
-          input: { where: { id: "2121" }, data: { title: "custom-foo" } },
+  describe("with gqlMutation", () => {
+    it("works as expected", async () => {
+      const { data } = await dataProvider(client).custom({
+        url: "",
+        method: "get",
+        meta: {
+          gqlMutation,
+          gqlVariables: { input: { id: 113, update: { status: "PUBLISHED" } } },
         },
-      },
-    });
+      });
 
-    expect(response?.data.updatePost.post.id).toBe("2121");
-    expect(response?.data.updatePost.post.title).toBe("custom-foo");
+      expect(data.updateOneBlogPost).toBeInstanceOf(Object);
+    });
+  });
+
+  describe("with custom URL", () => {
+    it("should make request to given URL", async () => {
+      const { data } = await dataProvider(client).custom({
+        url: "https://api.crm.refine.dev/graphql",
+        method: "get",
+        meta: { gqlQuery },
+      });
+
+      expect(data).toEqual(
+        '[GraphQL] Cannot query field "blogPost" on type "Query".',
+      );
+    });
+  });
+
+  describe("when operation is not provided", () => {
+    it("throws error", () => {
+      expect(
+        dataProvider(client).custom({ url: "", method: "get" }),
+      ).rejects.toEqual(new Error("Operation is required."));
+    });
   });
 });

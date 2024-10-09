@@ -1,4 +1,4 @@
-import type { BaseRecord, DataProvider } from "@refinedev/core";
+import type { BaseRecord, CustomParams, DataProvider } from "@refinedev/core";
 import type { Client } from "@urql/core";
 import { isMutation } from "../utils";
 import { defaultOptions, type GraphQLDataProviderOptions } from "./options";
@@ -167,24 +167,36 @@ const dataProvider = (
         data: [options.deleteMany.dataMapper(response, params)],
       };
     },
-    custom: async ({ url, meta }) => {
+    custom: async (params) => {
+      const { meta } = params;
+
+      const url = params.url !== "" ? params.url : undefined;
+
+      if (!meta?.gqlMutation && !meta?.gqlQuery) {
+        throw new Error("Operation is required.");
+      }
+
       if (meta?.gqlMutation) {
         const response = await client
-          .mutation(meta.gqlMutation, meta?.variables ?? {}, { url })
+          .mutation(
+            meta.gqlMutation,
+            options.custom.buildVariables(params),
+            JSON.parse(JSON.stringify({ url })),
+          )
           .toPromise();
 
-        return { data: response.data };
+        return { data: options.custom.dataMapper(response, params) };
       }
 
-      if (meta?.gqlQuery) {
-        const response = await client
-          .query(meta.gqlQuery, meta?.variables ?? {}, { url })
-          .toPromise();
+      const response = await client
+        .query(
+          meta.gqlQuery!,
+          options.custom.buildVariables(params),
+          JSON.parse(JSON.stringify({ url })),
+        )
+        .toPromise();
 
-        return { data: response.data };
-      }
-
-      return { data: {} };
+      return { data: options.custom.dataMapper(response, params) };
     },
     getApiUrl: () => {
       throw Error("Not implemented on refine-graphql data provider.");
