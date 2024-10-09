@@ -135,7 +135,7 @@ const dataProvider = (
         .mutation(meta.gqlMutation, options.updateMany.buildVariables(params))
         .toPromise();
 
-      return { data: options.updateMany.dataMapper(response, params) };
+      return { data: [options.updateMany.dataMapper(response, params)] };
     },
     deleteOne: async (params) => {
       const { meta } = params;
@@ -164,7 +164,7 @@ const dataProvider = (
         .toPromise();
 
       return {
-        data: options.deleteMany.dataMapper(response, params),
+        data: [options.deleteMany.dataMapper(response, params)],
       };
     },
     custom: async ({ url, meta }) => {
