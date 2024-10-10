@@ -11,16 +11,15 @@ Refine provides a data provider for GraphQL APIs that has all the features of Re
 
 :::simple Good to know
 
-- This library uses [`graphql-request@5`](https://github.com/jasonkuhrt/graphql-request) to handle the requests.
-- To build queries and mutations, [`gql-query-builder`](https://github.com/atulmy/gql-query-builder) is used.
-- You can also use [`graphql-tag`](https://www.npmjs.com/package/graphql-tag) to write your queries and mutations.
+- GraphQL Data Provider expects [`@urql/core`](https://github.com/urql-graphql/urql) client instance.
+- You are responsible for passing `gqlQuery`, `gqlMutation`. `gql` export of `@urql/core` can be used to write GraphQL Operations.
 - To learn more about data fetching in Refine, check out the [Data Fetching](/docs/guides-concepts/data-fetching) guide.
 
 :::
 
 ## Installation
 
-<InstallPackagesCommand args="@refinedev/graphql"/>
+<InstallPackagesCommand args="@refinedev/graphql @urql/core graphql-ws"/>
 
 ## Usage
 
@@ -28,43 +27,40 @@ We'll create a GraphQL Client with our API url and pass it to the `dataProvider`
 
 ```tsx title="app.tsx"
 import Refine from "@refinedev/core";
-import dataProvider, { GraphQLClient } from "@refinedev/graphql";
+import { Client, fetchExchange } from "@urql/core";
+import createDataProvider from "@refinedev/graphql";
 
-// highlight-next-line
-const client = new GraphQLClient("https://api.example.com/graphql");
+export const API_URL = "https://api.nestjs-query.refine.dev/graphql";
 
-const App = () => (
-  <Refine
-    // highlight-next-line
-    dataProvider={dataProvider(client)}
-  >
-    {/* ... */}
-  </Refine>
-);
+const gqlClient = new Client({ url: API_URL, exchanges: [fetchExchange] });
+
+const dataProvider = createDataProvider(gqlClient);
+
+const App = () => <Refine dataProvider={dataProvider}>{/* ... */}</Refine>;
 ```
 
 ### Options
 
-It's also possible to pas a 2nd parameter to GraphQL data provider. These options are `getCount` and `getData`.
-
-You can use them to extract response from your GraphQL response.
+It's also possible to pas a 2nd parameter to GraphQL data provider. 2nd parameter is an object that consist of builder pieces for each data provider method such as getList, updateMany, etc...
 
 Let's say you have the following query:
 
 ```graphql
 query PostList($where: JSON, $sort: String) {
-  allPosts(where: $where, sort: $sort) {
-    id
-    title
-    content
-    category {
+  allBlogPosts(where: $where, sort: $sort) {
+    nodes {
       id
+      title
+      content
+      category {
+        id
+      }
     }
   }
 }
 ```
 
-By default, our data provider expects a plural form of the resource in the response, so if you have `allPosts`, you would need to swizzle GraphQL data provider and customize it yourself. With these options, we help you extract data from your response. So you don't need to create custom data provider for relatively simple cases.
+By default, our data provider expects a plural form of the resource in the response, so if you have `allPosts`, you would need to swizzle GraphQL data provider and customize it yourself. With these options, we help you extract data from your response. So you don't need to create custom data provider for such cases.
 
 ```ts
 import dataProvider, {
@@ -73,45 +69,141 @@ import dataProvider, {
 } from "@refinedev/graphql";
 import camelCase from "camelcase";
 
-const client = new GraphQLClient("https://api.example.com/graphql");
+const client = /** client init **/
 
-const dp = dataProvider(client, {
-  getData: ({ method, params, response }) => {
-    if (method === "getList") {
-      const key = camelCase(`all-${params.resource}`); // -> allPosts
-
-      return response[key];
-    }
-
-    return defaultGetDataFn({ method, params, response });
-  },
-});
+const dataProvider = createDataProvider(client, {
+  getList: {
+     dataMapper: (response: OperationResult<any>, params: GetListParams) => {
+      // resource: blogPosts
+      const operationName = `all${camelcase(resource, {pascal: true})}`
+      // operationName: allBlogPosts
+      return response.data?.[operationName].nodes;
+    },
+  }
+})
 ```
+
+```typescript
+type ActionMethod = {
+  dataMapper: (
+    response: OperationResult<any>,
+    params: GetOneParams | GetListParams | etc,
+  ) => {} | [];
+  buildVariables: (params: CreateParams | UpdateParams | etc) => {};
+};
+```
+
+We have ActionMethod type for each of the data provider actions. Additionally, `getOne` has `convertMutationToQuery` and `getList` has `countMapper`, `buildSorters`, `buildFilters`, `buildPagination` methods.
+
+`convertMutationToQuery` method on `getOne` might be needed because `useForm` hook also uses it. `useForm` hook has an optional gqlQuery field, we may only get `gqlMutation`. For this reason, we need to convert mutation to query to get initial data on edit, if needed.
+
+<details>
+<summary>See all options</summary>
+
+```typescript
+import type {
+  CreateManyParams,
+  CreateParams,
+  CustomParams,
+  DeleteManyParams,
+  DeleteOneParams,
+  GetListParams,
+  GetManyParams,
+  GetOneParams,
+  UpdateManyParams,
+  UpdateParams,
+} from "@refinedev/core";
+import type { OperationResult } from "@urql/core";
+import { buildSorters, buildFilters, buildPagination } from "../utils";
+
+export const defaultOptions = {
+  create: {
+    dataMapper: (response: OperationResult<any>, params: CreateParams<any>) =>
+      response,
+    buildVariables: (params: CreateParams<any>) => params.variables,
+  },
+  createMany: {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: CreateManyParams<any>,
+    ) => response,
+    buildVariables: (params: CreateManyParams<any>) => params.variables,
+  },
+  getOne: {
+    dataMapper: (response: OperationResult<any>, params: GetOneParams) =>
+      response,
+    buildVariables: (params: GetOneParams) => ({ id: params.id }),
+    convertMutationToQuery: (params: GetOneParams) => {},
+  },
+  getList: {
+    dataMapper: (response: OperationResult<any>, params: GetListParams) =>
+      response,
+    countMapper: (response: OperationResult<any>, params: GetListParams) => 0,
+    buildSorters: (params: GetListParams) => buildSorters(params.sorters),
+    buildFilters: (params: GetListParams) => buildFilters(params.filters),
+    buildPagination: (params: GetListParams) =>
+      buildPagination(params.pagination),
+  },
+  getMany: {
+    buildFilter: (params: GetManyParams) => ({
+      filter: { id: { in: params.ids } },
+    }),
+    dataMapper: (response: OperationResult<any>, params: GetManyParams) =>
+      response,
+  },
+  update: {
+    dataMapper: (response: OperationResult<any>, params: UpdateParams<any>) =>
+      response,
+    buildVariables: (params: UpdateParams<any>) => params.variables,
+  },
+  updateMany: {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: UpdateManyParams<any>,
+    ) => response,
+    buildVariables: (params: UpdateManyParams<any>) => params.variables,
+  },
+  deleteOne: {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: DeleteOneParams<any>,
+    ) => response,
+  },
+  deleteMany: {
+    dataMapper: (
+      response: OperationResult<any>,
+      params: DeleteManyParams<any>,
+    ) => response,
+    buildVariables: (params: DeleteManyParams<any>) => params.variables,
+    custom: {
+      dataMapper: (response: OperationResult<any>, params: CustomParams) =>
+        response.data,
+      buildVariables: (params: CustomParams) => {},
+    },
+  },
+};
+```
+
+</details>
 
 ## Realtime
 
-`@refinedev/graphql` also provides a `liveProvider` to enable realtime features of Refine. These features are powered by GraphQL subscriptions and uses [`graphql-ws`](https://the-guild.dev/graphql/ws) to handle the connections.
+`@refinedev/graphql` also provides a `createLiveProvider` function to enable realtime features of Refine. These features are powered by GraphQL subscriptions and uses [`graphql-ws`](https://the-guild.dev/graphql/ws) to handle the connections.
 
 ```tsx title="app.tsx"
 import Refine from "@refinedev/core";
-// highlight-next-line
-import dataProvider, {
-  GraphQLClient,
-  liveProvider,
-  graphqlWS,
-} from "@refinedev/graphql";
+import { createLiveProvider } from "@refinedev/graphql";
+import createClient from "graphql-ws";
 
-const client = new GraphQLClient("https://api.example.com/graphql");
-// highlight-next-line
-const wsClient = graphqlWS.createClient({
-  url: "wss://api.example.com/graphql",
-});
+const WSS_URL = "wss://api.nestjs-query.refine.dev/graphql";
+const wsClient = createClient({ url: WSS_URL });
+
+const liveProvider = createLiveProvider(wsClient);
 
 const App = () => (
   <Refine
-    dataProvider={dataProvider(client)}
     // highlight-next-line
-    liveProvider={liveProvider(wsClient)}
+    liveProvider={liveProvider}
     options={{ liveMode: "auto" }}
   >
     {/* ... */}
@@ -121,9 +213,9 @@ const App = () => (
 
 ## Queries and Mutations
 
-You can use [`graphql-tag`](https://www.npmjs.com/package/graphql-tag) to write your queries and mutations.
+You can use `gql` export from `@urql/core` to write your queries and mutations.
 
-Refine hooks' `meta` object has optional `gqlQuery` and `gqlMutation` properties, you can use them to write your queries and mutations.
+Refine hooks' `meta` object has `gqlQuery` and `gqlMutation` properties, you can use them to write your queries and mutations.
 
 As a best-practice, we suggest writing your queries/mutations in a separate file, next to the component that uses it.
 
@@ -199,6 +291,8 @@ export const PostCreatePage () => {
 
 If your API uses authentication, you can easily provide a custom fetcher for the requests and handle the authentication logic there. When creating a GraphQL Client, you can pass a `fetch` function to the client options. This function will be used to append the authentication headers to the requests.
 
+TBA: https://commerce.nearform.com/open-source/urql/docs/advanced/authentication/
+
 ```tsx title="data-provider.tsx"
 import graphqlDataProvider, { GraphQLClient } from "@refinedev/graphql";
 
@@ -225,31 +319,6 @@ const client = new GraphQLClient(API_URL, {
  */
 const dataProvider = graphqlDataProvider(client);
 ```
-
-## GraphQL Query Builder
-
-[GraphQL Query Builder](https://github.com/atulmy/gql-query-builder) allows us to build queries and mutations. The `getList`, `getMany`, and, `getOne` methods in our [`dataProvider`][data-provider] generate a query to send a request. On the other hand, the `create`, `createMany`, `update`, `updateMany`, `deleteOne`, and, `deleteMany` methods generate a mutation to send a request.
-
-In order to create a GraphQL query, our [`dataProvider`][data-provider] has to take some options, such as specifying which fields will come in response, we pass these options to our [`dataProvider`][data-provider] methods with `MetaDataQuery`.
-
-[Refer to the `meta` properties for detailed usage. &#8594](https://github.com/atulmy/gql-query-builder#options)
-
-Hooks and components that support `meta`:
-
-| Supported data hooks                                  | Supported other hooks                                                                  | Supported components                                                                         |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [`useUpdate` &#8594](/docs/data/hooks/use-update)     | [`useForm` &#8594](/docs/data/hooks/use-form)                                          | [`DeleteButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/delete-button)   |
-| [`useUpdateMany` &#8594](/docs/data/hooks/use-update) | [`useModalForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-modal-form)         | [`RefreshButton` &#8594](/docs/ui-integrations/ant-design/components/buttons/refresh-button) |
-| [`useDelete` &#8594](/docs/data/hooks/use-delete)     | [`useDrawerForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-drawer-form)       |                                                                                              |
-| [`useDeleteMany` &#8594](/docs/data/hooks/use-delete) | [`useStepsForm` &#8594](/docs/ui-integrations/ant-design/hooks/use-steps-form)         |                                                                                              |
-| [`useCreate` &#8594](/docs/data/hooks/use-create)     | [`useTable` &#8594](/docs/data/hooks/use-table)                                        |                                                                                              |
-| [`useCreateMany` &#8594](/docs/data/hooks/use-create) | [`useEditableTable` &#8594](/docs/ui-integrations/ant-design/hooks/use-editable-table) |                                                                                              |
-| [`useList` &#8594](/docs/data/hooks/use-list)         | [`useSimpleList` &#8594](/docs/ui-integrations/ant-design/hooks/use-simple-list)       |                                                                                              |
-| [`useOne` &#8594](/docs/data/hooks/use-one)           | [`useShow` &#8594](/docs/data/hooks/use-show)                                          |                                                                                              |
-| [`useMany` &#8594](/docs/data/hooks/use-many)         | [`useExport` &#8594](/docs/core/hooks/utilities/use-export)                            |                                                                                              |
-| [`useCustom` &#8594](/docs/data/hooks/use-custom)     | [`useCheckboxGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-checkbox-group) |                                                                                              |
-|                                                       | [`useSelect` &#8594](/docs/data/hooks/use-select)                                      |                                                                                              |
-|                                                       | [`useRadioGroup` &#8594](/docs/ui-integrations/ant-design/hooks/use-radio-group)       |                                                                                              |
 
 ## Usage with Inferencer
 
