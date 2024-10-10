@@ -41,7 +41,8 @@ const App = () => <Refine dataProvider={dataProvider}>{/* ... */}</Refine>;
 
 ### Options
 
-It's also possible to pas a 2nd parameter to GraphQL data provider. 2nd parameter is an object that consist of builder pieces for each data provider method such as getList, updateMany, etc...
+It's also possible to pass a 2nd parameter to GraphQL data provider. 2nd parameter is an object that consist of builder pieces for each data provider method such as getList, updateMany, etc...
+All fields in this options config are optional and fields that are provided will be deep merged into default options. So you can just pass certain methods you want to override, and the rest will fallback to default.
 
 Let's say you have the following query:
 
@@ -93,9 +94,11 @@ type ActionMethod = {
 };
 ```
 
-We have ActionMethod type for each of the data provider actions. Additionally, `getOne` has `convertMutationToQuery` and `getList` has `countMapper`, `buildSorters`, `buildFilters`, `buildPagination` methods.
+We have ActionMethod type for each of the data provider actions. Additionally, `getOne` has `convertMutationToQuery` and `getList` has `getTotalCount` methods.
 
 `convertMutationToQuery` method on `getOne` might be needed because `useForm` hook also uses it. `useForm` hook has an optional gqlQuery field, we may only get `gqlMutation`. For this reason, we need to convert mutation to query to get initial data on edit, if needed.
+
+`getTotalCount` can be used to extract total count of the list query from the response.
 
 <details>
 <summary>See all options</summary>
@@ -138,7 +141,7 @@ export const defaultOptions = {
   getList: {
     dataMapper: (response: OperationResult<any>, params: GetListParams) =>
       response,
-    countMapper: (response: OperationResult<any>, params: GetListParams) => 0,
+    getTotalCount: (response: OperationResult<any>, params: GetListParams) => 0,
     buildSorters: (params: GetListParams) => buildSorters(params.sorters),
     buildFilters: (params: GetListParams) => buildFilters(params.filters),
     buildPagination: (params: GetListParams) =>
