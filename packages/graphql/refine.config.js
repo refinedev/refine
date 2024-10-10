@@ -40,9 +40,10 @@ module.exports = {
         label: "GraphQL",
         requiredPackages: [
           "@urql/core@5.0.6",
-          "graphql-ws@5.9.1",
           "camelcase@6.2.0",
+          "deepmerge@4.3.1",
           "graphql@15.6.1",
+          "graphql-ws@5.9.1",
           "pluralize@8.0.0",
         ],
         files: [
