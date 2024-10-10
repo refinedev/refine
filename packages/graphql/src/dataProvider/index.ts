@@ -3,7 +3,7 @@ import type { Client } from "@urql/core";
 import { isMutation } from "../utils";
 import { defaultOptions, type GraphQLDataProviderOptions } from "./options";
 
-const dataProvider = (
+const createDataProvider = (
   client: Client,
   options: GraphQLDataProviderOptions = defaultOptions,
 ): Required<DataProvider> => {
@@ -204,4 +204,4 @@ const dataProvider = (
   };
 };
 
-export default dataProvider;
+export default createDataProvider;

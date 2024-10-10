@@ -7,10 +7,10 @@ import type {
   GetManyParams,
   GetOneParams,
   UpdateManyParams,
-  DataProvider,
   CustomParams,
   CreateParams,
   UpdateParams,
+  DeleteOneParams,
 } from "@refinedev/core";
 import camelcase from "camelcase";
 import { singular } from "pluralize";
@@ -125,10 +125,7 @@ export const defaultOptions = {
     },
   },
   update: {
-    dataMapper: (
-      response: OperationResult<any>,
-      params: DataProvider["update"]["arguments"],
-    ) => {
+    dataMapper: (response: OperationResult<any>, params: UpdateParams<any>) => {
       const key = `updateOne${camelcase(singular(params.resource), {
         pascalCase: true,
       })}`;
@@ -172,7 +169,7 @@ export const defaultOptions = {
   deleteOne: {
     dataMapper: (
       response: OperationResult<any>,
-      params: DataProvider["deleteOne"]["arguments"],
+      params: DeleteOneParams<any>,
     ) => {
       const pascalResource = camelcase(singular(params.resource), {
         pascalCase: true,
@@ -182,7 +179,7 @@ export const defaultOptions = {
 
       return response.data?.[key];
     },
-    buildVariables: (params: DataProvider["deleteOne"]["arguments"]) => {
+    buildVariables: (params: DeleteOneParams<any>) => {
       return {
         input: { id: params.id },
       };

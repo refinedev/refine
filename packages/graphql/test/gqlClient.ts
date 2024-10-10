@@ -1,5 +1,4 @@
 import { Client, fetchExchange } from "@urql/core";
-import nock from "nock";
 
 export const API_URL = "https://api.nestjs-query.refine.dev/graphql";
 

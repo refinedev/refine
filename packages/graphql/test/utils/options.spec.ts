@@ -854,6 +854,8 @@ describe("defaultOptions.update", () => {
 
       const params = {
         resource: "blogPosts",
+        id: 1,
+        variables: {},
       };
 
       const result = defaultOptions.update.dataMapper(response, params);
@@ -877,6 +879,8 @@ describe("defaultOptions.update", () => {
 
       const params = {
         resource: "categories",
+        id: 1,
+        variables: {},
       };
 
       const result = defaultOptions.update.dataMapper(response, params);
@@ -1098,6 +1102,7 @@ describe("defaultOptions.deleteOne", () => {
 
       const params = {
         resource: "blogPosts",
+        id: 1,
       };
 
       const result = defaultOptions.deleteOne.dataMapper(response, params);
@@ -1121,6 +1126,7 @@ describe("defaultOptions.deleteOne", () => {
 
       const params = {
         resource: "categories",
+        id: 1,
       };
 
       const result = defaultOptions.deleteOne.dataMapper(response, params);

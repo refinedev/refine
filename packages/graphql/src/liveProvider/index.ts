@@ -5,7 +5,7 @@ import { generateSubscription } from "./helpers";
 
 type SubscriptionAction = "created" | "updated" | "deleted";
 
-export const liveProvider = (client: Client): LiveProvider => {
+export const createLiveProvider = (client: Client): LiveProvider => {
   const subscribeToResource = (
     client: Client,
     callback: Function,

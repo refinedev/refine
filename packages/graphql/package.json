@@ -64,6 +64,7 @@
   },
   "peerDependencies": {
     "@refinedev/core": "^4.54.1",
+    "@urql/core": "^5.0.6",
     "graphql-ws": "^5.9.1"
   },
   "engines": {
