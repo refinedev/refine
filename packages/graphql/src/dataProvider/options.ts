@@ -21,8 +21,85 @@ import {
   buildSorters,
   getOperationFields,
 } from "../utils";
+import type { DocumentNode } from "graphql";
 
-export type GraphQLDataProviderOptions = typeof defaultOptions;
+export type GraphQLDataProviderOptions = {
+  create?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: CreateParams<any>,
+    ) => Record<string, any>;
+    buildVariables?: (params: CreateParams<any>) => Record<string, any>;
+  };
+  createMany?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: CreateManyParams<any>,
+    ) => BaseRecord[];
+    buildVariables?: (params: CreateManyParams<any>) => Record<string, any>;
+  };
+  getOne?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: GetOneParams,
+    ) => BaseRecord;
+    buildVariables?: (params: GetOneParams) => Record<string, any>;
+    convertMutationToQuery?: (params: GetOneParams) => DocumentNode;
+  };
+  getList?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: GetListParams,
+    ) => BaseRecord[];
+    getTotalCount?: (
+      response: OperationResult<any>,
+      params: GetListParams,
+    ) => number;
+    buildVariables?: (params: GetListParams) => Record<string, any>;
+  };
+  getMany?: {
+    buildFilter?: (params: GetManyParams) => Record<string, any>;
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: GetManyParams,
+    ) => BaseRecord[];
+  };
+  update?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: UpdateParams<any>,
+    ) => BaseRecord;
+    buildVariables?: (params: UpdateParams<any>) => Record<string, any>;
+  };
+  updateMany?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: UpdateManyParams<any>,
+    ) => BaseRecord[];
+    buildVariables?: (params: UpdateManyParams<any>) => Record<string, any>;
+  };
+  deleteOne?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: DeleteOneParams<any>,
+    ) => BaseRecord;
+    buildVariables?: (params: DeleteOneParams<any>) => Record<string, any>;
+  };
+  deleteMany?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: DeleteManyParams<any>,
+    ) => BaseRecord[];
+    buildVariables?: (params: DeleteManyParams<any>) => Record<string, any>;
+  };
+  custom?: {
+    dataMapper?: (
+      response: OperationResult<any>,
+      params: CustomParams,
+    ) => Record<string, any>;
+    buildVariables?: (params: CustomParams) => Record<string, any>;
+  };
+};
 
 export const defaultOptions = {
   create: {
@@ -106,8 +183,17 @@ export const defaultOptions = {
     dataMapper: (response: OperationResult<any>, params: GetListParams) => {
       return response.data?.[params.resource].nodes;
     },
-    countMapper: (response: OperationResult<any>, params: GetListParams) => {
+    getTotalCount: (response: OperationResult<any>, params: GetListParams) => {
       return response.data?.[params.resource].totalCount;
+    },
+    buildVariables: (params: GetListParams) => {
+      return {
+        sorting: buildSorters(params.sorters),
+        filter: buildFilters(params.filters),
+        paging: buildPagination(params.pagination),
+        ...params.meta?.variables,
+        ...params.meta?.gqlVariables,
+      };
     },
     buildSorters: (params: GetListParams) => buildSorters(params.sorters),
     buildFilters: (params: GetListParams) => buildFilters(params.filters),
@@ -152,7 +238,7 @@ export const defaultOptions = {
       });
 
       const key = `updateMany${pascalResource}`;
-      return response.data?.[key];
+      return [response.data?.[key]];
     },
     buildVariables: (params: UpdateManyParams<any>) => {
       const { ids, variables } = params;
@@ -196,7 +282,7 @@ export const defaultOptions = {
 
       const key = `deleteMany${pascalResource}`;
 
-      return response.data?.[key];
+      return [response.data?.[key]];
     },
     buildVariables: (params: DeleteManyParams<any>) => {
       const { ids } = params;

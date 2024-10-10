@@ -2,11 +2,14 @@ import type { BaseRecord, CustomParams, DataProvider } from "@refinedev/core";
 import type { Client } from "@urql/core";
 import { isMutation } from "../utils";
 import { defaultOptions, type GraphQLDataProviderOptions } from "./options";
+import dm from "deepmerge";
 
 const createDataProvider = (
   client: Client,
-  options: GraphQLDataProviderOptions = defaultOptions,
+  baseOptions: GraphQLDataProviderOptions = defaultOptions,
 ): Required<DataProvider> => {
+  const options = dm(defaultOptions, baseOptions);
+
   return {
     create: async (params) => {
       const { meta } = params;
@@ -75,22 +78,13 @@ const createDataProvider = (
         throw new Error("Operation is required.");
       }
 
-      const paging = options.getList.buildPagination(params);
-      const sorting = options.getList.buildSorters(params);
-      const filter = options.getList.buildFilters(params);
+      const variables = options.getList.buildVariables(params);
 
-      const response = await client
-        .query(meta.gqlQuery, {
-          sorting,
-          filter,
-          paging,
-          ...meta?.variables,
-        })
-        .toPromise();
+      const response = await client.query(meta.gqlQuery, variables).toPromise();
 
       return {
         data: options.getList.dataMapper(response, params),
-        total: options.getList.countMapper(response, params),
+        total: options.getList.getTotalCount(response, params),
       };
     },
     getMany: async (params) => {
@@ -135,7 +129,7 @@ const createDataProvider = (
         .mutation(meta.gqlMutation, options.updateMany.buildVariables(params))
         .toPromise();
 
-      return { data: [options.updateMany.dataMapper(response, params)] };
+      return { data: options.updateMany.dataMapper(response, params) };
     },
     deleteOne: async (params) => {
       const { meta } = params;
@@ -164,7 +158,7 @@ const createDataProvider = (
         .toPromise();
 
       return {
-        data: [options.deleteMany.dataMapper(response, params)],
+        data: options.deleteMany.dataMapper(response, params),
       };
     },
     custom: async (params) => {

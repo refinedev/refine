@@ -2,7 +2,6 @@ import type {
   CrudOperators,
   LogicalFilter,
   CrudFilter,
-  GetListParams,
   CrudSort,
   Pagination,
 } from "@refinedev/core";

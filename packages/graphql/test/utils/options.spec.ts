@@ -494,7 +494,7 @@ describe("defaultOptions.getList", () => {
     });
   });
 
-  describe("countMapper", () => {
+  describe("getTotalCount", () => {
     it("should map response count correctly for blogPosts", () => {
       const response = {
         data: {
@@ -507,7 +507,7 @@ describe("defaultOptions.getList", () => {
         resource: "blogPosts",
       };
 
-      const result = defaultOptions.getList.countMapper(response, params);
+      const result = defaultOptions.getList.getTotalCount(response, params);
 
       expect(result).toEqual(42);
     });
@@ -525,7 +525,7 @@ describe("defaultOptions.getList", () => {
         resource: "categories",
       };
 
-      const result = defaultOptions.getList.countMapper(response, params);
+      const result = defaultOptions.getList.getTotalCount(response, params);
 
       expect(result).toEqual(17);
     });
@@ -948,18 +948,7 @@ describe("defaultOptions.updateMany", () => {
     it("should map response data correctly for blogPosts", () => {
       const response = {
         data: {
-          updateManyBlogPosts: [
-            {
-              id: 1,
-              title: "Updated Blog Post 1",
-              content: "This is the updated content of the first blog post.",
-            },
-            {
-              id: 2,
-              title: "Updated Blog Post 2",
-              content: "This is the updated content of the second blog post.",
-            },
-          ],
+          updateManyBlogPosts: { updatedCount: 2 },
         },
       } as OperationResult;
 
@@ -980,14 +969,7 @@ describe("defaultOptions.updateMany", () => {
 
       expect(result).toEqual([
         {
-          id: 1,
-          title: "Updated Blog Post 1",
-          content: "This is the updated content of the first blog post.",
-        },
-        {
-          id: 2,
-          title: "Updated Blog Post 2",
-          content: "This is the updated content of the second blog post.",
+          updatedCount: 2,
         },
       ]);
     });
@@ -995,16 +977,7 @@ describe("defaultOptions.updateMany", () => {
     it("should handle different resource names correctly for categories", () => {
       const response = {
         data: {
-          updateManyCategories: [
-            {
-              id: 1,
-              name: "Updated Category 1",
-            },
-            {
-              id: 2,
-              name: "Updated Category 2",
-            },
-          ],
+          updateManyCategories: { updatedCount: 2 },
         },
       } as OperationResult;
 
@@ -1023,16 +996,7 @@ describe("defaultOptions.updateMany", () => {
 
       const result = defaultOptions.updateMany.dataMapper(response, params);
 
-      expect(result).toEqual([
-        {
-          id: 1,
-          name: "Updated Category 1",
-        },
-        {
-          id: 2,
-          name: "Updated Category 2",
-        },
-      ]);
+      expect(result).toEqual([{ updatedCount: 2 }]);
     });
   });
 
@@ -1174,18 +1138,7 @@ describe("defaultOptions.deleteMany", () => {
     it("should map response data correctly for blogPosts", () => {
       const response = {
         data: {
-          deleteManyBlogPosts: [
-            {
-              id: 1,
-              title: "Deleted Blog Post 1",
-              content: "This is the content of the first deleted blog post.",
-            },
-            {
-              id: 2,
-              title: "Deleted Blog Post 2",
-              content: "This is the content of the second deleted blog post.",
-            },
-          ],
+          deleteManyBlogPosts: { deletedCount: 2 },
         },
       } as OperationResult;
 
@@ -1196,33 +1149,13 @@ describe("defaultOptions.deleteMany", () => {
 
       const result = defaultOptions.deleteMany.dataMapper(response, params);
 
-      expect(result).toEqual([
-        {
-          id: 1,
-          title: "Deleted Blog Post 1",
-          content: "This is the content of the first deleted blog post.",
-        },
-        {
-          id: 2,
-          title: "Deleted Blog Post 2",
-          content: "This is the content of the second deleted blog post.",
-        },
-      ]);
+      expect(result).toEqual([{ deletedCount: 2 }]);
     });
 
     it("should handle different resource names correctly for categories", () => {
       const response = {
         data: {
-          deleteManyCategories: [
-            {
-              id: 1,
-              name: "Deleted Category 1",
-            },
-            {
-              id: 2,
-              name: "Deleted Category 2",
-            },
-          ],
+          deleteManyCategories: { deletedCount: 2 },
         },
       } as OperationResult;
 
@@ -1233,16 +1166,7 @@ describe("defaultOptions.deleteMany", () => {
 
       const result = defaultOptions.deleteMany.dataMapper(response, params);
 
-      expect(result).toEqual([
-        {
-          id: 1,
-          name: "Deleted Category 1",
-        },
-        {
-          id: 2,
-          name: "Deleted Category 2",
-        },
-      ]);
+      expect(result).toEqual([{ deletedCount: 2 }]);
     });
   });
 
