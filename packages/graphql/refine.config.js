@@ -5,8 +5,41 @@ module.exports = {
     items: [
       {
         group: "Providers",
+        label: "GraphQL Default Options",
+        requiredPackages: [
+          "@urql/core@5.0.6",
+          "camelcase@6.2.0",
+          "pluralize@8.0.0",
+        ],
+        files: [
+          {
+            src: "./src/dataProvider/options.ts",
+            dest: "./providers/graphql/dataProvider/options.ts",
+          },
+          {
+            src: "./test/utils/options.spec.ts",
+            dest: "./providers/graphql/dataProvider/options.spec.ts",
+          },
+        ],
+        message: `
+              **\`Usage\`**
+
+              \`\`\`
+              You can modify the swizzled options.ts file and pass it to the GraphQL data provider as a 2nd argument.
+
+              import createDataProvider from "@refinedev/graphql";
+
+              const myOptions = { /* your options */ };
+
+              const dataProvider = createDataProvider(client, myOptions);
+              \`\`\`
+              `,
+      },
+      {
+        group: "Providers",
         label: "GraphQL",
         requiredPackages: [
+          "@urql/core@5.0.6",
           "graphql-ws@5.9.1",
           "camelcase@6.2.0",
           "graphql@15.6.1",
@@ -51,7 +84,7 @@ module.exports = {
 
               \`\`\`
               // title: App.tsx
-              import dataProvider, { liveProvider } from "providers/graphql";
+              import createDataProvider, { createLiveProvider } from "providers/graphql";
               import { Client, fetchExchange } from "@urql/core";
               import { createClient } from "graphql-ws";
 
@@ -60,13 +93,17 @@ module.exports = {
 
               const client = new Client({ url: API_URL, exchanges: [fetchExchange] });
 
+              const dataProvider = createDataProvider(client)
+
               const wsClient = createClient({ url: WS_URL })
+
+              const liveProvider = createLiveProvider(wsClient)
 
               const App = () => {
                   return (
                       <Refine
-                          dataProvider={dataProvider(client)}
-                          liveProvider={liveProvider(wsClient)}
+                          dataProvider={dataProvider}
+                          liveProvider={liveProvider}
                           /* ... */
                       />
                   );
