@@ -8,3 +8,4 @@ export { RouteChangeHandler } from "./routeChangeHandler";
 export { CanAccess, CanAccessProps } from "./canAccess";
 export { GitHubBanner } from "./gh-banner";
 export { AutoSaveIndicator, AutoSaveIndicatorProps } from "./autoSaveIndicator";
+export { Link, LinkProps } from "./link";

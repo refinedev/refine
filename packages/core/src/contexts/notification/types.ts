@@ -15,7 +15,7 @@ export type SuccessErrorNotification<
         data?: TData,
         values?: TVariables,
         resource?: string,
-      ) => OpenNotificationParams | false);
+      ) => OpenNotificationParams | false | undefined);
   /**
    * Error notification configuration to be displayed when the mutation fails.
    * @default '"There was an error creating resource (status code: `statusCode`)" or "Error when updating resource (status code: statusCode)"'
@@ -27,7 +27,7 @@ export type SuccessErrorNotification<
         error?: TError,
         values?: TVariables,
         resource?: string,
-      ) => OpenNotificationParams | false);
+      ) => OpenNotificationParams | false | undefined);
 };
 
 export type OpenNotificationParams = {

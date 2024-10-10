@@ -5,7 +5,7 @@ module.exports = {
     items: [
       {
         group: "Providers",
-        label: "Supabase",
+        label: "Strapi v4",
         requiredPackages: ["axios@1.6.2, qs@6.10.1"],
         files: [
           {
@@ -41,6 +41,14 @@ module.exports = {
             dest: "./providers/strapi-v4/utils/normalizeData.ts",
           },
           {
+            src: "./src/utils/transformErrorMessages.ts",
+            dest: "./providers/strapi-v4/utils/transformErrorMessages.ts",
+          },
+          {
+            src: "./src/utils/transformHttpError.ts",
+            dest: "./providers/strapi-v4/utils/transformHttpError.ts",
+          },
+          {
             src: "./src/helpers/index.ts",
             dest: "./providers/strapi-v4/helpers/index.ts",
           },
@@ -51,14 +59,6 @@ module.exports = {
           {
             src: "./src/helpers/normalize.ts",
             dest: "./providers/strapi-v4/helpers/normalize.ts",
-          },
-          {
-            src: "./src/hooks/index.ts",
-            dest: "./providers/strapi-v4/hooks/index.ts",
-          },
-          {
-            src: "./src/hooks/upload.ts",
-            dest: "./providers/strapi-v4/hooks/upload.ts",
           },
         ],
         message: `

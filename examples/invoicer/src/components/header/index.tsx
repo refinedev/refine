@@ -1,13 +1,12 @@
 import React from "react";
 import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
-import { useNavigation } from "@refinedev/core";
+import { useNavigation, Link } from "@refinedev/core";
 import { Layout as AntdLayout, Button, theme, Flex, Tabs } from "antd";
 import {
   BankOutlined,
   ShopOutlined,
   ContainerOutlined,
 } from "@ant-design/icons";
-import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useConfigProvider } from "@/providers/config-provider";
 import { Search } from "@/components/header/search";
@@ -17,7 +16,7 @@ import { Logo } from "@/components/logo";
 import { useStyles } from "./styled";
 
 export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
-  const { list, listUrl } = useNavigation();
+  const { list } = useNavigation();
 
   const location = useLocation();
 
@@ -47,7 +46,14 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
         }}
       >
         <Flex align="center" wrap="wrap">
-          <Link to={listUrl("accounts")}>
+          <Link
+            go={{
+              to: {
+                resource: "accounts",
+                action: "list",
+              },
+            }}
+          >
             <Logo
               style={{
                 width: "200px",

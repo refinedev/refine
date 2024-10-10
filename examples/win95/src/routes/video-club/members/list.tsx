@@ -1,5 +1,10 @@
-import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
-import { Link, useNavigate } from "react-router-dom";
+import {
+  getDefaultFilter,
+  useSubscription,
+  useTable,
+  Link,
+} from "@refinedev/core";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "react95";
 import {
@@ -168,7 +173,17 @@ export const VideoClubMemberPageList = () => {
                       $385,00
                     </TableDataCell>
                     <TableDataCell $width={64} style={{ textAlign: "right" }}>
-                      <Link to={`/video-club/members/${member.id}`}>View</Link>
+                      <Link
+                        go={{
+                          to: {
+                            resource: "members",
+                            action: "show",
+                            id: member.id,
+                          },
+                        }}
+                      >
+                        View
+                      </Link>
                     </TableDataCell>
                   </TableRow>
                 );

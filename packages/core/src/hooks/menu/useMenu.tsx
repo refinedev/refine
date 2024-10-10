@@ -23,12 +23,14 @@ export type UseMenuProps = {
   hideOnMissingParameter?: boolean;
 };
 
-export type TreeMenuItem = FlatTreeItem & {
-  route?: string;
-  icon?: React.ReactNode;
-  label?: string;
-  children: TreeMenuItem[];
-};
+export type TreeMenuItem =
+  // Omitted because `label` and `route` are deprecated in `resource` but not in `menuItems`. These are populated in `prepareItem` for ease of use.
+  Omit<FlatTreeItem, "label" | "route" | "children"> & {
+    route?: string;
+    icon?: React.ReactNode;
+    label?: string;
+    children: TreeMenuItem[];
+  };
 
 const getCleanPath = (pathname: string) => {
   return pathname
@@ -86,7 +88,9 @@ export const useMenu = (
 
   const prepareItem = React.useCallback(
     (item: FlatTreeItem): TreeMenuItem | undefined => {
-      if (item?.meta?.hide ?? item?.options?.hide) return undefined;
+      if (pickNotDeprecated(item?.meta?.hide, item?.options?.hide)) {
+        return undefined;
+      }
       if (!item?.list && item.children.length === 0) return undefined;
 
       const composed = item.list

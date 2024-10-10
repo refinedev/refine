@@ -138,6 +138,9 @@ describe("with gql", () => {
                             }
                         }
                     `,
+          gqlVariables: {
+            foo: "bar",
+          },
         },
       });
 

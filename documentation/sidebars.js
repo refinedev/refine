@@ -225,6 +225,12 @@ module.exports = {
         {
           type: "category",
           collapsed: false,
+          label: "Components",
+          items: ["routing/components/link/index"],
+        },
+        {
+          type: "category",
+          collapsed: false,
           label: "Hooks",
           items: [
             "routing/hooks/use-resource-params/index",
