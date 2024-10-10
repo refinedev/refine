@@ -440,6 +440,28 @@ export function useTable<
   };
 
   useEffect(() => {
+    if (!parsedParams?.params?.filters && !parsedParams?.params?.sorters) {
+      const resetFilters = setInitialFilters(
+        preferredPermanentFilters,
+        defaultFilter ?? [],
+      );
+      const resetSorters = setInitialSorters(
+        preferredPermanentSorters,
+        defaultSorter ?? [],
+      );
+
+      setFilters(resetFilters);
+      setSorters(resetSorters);
+    }
+  }, [
+    parsedParams,
+    preferredPermanentFilters,
+    defaultFilter,
+    preferredPermanentSorters,
+    defaultSorter,
+  ]);
+
+  useEffect(() => {
     if (search === "") {
       setCurrent(defaultCurrent);
       setPageSize(defaultPageSize);
