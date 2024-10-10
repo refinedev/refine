@@ -1,5 +1,15 @@
-import type { MetaQuery } from "@refinedev/core";
-import { type DocumentNode, visit, type SelectionSetNode } from "graphql";
+import {
+  type FieldNode,
+  type DocumentNode,
+  visit,
+  type SelectionSetNode,
+} from "graphql";
+
+const getChildNodesField = (node: FieldNode): FieldNode | undefined => {
+  return node?.selectionSet?.selections?.find(
+    (node) => node.kind === "Field" && node.name.value === "nodes",
+  ) as FieldNode;
+};
 
 export const getOperationFields = (documentNode: DocumentNode) => {
   const fieldLines: string[] = [];
@@ -7,33 +17,21 @@ export const getOperationFields = (documentNode: DocumentNode) => {
   let depth = 0;
   let isNestedField = false;
 
-  // remove `<name>_aggregate` or `<name>Aggregate` object from query
-  const newDocumentNode = visit(documentNode, {
-    Field: {
-      enter(node) {
-        if (
-          node.name.value.includes("aggregate") ||
-          node.name.value.includes("Aggregate")
-        ) {
-          return null;
-        }
-
-        return node;
-      },
-    },
-  });
-
-  visit(newDocumentNode, {
+  visit(documentNode, {
     Field: {
       enter(node): SelectionSetNode | void {
         if (isInitialEnter) {
           isInitialEnter = false;
 
-          if (typeof node.selectionSet === "undefined") {
+          const childNodesField = getChildNodesField(node);
+
+          const nodeToReturn = childNodesField ?? node;
+
+          if (typeof nodeToReturn.selectionSet === "undefined") {
             throw new Error("Operation must have a selection set");
           }
 
-          return node.selectionSet;
+          return nodeToReturn.selectionSet;
         }
 
         fieldLines.push(
@@ -74,21 +72,4 @@ export const isMutation = (documentNode: DocumentNode) => {
   });
 
   return isMutation;
-};
-
-export const metaFieldsToGqlFields = (metaFields: MetaQuery["fields"]) => {
-  if (!metaFields) return "";
-
-  const fields: string[] = [];
-
-  metaFields.forEach((field) => {
-    if (typeof field === "string") {
-      fields.push(field);
-    } else {
-      const [key, value] = Object.entries(field)[0];
-      fields.push(`${key} { ${metaFieldsToGqlFields(value)} }`);
-    }
-  });
-
-  return fields.join("\n");
 };
