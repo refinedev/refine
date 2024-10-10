@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import type {
   QueryObserverResult,
@@ -520,36 +520,49 @@ export function useTable<
     dataProviderName,
   });
 
-  const setFiltersAsMerge = (newFilters: CrudFilter[]) => {
-    setFilters((prevFilters) =>
-      unionFilters(preferredPermanentFilters, newFilters, prevFilters),
+  const setFiltersAsMerge = useCallback(
+    (newFilters: CrudFilter[]) => {
+      setFilters((prevFilters) =>
+        unionFilters(preferredPermanentFilters, newFilters, prevFilters),
+      );
+    },
+    [setFilters, unionFilters, preferredPermanentFilters],
+  );
+
+  const setFiltersAsReplace = useCallback(
+    (newFilters: CrudFilter[]) => {
+      setFilters(unionFilters(preferredPermanentFilters, newFilters));
+    },
+    [setFilters, unionFilters, preferredPermanentFilters],
+  );
+
+  const setFiltersWithSetter = useCallback(
+    (setter: (prevFilters: CrudFilter[]) => CrudFilter[]) => {
+      setFilters((prev) =>
+        unionFilters(preferredPermanentFilters, setter(prev)),
+      );
+    },
+    [setFilters, unionFilters, preferredPermanentFilters],
+  );
+
+  const setFiltersFn: useTableReturnType<TQueryFnData>["setFilters"] =
+    useCallback(
+      (
+        setterOrFilters,
+        behavior: SetFilterBehavior = prefferedFilterBehavior,
+      ) => {
+        if (typeof setterOrFilters === "function") {
+          setFiltersWithSetter(setterOrFilters);
+        } else {
+          if (behavior === "replace") {
+            setFiltersAsReplace(setterOrFilters);
+          } else {
+            setFiltersAsMerge(setterOrFilters);
+          }
+        }
+      },
+      [setFiltersWithSetter, setFiltersAsReplace, setFiltersAsMerge],
     );
-  };
-
-  const setFiltersAsReplace = (newFilters: CrudFilter[]) => {
-    setFilters(unionFilters(preferredPermanentFilters, newFilters));
-  };
-
-  const setFiltersWithSetter = (
-    setter: (prevFilters: CrudFilter[]) => CrudFilter[],
-  ) => {
-    setFilters((prev) => unionFilters(preferredPermanentFilters, setter(prev)));
-  };
-
-  const setFiltersFn: useTableReturnType<TQueryFnData>["setFilters"] = (
-    setterOrFilters,
-    behavior: SetFilterBehavior = prefferedFilterBehavior,
-  ) => {
-    if (typeof setterOrFilters === "function") {
-      setFiltersWithSetter(setterOrFilters);
-    } else {
-      if (behavior === "replace") {
-        setFiltersAsReplace(setterOrFilters);
-      } else {
-        setFiltersAsMerge(setterOrFilters);
-      }
-    }
-  };
 
   const setSortWithUnion = (newSorter: CrudSort[]) => {
     setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
