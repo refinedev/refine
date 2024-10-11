@@ -526,14 +526,14 @@ export function useTable<
         unionFilters(preferredPermanentFilters, newFilters, prevFilters),
       );
     },
-    [setFilters, unionFilters, preferredPermanentFilters],
+    [preferredPermanentFilters],
   );
 
   const setFiltersAsReplace = useCallback(
     (newFilters: CrudFilter[]) => {
       setFilters(unionFilters(preferredPermanentFilters, newFilters));
     },
-    [setFilters, unionFilters, preferredPermanentFilters],
+    [preferredPermanentFilters],
   );
 
   const setFiltersWithSetter = useCallback(
@@ -542,7 +542,7 @@ export function useTable<
         unionFilters(preferredPermanentFilters, setter(prev)),
       );
     },
-    [setFilters, unionFilters, preferredPermanentFilters],
+    [preferredPermanentFilters],
   );
 
   const setFiltersFn: useTableReturnType<TQueryFnData>["setFilters"] =
@@ -564,9 +564,12 @@ export function useTable<
       [setFiltersWithSetter, setFiltersAsReplace, setFiltersAsMerge],
     );
 
-  const setSortWithUnion = (newSorter: CrudSort[]) => {
-    setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
-  };
+  const setSortWithUnion = useCallback(
+    (newSorter: CrudSort[]) => {
+      setSorters(() => unionSorters(preferredPermanentSorters, newSorter));
+    },
+    [preferredPermanentSorters],
+  );
 
   const { elapsedTime } = useLoadingOvertime({
     isLoading: queryResult.isFetching,
