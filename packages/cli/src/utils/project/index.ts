@@ -6,8 +6,13 @@ export const getProjectType = (platform?: ProjectTypes): ProjectTypes => {
     return platform;
   }
   // read dependencies from package.json
-  const dependencies = getDependencies();
-  const devDependencies = getDevDependencies();
+  let dependencies: string[] = [];
+  let devDependencies: string[] = [];
+
+  try {
+    dependencies = getDependencies();
+    devDependencies = getDevDependencies();
+  } catch (error) {}
 
   // check for craco
   // craco and react-scripts installs together. We need to check for craco first
