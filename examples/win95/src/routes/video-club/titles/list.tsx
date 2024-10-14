@@ -1,5 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
+import {
+  getDefaultFilter,
+  useSubscription,
+  useTable,
+  Link,
+} from "@refinedev/core";
 import {
   Hourglass,
   Select,
@@ -12,7 +17,6 @@ import {
   TextInput,
 } from "react95";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import { VideoClubLayoutSubPage } from "@/components/layout";
 import { Pagination } from "@/components/pagination";
 import { DangerIcon } from "@/components/icons";
@@ -171,7 +175,17 @@ export const VideoClubPageBrowseTitles = () => {
                       {title.rentals.length}
                     </TableDataCell>
                     <TableDataCell $width={48} style={{ textAlign: "right" }}>
-                      <Link to={`/video-club/titles/${title.id}`}>View</Link>
+                      <Link
+                        go={{
+                          to: {
+                            resource: "titles",
+                            action: "show",
+                            id: title.id,
+                          },
+                        }}
+                      >
+                        View
+                      </Link>
                     </TableDataCell>
                   </TableRow>
                 );
