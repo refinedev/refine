@@ -50,7 +50,7 @@ This is where the `useEffect` cleaning function comes in. In the cleanup functio
 
 ## When to use the `useEffect` cleanup function
 
-There are various scenarios which will prompt the use of the `useEffect` cleanup function. They are as follows: 
+There are various scenarios which will prompt the use of the `useEffect` cleanup function. They are as follows:
 
 ### Fetch requests
 
