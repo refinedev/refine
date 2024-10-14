@@ -1,17 +1,5 @@
-import { RouterContext } from "@contexts/router";
-import React, { useContext } from "react";
+import { Link } from "../../../components/link";
 
 export const useLink = () => {
-  const routerContext = useContext(RouterContext);
-
-  if (routerContext?.Link) {
-    return routerContext.Link;
-  }
-
-  const FallbackLink: Required<typeof routerContext>["Link"] = ({
-    to,
-    ...rest
-  }) => <a href={to} {...rest} />;
-
-  return FallbackLink;
+  return Link;
 };

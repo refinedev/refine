@@ -480,7 +480,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
   .post("/v1/graphql", {
     query:
       "query GetPost($id: uuid!) {\n  posts_by_pk(id: $id) {\n    id\n    title\n    content\n    category {\n      id\n    }\n  }\n}\n",
-    variables: { id: "572708c7-840d-430a-befd-1416bdee799a" },
+    variables: { id: "572708c7-840d-430a-befd-1416bdee799a", foo: "bar" },
     operationName: "GetPost",
   })
   .reply(
@@ -531,7 +531,7 @@ nock("https://flowing-mammal-24.hasura.app:443", { encodedQueryParams: true })
   .post("/v1/graphql", {
     query:
       "query GetPost($id: uuid!) {\n  posts_by_pk(id: $id) {\n    id\n    title\n    content\n    category {\n      id\n    }\n  }\n}\n",
-    variables: { id: "572708c7-840d-430a-befd-1416bdee799a" },
+    variables: { id: "572708c7-840d-430a-befd-1416bdee799a", foo: "bar" },
     operationName: "GetPost",
   })
   .reply(
