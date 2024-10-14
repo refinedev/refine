@@ -546,9 +546,9 @@ describe("defaultOptions.getList", () => {
         { field: "createdAt", direction: "DESC" },
       ];
 
-      const result = defaultOptions.getList.buildSorters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedSorters);
+      expect(result.sorting).toEqual(expectedSorters);
     });
 
     it("should handle empty sort array correctly", () => {
@@ -559,9 +559,9 @@ describe("defaultOptions.getList", () => {
 
       const expectedSorters: CrudSort[] = [];
 
-      const result = defaultOptions.getList.buildSorters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedSorters);
+      expect(result.sorting).toEqual(expectedSorters);
     });
   });
 
@@ -576,9 +576,9 @@ describe("defaultOptions.getList", () => {
         title: { eq: "Sample Title" },
       };
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
 
     it("should build filters correctly for contains operator", () => {
@@ -591,9 +591,9 @@ describe("defaultOptions.getList", () => {
         title: { iLike: "%Sample%" },
       };
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
 
     it("should build filters correctly for between operator", () => {
@@ -606,9 +606,9 @@ describe("defaultOptions.getList", () => {
         price: { between: { lower: 10, upper: 20 } },
       };
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
 
     it("should build filters correctly for null operator", () => {
@@ -621,9 +621,9 @@ describe("defaultOptions.getList", () => {
         description: { is: null },
       };
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
 
     it("should handle logical operators correctly", () => {
@@ -649,9 +649,9 @@ describe("defaultOptions.getList", () => {
         ],
       };
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
 
     it("should filter out empty arrays", () => {
@@ -662,9 +662,9 @@ describe("defaultOptions.getList", () => {
 
       const expectedFilters = {};
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
 
     it("should filter out null or undefined values", () => {
@@ -678,9 +678,9 @@ describe("defaultOptions.getList", () => {
 
       const expectedFilters = {};
 
-      const result = defaultOptions.getList.buildFilters(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedFilters);
+      expect(result.filter).toEqual(expectedFilters);
     });
   });
 
@@ -699,9 +699,9 @@ describe("defaultOptions.getList", () => {
         offset: 10,
       };
 
-      const result = defaultOptions.getList.buildPagination(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedPagination);
+      expect(result.paging).toEqual(expectedPagination);
     });
 
     it("should handle pagination with default values", () => {
@@ -718,9 +718,9 @@ describe("defaultOptions.getList", () => {
         offset: 0,
       };
 
-      const result = defaultOptions.getList.buildPagination(params);
+      const result = defaultOptions.getList.buildVariables(params);
 
-      expect(result).toEqual(expectedPagination);
+      expect(result.paging).toEqual(expectedPagination);
     });
   });
 });

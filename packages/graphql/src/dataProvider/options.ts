@@ -133,7 +133,8 @@ export const defaultOptions = {
     buildVariables: (params: CreateManyParams<any>) => {
       return {
         input: {
-          [camelcase(params.resource)]: params.variables,
+          [camelcase(params.resource)]:
+            params.variables ?? params?.meta?.gqlVariables,
         },
       };
     },
@@ -147,6 +148,7 @@ export const defaultOptions = {
     buildVariables: (params: GetOneParams) => {
       return {
         id: params.id,
+        ...params.meta?.gqlVariables,
       };
     },
     // Besides useOne hook, getOne hook is also consumed by `useForm`.
@@ -195,14 +197,10 @@ export const defaultOptions = {
         ...params.meta?.gqlVariables,
       };
     },
-    buildSorters: (params: GetListParams) => buildSorters(params.sorters),
-    buildFilters: (params: GetListParams) => buildFilters(params.filters),
-    buildPagination: (params: GetListParams) =>
-      buildPagination(params.pagination),
   },
   getMany: {
     buildFilter: (params: GetManyParams) => {
-      return { id: { in: params.ids } };
+      return { id: { in: params.ids }, ...params?.meta?.gqlVariables };
     },
     dataMapper: (response: OperationResult<any>, params: GetManyParams) => {
       const key = camelcase(params.resource);
@@ -262,7 +260,7 @@ export const defaultOptions = {
     },
     buildVariables: (params: DeleteOneParams<any>) => {
       return {
-        input: { id: params.id },
+        input: { id: params.id, ...params?.meta?.gqlVariables },
       };
     },
   },
