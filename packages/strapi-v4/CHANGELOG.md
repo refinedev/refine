@@ -1,5 +1,15 @@
 # @refinedev/strapi-v4
 
+## 6.0.9
+
+### Patch Changes
+
+- [#6336](https://github.com/refinedev/refine/pull/6336) [`4ccf7fa37212239c9ac0dc15e1b1848c2d97918f`](https://github.com/refinedev/refine/commit/4ccf7fa37212239c9ac0dc15e1b1848c2d97918f) Thanks [@aliemir](https://github.com/aliemir)! - fix: `transformHttpError.ts` and `transformErrorMessages` files are not [swizzling](https://refine.dev/docs/packages/cli/#commands).
+
+  From now on, these files will be copied to the project.
+
+  [Resolves #6397](https://github.com/refinedev/refine/issues/6397)
+
 ## 6.0.8
 
 ### Patch Changes

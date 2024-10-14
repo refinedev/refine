@@ -1,5 +1,15 @@
 # @refinedev/devtools-server
 
+## 1.1.37
+
+### Patch Changes
+
+- [#6336](https://github.com/refinedev/refine/pull/6336) [`4ccf7fa37212239c9ac0dc15e1b1848c2d97918f`](https://github.com/refinedev/refine/commit/4ccf7fa37212239c9ac0dc15e1b1848c2d97918f) Thanks [@aliemir](https://github.com/aliemir)! - chore: bump express version to latest
+
+  Bump `express` dependecy to `^4.21.0` to fix vulnerability in `serve-static`.
+
+  [Resolves #6321](https://github.com/refinedev/refine/issues/6321)
+
 ## 1.1.36
 
 ### Patch Changes

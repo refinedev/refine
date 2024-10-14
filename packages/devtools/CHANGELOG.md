@@ -1,5 +1,13 @@
 # @refinedev/devtools
 
+## 1.2.9
+
+### Patch Changes
+
+- Updated dependencies [[`4ccf7fa37212239c9ac0dc15e1b1848c2d97918f`](https://github.com/refinedev/refine/commit/4ccf7fa37212239c9ac0dc15e1b1848c2d97918f), [`4ccf7fa37212239c9ac0dc15e1b1848c2d97918f`](https://github.com/refinedev/refine/commit/4ccf7fa37212239c9ac0dc15e1b1848c2d97918f), [`4ccf7fa37212239c9ac0dc15e1b1848c2d97918f`](https://github.com/refinedev/refine/commit/4ccf7fa37212239c9ac0dc15e1b1848c2d97918f)]:
+  - @refinedev/devtools-server@1.1.37
+  - @refinedev/cli@2.16.39
+
 ## 1.2.8
 
 ### Patch Changes

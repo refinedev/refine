@@ -1,5 +1,31 @@
 # @refinedev/nestjsx-crud
 
+## 5.0.10
+
+### Patch Changes
+
+- [#6336](https://github.com/refinedev/refine/pull/6336) [`4ccf7fa37212239c9ac0dc15e1b1848c2d97918f`](https://github.com/refinedev/refine/commit/4ccf7fa37212239c9ac0dc15e1b1848c2d97918f) Thanks [@aliemir](https://github.com/aliemir)! - feat: add `between` filter operator
+
+  Add between operator support to `CrudFilters`
+
+  ```ts
+  import { useTable } from "@refinedev/core";
+
+  useTable({
+    filters: {
+      initial: [
+        {
+          field: "createdAt",
+          operator: "between",
+          value: [new Date().toISOString(), new Date().toISOString()],
+        },
+      ],
+    },
+  });
+  ```
+
+  [Resolves #6334](https://github.com/refinedev/refine/issues/6334)
+
 ## 5.0.9
 
 ### Patch Changes
