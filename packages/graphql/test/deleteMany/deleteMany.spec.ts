@@ -14,15 +14,16 @@ mutation DeleteManyBlogPosts($input: DeleteManyBlogPostsInput!) {
 describe("deleteMany", () => {
   describe("with correct params", () => {
     it("works as expected", async () => {
+      const ids = ["333", "334"];
       const { data } = await dataProvider(client).deleteMany({
         resource: "blogPosts",
-        ids: ["333", "334"],
+        ids,
         meta: {
           gqlMutation,
         },
       });
 
-      expect(data[0].deletedCount).toEqual(2);
+      expect(data).toEqual(ids.map((id) => ({ id })));
     });
   });
 

@@ -230,15 +230,10 @@ export const defaultOptions = {
   },
   updateMany: {
     dataMapper: (
-      response: OperationResult<any>,
+      _response: OperationResult<any>,
       params: UpdateManyParams<any>,
-    ) => {
-      const pascalResource = camelcase(params.resource, {
-        pascalCase: true,
-      });
-
-      const key = `updateMany${pascalResource}`;
-      return [response.data?.[key]];
+    ): any[] => {
+      return params.ids.map((id) => ({ id }));
     },
     buildVariables: (params: UpdateManyParams<any>) => {
       const { ids, variables } = params;
@@ -273,16 +268,10 @@ export const defaultOptions = {
   },
   deleteMany: {
     dataMapper: (
-      response: OperationResult<any>,
+      _response: OperationResult<any>,
       params: DeleteManyParams<any>,
-    ) => {
-      const pascalResource = camelcase(params.resource, {
-        pascalCase: true,
-      });
-
-      const key = `deleteMany${pascalResource}`;
-
-      return [response.data?.[key]];
+    ): any[] => {
+      return params.ids.map((id) => ({ id }));
     },
     buildVariables: (params: DeleteManyParams<any>) => {
       const { ids } = params;

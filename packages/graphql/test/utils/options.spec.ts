@@ -952,9 +952,11 @@ describe("defaultOptions.updateMany", () => {
         },
       } as OperationResult;
 
+      const ids = [1, 2];
+
       const params = {
         resource: "blogPosts",
-        ids: [1, 2],
+        ids,
         variables: [
           {
             name: "Updated Category 1",
@@ -967,11 +969,7 @@ describe("defaultOptions.updateMany", () => {
 
       const result = defaultOptions.updateMany.dataMapper(response, params);
 
-      expect(result).toEqual([
-        {
-          updatedCount: 2,
-        },
-      ]);
+      expect(result).toEqual(ids.map((id) => ({ id })));
     });
 
     it("should handle different resource names correctly for categories", () => {
@@ -981,9 +979,11 @@ describe("defaultOptions.updateMany", () => {
         },
       } as OperationResult;
 
+      const ids = [1, 2];
+
       const params = {
         resource: "categories",
-        ids: [1, 2],
+        ids,
         variables: [
           {
             name: "Updated Category 1",
@@ -996,7 +996,7 @@ describe("defaultOptions.updateMany", () => {
 
       const result = defaultOptions.updateMany.dataMapper(response, params);
 
-      expect(result).toEqual([{ updatedCount: 2 }]);
+      expect(result).toEqual(ids.map((id) => ({ id })));
     });
   });
 
@@ -1142,14 +1142,16 @@ describe("defaultOptions.deleteMany", () => {
         },
       } as OperationResult;
 
+      const ids = [1, 2];
+
       const params = {
         resource: "blogPosts",
-        ids: [1, 2],
+        ids,
       };
 
       const result = defaultOptions.deleteMany.dataMapper(response, params);
 
-      expect(result).toEqual([{ deletedCount: 2 }]);
+      expect(result).toEqual(ids.map((id) => ({ id })));
     });
 
     it("should handle different resource names correctly for categories", () => {
@@ -1159,14 +1161,16 @@ describe("defaultOptions.deleteMany", () => {
         },
       } as OperationResult;
 
+      const ids = [1, 2];
+
       const params = {
         resource: "categories",
-        ids: [1, 2],
+        ids,
       };
 
       const result = defaultOptions.deleteMany.dataMapper(response, params);
 
-      expect(result).toEqual([{ deletedCount: 2 }]);
+      expect(result).toEqual(ids.map((id) => ({ id })));
     });
   });
 

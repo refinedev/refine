@@ -14,16 +14,17 @@ mutation UpdateManyBlogPosts($input: UpdateManyBlogPostsInput!) {
 describe("updateMany", () => {
   describe("with correct params", () => {
     it("works as expected", async () => {
+      const ids = ["1", "2"];
       const { data } = await dataProvider(client).updateMany({
         resource: "blogPosts",
-        ids: ["1", "2"],
+        ids,
         meta: {
           gqlMutation,
         },
         variables: { status: "PUBLISHED" },
       });
 
-      expect(data[0].updatedCount).toEqual(2);
+      expect(data).toEqual(ids.map((id) => ({ id })));
     });
   });
 
