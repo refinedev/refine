@@ -3,7 +3,7 @@ module.exports = {
   rootDir: "./",
   displayName: "graphql",
   setupFilesAfterEnv: ["<rootDir>/test/jest.setup.ts"],
-  testEnvironment: "jsdom",
+  testEnvironment: "node",
   moduleNameMapper: {
     "^(..?/.+).js?$": "$1",
   },

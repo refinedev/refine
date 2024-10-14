@@ -24,7 +24,7 @@ describe("mapOperator", () => {
       startswiths: CondOperator.STARTS,
       endswith: CondOperator.ENDS_LOW,
       endswiths: CondOperator.ENDS,
-      between: CondOperator.EQUALS,
+      between: CondOperator.BETWEEN,
       eq: CondOperator.EQUALS,
       nbetween: CondOperator.EQUALS,
       nendswith: CondOperator.EQUALS,

@@ -6,12 +6,16 @@ type Props = {
   className?: string;
   linkClassName?: string;
   variant?: "plain" | "default";
+  utmMedium?: string;
 };
 
 export const EnterpriseGetInTouchButton: FC<Props> = ({
   variant = "default",
   ...props
 }) => {
+  let href = "https://s.refine.dev/enterprise";
+  href += props.utmMedium ? `?utm_medium=${props.utmMedium}` : "";
+
   return (
     <div
       className={clsx(
@@ -24,7 +28,7 @@ export const EnterpriseGetInTouchButton: FC<Props> = ({
       )}
     >
       <Link
-        href="https://s.refine.dev/enterprise"
+        href={href}
         target="_blank"
         rel="noopener noreferrer"
         className={clsx(
