@@ -1,5 +1,13 @@
 # @refinedev/hasura
 
+## 6.6.8
+
+### Patch Changes
+
+- [#6379](https://github.com/refinedev/refine/pull/6379) [`a3fca84847b523d6ac8e7b30bebdb77010e8f7e5`](https://github.com/refinedev/refine/commit/a3fca84847b523d6ac8e7b30bebdb77010e8f7e5) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(hasura): pass meta.gqlVariables to getOne gql request.
+
+  [Fixes #6374](https://github.com/refinedev/refine/issues/6374)
+
 ## 6.6.7
 
 ### Patch Changes
