@@ -4,11 +4,84 @@ title: Remix
 
 Refine provides router bindings and utilities for [Remix](https://remix.run). This package will provide easy integration between Refine and **Remix** for both existing projects and new projects without giving up the benefits of **Remix**.
 
+import { CodeBlock } from "@site/src/theme/CodeBlock/base";
+
 <InstallPackagesCommand args="@refinedev/remix-router"/>
 
-We recommend using `create refine-app` to initialize your Refine projects. It configures the project according to your needs including SSR with Remix!
+You can use one of our remix examples to start your project.
 
-<CreateRefineAppCommand args="-o refine-remix my-refine-remix-app" />
+<Tabs>
+  <TabItem value="npm" label="npm" default>
+    <CodeBlock className="language-bash">
+      # With Ant Design
+      {'\n'}
+      npm create refine-app@latest -- --example with-remix-antd my-refine-remix-app
+      {'\n'}
+      # With authentication
+      {'\n'}
+      npm create refine-app@latest -- --example with-remix-auth my-refine-remix-app
+      {'\n'}
+      # Headless
+      {'\n'}
+      npm create refine-app@latest -- --example with-remix-headless my-refine-remix-app
+      {'\n'}
+      # With MUI
+      {'\n'}
+      npm create refine-app@latest -- --example with-remix-mui my-refine-remix-app
+      {'\n'}
+      # With Vite headless
+      {'\n'}
+      npm create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+    <CodeBlock className="language-bash">
+      # With Ant Design
+      {'\n'}
+      pnpm create refine-app@latest -- --example with-remix-antd my-refine-remix-app
+      {'\n'}
+      # With authentication
+      {'\n'}
+      pnpm create refine-app@latest -- --example with-remix-auth my-refine-remix-app
+      {'\n'}
+      # Headless
+      {'\n'}
+      pnpm create refine-app@latest -- --example with-remix-headless my-refine-remix-app
+      {'\n'}
+      # With MUI
+      {'\n'}
+      pnpm create refine-app@latest -- --example with-remix-mui my-refine-remix-app
+      {'\n'}
+      # With Vite headless
+      {'\n'}
+      pnpm create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app
+    </CodeBlock>
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+    <CodeBlock className="language-bash">
+      # With Ant Design
+      {'\n'}
+      yarn create refine-app@latest -- --example with-remix-antd my-refine-remix-app
+      {'\n'}
+      # With authentication
+      {'\n'}
+      yarn create refine-app@latest -- --example with-remix-auth my-refine-remix-app
+      {'\n'}
+      # Headless
+      {'\n'}
+      yarn create refine-app@latest -- --example with-remix-headless my-refine-remix-app
+      {'\n'}
+      # With MUI
+      {'\n'}
+      yarn create refine-app@latest -- --example with-remix-mui my-refine-remix-app
+      {'\n'}
+      # With Vite headless
+      {'\n'}
+      yarn create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app
+    </CodeBlock>
+    <ReactMarkdown>{"> Only supports yarn@1 version."}</ReactMarkdown>
+  </TabItem>
+</Tabs>
 
 [Refer to the Router Provider documentation for detailed information. &#8594][routerprovider]
 
