@@ -12,73 +12,61 @@ You can use one of our remix examples to start your project.
 
 <Tabs>
   <TabItem value="npm" label="npm" default>
-    <CodeBlock className="language-bash">
-      # With Ant Design
-      {'\n'}
-      npm create refine-app@latest -- --example with-remix-antd my-refine-remix-app
-      {'\n'}
-      # With authentication
-      {'\n'}
-      npm create refine-app@latest -- --example with-remix-auth my-refine-remix-app
-      {'\n'}
-      # Headless
-      {'\n'}
-      npm create refine-app@latest -- --example with-remix-headless my-refine-remix-app
-      {'\n'}
-      # With MUI
-      {'\n'}
-      npm create refine-app@latest -- --example with-remix-mui my-refine-remix-app
-      {'\n'}
-      # With Vite headless
-      {'\n'}
-      npm create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app
-    </CodeBlock>
+    <Tabs>
+      <TabItem value="vite" label="Vite Headless">
+        <CodeBlock className="language-bash">npm create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="antd" label="Ant Design">
+        <CodeBlock className="language-bash">npm create refine-app@latest -- --example with-remix-antd my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="mui" label="MUI">
+        <CodeBlock className="language-bash">npm create refine-app@latest -- --example with-remix-mui my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="auth" label="Authentication">
+        <CodeBlock className="language-bash">npm create refine-app@latest -- --example with-remix-auth my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="headless" label="Headless">
+        <CodeBlock className="language-bash">npm create refine-app@latest -- --example with-remix-headless my-refine-remix-app</CodeBlock>
+      </TabItem>
+    </Tabs>
   </TabItem>
   <TabItem value="pnpm" label="pnpm">
-    <CodeBlock className="language-bash">
-      # With Ant Design
-      {'\n'}
-      pnpm create refine-app@latest -- --example with-remix-antd my-refine-remix-app
-      {'\n'}
-      # With authentication
-      {'\n'}
-      pnpm create refine-app@latest -- --example with-remix-auth my-refine-remix-app
-      {'\n'}
-      # Headless
-      {'\n'}
-      pnpm create refine-app@latest -- --example with-remix-headless my-refine-remix-app
-      {'\n'}
-      # With MUI
-      {'\n'}
-      pnpm create refine-app@latest -- --example with-remix-mui my-refine-remix-app
-      {'\n'}
-      # With Vite headless
-      {'\n'}
-      pnpm create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app
-    </CodeBlock>
+    <Tabs>
+      <TabItem value="vite" label="Vite Headless">
+        <CodeBlock className="language-bash">pnpm create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="antd" label="Ant Design">
+        <CodeBlock className="language-bash">pnpm create refine-app@latest -- --example with-remix-antd my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="mui" label="MUI">
+        <CodeBlock className="language-bash">pnpm create refine-app@latest -- --example with-remix-mui my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="auth" label="Authentication">
+        <CodeBlock className="language-bash">pnpm create refine-app@latest -- --example with-remix-auth my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="headless" label="Headless">
+        <CodeBlock className="language-bash">pnpm create refine-app@latest -- --example with-remix-headless my-refine-remix-app</CodeBlock>
+      </TabItem>
+    </Tabs>
   </TabItem>
   <TabItem value="yarn" label="yarn">
-    <CodeBlock className="language-bash">
-      # With Ant Design
-      {'\n'}
-      yarn create refine-app@latest -- --example with-remix-antd my-refine-remix-app
-      {'\n'}
-      # With authentication
-      {'\n'}
-      yarn create refine-app@latest -- --example with-remix-auth my-refine-remix-app
-      {'\n'}
-      # Headless
-      {'\n'}
-      yarn create refine-app@latest -- --example with-remix-headless my-refine-remix-app
-      {'\n'}
-      # With MUI
-      {'\n'}
-      yarn create refine-app@latest -- --example with-remix-mui my-refine-remix-app
-      {'\n'}
-      # With Vite headless
-      {'\n'}
-      yarn create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app
-    </CodeBlock>
+    <Tabs>
+      <TabItem value="vite" label="Vite Headless">
+        <CodeBlock className="language-bash">yarn create refine-app@latest -- --example with-remix-vite-headless my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="antd" label="Ant Design">
+        <CodeBlock className="language-bash">yarn create refine-app@latest -- --example with-remix-antd my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="mui" label="MUI">
+        <CodeBlock className="language-bash">yarn create refine-app@latest -- --example with-remix-mui my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="auth" label="Authentication">
+        <CodeBlock className="language-bash">yarn create refine-app@latest -- --example with-remix-auth my-refine-remix-app</CodeBlock>
+      </TabItem>
+      <TabItem value="headless" label="Headless">
+        <CodeBlock className="language-bash">yarn create refine-app@latest -- --example with-remix-headless my-refine-remix-app</CodeBlock>
+      </TabItem>
+    </Tabs>
     <ReactMarkdown>{"> Only supports yarn@1 version."}</ReactMarkdown>
   </TabItem>
 </Tabs>
