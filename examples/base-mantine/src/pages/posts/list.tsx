@@ -27,7 +27,7 @@ export const PostList: React.FC = () => {
     () => [
       {
         id: "id",
-        header: "ID",
+        header: "ID test",
         accessorKey: "id",
       },
       {
@@ -111,11 +111,19 @@ export const PostList: React.FC = () => {
     refineCore: {
       setCurrent,
       pageCount,
+      pageSize,
       current,
       tableQuery: { data: tableData },
     },
   } = useTable({
     columns,
+    refineCoreProps: {
+      pagination: {
+        current: 3,
+        pageSize: 30,
+        mode: "server",
+      },
+    },
   });
 
   const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
@@ -136,8 +144,16 @@ export const PostList: React.FC = () => {
   }));
 
   return (
-    <ScrollArea>
-      <List>
+    <List
+      wrapperProps={{
+        h: "calc(100vh - var(--app-shell-header-height, 0px) - var(--app-shell-footer-height, 0px) - 32px)",
+        style: { flexGrow: 1 },
+      }}
+      contentProps={{
+        style: { flexGrow: 1, height: "100%" },
+      }}
+    >
+      <ScrollArea style={{ flexGrow: 1, height: "90%" }}>
         <Table highlightOnHover>
           <Table.Thead>
             {getHeaderGroups().map((headerGroup) => (
@@ -184,11 +200,10 @@ export const PostList: React.FC = () => {
             })}
           </Table.Tbody>
         </Table>
-
-        <Group mt="md" justify="right">
-          <Pagination total={pageCount} value={current} onChange={setCurrent} />
-        </Group>
-      </List>
-    </ScrollArea>
+      </ScrollArea>
+      <Group mt="md" justify="right">
+        <Pagination total={pageCount} value={current} onChange={setCurrent} />
+      </Group>
+    </List>
   );
 };
