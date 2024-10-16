@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-26-react-user
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 18, 2024 to add more usecases for React useRef hook and provide a more detailed explanation of the differences between useRef and React ref._**
+**This article was last updated on October 16, 2024 to add more use cases for the React useRef hook, address common misconceptions, explain performance optimizations, and provide a more detailed comparison between useRef and React ref.**
 
 ## Introduction
 
@@ -28,6 +28,7 @@ Steps we'll cover:
 - [Differences between the useRef hook and the createRef function](#differences-between-the-useref-hook-and-the-createref-function)
 - [Best practices when working with refs](#best-practices-when-working-with-refs)
 - [Using the useRef hook in an Application](#using-the-useref-hook-in-an-application)
+- [Common Pitfalls using useRef](#common-pitfalls-using-useref)
 - [When to use React useRef hook?](#when-to-use-react-useref-hook)
 - [Use-cases of refs in React](#use-cases-of-refs-in-react)
 
@@ -252,6 +253,89 @@ Now let’s see the output:
 
 <br />
 
+## Common Pitfalls using useRef
+
+A couple of things that I think folks sometimes misunderstand about `useRef`, including myself up until this week. Here are quick clarifications for each with examples:
+
+### Myth 1: `useRef` and `useState` serve the same purpose.
+
+Actually, `useRef` and `useState` work differently. When you update a value with `useState`, the re-rendering of the component is caused. However, if you do that with the help of `useRef`, the value can change and nothing will happen - your component won't re-render. Here is an example:
+
+```jsx
+const MyComponent = () => {
+  const [state, setState] = useState(0);
+  const ref = useRef(0);
+
+  const updateValues = () => {
+    setState(state + 1); // This will trigger a re-render
+    ref.current += 1; // This will NOT cause a re-render
+  };
+
+  console.log("Component rendered");
+
+  return (
+    <div>
+      <p>
+        State: {state}
+        Reference: {ref.current}
+      </p>
+      <button onClick={updateValues}>Update</button>
+    </div>
+  );
+};
+```
+
+This example re-renders the component on every button click because of the `setState` call; however, you won't see `console.log` triggered by that because changes of `ref` value don't trigger a re-render.
+
+### Myth 2: Changing a ref will re-render the component.
+
+It's again a misunderstanding. Setting ref value never re-renders the component. Here is a small example that proves this:
+
+```jsx
+import { useRef } from "react";
+
+const MyComponent = () => {
+  const ref = useRef(0);
+
+  const updateRef = () => {
+    ref.current += 1;
+    console.log("Ref updated:", ref.current); // You can see the updated value in the console
+  };
+
+  console.log("Component rendered");
+
+  return (
+    <div>
+      Ref value: {ref.current}
+      <button onClick={updateRef}>Update Ref</button>
+    </div>
+  );
+};
+```
+
+Even on every button click, though `ref.current` would change, the component doesn't trigger a re-render because `useRef` updates its value without affecting anything regarding the component lifecycle. So the only place that would see the updated value would be in the console.
+
+### Myth 3: `useRef` must be used only for DOM elements.
+
+While it's true that `useRef` is often used to access DOM elements, you can also use it to store any mutable value that persists across renders. In this example, we'll use `useRef` to count how many times a button gets clicked without causing re-renders:
+
+```jsx
+import { useRef } from "react";
+
+const MyComponent = () => {
+  const clickCount = useRef(0);
+
+  const handleClick = () => {
+    clickCount.current += 1;
+
+    console.log("Button clicked", clickCount.current, "times");
+  };
+  return <button onClick={handleClick}>Click Me</button>;
+};
+```
+
+In this case, `clickCount` keeps track of how many times the button was clicked, but doesn’t trigger a re-render every time the value changes. The count is logged in the console.
+
 ## When to use React useRef hook?
 
 1. **Accessing DOM Elements**: `useRef` is often used to directly access a DOM element in your JSX. This is useful for things like focusing on an input field upon a component mounting.
@@ -294,6 +378,100 @@ const MyComponent = () => {
 ```
 
 Because the `FunctionalComponent` component does not have an instance, the ref in the code above will not work. Instead, youcan convert the `FunctionalComponent` into a class component or use `forwardRef`.
+
+**Performance Optimization with useRef**
+
+Hi, here is an example of how we can use `useRef` to optimize the performance of React components by avoiding extra re-renders. See some examples below that show how `useRef` can help in different scenarios:
+
+1. **Avoiding Re-renders when Storing Mutable Values**
+
+If you need to store some value that doesn't need to trigger a re-render when changed, then `useRef` is perfect. For example, if you're storing mutable data like a previous value, using `useState` would cause a re-render every time that value updates, which is often unnecessary:
+
+```jsx
+import { useRef, useState, useEffect } from "react";
+
+const MyComponent = () => {
+  const [count, setCount] = useState(0);
+  const prevCountRef = useRef(0);
+
+  useEffect(() => {
+    prevCountRef.current = count; // Store the previous value without triggering a re-render
+  }, [count]);
+
+  return (
+    <div>
+      <p>Current count: {count}</p>
+      <p>Previous count: {prevCountRef.current}</p>
+      <button onClick={() => setCount(count + 1)}>Increment</button>
+    </div>
+  );
+};
+```
+
+In this example, `prevCountRef` stores the previous count without triggering a re-render. This is useful when comparing the current and previous values without affecting the virtual DOM.
+
+2. **Optimizing Expensive Operations**
+
+When there's an expensive operation that doesn’t need to re-run on every render, `useRef` can store those values. For example, if you're dealing with heavy calculations or external API results, you can store the result in a ref to avoid recalculating:
+
+```jsx
+import { useRef, useState, useEffect } from "react";
+
+const ExpensiveCalculationComponent = () => {
+  const [input, setInput] = useState(0);
+  const calculationRef = useRef(null);
+
+  useEffect(() => {
+    if (calculationRef.current === null) {
+      // Do the expensive calculation once and cache the result in ref
+      calculationRef.current = performExpensiveCalculation();
+    }
+  }, []);
+
+  const performExpensiveCalculation = () => {
+    console.log("Performing expensive calculation...");
+    return Math.random() * 1000; // Simulating a heavy operation
+  };
+
+  return (
+    <div>
+      <p>Input: {input}</p>
+      <p>Calculation Result: {calculationRef.current}</p>
+      <button onClick={() => setInput(input + 1)}>Update Input</button>
+    </div>
+  );
+};
+```
+
+Here, the expensive calculation only happens **once** when the component mounts, and the result is stored in `calculationRef`. This prevents unnecessary recalculations on re-renders, saving performance.
+
+3. ## Event Listeners Optimization
+
+Event listeners (like scroll or resize) can cause performance issues if the handler functions re-create on every render. Using `useRef`, you can store a stable reference to the event handler, preventing it from being recreated:
+
+```jsx
+import { useRef, useEffect } from "react";
+
+const ScrollTracker = () => {
+  const scrollPositionRef = useRef(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      scrollPositionRef.current = window.scrollY; // Store scroll position without re-rendering
+      console.log("Scroll position:", scrollPositionRef.current);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return <div style={{ height: "200vh" }}>Scroll down to see the effect</div>;
+};
+```
+
+In this example, `scrollPositionRef` stores the current scroll position without causing re-renders. This approach optimizes performance by reducing unnecessary renders while tracking the scroll position.
 
 ## Conclusion
 
