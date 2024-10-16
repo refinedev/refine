@@ -4,11 +4,21 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  fireEvent,
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+  waitFor,
+} from "@test";
 import { Route, Routes } from "react-router-dom";
 
 export const buttonListTests = (
   ListButton: React.ComponentType<RefineListButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / List Button", () => {
     const list = jest.fn();

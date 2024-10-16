@@ -1,3 +1,6 @@
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+
 import { Refine, Authenticated, GitHubBanner } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
@@ -14,13 +17,9 @@ import routerBindings, {
   CatchAllNavigate,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
-import {
-  MantineProvider,
-  Global,
-  ColorSchemeProvider,
-  type ColorScheme,
-} from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+
 import { useLocalStorage } from "@mantine/hooks";
 import {
   MantineListInferencer,
@@ -36,15 +35,6 @@ import { API_URL } from "./constants";
 import { PostList, PostCreate, PostEdit } from "./pages/posts";
 
 function App() {
-  const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
-    key: "mantine-color-scheme",
-    defaultValue: "light",
-    getInitialValueInEffect: true,
-  });
-
-  const toggleColorScheme = (value?: ColorScheme) =>
-    setColorScheme(value || (colorScheme === "dark" ? "light" : "dark"));
-
   const fieldTransformer = (field: InferField) => {
     if (["locale", "updatedAt", "publishedAt"].includes(field.key)) {
       return false;
@@ -55,131 +45,119 @@ function App() {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
       <RefineKbarProvider>
-        <ColorSchemeProvider
-          colorScheme={colorScheme}
-          toggleColorScheme={toggleColorScheme}
-        >
-          <MantineProvider
-            theme={{
-              ...RefineThemes.Blue,
-              colorScheme: colorScheme,
+        <MantineProvider theme={RefineThemes.Blue}>
+          <Refine
+            authProvider={authProvider}
+            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+            notificationProvider={useNotificationProvider}
+            routerProvider={routerBindings}
+            resources={[
+              {
+                name: "posts",
+                list: "/posts",
+                create: "/posts/create",
+                edit: "/posts/edit/:id",
+                meta: {
+                  canDelete: true,
+                },
+              },
+              {
+                name: "categories",
+                list: "/categories",
+                create: "/categories/create",
+                edit: "/categories/edit/:id",
+                show: "/categories/show/:id",
+                meta: {
+                  canDelete: true,
+                },
+              },
+            ]}
+            options={{
+              mutationMode: "optimistic",
+              syncWithLocation: true,
+              warnWhenUnsavedChanges: true,
             }}
-            withNormalizeCSS
-            withGlobalStyles
           >
-            <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-              <Refine
-                authProvider={authProvider}
-                dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
-                notificationProvider={useNotificationProvider}
-                routerProvider={routerBindings}
-                resources={[
-                  {
-                    name: "posts",
-                    list: "/posts",
-                    create: "/posts/create",
-                    edit: "/posts/edit/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                  {
-                    name: "categories",
-                    list: "/categories",
-                    create: "/categories/create",
-                    edit: "/categories/edit/:id",
-                    show: "/categories/show/:id",
-                    meta: {
-                      canDelete: true,
-                    },
-                  },
-                ]}
-                options={{
-                  mutationMode: "optimistic",
-                  syncWithLocation: true,
-                  warnWhenUnsavedChanges: true,
-                }}
+            <Routes>
+              <Route
+                element={
+                  <Authenticated
+                    key="authenticated-routes"
+                    fallback={<CatchAllNavigate to="/login" />}
+                  >
+                    <ThemedLayoutV2
+                      Header={() => <Header sticky />}
+                      Footer={GitHubBanner}
+                    >
+                      <Outlet />
+                    </ThemedLayoutV2>
+                  </Authenticated>
+                }
               >
-                <Routes>
+                <Route
+                  index
+                  element={<NavigateToResource resource="posts" />}
+                />
+
+                <Route path="/posts">
+                  <Route index element={<PostList />} />
+                  <Route path="create" element={<PostCreate />} />
+                  <Route path="edit/:id" element={<PostEdit />} />
+                </Route>
+
+                <Route path="/categories">
                   <Route
+                    index
                     element={
-                      <Authenticated
-                        key="authenticated-routes"
-                        fallback={<CatchAllNavigate to="/login" />}
-                      >
-                        <ThemedLayoutV2 Header={() => <Header sticky />}>
-                          <Outlet />
-                        </ThemedLayoutV2>
-                      </Authenticated>
+                      <MantineListInferencer
+                        fieldTransformer={fieldTransformer}
+                      />
                     }
-                  >
-                    <Route
-                      index
-                      element={<NavigateToResource resource="posts" />}
-                    />
-
-                    <Route path="/posts">
-                      <Route index element={<PostList />} />
-                      <Route path="create" element={<PostCreate />} />
-                      <Route path="edit/:id" element={<PostEdit />} />
-                    </Route>
-
-                    <Route path="/categories">
-                      <Route
-                        index
-                        element={
-                          <MantineListInferencer
-                            fieldTransformer={fieldTransformer}
-                          />
-                        }
-                      />
-                      <Route
-                        path="create"
-                        element={
-                          <MantineCreateInferencer
-                            fieldTransformer={fieldTransformer}
-                          />
-                        }
-                      />
-                      <Route
-                        path="edit/:id"
-                        element={
-                          <MantineEditInferencer
-                            fieldTransformer={fieldTransformer}
-                          />
-                        }
-                      />
-                      <Route
-                        path="show/:id"
-                        element={
-                          <MantineShowInferencer
-                            fieldTransformer={fieldTransformer}
-                          />
-                        }
-                      />
-                    </Route>
-                  </Route>
-
+                  />
                   <Route
+                    path="create"
                     element={
-                      <Authenticated key="auth-pages" fallback={<Outlet />}>
-                        <NavigateToResource resource="posts" />
-                      </Authenticated>
+                      <MantineCreateInferencer
+                        fieldTransformer={fieldTransformer}
+                      />
                     }
-                  >
-                    <Route path="/login" element={<AuthPage type="login" />} />
-                  </Route>
-                </Routes>
-                <RefineKbar />
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-              </Refine>
-            </NotificationsProvider>
-          </MantineProvider>
-        </ColorSchemeProvider>
+                  />
+                  <Route
+                    path="edit/:id"
+                    element={
+                      <MantineEditInferencer
+                        fieldTransformer={fieldTransformer}
+                      />
+                    }
+                  />
+                  <Route
+                    path="show/:id"
+                    element={
+                      <MantineShowInferencer
+                        fieldTransformer={fieldTransformer}
+                      />
+                    }
+                  />
+                </Route>
+              </Route>
+
+              <Route
+                element={
+                  <Authenticated key="auth-pages" fallback={<Outlet />}>
+                    <NavigateToResource resource="posts" />
+                  </Authenticated>
+                }
+              >
+                <Route path="/login" element={<AuthPage type="login" />} />
+              </Route>
+            </Routes>
+            <RefineKbar />
+            <UnsavedChangesNotifier />
+            <DocumentTitleHandler />
+          </Refine>
+          <Notifications />
+        </MantineProvider>
       </RefineKbarProvider>
     </BrowserRouter>
   );

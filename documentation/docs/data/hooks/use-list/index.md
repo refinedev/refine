@@ -32,6 +32,7 @@ Dynamically changing the `pagination` properties will trigger a new request.
 ### Retrieving the Total Row Count
 
 When the `useList` hook calls the `getList` method, it expects the response to include the total number of rows (`rowCount`). The way this count is retrieved can vary based on the data provider:
+
 - **REST Providers:** Frequently use the `x-total-count` header to determine the total count.
 - **GraphQL Providers:** Typically return the count in specific data fields, such as `pageInfo.total`.
 - **Other Providers:** Follow their own conventions for obtaining the total count.

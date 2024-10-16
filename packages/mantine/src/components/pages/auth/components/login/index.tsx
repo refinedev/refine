@@ -17,6 +17,7 @@ import {
   Title,
   Anchor,
   Button,
+  Group,
   Text,
   Divider,
   Stack,
@@ -96,14 +97,14 @@ export const LoginPage: React.FC<LoginProps> = ({
     if (providers && providers.length > 0) {
       return (
         <>
-          <Stack spacing={8}>
+          <Stack>
             {providers.map((provider) => {
               return (
                 <Button
                   key={provider.name}
                   variant="default"
                   fullWidth
-                  leftIcon={provider.icon}
+                  leftSection={provider.icon}
                   onClick={() =>
                     login({
                       providerName: provider.name,
@@ -130,10 +131,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
   const CardContent = (
     <Card style={cardStyles} {...(contentProps ?? {})}>
-      <Title
-        style={titleStyles}
-        color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
-      >
+      <Title style={titleStyles}>
         {translate("pages.login.title", "Sign in to your account")}
       </Title>
       <Space h="sm" />
@@ -160,13 +158,13 @@ export const LoginPage: React.FC<LoginProps> = ({
               autoComplete="current-password"
               mt="md"
               label={translate("pages.login.fields.password", "Password")}
-              placeholder="●●●●●●●●"
+              placeholder={translate("pages.login.fields.password", "Password")}
               {...getInputProps("password")}
             />
             <Box
               mt="md"
-              sx={{
-                display: "flex",
+              display="flex"
+              style={{
                 alignItems: "center",
                 justifyContent: "space-between",
               }}
@@ -209,12 +207,17 @@ export const LoginPage: React.FC<LoginProps> = ({
         </FormProvider>
       )}
       {registerLink ?? (
-        <Text mt="md" size="xs" align="center">
-          {translate("pages.login.buttons.noAccount", "Don’t have an account?")}{" "}
-          <Anchor component={ActiveLink as any} to="/register" weight={700}>
-            {translate("pages.login.signup", "Sign up")}
-          </Anchor>
-        </Text>
+        <Group mt="md" justify="center">
+          <Text size="xs">
+            {translate(
+              "pages.login.buttons.noAccount",
+              "Don’t have an account?",
+            )}{" "}
+            <Anchor component={ActiveLink as any} to="/register" weight={700}>
+              {translate("pages.login.signup", "Sign up")}
+            </Anchor>
+          </Text>
+        </Group>
       )}
     </Card>
   );

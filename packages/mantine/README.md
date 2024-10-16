@@ -9,11 +9,11 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 
-<br/>   
+<br/>
 <br/>
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
@@ -46,7 +46,7 @@ Refine has connectors for 15+ backend services, including REST API, [GraphQL](ht
 To use Refine with Mantine, you need to install the following package `@refinedev/mantine` along with the Mantine packages:
 
 ```sh
-npm install @refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react @tabler/icons
+npm install @refinedev/mantine @refinedev/react-table @mantine/core@7 @mantine/hooks@7 @mantine/form@7 @mantine/notifications@7 @emotion/react @tabler/icons
 ```
 
 ## ⚡ Try Refine

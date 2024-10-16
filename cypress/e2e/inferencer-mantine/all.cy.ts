@@ -126,7 +126,9 @@ describe("inferencer-mantine", () => {
       cy.get("input").eq(3).type("status");
       cy.get("input").eq(4).type(todayString);
       cy.get(".mantine-Select-input").click();
-      cy.get(".mantine-Select-item").eq(0).click();
+      cy.get(".mantine-Popover-dropdown:visible .mantine-Select-option")
+        .eq(0)
+        .click();
 
       cy.getSaveButton().click();
 
@@ -138,7 +140,7 @@ describe("inferencer-mantine", () => {
         expect(body.content).to.equal(mockPost.content);
         expect(body.status).to.equal("status");
         expect(body.createdAt).to.equal(todayString);
-        expect(body.category.id).to.equal(1);
+        expect(body.category.id).to.equal("1");
 
         cy.getMantineNotification().should("contain", "Success");
         cy.location("pathname").should("eq", "/blog-posts");
@@ -183,7 +185,9 @@ describe("inferencer-mantine", () => {
       cy.get("input").eq(4).clear().type("status");
       cy.get("input").eq(5).clear().type(todayString);
       cy.get(".mantine-Select-input").clear();
-      cy.get(".mantine-Select-item").eq(1).click();
+      cy.get(".mantine-Popover-dropdown:visible .mantine-Select-option")
+        .eq(1)
+        .click();
 
       cy.getSaveButton().click();
 
@@ -195,7 +199,7 @@ describe("inferencer-mantine", () => {
         expect(body.content).to.equal(mockPost.content);
         expect(body.status).to.equal("status");
         expect(body.createdAt).to.equal(todayString);
-        expect(body.category.id).to.equal(2);
+        expect(body.category.id).to.equal("2");
 
         cy.getMantineNotification().should("contain", "Success");
         cy.location("pathname").should("eq", "/blog-posts");
@@ -237,7 +241,9 @@ describe("inferencer-mantine", () => {
     // find initial  theme from localStorage
     cy.getAllLocalStorage().then((ls) => {
       const initialTheme =
-        ls[Cypress.config("baseUrl")!]["mantine-color-scheme"]?.toString();
+        ls[Cypress.config("baseUrl")!][
+          "mantine-color-scheme-value"
+        ]?.toString();
 
       console.log(initialTheme);
 
@@ -255,12 +261,12 @@ describe("inferencer-mantine", () => {
         if (initialTheme === "dark") {
           expect(cy.get(".tabler-icon-moon-stars").should("exist"));
           expect(
-            ls[Cypress.config("baseUrl")!]["mantine-color-scheme"],
+            ls[Cypress.config("baseUrl")!]["mantine-color-scheme-value"],
           ).to.contains("light");
         } else {
           expect(cy.get(".tabler-icon-sun").should("exist"));
           expect(
-            ls[Cypress.config("baseUrl")!]["mantine-color-scheme"],
+            ls[Cypress.config("baseUrl")!]["mantine-color-scheme-value"],
           ).to.contains("dark");
         }
       });
@@ -285,7 +291,7 @@ describe("inferencer-mantine", () => {
     cy.wait("@getCategories");
     cy.getMantineLoadingOverlay().should("not.exist");
 
-    cy.get(".mantine-Pagination-item").contains("2").click();
+    cy.get(".mantine-Pagination-control").contains("2").click();
     cy.url().should("include", "current=2");
     cy.getMantineLoadingOverlay().should("not.exist");
     cy.wait("@getBlogPosts").then((interception) => {
@@ -296,7 +302,7 @@ describe("inferencer-mantine", () => {
       expect(_end).to.equal("20");
     });
 
-    cy.get(".mantine-Pagination-item").contains("1").click();
+    cy.get(".mantine-Pagination-control").contains("1").click();
 
     cy.url().should("include", "current=1");
 

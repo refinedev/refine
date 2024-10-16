@@ -10,10 +10,10 @@ export default function UseSelectMantine() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-hook-form": "latest",
         "@refinedev/mantine": "^2.28.21",
-        "@mantine/core": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
         "@emotion/react": "^11.8.2",
-        "@mantine/form": "^5.10.4",
+        "@mantine/form": "^7.12.2",
       }}
       startRoute="/"
       files={{

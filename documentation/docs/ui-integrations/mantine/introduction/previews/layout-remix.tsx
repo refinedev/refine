@@ -14,10 +14,10 @@ export default function LayoutRemix() {
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/form": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
+        "@mantine/form": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
         "@refinedev/remix-router": "latest",
       }}
       startRoute="/products"
@@ -66,8 +66,6 @@ export default function App() {
       <body>
         <MantineProvider
             theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
         >
           <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
           <NotificationsProvider position="top-right">

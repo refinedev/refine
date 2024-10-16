@@ -5,10 +5,20 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  fireEvent,
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+  waitFor,
+} from "@test";
 
 export const buttonCloneTests = (
   CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Clone Button", () => {
     beforeAll(() => {

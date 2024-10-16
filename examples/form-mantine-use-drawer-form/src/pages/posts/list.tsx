@@ -1,7 +1,7 @@
 import React from "react";
 import { useTable } from "@refinedev/react-table";
 import { type ColumnDef, flexRender } from "@tanstack/react-table";
-import { type GetManyResponse, useMany } from "@refinedev/core";
+import { type GetManyResponse, type HttpError, useMany } from "@refinedev/core";
 import {
   List,
   EditButton,
@@ -21,7 +21,12 @@ import {
 
 import { CreatePostDrawer, EditPostDrawer } from "../../components";
 import { ColumnFilter, ColumnSorter } from "../../components/table";
-import type { FilterElementProps, ICategory, IPost } from "../../interfaces";
+import type {
+  FilterElementProps,
+  ICategory,
+  IPost,
+  PostFormValues,
+} from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const initialValues = {
@@ -33,7 +38,7 @@ export const PostList: React.FC = () => {
     content: "",
   };
 
-  const createDrawerForm = useDrawerForm({
+  const createDrawerForm = useDrawerForm<IPost, HttpError, PostFormValues>({
     refineCoreProps: { action: "create" },
     initialValues,
     syncWithLocation: true,
@@ -135,7 +140,7 @@ export const PostList: React.FC = () => {
         enableSorting: false,
         cell: function render({ getValue }) {
           return (
-            <Group spacing="xs" noWrap>
+            <Group gap="xs" wrap="nowrap">
               <EditButton
                 hideText
                 onClick={() => showEditDrawer(getValue() as number)}
@@ -182,8 +187,8 @@ export const PostList: React.FC = () => {
 
   return (
     <>
-      <CreatePostDrawer {...createDrawerForm} />
-      <EditPostDrawer {...editDrawerForm} />
+      <CreatePostDrawer form={createDrawerForm} />
+      <EditPostDrawer form={editDrawerForm} />
       <ScrollArea>
         <List createButtonProps={{ onClick: () => showCreateDrawer() }}>
           <Table highlightOnHover>
@@ -194,14 +199,14 @@ export const PostList: React.FC = () => {
                     return (
                       <th key={header.id}>
                         {!header.isPlaceholder && (
-                          <Group spacing="xs" noWrap>
+                          <Group gap="xs" wrap="nowrap">
                             <Box>
                               {flexRender(
                                 header.column.columnDef.header,
                                 header.getContext(),
                               )}
                             </Box>
-                            <Group spacing="xs" noWrap>
+                            <Group gap="xs" wrap="nowrap">
                               <ColumnSorter column={header.column} />
                               <ColumnFilter column={header.column} />
                             </Group>
@@ -232,13 +237,14 @@ export const PostList: React.FC = () => {
               })}
             </tbody>
           </Table>
-          <br />
-          <Pagination
-            position="right"
-            total={pageCount}
-            page={current}
-            onChange={setCurrent}
-          />
+
+          <Group mt="md" justify="right">
+            <Pagination
+              total={pageCount}
+              value={current}
+              onChange={setCurrent}
+            />
+          </Group>
         </List>
       </ScrollArea>
     </>

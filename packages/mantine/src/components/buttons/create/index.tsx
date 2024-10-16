@@ -31,7 +31,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (hidden) return null;
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -54,12 +54,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           title={title}
           disabled={disabled}
           aria-label={label}
-          color="primary"
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "filled" })}
+          variant={mapButtonVariantToActionIconVariant(variant, "default")}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
           {...commonProps}
@@ -69,12 +64,12 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       ) : (
         <Button
           disabled={disabled}
-          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
+          vars={vars}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
-          color="primary"
-          variant="filled"
+          variant={variant || "filled"}
           {...rest}
         >
           {children ?? label}

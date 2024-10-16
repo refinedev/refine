@@ -25,15 +25,12 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
   const { label } = useExportButton();
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
-      {...(variant
-        ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
-          }
-        : { variant: "default" })}
+      size="md"
+      variant={mapButtonVariantToActionIconVariant(variant, "default")}
       loading={loading}
       aria-label={label}
       data-testid={RefineButtonTestIds.ExportButton}
@@ -44,10 +41,11 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     </ActionIcon>
   ) : (
     <Button
-      variant="default"
+      variant={variant || "default"}
       loading={loading}
-      leftIcon={<IconFileExport size={18} {...svgIconProps} />}
+      leftSection={<IconFileExport size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.ExportButton}
+      vars={vars}
       className={RefineButtonClassNames.ExportButton}
       {...rest}
     >
