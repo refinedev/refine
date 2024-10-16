@@ -31,6 +31,7 @@ Steps we'll cover:
 - [Common Pitfalls using useRef](#common-pitfalls-using-useref)
 - [When to use React useRef hook?](#when-to-use-react-useref-hook)
 - [Use-cases of refs in React](#use-cases-of-refs-in-react)
+- [Performance Optimization with useRef](#performance-optimization-with-useref)
 
 ## What is useRef hook?
 
@@ -379,11 +380,11 @@ const MyComponent = () => {
 
 Because the `FunctionalComponent` component does not have an instance, the ref in the code above will not work. Instead, youcan convert the `FunctionalComponent` into a class component or use `forwardRef`.
 
-**Performance Optimization with useRef**
+## Performance Optimization with useRef
 
-Hi, here is an example of how we can use `useRef` to optimize the performance of React components by avoiding extra re-renders. See some examples below that show how `useRef` can help in different scenarios:
+Here is an example of how we can use `useRef` to optimize the performance of React components by avoiding extra re-renders. See some examples below that show how `useRef` can help in different scenarios:
 
-1. **Avoiding Re-renders when Storing Mutable Values**
+### Avoiding Re-renders when Storing Mutable Values
 
 If you need to store some value that doesn't need to trigger a re-render when changed, then `useRef` is perfect. For example, if you're storing mutable data like a previous value, using `useState` would cause a re-render every time that value updates, which is often unnecessary:
 
@@ -410,7 +411,7 @@ const MyComponent = () => {
 
 In this example, `prevCountRef` stores the previous count without triggering a re-render. This is useful when comparing the current and previous values without affecting the virtual DOM.
 
-2. **Optimizing Expensive Operations**
+### Optimizing Expensive Operations
 
 When there's an expensive operation that doesn’t need to re-run on every render, `useRef` can store those values. For example, if you're dealing with heavy calculations or external API results, you can store the result in a ref to avoid recalculating:
 
@@ -443,9 +444,9 @@ const ExpensiveCalculationComponent = () => {
 };
 ```
 
-Here, the expensive calculation only happens **once** when the component mounts, and the result is stored in `calculationRef`. This prevents unnecessary recalculations on re-renders, saving performance.
+Here, the expensive calculation only happens once when the component mounts, and the result is stored in `calculationRef`. This prevents unnecessary recalculations on re-renders, saving performance.
 
-3. ## Event Listeners Optimization
+### Event Listeners Optimization
 
 Event listeners (like scroll or resize) can cause performance issues if the handler functions re-create on every render. Using `useRef`, you can store a stable reference to the event handler, preventing it from being recreated:
 
