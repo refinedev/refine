@@ -6,10 +6,12 @@ import { CodeBlock } from "@site/src/theme/CodeBlock/base";
 import ReactMarkdown from "react-markdown";
 
 export const CreateRefineAppCommand = ({ args }: { args?: string }) => {
-  const argsString = args ? `-- ${args}` : "";
+  const argsString = args ? `${args}` : "";
 
   const commands = {
-    npm: `npm create refine-app@latest ${argsString}`,
+    npm: `npm create refine-app@latest  ${
+      argsString ? `-- ${argsString}` : ""
+    }`,
     pnpm: `pnpm create refine-app@latest ${argsString}`,
     yarn: `yarn create refine-app@latest ${argsString}`,
   };
