@@ -30,7 +30,6 @@ export const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
   return (
     <Form layout="vertical" {...formProps}>
       <Form.Item label="Search" name="title">
-        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <Input placeholder="Title" prefix={<SearchOutlined />} />
       </Form.Item>
       <Form.Item label="Label" name="label">

@@ -82,7 +82,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
           >
             <Menu.SubMenu
               key={item.key}
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={icon ?? <UnorderedListOutlined />}
               title={label}
             >
@@ -110,7 +109,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
             style={{
               fontWeight: isSelected ? "bold" : "normal",
             }}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
             <Link to={route ?? ""}>{label}</Link>
@@ -142,7 +140,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
   };
 
   const logout = isExistAuthentication && (
-    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     <Menu.Item key="logout" onClick={handleLogout} icon={<LogoutOutlined />}>
       {translate("buttons.logout", "Logout")}
     </Menu.Item>
@@ -154,7 +151,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
       style={{
         fontWeight: selectedKey === "/" ? "bold" : "normal",
       }}
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<DashboardOutlined />}
     >
       <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
@@ -230,7 +226,6 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
           style={drawerButtonStyles}
           size="large"
           onClick={() => setDrawerOpen(true)}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<BarsOutlined />}
         />
       </>

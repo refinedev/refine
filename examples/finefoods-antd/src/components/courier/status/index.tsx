@@ -19,7 +19,6 @@ export const CourierStatus = ({ value, isLoading }: Props) => {
 
   const variant = {
     Available: {
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <CheckCircleOutlined />,
       tagColor: "green",
       tagTextColor: {
@@ -33,7 +32,6 @@ export const CourierStatus = ({ value, isLoading }: Props) => {
         dark: token.colorTextTertiary,
         light: token.colorTextTertiary,
       },
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <PoweroffOutlined />,
     },
     "On delivery": {
@@ -42,7 +40,6 @@ export const CourierStatus = ({ value, isLoading }: Props) => {
         dark: token.blue7,
         light: token.blue5,
       },
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon: <BikeWhiteIcon />,
     },
   };

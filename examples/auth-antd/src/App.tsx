@@ -175,7 +175,6 @@ const App: React.FC = () => {
                 list: "/",
                 meta: {
                   label: "Dashboard",
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon: <DashboardOutlined />,
                 },
               },
@@ -236,7 +235,6 @@ const App: React.FC = () => {
                           name: "google",
                           label: "Sign in with Google",
                           icon: (
-                            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                             <GoogleOutlined
                               style={{
                                 fontSize: 24,
@@ -249,7 +247,6 @@ const App: React.FC = () => {
                           name: "github",
                           label: "Sign in with GitHub",
                           icon: (
-                            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                             <GithubOutlined
                               style={{
                                 fontSize: 24,
@@ -272,7 +269,6 @@ const App: React.FC = () => {
                           name: "google",
                           label: "Sign in with Google",
                           icon: (
-                            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                             <GoogleOutlined
                               style={{
                                 fontSize: 24,
@@ -285,7 +281,6 @@ const App: React.FC = () => {
                           name: "github",
                           label: "Sign in with GitHub",
                           icon: (
-                            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                             <GithubOutlined
                               style={{
                                 fontSize: 24,

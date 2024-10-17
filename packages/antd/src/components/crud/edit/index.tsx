@@ -150,7 +150,6 @@ export const Edit: React.FC<EditProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        ghost={false}
         backIcon={goBackFromProps}
         onBack={
           action !== "list" && typeof action !== "undefined"

@@ -141,7 +141,6 @@ export const FormItemUploadLogo = ({
 
             <div className={styles.overlayContainer}>
               <div className={styles.overlayIconContainer}>
-                {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
                 <CloudUploadOutlined className={styles.overlayIcon} />
               </div>
             </div>
