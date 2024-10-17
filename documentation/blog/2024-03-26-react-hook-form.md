@@ -539,7 +539,7 @@ Notice, we have multiple validation rules for the `content` field. React Hook Fo
 
 ### Handling Submission in React Hook Formxx
 
-In React Hook Form, registered field data are accummulated in a `data` object with their `name` and field values. We handle submission of the form data with the `handleSubmit` method of the form instance.
+In React Hook Form, registered field data are accumulated in a `data` object with their `name` and field values. We handle submission of the form data with the `handleSubmit` method of the form instance.
 
 Let's now deal with submitting the data by making changes to the form we have so far. Update the `App.js` to the following code with `formInstance.handleSubmit` passed to `onSubmit` event on `<form>` element:
 

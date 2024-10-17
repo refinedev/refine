@@ -53,6 +53,7 @@ const dataProvider = (
         let query = gqlOperation;
         const variables = {
           id,
+          ...meta?.gqlVariables,
         };
 
         if (isMutation(gqlOperation)) {

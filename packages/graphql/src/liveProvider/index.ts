@@ -1,81 +1,73 @@
 import type { LiveProvider } from "@refinedev/core";
+
 import type { Client } from "graphql-ws";
+import { generateSubscription } from "./helpers";
 
-import {
-  generateUseListSubscription,
-  generateUseManySubscription,
-  generateUseOneSubscription,
-} from "../utils";
+type SubscriptionAction = "created" | "updated" | "deleted";
 
-const subscriptions = {
-  useList: generateUseListSubscription,
-  useOne: generateUseOneSubscription,
-  useMany: generateUseManySubscription,
-};
+export const createLiveProvider = (client: Client): LiveProvider => {
+  const subscribeToResource = (
+    client: Client,
+    callback: Function,
+    params: any,
+    meta: any,
+    action: SubscriptionAction,
+    resource: string,
+    unsubscribes: Function[],
+  ) => {
+    const unsubscribe = generateSubscription(
+      client,
+      { callback, params, meta },
+      action,
+    );
+    unsubscribes.push(unsubscribe);
+  };
 
-export const liveProvider = (client: Client): LiveProvider => {
   return {
-    subscribe: ({ callback, params }) => {
-      const {
-        resource,
-        meta,
-        pagination,
-        sorters,
-        filters,
-        subscriptionType,
-        id,
-        ids,
-      } = params ?? {};
+    subscribe({ callback, params, meta }) {
+      const { resource, subscriptionType } = params ?? {};
 
-      if (!meta) {
+      if (!meta || !subscriptionType || !resource) {
         throw new Error(
-          "[useSubscription]: `meta` is required in `params` for graphql subscriptions",
+          "[useSubscription]: `meta`, `subscriptionType` and `resource` are required in `params` for graphql subscriptions",
         );
       }
 
-      if (!subscriptionType) {
-        throw new Error(
-          "[useSubscription]: `subscriptionType` is required in `params` for graphql subscriptions",
+      const unsubscribes: any[] = [];
+
+      if (params?.subscriptionType === "useList") {
+        ["created", "updated", "deleted"].forEach((action) =>
+          subscribeToResource(
+            client,
+            callback,
+            params,
+            meta,
+            action as SubscriptionAction,
+            resource,
+            unsubscribes,
+          ),
         );
       }
 
-      if (!resource) {
-        throw new Error(
-          "[useSubscription]: `resource` is required in `params` for graphql subscriptions",
+      if (params?.subscriptionType === "useOne") {
+        subscribeToResource(
+          client,
+          callback,
+          params,
+          meta,
+          "updated",
+          resource,
+          unsubscribes,
         );
       }
 
-      const genereteSubscription = subscriptions[subscriptionType];
-
-      const { query, variables, operation } = genereteSubscription({
-        ids,
-        id,
-        resource,
-        filters,
-        meta,
-        pagination,
-        sorters,
-      });
-
-      const onNext = (payload: any) => {
-        callback(payload.data[operation]);
+      const unsubscribe = () => {
+        unsubscribes.forEach((unsubscribe) => unsubscribe());
       };
-
-      const unsubscribe = client.subscribe(
-        {
-          query,
-          variables,
-        },
-        {
-          next: onNext,
-          error: () => null,
-          complete: () => null,
-        },
-      );
 
       return unsubscribe;
     },
-    unsubscribe: (unsubscribe) => {
+    unsubscribe(unsubscribe) {
       unsubscribe();
     },
   };

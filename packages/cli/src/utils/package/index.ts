@@ -8,6 +8,7 @@ import type { PackageJson } from "@definitions/package";
 
 export const getPackageJson = (): PackageJson => {
   if (!existsSync("package.json")) {
+    console.error("❌ `package.json` not found.");
     throw new Error("./package.json not found");
   }
 

@@ -1,6 +1,7 @@
 import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React, { type FC, type SVGProps } from "react";
+import type { TemplateEdition } from "../types/integrations";
 
 type Props = {
   className?: string;
@@ -9,6 +10,7 @@ type Props = {
     description: string;
     image: string;
     to: string;
+    edition: TemplateEdition;
     integrations: {
       label: string;
       icon: (props: SVGProps<SVGSVGElement>) => JSX.Element;
@@ -35,6 +37,7 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
               key={item.title}
               className={clsx(
                 "h-full",
+                "relative",
                 "flex",
                 "flex-col",
                 "dark:bg-gray-800 bg-gray-50",
@@ -115,6 +118,15 @@ export const TemplatesList: FC<Props> = ({ className, data }) => {
                   })}
                 </div>
               </div>
+              {item.edition === "Enterprise" && (
+                <div className={clsx("absolute", "-top-1", "-right-1")}>
+                  <img
+                    src="/assets/badge-enterprise.png"
+                    alt="enterprise badge"
+                    className="w-[120px] h-[120px]"
+                  />
+                </div>
+              )}
             </Link>
           );
         })}
