@@ -115,7 +115,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -182,7 +182,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -234,7 +234,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -319,13 +319,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/nestjs-query':
         specifier: ^1.3.3
         version: link:../../packages/nestjs-query
@@ -509,13 +509,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/nestjs-query':
         specifier: ^1.3.3
         version: link:../../packages/nestjs-query
@@ -618,7 +618,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -670,7 +670,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -725,7 +725,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -783,7 +783,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -838,7 +838,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -890,7 +890,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -945,7 +945,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1006,7 +1006,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1070,7 +1070,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1140,7 +1140,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1195,7 +1195,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1247,13 +1247,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/react-router-v6':
         specifier: ^4.6.0
         version: link:../../packages/react-router-v6
@@ -1305,7 +1305,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1357,7 +1357,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1424,7 +1424,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1494,13 +1494,13 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/mui':
         specifier: ^5.21.0
         version: link:../../packages/mui
@@ -1564,7 +1564,7 @@ importers:
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1576,7 +1576,7 @@ importers:
         version: link:../../packages/strapi
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -1671,7 +1671,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1680,7 +1680,7 @@ importers:
         version: link:../../packages/react-router-v6
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
         version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -1765,7 +1765,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1829,13 +1829,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.9
-        version: link:../../packages/nestjsx-crud
+        version: 5.0.10(@refinedev/core@packages+core)
       '@refinedev/react-router-v6':
         specifier: ^4.6.0
         version: link:../../packages/react-router-v6
@@ -1899,7 +1899,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -1914,7 +1914,7 @@ importers:
         version: link:../../packages/react-router-v6
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -1984,7 +1984,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2063,7 +2063,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2127,7 +2127,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2148,7 +2148,7 @@ importers:
         version: link:../../packages/react-table
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@tabler/icons-react':
         specifier: ^3.1.0
         version: 3.2.0(react@18.3.0)
@@ -2194,7 +2194,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2294,7 +2294,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2361,13 +2361,13 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/inferencer':
         specifier: ^4.7.0
         version: link:../../packages/inferencer
@@ -2470,7 +2470,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2558,7 +2558,7 @@ importers:
         version: link:../../packages/airtable
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2640,7 +2640,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2704,7 +2704,7 @@ importers:
         version: 2.1.3(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2783,7 +2783,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2853,7 +2853,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2932,7 +2932,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -2953,7 +2953,7 @@ importers:
         version: link:../../packages/react-table
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@tabler/icons-react':
         specifier: ^3.1.0
         version: 3.2.0(react@18.3.0)
@@ -3014,7 +3014,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3102,13 +3102,13 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/inferencer':
         specifier: ^4.7.0
         version: link:../../packages/inferencer
@@ -3202,7 +3202,7 @@ importers:
         version: 2.3.6(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(tailwind-variants@0.1.20(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3305,7 +3305,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3408,7 +3408,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3487,13 +3487,13 @@ importers:
         version: 1.0.2(@types/react@18.3.0)(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
@@ -3584,7 +3584,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3657,7 +3657,7 @@ importers:
         version: 2.1.3(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3757,7 +3757,7 @@ importers:
         version: 7.1.0(@types/node@18.19.31)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.4.5)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3818,7 +3818,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3906,7 +3906,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -3958,7 +3958,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4010,7 +4010,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4053,7 +4053,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4096,7 +4096,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4139,7 +4139,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4179,7 +4179,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4231,7 +4231,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4286,7 +4286,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4335,7 +4335,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4387,7 +4387,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4436,7 +4436,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4491,7 +4491,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4558,7 +4558,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4628,7 +4628,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4683,7 +4683,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4735,7 +4735,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4787,7 +4787,7 @@ importers:
         version: link:../../packages/appwrite
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4839,7 +4839,7 @@ importers:
         version: link:../../packages/appwrite
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -4894,13 +4894,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/hasura':
         specifier: ^6.6.7
-        version: link:../../packages/hasura
+        version: 6.6.8(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@15.8.0))(graphql-ws@5.16.0(graphql@15.8.0))
       '@refinedev/react-router-v6':
         specifier: ^4.6.0
         version: link:../../packages/react-router-v6
@@ -4964,7 +4964,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5016,7 +5016,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5089,13 +5089,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.9
-        version: link:../../packages/nestjsx-crud
+        version: 5.0.10(@refinedev/core@packages+core)
       '@refinedev/react-router-v6':
         specifier: ^4.6.0
         version: link:../../packages/react-router-v6
@@ -5141,13 +5141,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/react-router-v6':
         specifier: ^4.6.0
         version: link:../../packages/react-router-v6
@@ -5202,7 +5202,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5272,7 +5272,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5281,7 +5281,7 @@ importers:
         version: link:../../packages/react-router-v6
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@uiw/react-md-editor':
         specifier: ^3.19.5
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -5333,7 +5333,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5385,7 +5385,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5437,7 +5437,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5489,7 +5489,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5541,7 +5541,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5605,7 +5605,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5681,7 +5681,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5781,7 +5781,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5866,7 +5866,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -5975,7 +5975,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6027,7 +6027,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6079,7 +6079,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6128,7 +6128,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6180,7 +6180,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6229,7 +6229,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6284,7 +6284,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6342,7 +6342,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6400,7 +6400,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6458,7 +6458,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6510,7 +6510,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6580,7 +6580,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6650,7 +6650,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6723,7 +6723,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6793,7 +6793,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6866,7 +6866,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -6939,7 +6939,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7009,7 +7009,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7076,7 +7076,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7143,7 +7143,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7210,7 +7210,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7262,7 +7262,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7311,7 +7311,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7360,7 +7360,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7412,7 +7412,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7467,19 +7467,19 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
@@ -7564,7 +7564,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7628,7 +7628,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7692,7 +7692,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7759,7 +7759,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7814,7 +7814,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7899,7 +7899,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -7993,13 +7993,13 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/hasura':
         specifier: ^6.6.7
-        version: link:../../packages/hasura
+        version: 6.6.8(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@5.2.0(encoding@0.1.13)(graphql@15.8.0))(graphql-ws@5.16.0(graphql@15.8.0))
       '@refinedev/inferencer':
         specifier: ^4.7.0
         version: link:../../packages/inferencer
@@ -8066,7 +8066,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8163,7 +8163,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8266,7 +8266,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8354,7 +8354,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8406,7 +8406,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8458,19 +8458,19 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/react-router-v6':
         specifier: ^4.6.0
         version: link:../../packages/react-router-v6
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
         version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -8531,7 +8531,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8583,7 +8583,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8653,7 +8653,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8756,7 +8756,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8811,7 +8811,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8820,7 +8820,7 @@ importers:
         version: link:../../packages/react-router-v6
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
         version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -8872,7 +8872,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8927,7 +8927,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -8982,7 +8982,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9052,7 +9052,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9067,7 +9067,7 @@ importers:
         version: link:../../packages/react-router-v6
       '@refinedev/strapi-v4':
         specifier: ^6.0.8
-        version: link:../../packages/strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
         version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9113,7 +9113,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9171,7 +9171,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9226,7 +9226,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9293,7 +9293,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9363,7 +9363,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9418,7 +9418,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9482,7 +9482,7 @@ importers:
         version: 9.7.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9615,7 +9615,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9670,7 +9670,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9725,7 +9725,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9777,7 +9777,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9826,7 +9826,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9875,7 +9875,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9930,7 +9930,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -9988,7 +9988,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10043,7 +10043,7 @@ importers:
         version: 12.4.0(handsontable@12.4.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10107,7 +10107,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10177,7 +10177,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10244,7 +10244,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10320,7 +10320,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10384,7 +10384,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10451,7 +10451,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10518,7 +10518,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10582,7 +10582,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10646,7 +10646,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10698,7 +10698,7 @@ importers:
         version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10756,7 +10756,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10808,7 +10808,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10872,7 +10872,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -10942,7 +10942,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11024,7 +11024,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11112,7 +11112,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11179,7 +11179,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11234,7 +11234,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11301,7 +11301,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11371,7 +11371,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11429,7 +11429,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11499,7 +11499,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11572,7 +11572,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11657,7 +11657,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11748,7 +11748,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11821,7 +11821,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11870,7 +11870,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11925,7 +11925,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -11986,7 +11986,7 @@ importers:
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12059,7 +12059,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12132,7 +12132,7 @@ importers:
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12202,7 +12202,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12269,7 +12269,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12321,7 +12321,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12376,7 +12376,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12425,7 +12425,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12474,13 +12474,13 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/react-hook-form':
         specifier: ^4.9.0
         version: link:../../packages/react-hook-form
@@ -12565,7 +12565,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12617,7 +12617,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12672,13 +12672,13 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
@@ -12748,7 +12748,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -12794,19 +12794,19 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/kbar':
         specifier: ^1.3.12
         version: link:../../packages/kbar
@@ -12867,19 +12867,19 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.8
-        version: link:../../packages/devtools
+        version: 1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/inferencer':
         specifier: ^4.7.0
         version: link:../../packages/inferencer
@@ -12943,7 +12943,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13004,7 +13004,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13062,7 +13062,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13120,7 +13120,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13193,7 +13193,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13272,7 +13272,7 @@ importers:
         version: 6.19.11(@mui/material@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@5.15.15(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13336,7 +13336,7 @@ importers:
     dependencies:
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13403,7 +13403,7 @@ importers:
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../../packages/cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../../packages/core
@@ -13555,8 +13555,8 @@ importers:
         specifier: ^5.5.1
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/pro-layout':
-        specifier: ^7.20.2
-        version: 7.20.2(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^7.21.0
+        version: 7.21.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/ui-types':
         specifier: ^1.22.9
         version: link:../ui-types
@@ -13593,7 +13593,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../core
@@ -13669,7 +13669,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../core
@@ -13751,7 +13751,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.37
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.0
         version: link:../core
@@ -14724,7 +14724,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.52.0
         version: link:../core
@@ -14788,7 +14788,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../core
@@ -15120,7 +15120,7 @@ importers:
         version: link:../core
       '@refinedev/hasura':
         specifier: ^6.5.1
-        version: link:../hasura
+        version: 6.6.8(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.8.1))(graphql-ws@5.16.0(graphql@16.8.1))
       '@refinedev/inferencer':
         specifier: ^4.7.0
         version: link:../inferencer
@@ -15138,7 +15138,7 @@ importers:
         version: link:../nestjs-query
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.9
-        version: link:../nestjsx-crud
+        version: 5.0.10(@refinedev/core@packages+core)
       '@refinedev/react-hook-form':
         specifier: ^4.9.0
         version: link:../react-hook-form
@@ -15156,7 +15156,7 @@ importers:
         version: 6.0.5(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.8.1))
       '@refinedev/strapi-v4':
         specifier: ^6.0.3
-        version: link:../strapi-v4
+        version: 6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/supabase':
         specifier: ^5.9.3
         version: link:../supabase
@@ -15323,7 +15323,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.37
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.0
         version: link:../core
@@ -15399,7 +15399,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.52.0
         version: link:../core
@@ -15496,7 +15496,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../core
@@ -15596,7 +15596,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.37
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.0
         version: link:../core
@@ -15648,7 +15648,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.37
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.0
         version: link:../core
@@ -15969,7 +15969,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.52.0
         version: link:../core
@@ -16079,7 +16079,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.33
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.52.0
         version: link:../core
@@ -16122,7 +16122,7 @@ importers:
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/cli':
         specifier: ^2.16.38
-        version: link:../cli
+        version: 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
       '@refinedev/core':
         specifier: ^4.54.1
         version: link:../core
@@ -16357,6 +16357,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
+  '@ant-design/cssinjs@1.21.1':
+    resolution: {integrity: sha512-tyWnlK+XH7Bumd0byfbCiZNK43HEubMoCcu9VxwsAwiHdHTgWa+tMN0/yvxa+e8EzuFP1WdUNNPclRpVtD33lg==}
+    peerDependencies:
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+
   '@ant-design/flowchart@1.2.2':
     resolution: {integrity: sha512-bzHZ81qqHjWIrXcCMInDB6eMTzbswaVCOAdUTCQJ+B45aybkVsU9LMCKquyOwRM7U7PWNfPC9S/lAlx2i2BvBQ==}
     peerDependencies:
@@ -16410,22 +16416,22 @@ packages:
       react: '>=16.8.4'
       react-dom: '>=16.8.4'
 
-  '@ant-design/pro-layout@7.20.2':
-    resolution: {integrity: sha512-a97k8P2sbprPXcBOG8p1g/0bP5kLBiC3+GSj0oxSWjUelAKzI9Q448tLOIfLjDcokxOvPRCEcCAlRg+mCKZVPg==}
+  '@ant-design/pro-layout@7.21.0':
+    resolution: {integrity: sha512-SV+D2DVr3B4vV3uSXQeG8wIUofWEiZc8fbXjMWwnNYKcNfKaHf4HGUh84cDiGZi+FPsXfOMXcYzXElD5wR2bOQ==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-provider@2.14.9':
-    resolution: {integrity: sha512-4UJr6AHyWKsrhx2KfdkpRQCgjc75oDUDhMHGA2OWqQVI16sMQfeZf6KYfmeiG3Dal1QKFOtSibCdH5G2CDvWlg==}
+  '@ant-design/pro-provider@2.15.0':
+    resolution: {integrity: sha512-9NvjKxOg7ZUdd+hV5ex3xgM3ZZkPzChLBTHl4f7Ei/SWwjBGLG0ZBeYpsTcpqwRV2IlGdaMIW93bTOvh0XmtEA==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-utils@2.15.18':
-    resolution: {integrity: sha512-t/7i57tIYrQPlo2uIchWsXcvtQfBi72uQF9mLFS4C8f3nEKJFiEMWg2m+7JDgencTkpQmP7qmmfT1/6qXJcOvA==}
+  '@ant-design/pro-utils@2.16.0':
+    resolution: {integrity: sha512-fUU5nPeHxXaVm5fqSgyWFL5xV+XYftqDjX5tHS5MeVlu9muP518GdRjFHMJY9ybal1Ca4mgbz+3M9BDfnF3V4Q==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
@@ -22000,6 +22006,56 @@ packages:
     peerDependencies:
       '@refinedev/core': ^4.28.2
 
+  '@refinedev/cli@2.16.39':
+    resolution: {integrity: sha512-0XwTeN1iQWTgOPqv9xc8nyNIIlVnbbgLkriBHhQBV4NyaXQdyuL/dRH3eChcKJ0g4QhCC5WoLmQX7HMwaJa6vw==}
+    hasBin: true
+
+  '@refinedev/devtools-server@1.1.37':
+    resolution: {integrity: sha512-a61orLFGoGDJ/0Zr12hx2PeDVO4PBKs7kTq/Dp90CLUu1OBXMUHKfLas3QnzKveenYKZHEI+HRMXn7O4UZKIhw==}
+    engines: {node: '>=10'}
+    hasBin: true
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0
+      '@types/react-dom': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+
+  '@refinedev/devtools-shared@1.1.12':
+    resolution: {integrity: sha512-F4fn6KTfETSFqQdP1Zvp4NHfoOUDYxdsx5BQUi0uFRQLm+gE3FfDBl4avyMCeE0xcuChF1qmmEXXrUBCLyj43w==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@types/react': ^17.0.0 || ^18.0.0
+      '@types/react-dom': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+
+  '@refinedev/devtools@1.2.9':
+    resolution: {integrity: sha512-Pq+zAzV6nA9tYySnUFDe+pZMMIaf+OI1TCxDLEq9IHOEIYWn+x/oNyHZuTYISq0G0W5DJJ2Yl9/y+psuRasBaA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@refinedev/cli': 2.16.39
+      '@refinedev/core': ^4.46.1
+      '@refinedev/devtools-server': 1.1.37
+      '@types/react': ^17.0.0 || ^18.0.0
+      '@types/react-dom': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+
+  '@refinedev/hasura@6.6.8':
+    resolution: {integrity: sha512-cEYyPF59jx/3I8tqe16AxWu5yVNoUXuV4xq8Q7t/lB0UYuLzc79VHyqlJ7UK13wl7yleIGC9dY6t8XyfrEu3jg==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@refinedev/core': ^4.46.1
+      gql-query-builder: ^3.5.5
+      graphql-request: ^5.2.0
+      graphql-ws: ^5.9.1
+
+  '@refinedev/nestjsx-crud@5.0.10':
+    resolution: {integrity: sha512-bMogDEZY64g6f+qSFX4q6OaUuWaE1H9UTtr+DabFD4K8mWZjohK2ESU8PtjHvRsx9/qDUeCYmpFdTuZ269wsDA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@refinedev/core': ^4.46.1
+
   '@refinedev/strapi-graphql@6.0.5':
     resolution: {integrity: sha512-ugNv7xbTKxmw59yC6phRH3qGPJGRIPwfeqXLPREtjUb9/tjBfJt0Qs/301fjnX28ghiJScMF9twjQHAekFGa/Q==}
     engines: {node: '>=10'}
@@ -22008,6 +22064,16 @@ packages:
       '@refinedev/core': ^4.46.1
       gql-query-builder: ^3.5.5
       graphql-request: ^5.2.0
+
+  '@refinedev/strapi-v4@6.0.9':
+    resolution: {integrity: sha512-6dgpyknehDvlQXQlKva9gJ8YgKHGaD4iK6V9awmlbvcv9JhM3AO0JMq86jFNtCR9RXZq4vn/GngfQ8hHQ86ZDA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@refinedev/core': ^4.46.1
+      '@types/react': ^17.0.0 || ^18.0.0
+      '@types/react-dom': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
 
   '@remix-run/dev@2.9.1':
     resolution: {integrity: sha512-/YhegnnRrarsqU+11+HdGwjcIT1KgkS9L7kWCM0+ivDvyiBYAuI6xbPG/q/FY6LqLAPYeOxsJmUNl+aj+yMltA==}
@@ -33917,6 +33983,9 @@ packages:
   stylis@4.3.2:
     resolution: {integrity: sha512-bhtUjWd/z6ltJiQwg0dUfxEJ+W+jdqQd8TbWLWyeIJHlnsqmGLRFFd8e5mA0AZi/zx90smXRlN66YMTcaSFifg==}
 
+  stylis@4.3.4:
+    resolution: {integrity: sha512-osIBl6BGUmSfDkyH2mB7EFvCJntXDrLhKjHTRj/rK6xLH0yuPrHULDRQzKokSOD4VoorhtKpfcfW1GAntu8now==}
+
   sucrase@3.35.0:
     resolution: {integrity: sha512-8EbVDiu9iN/nESwxeSxDKe0dunta1GOlHufmSSXxMD2z2/tMZpDMpvXQGsc+ajGo8y2uYUmixaSRUc/QPoQ0GA==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -35773,6 +35842,18 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       stylis: 4.3.2
 
+  '@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@babel/runtime': 7.25.6
+      '@emotion/hash': 0.8.0
+      '@emotion/unitless': 0.7.5
+      classnames: 2.5.1
+      csstype: 3.1.3
+      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      stylis: 4.3.4
+
   '@ant-design/flowchart@1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -35833,9 +35914,9 @@ snapshots:
       react-content-loader: 5.1.4(react@18.3.0)
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@ant-design/cssinjs': 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       next: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react: 18.3.0
@@ -35849,16 +35930,18 @@ snapshots:
       react-content-loader: 5.1.4(react@18.3.0)
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/pro-layout@7.20.2(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-layout@7.21.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
+      '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-provider': 2.14.9(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-utils': 2.15.18(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@babel/runtime': 7.24.6
+      '@ant-design/pro-provider': 2.15.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-utils': 2.16.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.6
       '@umijs/route-utils': 4.0.1
       '@umijs/use-params': 1.0.9(react@18.3.0)
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
+      lodash: 4.17.21
       lodash-es: 4.17.21
       omit.js: 2.0.2
       path-to-regexp: 8.0.0
@@ -35869,25 +35952,27 @@ snapshots:
       swr: 2.2.5(react@18.3.0)
       warning: 4.0.3
 
-  '@ant-design/pro-provider@2.14.9(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-provider@2.15.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@ant-design/cssinjs': 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@babel/runtime': 7.24.6
+      '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.6
       '@ctrl/tinycolor': 3.6.1
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      dayjs: 1.11.10
       rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       swr: 2.2.5(react@18.3.0)
 
-  '@ant-design/pro-utils@2.15.18(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-utils@2.16.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-provider': 2.14.9(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@babel/runtime': 7.24.6
+      '@ant-design/pro-provider': 2.15.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.6
       antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       dayjs: 1.11.10
+      lodash: 4.17.21
       lodash-es: 4.17.21
       rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
@@ -36178,7 +36263,7 @@ snapshots:
       '@antv/l7-core': 2.21.7
       '@antv/l7-layers': 2.21.7
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       eventemitter3: 4.0.7
       supercluster: 7.1.5
 
@@ -36186,7 +36271,7 @@ snapshots:
     dependencies:
       '@antv/async-hook': 2.2.9
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@mapbox/tiny-sdf': 1.2.5
       '@turf/helpers': 6.5.0
       ajv: 6.12.6
@@ -36203,7 +36288,7 @@ snapshots:
       '@antv/l7-maps': 2.21.7
       '@antv/l7-source': 2.21.7
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@mapbox/martini': 0.2.0
       '@turf/clone': 6.5.0
       '@turf/helpers': 6.5.0
@@ -36224,7 +36309,7 @@ snapshots:
   '@antv/l7-map@2.21.7':
     dependencies:
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@mapbox/point-geometry': 0.1.0
       '@mapbox/unitbezier': 0.0.0
       eventemitter3: 4.0.7
@@ -36236,7 +36321,7 @@ snapshots:
       '@antv/l7-core': 2.21.7
       '@antv/l7-map': 2.21.7
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       eventemitter3: 4.0.7
       gl-matrix: 3.4.3
       mapbox-gl: 1.13.3
@@ -36248,7 +36333,7 @@ snapshots:
       '@antv/g-device-api': 1.6.8
       '@antv/l7-core': 2.21.7
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       regl: 1.6.1
 
   '@antv/l7-scene@2.21.7':
@@ -36259,7 +36344,7 @@ snapshots:
       '@antv/l7-maps': 2.21.7
       '@antv/l7-renderer': 2.21.7
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       eventemitter3: 4.0.7
 
   '@antv/l7-source@2.21.7':
@@ -36267,7 +36352,7 @@ snapshots:
       '@antv/async-hook': 2.2.9
       '@antv/l7-core': 2.21.7
       '@antv/l7-utils': 2.21.7
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@mapbox/geojson-rewind': 0.5.2
       '@mapbox/vector-tile': 1.3.1
       '@turf/helpers': 6.5.0
@@ -36282,7 +36367,7 @@ snapshots:
 
   '@antv/l7-utils@2.21.7':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@turf/bbox': 6.5.0
       '@turf/bbox-polygon': 6.5.0
       '@turf/helpers': 6.5.0
@@ -36482,7 +36567,7 @@ snapshots:
       '@babel/core': 7.24.4
       '@babel/generator': 7.24.4
       '@babel/parser': 7.24.4
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@babel/traverse': 7.24.1(supports-color@5.5.0)
       '@babel/types': 7.24.0
       babel-preset-fbjs: 3.4.0(@babel/core@7.24.4)
@@ -36506,7 +36591,7 @@ snapshots:
       '@babel/core': 7.24.4
       '@babel/generator': 7.24.4
       '@babel/parser': 7.24.4
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@babel/traverse': 7.24.1(supports-color@5.5.0)
       '@babel/types': 7.24.0
       babel-preset-fbjs: 3.4.0(@babel/core@7.24.4)
@@ -41574,7 +41659,7 @@ snapshots:
 
   '@manypkg/find-root@1.1.0':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@types/node': 12.20.55
       find-up: 4.1.0
       fs-extra: 8.1.0
@@ -41683,8 +41768,8 @@ snapshots:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/types': 1.11.15
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
     transitivePeerDependencies:
       - '@mikro-orm/better-sqlite'
@@ -41933,9 +42018,9 @@ snapshots:
   '@medusajs/utils@1.11.8(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
       '@medusajs/types': 1.11.15
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
       bignumber.js: 9.1.2
       knex: 2.4.2(pg@8.11.5)
@@ -41987,7 +42072,7 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)':
+  '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)':
     dependencies:
       acorn-loose: 8.3.0
       acorn-walk: 8.2.0
@@ -41997,17 +42082,17 @@ snapshots:
       mikro-orm: 5.9.7
       reflect-metadata: 0.1.13
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
 
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.3)
       sqlstring: 2.3.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       pg: 8.11.3
     transitivePeerDependencies:
       - pg-native
@@ -42016,21 +42101,21 @@ snapshots:
 
   '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.5)
       sqlstring: 2.3.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       pg: 8.11.5
     transitivePeerDependencies:
       - pg-native
       - supports-color
       - tedious
 
-  '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)':
+  '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.5)
@@ -42048,13 +42133,13 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))':
+  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
     dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
       pg: 8.11.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
     transitivePeerDependencies:
       - better-sqlite3
       - mssql
@@ -43835,16 +43920,16 @@ snapshots:
 
   '@probe.gl/env@3.6.0':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   '@probe.gl/log@3.6.0':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@probe.gl/env': 3.6.0
 
   '@probe.gl/stats@3.6.0':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   '@qualifyze/airtable-formulator@1.3.1':
     dependencies:
@@ -43868,7 +43953,7 @@ snapshots:
 
   '@radix-ui/react-arrow@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -44058,7 +44143,7 @@ snapshots:
 
   '@radix-ui/react-presence@1.0.1(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.0)(react@18.3.0)
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.3.0)(react@18.3.0)
       react: 18.3.0
@@ -44086,7 +44171,7 @@ snapshots:
 
   '@radix-ui/react-roving-focus@1.0.4(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/primitive': 1.0.1
       '@radix-ui/react-collection': 1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.0)(react@18.3.0)
@@ -44149,7 +44234,7 @@ snapshots:
 
   '@radix-ui/react-slot@1.0.1(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/react-compose-refs': 1.0.0(react@18.3.0)
       react: 18.3.0
 
@@ -44183,7 +44268,7 @@ snapshots:
 
   '@radix-ui/react-use-escape-keydown@1.0.3(@types/react@18.3.0)(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.3.0)(react@18.3.0)
       react: 18.3.0
     optionalDependencies:
@@ -44210,7 +44295,7 @@ snapshots:
 
   '@radix-ui/react-use-rect@1.0.1(@types/react@18.3.0)(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/rect': 1.0.1
       react: 18.3.0
     optionalDependencies:
@@ -44218,7 +44303,7 @@ snapshots:
 
   '@radix-ui/react-use-size@1.0.1(@types/react@18.3.0)(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.3.0)(react@18.3.0)
       react: 18.3.0
     optionalDependencies:
@@ -44236,7 +44321,7 @@ snapshots:
 
   '@radix-ui/rect@1.0.1':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   '@rc-component/async-validator@5.0.4':
     dependencies:
@@ -45200,6 +45285,165 @@ snapshots:
       - react
       - react-dom
 
+  '@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@npmcli/package-json': 5.2.0
+      '@refinedev/devtools-server': 1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
+      boxen: 5.1.2
+      camelcase: 6.3.0
+      cardinal: 2.1.1
+      center-align: 1.0.1
+      chalk: 4.1.2
+      cli-table3: 0.6.4
+      commander: 9.4.1
+      conf: 10.2.0
+      decamelize: 5.0.1
+      dedent: 0.7.0
+      dotenv: 16.4.5
+      envinfo: 7.12.0
+      execa: 5.1.1
+      figlet: 1.7.0
+      fs-extra: 10.1.0
+      globby: 11.1.0
+      gray-matter: 4.0.3
+      handlebars: 4.7.8
+      inquirer: 8.2.6
+      inquirer-autocomplete-prompt: 2.0.1(inquirer@8.2.6)
+      jscodeshift: 0.15.2(@babel/preset-env@7.24.4(@babel/core@7.24.4))
+      marked: 4.3.0
+      marked-terminal: 6.3.0(marked@4.3.0)
+      node-emoji: 2.1.3
+      node-env-type: 0.0.8
+      node-fetch: 2.7.0(encoding@0.1.13)
+      ora: 5.4.1
+      pluralize: 8.0.0
+      preferred-pm: 3.1.3
+      prettier: 2.8.8
+      semver: 7.5.2
+      semver-diff: 3.1.1
+      temp: 0.9.4
+      tslib: 2.6.2
+    transitivePeerDependencies:
+      - '@babel/preset-env'
+      - '@types/react'
+      - '@types/react-dom'
+      - bluebird
+      - bufferutil
+      - encoding
+      - react
+      - react-dom
+      - react-native
+      - supports-color
+      - utf-8-validate
+
+  '@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@refinedev/devtools-shared': 1.1.12(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@types/react': 18.3.0
+      '@types/react-dom': 18.3.0
+      body-parser: 1.20.3
+      boxen: 5.1.2
+      chalk: 4.1.2
+      dedent: 0.7.0
+      dotenv: 16.4.5
+      error-stack-parser: 2.1.4
+      execa: 5.1.1
+      express: 4.21.0
+      fs-extra: 10.1.0
+      globby: 11.1.0
+      gray-matter: 4.0.3
+      http-proxy-middleware: 3.0.0
+      jscodeshift: 0.15.2(@babel/preset-env@7.24.4(@babel/core@7.24.4))
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      marked: 4.3.0
+      node-fetch: 2.7.0(encoding@0.1.13)
+      package-manager-detector: 0.1.1
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      sanitize-html: 2.13.0
+      ws: 8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - '@babel/preset-env'
+      - bufferutil
+      - encoding
+      - react-native
+      - supports-color
+      - utf-8-validate
+
+  '@refinedev/devtools-shared@1.1.12(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@tanstack/react-query': 4.36.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@types/react': 18.3.0
+      '@types/react-dom': 18.3.0
+      error-stack-parser: 2.1.4
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+    transitivePeerDependencies:
+      - react-native
+
+  '@refinedev/devtools@1.2.9(@refinedev/cli@2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@refinedev/core@packages+core)(@refinedev/devtools-server@1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10))(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@aliemir/dom-to-fiber-utils': 0.4.1
+      '@refinedev/cli': 2.16.39(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
+      '@refinedev/core': link:packages/core
+      '@refinedev/devtools-server': 1.1.37(@babel/preset-env@7.24.4(@babel/core@7.24.4))(@types/react-dom@18.3.0)(@types/react@18.3.0)(bufferutil@4.0.8)(encoding@0.1.13)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
+      '@refinedev/devtools-shared': 1.1.12(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@types/react': 18.3.0
+      '@types/react-dom': 18.3.0
+      error-stack-parser: 2.1.4
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+    transitivePeerDependencies:
+      - react-native
+
+  '@refinedev/hasura@6.6.8(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@5.2.0(encoding@0.1.13)(graphql@15.8.0))(graphql-ws@5.16.0(graphql@15.8.0))':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      camelcase: 6.3.0
+      gql-query-builder: 3.8.0
+      graphql: 15.8.0
+      graphql-request: 5.2.0(encoding@0.1.13)(graphql@15.8.0)
+      graphql-tag: 2.12.6(graphql@15.8.0)
+      graphql-ws: 5.16.0(graphql@15.8.0)
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+
+  '@refinedev/hasura@6.6.8(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@15.8.0))(graphql-ws@5.16.0(graphql@15.8.0))':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      camelcase: 6.3.0
+      gql-query-builder: 3.8.0
+      graphql: 15.8.0
+      graphql-request: 6.1.0(encoding@0.1.13)(graphql@15.8.0)
+      graphql-tag: 2.12.6(graphql@15.8.0)
+      graphql-ws: 5.16.0(graphql@15.8.0)
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+
+  '@refinedev/hasura@6.6.8(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.8.1))(graphql-ws@5.16.0(graphql@16.8.1))':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      camelcase: 6.3.0
+      gql-query-builder: 3.8.0
+      graphql: 15.8.0
+      graphql-request: 6.1.0(encoding@0.1.13)(graphql@16.8.1)
+      graphql-tag: 2.12.6(graphql@15.8.0)
+      graphql-ws: 5.16.0(graphql@16.8.1)
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+
+  '@refinedev/nestjsx-crud@5.0.10(@refinedev/core@packages+core)':
+    dependencies:
+      '@nestjsx/crud-request': 5.0.0-alpha.3
+      '@refinedev/core': link:packages/core
+      axios: 1.6.8
+      query-string: 7.1.3
+    transitivePeerDependencies:
+      - debug
+
   '@refinedev/strapi-graphql@6.0.5(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.8.1))':
     dependencies:
       '@refinedev/core': link:packages/core
@@ -45209,6 +45453,18 @@ snapshots:
       graphql-request: 6.1.0(encoding@0.1.13)(graphql@16.8.1)
       pluralize: 8.0.0
       query-string: 7.1.3
+
+  '@refinedev/strapi-v4@6.0.9(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      '@types/react': 18.3.0
+      '@types/react-dom': 18.3.0
+      axios: 1.6.8
+      qs: 6.13.0
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+    transitivePeerDependencies:
+      - debug
 
   '@remix-run/dev@2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))':
     dependencies:
@@ -47918,7 +48174,7 @@ snapshots:
 
   axios-retry@3.9.1:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       is-retry-allowed: 2.2.0
 
   axios@0.21.4:
@@ -48311,7 +48567,7 @@ snapshots:
 
   broadcast-channel@3.7.0:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       detect-node: 2.1.0
       js-sha3: 0.8.0
       microseconds: 0.2.0
@@ -50693,7 +50949,7 @@ snapshots:
 
   eslint-plugin-jsx-a11y@6.8.0(eslint@8.57.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       aria-query: 5.3.0
       array-includes: 3.1.8
       array.prototype.flatmap: 1.3.2
@@ -55077,7 +55333,7 @@ snapshots:
 
   match-sorter@6.3.4:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       remove-accents: 0.5.0
 
   material-colors@1.2.6: {}
@@ -55339,7 +55595,7 @@ snapshots:
 
   media-query-parser@2.0.2:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   media-typer@0.3.0: {}
 
@@ -55401,8 +55657,8 @@ snapshots:
     dependencies:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       medusa-core-utils: 1.2.1
       randomatic: 3.1.1
     optionalDependencies:
@@ -57896,7 +58152,7 @@ snapshots:
 
   probe.gl@3.6.0:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@probe.gl/env': 3.6.0
       '@probe.gl/log': 3.6.0
       '@probe.gl/stats': 3.6.0
@@ -58130,7 +58386,7 @@ snapshots:
 
   rc-align@4.0.15(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       classnames: 2.5.1
       dom-align: 1.12.4
       rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -58217,7 +58473,7 @@ snapshots:
 
   rc-dropdown@3.6.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       classnames: 2.5.1
       rc-trigger: 5.3.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -58642,7 +58898,7 @@ snapshots:
 
   rc-trigger@5.3.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       classnames: 2.5.1
       rc-align: 4.0.15(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -58741,7 +58997,7 @@ snapshots:
 
   react-clientside-effect@1.2.6(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       react: 18.3.0
 
   react-color@2.17.1(react@18.3.0):
@@ -59094,7 +59350,7 @@ snapshots:
 
   react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       broadcast-channel: 3.7.0
       match-sorter: 6.3.4
       react: 18.3.0
@@ -59382,7 +59638,7 @@ snapshots:
 
   react-textarea-autosize@8.5.3(@types/react@18.3.0)(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       react: 18.3.0
       use-composed-ref: 1.3.0(react@18.3.0)
       use-latest: 1.2.1(@types/react@18.3.0)(react@18.3.0)
@@ -59634,7 +59890,7 @@ snapshots:
 
   redux@4.2.1:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   refine-sanity@1.1.1(@refinedev/core@packages+core)(@sanity/client@6.15.20):
     dependencies:
@@ -59675,7 +59931,7 @@ snapshots:
 
   regenerator-transform@0.15.2:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   regex-parser@2.3.0: {}
 
@@ -59792,7 +60048,7 @@ snapshots:
 
   relay-runtime@12.0.0(encoding@0.1.13):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       fbjs: 3.0.5(encoding@0.1.13)
       invariant: 2.2.4
     transitivePeerDependencies:
@@ -60149,7 +60405,7 @@ snapshots:
 
   rtl-css-js@1.16.1:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
 
   run-async@2.4.1: {}
 
@@ -60395,7 +60651,7 @@ snapshots:
 
   servify@0.1.12:
     dependencies:
-      body-parser: 1.20.2
+      body-parser: 1.20.3
       cors: 2.8.5
       express: 4.21.0
       request: 2.88.2
@@ -61037,6 +61293,8 @@ snapshots:
   stylis@4.3.1: {}
 
   stylis@4.3.2: {}
+
+  stylis@4.3.4: {}
 
   sucrase@3.35.0:
     dependencies:
@@ -62153,7 +62411,7 @@ snapshots:
 
   unload@2.2.0:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       detect-node: 2.1.0
 
   unpipe@1.0.0: {}
@@ -62401,7 +62659,7 @@ snapshots:
 
   viewport-mercator-project@6.2.3:
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       gl-matrix: 3.4.3
 
   vite-compatible-readable-stream@3.6.1:
@@ -63062,7 +63320,7 @@ snapshots:
       '@apideck/better-ajv-errors': 0.3.6(ajv@8.12.0)
       '@babel/core': 7.24.4
       '@babel/preset-env': 7.24.4(@babel/core@7.24.4)
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.6
       '@rollup/plugin-babel': 5.3.1(@babel/core@7.24.4)(@types/babel__core@7.20.5)(rollup@2.79.1)
       '@rollup/plugin-node-resolve': 11.2.1(rollup@2.79.1)
       '@rollup/plugin-replace': 2.4.2(rollup@2.79.1)
