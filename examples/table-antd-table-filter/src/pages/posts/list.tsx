@@ -165,7 +165,6 @@ const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
       <Form.Item label="Search" name="q">
         <Input
           placeholder="ID, Title, Content, etc."
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           prefix={<SearchOutlined />}
         />
       </Form.Item>

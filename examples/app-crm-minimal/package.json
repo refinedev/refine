@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ant-design/cssinjs": "^1.17.2",
-    "@ant-design/icons": "5.0.1",
+    "@ant-design/icons": "^5.5.1",
     "@ant-design/plots": "^1.2.5",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",

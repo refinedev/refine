@@ -17,7 +17,6 @@ export const ButtonSuccess = ({
     <Button
       type="default"
       disabled={disabled}
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<CheckCircleOutlined />}
       style={{
         color: disabled

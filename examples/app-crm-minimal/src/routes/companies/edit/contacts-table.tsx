@@ -72,7 +72,6 @@ export const CompanyContactsTable = () => {
       bodyStyle={{ padding: 0 }}
       title={
         <Space size="middle">
-          {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
           <TeamOutlined />
           <Text>Contacts</Text>
         </Space>
@@ -111,7 +110,6 @@ export const CompanyContactsTable = () => {
               </Space>
             );
           }}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
@@ -122,7 +120,6 @@ export const CompanyContactsTable = () => {
         <Table.Column
           title="Title"
           dataIndex="jobTitle"
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           filterIcon={<SearchOutlined />}
           filterDropdown={(props) => (
             <FilterDropdown {...props}>
@@ -156,13 +153,11 @@ export const CompanyContactsTable = () => {
                 <Button
                   size="small"
                   href={`mailto:${record.email}`}
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<MailOutlined />}
                 />
                 <Button
                   size="small"
                   href={`tel:${record.phone}`}
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<PhoneOutlined />}
                 />
               </Space>

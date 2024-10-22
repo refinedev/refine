@@ -101,7 +101,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           >
             <Menu.SubMenu
               key={item.key}
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={icon ?? <UnorderedListOutlined />}
               title={label}
             >
@@ -130,7 +129,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         >
           <Menu.Item
             key={item.key}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
             style={linkStyle}
           >
@@ -168,7 +166,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     <Menu.Item
       key="logout"
       onClick={() => handleLogout()}
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<LogoutOutlined />}
     >
       {translate("buttons.logout", "Logout")}
@@ -176,7 +173,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   );
 
   const dashboard = hasDashboard ? (
-    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
       <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
       {!siderCollapsed && selectedKey === "/" && (
@@ -269,7 +265,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           style={drawerButtonStyles}
           size="large"
           onClick={() => setMobileSiderOpen(true)}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<BarsOutlined />}
         />
       </>
@@ -297,7 +292,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     const CollapsedIcon = direction === "rtl" ? LeftOutlined : RightOutlined;
     const IconComponent = siderCollapsed ? CollapsedIcon : OpenIcon;
 
-    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     return <IconComponent {...iconProps} />;
   };
 

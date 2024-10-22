@@ -88,7 +88,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           >
             <Menu.SubMenu
               key={item.key}
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={icon ?? <UnorderedListOutlined />}
               title={label}
             >
@@ -114,7 +113,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
         >
           <Menu.Item
             key={item.key}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             icon={icon ?? (isRoute && <UnorderedListOutlined />)}
           >
             <Link to={route ?? ""}>{label}</Link>
@@ -149,7 +147,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     <Menu.Item
       key="logout"
       onClick={() => handleLogout()}
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<LogoutOutlined />}
     >
       {translate("buttons.logout", "Logout")}
@@ -157,7 +154,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
   );
 
   const dashboard = hasDashboard ? (
-    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
     <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
       <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
       {!collapsed && selectedKey === "/" && (
@@ -254,7 +250,6 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           style={drawerButtonStyles}
           size="large"
           onClick={() => setDrawerOpen(true)}
-          // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
           icon={<BarsOutlined />}
         />
       </>
@@ -287,14 +282,12 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           }}
         >
           {collapsed ? (
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <RightOutlined
               style={{
                 color: token.colorPrimary,
               }}
             />
           ) : (
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <LeftOutlined
               style={{
                 color: token.colorPrimary,
