@@ -290,15 +290,12 @@ The most common pattern in synchronous programming is the sequential execution p
 1.  **Modularize your code:** Break your code into smaller, reusable functions.
 2.  **Use Promises or Async/Await:** These features of JavaScript can flatten your code and make it easier to read and understand.
 3.  **Error Handling:** Always include error handling for your callbacks. Unhandled errors can lead to unpredictable results.
-4.
 
-Subject: Asynchronous Programming - Memory Management
-
-Hello [Colleague’s Name],
+## Asynchronous Programming - Memory Management
 
 I would like to share some tips on how we can manage memory more effectively when working with asynchronous programming since improper handling could lead to some performance issues, such as memory leaks.
 
-## Managing Memory within Asynchronous Programming
+### Managing Memory within Asynchronous Programming
 
 When working with asynchronous code, it is really important to pay attention to how memory is allocated and how it gets cleaned up. It has something to do with long-running tasks or promises that are not being settled, which could lead to memory leaks if not handled correctly.
 
@@ -327,9 +324,9 @@ element.addEventListener("click", handleClick);
 
 Timers: Using setTimeout or setInterval without clearing them when they are no longer needed can also lead to memory being held longer than necessary.
 
-```
-var timer = setInterval(function() {
-  console.log('Running.');
+```tsx
+var timer = setInterval(function () {
+  console.log("Running.");
 }, 1000);
 
 // Forgetting to clear the interval
