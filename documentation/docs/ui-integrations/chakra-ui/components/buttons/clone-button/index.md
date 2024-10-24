@@ -45,7 +45,7 @@ const ClonePage = () => {
 };
 ```
 
-`<CloneButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component. It uses the `clone` method from [useNavigation](/docs/routing/hooks/use-navigation) under the hood.
+`<CloneButton>` uses Chakra UI's [`<Button>`](https://www.chakra-ui.com/docs/components/button#usage) component. It uses the `clone` method from [useNavigation](/docs/routing/hooks/use-navigation) under the hood.
 
 :::simple Good to know
 
