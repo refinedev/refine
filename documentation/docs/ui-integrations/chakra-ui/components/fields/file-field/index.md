@@ -22,7 +22,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field is used to display files and it uses the [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component of Chakra UI.
+This field is used to display files and it uses the [`<Link>`](https://www.chakra-ui.com/docs/components/link#usage) component of Chakra UI.
 
 :::simple Good to know
 

@@ -22,7 +22,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field is used to display email values. It uses the [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component of Chakra UI.
+This field is used to display email values. It uses the [`<Link>`](https://www.chakra-ui.com/docs/components/link#usage) component of Chakra UI.
 
 :::simple Good to know
 
@@ -164,7 +164,7 @@ render(
 
 :::tip
 
-`<EmailField>` uses "mailto:" in the href prop of the [`<Link>`](https://chakra-ui.com/docs/components/link/usage) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
+`<EmailField>` uses "mailto:" in the href prop of the [`<Link>`](https://www.chakra-ui.com/docs/components/link#usage) component. For this reason, clicking `<EmailField>` opens your device's default mail application.
 
 :::
 
@@ -174,4 +174,4 @@ render(
 
 <PropsTable module="@refinedev/chakra-ui/EmailField" />
 
-> For the rest of Anchor properties, refer to the [Chakra UI documentation &#8594](https://chakra-ui.com/docs/components/link/usage)
+> For the rest of Anchor properties, refer to the [Chakra UI documentation &#8594](https://www.chakra-ui.com/docs/components/link#usage)
