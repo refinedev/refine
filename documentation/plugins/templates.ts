@@ -95,7 +95,7 @@ This CRM app template can be used in for various app requirements like B2B appli
     ],
     runOnYourLocalPath: null,
     github: null,
-    liveDemo: "https://refine-hr.netlify.app",
+    liveDemo: "https://hr.refine.dev",
     reactPlatform: "Vite",
     uiFramework: "Material UI",
     dataProvider: "Nestjsx-CRUD",
