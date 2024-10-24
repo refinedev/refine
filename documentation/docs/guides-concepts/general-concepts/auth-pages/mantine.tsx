@@ -14,7 +14,7 @@ export function MantineAuth() {
         "@refinedev/react-table": "latest",
         "react-router-dom": "latest",
         "react-router": "latest",
-        "@mantine/core": "^5.10.4",
+        "@mantine/core": "^7.12.2",
       }}
       startRoute="/login"
       files={{

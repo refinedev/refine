@@ -1,3 +1,6 @@
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+
 import { GitHubBanner, type MutationMode, Refine } from "@refinedev/core";
 import {
   ThemedLayoutV2,
@@ -12,8 +15,8 @@ import routerProvider, {
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 import { useState } from "react";
@@ -26,61 +29,51 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
-        <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
-          <Refine
-            routerProvider={routerProvider}
-            dataProvider={dataProvider(API_URL)}
-            notificationProvider={useNotificationProvider}
-            resources={[
-              {
-                name: "posts",
-                list: "/posts",
-                create: "/posts/create",
-                edit: "/posts/edit/:id",
-                meta: {
-                  canDelete: true,
-                },
+      <MantineProvider theme={RefineThemes.Blue}>
+        <Refine
+          routerProvider={routerProvider}
+          dataProvider={dataProvider(API_URL)}
+          notificationProvider={useNotificationProvider}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+              edit: "/posts/edit/:id",
+              meta: {
+                canDelete: true,
               },
-            ]}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-              mutationMode: mutationMode,
-            }}
-          >
-            <Routes>
-              <Route
-                element={
-                  <ThemedLayoutV2>
-                    <Outlet />
-                  </ThemedLayoutV2>
-                }
-              >
-                <Route
-                  index
-                  element={<NavigateToResource resource="posts" />}
-                />
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+            mutationMode: mutationMode,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2 Footer={GitHubBanner}>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource resource="posts" />} />
 
-                <Route path="/posts">
-                  <Route index element={<PostList />} />
-                  <Route path="create" element={<PostCreate />} />
-                  <Route path="edit/:id" element={<PostEdit />} />
-                </Route>
-
-                <Route path="*" element={<ErrorComponent />} />
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
               </Route>
-            </Routes>
-          </Refine>
-          <UnsavedChangesNotifier />
-          <DocumentTitleHandler />
-        </NotificationsProvider>
+
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+        </Refine>
+        <Notifications />
+        <UnsavedChangesNotifier />
+        <DocumentTitleHandler />
         <MutationModePicker
           currentMutationMode={mutationMode}
           onMutationModeChange={setMutationMode}

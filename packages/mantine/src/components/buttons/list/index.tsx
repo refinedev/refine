@@ -34,9 +34,9 @@ export const ListButton: React.FC<ListButtonProps> = ({
     meta,
   });
 
-  const { variant, styles, ...commonProps } = rest;
-
   if (hidden) return null;
+
+  const { variant, styles, vars, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -56,12 +56,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
-          aria-label={label}
+          variant={mapButtonVariantToActionIconVariant(variant, "default")}
           disabled={disabled}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}
@@ -72,12 +67,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "default"}
           disabled={disabled}
-          leftIcon={<IconList size={18} {...svgIconProps} />}
+          leftSection={<IconList size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}
           className={RefineButtonClassNames.ListButton}
+          vars={vars}
           {...rest}
         >
           {children ?? label}

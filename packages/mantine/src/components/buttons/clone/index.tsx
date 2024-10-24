@@ -39,7 +39,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
   if (hidden) return null;
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -62,11 +62,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
           disabled={disabled}
           title={title}
           aria-label={label}
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
+          variant={mapButtonVariantToActionIconVariant(variant, "default")}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
           {...commonProps}
@@ -76,9 +72,10 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
       ) : (
         <Button
           disabled={disabled}
-          variant="default"
-          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          variant={variant || "default"}
+          leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
+          vars={vars}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
           {...rest}

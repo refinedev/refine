@@ -10,26 +10,33 @@ import {
   type NotificationProvider,
   type IResourceItem,
   type AuthProvider,
-  type IRouterProvider,
   type RouterBindings,
   type IRefineOptions,
+  type IRouterContext,
 } from "@refinedev/core";
 
-import { mockRouterBindings, MockJSONServer } from "@test";
+import { mockRouterBindings, MockRouterProvider, MockJSONServer } from "@test";
+
+import { MantineProvider } from "@mantine/core";
+
+// @ts-ignore
+// window.MantineProvider = MantineProvider;
+
+import { defaultTheme } from "@theme";
 
 const List = () => {
   return <div>hede</div>;
 };
 export interface ITestWrapperProps {
-  routerProvider?: RouterBindings;
-  legacyRouterProvider?: IRouterProvider;
   dataProvider?: DataProvider;
-  authProvider?: AuthProvider;
   legacyAuthProvider?: LegacyAuthProvider;
+  authProvider?: AuthProvider;
   resources?: IResourceItem[];
   notificationProvider?: NotificationProvider;
   accessControlProvider?: AccessControlProvider;
   i18nProvider?: I18nProvider;
+  legacyRouterProvider?: IRouterContext;
+  routerProvider?: RouterBindings;
   routerInitialEntries?: string[];
   DashboardPage?: React.FC;
   options?: IRefineOptions;
@@ -38,17 +45,17 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
   props: ITestWrapperProps,
 ) => React.FC<{ children?: React.ReactNode }> = ({
-  routerProvider = mockRouterBindings(),
-  legacyRouterProvider,
   dataProvider,
-  authProvider,
   legacyAuthProvider,
+  authProvider,
   resources,
   notificationProvider,
   accessControlProvider,
   routerInitialEntries,
   DashboardPage,
   i18nProvider,
+  routerProvider,
+  legacyRouterProvider,
   options,
 }) => {
   // Previously, MemoryRouter was used in this wrapper. However, the
@@ -63,49 +70,76 @@ export const TestWrapper: (
     });
   }
 
-  return ({ children }): React.ReactElement => {
+  return ({ children }: React.PropsWithChildren<{}>): React.ReactElement => {
     return (
-      <BrowserRouter>
-        <Refine
-          dataProvider={dataProvider ?? MockJSONServer}
-          i18nProvider={i18nProvider}
-          routerProvider={legacyRouterProvider ? undefined : routerProvider}
-          legacyRouterProvider={legacyRouterProvider}
-          authProvider={authProvider}
-          legacyAuthProvider={legacyAuthProvider}
-          notificationProvider={notificationProvider}
-          resources={resources ?? [{ name: "posts", list: List }]}
-          accessControlProvider={accessControlProvider}
-          DashboardPage={DashboardPage ?? undefined}
-          options={{
-            ...options,
-            disableTelemetry: true,
-            reactQuery: {
-              clientConfig: {
-                defaultOptions: {
-                  queries: {
-                    cacheTime: 0,
-                    staleTime: 0,
-                    networkMode: "always",
+      <MantineProvider theme={defaultTheme}>
+        <BrowserRouter>
+          <Refine
+            // dataProvider={dataProvider ?? MockJSONServer}
+            // i18nProvider={i18nProvider}
+            // legacyRouterProvider={
+            //   routerProvider ? undefined : MockRouterProvider
+            // }
+            // routerProvider={routerProvider}
+            // authProvider={authProvider}
+            // legacyAuthProvider={legacyAuthProvider}
+            // notificationProvider={notificationProvider}
+            // resources={resources ?? [{ name: "posts", list: List }]}
+            // accessControlProvider={accessControlProvider}
+            // DashboardPage={DashboardPage ?? undefined}
+            // Working
+            dataProvider={dataProvider ?? MockJSONServer}
+            i18nProvider={i18nProvider}
+            routerProvider={routerProvider}
+            legacyRouterProvider={legacyRouterProvider ?? MockRouterProvider}
+            legacyAuthProvider={legacyAuthProvider}
+            authProvider={authProvider}
+            notificationProvider={notificationProvider}
+            resources={resources ?? [{ name: "posts", list: List }]}
+            accessControlProvider={accessControlProvider}
+            DashboardPage={DashboardPage ?? undefined}
+            // Initial
+            // dataProvider={dataProvider ?? MockJSONServer}
+            // i18nProvider={i18nProvider}
+            // routerProvider={legacyRouterProvider ? undefined : routerProvider}
+            // legacyRouterProvider={legacyRouterProvider}
+            // authProvider={authProvider}
+            // legacyAuthProvider={legacyAuthProvider}
+            // notificationProvider={notificationProvider}
+            // resources={resources ?? [{ name: "posts", list: List }]}
+            // accessControlProvider={accessControlProvider}
+            // DashboardPage={DashboardPage ?? undefined}
+            options={{
+              ...options,
+              disableTelemetry: true,
+              reactQuery: {
+                clientConfig: {
+                  defaultOptions: {
+                    queries: {
+                      cacheTime: 0,
+                      staleTime: 0,
+                      networkMode: "always",
+                    },
                   },
                 },
               },
-            },
-          }}
-        >
-          {children}
-        </Refine>
-      </BrowserRouter>
+            }}
+          >
+            {children}
+          </Refine>
+        </BrowserRouter>
+      </MantineProvider>
     );
   };
 };
 export {
-  mockRouterBindings,
   MockJSONServer,
-  MockLegacyRouterProvider,
+  mockRouterBindings,
   MockAccessControlProvider,
+  MockLegacyRouterProvider,
   MockLiveProvider,
   MockAuthProvider,
+  MockRouterProvider,
 } from "./dataMocks";
 
 // re-export everything

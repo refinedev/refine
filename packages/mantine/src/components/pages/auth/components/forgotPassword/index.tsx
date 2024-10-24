@@ -92,10 +92,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
 
   const CardContent = (
     <Card style={cardStyles} {...(contentProps ?? {})}>
-      <Title
-        style={titleStyles}
-        color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
-      >
+      <Title style={titleStyles}>
         {translate("pages.forgotPassword.title", "Forgot your password?")}
       </Title>
       <Space h="lg" />
@@ -119,7 +116,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
           />
 
           {loginLink ?? (
-            <Group mt="md" position={loginLink ? "left" : "right"}>
+            <Group mt="md" justify={loginLink ? "left" : "right"}>
               <Text size="xs">
                 {translate(
                   "pages.forgotPassword.buttons.haveAccount",

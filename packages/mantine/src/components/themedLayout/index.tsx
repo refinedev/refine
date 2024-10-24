@@ -20,10 +20,10 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
   const HeaderToRender = Header ?? DefaultHeader;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box style={{ display: "flex" }}>
       <SiderToRender Title={Title} />
       <Box
-        sx={{
+        style={{
           display: "flex",
           flexDirection: "column",
           flex: 1,
@@ -33,7 +33,7 @@ export const ThemedLayout: React.FC<RefineThemedLayoutProps> = ({
         <HeaderToRender />
         <Box
           component="main"
-          sx={(theme) => ({
+          style={(theme) => ({
             padding: theme.spacing.sm,
           })}
         >

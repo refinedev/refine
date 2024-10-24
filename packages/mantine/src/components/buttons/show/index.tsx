@@ -36,7 +36,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     meta,
   });
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
   if (hidden) return null;
 
@@ -58,11 +58,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
+          variant={mapButtonVariantToActionIconVariant(variant, "default")}
           disabled={disabled}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
@@ -73,12 +69,13 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "default"}
           disabled={disabled}
-          leftIcon={<IconEye size={18} {...svgIconProps} />}
+          leftSection={<IconEye size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
+          vars={vars}
           {...rest}
         >
           {children ?? label}

@@ -2,16 +2,20 @@ import React, { type FC } from "react";
 
 import {
   fireEvent,
+  type ITestWrapperProps,
   mockAuthProvider,
   mockRouterBindings,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
 import type { RegisterPageProps } from "@refinedev/core";
 
 export const pageRegisterTests = (
   RegisterPage: FC<RegisterPageProps<any, any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Register Page", () => {
     it("should render card title", async () => {

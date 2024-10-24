@@ -1,5 +1,4 @@
 import React from "react";
-import type { AccessControlProvider } from "@refinedev/core";
 import { Route, Routes } from "react-router-dom";
 import {
   type RefineCrudListProps,
@@ -7,16 +6,21 @@ import {
 } from "@refinedev/ui-types";
 
 import {
-  act,
   type ITestWrapperProps,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
 
+const defaultTestWrapperProps: ITestWrapperProps = {
+  routerInitialEntries: ["/posts"],
+};
+
 const renderList = (
   list: React.ReactNode,
-  accessControlProvider?: AccessControlProvider,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }>,
   wrapperProps?: ITestWrapperProps,
 ) => {
   return render(
@@ -24,20 +28,19 @@ const renderList = (
       <Route path="/:resource" element={list} />
     </Routes>,
     {
-      wrapper: TestWrapper(
-        wrapperProps
-          ? wrapperProps
-          : {
-              routerInitialEntries: ["/posts"],
-              accessControlProvider,
-            },
-      ),
+      wrapper: TestWrapper({
+        ...defaultTestWrapperProps,
+        ...wrapperProps,
+      }),
     },
   );
 };
 
 export const crudListTests = (
   List: React.ComponentType<RefineCrudListProps<any, any, any, any, any, {}>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD List", () => {
     beforeAll(() => {
@@ -49,19 +52,20 @@ export const crudListTests = (
         <List key="posts">
           <div>No Data</div>
         </List>,
+        TestWrapper,
       );
 
       getByText("No Data");
     });
 
     it("should render optional title with title prop", async () => {
-      const { getByText } = renderList(<List title="New Title" />);
+      const { getByText } = renderList(<List title="New Title" />, TestWrapper);
 
       getByText("New Title");
     });
 
     it("should not render title when is false", async () => {
-      const { queryByText } = renderList(<List title={false} />, undefined, {
+      const { queryByText } = renderList(<List title={false} />, TestWrapper, {
         resources: [
           {
             name: "posts",
@@ -76,7 +80,7 @@ export const crudListTests = (
     });
 
     it("should render with label instead of resource name successfully", async () => {
-      const { getByText } = renderList(<List />, undefined, {
+      const { getByText } = renderList(<List />, TestWrapper, {
         resources: [
           {
             name: "posts",
@@ -97,7 +101,7 @@ export const crudListTests = (
             return <>{defaultButtons}</>;
           }}
         />,
-        undefined,
+        TestWrapper,
         {
           resources: [
             {
@@ -120,7 +124,7 @@ export const crudListTests = (
             return <>{defaultButtons}</>;
           }}
         />,
-        undefined,
+        TestWrapper,
         {
           resources: [
             {
@@ -144,7 +148,7 @@ export const crudListTests = (
             return <>{defaultButtons}</>;
           }}
         />,
-        undefined,
+        TestWrapper,
         { routerInitialEntries: ["/posts"] },
       );
 
@@ -162,7 +166,7 @@ export const crudListTests = (
             return <>{defaultButtons}</>;
           }}
         />,
-        undefined,
+        TestWrapper,
         {
           resources: [
             {
@@ -186,7 +190,7 @@ export const crudListTests = (
             return <>{defaultButtons}</>;
           }}
         />,
-        undefined,
+        TestWrapper,
         {
           resources: [
             {
@@ -209,14 +213,17 @@ export const crudListTests = (
             return <>{defaultButtons}</>;
           }}
         />,
+        TestWrapper,
         {
-          can: ({ action }) => {
-            switch (action) {
-              case "create":
-                return Promise.resolve({ can: false });
-              default:
-                return Promise.resolve({ can: false });
-            }
+          accessControlProvider: {
+            can: ({ action }) => {
+              switch (action) {
+                case "create":
+                  return Promise.resolve({ can: false });
+                default:
+                  return Promise.resolve({ can: false });
+              }
+            },
           },
         },
       );

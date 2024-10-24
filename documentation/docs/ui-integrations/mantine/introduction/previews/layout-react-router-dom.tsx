@@ -9,18 +9,17 @@ export default function LayoutReactRouterDom() {
       //   showFiles
       initialPercentage={35}
       dependencies={{
-        "@refinedev/mantine": "^2.28.21",
-        "@refinedev/core": "^4.45.1",
+        "@refinedev/mantine": "^2.33.0",
+        "@refinedev/core": "^4.54.1",
         "@refinedev/react-router-v6": "^4.5.4",
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-table": "^5.6.4",
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
-        "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/form": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
+        "@mantine/form": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
         "react-router": "latest",
         "react-router-dom": "^6.8.1",
       }}
@@ -49,11 +48,10 @@ import {
     ErrorComponent,
     ThemedLayoutV2,
     RefineThemes,
-    useNotificationProvider,
-    AuthPage
+    useNotificationProvider
 } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
 
 import { ProductList } from "./pages/products/list";
 
@@ -62,37 +60,34 @@ export default function App() {
     <BrowserRouter>
         <MantineProvider
             theme={RefineThemes.Blue}
-            withNormalizeCSS
-            withGlobalStyles
         >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
-                <Refine
-                    routerProvider={routerProvider}
-                    dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                    notificationProvider={useNotificationProvider}
-                    resources={[
-                        {
-                            name: "products",
-                            list: "/products",
+            <Refine
+                routerProvider={routerProvider}
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={useNotificationProvider}
+                resources={[
+                    {
+                        name: "products",
+                        list: "/products",
+                    }
+                ]}
+            >
+                <Routes>
+                    <Route
+                        // The layout will wrap all the pages inside this route
+                        element={
+                        <ThemedLayoutV2>
+                            <Outlet />
+                        </ThemedLayoutV2>
                         }
-                    ]}
-                >
-                    <Routes>
-                        <Route
-                            // The layout will wrap all the pages inside this route
-                            element={
-                            <ThemedLayoutV2>
-                                <Outlet />
-                            </ThemedLayoutV2>
-                            }
-                        >
-                            <Route path="/products" element={<ProductList />} />
-                            <Route path="*" element={<ErrorComponent />} />
-                        </Route>
-                    </Routes>
-                </Refine>
-            </NotificationsProvider>
+                    >
+                        <Route path="/products" element={<ProductList />} />
+                        <Route path="*" element={<ErrorComponent />} />
+                    </Route>
+                </Routes>
+            </Refine>
+            <Notifications />
         </MantineProvider>
     </BrowserRouter>
   );

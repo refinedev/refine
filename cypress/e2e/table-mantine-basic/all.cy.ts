@@ -93,7 +93,7 @@ describe("table-mantine-basic", () => {
   });
 
   it("should work with pagination", () => {
-    cy.get(".mantine-Pagination-item").contains("2").click();
+    cy.get(".mantine-Pagination-control").contains("2").click();
 
     cy.url().should("include", "current=2");
 
@@ -105,7 +105,7 @@ describe("table-mantine-basic", () => {
       expect(_end).to.equal("20");
     });
 
-    cy.get(".mantine-Pagination-item").contains("1").click();
+    cy.get(".mantine-Pagination-control").contains("1").click();
 
     cy.url().should("include", "current=1");
 
@@ -121,7 +121,7 @@ describe("table-mantine-basic", () => {
   it("should set current `1` when filter changed", () => {
     cy.wait("@getPosts");
 
-    cy.get(".mantine-Pagination-item").contains("2").click();
+    cy.get(".mantine-Pagination-control").contains("2").click();
 
     cy.get(".tabler-icon-filter").eq(1).click();
     cy.get("#title").type("lorem");
