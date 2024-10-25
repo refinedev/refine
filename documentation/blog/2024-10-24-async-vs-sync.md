@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-02-16-async-vs-s
 hide_table_of_contents: false
 ---
 
+**This article was last updated on October 24, 2024, to include modern asynchronous patterns, error handling techniques, and practical examples using promises and async/await.**
+
 ## Introduction
 
 The decision between synchronous and asynchronous programming models is not just a technical one in software development; it affects how programs work together, complete tasks, and react to user inputs.
@@ -129,6 +131,33 @@ A more responsive and fluid user experience is possible with asynchronous progra
 **File I/O operations**
 As a general rule, you don't have to finish time-consuming file I/O operations before going on to the next step.
 
+### Event Loop and Call Stack
+
+In JS, working with async code effectively involves understanding its event loop and call stack. Very simply, it’s where the call stack goes through executing code in order. It executes synchronous tasks first and finally lets the event loop jump in to handle any asynchronous code statements, stuff like setTimeout or API calls, after it has processed the synchronous code.
+
+This is how JavaScript can appear as if it’s doing lots of things all at once, even though technically it’s single-threaded. While these async operations are running, the event loop makes sure that all data is being processed at the right time without blocking the main thread.
+
+Understanding how the event loop and call stack interact helps us write better asynchronous code and prevents common problems like UI freezes or very slow-feeling user interaction.
+
+### Asynchronous Programming Using Web Workers
+
+The next highly employable tool for managing stuff asynchronously would be Web Workers. They enable us to run JavaScript in the background without blocking the main thread, and that is super helpful when it comes to performance and stuff we have to execute, like complex calculations or fetching a lot of data.
+Web Workers are giving us true parallelism, meaning we could offload heavy work into another thread and keep the main UI responsible. One thing to keep in mind, though, is that the Workers don’t have access to the DOM and thus are best for things that don’t require refreshing the user interface directly.
+
+Here is a quick example of how we might utilize Web Workers:
+
+```tsx
+// In the main script
+const worker = new Worker("./worker.js");
+worker.postMessage("Start the task");
+
+// In the worker script (worker.js)
+onmessage = function (event) {
+  // Perform long-running task here
+  postMessage("Task done");
+};
+```
+
 ### When to use synchronous programming
 
 **Sequential data retrieval and processing**  
@@ -196,6 +225,37 @@ asyncio.run(main())
 
 The asynchronous method starts numerous processes at the same time. This ensures that the application can jump from one task to another without interruption. We can enhance the application's performance and user experience by doing this. However, dealing with tasks and callbacks can make it more difficult to implement.
 
+```tsx
+console.log("Start"); // First task (synchronous) - goes to call stack
+
+setTimeout(() => {
+  console.log("Timeout callback"); // This task(aysnchronous) is put into the event loop
+}, 1000);
+
+console.log("End"); // Second task (synchronous) - in call stack
+```
+
+**Call Stack:**
+
+- The console.log('Start') is executed first because it is a synchronous operation. It gets processed and removed from the call stack right away.
+- setTimeout() is an asynchronous function, so the callback, console.log('Timeout callback'), gets deferred and put into the event loop to be executed after 1 second (1000 ms), but setTimeout() itself doesn’t block the code from execution.
+- Then, console.log('End') is executed next because it is a synchronous operation within the main thread.
+
+**Event Loop:**
+
+- Once the synchronous tasks (console.log('Start') and console.log('End')) have been executed, the event loop waits for the 1-second delay and then processes the asynchronous callback given to setTimeout.
+- Once the callback is ready, the event loop sends it to the call stack, and then it is executed, printing 'Timeout callback'.
+
+Output:
+
+```
+Start
+End
+Timeout callback
+```
+
+This example shows how JavaScript executes synchronous tasks first, then processes asynchronous tasks using the event loop once the main call stack is clear.
+
 ## Best Practices and Patterns
 
 ### Tips for Effective Use of Each Programming Model
@@ -230,6 +290,95 @@ The most common pattern in synchronous programming is the sequential execution p
 1.  **Modularize your code:** Break your code into smaller, reusable functions.
 2.  **Use Promises or Async/Await:** These features of JavaScript can flatten your code and make it easier to read and understand.
 3.  **Error Handling:** Always include error handling for your callbacks. Unhandled errors can lead to unpredictable results.
+
+## Asynchronous Programming - Memory Management
+
+I would like to share some tips on how we can manage memory more effectively when working with asynchronous programming since improper handling could lead to some performance issues, such as memory leaks.
+
+### Managing Memory within Asynchronous Programming
+
+When working with asynchronous code, it is really important to pay attention to how memory is allocated and how it gets cleaned up. It has something to do with long-running tasks or promises that are not being settled, which could lead to memory leaks if not handled correctly.
+
+### Garbage Collection
+
+In JavaScript, memory is looked after by the garbage collector. The garbage collector automatically cleans up memory that is no longer used by an application. However, when using asynchronous programming, it can be easy for the memory to hang around for longer than it needs to if we’re not careful. For instance, promises that never resolve, event listeners that are still attached, or running timers will hold onto larger chunks of memory than necessary.
+
+### Common Reasons for Memory Leaks in Asynchronous Code
+
+- Unresolved Promises: If a promise is never resolved or rejected, it can prevent memory from being cleared.
+
+```tsx
+let pendingPromise = new Promise(function (resolve, reject) {
+  // This promise never resolves
+});
+```
+
+- Event Listeners: It is easy to forget to remove an event listener when it is no longer required. This will consume memory unnecessarily.
+
+```tsx
+element.addEventListener("click", handleClick);
+
+// Forgetting to remove the listener
+// element.removeEventListener('click', handleClick);
+```
+
+Timers: Using setTimeout or setInterval without clearing them when they are no longer needed can also lead to memory being held longer than necessary.
+
+```tsx
+var timer = setInterval(function () {
+  console.log("Running.");
+}, 1000);
+
+// Forgetting to clear the interval
+// clearInterval(timer);
+```
+
+### Best Practices that Can Be Applied to Avoid Memory Leaks
+
+- Promises, Resolve or Reject: A promise should be resolved or rejected to ensure that whenever it’s unnecessary, its memory is freed.
+
+```tsx
+let myPromise = new Promise((resolve, reject) =>
+  setTimeout(() => {
+    resolve("Task complete");
+  }, 1000),
+);
+
+myPromise.then((result) => console.log(result));
+```
+
+- Remove Event Listeners: Whenever event listeners are attached, remove them when no longer needed, either because the element it lives on will be removed, or the functionality is no longer needed.
+
+```tsx
+element.addEventListener("click", handleClick);
+
+// Proper cleanup when no longer needed
+element.removeEventListener("click", handleClick);
+```
+
+- Clear Timers: If using setTimeout or setInterval, remember to clear them once they have served their purpose to avoid keeping unnecessary memory.
+
+```
+var interval = setInterval(function () {
+  console.log('Doing something...');
+}, 1000);
+
+// Clear the interval when done
+clearInterval(interval);
+```
+
+### Weak References
+
+Another advanced technique involves the use of WeakMap or WeakSet to manage objects that may be garbage-collected automatically once they become referenced nowhere else in your code. These structures will let you reference objects without preventing them from being garbage-collected.
+
+```tsx
+let myWeakMap = new WeakMap();
+let obj = {};
+myWeakMap.set(obj, "someValue");
+
+// If obj gets dereferenced somewhere else, it will be garbage-collected.
+obj = null;
+```
 
 ## Conclusion
 

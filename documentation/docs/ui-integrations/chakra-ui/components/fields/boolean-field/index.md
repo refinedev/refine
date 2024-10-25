@@ -22,7 +22,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field is used to display boolean values. It uses the [`<Tooltip>`](https://chakra-ui.com/docs/components/tooltip/usage) values from Chakra UI.
+This field is used to display boolean values. It uses the [`<Tooltip>`](https://www.chakra-ui.com/docs/components/tooltip#usage) values from Chakra UI.
 
 :::simple Good to know
 
@@ -173,6 +173,6 @@ render(
 
 :::simple External Props
 
-It also accepts all props of Chakra UI [Tooltip](https://chakra-ui.com/docs/components/tooltip/usage).
+It also accepts all props of Chakra UI [Tooltip](https://www.chakra-ui.com/docs/components/tooltip#usage).
 
 :::

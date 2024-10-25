@@ -217,5 +217,5 @@ render(
 <PropsTable module="@refinedev/chakra-ui/ImportButton" />
 
 [useimport]: /docs/core/hooks/utilities/use-import
-[button]: https://chakra-ui.com/docs/components/button/usage
+[button]: https://www.chakra-ui.com/docs/components/button#usage
 [input]: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input
