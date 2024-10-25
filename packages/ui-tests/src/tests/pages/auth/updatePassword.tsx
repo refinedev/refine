@@ -219,5 +219,52 @@ export const pageUpdatePasswordTests = (
         expect(getByText(/asswords do not match/i)).toBeInTheDocument();
       });
     });
+
+    it("should should accept 'mutationVariables'", async () => {
+      const updatePasswordMock = jest.fn().mockResolvedValue({ success: true });
+
+      const { getByRole, getByLabelText, getAllByLabelText } = render(
+        <UpdatePasswordPage
+          mutationVariables={{
+            foo: "bar",
+            xyz: "abc",
+          }}
+        />,
+        {
+          wrapper: TestWrapper({
+            authProvider: {
+              ...mockAuthProvider,
+              updatePassword: updatePasswordMock,
+            },
+          }),
+        },
+      );
+
+      fireEvent.change(getAllByLabelText(/password/i)[0], {
+        target: { value: "demo" },
+      });
+
+      fireEvent.change(getByLabelText(/confirm new password/i), {
+        target: { value: "demo" },
+      });
+
+      fireEvent.click(
+        getByRole("button", {
+          name: /update/i,
+        }),
+      );
+
+      await waitFor(
+        () => {
+          expect(updatePasswordMock).toHaveBeenCalledWith({
+            foo: "bar",
+            xyz: "abc",
+            password: "demo",
+            confirmPassword: "demo",
+          });
+        },
+        { timeout: 500 },
+      );
+    });
   });
 };

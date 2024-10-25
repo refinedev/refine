@@ -246,5 +246,44 @@ export const pageForgotPasswordTests = (
         {},
       );
     });
+
+    it("should should accept 'mutationVariables'", async () => {
+      const forgotPasswordMock = jest.fn().mockResolvedValue({ success: true });
+
+      const { getByRole, getByLabelText } = render(
+        <ForgotPasswordPage
+          mutationVariables={{
+            foo: "bar",
+            xyz: "abc",
+          }}
+        />,
+        {
+          wrapper: TestWrapper({
+            authProvider: {
+              ...mockAuthProvider,
+              forgotPassword: forgotPasswordMock,
+            },
+          }),
+        },
+      );
+
+      fireEvent.change(getByLabelText(/email/i), {
+        target: { value: "demo@refine.dev" },
+      });
+
+      fireEvent.click(
+        getByRole("button", {
+          name: /reset/i,
+        }),
+      );
+
+      await waitFor(() => {
+        expect(forgotPasswordMock).toHaveBeenCalledWith({
+          foo: "bar",
+          xyz: "abc",
+          email: "demo@refine.dev",
+        });
+      });
+    });
   });
 };
