@@ -252,7 +252,3 @@ Here are some examples of multi-tenant apps built with Refine Enterprise Edition
 
 - [Multitenancy App with Strapi](https://refine.dev/templates/multitenancy-strapi/)
 - [Isolated Multitenancy App with Rest API](https://refine.dev/templates/multitenancy-strapi/)
-
-```
-
-```
