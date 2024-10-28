@@ -1,0 +1,214 @@
+---
+title: Multitenancy
+guide: true
+---
+
+# MultiTenancy <GuideBadge id="guides-concepts/multitenancy" />
+
+Refine's Enterprise Edition provides built-in support for [Multitenancy](/docs/guides-concepts/multitenancy/). This feature allows you to build applications that can serve multiple tenants with a single codebase with help of
+pre-built components and hooks with minimal configuration.
+
+## Installation
+
+This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
+
+<InstallPackagesCommand args="@refinedev-ee/core @refinedev-ee/multitenancy">
+
+```yml title=".npmrc"
+# A registry with the auth token should be added for the @refinedev-ee scope
+@refinedev-ee:registry=https://registry.npmjs.org/
+//registry.npmjs.org/:_authToken=$NPM_TOKEN
+```
+
+</InstallPackagesCommand>
+
+## Usage
+
+To use the multitenancy feature, we need to wrap our application with the `<RefineEnterprise />` component and provide the `multiTenancyProvider` prop.
+
+```tsx
+import { RefineEnterprise } from "@refinedev-ee/core";
+import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
+
+type Tenant = {
+  id: string;
+  name: string;
+};
+
+// ... other imports
+
+const App = () => {
+  return (
+    <RefineEnterprise
+      // ... other props
+      multiTenancyProvider={{
+        adapter: useRouterAdapter,
+        fetchTenants: async () => {
+          const response = await dataProvider("<API_URL>").getList<Tenant>({
+            resource: "tenants",
+            pagination: {
+              mode: "off",
+            },
+          });
+          const tenants = response.data;
+          const defaultTenant = tenants[0];
+
+          return {
+            tenants,
+            defaultTenant,
+          };
+        },
+      }}
+    >
+      <WithTenant
+        fallback={<div>Tenant not found</div>}
+        loadingComponent={<div>Loading...</div>}
+      >
+        {/* Your app code */}
+      </WithTenant>
+    </RefineEnterprise>
+  );
+};
+```
+
+## multiTenancyProvider
+
+The `multiTenancyProvider` is a prop that accepts an object with two properties: `adapter` and `fetchTenants`.
+
+### fetchTenants
+
+The `fetchTenants` function is a crucial part of the `multiTenancyProvider`, responsible for fetching tenant data from an API or data source and determining the default tenant for the app. The function should return an object with two properties: `tenants` and `defaultTenant`.
+
+### adapters
+
+Adapters define where tenant information is stored. Refine offers `useRouterAdapter` for storing tenants in the URL and `useLocalStorageAdapter` for local storage.
+
+#### useRouterAdapter
+
+Extracts the tenantId from the URL and updates the route when the tenant changes.
+
+```tsx
+import { useRouterAdapter } from "@refinedev-ee/multitenancy";
+
+const adapter = useRouterAdapter({
+  // The parameter name to use in the URL. (eg: localhost:3000/:tenantId/products)
+  parameterName: "tenantId",
+  // The tenant field to use in the route params. (eg: localhost:3000/:tenantId/products)
+  parameterKey: "id",
+  // Determines if the query string should be used to get the tenant instead of the route params. (eg: localhost:3000/products?tenantId=1)
+  useQueryString: false,
+});
+```
+
+#### useLocalStorageAdapter
+
+Retrieves tenantId from local storage and updates it when the tenant changes.
+
+```tsx
+import { useLocalStorageAdapter } from "@refinedev-ee/multitenancy";
+
+const adapter = useLocalStorageAdapter({
+  // The key to use in the local storage. (eg: localStorage.getItem(key))
+  storageKey: "tenantId",
+});
+```
+
+## Components
+
+### WithTenant
+
+The `<WithTenant />` component is required to wrap your app code. It fetches `tenants`, handling the loading state and error state.
+
+```tsx
+import { RefineEnterprise } from "@refinedev-ee/core";
+import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
+
+<WithTenant
+  // render a component when the tenant is not available.
+  fallback={<div>Tenant not found</div>}
+  // render a component while the tenant is loading.
+  loadingComponent={<div>Loading...</div>}
+>
+  {/* Your app code */}
+</WithTenant>;
+```
+
+### Tenant Select components
+
+These components allow users to select a tenant from a list of available tenants. They are automatically change the current tenant when a new tenant is selected from the list.
+
+<Tabs wrapContent={false}>
+
+<TabItem value="Ant Design">
+
+```tsx
+import { AntdTenantSelect } from "@refinedev-ee/multitenancy";
+
+<AntdTenantSelect
+  // Specifies the tenant object field to display in the select component.
+  optionLabel="title"
+  // Specifies the tenant object field to use as the value in the select component.
+  optionValue="id"
+  // Event handler for when a tenant is selected, receiving the selected tenant as an argument.
+  onChange={(tenant) => console.log(tenant)}
+  // Function to sort tenants.
+  sortTenants={(a, b) => a.name.localeCompare(b.name)}
+/>;
+```
+
+</TabItem>
+
+<TabItem value="Material UI">
+
+```tsx
+import { MuiTenantSelect } from "@refinedev-ee/multitenancy";
+
+<MuiTenantSelect
+  // Specifies the tenant object field to display in the select component.
+  optionLabel="title"
+  // Specifies the tenant object field to use as the value in the select component.
+  optionValue="id"
+  // Event handler for when a tenant is selected, receiving the selected tenant as an argument.
+  onChange={(tenant) => console.log(tenant)}
+  // Function to sort tenants.
+  sortTenants={(a, b) => a.name.localeCompare(b.name)}
+/>;
+```
+
+</TabItem>
+
+</Tabs>
+
+### Hooks
+
+Refine provides hooks to interact with the multitenancy feature.
+
+#### useMultiTenancy
+
+The `useMultiTenancy` hook is used to interact with the multitenancy context.
+
+```tsx
+import { useMultiTenancy } from "@refinedev-ee/multitenancy";
+
+const {
+  // The current tenant object.
+  tenant,
+  // The list of available tenants.
+  tenants,
+  // The loading state of the tenants.
+  isLoading,
+  // It triggers `authProvider.fetchTenants` to fetch tenants.
+  fetchTenants,
+  // It sets the current tenant. It accepts a tenant object as an argument.
+  setTenant,
+  // It deletes the current tenant.
+  deleteTenant,
+} = useMultiTenancy();
+```
+
+### Examples
+
+Here are some examples of multi-tenant apps built with Refine Enterprise Edition:
+
+- [Multitenancy App with Strapi](https://refine.dev/templates/multitenancy-strapi/)
+- [Isolated Multitenancy App with Rest API](https://refine.dev/templates/multitenancy-strapi/)

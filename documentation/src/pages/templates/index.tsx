@@ -367,6 +367,29 @@ const dataTemplates: {
     ],
   },
   {
+    to: "/templates/multitenancy-strapi",
+    title: "Multitenancy App with Strapi",
+    description:
+      "Implementing multitenancy architecture in Refine applications.",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
+    edition: TemplateEdition.Enterprise,
+    integrations: [
+      {
+        label: "Ant Design",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Antd width={16} height={16} {...props} />
+        ),
+      },
+      {
+        label: "Strapi",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Strapi width={16} height={16} {...props} />
+        ),
+      },
+    ],
+  },
+  {
     to: "/templates/next-js-tailwind",
     title: "E-Commerce Application Storefront",
     description:
@@ -545,29 +568,6 @@ const dataTemplates: {
         label: "Rest API",
         icon: (props: SVGProps<SVGSVGElement>) => (
           <RestWithoutText width={16} height={16} {...props} />
-        ),
-      },
-    ],
-  },
-  {
-    to: "/templates/multitenancy-strapi",
-    title: "Multitenancy App with Strapi",
-    description:
-      "Implementing multitenancy architecture in Refine applications.",
-    image:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
-    edition: TemplateEdition.Community,
-    integrations: [
-      {
-        label: "Ant Design",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Antd width={16} height={16} {...props} />
-        ),
-      },
-      {
-        label: "Strapi",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Strapi width={16} height={16} {...props} />
         ),
       },
     ],

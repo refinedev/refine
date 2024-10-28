@@ -171,7 +171,7 @@ export const EXAMPLES: Examples = [
     buttons: [
       {
         text: "Blog",
-        link: "https://refine.dev/docs/guides-concepts/multi-tenancy/#strapi",
+        link: "https://refine.dev/docs/guides-concepts/multitenancy",
         icon: (props) => <PageIcon {...props} />,
       },
       {
