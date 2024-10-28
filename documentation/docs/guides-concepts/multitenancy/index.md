@@ -127,7 +127,7 @@ import RemixRouteDefinitions from "./examples/remix.tsx";
 
 We'll be using the `tenantId` from the route to determine which tenant is being accessed. Refine will infer the `tenantId` from the current route and pass it to the data provider in `meta`. You can access the `tenantId` from the `meta` object in your data provider and use it in your API calls.
 
-To customize the data providers, you can override each method in the data provider instance or use the `swizzle` command to be fully able to customize the data provider for your needs.
+To customize the data providers, you can override each method in the data provider instance or use the [`swizzle`](/docs/packages/cli/#swizzle) command to be fully able to customize the data provider for your needs.
 
 An example implementation of a custom `getList` method is shown below.
 

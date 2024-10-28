@@ -3,7 +3,7 @@ title: Multitenancy
 guide: true
 ---
 
-# MultiTenancy <GuideBadge id="guides-concepts/multitenancy" />
+# Multitenancy <GuideBadge id="guides-concepts/multitenancy" />
 
 Refine's Enterprise Edition provides built-in support for [Multitenancy](/docs/guides-concepts/multitenancy/). This feature allows you to build applications that can serve multiple tenants with a single codebase with help of
 pre-built components and hooks with minimal configuration.
@@ -206,9 +206,53 @@ const {
 } = useMultiTenancy();
 ```
 
+## Handling Multi-tenant Requests in Data Providers
+
+Refine automatically sends the `tenantId` to the data provider in the `meta` object. You can access the `tenantId` in the data provider and use it to fetch tenant-specific data.
+
+To customize the data providers, you can override each method in the data provider instance or use the [`swizzle`](/docs/packages/cli/#swizzle) command to be fully able to customize the data provider for your needs.
+
+An example implementation of a custom `getList` method is shown below.
+
+```ts
+import dataProvider from "@refinedev/simple-rest";
+
+const API_URL = "<API_URL>";
+const baseDataProvider = dataProvider(API_URL);
+
+const customDataProvider = {
+  ...baseDataProvider,
+  getList: async ({ resource, filters = [], meta, ...props }) => {
+    const { tenantId } = meta;
+
+    // We're adding the tenantId to the filters
+    // Your API may have a different way of handling this
+    if (meta?.tenantId) {
+      filters.push({
+        field: "organization",
+        operator: "eq",
+        value: meta.tenantId,
+      });
+    }
+
+    // Call the base data provider's getList method with the updated filters
+    return baseDataProvider.getList({
+      resource,
+      filters,
+      meta,
+      ...props,
+    });
+  },
+};
+```
+
 ### Examples
 
 Here are some examples of multi-tenant apps built with Refine Enterprise Edition:
 
 - [Multitenancy App with Strapi](https://refine.dev/templates/multitenancy-strapi/)
 - [Isolated Multitenancy App with Rest API](https://refine.dev/templates/multitenancy-strapi/)
+
+```
+
+```
