@@ -164,6 +164,6 @@ render(
 
 :::simple External Props
 
-It also accepts all props of Chakra UI's [Text](https://chakra-ui.com/docs/components/text/usage) component.
+It also accepts all props of Chakra UI's [Text](https://www.chakra-ui.com/docs/components/text#usage) component.
 
 :::

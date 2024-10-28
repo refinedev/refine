@@ -213,4 +213,4 @@ If you want to use a legacy router provider, you can pass them to the `<Refine /
 [expo-router]: https://www.npmjs.com/package/@refinenative/expo-router
 [react-router-v6]: https://github.com/refinedev/refine/tree/master/packages/react-router-v6
 [nextjs-router]: https://github.com/refinedev/refine/tree/master/packages/nextjs-router
-[remix-router]: https://github.com/refinedev/refine/tree/master/packages/remix
+[remix-router]: https://github.com/refinedev/refine/tree/master/packages/remix-router

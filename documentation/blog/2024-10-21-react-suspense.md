@@ -4,11 +4,11 @@ description: We will discuss how React Suspense works and common use cases
 slug: react-suspense-guide
 authors: joel_adewole
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-react-suspense/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-23-react-suspense/social-2.png
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on February 5, 2024 to reorganize content for better understanding of React Suspense._**
+**_This article was last updated on October 21, to include advanced use cases of React Suspense, such as streaming data and progressive loading, along with best practices for using Suspense with server-side rendering (SSR)._**
 
 ## Introduction
 
@@ -25,11 +25,11 @@ Steps we'll cover:
 - [What is React Suspense?](#what-is-react-suspense)
 - [Comparing React Suspense to Transitions](#comparing-react-suspense-to-transitions)
 - [Use cases of React Suspense](#use-cases-of-react-suspense)
-  - [Fetch data using React suspense](#fetch-data-using-react-suspense)
-  - [Lazy load components using React suspense](#lazy-load-components-using-react-suspense)
 - [When to use React Suspense](#when-to-use-react-suspense)
 - [React suspense and Error boundaries](#react-suspense-and-error-boundaries)
+- [Using React Suspense along with Server-Side Rendering (SSR)](#using-react-suspense-along-with-server-side-rendering-ssr)
 - [Common Mistakes When Using React Suspense](#common-mistakes-when-using-react-suspense)
+- [Advanced React Suspense Use Cases: Streaming and Progressive Loading](#advanced-react-suspense-use-cases-streaming-and-progressive-loading)
 
 ## What is React Suspense?
 
@@ -182,6 +182,69 @@ function App() {
 
 In the basic example above, React will import `MyComponent` when it's about to be rendered. While lazy-loading `MyComponent`, React renders the fallback `Loading` component.
 
+### React Suspense with Concurrent Mode Integration
+
+I wanted to give a quick explanation of how React Suspense works with Concurrent Mode, in case you haven’t had an opportunity to dive into it yet.
+
+React Suspense, coming through Concurrent Mode, will make it easier to handle asynchronous operations, like fetching data or lazy loading, while keeping ease of improvement for user experience by keeping the UI responsive. For compatibility, the basic overview of how both work together is as follows:
+
+**How They Work Together**
+
+- React Suspense pauses the rendering of a component until its dependencies (like data) are fully ready. While it’s waiting, Suspense shows a fallback UI, which can be something like a loading spinner.
+- Concurrent Mode allows React to work on several tasks in parallel without blocking the main thread. That means this feature helps in making the app feel faster, mainly by allowing React to prioritize urgent tasks, such as user input, versus less urgent ones, like fetching data.
+
+When we put the two together, React Suspense ensures that the user is not in a situation of waiting for components to load, while Concurrent Mode makes sure user interactions are smooth, even if some components may still be fetching or rendering.
+
+### Loading a Component with Suspense in Concurrent Mode
+
+```tsx
+import { Suspense, startTransition } from "react";
+
+// Loading component for fallback
+const Loading = () => <div>Loading...</div>;
+
+// Lazy-load a component
+const MyComponent = React.lazy(() => import("./MyComponent"));
+
+function App() {
+  const [input, setInput] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleInputChange = (e) => {
+    const newInput = e.target.value;
+    setInput(newInput);
+
+    // Use startTransition to prioritize user typing while deferring the search
+    startTransition(() => {
+      setSearchQuery(newInput);
+    });
+  };
+
+  return (
+    <div>
+      <input
+        value={input}
+        onChange={handleInputChange}
+        placeholder="Type to search..."
+      />
+      {/* Render MyComponent with Suspense */}
+      <Suspense fallback={<Loading />}>
+        <MyComponent searchQuery={searchQuery} />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+#### In this example:
+
+- Suspense is a wrapper for the lazy-loaded MyComponent. While fetching the component, it shows a fallback: Loading.
+- startTransition is called when the user starts typing in the input field, ensuring that the UI updates (displaying the typed text) are prioritized, and the search query is updated after the interaction with the UI is complete.
+
+#### Why this matters
+
+The combination of Suspense and Concurrent Mode helps us strike a balance between loading times and responsiveness, improving user experience. Users aren’t blocked by long-running tasks like data fetching, and they can continue interacting with the UI while React handles the heavy lifting.
+
 ## When to use React Suspense
 
 You can use React Suspense to manage components that perform asynchronous operations such as fetching data from the server and lazy loading a component.
@@ -240,6 +303,56 @@ Instead of declaring an error boundary as in the example above, you can also use
 
 The Refine blog also has an in-depth article about error boundaries. You can check it out [here](https://refine.dev/blog/react-error-boundaries/).
 
+## Using React Suspense along with Server-Side Rendering (SSR)
+
+I just wanted to give a little overview of how React Suspense works with Server-Side Rendering, since it’s a bit different compared to the usual client-side rendering.
+
+### How Suspense Works with SSR
+
+When we use SSR, the server-side render prepares the initial HTML for our app before it’s delivered to a client. The issue here is that React Suspense doesn’t fully support data fetching out of the box yet with SSR, but there are ways we can use it effectively with frameworks like Next.js.
+
+For example, if the project is in Next.js, we can use React Suspense for code-splitting and lazy loading of components. As for data fetching, for now, we need to strictly adhere to using the built-in methods of Next.js, such as by using getServerSideProps or getStaticProps.
+
+### Suspense in Next.js
+
+Here is a quick example of how we could integrate React Suspense with SSR in a Next.js application:
+
+```tsx
+// Lazy-load a heavy component
+const HeavyComponent = React.lazy(() => import("./components/HeavyComponent"));
+
+export default function Home({ data }) {
+  return (
+    <div>
+      {/* Suspense handles the loading of the component */}
+      <Suspense fallback={<div>Loading component...</div>}>
+        <HeavyComponent data={data} />
+      </Suspense>
+    </div>
+  );
+}
+
+// Using Next.js SSR data-fetching method
+export async function getServerSideProps() {
+  const data = await fetchSomeData();
+  return { props: { data } };
+}
+```
+
+#### What’s Happening:
+
+- Suspense lazy-loads HeavyComponent, where it will only get loaded on the client-side once the server renders the initial HTML.
+- The data fetching is handled by Next.js’s getServerSideProps, which fetches the data on the server-side before rendering the component.
+
+#### Important Considerations:
+
+- Suspense works great with lazy-loaded components for SSR, but Suspense is not yet fully capable of handling data fetching in SSR. For now, data fetching is managed by frameworks like Next.js, where Suspense can still handle loading components and showing fallback UIs.
+- Going forward, React 18 and beyond should provide better support for Suspense data-fetching in SSR, but until then, we need to combine traditional SSR methods with Suspense for code-splitting.
+
+#### Why It’s Useful:
+
+Suspense with SSR—especially in Next.js—helps us improve performance by loading only the necessary components on the client side, reducing the initial bundle size. This leads to a better user experience. While we wait for full Suspense support for data fetching on the server, we can still use it to optimize how large components are loaded.
+
 ## Common Mistakes When Using React Suspense
 
 It's not uncommon to misuse the Suspense API because of its similarity to Transition and other APIs. For illustration:
@@ -249,6 +362,78 @@ Using components that handle concurrency using `useEffect()` inside Suspense. Th
 Relay uses Suspense, however, it doesn't perform the same functions as Relay. Some users mistake Suspense for a server API request tool like Axios or Relay.
 
 Another mistake people make is using `catch()` to handle errors. This will cause the component to wait for the promise before rendering. Instead, use Error Boundary to handle rendering errors.
+
+## Advanced React Suspense Use Cases: Streaming and Progressive Loading
+
+I wanted to share some of the advanced ways we can use React Suspense, especially for streaming data and progressive loading. These techniques are super useful for real-time apps or those that handle a lot of data.
+
+### Streaming Data with Suspense
+
+React Suspense helps manage streaming data by pausing rendering until the initial data chunks load. As new data arrives, Suspense continues to display the already-rendered portion, offering a smoother experience.
+
+For instance, imagine we’re building a live chat application or a dashboard that updates with live data. With Suspense, we can start rendering the page with the first few data chunks and then progressively display more as it streams in.
+
+Here’s a simplified example:
+
+```javascript
+import { Suspense } from "react";
+
+function StreamingComponent() {
+  const dataStream = fetchStreamData(); // Assume this returns a stream of data
+
+  return (
+    <div>
+      {dataStream.map((chunk, index) => (
+        <div key={index}>{chunk}</div>
+      ))}
+    </div>
+  );
+}
+
+<Suspense fallback={<div>Loading data...</div>}>
+  <StreamingComponent />
+</Suspense>;
+```
+
+In this case, Suspense waits for the first chunk to be ready before rendering. As new data comes in, React updates the UI without needing to block the whole process.
+
+### Progressive Loading with Suspense
+
+Another advanced use case is progressive loading, which helps improve user experience in large, resource-heavy apps. With progressive loading, we can prioritize the most important parts of the page first, while deferring less critical sections until later.
+
+For example, if we’re building a media-heavy page with lots of images or videos, we can load the essential content (like text or headings) first, while the images load progressively in the background.
+
+Here’s how we can do that:
+
+```javascript
+import { Suspense, lazy } from "react";
+
+const HeavyImage = lazy(() => import("./HeavyImage"));
+
+function MediaPage() {
+  return (
+    <div>
+      <h1>Welcome to the Media Page</h1>
+      <p>Here’s some important content while the media loads:</p>
+
+      {/* Progressive loading of images */}
+      <Suspense fallback={<div>Loading images...</div>}>
+        <HeavyImage />
+      </Suspense>
+    </div>
+  );
+}
+```
+
+In this example, the important text and headings load first, and then Suspense progressively loads the images. This ensures a faster initial load without blocking the entire page due to heavy media content.
+
+### Why It’s Useful
+
+These advanced Suspense use cases are helpful for improving user experience in apps dealing with real-time data or large media files. By streaming or progressively loading content, we can:
+
+1. **Reduce initial load times**: Users can see content faster, even if not all data is ready.
+2. **Improve responsiveness**: Especially in real-time applications, users can interact with the page while more data is still loading.
+3. **Optimize performance**: Prioritize loading critical content first to ensure it is displayed as soon as possible.
 
 ## Conclusion
 

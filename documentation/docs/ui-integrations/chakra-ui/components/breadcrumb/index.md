@@ -99,4 +99,4 @@ export const PostList: React.FC = () => {
 
 <PropsTable module="@refinedev/chakra-ui/Breadcrumb" />
 
-[chakra-ui-breadcrumb]: https://chakra-ui.com/docs/components/breadcrumb/usage
+[chakra-ui-breadcrumb]: https://www.chakra-ui.com/docs/components/breadcrumb#usage
