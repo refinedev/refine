@@ -22,7 +22,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-This field lets you display a value in a tag. It uses Chakra UI's [`<Tag>`](https://chakra-ui.com/docs/components/tag/usage) component.
+This field lets you display a value in a tag. It uses Chakra UI's [`<Tag>`](https://www.chakra-ui.com/docs/components/tag#usage) component.
 
 :::simple Good to know
 
@@ -164,6 +164,6 @@ render(
 
 :::simple External Props
 
-It also accepts all props of Chakra UI's [Tag](https://chakra-ui.com/docs/components/tag/usage) component.
+It also accepts all props of Chakra UI's [Tag](https://www.chakra-ui.com/docs/components/tag#usage) component.
 
 :::

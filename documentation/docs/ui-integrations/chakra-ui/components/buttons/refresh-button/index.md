@@ -23,7 +23,7 @@ const Wrapper = ({ children }) => {
 };
 ```
 
-`<RefreshButton>` uses Chakra UI's [`<Button>`](https://chakra-ui.com/docs/components/button/usage) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
+`<RefreshButton>` uses Chakra UI's [`<Button>`](https://www.chakra-ui.com/docs/components/button#usage) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::simple Good to know
 
