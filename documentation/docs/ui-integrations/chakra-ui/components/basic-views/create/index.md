@@ -479,7 +479,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
 
 ### headerProps
 
@@ -530,7 +530,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
 
 ### contentProps
 
@@ -581,7 +581,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
 
 ### headerButtons
 
@@ -687,7 +687,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
 
 ### footerButtons
 
@@ -846,7 +846,7 @@ render(
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://chakra-ui.com/docs/components/box/usage)
+> For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
 
 ## API Reference
 

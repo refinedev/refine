@@ -7,7 +7,7 @@ const srcDirPath = `${__dirname}/../../../..`;
 
 describe("add", () => {
   beforeAll(() => {
-    // usefull for speed up the tests.
+    // useful for speed up the tests.
     jest.spyOn(console, "log").mockImplementation();
 
     jest.spyOn(testTargetModule, "installInferencer").mockImplementation();
