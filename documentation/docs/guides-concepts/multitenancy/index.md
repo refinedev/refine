@@ -10,9 +10,7 @@ Multitenancy refers to a kind of architecture where a single instance of softwar
 
 ## Implementing Multitenancy in Refine
 
-We will implement a route-based approach in the following sections, utilizing the [`multitenancyProvider`](/docs/enterprise-edition/multitenancy/) from the `"@refinedev-ee/enterprise"` package.
-
-The Multi Tenancy Provider is a feature of the [Refine Enterprise Edition](https://refine.dev/enterprise/). It simplifies the management of multi-tenant applications by offering a context, hooks, and components specifically designed to handle tenants.
+In the next sections, we'll show you how to set up multitenancy in Refine using a route-based approach. We'll use the [`multitenancyProvider`](/docs/enterprise-edition/multitenancy/) from the `"@refinedev-ee/enterprise"` package. This Multi-Tenancy Provider is part of the [Refine Enterprise Edition](https://refine.dev/enterprise/). It makes managing multi-tenant applications easier by providing tools like context, hooks, and components that are designed to handle tenants.
 
 ### 1. Setting up the Multitenancy Provider
 
@@ -21,6 +19,8 @@ First, we need to install the `@refinedev-ee/enterprise` and `@refinedev-ee/mult
 <InstallPackagesCommand args="@refinedev-ee/enterprise @refinedev-ee/multitenancy"/>
 
 Then we need to change `<Refine />` component to `<RefineEnterprise />` in your `App.tsx` file. You can use same props of `<Refine />` component in `<RefineEnterprise />` component.
+
+> 🚨 All the props of the `<Refine />` component are also available in the `<RefineEnterprise />` component with additional features.
 
 ```diff
 - import { Refine } from "@refinedev/core";
