@@ -209,7 +209,7 @@ export type Tenant = {
 };
 
 export const multiTenancyProvider: MultiTenancyProvider = {
-  adapter: useRouterAdapter,
+  adapter: useRouterAdapter(),
   fetchTenants: async () => {
     const response = await dataProvider("<API_URL>").getList<Tenant>({
       resource: "categories",

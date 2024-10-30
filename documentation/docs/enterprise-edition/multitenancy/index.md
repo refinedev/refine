@@ -42,7 +42,7 @@ const App = () => {
     <RefineEnterprise
       // ... other props
       multitenancyProvider={{
-        adapter: useRouterAdapter,
+        adapter: useRouterAdapter(),
         fetchTenants: async () => {
           const response = await dataProvider("<API_URL>").getList<Tenant>({
             resource: "tenants",
@@ -90,14 +90,19 @@ Extracts the tenantId from the URL and updates the route when the tenant changes
 ```tsx
 import { useRouterAdapter } from "@refinedev-ee/multitenancy";
 
-const adapter = useRouterAdapter({
-  // The parameter name to use in the URL. (eg: localhost:3000/:tenantId/products)
-  parameterName: "tenantId",
-  // The tenant field to use in the route params. (eg: localhost:3000/:tenantId/products)
-  parameterKey: "id",
-  // Determines if the query string should be used to get the tenant instead of the route params. (eg: localhost:3000/products?tenantId=1)
-  useQueryString: false,
-});
+const multitenancyProvider = {
+  adapter: useRouterAdapter({
+    // The parameter name to use in the URL. (eg: localhost:3000/:tenantId/products)
+    parameterName: "tenantId",
+    // The tenant field to use in the route params. (eg: localhost:3000/:tenantId/products)
+    parameterKey: "id",
+    // Determines if the query string should be used to get the tenant instead of the route params. (eg: localhost:3000/products?tenantId=1)
+    useQueryString: false,
+  }),
+  fetchTenants: async () => {
+    // Fetch tenants from the API
+  },
+};
 ```
 
 #### useLocalStorageAdapter
@@ -107,10 +112,15 @@ Retrieves tenantId from local storage and updates it when the tenant changes.
 ```tsx
 import { useLocalStorageAdapter } from "@refinedev-ee/multitenancy";
 
-const adapter = useLocalStorageAdapter({
-  // The key to use in the local storage. (eg: localStorage.getItem(key))
-  storageKey: "tenantId",
-});
+const multitenancyProvider = {
+  adapter: useLocalStorageAdapter({
+    // The key to use in the local storage. (eg: localStorage.getItem(key))
+    storageKey: "tenantId",
+  }),
+  fetchTenants: async () => {
+    // Fetch tenants from the API
+  },
+};
 ```
 
 ## Components
@@ -121,7 +131,7 @@ The `<WithTenant />` component is required to wrap your app code. It fetches `te
 
 ```tsx
 import { RefineEnterprise } from "@refinedev-ee/enterprise";
-import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
+import { WithTenant } from "@refinedev-ee/multitenancy";
 
 <WithTenant
   // render a component when the tenant is not available.
