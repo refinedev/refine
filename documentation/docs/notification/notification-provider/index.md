@@ -6,7 +6,7 @@ Refine let's you set a notification API by providing the `notificationProvider` 
 
 `notificationProvider` is an object with close and open methods. Refine uses these methods to show and hide notifications. These methods can be called from anywhere in the application with [`useNotification`](/docs/notification/hooks/use-notification) hook.
 
-An `notificationProvider` must include following methods:
+A `notificationProvider` must include following methods:
 
 ```tsx
 const notificationProvider = {
@@ -62,7 +62,7 @@ const App = () => {
 
 By default, Refine doesn't require `notificationProvider` configuration.
 
-If an `notificationProvider` property is not provided, Refine will use the default `notificationProvider`, which lets the app work without an notification.
+If a `notificationProvider` property is not provided, Refine will use the default `notificationProvider`, which lets the app work without a notification.
 If your app doesn't require `notification`, no further setup is necessary for the app to work.
 
 ## Built-in Notification Providers
