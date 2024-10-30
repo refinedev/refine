@@ -17,8 +17,8 @@ export default function RouteDefinitions() {
           code: AppTsxCode,
           readOnly: true,
         },
-        "multi-tenancy.ts": {
-          code: MultiTenancyProviderTsxCode,
+        "multitenancy.ts": {
+          code: MultitenancyProviderTsxCode,
           readOnly: true,
         },
       }}
@@ -27,14 +27,14 @@ export default function RouteDefinitions() {
 }
 
 const AppTsxCode = /* jsx */ `
-import { RefineEnterprise } from "@refinedev-ee/core";
-import { WithTenant } from "@refinedev-ee/multi-tenancy";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
+import { WithTenant } from "@refinedev-ee/multitenancy";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Outlet, Routes, Route } from "react-router-dom";
 
-import { multiTenancyProvider } from "./multi-tenancy";
+import { multitenancyProvider } from "./multitenancy";
 
 import { ProductsList, ProductsCreate, ProductsShow, ProductsEdit } from "./products";
 
@@ -42,7 +42,7 @@ export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <RefineEnterprise
-        multiTenancyProvider={multiTenancyProvider}
+        multitenancyProvider={multitenancyProvider}
         dataProvider={dataProvider("<API_URL>")}
         routerProvider={routerProvider}
         resources={[
@@ -78,9 +78,9 @@ export const App: React.FC = () => {
 };
 `.trim();
 
-const MultiTenancyProviderTsxCode = /* jsx */ `
+const MultitenancyProviderTsxCode = /* jsx */ `
 import type { MultiTenancyProvider } from "@refinedev-ee/core";
-import { useRouterAdapter } from "@refinedev-ee/multi-tenancy";
+import { useRouterAdapter } from "@refinedev-ee/multitenancy";
 import dataProvider from "@refinedev/simple-rest";
 
 export type Tenant = {
@@ -88,7 +88,7 @@ export type Tenant = {
   name: string;
 };
 
-export const multiTenancyProvider: MultiTenancyProvider = {
+export const multitenancyProvider: MultiTenancyProvider = {
   adapter: useRouterAdapter,
   fetchTenants: async () => {
     const response = await dataProvider("<API_URL>").getList<Tenant>({

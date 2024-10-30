@@ -34,8 +34,8 @@ export default function RouteDefinitions() {
           code: EditTsxCode,
           readOnly: true,
         },
-        "/app/providers/multi-tenancy.ts": {
-          code: MultiTenancyProviderTsxCode,
+        "/app/providers/multitenancy.ts": {
+          code: MultitenancyProviderTsxCode,
           readOnly: true,
         },
       }}
@@ -55,13 +55,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { RefineEnterprise } from "@refinedev-ee/core";
-import { WithTenant } from "@refinedev-ee/multi-tenancy";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
+import { WithTenant } from "@refinedev-ee/multitenancy";
 import routerProvider from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
 
-import { multiTenancyProvider } from "./providers/multi-tenancy";
+import { multitenancyProvider } from "./providers/multitenancy";
 
 export default function App() {
   return (
@@ -72,7 +72,7 @@ export default function App() {
       </head>
       <body>
         <RefineEnterprise
-          multiTenancyProvider={multiTenancyProvider}
+          multitenancyProvider={multitenancyProvider}
           dataProvider={dataProvider("<API_URL>")}
           routerProvider={routerProvider}
           resources={[
@@ -198,9 +198,9 @@ export default function ProductsEdit() {
 }
 `.trim();
 
-const MultiTenancyProviderTsxCode = /* jsx */ `
-import type { MultiTenancyProvider } from "@refinedev-ee/core";
-import { useRouterAdapter } from "@refinedev-ee/multi-tenancy";
+const MultitenancyProviderTsxCode = /* jsx */ `
+import type { MultiTenancyProvider } from "@refinedev-ee/enterprise";
+import { useRouterAdapter } from "@refinedev-ee/multitenancy";
 import dataProvider from "@refinedev/simple-rest";
 
 export type Tenant = {

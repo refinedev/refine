@@ -12,7 +12,7 @@ pre-built components and hooks with minimal configuration.
 
 This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
 
-<InstallPackagesCommand args="@refinedev-ee/core @refinedev-ee/multitenancy">
+<InstallPackagesCommand args="@refinedev-ee/enterprise @refinedev-ee/multitenancy">
 
 ```yml title=".npmrc"
 # A registry with the auth token should be added for the @refinedev-ee scope
@@ -24,10 +24,10 @@ This package is included in Refine's Enterprise Edition. To learn more about Ref
 
 ## Usage
 
-To use the multitenancy feature, we need to wrap our application with the `<RefineEnterprise />` component and provide the `multiTenancyProvider` prop.
+To use the multitenancy feature, we need to wrap our application with the `<RefineEnterprise />` component and provide the `multitenancyProvider` prop.
 
 ```tsx
-import { RefineEnterprise } from "@refinedev-ee/core";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
 import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
 
 type Tenant = {
@@ -41,7 +41,7 @@ const App = () => {
   return (
     <RefineEnterprise
       // ... other props
-      multiTenancyProvider={{
+      multitenancyProvider={{
         adapter: useRouterAdapter,
         fetchTenants: async () => {
           const response = await dataProvider("<API_URL>").getList<Tenant>({
@@ -71,13 +71,13 @@ const App = () => {
 };
 ```
 
-## multiTenancyProvider
+## multitenancyProvider
 
-The `multiTenancyProvider` is a prop that accepts an object with two properties: `adapter` and `fetchTenants`.
+The `multitenancyProvider` is a prop that accepts an object with two properties: `adapter` and `fetchTenants`.
 
 ### fetchTenants
 
-The `fetchTenants` function is a crucial part of the `multiTenancyProvider`, responsible for fetching tenant data from an API or data source and determining the default tenant for the app. The function should return an object with two properties: `tenants` and `defaultTenant`.
+The `fetchTenants` function is a crucial part of the `multitenancyProvider`, responsible for fetching tenant data from an API or data source and determining the default tenant for the app. The function should return an object with two properties: `tenants` and `defaultTenant`.
 
 ### adapters
 
@@ -120,7 +120,7 @@ const adapter = useLocalStorageAdapter({
 The `<WithTenant />` component is required to wrap your app code. It fetches `tenants`, handling the loading state and error state.
 
 ```tsx
-import { RefineEnterprise } from "@refinedev-ee/core";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
 import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
 
 <WithTenant
@@ -142,9 +142,9 @@ These components allow users to select a tenant from a list of available tenants
 <TabItem value="Ant Design">
 
 ```tsx
-import { AntdTenantSelect } from "@refinedev-ee/multitenancy";
+import { TenantSelect } from "@refinedev-ee/multitenancy/antd";
 
-<AntdTenantSelect
+<TenantSelect
   // Specifies the tenant object field to display in the select component.
   optionLabel="title"
   // Specifies the tenant object field to use as the value in the select component.
@@ -161,9 +161,9 @@ import { AntdTenantSelect } from "@refinedev-ee/multitenancy";
 <TabItem value="Material UI">
 
 ```tsx
-import { MuiTenantSelect } from "@refinedev-ee/multitenancy";
+import { TenantSelect } from "@refinedev-ee/multitenancy/mui";
 
-<MuiTenantSelect
+<TenantSelect
   // Specifies the tenant object field to display in the select component.
   optionLabel="title"
   // Specifies the tenant object field to use as the value in the select component.
@@ -183,12 +183,12 @@ import { MuiTenantSelect } from "@refinedev-ee/multitenancy";
 
 Refine provides hooks to interact with the multitenancy feature.
 
-#### useMultiTenancy
+#### useMultitenancy
 
-The `useMultiTenancy` hook is used to interact with the multitenancy context.
+The `useMultitenancy` hook is used to interact with the multitenancy context.
 
 ```tsx
-import { useMultiTenancy } from "@refinedev-ee/multitenancy";
+import { useMultitenancy } from "@refinedev-ee/multitenancy";
 
 const {
   // The current tenant object.
@@ -203,7 +203,7 @@ const {
   setTenant,
   // It deletes the current tenant.
   deleteTenant,
-} = useMultiTenancy();
+} = useMultitenancy();
 ```
 
 ## Handling Multi-tenant Requests in Data Providers

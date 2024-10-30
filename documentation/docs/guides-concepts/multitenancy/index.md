@@ -10,21 +10,21 @@ Multitenancy refers to a kind of architecture where a single instance of softwar
 
 ## Implementing Multitenancy in Refine
 
-We will implement a route-based approach in the following sections, utilizing the [`multiTenancyProvider`](/docs/enterprise-edition/multitenancy/) from the `"@refinedev-ee/core"` package.
+We will implement a route-based approach in the following sections, utilizing the [`multitenancyProvider`](/docs/enterprise-edition/multitenancy/) from the `"@refinedev-ee/enterprise"` package.
 
 The Multi Tenancy Provider is a feature of the [Refine Enterprise Edition](https://refine.dev/enterprise/). It simplifies the management of multi-tenant applications by offering a context, hooks, and components specifically designed to handle tenants.
 
-### 1. Setting up the Multi Tenancy Provider
+### 1. Setting up the Multitenancy Provider
 
-First, we need to install the `@refinedev-ee/core` and `@refinedev-ee/multitenancy` packages.
+First, we need to install the `@refinedev-ee/enterprise` and `@refinedev-ee/multitenancy` packages.
 
-<InstallPackagesCommand args="@refinedev-ee/core @refinedev-ee/multitenancy"/>
+<InstallPackagesCommand args="@refinedev-ee/enterprise @refinedev-ee/multitenancy"/>
 
 Then we need to change `<Refine />` component to `<RefineEnterprise />` in your `App.tsx` file. You can use same props of `<Refine />` component in `<RefineEnterprise />` component.
 
 ```diff
 - import { Refine } from "@refinedev/core";
-+ import { RefineEnterprise } from "@refinedev-ee/core";
++ import { RefineEnterprise } from "@refinedev-ee/enterprise";
 
 export const App = () => {
   return (
@@ -37,7 +37,7 @@ export const App = () => {
 };
 ```
 
-After that, we need to provide the [`multiTenancyProvider`](/docs/enterprise-edition/multitenancy/) to the `<RefineEnterprise />` component. The [`multiTenancyProvider`](/docs/enterprise-edition/multitenancy/) prop accepts an object with two properties: `adapter` and `fetchTenants`.
+After that, we need to provide the [`multitenancyProvider`](/docs/enterprise-edition/multitenancy/) to the `<RefineEnterprise />` component. The [`multitenancyProvider`](/docs/enterprise-edition/multitenancy/) prop accepts an object with two properties: `adapter` and `fetchTenants`.
 
 - `adapter`: The adapter is a function that extracts the tenantId from the current route. You can use the provided `useRouterAdapter` or create your own custom adapter.
 
@@ -47,10 +47,10 @@ After that, we need to provide the [`multiTenancyProvider`](/docs/enterprise-edi
   - `fallback`: You can provide a custom fallback component to be displayed while the tenant is not available.
   - `loadingComponent`: You can provide a custom loading component to be displayed while the tenant is loading.
 
-When you mount `<RefineEnterprise />` and `<WithTenant />` components and provide the [`multiTenancyProvider`](/docs/enterprise-edition/multitenancy/) prop, Refine will automatically extract the `tenantId` from the route and pass it to the data provider in the `meta` object.
+When you mount `<RefineEnterprise />` and `<WithTenant />` components and provide the [`multitenancyProvider`](/docs/enterprise-edition/multitenancy/) prop, Refine will automatically extract the `tenantId` from the route and pass it to the data provider in the `meta` object.
 
 ```tsx
-import { RefineEnterprise } from "@refinedev-ee/core";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
 import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
 
 // ... other imports
@@ -59,7 +59,7 @@ const App = () => {
   return (
     <RefineEnterprise
       // ... other props
-      multiTenancyProvider={{
+      multitenancyProvider={{
         adapter: useRouterAdapter,
         fetchTenants: async () => {
           const response = await dataProvider(API_URL).getList<ICategory>({
@@ -174,9 +174,9 @@ You can use the Tenant selector components from the `@refinedev-ee/multitenancy`
 <TabItem value="Ant Design">
 
 ```tsx
-import { AntdTenantSelect } from "@refinedev-ee/multitenancy";
+import { TenantSelect } from "@refinedev-ee/multitenancy/antd";
 
-<AntdTenantSelect />;
+<TenantSelect />;
 ```
 
 </TabItem>
@@ -184,9 +184,9 @@ import { AntdTenantSelect } from "@refinedev-ee/multitenancy";
 <TabItem value="Material UI">
 
 ```tsx
-import { MuiTenantSelect } from "@refinedev-ee/multitenancy";
+import { TenantSelect } from "@refinedev-ee/multitenancy/mui";
 
-<MuiTenantSelect />;
+<TenantSelect />;
 ```
 
 </TabItem>

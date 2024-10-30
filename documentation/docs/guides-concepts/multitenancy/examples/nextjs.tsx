@@ -34,8 +34,8 @@ export default function RouteDefinitions() {
           code: EditTsxCode,
           readOnly: true,
         },
-        "/providers/multi-tenancy.ts": {
-          code: MultiTenancyProviderTsxCode,
+        "/providers/multitenancy.ts": {
+          code: MultitenancyProviderTsxCode,
           readOnly: true,
         },
       }}
@@ -46,18 +46,18 @@ export default function RouteDefinitions() {
 const AppTsxCode = /* jsx */ `
 import React from "react";
 
-import { RefineEnterprise } from "@refinedev-ee/core";
-import { WithTenant } from "@refinedev-ee/multi-tenancy";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
+import { WithTenant } from "@refinedev-ee/multitenancy";
 import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
-import { multiTenancyProvider } from "./providers/multi-tenancy";
+import { multitenancyProvider } from "./providers/multitenancy";
 
 function App({ Component, pageProps }: AppProps) {
     return (
       <RefineEnterprise
-          multiTenancyProvider={multiTenancyProvider}
+          multitenancyProvider={multitenancyProvider}
           dataProvider={dataProvider("<API_URL>")}
           routerProvider={routerProvider}
           resources={[
@@ -178,9 +178,9 @@ export default function ProductsEdit() {
 }
 `.trim();
 
-const MultiTenancyProviderTsxCode = /* jsx */ `
-import type { MultiTenancyProvider } from "@refinedev-ee/core";
-import { useRouterAdapter } from "@refinedev-ee/multi-tenancy";
+const MultitenancyProviderTsxCode = /* jsx */ `
+import type { MultiTenancyProvider } from "@refinedev-ee/enterprise";
+import { useRouterAdapter } from "@refinedev-ee/multitenancy";
 import dataProvider from "@refinedev/simple-rest";
 
 export type Tenant = {
@@ -188,7 +188,7 @@ export type Tenant = {
   name: string;
 };
 
-export const multiTenancyProvider: MultiTenancyProvider = {
+export const multitenancyProvider: MultiTenancyProvider = {
   adapter: useRouterAdapter,
   fetchTenants: async () => {
     const response = await dataProvider("<API_URL>").getList<Tenant>({
