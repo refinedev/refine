@@ -16,7 +16,6 @@ This post is about graceful error handling in JavaScript where we explore the us
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
 - [What are Errors?](#what-are-errors)
   - [What is Graceful Error Handling?](#what-is-graceful-error-handling)
 - [How `try/catch/finally` Blocks Work](#how-trycatchfinally-blocks-work)
@@ -31,7 +30,6 @@ Steps we'll cover:
   - [JSON Parsing](#json-parsing)
   - [User Input Processing](#user-input-processing)
   - [File Operations in Node.js](#file-operations-in-nodejs)
-- [Conclusion](#conclusion)
 
 ## What are Errors?
 
@@ -443,10 +441,6 @@ async function getData() {
 
 getData();
 ```
-
-This setup provides a more synchronous feel in asynchronous code and makes handling errors more straightforward. Give it a try, and let me know if you’d like to discuss further!
-
-Hope this helps!
 
 ## When to use try-catch in JavaScript?
 
