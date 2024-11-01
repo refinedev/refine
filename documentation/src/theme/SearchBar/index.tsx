@@ -14,7 +14,7 @@ import Translate from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import {
   DocSearchButton,
-  DocSearchButtonProps,
+  type DocSearchButtonProps,
 } from "@site/src/refine-theme/doc-search-button";
 import translations from "@theme/SearchTranslations";
 import React, { useCallback, useMemo, useRef, useState } from "react";
