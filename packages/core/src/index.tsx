@@ -224,3 +224,8 @@ export {
 } from "./contexts/undoableQueue/types.js";
 
 export { IUnsavedWarnContext } from "./contexts/unsavedWarn/types.js";
+
+export {
+  MetaContextProvider,
+  useMetaContext,
+} from "./contexts/metaContext/index.js";
