@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-22-js-try-cat
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 30, 2024 to clarifying the explanations and add more section about JS try catch._**
+**This article was last updated on October 30, 2024 to clarify explanations and add sections on handling JSON operations, user input, file operations in Node.js, and scenarios for using try-catch effectively.**
 
 ## Introduction
 
@@ -22,6 +22,14 @@ Steps we'll cover:
   - [Running Usual Code In The `try` Block](#running-usual-code-in-the-try-block)
 - [The `catch` Block](#the-catch-block)
   - [The `finally` Block](#the-finally-block)
+- [Error Types in JavaScript](#error-types-in-javascript)
+- [Custom Error Handling with throw](#custom-error-handling-with-throw)
+- [Error Handling in Promises](#error-handling-in-promises)
+- [When to use try-catch in JavaScript?](#when-to-use-try-catch-in-javascript)
+  - [External Data Fetching](#external-data-fetching)
+  - [JSON Parsing](#json-parsing)
+  - [User Input Processing](#user-input-processing)
+  - [File Operations in Node.js](#file-operations-in-nodejs)
 
 ## What are Errors?
 
@@ -344,6 +352,96 @@ Closing file...
 */
 ```
 
+## Error Types in JavaScript
+
+I wanted to share some useful info on different types of errors we can encounter in JavaScript. Understanding these error types can help us catch and handle them more effectively. Here are the main ones:
+
+- TypeError: Occurs when we try to use a value in an inappropriate way, like calling a non-function as a function. Example:
+
+```tsx
+let x;
+x(); // TypeError: x is not a function
+```
+
+- SyntaxError: This happens due to incorrect syntax, like missing brackets or quotes. It usually gets caught right away since it prevents the code from even running.
+
+```tsx
+console.log("Hello // SyntaxError: Unexpected end of input
+```
+
+- ReferenceError: We see this when trying to access variables that haven’t been declared. Example:
+-
+
+```tsx
+console.log(y); // ReferenceError: y is not defined
+```
+
+- RangeError: This error shows up when we pass a number outside the allowed range, often with arrays or loops.
+
+```tsx
+let arr = new Array(-1); // RangeError: Invalid array length
+```
+
+Each of these errors has unique causes, so spotting them quickly can save time debugging. Let me know if you’d like more examples on handling them!
+
+## Custom Error Handling with throw
+
+In JavaScript, we can also create custom errors using the throw statement to make our code more readable and provide specific error messages.
+
+Here’s a quick example:
+
+```tsx
+function checkAge(age) {
+  if (age < 18) {
+    throw new Error("User is not old enough to access this feature.");
+  }
+  console.log("Access granted.");
+}
+
+try {
+  checkAge(16);
+} catch (e) {
+  console.error(e.message); // Outputs: User is not old enough to access this feature.
+}
+```
+
+In this example, if the age is below 18, a custom error message is thrown. The catch block then captures and logs this message, allowing us to handle the situation gracefully without breaking the app.
+
+Using throw in this way helps control flow more cleanly and makes it easier to understand what’s wrong. Let me know if you need more examples or have questions!
+
+## Error Handling in Promises
+
+I thought I’d share a quick rundown on error handling in promises. When working with asynchronous code, errors are handled a bit differently since we’re not in a typical try/catch structure.
+
+Here’s a basic example of error handling with promises:
+
+```tsx
+fetch("https://api.example.com/data")
+  .then((response) => response.json())
+  .then((data) => console.log(data))
+  .catch((error) => {
+    console.error("Error fetching data:", error.message);
+  });
+```
+
+In this code, if any part of the fetch operation fails (network issue, API error, etc.), the error will be caught by the .catch() block. This approach ensures that errors don’t go unnoticed without stopping the rest of the program.
+
+Alternatively, we can use async/await with a try/catch block for promise-based error handling, which can be cleaner:
+
+```tsx
+async function getData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+  }
+}
+
+getData();
+```
+
 ## When to use try-catch in JavaScript?
 
 Some common scenarios for using try-catch:
@@ -363,6 +461,70 @@ Some common scenarios for using try-catch:
 7. **Working with Files in Node.js:** Like reading/writing files, where the file might not exist or you don't have permission.
 
 Using try-catch allows your program to handle errors gracefully and maintain functionality even when something goes wrong. It's generally not a good practice to use try-catch for controlling normal flow in your application; it should be reserved for exceptional, error-prone situations.
+
+I wanted to go over some typical scenarios where using try-catch in JavaScript can make a big difference. try-catch is ideal for handling unexpected issues without crashing our entire app. Here are some cases where it’s particularly useful:
+
+### External Data Fetching
+
+When making API calls, network errors or unexpected data formats can cause issues. Wrapping our fetch calls in try-catch prevents these from breaking our app.
+
+```tsx
+async function fetchData() {
+  try {
+    const response = await fetch("https://api.example.com/data");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Error fetching data:", error.message);
+  }
+}
+fetchData();
+```
+
+### JSON Parsing
+
+If we’re dealing with JSON data, using try-catch around JSON.parse() helps catch parsing errors from malformed data.
+
+```tsx
+const jsonString = '{"name": "John"';
+try {
+  const data = JSON.parse(jsonString);
+  console.log(data);
+} catch (error) {
+  console.error("JSON parsing error:", error.message);
+}
+```
+
+### User Input Processing
+
+Sometimes users provide unexpected input. Wrapping validation or parsing code in try-catch helps handle these gracefully.
+
+```tsx
+function processUserInput(input) {
+  try {
+    const number = parseInt(input, 10);
+    if (isNaN(number)) throw new Error("Invalid number input");
+    console.log("User input processed:", number);
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+processUserInput("abc"); // Outputs: Invalid number input
+```
+
+### File Operations in Node.js
+
+When working with files, try-catch is essential in Node.js to handle cases like missing files or permission issues.
+
+```tsx
+const fs = require("fs");
+try {
+  const data = fs.readFileSync("/path/to/file.txt", "utf8");
+  console.log(data);
+} catch (error) {
+  console.error("File read error:", error.message);
+}
+```
 
 ## Conclusion
 
