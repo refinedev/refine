@@ -12,7 +12,10 @@ import {
 } from "@docusaurus/theme-search-algolia/client";
 import Translate from "@docusaurus/Translate";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
+import {
+  DocSearchButton,
+  DocSearchButtonProps,
+} from "@site/src/refine-theme/doc-search-button";
 import translations from "@theme/SearchTranslations";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -202,12 +205,16 @@ function DocSearch({
   );
 }
 
-export default function SearchBar({ CustomButton }: { CustomButton?: any }) {
+export default function SearchBar({
+  CustomButton,
+  variant,
+}: { CustomButton?: any; variant?: DocSearchButtonProps["variant"] }) {
   const { siteConfig } = useDocusaurusContext();
   return (
     <DocSearch
       {...(siteConfig.themeConfig.algolia as Record<string, any>)}
       CustomButton={CustomButton}
+      variant={variant}
     />
   );
 }
