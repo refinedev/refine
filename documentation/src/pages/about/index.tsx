@@ -174,6 +174,7 @@ const About: React.FC = () => {
 
         <div
           className={clsx(
+            "not-prose",
             "landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
             "max-w-[514px]",
             "w-full mx-auto",
@@ -240,7 +241,7 @@ const About: React.FC = () => {
             ))}
           </div>
         </div>
-        <div className={clsx("w-full mx-auto")}>
+        <div className={clsx("w-full mx-auto", "not-prose")}>
           <h4
             className={clsx(
               "text-[32px] leading-10",
@@ -407,7 +408,12 @@ const About: React.FC = () => {
           </div>
         </div>
         <div
-          className={clsx("px-6 py-12 landing-md:py-20", "mx-auto", "w-full")}
+          className={clsx(
+            "px-6 py-12 landing-md:py-20",
+            "mx-auto",
+            "w-full",
+            "not-prose",
+          )}
         >
           <h4
             className={clsx(
