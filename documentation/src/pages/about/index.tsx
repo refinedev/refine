@@ -5,7 +5,6 @@ import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { Istanbul500Icon } from "@site/src/refine-theme/icons/500";
 import { GithubIcon } from "@site/src/refine-theme/icons/github";
-import { JoinUsIcon } from "@site/src/refine-theme/icons/join-us";
 import { MailIcon } from "@site/src/refine-theme/icons/mail";
 import { MarkerIcon } from "@site/src/refine-theme/icons/marker";
 import { DiscordIcon, XIcon } from "@site/src/refine-theme/icons/popover";
@@ -175,7 +174,7 @@ const About: React.FC = () => {
 
         <div
           className={clsx(
-            "landing-sm:max-w-[656px] landing-lg:max-w-[896px]",
+            "landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
             "max-w-[514px]",
             "w-full mx-auto",
           )}
@@ -185,7 +184,7 @@ const About: React.FC = () => {
               "text-[32px] leading-10",
               "text-center text-gray-900 dark:text-white",
               "mt-12 landing-md:mt-20",
-              "mb-0 landing-sm:mb-2",
+              "mb-0",
             )}
           >
             Our Team
@@ -195,16 +194,22 @@ const About: React.FC = () => {
             className={clsx(
               "flex flex-wrap",
               "justify-center",
-              "gap-8 landing-sm:gap-6",
+              "gap-8 landing-md:gap-10",
               "align-top",
             )}
           >
-            {team.map(({ name, avatar, role1, role2 }) => (
-              <div
+            {team.map(({ name, avatar, role1, linkedin }) => (
+              <a
+                href={linkedin}
+                target="_blank"
+                rel="noreferrer"
                 key={name}
                 className={clsx(
+                  "not-prose",
+                  "block",
                   "flex justify-start flex-col text-center not-prose",
-                  "w-[150px] landing-sm:w-[200px]",
+                  "w-[150px] landing-md:w-[250px]",
+                  "hover:no-underline no-underline",
                 )}
               >
                 <img
@@ -231,18 +236,7 @@ const About: React.FC = () => {
                 >
                   {role1}
                 </span>
-                {role2 && (
-                  <span
-                    className={clsx(
-                      "text-xs leading-4",
-                      "lg:text-base lg:leading-6",
-                      "text-gray-500 dark:text-gray-400",
-                    )}
-                  >
-                    {role2}
-                  </span>
-                )}
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -352,18 +346,20 @@ const About: React.FC = () => {
           <div
             className={clsx(
               "w-full mx-auto",
-              "max-w-[456px] landing-md:max-w-[576px] landing-lg:max-w-max",
+              "max-w-[456px] landing-sm:max-w-[720px] landing-lg:max-w-max",
               "flex flex-wrap",
+              "px-4",
               "gap-x-8 landing-sm:gap-x-12 landing-md:gap-x-12",
               "gap-y-6",
               "align-top",
-              "items-center justify-center",
+              "items-start justify-center",
             )}
           >
             {backedBy.map(({ name, avatar, role1, role2 }) => (
               <div
                 key={name}
                 className={clsx(
+                  "h-full",
                   "flex justify-start flex-col text-center",
                   "w-[120px] landing-sm:w-[160px]",
                 )}
@@ -397,8 +393,9 @@ const About: React.FC = () => {
                 {role2 && (
                   <span
                     className={clsx(
-                      "text-xs leading-4",
-                      "lg:text-base lg:leading-6",
+                      "text-xs",
+                      "landing-sm:text-sm",
+                      "landing-lg:text-base",
                       "text-gray-500 dark:text-gray-400",
                     )}
                   >
