@@ -129,7 +129,8 @@ const About: React.FC = () => {
             className={clsx(
               "w-full",
               "flex flex-col landing-md:flex-row",
-              "gap-2 landing-md:gap-10",
+              "items-end",
+              "gap-6 landing-md:gap-10",
             )}
           >
             <div
@@ -140,7 +141,7 @@ const About: React.FC = () => {
               )}
             >
               <div>
-                <p className="mb-3 font-semibold text-gray-900 dark:text-white text-2xl">
+                <p className="mb-6 font-semibold text-gray-900 dark:text-white text-2xl">
                   Open-source contributions have always been a major part of
                   refine’s success.
                 </p>
