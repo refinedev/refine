@@ -13,7 +13,7 @@ export const LandingGithubStarButton = () => {
       target="_blank"
       rel="noreferrer"
       className={clsx(
-        "flex gap-2 items-center",
+        "flex gap-2 items-center justify-center",
         "font-normal",
         "text-sm leading-6",
         "text-gray-500 dark:text-gray-400",
@@ -22,6 +22,11 @@ export const LandingGithubStarButton = () => {
         "transition-colors",
         "duration-200",
         "ease-in-out",
+        "w-[88px] h-10",
+        "border",
+        "rounded-full",
+        "border-solid",
+        "border-gray-300 dark:border-gray-700",
       )}
     >
       <GithubIcon className={clsx("w-5 h-5")} />
