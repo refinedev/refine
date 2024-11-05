@@ -25,7 +25,6 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
   return (
     <Button
       type="primary"
-      // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
       icon={<SaveOutlined />}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}

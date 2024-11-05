@@ -133,7 +133,6 @@ export const Show: React.FC<ShowProps> = ({
   return (
     <div {...(wrapperProps ?? {})}>
       <PageHeader
-        ghost={false}
         backIcon={goBackFromProps}
         onBack={
           action !== "list" && typeof action !== "undefined"

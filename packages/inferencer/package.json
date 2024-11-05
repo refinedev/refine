@@ -156,7 +156,7 @@
     "typescript": "^5.4.2"
   },
   "peerDependencies": {
-    "@ant-design/icons": "5.0.1",
+    "@ant-design/icons": "^5.5.1",
     "@chakra-ui/react": "^2.5.1",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
