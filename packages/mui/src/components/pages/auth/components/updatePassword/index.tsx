@@ -45,6 +45,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
   renderContent,
   formProps,
   title = undefined,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const {
@@ -105,7 +106,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
               return onSubmit(data);
             }
 
-            return update(data);
+            return update({ ...mutationVariables, ...data });
           })}
         >
           <TextField
