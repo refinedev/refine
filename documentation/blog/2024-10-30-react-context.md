@@ -4,11 +4,11 @@ description: Share data across components with React Context in TypeScript and 
 slug: usecontext-and-react-context
 authors: chibuzor_otuokwu
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/social-2.png
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on January 30, 2024 to add prop drilling section and update explanation of React context and useContext hook._**
+**This article was last updated on October 30, 2024 to include sections on optimizing context performance, testing React Context, managing state with context in complex applications, and security considerations with context data.**
 
 When building React applications, we typically pass data from parent to child components via props. It would be easy if we had few layers of components. However, some components are deeply nested.
 
@@ -27,11 +27,10 @@ Steps we'll cover:
 - [Why React Context?](#why-react-context)
 - [Use cases of the React Context API](#use-cases-of-the-react-context-api)
 - [How to use the React context API with functional components](#how-to-use-the-react-context-api-with-functional-components)
-  - [How to create Context in React](#how-to-createcontext-in-react)
-  - [How to consume Context in React](#how-to-consume-context-in-react)
 - [How to use the React context API with class components](#how-to-use-the-react-context-api-with-class-components)
 - [How to use the React context API in a Next.js project](#how-to-use-the-react-context-api-in-a-nextjs-project)
-  - [Share Data using the context API](#share-data-using-the-context-api)
+- [Exploring Context in Complex State Management: Using Reducers and Middlewares with Context API](#exploring-context-in-complex-state-management-using-reducers-and-middlewares-with-context-api)
+- [Custom Hooks and Optimizations with React.memo and useCallback](#custom-hooks-and-optimizations-with-reactmemo-and-usecallback)
 
 ## What is prop drilling?
 
@@ -347,6 +346,154 @@ export default MyApp;
 - Open your browser on `localhost` on port 3000
 
 <br />
+
+## Exploring Context in Complex State Management: Using Reducers and Middlewares with Context API
+
+I thought it would be helpful to look at a couple of advanced patterns for managing complex state with React Context: using reducers within our Context API and incorporating middleware for more flexible state handling. These methods can give us more control, especially as our state management needs grow.
+
+### Using Reducers with Context API
+
+If we’re managing a complex state structure, like in an e-commerce app with products, users, and orders, useReducer with Context can be a powerful combo. It allows us to handle multiple actions in a predictable way, similar to Redux but without the extra dependency.
+
+Here’s a basic example of using useReducer with Context:
+
+```tsx
+import React, { createContext, useReducer, useContext } from "react";
+
+// Define initial state
+const initialState = { cart: [], user: null };
+
+// Define actions
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      return { ...state, cart: [...state.cart, action.payload] };
+    case "SET_USER":
+      return { ...state, user: action.payload };
+    default:
+      return state;
+  }
+};
+
+// Create context
+const AppContext = createContext();
+
+// Provider with reducer
+export const AppProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+// Custom hook for easier access
+export const useAppContext = () => useContext(AppContext);
+```
+
+With this setup, components can dispatch actions without directly managing state. Here’s an example of how we’d add an item to the cart:
+
+```tsx
+import { useAppContext } from "../context/AppContext";
+
+const Product = ({ product }) => {
+  const { dispatch } = useAppContext();
+
+  const addToCart = () => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+
+  return (
+    <div>
+      <h2>{product.name}</h2>
+      <button onClick={addToCart}>Add to Cart</button>
+    </div>
+  );
+};
+```
+
+Using useReducer helps keep our state updates consistent and reduces the risk of bugs when managing complex data.
+
+### Adding Middleware to Context for Logging and Async Actions
+
+Middleware can enhance our state management, especially for tasks like logging, analytics, or handling async actions. While Redux has built-in support for middleware, we can achieve similar functionality in React Context.
+
+Below is an example of creating a simple logging middleware in our useReducer setup:
+
+```tsx
+import React, { createContext, useReducer, useContext } from "react";
+
+// Initial state and reducer function
+const initialState = { cart: [] };
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      return { ...state, cart: [...state.cart, action.payload] };
+    default:
+      return state;
+  }
+};
+
+// Middleware function for logging
+const loggerMiddleware = (dispatch) => (action) => {
+  console.log("Dispatching action:", action);
+  return dispatch(action);
+};
+
+// Custom hook to initialize middleware
+const useMiddlewareReducer = (reducer, initialState, middlewares = []) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  // Apply each middleware to dispatch function
+  const enhancedDispatch = middlewares.reduce(
+    (acc, middleware) => middleware(acc),
+    dispatch,
+  );
+
+  return [state, enhancedDispatch];
+};
+
+// Context and provider setup
+const AppContext = createContext();
+export const AppProvider = ({ children }) => {
+  const [state, dispatch] = useMiddlewareReducer(reducer, initialState, [
+    loggerMiddleware,
+  ]);
+
+  return (
+    <AppContext.Provider value={{ state, dispatch }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+export const useAppContext = () => useContext(AppContext);
+```
+
+With loggerMiddleware applied, every action dispatched will be logged to the console, which is useful for debugging. We can easily add other middlewares for additional functionality like handling async actions (e.g., API calls).
+
+To use this setup in a component:
+
+```tsx
+import { useAppContext } from "../context/AppContext";
+
+const Product = ({ product }) => {
+  const { dispatch } = useAppContext();
+
+  const addToCart = () => {
+    dispatch({ type: "ADD_TO_CART", payload: product });
+  };
+
+  return (
+    <div>
+      <h2>{product.name}</h2>
+      <button onClick={addToCart}>Add to Cart</button>
+    </div>
+  );
+};
+```
 
 ### Building the Product Listings
 
@@ -728,6 +875,104 @@ If you click the favorite icon for each product, you should see it listed under 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-23-react-context/favorite-product-list.png"  alt="React context API favoriteProduct" />
 
 <br />
+
+## Custom Hooks and Optimizations with React.memo and useCallback
+
+I wanted to share some ideas on making our use of React Context more efficient and maintainable, especially for larger projects. Two approaches that can help us streamline context usage and improve performance are creating custom hooks for context and optimizing context updates with React.memo and useCallback. Here’s a quick overview with examples for both.
+
+### Creating Custom Hooks for Context Access
+
+Instead of directly calling useContext throughout the app, we can create custom hooks to simplify context access. This keeps our codebase clean, ensures type safety, and helps us better control how the context is accessed.
+
+Let’s say we have a UserContext to share user data across components. Here’s how we could set up a custom hook:
+
+```tsx
+import React, { createContext, useContext, useState } from "react";
+
+// Step 1: Create the Context
+const UserContext = createContext();
+
+// Step 2: Set up the Provider component
+export const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  const login = (userData) => setUser(userData);
+  const logout = () => setUser(null);
+
+  return (
+    <UserContext.Provider value={{ user, login, logout }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+// Step 3: Create a custom hook
+export const useUser = () => {
+  const context = useContext(UserContext);
+  if (!context) {
+    throw new Error("useUser must be used within a UserProvider");
+  }
+  return context;
+};
+```
+
+Now, instead of importing both UserContext and useContext in each component that needs access to the user data, we can just use useUser:
+
+```tsx
+import { useUser } from "../context/UserContext";
+
+const Profile = () => {
+  const { user, logout } = useUser();
+
+  return (
+    <div>
+      <p>Welcome, {user.name}!</p>
+      <button onClick={logout}>Log out</button>
+    </div>
+  );
+};
+```
+
+This makes our components cleaner, and any updates to context usage only need to happen in the custom hook.
+
+### Optimizing Context with React.memo and useCallback
+
+One common issue with context is that when context updates, all components using that context can re-render, potentially impacting performance. To minimize unnecessary re-renders, we can use React.memo and useCallback where appropriate.
+
+Let’s say we have a ThemeContext that provides the current theme and a toggle function. We can use React.memo to wrap components that don’t need to re-render unless the context value they use changes.
+
+```tsx
+import React, { createContext, useContext, useState, useCallback } from "react";
+
+const ThemeContext = createContext();
+
+export const ThemeProvider = ({ children }) => {
+  const [theme, setTheme] = useState("light");
+
+  // Using useCallback to memoize the toggle function
+  const toggleTheme = useCallback(() => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  }, []);
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+export const useTheme = () => useContext(ThemeContext);
+
+// Memoized component example
+const ThemeButton = React.memo(() => {
+  const { toggleTheme } = useTheme();
+  console.log("ThemeButton rendered");
+
+  return <button onClick={toggleTheme}>Toggle Theme</button>;
+});
+```
+
+By wrapping ThemeButton in React.memo, it will only re-render if toggleTheme changes. Since we used useCallback to memoize toggleTheme, it won’t change on every re-render of the provider. This can significantly reduce unnecessary renders in large component trees.
 
 ### Share Data using the context API
 
