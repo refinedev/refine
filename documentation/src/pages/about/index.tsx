@@ -113,17 +113,17 @@ const AboutUs = () => {
               "dark:text-gray-300 text-gray-600",
             )}
           >
-            <p className="text-xs sm:text-base mb-5">
+            <p className="text-base mb-5">
               Shortly after its initial release on September 2021, Refine has
               gained attraction of open-source community and has become
               increasingly popular among web application frameworks.
             </p>
-            <p className="text-xs sm:text-base mb-5">
+            <p className="text-base mb-5">
               With the aim of sustaining the growth and expanding the user base,
               the project was backed by prominent VC’s and angel investors on
               May 2022.
             </p>
-            <p className="text-xs sm:text-base mb-5">
+            <p className="text-base mb-5">
               Today, the US-based company has an international team of 10+
               members leading the development of the open-core and building new
               products for the ecosystem.
@@ -167,7 +167,7 @@ const Socials = () => {
               refine’s success.
             </p>
 
-            <p className="mb-0 text-xs sm:text-base text-gray-900 dark:text-gray-300">
+            <p className="mb-0 text-base text-gray-900 dark:text-gray-300">
               We are grateful for all contributors who are developing core
               features, making bug-fixes, building community extensions, writing
               documentation, reporting issues and giving their constructive
