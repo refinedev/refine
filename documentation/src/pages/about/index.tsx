@@ -33,7 +33,8 @@ const About: React.FC = () => {
             "landing-md:max-w-[740px]",
             "landing-sm:max-w-[640px]",
             "max-w-[544px]",
-            "pt-8 pb-8 landing-sm:pb-12 landing-md:pb-20",
+            "pt-0 landing-sm:pt-8 landing-lg:pt-20",
+            "pb-8 landing-sm:pb-12 landing-md:pb-20 landing-lg:pb-[120px]",
             "text-center landing-md:text-start",
             "mx-auto",
           )}
@@ -156,11 +157,12 @@ const About: React.FC = () => {
             <div className="flex w-full justify-end">
               <div
                 className={clsx(
-                  "flex flex-col",
-                  "landing-sm:grid landing-sm:grid-cols-2",
-                  "gap-4",
+                  "flex flex-col justify-center",
+                  "landing-sm:grid landing-sm:grid-cols-[repeat(2,276px)] landing-md:grid-cols-[repeat(2,204px)]",
+                  "gap-4 landing-lg:gap-6",
+                  "landing-lg:pl-8",
                   "shrink-0",
-                  "w-full lg:w-[400px]",
+                  "w-full",
                 )}
               >
                 <SocialButton type="discord" />
@@ -186,6 +188,7 @@ const About: React.FC = () => {
               "text-center text-gray-900 dark:text-white",
               "mt-12 landing-md:mt-20",
               "mb-0",
+              "font-semibold",
             )}
           >
             Our Team
@@ -248,6 +251,7 @@ const About: React.FC = () => {
               "text-center text-gray-900 dark:text-white",
               "mt-12 landing-md:mt-20",
               "mb-12",
+              "font-semibold",
             )}
           >
             Backed by
@@ -420,6 +424,7 @@ const About: React.FC = () => {
               "text-[32px] leading-10",
               "text-center text-gray-900 dark:text-white",
               "mb-12 mt-0",
+              "font-semibold",
             )}
           >
             We are Here
@@ -504,14 +509,15 @@ const SocialButton = (props: {
       url: "https://discord.gg/refine",
       title: "Join our",
       label: "Discord Server",
+      glowColor: "#5561E5",
       gradientDark:
-        "linear-gradient(150deg,#626FF2 0%, rgba(48, 52, 80, 1) 30%)",
+        "linear-gradient(150deg,#626FF2 0%, rgba(48, 52, 80, 1) 40%)",
       gradientLight: "linear-gradient(150deg,#626FF2 0%, #DEE5ED 45%)",
     },
     github: {
       icon: (
         <GithubIcon
-          className="text-2xl text-gray-900 dark:text-gray-0"
+          className="text-2xl text-gray-900 dark:text-gray-0 flex-shrink-0"
           width="24px"
           height="24px"
         />
@@ -519,6 +525,7 @@ const SocialButton = (props: {
       url: "https://github.com/refinedev/refine",
       title: "Visit our",
       label: "GitHub Repo",
+      glowColor: "#9A9CAA",
       gradientDark:
         "linear-gradient(150deg,#D6DADE 0%, rgba(48, 52, 80, 1) 30%)",
       gradientLight: "linear-gradient(150deg,#D7DADF 0%, #DEE5ED 45%)",
@@ -535,8 +542,9 @@ const SocialButton = (props: {
       url: "https://reddit.com/r/refine",
       title: "Follow us on",
       label: "Reddit",
+      glowColor: "#A53D24",
       gradientDark:
-        "linear-gradient(150deg,#FF4500 0%, rgba(48, 52, 80, 1) 30%)",
+        "linear-gradient(150deg,#FF4500 0%, rgba(48, 52, 80, 1) 40%)",
       gradientLight: "linear-gradient(150deg,#EF9273 0%, #DEE5ED 45%)",
     },
     x: {
@@ -544,6 +552,7 @@ const SocialButton = (props: {
       url: "https://x.com/refine_dev",
       title: "Follow us on",
       label: "X",
+      glowColor: "#9A9CAA",
       gradientDark:
         "linear-gradient(150deg,#D6DADE 0%, rgba(48, 52, 80, 1) 30%)",
       gradientLight: "linear-gradient(150deg,#D7DADF 0%, #DEE5ED 45%)",
@@ -566,6 +575,19 @@ const SocialButton = (props: {
         "p-[1px]",
       )}
     >
+      <div
+        className={clsx(
+          "z-[3]",
+          "absolute",
+          "inset-0 -left-[4px]",
+          "w-[25%] h-[50%]",
+          "border-l-2 border-t-2 border-solid",
+          "blur-[12px]",
+        )}
+        style={{
+          borderColor: variant[props.type].glowColor,
+        }}
+      />
       <div
         className={clsx("z-[1]", "absolute", "inset-0")}
         style={{
