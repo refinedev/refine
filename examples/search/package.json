@@ -29,7 +29,7 @@
     "@refinedev/react-router-v6": "^4.6.0",
     "@refinedev/simple-rest": "^5.0.8",
     "@uiw/react-md-editor": "^3.19.5",
-    "antd": "^5.21.6",
+    "antd": "^5.17.0",
     "lodash": "^4.17.21",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

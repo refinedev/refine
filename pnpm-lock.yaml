@@ -130,7 +130,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       casbin:
         specifier: ^5.15.2
         version: 5.29.0
@@ -197,7 +197,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -249,7 +249,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -322,7 +322,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames:
         specifier: ^2.3.2
         version: 2.5.1
@@ -483,7 +483,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -538,7 +538,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -651,7 +651,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -758,7 +758,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -816,7 +816,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -1008,7 +1008,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -1063,7 +1063,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -1481,7 +1481,7 @@ importers:
         version: link:../../packages/strapi-v4
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -1551,7 +1551,7 @@ importers:
     dependencies:
       '@ant-design/charts':
         specifier: ^1.2.0
-        version: 1.4.3(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+        version: 1.4.3(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -1575,7 +1575,7 @@ importers:
         version: link:../../packages/supabase
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -1642,7 +1642,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -2010,7 +2010,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -2450,7 +2450,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -2599,7 +2599,7 @@ importers:
         version: link:../../packages/react-router-v6
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -2833,7 +2833,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -3716,7 +3716,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -3774,7 +3774,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -3989,7 +3989,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4044,7 +4044,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -4096,7 +4096,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4148,7 +4148,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4197,7 +4197,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4249,7 +4249,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4493,7 +4493,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4545,7 +4545,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4597,7 +4597,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4649,7 +4649,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4707,7 +4707,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
@@ -4777,7 +4777,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4829,7 +4829,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
@@ -4902,7 +4902,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4960,7 +4960,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5015,7 +5015,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -5085,7 +5085,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -5146,7 +5146,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5198,7 +5198,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5250,7 +5250,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5302,7 +5302,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5354,7 +5354,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5464,7 +5464,7 @@ importers:
         version: 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/use-emotion-css':
         specifier: ^1.0.4
-        version: 1.0.4(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.4(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@emotion/react':
         specifier: ^11.8.2
         version: 11.11.4(@types/react@18.3.0)(react@18.3.0)
@@ -5497,10 +5497,10 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd-style:
         specifier: ^3.6.1
-        version: 3.6.2(@types/react@18.3.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 3.6.2(@types/react@18.3.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -5788,7 +5788,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5840,7 +5840,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5889,7 +5889,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5941,7 +5941,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -5990,7 +5990,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -6042,7 +6042,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -7265,7 +7265,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -7289,7 +7289,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -7377,7 +7377,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       i18next:
         specifier: ^20.1.0
         version: 20.6.1
@@ -7441,7 +7441,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -7630,7 +7630,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       i18next:
         specifier: ^20.1.0
         version: 20.6.1
@@ -7809,7 +7809,7 @@ importers:
         version: link:../../packages/react-router-v6
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       graphql:
         specifier: ^15.6.1
         version: 15.8.0
@@ -8167,7 +8167,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -8219,7 +8219,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -8271,10 +8271,10 @@ importers:
         version: link:../../packages/strapi-v4
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd-style:
         specifier: ^3.6.1
-        version: 3.6.2(@types/react@18.3.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 3.6.2(@types/react@18.3.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -8344,7 +8344,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -8396,7 +8396,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -8569,7 +8569,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -8621,10 +8621,10 @@ importers:
         version: link:../../packages/strapi-v4
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd-style:
         specifier: ^3.6.1
-        version: 3.6.2(@types/react@18.3.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 3.6.2(@types/react@18.3.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -8685,7 +8685,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -8737,7 +8737,7 @@ importers:
         version: link:../../packages/supabase
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       dotenv:
         specifier: ^16.0.3
         version: 16.4.5
@@ -8792,7 +8792,7 @@ importers:
         version: link:../../packages/supabase
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       casbin:
         specifier: ^5.15.2
         version: 5.29.0
@@ -8959,7 +8959,7 @@ importers:
         version: link:../../packages/strapi-v4
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -9017,7 +9017,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -9075,7 +9075,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -9519,7 +9519,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -9574,7 +9574,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -9629,7 +9629,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -9678,7 +9678,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -9727,7 +9727,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -9779,7 +9779,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -11083,7 +11083,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -11333,7 +11333,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -11722,7 +11722,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -11774,7 +11774,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -12277,7 +12277,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -12326,7 +12326,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -12469,7 +12469,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -12521,7 +12521,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -12649,7 +12649,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -12683,7 +12683,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -12707,7 +12707,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -12756,7 +12756,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.43.1
         version: link:../../packages/antd
@@ -12783,7 +12783,7 @@ importers:
         version: link:../../packages/simple-rest
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -12972,7 +12972,7 @@ importers:
         version: 2.9.1(typescript@5.4.5)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cookie:
         specifier: ^0.5.0
         version: 0.5.0
@@ -13033,7 +13033,7 @@ importers:
         version: 2.9.1(typescript@5.4.5)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       cookie:
         specifier: ^0.5.0
         version: 0.5.0
@@ -13307,7 +13307,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -13444,8 +13444,8 @@ importers:
         specifier: ^5.5.1
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/pro-layout':
-        specifier: ^7.21.0
-        version: 7.21.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        specifier: ^7.21.1
+        version: 7.21.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/ui-types':
         specifier: ^1.22.9
         version: link:../ui-types
@@ -13454,7 +13454,7 @@ importers:
         version: 4.36.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -15063,7 +15063,7 @@ importers:
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd:
         specifier: ^5.17.0
-        version: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       axios:
         specifier: ^1.6.2
         version: 1.6.8
@@ -16203,6 +16203,15 @@ packages:
   '@ant-design/colors@7.0.2':
     resolution: {integrity: sha512-7KJkhTiPiLHSu+LmMJnehfJ6242OCxSlR3xHVBecYxnMW8MS/878NXct1GqYARyL59fyeFdKRxXTfvR9SnDgJg==}
 
+  '@ant-design/colors@7.1.0':
+    resolution: {integrity: sha512-MMoDGWn1y9LdQJQSHiCC20x3uZ3CwQnv9QMz6pCmJOrqdgM9YxsoVVY0wtrdXbmfSgnV0KNk6zi09NAhMR2jvg==}
+
+  '@ant-design/cssinjs-utils@1.1.1':
+    resolution: {integrity: sha512-2HAiyGGGnM0es40SxdszeQAU5iWp41wBIInq+ONTCKjlSKOrzQfnw4JDtB8IBmqE6tQaEKwmzTP2LGdt5DSwYQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   '@ant-design/cssinjs@1.20.0':
     resolution: {integrity: sha512-uG3iWzJxgNkADdZmc6W0Ci3iQAUOvLMcM8SnnmWq3r6JeocACft4ChnY/YWvI2Y+rG/68QBla/O+udke1yH3vg==}
     peerDependencies:
@@ -16214,6 +16223,10 @@ packages:
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
+
+  '@ant-design/fast-color@2.0.6':
+    resolution: {integrity: sha512-y2217gk4NqL35giHl72o6Zzqji9O7vHh9YmhUVkPtAOpoTCH4uWxo/pr4VE8t0+ChEPs0qo4eJRC5Q1eXWo3vA==}
+    engines: {node: '>=8.x'}
 
   '@ant-design/flowchart@1.2.2':
     resolution: {integrity: sha512-bzHZ81qqHjWIrXcCMInDB6eMTzbswaVCOAdUTCQJ+B45aybkVsU9LMCKquyOwRM7U7PWNfPC9S/lAlx2i2BvBQ==}
@@ -16232,13 +16245,6 @@ packages:
 
   '@ant-design/icons-svg@4.4.2':
     resolution: {integrity: sha512-vHbT+zJEVzllwP+CM+ul7reTEfBR0vgxFe7+lREAsAA7YGsYpboiq2sQNeQeRvh09GfQgs/GyFEvZpJ9cLXpXA==}
-
-  '@ant-design/icons@5.3.7':
-    resolution: {integrity: sha512-bCPXTAg66f5bdccM4TT21SQBDO1Ek2gho9h3nO9DAKXJP4sq+5VBjrQMSxMVXSB3HyEz+cUbHQ5+6ogxCOpaew==}
-    engines: {node: '>=8'}
-    peerDependencies:
-      react: '>=16.0.0'
-      react-dom: '>=16.0.0'
 
   '@ant-design/icons@5.5.1':
     resolution: {integrity: sha512-0UrM02MA2iDIgvLatWrj6YTCYe0F/cwXvVE0E2SqGrL7PZireQwgEKTKBisWpZyal5eXZLvuM98kju6YtYne8w==}
@@ -16268,22 +16274,22 @@ packages:
       react: '>=16.8.4'
       react-dom: '>=16.8.4'
 
-  '@ant-design/pro-layout@7.21.0':
-    resolution: {integrity: sha512-SV+D2DVr3B4vV3uSXQeG8wIUofWEiZc8fbXjMWwnNYKcNfKaHf4HGUh84cDiGZi+FPsXfOMXcYzXElD5wR2bOQ==}
+  '@ant-design/pro-layout@7.21.1':
+    resolution: {integrity: sha512-9B+MBPTYZbhe5xdUxgfikoUZtB/77R3hAve8iI4fVNBoc4KAm/wpejasvKgWZn/8gRht8KOXfmfe2ngjz/BWOA==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-provider@2.15.0':
-    resolution: {integrity: sha512-9NvjKxOg7ZUdd+hV5ex3xgM3ZZkPzChLBTHl4f7Ei/SWwjBGLG0ZBeYpsTcpqwRV2IlGdaMIW93bTOvh0XmtEA==}
+  '@ant-design/pro-provider@2.15.1':
+    resolution: {integrity: sha512-UiNhQ3Yl+h8liC24LLWpqbcdhC9ggiXvHeCYrqBHjOx2WNFWpWO5JP0327k3RQjShprt+jZQ/cdNHx6s7BToXA==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
 
-  '@ant-design/pro-utils@2.16.0':
-    resolution: {integrity: sha512-fUU5nPeHxXaVm5fqSgyWFL5xV+XYftqDjX5tHS5MeVlu9muP518GdRjFHMJY9ybal1Ca4mgbz+3M9BDfnF3V4Q==}
+  '@ant-design/pro-utils@2.16.1':
+    resolution: {integrity: sha512-GaBEgP638fvddO0YqevuIT3O8pQIrqfHhlQ4UDnf1JkhVxuVxP3XdwDituQWnyRoxLPSjNBZBOBghBBMb8nWsg==}
     peerDependencies:
       antd: ^4.24.15 || ^5.11.2
       react: '>=17.0.0'
@@ -21380,6 +21386,12 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+  '@rc-component/color-picker@2.0.1':
+    resolution: {integrity: sha512-WcZYwAThV/b2GISQ8F+7650r5ZZJ043E57aVBFkQ+kSY4C6wdofXgB0hBx+GPGpIU0Z81eETNoDUJMr7oy/P8Q==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   '@rc-component/context@1.4.0':
     resolution: {integrity: sha512-kFcNxg9oLRMoL3qki0OMxK+7g5mypjgaaJp/pkOis/6rVxma9nJBF/8kCIuTYHUQNr0ii7MxqE33wirPZLJQ2w==}
     peerDependencies:
@@ -21404,6 +21416,13 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+  '@rc-component/qrcode@1.0.0':
+    resolution: {integrity: sha512-L+rZ4HXP2sJ1gHMGHjsg9jlYBX/SLN2D6OxP9Zn3qgtpMWtO2vUfxVFwiogHpAIqs54FnALxraUy/BCO1yRIgg==}
+    engines: {node: '>=8.x'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   '@rc-component/tour@1.14.2':
     resolution: {integrity: sha512-A75DZ8LVvahBIvxooj3Gvf2sxe+CGOkmzPNX7ek0i0AJHyKZ1HXe5ieIGo3m0FMdZfVOlbCJ952Duq8VKAHk6g==}
     engines: {node: '>=8.x'}
@@ -21411,8 +21430,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  '@rc-component/tour@1.15.0':
-    resolution: {integrity: sha512-h6hyILDwL+In9GAgRobwRWihLqqsD7Uft3fZGrJ7L4EiyCoxbnNYwzPXDfz7vNDhWeVyvAWQJj9fJCzpI4+b4g==}
+  '@rc-component/tour@1.15.1':
+    resolution: {integrity: sha512-Tr2t7J1DKZUpfJuDZWHxyxWpfmj8EZrqSgyMZ+BCdvKZ6r1UDsfU46M/iWAAFBy961Ssfom2kv5f3UcjIL2CmQ==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -21425,8 +21444,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  '@rc-component/trigger@2.2.0':
-    resolution: {integrity: sha512-QarBCji02YE9aRFhZgRZmOpXBj0IZutRippsVBv85sxvG4FGk/vRxwAlkn3MS9zK5mwbETd86mAVg2tKqTkdJA==}
+  '@rc-component/trigger@2.2.3':
+    resolution: {integrity: sha512-X1oFIpKoXAMXNDYCviOmTfuNuYxE4h5laBsyCqVAVMjNHxoF3/uiyA7XdegK1XbCvBbCZ6P6byWrEoDRpKL8+A==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -23702,8 +23721,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  antd@5.18.0:
-    resolution: {integrity: sha512-xAvqvioW34npeZb8/JLZmCh5mcHU5MLiA0IYWAlpLAVmSgjs3p0tNzbU6a7Yx+y7o7E8PHtlchWfO3yBLQ15FQ==}
+  antd@5.21.6:
+    resolution: {integrity: sha512-EviOde/VEu+OsIKH5t6YXTMmmNeg9R85m0W5zXAo+Np8Latg9q10691JvAqOTMpnrRmbdeKUQL1Krp69Bzbe/g==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -25429,6 +25448,9 @@ packages:
 
   dayjs@1.11.10:
     resolution: {integrity: sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==}
+
+  dayjs@1.11.13:
+    resolution: {integrity: sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg==}
 
   debounce-fn@4.0.0:
     resolution: {integrity: sha512-8pYCQiL9Xdcg0UPSD3d+0KMlOjp+KGU5EPwYddgzQ7DATsg4fuUDjQtsYLmWjnk2obnNHgV3vE2Y4jejSOJVBQ==}
@@ -31625,8 +31647,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-cascader@3.26.0:
-    resolution: {integrity: sha512-L1dml383TPSJD1I11YwxuVbmqaJY64psZqFp1ETlgl3LEOwDu76Cyl11fw5dmjJhMlUWwM5dECQfqJgfebhUjg==}
+  rc-cascader@3.28.2:
+    resolution: {integrity: sha512-8f+JgM83iLTvjgdkgU7GfI4qY8icXOBP0cGZjOdx2iJAkEe8ucobxDQAVE69UD/c3ehCxZlcgEHeD5hFmypbUw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31649,8 +31671,20 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+  rc-collapse@3.8.0:
+    resolution: {integrity: sha512-YVBkssrKPBG09TGfcWWGj8zJBYD9G3XuTy89t5iUmSXrIXEAnO1M+qjUxRW6b4Qi0+wNWG6MHJF/+US+nmIlzA==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   rc-dialog@9.4.0:
     resolution: {integrity: sha512-AScCexaLACvf8KZRqCPz12BJ8olszXOS4lKlkMyzDQHS1m0zj1KZMYgmMCh39ee0Dcv8kyrj8mTqxuLyhH+QuQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-dialog@9.6.0:
+    resolution: {integrity: sha512-ApoVi9Z8PaCQg6FsUzS8yvBEQy0ZL2PkuvAgrmohPkN3okps5WZ5WQWPc1RNuiOKaAYv8B97ACdsFU5LizzCqg==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31686,9 +31720,15 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-field-form@2.2.0:
-    resolution: {integrity: sha512-Kl7wBXCmFbRi9aPw0yiRTSPH3WQGRnOVGX/UxlEjAz2pGwsaw2MisCJ7GTXukdiybYsw8K7agDD7ZsPGUNcDKg==}
+  rc-field-form@2.4.0:
+    resolution: {integrity: sha512-XZ/lF9iqf9HXApIHQHqzJK5v2w4mkUMsVqAzOyWVzoiwwXEavY6Tpuw7HavgzIoD+huVff4JghSGcgEfX6eycg==}
     engines: {node: '>=8.x'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-image@7.11.0:
+    resolution: {integrity: sha512-aZkTEZXqeqfPZtnSdNUnKQA0N/3MbgR7nUnZ+/4MfSFWPFHZau4p5r5ShaI0KPEMnNjv4kijSCFq/9wtJpwykw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31699,20 +31739,14 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-image@7.8.0:
-    resolution: {integrity: sha512-f5lgtAvRaL+HW9to4Lt06419GJtMLCGbp9RA++nJaDEwZvsMNkKa4QtG5+kDYTVKQf6pjaakJOIPB98W/khQFw==}
-    peerDependencies:
-      react: '>=16.9.0'
-      react-dom: '>=16.9.0'
-
   rc-input-number@9.0.0:
     resolution: {integrity: sha512-RfcDBDdWFFetouWFXBA+WPEC8LzBXyngr9b+yTLVIygfFu7HiLRGn/s/v9wwno94X7KFvnb28FNynMGj9XJlDQ==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-input-number@9.1.0:
-    resolution: {integrity: sha512-NqJ6i25Xn/AgYfVxynlevIhX3FuKlMwIFpucGG1h98SlK32wQwDK0zhN9VY32McOmuaqzftduNYWWooWz8pXQA==}
+  rc-input-number@9.2.0:
+    resolution: {integrity: sha512-5XZFhBCV5f9UQ62AZ2hFbEY8iZT/dm23Q1kAg0H8EvOgD3UDbYYJAayoVIkM3lQaCqYAW5gV0yV3vjw1XtzWHg==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31723,8 +31757,8 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
-  rc-input@1.5.1:
-    resolution: {integrity: sha512-+nOzQJDeIfIpNP/SgY45LXSKbuMlp4Yap2y8c+ZpU7XbLmNzUd6+d5/S75sA/52jsVE6S/AkhkkDEAOjIu7i6g==}
+  rc-input@1.6.3:
+    resolution: {integrity: sha512-wI4NzuqBS8vvKr8cljsvnTUqItMfG1QbJoxovCgL+DX4eVUcHIjVwharwevIxyy7H/jbLryh+K7ysnJr23aWIA==}
     peerDependencies:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
@@ -31735,8 +31769,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-mentions@2.13.1:
-    resolution: {integrity: sha512-DSyUDq/PPCleUX1eghIn371lTSRQsIuCs1N7xR9nZcHP9R1NkE7JjpWUP8Gy4EGVPu0JN0qIcokxYJaoGPnofg==}
+  rc-mentions@2.16.1:
+    resolution: {integrity: sha512-GnhSTGP9Mtv6pqFFGQze44LlrtWOjHNrUUAcsdo9DnNAhN4pwVPEWy4z+2jpjkiGlJ3VoXdvMHcNDQdfI9fEaw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31747,8 +31781,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-menu@9.14.0:
-    resolution: {integrity: sha512-La3LBCDMLMs9Q/8mTGbnscb+ZeJ26ebkLz9xJFHd2SD8vfsCKl1Z/k3mwbxyKL01lB40fel1s9Nn9LAv/nmVJQ==}
+  rc-menu@9.15.1:
+    resolution: {integrity: sha512-UKporqU6LPfHnpPmtP6hdEK4iO5Q+b7BRv/uRpxdIyDGplZy9jwUjsnpev5bs3PQKB0H0n34WAPDfjAfn3kAPA==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31759,8 +31793,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-motion@2.9.1:
-    resolution: {integrity: sha512-QD4bUqByjVQs7PhUT1d4bNxvtTcK9ETwtg7psbDfo6TmYalH/1hhjj4r2hbhW7g5OOEqYHhfwfj4noIvuOVRtQ==}
+  rc-motion@2.9.3:
+    resolution: {integrity: sha512-rkW47ABVkic7WEB0EKJqzySpvDqwl60/tdkY7hWP7dYnh5pm0SzJpo54oW3TDUGXV5wfxXFmMkxrzRRbotQ0+w==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31772,8 +31806,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-notification@5.6.0:
-    resolution: {integrity: sha512-TGQW5T7waOxLwgJG7fXcw8l7AQiFOjaZ7ISF5PrU526nunHRNcTMuzKihQHaF4E/h/KfOCDk3Mv8eqzbu2e28w==}
+  rc-notification@5.6.2:
+    resolution: {integrity: sha512-Id4IYMoii3zzrG0lB0gD6dPgJx4Iu95Xu0BQrhHIbp7ZnAZbLqdqQ73aIWH0d0UFcElxwaKjnzNovTjo7kXz7g==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -31787,6 +31821,12 @@ packages:
 
   rc-pagination@4.0.4:
     resolution: {integrity: sha512-GGrLT4NgG6wgJpT/hHIpL9nELv27A1XbSZzECIuQBQTVSf4xGKxWr6I/jhpRPauYEWEbWVw22ObG6tJQqwJqWQ==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-pagination@4.3.0:
+    resolution: {integrity: sha512-UubEWA0ShnroQ1tDa291Fzw6kj0iOeF26IsUObxYTpimgj4/qPCWVFl18RLZE+0Up1IZg0IK4pMn6nB3mjvB7g==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31811,8 +31851,8 @@ packages:
       moment:
         optional: true
 
-  rc-picker@4.5.0:
-    resolution: {integrity: sha512-suqz9bzuhBQlf7u+bZd1bJLPzhXpk12w6AjQ9BTPTiFwexVZgUKViG1KNLyfFvW6tCUZZK0HmCCX7JAyM+JnCg==}
+  rc-picker@4.6.15:
+    resolution: {integrity: sha512-OWZ1yrMie+KN2uEUfYCfS4b2Vu6RC1FWwNI0s+qypsc3wRt7g+peuZKVIzXCTaJwyyZruo80+akPg2+GmyiJjw==}
     engines: {node: '>=8.x'}
     peerDependencies:
       date-fns: '>= 2.x'
@@ -31863,6 +31903,12 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
 
+  rc-segmented@2.5.0:
+    resolution: {integrity: sha512-B28Fe3J9iUFOhFJET3RoXAPFJ2u47QvLSYcZWC4tFYNGPEjug5LAxEasZlA/PpAxhdOPqGWsGbSj7ftneukJnw==}
+    peerDependencies:
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+
   rc-select@14.13.1:
     resolution: {integrity: sha512-A1VHqjIOemxLnUGRxLGVqXBs8jGcJemI5NXxOJwU5PQc1wigAu1T4PRLgMkTPDOz8gPhlY9dwsPzMgakMc2QjQ==}
     engines: {node: '>=8.x'}
@@ -31870,8 +31916,8 @@ packages:
       react: '*'
       react-dom: '*'
 
-  rc-select@14.14.0:
-    resolution: {integrity: sha512-Uo2wulrjoPPRLCPd7zlK4ZFVJxlTN//yp1xWP/U+TUOQCyXrT+Duvq/Si5OzVcmQyWAUSbsplc2OwNNhvbOeKQ==}
+  rc-select@14.15.2:
+    resolution: {integrity: sha512-oNoXlaFmpqXYcQDzcPVLrEqS2J9c+/+oJuGrlXeVVX/gVgrbHa5YcyiRUXRydFjyuA7GP3elRuLF7Y3Tfwltlw==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '*'
@@ -31879,6 +31925,13 @@ packages:
 
   rc-slider@10.6.2:
     resolution: {integrity: sha512-FjkoFjyvUQWcBo1F3RgSglky3ar0+qHLM41PlFVYB4Bj3RD8E/Mv7kqMouLFBU+3aFglMzzctAIWRwajEuueSw==}
+    engines: {node: '>=8.x'}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-slider@11.1.7:
+    resolution: {integrity: sha512-ytYbZei81TX7otdC0QvoYD72XSlxvTihNth5OeZ6PMXyEDq/vHdWFulQmfDGyXK1NwKwSlKgpvINOa88uT5g2A==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -31904,8 +31957,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-table@7.45.7:
-    resolution: {integrity: sha512-wi9LetBL1t1csxyGkMB2p3mCiMt+NDexMlPbXHvQFmBBAsMxrgNSAPwUci2zDLUq9m8QdWc1Nh8suvrpy9mXrg==}
+  rc-table@7.47.5:
+    resolution: {integrity: sha512-fzq+V9j/atbPIcvs3emuclaEoXulwQpIiJA6/7ey52j8+9cJ4P8DGmp4YzfUVDrb3qhgedcVeD6eRgUrokwVEQ==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -31918,8 +31971,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-tabs@15.1.0:
-    resolution: {integrity: sha512-xTNz4Km1025emtkv1q7xKhjPwAtXr/wycuXVTAcFJg+DKhnPDDbnwbA9KRW0SawAVOGvVEj8ZrBlU0u0FGLrbg==}
+  rc-tabs@15.3.0:
+    resolution: {integrity: sha512-lzE18r+zppT/jZWOAWS6ntdkDUKHOLJzqMi5UAij1LeKwOaQaupupAoI9Srn73GRzVpmGznkECMRrzkRusC40A==}
     engines: {node: '>=8.x'}
     peerDependencies:
       react: '>=16.9.0'
@@ -31931,8 +31984,8 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
-  rc-textarea@1.7.0:
-    resolution: {integrity: sha512-UxizYJkWkmxP3zofXgc487QiGyDmhhheDLLjIWbFtDmiru1ls30KpO8odDaPyqNUIy9ugj5djxTEuezIn6t3Jg==}
+  rc-textarea@1.8.2:
+    resolution: {integrity: sha512-UFAezAqltyR00a8Lf0IPAyTd29Jj9ee8wt8DqXyDMal7r/Cg/nDt3e1OOv3Th4W6mKaZijjgwuPXhAfVNTN8sw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31943,14 +31996,20 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
 
+  rc-tooltip@6.2.1:
+    resolution: {integrity: sha512-rws0duD/3sHHsD905Nex7FvoUGy2UBQRhTkKxeEvr2FB+r21HsOxcDJI0TzyO8NHhnAA8ILr8pfbSBg5Jj5KBg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
   rc-tree-select@5.19.0:
     resolution: {integrity: sha512-f4l5EsmSGF3ggj76YTzKNPY9SnXfFaer7ZccTSGb3urUf54L+cCqyT+UsPr+S5TAr8mZSxJ7g3CgkCe+cVQ6sw==}
     peerDependencies:
       react: '*'
       react-dom: '*'
 
-  rc-tree-select@5.21.0:
-    resolution: {integrity: sha512-w+9qEu6zh0G3wt9N/hzWNSnqYH1i9mH1Nqxo0caxLRRFXF5yZWYmpCDoDTMdQM1Y4z3Q5yj08qyrPH/d4AtumA==}
+  rc-tree-select@5.23.0:
+    resolution: {integrity: sha512-aQGi2tFSRw1WbXv0UVXPzHm09E0cSvUVZMLxQtMv3rnZZpNmdRXWrnd9QkLNlVH31F+X5rgghmdSFF3yZW0N9A==}
     peerDependencies:
       react: '*'
       react-dom: '*'
@@ -31969,6 +32028,13 @@ packages:
       react: '*'
       react-dom: '*'
 
+  rc-tree@5.9.0:
+    resolution: {integrity: sha512-CPrgOvm9d/9E+izTONKSngNzQdIEjMox2PBufWjS1wf7vxtvmCWzK1SlpHbRY6IaBfJIeZ+88RkcIevf729cRg==}
+    engines: {node: '>=10.x'}
+    peerDependencies:
+      react: '*'
+      react-dom: '*'
+
   rc-trigger@5.3.4:
     resolution: {integrity: sha512-mQv+vas0TwKcjAO2izNPkqR4j86OemLRmvL2nOzdP9OWNWA1ivoTt5hzFqYNW9zACwmTezRiN8bttrC7cZzYSw==}
     engines: {node: '>=8.x'}
@@ -31978,6 +32044,12 @@ packages:
 
   rc-upload@4.5.2:
     resolution: {integrity: sha512-QO3ne77DwnAPKFn0bA5qJM81QBjQi0e0NHdkvpFyY73Bea2NfITiotqJqVjHgeYPOJu5lLVR32TNGP084aSoXA==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-upload@4.8.1:
+    resolution: {integrity: sha512-toEAhwl4hjLAI1u8/CgKWt30BR06ulPa4iGQSMvSXoHzO88gPCslxqV/mnn4gJU7PDoltGIC9Eh+wkeudqgHyw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -31993,6 +32065,12 @@ packages:
 
   rc-util@5.41.0:
     resolution: {integrity: sha512-xtlCim9RpmVv0Ar2Nnc3WfJCxjQkTf3xHPWoFdjp1fSs2NirQwqiQrfqdU9HUe0kdfb168M/T8Dq0IaX50xeKg==}
+    peerDependencies:
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+
+  rc-util@5.43.0:
+    resolution: {integrity: sha512-AzC7KKOXFqAdIBqdGWepL9Xn7cm3vnAmjlHqUnoQaTMZYhM4VlXGLkkHHxj/BZ7Td0+SOPKB4RGPboBVKT9htw==}
     peerDependencies:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
@@ -34047,6 +34125,10 @@ packages:
     resolution: {integrity: sha512-2iQTSgkkc1Zyk0MeVrt/3BvuOXYPl/R8Z0U2xxo9rjwNciaHDG3R+Lm6dh4EeUci49DanvBnuqI6jshoQQRGEg==}
     engines: {node: '>=12.22'}
 
+  throttle-debounce@5.0.2:
+    resolution: {integrity: sha512-B71/4oyj61iNH0KeCamLuE2rmKuTO5byTOSVwECM5FA7TiAiAW+UqTKZ9ERueC4qvgSttUhdmq1mXC3kJqGX7A==}
+    engines: {node: '>=12.22'}
+
   throttleit@1.0.1:
     resolution: {integrity: sha512-vDZpf9Chs9mAdfY046mcPt8fg5QSZr37hEH4TXYBnDF+izxgrbRGUAAaBvIk/fJm9aOFCGFd1EsNg5AZCbnQCQ==}
 
@@ -35529,14 +35611,14 @@ snapshots:
 
   '@andrewbranch/untar.js@1.0.3': {}
 
-  '@ant-design/charts@1.4.3(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@ant-design/charts@1.4.3(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
-      '@ant-design/flowchart': 1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+      '@ant-design/flowchart': 1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       '@ant-design/graphs': 1.4.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/maps': 1.0.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/plots': 1.2.6(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       lodash: 4.17.21
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -35551,6 +35633,18 @@ snapshots:
   '@ant-design/colors@7.0.2':
     dependencies:
       '@ctrl/tinycolor': 3.6.1
+
+  '@ant-design/colors@7.1.0':
+    dependencies:
+      '@ctrl/tinycolor': 3.6.1
+
+  '@ant-design/cssinjs-utils@1.1.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
 
   '@ant-design/cssinjs@1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
@@ -35571,20 +35665,24 @@ snapshots:
       '@emotion/unitless': 0.7.5
       classnames: 2.5.1
       csstype: 3.1.3
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       stylis: 4.3.4
 
-  '@ant-design/flowchart@1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@ant-design/fast-color@2.0.6':
+    dependencies:
+      '@babel/runtime': 7.25.7
+
+  '@ant-design/flowchart@1.2.2(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/layout': 0.1.31
       '@antv/x6': 1.35.0
-      '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/x6-react-components': 1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/xflow': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       lodash: 4.17.21
       react: 18.3.0
       react-color: 2.17.3(react@18.3.0)
@@ -35607,16 +35705,6 @@ snapshots:
 
   '@ant-design/icons-svg@4.4.2': {}
 
-  '@ant-design/icons@5.3.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
-    dependencies:
-      '@ant-design/colors': 7.0.2
-      '@ant-design/icons-svg': 4.4.2
-      '@babel/runtime': 7.24.6
-      classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-
   '@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/colors': 7.0.2
@@ -35636,10 +35724,10 @@ snapshots:
       react-content-loader: 5.1.4(react@18.3.0)
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       next: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -35652,16 +35740,16 @@ snapshots:
       react-content-loader: 5.1.4(react@18.3.0)
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/pro-layout@7.21.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-layout@7.21.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-provider': 2.15.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-utils': 2.16.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-provider': 2.15.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-utils': 2.16.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@babel/runtime': 7.25.7
       '@umijs/route-utils': 4.0.1
       '@umijs/use-params': 1.0.9(react@18.3.0)
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       lodash: 4.17.21
       lodash-es: 4.17.21
@@ -35674,29 +35762,29 @@ snapshots:
       swr: 2.2.5(react@18.3.0)
       warning: 4.0.3
 
-  '@ant-design/pro-provider@2.15.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-provider@2.15.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@babel/runtime': 7.25.7
       '@ctrl/tinycolor': 3.6.1
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      dayjs: 1.11.10
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      dayjs: 1.11.13
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       swr: 2.2.5(react@18.3.0)
 
-  '@ant-design/pro-utils@2.16.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/pro-utils@2.16.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/pro-provider': 2.15.0(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/pro-provider': 2.15.1(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@babel/runtime': 7.25.7
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       lodash: 4.17.21
       lodash-es: 4.17.21
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       safe-stable-stringify: 2.4.3
@@ -35704,17 +35792,17 @@ snapshots:
 
   '@ant-design/react-slick@1.1.2(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
       json2mq: 0.2.0
       react: 18.3.0
       resize-observer-polyfill: 1.5.1
-      throttle-debounce: 5.0.0
+      throttle-debounce: 5.0.2
 
-  '@ant-design/use-emotion-css@1.0.4(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/use-emotion-css@1.0.4(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@emotion/css': 11.11.2
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -36185,9 +36273,9 @@ snapshots:
       gl-matrix: 3.4.3
       tslib: 2.6.2
 
-  '@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@antv/x6-react-components@1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       clamp: 1.0.1
       classnames: 2.5.1
       rc-dropdown: 3.6.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -36213,14 +36301,14 @@ snapshots:
       mousetrap: 1.6.5
       utility-types: 3.11.0
 
-  '@antv/xflow-core@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@antv/xflow-core@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6': 1.35.0
-      '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/x6-react-components': 1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/xflow-hook': 1.0.52
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       immer: 9.0.21
       lodash: 4.17.21
@@ -36231,15 +36319,15 @@ snapshots:
       reflect-metadata: 0.1.14
       rxjs: 6.6.7
 
-  '@antv/xflow-extension@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@antv/xflow-extension@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6': 1.35.0
-      '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/x6-react-components': 1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/xflow-hook': 1.0.52
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       mana-syringe: 0.2.2
       moment: 2.30.1
@@ -36259,17 +36347,17 @@ snapshots:
     dependencies:
       toposort: 2.0.2
 
-  '@antv/xflow@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
+  '@antv/xflow@1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)':
     dependencies:
       '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/layout': 0.1.31
       '@antv/x6': 1.35.0
-      '@antv/x6-react-components': 1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/x6-react-components': 1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@antv/x6-react-shape': 1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@antv/xflow-extension': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
+      '@antv/xflow-core': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@antv/xflow-extension': 1.1.52(@ant-design/icons@5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-components@1.1.20(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6-react-shape@1.6.5(@antv/x6@1.35.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@antv/x6@1.35.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(classnames@2.5.1)(lodash@4.17.21)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(reflect-metadata@0.1.14)
       '@antv/xflow-hook': 1.1.52
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       lodash: 4.17.21
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -43599,17 +43687,26 @@ snapshots:
 
   '@rc-component/color-picker@1.5.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@ctrl/tinycolor': 3.6.1
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  '@rc-component/color-picker@2.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@ant-design/fast-color': 2.0.6
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   '@rc-component/context@1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@babel/runtime': 7.25.7
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -43619,9 +43716,9 @@ snapshots:
 
   '@rc-component/mutate-observer@1.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -43629,7 +43726,15 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  '@rc-component/qrcode@1.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -43637,19 +43742,19 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@rc-component/tour@1.15.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@rc-component/tour@1.15.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -43658,20 +43763,20 @@ snapshots:
       '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@rc-component/trigger@2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@rc-component/trigger@2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -46868,7 +46973,7 @@ snapshots:
 
   ansicolors@0.3.2: {}
 
-  antd-style@3.6.2(@types/react@18.3.0)(antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  antd-style@3.6.2(@types/react@18.3.0)(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@ant-design/cssinjs': 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@babel/runtime': 7.24.4
@@ -46878,7 +46983,7 @@ snapshots:
       '@emotion/serialize': 1.1.4
       '@emotion/server': 11.11.0(@emotion/css@11.11.2)
       '@emotion/utils': 1.2.1
-      antd: 5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       use-merge-value: 1.2.0(react@18.3.0)
     transitivePeerDependencies:
@@ -46942,58 +47047,59 @@ snapshots:
       - luxon
       - moment
 
-  antd@5.18.0(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@ant-design/colors': 7.0.2
-      '@ant-design/cssinjs': 1.20.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@ant-design/icons': 5.3.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/colors': 7.1.0
+      '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/cssinjs-utils': 1.1.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@ant-design/icons': 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/react-slick': 1.1.2(react@18.3.0)
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@ctrl/tinycolor': 3.6.1
-      '@rc-component/color-picker': 1.5.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/color-picker': 2.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@rc-component/mutate-observer': 1.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@rc-component/tour': 1.15.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/qrcode': 1.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/tour': 1.15.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       copy-to-clipboard: 3.3.3
-      dayjs: 1.11.10
-      qrcode.react: 3.1.0(react@18.3.0)
-      rc-cascader: 3.26.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      dayjs: 1.11.13
+      rc-cascader: 3.28.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-checkbox: 3.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-collapse: 3.7.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-dialog: 9.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-collapse: 3.8.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-dialog: 9.6.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-drawer: 7.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-dropdown: 4.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-field-form: 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-image: 7.8.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-input: 1.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-input-number: 9.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-mentions: 2.13.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-menu: 9.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-notification: 5.6.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-pagination: 4.0.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-picker: 4.5.0(date-fns@2.30.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-field-form: 2.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-image: 7.11.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-input: 1.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-input-number: 9.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-mentions: 2.16.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-menu: 9.15.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-notification: 5.6.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-pagination: 4.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-picker: 4.6.15(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-progress: 4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-rate: 2.13.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-segmented: 2.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-select: 14.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-slider: 10.6.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-segmented: 2.5.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-select: 14.15.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-slider: 11.1.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-steps: 6.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-switch: 4.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-table: 7.45.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-tabs: 15.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-textarea: 1.7.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-tooltip: 6.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-tree: 5.8.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-tree-select: 5.21.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-upload: 4.5.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-table: 7.47.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-tabs: 15.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-textarea: 1.8.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-tooltip: 6.2.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-tree: 5.9.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-tree-select: 5.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-upload: 4.8.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       scroll-into-view-if-needed: 3.1.0
-      throttle-debounce: 5.0.0
+      throttle-debounce: 5.0.2
     transitivePeerDependencies:
       - date-fns
       - luxon
@@ -47372,14 +47478,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.1)(react@18.3.0)):
+  babel-plugin-styled-components@2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.1)(react@16.14.0)):
     dependencies:
       '@babel/helper-annotate-as-pure': 7.22.5
       '@babel/helper-module-imports': 7.24.3
       '@babel/plugin-syntax-jsx': 7.24.1(@babel/core@7.24.4)
       lodash: 4.17.21
       picomatch: 2.3.1
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.1)(react@16.14.0)
+      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.1)(react@18.3.0)
     transitivePeerDependencies:
       - '@babel/core'
 
@@ -49137,6 +49243,8 @@ snapshots:
   dateformat@3.0.3: {}
 
   dayjs@1.11.10: {}
+
+  dayjs@1.11.13: {}
 
   debounce-fn@4.0.0:
     dependencies:
@@ -55460,7 +55568,7 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       rtl-css-js: 1.16.1
       stacktrace-js: 2.0.2
-      stylis: 4.3.2
+      stylis: 4.3.4
 
   nano-json-stream-parser@0.1.2: {}
 
@@ -57134,7 +57242,7 @@ snapshots:
       '@jest/schemas': 28.1.3
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
-      react-is: 18.3.0
+      react-is: 18.3.1
 
   pretty-format@29.7.0:
     dependencies:
@@ -57402,7 +57510,7 @@ snapshots:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
       dom-align: 1.12.4
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       resize-observer-polyfill: 1.5.1
@@ -57414,18 +57522,18 @@ snapshots:
       classnames: 2.5.1
       rc-select: 14.13.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-tree: 5.8.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-cascader@3.26.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-cascader@3.28.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       array-tree-filter: 2.1.0
       classnames: 2.5.1
-      rc-select: 14.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-tree: 5.8.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-select: 14.15.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-tree: 5.9.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57433,34 +57541,53 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-checkbox@3.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-collapse@3.7.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-collapse@3.8.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-dialog@9.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-dialog@9.6.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      classnames: 2.5.1
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57469,18 +57596,18 @@ snapshots:
       '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-drawer@7.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57489,16 +57616,16 @@ snapshots:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
       rc-trigger: 5.3.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-dropdown@4.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57506,15 +57633,26 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       async-validator: 4.2.5
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-field-form@2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-field-form@2.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/async-validator': 5.0.4
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-image@7.11.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      classnames: 2.5.1
+      rc-dialog: 9.6.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57524,19 +57662,8 @@ snapshots:
       '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       rc-dialog: 9.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-
-  rc-image@7.8.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
-    dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/portal': 1.1.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      classnames: 2.5.1
-      rc-dialog: 9.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57546,17 +57673,17 @@ snapshots:
       '@rc-component/mini-decimal': 1.1.0
       classnames: 2.5.1
       rc-input: 1.4.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-input-number@9.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-input-number@9.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/mini-decimal': 1.1.0
       classnames: 2.5.1
-      rc-input: 1.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-input: 1.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57564,61 +57691,61 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-input@1.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-input@1.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-mentions@2.11.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.25.7
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       rc-input: 1.4.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-menu: 9.13.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-textarea: 1.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-mentions@2.13.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-mentions@2.16.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-input: 1.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-menu: 9.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-textarea: 1.7.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-input: 1.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-menu: 9.15.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-textarea: 1.8.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-menu@9.13.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.25.7
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-overflow: 1.3.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-menu@9.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-menu@9.15.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-overflow: 1.3.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57626,15 +57753,15 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-motion@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-motion@2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57642,17 +57769,17 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-notification@5.6.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-notification@5.6.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57661,26 +57788,34 @@ snapshots:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-pagination@4.0.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-pagination@4.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-picker@4.4.2(date-fns@2.30.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.25.7
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       rc-overflow: 1.3.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
     optionalDependencies:
@@ -57689,27 +57824,27 @@ snapshots:
       luxon: 3.4.4
       moment: 2.30.1
 
-  rc-picker@4.5.0(date-fns@2.30.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-picker@4.6.15(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       rc-overflow: 1.3.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
     optionalDependencies:
       date-fns: 2.30.0
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       luxon: 3.4.4
       moment: 2.30.1
 
   rc-progress@4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57717,81 +57852,98 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-rate@2.13.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-resize-observer@1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       resize-observer-polyfill: 1.5.1
 
   rc-segmented@2.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-segmented@2.5.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-select@14.13.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.25.7
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-overflow: 1.3.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-virtual-list: 3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-select@14.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-select@14.15.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-overflow: 1.3.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-virtual-list: 3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-virtual-list: 3.14.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-slider@10.6.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-slider@11.1.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-steps@6.0.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-switch@4.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57801,18 +57953,18 @@ snapshots:
       '@rc-component/context': 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-virtual-list: 3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-table@7.45.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-table@7.47.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       '@rc-component/context': 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-virtual-list: 3.14.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -57823,21 +57975,21 @@ snapshots:
       classnames: 2.5.1
       rc-dropdown: 4.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-menu: 9.13.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-tabs@15.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-tabs@15.3.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
       rc-dropdown: 4.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-menu: 9.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-menu: 9.15.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57847,24 +57999,32 @@ snapshots:
       classnames: 2.5.1
       rc-input: 1.4.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-textarea@1.7.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-textarea@1.8.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-input: 1.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-input: 1.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-tooltip@6.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
-      '@rc-component/trigger': 2.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      classnames: 2.5.1
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-tooltip@6.2.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
@@ -57875,17 +58035,17 @@ snapshots:
       classnames: 2.5.1
       rc-select: 14.13.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-tree: 5.8.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-tree-select@5.21.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-tree-select@5.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-select: 14.14.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-tree: 5.8.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-select: 14.15.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-tree: 5.9.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57893,19 +58053,29 @@ snapshots:
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-virtual-list: 3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   rc-tree@5.8.7(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@babel/runtime': 7.24.6
+      '@babel/runtime': 7.25.7
       classnames: 2.5.1
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-virtual-list: 3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-virtual-list: 3.14.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-tree@5.9.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-virtual-list: 3.14.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57914,8 +58084,8 @@ snapshots:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
       rc-align: 4.0.15(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-motion: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-motion: 2.9.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57924,6 +58094,14 @@ snapshots:
       '@babel/runtime': 7.24.4
       classnames: 2.5.1
       rc-util: 5.39.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+
+  rc-upload@4.8.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      classnames: 2.5.1
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57949,12 +58127,19 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       react-is: 18.3.0
 
+  rc-util@5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@babel/runtime': 7.25.7
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-is: 18.3.1
+
   rc-virtual-list@3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -57963,7 +58148,7 @@ snapshots:
       '@babel/runtime': 7.25.7
       classnames: 2.5.1
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-util: 5.41.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-util: 5.43.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -60221,18 +60406,18 @@ snapshots:
     dependencies:
       inline-style-parser: 0.1.1
 
-  styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.1)(react@16.14.0):
+  styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.1)(react@18.3.0):
     dependencies:
       '@babel/helper-module-imports': 7.24.3
       '@babel/traverse': 7.24.1(supports-color@5.5.0)
       '@emotion/is-prop-valid': 1.2.2
       '@emotion/stylis': 0.8.5
       '@emotion/unitless': 0.7.5
-      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.1)(react@18.3.0))
+      babel-plugin-styled-components: 2.1.4(@babel/core@7.24.4)(styled-components@5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.1)(react@16.14.0))
       css-to-react-native: 3.2.0
       hoist-non-react-statics: 3.3.2
-      react: 16.14.0
-      react-dom: 16.14.0(react@16.14.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
       react-is: 18.3.1
       shallowequal: 1.1.0
       supports-color: 5.5.0
@@ -60678,6 +60863,8 @@ snapshots:
   throttle-debounce@3.0.1: {}
 
   throttle-debounce@5.0.0: {}
+
+  throttle-debounce@5.0.2: {}
 
   throttleit@1.0.1: {}
 
@@ -62009,7 +62196,7 @@ snapshots:
       prop-types: 15.8.1
       react: 16.14.0
       react-dom: 16.14.0(react@16.14.0)
-      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@16.14.0(react@16.14.0))(react-is@18.3.1)(react@16.14.0)
+      styled-components: 5.3.11(@babel/core@7.24.4)(react-dom@18.3.0(react@18.3.0))(react-is@18.3.1)(react@18.3.0)
       tslib: 1.14.1
     transitivePeerDependencies:
       - '@babel/core'
