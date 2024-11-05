@@ -26,475 +26,174 @@ const About: React.FC = () => {
       </Head>
       <div className="refine-prose">
         <CommonHeader hasSticky={true} />
-        <div
-          className={clsx(
-            "not-prose",
-            "w-full",
-            "landing-md:max-w-[740px]",
-            "landing-sm:max-w-[640px]",
-            "max-w-[544px]",
-            "pt-0 landing-sm:pt-8 landing-lg:pt-20",
-            "pb-8 landing-sm:pb-12 landing-md:pb-20 landing-lg:pb-[120px]",
-            "text-center landing-md:text-start",
-            "mx-auto",
-          )}
-        >
-          <h1
-            className={clsx(
-              "font-semibold",
-              "!mb-0",
-              "text-gray-900 dark:text-gray-0",
-              "text-[32px] leading-10",
-            )}
-          >
-            We&apos;re helping organizations to build better web applications,
-            in{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#0FBDBD] to-[#26D97F]">
-              less time
-            </span>
-            , with{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#FF9933] to-[#FF4C4D]">
-              fewer resources
-            </span>
-            .
-          </h1>
-        </div>
-
-        <div className={clsx("max-w-[1120px]", "mx-auto w-full")}>
-          <div
-            className={clsx(
-              "flex flex-col xl:flex-row",
-              "gap-6 landing-sm:gap-12 xl:gap-16",
-            )}
-          >
-            <div
-              className={clsx(
-                "not-prose",
-                "mx-auto flex items-center justify-center",
-                "w-full",
-                "px-6 landing-sm:p-0",
-                "max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[912px] landing-xl:max-w-[576px]",
-              )}
-            >
-              <img
-                className="rounded-[12px]"
-                src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/about2.png"
-                alt="Refine App"
-              />
-            </div>
-            <div
-              className={clsx(
-                "mx-auto flex flex-col xl:justify-center",
-                "w-full",
-                "max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[912px] landing-xl:max-w-[480px]",
-              )}
-            >
-              <div
-                className={clsx(
-                  "not-prose",
-                  "px-6 sm:px-6 md:px-10 xl:px-0",
-                  "dark:text-gray-300 text-gray-600",
-                )}
-              >
-                <p className="text-xs sm:text-base mb-5">
-                  Shortly after its initial release on September 2021, Refine
-                  has gained attraction of open-source community and has become
-                  increasingly popular among web application frameworks.
-                </p>
-                <p className="text-xs sm:text-base mb-5">
-                  With the aim of sustaining the growth and expanding the user
-                  base, the project was backed by prominent VC’s and angel
-                  investors on May 2022.
-                </p>
-                <p className="text-xs sm:text-base mb-5">
-                  Today, the US-based company has an international team of 10+
-                  members leading the development of the open-core and building
-                  new products for the ecosystem.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={clsx(
-            "max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1120px]",
-            "w-full",
-            "mx-auto",
-            "mt-8 landing-sm:mt-12 landing-md:mt-20",
-            "pl-6 pr-6 landing-md:pr-0 landing-md:pl-10",
-          )}
-        >
-          <div
-            className={clsx(
-              "w-full",
-              "flex flex-col landing-md:flex-row",
-              "items-end",
-              "gap-6 landing-md:gap-10",
-            )}
-          >
-            <div
-              className={clsx(
-                "flex-shrink-0",
-                "landing-md:w-[382px] landing-lg:w-[508px]",
-                "flex flex-col gap-6 lg:flex-row",
-              )}
-            >
-              <div>
-                <p className="mb-6 font-semibold text-gray-900 dark:text-white text-2xl">
-                  Open-source contributions have always been a major part of
-                  refine’s success.
-                </p>
-
-                <p className="mb-0 text-xs sm:text-base text-gray-900 dark:text-gray-300">
-                  We are grateful for all contributors who are developing core
-                  features, making bug-fixes, building community extensions,
-                  writing documentation, reporting issues and giving their
-                  constructive feedback.
-                </p>
-              </div>
-            </div>
-            <div className="flex w-full justify-end">
-              <div
-                className={clsx(
-                  "flex flex-col justify-center",
-                  "landing-sm:grid landing-sm:grid-cols-[repeat(2,276px)] landing-md:grid-cols-[repeat(2,204px)]",
-                  "gap-4 landing-lg:gap-6",
-                  "landing-lg:pl-8",
-                  "shrink-0",
-                  "w-full",
-                )}
-              >
-                <SocialButton type="discord" />
-                <SocialButton type="github" />
-                <SocialButton type="reddit" />
-                <SocialButton type="x" />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className={clsx(
-            "not-prose",
-            "landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
-            "max-w-[514px]",
-            "w-full mx-auto",
-          )}
-        >
-          <h4
-            className={clsx(
-              "text-[32px] leading-10",
-              "text-center text-gray-900 dark:text-white",
-              "mt-12 landing-md:mt-20",
-              "mb-0",
-              "font-semibold",
-            )}
-          >
-            Our Team
-          </h4>
-
-          <div
-            className={clsx(
-              "flex flex-wrap",
-              "justify-center",
-              "gap-8 landing-md:gap-10",
-              "align-top",
-            )}
-          >
-            {team.map(({ name, avatar, role1, linkedin }) => (
-              <a
-                href={linkedin}
-                target="_blank"
-                rel="noreferrer"
-                key={name}
-                className={clsx(
-                  "not-prose",
-                  "block",
-                  "flex justify-start flex-col text-center not-prose",
-                  "w-[150px] landing-md:w-[250px]",
-                  "hover:no-underline no-underline",
-                )}
-              >
-                <img
-                  srcSet={`${avatar} 1500w`}
-                  src={avatar}
-                  alt={name}
-                  className="w-full m-0 mb-6"
-                />
-                <span
-                  className={clsx(
-                    "text-xs leading-4",
-                    "lg:text-base lg:leading-6",
-                    "text-gray-900 dark:text-gray-0 font-semibold",
-                  )}
-                >
-                  {name}
-                </span>
-                <span
-                  className={clsx(
-                    "text-xs leading-4",
-                    "lg:text-base lg:leading-6",
-                    "text-gray-500 dark:text-gray-400",
-                  )}
-                >
-                  {role1}
-                </span>
-              </a>
-            ))}
-          </div>
-        </div>
-        <div className={clsx("w-full mx-auto", "not-prose")}>
-          <h4
-            className={clsx(
-              "text-[32px] leading-10",
-              "text-center text-gray-900 dark:text-white",
-              "mt-12 landing-md:mt-20",
-              "mb-12",
-              "font-semibold",
-            )}
-          >
-            Backed by
-          </h4>
-
-          <div
-            className={clsx(
-              "flex justify-center items-center w-full gap-10",
-              "flex-wrap",
-              "px-6",
-              "mb-12",
-            )}
-          >
-            <div
-              className={clsx(
-                "flex flex-col justify-center items-center gap-6",
-              )}
-            >
-              <div
-                className={clsx(
-                  "flex justify-center items-center",
-                  "w-[144px] h-[144px]",
-                  "md:w-[192px] md:h-[192px]",
-                  "rounded-full",
-                  "bg-gray-900 dark:bg-gray-0",
-                  "shrink-0",
-                )}
-              >
-                <Istanbul500Icon className="text-gray-0 dark:text-gray-700 h-auto w-[102px] md:w-[136px]" />
-              </div>
-              <span
-                className={clsx(
-                  "text-xs md:text-base",
-                  "text-gray-900 dark:text-gray-0",
-                  "font-semibold",
-                )}
-              >
-                500 Emerging Europe
-              </span>
-            </div>
-
-            <div
-              className={clsx(
-                "flex flex-col justify-center items-center gap-4",
-              )}
-            >
-              <div
-                className={clsx(
-                  "flex justify-center items-center",
-                  "w-[144px] h-[144px]",
-                  "md:w-[192px] md:h-[192px]",
-                  "rounded-full",
-                  "bg-gray-900 dark:bg-gray-0",
-                  "shrink-0",
-                )}
-              >
-                <YCombinatorCircleIcon />
-              </div>
-              <span
-                className={clsx(
-                  "text-xs md:text-base",
-                  "text-gray-900 dark:text-gray-0",
-                  "font-semibold",
-                )}
-              >
-                Y Combinator
-              </span>
-            </div>
-
-            <div
-              className={clsx(
-                "flex flex-col justify-center items-center gap-6",
-              )}
-            >
-              <div
-                className={clsx(
-                  "flex justify-center items-center",
-                  "w-[144px] h-[144px]",
-                  "md:w-[192px] md:h-[192px]",
-                  "shrink-0",
-                )}
-              >
-                <SenovoIcon />
-              </div>
-              <span
-                className={clsx(
-                  "text-xs md:text-base",
-                  "text-gray-900 dark:text-gray-0",
-                  "font-semibold",
-                )}
-              >
-                Senovo
-              </span>
-            </div>
-          </div>
-
-          <div
-            className={clsx(
-              "w-full mx-auto",
-              "max-w-[456px] landing-sm:max-w-[720px] landing-lg:max-w-max",
-              "flex flex-wrap",
-              "px-4",
-              "gap-x-8 landing-sm:gap-x-12 landing-md:gap-x-12",
-              "gap-y-6",
-              "align-top",
-              "items-start justify-center",
-            )}
-          >
-            {backedBy.map(({ name, avatar, role1, role2 }) => (
-              <div
-                key={name}
-                className={clsx(
-                  "h-full",
-                  "flex justify-start flex-col text-center",
-                  "w-[120px] landing-sm:w-[160px]",
-                )}
-              >
-                <CommonThemedImage
-                  className="w-full not-prose m-0 mb-6"
-                  srcDark={avatar.dark}
-                  srcLight={avatar.light}
-                  srcSetDark={`${avatar.dark} 1500w`}
-                  srcSetLight={`${avatar.light} 1500w`}
-                  alt={name}
-                />
-                <span
-                  className={clsx(
-                    "text-xs leading-4",
-                    "lg:text-base lg:leading-6",
-                    "text-gray-900 dark:text-gray-0 font-semibold",
-                  )}
-                >
-                  {name}
-                </span>
-                <span
-                  className={clsx(
-                    "text-xs leading-4",
-                    "lg:text-base lg:leading-6",
-                    "text-gray-500 dark:text-gray-400",
-                  )}
-                >
-                  {role1}
-                </span>
-                {role2 && (
-                  <span
-                    className={clsx(
-                      "text-xs",
-                      "landing-sm:text-sm",
-                      "landing-lg:text-base",
-                      "text-gray-500 dark:text-gray-400",
-                    )}
-                  >
-                    {role2}
-                  </span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-        <div
-          className={clsx(
-            "px-6 py-12 landing-md:py-20",
-            "mx-auto",
-            "w-full",
-            "not-prose",
-          )}
-        >
-          <h4
-            className={clsx(
-              "text-[32px] leading-10",
-              "text-center text-gray-900 dark:text-white",
-              "mb-12 mt-0",
-              "font-semibold",
-            )}
-          >
-            We are Here
-          </h4>
-
-          <div
-            className={clsx(
-              "flex flex-col landing-lg:flex-row-reverse",
-              "justify-center items-start landing-sm:items-center",
-              "gap-6 landing-lg:gap-20",
-            )}
-          >
-            <div className="max-w-[792px] w-full shrink-0">
-              <Link to="https://goo.gl/maps/D4NZ5gn6VsWaRtXT6">
-                <img
-                  className="m-0 p-0"
-                  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/we-are-here.png"
-                  alt="Refine Office"
-                />
-              </Link>
-            </div>
-            <div
-              className={clsx(
-                "flex flex-col landing-sm:flex-row landing-lg:flex-col",
-                "justify-start items-start",
-                "gap-6 landing-sm:gap-10",
-              )}
-            >
-              <div className="flex w-max items-center justify-center gap-6">
-                <div
-                  className={clsx(
-                    "flex justify-center items-center",
-                    "w-[48px] h-[48px]",
-                    "rounded-full ",
-                    "bg-refine-red/20",
-                    "shrink-0",
-                  )}
-                >
-                  <MarkerIcon className="text-refine-red" />
-                </div>
-                <span className="text-gray-600 dark:text-gray-400">
-                  256 Chapman Road STE 105-4 <br />
-                  Newark, DE 19702
-                </span>
-              </div>
-              <div className="flex justify-center items-center gap-6">
-                <div
-                  className={clsx(
-                    "flex justify-center items-center",
-                    "w-[48px] h-[48px]",
-                    "rounded-full ",
-                    "dark:bg-refine-blue-alt/20 bg-refine-blue/20",
-                    "shrink-0",
-                  )}
-                >
-                  <MailIcon className="dark:text-refine-blue-alt text-refine-blue" />
-                </div>
-                <a
-                  href="mailto:info@refine.dev"
-                  className="text-gray-600 dark:text-gray-400 hover:no-underline no-underline"
-                >
-                  info@refine.dev
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Hero />
+        <AboutUs />
+        <Socials />
+        <OurTeam />
+        <BackedBy />
+        <WeAreHere />
         <BlogFooter />
       </div>
     </>
+  );
+};
+
+const Hero = () => {
+  return (
+    <div
+      className={clsx(
+        "not-prose",
+        "w-full",
+        "landing-md:max-w-[740px]",
+        "landing-sm:max-w-[640px]",
+        "max-w-[544px]",
+        "pt-0 landing-sm:pt-8 landing-lg:pt-20",
+        "pb-8 landing-sm:pb-12 landing-md:pb-20 landing-lg:pb-[120px]",
+        "text-center landing-md:text-start",
+        "mx-auto",
+      )}
+    >
+      <h1
+        className={clsx(
+          "font-semibold",
+          "!mb-0",
+          "text-gray-900 dark:text-gray-0",
+          "text-[32px] leading-10",
+        )}
+      >
+        We&apos;re helping organizations to build better web applications, in{" "}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#0FBDBD] to-[#26D97F]">
+          less time
+        </span>
+        , with{" "}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r text-gradient-to-r from-[#FF9933] to-[#FF4C4D]">
+          fewer resources
+        </span>
+        .
+      </h1>
+    </div>
+  );
+};
+
+const AboutUs = () => {
+  return (
+    <div className={clsx("max-w-[1120px]", "mx-auto w-full")}>
+      <div
+        className={clsx(
+          "flex flex-col xl:flex-row",
+          "gap-6 landing-sm:gap-12 xl:gap-16",
+        )}
+      >
+        <div
+          className={clsx(
+            "not-prose",
+            "mx-auto flex items-center justify-center",
+            "w-full",
+            "px-6 landing-sm:p-0",
+            "max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[912px] landing-xl:max-w-[576px]",
+          )}
+        >
+          <img
+            className="rounded-[12px]"
+            src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/about2.png"
+            alt="Refine App"
+          />
+        </div>
+        <div
+          className={clsx(
+            "mx-auto flex flex-col xl:justify-center",
+            "w-full",
+            "max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[912px] landing-xl:max-w-[480px]",
+          )}
+        >
+          <div
+            className={clsx(
+              "not-prose",
+              "px-6 sm:px-6 md:px-10 xl:px-0",
+              "dark:text-gray-300 text-gray-600",
+            )}
+          >
+            <p className="text-xs sm:text-base mb-5">
+              Shortly after its initial release on September 2021, Refine has
+              gained attraction of open-source community and has become
+              increasingly popular among web application frameworks.
+            </p>
+            <p className="text-xs sm:text-base mb-5">
+              With the aim of sustaining the growth and expanding the user base,
+              the project was backed by prominent VC’s and angel investors on
+              May 2022.
+            </p>
+            <p className="text-xs sm:text-base mb-5">
+              Today, the US-based company has an international team of 10+
+              members leading the development of the open-core and building new
+              products for the ecosystem.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Socials = () => {
+  return (
+    <div
+      className={clsx(
+        "max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1120px]",
+        "w-full",
+        "mx-auto",
+        "mt-8 landing-sm:mt-12 landing-md:mt-20",
+        "pl-6 pr-6 landing-md:pr-0 landing-md:pl-10",
+      )}
+    >
+      <div
+        className={clsx(
+          "w-full",
+          "flex flex-col landing-md:flex-row",
+          "items-end",
+          "gap-6 landing-md:gap-10",
+        )}
+      >
+        <div
+          className={clsx(
+            "flex-shrink-0",
+            "landing-md:w-[382px] landing-lg:w-[508px]",
+            "flex flex-col gap-6 lg:flex-row",
+          )}
+        >
+          <div>
+            <p className="mb-6 font-semibold text-gray-900 dark:text-white text-2xl">
+              Open-source contributions have always been a major part of
+              refine’s success.
+            </p>
+
+            <p className="mb-0 text-xs sm:text-base text-gray-900 dark:text-gray-300">
+              We are grateful for all contributors who are developing core
+              features, making bug-fixes, building community extensions, writing
+              documentation, reporting issues and giving their constructive
+              feedback.
+            </p>
+          </div>
+        </div>
+        <div className="flex w-full justify-end">
+          <div
+            className={clsx(
+              "flex flex-col justify-center",
+              "landing-sm:grid landing-sm:grid-cols-[repeat(2,276px)] landing-md:grid-cols-[repeat(2,204px)]",
+              "gap-4 landing-lg:gap-6",
+              "landing-lg:pl-8",
+              "shrink-0",
+              "w-full",
+            )}
+          >
+            <SocialButton type="discord" />
+            <SocialButton type="github" />
+            <SocialButton type="reddit" />
+            <SocialButton type="x" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -626,6 +325,335 @@ const SocialButton = (props: {
         </div>
       </div>
     </a>
+  );
+};
+
+const OurTeam = () => {
+  return (
+    <div
+      className={clsx(
+        "not-prose",
+        "landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
+        "max-w-[514px]",
+        "w-full mx-auto",
+      )}
+    >
+      <h4
+        className={clsx(
+          "text-[32px] leading-10",
+          "text-center text-gray-900 dark:text-white",
+          "mt-12 landing-md:mt-20",
+          "mb-0",
+          "font-semibold",
+        )}
+      >
+        Our Team
+      </h4>
+
+      <div
+        className={clsx(
+          "flex flex-wrap",
+          "justify-center",
+          "gap-8 landing-md:gap-10",
+          "align-top",
+          "not-prose",
+        )}
+      >
+        {team.map(({ name, avatar, role1, linkedin }) => (
+          <a
+            href={linkedin}
+            target="_blank"
+            rel="noreferrer"
+            key={name}
+            className={clsx(
+              "not-prose",
+              "block",
+              "flex justify-start flex-col text-center not-prose",
+              "w-[150px] landing-md:w-[250px]",
+              "hover:no-underline no-underline",
+            )}
+          >
+            <img
+              srcSet={`${avatar} 1500w`}
+              src={avatar}
+              alt={name}
+              className="w-full m-0 mb-6"
+            />
+            <div
+              className={clsx(
+                "text-xs leading-4",
+                "lg:text-base lg:leading-6",
+                "text-gray-900 dark:text-gray-0 font-semibold",
+              )}
+            >
+              {name}
+            </div>
+            <div
+              className={clsx(
+                "text-xs leading-4",
+                "lg:text-base lg:leading-6",
+                "text-gray-500 dark:text-gray-400",
+              )}
+            >
+              {role1}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const BackedBy = () => {
+  return (
+    <div className={clsx("w-full mx-auto", "not-prose")}>
+      <h4
+        className={clsx(
+          "text-[32px] leading-10",
+          "text-center text-gray-900 dark:text-white",
+          "mt-12 landing-md:mt-20",
+          "mb-12",
+          "font-semibold",
+        )}
+      >
+        Backed by
+      </h4>
+
+      <div
+        className={clsx(
+          "flex justify-center items-center w-full gap-10",
+          "flex-wrap",
+          "px-6",
+          "mb-12",
+        )}
+      >
+        <div
+          className={clsx("flex flex-col justify-center items-center gap-6")}
+        >
+          <div
+            className={clsx(
+              "flex justify-center items-center",
+              "w-[144px] h-[144px]",
+              "md:w-[192px] md:h-[192px]",
+              "rounded-full",
+              "bg-gray-900 dark:bg-gray-0",
+              "shrink-0",
+            )}
+          >
+            <Istanbul500Icon className="text-gray-0 dark:text-gray-700 h-auto w-[102px] md:w-[136px]" />
+          </div>
+          <span
+            className={clsx(
+              "text-xs md:text-base",
+              "text-gray-900 dark:text-gray-0",
+              "font-semibold",
+            )}
+          >
+            500 Emerging Europe
+          </span>
+        </div>
+
+        <div
+          className={clsx("flex flex-col justify-center items-center gap-4")}
+        >
+          <div
+            className={clsx(
+              "flex justify-center items-center",
+              "w-[144px] h-[144px]",
+              "md:w-[192px] md:h-[192px]",
+              "rounded-full",
+              "bg-gray-900 dark:bg-gray-0",
+              "shrink-0",
+            )}
+          >
+            <YCombinatorCircleIcon />
+          </div>
+          <span
+            className={clsx(
+              "text-xs md:text-base",
+              "text-gray-900 dark:text-gray-0",
+              "font-semibold",
+            )}
+          >
+            Y Combinator
+          </span>
+        </div>
+
+        <div
+          className={clsx("flex flex-col justify-center items-center gap-6")}
+        >
+          <div
+            className={clsx(
+              "flex justify-center items-center",
+              "w-[144px] h-[144px]",
+              "md:w-[192px] md:h-[192px]",
+              "shrink-0",
+            )}
+          >
+            <SenovoIcon />
+          </div>
+          <span
+            className={clsx(
+              "text-xs md:text-base",
+              "text-gray-900 dark:text-gray-0",
+              "font-semibold",
+            )}
+          >
+            Senovo
+          </span>
+        </div>
+      </div>
+
+      <div
+        className={clsx(
+          "w-full mx-auto",
+          "max-w-[456px] landing-sm:max-w-[720px] landing-lg:max-w-max",
+          "flex flex-wrap",
+          "px-4",
+          "gap-x-8 landing-sm:gap-x-12 landing-md:gap-x-12",
+          "gap-y-6",
+          "align-top",
+          "items-start justify-center",
+        )}
+      >
+        {backedBy.map(({ name, avatar, role1, role2 }) => (
+          <div
+            key={name}
+            className={clsx(
+              "h-full",
+              "flex justify-start flex-col text-center",
+              "w-[120px] landing-sm:w-[160px]",
+            )}
+          >
+            <CommonThemedImage
+              className="w-full not-prose m-0 mb-6"
+              srcDark={avatar.dark}
+              srcLight={avatar.light}
+              srcSetDark={`${avatar.dark} 1500w`}
+              srcSetLight={`${avatar.light} 1500w`}
+              alt={name}
+            />
+            <span
+              className={clsx(
+                "text-xs leading-4",
+                "lg:text-base lg:leading-6",
+                "text-gray-900 dark:text-gray-0 font-semibold",
+              )}
+            >
+              {name}
+            </span>
+            <span
+              className={clsx(
+                "text-xs leading-4",
+                "lg:text-base lg:leading-6",
+                "text-gray-500 dark:text-gray-400",
+              )}
+            >
+              {role1}
+            </span>
+            {role2 && (
+              <span
+                className={clsx(
+                  "text-xs",
+                  "landing-sm:text-sm",
+                  "landing-lg:text-base",
+                  "text-gray-500 dark:text-gray-400",
+                )}
+              >
+                {role2}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const WeAreHere = () => {
+  return (
+    <div
+      className={clsx(
+        "px-6 py-12 landing-md:py-20",
+        "mx-auto",
+        "w-full",
+        "not-prose",
+      )}
+    >
+      <h4
+        className={clsx(
+          "text-[32px] leading-10",
+          "text-center text-gray-900 dark:text-white",
+          "mb-12 mt-0",
+          "font-semibold",
+        )}
+      >
+        We are Here
+      </h4>
+
+      <div
+        className={clsx(
+          "flex flex-col landing-lg:flex-row-reverse",
+          "justify-center items-start landing-sm:items-center landing-lg:items-start ",
+          "gap-6 landing-lg:gap-20",
+        )}
+      >
+        <div className="max-w-[792px] w-full shrink-0">
+          <Link to="https://goo.gl/maps/D4NZ5gn6VsWaRtXT6">
+            <img
+              className="m-0 p-0"
+              src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/we-are-here.png"
+              alt="Refine Office"
+            />
+          </Link>
+        </div>
+        <div
+          className={clsx(
+            "flex flex-col landing-sm:flex-row landing-lg:flex-col",
+            "justify-start items-start",
+            "gap-6 landing-sm:gap-10",
+            "landing-lg:mt-8",
+          )}
+        >
+          <div className="flex w-max items-center justify-center gap-6">
+            <div
+              className={clsx(
+                "flex justify-center items-center",
+                "w-[48px] h-[48px]",
+                "rounded-full ",
+                "bg-refine-red/20",
+                "shrink-0",
+              )}
+            >
+              <MarkerIcon className="text-refine-red" />
+            </div>
+            <span className="text-gray-600 dark:text-gray-400">
+              256 Chapman Road STE 105-4 <br />
+              Newark, DE 19702
+            </span>
+          </div>
+          <div className="flex justify-center items-center gap-6">
+            <div
+              className={clsx(
+                "flex justify-center items-center",
+                "w-[48px] h-[48px]",
+                "rounded-full ",
+                "dark:bg-refine-blue-alt/20 bg-refine-blue/20",
+                "shrink-0",
+              )}
+            >
+              <MailIcon className="dark:text-refine-blue-alt text-refine-blue" />
+            </div>
+            <a
+              href="mailto:info@refine.dev"
+              className="text-gray-600 dark:text-gray-400 hover:no-underline no-underline"
+            >
+              info@refine.dev
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
