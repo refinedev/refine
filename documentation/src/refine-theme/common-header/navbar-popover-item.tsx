@@ -47,6 +47,7 @@ export const NavbarPopoverItem: React.FC<NavbarPopoverItemProps> = ({
               "inline-flex items-center",
               "text-sm leading-6",
               "font-normal",
+              "whitespace-nowrap",
             )}
           >
             <span
