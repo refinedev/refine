@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-hook-form": minor
+"@refinedev/react-hook-form": patch
 ---
 
 fix: onChange handler `autoSave` check in `useForm`
