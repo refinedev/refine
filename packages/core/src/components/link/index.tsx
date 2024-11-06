@@ -33,9 +33,6 @@ const LinkComponent = <TProps = {}>(
   const goFunction = useGo();
 
   let resolvedTo = "";
-  if ("to" in props) {
-    resolvedTo = props.to;
-  }
   if ("go" in props) {
     if (!routerContext?.go) {
       warnOnce(
@@ -44,6 +41,9 @@ const LinkComponent = <TProps = {}>(
       );
     }
     resolvedTo = goFunction({ ...props.go, type: "path" }) as string;
+  }
+  if ("to" in props) {
+    resolvedTo = props.to;
   }
 
   if (LinkFromContext) {
