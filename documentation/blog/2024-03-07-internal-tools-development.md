@@ -32,7 +32,7 @@ Steps we'll cover:
 
 ## Business Process & Workflow Automation: Traditional Internal Tools
 
-Historically, internal tools such as Finance, Accounting and HR software were run offline on desktop based business computers. Major providers of enterprise software are SAP, Oracle, Microsoft, Salesforce, HubSpot and Zoho. They offer comprehesive suites of on-premise solutions that include ERP software, CRM systems, CMSs and host of other domain specific tools. Since the dot-com boom of 2000s, these off-the-shelf solutions are also available via cloud hosted web applications.
+Historically, internal tools such as Finance, Accounting and HR software were run offline on desktop based business computers. Major providers of enterprise software are SAP, Oracle, Microsoft, Salesforce, HubSpot and Zoho. They offer comprehensive suites of on-premise solutions that include ERP software, CRM systems, CMSs and host of other domain specific tools. Since the dot-com boom of 2000s, these off-the-shelf solutions are also available via cloud hosted web applications.
 
 ### Enterprise Internal Tools: Their Types and Features
 
