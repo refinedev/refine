@@ -1,5 +1,6 @@
 ---
 title: <Link />
+source: packages/core/src/components/link/index.tsx
 ---
 
 `<Link />` is a component that is used to navigate to different pages in your application.

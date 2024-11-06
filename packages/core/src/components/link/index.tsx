@@ -13,9 +13,7 @@ type LinkPropsWithTo = {
 };
 
 export type LinkProps<TProps = {}> = React.PropsWithChildren<
-  (LinkPropsWithGo | LinkPropsWithTo) &
-    React.AnchorHTMLAttributes<HTMLAnchorElement> &
-    TProps
+  (LinkPropsWithGo | LinkPropsWithTo) & TProps
 >;
 
 /**
@@ -25,7 +23,7 @@ export type LinkProps<TProps = {}> = React.PropsWithChildren<
  */
 const LinkComponent = <TProps = {}>(
   props: LinkProps<TProps>,
-  ref: Ref<HTMLAnchorElement>,
+  ref: Ref<Element>,
 ) => {
   const routerContext = useContext(RouterContext);
   const LinkFromContext = routerContext?.Link;
@@ -70,5 +68,5 @@ const LinkComponent = <TProps = {}>(
 };
 
 export const Link = forwardRef(LinkComponent) as <T = {}>(
-  props: LinkProps<T> & { ref?: Ref<HTMLAnchorElement> },
+  props: LinkProps<T> & { ref?: Ref<Element> },
 ) => ReturnType<typeof LinkComponent>;
