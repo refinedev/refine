@@ -48,6 +48,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const {
@@ -107,7 +108,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
               return onSubmit(data);
             }
 
-            return mutate(data);
+            return mutate({ ...mutationVariables, ...data });
           })}
         >
           <TextField

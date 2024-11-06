@@ -42,8 +42,8 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@ant-design/icons": "5.0.1",
-    "@ant-design/pro-layout": "7.17.12",
+    "@ant-design/icons": "^5.5.1",
+    "@ant-design/pro-layout": "^7.21.1",
     "@refinedev/ui-types": "^1.22.9",
     "@tanstack/react-query": "^4.10.1",
     "antd": "^5.17.0",

@@ -46,6 +46,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -80,6 +81,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 leftIcon={<>{provider?.icon}</>}
                 onClick={() =>
                   mutate({
+                    ...mutationVariables,
                     providerName: provider.name,
                   })
                 }
@@ -136,7 +138,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               return onSubmit(data);
             }
 
-            return mutate(data);
+            return mutate({ ...mutationVariables, ...data });
           })}
         >
           <FormControl mt="6" isInvalid={!!errors?.email}>

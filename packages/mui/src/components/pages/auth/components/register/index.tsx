@@ -53,6 +53,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const {
@@ -114,6 +115,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                   }}
                   onClick={() =>
                     registerMutate({
+                      ...mutationVariables,
                       providerName: provider.name,
                     })
                   }
@@ -165,7 +167,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 return onSubmit(data);
               }
 
-              return registerMutate(data);
+              return registerMutate({ ...mutationVariables, ...data });
             })}
           >
             <TextField
