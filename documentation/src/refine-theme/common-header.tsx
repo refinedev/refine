@@ -13,6 +13,7 @@ import { CommonThemeToggle } from "./common-theme-toggle";
 import { TopAnnouncement } from "./top-announcement";
 
 import { LandingGithubStarButton } from "./landing-github-star-button";
+import SearchBar from "../theme/SearchBar";
 
 type Props = {
   hasSticky?: boolean;
@@ -109,11 +110,11 @@ export const CommonHeader = ({
                 "hidden landing-md:flex",
                 "items-center",
                 "justify-end",
-                "gap-4",
-                "w-[130px]",
-                "landing-lg:w-[200px]",
+                "gap-2",
+                "w-[314px]",
               )}
             >
+              <SearchBar variant="landing" />
               <LandingGithubStarButton />
               <CommonThemeToggle />
             </div>
