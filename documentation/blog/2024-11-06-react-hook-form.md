@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-03-26-react-hook
 hide_table_of_contents: false
 ---
 
+**This article was last updated on November 6, 2024 to include optimization techniques for managing large forms with useFieldArray() and strategies for integrating custom input components using the Controller API in React Hook Form.**
+
 ## Introduction
 
 Forms are crucial part of web applications. Managing form data, overarching states, field level states, validations, errors and submission states are critical aspects of form management in data intensive web applications.
@@ -15,6 +17,22 @@ Forms are crucial part of web applications. Managing form data, overarching stat
 Form management from scratch in React typically involves the hype for using controlled form fields thanks to the JSX syntax and React's inherent re-rendering behavior with local state updates. Simple forms are easy to be built with a few states such as data, submission success, loading and error.
 
 For more advanced form manipulation, we can use battle tested form management solutions like React Hook Form.
+
+Steps we'll cover in this post:
+
+- [What is React Hook Form ?](#what-is-react-hook-form-)
+  - [How React Hook Form Works](#how-react-hook-form-works)
+- [Starter Files: A Regular React Form](#starter-files-a-regular-react-form)
+- [Better Form Management with React Hook Form](#better-form-management-with-react-hook-form)
+  - [How to Build Advanced Forms with RHF `useForm()` Hook](#how-to-build-advanced-forms-with-rhf-useform-hook)
+  - [React Hook Form: How to Configure and Use the `useForm()` Hook](#react-hook-form-how-to-configure-and-use-the-useform-hook)
+  - [React Hook Form: How to Register a Field](#react-hook-form-how-to-register-a-field)
+  - [React Hook Form: How to Display Validation Errors](#react-hook-form-how-to-display-validation-errors)
+  - [Handling Submission in React Hook Formxx](#handling-submission-in-react-hook-formxx)
+  - [Setting Default Values and Resetting Form Fields](#setting-default-values-and-resetting-form-fields)
+  - [Watching Form Fields in React Hook Form with `watch()`](#watching-form-fields-in-react-hook-form-with-watch)
+- [Large Forms in React Hook Form with useFieldArray()](#large-forms-in-react-hook-form-with-usefieldarray)
+- [Making Custom Input Components with React Hook Form’s Controller](#making-custom-input-components-with-react-hook-forms-controller)
 
 ## Overview
 
@@ -959,6 +977,64 @@ const content = watch("content");
 
 This way, when we only need to watch a specific field, we can prevent re-renders originating from other fields.
 
+## Large Forms in React Hook Form with useFieldArray()
+
+I noticed one pretty handy approach to handling big forms in React Hook Form, especially when dealing with dynamic lists or groups of fields that you want to add and remove as easily as possible. In fact, `useFieldArray()` from React Hook Form is meant for just that, and it enhances form performance by effectively handling arrays of fields.
+
+### Using `useFieldArray()` for Better Performance in Large Forms
+
+When we have forms that require users to add or remove multiple sets of input fields—like a set of addresses, items, or complex form sections—`useFieldArray()` can help manage those fields without causing too many re-renders. This is important for maintaining responsiveness of the form as the number of fields increases.
+
+```javascript
+import { useForm, useFieldArray } from "react-hook-form";
+
+const LargeForm = () => {
+  const { control, register, handleSubmit } = useForm({
+    defaultValues: { items: [{ name: "", quantity: 1 }] },
+  });
+
+  const { fields, append, remove } = useFieldArray({ control, name: "items" });
+
+  const onSubmit = (data) => {
+    console.log("Form Data:", data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      {fields.map((field, index) => (
+        <div key={field.id}>
+          <input {...register(`items.${index}.name`)} placeholder="Item Name" />
+          <input
+            type="number"
+            {...register(`items.${index}.quantity`)}
+            placeholder="Quantity"
+          />
+          <button type="button" onClick={() => remove(index)}>
+            Remove
+          </button>
+        </div>
+      ))}
+      <button type="button" onClick={() => append({ name: "", quantity: 1 })}>
+        Add Item
+      </button>
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+Key Points on `useFieldArray()`:
+
+**Efficient Field Management:** This hook saves you the pain of managing dynamic field changes by keeping track of each field’s state in an array, which is helpful for repeating items. For example, in an order form, each item can be added, removed, or modified without causing a full re-render of the entire form.
+
+**Better Performance with Reduced Re-renders:** React Hook Form optimizes this by re-rendering components that have field-specific dependencies rather than re-rendering the entire form each time an item is added or removed. This helps larger forms remain responsive, even with multiple field groups.
+
+**Simple Integration for Dynamic Inputs:** The helper functions append and remove make it easy to add or remove fields. This makes useFieldArray() ideal for forms that need flexibility, like adding multiple addresses or filling out lists like skills or experiences in profile forms.
+
+**Real-Life Applications:** This hook is useful for forms with repeated inputs, such as order forms, sections with child elements, or any scenario where users can dynamically add or remove entries. It reduces code overhead and keeps form logic organized.
+
+Using `useFieldArray()` helps avoid issues common in large forms in React, like sluggish performance or excessive re-renders. If we’re building a complex form that requires dynamic input lists, this hook can save time and effort. Let me know if you’d like to go over it together or if you’re interested in more examples on different use cases.
+
 ### React Hook Form: Changing Validation Strategies with `mode` Config
 
 So far, we have run the first validation on the `onChange` field event. We have achieved this with the `mode: onChange` configuration of the `useForm()` hook:
@@ -1016,6 +1092,69 @@ We can use the `validate()` API, to define custom validation rules as we like. W
 React Hook Form helps compose complex reusable components using the `<Controller />` and `<FormProvider />` components. `useController()` hook and `useFormContext()`, `useWatch()` and `useFormState()` and `useFieldArray()` are designed to implement robust reusable components. For example, Shadcn [`<Form />`](https://ui.shadcn.com/docs/components/form) components use React Hook Form APIs to compose reusable form components using TailwindCSS and Class Variance Authority and Radix UI primitives.
 
 React Hook Form's `<Controller />` can be used to manage sophisticated controlled components in Ant Design, Material UI, React-Select, etc.
+
+## Making Custom Input Components with React Hook Form’s Controller
+
+If you’re working with a form in React and want to use custom input components—like third-party UI components that don’t natively support React Hook Form—Controller can be a big help. It lets us connect custom components to React Hook Form’s state while giving us full control over user input and validation.
+
+### Why Use Controller?
+
+React Hook Form is set up to manage inputs as uncontrolled by default. But custom or third-party components don’t always fit well with this approach. Controller acts as a bridge, enabling us to use these components while keeping React Hook Form’s state management, validation, and error handling intact.
+
+Setting Up a Custom Input with Controller
+
+Let’s walk through an example where Controller handles a custom input component like a date picker:
+
+1. Setup with Controller: Wrap the custom component in Controller to manage registration, validation, and other form logic.
+2. Handle Value Changes and Errors: Controller provides a field object with key props (onChange, onBlur, value, etc.) to sync the component’s state with React Hook Form. You also get fieldState for validation and error handling.
+
+```tsx
+import { useForm, Controller } from "react-hook-form";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const FormWithDatePicker = () => {
+  const { control, handleSubmit } = useForm();
+
+  const onSubmit = (data) => console.log("Form Data:", data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="date"
+        control={control}
+        rules={{ required: "Date is required" }}
+        render={({ field, fieldState }) => (
+          <div>
+            <DatePicker
+              selected={field.value}
+              onChange={(date) => field.onChange(date)}
+              placeholderText="Select a date"
+            />
+            {fieldState.error && <span>{fieldState.error.message}</span>}
+          </div>
+        )}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+};
+```
+
+How Controller Works in This Setup
+
+1. Field Management with field Props: The field object includes props like onChange, onBlur, value, etc., making it easy to sync the input’s internal state with React Hook Form’s data. In the example, selected={field.value} and onChange={(date) => field.onChange(date)} keep the date picker in sync with the form state.
+
+2. Error Handling with fieldState: fieldState.error captures validation errors for the controlled field, allowing us to show error messages under the custom component. Here, if the date field is empty, “Date is required” will be displayed.
+
+3. Enhanced Control and Flexibility: Controller also lets us handle custom behaviors—like validation rules, conditional formatting, or special component states—that can be hard to manage with default form inputs.
+
+Real-Life Use Cases
+
+- UI Libraries and Custom Components: Whenever using a third-party UI component (e.g., date picker, multi-select, slider, or toggle) that’s not natively compatible with React Hook Form, Controller makes it easy to integrate.
+  -Complex Input Components: Controller is ideal for managing complex inputs that need special event handling, validation, and error messages for each component.
+
+Controller is a great tool for managing custom components in forms while keeping everything in sync with React Hook Form’s state management.
 
 ## Summary
 
