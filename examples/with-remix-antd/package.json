@@ -10,9 +10,9 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.43.1",
+    "@refinedev/antd": "^5.44.0",
     "@refinedev/cli": "^2.16.39",
-    "@refinedev/core": "^4.55.0",
+    "@refinedev/core": "^4.56.0",
     "@refinedev/remix-router": "^3.0.6",
     "@refinedev/simple-rest": "^5.0.8",
     "@remix-run/node": "^2.4.0",

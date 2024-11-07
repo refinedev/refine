@@ -1,5 +1,59 @@
 # @refinedev/antd
 
+## 5.44.0
+
+### Minor Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added new prop called `mutationVariables` to `<AuthPage />`. #6431
+  From now on, you can pass additional parameters to the `authProvider` methods using the `mutationVariables` prop of the `<AuthPage />` component.
+
+  ```tsx
+  import { AuthPage } from "@refinedev/antd"; // or "@refinedev/chakra-ui", "@refinedev/mantine", "@refinedev/mui"
+
+  const MyLoginPage = () => {
+    return (
+      <AuthPage
+        type="login" // all other types are also supported.
+        // highlight-start
+        mutationVariables={{
+          foo: "bar",
+          xyz: "abc",
+        }}
+        // highlight-end
+      />
+    );
+  };
+
+  // all mutation methods are supported.
+  const authProvider = {
+    login: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    register: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    // ...
+  };
+  ```
+
+  [Resolves #6431](https://github.com/refinedev/refine/issues/6431)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: update `@ant-design/icons` and `@ant-design/pro-layout` versions
+
+  Updated previously pinned versions of `@ant-design/icons` from `5.0.1` and `@ant-design/pro-layout` from `7.17.12` to latest versions. This minor update resolves the previous issues with `React@18` types and conflicting type ranges with `@ant-design/pro-layout` package.
+
+  After `@ant-design/icons` version `5.4.0` build issues and type issues are resolved. Following this release `@ant-design/pro-layout` also updated its dependency range to match the latest `@ant-design/icons` version.
+
+  Previously `@ant-design/icons` were pinned to `5.0.1` and recommended to pin in projects as well. After this update, you may also need to update the `@ant-design/icons` version in your project to match the latest version. (A range above `^5.5.1` is required to match `@refinedev/antd`).
+
+  [Resolves #6363](https://github.com/refinedev/refine/issues/6363)
+  [Resolves #5931 - previously resolved by #5934](https://github.com/refinedev/refine/issues/5931)
+  [Accompanies #6354 - `@ant-design/pro-layout` also depends on `express` dependency and updated its version in the latest release](https://github.com/refinedev/refine/pull/6354)
+
 ## 5.43.1
 
 ### Patch Changes
