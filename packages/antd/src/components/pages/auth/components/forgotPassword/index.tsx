@@ -52,6 +52,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const { token } = theme.useToken();
   const [form] = Form.useForm<ForgotPasswordFormTypes>();
@@ -104,7 +105,9 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
       <Form<ForgotPasswordFormTypes>
         layout="vertical"
         form={form}
-        onFinish={(values) => forgotPassword(values)}
+        onFinish={(values) =>
+          forgotPassword({ ...values, ...mutationVariables })
+        }
         requiredMark={false}
         {...formProps}
       >

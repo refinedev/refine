@@ -153,7 +153,6 @@ const variants: {
     secondaryColor: "#BAE0FF",
     icon: (
       <IconWrapper color="#E6F4FF">
-        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <ShopOutlined
           className="md"
           style={{
@@ -176,7 +175,6 @@ const variants: {
     secondaryColor: "#D9F7BE",
     icon: (
       <IconWrapper color="#F6FFED">
-        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <TeamOutlined
           className="md"
           style={{
@@ -200,7 +198,6 @@ const variants: {
     secondaryColor: "#FFD8BF",
     icon: (
       <IconWrapper color="#FFF2E8">
-        {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
         <AuditOutlined
           className="md"
           style={{

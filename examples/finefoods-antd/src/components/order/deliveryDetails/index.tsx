@@ -31,7 +31,6 @@ export const OrderDeliveryDetails = ({ order }: Props) => {
       description: string;
     }[] = [
       {
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <ClockCircleOutlined />,
         title: t("orders.fields.deliveryTime"),
         description: dayjs(order.events[0]?.date)
@@ -39,31 +38,26 @@ export const OrderDeliveryDetails = ({ order }: Props) => {
           .format("hh:mm A"),
       },
       {
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <ShopOutlined />,
         title: t("orders.fields.store"),
         description: order.store.title,
       },
       {
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <BikeWhiteIcon />,
         title: t("orders.fields.courier"),
         description: order.courier?.name,
       },
       {
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <PhoneOutlined />,
         title: t("orders.fields.phone"),
         description: order.courier?.gsm,
       },
       {
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <UserOutlined />,
         title: t("orders.fields.customer"),
         description: `${order.user.firstName} ${order.user.lastName}`,
       },
       {
-        // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
         icon: <HistoryOutlined />,
         title: t("orders.fields.createdAt"),
         description: order.createdAt,
@@ -96,7 +90,6 @@ export const OrderDeliveryDetails = ({ order }: Props) => {
               title={t(`enum.orderStatuses.${event.status}`)}
               icon={
                 getNotFinishedCurrentStep(order, event, index) && (
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   <LoadingOutlined />
                 )
               }

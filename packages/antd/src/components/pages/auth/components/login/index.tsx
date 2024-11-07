@@ -50,6 +50,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const { token } = theme.useToken();
   const [form] = Form.useForm<LoginFormTypes>();
@@ -111,6 +112,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 }}
                 onClick={() =>
                   login({
+                    ...mutationVariables,
                     providerName: provider.name,
                   })
                 }
@@ -152,7 +154,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         <Form<LoginFormTypes>
           layout="vertical"
           form={form}
-          onFinish={(values) => login(values)}
+          onFinish={(values) => login({ ...values, ...mutationVariables })}
           requiredMark={false}
           initialValues={{
             remember: false,

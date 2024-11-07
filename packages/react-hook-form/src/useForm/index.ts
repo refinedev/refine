@@ -234,7 +234,7 @@ export const useForm = <
       setWarnWhen(true);
     }
 
-    if (refineCoreProps?.autoSave) {
+    if (refineCoreProps?.autoSave?.enabled) {
       setWarnWhen(false);
 
       const onFinishProps =

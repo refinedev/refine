@@ -41,13 +41,11 @@ export const ProductList = ({ children }: PropsWithChildren) => {
             {
               label: "",
               value: "table",
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon: <UnorderedListOutlined />,
             },
             {
               label: "",
               value: "card",
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon: <AppstoreOutlined />,
             },
           ]}

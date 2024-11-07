@@ -122,7 +122,6 @@ export const OrderList = () => {
             </Typography.Text>
           )}
           filterIcon={(filtered) => (
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,
@@ -194,7 +193,6 @@ export const OrderList = () => {
           dataIndex={["store", "title"]}
           title={t("orders.fields.store")}
           filterIcon={(filtered) => (
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,
@@ -217,7 +215,6 @@ export const OrderList = () => {
           dataIndex={["user", "fullName"]}
           title={t("orders.fields.customer")}
           filterIcon={(filtered) => (
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,
