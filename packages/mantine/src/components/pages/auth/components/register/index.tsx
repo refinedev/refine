@@ -54,6 +54,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   providers,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const theme = useMantineTheme();
   const { useForm, FormProvider } = FormContext;
@@ -110,6 +111,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                   leftIcon={provider.icon}
                   onClick={() =>
                     register({
+                      ...mutationVariables,
                       providerName: provider.name,
                     })
                   }
@@ -153,7 +155,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               if (onSubmitProp) {
                 return onSubmitProp(values);
               }
-              return register(values);
+              return register({ ...mutationVariables, ...values });
             })}
           >
             <TextInput

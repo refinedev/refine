@@ -91,7 +91,6 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
             key="id"
             width={80}
             defaultFilteredValue={getDefaultFilter("id", filters)}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => {
               return (
@@ -146,7 +145,6 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
               filters,
               "contains",
             )}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             filterIcon={<SearchOutlined />}
             filterDropdown={(props) => {
               return (
@@ -232,7 +230,6 @@ export const ClientsPageList = ({ children }: PropsWithChildren) => {
                   <EditButton
                     hideText
                     recordItemId={record.id}
-                    // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                     icon={<EyeOutlined />}
                   />
                   <DeleteButton hideText recordItemId={record.id} />

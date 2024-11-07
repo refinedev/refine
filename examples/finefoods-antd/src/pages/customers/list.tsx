@@ -111,7 +111,6 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
             </Typography.Text>
           )}
           filterIcon={(filtered) => (
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             <SearchOutlined
               style={{
                 color: filtered ? token.colorPrimary : undefined,
@@ -206,7 +205,6 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
           title={t("table.actions")}
           render={(_, record) => (
             <Button
-              // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
               icon={<EyeOutlined />}
               onClick={() => {
                 return go({

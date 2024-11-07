@@ -43,6 +43,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const theme = useMantineTheme();
   const { useForm, FormProvider } = FormContext;
@@ -96,7 +97,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
             if (onSubmitProp) {
               return onSubmitProp(values);
             }
-            return updatePassword(values);
+            return updatePassword({ ...mutationVariables, ...values });
           })}
         >
           <TextInput

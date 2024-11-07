@@ -54,6 +54,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const methods = useForm<BaseRecord, HttpError, LoginFormTypes>({
@@ -113,7 +114,9 @@ export const LoginPage: React.FC<LoginProps> = ({
                     borderColor: "primary.light",
                     textTransform: "none",
                   }}
-                  onClick={() => login({ providerName: provider.name })}
+                  onClick={() =>
+                    login({ ...mutationVariables, providerName: provider.name })
+                  }
                   startIcon={provider.icon}
                 >
                   {provider.label}
@@ -159,7 +162,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 return onSubmit(data);
               }
 
-              return login(data);
+              return login({ ...mutationVariables, ...data });
             })}
           >
             <TextField

@@ -44,7 +44,6 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               <Button
                 type="primary"
                 onClick={() => setOpen(true)}
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<Icons.CodeOutlined />}
               >
                 Show Code
@@ -53,7 +52,6 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                 type="default"
                 target="_blank"
                 href="https://github.com/refinedev/refine/discussions/3046"
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon={<Icons.MessageOutlined />}
               >
                 Give Feedback
@@ -65,7 +63,6 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             width={800}
             open={open}
             onCancel={() => setOpen(false)}
-            // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
             closeIcon={<Icons.CloseOutlined style={{ color: "#666b7a" }} />}
             footer={null}
             bodyStyle={{ padding: 0 }}
@@ -97,10 +94,8 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               type="default"
               icon={
                 isCopied ? (
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   <Icons.CheckOutlined style={{ color: "green" }} />
                 ) : (
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   <Icons.CopyOutlined />
                 )
               }
