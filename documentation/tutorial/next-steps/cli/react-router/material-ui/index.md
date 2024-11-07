@@ -28,7 +28,7 @@ We've already handed over our runners to the CLI's runners, our `package.json` f
 ```json title="package.json"
 {
   "scripts": {
-    "dev": "refine dev",
+    "dev": "refine dev --host",
     "build": "refine build",
     "start": "refine start",
     "refine": "refine"
