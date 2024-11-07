@@ -1,5 +1,52 @@
 # @refinedev/mui
 
+## 5.22.0
+
+### Minor Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added new prop called `mutationVariables` to `<AuthPage />`. #6431
+  From now on, you can pass additional parameters to the `authProvider` methods using the `mutationVariables` prop of the `<AuthPage />` component.
+
+  ```tsx
+  import { AuthPage } from "@refinedev/antd"; // or "@refinedev/chakra-ui", "@refinedev/mantine", "@refinedev/mui"
+
+  const MyLoginPage = () => {
+    return (
+      <AuthPage
+        type="login" // all other types are also supported.
+        // highlight-start
+        mutationVariables={{
+          foo: "bar",
+          xyz: "abc",
+        }}
+        // highlight-end
+      />
+    );
+  };
+
+  // all mutation methods are supported.
+  const authProvider = {
+    login: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    register: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    // ...
+  };
+  ```
+
+  [Resolves #6431](https://github.com/refinedev/refine/issues/6431)
+
+### Patch Changes
+
+- Updated dependencies [[`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a)]:
+  - @refinedev/react-hook-form@4.9.1
+
 ## 5.21.0
 
 ### Minor Changes

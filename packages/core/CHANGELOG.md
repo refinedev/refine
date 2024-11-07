@@ -1,5 +1,86 @@
 # @refinedev/core
 
+## 4.56.0
+
+### Minor Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added new prop called `mutationVariables` to `<AuthPage />`. #6431
+  From now on, you can pass additional parameters to the `authProvider` methods using the `mutationVariables` prop of the `<AuthPage />` component.
+
+  ```tsx
+  import { AuthPage } from "@refinedev/antd"; // or "@refinedev/chakra-ui", "@refinedev/mantine", "@refinedev/mui"
+
+  const MyLoginPage = () => {
+    return (
+      <AuthPage
+        type="login" // all other types are also supported.
+        // highlight-start
+        mutationVariables={{
+          foo: "bar",
+          xyz: "abc",
+        }}
+        // highlight-end
+      />
+    );
+  };
+
+  // all mutation methods are supported.
+  const authProvider = {
+    login: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    register: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    // ...
+  };
+  ```
+
+  [Resolves #6431](https://github.com/refinedev/refine/issues/6431)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: exported useInvalidateAuthStore hook from auth hooks
+
+  Now you can invalide the users identity state and force a react query refresh using this hook
+
+  Resolves [#6341](https://github.com/refinedev/refine/issues/6341)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Added `MetaContext` to share data between components, providers, and hooks.
+
+  > 🚨 Designed for internal use only.
+
+### Patch Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: Added more flexibility to the [`<Link />`](https://refine.dev/docs/routing/components/link/) component's `ref` type by changing it from `HTMLAnchorElement` to `Element`.
+  From now on, we can pass any type of `ref` to the [`<Link />`](https://refine.dev/docs/routing/components/link/) component.
+
+  ```tsx
+  // Before fix - Only worked with HTMLAnchorElement
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  // After fix - Works with any Element type
+  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
+  ```
+
+  Resolves [#6463](https://github.com/refinedev/refine/issues/6463)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: Priority logic between `to` and `go` props in [`Link`](https://refine.dev/docs/routing/components/link/) component.
+  From now on, the `to` prop has priority over the `go` prop. If both are passed, the `to` prop will be used.
+
+  ```tsx
+  // Before fix - go would override to
+  <Link to="/posts" go={{ resource: "categories" }} />
+
+  // After fix - to overrides go
+  <Link to="/posts" go={{ resource: "categories" }} />
+  ```
+
+  Resolves [#6461](https://github.com/refinedev/refine/issues/6461)
+
 ## 4.55.0
 
 ### Minor Changes
