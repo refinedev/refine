@@ -25,6 +25,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   formProps,
   title = undefined,
   hideForm,
+  mutationVariables,
 }) => {
   const routerType = useRouterType();
   const Link = useLink();
@@ -62,6 +63,7 @@ export const LoginPage: React.FC<LoginProps> = ({
           <button
             onClick={() =>
               login({
+                ...mutationVariables,
                 providerName: provider.name,
               })
             }
@@ -91,7 +93,7 @@ export const LoginPage: React.FC<LoginProps> = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              login({ email, password, remember });
+              login({ ...mutationVariables, email, password, remember });
             }}
             {...formProps}
           >

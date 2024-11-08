@@ -36,6 +36,18 @@ describe("Link", () => {
       expect(link.getAttribute("aria-label")).toBe("test-label");
       expect(link.getAttribute("foo")).toBe("bar");
     });
+
+    it("should prioritize 'to' over 'go' when both are provided", () => {
+      const { getByText } = render(
+        <Link to="/with-to" go={{ to: "/with-go" }}>
+          Test
+        </Link>,
+      );
+
+      const link = getByText("Test");
+      expect(link.tagName).toBe("A");
+      expect(link.getAttribute("href")).toBe("/with-to");
+    });
   });
 
   describe("with `go`", () => {

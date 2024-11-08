@@ -37,6 +37,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const translate = useTranslate();
@@ -92,7 +93,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             return onSubmit(data);
           }
 
-          return mutate(data);
+          return mutate({ ...mutationVariables, ...data });
         })}
       >
         <FormControl mb="3" isInvalid={!!errors?.password}>

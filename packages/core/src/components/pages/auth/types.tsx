@@ -144,6 +144,10 @@ export type AuthPageProps<
    * @optional
    *  */
   title?: React.ReactNode;
+  /**
+   * @description Can be used to pass additional variables to the mutation. This is useful when you need to pass other variables to the authProvider.
+   */
+  mutationVariables?: Record<string, any>;
 };
 
 /**
@@ -167,6 +171,7 @@ export type LoginPageProps<
   formProps?: TFormProps;
   title?: React.ReactNode;
   hideForm?: boolean;
+  mutationVariables?: Record<string, unknown>;
 }>;
 
 /**
@@ -188,6 +193,7 @@ export type RegisterPageProps<
   formProps?: TFormProps;
   title?: React.ReactNode;
   hideForm?: boolean;
+  mutationVariables?: Record<string, unknown>;
 }>;
 
 /**
@@ -207,6 +213,7 @@ export type ForgotPasswordPageProps<
   contentProps?: TContentProps;
   formProps?: TFormProps;
   title?: React.ReactNode;
+  mutationVariables?: Record<string, unknown>;
 }>;
 
 /**
@@ -225,4 +232,5 @@ export type UpdatePasswordPageProps<
   contentProps?: TContentProps;
   formProps?: TFormProps;
   title?: React.ReactNode;
+  mutationVariables?: Record<string, unknown>;
 }>;

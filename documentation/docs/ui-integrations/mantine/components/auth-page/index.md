@@ -911,6 +911,41 @@ const MyLoginPage = () => {
 };
 ```
 
+### mutationVariables
+
+`mutationVariables` is used to pass additional variables to the `authProvider` methods.
+
+```tsx
+const MyLoginPage = () => {
+  return (
+    <AuthPage
+      type="login" // all other types are also supported.
+      // highlight-start
+      mutationVariables={{
+        foo: "bar",
+        xyz: "abc",
+      }}
+      // highlight-end
+    />
+  );
+};
+
+// all mutation methods are supported.
+const authProvider = {
+  login: async ({ foo, xyz, ...otherProps }) => {
+    console.log(foo); // bar
+    console.log(xyz); // abc
+    // ...
+  },
+  register: async ({ foo, xyz, ...otherProps }) => {
+    console.log(foo); // bar
+    console.log(xyz); // abc
+    // ...
+  },
+  // ...
+};
+```
+
 ## API Reference
 
 ### Properties

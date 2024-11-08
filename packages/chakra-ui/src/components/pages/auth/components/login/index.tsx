@@ -51,6 +51,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
 
@@ -86,6 +87,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                 fontSize="sm"
                 onClick={() =>
                   login({
+                    ...mutationVariables,
                     providerName: provider.name,
                   })
                 }
@@ -142,7 +144,7 @@ export const LoginPage: React.FC<LoginProps> = ({
               return onSubmit(data);
             }
 
-            return login(data);
+            return login({ ...mutationVariables, ...data });
           })}
         >
           <FormControl mt="6" isInvalid={!!errors?.email}>

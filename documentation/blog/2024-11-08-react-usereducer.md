@@ -26,6 +26,7 @@ Steps we follow in this post are as follows:
 - [React State Manipulation with useReducer: A Demo Posts App](#react-state-manipulation-with-usereducer-a-demo-posts-app)
 - [React useReducer: Action on Multiple Levels](#react-usereducer-action-on-multiple-levels)
 - [React useReducer: Benefits and Comparison](#react-usereducer-benefits-and-comparison)
+- [Error Handling in Reducers](#error-handling-in-reducers)
 
 ## What is React useReducer ?
 
@@ -861,6 +862,126 @@ const [posts, dispatch] = useReducer(postsReducer, "/posts", getInitialPosts);
 
 This way, the initializer function (`getInitialPosts` here) passed its dependent arguments (`/posts` url) on the reducer's initialization. The initializer function now only gets invoked during that time. Any subsequent call is prevented. This helps optimize the component.
 
+## Error Handling in Reducers
+
+Error handling is by no means a trivial matter when working with useReducer in React; doing it properly will keep your application robust and provide good, descriptive feedback to your users. This section describes a number of ways to handle such errors in reducer functions, with the inclusion of multiple actions and complex states.
+
+### Why Handle Errors in Reducers?
+
+By convention in React, a reducer manages the update of state based on the actions that have been dispatched from the component. Where such actions involve processing data or API interaction, there are going to be errors from unexpected action types, invalid data, or logical issues. Catching such error occurrences within the reducer will:
+
+- Keep the application state stable and avoid breaking the updates.
+- If something was wrong, give constructive feedback.
+- Minimize debugging by catching errors closer to their cause.
+
+### Setup Error Handling in Reducers
+
+Error handling in a reducer can be managed using techniques such as default cases, error states, and external utilities.
+
+### Default Case for Unhandled Actions
+
+A simple way to catch unknown actions is by defining a default case in the reducer’s switch statement: for any unrecognized action type that’s been dispatched, the default case can either return the current state (ignoring the action) or set an error message in the state.
+
+```js
+const initialState = {
+  posts: [],
+  error: null,
+};
+
+function postsReducer(state, action) {
+  const { type, payload } = action;
+
+  switch (type) {
+    case "ADD_POST":
+      return { ...state, posts: [...state.posts, payload], error: null };
+
+    case "DELETE_POST":
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== payload.id),
+        error: null,
+      };
+
+    case "LIKE_POST":
+      return {
+        ...state,
+        posts: state.posts.map((post) =>
+          post.id === payload.id ? { ...post, likes: post.likes + 1 } : post,
+        ),
+        error: null,
+      };
+
+    default:
+      console.error(`Unknown action type: ${type}`);
+      return { ...state, error: `Unknown action type: ${type}` };
+  }
+}
+```
+
+If an unhandled action type is dispatched, the default triggers an error log in the console and stores a relevant error message in the state. This message can then be displayed to the user or used for debugging.
+
+### Storing Error State Within the Reducer
+
+If your application is driven by API data, for instance, you can set fetch or process errors in your reducer state to manage error states and display them.
+
+```js
+const initialState = {
+  posts: [],
+  error: null,
+  loading: false,
+};
+
+function postsReducer(state, action) {
+  const { type, payload } = action;
+
+  switch (type) {
+    case "FETCH_POSTS_REQUEST":
+      return { ...state, loading: true, error: null };
+
+    case "FETCH_POSTS_SUCCESS":
+      return { ...state, posts: payload, loading: false, error: null };
+
+    case "FETCH_POSTS_FAILURE":
+      return { ...state, loading: false, error: payload.error };
+
+    default:
+      return state;
+  }
+}
+```
+
+In this approach, if an error occurs while fetching data, the FETCH_POSTS_FAILURE case is dispatched with an error message, setting error in the state. This method is especially useful for displaying error messages directly in the UI.
+
+### Error Handling with External Utilities
+
+In the case of complex reducers with many action types, this is cleaner if you use a utility function to handle the errors—say, a wrapper function that logs or reports an error without cluttering the reducer itself.
+
+```tsx
+function handleError(reducer) {
+  return function (state, action) {
+    try {
+      return reducer(state, action);
+    } catch (error) {
+      console.error("Reducer error:", error);
+      return { ...state, error: "Something went wrong. Try again." };
+    }
+  };
+}
+
+const wrappedPostsReducer = handleError(postsReducer);
+```
+
+Using handleError, errors in postsReducer are caught, logged, and an error message is set in the state. This code can be abstracted away and reused across different reducers.
+
+### Best Practices of Error Handling in Reducers
+
+- Centralize Error Messages: Define error messages in one place, such as in a separate file or inside the state itself, for manageability and updating convenience.
+- Log Errors in Development: console.error or other logging utilities will help catch errors during development, making debugging easier.
+- Show User-Friendly Messages: Avoid displaying technical error details in the UI. Instead, show a generic message like “Something went wrong. Please try again.”
+- Avoid Throwing Errors in Reducers: Reducers should be pure functions with no side effects. It’s best not to throw errors within them, but rather handle and log them gracefully.
+
+By implementing these techniques, your reducer functions in React become more robust, user-friendly, and easier to maintain and debug over time.
+
 ## React useReducer: Benefits and Comparison
 
 In this section, we discuss the benefits of using `useReducer()` hook and how it compares to Redux which also uses reducers under the hood.
@@ -881,6 +1002,103 @@ Major benefits of using the `useReducer()` hook in React are:
 Reducers form the backbone of [Redux](https://redux.js.org/introduction/getting-started) which is a lightweight client side state management solution for React. The idea of consolidating states into one is essential in both Redux and `useReducer()`, as well as the notion of action types and dispatching them with the `dispatch()` API. In addition, the structure of the reducer function is the same in both Redux and `useReducer()`.
 
 However, Redux is tailored for managing client state globally, often over a vast majority of components in a React app. It uses a global store composed of individual reducer slices. Each slice would have its own reducer function, state and action types. And slices are combined to make up a global store. In contrast, `useReducer()` implements standalone reducers, which compare as single slices in a Redux store.
+
+## Lazy Initialization with useReducer
+
+One of the optimization techniques from React’s useReducer is lazy initialization, which allows initializing state only once a component mounts. This approach is especially helpful for expensive computations or asynchronous operations, as it improves performance by avoiding extra calculations or API calls on each render.
+
+### Why Lazy Initialization?
+
+By default, when you pass an initial state to useReducer, its computation happens immediately on component mount—even if that initial state is computationally heavy or data-intensive. Lazy initialization lets you delay calculating the initial state until it’s actually required. This is useful for:
+
+- Avoiding performance overhead due to complex initial state computation.
+- Deferring costly or async operations until the component’s first render.
+- Gaining better control over when the initial state setup occurs.
+
+### How to Implement Lazy Initialization with useReducer
+
+UseReducer supports lazy initialization by passing an initializer function as the third argument. This function only runs on the first render, giving you granular control over setting the initial state. Here’s a breakdown:
+
+- Initializer Function: A function that returns the initial state, running only once during the first render.
+- Passing Initial State and Initializer: Call useReducer with the initializer function as the third argument and a placeholder initial state as the second.
+
+Below is an example showing how to perform lazy initialization for a list of posts in a reducer.
+
+```tsx
+const initialState = {
+  posts: [],
+  loading: false,
+  error: null,
+};
+
+// Initializer function to load posts
+const initializePosts = () => {
+  const savedPosts = JSON.parse(localStorage.getItem("posts"));
+  return savedPosts || initialState;
+};
+
+function postsReducer(state, action) {
+  switch (action.type) {
+    case "ADD_POST":
+      return { ...state, posts: [...state.posts, action.payload] };
+    case "DELETE_POST":
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.id !== action.payload.id),
+      };
+    default:
+      return state;
+  }
+}
+
+export default function PostsComponent() {
+  // Lazy initialization
+  const [state, dispatch] = useReducer(
+    postsReducer,
+    initialState,
+    initializePosts,
+  );
+
+  return (
+    <div>
+      <h1>Posts</h1>
+      <ul>
+        {state.posts.map((post) => (
+          <li key={post.id}>{post.title}</li>
+        ))}
+      </ul>
+      <button
+        onClick={() =>
+          dispatch({
+            type: "ADD_POST",
+            payload: { id: Date.now(), title: "New Post" },
+          })
+        }
+      >
+        Add Post
+      </button>
+    </div>
+  );
+}
+```
+
+In this example, initializePosts fetches initial data from localStorage only once when the component mounts, avoiding reloading or recomputing on every render.
+
+### When to Use Lazy Initialization with useReducer
+
+Lazy initialization is beneficial when:
+
+- The Initial State is Data-Heavy: For initial states requiring large datasets or complex structures, delaying its computation can speed up the initial render.
+- Asynchronous Data is Needed: Lazy initialization helps when initial state values come from an API, database, or local storage, such as loading saved user preferences or cached data.
+- You Want Improved Performance in Critical Components: For components managing complex state with useReducer, lazy initialization can reduce render overhead.
+
+Key Points to Remember
+
+- Only Runs on Mount: The initializer function only runs on the first render, keeping future renders efficient.
+- Reducers Must Have Pure Functions: Ensure the initializer avoids side effects; it should solely compute and return the initial state.
+- Error Handling in Initialization: If your initializer pulls data from an API or other sources, add error handling to manage cases where data may be missing or invalid.
+
+Using lazy initialization with useReducer offers flexibility in state management, especially for applications that need optimized performance. It ensures complex computations or data fetching only happen when necessary, helping to keep React components smoother and more efficient.
 
 ## Summary
 

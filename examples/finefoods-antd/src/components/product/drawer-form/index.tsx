@@ -142,7 +142,6 @@ export const ProductDrawerForm = (props: Props) => {
                   alt="Product Image"
                 />
                 <Button
-                  // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                   icon={<UploadOutlined />}
                   style={{
                     marginTop: "auto",
