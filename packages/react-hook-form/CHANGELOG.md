@@ -1,5 +1,15 @@
 # @refinedev/react-hook-form
 
+## 4.9.1
+
+### Patch Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: onChange handler `autoSave` check in `useForm`
+
+  Autosave can now be explicitly disabled.
+
+  Resolves #6458
+
 ## 4.9.0
 
 ### Minor Changes

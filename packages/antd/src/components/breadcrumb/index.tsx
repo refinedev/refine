@@ -70,7 +70,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           key: "breadcrumb-item-home",
           title: (
             <ActiveLink to="/">
-              {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
               {rootRouteResource?.resource?.meta?.icon ?? <HomeOutlined />}
             </ActiveLink>
           ),

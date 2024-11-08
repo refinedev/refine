@@ -1,5 +1,16 @@
 # @refinedev/mantine
 
+## 4.7.1
+
+### Patch Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: update `@ant-design/icons` version to match `@refinedev/antd`.
+
+  This is a patch release to update the `@ant-design/icons` version to match the `@refinedev/antd` version. Previously `@ant-design/icons` were pinned to `5.0.1` version to avoid conflicts with `React@18` and `@ant-design/pro-layout` packages. After `5.4.0` these issues are resolved and we can safely update the version to latest range.
+
+- Updated dependencies [[`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a), [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a), [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a), [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a), [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a)]:
+  - @refinedev/core@4.56.0
+
 ## 4.7.0
 
 ### Minor Changes

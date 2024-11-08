@@ -70,19 +70,16 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
               {
                 key: "accounts",
                 label: "Accounts",
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <BankOutlined />,
               },
               {
                 key: "clients",
                 label: "Clients",
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <ShopOutlined />,
               },
               {
                 key: "invoices",
                 label: "Invoices",
-                // @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66
                 icon: <ContainerOutlined />,
               },
             ]}

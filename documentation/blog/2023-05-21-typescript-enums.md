@@ -267,7 +267,7 @@ This IIFE propels the following object to runtime:
 }
 ```
 
-Unidrectional mapping of a string member sets only the constant names as keys and therefore limits access to the enum only via constant names only, not by the value:
+Unidirectional mapping of a string member sets only the constant names as keys and therefore limits access to the enum only via constant names only, not by the value:
 
 ```tsx
 console.log(AccountType.PERSONAL); // "Personal"

@@ -52,6 +52,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const theme = useMantineTheme();
   const { useForm, FormProvider } = FormContext;
@@ -102,7 +103,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
             if (onSubmitProp) {
               return onSubmitProp(values);
             }
-            return forgotPassword(values);
+            return forgotPassword({ ...mutationVariables, ...values });
           })}
         >
           <TextInput

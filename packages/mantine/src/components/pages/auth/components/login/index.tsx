@@ -53,6 +53,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const theme = useMantineTheme();
   const { useForm, FormProvider } = FormContext;
@@ -107,6 +108,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                   leftSection={provider.icon}
                   onClick={() =>
                     login({
+                      ...mutationVariables,
                       providerName: provider.name,
                     })
                   }
@@ -144,7 +146,7 @@ export const LoginPage: React.FC<LoginProps> = ({
               if (onSubmitProp) {
                 return onSubmitProp(values);
               }
-              return login(values);
+              return login({ ...mutationVariables, ...values });
             })}
           >
             <TextInput

@@ -21,6 +21,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
   renderContent,
   formProps,
   title = undefined,
+  mutationVariables,
 }) => {
   const translate = useTranslate();
 
@@ -43,6 +44,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
         onSubmit={(e) => {
           e.preventDefault();
           updatePassword({
+            ...mutationVariables,
             password: newPassword,
             confirmPassword,
           });

@@ -179,11 +179,10 @@ export const useForm = <
         return;
       }
 
+      type FieldData = Parameters<typeof form.setFields>[0];
+      type NamePath = FieldData[number]["name"];
       // antd form expects error object to be in a specific format.
-      let parsedErrors: {
-        name: string | number | (string | number)[];
-        errors?: string[] | undefined;
-      }[] = [];
+      let parsedErrors: FieldData = [];
 
       // reset antd errors before setting new errors
       const fieldsValue = form.getFieldsValue() as unknown as object;
@@ -192,7 +191,7 @@ export const useForm = <
 
       parsedErrors = fields.map((field) => {
         return {
-          name: propertyPathToArray(field),
+          name: propertyPathToArray(field) as NamePath,
           errors: undefined,
         };
       });
@@ -228,7 +227,7 @@ export const useForm = <
         }
 
         parsedErrors.push({
-          name: propertyPathToArray(key),
+          name: propertyPathToArray(key) as NamePath,
           errors: newError,
         });
       }
