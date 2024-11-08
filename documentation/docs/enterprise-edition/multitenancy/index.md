@@ -258,7 +258,7 @@ const customDataProvider = {
 
 ### Examples
 
-Here are some examples of multi-tenant apps built with Refine Enterprise Edition:
+Here are some examples of multi-tenant apps built with [Refine Enterprise Edition](https://refine.dev/enterprise/):
 
 - [Multitenancy App with Strapi](https://refine.dev/templates/multitenancy-strapi/)
-- [Isolated Multitenancy App with Rest API](https://refine.dev/templates/multitenancy-strapi/)
+- [Isolated Multitenancy App with Rest API](https://multitenancy-isolated.netlify.app/)

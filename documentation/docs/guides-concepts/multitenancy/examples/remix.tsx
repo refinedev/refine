@@ -57,8 +57,8 @@ import {
 
 import { RefineEnterprise } from "@refinedev-ee/enterprise";
 import { WithTenant } from "@refinedev-ee/multitenancy";
-import routerProvider from "@refinedev/remix-router";
-import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev-ee/remix-router";
+import dataProvider from "@refinedev-ee/simple-rest";
 
 
 import { multitenancyProvider } from "./providers/multitenancy";
@@ -105,7 +105,7 @@ export default function App() {
 const ListTsxCode = /* jsx */ `
 import React from "react";
 
-import { useList } from "@refinedev/core";
+import { useList } from "@refinedev-ee/core";
 
 export default function ProductsList() {
   const { data, isLoading } = useList();
@@ -130,7 +130,7 @@ export default function ProductsList() {
 const CreateTsxCode = /* jsx */ `
 import React from "react";
 
-import { useCreate } from "@refinedev/core";
+import { useCreate } from "@refinedev-ee/core";
 
 export default function ProductsCreate() {
   const { onFinish } = useForm();
@@ -151,7 +151,7 @@ export default function ProductsCreate() {
 const ShowTsxCode = /* jsx */ `
 import React from "react";
 
-import { useShow } from "@refinedev/core";
+import { useShow } from "@refinedev-ee/core";
 
 export default function ProductsShow() {
   const {
@@ -175,7 +175,7 @@ export default function ProductsShow() {
 const EditTsxCode = /* jsx */ `
 import React from "react";
 
-import { useForm } from "@refinedev/core";
+import { useForm } from "@refinedev-ee/core";
 
 export default function ProductsEdit() {
   const { onFinish, query, formLoading } = useForm();
@@ -201,7 +201,7 @@ export default function ProductsEdit() {
 const MultitenancyProviderTsxCode = /* jsx */ `
 import type { MultiTenancyProvider } from "@refinedev-ee/enterprise";
 import { useRouterAdapter } from "@refinedev-ee/multitenancy";
-import dataProvider from "@refinedev/simple-rest";
+import dataProvider from "@refinedev-ee/simple-rest";
 
 export type Tenant = {
   id: string;

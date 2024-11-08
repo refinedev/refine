@@ -1,4 +1,4 @@
-> 🚨 This example has been moved to the Enterprise Edition. However, we still have a version available for the Community. You can check it out [here](_TODO_).
+> 🚨 This example has been moved to the Enterprise Edition. [You can see live-preview here.](https://refine.dev/templates/multitenancy-strapi/)
 
 <div align="center" style="margin: 30px;">
 <a href="https://refine.dev/">

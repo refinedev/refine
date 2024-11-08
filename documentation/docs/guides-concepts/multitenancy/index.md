@@ -147,7 +147,7 @@ To customize the data providers, you can override each method in the data provid
 An example implementation of a custom `getList` method is shown below.
 
 ```ts
-import dataProvider from "@refinedev/simple-rest";
+import dataProvider from "@refinedev-ee/simple-rest";
 
 const API_URL = "<API_URL>";
 const baseDataProvider = dataProvider(API_URL);
@@ -210,7 +210,7 @@ import { TenantSelect } from "@refinedev-ee/multitenancy/mui";
 
 ### Examples
 
-Here are some examples of multi-tenant apps built with Refine Enterprise Edition:
+Here are some examples of multi-tenant apps built with [Refine Enterprise Edition](https://refine.dev/enterprise/):
 
 - [Multitenancy App with Strapi](https://refine.dev/templates/multitenancy-strapi/)
-- [Isolated Multitenancy App with Rest API](https://refine.dev/templates/multitenancy-strapi/)
+- [Isolated Multitenancy App with Rest API](https://multitenancy-isolated.netlify.app/)

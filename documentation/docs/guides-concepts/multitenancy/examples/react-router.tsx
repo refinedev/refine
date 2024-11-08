@@ -29,8 +29,8 @@ export default function RouteDefinitions() {
 const AppTsxCode = /* jsx */ `
 import { RefineEnterprise } from "@refinedev-ee/enterprise";
 import { WithTenant } from "@refinedev-ee/multitenancy";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import dataProvider from "@refinedev-ee/simple-rest";
+import routerProvider from "@refinedev-ee/react-router-v6";
 
 import { BrowserRouter, Outlet, Routes, Route } from "react-router-dom";
 
