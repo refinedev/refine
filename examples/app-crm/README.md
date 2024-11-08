@@ -70,15 +70,3 @@ refine is a React-based powerful framework for building low-code applications. I
 <br>
 
 ![Product Edit Page](https://refine.ams3.cdn.digitaloceanspaces.com/example-readmes/login.png "Product Edit Page")
-
-## Try this example on your local
-
-```bash
-npm create refine-app@latest -- --example app-crm
-```
-
-## Try this example on CodeSandbox
-
-<br/>
-
-[![Open app-crm example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/app-crm?view=preview&theme=dark&codemirror=1)

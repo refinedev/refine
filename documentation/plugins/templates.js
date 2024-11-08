@@ -431,12 +431,11 @@ Since the source code of this RealWorld app is open-source, you have the freedom
     images: [
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/detail-multitenancy-strapi.png",
     ],
-    runOnYourLocalPath: "multi-tenancy-strapi",
-    edition: "Community",
+    runOnYourLocalPath: null,
+    edition: "Enterprise",
     liveDemo: "https://multi-tenancy-strapi.refine.dev",
-    github:
-      "https://github.com/refinedev/refine/tree/master/examples/multi-tenancy-strapi",
-    tutorial: "https://refine.dev/docs/guides-concepts/multi-tenancy/#strapi",
+    github: null,
+    tutorial: "https://refine.dev/docs/guides-concepts/multitenancy/",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Strapi",

@@ -34,6 +34,10 @@ export default function RouteDefinitions() {
           code: EditTsxCode,
           readOnly: true,
         },
+        "/app/providers/multitenancy.ts": {
+          code: MultitenancyProviderTsxCode,
+          readOnly: true,
+        },
       }}
     />
   );
@@ -51,9 +55,13 @@ import {
   ScrollRestoration,
 } from "@remix-run/react";
 
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/remix-router";
-import dataProvider from "@refinedev/simple-rest";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
+import { WithTenant } from "@refinedev-ee/multitenancy";
+import routerProvider from "@refinedev-ee/remix-router";
+import dataProvider from "@refinedev-ee/simple-rest";
+
+
+import { multitenancyProvider } from "./providers/multitenancy";
 
 export default function App() {
   return (
@@ -63,8 +71,9 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Refine
-        dataProvider={dataProvider("<API_URL>")}
+        <RefineEnterprise
+          multitenancyProvider={multitenancyProvider}
+          dataProvider={dataProvider("<API_URL>")}
           routerProvider={routerProvider}
           resources={[
             {
@@ -77,8 +86,13 @@ export default function App() {
             },
           ]}
         >
-          <Outlet />
-        </Refine>
+          <WithTenant
+            fallback={<div>Tenant not found</div>}
+            loadingComponent={<div>Loading...</div>}
+          >
+            <Outlet />
+          </WithTenant>
+        </RefineEnterprise>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
@@ -91,7 +105,7 @@ export default function App() {
 const ListTsxCode = /* jsx */ `
 import React from "react";
 
-import { useList } from "@refinedev/core";
+import { useList } from "@refinedev-ee/core";
 
 export default function ProductsList() {
   const { data, isLoading } = useList();
@@ -116,7 +130,7 @@ export default function ProductsList() {
 const CreateTsxCode = /* jsx */ `
 import React from "react";
 
-import { useCreate } from "@refinedev/core";
+import { useCreate } from "@refinedev-ee/core";
 
 export default function ProductsCreate() {
   const { onFinish } = useForm();
@@ -137,7 +151,7 @@ export default function ProductsCreate() {
 const ShowTsxCode = /* jsx */ `
 import React from "react";
 
-import { useShow } from "@refinedev/core";
+import { useShow } from "@refinedev-ee/core";
 
 export default function ProductsShow() {
   const {
@@ -161,7 +175,7 @@ export default function ProductsShow() {
 const EditTsxCode = /* jsx */ `
 import React from "react";
 
-import { useForm } from "@refinedev/core";
+import { useForm } from "@refinedev-ee/core";
 
 export default function ProductsEdit() {
   const { onFinish, query, formLoading } = useForm();
@@ -182,4 +196,34 @@ export default function ProductsEdit() {
     </div>
   );
 }
+`.trim();
+
+const MultitenancyProviderTsxCode = /* jsx */ `
+import type { MultiTenancyProvider } from "@refinedev-ee/enterprise";
+import { useRouterAdapter } from "@refinedev-ee/multitenancy";
+import dataProvider from "@refinedev-ee/simple-rest";
+
+export type Tenant = {
+  id: string;
+  name: string;
+};
+
+export const multiTenancyProvider: MultiTenancyProvider = {
+  adapter: useRouterAdapter(),
+  fetchTenants: async () => {
+    const response = await dataProvider("<API_URL>").getList<Tenant>({
+      resource: "categories",
+      pagination: {
+        mode: "off",
+      },
+    });
+    const tenants = response.data;
+    const defaultTenant = tenants[0];
+
+    return {
+      tenants,
+      defaultTenant,
+    };
+  },
+};
 `.trim();

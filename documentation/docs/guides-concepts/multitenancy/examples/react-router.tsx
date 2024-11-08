@@ -17,24 +17,32 @@ export default function RouteDefinitions() {
           code: AppTsxCode,
           readOnly: true,
         },
+        "multitenancy.ts": {
+          code: MultitenancyProviderTsxCode,
+          readOnly: true,
+        },
       }}
     />
   );
 }
 
 const AppTsxCode = /* jsx */ `
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import { RefineEnterprise } from "@refinedev-ee/enterprise";
+import { WithTenant } from "@refinedev-ee/multitenancy";
+import dataProvider from "@refinedev-ee/simple-rest";
+import routerProvider from "@refinedev-ee/react-router-v6";
 
 import { BrowserRouter, Outlet, Routes, Route } from "react-router-dom";
+
+import { multitenancyProvider } from "./multitenancy";
 
 import { ProductsList, ProductsCreate, ProductsShow, ProductsEdit } from "./products";
 
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Refine
+      <RefineEnterprise
+        multitenancyProvider={multitenancyProvider}
         dataProvider={dataProvider("<API_URL>")}
         routerProvider={routerProvider}
         resources={[
@@ -50,15 +58,52 @@ export const App: React.FC = () => {
       >
         <Routes>
           {/* We're defining the \`tenantId\` as a route parameter. */}
-          <Route path="/:tenantId" element={<Outlet />}>
+          <Route path="/:tenantId" element={
+            <WithTenant
+              fallback={<div>Tenant not found</div>}
+              loadingComponent={<div>Loading...</div>}
+            >
+              <Outlet />
+            </WithTenant>
+          }>
             <Route path="products" element={<ProductsList />} />
             <Route path="products/create" element={<ProductsCreate />} />
             <Route path="products/:id" element={<ProductsShow />} />
             <Route path="products/:id/edit" element={<ProductsEdit />} />
           </Route>
         </Routes>
-      </Refine>
+      </RefineEnterprise>
     </BrowserRouter>
   );
+};
+`.trim();
+
+const MultitenancyProviderTsxCode = /* jsx */ `
+import type { MultiTenancyProvider } from "@refinedev-ee/core";
+import { useRouterAdapter } from "@refinedev-ee/multitenancy";
+import dataProvider from "@refinedev/simple-rest";
+
+export type Tenant = {
+  id: string;
+  name: string;
+};
+
+export const multitenancyProvider: MultiTenancyProvider = {
+  adapter: useRouterAdapter(),
+  fetchTenants: async () => {
+    const response = await dataProvider("<API_URL>").getList<Tenant>({
+      resource: "categories",
+      pagination: {
+        mode: "off",
+      },
+    });
+    const tenants = response.data;
+    const defaultTenant = tenants[0];
+
+    return {
+      tenants,
+      defaultTenant,
+    };
+  },
 };
 `.trim();
