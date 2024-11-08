@@ -20,3 +20,4 @@ export * from "./two-toned-cloud-icon";
 export * from "./point";
 export * from "./blog";
 export * from "./new-badge";
+export * from "./x";

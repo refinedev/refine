@@ -106,7 +106,7 @@ export const socialLinks = [
   },
   {
     icon: FooterTwitterIcon,
-    href: "https://twitter.com/refine_dev",
+    href: "https://x.com/refine_dev",
   },
   {
     icon: FooterLinkedinIcon,
