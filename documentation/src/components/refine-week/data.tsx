@@ -209,7 +209,7 @@ export const additionalSources = [
     title: "Follow us on",
     label: "Twitter",
     icon: <TwitterIcon color="#00AAEC" width="24" height="24" />,
-    link: "https://twitter.com/refine_dev",
+    link: "https://x.com/refine_dev",
     color: "#00AAEC",
   },
   {
