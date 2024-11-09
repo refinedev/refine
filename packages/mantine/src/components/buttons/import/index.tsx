@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { ImportButtonProps } from "../types";
 
 /**
@@ -33,7 +32,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
       <input {...inputProps} multiple hidden />
       {hideText ? (
         <ActionIcon
-          variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          variant={variant || "default"}
           aria-label={label}
           component="span"
           loading={loading}

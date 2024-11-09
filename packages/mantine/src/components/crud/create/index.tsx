@@ -57,11 +57,7 @@ export const Create: React.FC<CreateProps> = (props) => {
       : breadcrumbFromProps;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const saveButtonProps: SaveButtonProps = {
     ...(isLoading ? { disabled: true } : {}),
@@ -73,8 +69,9 @@ export const Create: React.FC<CreateProps> = (props) => {
   const defaultFooterButtons = <SaveButton {...saveButtonProps} />;
 
   const buttonBack =
-    goBackFromProps === (false || null) ? null : (
+    goBackFromProps === false || goBackFromProps === null ? null : (
       <ActionIcon
+        variant="subtle"
         onClick={
           action !== "list" || typeof action !== "undefined"
             ? routerType === "legacy"
@@ -111,7 +108,7 @@ export const Create: React.FC<CreateProps> = (props) => {
   return (
     <Card p="md" {...wrapperProps}>
       <LoadingOverlay visible={loadingOverlayVisible} />
-      <Group {...headerProps}>
+      <Group justify="space-between" {...headerProps}>
         <Stack gap="xs">
           {breadcrumbComponent}
           <Group gap="xs">

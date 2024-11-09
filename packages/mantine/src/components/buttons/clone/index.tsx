@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { CloneButtonProps } from "../types";
 
 /**
@@ -62,7 +61,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
           disabled={disabled}
           title={title}
           aria-label={label}
-          variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          variant={variant || "default"}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
           {...commonProps}

@@ -99,11 +99,7 @@ export const Edit: React.FC<EditProps> = (props) => {
       deleteButtonPropsFromProps);
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const loadingOverlayVisible =
     isLoading ?? saveButtonPropsFromProps?.disabled ?? false;
@@ -163,6 +159,7 @@ export const Edit: React.FC<EditProps> = (props) => {
   const buttonBack =
     goBackFromProps === false || goBackFromProps === null ? null : (
       <ActionIcon
+        variant="subtle"
         onClick={
           action !== "list" && typeof action !== "undefined"
             ? routerType === "legacy"

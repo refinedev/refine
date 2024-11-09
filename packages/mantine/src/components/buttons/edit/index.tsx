@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { EditButtonProps } from "../types";
 
 /**
@@ -63,7 +62,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
           aria-label={label}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
-          variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          variant={variant || "default"}
           {...commonProps}
         >
           <IconPencil size={18} {...svgIconProps} />

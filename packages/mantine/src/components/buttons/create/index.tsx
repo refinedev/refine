@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
@@ -54,7 +53,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           title={title}
           disabled={disabled}
           aria-label={label}
-          variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          variant={variant || "default"}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
           {...commonProps}

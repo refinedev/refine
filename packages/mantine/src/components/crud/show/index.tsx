@@ -86,11 +86,7 @@ export const Show: React.FC<ShowProps> = (props) => {
       : breadcrumbFromProps;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const hasList = resource?.list && !recordItemId;
   const isDeleteButtonVisible =
@@ -146,8 +142,9 @@ export const Show: React.FC<ShowProps> = (props) => {
   );
 
   const buttonBack =
-    goBackFromProps === (false || null) ? null : (
+    goBackFromProps === false || goBackFromProps === null ? null : (
       <ActionIcon
+        variant="subtle"
         onClick={
           action !== "list" && typeof action !== "undefined"
             ? routerType === "legacy"

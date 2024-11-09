@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { ListButtonProps } from "../types";
 
 /**
@@ -56,7 +55,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          variant={mapButtonVariantToActionIconVariant(variant, "default")}
+          variant={variant || "default"}
           disabled={disabled}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}

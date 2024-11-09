@@ -7,7 +7,6 @@ import {
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { DeleteButtonProps } from "../types";
 
 /**
@@ -109,7 +108,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             loading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
-            variant={mapButtonVariantToActionIconVariant(variant, "outline")}
+            variant={variant || "default"}
             {...commonProps}
           >
             <IconTrash size={18} {...svgIconProps} />

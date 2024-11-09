@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Button } from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { SaveButtonProps } from "../types";
 
 /**
@@ -28,7 +27,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 
   return hideText ? (
     <ActionIcon
-      variant={mapButtonVariantToActionIconVariant(variant, "filled")}
+      variant={variant || "default"}
       aria-label={label}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
