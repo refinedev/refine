@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-01-online-ide
 hide_table_of_contents: false
 ---
 
-**_This article was last updated on May 21, 2024 to clarifying the explanations, update screenshots, adding new online ide and fix installation steps._**
+**This article was last updated on November 11, 2024 to include best practices for collaboration and security in cloud-based development environments.**
 
 ## Introduction
 
@@ -392,6 +392,76 @@ The free online editors and IDEs highlighted above have similarities and differe
 - **Continuous Integration**: Gitpod supports CI/CD workflows. Thus, you can test and deploy code changes quickly.
 - **Multi-Language Support**: Gitpod supports many programming languages and frameworks, easing work with different projects.
 - **Easy Access**: You can access Gitpod from any device using a web browser, so you can work from literally anywhere.
+
+## When Not to Use Online IDEs – Key Limitations to Keep in Mind
+
+Here’s a breakdown of situations where online IDEs might not be the best choice based on project type, along with some key limitations. While platforms like CodeSandbox, StackBlitz, and Gitpod are fantastic for accessibility and collaboration, they do come with some drawbacks that can impact our workflow.
+
+### Key Limitations of Online IDEs
+
+1. Performance Constraints
+
+- Limited Resources: Most online IDEs cap CPU and memory usage, which can slow down large applications or complex builds.
+- Network Dependence: Heavy reliance on the internet is a drawback; any lag or downtime can disrupt workflow, whereas local IDEs offer more reliable performance.
+
+2. Limited Language and Framework Support
+
+- Popular languages like JavaScript and Python are well-supported, but some specialized languages or frameworks may lack full support.
+- This can limit projects that require specific runtime configurations unavailable on the platform.
+
+3. Restricted Access to System Resources
+
+- Online IDEs often don’t allow access to certain local resources or custom libraries, which becomes an issue if a project needs hardware interaction or system-level tools.
+
+4. Security and Privacy Concerns
+
+- Working with sensitive or proprietary data comes with cloud storage risks, even with security protocols.
+- Local environments offer more control over data security, which is essential depending on project needs.
+
+5. Limited Customization Options
+
+- Advanced configurations and custom plugins may not be available in online IDEs, limiting how we optimize the environment for high-stakes or complex projects.
+- Local IDEs, on the other hand, allow for better customization to suit our workflow.
+
+### When to Consider Using a Local IDE Instead
+
+- High-Performance Projects: For data-intensive work or those requiring high processing power (e.g., ML models), local development is usually the better choice.
+- Large, Multilingual Projects: Projects with specific frameworks, languages, or complex build setups are better suited for local IDEs, which handle custom configurations more flexibly.
+- Sensitive Data Projects: For projects involving customer or proprietary data, sticking to local environments is a safer choice.
+- Offline Access: If we might need to work offline, a local setup is the way to go.
+- Full-Featured Debugging: While online IDEs offer basic debugging, local options like VS Code or IntelliJ are more robust for complex debugging scenarios.
+
+## Security and Privacy Considerations to Use Online IDEs
+
+I just wanted to bring up some key security and privacy considerations when using online IDEs. While these platforms are incredibly convenient and support collaboration, there may be some potential security and privacy risks in projects dealing with sensitive data or proprietary code.
+
+### 1. Data Privacy Risks
+
+- Cloud Storage: Most online IDEs store code and files in the cloud, which can expose our data to security breaches or unauthorized access.
+- Third-Party Access: Some platforms use servers managed by third parties, raising risks if those providers don’t adhere to top security standards. Local environments give us more control over data security.
+
+### 2. Limited Control Over Data Location
+
+- Data Residency: For projects with data residency requirements (like GDPR), online IDEs rarely allow selecting storage locations, so sensitive data might be stored in regions with less stringent privacy laws.
+
+### 3. Authentication Vulnerabilities
+
+- Account Security: Many online IDEs rely on single sign-on (SSO) through GitHub, Google, etc. If these accounts are compromised, it opens up risks of unauthorized access.
+- Two-Factor Authentication: Always enable 2FA on accounts tied to online IDEs to add extra security.
+
+### 4. Risks to Public Exposure
+
+- Shared Workspaces: Collaborative features in online IDEs can, if not set correctly, unintentionally expose code or data. Always double-check permissions on shared projects to avoid accidental public access.
+
+### 5. Network Dependency for Security
+
+- Unsecured Networks: Using online IDEs over public networks, like Wi-Fi, increases interception or attack risks. When working remotely, ensure you use a VPN and secure connections to protect data in transit.
+
+When Not to Use Online IDEs for Security Reasons
+
+- Highly Sensitive Data: Projects involving sensitive customer data or proprietary information are best kept in local environments, where we control access and storage.
+- Regulatory Compliance Requirements: For projects with strict data residency or security standards, local IDEs help ensure compliance without third-party storage risks.
+- Internal-Only Projects: For internal tools or codebases that shouldn’t be accessible outside the organization, local setups are a safer choice.
 
 ## Conclusion
 
