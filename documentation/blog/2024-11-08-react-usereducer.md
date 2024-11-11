@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-28-react-user
 hide_table_of_contents: false
 ---
 
+**This article was last updated on November 8, 2024 to include lazy initialization, error handling techniques, and default selection strategies in advanced useReducer implementations.**
+
 ## Introduction
 
 React [`useReducer()`](https://react.dev/reference/react/useReducer) hook is a state hook used often as a versatile alternative to `useState()`. It helps aggregate multiple states of a component in one place, particularly in scenarios that involve the state's changes at multiple nesting levels, and originating from multiple action types and sources. `useReducer()` gives access to data and actions defined in a React reducer. It exposes the `state` for a component to consume, and a `dispatch()` function to invoke actions that alters the `state`.

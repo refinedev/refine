@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-05-07-ts-diction
 hide_table_of_contents: false
 ---
 
+**This article was last updated on November 11, 2024 to include advanced techniques for TypeScript dictionary validation and best practices for ensuring type safety in dynamic and complex data structures.**
+
 ## Introduction
 
 Dictionaries are one of the crucial data structures in programming. Dictionaries or maps are useful for describing key-value paired objects in an application. They can be implemented using `Object` and `Map` instances in JavaScript. In TypeScript, dictionaries are also implemented as a `Record<>` with related types for its keys and values.
@@ -21,6 +23,15 @@ We then relate how dictionaries in TypeScript demand proper type definition and 
 Towards the later half, we cover type safe approaches to iterating over TS `Object` based dictionaries with `for...in` and `for...of` loops. We consider dictionary data extracted with `Object.keys()`, `Object.values()` and `Object.entries`, and traversing them using `Array` iterators like `Array.prototype.map()` as an example. We also encounter a TypeScript `7503` type incompatibility error while iterating over dictionary keys returned by `Object.keys()` with a `for...in` loop, and address how to solve it with the type assertion `as` operator.
 
 Towards the end, we explore examples of implementing the same dictionary (`fictionalDictators`) features with the TypeScript `Record<>` utility and TS `Map` instances.
+
+Steps we'll cover in this post:
+
+- [what is TS Dictionary](#what-is-ts-dictionary)
+- [Dictionaries in TypeScript](#dictionaries-in-typescript)
+- [Iterating Over TypeScript Dictionaries](#iterating-over-typescript-dictionaries)
+- [Type Narrowing for Key Lookups](#type-narrowing-for-key-lookups)
+- [TypeScript Dictionaries with the `Map` Prototype](#typescript-dictionaries-with-the-map-prototype)
+- [Advanced Mapped Types to Dynamically Create Dictionaries](#advanced-mapped-types-to-dynamically-create-dictionaries)
 
 ## Prerequisites
 
@@ -623,6 +634,45 @@ const fictionalDictatorships = dictatorKeysArray?.map(
 console.log(fictionalDictatorships); // ["North African Republic of Wadiya", "Oceania", "The Capitol of Anem", "Star Wars Galaxy, First Order"]
 ```
 
+## Type Narrowing for Key Lookups
+
+While dealing with dictionaries or maps in TypeScript, it becomes compulsory to handle type safety with respect to the keys. The most common scenario is digging down to the possible kinds of types for those keys so that they might prevent any sort of key lookup error. Such narrowing of types will help us ensure that we access the keys only from those sets that are known to be valid, making processes more predictable and with fewer runtime errors.
+
+With dynamic keys on a dictionary, TypeScript often doesn’t know if the key will exist on the dictionary. We can work around this by applying a type guard or conditional check to tell TypeScript what type we are expecting at certain points in the code, making our accessed dictionary much safer and avoiding TypeScript errors.
+
+For example, consider a dictionary describing fictional characters, where each key of the dictionary is a character alias and each value provides information about the character. Here’s how we can access dictionary entries safely by narrowing down the type of the key:
+
+```tsx
+type CharacterInfo = {
+  name: string;
+  universe: string;
+};
+
+type Characters = {
+  [key: string]: CharacterInfo;
+};
+
+const characters: Characters = {
+  aladeen: { name: "Admiral Aladeen", universe: "Wadiya" },
+  vader: { name: "Darth Vader", universe: "Star Wars" },
+};
+
+// Type narrowing example
+function getCharacterInfo(characterAlias: string) {
+  if (characterAlias in characters) {
+    return characters[characterAlias];
+  }
+  return null; // Alias not found
+}
+```
+
+In this example:
+
+- We check with the in operator whether the key characterAlias exists in the dictionary characters.
+- TypeScript narrows the type of characterAlias to keys that exist within the characters dictionary, avoiding “key not found” errors.
+
+Type narrowing here ensures we access only valid entries in our dictionaries, particularly useful in larger projects pulling data from dynamic sources. This stops any unexpected errors in lookup and keeps TypeScript happy, making our code much safer to maintain over time.
+
 ## TypeScript Dictionaries with the `Map` Prototype
 
 TypeScript dictionaries can also be implemented with the ES2015 `Map` prototype. The ES2015 `Map` data structure is an array of key-value tuples. TypeScript offers native support for `Map` data structure as a generic that accepts types for the keys and entry values as type parameters.
@@ -707,6 +757,75 @@ fictionalDictators.set("sl_kyloren", {
 
 console.log(fictionalDictators); // Map(2)
 ```
+
+## Advanced Mapped Types to Dynamically Create Dictionaries
+
+I wanted to share some tips on handling dynamic dictionaries in TypeScript using advanced mapped types. This technique is especially helpful when we have complex dictionaries where each key needs a specific structure but the overall data type should stay consistent.
+
+Let’s say we have an object representing different departments in a company, where each department has a team, and each team member has attributes like name, role, and years of experience.
+
+```tsx
+type TeamMember = {
+  name: string;
+  role: string;
+  experience: number;
+};
+
+type Departments = "engineering" | "marketing" | "sales";
+
+type DepartmentDictionary = {
+  [K in Departments]: TeamMember[];
+};
+
+const companyDepartments: DepartmentDictionary = {
+  engineering: [
+    { name: "Alice", role: "Developer", experience: 5 },
+    { name: "Bob", role: "DevOps Engineer", experience: 3 },
+  ],
+  marketing: [{ name: "Carol", role: "Marketing Specialist", experience: 4 }],
+  sales: [{ name: "Dave", role: "Sales Lead", experience: 6 }],
+};
+```
+
+- Defining Departments: This type sets a list of allowed department names.
+- DepartmentDictionary with Mapped Type: We use a mapped type to specify that each department (e.g., engineering, marketing) contains a list of TeamMember objects.
+- Consistent Data Structure: This approach keeps our data structured, ensuring each entry follows the same format.
+
+Advanced mapped types help us lock down the structure of dynamic dictionaries, preventing unexpected issues. By restricting keys and types in this way, we leverage TypeScript’s strong type-checking, which keeps things predictable and minimizes errors.
+
+## Dictionary Validation with Custom Types
+
+Here is a quick breakdown on how to validate dictionaries in TypeScript using custom types. This will be super helpful in keeping our dictionaries consistent and catching mistakes early, especially with complex data.
+
+Imagine we have a settings dictionary for an app, where each setting needs a specific type. Using custom types, we can specify a structure that ensures each setting has the expected type.
+
+```tsx
+type SettingType = "boolean" | "string" | "number";
+
+type AppSetting<T extends SettingType> = T extends "boolean"
+  ? boolean
+  : T extends "string"
+  ? string
+  : number;
+
+type AppSettings = {
+  [key: string]: AppSetting<SettingType>;
+};
+
+const settings: AppSettings = {
+  darkMode: true, // boolean type
+  theme: "light", // string type
+  timeout: 30, // number type
+};
+```
+
+What’s Going On Here?
+
+- SettingType defines the allowed types.
+- AppSetting is a conditional type that maps each setting type to its correct JavaScript type.
+- AppSettings is our dictionary type, where each key must match an appropriate SettingType.
+
+When using custom types like this, TypeScript will catch mismatched types if someone tries to assign the wrong type to a setting.
 
 ## Summary
 
