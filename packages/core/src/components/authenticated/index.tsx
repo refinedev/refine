@@ -11,6 +11,8 @@ import {
 } from "@hooks";
 import type { GoConfig } from "../../contexts/router/types";
 
+export type AuthCheckParams = any;
+
 export type AuthenticatedCommonProps = {
   /**
    * Unique key to identify the component.
@@ -47,6 +49,10 @@ export type AuthenticatedCommonProps = {
    * Content to show if user is logged in
    */
   children?: React.ReactNode;
+  /**
+   * optional params to pass to the auth check via the useIsAuthenticated hook
+   */
+  params?: AuthCheckParams;
 };
 
 export type LegacyAuthenticatedProps = {
@@ -97,6 +103,7 @@ export function Authenticated({
   children,
   fallback: fallbackContent,
   loading: loadingContent,
+  params,
 }: AuthenticatedProps | LegacyAuthenticatedProps): JSX.Element | null {
   const activeAuthProvider = useActiveAuthProvider();
   const routerType = useRouterType();
@@ -119,6 +126,7 @@ export function Authenticated({
     } = {},
   } = useIsAuthenticated({
     v3LegacyAuthProviderCompatible: isLegacyAuth,
+    params,
   });
 
   // Authentication status
@@ -158,8 +166,8 @@ export function Authenticated({
       ? redirectOnFail
       : "/login"
     : typeof redirectOnFail === "string"
-      ? redirectOnFail
-      : (authenticatedRedirect as string | undefined);
+    ? redirectOnFail
+    : (authenticatedRedirect as string | undefined);
 
   // Current pathname to append to the redirect url.
   // User will be redirected to this url after successful mutation. (like login)
