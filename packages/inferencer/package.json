@@ -104,7 +104,7 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand --update-snapshots",
+    "test": "jest --passWithNoTests --runInBand",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
