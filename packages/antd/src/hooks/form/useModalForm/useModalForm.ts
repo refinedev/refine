@@ -114,6 +114,7 @@ export const useModalForm = <
   autoSubmitClose = true,
   autoResetForm = true,
   autoSave,
+  action: initialAction,
   invalidates,
   ...rest
 }: UseModalFormProps<
@@ -131,6 +132,7 @@ export const useModalForm = <
   TResponse,
   TResponseError
 > => {
+  const [action, setAction] = React.useState(initialAction ?? "");
   const [initiallySynced, setInitiallySynced] = React.useState(false);
   const invalidate = useInvalidate();
 
@@ -143,8 +145,6 @@ export const useModalForm = <
   const parsed = useParsed();
   const go = useGo();
   const getUserFriendlyName = useUserFriendlyName();
-
-  const action = rest.action ?? actionFromParams ?? "";
 
   const syncingId = !(
     typeof syncWithLocation === "object" && syncWithLocation?.syncId === false
@@ -316,6 +316,7 @@ export const useModalForm = <
     show: handleShow,
     close: handleClose,
     open: visible,
+    setAction,
     formProps: {
       ...formProps,
       ...useFormProps.formProps,
