@@ -104,7 +104,7 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "jest --passWithNoTests --runInBand --update-snapshots",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -164,8 +164,8 @@
     "@mantine/form": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
     "@mantine/notifications": "^5.10.4",
-    "@mui/lab": "^5.0.0-alpha.85",
-    "@mui/material": "^5.14.2",
+    "@mui/lab": "^6.0.0-beta.14",
+    "@mui/material": "^6.1.6",
     "@mui/x-data-grid": "^6.6.0",
     "@refinedev/antd": "^5.0.0",
     "@refinedev/chakra-ui": "^2.0.0",

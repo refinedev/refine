@@ -80,8 +80,8 @@ export const BasicDataGrid: React.FC = () => {
       <DataGrid
         {...dataGridProps}
         columns={columns}
-        components={{
-          Toolbar: GridToolbar,
+        slots={{
+          toolbar: GridToolbar,
         }}
         autoHeight
       />

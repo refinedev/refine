@@ -438,7 +438,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               <Select
                 disableUnderline
                 defaultValue={currentLocale}
-                inputProps={{ "aria-label": "Without label" }}
+                slotProps={{
+                  input: {
+                    "aria-label": "Without label",
+                  },
+                }}
                 variant="standard"
                 sx={{
                   color: "inherit",
@@ -559,7 +563,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.name?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.name")}
           name="name"
@@ -572,7 +580,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.description?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           multiline
           label={translate("products.fields.description")}
           name="description"
@@ -587,7 +599,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.price?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("products.fields.price")}
           name="price"
@@ -600,7 +616,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.material?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.material")}
           name="material"
@@ -684,7 +704,11 @@ export const ProductEdit = () => {
           {...register("id", { valueAsNumber: true })}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("products.fields.id")}
           name="id"
@@ -698,7 +722,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.name?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.name")}
           name="name"
@@ -711,7 +739,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.description?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           multiline
           label={translate("products.fields.description")}
           name="description"
@@ -725,7 +757,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.price?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("products.fields.price")}
           name="price"
@@ -738,7 +774,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.material?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.material")}
           name="material"
@@ -1024,7 +1064,11 @@ export const CategoryCreate: React.FC = () => {
           helperText={<>{errors?.title?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("categories.fields.title")}
           name="title"
@@ -1064,7 +1108,11 @@ export const CategoryEdit: React.FC = () => {
           {...register("id", { valueAsNumber: true })}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("categories.fields.id")}
           name="id"
@@ -1078,7 +1126,11 @@ export const CategoryEdit: React.FC = () => {
           helperText={<>{errors?.title?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("categories.fields.title")}
           name="title"

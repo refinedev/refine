@@ -712,6 +712,7 @@ export const exported: { [key: string]: string } = {
   TooltipProps: "@mui/material",
   Typography: "@mui/material",
   Unstable_Grid2: "@mui/material",
+  Grid2: "@mui/material",
   Unstable_TrapFocus: "@mui/material",
   Zoom: "@mui/material",
   accordionActionsClasses: "@mui/material",

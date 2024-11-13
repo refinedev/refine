@@ -13,7 +13,7 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardHeader from "@mui/material/CardHeader";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import InputAdornment from "@mui/material/InputAdornment";
 import TextField from "@mui/material/TextField";
 
@@ -148,7 +148,12 @@ export const PostList: React.FC = () => {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} lg={3}>
+      <Grid
+        size={{
+          xs: 12,
+          lg: 3,
+        }}
+      >
         <Card sx={{ paddingX: { xs: 2, md: 0 } }}>
           <CardHeader title="Filters" />
           <CardContent sx={{ pt: 0 }}>
@@ -170,12 +175,14 @@ export const PostList: React.FC = () => {
                 fullWidth
                 autoFocus
                 size="small"
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                      <SearchOutlined />
-                    </InputAdornment>
-                  ),
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <SearchOutlined />
+                      </InputAdornment>
+                    ),
+                  },
                 }}
               />
 
@@ -247,7 +254,7 @@ export const PostList: React.FC = () => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} lg={9}>
+      <Grid size={{ xs: 12, lg: 9 }}>
         <List>
           <DataGrid
             {...dataGridProps}

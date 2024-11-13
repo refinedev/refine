@@ -13,7 +13,7 @@ import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 
 import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs";
 import type { LinkProps } from "@mui/material/Link";

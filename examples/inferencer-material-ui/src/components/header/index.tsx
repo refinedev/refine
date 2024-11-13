@@ -51,7 +51,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               <Select
                 disableUnderline
                 defaultValue={currentLocale}
-                inputProps={{ "aria-label": "Without label" }}
+                slotProps={{
+                  input: {
+                    "aria-label": "Without label",
+                  },
+                }}
                 variant="standard"
                 sx={{
                   color: "inherit",

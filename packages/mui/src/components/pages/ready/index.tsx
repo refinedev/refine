@@ -2,7 +2,7 @@ import * as React from "react";
 import type { RefineReadyPageProps } from "@refinedev/ui-types";
 
 import Stack from "@mui/material/Stack";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
@@ -68,7 +68,14 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
             Now you can get started by adding your resources to the{" "}
             {renderCode("resources")} property of {renderCode("Refine")}
           </Typography>
-          <Grid item sm={12} mt={12} display="flex" justifyContent="center">
+          <Grid
+            size={{
+              sm: 12,
+            }}
+            mt={12}
+            display="flex"
+            justifyContent="center"
+          >
             <Stack spacing={2} direction={{ xs: "column", sm: "row" }}>
               <Link
                 href="https://refine.dev"

@@ -81,10 +81,10 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                 920557
               </td>
               <td>
-                Numquam Saepe Illo
+                Loading...
               </td>
               <td>
-                Eriberto Leannon
+                undefined undefined
               </td>
               <td>
                 draft
@@ -110,9 +110,7 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
               </td>
               <td>
                 <ul>
-                  <li>
-                    Nobis Et Ut
-                  </li>
+                  <li />
                 </ul>
               </td>
               <td>
@@ -136,10 +134,10 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
                 175149
               </td>
               <td>
-                Sit Natus Voluptatibus
+                Loading...
               </td>
               <td>
-                Tressie Reichel
+                undefined undefined
               </td>
               <td>
                 published
@@ -165,12 +163,8 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
               </td>
               <td>
                 <ul>
-                  <li>
-                    Error Eos Et
-                  </li>
-                  <li>
-                    Nobis Et Ut
-                  </li>
+                  <li />
+                  <li />
                 </ul>
               </td>
               <td>
@@ -40128,7 +40122,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
             Category
           </h5>
           <div>
-            Numquam Saepe Illo
+            Loading...
           </div>
         </div>
         <div
@@ -40138,7 +40132,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
             User
           </h5>
           <div>
-            Eriberto Leannon
+            Loading...
           </div>
         </div>
         <div
@@ -40203,12 +40197,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
             Tags
           </h5>
           <ul>
-            <li>
-              Error Eos Et
-            </li>
-            <li>
-              Nobis Et Ut
-            </li>
+            Loading...
           </ul>
         </div>
         <div
