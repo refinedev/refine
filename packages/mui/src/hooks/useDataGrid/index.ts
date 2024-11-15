@@ -49,7 +49,6 @@ type DataGridPropsType = Required<
     | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
-    | "filterDebounceMs"
   >
 > &
   Pick<
@@ -350,7 +349,6 @@ export function useDataGrid<
         }
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
-      filterDebounceMs: 300,
     },
     current,
     setCurrent,
