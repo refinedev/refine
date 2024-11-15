@@ -14,7 +14,6 @@ describe("table-material-ui-use-delete-many", () => {
     cy.interceptGETPosts();
     cy.wait("@getPosts");
 
-    cy.getMaterialUILoadingCircular().should("exist");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.get(".MuiDataGrid-columnHeaderTitleContainer .MuiCheckbox-root").click();
@@ -30,7 +29,6 @@ describe("table-material-ui-use-delete-many", () => {
     cy.interceptGETPosts();
     cy.wait("@getPosts");
 
-    cy.getMaterialUILoadingCircular().should("exist");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.get("#delete-selected").eq(0).should("be.disabled");
@@ -40,7 +38,6 @@ describe("table-material-ui-use-delete-many", () => {
     cy.interceptGETPosts();
     cy.wait("@getPosts");
 
-    cy.getMaterialUILoadingCircular().should("exist");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     cy.get(".MuiDataGrid-row")

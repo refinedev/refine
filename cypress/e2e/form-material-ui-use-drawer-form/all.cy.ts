@@ -88,7 +88,6 @@ describe("form-material-ui-use-drawer-form", () => {
       "modal-posts-create[open]=true",
     );
   });
-
   it("should create record", () => {
     cy.getCreateButton().click();
     isDrawerOpen();

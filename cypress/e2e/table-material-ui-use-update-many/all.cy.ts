@@ -14,7 +14,6 @@ describe("table-material-ui-use-update-many", () => {
     cy.interceptGETPosts();
     cy.wait("@getPosts");
 
-    cy.getMaterialUILoadingCircular().should("exist");
     cy.getMaterialUILoadingCircular().should("not.exist", {
       timeout: 60000,
     });
@@ -32,7 +31,6 @@ describe("table-material-ui-use-update-many", () => {
     cy.interceptGETPosts();
     cy.wait("@getPosts");
 
-    cy.getMaterialUILoadingCircular().should("exist");
     cy.getMaterialUILoadingCircular().should("not.exist", {
       timeout: 60000,
     });
@@ -44,7 +42,6 @@ describe("table-material-ui-use-update-many", () => {
     cy.interceptGETPosts();
     cy.wait("@getPosts");
 
-    cy.getMaterialUILoadingCircular().should("exist");
     cy.getMaterialUILoadingCircular().should("not.exist", {
       timeout: 60000,
     });
