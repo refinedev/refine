@@ -94,8 +94,9 @@ describe("form-material-ui-use-drawer-form", () => {
     isDrawerOpen();
 
     fillForm();
-    submitForm();
-    cy.getSaveButton().should("be.disabled");
+    submitForm().then(() => {
+      cy.getSaveButton().should("be.disabled");
+    });
 
     cy.wait("@postPost").then((interception) => {
       const response = interception?.response;
