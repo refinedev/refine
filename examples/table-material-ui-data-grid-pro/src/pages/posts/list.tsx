@@ -1,6 +1,5 @@
-import type { GridValueFormatterParams } from "@mui/x-data-grid";
 import { DataGridPro, type GridColDef } from "@mui/x-data-grid-pro";
-import { type Option, useSelect } from "@refinedev/core";
+import { type BaseOption, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
@@ -63,9 +62,7 @@ export const PostList: React.FC = () => {
         minWidth: 250,
         flex: 0.5,
         valueOptions: options,
-        valueFormatter: (params: GridValueFormatterParams<Option>) => {
-          return params.value;
-        },
+        display: "flex",
         renderCell: function render({ row }: any) {
           if (isLoading) {
             return "Loading...";
@@ -95,7 +92,6 @@ export const PostList: React.FC = () => {
       <DataGridPro
         {...dataGridProps}
         columns={columns}
-        autoHeight
         pageSizeOptions={[10, 20, 30, 50, 100]}
       />
     </List>

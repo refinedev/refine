@@ -21,8 +21,6 @@ import type {
   GridSortModel,
 } from "@mui/x-data-grid";
 
-import { darken, useTheme } from "@mui/material/styles";
-
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
 
@@ -48,10 +46,10 @@ type DataGridPropsType = Required<
     | "onSortModelChange"
     | "filterMode"
     | "onFilterModelChange"
-    | "sx"
     | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
+    | "filterDebounceMs"
   >
 > &
   Pick<
@@ -162,7 +160,6 @@ export function useDataGrid<
   TSearchVariables,
   TData
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
-  const theme = useTheme();
   const liveMode = useLiveMode(liveModeFromProp);
 
   const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
@@ -352,23 +349,8 @@ export function useDataGrid<
           setColumnsType(newColumnsTypes);
         }
       },
-      sx: {
-        border: "none",
-        "& .MuiDataGrid-columnHeaders": {
-          background: darken(theme.palette.background.paper, 0.05),
-          borderBottom: `1px solid ${darken(
-            theme.palette.background.paper,
-            0.1,
-          )}`,
-        },
-        "& .MuiDataGrid-cell": {
-          borderBottom: `1px solid ${darken(
-            theme.palette.background.paper,
-            0.05,
-          )}`,
-        },
-      },
       processRowUpdate: editable ? processRowUpdate : undefined,
+      filterDebounceMs: 300,
     },
     current,
     setCurrent,

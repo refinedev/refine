@@ -85,6 +85,7 @@ export const PostList: React.FC = () => {
       {
         field: "status",
         headerName: "Status",
+        display: "flex",
         renderCell: function render({ row }) {
           let color: ComponentProps<typeof TagField>["color"];
           switch (row.status) {
@@ -114,6 +115,7 @@ export const PostList: React.FC = () => {
         align: "left",
         minWidth: 250,
         flex: 0.5,
+        display: "flex",
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
@@ -261,7 +263,6 @@ export const PostList: React.FC = () => {
             columns={columns}
             disableColumnFilter={true}
             filterModel={undefined}
-            autoHeight
             pageSizeOptions={[10, 20, 50, 100]}
           />
         </List>

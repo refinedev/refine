@@ -238,7 +238,7 @@ export const dependencies = {
   "@emotion/styled": "11.11.5",
   "@mui/lab": "^6.0.0-beta.14",
   "@mui/material": "^6.1.6",
-  "@mui/x-data-grid": "6.19.11",
+  "@mui/x-data-grid": "^7.22.2",
   "@refinedev/mui": "5.0.0",
   "@refinedev/react-hook-form": "latest",
   "react-hook-form": "latest",

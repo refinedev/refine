@@ -20,7 +20,7 @@ export function MaterialUILayout() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.6",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
+        "@mui/x-data-grid": "^7.22.2",
       }}
       startRoute="/my-products"
       files={{
@@ -133,6 +133,7 @@ export const ProductList = () => {
         field: "actions",
         headerName: "Actions",
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -150,7 +151,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

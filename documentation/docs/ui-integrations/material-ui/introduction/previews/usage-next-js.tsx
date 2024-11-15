@@ -17,7 +17,7 @@ export default function UsageNextjs() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.6",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
+        "@mui/x-data-grid": "^7.22.2",
         "react-hook-form": "^7.43.5",
         "@refinedev/nextjs-router": "latest",
       }}
@@ -212,6 +212,7 @@ export default function ProductList() {
         {
           field: "actions",
           headerName: "Actions",
+          display: "flex",
           renderCell: function render({ row }) {
               return (
                   <div>
@@ -230,7 +231,7 @@ export default function ProductList() {
 
   return (
     <List>
-        <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };

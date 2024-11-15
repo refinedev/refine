@@ -28,7 +28,7 @@ export const PostsList: React.FC = () => {
         align: "left",
         minWidth: 250,
         flex: 0.5,
-        valueGetter: ({ row }) => {
+        valueGetter: (_, row) => {
           const { data } = useOne<ICategory>({
             resource: "categories",
             id: row.category.id,

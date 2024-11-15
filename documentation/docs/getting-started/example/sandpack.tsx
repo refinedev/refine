@@ -873,6 +873,7 @@ export const ProductList = () => {
           const value = row?.category;
           return value;
         },
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryLoading ? (
             <>{translate("loading")}</>
@@ -888,6 +889,7 @@ export const ProductList = () => {
         headerName: translate("products.fields.price"),
         minWidth: 100,
         maxWidth: 150,
+        display: "flex",
         renderCell: ({ value }) => {
           return (
             <NumberField
@@ -902,6 +904,7 @@ export const ProductList = () => {
         field: "actions",
         headerName: translate("table.actions"),
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -921,7 +924,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -1171,6 +1174,7 @@ export const CategoryList: React.FC = () => {
         field: "actions",
         headerName: translate("table.actions"),
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -1190,7 +1194,7 @@ export const CategoryList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

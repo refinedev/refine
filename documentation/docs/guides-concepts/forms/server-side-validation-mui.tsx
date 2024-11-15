@@ -17,7 +17,7 @@ export default function ServerSideValidationMui() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.6",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
+        "@mui/x-data-grid": "^7.22.2",
         "react-router-dom": "latest",
         "react-router": "latest",
         "react-hook-form": "^7.43.5",

@@ -17,7 +17,7 @@ export default function LayoutNextjs() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.6",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
+        "@mui/x-data-grid": "^7.22.2",
         "@refinedev/nextjs-router": "latest",
       }}
       // template="nextjs"
@@ -104,7 +104,7 @@ export default function ProductList() {
 
   return (
     <List>
-        <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };
