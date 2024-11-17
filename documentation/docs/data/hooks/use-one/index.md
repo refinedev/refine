@@ -32,7 +32,7 @@ When the `useOne` hook is mounted, it will call the `subscribe` method from the 
 
 ### resource <PropTag required />
 
-This parameter will be passed to the `getOne` method from the `dataProvider` as a parameter. t is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getOne` method.
+This parameter will be passed to the `getOne` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `getOne` method.
 
 ```tsx
 useOne({
