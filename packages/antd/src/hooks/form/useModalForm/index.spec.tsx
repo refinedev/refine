@@ -298,4 +298,44 @@ describe("useModalForm Hook", () => {
       );
     });
   });
+  it("should set action correctly when calling setAction", async () => {
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          action: "create",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    expect(result.current.action).toBe("create");
+
+    await act(async () => {
+      result.current.setAction("edit");
+    });
+
+    expect(result.current.action).toBe("edit");
+  });
+
+  it("should handle metadata when calling show", async () => {
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          action: "edit",
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    const metadata = { customData: "test" };
+
+    await act(async () => {
+      result.current.show("1", metadata);
+    });
+
+    expect(result.current.metadata).toEqual(metadata);
+  });
 });

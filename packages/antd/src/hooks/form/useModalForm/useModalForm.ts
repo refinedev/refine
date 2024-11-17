@@ -22,7 +22,7 @@ import { useModal } from "@hooks/modal";
 export type useModalFormFromSFReturnType<TResponse, TVariables> = {
   open: boolean;
   form: FormInstance<TVariables>;
-  show: (id?: BaseKey) => void;
+  show: (id?: BaseKey, metadata?: any) => void;
   close: () => void;
   modalProps: ModalProps;
   formProps: FormProps<TVariables>;
