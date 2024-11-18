@@ -29,10 +29,10 @@ This guide focuses on migrating Refine-related parts to the latest version.
 
 Note that [`@mui/x-*` packages](https://mui.com/x/introduction/) do not follow the same versioning strategy as other [`@mui/*`](https://mui.com/material-ui/getting-started/) packages. However, [`@refinedev/mui`](https://www.npmjs.com/package/@refinedev/mui) package versions has peer dependencies on `@mui/x-*` and other `@mui/*` packages. Please ensure following version alignment to avoid issues:
 
-| @refinedev/mui | @mui/x-data-grid | @mui/material | @mui/system | @mui/lab | @mui/icons-material |
-| -------------- | ---------------- | ------------- | ----------- | -------- | ------------------- |
-| 5.x.x          | 6.x.x            | 5.x.x         | 5.x.x       | 5.x.x    | 5.x.x               |
-| 6.x.x          | 7.x.x            | 6.x.x         | 6.x.x       | 6.x.x    | 6.x.x               |
+| @refinedev/mui | @mui/x-data-grid | @mui/material | @mui/system | @mui/lab | @mui/icons-material | @refinedev/inferencer |
+| -------------- | ---------------- | ------------- | ----------- | -------- | ------------------- | --------------------- |
+| 5.x.x          | 6.x.x            | 5.x.x         | 5.x.x       | 5.x.x    | 5.x.x               | 4.x.x                 |
+| 6.x.x          | 7.x.x            | 6.x.x         | 6.x.x       | 6.x.x    | 6.x.x               | 5.x.x                 |
 
 ## Material UI Changes
 
