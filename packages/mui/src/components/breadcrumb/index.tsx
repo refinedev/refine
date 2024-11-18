@@ -36,7 +36,6 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const ActiveLink = routerType === "legacy" ? LegacyLink : NewLink;
 
   const { hasDashboard } = useRefineContext();
-
   const { resources } = useResource();
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
@@ -50,11 +49,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   return (
     <Breadcrumbs
       aria-label="breadcrumb"
-      sx={{
-        paddingY: 2,
-        paddingX: 2,
-        ...(breadcrumbProps?.sx ?? {}),
-      }}
+      sx={{ padding: 2, ...(breadcrumbProps?.sx ?? {}) }}
       {...breadcrumbProps}
     >
       {showHome && (hasDashboard || rootRouteResource.found) && (
@@ -68,11 +63,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           to="/"
         >
           {rootRouteResource?.resource?.meta?.icon ?? (
-            <HomeOutlined
-              sx={{
-                fontSize: "18px",
-              }}
-            />
+            <HomeOutlined sx={{ fontSize: "18px" }} />
           )}
         </LinkRouter>
       )}
@@ -105,7 +96,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                 {label}
               </LinkRouter>
             ) : (
-              <Typography fontSize="14px">{label}</Typography>
+              <Typography variant="body2">{label}</Typography>
             )}
           </Grid>
         );
