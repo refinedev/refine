@@ -231,7 +231,7 @@ Finally, declare the `<DataGrid>` component within the `List` component and add 
 
 return (
 <List>
-<DataGrid {...dataGridProps} columns={columns} />
+<DataGrid {...dataGridProps} columns={columns} autoHeight />
 </List>
 );
 ```
