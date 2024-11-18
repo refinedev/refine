@@ -1270,7 +1270,7 @@
       "to": "/docs/ui-integrations/ant-design/migration-guide"
     },
     {
-      "from": "/docs/ui-integrations/material-ui/migration-guide/",
+      "from": "/docs/ui-integrations/material-ui/migration-guide",
       "to": "/docs/ui-integrations/material-ui/migration-guide/x-data-grid-v4-to-v5"
     },
     {
