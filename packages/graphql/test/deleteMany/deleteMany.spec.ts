@@ -31,7 +31,7 @@ describe("deleteMany", () => {
     it("throws error", async () => {
       expect(
         dataProvider(client).deleteMany({ resource: "blogPosts", ids: [1, 2] }),
-      ).rejects.toEqual(new Error("Operation is required."));
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
     });
   });
 });

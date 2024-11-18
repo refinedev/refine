@@ -36,7 +36,7 @@ describe("updateMany", () => {
           ids: [1, 2],
           variables: { status: "PUBLISHED" },
         }),
-      ).rejects.toEqual(new Error("Operation is required."));
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
     });
   });
 });

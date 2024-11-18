@@ -17,6 +17,15 @@ const gqlQuery = gql`
   }
 `;
 
+const gqlQueryError = gql`
+  query GetOneBlogPost($id: ID!) {
+    blogPost(id: $id) {
+        id1
+        title
+    }
+  }
+`;
+
 const gqlMutation = gql`
   mutation UpdateOneBlogPost($input: UpdateOneBlogPostInput!) {
     updateOneBlogPost(input: $input) {
@@ -60,5 +69,23 @@ describe("useOne", () => {
     expect(data["title"]).toBeDefined();
     expect(data["content"]).toBeDefined();
     expect(data["category"].id).toBeDefined();
+  });
+});
+
+describe("incorrect item", () => {
+  it("throws graphql error", async () => {
+    await expect(
+      dataProvider(client).getOne({
+        resource: "blogPosts",
+        id: "20",
+        meta: {
+          gqlQuery: gqlQueryError,
+        },
+      }),
+    ).rejects.toEqual(
+      new Error(
+        '[GraphQL] Cannot query field "id1" on type "BlogPost". Did you mean "id"?',
+      ),
+    );
   });
 });
