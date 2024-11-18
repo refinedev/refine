@@ -41,6 +41,8 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
 
+  if (breadcrumbs.length === 0) return null;
+
   const LinkRouter = (props: LinkProps & { to?: string }) => (
     <Link {...props} component={ActiveLink} />
   );
