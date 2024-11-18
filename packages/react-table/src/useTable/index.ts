@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { isEqual } from "lodash";
 import {
   type BaseRecord,
   ConditionalFilter,
@@ -60,6 +61,7 @@ export function useTable<
   TError
 > {
   const isFirstRender = useIsFirstRender();
+  const previousSorters = useRef<any[]>([]);
 
   const useTableResult = useTableCore<TQueryFnData, TError, TData>({
     ...refineCoreProps,
@@ -137,12 +139,16 @@ export function useTable<
 
   useEffect(() => {
     if (sorting !== undefined) {
-      setSorters(
-        sorting?.map((sorting) => ({
-          field: sorting.id,
-          order: sorting.desc ? "desc" : "asc",
-        })),
-      );
+      if (!isEqual(previousSorters.current, sorting) || isFirstRender) {
+        setSorters(
+          sorting?.map((sorting) => ({
+            field: sorting.id,
+            order: sorting.desc ? "desc" : "asc",
+          })),
+        );
+      }
+
+      previousSorters.current = sorting;
 
       if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
         setCurrent(1);
@@ -163,7 +169,9 @@ export function useTable<
       }),
     );
 
-    setFilters(crudFilters);
+    if (!isEqual(crudFilters, filtersCore) || isFirstRender) {
+      setFilters(crudFilters);
+    }
 
     if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
       setCurrent(1);
