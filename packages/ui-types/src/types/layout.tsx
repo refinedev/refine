@@ -1,4 +1,5 @@
 import type { TitleProps, LayoutProps } from "@refinedev/core";
+import type { BoxProps } from "@mui/material";
 
 export type SiderRenderProps = {
   /**
@@ -80,10 +81,24 @@ export type RefineThemedLayoutV2Props = {
    * Whether the sider is collapsed or not by default.
    */
   initialSiderCollapsed?: boolean;
+
+  /**
+   * Additional properties for the container box.
+   * This type includes all properties of BoxProps, including 'sx'.
+   */
+  containerBoxProps?: BoxProps;
+
+  /**
+   * Additional properties for the children box.
+   * This type includes all properties of BoxProps, including 'sx'.
+   */
+  childrenBoxProps?: BoxProps;
 } & RefineLayoutLayoutProps;
+
 export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
 };
+
 export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
   /**
    * Whether the header is sticky or not.

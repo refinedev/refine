@@ -15,33 +15,34 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
   OffLayoutArea,
   children,
   initialSiderCollapsed,
+  containerBoxProps = {},
+  childrenBoxProps = {},
 }) => {
   const SiderToRender = Sider ?? DefaultSider;
   const HeaderToRender = Header ?? DefaultHeader;
 
+  const { sx: containerSx, ...restContainerProps } = containerBoxProps;
+  const { sx: childrenSx, ...restChildrenProps } = childrenBoxProps;
+
   return (
     <ThemedLayoutContextProvider initialSiderCollapsed={initialSiderCollapsed}>
-      <Box display="flex" flexDirection="row">
+      <Box
+        sx={{ display: "flex", flexDirection: "row", ...containerSx }}
+        {...restContainerProps}
+      >
         <SiderToRender Title={Title} />
         <Box
-          sx={[
-            {
-              display: "flex",
-              flexDirection: "column",
-              flex: 1,
-              minWidth: "1px",
-              minHeight: "1px",
-            },
-          ]}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 1,
+          }}
         >
           <HeaderToRender />
           <Box
             component="main"
-            sx={{
-              p: { xs: 1, md: 2, lg: 3 },
-              flexGrow: 1,
-              bgcolor: (theme) => theme.palette.background.default,
-            }}
+            sx={{ flexGrow: 1, ...childrenSx }}
+            {...restChildrenProps}
           >
             {children}
           </Box>
