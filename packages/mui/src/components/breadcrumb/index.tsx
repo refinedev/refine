@@ -98,7 +98,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   return (
     <Breadcrumbs
       aria-label="breadcrumb"
-      sx={{ padding: 2, ...(breadcrumbProps?.sx ?? {}) }}
+      sx={{ ...breadcrumbProps?.sx }}
       {...breadcrumbProps}
     >
       {renderHomeLink()}
