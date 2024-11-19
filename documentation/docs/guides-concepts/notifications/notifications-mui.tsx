@@ -12,7 +12,7 @@ export default function NotificationMui() {
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^6.0.0-beta.14",
-        "@mui/material": "^6.1.6",
+        "@mui/material": "^6.1.7",
         "@mui/system": "latest",
         "@refinedev/mui": "latest",
       }}

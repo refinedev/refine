@@ -10,7 +10,7 @@ feat: added support for Material UI v6 and X Data Grid v7 #6333
 - "@mui/lab": "^5.0.0-alpha.85",
 + "@mui/lab": "^6.0.0-beta.14",
 - "@mui/material": "^5.14.2",
-+ "@mui/material": "^6.1.6",
++ "@mui/material": "^6.1.7",
 
 - "@mui/x-data-grid": "^6.6.0",
 + "@mui/x-data-grid": "^7.22.2",

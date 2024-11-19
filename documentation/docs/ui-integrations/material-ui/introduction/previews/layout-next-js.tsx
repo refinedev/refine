@@ -15,7 +15,7 @@ export default function LayoutNextjs() {
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^6.0.0-beta.14",
-        "@mui/material": "^6.1.6",
+        "@mui/material": "^6.1.7",
         "@mui/system": "latest",
         "@mui/x-data-grid": "^7.22.2",
         "@refinedev/nextjs-router": "latest",
