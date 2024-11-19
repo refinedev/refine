@@ -10,14 +10,15 @@ import {
 } from "@refinedev/core";
 import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
-import { Box, Breadcrumbs, Typography, Link } from "@mui/material";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Grid from "@mui/material/Grid";
 
-import type {
-  BreadcrumbsProps as MuiBreadcrumbProps,
-  LinkProps,
-} from "@mui/material";
+import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs";
+import type { LinkProps } from "@mui/material/Link";
 
-import { HomeOutlined } from "@mui/icons-material";
+import HomeOutlined from "@mui/icons-material/HomeOutlined";
 
 export type BreadcrumbProps = RefineBreadcrumbProps<MuiBreadcrumbProps>;
 
@@ -35,6 +36,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   const ActiveLink = routerType === "legacy" ? LegacyLink : NewLink;
 
   const { hasDashboard } = useRefineContext();
+
   const { resources } = useResource();
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
@@ -45,64 +47,69 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     <Link {...props} component={ActiveLink} />
   );
 
-  const renderHomeLink = () => {
-    if (!showHome || !(hasDashboard || rootRouteResource.found)) return null;
-
-    return (
-      <LinkRouter
-        underline="hover"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-        }}
-        color="inherit"
-        to="/"
-      >
-        {rootRouteResource?.resource?.meta?.icon ?? (
-          <HomeOutlined sx={{ fontSize: "18px" }} />
-        )}
-      </LinkRouter>
-    );
-  };
-
-  const renderBreadcrumbItem = ({ label, icon: Icon, href }: any) => (
-    <Box
-      key={label}
+  return (
+    <Breadcrumbs
+      aria-label="breadcrumb"
       sx={{
-        display: "flex",
-        alignItems: "center",
+        paddingY: 2,
+        paddingX: 2,
+        ...(breadcrumbProps?.sx ?? {}),
       }}
+      {...breadcrumbProps}
     >
-      {!hideIcons && Icon && <Icon sx={{ fontSize: "16px" }} />}
-      {href ? (
+      {showHome && (hasDashboard || rootRouteResource.found) && (
         <LinkRouter
           underline="hover"
           sx={{
             display: "flex",
             alignItems: "center",
-            fontSize: "14px",
           }}
           color="inherit"
-          to={href}
-          variant="subtitle1"
-          marginLeft={0.5}
+          to="/"
         >
-          {label}
+          {rootRouteResource?.resource?.meta?.icon ?? (
+            <HomeOutlined
+              sx={{
+                fontSize: "18px",
+              }}
+            />
+          )}
         </LinkRouter>
-      ) : (
-        <Typography variant="body2">{label}</Typography>
       )}
-    </Box>
-  );
-
-  return (
-    <Breadcrumbs
-      aria-label="breadcrumb"
-      sx={{ ...breadcrumbProps?.sx }}
-      {...breadcrumbProps}
-    >
-      {renderHomeLink()}
-      {breadcrumbs.map(renderBreadcrumbItem)}
+      {breadcrumbs.map(({ label, icon, href }) => {
+        return (
+          <Grid
+            key={label}
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              "& .MuiSvgIcon-root": {
+                fontSize: "16px",
+              },
+            }}
+          >
+            {!hideIcons && icon}
+            {href ? (
+              <LinkRouter
+                underline="hover"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  fontSize: "14px",
+                }}
+                color="inherit"
+                to={href}
+                variant="subtitle1"
+                marginLeft={0.5}
+              >
+                {label}
+              </LinkRouter>
+            ) : (
+              <Typography fontSize="14px">{label}</Typography>
+            )}
+          </Grid>
+        );
+      })}
     </Breadcrumbs>
   );
 };
