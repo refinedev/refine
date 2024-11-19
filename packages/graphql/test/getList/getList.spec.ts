@@ -16,6 +16,19 @@ const gqlQuery = gql`
   }
 `;
 
+const gqlQueryError = gql`
+  query BlogPosts($paging: OffsetPaging!, $filter: BlogPostFilter!, $sorting: [BlogPostSort!]!) {
+    blogPosts(paging: $paging, filter: $filter, sorting: $sorting) {
+      nodes {
+        id1
+        title
+        status
+      }
+      totalCount
+    }
+  }
+`;
+
 describe("getList", () => {
   it("default params", async () => {
     const { data, total } = await dataProvider(client).getList({
@@ -112,7 +125,7 @@ describe("getList", () => {
         filters: [{ field: "status", operator: "eq", value: "DRAFT" }],
       });
 
-      data.map((d) => expect(d.status).toBe("DRAFT"));
+      data.forEach((d) => expect(d.status).toBe("DRAFT"));
     });
 
     it("and", async () => {
@@ -153,7 +166,34 @@ describe("getList", () => {
         ],
       });
 
-      data.map((d) => expect(d.status).not.toBe("REJECTED"));
+      data.forEach((d) => expect(d.status).not.toBe("REJECTED"));
+    });
+  });
+
+  describe("without operation", () => {
+    it("throws code error", async () => {
+      expect(
+        dataProvider(client).getList({
+          resource: "blogPosts",
+        }),
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
+    });
+  });
+
+  describe("incorrect item", () => {
+    it("throws graphql error", async () => {
+      await expect(
+        dataProvider(client).getList({
+          resource: "blogPosts",
+          meta: {
+            gqlQuery: gqlQueryError,
+          },
+        }),
+      ).rejects.toEqual(
+        new Error(
+          '[GraphQL] Cannot query field "id1" on type "BlogPosts". Did you mean "id"?',
+        ),
+      );
     });
   });
 });
