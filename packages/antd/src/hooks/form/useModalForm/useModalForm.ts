@@ -58,7 +58,9 @@ export type UseModalFormReturnType<
   >,
   "saveButtonProps" | "deleteButtonProps"
 > &
-  useModalFormFromSFReturnType<TResponse, TVariables>;
+  useModalFormFromSFReturnType<TResponse, TVariables> & {
+    setAction: React.Dispatch<React.SetStateAction<string>>;
+  };
 
 export type UseModalFormProps<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -89,6 +91,7 @@ export type UseModalFormProps<
     defaultVisible?: boolean;
     autoSubmitClose?: boolean;
     autoResetForm?: boolean;
+    action: "show" | "edit" | "create" | "clone";
   };
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
