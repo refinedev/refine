@@ -30,12 +30,14 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (hidden) return null;
 
+  const isDisabled = disabled || rest.disabled;
+
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -61,7 +63,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       ) : (
         <Button
           colorScheme="brand"
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           leftIcon={<IconSquarePlus size={20} />}
           title={title}
           data-testid={RefineButtonTestIds.CreateButton}

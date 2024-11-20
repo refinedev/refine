@@ -38,6 +38,8 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (hidden) return null;
 
+  const isDisabled = disabled || rest.disabled;
+
   const { sx, ...restProps } = rest;
 
   return (
@@ -45,7 +47,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -57,7 +59,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       style={{ textDecoration: "none" }}
     >
       <Button
-        disabled={disabled}
+        disabled={isDisabled}
         startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
         title={title}
         variant="contained"
