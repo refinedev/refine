@@ -1,7 +1,8 @@
-import { DataGridPro, type GridColDef } from "@mui/x-data-grid-pro";
-import { type BaseOption, useSelect } from "@refinedev/core";
-import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
+import { useSelect } from "@refinedev/core";
+import { List, useDataGrid } from "@refinedev/mui";
+import { Box } from "@mui/material";
+import { DataGridPro, type GridColDef } from "@mui/x-data-grid-pro";
 
 import type { ICategory, IPost } from "../../interfaces";
 
@@ -9,7 +10,7 @@ export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({
     syncWithLocation: true,
     pagination: {
-      mode: "client",
+      mode: "off",
     },
   });
 
@@ -65,11 +66,13 @@ export const PostList: React.FC = () => {
 
   return (
     <List>
-      <DataGridPro
-        {...dataGridProps}
-        columns={columns}
-        pageSizeOptions={[10, 20, 30, 50, 100]}
-      />
+      <Box sx={{ height: 520, width: "100%" }}>
+        <DataGridPro
+          {...dataGridProps}
+          columns={columns}
+          pageSizeOptions={[10, 20, 30, 50, 100]}
+        />
+      </Box>
     </List>
   );
 };
