@@ -126,6 +126,8 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         align: "center",
         headerAlign: "center",
         display: "flex",
+        sortable: false,
+        filterable: false,
         renderCell: function render({ row }) {
           return (
             <IconButton
