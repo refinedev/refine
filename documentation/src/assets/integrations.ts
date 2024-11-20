@@ -34,6 +34,7 @@ import {
   Kinde,
   PocketBase,
   ShadCnUI,
+  PostgREST,
 } from "./integration-icons";
 
 export const integrations: IntegrationsType = {
@@ -300,6 +301,20 @@ export const integrations: IntegrationsType = {
         {
           name: "kruschid",
           url: "https://github.com/kruschid",
+        },
+      ],
+    },
+    {
+      name: "PostgREST Data Provider",
+      icon: PostgREST,
+      description:
+        "Connector for backends created with <strong>PostgREST</strong>",
+      url: "https://github.com/ffimnsr/refine-postgrest-ts",
+      status: "stable",
+      contributors: [
+        {
+          name: "ffimnsr",
+          url: "https://github.com/ffimnsr",
         },
       ],
     },
