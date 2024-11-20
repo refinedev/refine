@@ -40,13 +40,12 @@ export const breadcrumbTests = (
     });
 
     it("should not render breadcrumb when the number of items is less than minItems", async () => {
-      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={3} />, {
+      const { container } = renderBreadcrumb(<Breadcrumb minItems={3} />, {
         resources: [{ name: "posts" }],
         routerInitialEntries: ["/posts/create"],
       });
 
-      getByText("Posts");
-      getByText("Create");
+      expect(container).toBeEmptyDOMElement();
     });
 
     it("should render breadcrumb items with link", async () => {
