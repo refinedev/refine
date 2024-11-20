@@ -69,6 +69,7 @@ export const ProductListTable = (props: Props) => {
       },
       {
         field: "price",
+        type: "number",
         headerName: t("products.fields.price"),
         width: 120,
         sortable: false,
