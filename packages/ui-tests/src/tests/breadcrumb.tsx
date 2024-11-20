@@ -24,14 +24,23 @@ export const breadcrumbTests = (
   Breadcrumb: React.ComponentType<RefineBreadcrumbProps<any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Create", () => {
-    it("should render successfuly", async () => {
+    it("should not render breadcrumb when no items are present", async () => {
       const { container } = renderBreadcrumb(<Breadcrumb />);
 
-      expect(container).toBeTruthy();
+      expect(container).toBeEmptyDOMElement();
     });
 
-    it("should render breadcrumb items", async () => {
-      const { getByText } = renderBreadcrumb(<Breadcrumb />, {
+    it("should render breadcrumb when the number of items is equal to or greater than minItems", async () => {
+      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={1} />, {
+        resources: [{ name: "posts" }],
+        routerInitialEntries: ["/posts"],
+      });
+
+      getByText("Posts");
+    });
+
+    it("should not render breadcrumb when the number of items is less than minItems", async () => {
+      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={3} />, {
         resources: [{ name: "posts" }],
         routerInitialEntries: ["/posts/create"],
       });

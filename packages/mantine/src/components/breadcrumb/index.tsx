@@ -26,6 +26,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   showHome = true,
   hideIcons = false,
   meta,
+  minItems = 1,
 }) => {
   const routerType = useRouterType();
   const { breadcrumbs } = useBreadcrumb({ meta });
@@ -40,9 +41,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-  if (breadcrumbs.length === 1) {
-    return null;
-  }
+  if (breadcrumbs.length >= minItems) return null;
 
   return (
     <Breadcrumbs
