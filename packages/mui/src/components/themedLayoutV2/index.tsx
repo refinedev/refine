@@ -36,12 +36,19 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
             display: "flex",
             flexDirection: "column",
             flex: 1,
+            minWidth: "1px",
+            minHeight: "1px",
           }}
         >
           <HeaderToRender />
           <Box
             component="main"
-            sx={{ flexGrow: 1, ...childrenSx }}
+            sx={{
+              flexGrow: 1,
+              p: { xs: 1, md: 2, lg: 3 },
+              bgcolor: (theme) => theme.palette.background.default,
+              ...childrenSx,
+            }}
             {...restChildrenProps}
           >
             {children}
