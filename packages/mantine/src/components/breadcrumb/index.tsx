@@ -41,7 +41,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-  if (breadcrumbs.length < minItems) return null;
+  if (breadcrumbs.length <= minItems) return null;
 
   return (
     <Breadcrumbs

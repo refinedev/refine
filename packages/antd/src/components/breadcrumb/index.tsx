@@ -39,7 +39,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
-  if (breadcrumbs.length < minItems) return null;
+  if (breadcrumbs.length <= minItems) return null;
 
   const breadCrumbItems = breadcrumbs.map(({ label, icon, href }) => ({
     key: `breadcrumb-item-${label}`,
