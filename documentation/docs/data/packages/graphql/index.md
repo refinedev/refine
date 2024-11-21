@@ -363,6 +363,6 @@ You can also use `@refinedev/inferencer` package to generate sample codes for yo
 
 ## Example
 
-<CodeSandboxExample path="data-provider-nestjs-query" />
+<CodeSandboxExample path="data-provider-graphql" />
 
 [data-provider]: /docs/data/data-provider
