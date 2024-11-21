@@ -3,69 +3,51 @@
 
 describe("table-material-ui-use-data-grid", () => {
   beforeEach(() => {
+    cy.interceptGETPosts();
+    cy.interceptGETCategories();
     cy.visit("/");
   });
 
   it("should work with sorter", () => {
+    // check the request for default sort order
+    cy.wait("@getPosts").then((interception) => {
+      const request = interception.request;
+      const query = request.query;
+      expect(query._sort).to.eq("title");
+      expect(query._order).to.eq("asc");
+    });
+    // check the default url
+    cy.url().should("include", "sorters[0][field]=title&sorters[0][order]=asc");
+
+    // wait for loading
     cy.getMaterialUILoadingCircular().should("not.exist");
 
-    cy.intercept(
-      {
-        url: "/posts*",
-        query: {
-          _sort: "title",
-          _order: "desc",
-        },
-      },
-      {
-        fixture: "posts.json",
-      },
-    ).as("getDescPosts");
-
+    // click the title column header to sort desc
     cy.getMaterialUIColumnHeader(2).click();
-
+    // check the request for desc sort order
+    cy.wait("@getPosts").then((interception) => {
+      const request = interception.request;
+      const query = request.query;
+      expect(query._sort).to.eq("title");
+      expect(query._order).to.eq("desc");
+    });
+    // url should contain the sorter with desc
     cy.url().should(
       "include",
       "sorters[0][field]=title&sorters[0][order]=desc",
     );
 
-    cy.wait("@getDescPosts");
-
-    cy.interceptGETPosts();
-
+    // click the title column header again to remove the sorter
     cy.getMaterialUIColumnHeader(2).click();
-
-    cy.url().should(
-      "not.include",
-      "sorters[0][field]=title&sorters[0][order]=desc",
-    );
-
+    // check the request for default sort order
     cy.wait("@getPosts").then((interception) => {
-      const { request } = interception;
-      const { _sort, _order } = request.query;
-
-      expect(_sort).to.undefined;
-      expect(_order).to.undefined;
+      const request = interception.request;
+      const query = request.query;
+      expect(query._sort).to.be.undefined;
+      expect(query._order).to.be.undefined;
     });
-
-    cy.intercept(
-      {
-        url: "/posts*",
-        query: {
-          _sort: "title",
-          _order: "asc",
-        },
-      },
-      {
-        fixture: "posts.json",
-      },
-    ).as("getAscPosts");
-
-    cy.getMaterialUIColumnHeader(2).click();
-
-    cy.url().should("include", "sorters[0][field]=title&sorters[0][order]=asc");
-
-    cy.wait("@getAscPosts", { timeout: 120000 });
+    // url should not contain the sorter
+    cy.url().should("not.include", "sorters[0][field]=title&sorters[0]");
   });
 
   it("should work with filter", () => {
