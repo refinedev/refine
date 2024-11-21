@@ -13,7 +13,7 @@ import {
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
 } from "@refinedev/core";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import type {
   DataGridProps,
@@ -161,7 +161,7 @@ export function useDataGrid<
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
   const liveMode = useLiveMode(liveModeFromProp);
 
-  const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
+  const columnsTypes = useRef<Record<string, string>>();
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 
@@ -333,7 +333,7 @@ export function useDataGrid<
       filterMode: isServerSideFilteringEnabled ? "server" : "client",
       filterModel: transformCrudFiltersToFilterModel(
         differenceWith(muiCrudFilters, preferredPermanentFilters, isEqual),
-        columnsTypes,
+        columnsTypes.current,
       ),
       onFilterModelChange: handleFilterModelChange,
       onStateChange: (state) => {
@@ -345,7 +345,7 @@ export function useDataGrid<
         const isStateChanged = !isEqual(newColumnsTypes, columnsTypes);
 
         if (isStateChanged) {
-          setColumnsType(newColumnsTypes);
+          columnsTypes.current = newColumnsTypes;
         }
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
