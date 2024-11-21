@@ -27,7 +27,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   showHome = true,
   hideIcons = false,
   meta,
-  minItems = 1,
+  minItems = 2,
 }) => {
   const { breadcrumbs } = useBreadcrumb({ meta });
   const routerType = useRouterType();
@@ -42,7 +42,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
 
-  if (breadcrumbs.length <= minItems) return null;
+  if (breadcrumbs.length < minItems) return null;
 
   const LinkRouter = (props: LinkProps & { to?: string }) => (
     <Link {...props} component={ActiveLink} />
