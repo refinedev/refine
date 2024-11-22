@@ -107,7 +107,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         width: 220,
         headerName: t("users.fields.createdAt"),
         display: "flex",
-        renderCell: function render({ row, value, formattedValue }) {
+        renderCell: function render({ row }) {
           return <DateField value={row.createdAt} format="LL / hh:mm a" />;
         },
       },
