@@ -34,11 +34,12 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
   const columns = useMemo<GridColDef<IUser>[]>(
     () => [
       {
-        field: "orderNumber",
+        field: "id",
         headerName: "ID #",
         description: "ID #",
         width: 52,
         display: "flex",
+        type: "number",
         renderCell: function render({ row }) {
           return <Typography>#{row.id}</Typography>;
         },
@@ -106,7 +107,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         width: 220,
         headerName: t("users.fields.createdAt"),
         display: "flex",
-        renderCell: function render({ row }) {
+        renderCell: function render({ row, value, formattedValue }) {
           return <DateField value={row.createdAt} format="LL / hh:mm a" />;
         },
       },
@@ -115,6 +116,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         headerName: t("users.fields.isActive.label"),
         width: 120,
         display: "flex",
+        type: "boolean",
         renderCell: function render({ row }) {
           return <CustomerStatus value={row.isActive} />;
         },
