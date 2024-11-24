@@ -47,6 +47,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   formProps,
   title,
   hideForm,
+  mutationVariables,
 }) => {
   const { token } = theme.useToken();
   const [form] = Form.useForm<RegisterFormTypes>();
@@ -108,6 +109,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 }}
                 onClick={() =>
                   register({
+                    ...mutationVariables,
                     providerName: provider.name,
                   })
                 }
@@ -152,7 +154,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         <Form<RegisterFormTypes>
           layout="vertical"
           form={form}
-          onFinish={(values) => register(values)}
+          onFinish={(values) => register({ ...mutationVariables, ...values })}
           requiredMark={false}
           {...formProps}
         >

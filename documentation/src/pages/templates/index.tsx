@@ -19,29 +19,36 @@ import {
   Supabase,
 } from "@site/src/assets/integration-icons";
 import { TemplatesList } from "@site/src/refine-theme/templates-list";
-import { TemplatesFilters } from "@site/src/refine-theme/templates-filters";
+import {
+  type Filters,
+  TemplatesFilters,
+} from "@site/src/refine-theme/templates-filters";
 import { TemplatesFilterButton } from "@site/src/refine-theme/templates-filter-button";
 import { CommonDrawer } from "@site/src/refine-theme/common-drawer";
+import { TemplateEdition } from "@site/src/types/integrations";
 
 const Templates: React.FC = () => {
   const title = "Refine | Open-source Retool for Enterprise";
 
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = React.useState(false);
 
-  const [filters, setFilters] = React.useState<{
-    uiFramework: string[];
-    backend: string[];
-  }>({
+  const [filters, setFilters] = React.useState<Filters>({
+    edition: TemplateEdition.All,
     uiFramework: [],
     backend: [],
   });
 
   const dataFiltered = React.useMemo(() => {
+    const byEdition =
+      filters.edition === "All"
+        ? dataTemplates
+        : dataTemplates.filter((item) => item.edition === filters.edition);
+
     if (!filters.uiFramework.length && !filters.backend.length) {
-      return dataTemplates;
+      return byEdition;
     }
 
-    return dataTemplates.filter((item) => {
+    const byTechStack = byEdition.filter((item) => {
       return item.integrations.some((integration) => {
         return (
           filters.uiFramework.includes(integration.label) ||
@@ -49,10 +56,22 @@ const Templates: React.FC = () => {
         );
       });
     });
+
+    return byTechStack;
   }, [filters]);
 
-  const handleFilterChange = (filter: string, field: keyof typeof filters) => {
+  const handleFilterChange = (
+    filter: string | TemplateEdition,
+    field: keyof typeof filters,
+  ) => {
     setFilters((prev) => {
+      if (field === "edition") {
+        return {
+          ...prev,
+          [field]: filter as TemplateEdition,
+        };
+      }
+
       const hasFilter = prev[field].includes(filter);
       if (hasFilter) {
         return {
@@ -141,6 +160,9 @@ const Templates: React.FC = () => {
                 </h3>
                 <TemplatesFilters
                   svgId={"sider"}
+                  onEditionChange={(edition) => {
+                    handleFilterChange(edition, "edition");
+                  }}
                   onBackendChange={(backend) => {
                     handleFilterChange(backend, "backend");
                   }}
@@ -166,6 +188,9 @@ const Templates: React.FC = () => {
           <div className={clsx("flex", "flex-col", "not-prose")}>
             <TemplatesFilters
               svgId={"drawer"}
+              onEditionChange={(edition) => {
+                handleFilterChange(edition, "edition");
+              }}
               onBackendChange={(backend) => {
                 handleFilterChange(backend, "backend");
               }}
@@ -201,6 +226,20 @@ type Integration = {
 };
 
 const dataFilters = {
+  editions: [
+    {
+      label: "All",
+      icon: null,
+    },
+    {
+      label: "Enterprise",
+      icon: null,
+    },
+    {
+      label: TemplateEdition.Community,
+      icon: null,
+    },
+  ],
   uiFrameworks: [
     {
       label: "Ant Design",
@@ -278,6 +317,7 @@ const dataTemplates: {
   description: string;
   image: string;
   to: string;
+  edition: TemplateEdition;
   integrations: (Integration["uiFrameworks"] | Integration["backends"])[];
 }[] = [
   {
@@ -287,6 +327,7 @@ const dataTemplates: {
       "A comprehensive CRM app built using Refine, Ant Design, and GraphQL. It includes authentication, a dashboard, and over 10 CRUD interfaces, ranging from charts and sales kanban boards to user administration.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-crm.jpg",
+    edition: TemplateEdition.Enterprise,
     integrations: [
       {
         label: "Ant Design",
@@ -303,12 +344,59 @@ const dataTemplates: {
     ],
   },
   {
+    to: "/templates/hr-application",
+    title: "HR Management App Example",
+    description:
+      "HR management app example built with Refine, demonstrating how quickly enterprise-level tools can be developed. This template features leave management, employee directory, and expense tracking.",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/refine-hr.png",
+    edition: TemplateEdition.Enterprise,
+    integrations: [
+      {
+        label: "Material UI",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Antd width={16} height={16} {...props} />
+        ),
+      },
+      {
+        label: "Rest API",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <RestWithoutText width={16} height={16} {...props} />
+        ),
+      },
+    ],
+  },
+  {
+    to: "/templates/multitenancy-strapi",
+    title: "Multitenancy App with Strapi",
+    description:
+      "Implementing multitenancy architecture in Refine applications.",
+    image:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
+    edition: TemplateEdition.Enterprise,
+    integrations: [
+      {
+        label: "Ant Design",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Antd width={16} height={16} {...props} />
+        ),
+      },
+      {
+        label: "Strapi",
+        icon: (props: SVGProps<SVGSVGElement>) => (
+          <Strapi width={16} height={16} {...props} />
+        ),
+      },
+    ],
+  },
+  {
     to: "/templates/next-js-tailwind",
     title: "E-Commerce Application Storefront",
     description:
       "A Headless storefront example built with Refine and Tailwind CSS. Features product listings and a simple shopping cart. Supports SSR with NextJS.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-storefront.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Headless",
@@ -331,6 +419,7 @@ const dataTemplates: {
       "A comprehensive Admin panel template built using Refine and Material UI demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-material-ui.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Material UI",
@@ -353,6 +442,7 @@ const dataTemplates: {
       "A comprehensive Admin panel template built using Refine and Ant design demonstrating a food ordering system. It includes features such as authentication, a dashboard, and over 10 CRUD interfaces, ranging from orders to user management.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/finefoods-ant-design.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Ant Design",
@@ -375,6 +465,7 @@ const dataTemplates: {
       "A complete headless e-commerce template was built on top of Medusa with Refine. Features a fully working solution with product listings, a shopping cart, and checkout. Supports SSR with NextJS.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/swag-store.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Headless",
@@ -397,6 +488,7 @@ const dataTemplates: {
       "It is a funny app built with Refine and Supabase, along with a Realtime feature.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/pixels.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Ant Design",
@@ -419,6 +511,7 @@ const dataTemplates: {
       "The Internal Tool template features a PDF Invoice Generator along with CRUD functionalities.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/invoicer.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Ant Design",
@@ -441,6 +534,7 @@ const dataTemplates: {
       "With the headless architecture of Refine, you have the flexibility to implement any custom design!",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/video-club.png",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Headless",
@@ -462,6 +556,7 @@ const dataTemplates: {
     description: `"The mother of all demo apps" - Exemplary fullstack Medium.com clone powered by Refine!`,
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/realworld.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Headless",
@@ -478,34 +573,13 @@ const dataTemplates: {
     ],
   },
   {
-    to: "/templates/multitenancy-strapi",
-    title: "Multitenancy App with Strapi",
-    description:
-      "Implementing multitenancy architecture in Refine applications.",
-    image:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/templates/multitenancy-strapi.jpg",
-    integrations: [
-      {
-        label: "Ant Design",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Antd width={16} height={16} {...props} />
-        ),
-      },
-      {
-        label: "Strapi",
-        icon: (props: SVGProps<SVGSVGElement>) => (
-          <Strapi width={16} height={16} {...props} />
-        ),
-      },
-    ],
-  },
-  {
     to: "/templates/ant-design-template",
     title: "Generic Internal Tool Template with Ant Design",
     description:
       "Complete internal tool template built with Ant Design. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/ant-design-template.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Ant Design",
@@ -528,6 +602,7 @@ const dataTemplates: {
       "Complete internal tool template built with Material UI. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/material-ui-template.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Material UI",
@@ -550,6 +625,7 @@ const dataTemplates: {
       "Complete internal tool template built with Chakra UI. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/chakra-ui-template.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Chakra UI",
@@ -572,6 +648,7 @@ const dataTemplates: {
       "Complete internal tool template built with Mantine. Features authentication and CRUD screens.",
     image:
       "https://refine.ams3.cdn.digitaloceanspaces.com/templates/mantine-template.jpg",
+    edition: TemplateEdition.Community,
     integrations: [
       {
         label: "Mantine",

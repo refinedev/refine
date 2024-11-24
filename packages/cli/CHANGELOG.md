@@ -1,5 +1,24 @@
 # @refinedev/cli
 
+## 2.16.39
+
+### Patch Changes
+
+- [#6400](https://github.com/refinedev/refine/pull/6400) [`451016a207d4dd6aecb4d56133efc1ad6229acff`](https://github.com/refinedev/refine/commit/451016a207d4dd6aecb4d56133efc1ad6229acff) Thanks [@aliemir](https://github.com/aliemir)! - fix(cli): handle errors while fetching dependencies in get-project-type
+
+  When working with `deno` or missing `package.json` file, an error was thrown while determining the project type. This was causing the CLI to crash even though the fallbacks were provided. This PR handles such errors in `getProjectType` and lets it use the fallback type.
+
+  [Resolves #6335](https://github.com/refinedev/refine/issues/6335)
+
+- [#6354](https://github.com/refinedev/refine/pull/6354) [`da9da4ed1a9700c7a48db6520d683168c48b226e`](https://github.com/refinedev/refine/commit/da9da4ed1a9700c7a48db6520d683168c48b226e) Thanks [@arndom](https://github.com/arndom)! - chore(cli): remove unused express dependency
+
+  Removed `express` dependency which triggers a vulnerability warning from `serve-static`.
+
+  [Resolves #6321](https://github.com/refinedev/refine/issues/6321)
+
+- Updated dependencies [[`da9da4ed1a9700c7a48db6520d683168c48b226e`](https://github.com/refinedev/refine/commit/da9da4ed1a9700c7a48db6520d683168c48b226e)]:
+  - @refinedev/devtools-server@1.1.37
+
 ## 2.16.38
 
 ### Patch Changes

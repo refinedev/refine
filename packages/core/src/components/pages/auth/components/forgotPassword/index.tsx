@@ -27,6 +27,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
   renderContent,
   formProps,
   title = undefined,
+  mutationVariables,
 }) => {
   const translate = useTranslate();
   const routerType = useRouterType();
@@ -53,7 +54,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          forgotPassword({ email });
+          forgotPassword({ ...mutationVariables, email });
         }}
         {...formProps}
       >

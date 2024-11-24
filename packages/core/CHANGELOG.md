@@ -1,5 +1,170 @@
 # @refinedev/core
 
+## 4.56.0
+
+### Minor Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: added new prop called `mutationVariables` to `<AuthPage />`. #6431
+  From now on, you can pass additional parameters to the `authProvider` methods using the `mutationVariables` prop of the `<AuthPage />` component.
+
+  ```tsx
+  import { AuthPage } from "@refinedev/antd"; // or "@refinedev/chakra-ui", "@refinedev/mantine", "@refinedev/mui"
+
+  const MyLoginPage = () => {
+    return (
+      <AuthPage
+        type="login" // all other types are also supported.
+        // highlight-start
+        mutationVariables={{
+          foo: "bar",
+          xyz: "abc",
+        }}
+        // highlight-end
+      />
+    );
+  };
+
+  // all mutation methods are supported.
+  const authProvider = {
+    login: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    register: async ({ foo, xyz, ...otherProps }) => {
+      console.log(foo); // bar
+      console.log(xyz); // abc
+      // ...
+    },
+    // ...
+  };
+  ```
+
+  [Resolves #6431](https://github.com/refinedev/refine/issues/6431)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: exported useInvalidateAuthStore hook from auth hooks
+
+  Now you can invalide the users identity state and force a react query refresh using this hook
+
+  Resolves [#6341](https://github.com/refinedev/refine/issues/6341)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Added `MetaContext` to share data between components, providers, and hooks.
+
+  > 🚨 Designed for internal use only.
+
+### Patch Changes
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: Added more flexibility to the [`<Link />`](https://refine.dev/docs/routing/components/link/) component's `ref` type by changing it from `HTMLAnchorElement` to `Element`.
+  From now on, we can pass any type of `ref` to the [`<Link />`](https://refine.dev/docs/routing/components/link/) component.
+
+  ```tsx
+  // Before fix - Only worked with HTMLAnchorElement
+  const ref = useRef<HTMLAnchorElement>(null);
+
+  // After fix - Works with any Element type
+  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLSpanElement>(null);
+  ```
+
+  Resolves [#6463](https://github.com/refinedev/refine/issues/6463)
+
+- [#6445](https://github.com/refinedev/refine/pull/6445) [`4ff4335274d5689ec62127312695b76d692a125a`](https://github.com/refinedev/refine/commit/4ff4335274d5689ec62127312695b76d692a125a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: Priority logic between `to` and `go` props in [`Link`](https://refine.dev/docs/routing/components/link/) component.
+  From now on, the `to` prop has priority over the `go` prop. If both are passed, the `to` prop will be used.
+
+  ```tsx
+  // Before fix - go would override to
+  <Link to="/posts" go={{ resource: "categories" }} />
+
+  // After fix - to overrides go
+  <Link to="/posts" go={{ resource: "categories" }} />
+  ```
+
+  Resolves [#6461](https://github.com/refinedev/refine/issues/6461)
+
+## 4.55.0
+
+### Minor Changes
+
+- [#6330](https://github.com/refinedev/refine/pull/6330) [`5a81b35bc1eedbecb4b6c531a2fa5235dd0caf31`](https://github.com/refinedev/refine/commit/5a81b35bc1eedbecb4b6c531a2fa5235dd0caf31) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: add [`<Link />`](https://refine.dev/docs/routing/components/link/) component to navigate to a resource with a specific action. Under the hood, It uses [`useGo`](https://refine.dev/docs/routing/hooks/use-go/) to generate the URL.
+
+  ## Usage
+
+  ```tsx
+  import { Link } from "@refinedev/core";
+
+  const MyComponent = () => {
+    return (
+      <>
+        {/* simple usage, navigates to `/posts` */}
+        <Link to="/posts">Posts</Link>
+        {/* complex usage with more control, navigates to `/posts` with query filters */}
+        <Link
+          go={{
+            query: {
+              // `useTable` or `useDataGrid` automatically use this filters to fetch data if `syncWithLocation` is true.
+              filters: [
+                {
+                  operator: "eq",
+                  value: "published",
+                  field: "status",
+                },
+              ],
+            },
+            to: {
+              resource: "posts",
+              action: "list",
+            },
+          }}
+        >
+          Posts
+        </Link>
+      </>
+    );
+  };
+  ```
+
+  [Fixes #6329](https://github.com/refinedev/refine/issues/6329)
+
+- [#6330](https://github.com/refinedev/refine/pull/6330) [`5a81b35bc1eedbecb4b6c531a2fa5235dd0caf31`](https://github.com/refinedev/refine/commit/5a81b35bc1eedbecb4b6c531a2fa5235dd0caf31) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - chore: From now on, [`useLink`](https://refine.dev/docs/routing/hooks/use-link/) returns [`<Link />`](https://refine.dev/docs/routing/components/link/) component instead of returning [`routerProvider.Link`](https://refine.dev/docs/routing/router-provider/#link).
+
+  Since the `<Link />` component uses `routerProvider.Link` under the hood with leveraging `useGo` hook to generate the URL there is no breaking change. It's recommended to use the `<Link />` component from the `@refinedev/core` package instead of `useLink` hook. This hook is used mostly for internal purposes and is only exposed for customization needs.
+
+  [Fixes #6329](https://github.com/refinedev/refine/issues/6329)
+
+### Patch Changes
+
+- [#6327](https://github.com/refinedev/refine/pull/6327) [`c630b090539082b5166b508053f87274624c794e`](https://github.com/refinedev/refine/commit/c630b090539082b5166b508053f87274624c794e) Thanks [@Anonymous961](https://github.com/Anonymous961)! - fix(core): added ability to return `undefined` to fallback to the default notification config when using the function form in `successNotification` and `errorNotification` props.
+
+  [Resolves #6270](https://github.com/refinedev/refine/issues/6270)
+
+- [#6353](https://github.com/refinedev/refine/pull/6353) [`a0f2d7bbef3093e11c3024bb7fa2a0ffc3ce9e10`](https://github.com/refinedev/refine/commit/a0f2d7bbef3093e11c3024bb7fa2a0ffc3ce9e10) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: The `label` and `route` fields in `useMenu().menuItems` were marked as deprecated, but they are not actually deprecated. This issue was caused by `menuItems` extending from `IResourceItem`, however, `menuItems` populates these fields and handles deprecation of these fields internally. This change removes the deprecation warning for these fields.
+
+  ```tsx
+  export const Sider = () => {
+    const { menuItems } = useMenu();
+    menuItems.map((item) => {
+      // these are safe to use
+      console.log(item.label);
+      console.log(item.route);
+      item.children.map((child) => {
+        // these are safe to use
+        console.log(child.label);
+        console.log(child.route);
+      });
+    });
+
+    return <div>{/* ... */}</div>;
+  };
+  ```
+
+  [Fixes #6352](https://github.com/refinedev/refine/issues/6352)
+
+- [#6386](https://github.com/refinedev/refine/pull/6386) [`bfe28f0316b3623aaef0b60ae39ebe24939dd0af`](https://github.com/refinedev/refine/commit/bfe28f0316b3623aaef0b60ae39ebe24939dd0af) Thanks [@hugorezende](https://github.com/hugorezende)! - fix(core): wrap `setFilters` and `setSorters` methods with `useCallback` to prevent looping re-renders
+
+  With this we can use the setFilters as dependencies inside useEffects without infinite loop since state changes in the hook won't cause the functions to be re-assigned
+
+  [Fixes #6385](https://github.com/refinedev/refine/issues/6385)
+
 ## 4.54.1
 
 ### Patch Changes

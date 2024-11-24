@@ -261,14 +261,6 @@
       "to": "/docs/advanced-tutorials/multi-level-menu/"
     },
     {
-      "from": "/docs/guides-and-concepts/multi-tenancy/appwrite/",
-      "to": "/docs/guides-concepts/multi-tenancy"
-    },
-    {
-      "from": "/docs/guides-and-concepts/multi-tenancy/strapi-v4/",
-      "to": "/docs/guides-concepts/multi-tenancy"
-    },
-    {
       "from": "/docs/guides-and-concepts/mutation-mode/",
       "to": "/docs/advanced-tutorials/mutation-mode/"
     },
@@ -2014,12 +2006,24 @@
       "to": "/blog/javascript-vs-typescript/"
     },
     {
+      "from": "/docs/guides-and-concepts/multi-tenancy/appwrite/",
+      "to": "/docs/guides-concepts/multitenancy"
+    },
+    {
+      "from": "/docs/guides-and-concepts/multi-tenancy/strapi-v4/",
+      "to": "/docs/guides-concepts/multitenancy"
+    },
+    {
       "from": "/docs/advanced-tutorials/multi-tenancy/appwrite",
-      "to": "/docs/guides-concepts/multi-tenancy"
+      "to": "/docs/guides-concepts/multitenancy"
     },
     {
       "from": "/docs/advanced-tutorials/multi-tenancy/strapi-v4",
-      "to": "/docs/guides-concepts/multi-tenancy"
+      "to": "/docs/guides-concepts/multitenancy"
+    },
+    {
+      "from": "/docs/guides-concepts/multi-tenancy",
+      "to": "/docs/guides-concepts/multitenancy"
     },
     {
       "from": "/docs/advanced-tutorials/import-export/csv-import/",

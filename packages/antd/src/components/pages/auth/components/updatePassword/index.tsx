@@ -46,6 +46,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const { token } = theme.useToken();
   const [form] = Form.useForm<UpdatePasswordFormTypes>();
@@ -96,7 +97,9 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
       <Form<UpdatePasswordFormTypes>
         layout="vertical"
         form={form}
-        onFinish={(values) => updatePassword(values)}
+        onFinish={(values) =>
+          updatePassword({ ...values, ...mutationVariables })
+        }
         requiredMark={false}
         {...formProps}
       >

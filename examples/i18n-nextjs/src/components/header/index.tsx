@@ -78,7 +78,6 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             <Typography.Text>
               {currentLocale === "en" ? "English" : "German"}
             </Typography.Text>
-            {/* @ts-expect-error Ant Design Icon's v5.0.1 has an issue with @types/react@^18.2.66 */}
             <DownOutlined />
           </Space>
         </Button>

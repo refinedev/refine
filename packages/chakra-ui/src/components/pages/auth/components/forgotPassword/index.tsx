@@ -41,6 +41,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
   renderContent,
   formProps,
   title,
+  mutationVariables,
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
@@ -99,7 +100,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             return onSubmit(data);
           }
 
-          return mutate(data);
+          return mutate({ ...mutationVariables, ...data });
         })}
       >
         <FormControl mb="3" isInvalid={!!errors?.email}>
