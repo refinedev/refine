@@ -186,3 +186,39 @@ export const getDefaultFilter = (
 
   return undefined;
 };
+
+export const mergeFilters = (
+  currentUrlFilters: CrudFilter[],
+  currentFilters: CrudFilter[],
+): CrudFilter[] => {
+  const mergedFilters = currentFilters.map((tableFilter) => {
+    const matchingURLFilter = currentUrlFilters.find(
+      (urlFilter) =>
+        "field" in tableFilter &&
+        "field" in urlFilter &&
+        tableFilter.field === urlFilter.field &&
+        tableFilter.operator === urlFilter.operator,
+    );
+
+    // override current filter wih url filter
+    if (matchingURLFilter) {
+      return { ...tableFilter, ...matchingURLFilter };
+    }
+
+    return tableFilter;
+  });
+
+  // add any other URL filters not in the current filters
+  const additionalURLFilters = currentUrlFilters.filter(
+    (urlFilter) =>
+      !currentFilters.some(
+        (tableFilter) =>
+          "field" in tableFilter &&
+          "field" in urlFilter &&
+          tableFilter.field === urlFilter.field &&
+          tableFilter.operator === urlFilter.operator,
+      ),
+  );
+
+  return [...mergedFilters, ...additionalURLFilters];
+};

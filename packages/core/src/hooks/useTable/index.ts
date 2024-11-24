@@ -11,6 +11,7 @@ import warnOnce from "warn-once";
 
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
+  mergeFilters,
   parseTableParams,
   setInitialFilters,
   setInitialSorters,
@@ -439,27 +440,32 @@ export function useTable<
     return `${pathname ?? ""}?${stringifyParams ?? ""}`;
   };
 
+  // watch URL filters to update internal filters
   useEffect(() => {
-    if (!parsedParams?.params?.filters && !parsedParams?.params?.sorters) {
-      const resetFilters = setInitialFilters(
+    if (syncWithLocation) {
+      const currentFilters = filters;
+      const currentUrlFilters = parsedParams?.params?.filters;
+      const initialFilters = setInitialFilters(
         preferredPermanentFilters,
         defaultFilter ?? [],
       );
-      const resetSorters = setInitialSorters(
-        preferredPermanentSorters,
-        defaultSorter ?? [],
-      );
 
-      setFilters(resetFilters);
-      setSorters(resetSorters);
+      let newFilters: CrudFilter[] = [];
+      const urlsAreEqual = isEqual(currentUrlFilters, currentFilters);
+
+      if (!urlsAreEqual) {
+        // fallback to initial filters
+        if (!currentUrlFilters || currentUrlFilters.length === 0) {
+          newFilters = initialFilters;
+        } else {
+          // since they aren't equal, merge the two
+          newFilters = mergeFilters(currentUrlFilters, currentFilters);
+        }
+
+        setFilters(newFilters);
+      }
     }
-  }, [
-    parsedParams,
-    preferredPermanentFilters,
-    defaultFilter,
-    preferredPermanentSorters,
-    defaultSorter,
-  ]);
+  }, [parsedParams, filters, preferredPermanentFilters]);
 
   useEffect(() => {
     if (search === "") {
