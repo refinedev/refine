@@ -125,8 +125,8 @@ We're using [Codesandbox's Sandpack](https://sandpack.codesandbox.io) to provide
 Check out the example usage of `<Sandpack />` in Core API's `useForm` hook documentation:
 
 - [useForm Documentation](/docs/data/hooks/use-form/#usage)
-- [Source Code for Sandpack](https://github.com/refinedev/refine/blob/master/documentation/docs/core/hooks/use-form/basic-usage.tsx)
-- [Source Code for Markdown](https://github.com/refinedev/refine/blob/master/documentation/docs/core/hooks/use-form/index.md)
+- [Source Code for Sandpack](https://github.com/refinedev/refine/blob/master/documentation/docs/data/hooks/use-form/basic-usage.tsx)
+- [Source Code for Markdown](https://github.com/refinedev/refine/blob/master/documentation/docs/data/hooks/use-form/index.md)
 
 ## Committing Your Work and Preparing a Pull Request
 
