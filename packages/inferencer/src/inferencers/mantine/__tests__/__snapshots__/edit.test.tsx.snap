@@ -25,7 +25,8 @@ exports[`MantineEditInferencer should match the snapshot 1`] = `
           >
             <button
               class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
-              style="--ai-color: var(--mantine-color-white);"
+              data-variant="subtle"
+              style="--ai-bg: transparent; --ai-hover: var(--mantine-color-blue-light-hover); --ai-color: var(--mantine-color-blue-light-color); --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
               type="button"
             >
               <span

@@ -12009,7 +12009,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
     >
       <div
         class="m_4081bf90 mantine-Group-root"
-        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
+        style="--group-gap: var(--mantine-spacing-md); --group-align: center; --group-justify: space-between; --group-wrap: wrap;"
       >
         <div
           class="m_6d731127 mantine-Stack-root"
@@ -12025,7 +12025,8 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           >
             <button
               class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
-              style="--ai-color: var(--mantine-color-white);"
+              data-variant="subtle"
+              style="--ai-bg: transparent; --ai-hover: var(--mantine-color-blue-light-hover); --ai-color: var(--mantine-color-blue-light-color); --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
               type="button"
             >
               <span
@@ -17562,7 +17563,8 @@ exports[`MantineInferencer should match the snapshot 3`] = `
           >
             <button
               class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
-              style="--ai-color: var(--mantine-color-white);"
+              data-variant="subtle"
+              style="--ai-bg: transparent; --ai-hover: var(--mantine-color-blue-light-hover); --ai-color: var(--mantine-color-blue-light-color); --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
               type="button"
             >
               <span
@@ -23706,7 +23708,8 @@ exports[`MantineInferencer should match the snapshot 4`] = `
           >
             <button
               class="mantine-focus-auto mantine-active m_8d3f4000 mantine-ActionIcon-root m_87cf2631 mantine-UnstyledButton-root"
-              style="--ai-color: var(--mantine-color-white);"
+              data-variant="subtle"
+              style="--ai-bg: transparent; --ai-hover: var(--mantine-color-blue-light-hover); --ai-color: var(--mantine-color-blue-light-color); --ai-bd: calc(0.0625rem * var(--mantine-scale)) solid transparent;"
               type="button"
             >
               <span
