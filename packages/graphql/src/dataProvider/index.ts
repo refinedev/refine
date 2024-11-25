@@ -14,7 +14,7 @@ const createDataProvider = (
     let errorMsg = "";
 
     if (error?.networkError) {
-      errorMsg = `[Network] ${JSON.stringify(error?.networkError)}`;
+      errorMsg = `[Network] ${error?.networkError.message}`;
     }
 
     if (error?.graphQLErrors) {
