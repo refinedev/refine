@@ -70,7 +70,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const { sx, ...restProps } = rest;
 
-  if (hidden) return null;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <div>

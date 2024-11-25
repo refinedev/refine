@@ -33,10 +33,12 @@ export const ListButton: React.FC<ListButtonProps> = ({
     accessControl,
     meta,
   });
-
   const { variant, styles, ...commonProps } = rest;
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <Anchor
@@ -44,7 +46,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }

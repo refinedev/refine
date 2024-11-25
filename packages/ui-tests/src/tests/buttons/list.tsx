@@ -31,6 +31,37 @@ export const buttonListTests = (
       expect(queryByTestId(RefineButtonTestIds.ListButton)).toBeTruthy();
     });
 
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <ListButton disabled onClick={mockOnClick}>
+          List
+        </ListButton>,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("List").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("List").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(
+        <ListButton disabled hidden>
+          List
+        </ListButton>,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(queryByText("List")).not.toBeInTheDocument();
+    });
+
     it("should render text by children", async () => {
       const { container, getByText } = render(<ListButton>refine</ListButton>, {
         wrapper: TestWrapper({}),

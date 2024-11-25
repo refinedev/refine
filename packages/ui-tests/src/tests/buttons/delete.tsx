@@ -33,6 +33,30 @@ export const buttonDeleteTests = (
       expect(getByText("Delete").closest("button")).not.toBeDisabled();
     });
 
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <DeleteButton disabled onClick={mockOnClick} />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("Delete").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("Delete").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(<DeleteButton disabled hidden />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(queryByText("Delete")).not.toBeInTheDocument();
+    });
+
     it("should have the correct test-id", async () => {
       const { getByTestId } = render(<DeleteButton />, {
         wrapper: TestWrapper({}),
