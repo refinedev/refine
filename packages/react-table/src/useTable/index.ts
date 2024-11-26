@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import {
   type BaseRecord,
   ConditionalFilter,
   type CrudFilter,
   CrudOperators,
+  type CrudSorting,
   type HttpError,
   LogicalFilter,
   useTable as useTableCore,
@@ -61,7 +62,6 @@ export function useTable<
   TError
 > {
   const isFirstRender = useIsFirstRender();
-  const previousSorters = useRef<any[]>([]);
 
   const useTableResult = useTableCore<TQueryFnData, TError, TData>({
     ...refineCoreProps,
@@ -139,16 +139,14 @@ export function useTable<
 
   useEffect(() => {
     if (sorting !== undefined) {
-      if (!isEqual(previousSorters.current, sorting) || isFirstRender) {
-        setSorters(
-          sorting?.map((sorting) => ({
-            field: sorting.id,
-            order: sorting.desc ? "desc" : "asc",
-          })),
-        );
-      }
+      const newSorters: CrudSorting = sorting.map((sorting) => ({
+        field: sorting.id,
+        order: sorting.desc ? "desc" : "asc",
+      }));
 
-      previousSorters.current = sorting;
+      if (!isEqual(sorters, newSorters)) {
+        setSorters(newSorters);
+      }
 
       if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
         setCurrent(1);
@@ -169,7 +167,7 @@ export function useTable<
       }),
     );
 
-    if (!isEqual(crudFilters, filtersCore) || isFirstRender) {
+    if (!isEqual(crudFilters, filtersCore)) {
       setFilters(crudFilters);
     }
 
