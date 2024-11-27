@@ -271,12 +271,20 @@ export const useNavigation = () => {
         return "";
       }
 
-      return composeRoute(
+      const routeWithQuery = composeRoute(
         listActionRoute.route,
         resourceItem?.meta,
         parsed,
-        meta,
+        {
+          ...meta,
+          query: {
+            ...parsed?.params,
+            ...meta?.query,
+          },
+        },
       );
+
+      return routeWithQuery;
     }
     const resourceItem =
       typeof resource === "string"
@@ -293,7 +301,13 @@ export const useNavigation = () => {
     }
 
     return go({
-      to: composeRoute(listActionRoute, resourceItem?.meta, parsed, meta),
+      to: composeRoute(listActionRoute, resourceItem?.meta, parsed, {
+        ...meta,
+        query: {
+          ...parsed?.params,
+          ...meta?.query,
+        },
+      }),
       type: "path",
     }) as string;
   };
