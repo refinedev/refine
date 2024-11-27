@@ -52,8 +52,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     <Breadcrumbs
       aria-label="breadcrumb"
       sx={{
-        paddingY: 2,
-        paddingX: 2,
+        padding: 2,
         ...(breadcrumbProps?.sx ?? {}),
       }}
       {...breadcrumbProps}

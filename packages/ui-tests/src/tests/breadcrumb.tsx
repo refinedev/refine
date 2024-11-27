@@ -30,22 +30,23 @@ export const breadcrumbTests = (
       expect(container).toBeEmptyDOMElement();
     });
 
-    it("should render breadcrumb when the number of items is equal to or greater than minItems", async () => {
-      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={1} />, {
+    it("should not render breadcrumb when the number of items is lower than minItems", async () => {
+      const { container } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
         resources: [{ name: "posts" }],
         routerInitialEntries: ["/posts"],
       });
 
-      getByText("Posts");
+      expect(container).toBeEmptyDOMElement();
     });
 
-    it("should not render breadcrumb when the number of items is less than minItems", async () => {
-      const { container } = renderBreadcrumb(<Breadcrumb minItems={3} />, {
+    it("should render breadcrumb when the number of items is greater than or equal to minItems", async () => {
+      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
         resources: [{ name: "posts" }],
         routerInitialEntries: ["/posts/create"],
       });
 
-      expect(container).toBeEmptyDOMElement();
+      expect(getByText("Posts")).toBeInTheDocument();
+      expect(getByText("Create")).toBeInTheDocument();
     });
 
     it("should render breadcrumb items with link", async () => {
@@ -54,7 +55,8 @@ export const breadcrumbTests = (
         routerInitialEntries: ["/posts/create"],
       });
 
-      expect(container.querySelector("a")?.getAttribute("href")).toBe("/posts");
+      const link = container.querySelector("a");
+      expect(link).toHaveAttribute("href", "/posts");
     });
 
     it("should render breadcrumb items with resource icon", async () => {
@@ -68,7 +70,7 @@ export const breadcrumbTests = (
         routerInitialEntries: ["/posts/create"],
       });
 
-      getByTestId("resource-icon");
+      expect(getByTestId("resource-icon")).toBeInTheDocument();
     });
 
     it("should render breadcrumb items without resource icon", async () => {
