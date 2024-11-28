@@ -390,13 +390,26 @@ const JoinTheWaitlistButton = (props: CommonSectionProps) => {
           )}
         />
         <img
-          src={
-            colorMode === "dark"
-              ? "/assets/join-the-waitlist-button-bg-dark.png"
-              : "/assets/join-the-waitlist-button-bg-light.png"
-          }
+          src="/assets/join-the-waitlist-button-bg-light.png"
           className={clsx(
+            {
+              hidden: colorMode === "dark",
+              block: colorMode === "light",
+            },
             "block",
+            "w-[240px] h-auto",
+            "z-[2]",
+            "rounded-full",
+            "dark:bg-gray-900 bg-gray-0",
+          )}
+        />
+        <img
+          src="/assets/join-the-waitlist-button-bg-dark.png"
+          className={clsx(
+            {
+              hidden: colorMode === "light",
+              block: colorMode === "dark",
+            },
             "w-[240px] h-auto",
             "z-[2]",
             "rounded-full",
