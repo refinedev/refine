@@ -43,7 +43,7 @@ const RefineAIPage = () => {
             "dark:bg-[position:0_0,50%_30%]",
             "dark:bg-[length:4px_4px,960px_600px]",
             "bg-[position:0_0,50%_35%,50%_5%]",
-            "bg-[length:2px_2px,960px_200px,960px_600px]",
+            "bg-[length:4px_4px,960px_200px,960px_600px]",
           )}
         >
           <div
@@ -209,6 +209,9 @@ const Player = (props: CommonSectionProps) => {
                   height="100%"
                   controls={false}
                   playing={videoState === "playing"}
+                  onEnded={() => {
+                    setVideoState("stop");
+                  }}
                   onPlay={() => {
                     setVideoState("playing");
                   }}

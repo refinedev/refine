@@ -530,15 +530,15 @@ module.exports = {
                 )`,
         "join-ai-waitlist-button-border-light": `conic-gradient(
                   from 45deg at 50% 50%,
-                    #bbbcff,
-                    #bbbcff,
+                    #bbbcff45,
+                    #bbbcff45,
                     #4849FF,
-                    #bbbcff,
-                    #bbbcff,
-                    #bbbcff,
+                    #bbbcff45,
+                    #bbbcff45,
+                    #bbbcff45,
                     #4849FF,
-                    #bbbcff,
-                    #bbbcff
+                    #bbbcff45,
+                    #bbbcff45
         )`,
         "refine-ai-page-bg-dark": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-ai-page-bg-dark.png)",
