@@ -27,6 +27,49 @@ export const buttonCreateTests = (
       expect(getByText("Create").closest("button")).not.toBeDisabled();
     });
 
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <CreateButton disabled onClick={mockOnClick} />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("Create").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("Create").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should not trigger onClick when disabled prop is true", async () => {
+      const handleClick = jest.fn();
+      const { getByText } = render(
+        <CreateButton disabled onClick={handleClick}>
+          Create
+        </CreateButton>,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      const button = getByText("Create").closest("button");
+      await act(async () => {
+        fireEvent.click(button!);
+      });
+
+      expect(handleClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(<CreateButton disabled hidden />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(queryByText("Create")).not.toBeInTheDocument();
+    });
+
     it("should have the correct test-id", async () => {
       const { queryByTestId } = render(<CreateButton />, {
         wrapper: TestWrapper({}),
@@ -99,7 +142,7 @@ export const buttonCreateTests = (
           describe("when user have access", () => {
             it("should render enabled button", async () => {
               const { container, getByText } = render(
-                <CreateButton disabled>Create</CreateButton>,
+                <CreateButton>Create</CreateButton>,
                 {
                   wrapper: TestWrapper({
                     accessControlProvider: {
@@ -125,6 +168,22 @@ export const buttonCreateTests = (
                   getByText("Create").closest("button"),
                 ).not.toBeDisabled(),
               );
+            });
+
+            it("should respect the disabled prop even with access control enabled", async () => {
+              const { getByText } = render(
+                <CreateButton disabled>Create</CreateButton>,
+                {
+                  wrapper: TestWrapper({
+                    accessControlProvider: {
+                      can: async () => ({ can: true }),
+                    },
+                  }),
+                },
+              );
+
+              const button = getByText("Create").closest("button");
+              expect(button).toBeDisabled();
             });
           });
         });
@@ -253,7 +312,7 @@ export const buttonCreateTests = (
 
         describe("when access control disabled globally", () => {
           describe("when access control enabled with prop", () => {
-            it("should render disabled button with reason text", async () => {
+            it("should render disabled button with text", async () => {
               const { container, getByText } = render(
                 <CreateButton accessControl={{ enabled: true }}>
                   Create
@@ -321,53 +380,6 @@ export const buttonCreateTests = (
           });
         });
       });
-    });
-
-    it("should render the button as disabled when the disabled prop is true", async () => {
-      const { getByText } = render(
-        <CreateButton disabled>Create</CreateButton>,
-        {
-          wrapper: TestWrapper({}),
-        },
-      );
-
-      const button = getByText("Create").closest("button");
-      expect(button).toBeDisabled(); // Verifies disabled state
-    });
-
-    it("should not trigger onClick when disabled prop is true", async () => {
-      const handleClick = jest.fn();
-      const { getByText } = render(
-        <CreateButton disabled onClick={handleClick}>
-          Create
-        </CreateButton>,
-        {
-          wrapper: TestWrapper({}),
-        },
-      );
-
-      const button = getByText("Create").closest("button");
-      await act(async () => {
-        fireEvent.click(button!);
-      });
-
-      expect(handleClick).not.toHaveBeenCalled(); // Ensures onClick is not called
-    });
-
-    it("should respect the disabled prop even with access control enabled", async () => {
-      const { getByText } = render(
-        <CreateButton disabled>Create</CreateButton>,
-        {
-          wrapper: TestWrapper({
-            accessControlProvider: {
-              can: async () => ({ can: true }), // Access control grants access
-            },
-          }),
-        },
-      );
-
-      const button = getByText("Create").closest("button");
-      expect(button).toBeDisabled(); // Ensures disabled prop takes precedence
     });
 
     it("should render called function successfully if click the button", async () => {

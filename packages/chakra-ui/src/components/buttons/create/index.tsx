@@ -28,9 +28,10 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     },
   );
 
-  if (hidden) return null;
-
   const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
@@ -51,9 +52,9 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         <IconButton
           colorScheme="brand"
           variant="outline"
+          isDisabled={isDisabled}
           aria-label={label}
           title={title}
-          isDisabled={disabled}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
           {...rest}

@@ -5,8 +5,8 @@
 "@refinedev/mui": patch
 ---
 
-fix: UI buttons doesn't respect `disabled` prop.
-From now on, `disabled` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
+fix: UI buttons doesn't respect `hidden` prop.
+From now on, `hidden` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
 
 UI Buttons:
 

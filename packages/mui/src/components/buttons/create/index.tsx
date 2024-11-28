@@ -26,7 +26,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
   meta,
   children,
   onClick,
-  ...rest
+  ...props
 }) => {
   const { to, label, title, disabled, hidden, LinkComponent } = useCreateButton(
     {
@@ -35,12 +35,12 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       accessControl,
     },
   );
+  const isDisabled = disabled || props.disabled;
+  const isHidden = hidden || props.hidden;
 
-  if (hidden) return null;
+  if (isHidden) return null;
 
-  const isDisabled = disabled || rest.disabled;
-
-  const { sx, ...restProps } = rest;
+  const { sx, ...restProps } = props;
 
   return (
     <LinkComponent

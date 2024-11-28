@@ -29,13 +29,15 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
   const { hidden, disabled, label, title, LinkComponent, to } = useCreateButton(
     {
       resource: resourceNameFromProps ?? propResourceNameOrRouteName,
-      accessControl,
       meta,
+      accessControl,
     },
   );
 
-  if (hidden) return null;
   const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
