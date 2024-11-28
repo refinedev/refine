@@ -1,11 +1,12 @@
 import React, { useRef, useState } from "react";
 import Head from "@docusaurus/Head";
+import { useColorMode } from "@docusaurus/theme-common";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 import clsx from "clsx";
+import ReactPlayer from "react-player/youtube";
 import { CommonLayout } from "@site/src/refine-theme/common-layout";
 import { CommonHeader } from "@site/src/refine-theme/common-header";
 import { LandingFooter } from "@site/src/refine-theme/landing-footer";
-import ReactPlayer from "react-player/youtube";
-import { useColorMode } from "@docusaurus/theme-common";
 
 const title = "Refine AI";
 
@@ -389,33 +390,24 @@ const JoinTheWaitlistButton = (props: CommonSectionProps) => {
             "animate-new-badge-border",
           )}
         />
-        <img
-          src="/assets/join-the-waitlist-button-bg-light.png"
-          className={clsx(
-            {
-              hidden: colorMode === "dark",
-              block: colorMode === "light",
-            },
-            "block",
-            "w-[240px] h-auto",
-            "z-[2]",
-            "rounded-full",
-            "dark:bg-gray-900 bg-gray-0",
+        <BrowserOnly>
+          {() => (
+            <img
+              src={
+                colorMode === "dark"
+                  ? "/assets/join-the-waitlist-button-bg-dark.png"
+                  : "/assets/join-the-waitlist-button-bg-light.png"
+              }
+              className={clsx(
+                "block",
+                "w-[240px] h-auto",
+                "z-[2]",
+                "rounded-full",
+                "dark:bg-gray-900 bg-gray-0",
+              )}
+            />
           )}
-        />
-        <img
-          src="/assets/join-the-waitlist-button-bg-dark.png"
-          className={clsx(
-            {
-              hidden: colorMode === "light",
-              block: colorMode === "dark",
-            },
-            "w-[240px] h-auto",
-            "z-[2]",
-            "rounded-full",
-            "dark:bg-gray-900 bg-gray-0",
-          )}
-        />
+        </BrowserOnly>
       </div>
     </a>
   );
