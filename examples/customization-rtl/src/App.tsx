@@ -15,7 +15,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
-import './global.css'; 
+import "./global.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
 
