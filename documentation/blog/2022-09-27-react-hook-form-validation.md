@@ -331,7 +331,7 @@ const {
 });
 ```
 
-The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as Materal UI.
+The controller, on the other hand, is a wrapper component for registering controlled components from external UI libraries such as Material UI.
 
 The component takes care of the registration process of components that don't expose input's ref but rely on a state. So it's a register method, but for controlled inputs.
 

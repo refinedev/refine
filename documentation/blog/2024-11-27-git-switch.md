@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch
 hide_table_of_contents: false
 ---
 
-**This article was last updated on July 16, 2024, to add sections for Advanced Branch Management Techniques and Troubleshooting Branch Issues to Git switch post.**
+**This article was last updated on November 27, 2024, to add to update switching explanations for Git switch post.**
 
 ## Introduction
 
@@ -20,6 +20,8 @@ Note that the command `git checkout` is a multi-feature command which performs m
 • If it is a tracked path, reset it
 • If it is a remote branch, it will create a tracking branch and will switch to it
 Let's go through some examples of switching branches through `git checkout`, and then we will touch upon the use of `git switch`.
+
+Switching between branches is one of the basic Git operations when one needs to work with multiple features. To switch to an already existing branch, use `git checkout branch_name`. To create and switch to a new branch in one command, use `git checkout -b new_branch`. For remote branches, first fetch the branch using `git fetch --all`, then switch using `git checkout remote_branch_name`. With newer versions of Git, `git switch branch_name` is an easier way to switch to another branch.
 
 Steps we'll cover:
 
@@ -172,6 +174,8 @@ git branch -vv
 This command gives you information about branches and their tracking status.
 
 ### Switching to a remote branch
+
+Switching between branches is one of the basic Git operations when one needs to work with multiple features. To switch to an already existing branch, use git checkout branch_name. To create and switch to a new branch in one command, use git checkout -b new_branch. For remote branches, first fetch the branch using git fetch --all, then switch using git checkout remote_branch_name. With newer versions of Git, git switch branch_name is an easier way to switch to another branch.
 
 To checkout a remote branch, you will need to fetch the contents of the branch using `git fetch –all` first. Then use the same command `git checkout RemoteBranchName` to switch to remote branch. You might have noticed that it is the same command used to switch to a local branch.
 
