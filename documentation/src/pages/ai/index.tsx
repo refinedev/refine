@@ -357,6 +357,7 @@ const JoinTheWaitlistButton = (props: CommonSectionProps) => {
       target="_blank"
       rel="noreferrer"
       className={clsx(
+        "relative",
         "block",
         "text-inherit",
         "no-underline",
@@ -374,7 +375,7 @@ const JoinTheWaitlistButton = (props: CommonSectionProps) => {
           "items-center",
           "justify-center",
           "rounded-full",
-          "p-px",
+          "p-[2px]",
           "overflow-hidden",
           "border border-transparent",
         )}
@@ -382,7 +383,6 @@ const JoinTheWaitlistButton = (props: CommonSectionProps) => {
         <div
           className={clsx(
             "w-[300px] h-[300px]",
-            "z-[1]",
             "p-px",
             "absolute",
             "dark:bg-join-ai-waitlist-button-border-dark",

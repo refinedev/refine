@@ -531,13 +531,13 @@ module.exports = {
         "join-ai-waitlist-button-border-light": `conic-gradient(
                   from 45deg at 50% 50%,
                     #bbbcff45,
+                    #4849FF,
+                    #4849FF,  
+                    #bbbcff45,
                     #bbbcff45,
                     #4849FF,
-                    #bbbcff45,
-                    #bbbcff45,
-                    #bbbcff45,
                     #4849FF,
-                    #bbbcff45,
+                    #bbbcff45,       
                     #bbbcff45
         )`,
         "refine-ai-page-bg-dark": [
@@ -624,6 +624,10 @@ module.exports = {
         "new-badge-border": "new-badge-border 4s linear infinite",
         reveal: "reveal 0.3s ease-in-out forwards",
         "progress-fill": "progressFill 1s linear 1 forwards",
+        "join-ai-waitlist-button-border-shadow-left":
+          "join-ai-waitlist-button-border-shadow-left 4s linear infinite",
+        "join-ai-waitlist-button-border-shadow-right":
+          "join-ai-waitlist-button-border-shadow-right 4s linear ease-in-out reverse",
       },
       keyframes: {
         progressFill: {
