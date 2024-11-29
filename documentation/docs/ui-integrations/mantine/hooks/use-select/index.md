@@ -1,6 +1,6 @@
 ---
 title: useSelect
-source: https://github.com/refinedev/refine/blob/master/packages/mantine/src/hooks/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/main/packages/mantine/src/hooks/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";

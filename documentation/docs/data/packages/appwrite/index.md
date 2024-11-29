@@ -1,6 +1,6 @@
 ---
 title: Appwrite
-source: https://github.com/refinedev/refine/tree/master/packages/appwrite
+source: https://github.com/refinedev/refine/tree/main/packages/appwrite
 swizzle: true
 ---
 

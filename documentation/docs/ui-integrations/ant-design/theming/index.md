@@ -9,7 +9,7 @@ Design Tokens are the smallest element that affects the theme. By modifying the 
 
 ## Predefined Themes
 
-[`RefineThemes`](https://github.com/refinedev/refine/blob/master/packages/antd/src/definitions/themes/index.ts) has predefined themes that you can use by importing them from `@refinedev/antd` package.
+[`RefineThemes`](https://github.com/refinedev/refine/blob/main/packages/antd/src/definitions/themes/index.ts) has predefined themes that you can use by importing them from `@refinedev/antd` package.
 
 ```ts
 const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
