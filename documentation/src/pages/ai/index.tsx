@@ -400,7 +400,7 @@ const JoinTheWaitlistButton = (props: CommonSectionProps) => {
               }
               className={clsx(
                 "block",
-                "w-[240px] h-auto",
+                "w-[240px] h-[64px]",
                 "z-[2]",
                 "rounded-full",
                 "dark:bg-gray-900 bg-gray-0",
