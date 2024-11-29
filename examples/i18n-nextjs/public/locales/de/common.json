@@ -1,4 +1,5 @@
 {
+  "ID": "ID",
   "pages": {
     "login": {
       "title": "Melden Sie sich bei Ihrem Konto an",
@@ -110,6 +111,28 @@
   },
   "blog_posts": {
     "blog_posts": "Einträge",
+    "fields": {
+      "id": "Id",
+      "title": "Titel",
+      "category": "Kategorie",
+      "status": {
+        "title": "Status",
+        "published": "Veröffentlicht",
+        "draft": "Draft",
+        "rejected": "Abgelehnt"
+      },
+      "content": "Inhalh",
+      "createdAt": "Erstellt am"
+    },
+    "titles": {
+      "create": "Erstellen",
+      "edit": "Bearbeiten",
+      "list": "Einträge",
+      "show": "Eintrag zeigen"
+    }
+  },
+  "posts": {
+    "posts": "Einträge",
     "fields": {
       "id": "Id",
       "title": "Titel",
