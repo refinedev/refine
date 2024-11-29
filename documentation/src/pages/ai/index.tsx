@@ -335,7 +335,7 @@ const PlayButton = (props: {
             cx={0}
             cy={0}
             r={1}
-            gradientTransform="rotate(48.814 -.247 1.143) scale(58.2614)"
+            gradientTransform="rotate(4 8.814 -.247 1.143) scale(58.2614)"
             gradientUnits="userSpaceOnUse"
           >
             <stop stopColor="#ED5EC9" />
@@ -350,66 +350,121 @@ const PlayButton = (props: {
 
 const JoinTheWaitlistButton = (props: CommonSectionProps) => {
   const { colorMode } = useColorMode();
+  const isLight = colorMode === "light";
 
   return (
-    <a
-      href="https://form.typeform.com/to/htzq03hP"
-      target="_blank"
-      rel="noreferrer"
-      className={clsx(
-        "relative",
-        "block",
-        "text-inherit",
-        "no-underline",
-        "w-max",
-        "p-4",
-        "rounded-full",
-        "border border-[#dee5ed] dark:border-[#303450]",
-        props.className,
-      )}
-    >
-      <div
-        className={clsx(
-          "relative",
-          "flex",
-          "items-center",
-          "justify-center",
-          "rounded-full",
-          "p-[2px]",
-          "overflow-hidden",
-          "border border-transparent",
-        )}
-      >
+    <BrowserOnly>
+      {() => (
         <div
           className={clsx(
-            "w-[300px] h-[300px]",
-            "p-px",
-            "absolute",
-            "dark:bg-join-ai-waitlist-button-border-dark",
-            "bg-join-ai-waitlist-button-border-light",
-            "animate-new-badge-border",
+            "flex justify-center items-center w-full h-1/2",
+            isLight ? "bg-white" : "bg-[#14141F]",
+            props.className,
           )}
-        />
-        <BrowserOnly>
-          {() => (
-            <img
-              src={
-                colorMode === "dark"
-                  ? "/assets/join-the-waitlist-button-bg-dark.png"
-                  : "/assets/join-the-waitlist-button-bg-light.png"
-              }
+        >
+          <a
+            href="https://form.typeform.com/to/htzq03hP"
+            target="_blank"
+            rel="noreferrer"
+            className={clsx(
+              "appearance-none",
+              "outline-none",
+              "border-none",
+              "bg-transparent",
+              "no-underline",
+            )}
+          >
+            <div
               className={clsx(
-                "block",
-                "w-[240px] h-[64px]",
-                "z-[2]",
-                "rounded-full",
-                "dark:bg-gray-900 bg-gray-0",
+                "relative w-[272px] h-24 flex justify-center items-center",
               )}
-            />
-          )}
-        </BrowserOnly>
-      </div>
-    </a>
+            >
+              <div
+                className={clsx(
+                  "absolute top-4 left-4",
+                  "w-60 h-16",
+                  "rounded-[64px]",
+                  isLight
+                    ? "bg-[rgba(51,51,255,0.75)]"
+                    : "bg-[rgba(38,217,127,0.1)]",
+                  isLight
+                    ? "shadow-[inset_0px_0px_16px_8px_rgba(51,51,255,0.75)]"
+                    : "shadow-[inset_0px_0px_16px_8px_rgba(38,217,127,0.1)]",
+                )}
+                style={{
+                  backgroundImage: isLight
+                    ? `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' opacity='0.1' fill='none'%3E%3Cpath fill='%23fff' d='M0 0h2v2H0zM2 2h2v2H2z'/%3E%3C/svg%3E")`
+                    : `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' opacity='0.25' fill='none'%3E%3Cpath fill='%23000' d='M0 0h2v2H0zM2 2h2v2H2z'/%3E%3C/svg%3E")`,
+                }}
+              />
+
+              <div
+                className={clsx(
+                  "absolute top-0 left-0",
+                  "w-[272px] h-24",
+                  "rounded-[96px]",
+                  "border",
+                  isLight ? "border-[#DEE5ED]" : "border-[#303450]",
+                )}
+                style={{
+                  background: isLight
+                    ? "linear-gradient(180deg, rgba(244, 248, 251, 0.5) 0%, rgba(244, 248, 251, 0) 100%)"
+                    : "linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 100%)",
+                }}
+              />
+
+              {[false, true].map((isBlurred, index) => (
+                <div
+                  key={index}
+                  className={clsx(
+                    "absolute top-[15px] left-[15px]",
+                    "block w-[242px] h-[66px]",
+                    "rounded-[66px] overflow-hidden",
+                    isBlurred && "z-10 blur",
+                  )}
+                  style={{
+                    mask: `url("data:image/svg+xml,%3Csvg width='242' height='66' viewBox='0 0 242 66' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M0 33C0 14.7746 14.7746 0 33 0H209C227.225 0 242 14.7746 242 33C242 51.2254 227.225 66 209 66H33C14.7746 66 0 51.2254 0 33ZM33 2C15.8792 2 2 15.8792 2 33C2 50.1208 15.8792 64 33 64H209C226.121 64 240 50.1208 240 33C240 15.8792 226.121 2 209 2H33Z' fill='black'/%3E%3C/svg%3E%0A")`,
+                  }}
+                >
+                  <div
+                    className={clsx(
+                      "absolute -top-[88px] left-0",
+                      "w-[242px] h-[242px]",
+                      "animate-[spin_8s_linear_infinite]",
+                    )}
+                    style={{
+                      background: isLight
+                        ? "conic-gradient(from 270deg at 50% 50%, rgba(51, 51, 255, 0) 0deg, rgba(51, 51, 255, 0) 144deg, #3333FF 179.96deg, rgba(51, 51, 255, 0) 180deg, rgba(51, 51, 255, 0) 324deg, #3333FF 360deg)"
+                        : "conic-gradient(from 270deg at 50% 50%, rgba(38,217,127, 0) 0deg, rgba(38,217,127, 0) 144deg, #26D97F 179.96deg, rgba(38,217,127, 0) 180deg, rgba(38,217,127, 0) 324deg, #26D97F 360deg)",
+                    }}
+                  />
+                </div>
+              ))}
+
+              <button
+                className={clsx(
+                  "relative z-10",
+                  "w-60 h-16",
+                  "rounded-[64px]",
+                  "font-medium text-2xl leading-8",
+                  "font-inter",
+                  "appearance-none",
+                  "bg-transparent border border-transparent",
+                  isLight ? "text-white" : "text-[#26D97F]",
+                )}
+                style={{
+                  textShadow: isLight
+                    ? "0px -8px 8px #3333FF, 0px 8px 8px #3333FF"
+                    : "0px -8px 8px rgba(38,217,127,0.5), 0px 8px 8px rgba(38,217,127,0.5)",
+                }}
+              >
+                Join the waitlist
+              </button>
+            </div>
+          </a>
+        </div>
+      )}
+    </BrowserOnly>
   );
 };
 

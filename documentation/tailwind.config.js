@@ -516,30 +516,6 @@ module.exports = {
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal.png)",
         "landing-wai-bg-dark":
           "radial-gradient(57.03% 100% at 50% 0%, rgba(71, 235, 235, 0.25) 0%, rgba(71, 235, 235, 0) 100%)",
-        "join-ai-waitlist-button-border-dark": `conic-gradient(
-                    from 45deg at 50% 50%,
-                    #194b3a,
-                    #194b3a,
-                    #26d97f,
-                    #194b3a,
-                    #194b3a,
-                    #194b3a,
-                    #26d97f,
-                    #194b3a,
-                    #194b3a
-                )`,
-        "join-ai-waitlist-button-border-light": `conic-gradient(
-                  from 45deg at 50% 50%,
-                    #bbbcff45,
-                    #4849FF,
-                    #4849FF,  
-                    #bbbcff45,
-                    #bbbcff45,
-                    #4849FF,
-                    #4849FF,
-                    #bbbcff45,       
-                    #bbbcff45
-        )`,
         "refine-ai-page-bg-dark": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-ai-page-bg-dark.png)",
           "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(38, 217, 126, 0.25) 0%, rgba(38, 217, 126, 0) 100%)",
@@ -624,10 +600,6 @@ module.exports = {
         "new-badge-border": "new-badge-border 4s linear infinite",
         reveal: "reveal 0.3s ease-in-out forwards",
         "progress-fill": "progressFill 1s linear 1 forwards",
-        "join-ai-waitlist-button-border-shadow-left":
-          "join-ai-waitlist-button-border-shadow-left 4s linear infinite",
-        "join-ai-waitlist-button-border-shadow-right":
-          "join-ai-waitlist-button-border-shadow-right 4s linear ease-in-out reverse",
       },
       keyframes: {
         progressFill: {
