@@ -5,13 +5,11 @@ import { useNotificationProvider } from "@refinedev/antd";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
-import React, { type PropsWithChildren } from "react";
+import React, { Suspense, type PropsWithChildren } from "react";
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider } from "@providers/data-provider";
-import { useTranslation } from "next-i18next";
-
-// initialize i18n
-import "../providers/i18n";
+import { useLocale, useTranslations } from "next-intl";
+import { setUserLocale } from "@i18n";
 
 type Props = {
   themeMode?: string;
@@ -21,15 +19,17 @@ export const RefineContext = ({
   themeMode,
   children,
 }: PropsWithChildren<Props>) => {
-  const { t, i18n } = useTranslation();
+  const t = useTranslations();
+  const locale = useLocale();
+
   const i18nProvider = {
-    translate: (key: string, params: object) => t(key, params),
-    changeLocale: (lang: string) => i18n.changeLanguage(lang),
-    getLocale: () => i18n.language,
+    translate: (key: string) => t(key),
+    getLocale: () => locale,
+    changeLocale: setUserLocale,
   };
 
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <GitHubBanner />
       <RefineKbarProvider>
         <ColorModeContextProvider defaultMode={themeMode}>
@@ -73,6 +73,6 @@ export const RefineContext = ({
           </DevtoolsProvider>
         </ColorModeContextProvider>
       </RefineKbarProvider>
-    </>
+    </Suspense>
   );
 };
