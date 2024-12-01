@@ -60,9 +60,9 @@
       }
     },
     "error": {
-      "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
+      "info": "Sie haben vergessen, {action} component zu {resource} hinzufügen.",
       "404": "Leider existiert diese Seite nicht.",
-      "resource404": "Haben Sie die {{resource}} resource erstellt?",
+      "resource404": "Haben Sie die {resource} resource erstellt?",
       "backHome": "Zurück"
     }
   },
@@ -92,15 +92,15 @@
   "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
   "notifications": {
     "success": "Erfolg",
-    "error": "Fehler (status code: {{statusCode}})",
-    "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
-    "createSuccess": "{{resource}} erfolgreich erstellt.",
-    "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
-    "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
-    "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
-    "editSuccess": "{{resource}} erfolgreich bearbeitet.",
-    "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
-    "importProgress": "{{processed}}/{{total}} importiert"
+    "error": "Fehler (status code: {statusCode})",
+    "undoable": "Sie haben {seconds} Sekunden Zeit für Undo.",
+    "createSuccess": "{resource} erfolgreich erstellt.",
+    "createError": "Fehler beim Erstellen {resource} (status code: {statusCode})",
+    "deleteSuccess": "{resource} erfolgreich gelöscht.",
+    "deleteError": "Fehler beim Löschen {resource} (status code: {statusCode})",
+    "editSuccess": "{resource} erfolgreich bearbeitet.",
+    "editError": "Fehler beim Bearbeiten {resource} (status code: {statusCode})",
+    "importProgress": "{processed}/{total} importiert"
   },
   "loading": "Wird geladen",
   "tags": {

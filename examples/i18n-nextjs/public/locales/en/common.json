@@ -60,9 +60,9 @@
       }
     },
     "error": {
-      "info": "You may have forgotten to add the {{action}} component to {{resource}} resource.",
+      "info": "You may have forgotten to add the {action} component to {resource} resource.",
       "404": "Sorry, the page you visited does not exist.",
-      "resource404": "Are you sure you have created the {{resource}} resource.",
+      "resource404": "Are you sure you have created the {resource} resource.",
       "backHome": "Back Home"
     }
   },
@@ -92,15 +92,15 @@
   "warnWhenUnsavedChanges": "Are you sure you want to leave? You have unsaved changes.",
   "notifications": {
     "success": "Successful",
-    "error": "Error (status code: {{statusCode}})",
-    "undoable": "You have {{seconds}} seconds to undo",
-    "createSuccess": "Successfully created {{resource}}",
-    "createError": "There was an error creating {{resource}} (status code: {{statusCode}})",
-    "deleteSuccess": "Successfully deleted {{resource}}",
-    "deleteError": "Error when deleting {{resource}} (status code: {{statusCode}})",
-    "editSuccess": "Successfully edited {{resource}}",
-    "editError": "Error when editing {{resource}} (status code: {{statusCode}})",
-    "importProgress": "Importing: {{processed}}/{{total}}"
+    "error": "Error (status code: {statusCode})",
+    "undoable": "You have {seconds} seconds to undo",
+    "createSuccess": "Successfully created {resource}",
+    "createError": "There was an error creating {resource} (status code: {statusCode})",
+    "deleteSuccess": "Successfully deleted {resource}",
+    "deleteError": "Error when deleting {resource} (status code: {statusCode})",
+    "editSuccess": "Successfully edited {resource}",
+    "editError": "Error when editing {resource} (status code: {statusCode})",
+    "importProgress": "Importing: {processed}/{total}"
   },
   "loading": "Loading",
   "tags": {
