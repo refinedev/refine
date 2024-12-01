@@ -14,7 +14,7 @@ Refine offers a [TanStack Table][tanstack-table] adapter with [@refinedev/react-
 
 All of [TanStack Table's][tanstack-table] features are supported and you can use all of the [TanStack Table's][tanstack-table] examples with no changes just copy and paste them into your project.
 
-`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/main/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 
 ## Installation
 
@@ -661,7 +661,7 @@ useTable({
 <CodeSandboxExample path="table-react-table-basic" />
 
 [tanstack-table]: https://tanstack.com/table/v8
-[refine-react-table]: https://github.com/refinedev/refine/tree/master/packages/react-table
+[refine-react-table]: https://github.com/refinedev/refine/tree/main/packages/react-table
 [use-table-core]: /docs/data/hooks/use-table
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

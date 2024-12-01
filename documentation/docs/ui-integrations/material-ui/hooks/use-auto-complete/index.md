@@ -1,7 +1,7 @@
 ---
 title: useAutocomplete
 siderbar_label: useAutocomplete
-source: https://github.com/refinedev/refine/blob/master/packages/mui/src/hooks/useAutocomplete/index.ts
+source: https://github.com/refinedev/refine/blob/main/packages/mui/src/hooks/useAutocomplete/index.ts
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";

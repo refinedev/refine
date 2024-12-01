@@ -32,7 +32,7 @@ Steps we'll cover:
 
 ## Preparation
 
-Clone the repository [here](https://github.com/refinedev/refine/tree/master/examples/blog-heroicons-example).
+Clone the repository [here](https://github.com/refinedev/refine/tree/main/examples/blog-heroicons-example).
 
 Then open it in your code editor and run:
 
