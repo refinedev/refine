@@ -222,3 +222,19 @@ export const mergeFilters = (
 
   return [...mergedFilters, ...additionalURLFilters];
 };
+
+export const mergeSorters = (
+  currentUrlSorters: CrudSort[],
+  currentSorters: CrudSort[],
+): CrudSort[] => {
+  const merged: CrudSort[] = [...currentUrlSorters];
+
+  for (const sorter of currentSorters) {
+    const exists = merged.some((s) => compareSorters(s, sorter));
+    if (!exists) {
+      merged.push(sorter);
+    }
+  }
+
+  return merged;
+};

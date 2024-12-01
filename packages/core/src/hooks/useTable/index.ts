@@ -12,6 +12,7 @@ import warnOnce from "warn-once";
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
   mergeFilters,
+  mergeSorters,
   parseTableParams,
   setInitialFilters,
   setInitialSorters,
@@ -440,7 +441,7 @@ export function useTable<
     return `${pathname ?? ""}?${stringifyParams ?? ""}`;
   };
 
-  // watch URL filters to update internal filters
+  // watch URL filters, sorters to update internal filters, sorters
   useEffect(() => {
     if (syncWithLocation) {
       const currentFilters = filters;
@@ -450,11 +451,21 @@ export function useTable<
         defaultFilter ?? [],
       );
 
-      let newFilters: CrudFilter[] = [];
-      const urlsAreEqual = isEqual(currentUrlFilters, currentFilters);
+      const currentSorters = sorters;
+      const currentUrlSorters = parsedParams.params?.sorters;
+      const initialSorters = setInitialSorters(
+        preferredPermanentSorters,
+        defaultSorter ?? [],
+      );
 
-      if (!urlsAreEqual) {
-        // fallback to initial filters
+      let newFilters: CrudFilter[] = [];
+      let newSorters: CrudSort[] = [];
+
+      const filtersAreEqual = isEqual(currentUrlFilters, currentFilters);
+      const sortersAreEqual = isEqual(currentUrlSorters, currentSorters);
+
+      if (!filtersAreEqual) {
+        // fallback to initial
         if (!currentUrlFilters || currentUrlFilters.length === 0) {
           newFilters = initialFilters;
         } else {
@@ -464,8 +475,26 @@ export function useTable<
 
         setFilters(newFilters);
       }
+
+      if (!sortersAreEqual) {
+        // fallback to initial
+        if (!currentUrlSorters || currentUrlSorters.length === 0) {
+          newSorters = initialSorters;
+        } else {
+          // since they aren't equal, merge the two
+          newSorters = mergeSorters(currentUrlSorters, currentSorters);
+        }
+
+        setSorters(newSorters);
+      }
     }
-  }, [parsedParams, filters, preferredPermanentFilters]);
+  }, [
+    parsedParams,
+    filters,
+    preferredPermanentFilters,
+    sorters,
+    preferredPermanentSorters,
+  ]);
 
   useEffect(() => {
     if (search === "") {
