@@ -57,8 +57,8 @@ const RefineAIPage = () => {
               "left-1/2",
               "top-[350px]",
               "-translate-x-1/2",
-              "dark:bg-[radial-gradient(46.3%_35.37%_at_50%_35.37%,rgba(38,217,126,0.25)_0%,rgba(38,217,126,0)_100%)]",
-              "bg-[radial-gradient(46.3%_35.37%_at_50%_35.37%,rgba(51,51,255,0.15)_0%,rgba(51,51,255,0)_100%)]",
+              "landing-md:dark:bg-[radial-gradient(46.3%_35.37%_at_50%_35.37%,rgba(38,217,126,0.25)_0%,rgba(38,217,126,0)_100%)]",
+              "landing-md:bg-[radial-gradient(46.3%_35.37%_at_50%_35.37%,rgba(51,51,255,0.15)_0%,rgba(51,51,255,0)_100%)]",
             )}
           />
           <Hero
