@@ -20,10 +20,30 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./ky": {
+      "import": {
+        "types": "./dist/ky/index.d.mts",
+        "default": "./dist/ky.mjs"
+      },
+      "require": {
+        "types": "./dist/ky/index.d.cts",
+        "default": "./dist/ky.cjs"
+      }
     }
   },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/index.d.ts"
+      ],
+      "ky": [
+        "dist/ky/index.d.ts"
+      ]
+    }
+  },
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -48,9 +68,12 @@
     "@refinedev/cli": "^2.16.33",
     "@refinedev/core": "^4.52.0",
     "@types/jest": "^29.2.4",
+    "axios": "^1.6.2",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
+    "ky": "^1.7.2",
     "nock": "^13.4.0",
+    "query-string": "^7.1.1",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
