@@ -61,6 +61,7 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.11.0",
     "react-markdown": "^8.0.3",
+    "react-player": "^2.16.0",
     "react-rewards": "^2.0.4",
     "react-share": "^4.4.0",
     "react-twitter-embed": "^4.0.4",
