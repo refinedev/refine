@@ -1,0 +1,38 @@
+diff --git a/dist/changesets-git.cjs.js b/dist/changesets-git.cjs.js
+index 415542c09ff1a3dbfc3eef7ff52f9d592a3be334..45d2e19a09a09b9a8f30dbe61c14f6f7e8ec4bb0 100644
+--- a/dist/changesets-git.cjs.js
++++ b/dist/changesets-git.cjs.js
+@@ -87,7 +87,7 @@ async function getCommitsThatAddFiles(gitPaths, {
+   do {
+     // Fetch commit information for all paths we don't have yet
+     const commitInfos = await Promise.all(remaining.map(async gitPath => {
+-      const [commitSha, parentSha] = (await spawn__default["default"]("git", ["log", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
++      const [commitSha, parentSha] = (await spawn__default["default"]("git", ["log", "--follow", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
+         cwd
+       })).stdout.toString().split(":");
+       return {
+diff --git a/dist/changesets-git.esm.js b/dist/changesets-git.esm.js
+index 58f76fe0cb21c35fa600e83f20fbbd23ee7d0ba0..0d65008e8e3a3f99277949f13c0c96584c60401c 100644
+--- a/dist/changesets-git.esm.js
++++ b/dist/changesets-git.esm.js
+@@ -75,7 +75,7 @@ async function getCommitsThatAddFiles(gitPaths, {
+   do {
+     // Fetch commit information for all paths we don't have yet
+     const commitInfos = await Promise.all(remaining.map(async gitPath => {
+-      const [commitSha, parentSha] = (await spawn("git", ["log", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
++      const [commitSha, parentSha] = (await spawn("git", ["log", "--follow", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
+         cwd
+       })).stdout.toString().split(":");
+       return {
+diff --git a/src/index.ts b/src/index.ts
+index 7e3aee53439f3724886eacc2bb9ea8b9abc6b6cf..306ade4b8a56a9c1f0af9f87a94ac65447271ed1 100644
+--- a/src/index.ts
++++ b/src/index.ts
+@@ -80,6 +80,7 @@ export async function getCommitsThatAddFiles(
+             "git",
+             [
+               "log",
++              "--follow",
+               "--diff-filter=A",
+               "--max-count=1",
+               short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p",
