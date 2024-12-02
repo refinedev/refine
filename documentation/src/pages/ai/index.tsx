@@ -238,7 +238,7 @@ const Player = (props: CommonSectionProps) => {
                 )}
               >
                 <img
-                  src="/assets/refine-ai-video-preview.png"
+                  src="/assets/refine-ai-video-preview.jpg"
                   alt="Refine AI"
                   className={clsx(
                     "w-full",
@@ -293,49 +293,50 @@ const PlayButton = (props: {
         "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
         "flex items-center justify-center",
         "z-[2]",
-        "rounded-full",
-        "border border-transparent",
         "appearance-none",
         "outline-none",
         props.className,
       )}
     >
-      <img
-        src="/assets/refine-ai-video-play-button-bg.png"
-        style={{
-          animationDuration: "2s",
-        }}
-        className={clsx(
-          "w-[144px]",
-          "h-[144px]",
-          "animate-spin",
-          "select-none",
-        )}
-      />
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={39}
-        height={45}
+        width={110}
+        height={110}
+        viewBox="0 0 156 156"
         fill="none"
-        className={clsx(
-          "ml-0.5",
-          "absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-        )}
-        {...props}
+        className="animate-refine-ai-video-play-button"
       >
+        <circle
+          cx={78}
+          cy={78}
+          r={70.2}
+          fill="url(#play-button-a)"
+          fillOpacity={0.15}
+        />
         <path
-          fill="url(#play-icon-a)"
+          fill="url(#play-button-b)"
           fillRule="evenodd"
-          d="M4.214 1.505a7.308 7.308 0 0 1 7.395.156l23.75 14.615a7.307 7.307 0 0 1 0 12.447L11.609 43.34A7.308 7.308 0 0 1 .47 37.115V7.885a7.308 7.308 0 0 1 3.743-6.38Z"
+          d="M60.582 46.972a10.8 10.8 0 0 1 10.928.23l35.1 21.6a10.8 10.8 0 0 1 0 18.396l-35.1 21.6A10.8 10.8 0 0 1 55.05 99.6V56.4a10.8 10.8 0 0 1 5.532-9.428Z"
           clipRule="evenodd"
         />
         <defs>
           <radialGradient
-            id="play-icon-a"
+            id="play-button-a"
             cx={0}
             cy={0}
             r={1}
-            gradientTransform="rotate(4 8.814 -.247 1.143) scale(58.2614)"
+            gradientTransform="matrix(0 140.4 -140.4 0 78 7.8)"
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor="#8000FF" />
+            <stop offset={1} stopColor="#33F" />
+          </radialGradient>
+          <radialGradient
+            id="play-button-b"
+            cx={0}
+            cy={0}
+            r={1}
+            gradientTransform="rotate(48.814 -22.496 83.955) scale(86.1042)"
             gradientUnits="userSpaceOnUse"
           >
             <stop stopColor="#ED5EC9" />

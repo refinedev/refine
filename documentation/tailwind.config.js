@@ -600,8 +600,21 @@ module.exports = {
         "new-badge-border": "new-badge-border 4s linear infinite",
         reveal: "reveal 0.3s ease-in-out forwards",
         "progress-fill": "progressFill 1s linear 1 forwards",
+        "refine-ai-video-play-button":
+          "refine-ai-video-play-button 1.8s ease-out infinite",
       },
       keyframes: {
+        "refine-ai-video-play-button": {
+          from: {
+            transform: "scale3d(1, 1, 1)",
+          },
+          "50%": {
+            transform: "scale3d(1.22, 1.22, 1.22)",
+          },
+          to: {
+            transform: "scale3d(1, 1, 1)",
+          },
+        },
         progressFill: {
           "0%": {
             width: "0%",
