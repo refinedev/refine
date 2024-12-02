@@ -21,7 +21,7 @@ This is Day 5, the final day of the running [**#RefineWeek**](https://refine.dev
 
 [👉 The live version of the app is be available here.](https://invoice-generator.refine.dev/)
 
-[👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator)
+[👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/main/examples/refine-week-invoice-generator)
 
 ## Overview
 

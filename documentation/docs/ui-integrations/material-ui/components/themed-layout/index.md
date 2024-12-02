@@ -113,9 +113,9 @@ render(<App />);
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-material-ui/src/App.tsx#L210)
-- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L35)
-- [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
+- [React Router v6](https://github.com/refinedev/refine/blob/main/examples/auth-material-ui/src/App.tsx#L210)
+- [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
+- [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
 
 ## Props
 
@@ -967,9 +967,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/master/packages/mui/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/master/packages/mui/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/master/packages/mui/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/core/hooks/utilities/use-menu
 [refine-component]: /docs/core/refine-component
 [mui-drawer]: https://mui.com/material-ui/react-drawer/

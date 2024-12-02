@@ -188,7 +188,7 @@ import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage
 
 :::info Usage with App Router
 
-You can see the example here: https://github.com/refinedev/refine/tree/master/examples/with-nextjs
+You can see the example here: https://github.com/refinedev/refine/tree/main/examples/with-nextjs
 
 :::
 

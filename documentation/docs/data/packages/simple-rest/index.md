@@ -1,6 +1,6 @@
 ---
 title: Simple REST
-source: https://github.com/refinedev/refine/tree/master/packages/simple-rest
+source: https://github.com/refinedev/refine/tree/main/packages/simple-rest
 swizzle: true
 ---
 

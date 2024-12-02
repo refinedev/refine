@@ -12,8 +12,8 @@ This post is the first part of an admin dashboard app built using [**Refine**](h
 
 This is Day 5, and **RefineWeek** is a seven-part tutorial series that aims to help developers learn the ins-and-outs of **Refine**'s powerful capabilities within a week.
 
-- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
-- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/master/examples/pixels)
+- You can find the complete source code for the **Pixels Admin** app on [GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels-admin)
+- Also **Pixel Client** app source code from previous days can be found [here](https://github.com/refinedev/refine/tree/main/examples/pixels)
 
 ### RefineWeek series
 
@@ -150,17 +150,17 @@ Now we have enabled `authProvider` and `dataProvider` methods to connect to our 
 
 ## Adding required files
 
-[Here is the finalized version of what we’ll be building in this article:](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
+[Here is the finalized version of what we’ll be building in this article:](https://github.com/refinedev/refine/tree/main/examples/pixels-admin)
 
 Before we move on, you need to add required page and components to the project if you want build the app by following the article . Please add the following components and files into src folder in the project:
 
-- pages: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/pages
-- components: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/components
-- providers: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/providers
-- utility: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/utility
-- casbin: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/casbin
-- types: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/src/types
-- assets: https://github.com/refinedev/refine/tree/master/examples/pixels-admin/public
+- pages: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/pages
+- components: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/components
+- providers: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/providers
+- utility: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/utility
+- casbin: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/casbin
+- types: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/src/types
+- assets: https://github.com/refinedev/refine/tree/main/examples/pixels-admin/public
 
 :::danger Important
 
@@ -761,7 +761,7 @@ The `name: "users"` property in our first resource is used to define the `/users
 
 Since we are using our example Supabase backend, we will see the following users list.
 
-If you wish to use our example Supabase backend, you can do so by using the provided [Supabase credentials](https://github.com/refinedev/refine/blob/master/examples/pixels-admin/src/utility/supabaseClient.ts).
+If you wish to use our example Supabase backend, you can do so by using the provided [Supabase credentials](https://github.com/refinedev/refine/blob/main/examples/pixels-admin/src/utility/supabaseClient.ts).
 
 You can log into the application with the following account:
 

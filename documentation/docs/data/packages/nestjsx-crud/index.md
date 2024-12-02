@@ -1,6 +1,6 @@
 ---
 title: NestJS CRUD
-source: https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud
+source: https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud
 swizzle: true
 ---
 

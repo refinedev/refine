@@ -21,9 +21,9 @@ The changes listed below are required to use `@mui/x-data-grid` with Refine. It 
 
 ### Updating the packages
 
-To use `@mui/x-data-grid` with version 6, [`@refinedev/mui`](https://github.com/refinedev/refine/tree/master/packages/mui) must be updated to `5.x.x` as well.
+To use `@mui/x-data-grid` with version 6, [`@refinedev/mui`](https://github.com/refinedev/refine/tree/main/packages/mui) must be updated to `5.x.x` as well.
 
-Since there are some changes in the return values of the `useDataGrid` and the common usage of the `DataGrid` component with TypeScript, we've also released a major release to [`@refinedev/inferencer`](https://github.com/refinedev/refine/tree/master/packages/inferencer) package. If you're using the Inferencer package, you'll need to update it to `4.x.x` as well.
+Since there are some changes in the return values of the `useDataGrid` and the common usage of the `DataGrid` component with TypeScript, we've also released a major release to [`@refinedev/inferencer`](https://github.com/refinedev/refine/tree/main/packages/inferencer) package. If you're using the Inferencer package, you'll need to update it to `4.x.x` as well.
 
 ### useDataGrid
 

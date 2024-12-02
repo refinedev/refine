@@ -8,9 +8,20 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete
 hide_table_of_contents: false
 ---
 
-**This article was last updated on July 10, 2024, to add sections forAutomate Deletion with a Scheduled Task and Using CI/CD Pipelines.**
+**This article was last updated on November 27, 2024, to short explanations for git deleote local and remote branches.**
 
 ## Introduction
+
+### TL DR;
+
+To delete a branch locally, use the command `git branch -d branch_name`. This will delete the branch only if it has already been fully merged. If the branch has unmerged changes, you can force delete it using `git branch -D branch_name`. To delete a branch from a remote repository, use the command `git push origin --delete branch_name`. This will remove the branch from the remote. Alternatively, you can use the shorter command `git push origin :branch_name`.
+
+Quick Tip: Always switch to another branch before deleting a branch, as Git does not allow you to delete the branch you are currently on.
+
+- Delete a local branch: `git branch -d branch_name`
+- Force delete a branch: `git branch -D branch_name`
+- Delete a remote branch: `git push origin --delete branch_name`
+- Short version for remote: `git push origin :branch_name`
 
 Branches are kind of blocks in a repository where we write new features, fix bugs etc. For example, if three developers are working on a project, they can create their own branches and work on them as the branches are isolated, so everyone can work in their branch.
 

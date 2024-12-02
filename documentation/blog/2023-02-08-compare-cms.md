@@ -64,7 +64,7 @@ yarn create strapi-app project-name --quickstart
 
 #### Refine built-in Strapi data provider
 
-A [data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/#overview) is an interface a [Refine](https://refine.dev/) application uses to communicate with an API. Refine has data providers for most of the popular CMS and platforms. You can use Refine's [Strapi data provider](https://github.com/refinedev/refine/tree/master/packages/strapi-v4) to interact with your Strapi instance from a Refine application.
+A [data provider](https://refine.dev/docs/api-reference/core/providers/data-provider/#overview) is an interface a [Refine](https://refine.dev/) application uses to communicate with an API. Refine has data providers for most of the popular CMS and platforms. You can use Refine's [Strapi data provider](https://github.com/refinedev/refine/tree/main/packages/strapi-v4) to interact with your Strapi instance from a Refine application.
 
 You can install the Strapi data provider in a Refine application like so:
 
@@ -116,7 +116,7 @@ After creating a database and populating it with entries, you can query, mutate,
 
 #### Refine built-in Hasura data provider
 
-As highlighted above, Refine has data providers for most CMS and platforms. You can use the [Hasura data provider](https://github.com/refinedev/refine/tree/master/packages/hasura) to communicate with your Hasura GraphQL API or REST API endpoints from a Refine application.
+As highlighted above, Refine has data providers for most CMS and platforms. You can use the [Hasura data provider](https://github.com/refinedev/refine/tree/main/packages/hasura) to communicate with your Hasura GraphQL API or REST API endpoints from a Refine application.
 
 You can install the Hasura data provider in your Refine application like so:
 

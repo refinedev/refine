@@ -894,7 +894,7 @@ Refine CLI allows you to interact with your Refine project and perform certain t
 
 **Refine Devtools** is designed to help you debug and develop your Refine apps. It will be a collection of features including monitoring queries and mutations, testing out inferencer generated codes, adding and updating Refine packages from the UI and more.
 
-> See the [Devtools](https://github.com/refinedev/refine/tree/master/packages/devtools) package for more information.
+> See the [Devtools](https://github.com/refinedev/refine/tree/main/packages/devtools) package for more information.
 
 ### Inferencer
 

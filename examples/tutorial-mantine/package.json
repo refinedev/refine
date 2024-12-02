@@ -27,7 +27,7 @@
     "@mantine/form": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
     "@mantine/notifications": "^5.10.4",
-    "@refinedev/cli": "^2.16.39",
+    "@refinedev/cli": "^2.16.40",
     "@refinedev/core": "^4.56.0",
     "@refinedev/inferencer": "^4.7.1",
     "@refinedev/mantine": "^2.34.0",
