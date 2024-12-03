@@ -11,8 +11,7 @@ export default function Usage() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
         antd: "^5.0.5",
       }}
       startRoute="/products"

@@ -13,7 +13,6 @@ export default function ServerSideValidationReactHookForm() {
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-hook-form": "^4.8.12",
         "react-dom": "^18.0.0",
-        "react-router": "latest",
         "react-router-dom": "^6.8.1",
         "react-hook-form": "^7.43.5",
       }}
