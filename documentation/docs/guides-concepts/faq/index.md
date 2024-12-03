@@ -108,13 +108,13 @@ useMany({
 
 ## Can I work with JavaScript?
 
-Although Refine is written in TypeScript and it is recommended to use TypeScript, you can also work with Javascript without any problems. Check out the [Refine with Javascript example →](https://github.com/refinedev/refine/tree/master/examples/with-javascript)
+Although Refine is written in TypeScript and it is recommended to use TypeScript, you can also work with Javascript without any problems. Check out the [Refine with Javascript example →](https://github.com/refinedev/refine/tree/main/examples/with-javascript)
 
 ## How I can override specific function of Data Providers?
 
 In some cases, you may need to override functions of Refine data providers. The simplest way to do this is to use the [Spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
-Below code sample, overrides the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest). You can apply custom logic to the data provider methods or handle a custom `meta` property for your needs.
+Below code sample, overrides the `update` function of the [`@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/main/packages/simple-rest). You can apply custom logic to the data provider methods or handle a custom `meta` property for your needs.
 
 ```tsx
 import dataProvider from "@refinedev/simple-rest";
@@ -331,9 +331,9 @@ To remove the GitHub Banner, you need to find and remove the `<GitHubBanner />` 
 
 Here are the locations where you can find and remove the `<GitHubBanner />` component based on different React platforms:
 
-- Vite: `src/App.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/auth-antd/src/App.tsx#L161)
-- Next.js: `src/app/layout.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L37)
-- Remix: `app/root.tsx` - [See an example](https://github.com/refinedev/refine/blob/master/examples/with-remix-antd/app/root.tsx#L37)
+- Vite: `src/App.tsx` - [See an example](https://github.com/refinedev/refine/blob/main/examples/auth-antd/src/App.tsx#L161)
+- Next.js: `src/app/layout.tsx` - [See an example](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L37)
+- Remix: `app/root.tsx` - [See an example](https://github.com/refinedev/refine/blob/main/examples/with-remix-antd/app/root.tsx#L37)
 
 ## How to solve "Module 'X' has no exported member 'Y'" error?
 

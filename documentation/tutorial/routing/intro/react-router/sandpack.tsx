@@ -80,7 +80,7 @@ export const AddRouterProviderToApp = () => {
 export const dependencies = {
   ...initialDependencies,
   "@refinedev/react-router-v6": "latest",
-  "react-router-dom": "latest",
+  "react-router-dom": "^6.8.1",
 };
 
 export const finalFiles = {

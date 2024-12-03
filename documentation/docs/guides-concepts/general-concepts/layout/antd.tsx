@@ -12,8 +12,7 @@ export function AntdLayout() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
         "@refinedev/inferencer": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
         antd: "^5.0.5",
       }}
       startRoute="/my-products"

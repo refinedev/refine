@@ -50,10 +50,10 @@ See the [Integrated Hooks](/docs/realtime/live-provider#integrated-hooks) sectio
 
 We have the following built-in integrations:
 
-- **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
-- **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
-- **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
-- **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/master/packages/hasura/src/liveProvider/index.ts#L16)
+- **Ably** &#8594 [Source Code](https://github.com/refinedev/refine/blob/main/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/live-provider-ably/?view=preview&theme=dark&codemirror=1)
+- **Supabase** &#8594 [Source Code](https://github.com/refinedev/refine/blob/main/packages/supabase/src/index.ts#L187)
+- **Appwrite** &#8594 [Source Code](https://github.com/refinedev/refine/blob/main/packages/appwrite/src/index.ts#L252)
+- **Hasura** &#8594 [Source Code](https://github.com/refinedev/refine/blob/main/packages/hasura/src/liveProvider/index.ts#L16)
 
 ## Live Provider
 
@@ -139,7 +139,7 @@ publish({
 
 ## Creating a live provider with Ably
 
-We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
+We will build the **"Ably Live Provider"** of [`@refinedev/ably`](https://github.com/refinedev/refine/tree/main/packages/ably) from scratch to show the logic of how live provider methods interact with Ably.
 
 ### Implementing `subscribe` method
 
@@ -407,7 +407,7 @@ export const liveProvider = (client: Client): LiveProvider => {
 
 :::info
 
-`generateUseListSubscription`, `generateUseOneSubscription` and `generateUseManySubscription` are helper functions that generate subscription queries. They are same as the methods in the data provider of `@refinedev/hasura`. You can check them out [here](https://github.com/refinedev/refine/tree/master/packages/hasura/src/utils).
+`generateUseListSubscription`, `generateUseOneSubscription` and `generateUseManySubscription` are helper functions that generate subscription queries. They are same as the methods in the data provider of `@refinedev/hasura`. You can check them out [here](https://github.com/refinedev/refine/tree/main/packages/hasura/src/utils).
 
 :::
 
