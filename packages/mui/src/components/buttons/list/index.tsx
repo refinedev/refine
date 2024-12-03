@@ -34,7 +34,10 @@ export const ListButton: React.FC<ListButtonProps> = ({
     accessControl,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   const { sx, ...restProps } = rest;
 
@@ -43,7 +46,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -55,7 +58,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
       style={{ textDecoration: "none" }}
     >
       <Button
-        disabled={disabled}
+        disabled={isDisabled}
         startIcon={!hideText && <ListOutlined {...svgIconProps} />}
         title={title}
         sx={{ minWidth: 0, ...sx }}

@@ -8,7 +8,7 @@ Theme specifies the color of the components, the darkness of the surfaces, level
 
 ## Predefined Themes
 
-If you don't want to use the default Mantine theme, [`RefineThemes`](https://github.com/refinedev/refine/blob/master/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can import predefined themes from the `@refinedev/mui` package.
+If you don't want to use the default Mantine theme, [`RefineThemes`](https://github.com/refinedev/refine/blob/main/packages/mui/src/theme/palette/refinePalette.ts) has predefined themes for you. You can import predefined themes from the `@refinedev/mui` package.
 
 ```ts
 // light themes
@@ -501,7 +501,7 @@ declare module "@mui/material/styles" {
 }
 ```
 
-You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/master/examples/finefoods-material-ui/src/interfaces/theme.d.ts) by accessing the links.
+You can see an example of how to [`create your own theme with custom variables`](https://github.com/refinedev/refine/blob/main/examples/finefoods-material-ui/src/theme.ts) and its [`interface`](https://github.com/refinedev/refine/blob/main/examples/finefoods-material-ui/src/interfaces/theme.d.ts) by accessing the links.
 
 ## Dark Mode
 
@@ -758,7 +758,7 @@ export default App;
   </div>
 </details>
 
-[You can use this CodeSandbox link to access this example &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
+[You can use this CodeSandbox link to access this example &#8594](https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/customization-theme-material-ui/?view=preview&theme=dark&codemirror=1)
 
 ```tsx live previewOnly previewHeight=450px disableScroll
 setInitialRoutes(["/samples"]);
@@ -858,7 +858,7 @@ render(<App />);
 We use the [`notistack`](https://iamhosseindhv.com/notistack) library for notifications in our Material UI package provides an elegant way to engage with your users.
 The main motivation for us to use the Notistack was that while the Notistack provider ( `<SnackbarProvider>` ) is a child of our ThemeProvider, it works in harmony with the theme.
 
-We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/master/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap `<Refine>` with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/master/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
+We provide [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/main/packages/mui/src/providers/refineSnackbarProvider/index.tsx) that extended `<SnackbarProvider>` with theme style. You have to wrap `<Refine>` with [`<RefineSnackbarProvider>`](https://github.com/refinedev/refine/blob/main/packages/mui/src/providers/refineSnackbarProvider/index.tsx) and also pass the `notificationProvider` as props.
 
 ```tsx live
 setInitialRoutes(["/samples"]);

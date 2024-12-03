@@ -166,8 +166,8 @@ React-admin's way of Next.js integration is actually a workaround and it is not 
 
 Check out these basic examples from Refine's documentation:
 
-- [Refine + next.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs)
-- [Refine + remix](https://github.com/refinedev/refine/tree/master/examples/with-remix-antd)
+- [Refine + next.js](https://github.com/refinedev/refine/tree/main/examples/with-nextjs)
+- [Refine + remix](https://github.com/refinedev/refine/tree/main/examples/with-remix-antd)
 - [Refine + React Native](https://github.com/abdellah711/refinenative) (Community Package ❤️)
 
 ## Multitenancy
@@ -341,7 +341,7 @@ You can dive deeper into your application inner workings with Refine's devtools.
 
 Whenever you need to manage your Refine packages, devtools allowing you to review, install, and update packages effortlessly.
 
-More info on Refine devtools can be found [here](https://github.com/refinedev/refine/blob/master/packages/devtools/README.md).
+More info on Refine devtools can be found [here](https://github.com/refinedev/refine/blob/main/packages/devtools/README.md).
 
 ## Customization
 

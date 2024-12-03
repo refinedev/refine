@@ -117,7 +117,7 @@ Try [Refine](https://github.com/pankod/refine) to rapidly build your next **CRUD
 
 <div>
 <a href="https://github.com/pankod/refine">
-   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" alt="refine blog logo" /> 
+   <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/generic_banner.png" alt="refine blog logo" />
 </a>
 </div>
 
@@ -238,7 +238,7 @@ It allows you to manage your forms and send data to your server with the [refine
 
 [Refer to the refine-react-hook-form adapter documentation for detailed information. →](/docs/packages/list-of-packages)
 
-[View Source](https://github.com/refinedev/refine/tree/master/examples/reactHookForm/useForm)
+[View Source](https://github.com/refinedev/refine/tree/main/examples/reactHookForm/useForm)
 
 You can manage your form very easily with the `refine-react-hook-form adapter`. The data created in the form will be automatically saved to the database with the **Refine** `onFinish` method.
 

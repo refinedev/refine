@@ -185,7 +185,7 @@ const PostCreate: React.FC = () => {
 };
 ```
 
-`useForm` is used to manage forms. It returns the necessary properties and methods to control the `<form>` element. It has been developed by using [`useForm`][use-form-core] imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/master/packages/core) package.
+`useForm` is used to manage forms. It returns the necessary properties and methods to control the `<form>` element. It has been developed by using [`useForm`][use-form-core] imported from the [@refinedev/core](https://github.com/refinedev/refine/tree/main/packages/core) package.
 
 <GeneralConceptsLink />
 
@@ -1211,7 +1211,7 @@ const {
 <CodeSandboxExample path="form-react-hook-form-use-form" />
 
 [react-hook-form]: https://react-hook-form.com
-[refine-react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
+[refine-react-hook-form]: https://github.com/refinedev/refine/tree/main/packages/react-hook-form
 [use-form-core]: /docs/data/hooks/use-form/
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

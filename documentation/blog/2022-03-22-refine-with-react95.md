@@ -487,7 +487,7 @@ export const LoginPage = () => {
         </WindowHeader>
         <div style={{ marginTop: 8 }}>
           <img
-            src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+            src="https://raw.githubusercontent.com/refinedev/refine/main/logo.png"
             alt="refine-logo"
             width={100}
           />
@@ -617,7 +617,7 @@ export const Footer: React.FC = () => {
             style={{ fontWeight: "bold" }}
           >
             <img
-              src="https://raw.githubusercontent.com/refinedev/refine/master/logo.png"
+              src="https://raw.githubusercontent.com/refinedev/refine/main/logo.png"
               alt="refine logo"
               style={{ height: "20px", marginRight: 4 }}
             />

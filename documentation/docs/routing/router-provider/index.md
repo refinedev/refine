@@ -200,9 +200,9 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ### Source Code for the Existing Router Providers
 
-- [React Router V6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/src/bindings.tsx)
-- [Next.js Router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/src/pages/bindings.tsx)
-- [Remix Router](https://github.com/refinedev/refine/blob/master/packages/remix-router/src/bindings.tsx)
+- [React Router V6](https://github.com/refinedev/refine/blob/main/packages/react-router-v6/src/bindings.tsx)
+- [Next.js Router](https://github.com/refinedev/refine/blob/main/packages/nextjs-router/src/pages/bindings.tsx)
+- [Remix Router](https://github.com/refinedev/refine/blob/main/packages/remix-router/src/bindings.tsx)
 
 ## Legacy Router Provider
 
@@ -211,6 +211,6 @@ Refine's v4 release is backward compatible and supports the legacy router provid
 If you want to use a legacy router provider, you can pass them to the `<Refine />` component using the `legacyRouterProvider` prop.
 
 [expo-router]: https://www.npmjs.com/package/@refinenative/expo-router
-[react-router-v6]: https://github.com/refinedev/refine/tree/master/packages/react-router-v6
-[nextjs-router]: https://github.com/refinedev/refine/tree/master/packages/nextjs-router
-[remix-router]: https://github.com/refinedev/refine/tree/master/packages/remix-router
+[react-router-v6]: https://github.com/refinedev/refine/tree/main/packages/react-router-v6
+[nextjs-router]: https://github.com/refinedev/refine/tree/main/packages/nextjs-router
+[remix-router]: https://github.com/refinedev/refine/tree/main/packages/remix-router
