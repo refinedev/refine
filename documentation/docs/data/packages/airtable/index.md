@@ -1,6 +1,6 @@
 ---
 title: Airtable
-source: https://github.com/refinedev/refine/tree/master/packages/airtable
+source: https://github.com/refinedev/refine/tree/main/packages/airtable
 swizzle: true
 ---
 

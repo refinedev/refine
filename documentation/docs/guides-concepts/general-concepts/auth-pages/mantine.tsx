@@ -12,8 +12,7 @@ export function MantineAuth() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
         "@refinedev/react-table": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
         "@mantine/core": "^5.10.4",
       }}
       startRoute="/login"

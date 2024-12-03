@@ -14,7 +14,7 @@ By using `useTable`, you can get properties that are compatible with Ant Design 
 
 For all the other features, you can refer to the Ant Design [`<Table>`][table] documentation.
 
-`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
+`useTable` hook is extended from [`useTable`][use-table-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/main/packages/core) package. This means that you can use all the features of [`useTable`][use-table-core] hook.
 
 ## usage
 

@@ -103,13 +103,13 @@ This CRM app template can be used in for various app requirements like B2B appli
     authProvider: "Custom",
     description: `Demonstrating Refine's Capabilities for Building Enterprise-Level HR Management App
 
-This HR management app, built with Refine, is an example designed to showcase the framework’s flexibility and power in creating enterprise-level internal tools like managing employee information, leave requests, polls, and more. 
+This HR management app, built with Refine, is an example designed to showcase the framework’s flexibility and power in creating enterprise-level internal tools like managing employee information, leave requests, polls, and more.
 
 While not a product, this template demonstrates how quickly and efficiently similar complex apps can be developed using Refine, serving as both a learning resource and inspiration for building your own applications.
 
 ### Enterprise Needs in Focus
 
-Our HR app example is designed for enterprise companies needs, which is why its source code is only available to Refine enterprise users. 
+Our HR app example is designed for enterprise companies needs, which is why its source code is only available to Refine enterprise users.
 
 Even if you don’t have access to the HR app's source code, you can still explore the capabilities of Refine through our other complete app examples.
 
@@ -126,18 +126,18 @@ Even if you don’t have access to the HR app's source code, you can still explo
 
 This HR app template can be used in for various app requirements like B2B applications, internal tools, admin panel, dashboard. Such as:
 
-- **Recruitment and Applicant Tracking Systems (ATS)**  
-- **Employee Engagement Platforms**  
-- **Compensation and Benefits Management Tools**  
-- **Workforce Planning and Time Tracking Solutions**  
-- **Compliance Management Systems**  
-- **Employee Self-Service Portals**  
-- **Succession Planning Tools**  
-- **Employee Wellness and Assistance Programs**  
-- **HR Analytics and Reporting Tools**  
-- **Performance Review and Incentive Management Systems**  
-- **Training and Development Management**  
-- **Onboarding and Offboarding Solutions**  
+- **Recruitment and Applicant Tracking Systems (ATS)**
+- **Employee Engagement Platforms**
+- **Compensation and Benefits Management Tools**
+- **Workforce Planning and Time Tracking Solutions**
+- **Compliance Management Systems**
+- **Employee Self-Service Portals**
+- **Succession Planning Tools**
+- **Employee Wellness and Assistance Programs**
+- **HR Analytics and Reporting Tools**
+- **Performance Review and Incentive Management Systems**
+- **Training and Development Management**
+- **Onboarding and Offboarding Solutions**
 - **Payroll Management Tools**
 
 By using this app as a starting point, companies can build a customized HR platform that suits their specific internal processes, speeding up development and reducing the complexity of building from scratch.
@@ -153,7 +153,7 @@ By using this app as a starting point, companies can build a customized HR platf
     edition: "Community",
     liveDemo: "https://example.refine.dev/",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/finefoods-client",
+      "https://github.com/refinedev/refine/tree/main/examples/finefoods-client",
     reactPlatform: "Next.js",
     uiFramework: "Headless",
     dataProvider: "Rest API",
@@ -180,7 +180,7 @@ The source code is also open-source; feel free to use or inspect it to discover 
     edition: "Community",
     liveDemo: "https://example.mui.admin.refine.dev",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/finefoods-material-ui",
+      "https://github.com/refinedev/refine/tree/main/examples/finefoods-material-ui",
     reactPlatform: "Vite",
     uiFramework: "Material UI",
     dataProvider: "Rest API",
@@ -231,7 +231,7 @@ This admin panel template can be used in for various app requirements like B2B a
     edition: "Community",
     liveDemo: "https://example.admin.refine.dev",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/finefoods-antd",
+      "https://github.com/refinedev/refine/tree/main/examples/finefoods-antd",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Rest API",
@@ -283,7 +283,7 @@ This admin panel template can be used in for various app requirements like B2B a
     runOnYourLocalPath: "store",
     edition: "Community",
     liveDemo: "https://store.refine.dev/",
-    github: "https://github.com/refinedev/refine/tree/master/examples/store",
+    github: "https://github.com/refinedev/refine/tree/main/examples/store",
     reactPlatform: "Next.js",
     uiFramework: "Ant Design",
     dataProvider: "Medusa",
@@ -317,7 +317,7 @@ With its production-ready status, this template offers a solid foundation for bu
     runOnYourLocalPath: "pixels",
     edition: "Community",
     liveDemo: "https://pixels.refine.dev/",
-    github: "https://github.com/refinedev/refine/tree/master/examples/pixels",
+    github: "https://github.com/refinedev/refine/tree/main/examples/pixels",
     tutorial: "https://refine.dev/week-of-refine-supabase/",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
@@ -348,7 +348,7 @@ We built this template to demonstrate how the Refine framework simplifies and sp
     runOnYourLocalPath: "invoicer",
     edition: "Community",
     liveDemo: "https://refine-invoicer-8mk7d.ondigitalocean.app/",
-    github: "https://github.com/refinedev/refine/tree/master/examples/invoicer",
+    github: "https://github.com/refinedev/refine/tree/main/examples/invoicer",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
     dataProvider: "Strapi",
@@ -378,7 +378,7 @@ We built this template to showcase the efficiency and ease of using the Refine f
     runOnYourLocalPath: "win95",
     edition: "Community",
     liveDemo: "https://videoclub.refine.dev",
-    github: "https://github.com/refinedev/refine/tree/master/examples/win95",
+    github: "https://github.com/refinedev/refine/tree/main/examples/win95",
     reactPlatform: "Vite",
     uiFramework: "Headless",
     dataProvider: "Supabase",
@@ -455,9 +455,9 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     runOnYourLocalPath: "auth-antd",
     edition: "Community",
     liveDemo:
-      "https://codesandbox.io/p/sandbox/github/refinedev/refine/tree/master/examples/auth-antd",
+      "https://codesandbox.io/p/sandbox/github/refinedev/refine/tree/main/examples/auth-antd",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/auth-antd",
+      "https://github.com/refinedev/refine/tree/main/examples/auth-antd",
     tutorial: "https://refine.dev/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",
@@ -476,9 +476,9 @@ Complete internal tool template built with Material UI. Features authentication 
     runOnYourLocalPath: "auth-material-ui",
     edition: "Community",
     liveDemo:
-      "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-material-ui",
+      "https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/auth-material-ui",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/auth-material-ui",
+      "https://github.com/refinedev/refine/tree/main/examples/auth-material-ui",
     tutorial: "https://refine.dev/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Material UI",
@@ -497,9 +497,9 @@ Complete internal tool template built with Material UI. Features authentication 
     runOnYourLocalPath: "auth-mantine",
     edition: "Community",
     liveDemo:
-      "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-mantine",
+      "https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/auth-mantine",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/auth-mantine",
+      "https://github.com/refinedev/refine/tree/main/examples/auth-mantine",
     tutorial: "https://refine.dev/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Mantine",
@@ -518,9 +518,9 @@ Complete internal tool template built with Mantine. Features authentication and 
     runOnYourLocalPath: "auth-chakra-ui",
     edition: "Community",
     liveDemo:
-      "https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/auth-chakra-ui",
+      "https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/auth-chakra-ui",
     github:
-      "https://github.com/refinedev/refine/tree/master/examples/auth-chakra-ui",
+      "https://github.com/refinedev/refine/tree/main/examples/auth-chakra-ui",
     tutorial: "https://refine.dev/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Chakra UI",

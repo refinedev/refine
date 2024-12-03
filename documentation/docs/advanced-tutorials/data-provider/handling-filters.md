@@ -269,10 +269,10 @@ const dataProvider = (): DataProvider => ({
 
 Data providers that support `or` and `and` filtering logic are as follows:
 
-- [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
-- [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
-- [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
-- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+- [NestJS CRUD](https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud)
+- [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/main/packages/strapi-v4)
+- [Supabase](https://github.com/refinedev/refine/tree/main/packages/supabase)
+- [Hasura](https://github.com/refinedev/refine/tree/main/packages/hasura)
 
 :::
 
@@ -282,12 +282,12 @@ The [GraphQLQueryOptions](https://refine.dev/docs/core/interface-references/#gra
 
 Packages that support custom GraphQL variables for more advanced filtering are as follows:
 
-- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
+- [Hasura](https://github.com/refinedev/refine/tree/main/packages/hasura)
 
 The following data providers do not yet support `meta.gqlVariables`;
 
-- [Nestjs-Query](https://github.com/refinedev/refine/tree/master/packages/nestjs-query)
-- [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
+- [Nestjs-Query](https://github.com/refinedev/refine/tree/main/packages/nestjs-query)
+- [GraphQL](https://github.com/refinedev/refine/tree/main/packages/graphql)
 
 ```tsx
 // Hasura Data Provider Example

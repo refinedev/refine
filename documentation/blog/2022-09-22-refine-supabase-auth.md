@@ -16,7 +16,7 @@ Another significant problem with password-based login is that keeping track of d
 
 When we talk about OTP-based authentication, users need to enter a six-digit OTP number sent to them through an automated call or SMS when they want to access the application.
 
-You can access the example app we'll be building in the article by following this [link.](https://github.com/refinedev/refine/tree/master/examples/blog-refine-supabase-auth)
+You can access the example app we'll be building in the article by following this [link.](https://github.com/refinedev/refine/tree/main/examples/blog-refine-supabase-auth)
 
 Steps we'll cover:
 
@@ -71,7 +71,7 @@ npm create refine-app@latest refine-supabase-auth
 
 Choose the headless option while specifying the UI framework, as you will be integrating tailwind in this tutorial. You can select your preferred package manager; this tutorial will use yarn. Choose the `supabase` option when selecting the Data Provider.
 
-Here is the source code of [Refine supabase data provider](https://github.com/refinedev/refine/tree/master/packages/supabase)
+Here is the source code of [Refine supabase data provider](https://github.com/refinedev/refine/tree/main/packages/supabase)
 
 ## Installing Tailwind CSS for Refine project
 

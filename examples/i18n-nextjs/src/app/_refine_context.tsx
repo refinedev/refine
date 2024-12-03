@@ -2,7 +2,7 @@
 
 import { DevtoolsProvider } from "@providers/devtools";
 import { useNotificationProvider } from "@refinedev/antd";
-import { GitHubBanner, Refine } from "@refinedev/core";
+import { GitHubBanner, type I18nProvider, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
 import React, { Suspense, type PropsWithChildren } from "react";
@@ -22,8 +22,8 @@ export const RefineContext = ({
   const t = useTranslations();
   const locale = useLocale();
 
-  const i18nProvider = {
-    translate: (key: string) => t(key),
+  const i18nProvider: I18nProvider = {
+    translate: (key: string, options: any) => t(key, options),
     getLocale: () => locale,
     changeLocale: setUserLocale,
   };
