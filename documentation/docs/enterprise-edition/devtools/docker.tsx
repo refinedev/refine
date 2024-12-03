@@ -13,8 +13,7 @@ export default function DockerExample() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
       }}
       files={{
         "/App.tsx": {

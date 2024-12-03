@@ -18,8 +18,7 @@ export default function ServerSideValidationMui() {
         "@mui/material": "^5.14.2",
         "@mui/system": "latest",
         "@mui/x-data-grid": "^6.6.0",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
         "react-hook-form": "^7.43.5",
       }}
       startRoute="/products/create"
