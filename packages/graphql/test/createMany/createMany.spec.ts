@@ -59,7 +59,7 @@ describe("createMany", () => {
           resource: "blogPosts",
           variables: [],
         }),
-      ).rejects.toEqual(new Error("Operation is required."));
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
     });
   });
 });
