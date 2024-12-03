@@ -6,12 +6,11 @@ import {
   getDefaultSortOrder,
   DeleteButton,
 } from "@refinedev/antd";
-import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import { Space, Table } from "antd";
 
 import { CATEGORIES_LIST_QUERY } from "./queries";
-import type { CategoriesListQuery } from "graphql/types";
+import type { CategoriesListQuery, GetFieldsFromList } from "graphql/types";
 
 type ICategory = GetFieldsFromList<CategoriesListQuery>;
 

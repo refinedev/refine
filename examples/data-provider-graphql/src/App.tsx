@@ -5,7 +5,7 @@ import {
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
-import { Client, fetchExchange } from "urql";
+import { Client, fetchExchange } from "@urql/core";
 import createDataProvider, { createLiveProvider } from "@refinedev/graphql";
 import { createClient } from "graphql-ws";
 import routerProvider, {
@@ -42,10 +42,10 @@ const App: React.FC = () => {
             resources={[
               {
                 name: "blogPosts",
-                list: "/blog_posts",
-                create: "/blog_posts/create",
-                edit: "/blog_posts/edit/:id",
-                show: "/blog_posts/show/:id",
+                list: "/blog-posts",
+                create: "/blog-posts/create",
+                edit: "/blog-posts/edit/:id",
+                show: "/blog-posts/show/:id",
               },
               {
                 name: "categories",
@@ -71,10 +71,10 @@ const App: React.FC = () => {
               >
                 <Route
                   index
-                  element={<NavigateToResource resource="blog_posts" />}
+                  element={<NavigateToResource resource="blogPosts" />}
                 />
 
-                <Route path="/blog_posts">
+                <Route path="/blog-posts">
                   <Route index element={<PostList />} />
                   <Route path="create" element={<PostCreate />} />
                   <Route path="edit/:id" element={<PostEdit />} />

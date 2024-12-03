@@ -1,10 +1,14 @@
 import { Create, useForm, useSelect } from "@refinedev/antd";
-import type { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import MDEditor from "@uiw/react-md-editor";
 import { Form, Input, Select } from "antd";
 
-import type { CategoriesSelectQuery, PostCreateMutation } from "graphql/types";
+import type {
+  CategoriesSelectQuery,
+  PostCreateMutation,
+  GetFields,
+  GetFieldsFromList,
+} from "graphql/types";
 import { CATEGORIES_SELECT_QUERY, POST_CREATE_MUTATION } from "./queries";
 
 export const PostCreate = () => {
