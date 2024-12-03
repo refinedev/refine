@@ -1,6 +1,6 @@
 ---
 title: Hasura
-source: https://github.com/refinedev/refine/tree/master/packages/hasura
+source: https://github.com/refinedev/refine/tree/main/packages/hasura
 swizzle: true
 ---
 

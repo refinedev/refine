@@ -20,7 +20,7 @@ In this article, we will prepare a simple `job-posting` application. We will als
 
 <!--truncate-->
 
-All the steps described are in this [repo](https://github.com/refinedev/refine/tree/master/examples/blog-job-posting).
+All the steps described are in this [repo](https://github.com/refinedev/refine/tree/main/examples/blog-job-posting).
 
 ## Intro
 

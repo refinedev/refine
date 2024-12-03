@@ -28,7 +28,7 @@
     "@mui/material": "^6.1.7",
     "@mui/x-data-grid": "^7.22.2",
     "@mui/x-data-grid-pro": "^7.22.2",
-    "@refinedev/cli": "^2.16.39",
+    "@refinedev/cli": "^2.16.40",
     "@refinedev/core": "^4.56.0",
     "@refinedev/mui": "^5.22.0",
     "@refinedev/react-hook-form": "^4.9.1",

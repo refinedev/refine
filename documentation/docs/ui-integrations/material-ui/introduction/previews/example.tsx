@@ -7,7 +7,7 @@ export default function Example() {
       showNavigator
       previewOnly
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
@@ -18,8 +18,7 @@ export default function Example() {
         "@mui/material": "^6.1.7",
         "@mui/system": "latest",
         "@mui/x-data-grid": "^7.22.2",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
         "react-hook-form": "^7.43.5",
       }}
       startRoute="/products"

@@ -11,7 +11,6 @@ export default function ServerSideValidationReactHookForm() {
         "@refinedev/react-router-v6": "^4.5.4",
         "@refinedev/simple-rest": "^4.5.4",
         "react-dom": "^18.0.0",
-        "react-router": "latest",
         "react-router-dom": "^6.8.1",
       }}
       startRoute="/products/create"

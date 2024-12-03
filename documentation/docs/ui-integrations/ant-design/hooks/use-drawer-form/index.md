@@ -4,7 +4,7 @@ title: useDrawerForm
 
 The `useDrawerForm` hook allows you to manage a form within a Drawer. It returns the Ant Design [`<Form>`](https://ant.design/components/form/) and [`<Drawer>`](https://ant.design/components/drawer/) components props.
 
-The`useDrawerForm` hook is extended from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/master/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook with it.
+The`useDrawerForm` hook is extended from [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) from the [@refinedev/antd](https://github.com/refinedev/refine/tree/main/packages/antd) package. This means that you can use all the features of [`useForm`](/docs/ui-integrations/ant-design/hooks/use-form) hook with it.
 
 ## Usage
 
