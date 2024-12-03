@@ -6,14 +6,6 @@ exports[`MuiInferencer should match the snapshot 1`] = `
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-bhp9pd-MuiPaper-root-MuiCard-root"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1otkg56-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
@@ -9868,14 +9860,6 @@ exports[`MuiInferencer should match the snapshot 2`] = `
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1otkg56-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
@@ -24772,14 +24756,6 @@ exports[`MuiInferencer should match the snapshot 3`] = `
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1otkg56-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
@@ -40781,14 +40757,6 @@ exports[`MuiInferencer should match the snapshot 4`] = `
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-1otkg56-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-4pdmu4-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
       >
