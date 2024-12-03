@@ -54,7 +54,7 @@ export const dataProvider = (url: string): DataProvider => ({
     getList: async ({ resource, filters, pagination, sorters }) => {
         // We simplified query string generation to keep the example application short and straightforward.
         // For more detailed and complex implementation examples, you can refer to the source code of the data provider packages.
-        // https://github.com/refinedev/refine/blob/master/packages/simple-rest/src/provider.ts
+        // https://github.com/refinedev/refine/blob/main/packages/simple-rest/src/provider.ts
 
         // we know that we only have one filter and one sorter in this example.
         const filter = filters?.[0];

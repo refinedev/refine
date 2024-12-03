@@ -35,7 +35,7 @@ The final apps source codes are available on GitHub:
 
 ### Pixels Client
 
-[Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels)
+[Source Code on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels)
 
 To get completed client source code simply run:
 
@@ -45,7 +45,7 @@ To get completed client source code simply run:
 
 ### Pixels Admin
 
-[Source Code on GitHub](https://github.com/refinedev/refine/tree/master/examples/pixels-admin)
+[Source Code on GitHub](https://github.com/refinedev/refine/tree/main/examples/pixels-admin)
 
 To get completed admin source code simply run:
 

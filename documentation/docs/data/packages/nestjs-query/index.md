@@ -1,6 +1,6 @@
 ---
 title: Nest.js Query
-source: https://github.com/refinedev/refine/tree/master/packages/nestjs-query
+source: https://github.com/refinedev/refine/tree/main/packages/nestjs-query
 ---
 
 Refine provides a data provider for APIs powered with [Nest.js Query](https://doug-martin.github.io/nestjs-query/), a module for Nest.js that provides easier ways to build CRUD graphql APIs.

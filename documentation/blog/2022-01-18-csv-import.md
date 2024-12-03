@@ -211,7 +211,7 @@ The CSV import with **Refine** is very simple and out-of-the-box feature. How to
 
 [Refer to the **Refine** CSV import guide for more information. →](https://refine.dev/docs/guides-and-concepts/import-export/csv-import/)
 
-[View Source](https://github.com/refinedev/refine/blob/master/examples/import-export-antd/src/pages/posts/list.tsx#L32)
+[View Source](https://github.com/refinedev/refine/blob/main/examples/import-export-antd/src/pages/posts/list.tsx#L32)
 
 ## Refine CSV Import Usage
 

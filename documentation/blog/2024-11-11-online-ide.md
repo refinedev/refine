@@ -139,7 +139,7 @@ Instead of using the starter projects to create a new project on StackBlitz, you
 
 ### Deploy the example project to GitHub
 
-Host the **Refine** example project we created on GitHub. You can also use one of the [tutorial examples](https://github.com/refinedev/refine/tree/master/examples/tutorial) if you don't want to deploy the example project.
+Host the **Refine** example project we created on GitHub. You can also use one of the [tutorial examples](https://github.com/refinedev/refine/tree/main/examples/tutorial) if you don't want to deploy the example project.
 
 ### How to open a public GitHub repository in StackBlitz?
 
@@ -152,10 +152,10 @@ https://www.stackblitz.com/github/{GITHUB_USERNAME}/{REPOSITORY_NAME}/{BRANCH|TA
 You can also specify the script in your `package.json` file StackBlitz will use to set up the development serve as a query string. In the example below, StackBlitz will use the `dev` script.
 
 ```txt
-https://www.stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?view=preview&theme=dark&codemirror=1
+https://www.stackblitz.com/github/refinedev/refine/tree/main/examples/tutorial-antd?view=preview&theme=dark&codemirror=1
 ```
 
-You can open one of the tutorial examples in StackBlitz by following [this link](https://www.stackblitz.com/github/refinedev/refine/tree/master/examples/tutorial-antd?view=preview&theme=dark&codemirror=1).
+You can open one of the tutorial examples in StackBlitz by following [this link](https://www.stackblitz.com/github/refinedev/refine/tree/main/examples/tutorial-antd?view=preview&theme=dark&codemirror=1).
 
 ### Pros of using StackBlitz
 

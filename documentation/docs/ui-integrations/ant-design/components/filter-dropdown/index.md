@@ -150,7 +150,7 @@ const { selectProps: categorySelectProps } = useSelect<ICategory>({
 
 A more complex example is using a filter dropdown with a date picker.
 
-Imagine you need to filter data based on a date range where Refine's data provider expects dates in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format, but Ant Design's [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker) uses Dayjs objects. To solve this, use the `mapValue` and [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/master/packages/antd/src/definitions/filter-mappers/index.ts) utility function to convert `selectedKeys` to satisfy both the data provider and `<DatePicker.RangePicker />`.
+Imagine you need to filter data based on a date range where Refine's data provider expects dates in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format, but Ant Design's [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker) uses Dayjs objects. To solve this, use the `mapValue` and [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/main/packages/antd/src/definitions/filter-mappers/index.ts) utility function to convert `selectedKeys` to satisfy both the data provider and `<DatePicker.RangePicker />`.
 
 ```tsx
 import { getDefaultFilter } from "@refinedev/core";
@@ -203,7 +203,7 @@ export const Posts = () => {
 };
 ```
 
-Let's closer look at the [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/master/packages/antd/src/definitions/filter-mappers/index.ts) function source code to understand how it works.
+Let's closer look at the [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/main/packages/antd/src/definitions/filter-mappers/index.ts) function source code to understand how it works.
 
 when the `event` is:
 

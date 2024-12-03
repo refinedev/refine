@@ -20,7 +20,6 @@ export default function AuthPage() {
         "@mantine/hooks": "^5.10.4",
         "@mantine/form": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
-        "react-router": "latest",
         "react-router-dom": "^6.8.1",
       }}
       startRoute="/login"
