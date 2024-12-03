@@ -46,11 +46,11 @@ export type AuthenticatedCommonProps = {
    */
   loading?: React.ReactNode;
   /**
-   * Content to show if user is logged in
+   * Content to show if user is logged in.
    */
   children?: React.ReactNode;
   /**
-   * optional params to pass to the auth check via the useIsAuthenticated hook
+   * optional params to be passed to the Auth Provider's check method via the useIsAuthenticated hook.
    */
   params?: AuthCheckParams;
 };
@@ -166,8 +166,8 @@ export function Authenticated({
       ? redirectOnFail
       : "/login"
     : typeof redirectOnFail === "string"
-    ? redirectOnFail
-    : (authenticatedRedirect as string | undefined);
+      ? redirectOnFail
+      : (authenticatedRedirect as string | undefined);
 
   // Current pathname to append to the redirect url.
   // User will be redirected to this url after successful mutation. (like login)
