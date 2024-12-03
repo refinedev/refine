@@ -12,6 +12,7 @@ export default defineConfig((options) => ({
   sourcemap: true,
   clean: false,
   minify: false,
+  dts: true,
   format: ["cjs", "esm"],
   outExtension: ({ format }) => ({ js: format === "cjs" ? ".cjs" : ".mjs" }),
   platform: "browser",

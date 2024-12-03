@@ -34,14 +34,17 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -52,8 +55,8 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       }}
     >
       <Button
+        disabled={isDisabled}
         icon={<EyeOutlined />}
-        disabled={disabled}
         title={title}
         data-testid={RefineButtonTestIds.ShowButton}
         className={RefineButtonClassNames.ShowButton}

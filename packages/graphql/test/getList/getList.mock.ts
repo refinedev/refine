@@ -3027,3 +3027,37 @@ nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
       "x-powered-by": "Express",
     },
   );
+
+nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
+  .post("/graphql", {
+    operationName: "BlogPosts",
+    query:
+      "query BlogPosts($paging: OffsetPaging!, $filter: BlogPostFilter!, $sorting: [BlogPostSort!]!) {\n  blogPosts(paging: $paging, filter: $filter, sorting: $sorting) {\n    nodes {\n      id1\n      title\n      status\n    }\n    totalCount\n  }\n}",
+    variables: { sorting: [], filter: {}, paging: { limit: 10, offset: 0 } },
+  })
+  .reply(
+    200,
+    {
+      errors: [
+        {
+          message:
+            'Cannot query field "id1" on type "BlogPosts". Did you mean "id"?',
+          locations: [{ line: 9, column: 17 }],
+          extensions: {
+            code: "GRAPHQL_VALIDATION_FAILED",
+          },
+        },
+      ],
+    },
+    {
+      "access-control-allow-origin": "*",
+      "cache-control": "no-store",
+      connection: "keep-alive",
+      "content-length": "184",
+      "content-type": "application/graphql-response+json; charset=utf-8",
+      date: "Thu, 26 Sep 2024 11:58:52 GMT",
+      etag: 'W/"b8-oksqRkqL45oVAb2ke7dQ1Iwqd24"',
+      "strict-transport-security": "max-age=15724800; includeSubDomains",
+      "x-powered-by": "Express",
+    },
+  );
