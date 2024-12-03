@@ -6,7 +6,7 @@ import type { Announcement } from "@definitions/announcement";
 import { markedTerminalRenderer } from "@utils/marked-terminal-renderer";
 
 const ANNOUNCEMENT_URL =
-  "https://raw.githubusercontent.com/refinedev/refine/master/packages/cli/ANNOUNCEMENTS.md";
+  "https://raw.githubusercontent.com/refinedev/refine/main/packages/cli/ANNOUNCEMENTS.md";
 
 const ANNOUNCEMENT_DELIMITER = "---announcement";
 

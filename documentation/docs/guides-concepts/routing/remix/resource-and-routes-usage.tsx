@@ -10,8 +10,7 @@ export function RemixResourceAndRoutesUsage() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/remix-router": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
       }}
       files={{
         "/app/root.tsx": {

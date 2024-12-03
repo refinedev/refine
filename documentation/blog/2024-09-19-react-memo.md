@@ -91,9 +91,9 @@ We'll follow the impact of memoization mainly from the browser's console.
 
 In order to properly follow this tutorial, we recommend you run the app in a browser - since we will be visiting the console to investigate the impact of memoization on our React app.
 
-For this to happen, please follow the below steps as outlined [here](https://github.com/refinedev/refine/tree/master/examples/blog-react-memoization-memo):
+For this to happen, please follow the below steps as outlined [here](https://github.com/refinedev/refine/tree/main/examples/blog-react-memoization-memo):
 
-1. Clone [this repository](https://github.com/refinedev/refine/tree/master/examples/blog-react-memoization-memo).
+1. Clone [this repository](https://github.com/refinedev/refine/tree/main/examples/blog-react-memoization-memo).
 2. Open it in your code editor and install the packages:
 
 ```bash

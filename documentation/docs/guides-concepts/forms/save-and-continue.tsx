@@ -10,8 +10,7 @@ export default function BasicUsage() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
         "@refinedev/react-hook-form": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
       }}
       startRoute="/products/create"
       files={{

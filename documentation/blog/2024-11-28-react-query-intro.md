@@ -8,9 +8,19 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-quer
 hide_table_of_contents: false
 ---
 
-**This article was last updated on August 12, 2024 to add sections for Advanced Querying Techniques and Background Data Synchronization.**
+**This article was last updated on November 28, 2024 to add clear introduction to React query post.**
 
 ## Introduction
+
+**Tl;DR:**
+
+React Query is a powerful library for fetching data and managing state in React applications. This library simplifies the interaction with APIs by providing caching, synchronization, and server state management out of the box. Some key features are as follows:
+
+- Data Caching: It will store the fetched data automatically and use it to avoid redundant API calls.
+- Error Handling: Manages errors internally for easy interaction with APIs.
+- State Management: Does not require using manually maintained state handling like useEffect.
+
+Improve performance, develop responsive designs, and provide seamless user experiences without headaches with React Query.
 
 Step into the world of web development, where loading server data, handling errors, and keeping clients and servers in sync are all part of the exciting puzzle. But wait, there's more! Picture a scenario where poor internet connections add another layer of complexity. It's enough to make any developer's head spin.
 

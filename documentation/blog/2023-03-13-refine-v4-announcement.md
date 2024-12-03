@@ -172,16 +172,16 @@ The process is complete, and your project now uses `refine@4.x.x.` 🚀
 
 The following Refine packages includes component and hook updates. You can view the details on migration guide by clicking to each one.
 
-- [@refinedev/core](https://github.com/refinedev/refine/blob/master/packages/core/CHANGELOG.md)
-- [@refinedev/antd](https://github.com/refinedev/refine/blob/master/packages/antd/CHANGELOG.md)
-- [@refinedev/mui](https://github.com/refinedev/refine/blob/master/packages/mui/CHANGELOG.md)
-- [@refinedev/mantine](https://github.com/refinedev/refine/blob/master/packages/mantine/CHANGELOG.md)
-- [@refinedev/chakra-ui](https://github.com/refinedev/refine/blob/master/packages/chakra-ui/CHANGELOG.md)
-- [@refinedev/react-table](https://github.com/refinedev/refine/blob/master/packages/react-table/CHANGELOG.md)
-- [@refinedev/react-hook-form](https://github.com/refinedev/refine/blob/master/packages/react-hook-form/CHANGELOG.md)
-- [@refinedev/react-router-v6](https://github.com/refinedev/refine/blob/master/packages/react-router-v6/CHANGELOG.md)
-- [@refinedev/nextjs-router](https://github.com/refinedev/refine/blob/master/packages/nextjs-router/CHANGELOG.md)
-- [@refinedev/remix](https://github.com/refinedev/refine/blob/master/packages/remix/CHANGELOG.md)
+- [@refinedev/core](https://github.com/refinedev/refine/blob/main/packages/core/CHANGELOG.md)
+- [@refinedev/antd](https://github.com/refinedev/refine/blob/main/packages/antd/CHANGELOG.md)
+- [@refinedev/mui](https://github.com/refinedev/refine/blob/main/packages/mui/CHANGELOG.md)
+- [@refinedev/mantine](https://github.com/refinedev/refine/blob/main/packages/mantine/CHANGELOG.md)
+- [@refinedev/chakra-ui](https://github.com/refinedev/refine/blob/main/packages/chakra-ui/CHANGELOG.md)
+- [@refinedev/react-table](https://github.com/refinedev/refine/blob/main/packages/react-table/CHANGELOG.md)
+- [@refinedev/react-hook-form](https://github.com/refinedev/refine/blob/main/packages/react-hook-form/CHANGELOG.md)
+- [@refinedev/react-router-v6](https://github.com/refinedev/refine/blob/main/packages/react-router-v6/CHANGELOG.md)
+- [@refinedev/nextjs-router](https://github.com/refinedev/refine/blob/main/packages/nextjs-router/CHANGELOG.md)
+- [@refinedev/remix](https://github.com/refinedev/refine/blob/main/packages/remix/CHANGELOG.md)
 
 ## Conclusion
 

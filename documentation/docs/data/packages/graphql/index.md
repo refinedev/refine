@@ -1,6 +1,6 @@
 ---
 title: GraphQL
-source: https://github.com/refinedev/refine/tree/master/packages/graphql
+source: https://github.com/refinedev/refine/tree/main/packages/graphql
 swizzle: true
 ---
 
