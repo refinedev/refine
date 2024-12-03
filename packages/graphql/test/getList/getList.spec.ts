@@ -1,6 +1,6 @@
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import { gql } from "@urql/core";
+import gql from "graphql-tag";
 import "./getList.mock";
 
 const gqlQuery = gql`
@@ -38,9 +38,9 @@ describe("getList", () => {
       },
     });
 
-    expect(data[0].id).toBe("1");
+    expect(data[0].id).toBe("3");
     expect(data.length).toBe(10);
-    expect(total).toBe(507);
+    expect(total).toBe(503);
   });
 
   describe("pagination", () => {
@@ -55,7 +55,7 @@ describe("getList", () => {
         },
       });
 
-      expect(data[0].id).toBe("11");
+      expect(data[0].id).toBe("14");
     });
 
     it("pageSize", async () => {
@@ -84,7 +84,7 @@ describe("getList", () => {
           },
         });
 
-        expect(data.length).toBe(507);
+        expect(data.length).toBe(503);
       });
 
       it("server", async () => {
@@ -145,7 +145,7 @@ describe("getList", () => {
         ],
       });
 
-      expect(data.length).toBe(4);
+      expect(data.length).toBe(1);
       expect(data[0].status).toBe("DRAFT");
     });
 
@@ -191,7 +191,7 @@ describe("getList", () => {
         }),
       ).rejects.toEqual(
         new Error(
-          '[GraphQL] Cannot query field "id1" on type "BlogPosts". Did you mean "id"?',
+          '[GraphQL] Cannot query field "id1" on type "BlogPost". Did you mean "id"?',
         ),
       );
     });

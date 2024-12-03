@@ -1,10 +1,9 @@
 import { Edit, ListButton, RefreshButton, useForm } from "@refinedev/antd";
-import type { GetFields } from "@refinedev/nestjs-query";
 
 import { Form, Input } from "antd";
 
 import { CATEGORY_EDIT_MUTATION } from "./queries";
-import type { CategoryEditMutation } from "graphql/types";
+import type { CategoryEditMutation, GetFields } from "graphql/types";
 
 export const CategoryEdit = () => {
   const {

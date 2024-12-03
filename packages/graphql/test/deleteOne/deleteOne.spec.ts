@@ -1,4 +1,4 @@
-import { gql } from "@urql/core";
+import gql from "graphql-tag";
 
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
@@ -47,7 +47,9 @@ describe("deleteOne", () => {
             gqlMutation,
           },
         }),
-      ).rejects.toEqual(new Error("[GraphQL] ID 999 does not exist."));
+      ).rejects.toEqual(
+        new Error("[GraphQL] Unable to find BlogPostEntity with id: 999"),
+      );
     });
   });
 });

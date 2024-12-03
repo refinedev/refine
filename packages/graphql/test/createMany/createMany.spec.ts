@@ -1,6 +1,6 @@
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import { gql } from "@urql/core";
+import gql from "graphql-tag";
 import "./createMany.mock";
 
 const gqlMutation = gql`

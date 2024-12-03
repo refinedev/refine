@@ -1,4 +1,4 @@
-import { gql } from "@urql/core";
+import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./deleteMany.mock";
@@ -14,7 +14,7 @@ mutation DeleteManyBlogPosts($input: DeleteManyBlogPostsInput!) {
 describe("deleteMany", () => {
   describe("with correct params", () => {
     it("works as expected", async () => {
-      const ids = ["333", "334"];
+      const ids = ["555", "666"];
       const { data } = await dataProvider(client).deleteMany({
         resource: "blogPosts",
         ids,

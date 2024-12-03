@@ -4,7 +4,7 @@ nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
   .post("/graphql", {
     operationName: "DeleteOneBlogPost",
     query:
-      "mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n  deleteOneBlogPost(input: $input) {\n    id\n    title\n  }\n}",
+      "\n  mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n    deleteOneBlogPost(input: $input) {\n      id\n      title\n    }\n  }\n",
     variables: { input: { id: "42" } },
   })
   .reply(
@@ -13,7 +13,7 @@ nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
       data: {
         deleteOneBlogPost: {
           id: null,
-          title: "Id cupiditate veritatis ea odio totam at deleniti.",
+          title: "Corrupti iure voluptas itaque eveniet esse.",
         },
       },
     },
@@ -21,10 +21,10 @@ nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
       "access-control-allow-origin": "*",
       "cache-control": "no-store",
       connection: "keep-alive",
-      "content-length": "104",
+      "content-length": "97",
       "content-type": "application/graphql-response+json; charset=utf-8",
-      date: "Tue, 08 Oct 2024 14:08:33 GMT",
-      etag: 'W/"68-TDuJj7/vFePG+kD7NzTYthPx/TU"',
+      date: "Tue, 03 Dec 2024 13:28:58 GMT",
+      etag: 'W/"61-ukyMZw/24CfeCUv+M/Arnzlt3RA"',
       "strict-transport-security": "max-age=15724800; includeSubDomains",
       "x-powered-by": "Express",
     },
@@ -34,7 +34,7 @@ nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
   .post("/graphql", {
     operationName: "DeleteOneBlogPost",
     query:
-      "mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n  deleteOneBlogPost(input: $input) {\n    id\n    title\n  }\n}",
+      "\n  mutation DeleteOneBlogPost($input: DeleteOneBlogPostInput!) {\n    deleteOneBlogPost(input: $input) {\n      id\n      title\n    }\n  }\n",
     variables: { input: { id: 999 } },
   })
   .reply(
@@ -42,22 +42,30 @@ nock("https://api.nestjs-query.refine.dev:443", { encodedQueryParams: true })
     {
       errors: [
         {
-          message: "ID 999 does not exist.",
-          locations: [{ line: 9, column: 17 }],
+          message: "Unable to find BlogPostEntity with id: 999",
+          locations: [{ line: 3, column: 5 }],
+          path: ["deleteOneBlogPost"],
           extensions: {
-            code: "NOT_FOUND",
+            code: "INTERNAL_SERVER_ERROR",
+            status: 404,
+            originalError: {
+              message: "Unable to find BlogPostEntity with id: 999",
+              error: "Not Found",
+              statusCode: 404,
+            },
           },
         },
       ],
+      data: null,
     },
     {
       "access-control-allow-origin": "*",
       "cache-control": "no-store",
       connection: "keep-alive",
-      "content-length": "104",
+      "content-length": "316",
       "content-type": "application/graphql-response+json; charset=utf-8",
-      date: "Tue, 08 Oct 2024 14:08:33 GMT",
-      etag: 'W/"68-TDuJj7/vFePG+kD7NzTYthPx/TU"',
+      date: "Tue, 03 Dec 2024 13:27:02 GMT",
+      etag: 'W/"13c-VXQSJDW6JPVGTNw0ASPD8n8kgQ4"',
       "strict-transport-security": "max-age=15724800; includeSubDomains",
       "x-powered-by": "Express",
     },

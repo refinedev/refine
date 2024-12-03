@@ -1,4 +1,4 @@
-import { gql } from "urql";
+import gql from "graphql-tag";
 
 export const POST_CREATE_MUTATION = gql`
     mutation PostCreate($input: CreateOneBlogPostInput!) {

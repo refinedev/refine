@@ -7,14 +7,6 @@ exports[`MuiInferencer should match the snapshot 1`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1j74uew-MuiPaper-root-MuiCard-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-2itj3d-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-1uwp4ue-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-1y6hc0w-MuiCardHeader-root"
       >
@@ -11317,14 +11309,6 @@ exports[`MuiInferencer should match the snapshot 2`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r1z2f6-MuiPaper-root-MuiCard-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-2itj3d-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-1uwp4ue-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-1y6hc0w-MuiCardHeader-root"
       >
@@ -26967,14 +26951,6 @@ exports[`MuiInferencer should match the snapshot 3`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r1z2f6-MuiPaper-root-MuiCard-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-2itj3d-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-1uwp4ue-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-1y6hc0w-MuiCardHeader-root"
       >
@@ -43798,14 +43774,6 @@ exports[`MuiInferencer should match the snapshot 4`] = `
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r1z2f6-MuiPaper-root-MuiCard-root"
       style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
-      <nav
-        aria-label="breadcrumb"
-        class="MuiTypography-root MuiTypography-body1 MuiBreadcrumbs-root css-2itj3d-MuiTypography-root-MuiBreadcrumbs-root"
-      >
-        <ol
-          class="MuiBreadcrumbs-ol css-1uwp4ue-MuiBreadcrumbs-ol"
-        />
-      </nav>
       <div
         class="MuiCardHeader-root css-1y6hc0w-MuiCardHeader-root"
       >
