@@ -35,9 +35,10 @@ jobs:
           NPM_TOKEN: ${{ secrets.REFINE_REGISTRY_TOKEN }}
       - name: Exclude packages
         run: |
-          echo ls -al
           echo '  - "!packages/live-previews"' >> ./pnpm-workspace.yaml
           echo '  - "!packages/create-refine-app"' >> ./pnpm-workspace.yaml
+      - name: Update lockfile
+        run: pnpm i --ignore-scripts --lockfile-only
       - name: Install Dependencies & Build
         run: pnpm install
       - name: Lint
