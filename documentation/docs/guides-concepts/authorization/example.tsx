@@ -10,8 +10,7 @@ export function AccessControlExample() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router-dom": "^6.8.1",
       }}
       startRoute="/payments/1"
       files={{

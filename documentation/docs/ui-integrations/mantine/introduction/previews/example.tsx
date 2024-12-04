@@ -19,7 +19,6 @@ export default function Example() {
         "@mantine/hooks": "^7.12.2",
         "@mantine/form": "^7.12.2",
         "@mantine/notifications": "^7.12.2",
-        "react-router": "latest",
         "react-router-dom": "^6.8.1",
       }}
       startRoute="/products"

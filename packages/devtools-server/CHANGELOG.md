@@ -1,5 +1,11 @@
 # @refinedev/devtools-server
 
+## 1.1.38
+
+### Patch Changes
+
+- [`6f2c1c22112a19ba89a9298469158d4da6096aa8`](https://github.com/refinedev/refine/commit/6f2c1c22112a19ba89a9298469158d4da6096aa8) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: update master references to main
+
 ## 1.1.37
 
 ### Patch Changes

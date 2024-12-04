@@ -111,9 +111,9 @@ render(<App />);
 
 Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-mantine/src/App.tsx#L180)
-- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L35)
-- [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
+- [React Router v6](https://github.com/refinedev/refine/blob/main/examples/auth-mantine/src/App.tsx#L180)
+- [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
+- [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-auth/app/routes/_protected.tsx)
 
 ## Props
 
@@ -932,9 +932,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/master/packages/mantine/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/mantine/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/main/packages/mantine/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/main/packages/mantine/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/core/hooks/utilities/use-menu
 [refine-component]: /docs/core/refine-component
 [mantine-drawer]: https://mantine.dev/core/drawer/

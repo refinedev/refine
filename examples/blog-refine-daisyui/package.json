@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
-    "@refinedev/cli": "^2.16.39",
+    "@refinedev/cli": "^2.16.40",
     "@refinedev/core": "^4.56.0",
     "@refinedev/inferencer": "^4.7.1",
     "@refinedev/kbar": "^1.3.12",

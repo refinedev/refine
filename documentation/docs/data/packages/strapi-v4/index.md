@@ -1,6 +1,6 @@
 ---
 title: Strapi v4
-source: https://github.com/refinedev/refine/tree/master/packages/strapi-v4
+source: https://github.com/refinedev/refine/tree/main/packages/strapi-v4
 swizzle: true
 ---
 
@@ -80,7 +80,7 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 
 :::caution
 
-To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/main/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/main/packages/antd) package.
 
 :::
 

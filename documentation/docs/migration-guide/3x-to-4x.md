@@ -1472,7 +1472,7 @@ After that, you can import them from `react-hook-form` package directly.
 + import { Controller } from "react-hook-form";
 ```
 
-[refine-codemod]: https://github.com/refinedev/refine/tree/master/packages/codemod
+[refine-codemod]: https://github.com/refinedev/refine/tree/main/packages/codemod
 [Refine]: /docs/core/refine-component
 [resources]: /docs/core/refine-component#resources
 [routerprovider]: /docs/routing/router-provider

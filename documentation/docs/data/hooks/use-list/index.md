@@ -1,7 +1,7 @@
 ---
 title: useList
 siderbar_label: useList
-source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/data/useList.ts
+source: https://github.com/refinedev/refine/blob/main/packages/core/src/hooks/data/useList.ts
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
