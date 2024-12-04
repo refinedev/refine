@@ -50,7 +50,7 @@ export const dataProvider: DataProvider = {
     // removed-line
     const response = await fetch(
     // added-line
-    const response = await fetcher(
+    const response = await fetch(
       `${API_URL}/${resource}?${params.toString()}`,
     );
 
@@ -73,7 +73,7 @@ export const dataProvider: DataProvider = {
     // removed-line
     const response = await fetch(
     // added-line
-    const response = await fetcher(
+    const response = await fetch(
       `${API_URL}/${resource}?${params.toString()}`,
     );
 
@@ -84,7 +84,7 @@ export const dataProvider: DataProvider = {
     return { data };
   },
   getOne: async ({ resource, id, meta }) => {
-    const response = await fetcher(`${API_URL}/${resource}/${id}`);
+    const response = await fetch(`${API_URL}/${resource}/${id}`);
 
     if (response.status < 200 || response.status > 299) throw response;
 
@@ -96,7 +96,7 @@ export const dataProvider: DataProvider = {
     // removed-line
     const response = await fetch(`${API_URL}/${resource}`, {
     // added-line
-    const response = await fetcher(`${API_URL}/${resource}`, {
+    const response = await fetch(`${API_URL}/${resource}`, {
       method: "POST",
       body: JSON.stringify(variables),
       headers: {
@@ -114,7 +114,7 @@ export const dataProvider: DataProvider = {
     // removed-line
     const response = await fetch(`${API_URL}/${resource}/${id}`, {
     // added-line
-    const response = await fetcher(`${API_URL}/${resource}/${id}`, {
+    const response = await fetch(`${API_URL}/${resource}/${id}`, {
       method: "PATCH",
       body: JSON.stringify(variables),
       headers: {
