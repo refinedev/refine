@@ -10,6 +10,7 @@ export default defineConfig((options) => ({
   entry: ["src/index.tsx"],
   splitting: false,
   sourcemap: true,
+  clean: false,
   minify: false,
   dts: true,
   format: ["cjs", "esm"],
