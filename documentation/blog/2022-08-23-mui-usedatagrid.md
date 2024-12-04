@@ -8,15 +8,6 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-08-23-mui-usedat
 hide_table_of_contents: false
 ---
 
-:::caution
-
-This post was created using version 5.x.x of **@refinedev/mui**. Although we plan to update it with the latest version as soon as possible, you can still benefit from the post in the meantime.
-
-[Checkout the Migration Guide for @refinedev/mui for more information.](https://refine.dev/docs/ui-integrations/material-ui/migration-guide/material-ui-v5-to-v6/)
-
-Just be aware that the source code example in this post have been updated to version 6.x.x.
-:::
-
 ## Introduction
 
 In this article, we'll show how to use Material UI [`<DataGrid />`](https://mui.com/x/react-data-grid/) component and Refine's [`useDataGrid`](https://refine.dev/docs/ui-frameworks/mui/hooks/useDataGrid/) hook to render data from a mock API server in tabular form using a Refine application.
