@@ -14,6 +14,7 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
   Footer,
   OffLayoutArea,
   initialSiderCollapsed,
+  onSiderCollapsed,
 }) => {
   const breakpoint = Grid.useBreakpoint();
   const SiderToRender = Sider ?? DefaultSider;
@@ -22,7 +23,10 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
   const hasSider = !!SiderToRender({ Title });
 
   return (
-    <ThemedLayoutContextProvider initialSiderCollapsed={initialSiderCollapsed}>
+    <ThemedLayoutContextProvider
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapsed}
+    >
       <AntdLayout style={{ minHeight: "100vh" }} hasSider={hasSider}>
         <SiderToRender Title={Title} />
         <AntdLayout>
