@@ -1,10 +1,9 @@
-import React, { type RefObject } from "react";
+import React from "react";
 import { useTextField } from "@react-aria/textfield";
 import type { AriaTextFieldProps } from "react-aria";
 
 export default function Input(props: AriaTextFieldProps) {
-  // eslint-disable-next-line
-  const ref: RefObject<any> = React.useRef();
+  const ref = React.useRef<HTMLInputElement | null>(null);
   const {
     inputProps: { className, ...inputProps },
   } = useTextField(props, ref);

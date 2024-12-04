@@ -16,7 +16,7 @@ export const Modal: React.FC<PropsWithChildren<ModalProps>> = ({
   children,
   onClose,
 }) => {
-  const ref = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const ref = useRef<HTMLDivElement | null>(null);
 
   const handleKey = useCallback(
     (e: KeyboardEvent) => {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 
 export default function FourOhFour(): JSX.Element {
   return (

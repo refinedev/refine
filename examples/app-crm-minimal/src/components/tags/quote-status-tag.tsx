@@ -11,7 +11,7 @@ import type { QuoteStatus } from "@/graphql/schema.types";
 
 const variant: Record<
   QuoteStatus,
-  { color: string; icon: React.ReactElement }
+  { color: string; icon: React.ReactElement<any> }
 > = {
   DRAFT: {
     color: "blue",

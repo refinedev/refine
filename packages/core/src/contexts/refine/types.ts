@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, type JSX } from "react";
 
 import type { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 

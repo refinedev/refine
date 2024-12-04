@@ -72,7 +72,9 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
     });
   }
 
-  return ({ children }: React.PropsWithChildren<{}>): React.ReactElement => {
+  return ({
+    children,
+  }: React.PropsWithChildren<{}>): React.ReactElement<any> => {
     return (
       <BrowserRouter>
         <Refine

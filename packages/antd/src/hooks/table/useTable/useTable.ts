@@ -242,7 +242,7 @@ export const useTable = <
           }
 
           if (type === "jump-next" || type === "jump-prev") {
-            const elementChildren = (element as React.ReactElement)?.props
+            const elementChildren = (element as React.ReactElement<any>)?.props
               ?.children;
 
             return createElement(PaginationLink, {

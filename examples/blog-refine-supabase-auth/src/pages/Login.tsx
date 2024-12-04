@@ -4,8 +4,8 @@ import { Alert, Button, Card, Input } from "react-daisyui";
 import { supabaseClient } from "../utility";
 
 export const LoginPage = () => {
-  const mobileNoRef = useRef<string>();
-  const otpRef = useRef<string>();
+  const mobileNoRef = useRef<string | undefined>(undefined);
+  const otpRef = useRef<string | undefined>(undefined);
   const [error, setError] = useState<string>();
   const [formState, setFormState] = useState<"SEND_OTP" | "LOGIN">("SEND_OTP");
 
@@ -20,8 +20,11 @@ export const LoginPage = () => {
 
   const mobileFormRender = () => (
     <>
-      <label className="text-dark font-medium">Enter your mobile mumber</label>
+      <label htmlFor="mobile" className="text-dark font-medium">
+        Enter your mobile number
+      </label>
       <Input
+        id="mobile"
         className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
         onChange={(e) => {
           mobileNoRef.current = e.target.value;
@@ -39,8 +42,11 @@ export const LoginPage = () => {
 
   const otpFormRender = () => (
     <>
-      <label className="text-dark font-medium">Enter OTP</label>
+      <label htmlFor="otp" className="text-dark font-medium">
+        Enter OTP
+      </label>
       <Input
+        id="otp"
         className="border-gray bg-gray text-dark mb-4 text-lg font-medium"
         onChange={(e) => {
           otpRef.current = e.target.value;

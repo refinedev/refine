@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { useLocation } from "@remix-run/react";
 import { useResource } from "@refinedev/core";
 

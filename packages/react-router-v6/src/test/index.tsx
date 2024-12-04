@@ -52,7 +52,7 @@ export const TestWrapper: (
     });
   }
 
-  return ({ children }): React.ReactElement => {
+  return ({ children }): React.ReactElement<any> => {
     return (
       <BrowserRouter>
         <Refine

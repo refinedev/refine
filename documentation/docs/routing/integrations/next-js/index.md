@@ -1401,7 +1401,7 @@ export default async function Layout({ children }: React.PropsWithChildren) {
 }
 
 async function getData() {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const auth = cookieStore.get("auth");
 
   return {

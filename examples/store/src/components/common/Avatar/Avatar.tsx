@@ -3,7 +3,7 @@ import { useGetIdentity } from "@refinedev/core";
 import type { Customer } from "@medusajs/medusa";
 
 export const Avatar: React.FC = () => {
-  const ref = useRef() as React.MutableRefObject<HTMLInputElement>;
+  const ref = useRef<HTMLInputElement | null>(null);
 
   const { data } = useGetIdentity<Customer>();
 

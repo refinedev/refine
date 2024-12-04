@@ -28,7 +28,7 @@ export const TestWrapper: (
   i18nProvider,
   options,
 }) => {
-  return ({ children }): React.ReactElement => {
+  return ({ children }): React.ReactElement<any> => {
     return (
       <MemoryRouter initialEntries={routerInitialEntries}>
         <Refine

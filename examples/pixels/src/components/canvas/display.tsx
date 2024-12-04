@@ -6,7 +6,7 @@ import type { Pixel } from "../../types/pixel";
 
 type DisplayCanvasProps = {
   canvas: Canvas;
-  children: (pixels: Pixel[] | undefined) => ReactElement;
+  children: (pixels: Pixel[] | undefined) => ReactElement<any>;
 };
 
 export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({

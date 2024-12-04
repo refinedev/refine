@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { cookies } from "next/headers";
-import React, { Suspense } from "react";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { NextIntlClientProvider, useTranslations } from "next-intl";
+import { Suspense } from "react";
+import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { RefineContext } from "./_refine_context";
 
@@ -21,7 +20,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const cookieStore = cookies();
+  const cookieStore = await cookies();
   const theme = cookieStore.get("theme");
 
   const locale = await getLocale();
@@ -31,11 +30,9 @@ export default async function RootLayout({
     <html lang={locale}>
       <body>
         <Suspense>
-          <AntdRegistry>
-            <NextIntlClientProvider locale={locale} messages={messages}>
-              <RefineContext themeMode={theme?.value}>{children}</RefineContext>
-            </NextIntlClientProvider>
-          </AntdRegistry>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <RefineContext themeMode={theme?.value}>{children}</RefineContext>
+          </NextIntlClientProvider>
         </Suspense>
       </body>
     </html>

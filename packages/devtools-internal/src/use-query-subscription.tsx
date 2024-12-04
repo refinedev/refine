@@ -15,8 +15,8 @@ export const useQuerySubscription =
     ? noop
     : (queryClient: QueryClient) => {
         const { ws } = useContext(DevToolsContext);
-        const queryCacheSubscription = React.useRef<() => void>();
-        const mutationCacheSubscription = React.useRef<() => void>();
+        const queryCacheSubscription = React.useRef<() => void>(noop);
+        const mutationCacheSubscription = React.useRef<() => void>(noop);
 
         React.useEffect(() => {
           if (!ws) return () => 0;

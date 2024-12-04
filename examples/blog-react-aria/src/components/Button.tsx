@@ -1,11 +1,10 @@
-import React, { type ElementType, type RefObject } from "react";
+import React, { type ElementType } from "react";
 import { useButton } from "@react-aria/button";
 import type { AriaButtonProps } from "react-aria";
 
 // eslint-disable-next-line
-export default function Button(props: AriaButtonProps<ElementType> | any) {
-  // eslint-disable-next-line
-  const ref: RefObject<any> = React.useRef();
+export default function Button(props: AriaButtonProps<ElementType<any>> | any) {
+  const ref = React.useRef<HTMLButtonElement | null>(null);
   const { buttonProps } = useButton(props, ref);
 
   return (

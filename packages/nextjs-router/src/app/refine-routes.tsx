@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { useResource } from "@refinedev/core";
 import { usePathname } from "next/navigation";
 

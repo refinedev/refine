@@ -1,4 +1,4 @@
-import React, { type ReactNode } from "react";
+import React, { type ReactNode, type JSX } from "react";
 import { Button, Space, type TableColumnProps } from "antd";
 import dayjs from "dayjs";
 import { FilterOutlined } from "@ant-design/icons";
@@ -74,7 +74,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return React.cloneElement(child as React.ReactElement, {
+      return React.cloneElement(child as React.ReactElement<any>, {
         onChange,
         value: mapValue(selectedKeys, "value"),
       });

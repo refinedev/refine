@@ -163,11 +163,12 @@ Let's look at some code from the [docs](https://nextjs.org/docs/app/building-you
 ```tsx
 import { cookies as nextCookies } from "next/headers";
 
-export default function ProductCard({ productId }) {
+export default async function ProductCard({ productId }) {
   async function addToCart(data) {
     "use server";
 
-    const cartId = nextCookies().get("cartId")?.value;
+    const cookieStore = await cookies();
+    const cartId = cookieStore.get("cartId")?.value;
     await saveToDatabase({ cartId, data });
   }
 

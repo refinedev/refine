@@ -12,8 +12,8 @@ export const Sidebar: React.FC<PropsWithChildren<SidebarProps>> = ({
   children,
   onClose,
 }) => {
-  const sidebarRef = useRef() as React.MutableRefObject<HTMLDivElement>;
-  const contentRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
+  const contentRef = useRef<HTMLDivElement | null>(null);
 
   const onKeyDownSidebar = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (event.code === "Escape") {

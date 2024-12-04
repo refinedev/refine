@@ -87,7 +87,7 @@ export const TestWrapper: (
   liveProvider,
   auditLogProvider,
 }) => {
-  return ({ children }): React.ReactElement => {
+  return ({ children }): React.ReactElement<any> => {
     const withRouterPicker = (
       <RouterPickerProvider
         value={routerProvider ? "new" : legacyRouterProvider ? "legacy" : "new"}

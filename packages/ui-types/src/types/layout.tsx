@@ -1,5 +1,7 @@
 import type { TitleProps, LayoutProps } from "@refinedev/core";
 
+import type { JSX } from "react";
+
 export type SiderRenderProps = {
   /**
    * menu items created depending on the `resources` defined in `<Refine>` component.

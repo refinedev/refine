@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import * as ReactRouterDom from "react-router-dom";
 import type * as RefineCoreTypes from "@refinedev/core";
 import { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";

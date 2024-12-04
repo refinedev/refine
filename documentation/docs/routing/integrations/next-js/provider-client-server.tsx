@@ -210,7 +210,7 @@ import { cookies } from "next/headers";
 
 export const authProviderServer: Pick<AuthBindings, "check"> = {
     check: async () => {
-        const cookieStore = cookies();
+        const cookieStore = await cookies();
         const auth = cookieStore.get("auth");
 
         if (auth) {

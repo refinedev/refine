@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import { useResource } from "@refinedev/core";
 import { createResourceRoutes } from "./create-resource-routes";
 import { Routes } from "react-router-dom";

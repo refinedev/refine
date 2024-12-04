@@ -1,10 +1,10 @@
-import React, { type ReactChild } from "react";
+import React, { type ReactNode } from "react";
 import type { RefineFieldNumberProps } from "@refinedev/ui-types";
 
 import { render } from "@test";
 
 export const fieldNumberTests = (
-  NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
+  NumberField: React.ComponentType<RefineFieldNumberProps<ReactNode, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Number Field", () => {
     it("renders numbers with given formatting", () => {

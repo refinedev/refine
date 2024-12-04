@@ -9,7 +9,7 @@ export type RefineFieldCommonProps<T = unknown> = {
 };
 
 export type RefineFieldTooltipProps = {
-  children?: React.ReactElement;
+  children?: React.ReactElement<any>;
   title?: NonNullable<React.ReactNode>;
 };
 

@@ -22,20 +22,25 @@
     "antd": "^5.17.0",
     "cross-env": "^7.0.3",
     "js-cookie": "^3.0.1",
-    "next": "^14.1.0",
+    "next": "^15.0.3",
     "next-auth": "^4.24.5",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.0.0-rc.0",
+    "react-dom": "^19.0.0-rc.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc",
     "@typescript-eslint/parser": "5.48.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
+    "eslint-config-next": "15.0.3",
     "rimraf": "3.0.2",
     "typescript": "^5.4.2"
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@rc",
+    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }

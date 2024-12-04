@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type JSX } from "react";
 import type { AppProps } from "next/app";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import routerProvider, {

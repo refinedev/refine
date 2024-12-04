@@ -7,7 +7,7 @@ import { mockRouterBindings } from "../test/dataMocks";
 jest.mock("next/head", () => {
   return {
     __esModule: true,
-    default: ({ children }: { children: Array<React.ReactElement> }) => {
+    default: ({ children }: { children: Array<React.ReactElement<any>> }) => {
       return <>{children}</>;
     },
   };

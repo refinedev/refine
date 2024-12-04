@@ -1,6 +1,6 @@
 {
-  "lintSemverRanges": false,
   "lintFormatting": false,
+  "lintSemverRanges": false,
   "semverGroups": [],
   "versionGroups": [
     {
@@ -11,21 +11,48 @@
     },
     {
       "dependencies": ["@refinedev/**"],
-      "packages": ["**"],
       "isIgnored": true,
-      "label": "@refinedev dependencies are managed by changeset."
+      "label": "@refinedev dependencies are managed by changeset.",
+      "packages": ["**"]
     },
     {
       "dependencies": ["**"],
       "dependencyTypes": ["peer"],
-      "packages": ["**"],
-      "isIgnored": true
+      "isIgnored": true,
+      "packages": ["**"]
     },
     {
       "dependencies": ["nock"],
       "dependencyTypes": ["dev"],
-      "packages": ["@refinedev/appwrite", "@refinedev/graphql"],
-      "isIgnored": true
+      "isIgnored": true,
+      "packages": ["@refinedev/appwrite", "@refinedev/graphql"]
+    },
+    {
+      "dependencies": [
+        "@types/react",
+        "@types/react-dom",
+        "react",
+        "react-dom",
+        "types-react",
+        "types-react-dom"
+      ],
+      "isIgnored": true,
+      "packages": [
+        "blog-ecommerce",
+        "blog-next-refine-pwa",
+        "blog-react-dnd",
+        "finefoods-client",
+        "i18n-nextjs",
+        "store",
+        "with-nextjs",
+        "with-nextjs-headless",
+        "with-nextjs-next-auth"
+      ]
+    },
+    {
+      "dependencies": ["next"],
+      "isIgnored": true,
+      "packages": ["@refinedev/live-previews"]
     }
   ]
 }
