@@ -84,9 +84,6 @@ export const dataProvider: DataProvider = {
     return { data };
   },
   getOne: async ({ resource, id, meta }) => {
-    // removed-line
-    const response = await fetcher(`${API_URL}/${resource}/${id}`);
-    // added-line
     const response = await fetcher(`${API_URL}/${resource}/${id}`);
 
     if (response.status < 200 || response.status > 299) throw response;
