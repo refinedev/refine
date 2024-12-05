@@ -216,6 +216,38 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 </ThemedLayoutV2>
 ```
 
+### containerBoxProps
+
+This prop is used to customize the styles and attributes of the outer container Box wrapping the layout. It accepts all properties of BoxProps, including the `sx` property for inline styling
+
+```tsx
+<ThemedLayoutV2
+  // highlight-next-line
+  initialSiderCollapsed={true}
+  containerBoxProps={{
+    sx: { bgColor: "cyan" },
+  }}
+>
+  {/* ... */}
+</ThemedLayoutV2>
+```
+
+### childrenBoxProps
+
+This prop is used to customize the styles and attributes of the inner Box that contains the main layout content. It accepts all properties of BoxProps, including the `sx` property for inline styling.
+
+```tsx
+<ThemedLayoutV2
+  // highlight-next-line
+  initialSiderCollapsed={true}
+  childrenBoxProps={{
+    sx: { bgColor: "purple" },
+  }}
+>
+  {/* ... */}
+</ThemedLayoutV2>
+```
+
 ### Header
 
 In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeaderV2>`][themed-header] component by default. It uses [`useGetIdentity`](/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeaderV2>`][themed-header] component by passing a custom component to the `Header` prop.
