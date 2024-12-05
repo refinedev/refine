@@ -2,7 +2,7 @@
   "name": "@refinedev/nextjs-router",
   "version": "6.1.0",
   "private": false,
-  "description": "refine Next.js router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "React Router v6 support for Refine, with full routing capabilities.",
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",

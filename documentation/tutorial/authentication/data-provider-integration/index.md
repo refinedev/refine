@@ -85,7 +85,7 @@ export const dataProvider: DataProvider = {
   },
   getOne: async ({ resource, id, meta }) => {
     // removed-line
-    const response = await fetcher(`${API_URL}/${resource}/${id}`);
+    const response = await fetch(`${API_URL}/${resource}/${id}`);
     // added-line
     const response = await fetcher(`${API_URL}/${resource}/${id}`);
 
