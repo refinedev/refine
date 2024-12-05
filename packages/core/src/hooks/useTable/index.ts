@@ -409,7 +409,7 @@ export function useTable<
   }: SyncWithLocationParams) => {
     if (routerType === "new") {
       return (
-        go({
+        (go({
           type: "path",
           options: {
             keepHash: true,
@@ -421,7 +421,7 @@ export function useTable<
             filters,
             ...getCurrentQueryParams(),
           },
-        }) ?? ""
+        }) as string) ?? ""
       );
     }
     const currentQueryParams = qs.parse(search?.substring(1)); // remove first ? character

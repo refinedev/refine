@@ -1,12 +1,12 @@
 {
-  "name": "@refinedev/react-router-v6",
+  "name": "@refinedev/react-router",
   "version": "4.6.0",
   "private": false,
   "description": "refine react-router router provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",
-    "directory": "packages/react-router-v6"
+    "directory": "packages/react-router"
   },
   "license": "MIT",
   "author": "refine",
@@ -21,16 +21,6 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
-    },
-    "./legacy": {
-      "import": {
-        "types": "./dist/legacy/index.d.mts",
-        "default": "./dist/legacy.mjs"
-      },
-      "require": {
-        "types": "./dist/legacy/index.d.cts",
-        "default": "./dist/legacy.cjs"
-      }
     }
   },
   "main": "dist/index.cjs",
@@ -39,9 +29,6 @@
     "*": {
       ".": [
         "dist/index.d.ts"
-      ],
-      "legacy": [
-        "dist/legacy/index.d.ts"
       ]
     }
   },
@@ -61,7 +48,7 @@
   },
   "dependencies": {
     "qs": "^6.10.1",
-    "react-router-dom": "^6.8.1"
+    "react-router": "^7.0.2"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
@@ -81,7 +68,7 @@
     "@types/react-dom": "^17.0.0 || ^18.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-    "react-router-dom": "^6.8.1"
+    "react-router": "^7.0.2"
   },
   "engines": {
     "node": ">=10"

@@ -14,7 +14,7 @@ import {
   Link,
   matchPath,
   useParams,
-} from "react-router-dom";
+} from "react-router";
 import { convertToNumberIfPossible } from "./convert-to-number-if-possible";
 
 export const stringifyConfig = {

@@ -61,7 +61,7 @@ export type ParseResponse<
   pathname?: string;
 };
 
-export type GoFunction = (config: GoConfig) => void | string;
+export type GoFunction = (config: GoConfig) => (void | Promise<void>) | string;
 
 export type BackFunction = () => void;
 

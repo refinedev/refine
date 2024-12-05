@@ -1,7 +1,7 @@
 import React from "react";
 import type { Action, ResourceProps } from "@refinedev/core";
 
-import { Route } from "react-router-dom";
+import { Route } from "react-router";
 
 export const createResourcePathWithAction = (
   resource: ResourceProps,

@@ -1,9 +1,9 @@
 import React from "react";
-import * as ReactRouterDom from "react-router-dom";
+import * as ReactRouterDom from "react-router";
 import type * as RefineCoreTypes from "@refinedev/core";
 import { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";
 import * as LegacyRefineReactRouterV6Base from "@refinedev/react-router-v6/legacy";
-import * as RefineReactRouterV6Base from "@refinedev/react-router-v6";
+import * as RefineReactRouterBase from "@refinedev/react-router";
 import * as RefineSimpleRest from "@refinedev/simple-rest";
 import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as RefineReactTable from "@refinedev/react-table";
@@ -191,7 +191,7 @@ export const RefineCommonScope = {
   // Utilities
   setInitialRoutes,
   setRefineProps,
-  RefineReactRouterV6: RefineReactRouterV6Base,
+  RefineReactRouter: RefineReactRouterBase,
   LegacyRefineReactRouterV6,
   LegacyRefineDemoReactRouterV6,
   // UI

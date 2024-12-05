@@ -1,5 +1,5 @@
 import React from "react";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation } from "react-router";
 
 /**
  * A component that will navigate to the given path with `to` query parameter included with the current location.

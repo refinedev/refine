@@ -12,7 +12,7 @@ import {
   TestWrapper,
   waitFor,
 } from "@test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 export const buttonDeleteTests = (
   DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,

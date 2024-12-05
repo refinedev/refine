@@ -77,7 +77,7 @@ import {
   RefineThemes,
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
