@@ -135,6 +135,7 @@ export const ProductList = () => {
         field: "category",
         flex: 1,
         headerName: "Category",
+        display: "flex",
         renderCell: ({ value }) =>
           isLoading
             ? "Loading..."
@@ -144,6 +145,7 @@ export const ProductList = () => {
         field: "createdAt",
         flex: 1,
         headerName: "Created at",
+        display: "flex",
         renderCell: ({ value }) => <DateField value={value} />,
       },
     ],
@@ -152,7 +154,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

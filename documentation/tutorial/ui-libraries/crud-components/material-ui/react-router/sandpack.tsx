@@ -31,7 +31,6 @@ import { List, useDataGrid, EditButton, ShowButton } from "@refinedev/mui";
 import {
   DataGrid,
   GridColDef,
-  GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
 export const ListProducts = () => {
@@ -69,7 +68,7 @@ export const ListProducts = () => {
         flex: 0.5,
         type: "singleSelect",
         valueOptions: categories,
-        valueFormatter: (params) => params?.value,
+        display: "flex",
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
@@ -95,6 +94,7 @@ export const ListProducts = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <div>
@@ -110,7 +110,7 @@ export const ListProducts = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };

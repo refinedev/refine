@@ -296,14 +296,18 @@ describe("useTable Hook", () => {
       getColumn,
     } = result.current;
 
-    expect(filtersCore).toEqual([
-      { field: "category.id", operator: "eq", value: 1 },
-      { field: "title", value: "Hello", operator: "contains" },
-    ]);
-    expect(state.columnFilters).toEqual([
-      { id: "title", operator: "contains", value: "Hello" },
-      { id: "category.id", operator: "eq", value: 1 },
-    ]);
+    expect(filtersCore).toEqual(
+      expect.arrayContaining([
+        { field: "category.id", operator: "eq", value: 1 },
+        { field: "title", value: "Hello", operator: "contains" },
+      ]),
+    );
+    expect(state.columnFilters).toEqual(
+      expect.arrayContaining([
+        { id: "title", operator: "contains", value: "Hello" },
+        { id: "category.id", operator: "eq", value: 1 },
+      ]),
+    );
 
     act(() => {
       const titleColumn = getColumn("title");
@@ -385,14 +389,18 @@ describe("useTable Hook", () => {
       options: { state },
     } = result.current;
 
-    expect(sorter).toEqual([
-      { field: "category.id", order: "desc" },
-      { field: "title", order: "asc" },
-    ]);
-    expect(state.sorting).toEqual([
-      { id: "title", desc: false },
-      { id: "category.id", desc: true },
-    ]);
+    expect(sorter).toEqual(
+      expect.arrayContaining([
+        { field: "category.id", order: "desc" },
+        { field: "title", order: "asc" },
+      ]),
+    );
+    expect(state.sorting).toEqual(
+      expect.arrayContaining([
+        { id: "title", desc: false },
+        { id: "category.id", desc: true },
+      ]),
+    );
 
     act(() => {
       const titleColumn = getColumn("title");

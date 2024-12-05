@@ -32,6 +32,7 @@ const columns: GridColDef[] = [
   {
     field: "email",
     headerName: "Email Address",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <EmailField value={row.email} />;
@@ -47,7 +48,7 @@ const UsersList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
