@@ -48,4 +48,4 @@ npm create refine-app@latest -- --example new-routing-example
 
 <br/>
 
-[![Open new-routing-example example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/new-routing-example?view=preview&theme=dark&codemirror=1)
+[![Open new-routing-example example from refine](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/new-routing-example?view=preview&theme=dark&codemirror=1)

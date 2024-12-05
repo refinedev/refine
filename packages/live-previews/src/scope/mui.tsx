@@ -57,10 +57,7 @@ const RefineMuiDemo: React.FC<
           dataProvider={RefineCommonScope.RefineSimpleRest.default(
             SIMPLE_REST_API_URL,
           )}
-          notificationProvider={RefineMui.notificationProvider}
-          Layout={RefineMui.Layout}
-          Sider={() => null}
-          catchAll={<RefineMui.ErrorComponent />}
+          notificationProvider={RefineMui.useNotificationProvider}
           options={{
             disableTelemetry: true,
             reactQuery: {

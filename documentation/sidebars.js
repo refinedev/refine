@@ -665,7 +665,14 @@ module.exports = {
               ],
             },
             "ui-integrations/material-ui/theming/index",
-            "ui-integrations/material-ui/migration-guide/index",
+            {
+              type: "category",
+              label: "Migration Guide",
+              items: [
+                "ui-integrations/material-ui/migration-guide/material-ui-v5-to-v6",
+                "ui-integrations/material-ui/migration-guide/x-data-grid-v4-to-v5",
+              ],
+            },
           ],
         },
         // Chakra UI

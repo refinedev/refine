@@ -84,7 +84,7 @@ export const secondaryMenuItems = [
   },
   {
     label: "License",
-    href: "https://github.com/refinedev/refine/blob/master/LICENSE",
+    href: "https://github.com/refinedev/refine/blob/main/LICENSE",
   },
 ];
 

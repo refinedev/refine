@@ -123,7 +123,7 @@ The Multipart file upload process with **Refine** is very simple. How to use it 
 
 [Refer to the **Refine** Multipart Upload guide for more information. →](https://refine.dev/docs/guides-and-concepts/upload/multipart-upload/)
 
-[View Source](https://github.com/refinedev/refine/tree/master/examples/upload/multipartUpload)
+[View Source](https://github.com/refinedev/refine/tree/main/examples/upload/multipartUpload)
 
 ## Example
 

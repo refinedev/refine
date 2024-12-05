@@ -367,7 +367,7 @@ We use benefits of Strapi V4 relational population feature by using `populate` p
 
 The Material UI provides already styled, but still very customizable inputs that encapsulate adding labels and error handling with helper texts. However, we need a third-party library to handle forms when using Material UI. [React Hook Form](https://react-hook-form.com/) is one of the best options for this job!
 
-The React Hook Form library has been integrated with **Refine** ([`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form).
+The React Hook Form library has been integrated with **Refine** ([`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/main/packages/react-hook-form)) . This means you can now use Material UI for your forms and manage them using [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/main/packages/react-hook-form).
 
 First, we'll create PostCreate page to create new records.
 

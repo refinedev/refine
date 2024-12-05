@@ -232,10 +232,12 @@ export const ProductDrawerForm = (props: Props) => {
                       label={t("products.fields.price")}
                       placeholder={t("products.fields.price")}
                       type="number"
-                      InputProps={{
-                        startAdornment: (
-                          <InputAdornment position="start">$</InputAdornment>
-                        ),
+                      slotProps={{
+                        input: {
+                          startAdornment: (
+                            <InputAdornment position="start">$</InputAdornment>
+                          ),
+                        },
                       }}
                     />
                   );

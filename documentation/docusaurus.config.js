@@ -56,7 +56,7 @@ const siteConfig = {
               path: "./docs",
               sidebarPath: require.resolve("./sidebars.js"),
               editUrl:
-                "https://github.com/refinedev/refine/tree/master/documentation",
+                "https://github.com/refinedev/refine/tree/main/documentation",
               showLastUpdateAuthor: true,
               showLastUpdateTime: true,
               disableVersioning: process.env.DISABLE_VERSIONING === "true",
@@ -323,7 +323,7 @@ const siteConfig = {
           items: [
             {
               label: "License",
-              to: "https://github.com/refinedev/refine/blob/master/LICENSE",
+              to: "https://github.com/refinedev/refine/blob/main/LICENSE",
             },
             // {
             //     label: "Terms",

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { Sider as DefaultSider } from "@refinedev/mui";
+import type { ThemedSiderV2 } from "@refinedev/mui";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -34,7 +34,7 @@ import {
 
 import { Title as DefaultTitle } from "../title";
 
-export const Sider: typeof DefaultSider = ({ render }) => {
+export const Sider: typeof ThemedSiderV2 = ({ render }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [opened, setOpened] = useState(false);
 
