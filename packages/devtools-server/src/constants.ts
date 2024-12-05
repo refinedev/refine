@@ -22,4 +22,4 @@ export const AUTH_CALLBACK_API_PATH = "/api/login-callback";
 export const AUTH_CALLBACK_UI_PATH = "/after-login";
 
 export const FEED_MD_URL =
-  "https://raw.githubusercontent.com/refinedev/refine/master/packages/devtools-server/FEED.md";
+  "https://raw.githubusercontent.com/refinedev/refine/main/packages/devtools-server/FEED.md";

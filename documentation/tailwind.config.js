@@ -465,7 +465,7 @@ module.exports = {
         "enterprise-frequent-updates-light-md":
           "radial-gradient(120% 100% at 100% 50%, rgba(0, 128, 255, 0.25) 0%, rgba(0, 128, 255, 0.00) 100%)",
         "new-badge-border-dark":
-          "conic-gradient( from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)",
+          "conic-gradient(from 45deg at 50% 50%, #194b3a, rgb(38 217 127 / 40%), #194b3a, #194b3a, #194b3a, #26d97f, #194b3a, #194b3a, #194b3a)",
         "new-badge-border-light": `conic-gradient(
                     from 45deg at 50% 50%,
                     #b7dbff,
@@ -516,6 +516,15 @@ module.exports = {
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/wheel-already-invented-grid-unit-normal.png)",
         "landing-wai-bg-dark":
           "radial-gradient(57.03% 100% at 50% 0%, rgba(71, 235, 235, 0.25) 0%, rgba(71, 235, 235, 0) 100%)",
+        "refine-ai-page-bg-dark": [
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-ai-page-bg-dark.png)",
+          "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(38, 217, 126, 0.25) 0%, rgba(38, 217, 126, 0) 100%)",
+        ],
+        "refine-ai-page-bg-light": [
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/refine-ai-page-bg-light.png)",
+          "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(51, 51, 255, 0.15) 0%, rgba(51, 51, 255, 0)100%)",
+          "radial-gradient(46.3% 35.37% at 50% 35.37%, rgba(0, 0, 0, 0.10) 0%, rgba(0, 0, 0, 0) 100%)",
+        ],
       },
       backgroundPosition: {
         "landing-wizard-option-right": "top -350px right -350px, center",
@@ -591,8 +600,21 @@ module.exports = {
         "new-badge-border": "new-badge-border 4s linear infinite",
         reveal: "reveal 0.3s ease-in-out forwards",
         "progress-fill": "progressFill 1s linear 1 forwards",
+        "refine-ai-video-play-button":
+          "refine-ai-video-play-button 1.8s ease-out infinite",
       },
       keyframes: {
+        "refine-ai-video-play-button": {
+          from: {
+            transform: "scale3d(1, 1, 1)",
+          },
+          "50%": {
+            transform: "scale3d(1.22, 1.22, 1.22)",
+          },
+          to: {
+            transform: "scale3d(1, 1, 1)",
+          },
+        },
         progressFill: {
           "0%": {
             width: "0%",

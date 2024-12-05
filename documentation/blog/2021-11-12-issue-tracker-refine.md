@@ -1350,7 +1350,7 @@ Our project is done. Lets see how its look like.
 
 As you can see, we made a simple and short task manager application using Refine on our front end and using its data-provider.
 
-[Here is repo](https://github.com/refinedev/refine/tree/master/examples/blog-issue-tracker)
+[Here is repo](https://github.com/refinedev/refine/tree/main/examples/blog-issue-tracker)
 
 For more information about Refine: [Refine Github Page](https://github.com/refinedev/refine)
 

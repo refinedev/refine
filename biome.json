@@ -136,7 +136,7 @@
   ],
   "vcs": {
     "clientKind": "git",
-    "defaultBranch": "master",
+    "defaultBranch": "main",
     "enabled": true,
     "useIgnoreFile": true
   }

@@ -165,7 +165,7 @@ The table object has several other properties that you can look up in the React 
 
 ## How to use React Table with Refine
 
-TanStack Table is framework agnostic. Therefore, you need an adapter to use it with front-end frameworks like [Refine](https://github.com/refinedev/refine/stargazers). The Refine ecosystem has the [`@refinedev/react-table`](https://github.com/refinedev/refine/tree/master/packages/react-table) adapter for integrating TanStack Table into your Refine application.
+TanStack Table is framework agnostic. Therefore, you need an adapter to use it with front-end frameworks like [Refine](https://github.com/refinedev/refine/stargazers). The Refine ecosystem has the [`@refinedev/react-table`](https://github.com/refinedev/refine/tree/main/packages/react-table) adapter for integrating TanStack Table into your Refine application.
 
 Depending on your package manager, first, install it from the NPM package registry. The command below assumes you're using the NPM package manager.
 
