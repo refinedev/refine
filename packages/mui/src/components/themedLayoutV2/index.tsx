@@ -1,13 +1,28 @@
 import React from "react";
-
 import Box from "@mui/material/Box";
 
 import { ThemedLayoutContextProvider } from "@contexts";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
 import { ThemedHeaderV2 as DefaultHeader } from "./header";
+
+import type { BoxProps } from "@mui/material";
 import type { RefineThemedLayoutV2Props } from "./types";
 
-export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
+interface ExtendedRefineThemedLayoutV2Props extends RefineThemedLayoutV2Props {
+  /**
+   * Additional properties for the children box.
+   * This type includes all properties of BoxProps, including 'sx'.
+   */
+  childrenBoxProps?: BoxProps;
+
+  /**
+   * Additional properties for the container box.
+   * This type includes all properties of BoxProps, including 'sx'.
+   */
+  containerBoxProps?: BoxProps;
+}
+
+export const ThemedLayoutV2: React.FC<ExtendedRefineThemedLayoutV2Props> = ({
   Sider,
   Header,
   Title,
@@ -15,14 +30,14 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
   OffLayoutArea,
   children,
   initialSiderCollapsed,
-  containerBoxProps = {},
   childrenBoxProps = {},
+  containerBoxProps = {},
 }) => {
   const SiderToRender = Sider ?? DefaultSider;
   const HeaderToRender = Header ?? DefaultHeader;
 
-  const { sx: containerSx, ...restContainerProps } = containerBoxProps;
   const { sx: childrenSx, ...restChildrenProps } = childrenBoxProps;
+  const { sx: containerSx, ...restContainerProps } = containerBoxProps;
 
   return (
     <ThemedLayoutContextProvider initialSiderCollapsed={initialSiderCollapsed}>
