@@ -85,7 +85,6 @@ export const useNavigation = () => {
     return go({
       to: composeRoute(createActionRoute, resourceItem?.meta, parsed, meta),
       type: "path",
-      query: meta.query,
     }) as string;
   };
 
@@ -139,7 +138,6 @@ export const useNavigation = () => {
         id: encodedId,
       }),
       type: "path",
-      query: meta.query,
     }) as string;
   };
 
@@ -194,7 +192,6 @@ export const useNavigation = () => {
         id: encodedId,
       }),
       type: "path",
-      query: meta.query,
     }) as string;
   };
 
@@ -248,7 +245,6 @@ export const useNavigation = () => {
         id: encodedId,
       }),
       type: "path",
-      query: meta.query,
     }) as string;
   };
 
@@ -299,7 +295,6 @@ export const useNavigation = () => {
     return go({
       to: composeRoute(listActionRoute, resourceItem?.meta, parsed, meta),
       type: "path",
-      query: meta.query,
     }) as string;
   };
 
