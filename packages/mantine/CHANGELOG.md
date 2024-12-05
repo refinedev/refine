@@ -1,5 +1,46 @@
 # @refinedev/mantine
 
+## 2.35.0
+
+### Minor Changes
+
+- [#6503](https://github.com/refinedev/refine/pull/6503) [`29d00f8dc49485e0f5c42d208417e158118d11f2`](https://github.com/refinedev/refine/commit/29d00f8dc49485e0f5c42d208417e158118d11f2) Thanks [@aress31](https://github.com/aress31)! - feat: added `minItems` prop to specify the minimum number of items required for rendering breadcrumbs. #6497
+
+  Resolves [#6497](https://github.com/refinedev/refine/issues/6497)
+
+### Patch Changes
+
+- [#6515](https://github.com/refinedev/refine/pull/6515) [`2312f4648cf8cae427884163cc025c3f925da988`](https://github.com/refinedev/refine/commit/2312f4648cf8cae427884163cc025c3f925da988) Thanks [@OmkarBansod02](https://github.com/OmkarBansod02)! - fix: UI buttons doesn't respect `hidden` prop.
+  From now on, `hidden` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
+
+  UI Buttons:
+
+  - `CreateButton`
+  - `ShowButton`
+  - `ListButton`
+  - `EditButton`
+  - `DeleteButton`
+  - `CloneButton`
+
+  Resolves [#6513](https://github.com/refinedev/refine/issues/6513)
+
+- [#6515](https://github.com/refinedev/refine/pull/6515) [`2312f4648cf8cae427884163cc025c3f925da988`](https://github.com/refinedev/refine/commit/2312f4648cf8cae427884163cc025c3f925da988) Thanks [@OmkarBansod02](https://github.com/OmkarBansod02)! - fix: UI buttons doesn't respect `disabled` prop.
+  From now on, `disabled` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
+
+  UI Buttons:
+
+  - `CreateButton`
+  - `ShowButton`
+  - `ListButton`
+  - `EditButton`
+  - `DeleteButton`
+  - `CloneButton`
+
+  Resolves [#6513](https://github.com/refinedev/refine/issues/6513)
+
+- Updated dependencies [[`29d00f8dc49485e0f5c42d208417e158118d11f2`](https://github.com/refinedev/refine/commit/29d00f8dc49485e0f5c42d208417e158118d11f2)]:
+  - @refinedev/ui-types@1.23.0
+
 ## 2.34.0
 
 ### Minor Changes

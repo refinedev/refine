@@ -1,5 +1,38 @@
 # @refinedev/mantine
 
+## 5.0.0
+
+### Major Changes
+
+- [#2](https://github.com/victor-abz/refine/pull/2) [`afb156d808ee07bfffed20f27b04c92d95cc01d4`](https://github.com/refinedev/refine/commit/afb156d808ee07bfffed20f27b04c92d95cc01d4) Thanks [@pull](https://github.com/apps/pull)! - feat: added support for Material UI v6 and X Data Grid v7
+
+  ```diff
+  - "@mui/icons-material": "^5.8.3",
+  + "@mui/icons-material": "^6.1.6",
+  - "@mui/lab": "^5.0.0-alpha.85",
+  + "@mui/lab": "^6.0.0-beta.14",
+  - "@mui/material": "^5.14.2",
+  + "@mui/material": "^6.1.7",
+
+  - "@mui/x-data-grid": "^6.6.0",
+  + "@mui/x-data-grid": "^7.22.2",
+  ```
+
+  Here is the updated version alignment:
+
+  | @refinedev/mui | @mui/x-data-grid | @mui/material | @mui/system | @mui/lab | @mui/icons-material | @refinedev/inferencer |
+  | -------------- | ---------------- | ------------- | ----------- | -------- | ------------------- | --------------------- |
+  | 5.x.x          | 6.x.x            | 5.x.x         | 5.x.x       | 5.x.x    | 5.x.x               | 4.x.x                 |
+  | 6.x.x          | 7.x.x            | 6.x.x         | 6.x.x       | 6.x.x    | 6.x.x               | 5.x.x                 |
+
+  Please refer to the [Migration Guide for Material UI v6 and X Data Grid v7](https://refine.dev/docs/ui-integrations/material-ui/migration-guide/material-ui-v5-to-v6) for more information.
+
+### Patch Changes
+
+- Updated dependencies [[`2312f4648cf8cae427884163cc025c3f925da988`](https://github.com/refinedev/refine/commit/2312f4648cf8cae427884163cc025c3f925da988), [`2312f4648cf8cae427884163cc025c3f925da988`](https://github.com/refinedev/refine/commit/2312f4648cf8cae427884163cc025c3f925da988), [`8309c5690e7c49529f07d288e79896636c6ce7c2`](https://github.com/refinedev/refine/commit/8309c5690e7c49529f07d288e79896636c6ce7c2), [`afb156d808ee07bfffed20f27b04c92d95cc01d4`](https://github.com/refinedev/refine/commit/afb156d808ee07bfffed20f27b04c92d95cc01d4), [`29d00f8dc49485e0f5c42d208417e158118d11f2`](https://github.com/refinedev/refine/commit/29d00f8dc49485e0f5c42d208417e158118d11f2), [`f32af58283bdaf7712805520bd9feb8bfd27ba38`](https://github.com/refinedev/refine/commit/f32af58283bdaf7712805520bd9feb8bfd27ba38)]:
+  - @refinedev/mui@6.0.0
+  - @refinedev/core@4.57.0
+
 ## 4.7.1
 
 ### Patch Changes

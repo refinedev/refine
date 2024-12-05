@@ -1,5 +1,11 @@
 # @refinedev/graphql
 
+## 7.1.0
+
+### Minor Changes
+
+- [#6506](https://github.com/refinedev/refine/pull/6506) [`d8c1d385486481b1df5e7267d7624fa62df12253`](https://github.com/refinedev/refine/commit/d8c1d385486481b1df5e7267d7624fa62df12253) Thanks [@sudeepjd](https://github.com/sudeepjd)! - Added error handler that will throw GraphQL errors via Tanstack query from urql
+
 ## 7.0.0
 
 ### Major Changes
