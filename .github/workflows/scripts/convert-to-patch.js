@@ -8,7 +8,7 @@ const directoryPath = path.join(process.cwd(), "_changeset");
 // Read the directory
 fs.readdir(directoryPath, (err, files) => {
   if (err) {
-    return console.error("Unable to scan directory: " + err);
+    return console.error(`Unable to scan directory: ${err}`);
   }
 
   // Filter .md files
@@ -20,7 +20,7 @@ fs.readdir(directoryPath, (err, files) => {
       // Read each file
       fs.readFile(filePath, "utf8", (err, data) => {
         if (err) {
-          return console.error("Unable to read file: " + err);
+          return console.error(`Unable to read file: ${err}`);
         }
 
         // Replace '": minor' and '": major' with '": patch'
@@ -29,7 +29,7 @@ fs.readdir(directoryPath, (err, files) => {
         // Write the updated content back to the file
         fs.writeFile(filePath, updatedData, "utf8", (err) => {
           if (err) {
-            return console.error("Unable to write file: " + err);
+            return console.error(`Unable to write file: ${err}`);
           }
           console.log(`File updated: ${file}`);
         });
