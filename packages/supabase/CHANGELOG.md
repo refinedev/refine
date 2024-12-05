@@ -1,5 +1,11 @@
 # @refinedev/supabase
 
+## 5.9.5
+
+### Patch Changes
+
+- [#6554](https://github.com/refinedev/refine/pull/6554) [`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706) Thanks [@necatiozmen](https://github.com/necatiozmen)! - chore: update package descriptions
+
 ## 5.9.4
 
 ### Patch Changes
