@@ -1,5 +1,32 @@
 # @refinedev/core
 
+## 4.57.0
+
+### Minor Changes
+
+- [#6483](https://github.com/refinedev/refine/pull/6483) [`8309c5690e7c49529f07d288e79896636c6ce7c2`](https://github.com/refinedev/refine/commit/8309c5690e7c49529f07d288e79896636c6ce7c2) Thanks [@reedwane](https://github.com/reedwane)! - refactor: modified the Authenticated component to receive optional params prop to be passed to the useIsAuthenticated hook.
+
+  Fixes #6309
+
+### Patch Changes
+
+- [#6514](https://github.com/refinedev/refine/pull/6514) [`f32af58283bdaf7712805520bd9feb8bfd27ba38`](https://github.com/refinedev/refine/commit/f32af58283bdaf7712805520bd9feb8bfd27ba38) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useUpdate` and `useForm` hooks throws an error when `id` is an empty string. (`id=""`) #6505
+
+  This reverts a breaking change introduced in [PR #6116](https://github.com/refinedev/refine/pull/6116) and restores support for using an empty string as `id`. This enables updates without an `id` field, as allowed before `@refinedev/core@4.54.0`.
+
+  Affected versions with this bug:
+
+  - `@refinedev/core@4.54.0`
+  - `@refinedev/core@4.54.1`
+  - `@refinedev/core@4.55.0`
+  - `@refinedev/core@4.56.0`
+
+  The bug is fixed in:
+
+  - `@refinedev/core@4.56.1`
+
+  Resolves [#6505](https://github.com/refinedev/refine/issues/6505)
+
 ## 4.56.0
 
 ### Minor Changes

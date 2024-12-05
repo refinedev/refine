@@ -1,5 +1,19 @@
 # @refinedev/ui-tests
 
+## 1.15.0
+
+### Minor Changes
+
+- [#6503](https://github.com/refinedev/refine/pull/6503) [`29d00f8dc49485e0f5c42d208417e158118d11f2`](https://github.com/refinedev/refine/commit/29d00f8dc49485e0f5c42d208417e158118d11f2) Thanks [@aress31](https://github.com/aress31)! - feat: added `minItems` prop to specify the minimum number of items required for rendering breadcrumbs. #6497
+
+  Resolves [#6497](https://github.com/refinedev/refine/issues/6497)
+
+### Patch Changes
+
+- Updated dependencies [[`8309c5690e7c49529f07d288e79896636c6ce7c2`](https://github.com/refinedev/refine/commit/8309c5690e7c49529f07d288e79896636c6ce7c2), [`29d00f8dc49485e0f5c42d208417e158118d11f2`](https://github.com/refinedev/refine/commit/29d00f8dc49485e0f5c42d208417e158118d11f2), [`f32af58283bdaf7712805520bd9feb8bfd27ba38`](https://github.com/refinedev/refine/commit/f32af58283bdaf7712805520bd9feb8bfd27ba38)]:
+  - @refinedev/core@4.57.0
+  - @refinedev/ui-types@1.23.0
+
 ## 1.14.9
 
 ### Patch Changes
