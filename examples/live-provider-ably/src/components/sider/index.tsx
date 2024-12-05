@@ -9,7 +9,7 @@ import {
   useWarnAboutChange,
   useSubscription,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { type Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
 import {

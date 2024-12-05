@@ -6,7 +6,7 @@ import {
   useNavigation,
   useParsed,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { useModalForm } from "@refinedev/antd";
 
 import {

@@ -3,7 +3,7 @@ import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { NumberField, type UseDataGridReturnType } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
 import type { ICategory, IProduct } from "../../../interfaces";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { ProductStatus } from "../status";
 import Grid from "@mui/material/Grid2";
 import Card from "@mui/material/Card";
