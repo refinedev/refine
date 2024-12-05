@@ -7,7 +7,7 @@ index 415542c09ff1a3dbfc3eef7ff52f9d592a3be334..45d2e19a09a09b9a8f30dbe61c14f6f7
      // Fetch commit information for all paths we don't have yet
      const commitInfos = await Promise.all(remaining.map(async gitPath => {
 -      const [commitSha, parentSha] = (await spawn__default["default"]("git", ["log", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
-+      const [commitSha, parentSha] = (await spawn__default["default"]("git", ["log", "--follow", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
++      const [commitSha, parentSha] = (await spawn__default["default"]("git", ["log", "--follow", `--after=${new Date(new Date().setMonth(new Date().getMonth() -2)).toISOString()}`, "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
          cwd
        })).stdout.toString().split(":");
        return {
@@ -20,7 +20,7 @@ index 58f76fe0cb21c35fa600e83f20fbbd23ee7d0ba0..0d65008e8e3a3f99277949f13c0c9658
      // Fetch commit information for all paths we don't have yet
      const commitInfos = await Promise.all(remaining.map(async gitPath => {
 -      const [commitSha, parentSha] = (await spawn("git", ["log", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
-+      const [commitSha, parentSha] = (await spawn("git", ["log", "--follow", "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
++      const [commitSha, parentSha] = (await spawn("git", ["log", "--follow", `--after=${new Date(new Date().setMonth(new Date().getMonth() -2)).toISOString()}`, "--diff-filter=A", "--max-count=1", short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p", gitPath], {
          cwd
        })).stdout.toString().split(":");
        return {
@@ -33,6 +33,7 @@ index 7e3aee53439f3724886eacc2bb9ea8b9abc6b6cf..306ade4b8a56a9c1f0af9f87a94ac654
              [
                "log",
 +              "--follow",
++              `--after=${new Date(new Date().setMonth(new Date().getMonth() -2)).toISOString()}`,
                "--diff-filter=A",
                "--max-count=1",
                short ? "--pretty=format:%h:%p" : "--pretty=format:%H:%p",
