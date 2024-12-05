@@ -16,6 +16,13 @@ describe("auth-keycloak", () => {
   };
 
   beforeEach(() => {
+    cy.origin("https://lemur-0.cloud-iam.com", () => {
+      cy.on("uncaught:exception", (e) => {
+        console.error(["Error from Keycloak origin"], e);
+        return false;
+      });
+    });
+
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
