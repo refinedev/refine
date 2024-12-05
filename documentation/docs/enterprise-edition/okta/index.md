@@ -28,7 +28,7 @@ The example below uses [`react-router-dom`](/docs/routing/integrations/react-rou
 
 ```tsx title="App.tsx"
 import React from "react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import OktaAuth from "@okta/okta-auth-js";
 
@@ -36,7 +36,7 @@ import { Authenticated, AuthPage, Refine, WelcomePage } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { createAuthProvider, OktaCallback } from "@refinedev-ee/okta";
 
 const oktaAuth = new OktaAuth({

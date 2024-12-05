@@ -11,7 +11,7 @@ export default function ServerSideValidationAntd() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router-v6": "latest",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
         antd: "^5.0.5",
       }}
       startRoute="/products/create"
@@ -61,8 +61,8 @@ const AppTsxCode = /* jsx */ `
 import React from "react";
 
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider, AuthPage } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";

@@ -1,12 +1,12 @@
 ---
-title: React Router v6
+title: React Router
 ---
 
-Refine provides router bindings and utilities for [React Router v6](https://reactrouter.com/). It is built on top of the `react-router-dom` package. This package will provide easy integration between Refine and **react-router-dom** for both existing projects and new projects.
+Refine provides router bindings and utilities for [React Router](https://reactrouter.com/). It is built on top of the `react-router-dom` package. This package will provide easy integration between Refine and **react-router-dom** for both existing projects and new projects.
 
-<InstallPackagesCommand args="@refinedev/react-router-v6 react-router-dom"/>
+<InstallPackagesCommand args="@refinedev/react-router react-router"/>
 
-We recommend using `create refine-app` to initialize your Refine projects. It gives you a good boilerplate to start with using React Router v6.
+We recommend using `create refine-app` to initialize your Refine projects. It gives you a good boilerplate to start with using React Router.
 
 <CreateRefineAppCommand args="-p refine-react my-refine-app" />
 
@@ -44,8 +44,8 @@ This example uses the [`<BrowserRouter>`](https://reactrouter.com/en/main/router
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 // highlight-start
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 // highlight-end
 
 import { PostList, PostCreate } from "pages/posts";
@@ -111,8 +111,8 @@ You are welcome to [contribute][contributing] to help test and support the advan
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
 
 import { PostList, PostCreate } from "pages/posts";
 import { CategoryList, CategoryShow } from "pages/categories";
@@ -190,9 +190,9 @@ We will also need to create a `/login` route to handle the redirection when the 
 // highlight-next-line
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 // highlight-next-line
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { authProvider } from "src/authProvider";
@@ -275,8 +275,8 @@ In the below example, we'll wrap our resource routes with the `Layout` component
 ```tsx title=App.tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -355,8 +355,8 @@ If you want to protect your routes with [Access Control Provider](/docs/authoriz
 // highlight-next-line
 import { Refine, Authenticated, CanAccess } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -476,8 +476,8 @@ We'll place this inside the authenticated routes so that the unauthorized users 
 ```tsx title=App.tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -556,8 +556,8 @@ We also want this route to be rendered only when the user is authenticated. We c
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 // highlight-next-line
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -706,10 +706,10 @@ It will redirect to the given path and keep the current location in `to` query p
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 import { AuthPage } from "@refinedev/antd";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 import authProvider from "src/authProvider";
 
@@ -804,7 +804,7 @@ const customTitleHandler = ({ resource, action, params }) => {
 This hook allows you to set the document title for the current page. It can be used in any component that is a child of the `<Refine>` component.
 
 ```tsx
-import { useDocumentTitle } from "@refinedev/react-router-v6";
+import { useDocumentTitle } from "@refinedev/react-router";
 
 const PostList = () => {
   // highlight-next-line
@@ -817,7 +817,7 @@ const PostList = () => {
 This hook can take an object as an argument with `i18nKey`. This key will be used to translate the title using the i18n provider.
 
 ```tsx
-import { useDocumentTitle } from "@refinedev/react-router-v6";
+import { useDocumentTitle } from "@refinedev/react-router";
 
 const PostList = () => {
   // highlight-next-line
@@ -830,7 +830,7 @@ const PostList = () => {
 This hook also returns a function that can be used to set the document title dynamically.
 
 ```tsx
-import { useDocumentTitle } from "@refinedev/react-router-v6";
+import { useDocumentTitle } from "@refinedev/react-router";
 
 const PostList = () => {
   const setTitle = useDocumentTitle();
@@ -877,9 +877,9 @@ Let's start with initializing our `<Refine>` component with inside `<BrowserRout
 ```tsx title=App.tsx
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -912,9 +912,9 @@ Then, let's start adding our routes. We'll start with the `LandingPage` componen
 ```diff title=App.tsx
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-+ import { BrowserRouter, Routes, Route } from "react-router-dom";
++ import { BrowserRouter, Routes, Route } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -951,9 +951,9 @@ Now, let's create our resource actions. They will be wrapped with the `Layout` c
 ```diff title=App.tsx
 + import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-+ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
++ import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -1009,9 +1009,9 @@ We can now add our `/login` and `/register` pages. We'll use the `AuthPage` comp
 ```diff title=App.tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-+ import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
++ import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -1078,9 +1078,9 @@ Finally, we'll add our `ErrorComponent` component to show when user navigates to
 ```diff title=App.tsx
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "src/authProvider";
 
@@ -1156,10 +1156,10 @@ Let's start with defining the `Refine` component.
 
 ```tsx title=App.tsx
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "providers/authProvider";
 
@@ -1294,8 +1294,8 @@ It will create the routes and pass it as a `JSX.Element[]` to the `children` fun
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 // highlight-start
-import routerProvider, { RefineRoutes } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import routerProvider, { RefineRoutes } from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 // highlight-end
 
 import { PostList, PostCreate } from "pages/posts";
@@ -1382,10 +1382,7 @@ Default paths are:
 By default [`<DocumentTitleHandler/>`](#documenttitlehandler) component will generate the document title based on current resource and action with the "Refine" suffix. You can customize the title generation process by providing a custom `handler` function.
 
 ```tsx
-import {
-  BrowserRouter,
-  DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+import { BrowserRouter, DocumentTitleHandler } from "@refinedev/react-router";
 import { Refine } from "@refinedev/core";
 
 const App = () => {

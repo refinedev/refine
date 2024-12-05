@@ -28,7 +28,7 @@ import React from "react";
 import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
 
 // highlight-next-line
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const Header = () => {
   const { mutate, isLoading } = useLogout();
@@ -68,7 +68,7 @@ Similarly, we'll update the `<ListProducts />` component and add links for showi
 import { useTable, useMany, useNavigation } from "@refinedev/core";
 
 // highlight-next-line
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {

@@ -20,7 +20,7 @@ values={[
 import { Layout, refineTheme } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -103,10 +103,10 @@ setInitialRoutes(["/samples"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -161,10 +161,10 @@ setInitialRoutes(["/samples/show/123"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -222,10 +222,10 @@ setInitialRoutes(["/samples/create"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
@@ -280,10 +280,10 @@ setInitialRoutes(["/samples/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";

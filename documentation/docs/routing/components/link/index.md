@@ -70,7 +70,7 @@ The URL to navigate to.
 `<Link />` works with any routing library because it uses [`routerProvider.Link`](/docs/routing/router-provider/#link) internally. However, when importing it from `@refinedev/core`, it doesn't provide type support for your specific routing library. To enable full type support, you can use generics.
 
 ```tsx
-import type { LinkProps } from "react-router-dom";
+import type { LinkProps } from "react-router";
 import { Link } from "@refinedev/core";
 
 const MyComponent = () => {

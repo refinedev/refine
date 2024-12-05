@@ -20,7 +20,7 @@ export default function Usage() {
         "@mui/material": "^6.1.7",
         "@mui/system": "latest",
         "@mui/x-data-grid": "^7.22.2",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
         "react-hook-form": "^7.43.5",
       }}
       startRoute="/products"
@@ -125,8 +125,8 @@ export const ThemeProvider = ({ children }) => (
 const AppTsxCode = /* jsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import {
   ThemedLayoutV2,

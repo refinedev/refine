@@ -43,10 +43,10 @@ Update your `src/App.tsx` file by adding the following lines:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 // highlight-next-line
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 // highlight-next-line
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 
 import { dataProvider } from "./providers/data-provider";
 import { authProvider } from "./providers/auth-provider";

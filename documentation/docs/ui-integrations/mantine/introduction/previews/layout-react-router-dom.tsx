@@ -21,7 +21,7 @@ export default function LayoutReactRouterDom() {
         "@mantine/hooks": "^5.10.4",
         "@mantine/form": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products"
       files={{
@@ -41,8 +41,8 @@ export default function LayoutReactRouterDom() {
 const AppTsxCode = /* jsx */ `
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
 import {
     ErrorComponent,

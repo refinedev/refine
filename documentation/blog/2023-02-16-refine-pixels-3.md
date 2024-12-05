@@ -229,7 +229,7 @@ import "@refinedev/antd/dist/reset.css";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -338,7 +338,7 @@ After creating files above you need to add some imports and [routes](/docs/packa
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -644,7 +644,7 @@ Let's look at the routes implementation:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
@@ -1206,7 +1206,7 @@ Namely, authentication related routing has been added:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
@@ -1309,7 +1309,7 @@ Remember, we've already replaced `App.tx` code with the following:
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -1480,7 +1480,7 @@ Now it's time to focus on the Home page of our application. We put the `<CanvasF
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { CanvasFeaturedList } from "./pages/canvases";
