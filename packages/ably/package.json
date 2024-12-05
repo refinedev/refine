@@ -2,7 +2,7 @@
   "name": "@refinedev/ably",
   "version": "4.1.8",
   "private": false,
-  "description": "refine ably live provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Ably Live Provider for Refine, enabling real-time updates to your Refine applications effortlessly.",
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",
