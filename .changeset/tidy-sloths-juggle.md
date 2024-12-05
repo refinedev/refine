@@ -1,18 +1,22 @@
 ---
-"@refinedev/nextjs-router": minor
+"@refinedev/nextjs-router": Minor Update
 ---
 
-feat: add `react@^19.0.0-rc.0` and `react-dom@^19.0.0-rc.0` as peer dependencies for `@refinedev/nextjs-router`
+**Feature:** Added support for Next.js 15. #6430
 
-From now on, users can install `@refinedev/nextjs-router` with Next.js 15 without warnings.
+To create a new example project with Next.js 15, run the following command:
 
-Next.js 15 example project is available in the [examples/with-nextjs-headless](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-headless) directory.
+```bash
+npm create refine-app@latest -- --example with-nextjs-headless
+```
 
-> 🚨 `@refinedev/core` and `@refinedev/nextjs-router` has no breaking change however, to use Next@15, you need to update your project to be compatible with React 19. See the migration guides below:
+You can find the source code in the [examples/with-nextjs-headless](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-headless) directory.
+
+> 🚨 While `@refinedev/core` and `@refinedev/nextjs-router` do not introduce breaking changes, upgrading to Next.js 15 requires your project to be compatible with React 19. Please refer to the migration guides below:
 >
 > - [Next.js 15 Upgrade Guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15)
 > - [React 19 Upgrade Guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide)
 >
-> 🚨 Also, if you are using `@refinedev/antd`, `@refinedev/chakra-ui`, `@refinedev/mantine` or `@refinedev/mui`, you need to check their compatibility with React@19.
+> 🚨 Additionally, if you're using `@refinedev/antd`, `@refinedev/chakra-ui`, `@refinedev/mantine`, or `@refinedev/mui`, make sure to check their compatibility with React 19.
 
-See the issue for known issues, migration guide and more: [6430](https://github.com/refinedev/refine/issues/6430)
+For known issues, migration guidance, and more details, please refer to issue [#6430](https://github.com/refinedev/refine/issues/6430).
