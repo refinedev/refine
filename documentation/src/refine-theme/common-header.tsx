@@ -3,8 +3,8 @@ import clsx from "clsx";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useState } from "react";
 
+import { RefineLogoXmas } from "./icons/refine-logo xmas";
 import { HamburgerIcon } from "./icons/hamburger";
-import { RefineLogoIcon } from "./icons/refine-logo";
 
 import { openFigma } from "../utils/open-figma";
 import { Menu } from "./common-header/menu";
@@ -82,7 +82,7 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineLogoIcon className="text-gray-900 dark:text-gray-0" />
+                <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
               </Link>
             </div>
             <button
