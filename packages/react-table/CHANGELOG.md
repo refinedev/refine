@@ -1,5 +1,15 @@
 # @refinedev/react-table
 
+## 5.6.14
+
+### Patch Changes
+
+- [#6501](https://github.com/refinedev/refine/pull/6501) [`1ba8a85d7c5feaa144260228c890c064834a9d63`](https://github.com/refinedev/refine/commit/1ba8a85d7c5feaa144260228c890c064834a9d63) Thanks [@taiseiiiii](https://github.com/taiseiiiii)! - fix(react-table): add equality checks before setting filters and sorters
+
+  When setting the filters and sorters received from the `useTable` of `@tanstack/react-table` to Refine's table state, it was causing unnecessary updates. Those updates sometimes caused queries to stuck in loading state. Adding deep equality checks before setting the filters and sorters solves the issue.
+
+  [Resolves #6265](https://github.com/refinedev/refine/issues/6265)
+
 ## 5.6.13
 
 ### Patch Changes

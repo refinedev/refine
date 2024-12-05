@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/mui",
-  "version": "5.22.0",
+  "version": "6.0.0",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
   "license": "MIT",
@@ -39,7 +39,7 @@
     "@mui/system": "^6.1.6",
     "@mui/x-data-grid": "^7.22.2",
     "@refinedev/react-hook-form": "^4.9.1",
-    "@refinedev/ui-types": "^1.22.9",
+    "@refinedev/ui-types": "^1.23.0",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
@@ -53,8 +53,8 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.38",
-    "@refinedev/core": "^4.56.0",
-    "@refinedev/ui-tests": "^1.14.9",
+    "@refinedev/core": "^4.57.0",
+    "@refinedev/ui-tests": "^1.15.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
