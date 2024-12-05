@@ -248,6 +248,7 @@ export const useNavigation = () => {
         id: encodedId,
       }),
       type: "path",
+      query: meta.query,
     }) as string;
   };
 
