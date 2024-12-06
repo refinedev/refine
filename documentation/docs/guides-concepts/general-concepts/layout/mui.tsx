@@ -13,7 +13,7 @@ export function MaterialUILayout() {
         "@refinedev/react-router-v6": "latest",
         "@refinedev/inferencer": "latest",
         "@refinedev/mui": "5.0.0",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^6.0.0-beta.14",
@@ -44,11 +44,11 @@ import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { Refine } from "@refinedev/core";
 import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ProductList } from "./pages/products/list.tsx";

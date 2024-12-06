@@ -1,7 +1,7 @@
 import { type PropsWithChildren, useMemo } from "react";
 import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { CreateButton, EditButton, useDataGrid } from "@refinedev/mui";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
@@ -117,7 +117,7 @@ export const CourierList = ({ children }: PropsWithChildren) => {
             size="medium"
             sx={{ height: "40px" }}
             onClick={() => {
-              return go({
+              go({
                 to: `${createUrl("couriers")}`,
                 query: {
                   to: pathname,

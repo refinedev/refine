@@ -99,7 +99,7 @@ import "@refinedev/antd/dist/reset.css";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";

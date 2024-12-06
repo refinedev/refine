@@ -11,7 +11,7 @@ export default function ServerSideValidationReactHookForm() {
         "@refinedev/react-router-v6": "^4.5.4",
         "@refinedev/simple-rest": "^4.5.4",
         "react-dom": "^18.0.0",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products/create"
       files={{
@@ -89,8 +89,8 @@ form button[type="button"] {
 
 const AppTsxCode = /* jsx */ `
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import "./style.css";
 

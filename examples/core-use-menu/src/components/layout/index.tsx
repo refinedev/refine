@@ -5,7 +5,7 @@ import {
   useRefineContext,
   type ITreeMenu,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { menuItems, selectedKey } = useMenu();

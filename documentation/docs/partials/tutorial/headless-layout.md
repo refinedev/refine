@@ -92,7 +92,7 @@ td:last-child {
 ```tsx live shared
 import { PropsWithChildren } from "react";
 import { useMenu, useBreadcrumb } from "@refinedev/core";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link } from "react-router";
 
 const Breadcrumb = () => {
   const { breadcrumbs } = useBreadcrumb();

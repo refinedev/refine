@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslate, useWarnAboutChange } from "@refinedev/core";
 import { usePrompt } from "./use-prompt-workaround";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 type UnsavedChangesNotifierProps = {
   translationKey?: string;

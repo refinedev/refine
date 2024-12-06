@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { useList } from "@refinedev/core";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router";
 import { Hourglass } from "react95";
 import styled from "styled-components";
 import { Browser } from "@/components/browser";

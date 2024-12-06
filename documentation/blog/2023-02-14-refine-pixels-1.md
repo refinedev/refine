@@ -68,7 +68,7 @@ Everything in **Refine** is centered around the [`<Refine />`](https://refine.de
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import { liveProvider } from "@refinedev/supabase";
 import authProvider from "./authProvider";
 

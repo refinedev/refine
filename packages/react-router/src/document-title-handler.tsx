@@ -7,7 +7,7 @@ import {
   useUserFriendlyName,
 } from "@refinedev/core";
 import React, { useLayoutEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 type Props = {
   handler?: (options: {

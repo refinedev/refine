@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState, Fragment } from "react";
 import styled from "styled-components";
 import { useList, useNavigation } from "@refinedev/core";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import { Counter } from "react95";
 import { Controller } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";

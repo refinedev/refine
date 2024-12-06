@@ -43,7 +43,7 @@ setInitialRoutes(["/"]);
 import React from "react";
 import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   // highlight-start
@@ -91,10 +91,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 
 import { Refine } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { Layout } from "components";
 
@@ -158,10 +158,10 @@ Update your `resources` in `<Refine/>` with `meta.parent` to nest them inside a 
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { Layout } from "components/layout";
 
@@ -221,7 +221,7 @@ Now you can update your `<Layout/>` to support multi level rendering with follow
 import React from "react";
 import { useMenu, LayoutProps, ITreeMenu } from "@refinedev/core";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { menuItems, selectedKey } = useMenu();

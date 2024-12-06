@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 import { DocumentTitleHandler } from "./document-title-handler";
 import { render, TestWrapper, type ITestWrapperProps } from "./test/index";

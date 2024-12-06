@@ -20,7 +20,7 @@ export default function AuthPage() {
         "@mantine/hooks": "^5.10.4",
         "@mantine/form": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
       }}
       startRoute="/login"
       files={{
@@ -96,8 +96,8 @@ import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
 import authProvider from "./auth-provider";
 

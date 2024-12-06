@@ -5,7 +5,7 @@ import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import type { ICategory, IProduct } from "../../../interfaces";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import IconButton from "@mui/material/IconButton";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { ProductStatus } from "../status";

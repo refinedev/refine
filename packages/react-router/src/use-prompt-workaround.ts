@@ -1,5 +1,5 @@
 /**
- * `useBlocker` and `usePrompt` is no longer part of react-router-dom for the routers other than `DataRouter`.
+ * `useBlocker` and `usePrompt` is no longer part of react-router for the routers other than `DataRouter`.
  *
  * The previous workaround (<v6.4) was to use `block` function in `UNSAFE_NavigationContext` which is now removed.
  *
@@ -8,7 +8,7 @@
  */
 
 import React from "react";
-import { UNSAFE_NavigationContext as NavigationContext } from "react-router-dom";
+import { UNSAFE_NavigationContext as NavigationContext } from "react-router";
 
 function useConfirmExit(confirmExit: () => boolean, when = true) {
   const { navigator } = React.useContext(NavigationContext);
@@ -46,7 +46,6 @@ export function usePrompt(
   message: string,
   when = true,
   onConfirm?: () => void,
-  legacy = false,
 ) {
   const warnWhenListener = React.useCallback(
     (e: { preventDefault: () => void; returnValue: string }) => {
@@ -60,14 +59,14 @@ export function usePrompt(
   );
 
   React.useEffect(() => {
-    if (when && !legacy) {
+    if (when) {
       window.addEventListener("beforeunload", warnWhenListener);
     }
 
     return () => {
       window.removeEventListener("beforeunload", warnWhenListener);
     };
-  }, [warnWhenListener, when, legacy]);
+  }, [warnWhenListener, when]);
 
   const confirmExit = React.useCallback(() => {
     const confirm = window.confirm(message);

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useList, useSubscription } from "@refinedev/core";
 import styled from "styled-components";
 import dayjs from "dayjs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import {
   LineChart,
   Line,

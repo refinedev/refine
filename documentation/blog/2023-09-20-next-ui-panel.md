@@ -29,7 +29,6 @@ Steps we'll cover:
 - [How to create a Refine application](#how-to-create-a-refine-application)
 - [What is NextUI](#what-is-nextui)
 - [How to set up NextUI in a Refine application](#how-to-set-up-nextui-in-a-refine-application)
-- [How to build React admin dashboard with NextUI and Refine]
 - [How to build product CRUD pages with NextUI and Refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
 - [How to build categories CRUD pages with NextUI and Refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
 - [Update the layout](#update-the-layout)
@@ -104,7 +103,7 @@ import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -1619,7 +1618,7 @@ import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";

@@ -106,7 +106,7 @@ export interface IOptions {
 import { useState, useEffect } from "react";
 import { useList } from "@refinedev/core";
 import { Layout, AutoComplete, Input, Icons, Typography } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 const { Link } = routerProvider;
 const { Text } = Typography;

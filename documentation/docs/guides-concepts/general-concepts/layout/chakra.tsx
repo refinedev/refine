@@ -13,7 +13,7 @@ export function ChakraUILayout() {
         "@refinedev/react-router-v6": "latest",
         "@refinedev/inferencer": "latest",
         "@refinedev/react-table": "latest",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
         "@tabler/icons-react": "^3.1.0",
         "@chakra-ui/react": "^2.5.1",
       }}
@@ -38,7 +38,7 @@ const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import {
   ErrorComponent,
@@ -46,7 +46,7 @@ import {
   ThemedLayoutV2,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ProductList } from "./pages/products/list.tsx";

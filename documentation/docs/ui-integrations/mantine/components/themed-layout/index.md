@@ -59,8 +59,8 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -113,9 +113,9 @@ render(<App />);
 
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][mantine-drawer]. On larger screens, it will use fixed to open [`<Drawer>`][mantine-drawer].
 
-Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
+Example of above showing how to use `<ThemedLayoutV2>` with [`React Router`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/main/examples/auth-mantine/src/App.tsx#L180)
+- [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-mantine/src/App.tsx#L180)
 - [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
 - [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-auth/app/routes/_protected.tsx)
 
@@ -331,8 +331,8 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Center, Global } from "@mantine/core";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -445,8 +445,8 @@ import { MantineInferencer } from "@refinedev/inferencer/mantine";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Button, Global } from "@mantine/core";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -754,8 +754,8 @@ import {
 } from "@refinedev/mantine";
 import { MantineProvider, Global, Box } from "@mantine/core";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -845,7 +845,7 @@ values={[
 ```tsx title="src/App.tsx"
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ThemedLayoutV2 } from "@refinedev/mantine";
 
 const App: React.FC = () => {

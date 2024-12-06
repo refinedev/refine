@@ -51,9 +51,9 @@ import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
@@ -115,9 +115,9 @@ import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
@@ -181,9 +181,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
@@ -274,9 +274,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList } from "./pages/samples";
 
@@ -406,9 +406,9 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { createTheme, responsiveFontSizes } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList } from "./pages/samples";
 
@@ -519,9 +519,9 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { useMediaQuery } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import {
   SampleList,
@@ -672,9 +672,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
@@ -772,9 +772,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
@@ -875,9 +875,9 @@ import {
 } from "@refinedev/mui";
 import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import {
   SampleList,

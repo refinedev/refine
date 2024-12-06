@@ -17,10 +17,10 @@ import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { ConfigProvider, notification } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import "@refinedev/antd/dist/reset.css";
 

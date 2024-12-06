@@ -4,8 +4,8 @@ import dataProvider from "@refinedev/simple-rest";
 import routerBindings, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { Posts } from "./pages/posts";
 

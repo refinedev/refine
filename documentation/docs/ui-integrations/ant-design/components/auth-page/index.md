@@ -138,11 +138,11 @@ import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -212,13 +212,13 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -306,13 +306,13 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -401,13 +401,13 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -498,13 +498,13 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 

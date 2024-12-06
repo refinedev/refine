@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { breadcrumbTests } from "@refinedev/ui-tests";
 
 import { render, TestWrapper, type ITestWrapperProps, act } from "@test";

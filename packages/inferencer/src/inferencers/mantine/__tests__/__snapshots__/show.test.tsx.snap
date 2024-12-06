@@ -54,6 +54,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         >
           <a
             class="mantine-Text-root mantine-Anchor-root mantine-1ut1du9"
+            data-discover="true"
             href="/posts"
           >
             <button

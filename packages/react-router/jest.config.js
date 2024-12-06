@@ -1,7 +1,7 @@
 module.exports = {
   preset: "ts-jest",
   rootDir: "./",
-  displayName: "react-router-v6",
+  displayName: "react-router",
   testEnvironment: "jsdom",
   setupFilesAfterEnv: ["<rootDir>/src/test/jest.setup.ts"],
   testPathIgnorePatterns: [

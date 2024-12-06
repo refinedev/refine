@@ -1,6 +1,6 @@
 import React, { type ReactNode } from "react";
 
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 import { render, TestWrapper } from "@test";
 import { Create } from "./";

@@ -181,7 +181,7 @@ the `resources` property accepts an array of objects with each object specifying
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
 // highlight-start
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // highlight-end
 
@@ -244,7 +244,7 @@ import dataProvider from "@refinedev/airtable";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 
@@ -383,7 +383,7 @@ import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { PostList } from "./pages/post/list";

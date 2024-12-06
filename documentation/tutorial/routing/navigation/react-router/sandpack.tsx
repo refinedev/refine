@@ -26,7 +26,7 @@ const HeaderWithLinks = /* tsx */ `
 import React from "react";
 import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const Header = () => {
   const { mutate, isLoading } = useLogout();
@@ -55,7 +55,7 @@ export const Header = () => {
 const ListProductsWithNavigation = /* tsx */ `
 import { useTable, useMany, useNavigation } from "@refinedev/core";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {

@@ -55,8 +55,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -104,9 +104,9 @@ render(<App />);
 
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and uses [`<Drawer>`][antd-drawer]. On larger screens, it will use [`<Sider>`][antd-sider].
 
-Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
+Example of above showing how to use `<ThemedLayoutV2>` with [`React Router`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/main/examples/auth-antd/src/App.tsx#L186)
+- [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-antd/src/App.tsx#L186)
 - [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
 - [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-auth/app/routes/_protected.tsx)
 
@@ -347,8 +347,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -456,8 +456,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Button } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -706,8 +706,8 @@ import {
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -806,7 +806,7 @@ values={[
 ```tsx title="src/App.tsx"
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 const App: React.FC = () => {

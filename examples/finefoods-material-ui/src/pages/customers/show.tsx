@@ -6,7 +6,7 @@ import {
   useShow,
   useTranslate,
 } from "@refinedev/core";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { DateField, NumberField, useDataGrid } from "@refinedev/mui";
 import Avatar from "@mui/material/Avatar";

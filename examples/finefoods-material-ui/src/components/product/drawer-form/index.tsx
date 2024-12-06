@@ -6,7 +6,7 @@ import {
   useTranslate,
 } from "@refinedev/core";
 import { DeleteButton, useAutocomplete } from "@refinedev/mui";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 import Button from "@mui/material/Button";
