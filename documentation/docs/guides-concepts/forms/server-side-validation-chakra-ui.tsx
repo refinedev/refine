@@ -17,7 +17,6 @@ export default function ServerSideValidationChakraUi() {
         "@refinedev/react-hook-form": "^4.8.12",
         "@chakra-ui/react": "^2.5.1",
         "react-dom": "^18.0.0",
-        "react-router": "latest",
         "react-router-dom": "^6.8.1",
         "react-hook-form": "^7.43.5",
       }}

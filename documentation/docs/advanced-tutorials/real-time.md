@@ -18,7 +18,7 @@ We need to install the Ably live provider package from **Refine**.
 
 :::caution
 
-To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/main/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/main/packages/antd) package.
 
 :::
 
@@ -26,13 +26,13 @@ To make this example more visual, we used the [`@refinedev/antd`](https://github
 
 Since we will need `apiKey` from Ably, you must first register and get the key from [Ably](https://ably.com).
 
-The app will have one resource: **posts** with CRUD pages(list, create, edit, and show) similar to [base example](https://github.com/refinedev/refine/tree/master/examples/base-antd/src/pages/posts).
+The app will have one resource: **posts** with CRUD pages(list, create, edit, and show) similar to [base example](https://github.com/refinedev/refine/tree/main/examples/base-antd/src/pages/posts).
 
 [You can also refer to CodeSandbox to see the final state of the app &#8594](#example)
 
 ## Adding `liveProvider`
 
-Firstly we create a Ably client for [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) live provider.
+Firstly we create a Ably client for [`@refinedev/ably`](https://github.com/refinedev/refine/tree/main/packages/ably) live provider.
 
 ```ts title="src/utility/ablyClient.ts"
 import { Ably } from "@refinedev/ably";
@@ -40,7 +40,7 @@ import { Ably } from "@refinedev/ably";
 export const ablyClient = new Ably.Realtime("your-api-key");
 ```
 
-Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/refine/tree/master/packages/ably) to `<Refine>`.
+Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/refine/tree/main/packages/ably) to `<Refine>`.
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
@@ -209,7 +209,7 @@ You can subscribe to events emitted within **Refine** in any place in your app w
 
 For example, we can subscribe to **_create_** event for **_posts_** resource and we can show a badge for the number of events in the sider menu.
 
-Firstly, let's implement a custom sider like in [this example](https://github.com/refinedev/refine/tree/master/examples/customization-sider).
+Firstly, let's implement a custom sider like in [this example](https://github.com/refinedev/refine/tree/main/examples/customization-sider).
 
 <details>
 <summary>Custom Sider Menu</summary>

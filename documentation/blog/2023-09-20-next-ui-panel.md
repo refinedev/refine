@@ -1742,7 +1742,7 @@ The list page we created in the previous sub-section has a button for creating a
 
 Let's create a component that will render when a user wants to create a new product. The component will render a form that a user can fill and submit to create a new product. To easily manage the forms, we will use react-hook-forms.
 
-The headless Refine project template we created using the refine.new platform integrates the [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) adapter out of the box. However, we need to install `react-hook-form` to use some of the features the `@refinedev/react-hook-form` adapter doesn't export.
+The headless Refine project template we created using the refine.new platform integrates the [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) adapter out of the box. However, we need to install `react-hook-form` to use some of the features the `@refinedev/react-hook-form` adapter doesn't export.
 
 Use the command below to install `react-hook-form`.
 

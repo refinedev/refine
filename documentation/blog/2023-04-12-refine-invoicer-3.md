@@ -21,7 +21,7 @@ We're on Day Three and this **RefineWeek** is a five-part tutorial that aims to 
 
 ## Overview
 
-In the last episode, we explored **Refine**'s auth and data providers in significant details. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support **Strapi** thanks to the [`@refinedev/strapi-v4`](https://github.com/refinedev/refine/tree/master/packages/strapi) package.
+In the last episode, we explored **Refine**'s auth and data providers in significant details. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support **Strapi** thanks to the [`@refinedev/strapi-v4`](https://github.com/refinedev/refine/tree/main/packages/strapi) package.
 
 We mentioned that `dataProvider` methods allow us to communicate with API endpoints and `authProvider` methods help us with authentication and authorization. We are able to access and invoke these methods from consumer components via their corresponding hooks.
 

@@ -103,7 +103,7 @@ const liveProvider = {
 };
 ```
 
-In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/liveProvider/index.ts) `version 5.0.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
+In [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/main/packages/supabase/src/liveProvider/index.ts) `version 5.0.0`, at the time of publishing this article, the `liveProvider` consists of only the `subscribe` and `unsubscribe` methods. Its implementation looks like this:
 
 Let's have a look.
 

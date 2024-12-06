@@ -151,15 +151,15 @@ Refer to the [`dataProvider`](https://refine.dev/docs/core/providers/data-provid
 
 Refine includes many out-of-the-box data providers to use in your projects like:
 
-- [Simple REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest)
-- [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql)
-- [NestJS CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud)
-- [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable)
-- [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4)
-- [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase)
-- [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura)
-- [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
-- [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite)
+- [Simple REST API](https://github.com/refinedev/refine/tree/main/packages/simple-rest)
+- [GraphQL](https://github.com/refinedev/refine/tree/main/packages/graphql)
+- [NestJS CRUD](https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud)
+- [Airtable](https://github.com/refinedev/refine/tree/main/packages/airtable)
+- [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi) - [Strapi v4](https://github.com/refinedev/refine/tree/main/packages/strapi-v4)
+- [Supabase](https://github.com/refinedev/refine/tree/main/packages/supabase)
+- [Hasura](https://github.com/refinedev/refine/tree/main/packages/hasura)
+- [Medusa](https://github.com/refinedev/refine/tree/main/packages/medusa)
+- [Appwrite](https://github.com/refinedev/refine/tree/main/packages/appwrite)
 
 ## Add routing to the application
 
@@ -173,9 +173,9 @@ Refer to the [`routerProvider`](https://refine.dev/docs/core/providers/router-pr
 
 Refine includes many out-of-the-box data providers to use in your projects like:
 
-- [React Router](https://github.com/refinedev/refine/tree/master/packages/react-router)
-- [React Location](https://github.com/refinedev/refine/tree/master/packages/react-location)
-- [Next.js Router](https://github.com/refinedev/refine/tree/master/packages/nextjs-router)
+- [React Router](https://github.com/refinedev/refine/tree/main/packages/react-router)
+- [React Location](https://github.com/refinedev/refine/tree/main/packages/react-location)
+- [Next.js Router](https://github.com/refinedev/refine/tree/main/packages/nextjs-router)
 
 ## Create pages via `resources`
 
@@ -235,10 +235,10 @@ Refer to the [`authProvider`](https://refine.dev/docs/core/providers/auth-provid
 
 ### Out-of-the-box Auth providers
 
-- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
-- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
-- Google - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
-- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/master/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
+- Auth0 - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-auth0/) - [Demo](https://refine.dev/docs/examples/auth-provider/auth0)
+- Keycloak - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-keycloak/) - [Demo](https://refine.dev/docs/examples/auth-provider/keycloak)
+- Google - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-google-login) - [Demo](https://refine.dev/docs/examples/auth-provider/google-auth)
+- OTP Login - [Source Code](https://github.com/refinedev/refine/tree/main/examples/auth-otp) - [Demo](https://refine.dev/docs/examples/auth-provider/otpLogin)
 
 ## Authorization
 
@@ -296,8 +296,8 @@ Refer to the [`accessControlProvider`](https://refine.dev/docs/core/providers/ac
 
 ### Out-of-the-box access control providers
 
-- Casbin - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-casbin)
-- Cerbos - [Source Code](https://github.com/refinedev/refine/tree/master/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/access-control-cerbos)
+- Casbin - [Source Code](https://github.com/refinedev/refine/tree/main/examples/access-control-casbin) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/access-control-casbin)
+- Cerbos - [Source Code](https://github.com/refinedev/refine/tree/main/examples/access-control-cerbos) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/access-control-cerbos)
 
 ## Internationalization
 
@@ -337,9 +337,9 @@ If you send an event after the relevant operations on the server, Refine will in
 
 ### Out-of-the-box access control providers
 
-- Ably - [Source Code](https://github.com/refinedev/refine/blob/master/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/master/examples/live-provider-ably)
-- Supabase - [Source Code](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts#L187)
-- Appwrite - [Source Code](https://github.com/refinedev/refine/blob/master/packages/appwrite/src/index.ts#L252)
+- Ably - [Source Code](https://github.com/refinedev/refine/blob/main/packages/ably/src/index.ts) - [Demo](https://codesandbox.io/embed/github/refinedev/refine/tree/main/examples/live-provider-ably)
+- Supabase - [Source Code](https://github.com/refinedev/refine/blob/main/packages/supabase/src/index.ts#L187)
+- Appwrite - [Source Code](https://github.com/refinedev/refine/blob/main/packages/appwrite/src/index.ts#L252)
 
 ## Other features of Refine
 
