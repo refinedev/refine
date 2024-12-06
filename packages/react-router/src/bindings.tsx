@@ -71,9 +71,11 @@ export const routerBindings: RouterBindings = {
         }
 
         /** Navigate to the url */
-        return navigate(fullPath, {
+        navigate(fullPath, {
           replace: type === "replace",
         });
+
+        return;
       },
       [existingHash, existingSearch, navigate],
     );
