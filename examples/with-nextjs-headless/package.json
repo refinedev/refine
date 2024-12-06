@@ -22,8 +22,8 @@
     "js-cookie": "^3.0.1",
     "next": "^15.0.4",
     "next-intl": "^3.25.3",
-    "react": "^19.0.0-rc.0",
-    "react-dom": "^19.0.0-rc.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
