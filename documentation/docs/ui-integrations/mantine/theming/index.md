@@ -203,8 +203,6 @@ const App = () => {
     <MantineProvider
       // highlight-next-line
       theme={RefineThemes.Blue}
-      withNormalizeCSS
-      withGlobalStyles
     >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <NotificationsProvider position="top-right">
@@ -302,8 +300,6 @@ const App = () => {
         }),
       }}
       // highlight-end
-      withNormalizeCSS
-      withGlobalStyles
     >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
       <NotificationsProvider position="top-right">
@@ -436,8 +432,6 @@ const App = () => {
           ...RefineThemes.Blue,
           colorScheme: colorScheme,
         }}
-        withNormalizeCSS
-        withGlobalStyles
       >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
         <NotificationsProvider position="top-right">

@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { render, act, TestWrapper } from "@test";
 import { CreateInferencer, renderer } from "../create";
+import { MantineProvider } from "@mantine/core";
 
 describe("MantineCreateInferencer", () => {
   it("should match the snapshot", async () => {
@@ -25,14 +26,16 @@ describe("MantineCreateInferencer", () => {
     });
 
     const rendering = render(
-      <Wrapper>
-        <Routes>
-          <Route
-            path="/:resource/create"
-            element={<CreateInferencer resource="posts" />}
-          />
-        </Routes>
-      </Wrapper>,
+      <MantineProvider>
+        <Wrapper>
+          <Routes>
+            <Route
+              path="/:resource/create"
+              element={<CreateInferencer resource="posts" />}
+            />
+          </Routes>
+        </Wrapper>
+      </MantineProvider>,
     );
 
     await act(async () => {

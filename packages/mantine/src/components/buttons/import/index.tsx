@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileImport } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { ImportButtonProps } from "../types";
 
 /**
@@ -26,18 +25,14 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
   const { label } = useImportButton();
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
   return (
-    <label htmlFor="contained-button-file">
-      <input {...inputProps} id="contained-button-file" multiple hidden />
+    <label style={{ display: "flex" }}>
+      <input {...inputProps} multiple hidden />
       {hideText ? (
         <ActionIcon
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
+          variant={variant || "default"}
           aria-label={label}
           component="span"
           loading={loading}
@@ -49,12 +44,13 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
-          component="span"
-          leftIcon={<IconFileImport size={18} {...svgIconProps} />}
+          variant={variant || "default"}
+          component="div"
+          leftSection={<IconFileImport size={18} {...svgIconProps} />}
           loading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
           className={RefineButtonClassNames.ImportButton}
+          vars={vars}
           {...rest}
         >
           {children ?? label}
