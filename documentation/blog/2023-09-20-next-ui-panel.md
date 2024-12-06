@@ -27,32 +27,13 @@ Steps we'll cover:
 
 - [What is Refine](#what-is-refine)
 - [How to create a Refine application](#how-to-create-a-refine-application)
-  - [Tidy things up](#tidy-things-up)
 - [What is NextUI](#what-is-nextui)
 - [How to set up NextUI in a Refine application](#how-to-set-up-nextui-in-a-refine-application)
-  - [Install NextUI and its dependencies](#install-nextui-and-its-dependencies)
-  - [Add Tailwind CSS configuration file](#add-tailwind-css-configuration-file)
-  - [Add Tailwind CSS directives](#add-tailwind-css-directives)
-  - [Set up NextUI provider](#set-up-nextui-provider)
-- [How to build React admin dashboard with NextUI and Refine](#how-to-build-react-admin-dashboard-with-nextui-and-refine)
-  - [Create key performance indicator card](#create-key-performance-indicator-card)
-  - [Represent the key performance indicators using charts](#represent-the-key-performance-indicators-using-charts)
-  - [Represent the recent sales in a table](#represent-the-recent-sales-in-a-table)
+- [How to build React admin dashboard with NextUI and Refine]
 - [How to build product CRUD pages with NextUI and Refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
-  - [Products list page](#products-list-page)
-  - [Products create page](#products-create-page)
-  - [Products edit page](#products-edit-page)
-  - [Products show page](#products-show-page)
 - [How to build categories CRUD pages with NextUI and Refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
-  - [Categories list page](#categories-list-page)
-  - [Categories create page](#categories-create-page)
-  - [Categories edit page](#categories-edit-page)
-  - [Categories show page](#categories-show-page)
 - [Update the layout](#update-the-layout)
-  - [Update the navigation menu](#update-the-navigation-menu)
 - [Update the breadcrumb](#update-the-breadcrumb)
-- [Conclusion](#conclusion)
-- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## What is Refine
 

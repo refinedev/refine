@@ -47,6 +47,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             class="MuiBox-root css-10egq61"
           >
             <a
+              data-discover="true"
               href="/posts"
               style="text-decoration: none;"
             >

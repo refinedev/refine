@@ -50,6 +50,7 @@ exports[`MuiEditInferencer should match the snapshot 1`] = `
               class="MuiBox-root css-u4p24i"
             >
               <a
+                data-discover="true"
                 href="/posts"
                 style="text-decoration: none;"
               >
