@@ -37,7 +37,10 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     accessControl,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   const { sx, ...restProps } = rest;
 
@@ -46,7 +49,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -58,7 +61,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
       style={{ textDecoration: "none" }}
     >
       <Button
-        disabled={disabled}
+        disabled={isDisabled}
         startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
         title={title}
         sx={{ minWidth: 0, ...sx }}

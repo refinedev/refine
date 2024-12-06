@@ -54,6 +54,7 @@ export const PostList: React.FC = () => {
         align: "left",
         minWidth: 250,
         flex: 0.5,
+        display: "flex",
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
@@ -69,6 +70,7 @@ export const PostList: React.FC = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return <EditButton hideText onClick={() => showEditDrawer(row.id)} />;
         },
@@ -83,7 +85,7 @@ export const PostList: React.FC = () => {
   return (
     <>
       <List createButtonProps={{ onClick: () => showCreateDrawer() }}>
-        <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        <DataGrid {...dataGridProps} columns={columns} />
       </List>
       <CreatePostDrawer {...createDrawerFormProps} />
       <EditPostDrawer {...editDrawerFormProps} />

@@ -2,7 +2,7 @@
   "name": "@refinedev/simple-rest",
   "version": "5.0.8",
   "private": false,
-  "description": "refine simple REST data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Simple REST Data Provider for Refine, enabling seamless REST API interactions.",
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",

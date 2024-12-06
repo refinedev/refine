@@ -1,6 +1,6 @@
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
-import { gql } from "@urql/core";
+import gql from "graphql-tag";
 import "./createMany.mock";
 
 const gqlMutation = gql`
@@ -59,7 +59,7 @@ describe("createMany", () => {
           resource: "blogPosts",
           variables: [],
         }),
-      ).rejects.toEqual(new Error("Operation is required."));
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
     });
   });
 });

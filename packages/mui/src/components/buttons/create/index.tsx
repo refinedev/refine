@@ -26,7 +26,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
   meta,
   children,
   onClick,
-  ...rest
+  ...props
 }) => {
   const { to, label, title, disabled, hidden, LinkComponent } = useCreateButton(
     {
@@ -35,17 +35,19 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       accessControl,
     },
   );
+  const isDisabled = disabled || props.disabled;
+  const isHidden = hidden || props.hidden;
 
-  if (hidden) return null;
+  if (isHidden) return null;
 
-  const { sx, ...restProps } = rest;
+  const { sx, ...restProps } = props;
 
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -57,7 +59,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       style={{ textDecoration: "none" }}
     >
       <Button
-        disabled={disabled}
+        disabled={isDisabled}
         startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
         title={title}
         variant="contained"

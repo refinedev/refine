@@ -24,20 +24,29 @@ export const breadcrumbTests = (
   Breadcrumb: React.ComponentType<RefineBreadcrumbProps<any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Create", () => {
-    it("should render successfuly", async () => {
+    it("should not render breadcrumb when no items are present", async () => {
       const { container } = renderBreadcrumb(<Breadcrumb />);
 
-      expect(container).toBeTruthy();
+      expect(container).toBeEmptyDOMElement();
     });
 
-    it("should render breadcrumb items", async () => {
-      const { getByText } = renderBreadcrumb(<Breadcrumb />, {
+    it("should not render breadcrumb when the number of items is lower than minItems", async () => {
+      const { container } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
+        resources: [{ name: "posts" }],
+        routerInitialEntries: ["/posts"],
+      });
+
+      expect(container).toBeEmptyDOMElement();
+    });
+
+    it("should render breadcrumb when the number of items is greater than or equal to minItems", async () => {
+      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
         resources: [{ name: "posts" }],
         routerInitialEntries: ["/posts/create"],
       });
 
-      getByText("Posts");
-      getByText("Create");
+      expect(getByText("Posts")).toBeInTheDocument();
+      expect(getByText("Create")).toBeInTheDocument();
     });
 
     it("should render breadcrumb items with link", async () => {
@@ -46,7 +55,8 @@ export const breadcrumbTests = (
         routerInitialEntries: ["/posts/create"],
       });
 
-      expect(container.querySelector("a")?.getAttribute("href")).toBe("/posts");
+      const link = container.querySelector("a");
+      expect(link).toHaveAttribute("href", "/posts");
     });
 
     it("should render breadcrumb items with resource icon", async () => {
@@ -60,7 +70,7 @@ export const breadcrumbTests = (
         routerInitialEntries: ["/posts/create"],
       });
 
-      getByTestId("resource-icon");
+      expect(getByTestId("resource-icon")).toBeInTheDocument();
     });
 
     it("should render breadcrumb items without resource icon", async () => {

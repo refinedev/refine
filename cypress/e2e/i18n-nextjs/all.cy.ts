@@ -72,4 +72,17 @@ describe("i18n-nextjs", () => {
       .get(".ant-table-thead > tr > :nth-child(7)")
       .contains("Aktionen");
   });
+
+  it("should translate notifications", () => {
+    cy.visit("/blog-posts/edit/123");
+
+    cy.interceptGETBlogPost();
+    cy.wait("@getBlogPost");
+
+    cy.get(".refine-delete-button").click();
+    cy.getAntdPopoverDeleteButton().click();
+    cy.get(".ant-notification-notice-description").contains(
+      "Successfully deleted Blog Posts",
+    );
+  });
 });

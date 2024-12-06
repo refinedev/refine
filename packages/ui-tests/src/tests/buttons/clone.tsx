@@ -25,6 +25,30 @@ export const buttonCloneTests = (
       expect(getByText("Clone").closest("button")).not.toBeDisabled();
     });
 
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <CloneButton disabled onClick={mockOnClick} />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("Clone").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("Clone").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(<CloneButton disabled hidden />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(queryByText("Clone")).not.toBeInTheDocument();
+    });
+
     it("should have the correct test-id", async () => {
       const { queryByTestId } = render(<CloneButton />, {
         wrapper: TestWrapper({}),
@@ -123,6 +147,22 @@ export const buttonCloneTests = (
               await waitFor(() =>
                 expect(getByText("Clone").closest("button")).not.toBeDisabled(),
               );
+            });
+
+            it("should respect the disabled prop even with access control enabled", async () => {
+              const { getByText } = render(
+                <CloneButton disabled>Clone</CloneButton>,
+                {
+                  wrapper: TestWrapper({
+                    accessControlProvider: {
+                      can: async () => ({ can: true }),
+                    },
+                  }),
+                },
+              );
+
+              const button = getByText("Clone").closest("button");
+              expect(button).toBeDisabled();
             });
           });
         });

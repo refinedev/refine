@@ -4,22 +4,23 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-4ob670-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root css-1r1z2f6-MuiPaper-root-MuiCard-root"
+      style="--Paper-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);"
     >
       <div
-        class="MuiCardHeader-root css-94f51d-MuiCardHeader-root"
+        class="MuiCardHeader-root css-1y6hc0w-MuiCardHeader-root"
       >
         <div
-          class="MuiCardHeader-avatar css-1ssile9-MuiCardHeader-avatar"
+          class="MuiCardHeader-avatar css-1r9wl67-MuiCardHeader-avatar"
         >
           <button
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-aixiz9-MuiButtonBase-root-MuiIconButton-root"
             tabindex="0"
             type="button"
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
               data-testid="ArrowBackIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -28,22 +29,19 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                 d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20z"
               />
             </svg>
-            <span
-              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-            />
           </button>
         </div>
         <div
-          class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          class="MuiCardHeader-content css-1jkp9bu-MuiCardHeader-content"
         >
           <h5
-            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-ag7rrr-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h5 refine-pageHeader-title css-16xl4zq-MuiTypography-root"
           >
             Show Post
           </h5>
         </div>
         <div
-          class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
+          class="MuiCardHeader-action css-116l9hl-MuiCardHeader-action"
         >
           <div
             class="MuiBox-root css-10egq61"
@@ -53,17 +51,17 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
               style="text-decoration: none;"
             >
               <button
-                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-list-button css-198eyrn-MuiButtonBase-root-MuiButton-root"
+                class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-list-button css-957s89-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 title=""
                 type="button"
               >
                 <span
-                  class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                  class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1jsm74t-MuiButton-startIcon"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
                     data-testid="ListOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -74,23 +72,20 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                   </svg>
                 </span>
                 Posts
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
               </button>
             </a>
             <button
-              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-refresh-button css-1xanul-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
+              class="MuiButtonBase-root MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiLoadingButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-refresh-button css-8h169x-MuiButtonBase-root-MuiButton-root-MuiLoadingButton-root"
               id=":r0:"
               tabindex="0"
               type="button"
             >
               <span
-                class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                class="MuiButton-icon MuiButton-startIcon MuiButton-iconSizeMedium css-1jsm74t-MuiButton-startIcon"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1umw9bq-MuiSvgIcon-root"
                   data-testid="RefreshOutlinedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -100,52 +95,53 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
                   />
                 </svg>
               </span>
-              Refresh
               <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
+                class="MuiLoadingButton-label css-27yv9x-MuiLoadingButton-label"
+              >
+                Refresh
+              </span>
             </button>
           </div>
         </div>
       </div>
       <div
-        class="MuiCardContent-root css-46bh2p-MuiCardContent-root"
+        class="MuiCardContent-root css-1lt5qva-MuiCardContent-root"
       >
         <div
           class="MuiStack-root css-hwnj0i-MuiStack-root"
         >
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Id
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             11
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Title
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             Nobis exercitationem officia quia est.
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Slug
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             provident-culpa-facere
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Content
           </p>
@@ -153,69 +149,69 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur voluptatibus molestias. Est nemo aut. Fugit aliquam enim eveniet veritatis. Magni et aut. Consequatur aliquid rerum vero. Quaerat debitis enim magnam. Dolorem est delectus architecto et accusantium. Velit quia vero. Aut necessitatibus quia at consequatur soluta accusantium.
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Hit
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             920,557
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Category
           </p>
           Numquam Saepe Illo
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             User
           </p>
           Eriberto Leannon
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Status
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             draft
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Status Color
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             orange
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Created At
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             04/02/2022
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Published At
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             08/10/2021
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Image
           </p>
@@ -228,7 +224,7 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             />
           </div>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Tags
           </p>
@@ -236,38 +232,38 @@ exports[`MuiShowInferencer should match the snapshot 1`] = `
             class="MuiStack-root css-niqf4j-MuiStack-root"
           >
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-gavykb-MuiChip-root"
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-5c51lm-MuiChip-root"
             >
               <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                class="MuiChip-label MuiChip-labelMedium css-1dybbl5-MuiChip-label"
               >
                 Error Eos Et
               </span>
             </div>
             <div
-              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-gavykb-MuiChip-root"
+              class="MuiChip-root MuiChip-filled MuiChip-sizeMedium MuiChip-colorDefault MuiChip-filledDefault css-5c51lm-MuiChip-root"
             >
               <span
-                class="MuiChip-label MuiChip-labelMedium css-6od3lo-MuiChip-label"
+                class="MuiChip-label MuiChip-labelMedium css-1dybbl5-MuiChip-label"
               >
                 Nobis Et Ut
               </span>
             </div>
           </div>
           <p
-            class="MuiTypography-root MuiTypography-body1 css-ndaqpv-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body1 css-lhsbas-MuiTypography-root"
           >
             Language
           </p>
           <p
-            class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 css-7ctihp-MuiTypography-root"
           >
             2
           </p>
         </div>
       </div>
       <div
-        class="MuiCardActions-root MuiCardActions-spacing css-op0xil-MuiCardActions-root"
+        class="MuiCardActions-root MuiCardActions-spacing css-1nor6r2-MuiCardActions-root"
       />
     </div>
   </div>

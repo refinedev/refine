@@ -15,10 +15,10 @@ export function MaterialUIAuth() {
         "react-router-dom": "^6.8.1",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.14.2",
+        "@mui/lab": "^6.0.0-beta.14",
+        "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
+        "@mui/x-data-grid": "^7.22.2",
       }}
       startRoute="/login"
       files={{

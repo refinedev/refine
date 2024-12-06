@@ -1162,6 +1162,37 @@ describe("useUpdate Hook [with params]", () => {
       );
     });
   });
+
+  it("should not throw error when id=''", async () => {
+    const updateMock = jest.fn();
+
+    const { result } = renderHook(() => useUpdate(), {
+      wrapper: TestWrapper({
+        dataProvider: {
+          default: {
+            ...MockJSONServer.default,
+            update: updateMock,
+          },
+        },
+        resources: [{ name: "posts" }],
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        id: "",
+        resource: "posts",
+        values: {},
+      });
+    });
+
+    await waitFor(() => {
+      expect(result.current.isError).toBeFalsy();
+      expect(updateMock).toHaveBeenCalledWith(
+        expect.objectContaining({ id: "", resource: "posts", variables: {} }),
+      );
+    });
+  });
 });
 
 describe("useUpdate Hook [with props]", () => {
@@ -2393,6 +2424,41 @@ describe("useUpdate Hook [with props]", () => {
         new Error(
           "[useUpdate]: `id` is not defined but is required in edit and clone actions",
         ),
+      );
+    });
+  });
+
+  it("should not throw error when id=''", async () => {
+    const updateMock = jest.fn();
+
+    const { result } = renderHook(
+      () =>
+        useUpdate({
+          id: "",
+          resource: "posts",
+          values: {},
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              update: updateMock,
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    act(() => {
+      result.current.mutate();
+    });
+
+    await waitFor(() => {
+      expect(result.current.isError).toBeFalsy();
+      expect(updateMock).toHaveBeenCalledWith(
+        expect.objectContaining({ id: "", resource: "posts", variables: {} }),
       );
     });
   });

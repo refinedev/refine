@@ -29,7 +29,10 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
     },
   );
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   const { variant, styles, ...commonProps } = rest;
 
@@ -39,7 +42,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -52,7 +55,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       {hideText ? (
         <ActionIcon
           title={title}
-          disabled={disabled}
+          disabled={isDisabled}
           aria-label={label}
           color="primary"
           {...(variant
@@ -68,7 +71,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          disabled={disabled}
+          disabled={isDisabled}
           leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.CreateButton}

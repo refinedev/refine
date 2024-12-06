@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 
 import { styled } from "@mui/material/styles";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import Tab from "@mui/material/Tab";
 import Card from "@mui/material/Card";
 import CardHeader from "@mui/material/CardHeader";
@@ -76,7 +76,7 @@ export function Dashboard() {
     <main>
       <Box mt={2} mb={5}>
         <Grid container columnGap={3} rowGap={3}>
-          <Grid item xs>
+          <Grid size="grow">
             <KpiCard
               title="Weekly Revenue"
               total={revenue?.data.total ?? 0}
@@ -86,7 +86,7 @@ export function Dashboard() {
               formatTarget={(value) => formatCurrency.format(value)}
             />
           </Grid>
-          <Grid item xs>
+          <Grid size="grow">
             <KpiCard
               title="Weekly Orders"
               total={orders?.data.total ?? 0}
@@ -94,7 +94,7 @@ export function Dashboard() {
               target={150}
             />
           </Grid>
-          <Grid item xs>
+          <Grid size="grow">
             <KpiCard
               title="New Customers"
               total={customers?.data.total ?? 0}

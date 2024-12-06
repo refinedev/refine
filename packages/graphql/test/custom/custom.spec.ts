@@ -72,9 +72,7 @@ describe("custom", () => {
         meta: { gqlQuery },
       });
 
-      expect(data).toEqual(
-        '[GraphQL] Cannot query field "blogPost" on type "Query".',
-      );
+      expect(data.blogPost).toBeInstanceOf(Object);
     });
   });
 
@@ -82,7 +80,7 @@ describe("custom", () => {
     it("throws error", () => {
       expect(
         dataProvider(client).custom({ url: "", method: "get" }),
-      ).rejects.toEqual(new Error("Operation is required."));
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
     });
   });
 });

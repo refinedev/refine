@@ -64,7 +64,7 @@ export const ProductList: FC = () => {
   return (
     <List>
       {/* highlight-next-line */}
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -232,6 +232,7 @@ const columns: GridColDef[] = [
   {
     field: "actions",
     headerName: "Actions",
+    display: "flex",
     renderCell: function render({ row }) {
         return (
           {/* highlight-next-line */}
@@ -246,7 +247,7 @@ export const ProductList: FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };
