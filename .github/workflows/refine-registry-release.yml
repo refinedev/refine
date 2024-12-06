@@ -53,10 +53,10 @@ jobs:
       - name: Test
         run: pnpm test:all
         if: ${{ env.RELEASE_ONLY != 'YES' }}
-      - name: Copy changesets for Community version
-        run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
-      - name: Convert major and minor changesets to patch
-        run: node ./.github/workflows/scripts/convert-to-patch.js
+      - name: Prepare Community Edition changesets
+        run: node ./.github/workflows/scripts/changesets/prepare-community-edition-changesets.js
+      - name: Add Enterprise Header to Changesets
+        run: node ./.github/workflows/scripts/changesets/add-enterprise-header.js
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
