@@ -69,3 +69,15 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+      - name: Merge main to next
+        env:
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          GIT_USER_EMAIL: bot@refine.dev
+          GIT_USER_NAME: Refine Community Bot
+        if: steps.changesets.outputs.published == 'true'
+        run: |
+          git config --global user.email "${{ env.GIT_USER_EMAIL }}"
+          git config --global user.name "${{ env.GIT_USER_NAME }}"
+          git checkout next
+          git merge main
+          git push origin next
