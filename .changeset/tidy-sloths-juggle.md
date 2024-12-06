@@ -1,5 +1,5 @@
 ---
-"@refinedev/nextjs-router": Minor Update
+"@refinedev/nextjs-router": minor
 ---
 
 **Feature:** Added support for Next.js 15. #6430
@@ -10,7 +10,7 @@ To create a new example project with Next.js 15, run the following command:
 npm create refine-app@latest -- --example with-nextjs-headless
 ```
 
-You can find the source code in the [examples/with-nextjs-headless](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-headless) directory.
+You can find the source code in the [examples/with-nextjs-headless](https://github.com/refinedev/refine/tree/main/examples/with-nextjs-headless) directory.
 
 > 🚨 While `@refinedev/core` and `@refinedev/nextjs-router` do not introduce breaking changes, upgrading to Next.js 15 requires your project to be compatible with React 19. Please refer to the migration guides below:
 >

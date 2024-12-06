@@ -28,8 +28,8 @@
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
     "@types/node": "^18.16.2",
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
     "eslint-config-next": "15.0.3",
@@ -37,9 +37,5 @@
   },
   "engines": {
     "node": ">=18.0.0"
-  },
-  "overrides": {
-    "@types/react": "npm:types-react@rc",
-    "@types/react-dom": "npm:types-react-dom@rc"
   }
 }
