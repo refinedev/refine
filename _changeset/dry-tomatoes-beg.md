@@ -1,6 +1,8 @@
 ---
-"@refinedev/core": minor
+"@refinedev/core": patch
 ---
+
+# Refine Community Edition Release
 
 This PR fixes an issue where the ListButton component doesn't include a query filter in the navigation URL.
 

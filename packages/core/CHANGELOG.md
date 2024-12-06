@@ -1,5 +1,13 @@
 # @refinedev/core
 
+## 4.58.0
+
+### Minor Changes
+
+- [#6558](https://github.com/refinedev/refine/pull/6558) [`42d730aa2908003cfb0dcf0c57e9b70793c88ddc`](https://github.com/refinedev/refine/commit/42d730aa2908003cfb0dcf0c57e9b70793c88ddc) Thanks [@OmkarBansod02](https://github.com/OmkarBansod02)! - This PR fixes an issue where the ListButton component doesn't include a query filter in the navigation URL.
+
+  [Resolves #6528](https://github.com/refinedev/refine/issues/6528)
+
 ## 4.57.1
 
 ### Patch Changes

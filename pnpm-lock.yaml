@@ -122,7 +122,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -189,7 +189,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -241,7 +241,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -311,7 +311,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -423,7 +423,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -475,7 +475,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -530,7 +530,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -588,7 +588,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -643,7 +643,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -695,7 +695,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -750,7 +750,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -811,7 +811,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -875,7 +875,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -945,7 +945,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -1000,7 +1000,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -1052,7 +1052,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -1110,7 +1110,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -1162,7 +1162,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -1229,7 +1229,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -1299,7 +1299,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -1369,7 +1369,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/nextjs-router':
         specifier: ^6.1.1
@@ -1476,7 +1476,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -1570,7 +1570,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -1634,7 +1634,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.11
@@ -1704,7 +1704,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -1789,7 +1789,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -1868,7 +1868,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/nextjs-router':
         specifier: ^6.1.1
@@ -1932,7 +1932,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -1999,7 +1999,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2099,7 +2099,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -2166,7 +2166,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -2275,7 +2275,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2363,7 +2363,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2445,7 +2445,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -2509,7 +2509,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2588,7 +2588,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2658,7 +2658,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: ^1.3.13
@@ -2737,7 +2737,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2819,7 +2819,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -2907,7 +2907,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -3007,7 +3007,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -3110,7 +3110,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: ^1.3.13
@@ -3213,7 +3213,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -3292,7 +3292,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -3389,7 +3389,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3462,7 +3462,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -3562,7 +3562,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3623,7 +3623,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -3711,7 +3711,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3763,7 +3763,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: 1.3.13
@@ -3815,7 +3815,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3858,7 +3858,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3901,7 +3901,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3944,7 +3944,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -3984,7 +3984,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4036,7 +4036,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4091,7 +4091,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4140,7 +4140,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4192,7 +4192,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4241,7 +4241,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4296,7 +4296,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -4363,7 +4363,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -4433,7 +4433,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -4488,7 +4488,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4540,7 +4540,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4592,7 +4592,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4644,7 +4644,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4699,7 +4699,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/graphql':
         specifier: ^7.1.1
@@ -4769,7 +4769,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/hasura':
         specifier: ^6.6.9
@@ -4839,7 +4839,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -4891,7 +4891,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/nestjs-query':
         specifier: ^1.3.4
@@ -4964,7 +4964,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.11
@@ -5016,7 +5016,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -5077,7 +5077,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5147,7 +5147,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5208,7 +5208,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5260,7 +5260,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5312,7 +5312,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5364,7 +5364,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5416,7 +5416,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5480,7 +5480,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -5556,7 +5556,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: 1.3.13
@@ -5656,7 +5656,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/nextjs-router':
         specifier: ^6.1.1
@@ -5741,7 +5741,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: 1.3.13
@@ -5850,7 +5850,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5902,7 +5902,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -5954,7 +5954,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -6003,7 +6003,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -6055,7 +6055,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -6104,7 +6104,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -6159,7 +6159,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -6217,7 +6217,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -6275,7 +6275,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -6333,7 +6333,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -6385,7 +6385,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -6455,7 +6455,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -6525,7 +6525,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -6598,7 +6598,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -6668,7 +6668,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -6741,7 +6741,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -6814,7 +6814,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -6884,7 +6884,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -6951,7 +6951,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -7018,7 +7018,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -7085,7 +7085,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -7137,7 +7137,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -7186,7 +7186,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -7235,7 +7235,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -7287,7 +7287,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -7348,7 +7348,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -7418,7 +7418,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -7482,7 +7482,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -7546,7 +7546,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -7613,7 +7613,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -7668,7 +7668,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -7753,7 +7753,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -7847,7 +7847,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/hasura':
         specifier: ^6.6.9
@@ -7920,7 +7920,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -8017,7 +8017,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -8120,7 +8120,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -8208,7 +8208,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8260,7 +8260,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8312,7 +8312,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -8385,7 +8385,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8437,7 +8437,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8507,7 +8507,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -8610,7 +8610,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8662,7 +8662,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8717,7 +8717,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8772,7 +8772,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -8857,7 +8857,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -8936,7 +8936,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -8997,7 +8997,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9055,7 +9055,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9110,7 +9110,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -9177,7 +9177,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -9247,7 +9247,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -9302,7 +9302,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       react:
         specifier: ^18.0.0
@@ -9366,7 +9366,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/medusa':
         specifier: ^3.0.6
@@ -9499,7 +9499,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9554,7 +9554,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9609,7 +9609,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9661,7 +9661,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9710,7 +9710,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9759,7 +9759,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9814,7 +9814,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -9872,7 +9872,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -9927,7 +9927,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -9991,7 +9991,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -10061,7 +10061,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -10128,7 +10128,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10204,7 +10204,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10268,7 +10268,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10335,7 +10335,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10402,7 +10402,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10466,7 +10466,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10530,7 +10530,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -10582,7 +10582,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -10640,7 +10640,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -10692,7 +10692,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -10756,7 +10756,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -10826,7 +10826,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -10908,7 +10908,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -10996,7 +10996,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -11063,7 +11063,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -11118,7 +11118,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -11185,7 +11185,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -11255,7 +11255,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -11313,7 +11313,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -11383,7 +11383,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -11456,7 +11456,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -11541,7 +11541,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -11632,7 +11632,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -11705,7 +11705,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -11754,7 +11754,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -11809,7 +11809,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -11870,7 +11870,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -11943,7 +11943,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -12016,7 +12016,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mantine':
         specifier: ^2.35.0
@@ -12086,7 +12086,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -12153,7 +12153,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
@@ -12205,7 +12205,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -12260,7 +12260,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -12309,7 +12309,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -12358,7 +12358,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -12449,7 +12449,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -12501,7 +12501,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -12556,7 +12556,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -12632,7 +12632,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -12684,7 +12684,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -12757,7 +12757,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/devtools':
         specifier: ^1.2.11
@@ -12827,7 +12827,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -12888,7 +12888,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -12946,7 +12946,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/remix-router':
         specifier: ^3.0.7
@@ -13004,7 +13004,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -13077,7 +13077,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -13156,7 +13156,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^5.0.0
@@ -13220,7 +13220,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^4.9.1
@@ -13287,7 +13287,7 @@ importers:
         specifier: ^2.16.41
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^4.57.1
+        specifier: ^4.58.0
         version: link:../../packages/core
       '@refinedev/react-router-v6':
         specifier: ^4.6.1
@@ -13404,7 +13404,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.20.2)
       '@refinedev/core':
-        specifier: 4.57.1
+        specifier: 4.58.0
         version: link:../core
       '@types/jest':
         specifier: ^29.2.4

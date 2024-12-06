@@ -16,7 +16,7 @@
     "@radix-ui/react-dropdown-menu": "^2.0.1",
     "@react-spring/web": "^9.4.1",
     "@refinedev/cli": "^2.16.41",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^4.58.0",
     "@refinedev/medusa": "^3.0.6",
     "@refinedev/nextjs-router": "^6.1.1",
     "@refinedev/react-hook-form": "^4.9.1",
