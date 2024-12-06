@@ -78,7 +78,7 @@ import {
 } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
 import routerBindings from "@refinedev/react-router";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { ProductList } from "./pages/products/list";
 

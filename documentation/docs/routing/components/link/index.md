@@ -75,9 +75,9 @@ import { Link } from "@refinedev/core";
 
 const MyComponent = () => {
   return (
-    // Omit 'to' prop from LinkProps (required by react-router-dom) since we use the 'go' prop
+    // Omit 'to' prop from LinkProps (required by react-router) since we use the 'go' prop
     <Link<Omit<LinkProps, "to">>
-      // Props from "react-router-dom"
+      // Props from "react-router"
       // highlight-start
       replace={true}
       unstable_viewTransition={true}

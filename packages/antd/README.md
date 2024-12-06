@@ -72,7 +72,7 @@ import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerBindings from "@refinedev/react-router";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import "antd/dist/reset.css";
 

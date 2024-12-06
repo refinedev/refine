@@ -149,7 +149,7 @@ import {
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 

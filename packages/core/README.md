@@ -76,7 +76,7 @@ import { Refine, useMany } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
 

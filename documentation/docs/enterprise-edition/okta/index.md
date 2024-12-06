@@ -24,7 +24,7 @@ This package is included in Refine's Enterprise Edition. To learn more about Ref
 
 First, you'll need to create an `OktaAuth` instance, then use the `createAuthProvider` method to create an auth provider. You can then pass the auth provider to the [`<Refine />`](/docs/core/refine-component) component.
 
-The example below uses [`react-router-dom`](/docs/routing/integrations/react-router) for routing, but all [router integrations](/docs/guides-concepts/routing) of Refine will work the same way.
+The example below uses [`react-router`](/docs/routing/integrations/react-router) for routing, but all [router integrations](/docs/guides-concepts/routing) of Refine will work the same way.
 
 ```tsx title="App.tsx"
 import React from "react";

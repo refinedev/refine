@@ -1094,7 +1094,7 @@
   import {
     CatchAllNavigate,
   } from "@refinedev/react-router";
-  import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+  import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
   const App = () => {
     return (
