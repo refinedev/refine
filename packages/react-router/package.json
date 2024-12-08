@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-router",
-  "version": "4.6.0",
+  "version": "0.1.0",
   "private": false,
   "description": "React Router support for Refine, with full routing capabilities.",
   "repository": {

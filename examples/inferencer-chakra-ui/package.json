@@ -29,7 +29,7 @@
     "@refinedev/inferencer": "^4.7.1",
     "@refinedev/kbar": "^1.3.12",
     "@refinedev/react-hook-form": "^4.9.1",
-    "@refinedev/react-router": "^4.6.0",
+    "@refinedev/react-router": "^0.1.0",
     "@refinedev/react-table": "^5.6.13",
     "@refinedev/simple-rest": "^5.0.8",
     "@tabler/icons-react": "^3.1.0",

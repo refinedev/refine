@@ -32,7 +32,7 @@
     "@refinedev/devtools": "^1.2.10",
     "@refinedev/mui": "^5.22.0",
     "@refinedev/react-hook-form": "^4.9.1",
-    "@refinedev/react-router": "^4.6.0",
+    "@refinedev/react-router": "^0.1.0",
     "@refinedev/simple-rest": "^5.0.8",
     "@uiw/react-md-editor": "^3.19.5",
     "react": "^18.0.0",
