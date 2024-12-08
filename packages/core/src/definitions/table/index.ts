@@ -238,3 +238,61 @@ export const mergeSorters = (
 
   return merged;
 };
+
+export const isEqualFilters = (
+  filter1: CrudFilter[] | undefined,
+  filter2: CrudFilter[] | undefined,
+): boolean => {
+  if (!filter1 || !filter2) return false;
+  if (filter1.length !== filter2.length) return false;
+
+  const isEqual = filter1.every((f1) => {
+    // same fields/keys and operators
+    const isEqualParamsF2 = filter2.find((f2) => compareFilters(f1, f2));
+
+    if (!isEqualParamsF2) return false;
+
+    const filter1Value = f1.value;
+    const filter2Value = isEqualParamsF2.value;
+
+    // if they both have values, compare
+    if (filter1Value && filter2Value) {
+      if (Array.isArray(filter1Value) && Array.isArray(filter2Value)) {
+        if (filter1Value.length === 0 && filter2Value.length === 0) {
+          return true;
+        }
+
+        // if array of primitives, compare
+        if (
+          filter1Value.every((v) => typeof v !== "object") &&
+          filter2Value.every((v) => typeof v !== "object")
+        ) {
+          return (
+            filter1Value.length === filter2Value.length &&
+            filter1Value.every((v) => filter2Value.includes(v))
+          );
+        }
+
+        // recursion because of type def. ConditionalFilter["value"]
+        return isEqualFilters(filter1Value, filter2Value);
+      }
+
+      // compare primitives (string, number, ...null?)
+      // because of type def. LogicalFilter["value"]
+      return filter1Value === filter2Value;
+    }
+
+    // if either is undefined, it means it was initialized,
+    // so logically equal.
+    if (
+      (filter1Value && filter2Value === undefined) ||
+      (filter1Value === undefined && filter2Value)
+    ) {
+      return true;
+    }
+
+    return filter1Value === filter2Value;
+  });
+
+  return isEqual;
+};

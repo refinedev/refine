@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import type {
   QueryObserverResult,
@@ -11,6 +11,7 @@ import warnOnce from "warn-once";
 
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
+  isEqualFilters,
   mergeFilters,
   mergeSorters,
   parseTableParams,
@@ -387,6 +388,9 @@ export function useTable<
   const [current, setCurrent] = useState<number>(defaultCurrent);
   const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
+  const [urlUpdated, setUrlUpdated] = useState(false);
+  const lastSyncedUrlFilters = useRef<CrudFilter[] | undefined>();
+
   const getCurrentQueryParams = (): object => {
     if (routerType === "new") {
       // We get QueryString parameters that are uncontrolled by refine.
@@ -440,61 +444,6 @@ export function useTable<
 
     return `${pathname ?? ""}?${stringifyParams ?? ""}`;
   };
-
-  // watch URL filters, sorters to update internal filters, sorters
-  useEffect(() => {
-    if (syncWithLocation) {
-      const currentFilters = filters;
-      const currentUrlFilters = parsedParams?.params?.filters;
-      const initialFilters = setInitialFilters(
-        preferredPermanentFilters,
-        defaultFilter ?? [],
-      );
-
-      const currentSorters = sorters;
-      const currentUrlSorters = parsedParams.params?.sorters;
-      const initialSorters = setInitialSorters(
-        preferredPermanentSorters,
-        defaultSorter ?? [],
-      );
-
-      let newFilters: CrudFilter[] = [];
-      let newSorters: CrudSort[] = [];
-
-      const filtersAreEqual = isEqual(currentUrlFilters, currentFilters);
-      const sortersAreEqual = isEqual(currentUrlSorters, currentSorters);
-
-      if (!filtersAreEqual) {
-        // fallback to initial
-        if (!currentUrlFilters || currentUrlFilters.length === 0) {
-          newFilters = initialFilters;
-        } else {
-          // since they aren't equal, merge the two
-          newFilters = mergeFilters(currentUrlFilters, currentFilters);
-        }
-
-        setFilters(newFilters);
-      }
-
-      if (!sortersAreEqual) {
-        // fallback to initial
-        if (!currentUrlSorters || currentUrlSorters.length === 0) {
-          newSorters = initialSorters;
-        } else {
-          // since they aren't equal, merge the two
-          newSorters = mergeSorters(currentUrlSorters, currentSorters);
-        }
-
-        setSorters(newSorters);
-      }
-    }
-  }, [
-    parsedParams,
-    filters,
-    preferredPermanentFilters,
-    sorters,
-    preferredPermanentSorters,
-  ]);
 
   useEffect(() => {
     if (search === "") {
@@ -553,8 +502,85 @@ export function useTable<
           shallow: true,
         });
       }
+
+      setUrlUpdated(true);
     }
   }, [syncWithLocation, current, pageSize, sorters, filters]);
+
+  // update lastSynched url filters
+  useEffect(() => {
+    if (urlUpdated) {
+      lastSyncedUrlFilters.current = differenceWith(
+        filters,
+        preferredPermanentFilters,
+        isEqual,
+      );
+
+      // reset
+      setUrlUpdated(false);
+    }
+  }, [urlUpdated, filters]);
+
+  // watch URL filters, sorters to update internal filters, sorters
+  useEffect(() => {
+    if (syncWithLocation) {
+      const currentFilters = filters;
+      const currentUrlFilters = parsedParams?.params?.filters;
+      const initialFilters = setInitialFilters(
+        preferredPermanentFilters,
+        defaultFilter ?? [],
+      );
+
+      const filtersAreEqual = isEqualFilters(currentUrlFilters, currentFilters);
+      const isInternalSyncWithUrl = isEqualFilters(
+        currentFilters,
+        lastSyncedUrlFilters.current,
+      );
+      let newFilters: CrudFilter[] = [];
+
+      // const currentSorters = sorters;
+      // const currentUrlSorters = parsedParams.params?.sorters;
+      // const initialSorters = setInitialSorters(
+      //   preferredPermanentSorters,
+      //   defaultSorter ?? [],
+      // );
+
+      // const sortersAreEqual = isEqual(currentUrlSorters, currentSorters);
+      // let newSorters: CrudSort[] = [];
+
+      // wait for internal state to update url state
+      if (!isInternalSyncWithUrl) return;
+
+      if (!filtersAreEqual) {
+        // fallback to initial
+        if (!currentUrlFilters || currentUrlFilters.length === 0) {
+          newFilters = initialFilters;
+        } else {
+          // since they aren't equal, merge the two
+          newFilters = mergeFilters(currentUrlFilters, currentFilters);
+        }
+
+        setFilters(newFilters);
+      }
+
+      // if (!sortersAreEqual) {
+      //   // fallback to initial
+      //   if (!currentUrlSorters || currentUrlSorters.length === 0) {
+      //     newSorters = initialSorters;
+      //   } else {
+      //     // since they aren't equal, merge the two
+      //     newSorters = mergeSorters(currentUrlSorters, currentSorters);
+      //   }
+
+      //   setSorters(newSorters);
+      // }
+    }
+  }, [
+    parsedParams,
+    filters,
+    lastSyncedUrlFilters.current,
+    // sorters,
+  ]);
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
