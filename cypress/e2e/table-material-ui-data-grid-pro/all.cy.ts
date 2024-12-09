@@ -82,6 +82,8 @@ describe("table-material-ui-data-grid-pro", () => {
     );
     // click the filter menu item
     cy.contains("Filter").click();
+    // wait for the filter dialog to be visible
+    cy.get(".MuiDataGrid-panel").should("be.visible");
     // open select menu
     cy.get(".MuiFormLabel-root").last().siblings().first().click();
     // select the filter value
