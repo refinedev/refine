@@ -210,7 +210,6 @@ This prop is used to customize the styles and attributes of the inner Box that c
 ```tsx
 <ThemedLayoutV2
   // highlight-next-line
-  initialSiderCollapsed={true}
   childrenBoxProps={{
     sx: { bgColor: "purple" },
   }}
@@ -226,7 +225,6 @@ This prop is used to customize the styles and attributes of the outer container 
 ```tsx
 <ThemedLayoutV2
   // highlight-next-line
-  initialSiderCollapsed={true}
   containerBoxProps={{
     sx: { bgColor: "cyan" },
   }}

@@ -1,5 +1,4 @@
 ---
-"@refinedev/ui-types": minor
 "@refinedev/mui": minor
 ---
 
