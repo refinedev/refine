@@ -48,8 +48,6 @@ type DataGridPropsType = Required<
     | "onSortModelChange"
     | "filterMode"
     | "onFilterModelChange"
-    | "sx"
-    | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
   >
@@ -324,7 +322,6 @@ export function useDataGrid<
     tableQueryResult,
     tableQuery,
     dataGridProps: {
-      disableRowSelectionOnClick: true,
       rows: data?.data || [],
       loading: liveMode === "auto" ? isLoading : !isFetched,
       rowCount: data?.total || 0,
@@ -351,22 +348,6 @@ export function useDataGrid<
         if (isStateChanged) {
           setColumnsType(newColumnsTypes);
         }
-      },
-      sx: {
-        border: "none",
-        "& .MuiDataGrid-columnHeaders": {
-          background: darken(theme.palette.background.paper, 0.05),
-          borderBottom: `1px solid ${darken(
-            theme.palette.background.paper,
-            0.1,
-          )}`,
-        },
-        "& .MuiDataGrid-cell": {
-          borderBottom: `1px solid ${darken(
-            theme.palette.background.paper,
-            0.05,
-          )}`,
-        },
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
     },
