@@ -219,6 +219,33 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 </ThemedLayoutV2>
 ```
 
+### `onSiderCollapsed`
+
+Will be triggered when the [`<ThemedSiderV2>`][themed-sider] component's `collapsed` state changes.
+
+Can be used to persist collapsed state on the localstorage. Then you can use localStorage item to decide if sider should be collapsed initially or not.
+
+Here's an example of how to use the `onSiderCollapsed` prop:
+
+```tsx
+const MyLayout = () => {
+  const onSiderCollapse = (collapsed: boolean) => {
+    localStorage.setItem("siderCollapsed", collapsed);
+  };
+
+  const initialSiderCollapsed = Boolean(localStorage.getItem("siderCollapsed"));
+
+  return (
+    <ThemedLayoutV2
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapse}
+    >
+      {/* ... */}
+    </ThemedLayoutV2>
+  );
+};
+```
+
 ### Header
 
 In `<ThemedLayoutV2>`, the header section is rendered using the [`<ThemedHeader>`][themed-header] component by default. It uses the [`useGetIdentity`](/docs/authentication/hooks/use-get-identity) hook to display the user's name and avatar on the right side of the header. However, if desired, it's possible to replace the default [`<ThemedHeader>`][themed-header] component by passing a custom component to the `Header` prop.

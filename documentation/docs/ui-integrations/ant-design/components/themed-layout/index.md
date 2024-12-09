@@ -239,18 +239,29 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 
 ### `onSiderCollapsed`
 
-The `onSiderCollapsed` prop allows you to handle the collapsed state of the [`<ThemedSiderV2>`][themed-sider] component. It triggers a callback function whenever the sider is collapsed or expanded.
+Will be triggered when the [`<ThemedSiderV2>`][themed-sider] component's `collapsed` state changes.
 
-Here’s an example of how to use the `onSiderCollapsed` prop to log the collapsed state:
+Can be used to persist collapsed state on the localstorage. Then you can use localStorage item to decide if sider should be collapsed initially or not.
+
+Here's an example of how to use the `onSiderCollapsed` prop:
 
 ```tsx
-const handleSiderCollapse = (collapsed: boolean) => {
-  console.log("Sider collapsed:", collapsed);
-};
+const MyLayout = () => {
+  const onSiderCollapse = (collapsed: boolean) => {
+    localStorage.setItem("siderCollapsed", collapsed);
+  };
 
-<ThemedLayoutV2 onSiderCollapsed={handleSiderCollapse}>
-  {/* ... */}
-</ThemedLayoutV2>;
+  const initialSiderCollapsed = Boolean(localStorage.getItem("siderCollapsed"));
+
+  return (
+    <ThemedLayoutV2
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapse}
+    >
+      {/* ... */}
+    </ThemedLayoutV2>
+  );
+};
 ```
 
 ### Header
