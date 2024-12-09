@@ -30,6 +30,7 @@ export const ThemedLayoutV2: React.FC<ExtendedRefineThemedLayoutV2Props> = ({
   OffLayoutArea,
   children,
   initialSiderCollapsed,
+  onSiderCollapsed,
   childrenBoxProps = {},
   containerBoxProps = {},
 }) => {
@@ -40,7 +41,10 @@ export const ThemedLayoutV2: React.FC<ExtendedRefineThemedLayoutV2Props> = ({
   const { sx: containerSx, ...restContainerProps } = containerBoxProps;
 
   return (
-    <ThemedLayoutContextProvider initialSiderCollapsed={initialSiderCollapsed}>
+    <ThemedLayoutContextProvider
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapsed}
+    >
       <Box
         sx={{ display: "flex", flexDirection: "row", ...containerSx }}
         {...restContainerProps}
