@@ -23,7 +23,8 @@
     "next": "^15.0.4",
     "next-intl": "^3.25.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.43.5"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
