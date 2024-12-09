@@ -14,6 +14,7 @@
 "@refinedev/react-hook-form": patch
 "@refinedev/react-table": patch
 "@refinedev/ui-tests": patch
+"@refinedev/inferencer": patch
 ---
 
 feat: React Router v7 support added.
