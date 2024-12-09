@@ -47,20 +47,22 @@ export const ThemedLayoutV2: React.FC<ExtendedRefineThemedLayoutV2Props> = ({
       >
         <SiderToRender Title={Title} />
         <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-            minWidth: "1px",
-            minHeight: "1px",
-          }}
+          sx={[
+            {
+              display: "flex",
+              flexDirection: "column",
+              flex: 1,
+              minWidth: "1px",
+              minHeight: "1px",
+            },
+          ]}
         >
           <HeaderToRender />
           <Box
             component="main"
             sx={{
-              flexGrow: 1,
               p: { xs: 1, md: 2, lg: 3 },
+              flexGrow: 1,
               bgcolor: (theme) => theme.palette.background.default,
               ...childrenSx,
             }}

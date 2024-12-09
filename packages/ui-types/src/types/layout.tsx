@@ -81,11 +81,9 @@ export type RefineThemedLayoutV2Props = {
    */
   initialSiderCollapsed?: boolean;
 } & RefineLayoutLayoutProps;
-
 export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
 };
-
 export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
   /**
    * Whether the header is sticky or not.
