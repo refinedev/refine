@@ -6,3 +6,4 @@ packages:
   - "!documentation"
   - "!examples/blog-sveltekit-crud"
   - "!examples/blog-react-aria"
+  - "!with-nextjs-headless"
