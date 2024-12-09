@@ -203,6 +203,36 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
+### childrenBoxProps
+
+This prop is used to customize the styles and attributes of the inner Box that contains the main layout content. It accepts all properties of BoxProps, including the `sx` property for inline styling.
+
+```tsx
+<ThemedLayoutV2
+  // highlight-next-line
+  childrenBoxProps={{
+    sx: { bgColor: "purple" },
+  }}
+>
+  {/* ... */}
+</ThemedLayoutV2>
+```
+
+### containerBoxProps
+
+This prop is used to customize the styles and attributes of the outer container Box wrapping the layout. It accepts all properties of BoxProps, including the `sx` property for inline styling
+
+```tsx
+<ThemedLayoutV2
+  // highlight-next-line
+  containerBoxProps={{
+    sx: { bgColor: "cyan" },
+  }}
+>
+  {/* ... */}
+</ThemedLayoutV2>
+```
+
 ### initialSiderCollapsed
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component. If it is `true`, It will be collapsed by default.

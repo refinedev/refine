@@ -6,7 +6,6 @@ import BorderAllOutlinedIcon from "@mui/icons-material/BorderAllOutlined";
 import { useLocation } from "react-router-dom";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
-import Paper from "@mui/material/Paper";
 import {
   ProductListTable,
   ProductListCard,
@@ -95,9 +94,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
         ]}
       >
         {view === "table" && (
-          <Paper>
-            <ProductListTable {...dataGrid} categories={categories} />
-          </Paper>
+          <ProductListTable {...dataGrid} categories={categories} />
         )}
         {view === "card" && (
           <ProductListCard {...dataGrid} categories={categories} />

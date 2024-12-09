@@ -1,5 +1,6 @@
 import { useGetIdentity, useList } from "@refinedev/core";
-import { Box, Grid, Skeleton, Typography } from "@mui/material";
+import { Box, Skeleton, Typography } from "@mui/material";
+import Grid from "@mui/material/Grid2";
 import { AnnualLeaveIcon, CasualLeaveIcon, SickLeaveIcon } from "@/icons";
 import {
   type Employee,
@@ -71,17 +72,32 @@ export const TimeOffLeaveCards = () => {
 
   return (
     <Grid container spacing="24px">
-      <Grid item xs={12} sm={4}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 4,
+        }}
+      >
         <Card
           loading={loading}
           type="annual"
           value={employee?.availableAnnualLeaveDays || 0}
         />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 4,
+        }}
+      >
         <Card loading={loading} type="sick" value={timeOffsSick?.total || 0} />
       </Grid>
-      <Grid item xs={12} sm={4}>
+      <Grid
+        size={{
+          xs: 12,
+          sm: 4,
+        }}
+      >
         <Card
           loading={loading}
           type="casual"

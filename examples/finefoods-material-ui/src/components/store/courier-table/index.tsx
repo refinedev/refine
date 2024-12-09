@@ -40,6 +40,7 @@ export const StoreCourierTable = (props: Props) => {
       {
         field: "name",
         headerName: t("couriers.couriers"),
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <Stack alignItems="center" direction="row" spacing={2}>
@@ -63,6 +64,7 @@ export const StoreCourierTable = (props: Props) => {
         field: "rating",
         headerName: t("couriers.fields.rating.label"),
         width: 172,
+        display: "flex",
         renderCell: function render({ row }) {
           return <CourierRating courier={row} />;
         },
@@ -71,6 +73,7 @@ export const StoreCourierTable = (props: Props) => {
         field: "status",
         headerName: t("couriers.fields.status.label"),
         width: 140,
+        display: "flex",
         renderCell: function render({ row }) {
           return <CourierStatus value={row.status} />;
         },
@@ -83,9 +86,8 @@ export const StoreCourierTable = (props: Props) => {
     <DataGrid
       {...dataGridProps}
       columns={columns}
-      autoHeight
       pageSizeOptions={[10, 20, 50, 100]}
-      density="comfortable"
+      initialState={{ density: "comfortable" }}
       sx={{
         "& .MuiDataGrid-cell:hover": {
           cursor: "pointer",

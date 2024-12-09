@@ -40,6 +40,7 @@ export const BlogPostList = () => {
         field: "content",
         headerName: "Content",
         minWidth: 250,
+        display: "flex",
         renderCell: function render({ value }) {
           return <MarkdownField value={`${(value ?? "").slice(0, 80)}...`} />;
         },
@@ -47,12 +48,13 @@ export const BlogPostList = () => {
       {
         field: "category",
         headerName: "Category",
-        valueGetter: ({ row }) => {
+        valueGetter: (_, row) => {
           const value = row?.category?.id;
 
           return value;
         },
         minWidth: 300,
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryIsLoading ? (
             <>Loading...</>
@@ -70,6 +72,7 @@ export const BlogPostList = () => {
         field: "createdAt",
         headerName: "Created At",
         minWidth: 250,
+        display: "flex",
         renderCell: function render({ value }) {
           return <DateField value={value} />;
         },
@@ -77,6 +80,7 @@ export const BlogPostList = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -98,7 +102,7 @@ export const BlogPostList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

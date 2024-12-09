@@ -46,7 +46,7 @@ const PostsList: React.FC = () => {
       }
       // highlight-end
     >
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

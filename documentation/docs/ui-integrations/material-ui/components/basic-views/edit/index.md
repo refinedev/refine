@@ -46,7 +46,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -60,7 +62,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -468,7 +472,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -482,7 +488,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -1246,7 +1254,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -1260,7 +1270,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -1371,6 +1383,7 @@ const SampleList = () => {
           return value;
         },
         minWidth: 300,
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryIsLoading ? (
             <>Loading...</>
@@ -1383,6 +1396,7 @@ const SampleList = () => {
         field: "createdAt",
         headerName: "Created At",
         minWidth: 250,
+        display: "flex",
         renderCell: function render({ value }) {
           return <RefineMui.DateField value={value} />;
         },
@@ -1390,6 +1404,7 @@ const SampleList = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -1407,7 +1422,7 @@ const SampleList = () => {
 
   return (
     <RefineMui.List>
-      <MuiXDataGrid.DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <MuiXDataGrid.DataGrid {...dataGridProps} columns={columns} />
     </RefineMui.List>
   );
 };
