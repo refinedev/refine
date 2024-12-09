@@ -80,6 +80,11 @@ export type RefineThemedLayoutV2Props = {
    * Whether the sider is collapsed or not by default.
    */
   initialSiderCollapsed?: boolean;
+
+  /**
+   * Callback function triggered when the sider's collapsed state changes.
+   */
+  onSiderCollapsed?: (collapsed: boolean) => void;
 } & RefineLayoutLayoutProps;
 export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
