@@ -14,7 +14,7 @@ import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "../../../packages/react-router/dist/index.mjs";
+} from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { useTranslation } from "react-i18next";
 import MopedOutlined from "@mui/icons-material/MopedOutlined";
@@ -58,6 +58,7 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
+      <GitHubBanner />
       <KBarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
