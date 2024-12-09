@@ -19,8 +19,8 @@ export default function UsageReactRouterDom() {
         "@mui/system": "latest",
         "@mui/x-data-grid": "^7.22.2",
         "react-hook-form": "^7.43.5",
-        "react-router-dom": "^6.8.1",
-        "@refinedev/react-router-v6": "latest",
+        "react-router": "^7.0.2",
+        "@refinedev/react-router": "latest",
       }}
       startRoute="/products"
       files={{
@@ -94,8 +94,8 @@ export * from "./create";
 const AppTsxCode = /* jsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import {
   ThemedLayoutV2,

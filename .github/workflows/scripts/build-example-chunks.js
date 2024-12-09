@@ -5,7 +5,12 @@ const path = require("path");
 const { execSync } = require("child_process");
 
 const EXAMPLES_DIR = "./examples";
-const ignoredRegexes = [/^monorepo-/, /^with-nx/, /with-nextjs-headless/];
+const ignoredRegexes = [
+  /^monorepo-/,
+  /^with-nx/,
+  /with-nextjs-headless/,
+  /^blog-/,
+];
 const CHUNK_COUNT = Number(process.env.CHUNKS ? process.env.CHUNKS : 1);
 const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "main";
 const BUILD_ALL_EXAMPLES = process.env.BUILD_ALL_EXAMPLES === "true";

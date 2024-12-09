@@ -1568,10 +1568,7 @@ Default paths are:
 By default [`<DocumentTitleHandler/>`](#documenttitlehandler) component will generate the document title based on current resource and action with the "Refine" suffix. You can customize the title generation process by providing a custom `handler` function.
 
 ```tsx
-import {
-  BrowserRouter,
-  DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+import { BrowserRouter, DocumentTitleHandler } from "@refinedev/react-router";
 import { Refine } from "@refinedev/core";
 
 const App = () => {

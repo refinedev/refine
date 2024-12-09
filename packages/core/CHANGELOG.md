@@ -1093,8 +1093,8 @@
   import { Refine, Authenticated, AuthPage } from "@refinedev/core";
   import {
     CatchAllNavigate,
-  } from "@refinedev/react-router-v6";
-  import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+  } from "@refinedev/react-router";
+  import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
   const App = () => {
     return (

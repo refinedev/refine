@@ -7,7 +7,7 @@ import {
   ShopOutlined,
   ContainerOutlined,
 } from "@ant-design/icons";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { useConfigProvider } from "@/providers/config-provider";
 import { Search } from "@/components/header/search";
 import { IconMoon, IconSun } from "@/components/icons";

@@ -6,7 +6,7 @@ import {
   useNavigation,
   useTranslate,
 } from "@refinedev/core";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { DateField, ExportButton, useDataGrid } from "@refinedev/mui";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Avatar from "@mui/material/Avatar";

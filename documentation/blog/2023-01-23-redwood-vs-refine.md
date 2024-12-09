@@ -117,7 +117,7 @@ import {
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 function App() {
   return (
@@ -219,7 +219,7 @@ import {
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 import { TestList } from "pages/tests";
 
@@ -405,7 +405,7 @@ import {
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -832,7 +832,7 @@ import {
   ErrorComponent,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";

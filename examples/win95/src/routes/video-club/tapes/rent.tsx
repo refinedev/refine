@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { Button, GroupBox, Select, Separator, TextInput } from "react95";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller, type FieldValues } from "react-hook-form";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router";
 import dayjs from "dayjs";
 import { VideoClubPageTapeSelectTitle } from "@/routes/video-club/tapes/select-title";
 import { VideoClubLayoutSubPage } from "@/components/layout";

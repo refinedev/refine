@@ -65,7 +65,7 @@ Refine adopts a hook-based architecture, a modern and powerful pattern in React 
 
 Refine's hooks are **headless**, which means they are library agnostic, provides **a unified interface** for your needs regardless of your library or framework of your choice.
 
-For example, we have different built-in router providers for **React Router v6**, **Next.js**, **Remix**, **Expo** that handles routing in your application.
+For example, we have different built-in router providers for **React Router**, **Next.js**, **Remix**, **Expo** that handles routing in your application.
 
 But we have a single `useGo` hook, exported from `@refinedev/core` package, can be used to navigate to a specific resource's page in your application **regardless of your routing solution**.
 
@@ -447,7 +447,7 @@ Router provider helps Refine understand the relationship between resources and r
 
 We have built-in router integrations for the following packages:
 
-- React Router v6
+- React Router
 - Next.js
 - Remix
 - Expo Router (React Native)

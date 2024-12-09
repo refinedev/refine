@@ -1,6 +1,6 @@
 import React from "react";
 import type { AccessControlProvider } from "@refinedev/core";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import {
   type RefineCrudListProps,
   RefineButtonTestIds,

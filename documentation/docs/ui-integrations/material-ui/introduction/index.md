@@ -19,7 +19,7 @@ Installing the package is as simple as just by running the following command wit
 We'll wrap our app with the [`<ThemeProvider />`](https://mui.com/material-ui/customization/theming/#themeprovider) to make sure we have the theme available for our app, then we'll use the layout components to wrap them around our routes. Check out the examples below to see how to use Refine's Material UI integration.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router v6">
+<TabItem value="react-router-dom" label="React Router">
 
 import UsageReactRouterDom from "./previews/usage-react-router-dom.tsx";
 
@@ -178,7 +178,7 @@ Usage of `<RefineSnackbarProvider />` is required to manage notifications throug
 Refine provides Layout components that can be used to implement a layout for the application. These components are crafted using Material UI's components and includes Refine's features and functionalities such as navigation menus, headers, authentication, authorization and more.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router-dom" label="React Router v6">
+<TabItem value="react-router-dom" label="React Router">
 
 import LayoutReactRouterDom from "./previews/layout-react-router-dom.tsx";
 

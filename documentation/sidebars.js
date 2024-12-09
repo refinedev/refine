@@ -217,7 +217,17 @@ module.exports = {
           collapsed: false,
           label: "Integrations",
           items: [
-            "routing/integrations/react-router/index",
+            {
+              type: "category",
+              label: "React Router",
+              link: {
+                type: "doc",
+                id: "routing/integrations/react-router/index",
+              },
+              items: [
+                "routing/integrations/react-router/migration-guide-v6-to-v7",
+              ],
+            },
             "routing/integrations/next-js/index",
             "routing/integrations/remix/index",
           ],

@@ -23,8 +23,8 @@ import routerProvider, {
   CatchAllNavigate,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { App as AntdApp, ConfigProvider } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
