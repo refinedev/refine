@@ -1,3 +1,6 @@
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   ThemedLayoutV2,
@@ -5,8 +8,8 @@ import {
   useNotificationProvider,
   RefineThemes,
 } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   NavigateToResource,
@@ -20,49 +23,39 @@ import { PostList } from "./pages";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <GitHubBanner />
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
-        <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
-          <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            routerProvider={routerProvider}
-            notificationProvider={useNotificationProvider}
-            resources={[
-              {
-                name: "posts",
-                list: "/posts",
-              },
-            ]}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-            }}
-          >
-            <Routes>
-              <Route
-                element={
-                  <ThemedLayoutV2>
-                    <Outlet />
-                  </ThemedLayoutV2>
-                }
-              >
-                <Route
-                  index
-                  element={<NavigateToResource resource="posts" />}
-                />
-                <Route path="/posts" element={<PostList />} />
-                <Route path="*" element={<ErrorComponent />} />
-              </Route>
-            </Routes>
-            <UnsavedChangesNotifier />
-            <DocumentTitleHandler />
-          </Refine>
-        </NotificationsProvider>
+      <MantineProvider theme={RefineThemes.Blue}>
+        <Refine
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          routerProvider={routerProvider}
+          notificationProvider={useNotificationProvider}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <ThemedLayoutV2 Footer={GitHubBanner}>
+                  <Outlet />
+                </ThemedLayoutV2>
+              }
+            >
+              <Route index element={<NavigateToResource resource="posts" />} />
+              <Route path="/posts" element={<PostList />} />
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <Notifications />
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
       </MantineProvider>
     </BrowserRouter>
   );

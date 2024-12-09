@@ -1,7 +1,14 @@
 import React from "react";
 import type { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
 
-import { act, mockRouterBindings, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  type ITestWrapperProps,
+  mockRouterBindings,
+  render,
+  TestWrapper as DefaultTestWrapper,
+  waitFor,
+} from "@test";
 import type { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
 import { Route, Router, Routes } from "react-router-dom";
 
@@ -25,6 +32,9 @@ const mockAuthProvider: AuthProvider = {
 
 export const layoutSiderTests = (
   SiderElement: React.ComponentType<RefineThemedLayoutV2SiderProps>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
     it("should render successful", async () => {
