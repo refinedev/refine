@@ -9,7 +9,7 @@ export default function ServerSideValidationReactHookForm() {
       dependencies={{
         "@tabler/icons-react": "^3.1.0",
         "@refinedev/core": "^4.45.1",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "latest",
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-hook-form": "^4.8.12",
         "react-dom": "^18.0.0",

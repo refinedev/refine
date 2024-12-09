@@ -8,7 +8,7 @@ export default function BasicUsage() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-hook-form": "latest",
         "react-router": "^7.0.2",
       }}

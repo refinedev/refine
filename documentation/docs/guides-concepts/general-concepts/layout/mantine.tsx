@@ -10,7 +10,7 @@ export function MantineLayout() {
         "@refinedev/mantine": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/inferencer": "latest",
         "@refinedev/react-table": "latest",
         "react-router": "^7.0.2",

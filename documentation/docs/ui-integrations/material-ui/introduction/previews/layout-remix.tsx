@@ -10,7 +10,7 @@ export default function LayoutRemix() {
         "@refinedev/mui": "5.0.0",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-hook-form": "^4.8.12",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",

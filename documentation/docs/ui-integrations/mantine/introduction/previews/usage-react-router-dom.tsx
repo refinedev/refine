@@ -19,7 +19,7 @@ export default function UsageReactRouterDom() {
         "@mantine/hooks": "^5.10.4",
         "@mantine/form": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "latest",
         "react-router": "^7.0.2",
       }}
       startRoute="/products"

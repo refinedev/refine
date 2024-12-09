@@ -10,7 +10,7 @@ export function MaterialUILayout() {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/inferencer": "latest",
         "@refinedev/mui": "5.0.0",
         "react-router": "^7.0.2",

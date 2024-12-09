@@ -10,7 +10,7 @@ export function AntdLayout() {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/inferencer": "latest",
         "react-router": "^7.0.2",
         antd: "^5.0.5",

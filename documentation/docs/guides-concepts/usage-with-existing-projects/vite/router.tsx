@@ -9,7 +9,7 @@ export function ViteRouter() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "react-router": "^7.0.2",
       }}
       startRoute="/"

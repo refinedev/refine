@@ -12,7 +12,7 @@ export default function LayoutReactRouterDom() {
         "@refinedev/chakra-ui": "^2.26.17",
         "@tabler/icons-react": "^3.1.0",
         "@refinedev/core": "^4.45.1",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "latest",
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-table": "^5.6.4",
         "@tanstack/react-table": "^8.2.6",

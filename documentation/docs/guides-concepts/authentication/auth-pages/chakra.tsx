@@ -10,7 +10,7 @@ export function ChakraUIAuth() {
         "@refinedev/chakra-ui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-table": "latest",
         "react-router": "^7.0.2",
         "@tabler/icons-react": "^3.1.0",

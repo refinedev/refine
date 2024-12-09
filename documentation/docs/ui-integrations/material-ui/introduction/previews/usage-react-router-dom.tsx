@@ -20,7 +20,7 @@ export default function UsageReactRouterDom() {
         "@mui/x-data-grid": "^7.22.2",
         "react-hook-form": "^7.43.5",
         "react-router": "^7.0.2",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
       }}
       startRoute="/products"
       files={{

@@ -8,7 +8,7 @@ export default function ServerSideValidationReactHookForm() {
       showOpenInCodeSandbox={false}
       dependencies={{
         "@refinedev/core": "^4.45.1",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "latest",
         "@refinedev/simple-rest": "^4.5.4",
         "react-dom": "^18.0.0",
         "react-router": "^7.0.2",
