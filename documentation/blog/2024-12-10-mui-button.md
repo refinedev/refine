@@ -10,19 +10,30 @@ hide_table_of_contents: false
 
 ## Introduction
 
+TL DR:
+
+Briefly, the Material Button is one of the keys in the Material UI user interface through which a React library will allow users or any end user to perform particular actions or make such decisions just with taps or clicks. The variants are available mainly in three forms:
+• Text Button: A low-emphasis button for actions like “Cancel.”
+• Contained Button: A high-emphasis button with a filled background. It is used for the most important actions, such as those labeled “Submit.”
+• Outlined Button: A medium-emphasis button with a border; this is often used for secondary actions.
+
+Material-UI provides a customizable button with various color and size options, icons, and even loading indicators for asynchronous actions.
+
 Material UI is a dynamic React library because it provides numerous component infrastructures for responsive web design. One such essential component is the `Button`.
 
 In this article, we will deeply explore the Material UI `Button` component, its variants, and the different ways it can be used in a React application.
-
-<!--truncate-->
 
 Steps we'll cover:
 
 - [What is Material UI](#what-is-material-ui)
 - [Getting Started with the Material UI Button component](#getting-started-with-the-material-ui-button-component)
 - [How to use Material UI Button Component in your React project](#how-to-use-material-ui-button-component-in-your-react-project)
-
 - [Creating a Calculator UI with light and dark mode using React Material UI Button Component](#creating-a-calculator-ui-with-light-and-dark-mode-using-react-material-ui-button-component)
+  - [The Navbar Component](#the-navbar-component)
+- [Advance Material UI Buttons](#advance-material-ui-buttons)
+  - [Accessibility (Making Buttons More User-Friendly)](#accessibility-making-buttons-more-user-friendly)
+  - [Button Animations](#button-animations)
+  - [The Main Component](#the-main-component)
 
 ## What is Material UI
 
@@ -322,6 +333,55 @@ export default IconLabelButtons;
 <br />
  <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/labelButton.png" alt="labelButton" />
 
+### Performance Optimization for Material UI Buttons
+
+Performance optimization is essential for larger applications to ensure smooth and responsive user experiences. Material UI provides several strategies to reduce app load and improve speed.
+
+### Import Only What You Need
+
+Instead of importing the entire Material UI library, import only the specific components you use. This minimizes the bundle size.
+
+```javascript
+// Import only the Button component
+import Button from "@mui/material/Button";
+```
+
+### Use React.memo
+
+Prevent unnecessary re-renders by wrapping your button components with React.memo. This ensures that the button re-renders only when its props change.
+
+```javascript
+import React from "react";
+
+const MyButton = React.memo(({ onClick, label }) => {
+  return <Button onClick={onClick}>{label}</Button>;
+});
+
+export default MyButton;
+```
+
+### Lazy Loading
+
+For larger applications, load components only when they are needed using React’s lazy feature. This helps reduce the initial load time.
+
+```javascript
+import React, { Suspense } from "react";
+
+const LazyButton = React.lazy(() => import("@mui/material/Button"));
+
+const App = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <LazyButton>Click Me</LazyButton>
+  </Suspense>
+);
+```
+
+Benefits:
+
+- Reduced Bundle Size: Importing only required components lowers the size of your application.
+- Improved Rendering Efficiency: Using React.memo prevents unnecessary updates, keeping the UI responsive.
+- Faster Load Times: Lazy loading ensures that components are loaded on-demand, optimizing resource usage.
+
 ## Creating a Calculator UI with light and dark mode using React Material UI Button Component
 
 **Material UI Buttons** can be used for a variety of purposes in your React application. You can use them to take actions, switch directories and execute specific commands in your app. We can showcase some of their uses and function in a Calculator UI with light and dark mode toggling features.
@@ -381,12 +441,48 @@ Here’s the result:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button/navbar.gif" alt="navbar" />
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Advance Material UI Buttons
+
+### Accessibility (Making Buttons More User-Friendly)
+
+Accessibility is key to creating inclusive and user-friendly applications. Material UI buttons can be made more accessible by using props such as `aria-label`, `aria-hidden`, or `role`. These attributes make sure proper functionality for screen readers and keyboard navigation.
+
+```jsx
+<Button aria-label="Save File">Save</Button>
+<Button aria-hidden="true">Hidden Button</Button>
+```
+
+Adding these small details makes your application usable for everyone, including users with disabilities.
+
+### Button Animations
+
+Animations can enhance the interactivity of buttons and improve the overall user experience. Material UI allows you to easily implement animations for hover, focus, or click effects.
+
+```jsx
+<Button
+  variant="contained"
+  sx={{
+    "&:hover": {
+      transform: "scale(1.1)",
+      transition: "all 0.2s ease-in-out",
+    },
+  }}
+>
+  Hover Me
+</Button>
+```
+
+This example adds a smooth zoom effect when the button is hovered over. For more advanced animations, you can use Material UI’s built-in Fade or Grow components.
+
+Example with Fade:
+
+```jsx
+<Fade in={true}>
+  <Button>Animated Button</Button>
+</Fade>
+```
+
+These features make your buttons more engaging and visually appealing.
 
 ### The Main Component
 
