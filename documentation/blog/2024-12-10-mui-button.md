@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-05-mui-button
 hide_table_of_contents: false
 ---
 
+**This article was last updated on December 10, 2024, to include new sections on Accessibility, Button Animations, and Performance Optimization for Material UI Buttons.**
+
 ## Introduction
 
 TL DR:
