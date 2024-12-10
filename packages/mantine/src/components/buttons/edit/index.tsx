@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { EditButtonProps } from "../types";
 
 /**
@@ -38,7 +37,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
 
   if (hidden) return null;
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, styles, vars, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -63,21 +62,18 @@ export const EditButton: React.FC<EditButtonProps> = ({
           aria-label={label}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
+          variant={variant || "default"}
           {...commonProps}
         >
           <IconPencil size={18} {...svgIconProps} />
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "filled"}
           disabled={disabled}
-          leftIcon={<IconPencil size={18} {...svgIconProps} />}
+          leftSection={<IconPencil size={18} {...svgIconProps} />}
           title={title}
+          vars={vars}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
           {...rest}

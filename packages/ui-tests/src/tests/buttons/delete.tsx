@@ -9,13 +9,17 @@ import {
   fireEvent,
   MockJSONServer,
   render,
-  TestWrapper,
+  TestWrapper as DefaultTestWrapper,
   waitFor,
+  type ITestWrapperProps,
 } from "@test";
 import { Route, Routes } from "react-router-dom";
 
 export const buttonDeleteTests = (
   DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
     beforeAll(() => {
@@ -377,7 +381,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
       getAllByText("Delete");
     });
@@ -400,7 +406,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
 
       const deleteButtons = getAllByText("Delete");
@@ -434,7 +442,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
 
       const deleteButtons = getAllByText("Delete");
@@ -474,7 +484,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("Are you sure?");
+      await waitFor(() => {
+        getByText("Are you sure?");
+      });
       getByText("Cancel");
 
       const deleteButtons = getAllByText("Delete");
@@ -520,7 +532,9 @@ export const buttonDeleteTests = (
         fireEvent.click(getByTestId(RefineButtonTestIds.DeleteButton));
       });
 
-      getByText("confirmTitle");
+      await waitFor(() => {
+        getByText("confirmTitle");
+      });
       getByText("confirmOkText");
       getByText("confirmCancelText");
 

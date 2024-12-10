@@ -3,8 +3,6 @@ import {
   Avatar,
   Flex,
   Group,
-  Header as MantineHeader,
-  type Sx,
   Title,
   useMantineColorScheme,
   useMantineTheme,
@@ -35,30 +33,12 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
 
   const borderColor = dark ? theme.colors.dark[6] : theme.colors.gray[2];
 
-  let stickyStyles: Sx = {};
-  if (sticky) {
-    stickyStyles = {
-      position: "sticky",
-      top: 0,
-      zIndex: 1,
-    };
-  }
-
   return (
-    <MantineHeader
-      zIndex={199}
-      height={64}
-      py={6}
-      px="sm"
-      sx={{
-        borderBottom: `1px solid ${borderColor}`,
-        ...stickyStyles,
-      }}
-    >
+    <Group py={6} px="sm">
       <Flex
         align="center"
         justify="space-between"
-        sx={{
+        style={{
           height: "100%",
         }}
       >
@@ -73,13 +53,13 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
             {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
           </ActionIcon>
           {(user?.name || user?.avatar) && (
-            <Group spacing="xs">
+            <Group gap="xs">
               {user?.name && <Title order={6}>{user?.name}</Title>}
               <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
             </Group>
           )}
         </Group>
       </Flex>
-    </MantineHeader>
+    </Group>
   );
 };

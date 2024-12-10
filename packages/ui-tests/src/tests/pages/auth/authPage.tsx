@@ -1,10 +1,17 @@
 import React, { type FC } from "react";
 import type { AuthPageProps } from "@refinedev/core";
 
-import { render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
 
 export const authPageTests = (
   AuthPage: FC<AuthPageProps<any, any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Auth Page", () => {
     it.each(["register", "forgotPassword", "updatePassword", "login"] as const)(

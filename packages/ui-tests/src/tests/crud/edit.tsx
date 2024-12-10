@@ -4,13 +4,22 @@ import {
   type RefineCrudEditProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import type { AccessControlProvider } from "@refinedev/core";
 
-import { type ITestWrapperProps, render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
+
+const defaultTestWrapperProps: ITestWrapperProps = {
+  routerInitialEntries: ["/posts/edit/1"],
+};
 
 const renderEdit = (
   edit: React.ReactNode,
-  accessControlProvider?: AccessControlProvider,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }>,
   wrapperProps?: ITestWrapperProps,
 ) => {
   return render(
@@ -18,14 +27,10 @@ const renderEdit = (
       <Route path="/:resource/edit/:id" element={edit} />
     </Routes>,
     {
-      wrapper: TestWrapper(
-        wrapperProps
-          ? wrapperProps
-          : {
-              routerInitialEntries: ["/posts/edit/1"],
-              accessControlProvider,
-            },
-      ),
+      wrapper: TestWrapper({
+        ...defaultTestWrapperProps,
+        ...wrapperProps,
+      }),
     },
   );
 };
@@ -34,6 +39,9 @@ export const crudEditTests = (
   Edit: React.ComponentType<
     RefineCrudEditProps<any, any, any, any, any, any, any, {}, any, any>
   >,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Edit", () => {
     beforeAll(() => {
@@ -41,7 +49,7 @@ export const crudEditTests = (
     });
 
     it("should render children", async () => {
-      const { getByText } = renderEdit(<Edit>Something</Edit>);
+      const { getByText } = renderEdit(<Edit>Something</Edit>, TestWrapper);
 
       getByText("Something");
     });
@@ -54,6 +62,7 @@ export const crudEditTests = (
             return <>{defaultButtons}</>;
           }}
         />,
+        TestWrapper,
       );
 
       expect(queryByTestId(RefineButtonTestIds.ListButton)).not.toBeNull();
@@ -73,6 +82,7 @@ export const crudEditTests = (
             return <>{defaultButtons}</>;
           }}
         />,
+        TestWrapper,
       );
 
       expect(container.querySelector("button")).toBeTruthy();
@@ -90,6 +100,7 @@ export const crudEditTests = (
             </>
           }
         />,
+        TestWrapper,
       );
 
       getByText("New Save Button");
@@ -97,26 +108,29 @@ export const crudEditTests = (
     });
 
     it("should render default title successfuly", async () => {
-      const { getByText } = renderEdit(<Edit />);
+      const { getByText } = renderEdit(<Edit />, TestWrapper);
 
       getByText("Edit Post");
     });
 
     it("should not render title when is false", async () => {
-      const { queryByText } = renderEdit(<Edit title={false} />);
+      const { queryByText } = renderEdit(<Edit title={false} />, TestWrapper);
 
       const text = queryByText("Edit Post");
       expect(text).not.toBeInTheDocument();
     });
 
     it("should render custom title successfuly", async () => {
-      const { getByText } = renderEdit(<Edit title="Custom Title" />);
+      const { getByText } = renderEdit(
+        <Edit title="Custom Title" />,
+        TestWrapper,
+      );
 
       getByText("Custom Title");
     });
 
     it("should render optional recordItemId with resource prop", async () => {
-      const { getByText } = renderEdit(<Edit recordItemId="1" />);
+      const { getByText } = renderEdit(<Edit recordItemId="1" />, TestWrapper);
 
       getByText("Edit Post");
     });
@@ -129,7 +143,7 @@ export const crudEditTests = (
             return <>{defaultButtons}</>;
           }}
         />,
-        undefined,
+        TestWrapper,
         {
           resources: [{ name: "posts", canDelete: true }],
           routerInitialEntries: ["/posts/edit/1"],

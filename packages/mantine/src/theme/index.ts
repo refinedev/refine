@@ -1,6 +1,10 @@
-import type { MantineTheme, MantineThemeOverride } from "@mantine/core";
+import {
+  createTheme,
+  type MantineColorsTuple,
+  type MantineThemeOverride,
+} from "@mantine/core";
 
-const commonThemeProperties: Partial<MantineThemeOverride> = {
+const commonThemeProperties: MantineThemeOverride = {
   fontFamily: [
     "Montserrat",
     "-apple-system",
@@ -46,40 +50,6 @@ const commonThemeProperties: Partial<MantineThemeOverride> = {
       '"Segoe UI Symbol"',
     ].join(","),
   },
-  components: {
-    Table: {
-      styles: (theme) =>
-        theme.colorScheme === "light"
-          ? {
-              root: {
-                "thead>tr>th": {
-                  backgroundColor: "#fafafa",
-                  padding: "16px 4px",
-                },
-                "thead>tr>th:first-of-type": {
-                  borderTopLeftRadius: theme.defaultRadius,
-                },
-                "thead>tr>th:last-of-type": {
-                  borderTopRightRadius: theme.defaultRadius,
-                },
-                "tbody>tr>td": {
-                  borderBottom: "1px solid #f0f0f0",
-                },
-              },
-            }
-          : { root: {} },
-    },
-  },
-};
-
-export const LightTheme: Partial<MantineThemeOverride> = {
-  colorScheme: "light",
-  ...commonThemeProperties,
-};
-
-export const DarkTheme: Partial<MantineThemeOverride> = {
-  colorScheme: "dark",
-  ...commonThemeProperties,
 };
 
 const refineColors = {
@@ -183,24 +153,29 @@ const refineColors = {
   },
 } as const;
 
-export const RefineThemes = Object.keys(refineColors).reduce((acc, key) => {
+export const defaultTheme: MantineThemeOverride = createTheme(
+  commonThemeProperties,
+);
+
+export const LightTheme: MantineThemeOverride = createTheme({
+  ...commonThemeProperties,
+});
+
+const RefineThemes: Record<string, MantineThemeOverride> = Object.keys(
+  refineColors,
+).reduce((acc, key) => {
   const themeName = key as keyof typeof refineColors;
+
   return {
     ...acc,
-    [themeName]: {
-      globalStyles: (theme: MantineTheme) => ({
-        body: {
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
-        },
-      }),
-
+    [themeName]: createTheme({
+      ...commonThemeProperties,
       colors: {
-        brand: refineColors[themeName].colors,
+        primary: refineColors[themeName].colors as MantineColorsTuple,
       },
-      primaryColor: "brand",
-    },
+      primaryColor: "primary",
+    }),
   };
-}, {}) as Record<keyof typeof refineColors, MantineThemeOverride>;
+}, {});
+
+export { RefineThemes };
