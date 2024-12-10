@@ -20,7 +20,7 @@ function updateChangesetFiles() {
       if (!frontmatter) continue;
 
       const updatedFrontmatter = frontmatter.replace(
-        /": minor|": major/g,
+        /": (minor|major)/g,
         '": patch',
       );
 
