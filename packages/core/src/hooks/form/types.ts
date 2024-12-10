@@ -29,6 +29,9 @@ import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { Action } from "../../contexts/router/types";
 
+const FormVariablesSymbol = Symbol("FormVariables");
+const SubmissionVariablesSymbol = Symbol("SubmissionVariables");
+
 export type FormAction = Extract<Action, "create" | "edit" | "clone">;
 
 export type RedirectAction =
@@ -49,6 +52,22 @@ export type AutoSaveProps<TVariables> = {
     invalidateOnClose?: boolean;
   };
 };
+
+export type CreateFormVariables<TFormVariables, TSubmissionVariables> = {
+  [FormVariablesSymbol]: TFormVariables;
+  [SubmissionVariablesSymbol]: TSubmissionVariables;
+};
+
+export type ExtractFormVariables<T> = T extends {
+  [FormVariablesSymbol]: infer F;
+}
+  ? F
+  : T;
+export type ExtractSubmissionVariables<T> = T extends {
+  [SubmissionVariablesSymbol]: infer S;
+}
+  ? S
+  : T;
 
 export type AutoSaveReturnType<
   TData extends BaseRecord = BaseRecord,
