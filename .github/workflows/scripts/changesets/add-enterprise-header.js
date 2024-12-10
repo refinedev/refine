@@ -1,8 +1,9 @@
 const { readdirSync, readFileSync, writeFileSync } = require("fs");
 const { join } = require("path");
 
+const { REFINE_ENTERPRISE_TITLE } = require("./constants");
+
 function updateChangesetTitles() {
-  const TITLE_TO_ADD = "# Refine Enterprise Release\n";
   const changesetDir = join(process.cwd(), ".changeset");
 
   try {
@@ -22,7 +23,7 @@ function updateChangesetTitles() {
       const filePath = join(changesetDir, file);
       const content = readFileSync(filePath, "utf-8");
 
-      if (content.includes("# Refine Enterprise Release")) {
+      if (content.includes(REFINE_ENTERPRISE_TITLE)) {
         continue;
       }
 
@@ -35,7 +36,7 @@ function updateChangesetTitles() {
         "---",
         frontmatter.trim(),
         "---\n",
-        TITLE_TO_ADD,
+        REFINE_ENTERPRISE_TITLE,
         body,
       ].join("\n");
 
