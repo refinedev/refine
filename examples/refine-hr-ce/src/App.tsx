@@ -10,8 +10,8 @@ import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { Toaster } from "react-hot-toast";
 
 import { PageEmployeeTimeOffsList } from "@/pages/employee/time-offs/list";

@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { useMenu, CanAccess, useList } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import {
   Box,
   List,

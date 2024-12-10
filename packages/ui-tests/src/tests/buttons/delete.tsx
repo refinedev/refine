@@ -12,7 +12,7 @@ import {
   TestWrapper,
   waitFor,
 } from "@test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 export const buttonDeleteTests = (
   DeleteButton: React.ComponentType<RefineDeleteButtonProps<any, any>>,
@@ -31,6 +31,30 @@ export const buttonDeleteTests = (
       expect(container).toBeTruthy();
 
       expect(getByText("Delete").closest("button")).not.toBeDisabled();
+    });
+
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <DeleteButton disabled onClick={mockOnClick} />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("Delete").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("Delete").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(<DeleteButton disabled hidden />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(queryByText("Delete")).not.toBeInTheDocument();
     });
 
     it("should have the correct test-id", async () => {
@@ -141,6 +165,22 @@ export const buttonDeleteTests = (
                   ),
                 ).not.toBeDisabled(),
               );
+            });
+
+            it("should respect the disabled prop even with access control enabled", async () => {
+              const { getByText } = render(
+                <DeleteButton disabled>Delete</DeleteButton>,
+                {
+                  wrapper: TestWrapper({
+                    accessControlProvider: {
+                      can: async () => ({ can: true }),
+                    },
+                  }),
+                },
+              );
+
+              const button = getByText("Delete").closest("button");
+              expect(button).toBeDisabled();
             });
           });
         });

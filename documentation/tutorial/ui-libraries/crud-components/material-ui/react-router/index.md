@@ -28,11 +28,7 @@ import { useSelect } from "@refinedev/core";
 // highlight-next-line
 import { List, useDataGrid, EditButton, ShowButton } from "@refinedev/mui";
 
-import {
-  DataGrid,
-  GridColDef,
-  GridValueFormatterParams,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef } from "@mui/x-data-grid";
 
 export const ListProducts = () => {
   const { dataGridProps } = useDataGrid<IProduct>({
@@ -58,7 +54,7 @@ export const ListProducts = () => {
   return (
     // highlight-next-line
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
       {/* highlight-next-line */}
     </List>
   );

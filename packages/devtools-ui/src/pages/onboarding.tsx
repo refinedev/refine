@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import { Button } from "src/components/button";
 import { LogoIcon } from "src/components/icons/logo";

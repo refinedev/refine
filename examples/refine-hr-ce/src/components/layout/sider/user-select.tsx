@@ -1,5 +1,5 @@
 import { useGetIdentity, useList, useLogin, useLogout } from "@refinedev/core";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import {
   Avatar,
   Box,

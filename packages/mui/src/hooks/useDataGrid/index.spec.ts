@@ -231,6 +231,9 @@ describe("useDataGrid Hook", () => {
         await result.current.dataGridProps.processRowUpdate(
           newPost,
           postToUpdate,
+          {
+            rowId: "test-id",
+          },
         );
       }
     });

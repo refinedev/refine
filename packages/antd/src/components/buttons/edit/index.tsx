@@ -34,14 +34,17 @@ export const EditButton: React.FC<EditButtonProps> = ({
     accessControl,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -53,7 +56,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
     >
       <Button
         icon={<EditOutlined />}
-        disabled={disabled}
+        disabled={isDisabled}
         title={title}
         data-testid={RefineButtonTestIds.EditButton}
         className={RefineButtonClassNames.EditButton}

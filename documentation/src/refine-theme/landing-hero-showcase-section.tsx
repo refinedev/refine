@@ -328,7 +328,7 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
           codePosition: "right",
           code: `
                     import { useMenu } from "@refinedev/core";
-                    import { Link } from "react-router-dom";
+                    import { Link } from "react-router";
 
                     const { menuItems } = useMenu();
 

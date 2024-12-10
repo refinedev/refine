@@ -5,7 +5,7 @@ import {
   useSubscription,
   useUpdateMany,
 } from "@refinedev/core";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
 import styled from "styled-components";
 import {
   Button,

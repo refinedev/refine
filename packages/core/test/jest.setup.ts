@@ -17,6 +17,15 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
   };
 });
 
+Object.defineProperty(window, "TextEncoder", {
+  writable: true,
+  value: util.TextEncoder,
+});
+Object.defineProperty(window, "TextDecoder", {
+  writable: true,
+  value: util.TextDecoder,
+});
+
 window.scroll = jest.fn();
 window.alert = jest.fn();
 

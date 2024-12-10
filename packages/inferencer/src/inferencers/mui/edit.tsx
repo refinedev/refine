@@ -254,7 +254,11 @@ export const renderer = ({
                                 helperText={${errorVal}?.message as string}
                                 margin="normal"
                                 fullWidth
-                                InputLabelProps={{ shrink: true }}
+                                slotProps={{
+                                    inputLabel: {
+                                         shrink: true,
+                                    },
+                                }}
                                 ${
                                   field.type !== "date" &&
                                   field.type !== "richtext"
@@ -301,7 +305,11 @@ export const renderer = ({
                     )}?.message}
                     margin="normal"
                     fullWidth
-                    InputLabelProps={{ shrink: true }}
+                    slotProps={{
+                        inputLabel: {
+                            shrink: true,
+                        },
+                    }}
                     ${
                       field.type !== "date" && field.type !== "richtext"
                         ? `type="${field.type}"`

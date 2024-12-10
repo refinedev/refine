@@ -11,7 +11,7 @@
   import {
     BrowserRouter,
     DocumentTitleHandler,
-  } from "@refinedev/react-router-v6";
+  } from "@refinedev/react-router";
   import { Refine } from "@refinedev/core";
 
   const App = () => {

@@ -31,6 +31,7 @@ const columns: GridColDef[] = [
   {
     field: "createdAt",
     headerName: "Created At",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <DateField format="LLL" value={row.createdAt} />;
@@ -46,7 +47,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

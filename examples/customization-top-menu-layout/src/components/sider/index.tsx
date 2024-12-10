@@ -1,7 +1,7 @@
 import React from "react";
 import { useTitle, useMenu } from "@refinedev/core";
 import { Menu } from "antd";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const CustomSider: React.FC = () => {
   const Title = useTitle();

@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 import type { AccessControlProvider } from "@refinedev/core";
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getDefaultFilter, useNavigation, useTable } from "@refinedev/core";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import { Button, Separator } from "react95";
 import { Pagination } from "@/components/pagination";

@@ -56,7 +56,6 @@ export const PostsList: React.FC = () => {
         paginationModel={paginationModel}
         onPaginationModelChange={onPaginationModelChange}
         //highlight-end
-        autoHeight
       />
     </List>
   );
@@ -88,7 +87,6 @@ export const PostsList: React.FC = () => {
         sortModel={sortModel}
         onSortModelChange={onSortModelChange}
         //highlight-end
-        autoHeight
       />
     </List>
   );
@@ -130,7 +128,7 @@ export const PostsList: React.FC = () => {
         <Button onClick={() => handleSorting("asc")}>Asc</Button>
         <Button onClick={() => handleSorting("desc")}>Desc</Button>
       </ButtonGroup>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -141,7 +139,7 @@ Mui X community version only sorts the rows according to one criterion at a time
 However, multiple sorting can be done server-side without specifying the `sortModel`.
 
 ```tsx
-return <DataGrid {...dataGridProps} sortModel={undefined} autoHeight />;
+return <DataGrid {...dataGridProps} sortModel={undefined} />;
 ```
 
 When `sortModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are sorted in `<DataGrid>` headers.
@@ -171,7 +169,6 @@ export const PostsList: React.FC = () => {
         filterModel={filterModel}
         onFilterModelChange={onFilterModelChange}
         //highlight-end
-        autoHeight
       />
     </List>
   );
@@ -216,7 +213,7 @@ export const PostsList: React.FC = () => {
         label="Filter by Draft Status"
         control={<Checkbox onChange={handleFilter} />}
       />
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -227,7 +224,7 @@ Mui X community version only filters the rows according to one criterion at a ti
 However, multiple filtering can be done server-side without specifying the `filterModel`.
 
 ```tsx
-return <DataGrid {...dataGridProps} filterModel={undefined} autoHeight />;
+return <DataGrid {...dataGridProps} filterModel={undefined} />;
 ```
 
 When `filterModel` is not passed, it supports more than one criteria at a time, but cannot show which fields are filtered in `<DataGrid>` headers.
@@ -759,7 +756,6 @@ When the user sorts a column, this function is called with the new sort model.
 <DataGrid
   {...dataGridProps}
   columns={columns}
-  autoHeight
   onSortModelChange={(model, details) => {
     dataGridProps.onSortModelChange(model, details);
     // do something else
@@ -785,7 +781,6 @@ When the user filters a column, this function is called with the new filter mode
 <DataGrid
   {...dataGridProps}
   columns={columns}
-  autoHeight
   onFilterModelChange={(model) => {
     dataGridProps.onFilterModelChange(model);
     // do something else
@@ -803,7 +798,6 @@ The `onStateChange` callback is used internally by the `useDataGrid` hook. If yo
 <DataGrid
   {...dataGridProps}
   columns={columns}
-  autoHeight
   onStateChange={(state) => {
     dataGridProps.onStateChange(state);
     // do something else

@@ -3,9 +3,9 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { ConfirmDialog } from "primereact/confirmdialog";
 
 import { Dashboard } from "./pages/dashboard";

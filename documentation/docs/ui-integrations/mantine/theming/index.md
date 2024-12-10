@@ -182,7 +182,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ThemedLayoutV2,
@@ -194,7 +194,7 @@ import {
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -259,7 +259,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ThemedLayoutV2,
@@ -271,7 +271,7 @@ import {
 import { MantineProvider, Global } from "@mantine/core";
 import { NotificationsProvider } from "@mantine/notifications";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -358,7 +358,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ThemedLayoutV2,
@@ -381,7 +381,7 @@ import {
 import { useLocalStorage } from "@mantine/hooks";
 // highlight-end
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 

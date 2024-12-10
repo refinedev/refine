@@ -70,14 +70,17 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const { sx, ...restProps } = rest;
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <div>
       <LoadingButton
         color="error"
         onClick={() => setOpen(true)}
-        disabled={disabled}
+        disabled={isDisabled}
         loading={loading}
         startIcon={!hideText && <DeleteOutline {...svgIconProps} />}
         title={title}

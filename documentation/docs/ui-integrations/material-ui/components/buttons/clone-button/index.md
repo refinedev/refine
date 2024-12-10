@@ -31,6 +31,7 @@ const columns: GridColDef[] = [
   {
     field: "actions",
     headerName: "Actions",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-next-line
       return <CloneButton size="small" recordItemId={row.id} />;
@@ -46,7 +47,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

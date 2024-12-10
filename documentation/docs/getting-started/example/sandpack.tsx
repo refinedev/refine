@@ -63,8 +63,8 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -438,7 +438,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
               <Select
                 disableUnderline
                 defaultValue={currentLocale}
-                inputProps={{ "aria-label": "Without label" }}
+                slotProps={{
+                  input: {
+                    "aria-label": "Without label",
+                  },
+                }}
                 variant="standard"
                 sx={{
                   color: "inherit",
@@ -559,7 +563,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.name?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.name")}
           name="name"
@@ -572,7 +580,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.description?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           multiline
           label={translate("products.fields.description")}
           name="description"
@@ -587,7 +599,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.price?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("products.fields.price")}
           name="price"
@@ -600,7 +616,11 @@ export const ProductCreate: React.FC = () => {
           helperText={<>{errors?.material?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.material")}
           name="material"
@@ -684,7 +704,11 @@ export const ProductEdit = () => {
           {...register("id", { valueAsNumber: true })}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("products.fields.id")}
           name="id"
@@ -698,7 +722,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.name?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.name")}
           name="name"
@@ -711,7 +739,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.description?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           multiline
           label={translate("products.fields.description")}
           name="description"
@@ -725,7 +757,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.price?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("products.fields.price")}
           name="price"
@@ -738,7 +774,11 @@ export const ProductEdit = () => {
           helperText={<>{errors?.material?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("products.fields.material")}
           name="material"
@@ -833,6 +873,7 @@ export const ProductList = () => {
           const value = row?.category;
           return value;
         },
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryLoading ? (
             <>{translate("loading")}</>
@@ -848,6 +889,7 @@ export const ProductList = () => {
         headerName: translate("products.fields.price"),
         minWidth: 100,
         maxWidth: 150,
+        display: "flex",
         renderCell: ({ value }) => {
           return (
             <NumberField
@@ -862,6 +904,7 @@ export const ProductList = () => {
         field: "actions",
         headerName: translate("table.actions"),
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -881,7 +924,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -1024,7 +1067,11 @@ export const CategoryCreate: React.FC = () => {
           helperText={<>{errors?.title?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("categories.fields.title")}
           name="title"
@@ -1064,7 +1111,11 @@ export const CategoryEdit: React.FC = () => {
           {...register("id", { valueAsNumber: true })}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="number"
           label={translate("categories.fields.id")}
           name="id"
@@ -1078,7 +1129,11 @@ export const CategoryEdit: React.FC = () => {
           helperText={<>{errors?.title?.message}</>}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            inputLabel: {
+              shrink: true,
+            },
+          }}
           type="text"
           label={translate("categories.fields.title")}
           name="title"
@@ -1119,6 +1174,7 @@ export const CategoryList: React.FC = () => {
         field: "actions",
         headerName: translate("table.actions"),
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -1138,7 +1194,7 @@ export const CategoryList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

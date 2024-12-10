@@ -1,4 +1,4 @@
-import { gql } from "@urql/core";
+import gql from "graphql-tag";
 import dataProvider from "../../src/index";
 import client from "../gqlClient";
 import "./updateMany.mock";
@@ -36,7 +36,7 @@ describe("updateMany", () => {
           ids: [1, 2],
           variables: { status: "PUBLISHED" },
         }),
-      ).rejects.toEqual(new Error("Operation is required."));
+      ).rejects.toEqual(new Error("[Code] Operation is required."));
     });
   });
 });

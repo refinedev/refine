@@ -185,7 +185,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
@@ -200,7 +200,7 @@ import {
   extendTheme,
 } from "@chakra-ui/react";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -274,7 +274,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
@@ -295,7 +295,7 @@ import {
 } from "@chakra-ui/react";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 

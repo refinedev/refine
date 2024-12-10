@@ -217,7 +217,17 @@ module.exports = {
           collapsed: false,
           label: "Integrations",
           items: [
-            "routing/integrations/react-router/index",
+            {
+              type: "category",
+              label: "React Router",
+              link: {
+                type: "doc",
+                id: "routing/integrations/react-router/index",
+              },
+              items: [
+                "routing/integrations/react-router/migration-guide-v6-to-v7",
+              ],
+            },
             "routing/integrations/next-js/index",
             "routing/integrations/remix/index",
           ],
@@ -665,7 +675,14 @@ module.exports = {
               ],
             },
             "ui-integrations/material-ui/theming/index",
-            "ui-integrations/material-ui/migration-guide/index",
+            {
+              type: "category",
+              label: "Migration Guide",
+              items: [
+                "ui-integrations/material-ui/migration-guide/material-ui-v5-to-v6",
+                "ui-integrations/material-ui/migration-guide/x-data-grid-v4-to-v5",
+              ],
+            },
           ],
         },
         // Chakra UI

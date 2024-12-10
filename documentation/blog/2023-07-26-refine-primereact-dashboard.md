@@ -155,7 +155,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
     import routerBindings, {
       DocumentTitleHandler,
       UnsavedChangesNotifier,
-    } from "@refinedev/react-router-v6";
+    } from "@refinedev/react-router";
     import dataProvider from "@refinedev/simple-rest";
     import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -241,7 +241,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
     DocumentTitleHandler,
     UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -1022,7 +1022,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -1335,7 +1335,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 //highlight-next-line
@@ -2054,7 +2054,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
@@ -2580,7 +2580,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ConfirmDialog } from "primereact/confirmdialog";
@@ -2704,7 +2704,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 //highlight-next-line
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
