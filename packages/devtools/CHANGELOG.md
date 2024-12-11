@@ -1,5 +1,20 @@
 # @refinedev/devtools
 
+## 1.2.11
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6556](https://github.com/refinedev/refine/pull/6556) [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+- Updated dependencies [[`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706), [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53)]:
+  - @refinedev/cli@2.16.41
+  - @refinedev/devtools-server@1.1.39
+  - @refinedev/devtools-shared@1.1.13
+
 ## 1.2.10
 
 ### Patch Changes
