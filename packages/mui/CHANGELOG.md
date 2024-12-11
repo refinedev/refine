@@ -1,5 +1,22 @@
 # @refinedev/mui
 
+## 6.1.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#2](https://github.com/victor-abz/refine/pull/2) [`d082ce09ff10fd8b3bf2070b163f1608c67d028b`](https://github.com/refinedev/refine/commit/d082ce09ff10fd8b3bf2070b163f1608c67d028b) Thanks [@pull](https://github.com/apps/pull)! - Introduced containerBoxProps and childrenBoxProps props to ThemedLayoutV2 to allow for greater control over the layout - including styling.
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6527](https://github.com/refinedev/refine/pull/6527) [`1d2613381c50f438270d6a3e486595d54496ef92`](https://github.com/refinedev/refine/commit/1d2613381c50f438270d6a3e486595d54496ef92) Thanks [@OmkarBansod02](https://github.com/OmkarBansod02)! - Enhanced the ThemedSideV2 component with new functionality to support dynamic onSiderCollapsed handling. This allows better customization of sider collapse/expand events and improved responsiveness for mobile and desktop views. Added additional type definitions and ensured compatibility across all layout contexts. resolves #6508
+
+### Patch Changes
+
+- Updated dependencies [[`1d2613381c50f438270d6a3e486595d54496ef92`](https://github.com/refinedev/refine/commit/1d2613381c50f438270d6a3e486595d54496ef92)]:
+  - @refinedev/ui-types@1.24.0
+
 ## 6.0.1
 
 ### Patch Changes

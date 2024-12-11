@@ -15,7 +15,7 @@
     "@emotion/styled": "^11.8.1",
     "@refinedev/cli": "^2.16.41",
     "@refinedev/core": "^4.58.0",
-    "@refinedev/nextjs-router": "^6.1.1",
+    "@refinedev/nextjs-router": "^6.2.0",
     "@refinedev/strapi": "^4.1.13",
     "@refinedev/strapi-v4": "^6.0.10",
     "axios": "^1.6.2",

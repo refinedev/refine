@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/antd",
-  "version": "5.45.1",
+  "version": "5.46.0",
   "private": false,
   "description": "Ant Design UI support for Refine, offering enterprise-level UI components.",
   "repository": {
@@ -44,7 +44,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@ant-design/pro-layout": "^7.21.1",
-    "@refinedev/ui-types": "^1.23.1",
+    "@refinedev/ui-types": "^1.24.0",
     "@tanstack/react-query": "^4.10.1",
     "antd": "^5.17.0",
     "dayjs": "^1.10.7",

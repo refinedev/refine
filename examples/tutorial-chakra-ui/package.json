@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
-    "@refinedev/chakra-ui": "^2.34.1",
+    "@refinedev/chakra-ui": "^2.35.0",
     "@refinedev/cli": "^2.16.41",
     "@refinedev/core": "^4.58.0",
     "@refinedev/inferencer": "^5.0.0",

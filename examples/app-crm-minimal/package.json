@@ -19,7 +19,7 @@
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",
-    "@refinedev/antd": "^5.45.1",
+    "@refinedev/antd": "^5.46.0",
     "@refinedev/cli": "^2.16.41",
     "@refinedev/core": "^4.58.0",
     "@refinedev/devtools": "^1.2.11",

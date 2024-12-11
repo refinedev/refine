@@ -11,7 +11,7 @@
   "dependencies": {
     "@refinedev/cli": "^2.16.41",
     "@refinedev/core": "^4.58.0",
-    "@refinedev/nextjs-router": "^6.1.1",
+    "@refinedev/nextjs-router": "^6.2.0",
     "@refinedev/simple-rest": "^5.0.9",
     "cross-env": "^7.0.3",
     "next": "^14.1.0",
