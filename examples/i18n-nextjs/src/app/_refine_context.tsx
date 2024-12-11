@@ -21,11 +21,10 @@ export const RefineContext = ({
   children,
 }: PropsWithChildren<Props>) => {
   const t = useTranslations();
-  const locale = useLocale();
 
   const i18nProvider: I18nProvider = {
     translate: (key: string, options: any) => t(key, options),
-    getLocale: () => locale,
+    getLocale: useLocale,
     changeLocale: setUserLocale,
   };
 

@@ -5,35 +5,43 @@
       "title": "Sign in to your account",
       "signin": "Sign in",
       "signup": "Sign up",
+      "register": "Register",
       "divider": "or",
       "fields": {
         "email": "Email",
         "password": "Password"
       },
       "errors": {
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required",
         "validEmail": "Invalid email address"
       },
       "buttons": {
         "submit": "Login",
         "forgotPassword": "Forgot password?",
         "noAccount": "Don’t have an account?",
+        "haveAccount": "Have an account?",
         "rememberMe": "Remember me"
       }
     },
     "forgotPassword": {
       "title": "Forgot your password?",
+      "signin": "Sign in",
       "fields": {
         "email": "Email"
       },
       "errors": {
+        "requiredEmail": "Email is required",
         "validEmail": "Invalid email address"
       },
       "buttons": {
+        "haveAccount": "Have an account?",
         "submit": "Send reset instructions"
       }
     },
     "register": {
       "title": "Sign up for your account",
+      "signin": "Sign in",
       "fields": {
         "email": "Email",
         "password": "Password"
@@ -70,7 +78,10 @@
     "list": "List",
     "create": "Create",
     "edit": "Edit",
-    "show": "Show"
+    "show": "Show",
+    "delete": "Delete",
+    "save": "Save",
+    "cancel": "Cancel"
   },
   "buttons": {
     "create": "Create",
@@ -111,28 +122,13 @@
   },
   "blog_posts": {
     "blog_posts": "Blog Posts",
-    "fields": {
-      "id": "Id",
-      "title": "Title",
-      "category": "Category",
-      "status": {
-        "title": "Status",
-        "published": "Published",
-        "draft": "Draft",
-        "rejected": "Rejected"
-      },
-      "content": "Content",
-      "createdAt": "Created At"
+    "form": {
+      "select": {
+        "category": {
+          "placeholder": "Please select category"
+        }
+      }
     },
-    "titles": {
-      "create": "Create Post",
-      "edit": "Edit Post",
-      "list": "Posts",
-      "show": "Show Post"
-    }
-  },
-  "posts": {
-    "posts": "Blog Posts",
     "fields": {
       "id": "Id",
       "title": "Title",

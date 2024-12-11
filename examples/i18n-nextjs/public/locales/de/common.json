@@ -5,35 +5,43 @@
       "title": "Melden Sie sich bei Ihrem Konto an",
       "signin": "Einloggen",
       "signup": "Anmelden",
+      "register": "Registrieren",
       "divider": "oder",
       "fields": {
         "email": "Email",
         "password": "Passwort"
       },
       "errors": {
+        "requiredEmail": "Email ist erforderlich",
+        "requiredPassword": "Passwort ist erforderlich",
         "validEmail": "Ungültige E-Mail-Adresse"
       },
       "buttons": {
         "submit": "Anmeldung",
         "forgotPassword": "Passwort vergessen?",
         "noAccount": "Sie haben kein Konto?",
+        "haveAccount": "Haben Sie ein Konto?",
         "rememberMe": "Erinnere dich an mich"
       }
     },
     "forgotPassword": {
       "title": "Haben Sie Ihr Passwort vergessen?",
+      "signin": "Einloggen",
       "fields": {
         "email": "Email"
       },
       "errors": {
+        "requiredEmail": "Email ist erforderlich",
         "validEmail": "Ungültige E-Mail-Adresse"
       },
       "buttons": {
+        "haveAccount": "Haben Sie ein Konto?",
         "submit": "Anweisungen zum Zurücksetzen senden"
       }
     },
     "register": {
       "title": "Registrieren Sie sich für Ihr Konto",
+      "signin": "Einloggen",
       "fields": {
         "email": "Email",
         "password": "Passwort"
@@ -70,7 +78,10 @@
     "list": "Aufführen",
     "create": "Erstellen",
     "edit": "Bearbeiten",
-    "show": "Zeigen"
+    "show": "Zeigen",
+    "delete": "Löschen",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
   },
   "buttons": {
     "create": "Erstellen",
@@ -111,28 +122,13 @@
   },
   "blog_posts": {
     "blog_posts": "Einträge",
-    "fields": {
-      "id": "Id",
-      "title": "Titel",
-      "category": "Kategorie",
-      "status": {
-        "title": "Status",
-        "published": "Veröffentlicht",
-        "draft": "Draft",
-        "rejected": "Abgelehnt"
-      },
-      "content": "Inhalh",
-      "createdAt": "Erstellt am"
+    "form": {
+      "select": {
+        "category": {
+          "placeholder": "Bitte wählen Sie eine Kategorie"
+        }
+      }
     },
-    "titles": {
-      "create": "Erstellen",
-      "edit": "Bearbeiten",
-      "list": "Einträge",
-      "show": "Eintrag zeigen"
-    }
-  },
-  "posts": {
-    "posts": "Einträge",
     "fields": {
       "id": "Id",
       "title": "Titel",
