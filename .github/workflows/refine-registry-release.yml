@@ -57,6 +57,8 @@ jobs:
         run: node ./.github/workflows/scripts/changesets/prepare-community-edition-changesets.js
       - name: Add Enterprise Header to Changesets
         run: node ./.github/workflows/scripts/changesets/add-enterprise-header.js
+      - name: Test Changeset Titles
+        run: node ./.github/workflows/scripts/changesets/validate-changeset-titles.js enterprise
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
