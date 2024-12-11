@@ -22,12 +22,12 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.44.0",
-    "@refinedev/cli": "^2.16.40",
-    "@refinedev/core": "^4.56.0",
-    "@refinedev/devtools": "^1.2.10",
-    "@refinedev/react-router": "^0.1.0",
-    "@refinedev/strapi-v4": "^6.0.9",
+    "@refinedev/antd": "^5.45.0",
+    "@refinedev/cli": "^2.16.41",
+    "@refinedev/core": "^4.57.0",
+    "@refinedev/devtools": "^1.2.11",
+    "@refinedev/react-router": "^1.0.0",
+    "@refinedev/strapi-v4": "^6.0.10",
     "antd": "^5.17.0",
     "antd-style": "^3.6.1",
     "axios": "^1.6.2",

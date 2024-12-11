@@ -1,5 +1,28 @@
 # @refinedev/live-previews
 
+## 0.3.10
+
+### Patch Changes
+
+- Updated dependencies [[`afb156d808ee07bfffed20f27b04c92d95cc01d4`](https://github.com/refinedev/refine/commit/afb156d808ee07bfffed20f27b04c92d95cc01d4), [`42d730aa2908003cfb0dcf0c57e9b70793c88ddc`](https://github.com/refinedev/refine/commit/42d730aa2908003cfb0dcf0c57e9b70793c88ddc), [`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706), [`1ba8a85d7c5feaa144260228c890c064834a9d63`](https://github.com/refinedev/refine/commit/1ba8a85d7c5feaa144260228c890c064834a9d63), [`2312f4648cf8cae427884163cc025c3f925da988`](https://github.com/refinedev/refine/commit/2312f4648cf8cae427884163cc025c3f925da988), [`2312f4648cf8cae427884163cc025c3f925da988`](https://github.com/refinedev/refine/commit/2312f4648cf8cae427884163cc025c3f925da988), [`8309c5690e7c49529f07d288e79896636c6ce7c2`](https://github.com/refinedev/refine/commit/8309c5690e7c49529f07d288e79896636c6ce7c2), [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53), [`afb156d808ee07bfffed20f27b04c92d95cc01d4`](https://github.com/refinedev/refine/commit/afb156d808ee07bfffed20f27b04c92d95cc01d4), [`d082ce09ff10fd8b3bf2070b163f1608c67d028b`](https://github.com/refinedev/refine/commit/d082ce09ff10fd8b3bf2070b163f1608c67d028b), [`29d00f8dc49485e0f5c42d208417e158118d11f2`](https://github.com/refinedev/refine/commit/29d00f8dc49485e0f5c42d208417e158118d11f2), [`1d2613381c50f438270d6a3e486595d54496ef92`](https://github.com/refinedev/refine/commit/1d2613381c50f438270d6a3e486595d54496ef92), [`f32af58283bdaf7712805520bd9feb8bfd27ba38`](https://github.com/refinedev/refine/commit/f32af58283bdaf7712805520bd9feb8bfd27ba38)]:
+  - @refinedev/inferencer@5.0.0
+  - @refinedev/core@4.57.0
+  - @refinedev/airtable@4.4.12
+  - @refinedev/antd@5.45.0
+  - @refinedev/chakra-ui@2.34.0
+  - @refinedev/hasura@6.6.9
+  - @refinedev/kbar@1.3.13
+  - @refinedev/mui@6.0.0
+  - @refinedev/nestjs-query@1.3.4
+  - @refinedev/nestjsx-crud@5.0.11
+  - @refinedev/react-router-v6@4.6.1
+  - @refinedev/simple-rest@5.0.9
+  - @refinedev/strapi-v4@6.0.10
+  - @refinedev/supabase@5.9.5
+  - @refinedev/react-table@5.6.14
+  - @refinedev/mantine@2.35.0
+  - @refinedev/react-hook-form@4.9.2
+
 ## 0.3.9
 
 ### Patch Changes
