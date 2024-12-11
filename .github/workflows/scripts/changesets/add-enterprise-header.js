@@ -46,7 +46,7 @@ function updateChangesetTitles() {
 
     console.log(`✅ Successfully updated ${updatedFilesCount} changeset files`);
   } catch (error) {
-    console.error("Error updating changeset files:", error);
+    console.error("❌ Error updating changeset files:", error);
     process.exit(1);
   }
 }
