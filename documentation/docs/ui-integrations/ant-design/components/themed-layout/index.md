@@ -210,6 +210,7 @@ const App: React.FC = () => {
 | `meta`               | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                          |
 | `fixed`              | `boolean`                                     | Whether the sider is fixed or not                                                 |
 | `activeItemDisabled` | `boolean`                                     | Whether clicking on an active sider item should reload the page                   |
+| `onSiderCollapsed`   | `(collapsed: boolean) => void`                | Callback function invoked when the sider collapses or expands                     |
 
 ```tsx
 type SiderRenderFunction = (props: {
@@ -234,6 +235,33 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 >
   {/* ... */}
 </ThemedLayoutV2>
+```
+
+### `onSiderCollapsed`
+
+Will be triggered when the [`<ThemedSiderV2>`][themed-sider] component's `collapsed` state changes.
+
+Can be used to persist collapsed state on the localstorage. Then you can use localStorage item to decide if sider should be collapsed initially or not.
+
+Here's an example of how to use the `onSiderCollapsed` prop:
+
+```tsx
+const MyLayout = () => {
+  const onSiderCollapse = (collapsed: boolean) => {
+    localStorage.setItem("siderCollapsed", collapsed);
+  };
+
+  const initialSiderCollapsed = Boolean(localStorage.getItem("siderCollapsed"));
+
+  return (
+    <ThemedLayoutV2
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapse}
+    >
+      {/* ... */}
+    </ThemedLayoutV2>
+  );
+};
 ```
 
 ### Header

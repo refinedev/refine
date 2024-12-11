@@ -3952,6 +3952,12 @@ importers:
       '@refinedev/simple-rest':
         specifier: ^5.0.9
         version: link:../../packages/simple-rest
+      react:
+        specifier: ^18.0.0
+        version: 18.3.0
+      react-dom:
+        specifier: ^18.0.0
+        version: 18.3.0(react@18.3.0)
       react-router-dom:
         specifier: ^6.8.1
         version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9352,10 +9358,10 @@ importers:
         version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@medusajs/medusa':
         specifier: ^1.3.5
-        version: 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+        version: 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       '@medusajs/medusa-js':
         specifier: 1.3.3
-        version: 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+        version: 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       '@radix-ui/react-dropdown-menu':
         specifier: ^2.0.1
         version: 2.0.6(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9406,7 +9412,7 @@ importers:
         version: 4.17.21
       medusa-react:
         specifier: ^0.3.5
-        version: 0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0)
+        version: 0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0)
       next:
         specifier: ^14.1.0
         version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
@@ -13352,7 +13358,7 @@ importers:
     dependencies:
       ably:
         specifier: ^1.2.15
-        version: 1.2.50(bufferutil@4.0.8)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10)
+        version: 1.2.50(bufferutil@4.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(utf-8-validate@5.0.10)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -15568,19 +15574,19 @@ importers:
   packages/nextjs-router:
     dependencies:
       '@types/react':
-        specifier: ^17.0.0 || ^18.0.0
+        specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
         version: 18.3.0
       '@types/react-dom':
-        specifier: ^17.0.0 || ^18.0.0
+        specifier: ^17.0.0 || ^18.0.0 || ^19.0.0
         version: 18.3.0
       qs:
         specifier: ^6.10.1
         version: 6.12.1
       react:
-        specifier: ^17.0.0 || ^18.0.0
+        specifier: ^18.0.0 || ^19.0.0
         version: 18.3.0
       react-dom:
-        specifier: ^17.0.0 || ^18.0.0
+        specifier: ^18.0.0 || ^19.0.0
         version: 18.3.0(react@18.3.0)
       warn-once:
         specifier: ^0.1.0
@@ -22679,6 +22685,9 @@ packages:
   '@swc/helpers@0.5.11':
     resolution: {integrity: sha512-YNlnKRWF2sVojTpIyzwou9XoTNbzbzONwRhOoniEioF1AtaitTvVZblaQRrAzChWQ1bLYyYSWzM18y4WwgzJ+A==}
 
+  '@swc/helpers@0.5.13':
+    resolution: {integrity: sha512-UoKGxQ3r5kYI9dALKJapMmuK+1zWM/H17Z1+iwnNmzcJRnfFuevZs375TA5rW31pu4BS4NoSy1fRsexDXfWn5w==}
+
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
 
@@ -27121,6 +27130,10 @@ packages:
 
   globalthis@1.0.3:
     resolution: {integrity: sha512-sFdI5LyBiNTHjRd7cGPWapiHWMOXKyuBNX/cWJ3NfzrZQVa8GI/8cofCl74AOVqq9W5kNmguTIzJ/1s2gyI9wA==}
+    engines: {node: '>= 0.4'}
+
+  globalthis@1.0.4:
+    resolution: {integrity: sha512-DpLKbNU4WylpxJykQujfCcwYWiV/Jhm50Goo0wrVILAv5jOr9d+H+UR3PhSCD2rCCEIg0uc+G+muBTwD54JhDQ==}
     engines: {node: '>= 0.4'}
 
   globby@11.1.0:
@@ -32315,6 +32328,11 @@ packages:
     peerDependencies:
       react: ^18.3.0
 
+  react-dom@19.0.0:
+    resolution: {integrity: sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==}
+    peerDependencies:
+      react: ^19.0.0
+
   react-dropzone@14.2.3:
     resolution: {integrity: sha512-O3om8I+PkFKbxCukfIR3QAGftYXDZfOE2N1mr/7qebQJHs7U+/RSL/9xomJNpRg9kM5h9soQSdf0Gc7OHF5Fug==}
     engines: {node: '>= 10.13'}
@@ -32647,6 +32665,10 @@ packages:
 
   react@18.3.0:
     resolution: {integrity: sha512-RPutkJftSAldDibyrjuku7q11d3oy6wKOyPe5K1HA/HwwrXcEqBdHsLypkC2FFYjP7bPUa6gbzSBhw4sY2JcDg==}
+    engines: {node: '>=0.10.0'}
+
+  react@19.0.0:
+    resolution: {integrity: sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==}
     engines: {node: '>=0.10.0'}
 
   reactcss@1.2.3:
@@ -33279,6 +33301,9 @@ packages:
   scheduler@0.23.1:
     resolution: {integrity: sha512-5GKS5JGfiah1O38Vfa9srZE4s3wdHbwjlCrvIookrg2FO9aIwKLOJXuJQFlEfNcVSOXuaL2hzDeY20uVXcUtrw==}
 
+  scheduler@0.25.0:
+    resolution: {integrity: sha512-xFVuu11jh+xcO7JOAGJNOXld8/TcEHK/4CituBUeUb5hqxJLj9YuemAEuvm9gQ/+pgXYfbQuqAkiYu+u7YEsNA==}
+
   schema-utils@2.7.0:
     resolution: {integrity: sha512-0ilKFI6QQF5nxDZLFn2dMjvc4hjg/Wkg7rHd3jK6/A4a1Hl9VFdQWvgB1UMGoU94pad1P/8N7fMcEnLnSiju8A==}
     engines: {node: '>= 8.9.0'}
@@ -33364,6 +33389,11 @@ packages:
 
   semver@7.6.0:
     resolution: {integrity: sha512-EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==}
+    engines: {node: '>=10'}
+    hasBin: true
+
+  semver@7.6.3:
+    resolution: {integrity: sha512-oVekP1cKtI+CTDvHWYFUcMtsK/00wmAEfyqKfNdARm8u1wNVhSgaX7A8d4UuIlUI5e84iEwOhs7ZPYRmzU9U6A==}
     engines: {node: '>=10'}
     hasBin: true
 
@@ -40920,20 +40950,20 @@ snapshots:
 
   '@internationalized/date@3.5.2':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
 
   '@internationalized/message@3.1.2':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       intl-messageformat: 10.5.11
 
   '@internationalized/number@3.5.1':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
 
   '@internationalized/string@3.2.1':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
 
   '@ioredis/as-callback@3.0.0': {}
 
@@ -41746,13 +41776,13 @@ snapshots:
       - supports-color
       - tedious
 
-  '@medusajs/link-modules@0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)':
+  '@medusajs/link-modules@0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/types': 1.11.15
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
     transitivePeerDependencies:
       - '@mikro-orm/better-sqlite'
@@ -41825,9 +41855,9 @@ snapshots:
       - supports-color
       - tedious
 
-  '@medusajs/medusa-js@1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
+  '@medusajs/medusa-js@1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
     dependencies:
-      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       axios: 0.24.0
       form-data: 4.0.0
       qs: 6.12.1
@@ -41859,10 +41889,10 @@ snapshots:
       - tedious
       - typeorm
 
-  '@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
+  '@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)':
     dependencies:
       '@medusajs/core-flows': 0.0.8(@types/node@18.19.31)(pg@8.11.5)
-      '@medusajs/link-modules': 0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)
+      '@medusajs/link-modules': 0.2.10(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/node@18.19.31)(pg@8.11.5)
       '@medusajs/medusa-cli': 1.3.22(@types/node@18.19.31)
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/orchestration': 0.5.6(@types/node@18.19.31)(pg@8.11.5)
@@ -41894,7 +41924,7 @@ snapshots:
       medusa-core-utils: 1.2.1
       medusa-interfaces: 1.3.9
       medusa-telemetry: 0.0.17
-      medusa-test-utils: 1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.21.0)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5)
+      medusa-test-utils: 1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.21.0)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5)
       morgan: 1.10.0
       multer: 1.4.5-lts.1
       node-schedule: 2.1.1
@@ -42002,8 +42032,8 @@ snapshots:
     dependencies:
       '@medusajs/types': 1.11.15
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       awilix: 8.0.1
       bignumber.js: 9.1.2
       knex: 2.4.2(pg@8.11.5)
@@ -42055,19 +42085,6 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)':
-    dependencies:
-      acorn-loose: 8.3.0
-      acorn-walk: 8.2.0
-      dotenv: 16.3.1
-      fs-extra: 11.1.1
-      globby: 11.1.0
-      mikro-orm: 5.9.7
-      reflect-metadata: 0.1.13
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
-
   '@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)':
     dependencies:
       acorn-loose: 8.3.0
@@ -42079,35 +42096,7 @@ snapshots:
       reflect-metadata: 0.1.13
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
-
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.3)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.3
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
-
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.3)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.3
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
 
   '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
     dependencies:
@@ -42123,15 +42112,15 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.5)
+      knex: 2.5.1(pg@8.11.3)
       sqlstring: 2.3.3
     optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.5
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      pg: 8.11.3
     transitivePeerDependencies:
       - pg-native
       - supports-color
@@ -42157,47 +42146,10 @@ snapshots:
       - supports-color
       - tedious
 
-  '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5)':
+  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.5)
-      umzug: 3.3.1(@types/node@18.19.31)
-    transitivePeerDependencies:
-      - '@mikro-orm/entity-generator'
-      - '@types/node'
-      - better-sqlite3
-      - mssql
-      - mysql
-      - mysql2
-      - pg
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
-      pg: 8.11.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-    transitivePeerDependencies:
-      - better-sqlite3
-      - mssql
-      - mysql
-      - mysql2
-      - pg-native
-      - sqlite3
-      - supports-color
-      - tedious
-
-  '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
       pg: 8.11.3
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
@@ -43802,7 +43754,7 @@ snapshots:
       '@oclif/help': 1.0.15
       '@oclif/parser': 3.8.17
       debug: 4.3.4(supports-color@5.5.0)
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
 
@@ -43813,7 +43765,7 @@ snapshots:
       '@oclif/help': 1.0.15(supports-color@8.1.1)
       '@oclif/parser': 3.8.17
       debug: 4.3.4(supports-color@8.1.1)
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
 
@@ -43824,7 +43776,7 @@ snapshots:
       '@oclif/help': 1.0.15
       '@oclif/parser': 3.8.17
       debug: 4.3.4(supports-color@5.5.0)
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
 
@@ -44655,7 +44607,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/breadcrumbs': 3.7.3(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/button@3.9.3(react@18.3.0)':
@@ -44666,7 +44618,7 @@ snapshots:
       '@react-stately/toggle': 3.7.2(react@18.3.0)
       '@react-types/button': 3.9.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/calendar@3.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44680,7 +44632,7 @@ snapshots:
       '@react-types/button': 3.9.2(react@18.3.0)
       '@react-types/calendar': 3.4.1(react@18.3.0)
       '@react-types/shared': 3.21.0(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44696,7 +44648,7 @@ snapshots:
       '@react-stately/toggle': 3.7.2(react@18.3.0)
       '@react-types/checkbox': 3.7.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/combobox@3.8.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44715,7 +44667,7 @@ snapshots:
       '@react-types/button': 3.9.2(react@18.3.0)
       '@react-types/combobox': 3.10.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44738,7 +44690,7 @@ snapshots:
       '@react-types/datepicker': 3.7.2(react@18.3.0)
       '@react-types/dialog': 3.5.8(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44749,7 +44701,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/dialog': 3.5.8(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44758,7 +44710,7 @@ snapshots:
       '@react-aria/interactions': 3.21.1(react@18.3.0)
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       clsx: 2.1.1
       react: 18.3.0
 
@@ -44768,7 +44720,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-stately/form': 3.0.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/grid@3.8.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44786,7 +44738,7 @@ snapshots:
       '@react-types/checkbox': 3.7.1(react@18.3.0)
       '@react-types/grid': 3.2.4(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44799,7 +44751,7 @@ snapshots:
       '@react-aria/ssr': 3.9.2(react@18.3.0)
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/interactions@3.21.1(react@18.3.0)':
@@ -44807,14 +44759,14 @@ snapshots:
       '@react-aria/ssr': 3.9.2(react@18.3.0)
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/label@3.7.6(react@18.3.0)':
     dependencies:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/link@3.6.5(react@18.3.0)':
@@ -44824,7 +44776,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/link': 3.5.3(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/listbox@3.11.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44837,13 +44789,13 @@ snapshots:
       '@react-stately/list': 3.10.3(react@18.3.0)
       '@react-types/listbox': 3.4.7(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   '@react-aria/live-announcer@3.3.2':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
 
   '@react-aria/menu@3.13.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
@@ -44859,7 +44811,7 @@ snapshots:
       '@react-types/button': 3.9.2(react@18.3.0)
       '@react-types/menu': 3.9.7(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44875,7 +44827,7 @@ snapshots:
       '@react-types/button': 3.9.2(react@18.3.0)
       '@react-types/overlays': 3.8.5(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44886,7 +44838,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/progress': 3.5.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/radio@3.10.2(react@18.3.0)':
@@ -44900,7 +44852,7 @@ snapshots:
       '@react-stately/radio': 3.10.2(react@18.3.0)
       '@react-types/radio': 3.7.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/selection@3.17.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44911,7 +44863,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-stately/selection': 3.14.3(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44925,7 +44877,7 @@ snapshots:
       '@react-stately/slider': 3.5.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/slider': 3.7.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/spinbutton@3.6.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44935,13 +44887,13 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/button': 3.9.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
   '@react-aria/ssr@3.9.2(react@18.3.0)':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/switch@3.6.2(react@18.3.0)':
@@ -44949,7 +44901,7 @@ snapshots:
       '@react-aria/toggle': 3.10.2(react@18.3.0)
       '@react-stately/toggle': 3.7.2(react@18.3.0)
       '@react-types/switch': 3.5.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/table@3.13.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
@@ -44969,7 +44921,7 @@ snapshots:
       '@react-types/grid': 3.2.4(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/table': 3.9.3(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44982,7 +44934,7 @@ snapshots:
       '@react-stately/tabs': 3.6.4(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/tabs': 3.3.5(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -44996,7 +44948,7 @@ snapshots:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/textfield': 3.9.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/toggle@3.10.2(react@18.3.0)':
@@ -45006,7 +44958,7 @@ snapshots:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-stately/toggle': 3.7.2(react@18.3.0)
       '@react-types/checkbox': 3.7.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/tooltip@3.7.2(react@18.3.0)':
@@ -45017,7 +44969,7 @@ snapshots:
       '@react-stately/tooltip': 3.4.7(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/tooltip': 3.4.7(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-aria/utils@3.23.2(react@18.3.0)':
@@ -45025,7 +44977,7 @@ snapshots:
       '@react-aria/ssr': 3.9.2(react@18.3.0)
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       clsx: 2.1.1
       react: 18.3.0
 
@@ -45202,7 +45154,7 @@ snapshots:
       '@react-types/calendar': 3.4.1(react@18.3.0)
       '@react-types/datepicker': 3.7.2(react@18.3.0)
       '@react-types/shared': 3.21.0(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/checkbox@3.6.3(react@18.3.0)':
@@ -45211,13 +45163,13 @@ snapshots:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/checkbox': 3.7.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/collections@3.10.5(react@18.3.0)':
     dependencies:
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/combobox@3.8.2(react@18.3.0)':
@@ -45230,7 +45182,7 @@ snapshots:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/combobox': 3.10.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/datepicker@3.9.2(react@18.3.0)':
@@ -45242,7 +45194,7 @@ snapshots:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/datepicker': 3.7.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/flags@3.0.1':
@@ -45252,7 +45204,7 @@ snapshots:
   '@react-stately/form@3.0.1(react@18.3.0)':
     dependencies:
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/grid@3.8.5(react@18.3.0)':
@@ -45261,7 +45213,7 @@ snapshots:
       '@react-stately/selection': 3.14.3(react@18.3.0)
       '@react-types/grid': 3.2.4(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/list@3.10.3(react@18.3.0)':
@@ -45270,7 +45222,7 @@ snapshots:
       '@react-stately/selection': 3.14.3(react@18.3.0)
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/menu@3.6.1(react@18.3.0)':
@@ -45278,14 +45230,14 @@ snapshots:
       '@react-stately/overlays': 3.6.5(react@18.3.0)
       '@react-types/menu': 3.9.7(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/overlays@3.6.5(react@18.3.0)':
     dependencies:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/overlays': 3.8.5(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/radio@3.10.2(react@18.3.0)':
@@ -45294,7 +45246,7 @@ snapshots:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/radio': 3.7.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/select@3.6.2(react@18.3.0)':
@@ -45304,7 +45256,7 @@ snapshots:
       '@react-stately/overlays': 3.6.5(react@18.3.0)
       '@react-types/select': 3.9.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/selection@3.14.3(react@18.3.0)':
@@ -45312,7 +45264,7 @@ snapshots:
       '@react-stately/collections': 3.10.5(react@18.3.0)
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/slider@3.5.2(react@18.3.0)':
@@ -45320,7 +45272,7 @@ snapshots:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/slider': 3.7.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/table@3.11.6(react@18.3.0)':
@@ -45333,7 +45285,7 @@ snapshots:
       '@react-types/grid': 3.2.4(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/table': 3.9.3(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/tabs@3.6.4(react@18.3.0)':
@@ -45341,21 +45293,21 @@ snapshots:
       '@react-stately/list': 3.10.3(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
       '@react-types/tabs': 3.3.5(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/toggle@3.7.2(react@18.3.0)':
     dependencies:
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/checkbox': 3.7.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/tooltip@3.4.7(react@18.3.0)':
     dependencies:
       '@react-stately/overlays': 3.6.5(react@18.3.0)
       '@react-types/tooltip': 3.4.7(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/tree@3.7.6(react@18.3.0)':
@@ -45364,19 +45316,19 @@ snapshots:
       '@react-stately/selection': 3.14.3(react@18.3.0)
       '@react-stately/utils': 3.9.1(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/utils@3.9.1(react@18.3.0)':
     dependencies:
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-stately/virtualizer@3.6.8(react@18.3.0)':
     dependencies:
       '@react-aria/utils': 3.23.2(react@18.3.0)
       '@react-types/shared': 3.22.1(react@18.3.0)
-      '@swc/helpers': 0.5.11
+      '@swc/helpers': 0.5.13
       react: 18.3.0
 
   '@react-types/accordion@3.0.0-alpha.19(react@18.3.0)':
@@ -46381,6 +46333,10 @@ snapshots:
       tslib: 2.6.2
 
   '@swc/helpers@0.5.11':
+    dependencies:
+      tslib: 2.6.2
+
+  '@swc/helpers@0.5.13':
     dependencies:
       tslib: 2.6.2
 
@@ -47668,14 +47624,14 @@ snapshots:
 
   abbrev@2.0.0: {}
 
-  ably@1.2.50(bufferutil@4.0.8)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(utf-8-validate@5.0.10):
+  ably@1.2.50(bufferutil@4.0.8)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(utf-8-validate@5.0.10):
     dependencies:
       '@ably/msgpack-js': 0.4.0
       got: 11.8.6
       ws: 8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     optionalDependencies:
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -52110,6 +52066,11 @@ snapshots:
     dependencies:
       define-properties: 1.2.1
 
+  globalthis@1.0.4:
+    dependencies:
+      define-properties: 1.2.1
+      gopd: 1.0.1
+
   globby@11.1.0:
     dependencies:
       array-union: 2.1.0
@@ -53351,7 +53312,7 @@ snapshots:
       '@babel/parser': 7.24.4
       '@istanbuljs/schema': 0.1.3
       istanbul-lib-coverage: 3.2.2
-      semver: 7.6.0
+      semver: 7.6.3
     transitivePeerDependencies:
       - supports-color
 
@@ -55627,10 +55588,10 @@ snapshots:
 
   medusa-interfaces@1.3.9: {}
 
-  medusa-react@0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0):
+  medusa-react@0.3.6(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)(react-query@3.39.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react@18.3.0):
     dependencies:
-      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
-      '@medusajs/medusa-js': 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa-js': 1.3.3(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       lodash: 4.17.21
       lodash-es: 4.17.21
       react: 18.3.0
@@ -55677,16 +55638,16 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  medusa-test-utils@1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.21.0)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5):
+  medusa-test-utils@1.1.43(@medusajs/medusa@1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12))(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(axios@0.24.0)(express@4.21.0)(get-port@5.1.1)(pg-god@1.0.12)(pg@8.11.5):
     dependencies:
       '@medusajs/modules-sdk': 1.12.10(@types/node@18.19.31)
       '@medusajs/utils': 1.11.8(@types/node@18.19.31)(pg@8.11.5)
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7)(@mikro-orm/migrations@5.9.7)
+      '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
       medusa-core-utils: 1.2.1
       randomatic: 3.1.1
     optionalDependencies:
-      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
+      '@medusajs/medusa': 1.20.4(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(@types/ioredis-mock@8.2.5)(@types/node@18.19.31)(axios@0.24.0)(get-port@5.1.1)(medusa-interfaces@1.3.9)(pg-god@1.0.12)
       axios: 0.24.0
       express: 4.21.0
       get-port: 5.1.1
@@ -59232,6 +59193,12 @@ snapshots:
       react: 18.3.0
       scheduler: 0.23.1
 
+  react-dom@19.0.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
+      scheduler: 0.25.0
+    optional: true
+
   react-dropzone@14.2.3(react@18.3.0):
     dependencies:
       attr-accept: 2.2.2
@@ -59788,6 +59755,9 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
+  react@19.0.0:
+    optional: true
+
   reactcss@1.2.3(react@18.3.0):
     dependencies:
       lodash: 4.17.21
@@ -59967,7 +59937,7 @@ snapshots:
       es-abstract: 1.23.3
       es-errors: 1.3.0
       get-intrinsic: 1.2.4
-      globalthis: 1.0.3
+      globalthis: 1.0.4
       which-builtin-type: 1.1.3
 
   refractor@4.8.1:
@@ -60565,6 +60535,9 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
+  scheduler@0.25.0:
+    optional: true
+
   schema-utils@2.7.0:
     dependencies:
       '@types/json-schema': 7.0.15
@@ -60651,6 +60624,8 @@ snapshots:
   semver@7.6.0:
     dependencies:
       lru-cache: 6.0.0
+
+  semver@7.6.3: {}
 
   send@0.19.0:
     dependencies:
