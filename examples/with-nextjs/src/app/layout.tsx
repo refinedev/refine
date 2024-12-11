@@ -8,7 +8,7 @@ import { cookies } from "next/headers";
 import React, { Suspense } from "react";
 
 import { ColorModeContextProvider } from "@contexts/color-mode";
-import { authProvider } from "@providers/auth-provider/auth-provider.client";
+import { authProviderClient } from "@providers/auth-provider/auth-provider.client";
 import { dataProvider } from "@providers/data-provider";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import "@refinedev/antd/dist/reset.css";
@@ -42,7 +42,7 @@ export default function RootLayout({
                     routerProvider={routerProvider}
                     dataProvider={dataProvider}
                     notificationProvider={useNotificationProvider}
-                    authProvider={authProvider}
+                    authProvider={authProviderClient}
                     resources={[
                       {
                         name: "blog_posts",
