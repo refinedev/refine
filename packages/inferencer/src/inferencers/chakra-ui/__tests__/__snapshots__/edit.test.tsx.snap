@@ -59,6 +59,7 @@ exports[`ChakraEditInferencer should match the snapshot 1`] = `
             class="css-oquf3a"
           >
             <a
+              data-discover="true"
               href="/posts"
             >
               <button

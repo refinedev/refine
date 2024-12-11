@@ -4,7 +4,7 @@ import { ProductListCard, ProductListTable } from "../../components";
 import { type PropsWithChildren, useState } from "react";
 import { AppstoreOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import { Segmented } from "antd";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 type View = "table" | "card";
 

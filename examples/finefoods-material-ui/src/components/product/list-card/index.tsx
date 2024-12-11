@@ -3,9 +3,9 @@ import { useGo, useNavigation, useTranslate } from "@refinedev/core";
 import { NumberField, type UseDataGridReturnType } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
 import type { ICategory, IProduct } from "../../../interfaces";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { ProductStatus } from "../status";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
@@ -125,7 +125,14 @@ export const ProductListCard = (props: Props) => {
           );
 
           return (
-            <Grid key={product.id} item sm={3} md={4} lg={3}>
+            <Grid
+              key={product.id}
+              size={{
+                sm: 3,
+                md: 4,
+                lg: 3,
+              }}
+            >
               <Card
                 sx={{
                   height: "100%",

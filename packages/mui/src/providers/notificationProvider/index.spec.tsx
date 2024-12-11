@@ -5,7 +5,7 @@ import type { OpenNotificationParams } from "@refinedev/core";
 
 import { CircularDeterminate } from "@components/circularDeterminate";
 
-import { notificationProvider } from ".";
+import { useNotificationProvider } from ".";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
@@ -45,7 +45,7 @@ describe("Notistack notificationProvider", () => {
       }) as any,
   );
 
-  const notificationProviderHandle = notificationProvider();
+  const notificationProviderHandle = useNotificationProvider();
 
   // This test cover the case when the type is not "progress" ("success" or "error")
 

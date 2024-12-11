@@ -43,7 +43,7 @@ The [`<Refine/>`](https://refine.dev/docs/api-reference/core/components/refine-c
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "pages/posts";
 
@@ -462,7 +462,7 @@ For this, we need to create a `<Route>` with the same path. To do this, we shoul
 
 ```tsx title="src/App.tsx"
 // highlight-start
-import { NavigateToResource, Route, Routes } from "@refinedev/react-router-v6";
+import { NavigateToResource, Route, Routes } from "@refinedev/react-router";
 import { PostList } from "./pages/posts/list";
 // highlight-end
 

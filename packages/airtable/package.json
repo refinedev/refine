@@ -2,7 +2,7 @@
   "name": "@refinedev/airtable",
   "version": "4.4.11",
   "private": false,
-  "description": "refine Airtable data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Airtable Data Provider for Refine, enabling seamless Airtable integrations.",
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",

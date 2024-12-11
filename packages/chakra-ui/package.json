@@ -2,7 +2,7 @@
   "name": "@refinedev/chakra-ui",
   "version": "2.33.0",
   "private": false,
-  "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Chakra UI support for Refine, providing flexible and accessible UI components.",
   "license": "MIT",
   "author": "Refine",
   "sideEffects": false,
@@ -63,7 +63,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
-    "react-router-dom": "^6.8.1",
+    "react-router": "^7.0.2",
     "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
     "typescript": "^5.4.2"

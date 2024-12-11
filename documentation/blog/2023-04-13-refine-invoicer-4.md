@@ -123,7 +123,7 @@ import routerBindings, {
   CatchAllNavigate,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { authProvider, axiosInstance } from "./authProvider";

@@ -1,7 +1,6 @@
 import { useMemo } from "react";
 import { useTranslate } from "@refinedev/core";
 import { useDataGrid } from "@refinedev/mui";
-import Paper from "@mui/material/Paper";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import Rating from "@mui/material/Rating";
 import Chip from "@mui/material/Chip";
@@ -48,6 +47,7 @@ export const CourierTableReviews = (props: Props) => {
         headerName: t("reviews.fields.rating"),
         width: 172,
         filterable: false,
+        display: "flex",
         renderCell: function render({ row }: { row: IReview }) {
           return (
             <Rating
@@ -64,6 +64,7 @@ export const CourierTableReviews = (props: Props) => {
         headerName: t("orders.fields.orderNumber"),
         filterable: false,
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }: { row: IReview }) {
           return (
             <Chip
@@ -79,16 +80,10 @@ export const CourierTableReviews = (props: Props) => {
   );
 
   return (
-    <Paper>
-      <DataGrid
-        {...dataGridProps}
-        columns={columns}
-        pageSizeOptions={[10, 20, 50]}
-        sx={{
-          border: "none",
-        }}
-        autoHeight
-      />
-    </Paper>
+    <DataGrid
+      {...dataGridProps}
+      columns={columns}
+      pageSizeOptions={[10, 20, 50]}
+    />
   );
 };

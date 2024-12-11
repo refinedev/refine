@@ -102,10 +102,10 @@ setInitialRoutes(["/samples"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
@@ -165,10 +165,10 @@ setInitialRoutes(["/samples/show/123"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
@@ -228,10 +228,10 @@ setInitialRoutes(["/samples/create"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";
@@ -291,10 +291,10 @@ setInitialRoutes(["/samples/edit/123"]);
 import { Refine } from "@refinedev/core";
 import { RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { MantineInferencer } from "@refinedev/inferencer/mantine";

@@ -180,13 +180,13 @@ import { Layout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
   NavigateToResource,
   CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { useIsAuthenticated, useMsal } from "@azure/msal-react";
 import { AccountInfo, SilentRequest } from "@azure/msal-browser";
 import axios from "axios";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import LoginPage from "./login";
 import { tokenRequest } from "./config";

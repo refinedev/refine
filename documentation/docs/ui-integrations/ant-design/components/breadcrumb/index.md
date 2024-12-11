@@ -7,7 +7,7 @@ A breadcrumb displays the current location within a hierarchy. It allows going b
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=280px disableScroll
 // visible-block-start
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import {
   ConfigProvider,
   RefineThemes,

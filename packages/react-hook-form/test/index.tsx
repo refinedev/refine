@@ -1,5 +1,5 @@
 import React, { type ReactNode } from "react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter } from "react-router";
 import {
   Refine,
   type DataProvider,

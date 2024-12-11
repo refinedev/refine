@@ -9,11 +9,11 @@ import {
   GitHubBanner,
   type LegacyAuthProvider as AuthProvider,
   Refine,
+  ReadyPage,
 } from "@refinedev/core";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ReadyPage,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
 

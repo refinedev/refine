@@ -5,7 +5,7 @@ import {
 } from "@refinedev/devtools-shared";
 import React from "react";
 import clsx from "clsx";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { Authenticated } from "src/components/authenticated";
 
 export const AfterLogin = () => {

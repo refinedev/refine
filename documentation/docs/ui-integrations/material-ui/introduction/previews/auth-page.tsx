@@ -8,18 +8,18 @@ export default function AuthPage() {
       //   showFiles
       initialPercentage={40}
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-hook-form": "^4.8.12",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.14.2",
+        "@mui/lab": "^6.0.0-beta.14",
+        "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
-        "react-router-dom": "^6.8.1",
+        "@mui/x-data-grid": "^7.22.2",
+        "react-router": "^7.0.2",
         "react-hook-form": "^7.43.5",
       }}
       startRoute="/login"
@@ -87,8 +87,8 @@ import React from "react";
 
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import { ErrorComponent, RefineThemes, ThemedLayoutV2, notificationProvider, RefineSnackbarProvider, AuthPage } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -178,7 +178,7 @@ export const ProductList = () => {
 
   return (
     <List>
-        <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };

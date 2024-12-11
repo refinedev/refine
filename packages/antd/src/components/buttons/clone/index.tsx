@@ -34,14 +34,17 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -53,7 +56,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     >
       <Button
         icon={<PlusSquareOutlined />}
-        disabled={disabled}
+        disabled={isDisabled}
         title={title}
         data-testid={RefineButtonTestIds.CloneButton}
         className={RefineButtonClassNames.CloneButton}

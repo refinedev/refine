@@ -64,7 +64,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const { variant, styles, ...commonProps } = rest;
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <Popover
@@ -72,16 +75,14 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
       onChange={setOpened}
       withArrow
       withinPortal
-      disabled={
-        typeof rest?.disabled !== "undefined" ? rest.disabled : disabled
-      }
+      disabled={isDisabled}
     >
       <Popover.Target>
         {hideText ? (
           <ActionIcon
             color="red"
             onClick={() => setOpened((o) => !o)}
-            disabled={loading || disabled}
+            disabled={loading || isDisabled}
             loading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
@@ -99,7 +100,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             color="red"
             variant="outline"
             onClick={() => setOpened((o) => !o)}
-            disabled={loading || disabled}
+            disabled={loading || isDisabled}
             loading={loading}
             title={title}
             leftIcon={<IconTrash size={18} {...svgIconProps} />}

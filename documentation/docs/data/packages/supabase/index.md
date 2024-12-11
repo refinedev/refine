@@ -501,9 +501,9 @@ setInitialRoutes(["/"]);
 
 import { useNotificationProvider, WelcomePage } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -975,7 +975,7 @@ One last thing we need to do is to add newly created CRUD pages to the `resource
 import { dataProvider } from '@refinedev/supabase';
 import { supabaseClient } from 'utility';
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 //highlight-next-line
 import { PostList, PostCreate, PostEdit } from 'pages/posts';
@@ -1034,9 +1034,9 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import { AuthPage, RefineThemes } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import { ConfigProvider } from "antd";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -1070,10 +1070,10 @@ import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
 import routerProvider, {
   NavigateToResource,
   CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 //highlight-end
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ConfigProvider } from "antd";
 import authProvider from "./authProvider";
 

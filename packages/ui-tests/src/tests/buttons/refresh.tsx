@@ -5,7 +5,7 @@ import {
 } from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import "@refinedev/core";
 
 const invalidateMock = jest.fn();

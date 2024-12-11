@@ -1,7 +1,7 @@
 import { useGo } from "@refinedev/core";
 import { Window, Button, WindowHeader, Separator, Anchor } from "react95";
 import styled from "styled-components";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 import { IconClose } from "@/components/icons";
 import { getImagesUrl } from "@/utils/get-cdn-url";
 

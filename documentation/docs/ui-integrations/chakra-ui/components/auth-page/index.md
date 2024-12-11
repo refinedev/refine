@@ -140,12 +140,12 @@ import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { authProvider } from "./authProvider";
 import { DashboardPage } from "./pages/dashboard";
@@ -217,14 +217,14 @@ import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -314,14 +314,14 @@ import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -412,14 +412,14 @@ import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -514,14 +514,14 @@ import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { authProvider } from "./authProvider";
 

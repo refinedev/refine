@@ -51,9 +51,9 @@ import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostsList, PostCreate, PostEdit } from "pages/posts";
 
@@ -115,9 +115,9 @@ import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
@@ -181,9 +181,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList, SampleCreate, SampleEdit } from "pages/samples";
 
@@ -274,9 +274,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList } from "./pages/samples";
 
@@ -406,9 +406,9 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { createTheme, responsiveFontSizes } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { SampleList } from "./pages/samples";
 
@@ -519,9 +519,9 @@ import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { useMediaQuery } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import {
   SampleList,
@@ -672,9 +672,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
@@ -772,9 +772,9 @@ import {
 } from "@refinedev/mui";
 import { CssBaseline, AppBar, IconButton, Box, Stack } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { LightModeOutlined, DarkModeOutlined } from "@mui/icons-material";
 
@@ -875,9 +875,9 @@ import {
 } from "@refinedev/mui";
 import { ThemeProvider, CssBaseline, GlobalStyles } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import {
   SampleList,
@@ -1057,6 +1057,7 @@ const SampleList = () => {
           return value;
         },
         minWidth: 300,
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryIsLoading ? (
             <>Loading...</>
@@ -1069,6 +1070,7 @@ const SampleList = () => {
         field: "createdAt",
         headerName: "Created At",
         minWidth: 250,
+        display: "flex",
         renderCell: function render({ value }) {
           return <DateField value={value} />;
         },
@@ -1076,6 +1078,7 @@ const SampleList = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -1094,7 +1097,7 @@ const SampleList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -1172,7 +1175,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -1186,7 +1191,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -1199,7 +1206,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.content?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           multiline
           label="Content"
           name="content"
@@ -1275,7 +1284,9 @@ const SampleCreate = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -1288,7 +1299,9 @@ const SampleCreate = () => {
           helperText={(errors as any)?.content?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           multiline
           label="Content"
           name="content"

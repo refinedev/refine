@@ -4,7 +4,7 @@ import type {
   Action,
   RouterBindings,
 } from "@refinedev/core";
-import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
+import { useParams, useLocation, Link, useNavigate } from "react-router";
 
 export const posts = [
   {

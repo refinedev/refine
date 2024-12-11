@@ -72,7 +72,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const [opened, setOpened] = useState(false);
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <Popover isOpen={opened} isLazy>
@@ -83,7 +86,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             variant="outline"
             aria-label={title}
             onClick={() => setOpened((o) => !o)}
-            isDisabled={loading || disabled}
+            isDisabled={loading || isDisabled}
             isLoading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
@@ -96,9 +99,9 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             colorScheme="red"
             variant="outline"
             onClick={() => setOpened((o) => !o)}
-            isDisabled={loading || disabled}
+            isDisabled={loading || isDisabled}
             isLoading={loading}
-            leftIcon={<IconTrash size={20} {...svgIconProps} />}
+            leftIcon={<IconTrash size={20} />}
             title={title}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}

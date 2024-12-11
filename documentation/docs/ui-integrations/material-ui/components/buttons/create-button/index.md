@@ -35,7 +35,7 @@ const PostsList: React.FC = () => {
   return (
     // highlight-next-line
     <List headerButtons={<CreateButton />}>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

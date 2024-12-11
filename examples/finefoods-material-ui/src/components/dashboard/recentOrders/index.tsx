@@ -58,6 +58,7 @@ export const RecentOrders: React.FC = () => {
     () => [
       {
         field: "orderNumber",
+        display: "flex",
         renderCell: function render({ row }) {
           return <Typography>#{row.orderNumber}</Typography>;
         },
@@ -66,6 +67,7 @@ export const RecentOrders: React.FC = () => {
       {
         field: "user",
         width: 220,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <Stack spacing="4px">
@@ -92,6 +94,7 @@ export const RecentOrders: React.FC = () => {
       {
         field: "products",
         flex: 1,
+        display: "flex",
         renderCell: function render({ row }) {
           const products = getUniqueListWithCount({
             list: row.products,
@@ -119,6 +122,7 @@ export const RecentOrders: React.FC = () => {
         field: "amount",
         align: "right",
         width: 80,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <NumberField

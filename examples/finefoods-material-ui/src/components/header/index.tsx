@@ -251,8 +251,10 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
                     <TextField
                       {...params}
                       label={t("search.placeholder")}
-                      InputProps={{
-                        ...params.InputProps,
+                      slotProps={{
+                        input: {
+                          ...params.InputProps,
+                        },
                       }}
                     />
                     <IconButton
@@ -284,7 +286,11 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
               size="small"
               disableUnderline
               defaultValue={currentLocale}
-              inputProps={{ "aria-label": "Without label" }}
+              slotProps={{
+                input: {
+                  "aria-label": "Without label",
+                },
+              }}
               variant="outlined"
               sx={{
                 width: {

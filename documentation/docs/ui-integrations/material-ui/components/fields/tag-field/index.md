@@ -31,6 +31,7 @@ const columns: GridColDef[] = [
   {
     field: "status",
     headerName: "Status",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <TagField value={row.status} />;
@@ -46,7 +47,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

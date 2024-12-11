@@ -284,9 +284,9 @@ The app will have three resources: **posts**, **users**, and **categories** with
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
@@ -601,8 +601,8 @@ import { useState } from "react";
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -694,8 +694,8 @@ import { useState } from "react";
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -1015,8 +1015,8 @@ import { useState } from "react";
 import { Refine, useCan } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";
@@ -1182,8 +1182,8 @@ import { useState } from "react";
 import { Refine, useCan } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 const API_URL = "https://api.fake-rest.refine.dev";

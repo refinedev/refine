@@ -513,16 +513,18 @@ export default function Asynchronous() {
         <TextField
           {...params}
           label="Asynchronous"
-          InputProps={{
-            ...params.InputProps,
-            endAdornment: (
-              <React.Fragment>
-                {loading ? (
-                  <CircularProgress color="inherit" size={20} />
-                ) : null}
-                {params.InputProps.endAdornment}
-              </React.Fragment>
-            ),
+          slotProps={{
+            input: {
+              ...params.slotProps,
+              endAdornment: (
+                <React.Fragment>
+                  {loading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : null}
+                  {params.slotProps.endAdornment}
+                </React.Fragment>
+              ),
+            },
           }}
         />
       )}
@@ -721,11 +723,13 @@ Make the AutoComplete component more accessible by adding in ARIA attributes as 
     <TextField
       {...params}
       label="Songs"
-      inputProps={{
-        ...params.inputProps,
-        "aria-label": "Songs",
-        "aria-labelledby": "autocomplete-label",
-        "aria-describedby": "autocomplete-desc",
+      slotProps={{
+        input: {
+          ...params.slotProps.input,
+          "aria-label": "Songs",
+          "aria-labelledby": "autocomplete-label",
+          "aria-describedby": "autocomplete-desc",
+        },
       }}
     />
   )}
@@ -743,11 +747,12 @@ Make the AutoComplete component more accessible by adding in ARIA attributes as 
   renderInput={(params) => (
     <TextField
       {...params}
-      inputProps={{
-        ...params.inputProps,
-        role: "combobox",
-        "aria-expanded": open ? "true" : "false",
-        "aria-controls": open ? "autocomplete-options" : undefined,
+      slotProps={{
+        input: {
+          ...params.slotProps.input,
+          role: "combobox",
+          "aria-expanded": open ? "true" : "false",
+        },
       }}
     />
   )}
@@ -764,10 +769,12 @@ Make the AutoComplete component more accessible by adding in ARIA attributes as 
   renderInput={(params) => (
     <TextField
       {...params}
-      inputProps={{
-        ...params.inputProps,
-        "aria-live": "polite",
-        "aria-relevant": "additions removals",
+      slotProps={{
+        input: {
+          ...params.slotProps.input,
+          "aria-live": "polite",
+          "aria-relevant": "additions removals",
+        },
       }}
     />
   )}
@@ -816,9 +823,11 @@ Below are some code snippets and tips to improve keyboard navigation:
   renderInput={(params) => (
     <TextField
       {...params}
-      inputProps={{
-        ...params.inputProps,
-        tabindex: 0, // Ensure the input is focusable
+      slotProps={{
+        input: {
+          ...params.slotProps.input,
+          tabindex: 0, // Ensure the input is focusable
+        },
       }}
     />
   )}
@@ -884,7 +893,11 @@ const Home = () => {
               freeSolo
               options={top5Songs.map((option) => option.title)}
               style={style.root}
-              inputProps={{ style: { fontFamily: "nunito", color: "white" } }}
+              slotProps={{
+                input: {
+                  style: { backgroundColor: "#333", borderRadius: "24px" },
+                },
+              }}
               renderInput={(params) => (
                 <TextField {...params} label="freeSolo" />
               )}

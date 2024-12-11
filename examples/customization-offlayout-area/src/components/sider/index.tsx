@@ -7,7 +7,7 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, theme, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { ThemedTitle } from "@refinedev/antd";
 
 const { useToken } = theme;

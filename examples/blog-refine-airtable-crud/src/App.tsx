@@ -6,8 +6,8 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { Layout } from "./components/Layout";
 
@@ -22,6 +22,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <GitHubBanner />
       <Refine
         dataProvider={dataProvider(API_TOKEN, BASE_ID)}
         routerProvider={routerBindings}

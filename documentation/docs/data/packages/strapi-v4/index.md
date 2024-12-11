@@ -169,8 +169,8 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 
@@ -294,8 +294,8 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 
@@ -452,8 +452,8 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 
@@ -758,8 +758,8 @@ export const PostList: React.FC = () => {
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 import { ConfigProvider, Layout } from "antd";

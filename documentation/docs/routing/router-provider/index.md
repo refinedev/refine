@@ -11,7 +11,7 @@ Rather than restricting and limiting our users to specific routing libraries or 
 
 :::simple Out of the Box Router Providers
 
-- [React Router V6][react-router-v6]
+- [React Router][react-router]
 - [Next.js Router][nextjs-router]
 - [Remix Router][remix-router]
 - [Expo Router (Community)][expo-router]
@@ -59,7 +59,7 @@ To activate router provider in Refine, we have to pass the `routerProvider` to t
 <Tabs
 defaultValue="react-router-v6"
 values={[
-{label: 'React Router V6', value: 'react-router-v6'},
+{label: 'React Router', value: 'react-router-v6'},
 {label: 'Next.js Router', value: 'nextjs'},
 {label: 'Remix Router', value: 'remix'},
 {label: 'React Router V5 (Legacy)', value: 'react-router'},
@@ -69,9 +69,9 @@ values={[
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 
 const App: React.FC = () => {
   return (
@@ -200,17 +200,17 @@ The `Link` component is used to create links to other pages. It accepts a `to` p
 
 ### Source Code for the Existing Router Providers
 
-- [React Router V6](https://github.com/refinedev/refine/blob/main/packages/react-router-v6/src/bindings.tsx)
+- [React Router](https://github.com/refinedev/refine/blob/main/packages/react-router/src/bindings.tsx)
 - [Next.js Router](https://github.com/refinedev/refine/blob/main/packages/nextjs-router/src/pages/bindings.tsx)
 - [Remix Router](https://github.com/refinedev/refine/blob/main/packages/remix-router/src/bindings.tsx)
 
 ## Legacy Router Provider
 
-Refine's v4 release is backward compatible and supports the legacy router provider implementations until v5 comes out. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router V6 is available at `@refinedev/react-router-v6/legacy`.
+Refine's v4 release is backward compatible and supports the legacy router provider implementations until v5 comes out. The legacy router provider implementations are still available at `/legacy` paths in the router provider packages. For example, the legacy router provider implementation for React Router is available at `@refinedev/react-router-v6/legacy`.
 
 If you want to use a legacy router provider, you can pass them to the `<Refine />` component using the `legacyRouterProvider` prop.
 
 [expo-router]: https://www.npmjs.com/package/@refinenative/expo-router
-[react-router-v6]: https://github.com/refinedev/refine/tree/main/packages/react-router-v6
+[react-router]: https://github.com/refinedev/refine/tree/main/packages/react-router
 [nextjs-router]: https://github.com/refinedev/refine/tree/main/packages/nextjs-router
 [remix-router]: https://github.com/refinedev/refine/tree/main/packages/remix-router

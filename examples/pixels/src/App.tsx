@@ -1,8 +1,8 @@
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ConfigProvider, App as AntdApp } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
 

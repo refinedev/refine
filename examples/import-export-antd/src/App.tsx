@@ -4,8 +4,8 @@ import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
 
 import { ConfigProvider, App as AntdApp } from "antd";

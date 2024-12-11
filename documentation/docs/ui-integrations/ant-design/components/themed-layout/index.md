@@ -55,8 +55,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -104,9 +104,9 @@ render(<App />);
 
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and uses [`<Drawer>`][antd-drawer]. On larger screens, it will use [`<Sider>`][antd-sider].
 
-Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
+Example of above showing how to use `<ThemedLayoutV2>` with [`React Router`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/main/examples/auth-antd/src/App.tsx#L186)
+- [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-antd/src/App.tsx#L186)
 - [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
 - [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-auth/app/routes/_protected.tsx)
 
@@ -210,6 +210,7 @@ const App: React.FC = () => {
 | `meta`               | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                          |
 | `fixed`              | `boolean`                                     | Whether the sider is fixed or not                                                 |
 | `activeItemDisabled` | `boolean`                                     | Whether clicking on an active sider item should reload the page                   |
+| `onSiderCollapsed`   | `(collapsed: boolean) => void`                | Callback function invoked when the sider collapses or expands                     |
 
 ```tsx
 type SiderRenderFunction = (props: {
@@ -234,6 +235,33 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 >
   {/* ... */}
 </ThemedLayoutV2>
+```
+
+### `onSiderCollapsed`
+
+Will be triggered when the [`<ThemedSiderV2>`][themed-sider] component's `collapsed` state changes.
+
+Can be used to persist collapsed state on the localstorage. Then you can use localStorage item to decide if sider should be collapsed initially or not.
+
+Here's an example of how to use the `onSiderCollapsed` prop:
+
+```tsx
+const MyLayout = () => {
+  const onSiderCollapse = (collapsed: boolean) => {
+    localStorage.setItem("siderCollapsed", collapsed);
+  };
+
+  const initialSiderCollapsed = Boolean(localStorage.getItem("siderCollapsed"));
+
+  return (
+    <ThemedLayoutV2
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapse}
+    >
+      {/* ... */}
+    </ThemedLayoutV2>
+  );
+};
 ```
 
 ### Header
@@ -347,8 +375,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -456,8 +484,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Button } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -706,8 +734,8 @@ import {
 import { ConfigProvider, Button, Space } from "antd";
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -806,7 +834,7 @@ values={[
 ```tsx title="src/App.tsx"
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ThemedLayoutV2 } from "@refinedev/antd";
 
 const App: React.FC = () => {

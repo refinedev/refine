@@ -1,5 +1,5 @@
 import { useNavigation, useOne, useSubscription } from "@refinedev/core";
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import { Button, GroupBox } from "react95";

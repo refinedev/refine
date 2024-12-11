@@ -606,4 +606,47 @@ describe("Authenticated", () => {
       ),
     );
   });
+
+  it("should not authenticate and redirect if params indicate failed authentication", async () => {
+    const mockGo = jest.fn();
+    const mockParams = { allowAuth: false }; // Parameter that simulates failed authentication
+
+    const { queryByText } = render(
+      <Authenticated key="auth-with-params" params={mockParams}>
+        Custom Authenticated
+      </Authenticated>,
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          authProvider: {
+            ...mockAuthProvider,
+            check: async ({ params }) => {
+              // Simulate failed authentication based on params
+              return params?.allowAuth
+                ? { authenticated: true }
+                : { authenticated: false, redirectTo: "/login" };
+            },
+          },
+          routerProvider: {
+            go: () => mockGo,
+          },
+          resources: [{ name: "posts", route: "posts" }],
+        }),
+      },
+    );
+
+    // Since requireAuth is false, the component should redirect to /login
+    await act(async () => {
+      expect(queryByText("Custom Authenticated")).toBeNull();
+    });
+
+    await waitFor(() =>
+      expect(mockGo).toBeCalledWith(
+        expect.objectContaining({
+          to: "/login",
+          type: "replace",
+        }),
+      ),
+    );
+  });
 });

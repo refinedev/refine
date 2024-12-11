@@ -1,4 +1,4 @@
-import { type Option, useSelect } from "@refinedev/core";
+import { type BaseOption, useSelect } from "@refinedev/core";
 import { List, useDataGrid } from "@refinedev/mui";
 import React from "react";
 
@@ -7,7 +7,6 @@ import {
   GridActionsCellItem,
   type GridColDef,
   GridToolbar,
-  type GridValueFormatterParams,
 } from "@mui/x-data-grid";
 
 import type { ICategory, IPost } from "../../interfaces";
@@ -37,9 +36,7 @@ export const BasicDataGrid: React.FC = () => {
         flex: 1,
         type: "singleSelect",
         valueOptions: options,
-        valueFormatter: (params: GridValueFormatterParams<Option>) => {
-          return params.value;
-        },
+        display: "flex",
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
@@ -80,10 +77,9 @@ export const BasicDataGrid: React.FC = () => {
       <DataGrid
         {...dataGridProps}
         columns={columns}
-        components={{
-          Toolbar: GridToolbar,
+        slots={{
+          toolbar: GridToolbar,
         }}
-        autoHeight
       />
     </List>
   );
