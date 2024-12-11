@@ -70,14 +70,20 @@ function validateChangesetReleaseComments(type) {
     if (isEnterprise) {
       if (!hasEnterpriseTag) {
         console.error(
-          `❌ Error: Changeset "${file}" is missing "${REFINE_ENTERPRISE_TITLE.replace(/\n/g, "")}" comment`,
+          `❌ Error: Changeset "${file}" is missing "${REFINE_ENTERPRISE_TITLE.replace(
+            /\n/g,
+            "",
+          )}" comment`,
         );
         hasError = true;
         isValid = false;
       }
       if (hasCommunityTag) {
         console.error(
-          `❌ Error: Enterprise changeset "${file}" should not include "${REFINE_CE_TITLE.replace(/\n/g, "")}" comment`,
+          `❌ Error: Enterprise changeset "${file}" should not include "${REFINE_CE_TITLE.replace(
+            /\n/g,
+            "",
+          )}" comment`,
         );
         hasError = true;
         isValid = false;
@@ -85,14 +91,20 @@ function validateChangesetReleaseComments(type) {
     } else {
       if (!hasCommunityTag) {
         console.error(
-          `❌ Error: Changeset "${file}" is missing "${REFINE_CE_TITLE.replace(/\n/g, "")}" comment`,
+          `❌ Error: Changeset "${file}" is missing "${REFINE_CE_TITLE.replace(
+            /\n/g,
+            "",
+          )}" comment`,
         );
         hasError = true;
         isValid = false;
       }
       if (hasEnterpriseTag) {
         console.error(
-          `❌ Error: Community changeset "${file}" should not include "${REFINE_ENTERPRISE_TITLE.replace(/\n/g, "")}" comment`,
+          `❌ Error: Community changeset "${file}" should not include "${REFINE_ENTERPRISE_TITLE.replace(
+            /\n/g,
+            "",
+          )}" comment`,
         );
         hasError = true;
         isValid = false;

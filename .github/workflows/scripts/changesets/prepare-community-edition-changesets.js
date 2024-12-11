@@ -24,11 +24,11 @@ function updateChangesetFiles() {
         '": patch',
       );
 
-      const body = bodyParts.join("---").trim();
+      const body = bodyParts.join("---");
 
       const cleanBody = body
-        .replace(new RegExp(`${REFINE_ENTERPRISE_TITLE}`, "s", "g"), "")
-        .replace(new RegExp(`${REFINE_CE_TITLE}`, "s", "g"), "")
+        .replaceAll(REFINE_ENTERPRISE_TITLE, "")
+        .replaceAll(REFINE_CE_TITLE, "")
         .trim();
 
       const updatedContent = [
@@ -40,13 +40,13 @@ function updateChangesetFiles() {
       ].join("\n");
 
       writeFileSync(filePath, updatedContent);
-      console.log(`File updated: ${file}`);
+      console.log(`✅ File updated: ${file}`);
       updatedFilesCount++;
     }
 
     console.log(`✅ Successfully updated ${updatedFilesCount} changeset files`);
   } catch (error) {
-    console.error("Error updating changeset files:", error);
+    console.error("❌ Error updating changeset files:", error);
     process.exit(1);
   }
 }
@@ -81,7 +81,7 @@ function copyChangesetFiles() {
 
     console.log(`✅ Successfully copied ${files.length} files to _changeset`);
   } catch (error) {
-    console.error("Error during changeset files copy operation:", error);
+    console.error("❌ Error during changeset files copy operation:", error);
     process.exit(1);
   }
 }
