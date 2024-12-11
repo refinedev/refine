@@ -8,6 +8,7 @@ import routerProvider from "@refinedev/nextjs-router";
 import React, { Suspense, type PropsWithChildren } from "react";
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider } from "@providers/data-provider";
+import { authProvider } from "@providers/auth-provider/auth-provider.client";
 import { useLocale, useTranslations } from "next-intl";
 import { setUserLocale } from "@i18n";
 
@@ -38,6 +39,7 @@ export const RefineContext = ({
               routerProvider={routerProvider}
               dataProvider={dataProvider}
               notificationProvider={useNotificationProvider}
+              authProvider={authProvider}
               i18nProvider={i18nProvider}
               resources={[
                 {
