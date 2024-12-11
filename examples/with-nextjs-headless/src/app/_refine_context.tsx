@@ -6,7 +6,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
 import { useLocale, useTranslations } from "next-intl";
 import { DevtoolsProvider } from "@providers/devtools";
-import { authProvider } from "@providers/auth-provider";
+import { authProvider } from "@providers/auth-provider/auth-provider.client";
 import { dataProvider } from "@providers/data-provider";
 import { setUserLocale } from "@i18n";
 

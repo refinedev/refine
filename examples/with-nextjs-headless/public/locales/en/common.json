@@ -12,29 +12,36 @@
         "password": "Password"
       },
       "errors": {
+        "requiredEmail": "Email is required",
+        "requiredPassword": "Password is required",
         "validEmail": "Invalid email address"
       },
       "buttons": {
         "submit": "Login",
         "forgotPassword": "Forgot password?",
         "noAccount": "Don’t have an account?",
+        "haveAccount": "Have an account?",
         "rememberMe": "Remember me"
       }
     },
     "forgotPassword": {
       "title": "Forgot your password?",
+      "signin": "Sign in",
       "fields": {
         "email": "Email"
       },
       "errors": {
+        "requiredEmail": "Email is required",
         "validEmail": "Invalid email address"
       },
       "buttons": {
+        "haveAccount": "Have an account?",
         "submit": "Send reset instructions"
       }
     },
     "register": {
       "title": "Sign up for your account",
+      "signin": "Sign in",
       "fields": {
         "email": "Email",
         "password": "Password"
@@ -118,7 +125,7 @@
     "form": {
       "select": {
         "category": {
-          "placeholder": "Please select"
+          "placeholder": "Please select category"
         }
       }
     },
