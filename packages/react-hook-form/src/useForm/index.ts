@@ -20,6 +20,9 @@ import {
   useTranslate,
   useRefineContext,
   flattenObjectKeys,
+  CreateFormVariables,
+  ExtractFormVariables,
+  ExtractSubmissionVariables,
 } from "@refinedev/core";
 
 export type UseFormReturnType<
@@ -82,7 +85,7 @@ export type UseFormProps<
 export const useForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables extends FieldValues = FieldValues,
+  TVariables extends FieldValues | CreateFormVariables<any, any> = FieldValues,
   TContext extends object = {},
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
@@ -195,6 +198,9 @@ export const useForm = <
 
   const { query, onFinish, formLoading, onFinishAutoSave } = useFormCoreResult;
 
+  type FormVariablesType = ExtractFormVariables<TVariables>; // Added
+  type SubmissionVariablesType = ExtractSubmissionVariables<TVariables>;
+
   useEffect(() => {
     const data = query?.data?.data;
     if (!data) return;
@@ -248,17 +254,24 @@ export const useForm = <
     return changeValues;
   };
 
-  const handleSubmit: UseFormHandleSubmit<TVariables> =
+  const handleSubmit: UseFormHandleSubmit<FormVariablesType> =
     (onValid, onInvalid) => async (e) => {
       setWarnWhen(false);
-      return handleSubmitReactHookForm(onValid, onInvalid)(e);
+
+      const onValidWrapper = (variables: TVariables) => {
+        const formVariables =
+          variables as unknown as ExtractFormVariables<TVariables>;
+        return onValid(formVariables);
+      };
+
+      return handleSubmitReactHookForm(onValidWrapper, onInvalid)(e);
     };
 
   const saveButtonProps = {
     disabled: formLoading,
     onClick: (e: React.BaseSyntheticEvent) => {
       handleSubmit(
-        (v) => onFinish(v).catch(() => {}),
+        (v) => onFinish(v as SubmissionVariablesType).catch(() => {}),
         () => false,
       )(e);
     },
