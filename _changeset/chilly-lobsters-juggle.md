@@ -2,6 +2,8 @@
 "@refinedev/inferencer": patch
 ---
 
+📢 \*\*Refine Community Edition Release\*\* 📢
+
 feat: added support for Material UI v6 and X Data Grid v7
 
 ```diff

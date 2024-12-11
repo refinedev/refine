@@ -5,6 +5,8 @@
 "@refinedev/mui": patch
 ---
 
+📢 \*\*Refine Community Edition Release\*\* 📢
+
 fix: UI buttons doesn't respect `hidden` prop.
 From now on, `hidden` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
 

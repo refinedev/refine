@@ -5,6 +5,8 @@
 "@refinedev/mui": patch
 ---
 
+📢 \*\*Refine Community Edition Release\*\* 📢
+
 fix: UI buttons doesn't respect `disabled` prop.
 From now on, `disabled` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
 

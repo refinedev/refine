@@ -24,4 +24,6 @@
 "@refinedev/ui-types": patch
 ---
 
+📢 \*\*Refine Community Edition Release\*\* 📢
+
 chore: update package descriptions
