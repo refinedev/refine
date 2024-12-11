@@ -68,13 +68,13 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          REFINE_RELEASE_TYPE: community
       - name: Merge main to next
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           GIT_USER_EMAIL: bot@refine.dev
           GIT_USER_NAME: Refine Community Bot
-          REFINE_RELEASE_TYPE: community
         if: steps.changesets.outputs.published == 'true'
         run: |
           git config --global user.email "${{ env.GIT_USER_EMAIL }}"

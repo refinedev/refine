@@ -67,5 +67,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.REFINE_REGISTRY_TOKEN }}
-          NODE_AUTH_TOKEN: ${{secrets.REFINE_REGISTRY_TOKEN}}
+          NODE_AUTH_TOKEN: ${{ secrets.REFINE_REGISTRY_TOKEN }}
           REFINE_RELEASE_TYPE: enterprise
