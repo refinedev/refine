@@ -37,7 +37,7 @@ function validateChangesetReleaseComments(type) {
   let validFiles = 0;
 
   mdFiles.forEach((file) => {
-    console.log(` ⚠️ Checking file: ${file}`);
+    console.log(` 🔍 ️Checking file: ${file}`);
     const content = fs.readFileSync(path.join(changesetDir, file), "utf-8");
 
     const hasEnterpriseTag = content.includes(REFINE_ENTERPRISE_TITLE);
