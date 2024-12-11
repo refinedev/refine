@@ -64,7 +64,7 @@ jobs:
         uses: changesets/action@v1
         with:
           version: pnpm version-packages
-          publish: pnpm changeset publish --tag next
+          publish: pnpm changeset publish
           commit: "ci(changesets): refine registry version packages"
           title: "ci(changesets): refine registry version packages"
           createGithubReleases: false
