@@ -12,29 +12,36 @@
         "password": "Passwort"
       },
       "errors": {
+        "requiredEmail": "Email ist erforderlich",
+        "requiredPassword": "Passwort ist erforderlich",
         "validEmail": "Ungültige E-Mail-Adresse"
       },
       "buttons": {
         "submit": "Anmeldung",
         "forgotPassword": "Passwort vergessen?",
         "noAccount": "Sie haben kein Konto?",
+        "haveAccount": "Haben Sie ein Konto?",
         "rememberMe": "Erinnere dich an mich"
       }
     },
     "forgotPassword": {
       "title": "Haben Sie Ihr Passwort vergessen?",
+      "signin": "Einloggen",
       "fields": {
         "email": "Email"
       },
       "errors": {
+        "requiredEmail": "Email ist erforderlich",
         "validEmail": "Ungültige E-Mail-Adresse"
       },
       "buttons": {
+        "haveAccount": "Haben Sie ein Konto?",
         "submit": "Anweisungen zum Zurücksetzen senden"
       }
     },
     "register": {
       "title": "Registrieren Sie sich für Ihr Konto",
+      "signin": "Einloggen",
       "fields": {
         "email": "Email",
         "password": "Passwort"
@@ -61,9 +68,9 @@
       }
     },
     "error": {
-      "info": "Sie haben vergessen, {{action}} component zu {{resource}} hinzufügen.",
+      "info": "Sie haben vergessen, {action} component zu {resource} hinzufügen.",
       "404": "Leider existiert diese Seite nicht.",
-      "resource404": "Haben Sie die {{resource}} resource erstellt?",
+      "resource404": "Haben Sie die {resource} resource erstellt?",
       "backHome": "Zurück"
     }
   },
@@ -71,8 +78,10 @@
     "list": "Aufführen",
     "create": "Erstellen",
     "edit": "Bearbeiten",
+    "show": "Zeigen",
     "delete": "Löschen",
-    "show": "Zeigen"
+    "save": "Speichern",
+    "cancel": "Abbrechen"
   },
   "buttons": {
     "create": "Erstellen",
@@ -94,15 +103,15 @@
   "warnWhenUnsavedChanges": "Nicht gespeicherte Änderungen werden nicht übernommen.",
   "notifications": {
     "success": "Erfolg",
-    "error": "Fehler (status code: {{statusCode}})",
-    "undoable": "Sie haben {{seconds}} Sekunden Zeit für Undo.",
-    "createSuccess": "{{resource}} erfolgreich erstellt.",
-    "createError": "Fehler beim Erstellen {{resource}} (status code: {{statusCode}})",
-    "deleteSuccess": "{{resource}} erfolgreich gelöscht.",
-    "deleteError": "Fehler beim Löschen {{resource}} (status code: {{statusCode}})",
-    "editSuccess": "{{resource}} erfolgreich bearbeitet.",
-    "editError": "Fehler beim Bearbeiten {{resource}} (status code: {{statusCode}})",
-    "importProgress": "{{processed}}/{{total}} importiert"
+    "error": "Fehler (status code: {statusCode})",
+    "undoable": "Sie haben {seconds} Sekunden Zeit für Undo.",
+    "createSuccess": "{resource} erfolgreich erstellt.",
+    "createError": "Fehler beim Erstellen {resource} (status code: {statusCode})",
+    "deleteSuccess": "{resource} erfolgreich gelöscht.",
+    "deleteError": "Fehler beim Löschen {resource} (status code: {statusCode})",
+    "editSuccess": "{resource} erfolgreich bearbeitet.",
+    "editError": "Fehler beim Bearbeiten {resource} (status code: {statusCode})",
+    "importProgress": "{processed}/{total} importiert"
   },
   "loading": "Wird geladen",
   "tags": {
@@ -116,7 +125,7 @@
     "form": {
       "select": {
         "category": {
-          "placeholder": "Bitte auswählen"
+          "placeholder": "Bitte wählen Sie eine Kategorie"
         }
       }
     },
@@ -138,12 +147,6 @@
       "edit": "Bearbeiten",
       "list": "Einträge",
       "show": "Eintrag zeigen"
-    },
-    "buttons": {
-      "create": "Erstellen",
-      "edit": "Bearbeiten",
-      "show": "Zeigen",
-      "save": "Speichern"
     }
   },
   "categories": {
@@ -158,12 +161,6 @@
       "edit": "Bearbeiten",
       "list": "Einträge",
       "show": "Eintrag zeigen"
-    },
-    "buttons": {
-      "create": "Erstellen",
-      "edit": "Bearbeiten",
-      "show": "Zeigen",
-      "save": "Speichern"
     }
   },
   "table": {

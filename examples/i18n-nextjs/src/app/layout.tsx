@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { cookies } from "next/headers";
 import React, { Suspense } from "react";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { NextIntlClientProvider, useTranslations } from "next-intl";
+import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { RefineContext } from "./_refine_context";
 

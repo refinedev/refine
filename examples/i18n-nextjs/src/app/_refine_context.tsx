@@ -8,6 +8,7 @@ import routerProvider from "@refinedev/nextjs-router";
 import React, { Suspense, type PropsWithChildren } from "react";
 import { ColorModeContextProvider } from "@contexts/color-mode";
 import { dataProvider } from "@providers/data-provider";
+import { authProviderClient } from "@providers/auth-provider/auth-provider.client";
 import { useLocale, useTranslations } from "next-intl";
 import { setUserLocale } from "@i18n";
 
@@ -20,11 +21,10 @@ export const RefineContext = ({
   children,
 }: PropsWithChildren<Props>) => {
   const t = useTranslations();
-  const locale = useLocale();
 
   const i18nProvider: I18nProvider = {
     translate: (key: string, options: any) => t(key, options),
-    getLocale: () => locale,
+    getLocale: useLocale,
     changeLocale: setUserLocale,
   };
 
@@ -38,6 +38,7 @@ export const RefineContext = ({
               routerProvider={routerProvider}
               dataProvider={dataProvider}
               notificationProvider={useNotificationProvider}
+              authProvider={authProviderClient}
               i18nProvider={i18nProvider}
               resources={[
                 {

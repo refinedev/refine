@@ -6,7 +6,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider from "@refinedev/nextjs-router";
 import { useLocale, useTranslations } from "next-intl";
 import { DevtoolsProvider } from "@providers/devtools";
-import { authProvider } from "@providers/auth-provider";
+import { authProviderClient } from "@providers/auth-provider/auth-provider.client";
 import { dataProvider } from "@providers/data-provider";
 import { setUserLocale } from "@i18n";
 
@@ -28,7 +28,7 @@ export const RefineContext = ({ children }: PropsWithChildren) => {
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider}
-            authProvider={authProvider}
+            authProvider={authProviderClient}
             i18nProvider={i18nProvider}
             resources={[
               {

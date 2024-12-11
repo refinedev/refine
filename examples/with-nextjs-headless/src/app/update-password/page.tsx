@@ -1,45 +1,23 @@
-"use client";
+import { AuthPage } from "@refinedev/core";
+import { redirect } from "next/navigation";
+import { authProviderServer } from "@providers/auth-provider/auth-provider.server";
 
-import { useForm } from "@refinedev/react-hook-form";
-import { useUpdatePassword } from "@refinedev/core";
+export default async function UpdatePasswordPage() {
+  const data = await getData();
 
-export default function UpdatePasswordPage() {
-  const { mutate: updatePassword } = useUpdatePassword();
+  if (data.authenticated) {
+    redirect(data?.redirectTo || "/");
+  }
 
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-  } = useForm();
+  return <AuthPage type="updatePassword" />;
+}
 
-  return (
-    <div>
-      <h1>Update Password</h1>
-      <form onSubmit={handleSubmit((data) => updatePassword(data))}>
-        <div>
-          <label htmlFor="password">New Password</label>
-          <input
-            id="password"
-            type="password"
-            {...register("password", { required: true })}
-          />
-          {errors?.password && (
-            <span style={{ color: "red" }}>This field is required</span>
-          )}
-        </div>
-        <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            {...register("confirmPassword", { required: true })}
-          />
-          {errors?.confirmPassword && (
-            <span style={{ color: "red" }}>This field is required</span>
-          )}
-        </div>
-        <button type="submit">Update Password</button>
-      </form>
-    </div>
-  );
+async function getData() {
+  const { authenticated, redirectTo, error } = await authProviderServer.check();
+
+  return {
+    authenticated,
+    redirectTo,
+    error,
+  };
 }

@@ -1,9 +1,11 @@
 "use client";
 
-import { Link, useOne, useShow } from "@refinedev/core";
+import { Link, useOne, useShow, useTranslation } from "@refinedev/core";
 import type { BlogPost, Category } from "@types";
 
 export default function BlogPostShow() {
+  const { translate: t } = useTranslation();
+
   const { query } = useShow<BlogPost>();
   const { data, isLoading } = query;
   const record = data?.data;
@@ -31,34 +33,34 @@ export default function BlogPostShow() {
       <br />
 
       <div>
-        <h5>ID</h5>
+        <h5>{t("ID")}</h5>
         <div>{record?.id}</div>
       </div>
 
       <div>
-        <h5>Title</h5>
+        <h5>{t("blog_posts.fields.title")}</h5>
         <div>{record?.title}</div>
       </div>
 
       <div>
-        <h5>Content</h5>
+        <h5>{t("blog_posts.fields.content")}</h5>
         <div>{record?.content}</div>
       </div>
 
       <div>
-        <h5>Category</h5>
+        <h5>{t("blog_posts.fields.category")}</h5>
         <div>
           {categoryIsLoading ? "Loading..." : categoryData?.data?.title}
         </div>
       </div>
 
       <div>
-        <h5>Status</h5>
+        <h5>{t("blog_posts.fields.status.title")}</h5>
         <div>{record?.status}</div>
       </div>
 
       <div>
-        <h5>Created At</h5>
+        <h5>{t("blog_posts.fields.createdAt")}</h5>
         <div>
           {record?.createdAt && new Date(record.createdAt).toLocaleDateString()}
         </div>
