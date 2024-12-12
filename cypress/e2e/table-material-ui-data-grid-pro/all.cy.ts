@@ -58,7 +58,7 @@ describe("table-material-ui-data-grid-pro", () => {
       cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
     // click the filter menu item
-    cy.contains("Filter").click();
+    cy.contains("Filter").click({ force: true });
     // type the filter value
     cy.get("[placeholder='Filter value']").type("lorem");
     // url should contain the filter

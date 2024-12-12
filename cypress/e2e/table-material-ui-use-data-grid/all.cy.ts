@@ -57,7 +57,9 @@ describe("table-material-ui-use-data-grid", () => {
       cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
 
-    cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click();
+    cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click({
+      force: true,
+    });
 
     cy.intercept(
       {
@@ -147,7 +149,10 @@ describe("table-material-ui-use-data-grid", () => {
       cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
 
-    cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click();
+    cy.get(".MuiDataGrid-menu > div > .MuiList-root")
+      .children()
+      .eq(3)
+      .click({ force: true });
 
     cy.get("[placeholder='Filter value']").type("lorem");
 
@@ -155,9 +160,10 @@ describe("table-material-ui-use-data-grid", () => {
   });
 
   it("should update a cell", () => {
+    cy.wait("@getPosts");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
-    cy.intercept("/posts/*").as("patchRequest");
+    cy.interceptPATCHPost();
 
     cy.getMaterialUIColumnHeader(1).click();
 
@@ -168,9 +174,14 @@ describe("table-material-ui-use-data-grid", () => {
     )
       .clear()
       .type("Lorem ipsum refine!")
+      .focus()
       .type("{enter}");
 
-    cy.wait("@patchRequest");
+    cy.wait("@patchPost").then((interception) => {
+      const request = interception.request;
+      const body = request.body;
+      expect(body.title).to.eq("Lorem ipsum refine!");
+    });
 
     cy.get(".MuiDataGrid-cell").eq(1).should("contain", "Lorem ipsum refine!");
   });
