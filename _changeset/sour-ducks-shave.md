@@ -1,5 +1,5 @@
 ---
-"@refinedev/codemod": minor
+"@refinedev/codemod": patch
 ---
 
 feat: React Router v6 to v7 codemod added.

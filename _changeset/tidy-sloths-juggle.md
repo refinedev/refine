@@ -1,5 +1,5 @@
 ---
-"@refinedev/nextjs-router": minor
+"@refinedev/nextjs-router": patch
 ---
 
 **Feature:** Added support for Next.js 15. #6430

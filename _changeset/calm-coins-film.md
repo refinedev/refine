@@ -1,5 +1,5 @@
 ---
-"@refinedev/react-router": major
+"@refinedev/react-router": patch
 ---
 
 feat: Add `@refinedev/react-router` package. #6520
