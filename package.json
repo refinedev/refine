@@ -32,6 +32,7 @@
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
+    "publish-packages": "pnpm config set registry=https://registry.refine.dev/ --location project && pnpm changeset publish && pnpm config delete registry --location project",
     "sp": "syncpack",
     "start": "lerna run start",
     "test": "lerna run test --stream",
