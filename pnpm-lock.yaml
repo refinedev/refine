@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@changesets/git@3.0.0':
+    hash: nu3pnoo55obvdtzwuff3eqw2pe
+    path: patches/@changesets__git@3.0.0.patch
+
 importers:
 
   .:
@@ -38483,7 +38488,7 @@ snapshots:
       '@babel/runtime': 7.25.7
       '@changesets/config': 3.0.0
       '@changesets/get-version-range-type': 0.4.0
-      '@changesets/git': 3.0.0
+      '@changesets/git': 3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)
       '@changesets/types': 6.0.0
       '@manypkg/get-packages': 1.1.3
       detect-indent: 6.1.0
@@ -38525,7 +38530,7 @@ snapshots:
       '@changesets/errors': 0.2.0
       '@changesets/get-dependents-graph': 2.0.0
       '@changesets/get-release-plan': 4.0.0
-      '@changesets/git': 3.0.0
+      '@changesets/git': 3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)
       '@changesets/logger': 0.1.0
       '@changesets/pre': 2.0.0
       '@changesets/read': 0.6.0
@@ -38591,7 +38596,7 @@ snapshots:
 
   '@changesets/get-version-range-type@0.4.0': {}
 
-  '@changesets/git@3.0.0':
+  '@changesets/git@3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)':
     dependencies:
       '@babel/runtime': 7.25.7
       '@changesets/errors': 0.2.0
@@ -38621,7 +38626,7 @@ snapshots:
   '@changesets/read@0.6.0':
     dependencies:
       '@babel/runtime': 7.25.7
-      '@changesets/git': 3.0.0
+      '@changesets/git': 3.0.0(patch_hash=nu3pnoo55obvdtzwuff3eqw2pe)
       '@changesets/logger': 0.1.0
       '@changesets/parse': 0.4.0
       '@changesets/types': 6.0.0
@@ -41300,21 +41305,7 @@ snapshots:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
       '@mikro-orm/postgresql': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))
 
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
-    dependencies:
-      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      fs-extra: 11.1.1
-      knex: 2.5.1(pg@8.11.5)
-      sqlstring: 2.3.3
-    optionalDependencies:
-      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
-      pg: 8.11.5
-    transitivePeerDependencies:
-      - pg-native
-      - supports-color
-      - tedious
-
-  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
       fs-extra: 11.1.1
@@ -41328,10 +41319,24 @@ snapshots:
       - supports-color
       - tedious
 
+  '@mikro-orm/knex@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)':
+    dependencies:
+      '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
+      fs-extra: 11.1.1
+      knex: 2.5.1(pg@8.11.5)
+      sqlstring: 2.3.3
+    optionalDependencies:
+      '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
+      pg: 8.11.5
+    transitivePeerDependencies:
+      - pg-native
+      - supports-color
+      - tedious
+
   '@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.5)
       fs-extra: 11.1.1
       knex: 2.5.1(pg@8.11.5)
       umzug: 3.3.1(@types/node@18.19.31)
@@ -41351,7 +41356,7 @@ snapshots:
   '@mikro-orm/postgresql@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))':
     dependencies:
       '@mikro-orm/core': 5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7)
-      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7)(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
+      '@mikro-orm/knex': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@mikro-orm/migrations@5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5))(pg@8.11.3)
       pg: 8.11.3
     optionalDependencies:
       '@mikro-orm/migrations': 5.9.7(@mikro-orm/core@5.9.7(@mikro-orm/migrations@5.9.7)(@mikro-orm/postgresql@5.9.7))(@types/node@18.19.31)(pg@8.11.5)
