@@ -1,5 +1,5 @@
 ---
-"@refinedev/mui": major
+"@refinedev/mui": patch
 ---
 
 feat: added support for Material UI v6 and X Data Grid v7 #6333

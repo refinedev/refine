@@ -1,5 +1,19 @@
 # @refinedev/react-router-v6
 
+## 1.0.0
+
+### Major Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6556](https://github.com/refinedev/refine/pull/6556) [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: Add `@refinedev/react-router` package. #6520
+
+  `@refinedev/react-router-v6` is renamed to `@refinedev/react-router` to support React Router v7.
+
+  See the [migration guide React Router v6 to v7](https://refine.dev/docs/routing/integrations/react-router/migration-guide-v6-to-v7) for more information.
+
+  Resolves [#6520](https://github.com/refinedev/refine/issues/6520)
+
 ## 4.6.0
 
 ### Minor Changes
@@ -8,10 +22,7 @@
   From now on, users be able to use the `resource.meta.label` field to customize document title more easily.
 
   ```tsx
-  import {
-    BrowserRouter,
-    DocumentTitleHandler,
-  } from "@refinedev/react-router";
+  import { BrowserRouter, DocumentTitleHandler } from "@refinedev/react-router";
   import { Refine } from "@refinedev/core";
 
   const App = () => {
