@@ -4,20 +4,33 @@ description: We'll discover how to access the parameters of the current route wi
 slug: react-router-useparams
 authors: joseph_mawa
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-24-router-use-params/social.jpg
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-24-router-use-params/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on December 12, 2024, to add sections for Using Nested Routes with useParams and Validating URL Parameters.**
+
 ## Introduction
+
+### What is React useParams?
+
+The `useParams` hook in React Router means that the dynamic parts of URLs are just easy to access within the app. It returns URL route parameters as an object where keys are the parameters on that route and values are segment pieces from the matching URL.
+
+For example, in a route like /blog/:id, you could access id using `useParams` from the component being rendered. Given the URL /blog/123, useParams() will return `{ id: "123" }`. This comes in handy for dynamic rendering of content depending on the URL.
 
 The `useParams` hook is one of the several hooks in React router. It has been available in React router since version 5. You can use it to retrieve route parameters from the component rendered by the matching route. You will explore the React Router `useParams` hook and how to use it in this article.
 
 Steps we'll cover:
 
-- [Introduction](#introduction)
+- [What is React useParams?](#what-is-react-useparams)
 - [Setting up React Router](#setting-up-react-router)
-- [What are URL parameters in React Router?](#what-are-url-parameters-in-react-router)
+  - [Step 1 - Install React Router](#step-1---install-react-router)
+  - [Step 2 - How to set up React router](#step-2---how-to-set-up-react-router)
+  - [Step 3 - How to set up routes](#step-3---how-to-set-up-routes)
+- [What are URL parameters in React router](#what-are-url-parameters-in-react-router)
 - [How to use the `useParams` hook](#how-to-use-the-useparams-hook)
+- [Using Nested Routes with useParams](#using-nested-routes-with-useparams)
+- [Validating URL Parameters](#validating-url-parameters)
 
 ## Prerequisites
 
@@ -150,12 +163,61 @@ If the matching route is`/blog/use-params` for the example above, the `useParams
 }
 ```
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Using Nested Routes with useParams
+
+In the case of working with nested routes in React Router, useParams can be really useful when trying to access each level’s parameters. For instance, given a URL of this structure: `/category/:categoryId/product/:productId`, you can use `useParams` to obtain both `categoryId` and `productId`.
+
+Here is how you can do this:
+
+```tsx
+import { useParams } from "react-router-dom";
+
+const Product = () => {
+  const { categoryId, productId } = useParams();
+
+  return (
+    <div>
+      <h1>Category ID: {categoryId}</h1>
+      <h2>Product ID: {productId}</h2>
+    </div>
+  );
+};
+```
+
+This will output, upon visiting `/category/5/product/42`:
+
+- Category ID: 5
+- Product ID: 42
+
+Using `useParams` in nested routes makes it easy to access and display dynamic information at different levels of your app.
+
+## Validating URL Parameters
+
+Sometimes, your application might receive invalid parameters in the URL. For example, a user could accidentally or intentionally supply an incorrect value. You can perform basic validation to check the format of the parameter before using it.
+
+Here’s an example:
+
+```tsx
+import { useParams } from "react-router-dom";
+
+const Blog = () => {
+  const { id } = useParams();
+
+  // Check if the ID is a number
+  if (!/^\d+$/.test(id)) {
+    return <h1>Invalid Blog ID</h1>;
+  }
+
+  return <h1>Blog Post ID: {id}</h1>;
+};
+```
+
+In the following example:
+
+- If the user navigates to /blog/abc, it will display “Invalid Blog ID.”
+- If they visit /blog/123, then “Blog Post ID: 123” will be shown.
+
+This approach helps you make your app more reliable and ensures you’re only working with valid data from the URL.
 
 ## Conclusion
 
