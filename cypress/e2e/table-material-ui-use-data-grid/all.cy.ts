@@ -81,6 +81,7 @@ describe("table-material-ui-use-data-grid", () => {
     cy.wait("@getPosts").then((interception) => {
       const request = interception.request;
       const query = request.query;
+      expect(query.title_like).to.eq("lorem");
     });
   });
 
