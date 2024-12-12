@@ -44,6 +44,7 @@
     "typescript": "^5.4.2"
   },
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "registry": "https://registry.refine.dev"
   }
 }
