@@ -17,7 +17,7 @@ function addRegistry() {
 
     fs.writeFileSync(
       packageJsonPath,
-      JSON.stringify(packageJson, null, 2) + "\n",
+      `${JSON.stringify(packageJson, null, 2)}\n`,
     );
 
     console.log("Registry configuration added successfully.");
@@ -41,7 +41,7 @@ function removeRegistry() {
 
     fs.writeFileSync(
       packageJsonPath,
-      JSON.stringify(packageJson, null, 2) + "\n",
+      `${JSON.stringify(packageJson, null, 2)}\n`,
     );
 
     console.log("Registry configuration removed successfully.");
