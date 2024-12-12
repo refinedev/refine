@@ -1,6 +1,6 @@
 import React from "react";
 import type { AccessControlProvider, IResourceItem } from "@refinedev/core";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 import { act, TestWrapper, renderHook } from "@test";
 

@@ -120,10 +120,10 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   NavigateToResource,
   CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";

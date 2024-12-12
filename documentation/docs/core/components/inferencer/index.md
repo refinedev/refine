@@ -24,8 +24,8 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter } from "react-router";
 // highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
 
@@ -101,10 +101,10 @@ setInitialRoutes(["/samples"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 // highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
@@ -155,10 +155,10 @@ setInitialRoutes(["/samples/show/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 // highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
@@ -209,10 +209,10 @@ setInitialRoutes(["/samples/create"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 // highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";
@@ -263,10 +263,10 @@ setInitialRoutes(["/samples/edit/123"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 // highlight-next-line
 import { HeadlessInferencer } from "@refinedev/inferencer/headless";

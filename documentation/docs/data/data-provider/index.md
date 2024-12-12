@@ -50,10 +50,10 @@ setRefineProps({ Sider: () => null });
 
 // visible-block-start
 import { Refine, useList } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 import { Collapse, Tag } from "antd";
 

@@ -8,9 +8,9 @@ export default function BasicUsage() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-hook-form": "latest",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products/create"
       files={{
@@ -40,8 +40,8 @@ const AppTsxCode = /* tsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
-import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router";
+import routerProvider from "@refinedev/react-router";
 
 import "./style.css";
 
@@ -101,7 +101,7 @@ form label, form input, form button {
 
 const ListTsxCode = `
 import { useList, BaseKey } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const List: React.FC = () => {
     const { data, isLoading, isError } = useList<IProduct>({

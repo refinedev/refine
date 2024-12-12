@@ -5,7 +5,7 @@ import {
 } from "@refinedev/ui-types";
 
 import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 export const buttonShowTests = (
   ShowButton: React.ComponentType<RefineShowButtonProps<any, any>>,
@@ -25,6 +25,30 @@ export const buttonShowTests = (
       expect(container).toBeTruthy();
 
       expect(getByText("Show").closest("button")).not.toBeDisabled();
+    });
+
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <ShowButton disabled onClick={mockOnClick} />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("Show").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("Show").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(<ShowButton disabled hidden />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(queryByText("Show")).not.toBeInTheDocument();
     });
 
     it("should have the correct test-id", async () => {
@@ -122,6 +146,22 @@ export const buttonShowTests = (
               await waitFor(() =>
                 expect(getByText("Show").closest("button")).not.toBeDisabled(),
               );
+            });
+
+            it("should respect the disabled prop even with access control enabled", async () => {
+              const { getByText } = render(
+                <ShowButton disabled>Show</ShowButton>,
+                {
+                  wrapper: TestWrapper({
+                    accessControlProvider: {
+                      can: async () => ({ can: true }),
+                    },
+                  }),
+                },
+              );
+
+              const button = getByText("Show").closest("button");
+              expect(button).toBeDisabled();
             });
           });
         });

@@ -32,7 +32,7 @@ import { WithTenant } from "@refinedev-ee/multitenancy";
 import dataProvider from "@refinedev-ee/simple-rest";
 import routerProvider from "@refinedev-ee/react-router-v6";
 
-import { BrowserRouter, Outlet, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Outlet, Routes, Route } from "react-router";
 
 import { multitenancyProvider } from "./multitenancy";
 

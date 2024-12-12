@@ -2714,7 +2714,7 @@
           "children": [
             {
               "type": "text",
-              "value": "React Router v6",
+              "value": "React Router",
               "position": {
                 "start": {
                   "line": 64,
@@ -7462,7 +7462,7 @@
               "children": [
                 {
                   "type": "text",
-                  "value": "React Router v6",
+                  "value": "React Router",
                   "position": {
                     "start": {
                       "line": 446,

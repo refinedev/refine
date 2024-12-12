@@ -84,6 +84,16 @@ Component to render while checking whether the user is logged in.
 </Authenticated>
 ```
 
+### params
+
+Additional params to be passed to Auth Provider's `check` method via `useIsAuthenticated` hook.
+
+```tsx
+<Authenticated params={{ foo: "bar" }}>
+  <YourComponent />
+</Authenticated>
+```
+
 ## API Reference
 
 ### Properties

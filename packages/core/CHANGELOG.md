@@ -1,5 +1,49 @@
 # @refinedev/core
 
+## 4.57.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6558](https://github.com/refinedev/refine/pull/6558) [`42d730aa2908003cfb0dcf0c57e9b70793c88ddc`](https://github.com/refinedev/refine/commit/42d730aa2908003cfb0dcf0c57e9b70793c88ddc) Thanks [@OmkarBansod02](https://github.com/OmkarBansod02)! - This PR fixes an issue where the ListButton component doesn't include a query filter in the navigation URL.
+
+  [Resolves #6528](https://github.com/refinedev/refine/issues/6528)
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6483](https://github.com/refinedev/refine/pull/6483) [`8309c5690e7c49529f07d288e79896636c6ce7c2`](https://github.com/refinedev/refine/commit/8309c5690e7c49529f07d288e79896636c6ce7c2) Thanks [@reedwane](https://github.com/reedwane)! - refactor: modified the Authenticated component to receive optional params prop to be passed to the useIsAuthenticated hook.
+
+  Fixes #6309
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6554](https://github.com/refinedev/refine/pull/6554) [`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706) Thanks [@necatiozmen](https://github.com/necatiozmen)! - chore: update package descriptions
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6514](https://github.com/refinedev/refine/pull/6514) [`f32af58283bdaf7712805520bd9feb8bfd27ba38`](https://github.com/refinedev/refine/commit/f32af58283bdaf7712805520bd9feb8bfd27ba38) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useUpdate` and `useForm` hooks throws an error when `id` is an empty string. (`id=""`) #6505
+
+  This reverts a breaking change introduced in [PR #6116](https://github.com/refinedev/refine/pull/6116) and restores support for using an empty string as `id`. This enables updates without an `id` field, as allowed before `@refinedev/core@4.54.0`.
+
+  Affected versions with this bug:
+
+  - `@refinedev/core@4.54.0`
+  - `@refinedev/core@4.54.1`
+  - `@refinedev/core@4.55.0`
+  - `@refinedev/core@4.56.0`
+
+  The bug is fixed in:
+
+  - `@refinedev/core@4.56.1`
+
+  Resolves [#6505](https://github.com/refinedev/refine/issues/6505)
+
+- Updated dependencies [[`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53)]:
+  - @refinedev/devtools-internal@1.1.15
+
 ## 4.56.0
 
 ### Minor Changes
@@ -1093,8 +1137,8 @@
   import { Refine, Authenticated, AuthPage } from "@refinedev/core";
   import {
     CatchAllNavigate,
-  } from "@refinedev/react-router-v6";
-  import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+  } from "@refinedev/react-router";
+  import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
   const App = () => {
     return (

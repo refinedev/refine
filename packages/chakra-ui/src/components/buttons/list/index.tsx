@@ -33,14 +33,17 @@ export const ListButton: React.FC<ListButtonProps> = ({
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -54,7 +57,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
         <IconButton
           variant="outline"
           aria-label={label}
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}
           className={RefineButtonClassNames.ListButton}
@@ -65,7 +68,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
       ) : (
         <Button
           variant="outline"
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           leftIcon={<IconList size={20} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}

@@ -34,6 +34,7 @@ export const PostList: React.FC = () => {
       flex: 1,
       filterable: false,
       sortable: false,
+      display: "flex",
       renderCell: ({ row }) => {
         return row.commit.message;
       },
@@ -45,6 +46,7 @@ export const PostList: React.FC = () => {
       flex: 1,
       filterable: false,
       sortable: false,
+      display: "flex",
       renderCell: ({ row }) => {
         return row.commit.author.name;
       },
@@ -56,6 +58,7 @@ export const PostList: React.FC = () => {
       flex: 1,
       filterable: false,
       sortable: false,
+      display: "flex",
       renderCell: ({ row }) => {
         return row.commit.author.date;
       },
@@ -76,7 +79,6 @@ export const PostList: React.FC = () => {
           dataGridProps.onPaginationModelChange?.(model, details);
         }}
         columns={columns}
-        autoHeight
       />
     </List>
   );

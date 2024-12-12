@@ -19,8 +19,8 @@ export default function UsageReactRouterDom() {
         "@mantine/hooks": "^5.10.4",
         "@mantine/form": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
-        "@refinedev/react-router-v6": "^4.5.4",
-        "react-router-dom": "^6.8.1",
+        "@refinedev/react-router": "latest",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products"
       files={{
@@ -105,8 +105,8 @@ import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
 import authProvider from "./auth-provider";
 

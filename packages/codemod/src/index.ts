@@ -114,6 +114,14 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
+    name: "Rename '@refinedev/react-router-v6' imports to '@refinedev/react-router'",
+    value: "refine-react-router-v6-to-refine-react-router",
+  },
+  {
+    name: "Rename 'react-router-dom' imports to 'react-router'",
+    value: "react-router-dom-to-react-router",
+  },
+  {
     name: "Rename deprecated names (queryResult, tableQueryResult, mutationResult) to (query, tableQuery, mutation).",
     value: "rename-query-and-mutation-result",
   },

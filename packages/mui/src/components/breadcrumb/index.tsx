@@ -13,7 +13,7 @@ import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
+import Grid from "@mui/material/Grid2";
 
 import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs";
 import type { LinkProps } from "@mui/material/Link";
@@ -27,6 +27,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   showHome = true,
   hideIcons = false,
   meta,
+  minItems = 2,
 }) => {
   const { breadcrumbs } = useBreadcrumb({ meta });
   const routerType = useRouterType();
@@ -41,9 +42,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
 
-  if (breadcrumbs.length === 1) {
-    return null;
-  }
+  if (breadcrumbs.length < minItems) return null;
 
   const LinkRouter = (props: LinkProps & { to?: string }) => (
     <Link {...props} component={ActiveLink} />
@@ -53,8 +52,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
     <Breadcrumbs
       aria-label="breadcrumb"
       sx={{
-        paddingY: 2,
-        paddingX: 2,
+        padding: 2,
         ...(breadcrumbProps?.sx ?? {}),
       }}
       {...breadcrumbProps}

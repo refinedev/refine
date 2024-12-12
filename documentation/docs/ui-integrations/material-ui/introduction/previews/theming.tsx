@@ -9,18 +9,18 @@ export default function Usage() {
       height={320}
       showOpenInCodeSandbox={false}
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-hook-form": "^4.8.12",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.14.2",
+        "@mui/lab": "^6.0.0-beta.14",
+        "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
-        "react-router-dom": "^6.8.1",
+        "@mui/x-data-grid": "^7.22.2",
+        "react-router": "^7.0.2",
         "react-hook-form": "^7.43.5",
       }}
       startRoute="/products"
@@ -125,8 +125,8 @@ export const ThemeProvider = ({ children }) => (
 const AppTsxCode = /* jsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import {
   ThemedLayoutV2,
@@ -235,6 +235,7 @@ export const ProductList = () => {
         {
           field: "actions",
           headerName: "Actions",
+          display: "flex",
           renderCell: function render({ row }) {
               return (
                   <div>
@@ -253,7 +254,7 @@ export const ProductList = () => {
 
   return (
     <List>
-        <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };

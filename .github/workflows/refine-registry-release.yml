@@ -54,14 +54,14 @@ jobs:
       - name: Test
         run: pnpm test:all
         if: ${{ env.RELEASE_ONLY != 'YES' }}
-      - name: Copy changesets for Community version
-        run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
+      - name: Prepare Community Edition changesets
+        run: node .github/workflows/scripts/changesets/prepare-community-edition-changesets.js
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm version-packages
-          publish: pnpm changeset publish
+          publish: pnpm publish-packages
           commit: "ci(changesets): refine registry version packages"
           title: "ci(changesets): refine registry version packages"
           createGithubReleases: false

@@ -26,6 +26,11 @@
       "dependencyTypes": ["dev"],
       "packages": ["@refinedev/appwrite", "@refinedev/graphql"],
       "isIgnored": true
+    },
+    {
+      "dependencies": ["next", "react", "react-dom", "@types/react", "@types/react-dom"],
+      "packages": ["with-nextjs-headless"],
+      "isIgnored": true
     }
   ]
 }

@@ -1,5 +1,42 @@
 # @refinedev/nextjs-router
 
+## 6.2.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6551](https://github.com/refinedev/refine/pull/6551) [`6b8016a9bbb7422255711bf67f8247eb44db78a9`](https://github.com/refinedev/refine/commit/6b8016a9bbb7422255711bf67f8247eb44db78a9) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - **Feature:** Added support for Next.js 15. #6430
+
+  To create a new example project with Next.js 15, run the following command:
+
+  ```bash
+  npm create refine-app@latest -- --example with-nextjs-headless
+  ```
+
+  You can find the source code in the [examples/with-nextjs-headless](https://github.com/refinedev/refine/tree/main/examples/with-nextjs-headless) directory.
+
+  > 🚨 While `@refinedev/core` and `@refinedev/nextjs-router` do not introduce breaking changes, upgrading to Next.js 15 requires your project to be compatible with React 19. Please refer to the migration guides below:
+  >
+  > - [Next.js 15 Upgrade Guide](https://nextjs.org/docs/app/building-your-application/upgrading/version-15)
+  > - [React 19 Upgrade Guide](https://react.dev/blog/2024/04/25/react-19-upgrade-guide)
+  >
+  > 🚨 Additionally, if you're using `@refinedev/antd`, `@refinedev/chakra-ui`, `@refinedev/mantine`, or `@refinedev/mui`, make sure to check their compatibility with React 19.
+
+  For known issues, migration guidance, and more details, please refer to issue [#6430](https://github.com/refinedev/refine/issues/6430).
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6554](https://github.com/refinedev/refine/pull/6554) [`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706) Thanks [@necatiozmen](https://github.com/necatiozmen)! - chore: update package descriptions
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6556](https://github.com/refinedev/refine/pull/6556) [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
 ## 6.1.0
 
 ### Minor Changes
@@ -8,10 +45,7 @@
   From now on, users be able to use the `resource.meta.label` field to customize document title more easily.
 
   ```tsx
-  import {
-    BrowserRouter,
-    DocumentTitleHandler,
-  } from "@refinedev/react-router-v6";
+  import { BrowserRouter, DocumentTitleHandler } from "@refinedev/react-router";
   import { Refine } from "@refinedev/core";
 
   const App = () => {

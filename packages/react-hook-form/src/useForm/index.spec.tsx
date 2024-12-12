@@ -3,7 +3,7 @@ import React from "react";
 import { useForm } from ".";
 import type { IRefineOptions, HttpError } from "@refinedev/core";
 import { MockJSONServer, TestWrapper, act, render, waitFor } from "../../test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 interface IPost {
   title: string;

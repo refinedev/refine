@@ -1,8 +1,8 @@
 {
   "name": "@refinedev/ui-types",
-  "version": "1.22.9",
+  "version": "1.23.0",
   "private": false,
-  "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Type definitions package for Refine UI components, enhancing TypeScript support.",
   "license": "MIT",
   "author": "refine",
   "exports": {
@@ -30,7 +30,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/core": "^4.52.0",
+    "@refinedev/core": "^4.57.0",
     "dayjs": "^1.10.7",
     "tslib": "^2.6.2"
   },

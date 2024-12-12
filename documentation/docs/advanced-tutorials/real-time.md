@@ -50,9 +50,9 @@ import {
   ErrorComponent,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { ConfigProvider } from "antd";
 import "@refinedev/antd/dist/reset.css";
@@ -227,7 +227,7 @@ import {
   useMenu,
   useWarnAboutChange,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
 import {
@@ -448,7 +448,7 @@ import {
   useWarnAboutChange,
   useSubscription,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Sider, ThemedTitleV2 } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
 import {
