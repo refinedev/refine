@@ -4,7 +4,14 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  fireEvent,
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+  waitFor,
+} from "@test";
 import { Route, Routes } from "react-router-dom";
 import "@refinedev/core";
 
@@ -19,6 +26,9 @@ jest.mock("@refinedev/core", () => ({
 
 export const buttonRefreshTests = (
   RefreshButton: React.ComponentType<RefineRefreshButtonProps<any, any>>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Refresh Button", () => {
     const refresh = jest.fn();
@@ -86,9 +96,6 @@ export const buttonRefreshTests = (
      * Extensive tests on the logic of the `useRefreshButton` which powers the `RefreshButton` are already covered in the core package.
      */
     xit("should invalidates when button is clicked", async () => {
-      jest.resetAllMocks();
-      jest.restoreAllMocks();
-
       const { getByText } = render(
         <Routes>
           <Route
@@ -129,9 +136,6 @@ export const buttonRefreshTests = (
     });
 
     it("should when onClick is not passed, NOT invalidates when button is clicked", async () => {
-      jest.resetAllMocks();
-      jest.restoreAllMocks();
-
       const onClickMock = jest.fn();
 
       const { getByText } = render(

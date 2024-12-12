@@ -5,7 +5,6 @@ import {
   render,
   TestWrapper,
   type ITestWrapperProps,
-  act,
   MockLegacyRouterProvider,
 } from "@test";
 
@@ -36,7 +35,7 @@ describe("Breadcrumb", () => {
     jest.spyOn(console, "warn").mockImplementation(jest.fn());
   });
 
-  breadcrumbTests.bind(this)(Breadcrumb);
+  breadcrumbTests.bind(this)(Breadcrumb, TestWrapper);
 
   it("should render home icon", async () => {
     const { container } = renderBreadcrumb(<Breadcrumb />, {

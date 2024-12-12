@@ -1,4 +1,4 @@
-import type { ButtonProps } from "@mantine/core";
+import type { ButtonProps, ButtonVariant } from "@mantine/core";
 import type { UseImportInputPropsType } from "@refinedev/core";
 import type {
   RefineCloneButtonProps,
@@ -14,36 +14,41 @@ import type {
 } from "@refinedev/ui-types";
 import type { IconProps } from "@tabler/icons-react";
 
+export type MantineButtonProps = Omit<ButtonProps, "classNames"> & {
+  size?: string;
+  variant?: ButtonVariant;
+};
+
 export type ShowButtonProps = RefineShowButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ListButtonProps = RefineListButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type ImportButtonProps = RefineImportButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     inputProps: UseImportInputPropsType;
     svgIconProps?: Omit<IconProps, "ref">;
@@ -51,35 +56,35 @@ export type ImportButtonProps = RefineImportButtonProps<
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   {
     svgIconProps?: Omit<IconProps, "ref">;
   }

@@ -58,11 +58,7 @@ export const List: React.FC<ListProps> = (props) => {
   ) : null;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const headerButtons = headerButtonsFromProps
     ? typeof headerButtonsFromProps === "function"
@@ -75,15 +71,11 @@ export const List: React.FC<ListProps> = (props) => {
 
   return (
     <Card p="md" {...wrapperProps}>
-      <Group position="apart" align="center" {...headerProps}>
-        <Stack spacing="xs">
+      <Group justify="space-between" align="center" {...headerProps}>
+        <Stack gap="xs">
           {breadcrumbComponent}
           {title ?? (
-            <Title
-              order={3}
-              transform="capitalize"
-              className={RefinePageHeaderClassNames.Title}
-            >
+            <Title order={3} className={RefinePageHeaderClassNames.Title}>
               {translate(
                 `${identifier}.titles.list`,
                 getUserFriendlyName(
@@ -97,7 +89,7 @@ export const List: React.FC<ListProps> = (props) => {
             </Title>
           )}
         </Stack>
-        <Group spacing="xs" {...headerButtonProps}>
+        <Group gap="xs" {...headerButtonProps}>
           {headerButtons}
         </Group>
       </Group>
