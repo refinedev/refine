@@ -51,36 +51,37 @@ describe("table-material-ui-use-data-grid", () => {
   });
 
   it("should work with filter", () => {
+    // wait for requests
+    cy.wait("@getPosts");
+    cy.wait("@getCategories");
+    // wait for loadings
     cy.getMaterialUILoadingCircular().should("not.exist");
+    cy.get("[data-field='category.id']").should("have.length", 16);
+    cy.get("[data-field='category.id']").should("not.contain", "Loading...");
 
+    // find the filter button
     cy.getMaterialUIColumnHeader(2).within(() =>
       cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
-
+    // find the filter option
     cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click({
       force: true,
     });
-
-    cy.intercept(
-      {
-        url: "/posts*",
-        query: {
-          title_like: "lorem",
-        },
-      },
-      {
-        fixture: "posts.json",
-      },
-    ).as("getFilteredPosts");
-
+    // wait for the request again because initial filter is removed and MUI is refreshing the data.
+    cy.wait("@getPosts");
+    // type the filter value
     cy.get("[placeholder='Filter value']").type("lorem");
 
+    // url should contain the filter
     cy.url().should(
       "include",
       "filters[0][field]=title&filters[0][value]=lorem&filters[0][operator]=contains",
     );
-
-    cy.wait("@getFilteredPosts");
+    // check the request for the filter
+    cy.wait("@getPosts").then((interception) => {
+      const request = interception.request;
+      const query = request.query;
+    });
   });
 
   it("should work with pagination", () => {

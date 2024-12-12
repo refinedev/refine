@@ -4,11 +4,13 @@
 describe("table-material-ui-data-grid-pro", () => {
   beforeEach(() => {
     cy.interceptGETPosts();
+    cy.interceptGETCategories();
     cy.visit("/");
   });
 
   it("should work with sorter", () => {
     cy.wait("@getPosts");
+    cy.wait("@getCategories");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     // sort by title
@@ -49,9 +51,12 @@ describe("table-material-ui-data-grid-pro", () => {
   });
 
   it("should work with multiple filter", () => {
-    // wait for loading
+    // wait for requests
     cy.wait("@getPosts");
+    cy.wait("@getCategories");
+    // wait for loadings
     cy.getMaterialUILoadingCircular().should("not.exist");
+    cy.get("[data-field='category.id']").should("not.contain", "Loading...");
 
     // open the column menu of title
     cy.getMaterialUIColumnHeader(2).within(() =>
