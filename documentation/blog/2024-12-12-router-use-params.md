@@ -165,7 +165,7 @@ If the matching route is`/blog/use-params` for the example above, the `useParams
 
 ## Using Nested Routes with useParams
 
-In the case of working with nested routes in React Router, useParams can be really useful when trying to access each level’s parameters. For instance, given a URL of this structure: /category/:categoryId/product/:productId, you can use useParams to obtain both categoryId and productId.
+In the case of working with nested routes in React Router, useParams can be really useful when trying to access each level’s parameters. For instance, given a URL of this structure: `/category/:categoryId/product/:productId`, you can use `useParams` to obtain both `categoryId` and `productId`.
 
 Here is how you can do this:
 
