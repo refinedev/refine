@@ -69,6 +69,6 @@ const App = () => {
 ## Documentation
 
 - For more detailed information and usage, refer to the [refine live provider documentation](https://refine.dev/docs/api-references/providers/live-provider/).
-- Refer to refine & Ably tutorial on [official Ably docs](https://ably.com/tutorials/react-admin-panel-with-ably-and-refine).
+- Refer to Refine & Ably tutorial on [official Ably docs](https://ably.com/tutorials/react-admin-panel-with-ably-and-refine).
 - [Refer to documentation for more info about refine](https://refine.dev/docs/).
 - [Step up to refine tutorials](https://refine.dev/docs/tutorial/introduction/index/).
