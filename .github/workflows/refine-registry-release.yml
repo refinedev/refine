@@ -7,7 +7,6 @@ on:
       - "packages/**"
     branches:
       - next
-      - releases/december-2024
 
 env:
   RELEASE_ONLY: ${{ secrets.RELEASE_ONLY }}

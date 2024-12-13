@@ -2,6 +2,9 @@ name: Release
 
 on:
   push:
+    paths:
+      - ".changeset/**"
+      - "packages/**"
     branches:
       - main
 
@@ -79,6 +82,7 @@ jobs:
         run: |
           git config --global user.email "${{ env.GIT_USER_EMAIL }}"
           git config --global user.name "${{ env.GIT_USER_NAME }}"
+          git fetch origin
           git checkout next
           git merge main
           git push origin next
