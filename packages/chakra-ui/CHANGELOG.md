@@ -1,5 +1,65 @@
 # @refinedev/chakra-ui
 
+## 2.34.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
+📢 **Refine Community Release** 📢
+
+- fix: UI buttons doesn't respect `hidden` prop.
+  From now on, `hidden` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
+
+  UI Buttons:
+
+  - `CreateButton`
+  - `ShowButton`
+  - `ListButton`
+  - `EditButton`
+  - `DeleteButton`
+  - `CloneButton`
+
+  Resolves [#6513](https://github.com/refinedev/refine/issues/6513)
+
+📢 **Refine Community Release** 📢
+
+- fix: UI buttons doesn't respect `disabled` prop.
+  From now on, `disabled` prop will work as expected on all [UI buttons](https://refine.dev/docs/guides-concepts/ui-libraries/#buttons).
+
+  UI Buttons:
+
+  - `CreateButton`
+  - `ShowButton`
+  - `ListButton`
+  - `EditButton`
+  - `DeleteButton`
+  - `CloneButton`
+
+  Resolves [#6513](https://github.com/refinedev/refine/issues/6513)
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+📢 **Refine Community Release** 📢
+
+- feat: added `minItems` prop to specify the minimum number of items required for rendering breadcrumbs. #6497
+
+  Resolves [#6497](https://github.com/refinedev/refine/issues/6497)
+
+📢 **Refine Community Release** 📢
+
+- Enhanced the ThemedSideV2 component with new functionality to support dynamic onSiderCollapsed handling. This allows better customization of sider collapse/expand events and improved responsiveness for mobile and desktop views. Added additional type definitions and ensured compatibility across all layout contexts. resolves #6508
+
+- Updated dependencies []:
+  - @refinedev/ui-types@1.23.1
+  - @refinedev/react-hook-form@4.9.3
+
 ## 2.34.0
 
 ### Minor Changes

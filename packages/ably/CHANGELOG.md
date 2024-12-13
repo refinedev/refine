@@ -1,5 +1,13 @@
 # @refinedev/ably
 
+## 4.1.10
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 4.1.9
 
 ### Patch Changes

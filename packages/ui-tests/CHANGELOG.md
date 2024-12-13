@@ -1,5 +1,29 @@
 # @refinedev/ui-tests
 
+## 1.15.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+📢 **Refine Community Release** 📢
+
+- feat: added `minItems` prop to specify the minimum number of items required for rendering breadcrumbs. #6497
+
+  Resolves [#6497](https://github.com/refinedev/refine/issues/6497)
+
+- Updated dependencies []:
+  - @refinedev/core@4.57.1
+  - @refinedev/ui-types@1.23.1
+
 ## 1.15.0
 
 ### Minor Changes

@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/core",
-  "version": "4.57.0",
+  "version": "4.57.1",
   "private": false,
   "description": "Refine is a React meta-framework for building enterprise-level, data-intensive applications rapidly with support for modern UI libraries and headless integrations.",
   "repository": {
@@ -37,7 +37,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/devtools-internal": "1.1.15",
+    "@refinedev/devtools-internal": "1.1.16",
     "@tanstack/react-query": "^4.10.1",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",

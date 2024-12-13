@@ -1,5 +1,13 @@
 # @refinedev/nestjsx-crud
 
+## 5.0.12
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 5.0.11
 
 ### Patch Changes

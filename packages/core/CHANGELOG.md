@@ -1,5 +1,47 @@
 # @refinedev/core
 
+## 4.57.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- This PR fixes an issue where the ListButton component doesn't include a query filter in the navigation URL.
+
+  [Resolves #6528](https://github.com/refinedev/refine/issues/6528)
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
+📢 **Refine Community Release** 📢
+
+- refactor: modified the Authenticated component to receive optional params prop to be passed to the useIsAuthenticated hook.
+
+  Fixes #6309
+
+📢 **Refine Community Release** 📢
+
+- fix: `useUpdate` and `useForm` hooks throws an error when `id` is an empty string. (`id=""`) #6505
+
+  This reverts a breaking change introduced in [PR #6116](https://github.com/refinedev/refine/pull/6116) and restores support for using an empty string as `id`. This enables updates without an `id` field, as allowed before `@refinedev/core@4.54.0`.
+
+  Affected versions with this bug:
+
+  - `@refinedev/core@4.54.0`
+  - `@refinedev/core@4.54.1`
+  - `@refinedev/core@4.55.0`
+  - `@refinedev/core@4.56.0`
+
+  The bug is fixed in:
+
+  - `@refinedev/core@4.56.1`
+
+  Resolves [#6505](https://github.com/refinedev/refine/issues/6505)
+
+- Updated dependencies []:
+  - @refinedev/devtools-internal@1.1.16
+
 ## 4.57.0
 
 ### Minor Changes

@@ -1,5 +1,13 @@
 # @refinedev/airtable
 
+## 4.4.13
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 4.4.12
 
 ### Patch Changes

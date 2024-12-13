@@ -1,5 +1,13 @@
 # @refinedev/react-router-v6
 
+## 4.6.2
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 4.6.1
 
 ### Patch Changes

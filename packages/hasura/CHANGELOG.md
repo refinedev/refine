@@ -1,5 +1,13 @@
 # @refinedev/hasura
 
+## 6.6.10
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 6.6.9
 
 ### Patch Changes

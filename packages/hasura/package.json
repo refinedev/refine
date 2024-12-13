@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/hasura",
-  "version": "6.6.9",
+  "version": "6.6.10",
   "private": false,
   "description": "Hasura integration for Refine, leveraging Hasura's GraphQL APIs.",
   "repository": {
@@ -51,8 +51,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.41",
-    "@refinedev/core": "^4.57.0",
+    "@refinedev/cli": "^2.16.42",
+    "@refinedev/core": "^4.57.1",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
     "jest": "^29.3.1",

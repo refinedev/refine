@@ -1,5 +1,13 @@
 # @refinedev/simple-rest
 
+## 5.0.10
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 5.0.9
 
 ### Patch Changes

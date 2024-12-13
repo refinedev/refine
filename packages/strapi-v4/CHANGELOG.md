@@ -1,5 +1,13 @@
 # @refinedev/strapi-v4
 
+## 6.0.11
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 6.0.10
 
 ### Patch Changes

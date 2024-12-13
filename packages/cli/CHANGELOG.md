@@ -1,5 +1,22 @@
 # @refinedev/cli
 
+## 2.16.42
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+- Updated dependencies []:
+  - @refinedev/devtools-server@1.1.40
+
 ## 2.16.41
 
 ### Patch Changes
