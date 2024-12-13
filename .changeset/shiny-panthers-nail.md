@@ -2,6 +2,7 @@
 "@refinedev/supabase": patch
 ---
 
-This PR addresses the issue with multiple filters in Supabase liveProvider. It ensures that only the first filter is applied and adds support for the configurable 'meta.realtimeFilter' to handle custom filter behavior.
+fix: handle multiple filters in Supabase liveProvider.
+This update addresses the handling of multiple filters in the Supabase liveProvider. It ensures only the first filter is applied and introduces a configurable `meta.realtimeFilter` option for custom filter behavior. A warning is logged when multiple filters are detected.
 
-Resolves #6360 (https://github.com/refinedev/refine/issues/6360)
+Resolves [#6360](https://github.com/refinedev/refine/issues/6360)
