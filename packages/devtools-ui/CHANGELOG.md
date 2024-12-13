@@ -1,5 +1,18 @@
 # @refinedev/devtools-ui
 
+## 1.1.31
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+- Updated dependencies []:
+  - @refinedev/devtools-shared@1.1.14
+
 ## 1.1.30
 
 ### Patch Changes

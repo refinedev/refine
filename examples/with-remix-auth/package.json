@@ -10,12 +10,12 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.45.0",
-    "@refinedev/cli": "^2.16.41",
-    "@refinedev/core": "^4.57.0",
-    "@refinedev/inferencer": "^5.0.0",
-    "@refinedev/remix-router": "^3.0.7",
-    "@refinedev/simple-rest": "^5.0.9",
+    "@refinedev/antd": "^5.45.1",
+    "@refinedev/cli": "^2.16.42",
+    "@refinedev/core": "^4.57.1",
+    "@refinedev/inferencer": "^5.0.1",
+    "@refinedev/remix-router": "^3.0.8",
+    "@refinedev/simple-rest": "^5.0.10",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",

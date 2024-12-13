@@ -1,5 +1,15 @@
 # @refinedev/react-hook-form
 
+## 4.9.3
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
 ## 4.9.2
 
 ### Patch Changes

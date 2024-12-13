@@ -1,5 +1,13 @@
 # @refinedev/remix-router
 
+## 3.0.8
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 3.0.7
 
 ### Patch Changes

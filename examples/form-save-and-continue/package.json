@@ -22,10 +22,10 @@
     ]
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.41",
-    "@refinedev/core": "^4.57.0",
-    "@refinedev/react-router": "^1.0.0",
-    "@refinedev/simple-rest": "^5.0.9",
+    "@refinedev/cli": "^2.16.42",
+    "@refinedev/core": "^4.57.1",
+    "@refinedev/react-router": "^1.0.1",
+    "@refinedev/simple-rest": "^5.0.10",
     "axios": "^1.6.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",

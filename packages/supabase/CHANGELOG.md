@@ -1,5 +1,13 @@
 # @refinedev/supabase
 
+## 5.9.6
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 5.9.5
 
 ### Patch Changes

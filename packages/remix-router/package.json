@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/remix-router",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "private": false,
   "description": "Remix router integration package for Refine.",
   "repository": {
@@ -64,7 +64,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.0",
+    "@refinedev/core": "^4.57.1",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@types/jest": "^29.2.4",

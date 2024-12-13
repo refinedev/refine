@@ -1,5 +1,13 @@
 # @refinedev/nestjs-query
 
+## 1.3.5
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 1.3.4
 
 ### Patch Changes

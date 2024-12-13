@@ -1,5 +1,13 @@
 # @refinedev/strapi
 
+## 4.1.14
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
 ## 4.1.13
 
 ### Patch Changes
