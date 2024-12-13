@@ -6,6 +6,9 @@ on:
       - "documentation/**"
       - ".github/workflows/documentation.yml"
   push:
+    paths:
+      - "documentation/**"
+      - ".github/workflows/documentation.yml"
     branches:
       - main
   workflow_dispatch:

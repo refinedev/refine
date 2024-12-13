@@ -13,6 +13,10 @@ on:
       - reopened
       - ready_for_review
   push:
+    paths:
+      - "packages/**"
+      - "examples/**"
+      - "cypress/e2e/**"
     branches:
       - main
   schedule:
