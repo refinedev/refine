@@ -200,6 +200,11 @@ type SyncWithLocationParams = {
   filters: CrudFilter[];
 };
 
+type LastUrlSyncParams = {
+  sorters: CrudSort[];
+  filters: CrudFilter[];
+};
+
 export type useTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
@@ -389,7 +394,7 @@ export function useTable<
   const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
   const [urlUpdated, setUrlUpdated] = useState(false);
-  const lastSyncedUrlFilters = useRef<CrudFilter[] | undefined>();
+  const lastSyncedUrlParams = useRef<LastUrlSyncParams | undefined>();
 
   const getCurrentQueryParams = (): object => {
     if (routerType === "new") {
@@ -510,11 +515,10 @@ export function useTable<
   // update lastSynched url filters
   useEffect(() => {
     if (urlUpdated) {
-      lastSyncedUrlFilters.current = differenceWith(
-        filters,
-        preferredPermanentFilters,
-        isEqual,
-      );
+      lastSyncedUrlParams.current = {
+        filters: differenceWith(filters, preferredPermanentFilters, isEqual),
+        sorters: differenceWith(sorters, preferredPermanentSorters, isEqual),
+      };
 
       // reset
       setUrlUpdated(false);
@@ -532,26 +536,36 @@ export function useTable<
       );
 
       const filtersAreEqual = isEqualFilters(currentUrlFilters, currentFilters);
-      const isInternalSyncWithUrl = isEqualFilters(
+      const isInternalSyncWithUrlFilters = isEqualFilters(
         currentFilters,
-        lastSyncedUrlFilters.current,
+        lastSyncedUrlParams.current?.filters,
       );
       let newFilters: CrudFilter[] = [];
 
-      // const currentSorters = sorters;
-      // const currentUrlSorters = parsedParams.params?.sorters;
-      // const initialSorters = setInitialSorters(
-      //   preferredPermanentSorters,
-      //   defaultSorter ?? [],
-      // );
+      const currentSorters = sorters;
+      const currentUrlSorters = parsedParams.params?.sorters;
+      const initialSorters = setInitialSorters(
+        preferredPermanentSorters,
+        defaultSorter ?? [],
+      );
 
-      // const sortersAreEqual = isEqual(currentUrlSorters, currentSorters);
-      // let newSorters: CrudSort[] = [];
+      const sortersAreEqual = (() => {
+        if (currentUrlSorters === undefined && currentSorters.length === 0)
+          return true;
+        return isEqual(currentUrlSorters, currentSorters);
+      })();
 
-      // wait for internal state to update url state
-      if (!isInternalSyncWithUrl) return;
+      const isInternalSyncWithUrlSorters = isEqual(
+        currentSorters,
+        lastSyncedUrlParams.current?.sorters,
+      );
+      let newSorters: CrudSort[] = [];
 
-      if (!filtersAreEqual) {
+      // if last changes to internal state in sync update url state
+      // if url state changed but did not affect internal state
+      // for both filters & sorters
+
+      if (isInternalSyncWithUrlFilters && !filtersAreEqual) {
         // fallback to initial
         if (!currentUrlFilters || currentUrlFilters.length === 0) {
           newFilters = initialFilters;
@@ -563,24 +577,19 @@ export function useTable<
         setFilters(newFilters);
       }
 
-      // if (!sortersAreEqual) {
-      //   // fallback to initial
-      //   if (!currentUrlSorters || currentUrlSorters.length === 0) {
-      //     newSorters = initialSorters;
-      //   } else {
-      //     // since they aren't equal, merge the two
-      //     newSorters = mergeSorters(currentUrlSorters, currentSorters);
-      //   }
+      if (isInternalSyncWithUrlSorters && !sortersAreEqual) {
+        // fallback to initial
+        if (!currentUrlSorters || currentUrlSorters.length === 0) {
+          newSorters = initialSorters;
+        } else {
+          // since they aren't equal, merge the two
+          newSorters = mergeSorters(currentUrlSorters, currentSorters);
+        }
 
-      //   setSorters(newSorters);
-      // }
+        setSorters(newSorters);
+      }
     }
-  }, [
-    parsedParams,
-    filters,
-    lastSyncedUrlFilters.current,
-    // sorters,
-  ]);
+  }, [parsedParams, filters, lastSyncedUrlParams.current, sorters]);
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
