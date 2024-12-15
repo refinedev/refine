@@ -256,7 +256,7 @@ Within seconds it should automatically bring up your default browser with the pr
 
 Data providers are hooks that Refine use to communicate with APIs. They act as adapters that make HTTP requests to different APIs and return response data using predefined methods.
 
-Refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the [refine-simple-rest](https://github.com/refinedev/refine/tree/master/packages/simple-rest) data provider, a data provider for communicating with RESTful APIs. Visit the docs to learn more about Refine’s data providers.
+Refine comes with different data providers out of the box, but the one we’re interested in and will be using in this tutorial is the [refine-simple-rest](https://github.com/refinedev/refine/tree/main/packages/simple-rest) data provider, a data provider for communicating with RESTful APIs. Visit the docs to learn more about Refine’s data providers.
 
 We’ll be using the fake store API to populate our storefront prototype app, and since it’s a REST API, the refine-simple-rest data provider won’t have trouble communicating with it.
 
@@ -310,7 +310,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 };
 ```
 
-Also you need to add the Refine logo to the public folder. You can find the logo [here](https://github.com/refinedev/refine/blob/master/examples/blog-next-refine-pwa/public/refine_logo.png).
+Also you need to add the Refine logo to the public folder. You can find the logo [here](https://github.com/refinedev/refine/blob/main/examples/blog-next-refine-pwa/public/refine_logo.png).
 
 The code above is relatively straightforward, we created a functional component structure with a destructured children argument. In the returned JSX code, we created a navbar with the Refine logo and a cart button, and below it is the children argument rendered dynamically to the template.
 
@@ -822,4 +822,4 @@ The purpose of this tutorial is to give you a headstart with Refine and its ecos
 
 ## Project source code
 
-https://github.com/refinedev/refine/tree/master/examples/blog-next-refine-pwa
+https://github.com/refinedev/refine/tree/main/examples/blog-next-refine-pwa

@@ -1,12 +1,6 @@
 import React from "react";
 import { DevToolsContextProvider } from "@refinedev/devtools-shared";
-import {
-  BrowserRouter,
-  Navigate,
-  Outlet,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { BrowserRouter, Navigate, Outlet, Route, Routes } from "react-router";
 import { Layout } from "./components/layout";
 import { ReloadOnChanges } from "./components/reload-on-changes";
 import { Authenticated } from "./components/authenticated";

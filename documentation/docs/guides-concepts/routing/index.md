@@ -23,12 +23,12 @@ If you are using **Remix**, you'll be defining your routes in the `app/routes` d
 To integrate a router provider with Refine, all you need to do is to import the router integration of your choice and pass it to the `<Refine />`'s `routerProvider` prop.
 
 <Tabs>
-<TabItem value="react-router-v6" label="React Router v6" default>
+<TabItem value="react-router-v6" label="React Router" default>
 
 ```tsx title="App.tsx"
-import { BrowserRouter, Routes } from "react-router-dom";
+import { BrowserRouter, Routes } from "react-router";
 // highlight-next-line
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 const App = () => (
   <BrowserRouter>
@@ -188,7 +188,7 @@ import { NextJSResourceAndRoutesUsage } from "./nextjs/resource-and-routes-usage
 
 :::info Usage with App Router
 
-You can see the example here: https://github.com/refinedev/refine/tree/master/examples/with-nextjs
+You can see the example here: https://github.com/refinedev/refine/tree/main/examples/with-nextjs
 
 :::
 
@@ -212,15 +212,15 @@ import { ReactRouterUseFormUsage } from "./react-router/use-form-usage";
 Additionally, router integrations exposes an `<UnsavedChangesNotifier />` component which can be used to notify the user about unsaved changes before navigating away from the current page. This component provides this feature which can be enabled by setting `warnWhenUnsavedChanges` to `true` in `useForm` hooks.
 
 <Tabs wrapContent={false}>
-<TabItem value="react-router" label="React Router v6">
+<TabItem value="react-router" label="React Router">
 
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
 import {
   routerProvider,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes } from "react-router";
 
 const App = () => (
   <BrowserRouter>

@@ -1,5 +1,6 @@
-import { gql, type OperationResult } from "@urql/core";
+import type { OperationResult } from "@urql/core";
 import type { BaseRecord, CrudSort, GetListParams } from "@refinedev/core";
+import gql from "graphql-tag";
 
 import { defaultOptions } from "../../src/dataProvider/options";
 

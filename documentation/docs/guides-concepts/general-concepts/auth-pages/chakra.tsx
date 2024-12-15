@@ -10,10 +10,9 @@ export function ChakraUIAuth() {
         "@refinedev/chakra-ui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-table": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "react-router": "^7.0.2",
         "@tabler/icons-react": "^3.1.0",
         "@chakra-ui/react": "^2.5.1",
       }}
@@ -30,7 +29,7 @@ export function ChakraUIAuth() {
 const AppTsxCode = /* tsx */ `import React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import {
     AuthPage,
@@ -42,7 +41,7 @@ import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
     CatchAllNavigate,
     NavigateToResource,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 export default function App() {

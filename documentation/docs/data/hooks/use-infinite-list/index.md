@@ -1,7 +1,7 @@
 ---
 title: useInfiniteList
 siderbar_label: useInfiniteList
-source: https://github.com/refinedev/refine/blob/master/packages/core/src/hooks/data/useInfiniteList.ts
+source: https://github.com/refinedev/refine/blob/main/packages/core/src/hooks/data/useInfiniteList.ts
 description: useInfiniteList data hook from Refine is a modified version of TanStack Query's useInfiniteQuery for retrieving items from a resource with pagination, search, sort, and filter configurations.
 ---
 
@@ -30,6 +30,7 @@ Dynamically changing the `pagination` properties will trigger a new request. The
 ### Retrieving the Total Row Count
 
 When the `getList` method is called via `useInfiniteList`, it should ideally return the total count of rows (`rowCount`). The way this count is obtained depends on the data provider in use:
+
 - **REST Providers:** Commonly obtain the total count from the `x-total-count` header.
 - **GraphQL Providers:** Often source the count from specific data fields like `pageInfo.total`.
 - **Other Providers:** Follow their own practices for obtaining the total count.

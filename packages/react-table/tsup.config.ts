@@ -1,5 +1,6 @@
 import { defineConfig } from "tsup";
 import { NodeResolvePlugin } from "@esbuild-plugins/node-resolve";
+import { lodashReplacePlugin } from "../shared/lodash-replace-plugin";
 
 export default defineConfig((options) => ({
   entry: ["src/index.ts"],
@@ -22,6 +23,7 @@ export default defineConfig((options) => ({
         return resolved;
       },
     }),
+    lodashReplacePlugin,
   ],
   esbuildOptions(options) {
     options.keepNames = true;

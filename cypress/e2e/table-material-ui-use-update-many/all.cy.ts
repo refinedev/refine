@@ -11,7 +11,9 @@ describe("table-material-ui-use-update-many", () => {
   });
 
   it("should select all rows when click the checkbox in the table header", () => {
-    cy.getMaterialUILoadingCircular().should("exist");
+    cy.interceptGETPosts();
+    cy.wait("@getPosts");
+
     cy.getMaterialUILoadingCircular().should("not.exist", {
       timeout: 60000,
     });
@@ -26,7 +28,9 @@ describe("table-material-ui-use-update-many", () => {
   });
 
   it("update button should be disabled when no row is selected", () => {
-    cy.getMaterialUILoadingCircular().should("exist");
+    cy.interceptGETPosts();
+    cy.wait("@getPosts");
+
     cy.getMaterialUILoadingCircular().should("not.exist", {
       timeout: 60000,
     });
@@ -35,13 +39,23 @@ describe("table-material-ui-use-update-many", () => {
   });
 
   it("should be able to update all selected rows", () => {
-    cy.getMaterialUILoadingCircular().should("exist");
+    cy.interceptGETPosts();
+    cy.wait("@getPosts");
+
     cy.getMaterialUILoadingCircular().should("not.exist", {
       timeout: 60000,
     });
 
-    cy.get(".MuiDataGrid-row").eq(0).children().eq(0).click();
-    cy.get(".MuiDataGrid-row").eq(1).children().eq(0).click();
+    cy.get(".MuiDataGrid-row")
+      .eq(0)
+      .find(".MuiDataGrid-cellCheckbox")
+      .first()
+      .click();
+    cy.get(".MuiDataGrid-row")
+      .eq(1)
+      .find(".MuiDataGrid-cellCheckbox")
+      .first()
+      .click();
 
     cy.get(".MuiDataGrid-virtualScrollerContent .Mui-checked").should(
       "have.length",

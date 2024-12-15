@@ -12,8 +12,8 @@ import routerBindings, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
   CatchAllNavigate,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 import {
   MantineProvider,
   Global,

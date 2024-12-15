@@ -12,10 +12,6 @@ exports[`MantineInferencer should match the snapshot 1`] = `
         <div
           class="mantine-Stack-root mantine-zyu68o"
         >
-          <div
-            aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
-          />
           <h3
             class="mantine-Text-root mantine-Title-root refine-pageHeader-title mantine-6hw97m"
           />
@@ -11856,10 +11852,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           class="mantine-Stack-root mantine-zyu68o"
         >
           <div
-            aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
-          />
-          <div
             class="mantine-Group-root mantine-1g4q40w"
           >
             <button
@@ -17327,10 +17319,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
         <div
           class="mantine-Stack-root mantine-zyu68o"
         >
-          <div
-            aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
-          />
           <div
             class="mantine-Group-root mantine-1g4q40w"
           >
@@ -23333,10 +23321,6 @@ exports[`MantineInferencer should match the snapshot 4`] = `
         <div
           class="mantine-Stack-root mantine-zyu68o"
         >
-          <div
-            aria-label="breadcrumb"
-            class="mantine-Breadcrumbs-root mantine-16ttirm"
-          />
           <div
             class="mantine-Group-root mantine-1g4q40w"
           >

@@ -26,7 +26,7 @@ This is Day Three and **RefineWeek** is a seven-part tutorial that aims to help 
 
 ## Overview
 
-In the last episode, we explored **Refine**'s auth and data providers in significant detail. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support [**Supabase**](https://supabase.com/) thanks to the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package.
+In the last episode, we explored **Refine**'s auth and data providers in significant detail. We saw that `<Refine />`'s `dataProvider` and `authProvider` props were set to support [**Supabase**](https://supabase.com/) thanks to the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/main/packages/supabase) package.
 
 We mentioned that `dataProvider` methods allow us to communicate with API endpoints and `authProvider` methods help us with authentication and authorization. We are able to access and invoke these methods from consumer components via their corresponding hooks.
 
@@ -229,7 +229,7 @@ import "@refinedev/antd/dist/reset.css";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -316,17 +316,17 @@ We are also using `index.ts` files to export contents from our folders, so that 
 ### Adding required files
 
 Here is the finalized version of what we'll be building in this article:
-https://github.com/refinedev/refine/tree/master/examples/pixels
+https://github.com/refinedev/refine/tree/main/examples/pixels
 
 Before we move on, you need to add required page and components to the project if you want build the app by following the article. Please add the following components and files into the project:
 
-- pages: https://github.com/refinedev/refine/tree/master/examples/pixels/src/pages
-- components: https://github.com/refinedev/refine/tree/master/examples/pixels/src/components
-- providers: https://github.com/refinedev/refine/tree/master/examples/pixels/src/providers
-- utility: https://github.com/refinedev/refine/tree/master/examples/pixels/src/utility
-- types: https://github.com/refinedev/refine/tree/master/examples/pixels/src/types
-- styles: https://github.com/refinedev/refine/tree/master/examples/pixels/src/styles
-- assets: https://github.com/refinedev/refine/tree/master/examples/pixels/public
+- pages: https://github.com/refinedev/refine/tree/main/examples/pixels/src/pages
+- components: https://github.com/refinedev/refine/tree/main/examples/pixels/src/components
+- providers: https://github.com/refinedev/refine/tree/main/examples/pixels/src/providers
+- utility: https://github.com/refinedev/refine/tree/main/examples/pixels/src/utility
+- types: https://github.com/refinedev/refine/tree/main/examples/pixels/src/types
+- styles: https://github.com/refinedev/refine/tree/main/examples/pixels/src/styles
+- assets: https://github.com/refinedev/refine/tree/main/examples/pixels/public
 
 After creating files above you need to add some imports and [routes](/docs/packages/list-of-packages) to `src/App.tsx` file. Simply add replace your App.tsx with following.
 
@@ -338,7 +338,7 @@ After creating files above you need to add some imports and [routes](/docs/packa
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -470,7 +470,7 @@ We move this files to `src/providers/authProvider.ts` and `src/components/layout
 
 ### `<Refine />` `list` Action
 
-The `list` action represents a `GET` request sent to the `canvases` table in our **Supabase** db. It is done through the `dataProvider.getList` method that [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/master/packages/supabase/src/index.ts) gave us. From the consumer `<CanvasList />` component, it can be accessed via the `useList()` hook.
+The `list` action represents a `GET` request sent to the `canvases` table in our **Supabase** db. It is done through the `dataProvider.getList` method that [`@refinedev/supabase`](https://github.com/refinedev/refine/blob/main/packages/supabase/src/index.ts) gave us. From the consumer `<CanvasList />` component, it can be accessed via the `useList()` hook.
 
 **Refine** defines the routes for `list` action to be the `/canvases` path, and adds it to the `routerProvider` object. `/canvases` path, in turn, renders the `<CanvasList />` component, as specified in the `resources` array.
 
@@ -644,7 +644,7 @@ Let's look at the routes implementation:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
@@ -1206,7 +1206,7 @@ Namely, authentication related routing has been added:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
@@ -1309,7 +1309,7 @@ Remember, we've already replaced `App.tx` code with the following:
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -1480,7 +1480,7 @@ Now it's time to focus on the Home page of our application. We put the `<CanvasF
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { CanvasFeaturedList } from "./pages/canvases";

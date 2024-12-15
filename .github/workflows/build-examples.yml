@@ -13,8 +13,12 @@ on:
       - reopened
       - ready_for_review
   push:
+    paths:
+      - "packages/**"
+      - "examples/**"
+      - "cypress/e2e/**"
     branches:
-      - master
+      - main
   schedule:
     - cron: "0 6 * * *"
   workflow_dispatch:
@@ -54,7 +58,7 @@ jobs:
             - recursive: false
               args: [--ignore-scripts]
       - name: Fetch commits
-        run: git fetch origin ${{ github.base_ref || 'master' }} --depth=1
+        run: git fetch origin ${{ github.base_ref || 'main' }} --depth=1
       - name: Use Node.js 18
         uses: actions/setup-node@v4
         with:

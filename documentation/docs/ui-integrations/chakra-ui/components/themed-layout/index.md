@@ -59,8 +59,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -107,11 +107,11 @@ const App = () => {
 render(<App />);
 ```
 
-Example above shows how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
+Example above shows how to use `<ThemedLayoutV2>` with [`React Router`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-chakra-ui/src/App.tsx#L171)
-- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L35)
-- [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-auth/app/routes/_protected.tsx)
+- [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-chakra-ui/src/App.tsx#L171)
+- [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
+- [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-auth/app/routes/_protected.tsx)
 
 > ⚠️ Next.js and Remix examples are using `<ThemedLayoutV2`> from `@refinedev/antd` package. But you can use `<ThemedLayoutV2>` from `@refinedev/chakra-ui` as same.
 
@@ -217,6 +217,33 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 >
   {/* ... */}
 </ThemedLayoutV2>
+```
+
+### `onSiderCollapsed`
+
+Will be triggered when the [`<ThemedSiderV2>`][themed-sider] component's `collapsed` state changes.
+
+Can be used to persist collapsed state on the localstorage. Then you can use localStorage item to decide if sider should be collapsed initially or not.
+
+Here's an example of how to use the `onSiderCollapsed` prop:
+
+```tsx
+const MyLayout = () => {
+  const onSiderCollapse = (collapsed: boolean) => {
+    localStorage.setItem("siderCollapsed", collapsed);
+  };
+
+  const initialSiderCollapsed = Boolean(localStorage.getItem("siderCollapsed"));
+
+  return (
+    <ThemedLayoutV2
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapse}
+    >
+      {/* ... */}
+    </ThemedLayoutV2>
+  );
+};
 ```
 
 ### Header
@@ -330,8 +357,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -438,8 +465,8 @@ import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
 import { ChakraProvider, Button } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -768,8 +795,8 @@ import {
 import { ChakraProvider, Box } from "@chakra-ui/react";
 import { ChakraUIInferencer } from "@refinedev/inferencer/chakra-ui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -855,7 +882,7 @@ values={[
 ```tsx title="src/App.tsx"
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
 
 const App: React.FC = () => {
@@ -958,9 +985,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/core/hooks/utilities/use-menu
 [refine-component]: /docs/core/refine-component
 [chakra-ui-drawer]: https://chakra-ui.com/docs/components/drawer

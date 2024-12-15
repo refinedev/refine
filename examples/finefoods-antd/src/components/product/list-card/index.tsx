@@ -22,7 +22,7 @@ import { PaginationTotal } from "../../paginationTotal";
 import { EyeOutlined, TagOutlined } from "@ant-design/icons";
 import { useMemo } from "react";
 import { useStyles } from "./styled";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "react-router";
 
 export const ProductListCard = () => {
   const { styles, cx } = useStyles();

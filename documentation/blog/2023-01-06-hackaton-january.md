@@ -74,7 +74,7 @@ The all winners will get [Refine Special Swag Kit](https://store.refine.dev/prod
 ## Submission
 
 - **Submissions link:** [Please submit your project on Refine Devpost Hackathon page](https://refine-open-source-hackathon.devpost.com/)
-- **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/master/hackathon/readme-guideline.md)
+- **Submission guidelines:** [Follow the guidelines in this repository](https://github.com/refinedev/refine/blob/main/hackathon/readme-guideline.md)
 
 ## Rules
 

@@ -58,8 +58,8 @@ import {
 import { CssBaseline, GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -111,11 +111,11 @@ render(<App />);
 
 `<ThemedLayoutV2>` is designed to be responsive. In the live-preview, it appears in tablet mode and toggle [`<Drawer>`][mui-drawer]. On larger screens, it will use fixed open [`<Drawer>`][mui-drawer].
 
-Example of above showing how to use `<ThemedLayoutV2>` with [`React Router v6`](/docs/packages/list-of-packages). You can see these examples for other routers:
+Example of above showing how to use `<ThemedLayoutV2>` with [`React Router`](/docs/packages/list-of-packages). You can see these examples for other routers:
 
-- [React Router v6](https://github.com/refinedev/refine/blob/master/examples/auth-material-ui/src/App.tsx#L210)
-- [Next.js](https://github.com/refinedev/refine/blob/master/examples/with-nextjs/src/app/layout.tsx#L35)
-- [Remix](https://github.com/refinedev/refine/blob/master/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
+- [React Router](https://github.com/refinedev/refine/blob/main/examples/auth-material-ui/src/App.tsx#L210)
+- [Next.js](https://github.com/refinedev/refine/blob/main/examples/with-nextjs/src/app/layout.tsx#L35)
+- [Remix](https://github.com/refinedev/refine/blob/main/examples/with-remix-material-ui/app/routes/_layout.tsx#L13)
 
 ## Props
 
@@ -203,6 +203,36 @@ type SiderRenderFunction = (props: {
 }) => React.ReactNode;
 ```
 
+### childrenBoxProps
+
+This prop is used to customize the styles and attributes of the inner Box that contains the main layout content. It accepts all properties of BoxProps, including the `sx` property for inline styling.
+
+```tsx
+<ThemedLayoutV2
+  // highlight-next-line
+  childrenBoxProps={{
+    sx: { bgColor: "purple" },
+  }}
+>
+  {/* ... */}
+</ThemedLayoutV2>
+```
+
+### containerBoxProps
+
+This prop is used to customize the styles and attributes of the outer container Box wrapping the layout. It accepts all properties of BoxProps, including the `sx` property for inline styling
+
+```tsx
+<ThemedLayoutV2
+  // highlight-next-line
+  containerBoxProps={{
+    sx: { bgColor: "cyan" },
+  }}
+>
+  {/* ... */}
+</ThemedLayoutV2>
+```
+
 ### initialSiderCollapsed
 
 This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][themed-sider] component. If it is `true`, It will be collapsed by default.
@@ -214,6 +244,33 @@ This prop is used to set the initial collapsed state of the [`<ThemedSiderV2>`][
 >
   {/* ... */}
 </ThemedLayoutV2>
+```
+
+### `onSiderCollapsed`
+
+Will be triggered when the [`<ThemedSiderV2>`][themed-sider] component's `collapsed` state changes.
+
+Can be used to persist collapsed state on the localstorage. Then you can use localStorage item to decide if sider should be collapsed initially or not.
+
+Here's an example of how to use the `onSiderCollapsed` prop:
+
+```tsx
+const MyLayout = () => {
+  const onSiderCollapse = (collapsed: boolean) => {
+    localStorage.setItem("siderCollapsed", collapsed);
+  };
+
+  const initialSiderCollapsed = Boolean(localStorage.getItem("siderCollapsed"));
+
+  return (
+    <ThemedLayoutV2
+      initialSiderCollapsed={initialSiderCollapsed}
+      onSiderCollapsed={onSiderCollapse}
+    >
+      {/* ... */}
+    </ThemedLayoutV2>
+  );
+};
 ```
 
 ### Header
@@ -328,8 +385,8 @@ import { CssBaseline, GlobalStyles, Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -448,8 +505,8 @@ import { CssBaseline, GlobalStyles, Fab } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -770,8 +827,8 @@ import { CssBaseline, GlobalStyles, Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { MuiInferencer } from "@refinedev/inferencer/mui";
 
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -864,7 +921,7 @@ values={[
 ```tsx title="src/App.tsx"
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 
 const App: React.FC = () => {
@@ -967,9 +1024,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/master/packages/mui/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/master/packages/mui/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/master/packages/mui/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/title/index.tsx
 [use-menu]: /docs/core/hooks/utilities/use-menu
 [refine-component]: /docs/core/refine-component
 [mui-drawer]: https://mui.com/material-ui/react-drawer/
