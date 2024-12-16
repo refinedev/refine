@@ -44,7 +44,7 @@ describe("auth-antd", () => {
 
     it("should has 'to' param on URL after redirected to /login", () => {
       login();
-      cy.location("pathname").should("eq", "/blog-posts");
+      cy.location("pathname").should("eq", "/");
 
       cy.visit("/test");
       cy.location("pathname").should("eq", "/test");
