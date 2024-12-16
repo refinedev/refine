@@ -198,7 +198,7 @@ export const useForm = <
 
   const { query, onFinish, formLoading, onFinishAutoSave } = useFormCoreResult;
 
-  type FormVariablesType = ExtractFormVariables<TVariables>; // Added
+  type FormVariablesType = ExtractFormVariables<TVariables>;
   type SubmissionVariablesType = ExtractSubmissionVariables<TVariables>;
 
   useEffect(() => {
