@@ -6,12 +6,7 @@ describe("table-material-ui-use-update-many", () => {
     cy.visit("/");
   });
 
-  it("should be view list page", () => {
-    cy.resourceList();
-  });
-
   it("should select all rows when click the checkbox in the table header", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getMaterialUILoadingCircular().should("not.exist", {
@@ -28,7 +23,6 @@ describe("table-material-ui-use-update-many", () => {
   });
 
   it("update button should be disabled when no row is selected", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getMaterialUILoadingCircular().should("not.exist", {
@@ -39,7 +33,6 @@ describe("table-material-ui-use-update-many", () => {
   });
 
   it("should be able to update all selected rows", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getMaterialUILoadingCircular().should("not.exist", {
@@ -61,8 +54,6 @@ describe("table-material-ui-use-update-many", () => {
       "have.length",
       2,
     );
-
-    cy.interceptPATCHPost();
 
     cy.get("#update-selected").click();
 

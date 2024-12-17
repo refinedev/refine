@@ -21,7 +21,6 @@ describe("i18n-nextjs", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.interceptGETBlogPosts();
     cy.visit("/");
   });
 
@@ -92,7 +91,6 @@ describe("i18n-nextjs", () => {
 
     cy.visit("/blog-posts/edit/123");
 
-    cy.interceptGETBlogPost();
     cy.wait("@getBlogPost");
 
     cy.get(".refine-delete-button").click();
