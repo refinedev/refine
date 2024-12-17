@@ -47,13 +47,6 @@ describe("form-mantine-mutation-mode", () => {
   };
 
   beforeEach(() => {
-    cy.interceptGETPost();
-    cy.interceptPOSTPost();
-    cy.interceptPATCHPost();
-    cy.interceptDELETEPost();
-    cy.interceptGETPosts();
-    cy.interceptGETCategories();
-
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();

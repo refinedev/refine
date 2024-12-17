@@ -10,15 +10,10 @@ describe("form-core-use-form", () => {
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
-
-    cy.interceptGETPosts();
     cy.visit("/");
   });
 
   it("should edit resource with autosave", () => {
-    cy.interceptGETCategories();
-    cy.interceptGETPost();
-
     cy.wait("@getPosts");
 
     cy.get("button:contains('Edit')").first().click();
@@ -37,8 +32,6 @@ describe("form-core-use-form", () => {
     cy.get("button[type='submit']").first().should("not.be.disabled");
 
     cy.get("span:has(+ form)").should("have.text", "waiting for changes");
-
-    cy.interceptPATCHPost();
 
     cy.fixture("mock-post").then((mockPost) => {
       cy.get("input[name='title']").type(`{selectAll}${mockPost.title}`);
@@ -63,9 +56,6 @@ describe("form-core-use-form", () => {
   });
 
   it("should clone resource", () => {
-    cy.interceptGETCategories();
-    cy.interceptGETPost();
-
     cy.wait("@getPosts");
 
     cy.get("button:contains('Clone')").first().click();
@@ -87,8 +77,6 @@ describe("form-core-use-form", () => {
       cy.get("input[name='title']").type(`{selectAll}${mockPost.title}`);
       cy.get("textarea[name='content']").type(`{selectAll}${mockPost.content}`);
 
-      cy.interceptPOSTPost();
-
       cy.get("button[type='submit']").first().click();
 
       cy.wait("@postPost").then((interception) => {
@@ -106,9 +94,6 @@ describe("form-core-use-form", () => {
   });
 
   it("should edit resource with save button", () => {
-    cy.interceptGETCategories();
-    cy.interceptGETPost();
-
     cy.wait("@getPosts");
 
     cy.get("button:contains('Edit')").first().click();
@@ -130,8 +115,6 @@ describe("form-core-use-form", () => {
       cy.get("input[name='title']").type(`{selectAll}${mockPost.title}`);
       cy.get("textarea[name='content']").type(`{selectAll}${mockPost.content}`);
 
-      cy.interceptPATCHPost();
-
       cy.wait(1100);
 
       cy.get("button[type='submit']").first().click();
@@ -151,9 +134,6 @@ describe("form-core-use-form", () => {
   });
 
   it("should create resource", () => {
-    cy.interceptGETCategories();
-    cy.interceptGETPost();
-
     cy.wait("@getPosts");
 
     cy.get("button:contains('Create Post')").first().click();
@@ -163,8 +143,6 @@ describe("form-core-use-form", () => {
     cy.fixture("mock-post").then((mockPost) => {
       cy.get("input[name='title']").type(`${mockPost.title}`);
       cy.get("textarea[name='content']").type(`${mockPost.content}`);
-
-      cy.interceptPOSTPost();
 
       cy.get("button[type='submit']").first().click();
 

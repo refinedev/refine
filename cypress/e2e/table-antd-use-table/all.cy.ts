@@ -50,8 +50,6 @@ describe("table-antd-use-table", () => {
 
     cy.wait("@getDescPosts");
 
-    cy.interceptGETPosts();
-
     cy.getAntdColumnSorter(0).click();
 
     cy.url().should(
@@ -96,7 +94,6 @@ describe("table-antd-use-table", () => {
   });
 
   it("should work with pagination", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getAntdLoadingOverlay().should("not.exist");
@@ -141,7 +138,6 @@ describe("table-antd-use-table", () => {
   });
 
   it("should set current `1` when filter changed", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getAntdLoadingOverlay().should("not.exist");
