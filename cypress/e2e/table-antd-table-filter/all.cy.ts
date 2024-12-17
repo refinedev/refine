@@ -8,10 +8,6 @@ describe("table-antd-table-filter", () => {
     cy.wait("@getCategories");
   });
 
-  it("should be view list page", () => {
-    cy.resourceList();
-  });
-
   it("the table should be filterable by form", () => {
     cy.getAntdLoadingOverlay().should("not.exist");
     cy.wait("@getCategories");

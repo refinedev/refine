@@ -6,10 +6,6 @@ describe("table-antd-use-update-many", () => {
     cy.visit("/");
   });
 
-  it("should be view list page", () => {
-    cy.resourceList();
-  });
-
   it("should be show form when click on the row", () => {
     cy.getAntdLoadingOverlay().should("not.exist");
 

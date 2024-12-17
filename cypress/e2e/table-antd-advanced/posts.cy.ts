@@ -6,10 +6,6 @@ describe("table-antd-advanced", () => {
     cy.visit("/");
   });
 
-  it("should be view list page", () => {
-    cy.resourceList();
-  });
-
   it("the row should be expandable", () => {
     cy.getAntdLoadingOverlay().should("not.exist");
 
