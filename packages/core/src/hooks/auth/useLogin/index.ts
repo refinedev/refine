@@ -175,7 +175,9 @@ export function useLogin<TVariables = {}>({
         }
       }
 
-      await invalidateAuthStore();
+      setTimeout(() => {
+        invalidateAuthStore();
+      }, 32);
     },
     onError: (error: any) => {
       open?.(buildNotification(error));
@@ -219,7 +221,9 @@ export function useLogin<TVariables = {}>({
         }
       }
 
-      await invalidateAuthStore();
+      setTimeout(() => {
+        invalidateAuthStore();
+      }, 32);
 
       close?.("login-error");
     },
