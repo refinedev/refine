@@ -61,8 +61,8 @@ describe("table-antd-use-table", () => {
       const { request } = interception;
       const { _sort, _order } = request.query;
 
-      expect(_sort).to.undefined;
-      expect(_order).to.undefined;
+      expect(_sort).to.equal("title");
+      expect(_order).to.equal("asc");
     });
   });
 
