@@ -211,8 +211,6 @@ These are the cruces of using `Pick<>` transformations in TypeScript.
 
 ## Add a Comparison Table: Pick vs. Other Utilities
 
-Create a comparison table highlighting when to use `Pick`, `Omit`, and `Partial`. Tables often rank well for featured snippets.
-
 ```markdown
 ### Pick vs. Omit vs. Partial
 
