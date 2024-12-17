@@ -4,11 +4,17 @@ description: We'll deep dive into the TypeScript Pick utility type with examples
 slug: typescript-pick-utility-type
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-09-30-typescript-pick/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on November 17, 2024, to include a clear introduction to TypeScript Pick and its practical use cases.**
+
 ## Introduction
+
+### TL;DR: What is TypeScript Pick?
+
+`Pick<Type, Keys>` is a TypeScript utility type that constructs a new type by picking the specific properties from an existing type. It's great for taking large types and distilling them down into smaller, more focused types.
 
 This is a series on Object Type Transformations in TypeScript. In this series, we will first look into what object type transformations are, the situations that necessitate a transformation and how they are different from object interface extensions. Then we will closely examine various utilities that TypeScript provides to facilitate object type transformations, such as `Pick<>`, `Omit<>` and `Partial<>`.
 
@@ -18,6 +24,7 @@ But first let's understand what transforming an object type means and under what
 
 Steps we'll cover:
 
+- [TL;DR: What is TypeScript Pick?](#tldr-what-is-typescript-pick)
 - [What is Object Type Transformation?](#what-is-object-type-transformation)
   - [The Scenario](#the-scenario)
 - [What is TypeScript Pick?](#what-is-typescript-pick)
@@ -25,6 +32,8 @@ Steps we'll cover:
   - [For Types Only](#for-types-only)
   - [Picking from a Type](#picking-from-a-type)
   - [When to Avoid](#when-to-avoid)
+- [Add a Comparison Table: Pick vs. Other Utilities](#add-a-comparison-table-pick-vs-other-utilities)
+  - [Pick vs. Omit vs. Partial](#pick-vs-omit-vs-partial)
 
 ## What is Object Type Transformation?
 
@@ -200,8 +209,28 @@ Instead, we can just omit `roles` from the passed in utility type. As we'll see 
 
 These are the cruces of using `Pick<>` transformations in TypeScript.
 
+## Add a Comparison Table: Pick vs. Other Utilities
+
+Create a comparison table highlighting when to use `Pick`, `Omit`, and `Partial`. Tables often rank well for featured snippets.
+
+```markdown
+### Pick vs. Omit vs. Partial
+
+| **Utility**        | **What It Does**                         | **When to Use**                        |
+| ------------------ | ---------------------------------------- | -------------------------------------- |
+| `Pick<Type, Keys>` | Select specific properties from a type.  | When you need a subset of properties.  |
+| `Omit<Type, Keys>` | Exclude specific properties from a type. | When you need all except a few.        |
+| `Partial<Type>`    | Makes all properties of a type optional. | When optional properties are required. |
+
+**Example Use Cases:**
+
+- Use `Pick` for creating **focused types** with only relevant properties.
+- Use `Omit` when excluding unnecessary fields.
+- Use `Partial` for making types flexible during updates or creation.
+
 ## Conclusion
 
 In this post, we found out that Object Type Transformations allow us to derive similar types from a base type when we have objects that share properties. We looked at an example that uses TypeScript `Pick<>` to create a new type by picking a few properties from a type with larger shape. We found out that a type transformation can take both an interface as well as a type as its base, but the generated type cannot be declared as an interface.
 
 `Omit<>`, the opposite equivalent of `Pick<>`, can be used when we have more properties to pick and less to omit. We'll look at it in the next post.
+```
