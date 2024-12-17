@@ -4,7 +4,7 @@
 describe("form-antd-use-drawer-form", () => {
   const mockPost = {
     title:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     status: "Published",
   };
 

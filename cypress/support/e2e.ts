@@ -136,6 +136,11 @@ beforeEach(() => {
   cy.interceptPOSTPost();
   cy.interceptPATCHPost();
   cy.interceptDELETEPost();
+  cy.interceptGETBlogPosts();
+  cy.interceptGETBlogPost();
+  cy.interceptPOSTBlogPost();
+  cy.interceptPATCHBlogPost();
+  cy.interceptDELETEBlogPost();
   cy.interceptGETCategories();
   cy.interceptGETCategory();
 });
