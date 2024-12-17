@@ -8,7 +8,13 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-03-typescript
 hide_table_of_contents: false
 ---
 
+**This article was last updated on December 17, 2024, to add sections for Use Cases of TypeScript Omit and clean introduction**
+
 ## Introduction
+
+**TL;DR:**
+
+The `Omit<Type, Keys>` utility in TypeScript helps to construct a new type by omitting certain properties from the existing type. It is perfect for reducing redundant code when certain properties are not needed.
 
 In this article, we discuss object type transformations in TypeScript using `Omit<>`. This is the second part of the series titled [TypeScript Utility Type Series](https://refine.dev/blog/typescript-pick-utility-type/).
 
@@ -18,9 +24,11 @@ In this post, we will consider an example of `Omit<>` by creating a type for our
 
 Step we'll cover:
 
-- [TypeScript Omit Example](#typescript-omittype-keys-example)
-- [TypeScript Omit with Interface](#typescript-omit-with-interface)
+- [TypeScript `Omit<Type, Keys>` Example](#typescript-omittype-keys-example)
+- [TypeScript `Omit<>` with Interface](#typescript-omit-with-interface)
 - [When to Avoid](#when-to-avoid)
+- [When to Use TypeScript Omit](#when-to-use-typescript-omit)
+- [Comparison of `Pick` and `Omit` in TypeScript](#comparison-of-pick-and-omit-in-typescript)
 
 ## TypeScript `Omit<Type, Keys>` Example
 
@@ -154,6 +162,101 @@ type Subscriber = Omit<SuperbUser, 'roles' | 'firstName' | ...>;
 ```
 
 We should avoid using `Omit<>` and prefer `Pick<>` when we have more properties to omit than to pick.
+
+## When to Use TypeScript Omit
+
+- To remove sensitive fields (e.g., password) from user objects.
+- To generate simplified versions of complex types. - When most of the fields are needed but a few.
+
+**Simplifying Derived Types**:
+
+- Omit comes in very handy when you have a complicated base type, but need a simplified version that doesn't contain a few fields.
+
+```tsx
+type FullUser = {
+  id: number;
+  name: string;
+  email: string;
+  password: string;
+  createdAt: Date;
+};
+
+// Create a "PublicUser" type without sensitive data like 'password' and 'createdAt'
+type PublicUser = Omit<FullUser, "password" | "createdAt">;
+
+const user: PublicUser = {
+  id: 1,
+  name: "John Doe",
+  email: "johndoe@gmail.com",
+};
+
+console.log(user);
+/*
+  Output:
+  {
+    id: 1,
+    name: "John Doe",
+    email: "johndoe@gmail.com"
+  }
+*/
+```
+
+**API Data Filtering**:
+
+- Sometimes APIs or backends give you a full object when your frontend only needs a small subset of the fields. You could create a whole new type by hand. Alternatively, use Omit for quick adjustments.
+
+```tsx
+interface ApiResponse {
+  id: number;
+  username: string;
+  email: string;
+  passwordHash: string;
+  isAdmin: boolean;
+}
+
+// Create a 'FrontendUser' without sensitive backend data
+type FrontendUser = Omit<ApiResponse, "passwordHash" | "isAdmin">;
+
+const frontendUser: FrontendUser = {
+  id: 101,
+  username: "frontend_dev",
+  email: "dev@example.com",
+};
+```
+
+**Creating Cleaner Types for Specific Contexts**:
+
+- If you're working with forms, UI components, or other modules, chances are you only need some of the fields from the parent, larger type: Omit comes in handy to keep your types tidy and focused.
+
+```tsx
+interface FullProduct {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Create a 'ProductForm' type for a UI form without metadata
+type ProductForm = Omit<FullProduct, "id" | "createdAt" | "updatedAt">;
+
+const formData: ProductForm = {
+  name: "Gaming Laptop",
+  description: "A powerful laptop for gaming.",
+  price: 1500,
+};
+```
+
+## Comparison of `Pick` and `Omit` in TypeScript
+
+| Feature      | `Pick`                        | `Omit`                        |
+| ------------ | ----------------------------- | ----------------------------- | ---------------------------------- |
+| **Purpose**  | Select specific fields        | Exclude specific fields       |
+| **Syntax**   | `Pick<Type, Keys>`            | `Omit<Type, Keys>`            |
+| **Use Case** | When fewer fields are needed  | When fewer fields are omitted |
+| **Example**  | `type A = Pick<Type, "id"     | "name">;`                     | `type B = Omit<Type, "password">;` |
+| **Result**   | Includes only `id` and `name` | Excludes `password`           |
 
 ## Conclusion
 
