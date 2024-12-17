@@ -75,7 +75,7 @@ describe("with-nextjs-next-auth", () => {
       cy.get(".ant-menu-title-content")
         .contains(/logout/i)
         .click();
-      // cy.location("pathname").should("eq", "/login");
+      cy.location("pathname").should("eq", "/login");
     });
   });
 
