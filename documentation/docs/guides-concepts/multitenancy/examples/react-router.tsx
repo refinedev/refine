@@ -27,10 +27,10 @@ export default function RouteDefinitions() {
 }
 
 const AppTsxCode = /* jsx */ `
-import { RefineEnterprise } from "@refinedev-ee/enterprise";
-import { WithTenant } from "@refinedev-ee/multitenancy";
-import dataProvider from "@refinedev-ee/simple-rest";
-import routerProvider from "@refinedev-ee/react-router-v6";
+import { RefineEnterprise } from "@refinedev/enterprise";
+import { WithTenant } from "@refinedev/multitenancy";
+import dataProvider from "@refinedev/simple-rest";
+import routerProvider from "@refinedev/react-router-v6";
 
 import { BrowserRouter, Outlet, Routes, Route } from "react-router";
 
@@ -79,8 +79,8 @@ export const App: React.FC = () => {
 `.trim();
 
 const MultitenancyProviderTsxCode = /* jsx */ `
-import type { MultiTenancyProvider } from "@refinedev-ee/core";
-import { useRouterAdapter } from "@refinedev-ee/multitenancy";
+import type { MultiTenancyProvider } from "@refinedev/core";
+import { useRouterAdapter } from "@refinedev/multitenancy";
 import dataProvider from "@refinedev/simple-rest";
 
 export type Tenant = {
