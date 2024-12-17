@@ -11,59 +11,44 @@ describe("table-antd-use-table", () => {
   });
 
   it("should work with sorter", () => {
-    cy.intercept(
-      {
-        url: "/posts*",
-        query: {
-          _sort: "id",
-          _order: "asc",
-        },
-      },
-      {
-        fixture: "posts.json",
-      },
-    ).as("getAscPosts");
-
-    cy.getAntdLoadingOverlay().should("not.exist", { timeout: 10000 });
-    cy.getAntdColumnSorter(0).click();
-
-    cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
-
-    cy.wait("@getAscPosts");
-
-    cy.intercept(
-      {
-        url: "/posts*",
-        query: {
-          _sort: "id",
-          _order: "desc",
-        },
-      },
-      {
-        fixture: "posts.json",
-      },
-    ).as("getDescPosts");
-
-    cy.getAntdColumnSorter(0).click();
-
-    cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=desc");
-
-    cy.wait("@getDescPosts");
-
-    cy.getAntdColumnSorter(0).click();
-
-    cy.url().should(
-      "not.include",
-      "sorters[0][field]=id&sorters[0][order]=desc",
-    );
-
     cy.wait("@getPosts").then((interception) => {
       const { request } = interception;
       const { _sort, _order } = request.query;
 
-      expect(_sort).to.equal("title");
-      expect(_order).to.equal("asc");
+      expect(_sort).to.eq("title");
+      expect(_order).to.eq("asc");
     });
+
+    cy.getAntdLoadingOverlay().should("not.exist", { timeout: 10000 });
+    cy.getAntdColumnSorter(0).click();
+    cy.wait("@getPosts").then((interception) => {
+      const { request } = interception;
+      const { _sort, _order } = request.query;
+
+      expect(_sort).to.eq("id");
+      expect(_order).to.eq("asc");
+    });
+    cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
+
+    cy.getAntdColumnSorter(0).click();
+    cy.wait("@getPosts").then((interception) => {
+      const { request } = interception;
+      const { _sort, _order } = request.query;
+
+      expect(_sort).to.eq("id");
+      expect(_order).to.eq("desc");
+    });
+    cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=desc");
+
+    cy.getAntdColumnSorter(0).click();
+    cy.wait("@getPosts").then((interception) => {
+      const { request } = interception;
+      const { _sort, _order } = request.query;
+
+      expect(_sort).to.undefined;
+      expect(_order).to.undefined;
+    });
+    cy.url().should("not.include", "sorters");
   });
 
   it("should work with filter", () => {
