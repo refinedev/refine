@@ -4,7 +4,7 @@ description: We'll dive into the TypeScript Omit utility type with examples
 slug: typescript-omit-utility-type
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-03-typescript-omit/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-03-typescript-omit/social-2.png
 hide_table_of_contents: false
 ---
 
