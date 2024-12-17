@@ -3,8 +3,6 @@
 
 describe("table-material-ui-advanced", () => {
   beforeEach(() => {
-    cy.interceptGETPosts();
-    cy.interceptGETCategories();
     cy.visit("/posts/data-grid");
   });
 

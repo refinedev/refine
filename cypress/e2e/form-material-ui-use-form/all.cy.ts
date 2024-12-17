@@ -11,7 +11,6 @@ describe("form-material-ui-use-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.interceptGETPosts();
     cy.visit("/");
   });
 
@@ -38,8 +37,6 @@ describe("form-material-ui-use-form", () => {
   });
 
   it("should create form render errors", () => {
-    cy.interceptGETCategories();
-
     cy.getCreateButton().click();
 
     submitForm();
@@ -58,8 +55,6 @@ describe("form-material-ui-use-form", () => {
   });
 
   it("should edit form render errors", () => {
-    cy.interceptGETPost();
-    cy.interceptGETCategories();
     cy.getEditButton().first().click();
 
     // wait loading state and render to be finished
@@ -97,9 +92,6 @@ describe("form-material-ui-use-form", () => {
   });
 
   it("should edit form warn when unsaved changes", () => {
-    cy.interceptGETPost();
-    cy.interceptGETCategories();
-
     cy.wait("@getPosts");
     cy.getEditButton().first().click();
 

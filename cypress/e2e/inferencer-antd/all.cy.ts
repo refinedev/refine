@@ -22,9 +22,6 @@ describe("inferencer-antd", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.interceptGETCategory();
-    cy.interceptGETCategories();
-    cy.interceptGETBlogPosts();
     cy.visit("/");
 
     login();
@@ -41,8 +38,6 @@ describe("inferencer-antd", () => {
   });
 
   it("should show resource", () => {
-    cy.interceptGETBlogPost();
-
     cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getAntdLoadingOverlay().should("not.exist");
@@ -78,9 +73,6 @@ describe("inferencer-antd", () => {
   });
 
   it("should delete resource", () => {
-    cy.interceptGETBlogPost();
-    cy.interceptDELETEBlogPost();
-
     cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getAntdLoadingOverlay().should("not.exist");
@@ -106,8 +98,6 @@ describe("inferencer-antd", () => {
   });
 
   it("should create resource", () => {
-    cy.interceptPOSTBlogPost();
-
     cy.getCreateButton().click();
     cy.location("pathname").should("contain", "/blog-posts/create");
     cy.assertDocumentTitle("Blog Post", "create");
@@ -144,9 +134,6 @@ describe("inferencer-antd", () => {
   });
 
   it("should edit resource", () => {
-    cy.interceptPATCHBlogPost();
-    cy.interceptGETBlogPost();
-
     cy.wait("@getCategories");
     cy.wait("@getBlogPosts");
     cy.getAntdLoadingOverlay().should("not.exist");

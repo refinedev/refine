@@ -3,9 +3,6 @@
 
 describe("table-antd-use-delete-many", () => {
   beforeEach(() => {
-    cy.interceptGETPosts();
-    cy.interceptGETCategories();
-
     cy.visit("/");
   });
 
@@ -34,8 +31,6 @@ describe("table-antd-use-delete-many", () => {
     cy.get(".ant-table-row .ant-checkbox-input").eq(2).click();
 
     cy.get(".ant-table-row-selected").should("have.length", 2);
-
-    cy.interceptDELETEPost();
 
     cy.get(".ant-btn-primary").contains("Delete").click();
 

@@ -11,7 +11,6 @@ describe("form-chakra-ui-use-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.interceptGETPosts();
     cy.visit("/");
   });
 
@@ -55,8 +54,6 @@ describe("form-chakra-ui-use-form", () => {
   it("should edit form render errors", () => {
     cy.getChakraUILoadingOverlay().should("not.exist");
 
-    cy.interceptGETPost();
-    cy.interceptGETCategories();
     cy.getEditButton().first().click();
 
     // wait loading state and render to be finished
@@ -80,7 +77,6 @@ describe("form-chakra-ui-use-form", () => {
   });
 
   it("should create form warn when unsaved changes", () => {
-    cy.interceptGETCategories().wait("@getCategories");
     cy.getChakraUILoadingOverlay().should("not.exist");
 
     cy.getCreateButton().click();
@@ -94,8 +90,6 @@ describe("form-chakra-ui-use-form", () => {
   it("should edit form warn when unsaved changes", () => {
     cy.getChakraUILoadingOverlay().should("not.exist");
 
-    cy.interceptGETPost();
-    cy.interceptGETCategories();
     cy.getEditButton().first().click();
     // wait loading state and render to be finished
     cy.getSaveButton().should("not.be.disabled");

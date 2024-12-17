@@ -11,7 +11,6 @@ describe("form-mantine-use-form", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.interceptGETPosts();
     cy.visit("/");
   });
 
@@ -49,9 +48,6 @@ describe("form-mantine-use-form", () => {
   });
 
   it("should edit form render errors", () => {
-    cy.interceptGETPost();
-    cy.interceptGETCategories();
-
     cy.getEditButton().first().click();
 
     // wait loading state and render to be finished
@@ -81,9 +77,6 @@ describe("form-mantine-use-form", () => {
   });
 
   it("should edit form warn when unsaved changes", () => {
-    cy.interceptGETPost();
-    cy.interceptGETCategories();
-
     cy.wait("@getPosts");
     cy.getEditButton().first().click();
 
