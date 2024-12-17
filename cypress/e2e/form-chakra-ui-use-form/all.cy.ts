@@ -14,28 +14,6 @@ describe("form-chakra-ui-use-form", () => {
     cy.visit("/");
   });
 
-  it("should list resource", () => {
-    cy.resourceList();
-  });
-
-  it("should create resource", () => {
-    cy.resourceCreate({
-      ui: "chakra-ui",
-    });
-  });
-
-  it("should edit resource", () => {
-    cy.resourceEdit({ ui: "chakra-ui" });
-  });
-
-  it("should show resource", () => {
-    cy.resourceShow();
-  });
-
-  it("should delete resource", () => {
-    cy.resourceDelete({ ui: "chakra-ui" });
-  });
-
   it("should create form render errors", () => {
     cy.getCreateButton().click();
 

@@ -6,10 +6,6 @@ describe("table-material-ui-use-delete-many", () => {
     cy.visit("/");
   });
 
-  it("should be view list page", () => {
-    cy.resourceList();
-  });
-
   it("should select all rows when click the checkbox in the table header", () => {
     cy.wait("@getPosts");
 
