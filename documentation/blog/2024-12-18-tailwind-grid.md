@@ -4,11 +4,13 @@ description: We look at how to implement responsive layouts with CSS Grid using 
 slug: tailwind-grid
 authors: abdullah_numan
 tags: [tailwind, css]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-21-tailwind-grid/social-2.png
 hide_table_of_contents: false
 ---
 
 ## Introduction
+
+**Quick Summary:** Tailwind CSS Grid is a utility-first system and is utilizing CSS Grid to create responsive, flexible layouts with the least amount of work. Developers would be able to define grid layouts with classes like `grid`, `grid-cols-{n}`, and `gap-{size}` to define columns and rows at specific responsive breakpoints.
 
 In this article we look at how to implement responsive layouts with CSS Grid using **TailwindCSS Grid** classes.
 
@@ -19,16 +21,12 @@ It is possible to build multi column layouts using Tailwind with its Flexbox cla
 Steps we'll cover:
 
 - [What is Tailwind Grid System](#what-is-tailwind-grid-system)
+- [Project Goals](#project-goals)
+- [Project Setup](#project-setup)
 - [Basic Tailwind Grid Example](#basic-tailwind-grid-example)
 - [Add Grid Formatting Context](#add-grid-formatting-context)
-  - [Column Numbers](#column-numbers)
-  - [Grid Gap](#grid-gap)
-  - [Responsive Column Numbers](#responsive-column-numbers)
 - [Size and Placement](#size-and-placement)
-  - [Setting Size with Span](#setting-size-with-span)
-  - [Placement](#placement)
 - [Grid Rows](#grid-rows)
-  - [Span Rows](#span-rows)
 - [Reorder Regions](#reorder-regions)
 - [Customizing TailwindCSS Theme](#customizing-tailwindcss-theme)
 
@@ -152,7 +150,7 @@ We can add columns at larger breakpoints:
 
 ```html
 <div
-  class="container m-auto grid grid-cols-3 md:grid-cols-5 lg:grid-cols-8 gap-4"
+  class="container m-auto grid grid-cols-3 gap-4 md:grid-cols-5 lg:grid-cols-8"
 ></div>
 ```
 
@@ -173,7 +171,7 @@ It's important to notice that Tailwind's responsive classes such as `md` and `lg
 Below, we place the first `div` as a navbar. We are doing this with `col-span-{n}` for each screen size. We have to make sure it starts at the beginning of the grid and spans the entire screen at each screen size:
 
 ```html
-<div class="tile bg-teal-500 col-span-3 md:col-span-5 lg:col-span-8">
+<div class="tile col-span-3 bg-teal-500 md:col-span-5 lg:col-span-8">
   <h1 class="tile-marker">ONE</h1>
 </div>
 ```
@@ -185,7 +183,7 @@ Below, we place the first `div` as a navbar. We are doing this with `col-span-{n
 We can refactor the above `div` as:
 
 ```html
-<div class="tile bg-teal-500 col-span-full">
+<div class="tile col-span-full bg-teal-500">
   <h1 class="tile-marker">ONE</h1>
 </div>
 ```
@@ -194,7 +192,7 @@ We can also use `col-start-{n}` and `col-end-{n}` to achieve this:
 
 ```html
 <div
-  class="tile bg-teal-500 col-start-1 col-end-4 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-9"
+  class="tile col-start-1 col-end-4 bg-teal-500 md:col-start-1 md:col-end-6 lg:col-start-1 lg:col-end-9"
 >
   <h1 class="tile-marker">ONE</h1>
 </div>
@@ -211,10 +209,10 @@ They are not very DRY. `col-span-{n}` classes are better for setting the size.
 Let's set some more sizes. The width of the second and third `div`s like so:
 
 ```html
-<div class="tile bg-amber-500 col-span-1 md:col-span-2 lg:col-span-3">
+<div class="tile col-span-1 bg-amber-500 md:col-span-2 lg:col-span-3">
   <h1 class="tile-marker">TWO</h1>
 </div>
-<div class="tile bg-yellow-500 col-span-2 md:col-span-3 lg:col-span-5">
+<div class="tile col-span-2 bg-yellow-500 md:col-span-3 lg:col-span-5">
   <h1 class="tile-marker">THREE</h1>
 </div>
 ```
@@ -228,7 +226,7 @@ We can combine start classes with span classes to write more succinct code. Star
 Let's see an instance of it with the fourth `div`:
 
 ```html
-<div class="tile bg-lime-600 lg:col-start-4 lg:col-span-2">
+<div class="tile bg-lime-600 lg:col-span-2 lg:col-start-4">
   <h1 class="tile-marker">FOUR</h1>
 </div>
 ```
@@ -251,14 +249,14 @@ For our grid, we want 5 rows. The number of rows has been defined implicitly so 
 
 ```html
 <div
-  class="container m-auto grid grid-cols-3 grid-rows-5 md:grid-cols-5 lg:grid-cols-8 gap-4"
+  class="container m-auto grid grid-cols-3 grid-rows-5 gap-4 md:grid-cols-5 lg:grid-cols-8"
 ></div>
 ```
 
 Now, we can go ahead and set the last `div` to become a footer. This footer will be placed to the bottom row. To the left side on smaller screens but span the entire bottom row after `md`:
 
 ```html
-<div class="tile bg-pink-500 row-start-5 md:col-span-full">
+<div class="tile row-start-5 bg-pink-500 md:col-span-full">
   <h1 class="tile-marker">NINE</h1>
 </div>
 ```
@@ -275,7 +273,7 @@ We can go further and make it more structured. Let's make the second `div` span 
 
 ```html
 <div
-  class="tile bg-amber-500 row-start-2 row-end-5 col-span-1 md:col-span-2 lg:col-span-3"
+  class="tile col-span-1 row-start-2 row-end-5 bg-amber-500 md:col-span-2 lg:col-span-3"
 >
   <h1 class="tile-marker">TWO</h1>
 </div>
@@ -293,7 +291,7 @@ We can change the order of a region by altering the value of `n` in `row-start-{
 
 ```html
 <div
-  class="tile bg-yellow-500 row-start-4 row-end-5 md:row-start-2 md:row-end-3 col-span-2 md:col-span-3 lg:col-span-5"
+  class="tile col-span-2 row-start-4 row-end-5 bg-yellow-500 md:col-span-3 md:row-start-2 md:row-end-3 lg:col-span-5"
 >
   <h1 class="tile-marker">THREE</h1>
 </div>
@@ -320,22 +318,22 @@ And the final `index.html` looks like this:
   </head>
   <body>
     <div
-      class="container m-auto grid grid-cols-3 grid-rows-5 md:grid-cols-5 lg:grid-cols-8 gap-4"
+      class="container m-auto grid grid-cols-3 grid-rows-5 gap-4 md:grid-cols-5 lg:grid-cols-8"
     >
-      <div class="tile bg-teal-500 col-span-full">
+      <div class="tile col-span-full bg-teal-500">
         <h1 class="tile-marker">ONE</h1>
       </div>
       <div
-        class="tile bg-amber-500 row-start-2 row-end-5 col-span-1 md:col-span-2 lg:col-span-3"
+        class="tile col-span-1 row-start-2 row-end-5 bg-amber-500 md:col-span-2 lg:col-span-3"
       >
         <h1 class="tile-marker">TWO</h1>
       </div>
       <div
-        class="tile bg-yellow-500 row-start-4 row-end-5 md:row-start-2 md:row-end-3 col-span-2 md:col-span-3 lg:col-span-5"
+        class="tile col-span-2 row-start-4 row-end-5 bg-yellow-500 md:col-span-3 md:row-start-2 md:row-end-3 lg:col-span-5"
       >
         <h1 class="tile-marker">THREE</h1>
       </div>
-      <div class="tile bg-lime-600 lg:col-start-4 lg:col-span-2">
+      <div class="tile bg-lime-600 lg:col-span-2 lg:col-start-4">
         <h1 class="tile-marker">FOUR</h1>
       </div>
       <div class="tile bg-green-600">
@@ -350,13 +348,24 @@ And the final `index.html` looks like this:
       <div class="tile bg-purple-500">
         <h1 class="tile-marker">EIGHT</h1>
       </div>
-      <div class="tile bg-pink-500 row-start-5 md:col-span-full">
+      <div class="tile row-start-5 bg-pink-500 md:col-span-full">
         <h1 class="tile-marker">NINE</h1>
       </div>
     </div>
   </body>
 </html>
 ```
+
+### Tailwind CSS Grid Classes Quick Reference
+
+| Class           | Purpose                              | Example                    |
+| --------------- | ------------------------------------ | -------------------------- |
+| `grid`          | Enables grid layout                  | `<div class="grid"></div>` |
+| `grid-cols-{n}` | Sets number of columns               | `grid-cols-3`              |
+| `gap-{size}`    | Adds spacing between grid items      | `gap-4`                    |
+| `col-span-{n}`  | Spans grid item across columns       | `col-span-2`               |
+| `row-start-{n}` | Sets starting position of a grid row | `row-start-2`              |
+| `grid-rows-{n}` | Sets number of rows                  | `grid-rows-5`              |
 
 ## Customizing TailwindCSS Theme
 
@@ -396,6 +405,22 @@ module.exports = {
 ```
 
 This will make all the relevant grid classes available for us to use.
+
+### Frequently Asked Questions
+
+**Q: How can I create in Tailwind CSS a responsive layout which would be similar to grid like CSS?**
+A: Utilize `grid` in combination with `grid-cols-{n}` for columns and add responsive prefixes such as `md:` or `lg:` to adjust the layout at a given breakpoint.
+
+**Q: What is the major difference between Flexbox and Grid in Tailwind?**
+A: Flexbox is best for simple, one-dimensional layouts (row/column), while Grid is best for complex two-dimensional layouts that involve rows and columns.
+
+**Q: How do I add spacing between grid items in Tailwind?**
+
+A: Use the `gap-{size}` class, such as `gap-4` for consistent spacing.
+
+**Q: Can I customize the number of columns available within the Tailwind Grid?**
+
+A: Yes, you can extend the `gridTemplateColumns` property in your `tailwind.config.js` file.
 
 ## Conclusion
 
