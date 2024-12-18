@@ -2,9 +2,6 @@ name: Refine Registry Release
 
 on:
   push:
-    paths:
-      - ".changeset/**"
-      - "packages/**"
     branches:
       - next
 
