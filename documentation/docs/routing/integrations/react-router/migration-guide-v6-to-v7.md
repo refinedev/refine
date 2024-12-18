@@ -5,7 +5,7 @@ sidebar_label: v6 to v7
 
 In this guide, we will cover the breaking changes of `@refinedev/react-router-v6` and how to migrate your project to `@refinedev/react-router` with `react-router` v7.
 
-> 🚨 Refine doesn't introduce any breaking changes besides the package name changes. However, we recommend you to read the [React Router v7 migration guide](https://reactrouter.com/en/main/upgrading/v6) for more detailed information about React Router v7 changes.
+> 🚨 Refine doesn't introduce any breaking changes besides the package name changes. However, we recommend you to read the [React Router v7 migration guide](https://reactrouter.com/upgrading/v6) for more detailed information about React Router v7 changes.
 
 ## Package Changes
 
