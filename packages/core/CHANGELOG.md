@@ -1,5 +1,26 @@
 # @refinedev/core
 
+## 4.57.2
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6583](https://github.com/refinedev/refine/pull/6583) [`5ce59d0352ba5402452bb812ac0e506b3c2216df`](https://github.com/refinedev/refine/commit/5ce59d0352ba5402452bb812ac0e506b3c2216df) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `to` query parameter is not working after login. #6582
+  From now on, the `to` query parameter will work after login. If the URL includes a `to` query parameter, the user will be redirected to the specified path after logging in.
+
+  Example:
+
+  After logout, Refine will automatically appends `to` query param to URL.
+
+  ```
+  http://localhost:3000/login?to=/any-path
+  ```
+
+  After login, it will redirect to `http://localhost:3000/any-path`
+
+  Resolves [#6582](https://github.com/refinedev/refine/issues/6582)
+
 ## 4.57.1
 
 ### Patch Changes
