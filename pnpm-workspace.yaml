@@ -7,3 +7,4 @@ packages:
   - "!examples/blog-*"
   - "!examples/mern-dashboard-client"
   - "!examples/with-nextjs-headless"
+  - "!examples/store"
