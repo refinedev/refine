@@ -4,11 +4,17 @@ description: We'll explain the TypeScript Partial utility type with examples
 slug: typescript-partial-utility-type
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-10-typescript-partial/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-10-typescript-partial/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on November 18, 2024, to include a clear introduction to TypeScript partial and its practical use cases.**
+
 ## Introduction
+
+### TL;DR: What is TypeScript Partial?
+
+What is TypeScript Partial? `Partial<Type>` is a utility type in TypeScript which represents all properties of a given type are optional.
 
 In this article, we discuss object type transformations in TypeScript using `Partial<>`. This is the third part of the series titled [TypeScript Utility Type Series](https://refine.dev/blog/typescript-omit-utility-type/).
 
@@ -18,9 +24,13 @@ In this post, we will consider an example of **TypeScript `Partial<>`** by modif
 
 Steps we'll cover:
 
+- [TL;DR: What is TypeScript Partial?](#tldr-what-is-typescript-partial)
 - [Optional Registration Scenario](#optional-registration-scenario)
 - [Enter TypeScript `Partial<Type>`](#enter-typescript-partialtype)
-- [Partial with Interfaces](#with-interfaces)
+- [With Interfaces](#with-interfaces)
+  - [Comparison: Pick vs Omit vs Partial](#comparison-pick-vs-omit-vs-partial)
+    - [Common Use Cases for `Partial`](#common-use-cases-for-partial)
+- [Frequently Asked Questions (FAQ)](#frequently-asked-questions-faq)
 
 ## Optional Registration Scenario
 
@@ -168,13 +178,6 @@ console.log(subscriber);
 
 So, the benefits of using TypeScript to derive a partial type includes its support for partial assignment of the object's properties that is allowed by JavaScript and not allowed by default TypeScript. It also warns about possible undesired assignments to the partial.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
-
 ## With Interfaces
 
 We get the same result if we use an interface for our base `SuperbUser` type:
@@ -224,6 +227,35 @@ We can also refactor the return type from `Omit<>` into an intermediary type, `S
 type StrictSubscriber = Omit<SuperbUser, "roles">;
 type Subscriber = Partial<StrictSubscriber>;
 ```
+
+### Comparison: Pick vs Omit vs Partial
+
+| Utility Type       | Purpose                                 | Example Usage                        |
+| ------------------ | --------------------------------------- | ------------------------------------ | -------- |
+| `Pick<Type, Keys>` | Creates a type with only specific keys. | `type Guest = Pick<User, "id"        | "name">` |
+| `Omit<Type, Keys>` | Excludes specified keys from a type.    | `type NoEmail = Omit<User, "email">` |
+| `Partial<Type>`    | Makes all keys of a type optional.      | `type OptionalUser = Partial<User>`  |
+
+#### Common Use Cases for `Partial`
+
+- **API Responses**: When some of the fields are not returned at all.
+  Example: Fetching user data with optional fields.
+- **Form Handling**: Partial data in forms that might have some input fields not filled.
+- **Object Updates**: Every time any part of an already existing object is updated, that does not imply all fields are modified.
+
+## Frequently Asked Questions (FAQ)
+
+**Q: What is `Partial<Type>` in TypeScript?**
+
+A: Well, `Partial` is a utility type that makes every property of a type optional.
+
+**Q: Can I use Partial with interfaces?**
+
+A: Yes, absolutely, `Partial` works for both types and interfaces.
+
+**Q: How is Partial different from Pick?**
+
+A: `Partial` makes all properties optional; `Pick` selects some properties from a type.
 
 ## Conclusion
 
