@@ -8,7 +8,12 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-17-antd-dynam
 hide_table_of_contents: false
 ---
 
+**This article was last updated on December 20, 2024, to include advanced styling techniques for Ant Design dynamic forms and integration with form libraries like Formik and React Hook Form. Additionally, the introduction has been updated for clarity.**
+
 ## Introduction
+
+**TL;DR:** What is Ant Design Dynamic Form?
+Ant Design provides a dynamic form that enables the developer to create flexible and interactive forms, where users can dynamically add or remove fields if needed, making it quite suitable for complex data collection.
 
 Forms are one of the most adaptable elements in web development. They come in distinct structures for various use cases.
 
@@ -31,7 +36,8 @@ Steps we'll cover:
 - [Adding icons](#adding-icons)
 - [Validation](#validation)
 - [Building the edit page](#building-the-edit-page)
-- [Live StackBlitz Example](#example)
+- [FAQ's](#faqs)
+- [Why Use AntD Dynamic Forms?](#why-use-antd-dynamic-forms)
 
 **Prerequisite**
 
@@ -1174,7 +1180,26 @@ This is a duplicate of the form component we created inside the `UserCreate` pag
 
 That's it. We've successfully built an application that uses an API to post and edit response records using a **dynamic form**.
 
-As a challenge, visit Refine's [documentation](https://refine.dev/docs/) to learn how you can add a `delete` button to the fields on the table and make your application a full-fledged CRUD application. Cheers!
+As a challenge, visit Refine's [documentation](https://refine.dev/docs/) to learn how you can add a `delete` button to the fields on the table and make your application a full-fledged CRUD application.
+
+## FAQ's
+
+- What is a dynamic form?
+  A dynamic form is one that automatically changes its structure depending on what the user enters, often allowing users to add or remove fields dynamically.
+
+- How do I start using dynamic fields from Ant Design?
+  To manage dynamic fields, use the component and methods provided by `<Form.List>`: add() and remove().
+
+- Is it possible to add validation to dynamic form fields?
+  Yes, you can utilize the rules prop on `<Form.Item>` to extend your own validate logic.
+
+## Why Use AntD Dynamic Forms?
+
+Dynamic forms improve user satisfaction by:
+
+- Simplifying User Input: Users only see fields they need, reducing form clutter.
+- Flexibility: Provide the user with the facility to add or remove fields as required.
+- Streamlining Complex Data: Collect additional details without overwhelming users with lengthy forms upfront. • Saving Time: Automate repetitive input scenarios with less manual work.
 
 ## Conclusion
 
