@@ -61,8 +61,7 @@ export const liveProvider = (
 
         if (filters.length > 1) {
           console.warn(
-            "Multiple filters detected. Supabase Realtime currently supports only one filter. " +
-              "Using the first filter. You can override this behavior by using 'meta.realtimeFilter'.",
+            "Warning: Multiple filters detected. Supabase Realtime currently supports only a single filter. The first filter will be applied. To customize this behavior, use the 'meta.realtimeFilter' property.",
           );
         }
 
