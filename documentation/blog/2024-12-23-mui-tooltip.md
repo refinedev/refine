@@ -4,11 +4,17 @@ description: We'll discover the Material UI Tooltip component with examples
 slug: material-ui-tooltip-component
 authors: doro_onome
 tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on December 23, 2024, to include a detailed comparison chart for Material UI Tooltip features for better clarity and new introduction.**
+
 ## Introduction
+
+### What is Material UI Tooltip?
+
+Material UI Tooltip is a small, customizable component that gives contextually relevant information on hover, click, focus, or tap through a small popup. It enhances user experience by giving the user more information without cluttering the interface.
 
 Material UI is a dynamic React framework that offers abundant customizable components and utilities that help developers create better web apps with improved UI/UX. One such component is the Material UI Tooltip, which is a custom-made Material UI component that displays informative text on an element’s hover, click, focus, or tap.
 
@@ -16,6 +22,7 @@ This article will deeply dive into the Material UI Tooltip component and highlig
 
 Steps we'll cover:
 
+- [What is Material UI Tooltip?](#what-is-material-ui-tooltip)
 - [What is Material UI?](#what-is-material-ui)
 - [Getting started with Material UI Tooltip](#getting-started-with-material-ui-tooltip)
 - [Positioning Material UI Tooltips](#positioning-material-ui-tooltips)
@@ -23,6 +30,8 @@ Steps we'll cover:
 - [Material UI Tooltip Event Triggers](#material-ui-tooltip-event-triggers)
 - [Material UI Tooltip custom children elements](#material-ui-tooltip-custom-children-elements)
 - [Building a Login form UI with React and Material UI Tooltip](#building-a-login-form-ui-with-react-and-material-ui-tooltip)
+- [FAQs](#faqs)
+- [Comparison Chart: Material UI Tooltip Features](#comparison-chart-material-ui-tooltip-features)
 
 ## What is Material UI?
 
@@ -498,6 +507,39 @@ Here’s the result:
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-29-mui-tooltip/tooltip-8.gif"  alt="Material UI tooltip" />
 </div>
+
+## FAQs
+
+**What is Material UI Tooltip used for?**
+
+Material UI Tooltip is a text label used to provide context when the user hovers mouse pointer over an element like buttons, icons, or inputs.
+
+**How do I customize a Material UI Tooltip?**
+
+You can customize a Material-UI Tooltip by using properties like `arrow`, `placement` and `TransitionComponent`, or use Material-UI's `styled` API to override styles.
+
+**Can I add an arrow on Material UI Tooltip?**
+
+Yes, you can add a directional arrow to the Tooltip for better visual clarity by setting the `arrow` prop to true.
+
+## Comparison Chart: Material UI Tooltip Features
+
+A detailed comparison chart showcasing key features of Material UI Tooltips with descriptions, examples, and use cases.
+
+| **Feature**           | **Description**                                         | **Example Prop/Code**                               | **Use Case**                                                                     |
+| --------------------- | ------------------------------------------------------- | --------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Positioning**       | Place the Tooltip in 12 directions.                     | `placement="top-start"`                             | Use to align Tooltips for better visual guidance.                                |
+| **Arrow Support**     | Adds a directional arrow to the Tooltip.                | `arrow={true}`                                      | Helpful when Tooltips need to point precisely at the referenced element.         |
+| **Custom Width**      | Adjust Tooltip width for long text.                     | `maxWidth: 500`                                     | Use when providing extended information like instructions or FAQs.               |
+| **Transitions**       | Animates Tooltips with fade, grow, or zoom effects.     | `TransitionComponent={Fade}`                        | Adds a dynamic look to the Tooltip, great for interactive UIs.                   |
+| **Event Triggers**    | Define when the Tooltip appears (hover, click, focus).  | `disableFocusListener`, `disableTouchListener`      | Useful for accessibility or controlling Tooltips for touch vs. desktop users.    |
+| **Virtual Placement** | Tooltip follows mouse or virtual positions dynamically. | Use `anchorEl` with virtual DOM                     | Great for applications requiring dynamic positioning, such as image annotations. |
+| **Interactive Mode**  | Tooltip remains active when hovered over.               | `interactive={true}`                                | Ideal for Tooltips with links or additional interactive content.                 |
+| **Customization**     | Allows styling with Material UI's `styled` API.         | `styled(Tooltip)(...)`                              | Customizes Tooltips to fit unique design requirements or themes.                 |
+| **Delay Timing**      | Set delay for appearance or hiding.                     | `enterDelay={500}` / `leaveDelay={300}`             | Use to ensure Tooltips don’t appear too quickly or disappear abruptly.           |
+| **Children Elements** | Custom React components can be used as child elements.  | `<Tooltip><MyCustomComponent /></Tooltip>`          | Enables advanced use cases like Tooltips for complex UI components.              |
+| **Multi-Line Text**   | Tooltip wraps and formats long text automatically.      | Tooltip with text exceeding 300px width auto-wraps. | Perfect for Tooltips providing detailed instructions or warnings.                |
+| **Controlled Open**   | Control Tooltip visibility manually.                    | `open={true}` or `onOpen`, `onClose`                | Provides full control for conditional displays in complex workflows.             |
 
 ## Conclusion
 
