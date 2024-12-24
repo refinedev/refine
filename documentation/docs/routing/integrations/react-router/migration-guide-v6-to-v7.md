@@ -28,7 +28,7 @@ npm install @refinedev/react-router react-router
 ```diff
 
 - "@refinedev/react-router-v6": "^4.6.0"
-+ "@refinedev/react-router": "^5.0.0"
++ "@refinedev/react-router": "^1.0.1"
 
 - "react-router-dom": "^6.8.1"
 - "react-router": "^6.8.1"
@@ -64,5 +64,5 @@ npx @refinedev/codemod@latest refine-react-router-v6-to-refine-react-router
 For `react-router-dom` to `react-router`:
 
 ```bash
-npx @refinedev/codemod@latest react-router-dom-to-react-router"
+npx @refinedev/codemod@latest react-router-dom-to-react-router
 ```
