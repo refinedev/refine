@@ -546,7 +546,7 @@ And the result:
 
 ## Advanced Styling with Material UI Select
 
-Material UI Select has more detailed customisation with the sx prop and themes. On this page you can show how to:
+Material UI Select has more detailed customization with the sx prop and themes. On this page you can show how to:
 
 - Override default styles for hover, focus, and selected states.
 - Integrate custom themes to maintain consistent styling throughout the application.
