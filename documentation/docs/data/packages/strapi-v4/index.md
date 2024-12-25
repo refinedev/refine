@@ -409,7 +409,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-##### Relations Population for `/me` request
+#### Relations Population for `/me` request
 
 If you need to the population for the `/me` request you can use it like this in your `authProvider`.
 

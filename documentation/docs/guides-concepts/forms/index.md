@@ -332,7 +332,7 @@ useForm({
 });
 ```
 
-##### **Usage of `<UnsavedChangesNotifier />`**
+#### **Usage of `<UnsavedChangesNotifier />`**
 
 <Tabs wrapContent={false}>
 <TabItem value="react-router" label="React Router">
