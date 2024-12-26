@@ -5,7 +5,7 @@ sidebar_label: v6 to v7
 
 In this guide, we will cover the breaking changes of `@refinedev/react-router-v6` and how to migrate your project to `@refinedev/react-router` with `react-router` v7.
 
-> 🚨 Refine doesn't introduce any breaking changes besides the package name changes. However, we recommend you to read the [React Router v7 migration guide](https://reactrouter.com/en/main/upgrading/v6) for more detailed information about React Router v7 changes.
+> 🚨 Refine doesn't introduce any breaking changes besides the package name changes. However, we recommend you to read the [React Router v7 migration guide](https://reactrouter.com/upgrading/v6) for more detailed information about React Router v7 changes.
 
 ## Package Changes
 
@@ -28,7 +28,7 @@ npm install @refinedev/react-router react-router
 ```diff
 
 - "@refinedev/react-router-v6": "^4.6.0"
-+ "@refinedev/react-router": "^5.0.0"
++ "@refinedev/react-router": "^1.0.1"
 
 - "react-router-dom": "^6.8.1"
 - "react-router": "^6.8.1"
@@ -64,5 +64,5 @@ npx @refinedev/codemod@latest refine-react-router-v6-to-refine-react-router
 For `react-router-dom` to `react-router`:
 
 ```bash
-npx @refinedev/codemod@latest react-router-dom-to-react-router"
+npx @refinedev/codemod@latest react-router-dom-to-react-router
 ```

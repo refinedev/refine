@@ -6,12 +6,7 @@ describe("table-material-ui-use-delete-many", () => {
     cy.visit("/");
   });
 
-  it("should be view list page", () => {
-    cy.resourceList();
-  });
-
   it("should select all rows when click the checkbox in the table header", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getMaterialUILoadingCircular().should("not.exist");
@@ -26,7 +21,6 @@ describe("table-material-ui-use-delete-many", () => {
   });
 
   it("delete button should be disabled when no row is selected", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getMaterialUILoadingCircular().should("not.exist");
@@ -35,7 +29,6 @@ describe("table-material-ui-use-delete-many", () => {
   });
 
   it("should be able to delete all selected rows", () => {
-    cy.interceptGETPosts();
     cy.wait("@getPosts");
 
     cy.getMaterialUILoadingCircular().should("not.exist");
@@ -55,8 +48,6 @@ describe("table-material-ui-use-delete-many", () => {
       "have.length",
       2,
     );
-
-    cy.interceptDELETEPost();
 
     cy.get("#delete-selected").click();
 

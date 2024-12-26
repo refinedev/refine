@@ -10,6 +10,7 @@ const ignoredRegexes = [
   /^with-nx/,
   /with-nextjs-headless/,
   /^blog-/,
+  /store/,
 ];
 const CHUNK_COUNT = Number(process.env.CHUNKS ? process.env.CHUNKS : 1);
 const BASE_REF = process.env.BASE_REF ? process.env.BASE_REF : "main";

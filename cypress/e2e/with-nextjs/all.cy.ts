@@ -52,12 +52,6 @@ describe("with-nextjs", () => {
   };
 
   beforeEach(() => {
-    cy.interceptGETBlogPost();
-    cy.interceptPOSTBlogPost();
-    cy.interceptPATCHBlogPost();
-    cy.interceptDELETEBlogPost();
-    cy.interceptGETBlogPosts();
-    cy.interceptGETCategories();
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();

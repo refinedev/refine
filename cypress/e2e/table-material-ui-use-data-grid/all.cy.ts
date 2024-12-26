@@ -3,8 +3,6 @@
 
 describe("table-material-ui-use-data-grid", () => {
   beforeEach(() => {
-    cy.interceptGETPosts();
-    cy.interceptGETCategories();
     cy.visit("/");
   });
 
@@ -164,8 +162,6 @@ describe("table-material-ui-use-data-grid", () => {
   it("should update a cell", () => {
     cy.wait("@getPosts");
     cy.getMaterialUILoadingCircular().should("not.exist");
-
-    cy.interceptPATCHPost();
 
     cy.getMaterialUIColumnHeader(1).click();
 

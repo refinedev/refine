@@ -10,12 +10,12 @@ Okta is an enterprise-grade identity management service. Refine's integration of
 
 This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
 
-<InstallPackagesCommand args="@refinedev-ee/okta @okta/okta-auth-js">
+<InstallPackagesCommand args="@refinedev/okta @okta/okta-auth-js">
 
 ```yml title=".npmrc"
-# A registry with the auth token should be added for the @refinedev-ee scope
-@refinedev-ee:registry=https://registry.npmjs.org/
-//registry.npmjs.org/:_authToken=$NPM_TOKEN
+# A registry with the auth token should be added for the @refinedev scope
+@refinedev:registry=https://registry.refine.dev/
+//registry.refine.dev/:_authToken=$NPM_TOKEN
 ```
 
 </InstallPackagesCommand>
@@ -37,7 +37,7 @@ import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
 } from "@refinedev/react-router";
-import { createAuthProvider, OktaCallback } from "@refinedev-ee/okta";
+import { createAuthProvider, OktaCallback } from "@refinedev/okta";
 
 const oktaAuth = new OktaAuth({
   issuer: "https://{yourOktaDomain}/oauth2/default",
