@@ -46,7 +46,7 @@ const LivePreviewFrameBase = ({
         }: MessageEvent<{ compressed: string | null }>) => {
           if (data.compressed) {
             setUrl(
-              `${customFields.LIVE_PREVIEW_URL}/${data.compressed}${
+              `${customFields.LIVE_PREVIEW_URL}?code=${data.compressed}${
                 css ? `?css=${base64url.encode(css)}` : ""
               }${query ? `${query}` : ""}`,
             );

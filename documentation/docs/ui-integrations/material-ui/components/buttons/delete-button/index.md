@@ -15,9 +15,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Usage
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
-const { Create } = RefineMui;
-import dataProvider from "@refinedev/simple-rest";
+```tsx live previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   useDataGrid,
@@ -60,29 +60,23 @@ interface IPost {
 }
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
-
 render(
-  <RefineMuiDemo
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<PostsList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -93,7 +87,7 @@ render(
 `recordItemId` allows us to manage which record will be deleted. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=200px
-const { useRouterContext } = RefineCore;
+setInitialRoutes(["/posts"]);
 
 import dataProvider from "@refinedev/simple-rest";
 
@@ -101,35 +95,26 @@ import dataProvider from "@refinedev/simple-rest";
 import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
-  return <DeleteButton resource="posts" recordItemId="1" />;
+  return <DeleteButton resource="posts" recordItemId="123" />;
 };
 
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
-
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-      },
-    ]}
-    DashboardPage={MyDeleteComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<MyDeleteComponent />} />
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -140,43 +125,38 @@ Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) 
 `resource` allows us to manage which resource's record is going to be deleted.
 
 ```tsx live disableScroll previewHeight=200px
-const { useRouterContext } = RefineCore;
-import dataProvider from "@refinedev/simple-rest";
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/mui";
 
 const MyDeleteComponent = () => {
-  return <DeleteButton resource="categories" recordItemId="2" />;
+  return <DeleteButton resource="categories" recordItemId="123" />;
 };
+
 // visible-block-end
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-      },
-    ]}
-    DashboardPage={MyDeleteComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyDeleteComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -191,8 +171,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 For example, let's `console.log` after deletion:
 
 ```tsx live disableScroll previewHeight=200px
-const { useRouterContext } = RefineCore;
-import dataProvider from "@refinedev/simple-rest";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/mui";
@@ -201,38 +180,33 @@ const MyDeleteComponent = () => {
   return (
     <DeleteButton
       resource="posts"
-      recordItemId="1"
+      recordItemId="123"
       onSuccess={(value) => {
         console.log(value);
       }}
     />
   );
 };
+
 // visible-block-end
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-      },
-    ]}
-    DashboardPage={MyDeleteComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyDeleteComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -306,8 +280,7 @@ interface IPost {
 `hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=200px
-const { useRouterContext } = RefineCore;
-import dataProvider from "@refinedev/simple-rest";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/mui";
@@ -320,31 +293,22 @@ const MyDeleteComponent = () => {
     />
   );
 };
+
 // visible-block-end
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-        list: MyDeleteComponent,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <MyDeleteComponent />
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -371,8 +335,7 @@ Use `resource` prop instead.
 You can change the text that appears when you confirm a transaction with `confirmTitle` prop, as well as what 'ok' and 'cancel' buttons text look like with `confirmOkText` and `confirmCancelText` props.
 
 ```tsx live disableScroll previewHeight=200px
-const { useRouterContext } = RefineCore;
-import dataProvider from "@refinedev/simple-rest";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/mui";
@@ -380,40 +343,32 @@ import { DeleteButton } from "@refinedev/mui";
 const MyDeleteComponent = () => {
   return (
     <DeleteButton
-      // highlight-start
-      confirmTitle="Title"
-      confirmOkText="Ok Text"
-      confirmCancelText="Delete Text"
-      // highlight-end
+      resource="posts"
+      recordItemId="123"
+      confirmTitle="Are you sure?"
+      confirmOkText="Yes, delete"
+      confirmCancelText="No, cancel"
     />
   );
 };
+
 // visible-block-end
 
-const simpleRestDataProvider = dataProvider("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...simpleRestDataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    return {
-      message: "You have successfully deleted the record",
-    };
-  },
-};
-
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    dataProvider={customDataProvider}
-    resources={[
-      {
-        name: "posts",
-        list: MyDeleteComponent,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<MyDeleteComponent />} />
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

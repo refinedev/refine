@@ -12588,9 +12588,9 @@ importers:
       '@refinedev/react-hook-form':
         specifier: ^4.9.2
         version: link:../react-hook-form
-      '@refinedev/react-router-v6':
-        specifier: ^4.6.1
-        version: link:../react-router-v6
+      '@refinedev/react-router':
+        specifier: ^1.0.0
+        version: link:../react-router
       '@refinedev/react-table':
         specifier: ^5.6.14
         version: link:../react-table
@@ -12669,9 +12669,9 @@ importers:
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react-router-dom:
-        specifier: ^6.8.1
-        version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react-router:
+        specifier: ^7.0.2
+        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       uuid:
         specifier: ^9.0.1
         version: 9.0.1

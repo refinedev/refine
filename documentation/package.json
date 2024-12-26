@@ -10,7 +10,7 @@
     "dev": "docusaurus start",
     "dev:blog": "cross-env DISABLE_DOCS=true pnpm run dev:lean",
     "dev:docs": "cross-env DISABLE_BLOG=true pnpm run dev:lean",
-    "dev:lean": "cross-env DISABLE_DOCGEN=true DISABLE_VERSIONING=true DISABLE_EXAMPLES=true DISABLE_CHECKLISTS=true LIVE_PREVIEW_URL=https://cloud2.refine.dev/.refine/preview pnpm run dev",
+    "dev:lean": "cross-env DISABLE_DOCGEN=true DISABLE_VERSIONING=true DISABLE_EXAMPLES=true DISABLE_CHECKLISTS=true LIVE_PREVIEW_URL=http://localhost:3030/preview pnpm run dev",
     "docusaurus": "docusaurus",
     "serve": "docusaurus serve",
     "swizzle": "docusaurus swizzle",

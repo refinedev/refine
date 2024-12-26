@@ -15,8 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live previewHeight=300px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   List,
@@ -55,20 +56,36 @@ interface IPost {
 // visible-block-end
 
 const PostEdit = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path=":id/edit" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -78,8 +95,9 @@ render(
 
 `recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { EditButton } from "@refinedev/antd";
 
@@ -95,22 +113,37 @@ const MyEditComponent = () => {
 
 // visible-block-end
 
+const PostEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
         },
-        edit: () => {
-          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-        },
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path=":id/edit" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -120,8 +153,8 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/ro
 
 The redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { EditButton } from "@refinedev/antd";
@@ -138,31 +171,42 @@ const MyEditComponent = () => {
 
 // visible-block-end
 
+const CategoryEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
         },
-        edit: () => {
-          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+        {
+          name: "categories",
+          list: "/categories",
+          edit: "/categories/:id/edit",
         },
-      },
-      {
-        name: "categories",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-        edit: () => {
-          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
-        },
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/categories"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path=":id/edit" element={<CategoryEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -188,8 +232,8 @@ const MyComponent = () => {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { EditButton } from "@refinedev/antd";
@@ -197,28 +241,46 @@ import { EditButton } from "@refinedev/antd";
 const MyEditComponent = () => {
   return (
     <EditButton
-      recordItemId="123"
       // highlight-next-line
       hideText={true}
+      recordItemId="123"
     />
   );
 };
 
 // visible-block-end
 
+const PostEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyEditComponent,
-        edit: () => {
-          return <RefineAntd.Edit>Edit page here...</RefineAntd.Edit>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
         },
-      },
-    ]}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path=":id/edit" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -232,12 +294,10 @@ import { EditButton } from "@refinedev/antd";
 export const MyListComponent = () => {
   return (
     <EditButton
-      // highlight-start
       accessControl={{
         enabled: true,
         hideIfUnauthorized: true,
       }}
-      // highlight-end
     />
   );
 };
