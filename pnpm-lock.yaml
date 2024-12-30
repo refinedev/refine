@@ -949,7 +949,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -1306,7 +1306,7 @@ importers:
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -2092,7 +2092,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -3139,7 +3139,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -3403,7 +3403,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(vw2iusjtldo7vtgi2xkd3ez5bi)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4473,7 +4473,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4543,7 +4543,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4610,7 +4610,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4677,7 +4677,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4744,7 +4744,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -5275,7 +5275,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -5788,7 +5788,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -6422,7 +6422,7 @@ importers:
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(vw2iusjtldo7vtgi2xkd3ez5bi)
+        version: link:../../packages/mui
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.12
         version: link:../../packages/nestjsx-crud
@@ -6809,7 +6809,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7542,7 +7542,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7618,7 +7618,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
@@ -7682,7 +7682,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7749,7 +7749,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7816,7 +7816,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7880,7 +7880,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7944,7 +7944,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -8410,7 +8410,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -8669,7 +8669,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9049,7 +9049,7 @@ importers:
         version: link:../../packages/inferencer
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9500,7 +9500,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9567,7 +9567,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9976,7 +9976,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -10576,7 +10576,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        version: link:../../packages/mui
       '@refinedev/remix-router':
         specifier: ^3.0.8
         version: link:../../packages/remix-router
@@ -12225,7 +12225,7 @@ importers:
         version: link:../mantine
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: 6.0.1(vw2iusjtldo7vtgi2xkd3ez5bi)
+        version: link:../mui
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../react-hook-form
@@ -12429,8 +12429,8 @@ importers:
         specifier: ^2.35.0
         version: link:../mantine
       '@refinedev/mui':
-        specifier: ^6.0.0
-        version: 6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)
+        specifier: ^6.0.1
+        version: link:../mui
       '@refinedev/nestjs-query':
         specifier: ^1.3.4
         version: link:../nestjs-query
@@ -17899,21 +17899,6 @@ packages:
     peerDependencies:
       '@refinedev/core': ^4.28.2
 
-  '@refinedev/mui@6.0.1':
-    resolution: {integrity: sha512-PuErstyGMVhD6GIrfEezfTdX/mXH1tNOIECxx2B2/jdywMPbri7vhioCYgGIT8zSNIpyPz+80BgUgqUHO88rJQ==}
-    peerDependencies:
-      '@emotion/react': ^11.8.2
-      '@emotion/styled': ^11.8.1
-      '@mui/lab': ^6.0.0-beta.14
-      '@mui/material': ^6.1.7
-      '@mui/x-data-grid': ^7.22.2
-      '@refinedev/core': ^4.46.1
-      '@refinedev/react-hook-form': ^4.0.0
-      dayjs: ^1.10.7
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-      react-hook-form: ^7.43.5
-
   '@refinedev/strapi-graphql@6.0.5':
     resolution: {integrity: sha512-ugNv7xbTKxmw59yC6phRH3qGPJGRIPwfeqXLPREtjUb9/tjBfJt0Qs/301fjnX28ghiJScMF9twjQHAekFGa/Q==}
     engines: {node: '>=10'}
@@ -17922,13 +17907,6 @@ packages:
       '@refinedev/core': ^4.46.1
       gql-query-builder: ^3.5.5
       graphql-request: ^5.2.0
-
-  '@refinedev/ui-types@1.23.1':
-    resolution: {integrity: sha512-hEMMsoJyEuXbMWjvo7JTADzJtkunqNqn+p/C+lOussQuGLF9NeX1XFiPQk8xwCkY7hVt6MuwSOHXSPelM15lPQ==}
-    peerDependencies:
-      '@refinedev/core': ^4.46.1
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
 
   '@remix-run/dev@2.9.1':
     resolution: {integrity: sha512-/YhegnnRrarsqU+11+HdGwjcIT1KgkS9L7kWCM0+ivDvyiBYAuI6xbPG/q/FY6LqLAPYeOxsJmUNl+aj+yMltA==}
@@ -36852,60 +36830,6 @@ snapshots:
       - react
       - react-dom
 
-  '@refinedev/mui@6.0.1(l5f2jmqcnj2kkengmaqdfjz4yu)':
-    dependencies:
-      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
-      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/icons-material': 6.1.6(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/lab': 6.0.0-beta.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@mui/material': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@mui/system': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/x-data-grid': 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@refinedev/core': link:packages/core
-      '@refinedev/react-hook-form': link:packages/react-hook-form
-      '@refinedev/ui-types': 1.23.1(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      dayjs: 1.11.13
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      notistack: 2.0.8(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      react-hook-form: 7.51.3(react@18.3.0)
-      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
-      remark-gfm: 1.0.0
-      tslib: 2.6.2
-      warn-once: 0.1.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
-
-  '@refinedev/mui@6.0.1(vw2iusjtldo7vtgi2xkd3ez5bi)':
-    dependencies:
-      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
-      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/icons-material': 6.1.6(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/lab': 6.0.0-beta.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@mui/material': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@mui/system': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
-      '@mui/x-data-grid': 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      '@refinedev/core': link:packages/core
-      '@refinedev/react-hook-form': link:packages/react-hook-form
-      '@refinedev/ui-types': 1.23.1(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      dayjs: 1.11.10
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      notistack: 2.0.8(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      react-hook-form: 7.51.3(react@18.3.0)
-      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
-      remark-gfm: 1.0.0
-      tslib: 2.6.2
-      warn-once: 0.1.1
-    transitivePeerDependencies:
-      - '@types/react'
-      - supports-color
-
   '@refinedev/strapi-graphql@6.0.5(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.9.0))':
     dependencies:
       '@refinedev/core': link:packages/core
@@ -36915,14 +36839,6 @@ snapshots:
       graphql-request: 6.1.0(encoding@0.1.13)(graphql@16.9.0)
       pluralize: 8.0.0
       query-string: 7.1.3
-
-  '@refinedev/ui-types@1.23.1(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
-    dependencies:
-      '@refinedev/core': link:packages/core
-      dayjs: 1.11.13
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      tslib: 2.6.2
 
   '@remix-run/dev@2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@20.5.1)(bufferutil@4.0.8)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.2.10(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))':
     dependencies:
