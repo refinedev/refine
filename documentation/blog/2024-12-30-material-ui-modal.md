@@ -426,7 +426,7 @@ const style = {
 
 ### Overloading the Modal with Too Much Content
 
-I once crammed a five-field form, a sidebar, and additional instructions into a single modal. It became overwhelming and hard to use.
+I once built a five-field form, a sidebar, and additional instructions into a single modal. It became overwhelming and hard to use.
 
 **How I Avoid It Now:**
 
@@ -438,7 +438,7 @@ I forgot to add aria attributes, making the modal inaccessible to screen readers
 
 **How I Avoid It Now:**
 
-I ensure proper aria attributes are included, like this:
+Put proper aria attributes are included, like this:
 
 ```tsx
 <Modal
@@ -455,7 +455,7 @@ I created a modal with heavy animations and a large component tree, which caused
 
 **How I Avoid It Now:**
 
-I use the keepMounted prop to avoid unnecessary re-renders and optimize the child components inside the modal:
+I use the `keepMounted` prop to avoid unnecessary re-renders and optimize the child components inside the modal:
 
 ```tsx
 <Modal keepMounted />
@@ -472,7 +472,7 @@ I leave the backdrop click enabled unless there’s a compelling reason to disab
 ## Frequently Asked Questions
 
 **Q: How do I open and close a Material UI Modal?**
-A: You can use React state to control the open property. Here’s a quick example:
+A: You can use React state to control the open property.
 
 ```tsx
 const [open, setOpen] = React.useState(false);
@@ -483,10 +483,10 @@ const [open, setOpen] = React.useState(false);
 ```
 
 **Q: Is Material UI Modal accessible?**
-A: Yes! Material UI is designed with accessibility in mind. You can use aria-labelledby and aria-describedby attributes to ensure it works well with screen readers.
+A: Yes, Material UI is designed with accessibility in mind. You can use aria-labelledby and aria-describedby attributes to ensure it works well with screen readers.
 
 **Q: How do I make the Modal responsive?**
-A: You can define responsive styles to adapt the modal to different screen sizes. For instance:
+A: You can define responsive styles to adapt the modal to different screen sizes.
 
 ```tsx
 const style = {
@@ -498,7 +498,7 @@ const style = {
 This way, the modal looks great on both mobile and desktop.
 
 **Q: Can I add animations to the Modal?**
-A: Absolutely! Material UI supports transitions. Wrap the content with the Fade component for animations:
+A: Yes, Material UI supports transitions. Wrap the content with the Fade component for animations:
 
 ```tsx
 <Modal open={open}>
@@ -509,7 +509,7 @@ A: Absolutely! Material UI supports transitions. Wrap the content with the Fade 
 ```
 
 **Q: How can I close the Modal by clicking outside it?**
-A: That’s the default behavior! Clicking the backdrop (outside the modal) will close it. No extra code is needed unless you want to disable this feature:
+A: That’s the default behavior. Clicking the backdrop (outside the modal) will close it. No extra code is needed unless you want to disable this feature:
 
 ```tsx
 <Modal disableBackdropClick />
