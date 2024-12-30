@@ -17,7 +17,7 @@
   + "@mui/material": "^6.1.7",
 
   - "@mui/x-data-grid": "^6.6.0",
-  + "@mui/x-data-grid": "^7.23.5",
+  + "@mui/x-data-grid": "^7.22.2",
   ```
 
   Here is the updated version alignment:
@@ -55,7 +55,7 @@
   + "@mui/material": "^6.1.7",
 
   - "@mui/x-data-grid": "^6.6.0",
-  + "@mui/x-data-grid": "^7.23.5",
+  + "@mui/x-data-grid": "^7.22.2",
   ```
 
   Here is the updated version alignment:
