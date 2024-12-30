@@ -80,6 +80,9 @@ const PostList = () => {
   return (
     <RefineAntd.List>
       <p>Content of your list page...</p>
+      <RefineAntd.ShowButton recordItemId="123" resource="posts">
+        Show Post 123
+      </RefineAntd.ShowButton>
     </RefineAntd.List>
   );
 };
@@ -87,12 +90,8 @@ const PostList = () => {
 setInitialRoutes(["/posts/show/123"]);
 
 render(
-  <ReactRouterDom.BrowserRouter>
-    <RefineCore.Refine
-      dataProvider={RefineSimpleRest.default(
-        "https://api.fake-rest.refine.dev",
-      )}
-      routerProvider={RefineReactRouterV6.default}
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
       resources={[
         {
           name: "posts",
@@ -103,13 +102,13 @@ render(
       ]}
     >
       <RefineAntd.Layout>
-        <ReactRouterDom.Routes>
-          <ReactRouterDom.Route path="/posts" element={<PostList />} />
-          <ReactRouterDom.Route path="/posts/show/:id" element={<PostShow />} />
-        </ReactRouterDom.Routes>
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+          <ReactRouter.Route path="/posts/show/:id" element={<PostShow />} />
+        </ReactRouter.Routes>
       </RefineAntd.Layout>
-    </RefineCore.Refine>
-  </ReactRouterDom.BrowserRouter>,
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
