@@ -7,7 +7,7 @@ export default function LayoutNextjs() {
       showNavigator
       hidePreview
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router": "latest",

@@ -239,7 +239,7 @@ export const dependencies = {
   "@mui/lab": "^6.0.0-beta.14",
   "@mui/material": "^6.1.7",
   "@mui/x-data-grid": "^7.23.5",
-  "@refinedev/mui": "5.0.0",
+  "@refinedev/mui": "latest",
   "@mui/system": "latest",
   "@refinedev/react-hook-form": "latest",
   "react-hook-form": "latest",

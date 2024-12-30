@@ -8,7 +8,7 @@ export default function UsageRemix() {
       hidePreview
       showFiles
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-hook-form": "^4.8.12",

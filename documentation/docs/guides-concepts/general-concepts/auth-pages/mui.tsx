@@ -11,7 +11,7 @@ export function MaterialUIAuth() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router": "latest",
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "react-router": "^7.0.2",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
