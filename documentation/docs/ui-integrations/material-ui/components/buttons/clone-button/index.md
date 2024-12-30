@@ -15,7 +15,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Usage
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   useDataGrid,
@@ -58,18 +60,30 @@ interface IPost {
 }
 // visible-block-end
 
+const PostClone = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-        create: () => (
-          <RefineMui.Create>Rest of the page here...</RefineMui.Create>
-        ),
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/clone/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<PostsList />} />
+          <ReactRouter.Route path="clone/:id" element={<PostClone />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -79,33 +93,42 @@ render(
 
 `recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live  previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-  return <CloneButton resource="posts" recordItemId="1" />;
+  return <CloneButton resource="posts" recordItemId="123" />;
 };
 
 // visible-block-end
 
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostClone = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/clone/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+          <ReactRouter.Route path="clone/:id" element={<PostClone />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -115,37 +138,47 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/r
 
 It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-  return <CloneButton resource="categories" recordItemId="2" />;
+  return <CloneButton resource="categories" recordItemId="123" />;
 };
 
 // visible-block-end
 
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const CategoryClone = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/clone/:id",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          clone: "/categories/clone/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+          <ReactRouter.Route path="clone/:id" element={<CategoryClone />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -172,38 +205,41 @@ const MyCloneComponent = () => {
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { CloneButton } from "@refinedev/mui";
 
 const MyCloneComponent = () => {
-  return (
-    <CloneButton
-      // highlight-next-line
-      hideText={true}
-    />
-  );
+  return <CloneButton resourceNameOrRouteName="posts" hideText={true} />;
 };
 
 // visible-block-end
 
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostClone = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyCloneComponent,
-        create: ClonedPage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/clone/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+          <ReactRouter.Route path="clone/:id" element={<PostClone />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
