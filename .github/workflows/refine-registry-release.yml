@@ -1,16 +1,18 @@
 name: Refine Registry Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      release-only:
+        type: boolean
+        default: false
+        description: "If true, tests will be skipped."
   push:
     paths:
       - ".changeset/**"
       - "packages/**"
     branches:
       - next
-      - releases/december-2024
-
-env:
-  RELEASE_ONLY: ${{ secrets.RELEASE_ONLY }}
 
 jobs:
   publish:
@@ -41,27 +43,27 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm lint:ci
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Syncpack
         run: pnpm sp lint
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Publint
         run: pnpm publint:all
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Are The Types Wrong
         run: pnpm attw:all
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Test
         run: pnpm test:all
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
-      - name: Copy changesets for Community version
-        run: mkdir -p ./_changeset/ && cp -r ./.changeset/* ./_changeset/
+        if: ${{ github.event.inputs.release-only != 'true' }}
+      - name: Prepare Community Edition changesets
+        run: node .github/workflows/scripts/changesets/prepare-community-edition-changesets.js
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
           version: pnpm version-packages
-          publish: pnpm changeset publish
+          publish: pnpm publish-packages
           commit: "ci(changesets): refine registry version packages"
           title: "ci(changesets): refine registry version packages"
           createGithubReleases: false

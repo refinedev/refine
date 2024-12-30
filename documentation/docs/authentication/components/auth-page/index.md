@@ -107,9 +107,9 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -165,9 +165,9 @@ setInitialRoutes(["/login"]);
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -241,9 +241,9 @@ setInitialRoutes(["/register"]);
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -319,9 +319,9 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 
@@ -401,9 +401,9 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, AuthPage, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { CatchAllNavigate } from "@refinedev/react-router-v6";
+import routerProvider, { CatchAllNavigate } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { authProvider } from "./authProvider";
 

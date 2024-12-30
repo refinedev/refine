@@ -35,9 +35,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     meta,
   });
 
-  const { variant, styles, vars, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <Anchor
@@ -45,7 +48,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -58,7 +61,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       {hideText ? (
         <ActionIcon
           variant={variant || "default"}
-          disabled={disabled}
+          disabled={isDisabled}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
@@ -69,13 +72,12 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
       ) : (
         <Button
           variant={variant || "default"}
-          disabled={disabled}
+          disabled={isDisabled}
           leftSection={<IconEye size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
-          vars={vars}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

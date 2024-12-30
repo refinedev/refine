@@ -25,13 +25,13 @@
   "dependencies": {
     "@refinedev/cli": "^2.16.40",
     "@refinedev/core": "^4.56.0",
-    "@refinedev/react-router-v6": "^4.6.0",
+    "@refinedev/react-router": "^0.1.0",
     "@refinedev/supabase": "^5.9.4",
     "daisyui": "^3.5.1",
     "react": "^18.0.0",
     "react-daisyui": "^4.1.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1",
+    "react-router": "^7.0.2",
     "tailwindcss": "^3.0.11",
     "web-vitals": "^1.1.1"
   },

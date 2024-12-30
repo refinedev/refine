@@ -15,6 +15,7 @@ const ThemedLayoutV2WithoutContext: React.FC<RefineThemedLayoutV2Props> = ({
   Footer,
   OffLayoutArea,
   children,
+  onSiderCollapsed,
 }) => {
   const SiderToRender = Sider ?? DefaultSider;
   const HeaderToRender = Header ?? DefaultHeader;

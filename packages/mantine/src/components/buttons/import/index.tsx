@@ -25,7 +25,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
 }) => {
   const { label } = useImportButton();
 
-  const { variant, styles, vars, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return (
     <label style={{ display: "flex" }}>
@@ -50,8 +50,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
           loading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
           className={RefineButtonClassNames.ImportButton}
-          vars={vars}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

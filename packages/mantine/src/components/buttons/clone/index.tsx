@@ -36,9 +36,12 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
 
-  const { variant, styles, vars, ...commonProps } = rest;
+  if (isHidden) return null;
+
+  const { variant, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -46,7 +49,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -58,7 +61,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          disabled={disabled}
+          disabled={isDisabled}
           title={title}
           aria-label={label}
           variant={variant || "default"}
@@ -70,14 +73,13 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          disabled={disabled}
+          disabled={isDisabled}
           variant={variant || "default"}
           leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
-          vars={vars}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

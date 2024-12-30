@@ -1,5 +1,5 @@
 import { Authenticated, Refine } from "@refinedev/core";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   useNotificationProvider,
@@ -45,7 +45,7 @@ import routerBindings, {
   UnsavedChangesNotifier,
   CatchAllNavigate,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
 import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";

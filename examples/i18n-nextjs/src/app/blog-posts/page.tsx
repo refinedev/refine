@@ -59,7 +59,7 @@ export default function BlogPostList() {
           render={(value: string) => {
             return (
               <Typography.Text>
-                {t(`posts.fields.status.${value}`)}
+                {t(`blog_posts.fields.status.${value}`)}
               </Typography.Text>
             );
           }}

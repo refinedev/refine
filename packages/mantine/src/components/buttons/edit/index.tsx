@@ -35,9 +35,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
     meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
 
-  const { variant, styles, vars, ...commonProps } = rest;
+  if (isHidden) return null;
+
+  const { variant, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -45,7 +48,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -58,7 +61,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
       {hideText ? (
         <ActionIcon
           title={title}
-          disabled={disabled}
+          disabled={isDisabled}
           aria-label={label}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
@@ -70,13 +73,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
       ) : (
         <Button
           variant={variant || "filled"}
-          disabled={disabled}
+          disabled={isDisabled}
           leftSection={<IconPencil size={18} {...svgIconProps} />}
           title={title}
-          vars={vars}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

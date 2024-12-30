@@ -23,7 +23,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
   const { label } = useSaveButton();
 
-  const { variant, styles, vars, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
@@ -41,8 +41,7 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
       leftSection={<IconDeviceFloppy size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
-      vars={vars}
-      {...rest}
+      {...commonProps}
     >
       {children ?? label}
     </Button>

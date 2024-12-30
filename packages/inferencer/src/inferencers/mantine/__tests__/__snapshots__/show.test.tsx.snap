@@ -71,6 +71,7 @@ exports[`MantineShowInferencer should match the snapshot 1`] = `
         >
           <a
             class="mantine-focus-auto m_849cf0da m_b6d8b162 mantine-Text-root mantine-Anchor-root"
+            data-discover="true"
             data-underline="hover"
             href="/posts"
           >

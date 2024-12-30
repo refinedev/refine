@@ -24,7 +24,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
   const { label } = useExportButton();
 
-  const { variant, styles, vars, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
@@ -44,9 +44,8 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
       loading={loading}
       leftSection={<IconFileExport size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.ExportButton}
-      vars={vars}
       className={RefineButtonClassNames.ExportButton}
-      {...rest}
+      {...commonProps}
     >
       {children ?? label}
     </Button>

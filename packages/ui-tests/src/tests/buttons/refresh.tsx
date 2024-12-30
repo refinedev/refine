@@ -12,7 +12,7 @@ import {
   TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import "@refinedev/core";
 
 const invalidateMock = jest.fn();

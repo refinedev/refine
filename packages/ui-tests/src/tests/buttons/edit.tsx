@@ -12,7 +12,7 @@ import {
   TestWrapper as DefaultTestWrapper,
   waitFor,
 } from "@test";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 
 export const buttonEditTests = (
   EditButton: React.ComponentType<RefineEditButtonProps<any, any>>,
@@ -35,6 +35,30 @@ export const buttonEditTests = (
       expect(container).toBeTruthy();
 
       expect(getByText("Edit").closest("button")).not.toBeDisabled();
+    });
+
+    it("should be disabled by prop", async () => {
+      const mockOnClick = jest.fn();
+
+      const { getByText } = render(
+        <EditButton disabled onClick={mockOnClick} />,
+        {
+          wrapper: TestWrapper({}),
+        },
+      );
+
+      expect(getByText("Edit").closest("button")).toBeDisabled();
+
+      fireEvent.click(getByText("Edit").closest("button") as Element);
+      expect(mockOnClick).not.toHaveBeenCalled();
+    });
+
+    it("should be hidden by prop", async () => {
+      const { queryByText } = render(<EditButton disabled hidden />, {
+        wrapper: TestWrapper({}),
+      });
+
+      expect(queryByText("Edit")).not.toBeInTheDocument();
     });
 
     it("should have the correct test-id", async () => {
@@ -132,6 +156,22 @@ export const buttonEditTests = (
               await waitFor(() =>
                 expect(getByText("Edit").closest("button")).not.toBeDisabled(),
               );
+            });
+
+            it("should respect the disabled prop even with access control enabled", async () => {
+              const { getByText } = render(
+                <EditButton disabled>Edit</EditButton>,
+                {
+                  wrapper: TestWrapper({
+                    accessControlProvider: {
+                      can: async () => ({ can: true }),
+                    },
+                  }),
+                },
+              );
+
+              const button = getByText("Edit").closest("button");
+              expect(button).toBeDisabled();
             });
           });
         });

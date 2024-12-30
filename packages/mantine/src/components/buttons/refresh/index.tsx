@@ -38,7 +38,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
     dataProviderName,
   });
 
-  const { variant, styles: _styles, vars, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
@@ -60,8 +60,7 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
       onClick={onClick ? onClick : onRefresh}
       data-testid={RefineButtonTestIds.RefreshButton}
       className={RefineButtonClassNames.RefreshButton}
-      vars={vars}
-      {...rest}
+      {...commonProps}
     >
       {children ?? label}
     </Button>

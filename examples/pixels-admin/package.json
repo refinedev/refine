@@ -23,17 +23,17 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
-    "@refinedev/antd": "^5.44.0",
-    "@refinedev/cli": "^2.16.40",
-    "@refinedev/core": "^4.56.0",
-    "@refinedev/react-router-v6": "^4.6.0",
-    "@refinedev/supabase": "^5.9.4",
+    "@refinedev/antd": "^5.45.1",
+    "@refinedev/cli": "^2.16.42",
+    "@refinedev/core": "^4.57.1",
+    "@refinedev/react-router": "^1.0.1",
+    "@refinedev/supabase": "^5.9.6",
     "antd": "^5.17.0",
     "casbin": "^5.15.2",
     "dotenv": "^16.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "^6.8.1"
+    "react-router": "^7.0.2"
   },
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",

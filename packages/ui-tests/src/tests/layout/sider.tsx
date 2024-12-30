@@ -10,7 +10,7 @@ import {
   waitFor,
 } from "@test";
 import type { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
-import { Route, Router, Routes } from "react-router-dom";
+import { Route, Router, Routes } from "react-router";
 
 const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
   login: () => Promise.resolve(),

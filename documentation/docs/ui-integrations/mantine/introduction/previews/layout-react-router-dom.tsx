@@ -11,7 +11,7 @@ export default function LayoutReactRouterDom() {
       dependencies={{
         "@refinedev/mantine": "^2.33.0",
         "@refinedev/core": "^4.54.1",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "latest",
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-table": "^5.6.4",
         "@tanstack/react-table": "^8.2.6",
@@ -20,7 +20,7 @@ export default function LayoutReactRouterDom() {
         "@mantine/hooks": "^7.12.2",
         "@mantine/form": "^7.12.2",
         "@mantine/notifications": "^7.12.2",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products"
       files={{
@@ -40,8 +40,8 @@ export default function LayoutReactRouterDom() {
 const AppTsxCode = /* jsx */ `
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
 import {
     ErrorComponent,

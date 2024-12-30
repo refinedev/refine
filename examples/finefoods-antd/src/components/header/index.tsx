@@ -6,7 +6,7 @@ import {
   useTranslate,
   useList,
 } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { SearchOutlined, DownOutlined } from "@ant-design/icons";
 
 import {

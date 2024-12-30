@@ -31,6 +31,7 @@ const columns: GridColDef[] = [
   {
     field: "image",
     headerName: "Image URL",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <UrlField value={row.image[0].url} />;
@@ -46,7 +47,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

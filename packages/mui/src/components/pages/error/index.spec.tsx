@@ -1,15 +1,15 @@
 import React from "react";
 import { pageErrorTests } from "@refinedev/ui-tests";
-import type ReactRouterDom from "react-router-dom";
-import { Route, Routes } from "react-router-dom";
+import type ReactRouterDom from "react-router";
+import { Route, Routes } from "react-router";
 
 import { ErrorComponent } from ".";
 import { render, fireEvent, TestWrapper, act } from "@test";
 
 const mHistory = jest.fn();
 
-jest.mock("react-router-dom", () => ({
-  ...(jest.requireActual("react-router-dom") as typeof ReactRouterDom),
+jest.mock("react-router", () => ({
+  ...(jest.requireActual("react-router") as typeof ReactRouterDom),
   useNavigate: () => mHistory,
 }));
 

@@ -87,7 +87,7 @@ import "@refinedev/antd/dist/reset.css";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -192,7 +192,7 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";
@@ -529,7 +529,7 @@ After adding resources we need to create routes for them. For the routes, we'll 
 
 import { Authenticated, CanAccess, Refine } from "@refinedev/core";
 import { ErrorComponent, ThemedLayoutV2 } from "@refinedev/antd";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { CanvasList, UserList } from "./pages";
@@ -629,7 +629,7 @@ import routerBindings, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import "@refinedev/antd/dist/reset.css";

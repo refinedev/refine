@@ -30,6 +30,7 @@ const columns: GridColDef[] = [
   {
     field: "title",
     headerName: "Title",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <TextField value={row.title} />;
@@ -45,7 +46,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

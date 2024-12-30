@@ -1,5 +1,5 @@
 import { Sider as RefineSider } from "@refinedev/antd";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { Menu } from "antd";
 import { CheckOutlined } from "@ant-design/icons";
 import { useMenu } from "@refinedev/core";

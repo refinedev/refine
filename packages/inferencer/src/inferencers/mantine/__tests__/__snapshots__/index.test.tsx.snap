@@ -19,10 +19,6 @@ exports[`MantineInferencer should match the snapshot 1`] = `
           class="m_6d731127 mantine-Stack-root"
           style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
-          <div
-            aria-label="breadcrumb"
-            class="m_8b3717df mantine-Breadcrumbs-root"
-          />
           <h3
             class="refine-pageHeader-title m_8a5d1357 mantine-Title-root"
             data-order="3"
@@ -12016,10 +12012,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
           <div
-            aria-label="breadcrumb"
-            class="m_8b3717df mantine-Breadcrumbs-root"
-          />
-          <div
             class="m_4081bf90 mantine-Group-root"
             style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
           >
@@ -17553,10 +17545,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
           class="m_6d731127 mantine-Stack-root"
           style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
-          <div
-            aria-label="breadcrumb"
-            class="m_8b3717df mantine-Breadcrumbs-root"
-          />
           <div
             class="m_4081bf90 mantine-Group-root"
             style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"
@@ -23698,10 +23686,6 @@ exports[`MantineInferencer should match the snapshot 4`] = `
           class="m_6d731127 mantine-Stack-root"
           style="--stack-gap: var(--mantine-spacing-xs); --stack-align: stretch; --stack-justify: flex-start;"
         >
-          <div
-            aria-label="breadcrumb"
-            class="m_8b3717df mantine-Breadcrumbs-root"
-          />
           <div
             class="m_4081bf90 mantine-Group-root"
             style="--group-gap: var(--mantine-spacing-xs); --group-align: center; --group-justify: flex-start; --group-wrap: wrap;"

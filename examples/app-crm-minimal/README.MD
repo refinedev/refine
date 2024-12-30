@@ -1274,7 +1274,7 @@ export const businessTypeOptions: {
 <summary><code>pages/company/contacts-table.tsx</code></summary>
 
 ```typescript
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 
 import { FilterDropdown, useTable } from "@refinedev/antd";
 import { GetFieldsFromList } from "@refinedev/nestjs-query";
@@ -1645,7 +1645,7 @@ export const KanbanAddCardButton = ({
 <summary><code>pages/tasks/create.tsx</code></summary>
 
 ```typescript
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 import { useModalForm } from "@refinedev/antd";
 import { useNavigation } from "@refinedev/core";

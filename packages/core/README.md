@@ -75,8 +75,8 @@ import React from "react";
 import { Refine, useMany } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -138,6 +138,7 @@ export const ProductList = () => {
         field: "category",
         flex: 1,
         headerName: "Category",
+        display: "flex",
         renderCell: ({ value }) =>
           isLoading
             ? "Loading..."
@@ -147,6 +148,7 @@ export const ProductList = () => {
         field: "createdAt",
         flex: 1,
         headerName: "Created at",
+        display: "flex",
         renderCell: ({ value }) => <DateField value={value} />,
       },
     ],
@@ -155,7 +157,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

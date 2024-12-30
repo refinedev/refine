@@ -3,8 +3,6 @@
 
 describe("table-mantine-basic", () => {
   beforeEach(() => {
-    cy.interceptGETPosts();
-
     cy.visit("/");
   });
 
@@ -48,8 +46,6 @@ describe("table-mantine-basic", () => {
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
 
     cy.wait("@getAscPosts");
-
-    cy.interceptGETPosts();
 
     cy.get(".tabler-icon-chevron-down").first().click();
 
