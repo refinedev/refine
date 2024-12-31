@@ -17,9 +17,10 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 Use it like any other Material UI [`<LoadingButton>`][button]. You can use it with [useImport][useimport]:
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
-import { useImport } from "@refinedev/core";
 import {
   useDataGrid,
   List,
@@ -36,16 +37,9 @@ const columns: GridColDef[] = [
 const PostsList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>();
 
-  const { inputProps, isLoading } = useImport<IPost>();
-
   return (
-    <List
-      // highlight-start
-      headerButtons={
-        <ImportButton inputProps={inputProps} loading={isLoading} />
-      }
-      // highlight-end
-    >
+    <List>
+      <ImportButton />
       <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
@@ -58,14 +52,22 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<PostsList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -76,7 +78,7 @@ render(
 `hideText` is used to show and hide the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { ImportButton } from "@refinedev/mui";
@@ -85,22 +87,30 @@ const MyImportComponent = () => {
   return (
     <ImportButton
       // highlight-next-line
-      hideText={true}
+      resource="posts"
     />
   );
 };
+
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyImportComponent,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyImportComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

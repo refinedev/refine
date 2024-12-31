@@ -13,7 +13,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Usage
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   useDataGrid,
@@ -56,16 +58,30 @@ interface IPost {
 }
 // visible-block-end
 
+const PostShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-        show: () => <RefineMui.Show>Rest of the page here...</RefineMui.Show>,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/:id/show",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<PostsList />} />
+          <ReactRouter.Route path=":id/show" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -85,33 +101,39 @@ const MyShowComponent = () => {
     <ShowButton
       resource="posts"
       // highlight-next-line
-      recordItemId="1"
+      recordItemId="123"
     />
   );
 };
 
 // visible-block-end
 
-const ShowPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        show: ShowPage,
-      },
-    ]}
-    DashboardPage={MyShowComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/:id/show",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path=":id/show" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-Clicking the button will trigger the `show` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `show` action path of the resource, filling the necessary parameters in the route.
 
 ### resource
 
@@ -128,32 +150,42 @@ const MyShowComponent = () => {
     <ShowButton
       // highlight-next-line
       resource="categories"
-      recordItemId="2"
+      recordItemId="123"
     />
   );
 };
 
 // visible-block-end
 
-const ShowPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const CategoryShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        show: ShowPage,
-      },
-    ]}
-    DashboardPage={MyShowComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/:id/show",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          show: "/categories/:id/show",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path=":id/show" element={<CategoryShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -196,22 +228,30 @@ const MyShowComponent = () => {
 
 // visible-block-end
 
-const ShowPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyShowComponent,
-        show: ShowPage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/:id/show",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path=":id/show" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

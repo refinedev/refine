@@ -4,42 +4,18 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-  catchAll: <RefineMantine.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider
-      theme={RefineMantine.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
+import * as React from "react";
 
 const ShowPage = () => {
   const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
+  const params = RefineCore.useParsed();
 
   return (
     <div>
       <MantineCore.Text italic color="dimmed" size="sm">
         URL Parameters:
       </MantineCore.Text>
-      <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+      <MantineCore.Code>{JSON.stringify(params, null, 2)}</MantineCore.Code>
       <MantineCore.Space h="md" />
       <MantineCore.Button
         size="xs"
@@ -63,9 +39,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Usage
 
-```tsx live url=http://localhost:3000 previewHeight=420px hideCode
+```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@refinedev/core";
+import * as React from "react";
 
 // visible-block-start
 import { List, ShowButton } from "@refinedev/mantine";
@@ -91,11 +67,7 @@ const PostList: React.FC = () => {
         header: "Actions",
         accessorKey: "id",
         cell: function render({ getValue }) {
-          return (
-            // highlight-start
-            <ShowButton size="xs" recordItemId={getValue() as number} />
-            // highlight-end
-          );
+          return <ShowButton size="xs" recordItemId={getValue() as number} />;
         },
       },
     ],
@@ -158,23 +130,32 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
-          show: ShowPage,
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="show/:id" element={<ShowPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -185,8 +166,8 @@ render(
 `recordItemId` is used to append the record id to the end of the route path. By default `id` will be read from the route parameters.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { ShowButton } from "@refinedev/mantine";
@@ -196,24 +177,32 @@ const MyShowComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          show: ShowPage,
-          list: MyShowComponent,
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path="show/:id" element={<ShowPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -224,9 +213,8 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/docs/ro
 Redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { ShowButton } from "@refinedev/mantine";
@@ -236,27 +224,45 @@ const MyShowComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyShowComponent,
+          list: "/posts",
         },
         {
           name: "categories",
-          show: ShowPage,
+          list: "/categories",
+          show: "/categories/show/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+        </ReactRouter.Route>
+        <ReactRouter.Route
+          path="/categories"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route path="show/:id" element={<ShowPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -278,14 +284,13 @@ const MyComponent = () => {
 };
 ```
 
-###
+### hideText
 
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { ShowButton } from "@refinedev/mantine";
@@ -295,24 +300,32 @@ const MyShowComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyShowComponent,
-          show: ShowPage,
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path="show/:id" element={<ShowPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

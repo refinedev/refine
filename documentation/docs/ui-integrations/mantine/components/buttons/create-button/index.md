@@ -4,42 +4,16 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-  catchAll: <RefineMantine.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider
-      theme={RefineMantine.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
-
 const CreatePage = () => {
   const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
+  const params = RefineCore.useParsed();
 
   return (
     <div>
       <MantineCore.Text italic color="dimmed" size="sm">
         URL Parameters:
       </MantineCore.Text>
-      <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+      <MantineCore.Code>{JSON.stringify(params, null, 2)}</MantineCore.Code>
       <MantineCore.Space h="md" />
       <MantineCore.Button
         size="xs"
@@ -147,23 +121,32 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
-          create: CreatePage,
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="create" element={<CreatePage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -174,9 +157,7 @@ render(
 It is used to redirect the app to the `create` action path of the given resource name. By default, the app redirects to the inferred resource's `create` action path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { CreateButton } from "@refinedev/mantine";
@@ -186,28 +167,44 @@ const MyCreateComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyCreateComponent,
+          list: "/posts",
+          create: "/posts/create",
         },
         {
           name: "categories",
-          create: CreatePage,
+          list: "/categories",
+          create: "/categories/create",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCreateComponent />} />
+        </ReactRouter.Route>
+        <ReactRouter.Route
+          path="/categories/create"
+          element={
+            <div style={{ padding: 16 }}>
+              <CreatePage />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -231,12 +228,10 @@ const MyComponent = () => {
 
 ### hideText
 
-`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { CreateButton } from "@refinedev/mantine";
@@ -246,25 +241,32 @@ const MyCreateComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyCreateComponent,
-          create: CreatePage,
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCreateComponent />} />
+          <ReactRouter.Route path="create" element={<CreatePage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

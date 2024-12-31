@@ -388,16 +388,17 @@ const SandpackBase = ({
         <div className={clsx(showConsole ? "block" : "hidden", "h-[200px]")} />
       </div>
       <section className="hidden max-w-0 max-h-0">
+        <h6>Code Example</h6>
         <p>{`Dependencies: ${Object.keys(dependencies ?? {}).map(
           (k) => `${k}@${dependencies[k]}`,
         )}`}</p>
-        <h3>{"Code Files"}</h3>
+        <div>{"Code Files"}</div>
         {Object.keys(files ?? {}).map((f) => (
           <div key={f}>
             <div>{`File: ${f}`}</div>
-            <div>
+            <pre>
               {`Content: ${"code" in files[f] ? files[f].code : files[f]}`}
-            </div>
+            </pre>
           </div>
         ))}
       </section>

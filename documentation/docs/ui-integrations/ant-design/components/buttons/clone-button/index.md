@@ -15,8 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live previewHeight=300px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   List,
@@ -54,21 +55,37 @@ interface IPost {
 }
 // visible-block-end
 
-const PostCreate = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostClone = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/:id/clone",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path=":id/clone" element={<PostClone />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -78,33 +95,49 @@ render(
 
 `recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { CloneButton } from "@refinedev/antd";
 
 const MyCloneComponent = () => {
-  return <CloneButton resource="posts" recordItemId="1" />;
+  return <CloneButton resource="posts" recordItemId="123" />;
 };
 
 // visible-block-end
 
 const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/:id/clone",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+          <ReactRouter.Route path=":id/clone" element={<ClonedPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -114,37 +147,48 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/r
 
 `resource` is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { CloneButton } from "@refinedev/antd";
 
 const MyCloneComponent = () => {
-  return <CloneButton resource="categories" recordItemId="1" />;
+  return <CloneButton resource="categories" recordItemId="123" />;
 };
 
 // visible-block-end
 
-const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const CategoryClone = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: ClonedPage,
-      },
-    ]}
-    DashboardPage={MyCloneComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/:id/clone",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          clone: "/categories/:id/clone",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<MyCloneComponent />} />
+        <ReactRouter.Route
+          path="/categories/:id/clone"
+          element={<CategoryClone />}
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -170,15 +214,15 @@ const MyComponent = () => {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
 // visible-block-start
 import { CloneButton } from "@refinedev/antd";
 
 const MyCloneComponent = () => {
   return (
     <CloneButton
+      recordItemId="123"
       // highlight-next-line
       hideText={true}
     />
@@ -188,21 +232,36 @@ const MyCloneComponent = () => {
 // visible-block-end
 
 const ClonedPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyCloneComponent,
-        create: ClonedPage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          clone: "/posts/:id/clone",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+          <ReactRouter.Route path=":id/clone" element={<ClonedPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

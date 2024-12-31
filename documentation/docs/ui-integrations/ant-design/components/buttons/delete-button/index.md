@@ -15,7 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   List,
@@ -25,7 +27,7 @@ import {
 } from "@refinedev/antd";
 import { Table } from "antd";
 
-const PostList: React.FC = () => {
+const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
   return (
@@ -55,14 +57,29 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -72,12 +89,13 @@ render(
 
 `recordItemId` allows us to manage which record will be deleted. By default, the `recordItemId` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live disableScroll previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { DeleteButton } from "@refinedev/antd";
 
-const MyEditComponent = () => {
+const MyDeleteComponent = () => {
   return (
     <DeleteButton
       resource="posts"
@@ -90,18 +108,29 @@ const MyEditComponent = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
         },
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyDeleteComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -111,8 +140,8 @@ Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) 
 
 `resource` allows us to manage which resource's record is going to be deleted. By default, the `resource` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live disableScroll previewHeight=120px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/antd";
@@ -124,28 +153,28 @@ const MyDeleteComponent = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
         },
-      },
-      {
-        name: "categories",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+        {
+          name: "categories",
+          list: "/categories",
         },
-      },
-    ]}
-    DashboardPage={MyDeleteComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<MyDeleteComponent />} />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "categories" and whose id is "2" will be deleted.
+Clicking the button will trigger the [`useDelete`](/docs/data/hooks/use-delete) method and then the record whose resource is "categories" and whose id is "123" will be deleted.
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
@@ -157,10 +186,8 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 For example, let's `console.log` after deletion:
 
-```tsx live url=http://localhost:3000 previewHeight=150px disableScroll
-setInitialRoutes(["/"]);
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
+```tsx live disableScroll previewHeight=120px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/antd";
@@ -168,7 +195,7 @@ import { DeleteButton } from "@refinedev/antd";
 const MyDeleteComponent = () => {
   return (
     <DeleteButton
-      resourceNameOrRouteName="posts"
+      resource="posts"
       recordItemId="1"
       onSuccess={(value) => {
         console.log(value);
@@ -195,15 +222,30 @@ const App = () => {
   };
 
   return (
-    <RefineAntdDemo
-      dataProvider={customDataProvider}
-      resources={[
-        {
-          name: "posts",
-          list: MyDeleteComponent,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineAntdDemo
+        dataProvider={customDataProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route
+            path="/posts"
+            element={
+              <div style={{ padding: 16 }}>
+                <ReactRouter.Outlet />
+              </div>
+            }
+          >
+            <ReactRouter.Route index element={<MyDeleteComponent />} />
+          </ReactRouter.Route>
+        </ReactRouter.Routes>
+      </RefineAntdDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
 
@@ -216,11 +258,14 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 > For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
 
-```tsx
+```tsx live disableScroll previewHeight=360px
+setInitialRoutes(["/posts"]);
+
+// visible-block-start
 import { List, DeleteButton, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
-export const PostList: React.FC = () => {
+const PostList = () => {
   const { tableProps } = useTable<IPost>();
 
   return (
@@ -244,14 +289,46 @@ export const PostList: React.FC = () => {
     </List>
   );
 };
+
+interface IPost {
+  id: number;
+  title: string;
+}
+// visible-block-end
+
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
+);
 ```
 
 ### hideText
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live disableScroll previewHeight=120px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { DeleteButton } from "@refinedev/antd";
@@ -259,9 +336,9 @@ import { DeleteButton } from "@refinedev/antd";
 const MyDeleteComponent = () => {
   return (
     <DeleteButton
-      recordItemId="123"
       // highlight-next-line
       hideText={true}
+      recordItemId="123"
     />
   );
 };
@@ -269,15 +346,29 @@ const MyDeleteComponent = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyDeleteComponent,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyDeleteComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -290,7 +381,12 @@ import { DeleteButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
   return (
-    <DeleteButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+    <DeleteButton
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+    />
   );
 };
 ```
@@ -298,44 +394,6 @@ export const MyListComponent = () => {
 ### ~~resourceNameOrRouteName~~ <PropTag deprecated />
 
 Use `resource` prop instead.
-
-## How to override confirm texts?
-
-You can change the text that appears when you confirm a transaction with the `confirmTitle` prop, as well as what the 'ok' and 'cancel' buttons' text look like with the `confirmOkText` and `confirmCancelText` props.
-
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
-
-// visible-block-start
-import { DeleteButton } from "@refinedev/antd";
-
-const MyDeleteComponent = () => {
-  return (
-    <DeleteButton
-      recordItemId="123"
-      // highlight-start
-      confirmTitle="Title"
-      confirmOkText="Ok Text"
-      confirmCancelText="Delete Text"
-      // highlight-end
-    />
-  );
-};
-
-// visible-block-end
-
-render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyDeleteComponent,
-      },
-    ]}
-  />,
-);
-```
 
 ## API Reference
 

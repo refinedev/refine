@@ -3,25 +3,6 @@ title: Tag
 swizzle: true
 ---
 
-```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-      {children}
-    </ChakraUI.ChakraProvider>
-  );
-};
-```
-
 This field lets you display a value in a tag. It uses Chakra UI's [`<Tag>`](https://www.chakra-ui.com/docs/components/tag#usage) component.
 
 :::simple Good to know
@@ -34,9 +15,8 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 Let's see how we can use it in a basic list page:
 
-```tsx live url=http://localhost:3000 previewHeight=420px hideCode
+```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
@@ -140,19 +120,30 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
-      resources={[{ name: "posts", list: PostList }]}
-    />
-  );
-};
-
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

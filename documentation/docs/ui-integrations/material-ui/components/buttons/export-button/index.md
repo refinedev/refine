@@ -17,7 +17,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 Use it like any other Ant Design [`<Button>`][button]. You can use it with [useExport][useexport]:
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { useExport } from "@refinedev/core";
 import {
@@ -35,9 +37,7 @@ const columns: GridColDef[] = [
 
 const PostsList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>();
-
   const { triggerExport, isLoading: exportLoading } = useExport<IPost>();
-
   return (
     <List
       // highlight-start
@@ -58,14 +58,22 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<PostsList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -76,7 +84,7 @@ render(
 `hideText` is used to show or hide text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+setInitialRoutes(["/"]);
 
 // visible-block-start
 import { ExportButton } from "@refinedev/mui";
@@ -93,15 +101,20 @@ const MyExportComponent = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyExportComponent,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route index element={<MyExportComponent />} />
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
