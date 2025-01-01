@@ -8,7 +8,7 @@ import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
 import warnOnce from "warn-once";
 
-const supportedOperators = ["eq", "neq", "gt", "lt", "gte", "lte"];
+const supportedOperators = ["eq", "ne", "gt", "lt", "gte", "lte"];
 
 export const liveProvider = (
   supabaseClient: SupabaseClient<any, any, any>,
