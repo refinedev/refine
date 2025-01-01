@@ -6,6 +6,7 @@ import type {
 } from "@supabase/supabase-js";
 import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
+import warnOnce from "warn-once";
 
 const supportedOperators = ["eq", "neq", "gt", "lt", "gte", "lte"];
 
@@ -60,8 +61,9 @@ export const liveProvider = (
         }
 
         if (filters.length > 1) {
-          console.warn(
-            "Warning: Multiple filters detected. Supabase Realtime currently supports only a single filter. The first filter will be applied. To customize this behavior, use the 'meta.realtimeFilter' property.",
+          warnOnce(
+            true,
+            `Warning: Multiple filters detected for resource "${resource}". Supabase Realtime currently supports only a single filter. The first filter will be applied. To customize this behavior, use the 'meta.realtimeFilter' property.`,
           );
         }
 
