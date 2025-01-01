@@ -1146,7 +1146,9 @@ Sign in the app with followings credentials:
 
 We have successfully logged in to the app. After then `ListPage` and `CreatePage` pages created. When the `Create` button is clicked, the `CreatePage` component will render.
 
-```tsx live previewOnly url=http://localhost:5173/posts
+```tsx live previewOnly url=http://localhost:5173/posts previewHeight=460px
+setInitialRoutes(["/posts/create"]);
+
 interface ICategory {
   id: number;
   title: string;
@@ -1282,16 +1284,22 @@ const PostList: React.FC = () => {
 };
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts"]}
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+        <ReactRouter.Route path="/posts/create" element={<PostCreate />} />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
