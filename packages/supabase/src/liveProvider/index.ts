@@ -60,7 +60,7 @@ export const liveProvider = (
           return;
         }
 
-        if (filters.length > 1) {
+        if (filters.length > 1 && !meta?.realtimeFilter) {
           warnOnce(
             true,
             `Warning: Multiple filters detected for resource "${resource}". Supabase Realtime currently supports only a single filter. The first filter will be applied. To customize this behavior, use the 'meta.realtimeFilter' property.`,
