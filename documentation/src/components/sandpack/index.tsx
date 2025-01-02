@@ -415,12 +415,12 @@ const SandpackHiddenSnapshot = ({
     <section className="hidden max-w-0 max-h-0">
       <h6>Code Example</h6>
       {/* {dependencyList} */}
-      <div>{"Code Files"}</div>
       {visibleFiles.map((f) => (
-        <div key={f}>
-          <div>{`File: ${f}`}</div>
-          <div>Content:</div>
-          <pre>{getFileContent(files[f])}</pre>
+        <div data-filename={f} key={f}>
+          <pre>
+            {`// file: ${f} \n`}
+            {getFileContent(files[f])}
+          </pre>
         </div>
       ))}
     </section>
