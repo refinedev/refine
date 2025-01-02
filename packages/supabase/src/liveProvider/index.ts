@@ -8,7 +8,21 @@ import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
 import warnOnce from "warn-once";
 
-const supportedOperators = ["eq", "ne", "gt", "lt", "gte", "lte"];
+const supportedOperators = [
+  "eq",
+  "ne",
+  "nin",
+  "ina",
+  "nina",
+  "contains",
+  "ncontains",
+  "containss",
+  "ncontainss",
+  "between",
+  "nbetween",
+  "null",
+  "nnull",
+];
 
 export const liveProvider = (
   supabaseClient: SupabaseClient<any, any, any>,
@@ -73,13 +87,18 @@ export const liveProvider = (
 
         return effectiveFilter
           .map((filter: CrudFilter): string | undefined => {
-            if (
-              "field" in filter &&
-              supportedOperators.includes(filter.operator)
-            ) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
+            if ("field" in filter) {
+              if (supportedOperators.includes(filter.operator)) {
+                return `${filter.field}=${mapOperator(filter.operator)}.${
+                  filter.value
+                }`;
+              } else {
+                warnOnce(
+                  true,
+                  `Unsupported filter operator: ${filter.operator}`,
+                );
+                return undefined;
+              }
             }
             return;
           })
