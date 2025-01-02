@@ -1,5 +1,19 @@
 # @refinedev/core
 
+## 4.57.3
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6618](https://github.com/refinedev/refine/pull/6618) [`5377e7d8f7ccb986c5d38352351b9b2d2c414fde`](https://github.com/refinedev/refine/commit/5377e7d8f7ccb986c5d38352351b9b2d2c414fde) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): add missing checks and warnings for `ids` and `resource` props in `useMany` hook
+
+  Added checks for `ids` and `resource` props to check in runtime if they are valid or not.
+
+  `useMany` will warn if `ids` or `resource` props are missing unless the query is manually enabled through `queryOptions.enabled` prop.
+
+  [Resolves #6617](https://github.com/refinedev/refine/issues/6617)
+
 ## 4.57.2
 
 ### Patch Changes
