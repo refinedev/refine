@@ -92,15 +92,11 @@ export const liveProvider = (
                 return `${filter.field}=${mapOperator(filter.operator)}.${
                   filter.value
                 }`;
-              } else {
-                warnOnce(
-                  true,
-                  `Unsupported filter operator: ${filter.operator}`,
-                );
-                return undefined;
               }
+              warnOnce(true, `Unsupported filter operator: ${filter.operator}`);
+              return undefined;
             }
-            return;
+            return undefined;
           })
           .filter(Boolean)
           .join(",");
