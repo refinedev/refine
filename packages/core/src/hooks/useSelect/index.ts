@@ -303,6 +303,7 @@ export const useSelect = <
         defaultValueQueryOptions?.onSuccess?.(data);
       },
     },
+    overtimeOptions: { enabled: false },
     meta: combinedMeta,
     metaData: combinedMeta,
     liveMode: "off",
@@ -341,6 +342,7 @@ export const useSelect = <
         queryOptions?.onSuccess?.(data);
       },
     },
+    overtimeOptions: { enabled: false },
     successNotification,
     errorNotification,
     meta: combinedMeta,
@@ -352,9 +354,8 @@ export const useSelect = <
   });
 
   const { elapsedTime } = useLoadingOvertime({
+    ...overtimeOptions,
     isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
-    interval: overtimeOptions?.interval,
-    onInterval: overtimeOptions?.onInterval,
   });
 
   const combinedOptions = useMemo(
