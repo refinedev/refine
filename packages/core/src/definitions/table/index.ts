@@ -283,11 +283,21 @@ export const isEqualFilters = (
     }
 
     // if either is undefined, it means it was initialized,
-    // so logically equal.
-    if (
-      (filter1Value && filter2Value === undefined) ||
-      (filter1Value === undefined && filter2Value)
-    ) {
+    // so logically equal
+    const isEmptyValue = (value: any) => {
+      if (value === "") {
+        return true;
+      }
+      if (Array.isArray(value) && value.length === 0) {
+        return true;
+      }
+      if (value === undefined) {
+        return true;
+      }
+      return false;
+    };
+
+    if (isEmptyValue(filter1Value) && isEmptyValue(filter2Value)) {
       return true;
     }
 

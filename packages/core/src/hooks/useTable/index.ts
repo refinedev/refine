@@ -512,7 +512,7 @@ export function useTable<
     }
   }, [syncWithLocation, current, pageSize, sorters, filters]);
 
-  // update lastSynched url filters
+  // update lastSynched url params
   useEffect(() => {
     if (urlUpdated) {
       lastSyncedUrlParams.current = {
@@ -523,73 +523,68 @@ export function useTable<
       // reset
       setUrlUpdated(false);
     }
-  }, [urlUpdated, filters]);
+  }, [urlUpdated, filters, sorters]);
 
   // watch URL filters, sorters to update internal filters, sorters
   useEffect(() => {
     if (syncWithLocation) {
-      const currentFilters = filters;
-      const currentUrlFilters = parsedParams?.params?.filters;
-      const initialFilters = setInitialFilters(
-        preferredPermanentFilters,
-        defaultFilter ?? [],
-      );
-
-      const filtersAreEqual = isEqualFilters(currentUrlFilters, currentFilters);
-      const isInternalSyncWithUrlFilters = isEqualFilters(
-        currentFilters,
-        lastSyncedUrlParams.current?.filters,
-      );
-      let newFilters: CrudFilter[] = [];
-
-      const currentSorters = sorters;
-      const currentUrlSorters = parsedParams.params?.sorters;
-      const initialSorters = setInitialSorters(
-        preferredPermanentSorters,
-        defaultSorter ?? [],
-      );
-
-      const sortersAreEqual = (() => {
-        if (currentUrlSorters === undefined && currentSorters.length === 0)
-          return true;
-        return isEqual(currentUrlSorters, currentSorters);
-      })();
-
-      const isInternalSyncWithUrlSorters = isEqual(
-        currentSorters,
-        lastSyncedUrlParams.current?.sorters,
-      );
-      let newSorters: CrudSort[] = [];
-
-      // if last changes to internal state in sync update url state
-      // if url state changed but did not affect internal state
-      // for both filters & sorters
-
-      if (isInternalSyncWithUrlFilters && !filtersAreEqual) {
-        // fallback to initial
-        if (!currentUrlFilters || currentUrlFilters.length === 0) {
-          newFilters = initialFilters;
-        } else {
-          // since they aren't equal, merge the two
-          newFilters = mergeFilters(currentUrlFilters, currentFilters);
-        }
-
-        setFilters(newFilters);
-      }
-
-      if (isInternalSyncWithUrlSorters && !sortersAreEqual) {
-        // fallback to initial
-        if (!currentUrlSorters || currentUrlSorters.length === 0) {
-          newSorters = initialSorters;
-        } else {
-          // since they aren't equal, merge the two
-          newSorters = mergeSorters(currentUrlSorters, currentSorters);
-        }
-
-        setSorters(newSorters);
-      }
+      // const currentFilters = filters;
+      // const currentUrlFilters = parsedParams?.params?.filters;
+      // const initialFilters = setInitialFilters(
+      //   preferredPermanentFilters,
+      //   defaultFilter ?? [],
+      // );
+      // const filtersAreEqual = isEqualFilters(currentUrlFilters, currentFilters);
+      // const isInternalSyncWithUrlFilters = isEqualFilters(
+      //   currentFilters,
+      //   lastSyncedUrlParams.current?.filters,
+      // );
+      // let newFilters: CrudFilter[] = [];
+      // const currentSorters = sorters;
+      // const currentUrlSorters = parsedParams.params?.sorters;
+      // const initialSorters = setInitialSorters(
+      //   preferredPermanentSorters,
+      //   defaultSorter ?? [],
+      // );
+      // const sortersAreEqual = (() => {
+      //   if (currentUrlSorters === undefined && currentSorters.length === 0)
+      //     return true;
+      //   return isEqual(currentUrlSorters, currentSorters);
+      // })();
+      // const isInternalSyncWithUrlSorters = isEqual(
+      //   currentSorters,
+      //   lastSyncedUrlParams.current?.sorters,
+      // );
+      // let newSorters: CrudSort[] = [];
+      // // if last changes to internal state in sync update url state
+      // // if url state changed but did not affect internal state
+      // // for both filters & sorters
+      // if (isInternalSyncWithUrlFilters && !filtersAreEqual) {
+      //   // fallback to initial
+      //   if (!currentUrlFilters || currentUrlFilters.length === 0) {
+      //     newFilters = initialFilters;
+      //   } else {
+      //     // since they aren't equal, merge the two
+      //     newFilters = mergeFilters(currentUrlFilters, currentFilters);
+      //   }
+      //   setFilters(newFilters);
+      // }
+      // if (isInternalSyncWithUrlSorters && !sortersAreEqual) {
+      //   // fallback to initial
+      //   if (!currentUrlSorters || currentUrlSorters.length === 0) {
+      //     newSorters = initialSorters;
+      //   } else {
+      //     // since they aren't equal, merge the two
+      //     newSorters = mergeSorters(currentUrlSorters, currentSorters);
+      //   }
+      //   setSorters(newSorters);
+      // }
     }
-  }, [parsedParams, filters, lastSyncedUrlParams.current, sorters]);
+  }, [
+    parsedParams.params?.filters,
+    filters,
+    lastSyncedUrlParams.current?.filters,
+  ]);
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
