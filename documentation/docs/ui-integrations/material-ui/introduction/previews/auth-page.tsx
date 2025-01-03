@@ -18,7 +18,7 @@ export default function AuthPage() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^7.22.2",
+        "@mui/x-data-grid": "^7.23.5",
         "react-router": "^7.0.2",
         "react-hook-form": "^7.43.5",
       }}

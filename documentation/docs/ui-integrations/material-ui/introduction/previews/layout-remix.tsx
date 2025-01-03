@@ -7,7 +7,7 @@ export default function LayoutRemix() {
       showNavigator
       hidePreview
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-router": "latest",
@@ -17,7 +17,7 @@ export default function LayoutRemix() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^7.22.2",
+        "@mui/x-data-grid": "^7.23.5",
         "@refinedev/remix-router": "latest",
       }}
       startRoute="/products"
