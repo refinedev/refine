@@ -15,6 +15,7 @@ import type {
   Pagination,
 } from "../../contexts/data/types";
 import * as useRouterType from "../../contexts/router/picker";
+import { defaultRefineOptions } from "@contexts/refine";
 
 const defaultPagination = {
   pageSize: 10,
@@ -465,6 +466,58 @@ describe("useTable Hook", () => {
       expect(result.current.tableQueryResult.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
+    });
+
+    await waitFor(() => {
+      expect(!result.current.tableQueryResult.isFetching).toBeTruthy();
+      expect(result.current.overtime.elapsedTime).toBeUndefined();
+    });
+  });
+
+  it("should call onInterval once at ticks (no duplicates)", async () => {
+    const onInterval = jest.fn();
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          refineProvider: {
+            hasDashboard: false,
+            mutationMode: "pessimistic",
+            syncWithLocation: false,
+            warnWhenUnsavedChanges: false,
+            undoableTimeout: 5000,
+            liveMode: "off",
+            options: {
+              ...defaultRefineOptions,
+              overtime: {
+                enabled: true,
+                interval: 100,
+                onInterval,
+              },
+            },
+          },
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              getList: () => {
+                return new Promise((res) => {
+                  setTimeout(() => res({ data: [], total: 2 }), 1000);
+                });
+              },
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQueryResult.isFetching).toBeTruthy();
+      expect(result.current.overtime.elapsedTime).toBe(900);
+      expect(onInterval).toBeCalledTimes(9);
     });
 
     await waitFor(() => {

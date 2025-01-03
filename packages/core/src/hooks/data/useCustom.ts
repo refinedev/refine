@@ -217,9 +217,8 @@ export const useCustom = <
       },
     });
     const { elapsedTime } = useLoadingOvertime({
+      ...overtimeOptions,
       isLoading: queryResponse.isFetching,
-      interval: overtimeOptions?.interval,
-      onInterval: overtimeOptions?.onInterval,
     });
 
     return { ...queryResponse, overtime: { elapsedTime } };

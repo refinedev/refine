@@ -53,6 +53,7 @@ describe("handleRefineOptions", () => {
       },
       breadcrumb: false,
       overtime: {
+        enabled: true,
         interval: 1000,
       },
       textTransformers: {
@@ -123,6 +124,7 @@ describe("handleRefineOptions", () => {
         afterEdit: "list",
       },
       overtime: {
+        enabled: true,
         interval: 1000,
       },
       textTransformers: {
@@ -177,6 +179,7 @@ describe("handleRefineOptions", () => {
         afterEdit: "list",
       },
       overtime: {
+        enabled: true,
         interval: 1000,
       },
       textTransformers: {

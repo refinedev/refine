@@ -147,4 +147,25 @@ describe("useLoadingOvertime Hook", () => {
     expect(onInterval).toBeCalledTimes(1);
     expect(onInterval).toBeCalledWith(1000);
   });
+
+  it("should not run interval when enabled is false", () => {
+    const { result } = renderHook(
+      () =>
+        useLoadingOvertime({
+          isLoading: true,
+          enabled: false,
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    act(() => {
+      jest.advanceTimersByTime(2000);
+    });
+
+    const { elapsedTime } = result.current;
+
+    expect(elapsedTime).toBeUndefined();
+  });
 });

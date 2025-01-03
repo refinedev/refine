@@ -169,14 +169,17 @@ export const useForm = <
     liveParams: props.liveParams,
     meta: { ...combinedMeta, ...props.queryMeta },
     dataProviderName: props.dataProviderName,
+    overtimeOptions: { enabled: false },
   });
 
   const createMutation = useCreate<TResponse, TResponseError, TVariables>({
     mutationOptions: props.createMutationOptions,
+    overtimeOptions: { enabled: false },
   });
 
   const updateMutation = useUpdate<TResponse, TResponseError, TVariables>({
     mutationOptions: props.updateMutationOptions,
+    overtimeOptions: { enabled: false },
   });
 
   const mutationResult = isEdit ? updateMutation : createMutation;
@@ -184,9 +187,8 @@ export const useForm = <
   const formLoading = isMutationLoading || queryResult.isFetching;
 
   const { elapsedTime } = useLoadingOvertime({
+    ...props.overtimeOptions,
     isLoading: formLoading,
-    interval: props.overtimeOptions?.interval,
-    onInterval: props.overtimeOptions?.onInterval,
   });
 
   React.useEffect(() => {

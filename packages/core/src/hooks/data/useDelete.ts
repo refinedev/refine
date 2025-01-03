@@ -493,9 +493,8 @@ export const useDelete = <
   });
 
   const { elapsedTime } = useLoadingOvertime({
+    ...overtimeOptions,
     isLoading: mutation.isLoading,
-    interval: overtimeOptions?.interval,
-    onInterval: overtimeOptions?.onInterval,
   });
 
   return { ...mutation, overtime: { elapsedTime } };
