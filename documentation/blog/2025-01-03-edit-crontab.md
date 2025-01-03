@@ -8,7 +8,13 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-12-27-kubectl-ed
 hide_table_of_contents: false
 ---
 
+**This article was last updated on January 3, 2025, to include a Common Crontab Mistakes and Crontab with Docker sections.**
+
 ## Introduction
+
+### TLDR What is crontab?
+
+Crontab is a Unix-like system scheduling tool used for automating tasks. This guide explains how to create, edit, and manage crontabs, set up environment variables, automate backups, and troubleshoot common issues.
 
 When it comes to scheduling tasks in Unix-like systems, crontab is your go-to tool. Through crontab, you can manage all your cronjobs. In windows, the equivalent is task scheduler. Note that the crontab environment isn't quite the same as your regular shell environment. Here's why:
 
@@ -162,6 +168,93 @@ Let's understand the different parameters of this command:
 - `2> /path/to/your/error.log`: This redirects standard error (stderr) to `/path/to/your/error.log.` If the script fails and produces an error output, it will be logged here.
 - `||`: This is a logical OR operator. The following command is executed if the preceding script fails (returns a non-zero exit status).
 - `echo "Script failed on $(date)">> /path/to/your/crontaberror.log`: This command appends a custom error message with the date and time of the failure to the error log.
+
+## Crontab Gotchas and How to Avoid Them
+
+Over the years, I've seen a few common mistakes when working with crontab. Let me share them and how I avoid them now:
+
+- **Absolute Path**: When running cron jobs, I would just use the relative paths (like `./myscript.sh`); it would actually fail because crontab didn't know from where to get the file. I now make it a practice to always use the absolute path: for example, `/home/user/myscript.sh`.
+
+- **Permission Issues**: This once happened when my cron didn't run, and it was because of permissions set on the script. Now I always check for permissions with `chmod +x` for scripts, making sure the right user running the cron has access to it.
+
+- **Environment Variables**: Crontab does not automatically use my environment variables set up in my shell, so some commands failed. Now I always take the time to explicitly define PATH or whatever other variables I need at the top of my crontab.
+
+Example:
+
+```bash
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+```
+
+- **No Logging**: I've had jobs fail silently because I wasn't logging their output. Now, I always redirect output and errors to log files. For instance:
+
+```bash
+0 3 * * * /path/to/your/script.sh > /path/to/your/output.log 2> /path/to/your/error.log
+```
+
+- **Overlapping Jobs**: Once, I scheduled a job running multiple times by mistake, which was very conflicting. Nowadays, I schedule jobs with the help of a lockfile or similar tools so that different jobs are not running more than once.
+
+These simple fixes have saved me so much debugging time!
+
+## Crontab and Docker
+
+Running cron jobs in Docker? It's a bit different but not too hard. Let me break it down:
+
+### Cron in Docker Containers
+
+The usage of the crontab is only possible if cron service is installed within your Docker image. For example, if using Debian or Ubuntu:
+
+```dockerfile
+RUN apt-get update && apt-get install -y cron
+```
+
+### Setting Up Cron Jobs in the Container
+
+Add your cron jobs to a file like mycron and copy it into the container. For example:
+
+```dockerfile
+COPY mycron /etc/cron.d/mycron
+RUN chmod 0644 /etc/cron.d/mycron
+RUN crontab /etc/cron.d/mycron
+```
+
+### Start the Cron Service
+
+Tell Docker to make sure the cron daemon runs whenever your container starts. Add this to your CMD:
+
+```dockerfile
+CMD ["cron", "-f"]
+```
+
+### Pitfalls to Avoid
+
+- **Not Running Jobs**: If your job isn't running, check the logs. Add this to your Dockerfile and have cron send its logs to stdout:
+
+```dockerfile
+RUN touch /var/log/cron.log
+CMD cron && tail -f /var/log/cron.log
+```
+
+- **Environment Variables**: Similar to plain old crontab, Docker-based cron jobs do not inherit the shell environment. Define PATH and other variables explicitly.
+
+### Best Practices
+
+- Use a minimal base image like alpine to keep your containers lightweight.
+- If you only need to run one cron job, consider using a cron-like library in your application code instead of adding the cron service to the container.
+
+:::tip FAQ
+
+- What is crontab used for?
+  Crontab is used to schedule and automate tasks on Unix-like systems.
+- How do I edit a crontab?
+  Use the crontab -e command to open and edit your crontab.
+- Where is the crontab file stored?
+  Crontabs are stored in /var/spool/cron/crontabs/ for each user.
+- How do I troubleshoot crontab errors?
+  Check logs in /var/log/syslog or redirect errors to a log file using 2>.
+
+- Can I schedule overlapping jobs?
+  Avoid overlapping jobs by using lockfiles or careful scheduling.
+  :::
 
 ## Conclusion
 
