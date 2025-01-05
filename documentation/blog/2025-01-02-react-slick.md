@@ -4,9 +4,11 @@ description: We'll see how to use React Slick in your React projects through a s
 slug: react-slick
 authors: deborah_emeni
 tags: [react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on January 2, 2025, to address common queries about React Slick and a dedicated section for Common Mistakes When Working with React Slick to improve usability and clarity.**
 
 ## Introduction
 
@@ -23,13 +25,8 @@ Steps we'll cover:
 - [Benefits of using React Slick](#benefits-of-using-react-slick)
 - [Demo: Getting Started with React Slick](#demo-getting-started-with-react-slick)
 - [Using React Slick](#using-react-slick)
-  - [Creating our carousel component](#creating-our-carousel-component)
 - [Building a Fashion Carousel with React Slick](#building-a-fashion-carousel-with-react-slick)
-  - [Creating Slides for the Carousel](#creating-slides-for-the-carousel)
-  - [Styling the Fashion Carousel](#styling-the-fashion-carousel)
-  - [Adding Arrow Navigation](#adding-arrow-navigation)
-  - [Adding Thumbnails](#adding-thumbnails)
-  - [Adding Responsiveness](#adding-responsiveness)
+- [Common Mistakes When Using React Slick (and How to Avoid Them)](#common-mistakes-when-using-react-slick-and-how-to-avoid-them)
 
 ## Overview of React Slick
 
@@ -697,6 +694,137 @@ Run your application and see how the carousel shrinks from 2 to 1 when it reache
     </div>
     <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-29-react-slick/99-min.gif" alt="react slick" />
 </div>
+
+## Common Mistakes When Using React Slick (and How to Avoid Them)
+
+Over the years, I’ve seen (and made!) plenty of mistakes while working with React Slick. Let me share a few common ones and how to steer clear of them:
+
+### Forgetting the CSS Files
+
+This is a classic! React Slick doesn’t come styled out of the box. If you forget to include the slick.css and slick-theme.css files, your carousel won’t look right—it’ll function, but it’ll be pretty ugly.
+
+What to do:
+Always add these imports in your code after installing slick-carousel:
+
+```tsx
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+```
+
+### Overloading the Carousel with Too Many Items
+
+Adding tons of slides can make the carousel sluggish, especially on mobile devices. Nobody likes a slow app, right?
+
+What to do:
+Use the lazyLoad option to load only the visible slides:
+
+```tsx
+const settings = {
+  lazyLoad: "ondemand",
+  // other settings
+};
+```
+
+### Misconfiguring Breakpoints
+
+I’ve often seen developers set breakpoints but forget to test them properly. This can result in carousels looking weird on different devices.
+
+What to do:
+Test your responsive settings thoroughly. Here’s an example:
+
+```tsx
+const settings = {
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+  ],
+};
+```
+
+### Ignoring Accessibility
+
+Carousels can be a nightmare for users with disabilities if accessibility isn’t handled well. For instance, navigation arrows might not be keyboard-friendly.
+
+What to do:
+
+- Add aria-labels to navigation elements.
+- Use React Slick’s built-in accessibility prop (it’s enabled by default):
+
+```tsx
+const settings = {
+  accessibility: true,
+  // other settings
+};
+```
+
+By keeping these in mind, you’ll avoid headaches later on!
+
+### Performance Optimization Tips
+
+React Slick is great, but if you’re not careful, it can slow down your app. Here are some easy ways to keep it running smoothly:
+
+#### Use Lazy Loading
+
+Loading all the images at once can slow down the initial page load, especially if you’ve got a lot of slides.
+
+What to do:
+Turn on lazy loading so images load only when they’re needed:
+
+```tsx
+const settings = {
+  lazyLoad: "ondemand",
+  // other settings
+};
+```
+
+#### Optimize Your Images
+
+Large image files can kill performance.
+
+What to do:
+
+- Use optimized images (e.g., compress them with tools like TinyPNG).
+- Use responsive image sizes for different screen widths.
+
+#### Limit Slide Animations
+
+Too many fancy animations can make your carousel feel slow, especially on older devices.
+
+What to do:
+Stick to a simple transition and set a reasonable speed:
+
+```tsx
+const settings = {
+  speed: 500, // milliseconds
+  cssEase: "ease-in-out",
+  // other settings
+};
+```
+
+#### Avoid Re-renders
+
+Re-renders can happen when props or state change unnecessarily.
+
+What to do:
+Use React.memo for your carousel component if the slides don’t change frequently:
+
+```tsx
+import React, { memo } from "react";
+
+const MyCarousel = memo(() => {
+  return <Slider {...settings}>/* slides */</Slider>;
+});
+```
 
 ## Conclusion
 
