@@ -281,7 +281,6 @@ export const useModalForm = <
           "Are you sure you want to leave? You have unsaved changes.",
         ),
       );
-
       if (warnWhenConfirm) {
         setWarnWhen(false);
       } else {
@@ -298,6 +297,7 @@ export const useModalForm = <
       if (typeof showId !== "undefined") {
         setId?.(showId);
       }
+
       const needsIdToOpen = action === "edit" || action === "clone";
       const hasId = typeof showId !== "undefined" || typeof id !== "undefined";
       if (needsIdToOpen ? hasId : true) {

@@ -252,7 +252,10 @@ export const useForm = <
     onLiveEvent,
     invalidates,
     undoableTimeout,
-    queryOptions,
+    queryOptions: {
+      ...queryOptions,
+      keepPreviousData: false,
+    },
     createMutationOptions,
     updateMutationOptions,
     id: idFromProps,
