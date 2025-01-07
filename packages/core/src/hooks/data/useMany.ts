@@ -240,9 +240,8 @@ export const useMany = <
   });
 
   const { elapsedTime } = useLoadingOvertime({
+    ...overtimeOptions,
     isLoading: queryResponse.isFetching,
-    interval: overtimeOptions?.interval,
-    onInterval: overtimeOptions?.onInterval,
   });
 
   return { ...queryResponse, overtime: { elapsedTime } };
