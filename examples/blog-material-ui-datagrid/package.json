@@ -27,7 +27,7 @@
     "@mui/icons-material": "^6.1.6",
     "@mui/lab": "^6.0.0-beta.14",
     "@mui/material": "^6.1.7",
-    "@mui/x-data-grid": "^7.22.2",
+    "@mui/x-data-grid": "^7.23.5",
     "@refinedev/cli": "^2.16.40",
     "@refinedev/core": "^4.56.0",
     "@refinedev/inferencer": "^4.7.1",
