@@ -1,5 +1,27 @@
 # @refinedev/core
 
+## 4.57.4
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6626](https://github.com/refinedev/refine/pull/6626) [`087039f0ccd13e9fe5bf4ef904e4f1c2df129d69`](https://github.com/refinedev/refine/commit/087039f0ccd13e9fe5bf4ef904e4f1c2df129d69) Thanks [@aliemir](https://github.com/aliemir)! - feat(core): add `enabled` prop to `useLoadingOvertime` and `overtimeOptions`
+
+  Added missing `enabled` prop to `useLoadingOvertime` and added ability to globally configure through `options.overtime.enabled`.
+
+  Due to the nature of calculating elapsed time, an interval is set by the `interval` prop. This was causing unwanted updates in the return value and there was no way to disable it properly.
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6626](https://github.com/refinedev/refine/pull/6626) [`087039f0ccd13e9fe5bf4ef904e4f1c2df129d69`](https://github.com/refinedev/refine/commit/087039f0ccd13e9fe5bf4ef904e4f1c2df129d69) Thanks [@aliemir](https://github.com/aliemir)! - refactor(core): remove duplicated overtime intervals caused by internally used hooks
+
+  Updated Refine's data hooks and extensions to prevent duplicated overtime intervals from being created. This uses the `enabled` prop to prevent internal hooks from registering the intervals.
+
+  Prior to this change, `useTable` was initializing its own `useLoadingOvertime` hook but also propagated the `elapsedTime` from `useList` hook which is used internally by `useTable`. This caused duplicated intervals and unwanted updates.
+
+  This now ensures a single interval is created and used for the extension hooks.
+
 ## 4.57.3
 
 ### Patch Changes
