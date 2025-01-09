@@ -4,11 +4,17 @@ description: We'll explore four main types of TypeScript Decorators with example
 slug: typescript-decorators
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-24-typescript-decorators/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-24-typescript-decorators/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on January 9, 2025, to include best practices for using TypeScript decorators, a detailed table comparing different decorator types, and tips for avoiding common mistakes when implementing decorators.**
+
 ## Introduction
+
+:::tip What is TS Decorators?
+Think of decorators like special stickers you can attach to your classes or functions to add extra features or behavior without changing their code directly.
+:::
 
 TypeScript decorators are an extension that allows adding annotation and metaprogramming to class declarations and their members in TypeScript. TypeScript supports decorators syntax as an experimental feature which is distinct from JavaScript decorators that is currently a Stage 3 ECMAScript proposal. This post provides a brief walk through into the use of TypeScript decorators with examples from decorating a `User` class, its properties, accessors and methods.
 
@@ -30,8 +36,10 @@ Steps we'll cover:
 - [Class Decoration in TypeScript](#class-decoration-in-typescript)
 - [Property Decorators in TypeScript](#property-decorators-in-typescript)
 - [Accessor Decorators in TypeScript](#accessor-decorators-in-typescript)
+- [Different Types of Decorators](#different-types-of-decorators)
 - [TypeScript Decorator Factories](#typescript-decorator-factories)
 - [Method Decorators in TypeScript](#method-decorators-in-typescript)
+- [Top 5 Best Ways for Applying Decorators](#top-5-best-ways-for-applying-decorators)
 
 ## Prerequisites
 
@@ -259,6 +267,16 @@ With `@enumerable(false)` applied to a member, the console prints the following 
 // The enumerable property of this member is set to: false
 ```
 
+## Different Types of Decorators
+
+| **Decorator Type**       | **What It Does**                         | **Example**          |
+| ------------------------ | ---------------------------------------- | -------------------- |
+| **Class Decorators**     | Modify or observe a class.               | `@frozen`            |
+| **Property Decorators**  | Add behavior or rules to properties.     | `@required`          |
+| **Method Decorators**    | Modify how a method works.               | `@log`               |
+| **Accessor Decorators**  | Add functionality to getters or setters. | `@enumerable(false)` |
+| **Parameter Decorators** | Add behavior to method parameters.       | `@validate`          |
+
 ## TypeScript Decorator Factories
 
 Take a close look at the `enumerable` decorator. It is taking a parameter that is actually passed at decorator invocation. Rather than purely being a decorator, `enumerable` is a **decorator factory** that produces the decorator for us by taking a `Boolean` input from us. Such decorator factories are commonly used to customize decorator behavior and make them reusable.
@@ -290,6 +308,146 @@ With the `@deprecated` decorator applied to `address()`, the following warning i
 ```
 
 These are pretty much the major examples of decorators in TypeScript which can help us decorate a class and its members. Using parameter decorators give us more insight into how arguments act out in runtime. It is very useful to leverage the `reflect-metadata` library with parameter decorators. For a few examples, please check out [this section of the TypeScript decorators documentation](https://www.typescriptlang.org/docs/handbook/decorators.html#parameter-decorators).
+
+## Top 5 Best Ways for Applying Decorators
+
+Here are the most important tips for using decorators effectively, including examples where relevant:
+
+### 1. Keep Decorators Simple
+
+A decorator should focus on one task only to keep the code clean and easy to debug.
+For example, if you want to log method calls, create a simple decorator like this:
+
+```typescript
+function logMethod(target: any, key: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function (...args: any[]) {
+    console.log(`Method ${key} called with args:`, args);
+    return originalMethod.apply(this, args);
+  };
+}
+
+class Example {
+  @logMethod
+  greet(name: string) {
+    return `Hello, ${name}`;
+  }
+}
+
+const obj = new Example();
+obj.greet("Alice"); // Logs: Method greet called with args: [ 'Alice' ]
+```
+
+### 2. Decorator Factories for Flexibility
+
+If your decorator needs any parameters, use a factory function. This way, the decorator can be reused for different configurations.
+
+```typescript
+function log(message: string) {
+  return function (target: any, key: string) {
+    console.log(`${message}: ${key} was accessed.`);
+  };
+}
+
+class Example {
+  @log("INFO")
+  name = "Alice";
+}
+
+const obj = new Example();
+console.log(obj.name); // Outputs: INFO: name was accessed.
+```
+
+### 3. Combine Decorators Carefully
+
+It is powerful to stack decorators, but the order is important. Decorators are applied from top to bottom and executed from bottom to top. Test stacked decorators for correct behavior.
+
+```typescript
+function first() {
+  return function (target: any, key: string) {
+    console.log("First decorator applied");
+  };
+}
+
+function second() {
+  return function (target: any, key: string) {
+    console.log("Second decorator applied");
+  };
+}
+
+class Example {
+  @first()
+  @second()
+  greet() {
+    console.log("Hello!");
+  }
+}
+
+const obj = new Example();
+obj.greet();
+// Logs:
+// Second decorator applied
+// First decorator applied
+```
+
+### 4. Document Decorators Clearly
+
+Comment your decorators, or add documentation describing what they do. This is especially important in a team environment or when it comes time for future maintenance.
+
+```typescript
+/**
+ * Marks a method as deprecated.
+ * Logs a warning when the method is called.
+ */
+function deprecated(target: any, key: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function (...args: any[]) {
+    console.warn(`Warning: ${key} is deprecated.`);
+    return originalMethod.apply(this, args);
+  };
+}
+
+class Example {
+  @deprecated
+  oldMethod() {
+    console.log("This method is outdated.");
+  }
+}
+
+const obj = new Example();
+obj.oldMethod();
+// Logs: Warning: oldMethod is deprecated.
+// This method is outdated.
+```
+
+### 5. Test Decorators Thoroughly
+
+Sometimes, decorators can cause unexpected behavior at runtime. Always write unit tests to ensure they work as expected, especially when modifying properties or methods.
+
+Example of testing a simple @logMethod decorator:
+
+```typescript
+function logMethod(target: any, key: string, descriptor: PropertyDescriptor) {
+  const originalMethod = descriptor.value;
+  descriptor.value = function (...args: any[]) {
+    console.log(`Method ${key} called`);
+    return originalMethod.apply(this, args);
+  };
+}
+
+class Example {
+  @logMethod
+  greet() {
+    return "Hello!";
+  }
+}
+
+// Test
+let obj: Example = new Example();
+console.assert(obj.greet() === "Hello!", 'Method should return "Hello!"');
+```
+
+By following these practices, you will maintain decorators as clean, flexible, and robust features in TypeScript projects.
 
 ## Summary
 
