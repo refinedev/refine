@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/mui",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "private": false,
   "description": "Material-UI (MUI) support for Refine, providing enterprise-level UI components.",
   "license": "MIT",
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.42",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^4.57.4",
     "@refinedev/ui-tests": "^1.15.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
