@@ -25,7 +25,7 @@
   "dependencies": {
     "@refinedev/antd": "^5.45.1",
     "@refinedev/cli": "^2.16.42",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^4.57.5",
     "@refinedev/hasura": "^6.6.10",
     "@refinedev/react-router": "^1.0.1",
     "@uiw/react-md-editor": "^3.19.5",

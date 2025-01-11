@@ -12,7 +12,7 @@
   "dependencies": {
     "@handsontable/react": "^12.1.2",
     "@refinedev/cli": "^2.16.42",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^4.57.5",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
     "handsontable": "^12.1.2",
