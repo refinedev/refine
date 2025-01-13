@@ -4,7 +4,7 @@ description: TypeScript classes are a superset of JavaScript classes. This post 
 slug: typescript-classes
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes/social-2.png
 hide_table_of_contents: false
 ---
 
