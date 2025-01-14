@@ -4,9 +4,11 @@ description: TypeScript classes are a superset of JavaScript classes. This post 
 slug: typescript-satisfies-operator
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-15-ts-satisfies/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-15-ts-satisfies/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on January 14, 2025, to include best practices for using the TypeScript satisfies operator, a detailed table comparing satisfies with type annotations and assertions, and tips for avoiding common mistakes when validating nested object types, using utility types like Partial, and working with complex type structures.**
 
 ## Introduction
 
@@ -21,12 +23,13 @@ In this post, we get into the details of using TypeScript `satisfies` while vali
 Step by step, we'll cover the following:
 
 - [What is the TypeScript satisfies Operator ?](#what-is-the-typescript-satisfies-operator-)
-  - [TypeScript satisfies Leverages Contextual Typing](#typescript-satisfies-leverages-contextual-typing)
-  - [TypeScript satisfies - Annotated Type Has Precedence Over `satisfies` Type](#typescript-satisfies---annotated-type-has-precedence-over-satisfies-type)
 - [TypeScript satisfies - Checking for Property Value Conformance](#typescript-satisfies---checking-for-property-value-conformance)
 - [TypeScript satisfies - Property Name Constraining](#typescript-satisfies---property-name-constraining)
 - [TypeScript satisfies - Property Name Fulfillment](#typescript-satisfies---property-name-fulfillment)
 - [TypeScript satisfies - Optional Member Conformance](#typescript-satisfies---optional-member-conformance)
+- [Advanced Use: Combining satisfies with Utility Types](#advanced-use-combining-satisfies-with-utility-types)
+- [Performance Implications and Best Practices](#performance-implications-and-best-practices)
+- [FAQs About the satisfies Operator in TypeScript](#faqs-about-the-satisfies-operator-in-typescript)
 
 ### TypeScript Setup
 
@@ -290,6 +293,228 @@ const joe = {
 } satisfies Partial<TUser>; // No complains about missing `lastName`
 ```
 
+## Advanced Use: Combining satisfies with Utility Types
+
+You know how we've been using satisfies to validate object types? Well, you can take it up a notch by combining it with other utility types like `Pick<>`, `Omit<>` and `Readonly<>` . These combos are super handy when you want more control over what parts of a type you're validating.
+
+### Using satisfies with Pick
+
+Let's say you only care about a couple of fields from a bigger type. With `Pick<>` and `satisfies`, you can validate just those fields:
+
+```typescript
+type TUser = {
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: {
+    city: string;
+    state: string;
+    country: string;
+  };
+};
+
+type UserMinimal = Pick<TUser, "username" | "email">;
+
+const minimalUser = {
+  username: "joe_hiyden",
+  email: "joe@example.com",
+} satisfies UserMinimal;
+
+console.log(minimalUser.username); // "joe_hiyden"
+console.log(minimalUser.email); // "joe@example.com"
+```
+
+See? We only checked username and email, and ignored everything else. Clean and simple!
+
+### Using satisfies with `Omit<>`
+
+Now, imagine the opposite: you want to skip certain fields. Enter `Omit<>` . Here's how it works:
+
+```typescript
+type TUser = {
+  username: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  address: {
+    city: string;
+    state: string;
+    country: string;
+  };
+};
+
+type UserWithoutAddress = Omit<TUser, "address">;
+
+const userWithoutAddress = {
+  username: "joe_hiyden",
+  email: "joe@example.com",
+  firstName: "Joe",
+  lastName: "Hiyden",
+} satisfies UserWithoutAddress;
+
+console.log(userWithoutAddress.firstName); // "Joe"
+```
+
+Boom! No address field needed, but everything else is validated. This trick is a lifesaver when working with partial data.
+
+By combining satisfies with utility types like `Pick<>` and `Omit<>`, you can create more focused and efficient type validations, keeping your code both clean and robust.
+
+## Performance Implications and Best Practices
+
+Okay, let's get real for a second. While satisfies is awesome, you need to use it judiciously. Here are some tips which will keep your code efficient and clean:
+
+### It's Compile-Time Only
+
+The satisfies operator works only during TypeScript's compile-time checks. This operator doesn't generate any runtime code and hence has no impact on performance. Think of it as a safety net for your types.
+
+### When to Use satisfies
+
+Use satisfies when:
+
+- You're working with complex objects containing many nested properties.
+- You need super strict type validation (e.g., `Record<>`).
+- The usual type annotations (: Type) aren't enough.
+
+### When Not to Use satisfies
+
+Skip it if:
+
+- You're just dealing with simple objects. A basic : Type annotation will do the job.
+- You want runtime validation. Then, zod or io-ts may be better suited.
+
+### Don't Go Overboard
+
+It's tempting to use satisfies for everything, but don't. Keep it for when type validation really matters. Otherwise, it will make your code hard to read and maintain.
+
+### Combine with Utility Types
+
+When you combine `satisfies` with utility types like `Partial<>` or `Pick<>` , you can create reusable, modular type definitions. This makes your code cleaner and more maintainable.
+
+## FAQs About the satisfies Operator in TypeScript
+
+Five of the most frequently asked questions about the Satisfies operator follow, along with examples that serve to make the answer obvious.
+
+### 1. What is the purpose of the satisfies operator in TypeScript?
+
+The satisfies operator checks that a value is of a certain type after assignment. It doesn't change the inferred type of the variable, but it always enforces its value to be of the type provided.
+
+```tsx
+type User = {
+  username: string;
+  age: number;
+};
+
+const joe = {
+  username: "joe_hiyden",
+  age: 30,
+} satisfies User; // asserts `joe` fits `User`
+
+console.log(joe.username); // Works fine
+```
+
+### 2. How is satisfies different from type annotations?
+
+Type annotations (: Type) explicitly set the type of a variable. satisfies, on the other hand, validates the value and lets TypeScript infer the type of the variable.
+
+```tsx
+type User = {
+  username: string;
+  age: number;
+};
+
+// Type annotation
+const annotatedUser: User = { username: "joe", age: 30 };
+
+// Using `satisfies`
+const validatedUser = {
+  username: "joe",
+  age: 30,
+} satisfies User;
+
+// `validatedUser` keeps its original inferred type:
+console.log(typeof validatedUser); // It's the same object type, not forced to `User`
+```
+
+### 3. Will satisfied work with utility types like Partial or Record?
+
+Yes! The satisfies operator works great with utility types like Partial or Record to validate objects with flexible or constrained properties.
+
+Using Partial
+
+```typescript
+type User = {
+  username: string;
+  email?: string;
+  age?: number;
+};
+
+const partialUser = {
+  username: "joe_hiyden",
+} satisfies Partial<User>; // No complaints, optional fields are fine
+
+console.log(partialUser.username); // "joe_hiyden"
+```
+
+Using Record
+
+```typescript
+type Roles = "admin" | "editor" | "viewer";
+type Permissions = Record<Roles, boolean>;
+
+const permissions = {
+  admin: true,
+  editor: false,
+  viewer: true,
+} satisfies Permissions; // Ensures all roles are covered
+```
+
+### 4. What happens when I don't specify a property if using satisfies?
+
+If there is a missing property that is required by TypeScript, then it will throw an error to ensure the object fully conformed to the provided type.
+
+```typescript
+type User = {
+  username: string;
+  email: string;
+};
+
+const incompleteUser = {
+  username: "joe_hiyden",
+  // Missing `email` here!
+} satisfies User; // Error: Property 'email' is missing
+```
+
+### 5. Can I use satisfies to validate nested object properties?
+
+Absolutely! satisfies is particularly useful for deeply nested objects. It ensures that all nested properties match the expected types.
+
+```typescript
+type Address = {
+  city: string;
+  postalCode: string | number;
+};
+
+type User = {
+  username: string;
+  address: Address;
+};
+
+const nestedUser = {
+  username: "joe_hiyden",
+  address: {
+    city: "New York",
+    postalCode: 12345,
+  },
+} satisfies User;
+
+console.log(nestedUser.address.city); // "New York"
+```
+
+If any property in address didn't match, TypeScript would catch it immediately. These FAQs cover some of the most common questions developers have about the satisfies operator.
+
 ## Summary
 
-In this post, we covered the `satisfies` operator, a `v4.9` addition to TypeScript. We discovered that TypeScript `satisfies` offers a set of features primarily aimed for type validation of assigned variable values and their nested properties and values. We illustrated through examples that the `satisfies` operator is used in conjunction with the `Record<>` utility type. In our examples, we found out that property name constraining, fulfillment associated with a `Record<>` derived type are handled well by TypeScript `satisfies`. Finally, we also saw how `satisfies` can be used to enforce partial member conformance with `Partial<>` transformation of a variable's value.
+In this post, we covered the `satisfies` operator, a `v4.9` addition to TypeScript. We discovered that TypeScript `satisfies` offers a set of features primarily aimed for type validation of assigned variable values and their nested properties and values. We illustrated through examples that the `satisfies` operator is used in conjunction with the `Record<>` utility type.
+
+In our examples, we found out that property name constraining, fulfillment associated with a `Record<>` derived type are handled well by TypeScript `satisfies`. Finally, we also saw how `satisfies` can be used to enforce partial member conformance with `Partial<>` transformation of a variable's value.
