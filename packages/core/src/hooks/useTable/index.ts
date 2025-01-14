@@ -556,9 +556,9 @@ export function useTable<
       //   lastSyncedUrlParams.current?.sorters,
       // );
       // let newSorters: CrudSort[] = [];
-      // // if last changes to internal state in sync update url state
-      // // if url state changed but did not affect internal state
-      // // for both filters & sorters
+      // // if last changes were in sync; i.e: current internal state === last url state
+      // // &&
+      // // current url state changed but did not affect current internal state
       // if (isInternalSyncWithUrlFilters && !filtersAreEqual) {
       //   // fallback to initial
       //   if (!currentUrlFilters || currentUrlFilters.length === 0) {
