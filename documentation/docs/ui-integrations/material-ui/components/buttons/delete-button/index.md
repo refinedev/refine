@@ -3,7 +3,7 @@ title: Delete
 swizzle: true
 ---
 
-`<DeleteButton>` uses Material UI's [`<LoadingButton>`](https://mui.com/material-ui/api/loading-button/#main-content) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
+`<DeleteButton>` uses Material UI's [`<Button>`](https://mui.com/material-ui/react-button) and [`<Dialog>`](https://mui.com/material-ui/react-dialog/) components.
 
 When you try to delete something, a pop-up shows up and asks for confirmation. When confirmed, it executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by your [`dataProvider`](/docs/data/data-provider).
 
