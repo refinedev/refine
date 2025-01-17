@@ -126,9 +126,9 @@ render(
 
 :::simple External Props
 
-It also accepts all props of Material UI [LoadingButton](https://mui.com/material-ui/api/loading-button/#main-content).
+It also accepts all props of Material UI [Button](https://mui.com/material-ui/react-button).
 
 :::
 
-[button]: https://mui.com/material-ui/api/loading-button/#main-content
+[button]: https://mui.com/material-ui/react-button/#loading-2
 [useexport]: /docs/core/hooks/utilities/use-export
