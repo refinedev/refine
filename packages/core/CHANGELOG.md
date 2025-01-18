@@ -1,5 +1,111 @@
 # @refinedev/core
 
+## 4.57.5
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- feat(core): add `enabled` prop to `useLoadingOvertime` and `overtimeOptions`
+
+  Added missing `enabled` prop to `useLoadingOvertime` and added ability to globally configure through `options.overtime.enabled`.
+
+  Due to the nature of calculating elapsed time, an interval is set by the `interval` prop. This was causing unwanted updates in the return value and there was no way to disable it properly.
+
+📢 **Refine Community Release** 📢
+
+- fixed: `to` query parameter is not working after login. #6582
+  From now on, the `to` query parameter will work after login. If the URL includes a `to` query parameter, the user will be redirected to the specified path after logging in.
+
+  Example:
+
+  After logout, Refine will automatically appends `to` query param to URL.
+
+  ```
+  http://localhost:3000/login?to=/any-path
+  ```
+
+  After login, it will redirect to `http://localhost:3000/any-path`
+
+  Resolves [#6582](https://github.com/refinedev/refine/issues/6582)
+
+📢 **Refine Community Release** 📢
+
+- refactor(core): remove duplicated overtime intervals caused by internally used hooks
+
+  Updated Refine's data hooks and extensions to prevent duplicated overtime intervals from being created. This uses the `enabled` prop to prevent internal hooks from registering the intervals.
+
+  Prior to this change, `useTable` was initializing its own `useLoadingOvertime` hook but also propagated the `elapsedTime` from `useList` hook which is used internally by `useTable`. This caused duplicated intervals and unwanted updates.
+
+  This now ensures a single interval is created and used for the extension hooks.
+
+📢 **Refine Community Release** 📢
+
+- fix(core): add missing checks and warnings for `ids` and `resource` props in `useMany` hook
+
+  Added checks for `ids` and `resource` props to check in runtime if they are valid or not.
+
+  `useMany` will warn if `ids` or `resource` props are missing unless the query is manually enabled through `queryOptions.enabled` prop.
+
+  [Resolves #6617](https://github.com/refinedev/refine/issues/6617)
+
+## 4.57.4
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6626](https://github.com/refinedev/refine/pull/6626) [`087039f0ccd13e9fe5bf4ef904e4f1c2df129d69`](https://github.com/refinedev/refine/commit/087039f0ccd13e9fe5bf4ef904e4f1c2df129d69) Thanks [@aliemir](https://github.com/aliemir)! - feat(core): add `enabled` prop to `useLoadingOvertime` and `overtimeOptions`
+
+  Added missing `enabled` prop to `useLoadingOvertime` and added ability to globally configure through `options.overtime.enabled`.
+
+  Due to the nature of calculating elapsed time, an interval is set by the `interval` prop. This was causing unwanted updates in the return value and there was no way to disable it properly.
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6626](https://github.com/refinedev/refine/pull/6626) [`087039f0ccd13e9fe5bf4ef904e4f1c2df129d69`](https://github.com/refinedev/refine/commit/087039f0ccd13e9fe5bf4ef904e4f1c2df129d69) Thanks [@aliemir](https://github.com/aliemir)! - refactor(core): remove duplicated overtime intervals caused by internally used hooks
+
+  Updated Refine's data hooks and extensions to prevent duplicated overtime intervals from being created. This uses the `enabled` prop to prevent internal hooks from registering the intervals.
+
+  Prior to this change, `useTable` was initializing its own `useLoadingOvertime` hook but also propagated the `elapsedTime` from `useList` hook which is used internally by `useTable`. This caused duplicated intervals and unwanted updates.
+
+  This now ensures a single interval is created and used for the extension hooks.
+
+## 4.57.3
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6618](https://github.com/refinedev/refine/pull/6618) [`5377e7d8f7ccb986c5d38352351b9b2d2c414fde`](https://github.com/refinedev/refine/commit/5377e7d8f7ccb986c5d38352351b9b2d2c414fde) Thanks [@aliemir](https://github.com/aliemir)! - fix(core): add missing checks and warnings for `ids` and `resource` props in `useMany` hook
+
+  Added checks for `ids` and `resource` props to check in runtime if they are valid or not.
+
+  `useMany` will warn if `ids` or `resource` props are missing unless the query is manually enabled through `queryOptions.enabled` prop.
+
+  [Resolves #6617](https://github.com/refinedev/refine/issues/6617)
+
+## 4.57.2
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6583](https://github.com/refinedev/refine/pull/6583) [`5ce59d0352ba5402452bb812ac0e506b3c2216df`](https://github.com/refinedev/refine/commit/5ce59d0352ba5402452bb812ac0e506b3c2216df) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fixed: `to` query parameter is not working after login. #6582
+  From now on, the `to` query parameter will work after login. If the URL includes a `to` query parameter, the user will be redirected to the specified path after logging in.
+
+  Example:
+
+  After logout, Refine will automatically appends `to` query param to URL.
+
+  ```
+  http://localhost:3000/login?to=/any-path
+  ```
+
+  After login, it will redirect to `http://localhost:3000/any-path`
+
+  Resolves [#6582](https://github.com/refinedev/refine/issues/6582)
+
 ## 4.57.1
 
 ### Patch Changes

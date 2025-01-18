@@ -4,25 +4,6 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme}>
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
-
 interface ICategory {
   id: number;
   title: string;
@@ -35,17 +16,25 @@ interface IPost {
   status: "published" | "draft" | "rejected";
   category: { id: number };
 }
+
+const Wrapper = ({ children }) => {
+  return (
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme}>
+      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
+      <MantineNotifications.NotificationsProvider position="top-right">
+        {children}
+      </MantineNotifications.NotificationsProvider>
+    </MantineCore.MantineProvider>
+  );
+};
 ```
 
-`<Create>` provides us a layout to display the page. It does not contain any logic and just adds extra functionalities like action buttons and being able to give titles to the page.
+`<Create>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 We will show what `<Create>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=420px hideCode
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create, useForm, useSelect } from "@refinedev/mantine";
@@ -106,29 +95,40 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -146,9 +146,6 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -156,37 +153,50 @@ import { Title } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
   return (
-    /* highlight-next-line */
-    <Create title={<Title order={3}>Custom Title</Title>}>
+    <Create
+      // highlight-next-line
+      title={<Title order={3}>Custom Title</Title>}
+    >
       <p>Rest of your page here</p>
     </Create>
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -196,46 +206,56 @@ render(
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
   return (
-    /* highlight-next-line */
-    <Create saveButtonProps={{ size: "xs" }}>
+    <Create
+      // highlight-next-line
+      saveButtonProps={{ size: "xs" }}
+    >
       <p>Rest of your page here</p>
     </Create>
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -248,48 +268,38 @@ The `<Create>` component reads the `resource` information from the route by defa
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import { Layout } from "@refinedev/mantine";
 // visible-block-start
 import { Create } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
   return (
-    /* highlight-next-line */
-    <Create resource="categories">
+    <Create
+      // highlight-start
+      resource="categories"
+      // highlight-end
+    >
       <p>Rest of your page here</p>
     </Create>
   );
 };
 // visible-block-end
 
-const App: React.FC = () => {
-  return (
-    <Refine
-      legacyRouterProvider={{
-        ...routerProvider,
-        // highlight-start
-        routes: [
-          {
-            element: <CustomPage />,
-            path: "/custom",
-          },
-        ],
-        // highlight-end
-      }}
-      Layout={Layout}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
-  );
-};
-
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
+      resources={[
+        {
+          name: "categories",
+          list: "/categories",
+          create: "/categories/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/custom" element={<CustomPage />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -302,47 +312,58 @@ If you have multiple resources with the same name, you can pass the `identifier`
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
-setInitialRoutes(["/posts", "/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
   return (
-    /* highlight-next-line */
-    <Create goBack="😊">
-      <p>Rest of your page here 2</p>
+    <Create
+      // highlight-start
+      goBack="😊"
+      // highlight-end
+    >
+      <p>Rest of your page here</p>
     </Create>
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -352,58 +373,63 @@ To toggle the loading state of the `<Create/>` component, you can use the `isLoa
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
 
 const PostCreate: React.FC = () => {
   return (
-    /* highlight-next-line */
-    <Create isLoading={true}>
+    <Create
+      // highlight-next-line
+      isLoading={true}
+    >
       <p>Rest of your page here</p>
     </Create>
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
-
-To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
+### breadcrumb
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create, Breadcrumb } from "@refinedev/mantine";
@@ -430,33 +456,42 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/mantine/components/breadcrumb)
 
 ### wrapperProps
 
@@ -464,9 +499,6 @@ If you want to customize the wrapper of the `<Create/>` component, you can use t
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -489,29 +521,40 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -523,9 +566,6 @@ If you want to customize the header of the `<Create/>` component, you can use th
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -548,29 +588,40 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -580,11 +631,8 @@ render(
 
 If you want to customize the content of the `<Create/>` component, you can use the `contentProps` property.
 
-```tsx live url=http://localhost:3000/posts/create previewHeight=320px
+```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -607,43 +655,47 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box/)
-
 ### headerButtons
-
-You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -667,31 +719,44 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
+
+> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/box/)
 
 ### headerButtonProps
 
@@ -699,9 +764,6 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -717,8 +779,8 @@ const PostCreate: React.FC = () => {
           padding: "16px",
         },
       }}
-      // highlight-end
       headerButtons={<Button type="primary">Custom Button</Button>}
+      // highlight-end
     >
       <p>Rest of your page here</p>
     </Create>
@@ -726,45 +788,47 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group/)
-
 ### footerButtons
-
-By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the header.
-
-You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
@@ -788,87 +852,44 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
-```
-
-Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] component.
-
-```tsx live url=http://localhost:3000/posts/create previewHeight=280px
-setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-
-// visible-block-start
-import { Create, SaveButton } from "@refinedev/mantine";
-import { Button } from "@mantine/core";
-
-const PostCreate: React.FC = () => {
-  return (
-    <Create
-      // highlight-start
-      footerButtons={({ saveButtonProps }) => (
-        <>
-          <SaveButton {...saveButtonProps} hideText />
-          <Button variant="gradient">Custom Button</Button>
-        </>
-      )}
-      // highlight-end
     >
-      <p>Rest of your page here</p>
-    </Create>
-  );
-};
-// visible-block-end
-
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      resources={[
-        {
-          name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
             </div>
-          ),
-        },
-      ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
+
+> For more information, refer to the [`Group` documentation from Mantine &#8594](https://mantine.dev/core/group/)
 
 ### footerButtonProps
 
@@ -876,12 +897,10 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live url=http://localhost:3000/posts/create previewHeight=280px
 setInitialRoutes(["/posts/create"]);
-import { Refine } from "@refinedev/core";
-import { CreateButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
 
 // visible-block-start
 import { Create } from "@refinedev/mantine";
+import { Button } from "@mantine/core";
 
 const PostCreate: React.FC = () => {
   return (
@@ -905,33 +924,44 @@ const PostCreate: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: PostCreate,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <CreateButton />
-            </div>
-          ),
+          list: "/posts",
+          create: "/posts/create",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-> For more information, refer to the [`Box` documentation from Mantine &#8594](https://mantine.dev/core/group/)
+> For more information, refer to the [`Group` documentation from Mantine &#8594](https://mantine.dev/core/group/)
 
 ## API Reference
 
@@ -939,4 +969,4 @@ render(
 
 <PropsTable module="@refinedev/mantine/Create" goBack-default="`<IconArrowLeft />`" title-default="`<Title order={3}>Create {resource.name}</Title>`"/>
 
-[save-button]: /docs/ui-integrations/chakra-ui/components/buttons/save-button
+[save-button]: /docs/ui-integrations/mantine/components/buttons/save-button

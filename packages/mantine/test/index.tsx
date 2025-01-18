@@ -72,7 +72,7 @@ export const TestWrapper: (
 
   return ({ children }: React.PropsWithChildren<{}>): React.ReactElement => {
     return (
-      <MantineProvider theme={defaultTheme}>
+      <MantineProvider withGlobalClasses={false} withCssVariables={false}>
         <BrowserRouter>
           <Refine
             // dataProvider={dataProvider ?? MockJSONServer}

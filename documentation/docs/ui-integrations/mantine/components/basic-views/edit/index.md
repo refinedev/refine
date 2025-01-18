@@ -3,51 +3,12 @@ title: Edit
 swizzle: true
 ---
 
-```tsx live shared
-window.__refineAuthStatus = false;
-
-setRefineProps({
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme}>
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
-
-interface ICategory {
-  id: number;
-  title: string;
-}
-
-interface IPost {
-  id: number;
-  title: string;
-  content: string;
-  status: "published" | "draft" | "rejected";
-  category: { id: number };
-}
-```
-
 `<Edit>` provides us a layout for displaying the page. It does not contain any logic and just adds extra functionalities like a refresh button.
 
 We will show what `<Edit>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
-
 // visible-block-start
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput } from "@mantine/core";
@@ -74,10 +35,9 @@ const PostEdit: React.FC = () => {
     },
   });
 
-  const postData = query?.data?.data;
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
-    defaultValue: postData?.category.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (
@@ -111,39 +71,50 @@ const PostEdit: React.FC = () => {
     </Edit>
   );
 };
+
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 :::simple Good to know
-
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
-
 :::
 
 ## Properties
@@ -154,10 +125,6 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -165,38 +132,52 @@ import { Title } from "@mantine/core";
 
 const PostEdit: React.FC = () => {
   return (
-    /* highlight-next-line */
-    <Edit title={<Title order={3}>Custom Title</Title>}>
+    <Edit
+      // highlight-next-line
+      title={<Title order={3}>Custom Title</Title>}
+    >
       <p>Rest of your page here</p>
     </Edit>
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -206,10 +187,6 @@ render(
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -224,47 +201,55 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-> For more information, refer to the [`<SaveButton>` documentation &#8594](/docs/ui-integrations/mantine/components/buttons/save-button)
+For more information, refer to the `<SaveButton>` documentation →
 
 ### canDelete and deleteButtonProps
 
-`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property,Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
+`canDelete` allows us to add the delete button inside the `<Edit>` component. If the resource has the `canDelete` property, Refine adds the delete button by default. If you want to customize this button you can use the `deleteButtonProps` property like the code below.
 
-When clicked on, the delete button executes the `useDelete` method provided by the `dataProvider`.
+When clicked on, the delete button executes the `useDelete` method provided by the dataProvider.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -286,87 +271,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-  );
-
-  const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-      return {
-        data: {},
-      };
-    },
-  };
-
-  window.__refineAuthStatus = true;
-
-  const authProvider = {
-    login: async () => {
-      return {
-        success: true,
-        redirectTo: "/",
-      };
-    },
-    register: async () => {
-      return {
-        success: true,
-      };
-    },
-    forgotPassword: async () => {
-      return {
-        success: true,
-      };
-    },
-    updatePassword: async () => {
-      return {
-        success: true,
-      };
-    },
-    logout: async () => {
-      window.__refineAuthStatus = false;
-      return {
-        success: true,
-        redirectTo: "/",
-      };
-    },
-    check: async () => ({
-      authenticated: window.__refineAuthStatus ? true : false,
-      redirectTo: window.__refineAuthStatus ? undefined : "/login",
-    }),
-    onError: async (error) => {
-      console.error(error);
-      return { error };
-    },
-    getPermissions: async () => ["admin"],
-    getIdentity: async () => null,
-  };
-
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={customDataProvider}
-      authProvider={authProvider}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -379,10 +319,6 @@ render(
 ```tsx live url=http://localhost:3000/custom/23 previewHeight=280px
 setInitialRoutes(["/custom/23"]);
 
-import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
 
@@ -396,31 +332,22 @@ const CustomPage: React.FC = () => {
 };
 // visible-block-end
 
-const App: React.FC = () => {
-  return (
-    <Refine
-      legacyRouterProvider={{
-        ...routerProvider,
-        // highlight-start
-        routes: [
-          {
-            element: <CustomPage />,
-            path: "/custom/:id",
-          },
-        ],
-        // highlight-end
-      }}
-      Layout={Layout}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
-  );
-};
-
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
+      resources={[
+        {
+          name: "categories",
+          list: "/categories",
+          edit: "/categories/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/custom/:id" element={<CustomPage />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -434,10 +361,6 @@ The `<Edit>` component reads the `id` information from the route by default. `re
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=350px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit, useModalForm } from "@refinedev/mantine";
@@ -472,30 +395,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="23">Edit Item 23</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="23">
+                  Edit Item 23
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -505,10 +440,6 @@ Determines which mode mutation will have while executing `<DeleteButton>`.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit, useForm } from "@refinedev/mantine";
@@ -544,31 +475,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -584,21 +526,25 @@ import dataProvider from "@refinedev/simple-rest";
 
 import { Edit } from "@refinedev/mantine";
 
-// highlight-start
 const PostEdit = () => {
-  return <Edit dataProviderName="other">...</Edit>;
+  return (
+    <Edit
+      // highlight-start
+      dataProviderName="other"
+      // highlight-end
+    >
+      {/* ... */}
+    </Edit>
+  );
 };
-// highlight-end
 
 export const App: React.FC = () => {
   return (
     <Refine
-      // highlight-start
       dataProvider={{
         default: dataProvider("https://api.fake-rest.refine.dev/"),
         other: dataProvider("https://other-api.fake-rest.refine.dev/"),
       }}
-      // highlight-end
     >
       {/* ... */}
     </Refine>
@@ -611,11 +557,7 @@ export const App: React.FC = () => {
 To customize the back button or to disable it, you can use the `goBack` property. You can pass `false` or `null` to hide the back button.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
-setInitialRoutes(["/posts", "/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
+setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -624,36 +566,48 @@ const PostEdit: React.FC = () => {
   return (
     /* highlight-next-line */
     <Edit goBack="😊">
-      <p>Rest of your page here 2</p>
+      <p>Rest of your page here</p>
     </Edit>
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -663,10 +617,6 @@ To toggle the loading state of the `<Edit/>` component, you can use the `isLoadi
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -681,43 +631,51 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mantine` package.
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit, Breadcrumb } from "@refinedev/mantine";
@@ -725,7 +683,6 @@ import { Edit, Breadcrumb } from "@refinedev/mantine";
 const PostEdit: React.FC = () => {
   return (
     <Edit
-      // highlight-start
       breadcrumb={
         <div
           style={{
@@ -736,7 +693,6 @@ const PostEdit: React.FC = () => {
           <Breadcrumb />
         </div>
       }
-      // highlight-end
     >
       <p>Rest of your page here</p>
     </Edit>
@@ -744,30 +700,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -779,10 +747,6 @@ If you want to customize the wrapper of the `<Edit/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -805,30 +769,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -840,10 +816,6 @@ If you want to customize the header of the `<Edit/>` component, you can use the 
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -851,14 +823,12 @@ import { Edit } from "@refinedev/mantine";
 const PostEdit: React.FC = () => {
   return (
     <Edit
-      // highlight-start
       headerProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
     >
       <p>Rest of your page here</p>
     </Edit>
@@ -866,30 +836,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -901,10 +883,6 @@ If you want to customize the content of the `<Edit/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -912,14 +890,12 @@ import { Edit } from "@refinedev/mantine";
 const PostEdit: React.FC = () => {
   return (
     <Edit
-      // highlight-start
       contentProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
     >
       <p>Rest of your page here</p>
     </Edit>
@@ -927,30 +903,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -966,10 +954,6 @@ If "list" resource is not defined, the [`<ListButton>`][list-button] will not re
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -995,30 +979,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1026,10 +1022,6 @@ Or, instead of using the `defaultButtons`, you can create your own buttons. If y
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit, RefreshButton, ListButton } from "@refinedev/mantine";
@@ -1058,30 +1050,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1091,10 +1095,6 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -1103,14 +1103,12 @@ import { Modal, Button } from "@mantine/core";
 const PostEdit: React.FC = () => {
   return (
     <Edit
-      // highlight-start
       headerButtonProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
       headerButtons={
         <Button variant="outline" type="primary">
           Custom Button
@@ -1123,30 +1121,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1162,10 +1172,6 @@ If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButt
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -1189,30 +1195,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1220,10 +1238,6 @@ Or, instead of using the `defaultButtons`, you can create your own buttons. If y
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit, SaveButton, DeleteButton } from "@refinedev/mantine";
@@ -1232,7 +1246,6 @@ import { Button } from "@mantine/core";
 const PostEdit: React.FC = () => {
   return (
     <Edit
-      // highlight-start
       footerButtons={({ saveButtonProps, deleteButtonProps }) => (
         <>
           <SaveButton {...saveButtonProps} hideText />
@@ -1242,7 +1255,6 @@ const PostEdit: React.FC = () => {
           <Button variant="gradient">Custom Button</Button>
         </>
       )}
-      // highlight-end
     >
       <p>Rest of your page here</p>
     </Edit>
@@ -1250,30 +1262,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1283,10 +1307,6 @@ You can customize the wrapper element of the buttons at the footer by using the 
 
 ```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Edit } from "@refinedev/mantine";
@@ -1313,30 +1333,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1346,26 +1378,18 @@ render(
 
 You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
 
-```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=420px
+```tsx live url=http://localhost:3000/posts/edit/123 previewHeight=280px
 setInitialRoutes(["/posts/edit/123"]);
-import { Refine } from "@refinedev/core";
-import { EditButton } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
+// visible-block-start
 import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import { Select, TextInput } from "@mantine/core";
 
-// visible-block-start
 const PostEdit: React.FC = () => {
   const {
     saveButtonProps,
     getInputProps,
-    refineCore: {
-      query,
-      // highlight-next-line
-      autoSaveProps,
-    },
+    refineCore: { query, autoSaveProps },
   } = useForm<IPost>({
     initialValues: {
       title: "",
@@ -1390,18 +1414,13 @@ const PostEdit: React.FC = () => {
     // highlight-end
   });
 
-  const postData = query?.data?.data;
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
-    defaultValue: postData?.category.id,
+    defaultValue: query?.data?.data?.category?.id,
   });
 
   return (
-    <Edit
-      saveButtonProps={saveButtonProps}
-      // highlight-next-line
-      autoSaveProps={autoSaveProps}
-    >
+    <Edit saveButtonProps={saveButtonProps} autoSaveProps={autoSaveProps}>
       <form>
         <TextInput
           mt={8}
@@ -1433,30 +1452,42 @@ const PostEdit: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          edit: PostEdit,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <EditButton recordItemId="123">Edit Item 123</EditButton>
-            </div>
-          ),
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMantine.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

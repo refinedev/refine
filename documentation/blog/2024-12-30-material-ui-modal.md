@@ -4,9 +4,11 @@ description: We'll learn how to use Material UI Modal to create a popup window t
 slug: material-ui-modal
 authors: doro_onome
 tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on December 30, 2024, to include common mistakes to avoid when working with Material UI Modals, such as accessibility or performance optimizations. A Frequently Asked Questions section has also been added to address common concerns.**
 
 ## Introduction
 
@@ -389,14 +391,129 @@ Here’s the result:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-09-material-ui-modal/edit-form-min.gif" alt="MUI Modal" />
 
-<br/>
+## Common Mistakes and How to Avoid Them
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+Here are a few lessons I’ve learned the hard way while working with Material UI Modals. These are some common mistakes I’ve either made myself or seen others make, along with how I’ve managed to avoid them. Hopefully, this saves you some trouble too!
+
+### Forgetting to Manage the Open State Properly
+
+Initially, I forgot to control the modal’s open state correctly. Sometimes, the modal would stay open forever—or even worse—open and close unpredictably.
+
+**How I Avoid It Now:**
+
+I always use React state to manage the modal’s state, like this:
+
+```tsx
+const [open, setOpen] = React.useState(false);
+
+<Modal open={open} onClose={() => setOpen(false)} />;
+```
+
+### Not Testing Responsiveness
+
+I built a modal that looked amazing on desktop but completely broke on mobile. Text overflowed, buttons were missing—it was chaos.
+
+**How I Avoid It Now:**
+
+I test the modal on various screen sizes, especially mobile. Although Material UI Modals are responsive by default, I sometimes tweak the styles:
+
+```tsx
+const style = {
+  width: "90%",
+  maxWidth: "400px", // Keeps it compact on larger screens
+};
+```
+
+### Overloading the Modal with Too Much Content
+
+I once built a five-field form, a sidebar, and additional instructions into a single modal. It became overwhelming and hard to use.
+
+**How I Avoid It Now:**
+
+I keep the modal focused on one task. If more space is required, I use a drawer or redirect to another page.
+
+### Ignoring Accessibility
+
+I forgot to add aria attributes, making the modal inaccessible to screen readers. It was a significant oversight.
+
+**How I Avoid It Now:**
+
+Put proper aria attributes are included, like this:
+
+```tsx
+<Modal
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+/>
+<Typography id="modal-title">Modal Header</Typography>
+<Typography id="modal-description">This is the content.</Typography>
+```
+
+### Not Optimizing Performance
+
+I created a modal with heavy animations and a large component tree, which caused noticeable lag whenever the modal opened.
+
+**How I Avoid It Now:**
+
+I use the `keepMounted` prop to avoid unnecessary re-renders and optimize the child components inside the modal:
+
+```tsx
+<Modal keepMounted />
+```
+
+### Disabling the Backdrop Click Without Thinking
+
+I disabled the backdrop click to prevent accidental closures. However, users were frustrated when they couldn’t easily close the modal.
+
+**How I Avoid It Now:**
+
+I leave the backdrop click enabled unless there’s a compelling reason to disable it. If I do disable it, I make sure to include a clear “Close” button.
+
+## Frequently Asked Questions
+
+**Q: How do I open and close a Material UI Modal?**
+A: You can use React state to control the open property.
+
+```tsx
+const [open, setOpen] = React.useState(false);
+
+<Modal open={open} onClose={() => setOpen(false)}>
+  <Box>Modal Content Here</Box>
+</Modal>;
+```
+
+**Q: Is Material UI Modal accessible?**
+A: Yes, Material UI is designed with accessibility in mind. You can use aria-labelledby and aria-describedby attributes to ensure it works well with screen readers.
+
+**Q: How do I make the Modal responsive?**
+A: You can define responsive styles to adapt the modal to different screen sizes.
+
+```tsx
+const style = {
+  width: "90%",
+  maxWidth: "400px",
+};
+```
+
+This way, the modal looks great on both mobile and desktop.
+
+**Q: Can I add animations to the Modal?**
+A: Yes, Material UI supports transitions. Wrap the content with the Fade component for animations:
+
+```tsx
+<Modal open={open}>
+  <Fade in={open}>
+    <Box>Animated Modal Content</Box>
+  </Fade>
+</Modal>
+```
+
+**Q: How can I close the Modal by clicking outside it?**
+A: That’s the default behavior. Clicking the backdrop (outside the modal) will close it. No extra code is needed unless you want to disable this feature:
+
+```tsx
+<Modal disableBackdropClick />
+```
 
 ## Conclusion
 

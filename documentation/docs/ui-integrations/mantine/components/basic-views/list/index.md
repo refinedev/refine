@@ -3,47 +3,12 @@ title: List
 swizzle: true
 ---
 
-```tsx live shared
-setRefineProps({
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme}>
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
-
-interface ICategory {
-  id: number;
-  title: string;
-}
-
-interface IPost {
-  id: number;
-  title: string;
-  content: string;
-  status: "published" | "draft" | "rejected";
-  category: { id: number };
-}
-```
-
 `<List>` provides us a layout to display the page. It does not contain any logic and just adds extra functionalities like a create button and being able to give titles to the page.
 
 We will show what `<List>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List, DateField } from "@refinedev/mantine";
@@ -132,24 +97,21 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -167,9 +129,6 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -177,7 +136,7 @@ import { Title } from "@mantine/core";
 
 const PostList: React.FC = () => {
   return (
-    /* highlight-next-line */
+    // highlight-next-line
     <List title={<Title order={3}>Custom Title</Title>}>
       <p>Rest of your page here</p>
     </List>
@@ -185,24 +144,21 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -213,16 +169,11 @@ render(
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
-import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/mantine";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { List } from "@refinedev/mantine";
 
 const CustomPage: React.FC = () => {
   return (
-    /* highlight-next-line */
     <List resource="categories">
       <p>Rest of your page here</p>
     </List>
@@ -232,28 +183,25 @@ const CustomPage: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={{
-        ...routerProvider,
-        // highlight-start
-        routes: [
-          {
-            element: <CustomPage />,
-            path: "/custom",
-          },
-        ],
-        // highlight-end
-      }}
-      Layout={Layout}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
+    <RefineMantineDemo
+      resources={[
+        {
+          name: "custom",
+          list: "/custom",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/custom" element={<CustomPage />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -269,9 +217,6 @@ Create button redirects to the create page of the resource according to the valu
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -283,8 +228,8 @@ const PostList: React.FC = () => {
     <List
       /* highlight-start */
       canCreate={permissionsData?.includes("admin")}
-      createButtonProps={{ variant: "subtle" }}
       /* highlight-end */
+      createButtonProps={{ variant: "subtle" }}
     >
       <p>Rest of your page here</p>
     </List>
@@ -293,19 +238,6 @@ const PostList: React.FC = () => {
 // visible-block-end
 
 const App = () => {
-  const simpleRestDataProvider = dataProvider(
-    "https://api.fake-rest.refine.dev",
-  );
-
-  const customDataProvider = {
-    ...simpleRestDataProvider,
-    deleteOne: async ({ resource, id, variables }) => {
-      return {
-        data: {},
-      };
-    },
-  };
-
   const authProvider = {
     login: async () => {
       return {
@@ -346,23 +278,26 @@ const App = () => {
   };
 
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={customDataProvider}
-      authProvider={authProvider}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+      authProvider={authProvider}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -372,9 +307,6 @@ To customize or disable the breadcrumb, you can use the `breadcrumb` property. B
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -395,34 +327,38 @@ const CustomBreadcrumb: React.FC = () => {
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       breadcrumb={<CustomBreadcrumb />}
-      // highlight-end
+      /* highlight-end */
     >
       <p>Rest of your page here</p>
     </List>
   );
 };
+
 // visible-block-end
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -434,9 +370,6 @@ If you want to customize the wrapper of the `<List/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -444,14 +377,14 @@ import { List } from "@refinedev/mantine";
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       wrapperProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
+      /* highlight-end */
     >
       <p>Rest of your page here</p>
     </List>
@@ -461,22 +394,25 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -488,9 +424,6 @@ If you want to customize the header of the `<List/>` component, you can use the 
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -498,14 +431,14 @@ import { List } from "@refinedev/mantine";
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       headerProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
+      /* highlight-end */
     >
       <p>Rest of your page here</p>
     </List>
@@ -515,22 +448,25 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -542,9 +478,6 @@ If you want to customize the content of the `<List/>` component, you can use the
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -552,14 +485,14 @@ import { List } from "@refinedev/mantine";
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       contentProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
+      /* highlight-end */
     >
       <p>Rest of your page here</p>
     </List>
@@ -569,22 +502,25 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -600,9 +536,6 @@ If "create" resource is not defined or [`canCreate`](#cancreate-and-createbutton
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -611,7 +544,7 @@ import { Button } from "@mantine/core";
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       headerButtons={({ defaultButtons }) => (
         <>
           {defaultButtons}
@@ -620,7 +553,7 @@ const PostList: React.FC = () => {
           </Button>
         </>
       )}
-      // highlight-end
+      /* highlight-end */
     >
       <p>Rest of your page here</p>
     </List>
@@ -630,22 +563,25 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -653,9 +589,6 @@ Or, instead of using the `defaultButtons`, you can create your own buttons. If y
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List, CreateButton } from "@refinedev/mantine";
@@ -664,7 +597,7 @@ import { Button } from "@mantine/core";
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       headerButtons={({ createButtonProps }) => (
         <>
           {createButtonProps && (
@@ -675,7 +608,7 @@ const PostList: React.FC = () => {
           </Button>
         </>
       )}
-      // highlight-end
+      /* highlight-end */
     >
       <p>Rest of your page here</p>
     </List>
@@ -685,22 +618,25 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -710,9 +646,6 @@ You can customize the wrapper element of the buttons at the header by using the 
 
 ```tsx live url=http://localhost:3000/posts previewHeight=280px
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List } from "@refinedev/mantine";
@@ -721,14 +654,14 @@ import { Button } from "@mantine/core";
 const PostList: React.FC = () => {
   return (
     <List
-      // highlight-start
+      /* highlight-start */
       headerButtonProps={{
         style: {
           border: "2px dashed cornflowerblue",
           padding: "16px",
         },
       }}
-      // highlight-end
+      /* highlight-end */
       headerButtons={
         <Button variant="outline" type="primary">
           Custom Button
@@ -743,22 +676,25 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
   );
 };
+
 render(
-  <Wrapper>
+  <ReactRouter.BrowserRouter>
     <App />
-  </Wrapper>,
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

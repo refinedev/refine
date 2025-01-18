@@ -36,10 +36,10 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@mantine/core": "^7.13.2",
-    "@mantine/form": "^7.13.2",
-    "@mantine/hooks": "^7.13.2",
-    "@mantine/notifications": "^7.13.2",
+    "@mantine/core": "^7.16.0",
+    "@mantine/form": "^7.16.0",
+    "@mantine/hooks": "^7.16.0",
+    "@mantine/notifications": "^7.16.0",
     "@refinedev/ui-types": "^1.23.1",
     "@tabler/icons-react": "^3.1.0",
     "@tanstack/react-query": "^4.10.1",
@@ -75,10 +75,10 @@
     "typescript": "^5.4.2"
   },
   "peerDependencies": {
-    "@mantine/core": "^7.13.2",
-    "@mantine/form": "^7.13.2",
-    "@mantine/hooks": "^7.13.2",
-    "@mantine/notifications": "^7.13.2",
+    "@mantine/core": "^7.16.0",
+    "@mantine/form": "^7.16.0",
+    "@mantine/hooks": "^7.16.0",
+    "@mantine/notifications": "^7.16.0",
     "@refinedev/core": "^4.46.1",
     "@types/react": "^17.0.0 || ^18.0.0",
     "@types/react-dom": "^17.0.0 || ^18.0.0",

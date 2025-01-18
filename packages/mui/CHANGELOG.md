@@ -1,5 +1,29 @@
 # @refinedev/mui
 
+## 6.0.3
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- fix: `@refinedev/mui` package gives following error: `Cannot find module '@mui/x-internals/forwardRef' from '/node_modules/@mui/x-data-grid/components/GridPagination.js'` #6615
+
+  To fix that, `@mui/x-data-grid` version is updated to `7.23.5`.
+
+  [Resolves #6615](https://github.com/refinedev/refine/issues/6615)
+
+## 6.0.2
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6616](https://github.com/refinedev/refine/pull/6616) [`51b647c5d35b943c3d154a1da128c327576b633d`](https://github.com/refinedev/refine/commit/51b647c5d35b943c3d154a1da128c327576b633d) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `@refinedev/mui` package gives following error: `Cannot find module '@mui/x-internals/forwardRef' from '/node_modules/@mui/x-data-grid/components/GridPagination.js'` #6615
+
+  To fix that, `@mui/x-data-grid` version is updated to `7.23.5`.
+
+  [Resolves #6615](https://github.com/refinedev/refine/issues/6615)
+
 ## 6.0.1
 
 ### Patch Changes

@@ -4,11 +4,29 @@ description: We'll discover the Material UI select component with examples
 slug: material-ui-select-component
 authors: doro_onome
 tags: [material-ui, react]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on December 20, 2024, to include advanced styling techniques for Material UI Select and integration with form libraries like Formik and React Hook Form. Also the introduction is updated for clarity.**
+
 ## Introduction
+
+**TL;DR:**
+
+Material UI Select is a component to create dropdowns in React that provides native customization options for styles, indicators, decorators, and grouped options.
+
+**How to use Material UI Select?**
+
+- Import the required components, Select and Option, from @mui/joy:.
+- Customize with props like placeholder, defaultValue, and indicator.
+- Sx to style for responsive and dynamic designs.
+
+**Key Features of Material-UI Select:**
+
+- Custom Indicators: Replaces the default dropdown arrow for your icon.
+- Decorators: Appending icons or elements before or after the select field.
+- Options Grouped Together: A categorization of options contributes towards better usability. 4. Clearable Select: Add a clear button for resetting the selection. 5. - - - Accessibility: Native support for ARIA attributes.
 
 Material UI provides a plethora of available styled components that assist developers in creating responsive and aesthetically pleasing web designs. One of these components is Material UI's Select, which is an input field that showcases a list of customizable options. In this tutorial, we will deeply dive into **Material UI Select**, look at its prop possibilities, and highlight its features. We will also investigate a potential use case in a real-world application.
 
@@ -18,12 +36,11 @@ Steps we'll cover:
 - [Getting Started with Material UI Select](#getting-started-with-material-ui-select)
 - [The Option component](#the-option-component)
 - [Other Material UI Select features](#other-material-ui-select-features)
-  - [Indicator](#indicator)
-  - [Decorator](#decorator)
-  - [Grouped Options](#grouped-options)
 - [Clearing the Select field](#clearing-the-select-field)
 - [Accessibility](#accessibility)
 - [Building a Sign-up Form UI with React and Material UI Select](#building-a-sign-up-form-ui-with-react-and-material-ui-select)
+- [Advanced Styling with Material UI Select](#advanced-styling-with-material-ui-select)
+- [Integration with Form Libraries (Formik and React Hook Form)](#integration-with-form-libraries-formik-and-react-hook-form)
 
 ## What is Material UI
 
@@ -526,6 +543,72 @@ And the result:
 <div className="centered-image"  >
    <img style={{alignSelf:"center"}}  src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-10-30-mui-select/mui-select-result.gif"  alt="Material UI select option" />
 </div>
+
+## Advanced Styling with Material UI Select
+
+Material UI Select has more detailed customization with the sx prop and themes. On this page you can show how to:
+
+- Override default styles for hover, focus, and selected states.
+- Integrate custom themes to maintain consistent styling throughout the application.
+- Add animations for dropdown behavior or transitions.
+
+```tsx
+<Select
+  placeholder="Choose an option"
+  sx={{
+    borderRadius: "8px",
+    boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+    "&:hover": {
+      backgroundColor: "#f0f0f0",
+    },
+    "& .Mui-selected": {
+      fontWeight: "bold",
+    },
+  }}
+>
+  <Option value="one">Option One</Option>
+  <Option value="two">Option Two</Option>
+  <Option value="three">Option Three</Option>
+</Select>
+```
+
+## Integration with Form Libraries (Formik and React Hook Form)
+
+This section would appeal to developers building forms with validation.
+
+Example with React Hook Form:
+
+```tsx
+import { useForm, Controller } from "react-hook-form";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
+
+export default function FormWithSelect() {
+  const { control, handleSubmit } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        name="carBrand"
+        control={control}
+        defaultValue=""
+        render={({ field }) => (
+          <Select {...field} placeholder="Select a Car Brand">
+            <Option value="tesla">Tesla</Option>
+            <Option value="bmw">BMW</Option>
+            <Option value="audi">Audi</Option>
+          </Select>
+        )}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+```
 
 ## Conclusion
 

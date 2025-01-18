@@ -1,5 +1,5 @@
-```tsx live url=http://localhost:3000/products previewHeight=200px hideCode
-setInitialRoutes(["/posts/create"]);
+```tsx live url=http://localhost:3000/categories previewHeight=200px hideCode
+setInitialRoutes(["/categories"]);
 // visible-block-start
 import { useSelect } from "@refinedev/core";
 
@@ -8,11 +8,11 @@ interface ICategory {
   title: string;
 }
 
-const ProductCreate: React.FC = () => {
+const Categories: React.FC = () => {
   const { options } = useSelect<ICategory>({
     resource: "categories",
     // highlight-next-line
-    defaultValue: 20,
+    defaultValue: 3,
   });
 
   return (
@@ -32,10 +32,18 @@ const ProductCreate: React.FC = () => {
 setRefineProps({
   resources: [
     {
-      name: "posts",
-      create: ProductCreate,
+      name: "categories",
+      list: "/categories",
     },
   ],
 });
-render(<RefineHeadlessDemo />);
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineHeadlessDemo>
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<Categories />} />
+      </ReactRouter.Routes>
+    </RefineHeadlessDemo>
+  </ReactRouter.BrowserRouter>,
+);
 ```

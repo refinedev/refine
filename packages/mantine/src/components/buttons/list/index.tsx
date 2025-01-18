@@ -32,12 +32,12 @@ export const ListButton: React.FC<ListButtonProps> = ({
     accessControl,
     meta,
   });
+  const { variant, styles, ...commonProps } = rest;
+
   const isDisabled = disabled || rest.disabled;
   const isHidden = hidden || rest.hidden;
 
   if (isHidden) return null;
-
-  const { variant, ...commonProps } = rest;
 
   return (
     <Anchor

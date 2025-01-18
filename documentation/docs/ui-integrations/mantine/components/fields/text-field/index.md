@@ -3,29 +3,6 @@ title: Text
 swizzle: true
 ---
 
-```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider theme={RefineMantine.LightTheme}>
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
-```
-
 This field lets you show basic text. It uses Mantine [`<Text>`](https://mantine.dev/core/text/) component.
 
 :::simple Good to know
@@ -39,9 +16,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 Let's see how to use it in a basic show page:
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
-setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@refinedev/core";
-import { ShowButton } from "@refinedev/mantine";
+setInitialRoutes(["/posts", "/posts/show/123"]);
 
 // visible-block-start
 import { useShow, useOne } from "@refinedev/core";
@@ -70,9 +45,11 @@ const PostShow: React.FC = () => {
       <Title mt="sm" order={5}>
         Category
       </Title>
+      {/* highlight-start */}
       <TextField
         value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
       />
+      {/* highlight-end */}
     </Show>
   );
 };
@@ -88,28 +65,42 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          show: PostShow,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <ShowButton recordItemId="123">Show Item 123</ShowButton>
-            </div>
-          ),
+          show: "/posts/show/:id",
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.ShowButton recordItemId="123">
+                  Show Item 123
+                </RefineMantine.ShowButton>
+              </div>
+            }
+          />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

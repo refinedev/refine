@@ -39,19 +39,27 @@ export const breadcrumbTests = (
     });
 
     it("should not render breadcrumb when the number of items is lower than minItems", async () => {
-      const { container } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
-        resources: [{ name: "posts" }],
-        routerInitialEntries: ["/posts"],
-      });
+      const { container } = renderBreadcrumb(
+        <Breadcrumb minItems={2} />,
+        {
+          resources: [{ name: "posts" }],
+          routerInitialEntries: ["/posts"],
+        },
+        TestWrapper,
+      );
 
       expect(container).toBeEmptyDOMElement();
     });
 
     it("should render breadcrumb when the number of items is greater than or equal to minItems", async () => {
-      const { getByText } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
-        resources: [{ name: "posts" }],
-        routerInitialEntries: ["/posts/create"],
-      });
+      const { getByText } = renderBreadcrumb(
+        <Breadcrumb minItems={2} />,
+        {
+          resources: [{ name: "posts" }],
+          routerInitialEntries: ["/posts/create"],
+        },
+        TestWrapper,
+      );
 
       expect(getByText("Posts")).toBeInTheDocument();
       expect(getByText("Create")).toBeInTheDocument();

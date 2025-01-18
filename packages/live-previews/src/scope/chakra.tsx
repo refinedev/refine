@@ -10,6 +10,52 @@ import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
+const ChakraProvider = ({
+  children,
+  theme,
+}: {
+  children?: React.ReactNode;
+  theme: any;
+}) => {
+  const [themeFromWindow, setThemeFromWindow] = React.useState<
+    undefined | string
+  >();
+
+  React.useEffect(() => {
+    if (typeof window !== "undefined") {
+      const messageListener = (event: MessageEvent) => {
+        if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
+          if (event.data.payload.theme) {
+            setThemeFromWindow(event.data.payload.theme);
+          }
+        }
+      };
+
+      window.addEventListener("message", messageListener);
+
+      return () => {
+        window.removeEventListener("message", messageListener);
+      };
+    }
+
+    return () => undefined;
+  }, []);
+
+  return (
+    <ChakraUI.ChakraProvider
+      theme={
+        themeFromWindow && themeFromWindow in RefineChakra.RefineThemes
+          ? RefineChakra.RefineThemes[
+              themeFromWindow as keyof typeof RefineChakra.RefineThemes
+            ]
+          : theme
+      }
+    >
+      <div style={{ padding: 16 }}>{children}</div>
+    </ChakraUI.ChakraProvider>
+  );
+};
+
 const RefineChakraDemo: React.FC<
   Partial<RefineProps> & {
     initialRoutes?: string[];
@@ -20,18 +66,13 @@ const RefineChakraDemo: React.FC<
   }
 
   return (
-    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
+    <ChakraProvider theme={RefineChakra.refineTheme}>
       <RefineCommonScope.RefineCore.Refine
-        legacyRouterProvider={
-          RefineCommonScope.LegacyRefineReactRouterV6.default
-        }
+        routerProvider={RefineCommonScope.RefineReactRouter.default}
         dataProvider={RefineCommonScope.RefineSimpleRest.default(
           SIMPLE_REST_API_URL,
         )}
         notificationProvider={RefineChakra.notificationProvider}
-        Layout={RefineChakra.Layout}
-        Sider={() => null}
-        catchAll={<RefineChakra.ErrorComponent />}
         options={{
           disableTelemetry: true,
           reactQuery: {
@@ -40,7 +81,7 @@ const RefineChakraDemo: React.FC<
         }}
         {...rest}
       />
-    </ChakraUI.ChakraProvider>
+    </ChakraProvider>
   );
 };
 
@@ -108,52 +149,6 @@ const ThemedTitleV2 = ({
       text={title || textFromProps}
       icon={svgContent ? parseHtml(svgContent) : iconFromProps}
     />
-  );
-};
-
-const ChakraProvider = ({
-  children,
-  theme,
-}: {
-  children?: React.ReactNode;
-  theme: any;
-}) => {
-  const [themeFromWindow, setThemeFromWindow] = React.useState<
-    undefined | string
-  >(undefined);
-
-  React.useEffect(() => {
-    if (typeof window !== "undefined") {
-      const messageListener = (event: MessageEvent) => {
-        if (event.data.type === "UPDATE_DYNAMIC_VALUES") {
-          if (event.data.payload.theme) {
-            setThemeFromWindow(event.data.payload.theme);
-          }
-        }
-      };
-
-      window.addEventListener("message", messageListener);
-
-      return () => {
-        window.removeEventListener("message", messageListener);
-      };
-    }
-
-    return () => undefined;
-  }, []);
-
-  return (
-    <ChakraUI.ChakraProvider
-      theme={
-        themeFromWindow && themeFromWindow in RefineChakra.RefineThemes
-          ? RefineChakra.RefineThemes[
-              themeFromWindow as keyof typeof RefineChakra.RefineThemes
-            ]
-          : theme
-      }
-    >
-      {children}
-    </ChakraUI.ChakraProvider>
   );
 };
 

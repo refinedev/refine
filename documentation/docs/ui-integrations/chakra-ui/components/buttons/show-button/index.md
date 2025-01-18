@@ -3,48 +3,6 @@ title: Show
 swizzle: true
 ---
 
-```tsx live shared
-const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: sharedRouterProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-  catchAll: <RefineChakra.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-      {children}
-    </ChakraUI.ChakraProvider>
-  );
-};
-
-const ShowPage = () => {
-  const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
-
-  return (
-    <ChakraUI.VStack alignItems="flex-start">
-      <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
-        URL Parameters:
-      </ChakraUI.Text>
-      <ChakraUI.Code>{JSON.stringify(params)}</ChakraUI.Code>
-
-      <ChakraUI.Button
-        size="sm"
-        onClick={() => list("posts")}
-        colorScheme="green"
-      >
-        Go back
-      </ChakraUI.Button>
-    </ChakraUI.VStack>
-  );
-};
-```
-
 `<ShowButton>` uses Chakra UI's [`<Button>`](https://www.chakra-ui.com/docs/components/button#usage) component. It uses the `show` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood. It can be useful when redirecting the app to the show page with the record id route of resource.
 
 :::simple Good to know
@@ -57,13 +15,11 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
   List,
-
-  // highlight-next-line
+  //highlight-next-line
   ShowButton,
 } from "@refinedev/chakra-ui";
 import {
@@ -97,9 +53,12 @@ const PostList: React.FC = () => {
         accessorKey: "id",
         cell: function render({ getValue }) {
           return (
-            // highlight-start
-            <ShowButton recordItemId={getValue() as number} />
-            // highlight-end
+            //highlight-start
+            <ShowButton
+              colorScheme="black"
+              recordItemId={getValue() as number}
+            />
+            //highlight-end
           );
         },
       },
@@ -111,50 +70,35 @@ const PostList: React.FC = () => {
     columns,
   });
 
-  //hide-start
-  List.defaultProps = {
-    headerButtons: <></>,
-  };
-  //hide-end
-
   return (
     <List>
-      <TableContainer>
-        <Table variant="simple" whiteSpace="pre-line">
+      <TableContainer whiteSpace="pre-line">
+        <Table variant="simple">
           <Thead>
             {getHeaderGroups().map((headerGroup) => (
               <Tr key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <Th key={header.id}>
-                      {!header.isPlaceholder &&
-                        flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                    </Th>
-                  );
-                })}
+                {headerGroup.headers.map((header) => (
+                  <Th key={header.id}>
+                    {!header.isPlaceholder &&
+                      flexRender(
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
+                  </Th>
+                ))}
               </Tr>
             ))}
           </Thead>
           <Tbody>
-            {getRowModel().rows.map((row) => {
-              return (
-                <Tr key={row.id}>
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <Td key={cell.id}>
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </Td>
-                    );
-                  })}
-                </Tr>
-              );
-            })}
+            {getRowModel().rows.map((row) => (
+              <Tr key={row.id}>
+                {row.getVisibleCells().map((cell) => (
+                  <Td key={cell.id}>
+                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                  </Td>
+                ))}
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>
@@ -168,24 +112,33 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
-          show: ShowPage,
+          //highlight-start
+          list: "/posts",
+          show: "/posts/show/:id",
+          //highlight-end
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -196,35 +149,42 @@ render(
 `recordItemId` is used to append the record id to the end of the route path. By default it will read the id information from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { ShowButton } from "@refinedev/chakra-ui";
 
 const MyShowComponent = () => {
+  //highlight-next-line
   return <ShowButton colorScheme="black" recordItemId="123" />;
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          show: ShowPage,
-          list: MyShowComponent,
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -235,41 +195,50 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/docs/ro
 Redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { ShowButton } from "@refinedev/chakra-ui";
 
 const MyShowComponent = () => {
+  //highlight-next-line
   return (
     <ShowButton colorScheme="black" resource="categories" recordItemId="2" />
   );
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: MyShowComponent,
+          list: "/posts",
         },
         {
+          //highlight-start
           name: "categories",
-          show: ShowPage,
+          list: "/categories",
+          show: "/categories/show/:id",
+          //highlight-end
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -287,6 +256,7 @@ If the `show` action route is defined by the pattern: `/posts/:authorId/show/:id
 
 ```tsx
 const MyComponent = () => {
+  //highlight-next-line
   return <ShowButton meta={{ authorId: "10" }} />;
 };
 ```
@@ -296,36 +266,42 @@ const MyComponent = () => {
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { ShowButton } from "@refinedev/chakra-ui";
 
 const MyShowComponent = () => {
-  return <ShowButton colorScheme="black" recordItemId="123" hideText />;
+  //highlight-next-line
+  return <ShowButton colorScheme="black" hideText recordItemId="123" />;
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: MyShowComponent,
-          show: ShowPage,
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -337,6 +313,7 @@ The `accessControl` prop can be used to skip the access control check with its `
 import { ShowButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
+  //highlight-next-line
   return (
     <ShowButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
   );
@@ -352,3 +329,9 @@ Use `resource` prop instead.
 ### Properties
 
 <PropsTable module="@refinedev/chakra-ui/ShowButton" />
+
+:::simple External Props
+
+It also accepts all props of Chakra UI [Button](https://chakra-ui.com/docs/components/button#props).
+
+:::

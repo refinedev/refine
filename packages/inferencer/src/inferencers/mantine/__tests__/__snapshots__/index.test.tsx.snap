@@ -12229,11 +12229,9 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           <div
             class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
             data-variant="default"
-            data-with-right-section="true"
-            style="--input-right-section-pointer-events: none;"
+            style="--input-right-section-pointer-events: all;"
           >
             <input
-              aria-controls=""
               aria-haspopup="listbox"
               aria-invalid="false"
               autocomplete="off"
@@ -12281,11 +12279,9 @@ exports[`MantineInferencer should match the snapshot 2`] = `
           <div
             class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
             data-variant="default"
-            data-with-right-section="true"
-            style="--input-right-section-pointer-events: none;"
+            style="--input-right-section-pointer-events: all;"
           >
             <input
-              aria-controls=""
               aria-haspopup="listbox"
               aria-invalid="false"
               autocomplete="off"
@@ -12430,8 +12426,7 @@ exports[`MantineInferencer should match the snapshot 2`] = `
             class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
             data-multiline="true"
             data-variant="default"
-            data-with-right-section="true"
-            style="--input-right-section-pointer-events: none;"
+            style="--input-right-section-pointer-events: all;"
           >
             <div
               class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
@@ -12441,7 +12436,6 @@ exports[`MantineInferencer should match the snapshot 2`] = `
                 class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
               >
                 <input
-                  aria-controls=""
                   aria-haspopup="listbox"
                   aria-invalid="false"
                   autocomplete="off"
@@ -17890,11 +17884,9 @@ exports[`MantineInferencer should match the snapshot 3`] = `
           <div
             class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
             data-variant="default"
-            data-with-right-section="true"
             style="--input-right-section-pointer-events: all;"
           >
             <input
-              aria-controls=""
               aria-haspopup="listbox"
               aria-invalid="false"
               autocomplete="off"
@@ -17910,7 +17902,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             >
               <button
                 aria-hidden="true"
-                class="mantine-focus-auto mantine-active m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                class="mantine-focus-auto mantine-active m_86a44da5 mantine-InputClearButton-root m_87cf2631 mantine-UnstyledButton-root"
                 data-size="sm"
                 data-variant="transparent"
                 style="--cb-size: var(--cb-size-sm);"
@@ -17950,11 +17942,9 @@ exports[`MantineInferencer should match the snapshot 3`] = `
           <div
             class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
             data-variant="default"
-            data-with-right-section="true"
             style="--input-right-section-pointer-events: all;"
           >
             <input
-              aria-controls=""
               aria-haspopup="listbox"
               aria-invalid="false"
               autocomplete="off"
@@ -17970,7 +17960,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             >
               <button
                 aria-hidden="true"
-                class="mantine-focus-auto mantine-active m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                class="mantine-focus-auto mantine-active m_86a44da5 mantine-InputClearButton-root m_87cf2631 mantine-UnstyledButton-root"
                 data-size="sm"
                 data-variant="transparent"
                 style="--cb-size: var(--cb-size-sm);"
@@ -18107,7 +18097,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
             data-multiline="true"
             data-variant="default"
-            data-with-right-section="true"
             style="--input-right-section-pointer-events: all;"
           >
             <div
@@ -18149,7 +18138,6 @@ exports[`MantineInferencer should match the snapshot 3`] = `
                   </button>
                 </span>
                 <input
-                  aria-controls=""
                   aria-haspopup="listbox"
                   aria-invalid="false"
                   autocomplete="off"
@@ -18168,7 +18156,7 @@ exports[`MantineInferencer should match the snapshot 3`] = `
             >
               <button
                 aria-hidden="true"
-                class="mantine-focus-auto mantine-active m_86a44da5 mantine-CloseButton-root m_87cf2631 mantine-UnstyledButton-root"
+                class="mantine-focus-auto mantine-active m_86a44da5 mantine-InputClearButton-root m_87cf2631 mantine-UnstyledButton-root"
                 data-size="sm"
                 data-variant="transparent"
                 style="--cb-size: var(--cb-size-sm);"

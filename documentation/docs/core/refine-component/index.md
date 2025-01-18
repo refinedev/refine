@@ -604,6 +604,7 @@ const App = () => (
     // highlight-start
     options={{
       overtime: {
+        enabled: true,
         interval: 1000, // default value is 1000
         onInterval: (elapsedInterval, context) => {
           console.log(elapsedInterval, context);
@@ -614,6 +615,10 @@ const App = () => (
   />
 );
 ```
+
+#### enabled
+
+If true, the elapsed time will be calculated. If set to false, the elapsed time will always be `undefined`.
 
 #### interval
 

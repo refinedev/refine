@@ -11,7 +11,7 @@ import SaveOutlined from "@mui/icons-material/SaveOutlined";
 import type { SaveButtonProps } from "../types";
 
 /**
- * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content `<LoadingButton>`} component.
+ * `<SaveButton>` uses Material UI {@link https://mui.com/material-ui/react-button `<Button>`} component.
  * It uses it for presantation purposes only. Some of the hooks that refine has adds features to this button.
  *
  * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/save-button} for more details.

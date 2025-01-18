@@ -79,3 +79,4 @@ To learn more about Live Providers, check out [Realtime](/docs/guides-concepts/r
 - [`@refine-auth/kinde-react`](https://github.com/hirenf14/refine-auth-kinde-react) - Support for [Kinde](https://kinde.com) authentication.
 - [`refine-pocketbase`](https://github.com/kruschid/refine-pocketbase) - Connector for backends created with [PocketBase](https://pocketbase.io/). Also has auth provider and live provider supports.
 - [`refine-postgrest-ts`](https://github.com/ffimnsr/refine-postgrest-ts) - Connector for [PostgREST](https://postgrest.org) backends.
+- [`refine-chakra-ui-v3-ts`](https://github.com/ffimnsr/refine-chakra-ui-v3-ts) - Integration for [Chakra UI v3](https://www.chakra-ui.com).
