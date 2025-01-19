@@ -213,16 +213,16 @@ Mantine has its own built-in notification system through [`@mantine/notification
 ```tsx title="app.tsx"
 import { Refine } from "@refinedev/core";
 import { useNotificationProvider } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 
 const App = () => {
   return (
     // `@mantine/notifications` also requires a context provider to be used
-    <NotificationsProvider position="top-right">
+    <Notifications position="top-right">
       <Refine notificationProvider={useNotificationProvider}>
         {/* ... */}
       </Refine>
-    </NotificationsProvider>
+    </Notifications>
   );
 };
 ```

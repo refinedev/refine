@@ -33,7 +33,7 @@ const AppTsxCode = /* jsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
 import { useNotificationProvider, RefineThemes } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import { HomePage } from "./home-page";
@@ -46,7 +46,7 @@ const App: React.FC = () => {
             withGlobalStyles
         >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
+            <Notifications position="top-right">
                 <Refine
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
@@ -55,7 +55,7 @@ const App: React.FC = () => {
                 >
                     <HomePage />
                 </Refine>
-            </NotificationsProvider>
+            </Notifications>
         </MantineProvider>
     );
 };

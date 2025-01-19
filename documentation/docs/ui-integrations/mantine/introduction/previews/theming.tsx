@@ -103,7 +103,7 @@ export * from "./create";
 
 const ThemeProviderTsxCode = /* jsx */ `
 import { RefineThemes } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
 export const ThemeProvider = ({ children }) => (
@@ -113,9 +113,9 @@ export const ThemeProvider = ({ children }) => (
         theme={RefineThemes.Magenta}
     >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
+        <Notifications position="top-right">
             {children}
-        </NotificationsProvider>
+        </Notifications>
     </MantineProvider>
 );
 `.trim();

@@ -73,7 +73,7 @@ import {
     useNotificationProvider,
     AuthPage
 } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import routerProvider, {
     NavigateToResource,
@@ -93,7 +93,7 @@ const App: React.FC = () => {
                 withGlobalStyles
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
+                <Notifications position="top-right">
                     <Refine
                         notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
@@ -121,7 +121,7 @@ const App: React.FC = () => {
                             </Route>
                         </Routes>
                     </Refine>
-                </NotificationsProvider>
+                </Notifications>
             </MantineProvider>
         </BrowserRouter>
     );

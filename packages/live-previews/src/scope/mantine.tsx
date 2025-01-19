@@ -115,8 +115,6 @@ const MantineProvider = ({
   return (
     <MantineCore.MantineProvider
       {...restProps}
-      withNormalizeCSS
-      withGlobalStyles
       theme={{
         ...(themeFromWindow && themeFromWindow in RefineMantine.RefineThemes
           ? RefineMantine.RefineThemes[
@@ -141,8 +139,7 @@ const RefineMantineDemo: React.FC<
 
   return (
     <MantineProvider>
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
+      <MantineNotifications.Notifications position="top-right">
         <RefineCommonScope.RefineCore.Refine
           routerProvider={RefineCommonScope.RefineReactRouter.default}
           dataProvider={RefineCommonScope.RefineSimpleRest.default(
@@ -159,7 +156,7 @@ const RefineMantineDemo: React.FC<
         >
           {children}
         </RefineCommonScope.RefineCore.Refine>
-      </MantineNotifications.NotificationsProvider>
+      </MantineNotifications.Notifications>
     </MantineProvider>
   );
 };

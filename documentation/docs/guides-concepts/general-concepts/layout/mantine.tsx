@@ -41,7 +41,7 @@ const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { Global, MantineProvider } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { Refine } from "@refinedev/core";
@@ -65,7 +65,7 @@ export default function App() {
         withGlobalStyles
       >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
+        <Notifications position="top-right">
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -100,7 +100,7 @@ export default function App() {
               </Route>
             </Routes>
           </Refine>
-        </NotificationsProvider>
+        </Notifications>
       </MantineProvider>
     </BrowserRouter>
   );

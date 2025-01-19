@@ -192,7 +192,7 @@ import {
   RefineThemes,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
@@ -205,7 +205,7 @@ const App = () => {
       theme={RefineThemes.Blue}
     >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <NotificationsProvider position="top-right">
+      <Notifications position="top-right">
         <BrowserRouter>
           <Refine
             routerProvider={routerProvider}
@@ -238,7 +238,7 @@ const App = () => {
             </Routes>
           </Refine>
         </BrowserRouter>
-      </NotificationsProvider>
+      </Notifications>
     </MantineProvider>
   );
 };
@@ -267,7 +267,7 @@ import {
   RefineThemes,
 } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
@@ -302,7 +302,7 @@ const App = () => {
       // highlight-end
     >
       <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <NotificationsProvider position="top-right">
+      <Notifications position="top-right">
         <BrowserRouter>
           <Refine
             routerProvider={routerProvider}
@@ -335,7 +335,7 @@ const App = () => {
             </Routes>
           </Refine>
         </BrowserRouter>
-      </NotificationsProvider>
+      </Notifications>
     </MantineProvider>
   );
 };
@@ -363,7 +363,7 @@ import {
   RefineThemes,
 } from "@refinedev/mantine";
 // highlight-start
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import {
   MantineProvider,
   Global,
@@ -434,7 +434,7 @@ const App = () => {
         }}
       >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
+        <Notifications position="top-right">
           <BrowserRouter>
             <Refine
               routerProvider={routerProvider}
@@ -470,7 +470,7 @@ const App = () => {
               </Routes>
             </Refine>
           </BrowserRouter>
-        </NotificationsProvider>
+        </Notifications>
       </MantineProvider>
     </ColorSchemeProvider>
   );
