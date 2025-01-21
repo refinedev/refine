@@ -80,6 +80,48 @@ export const useBreadcrumb = ({
           : composeRoute(hrefRaw, parentResource?.meta, parsed, metaFromProps)
         : undefined;
 
+      // innner route params: /:id in main-route/:id/sub-route
+      if (hrefRaw) {
+        const regex = /[^/]+\/:id\//g;
+        const hrefRegexMatch = hrefRaw.match(regex);
+
+        if (hrefRegexMatch) {
+          const matches = hrefRegexMatch.map((match) => {
+            const end = hrefRaw.indexOf(match) + match.length;
+            return hrefRaw.slice(0, end);
+          });
+
+          if (matches && parsed.pathname) {
+            const lastMatch = matches.at(-1);
+
+            if (lastMatch) {
+              const pathnameSegments = parsed.pathname
+                .split("/")
+                .filter((segment) => segment);
+              const lastMatchSegments = lastMatch
+                .split("/")
+                .filter((segment) => segment);
+
+              const urlBits: string[] = [];
+              lastMatchSegments.forEach((segment, index) => {
+                let x = segment;
+
+                if (segment !== pathnameSegments[index]) {
+                  x = pathnameSegments[index];
+                }
+
+                urlBits.push(x);
+              });
+
+              const label = urlBits.at(-1);
+              const href = [...urlBits].join("/");
+
+              breadcrumbs.push({ label: String(label), href });
+            }
+          }
+        }
+      }
+
       breadcrumbs.push({
         label:
           pickNotDeprecated(
@@ -119,6 +161,14 @@ export const useBreadcrumb = ({
     } else {
       breadcrumbs.push({
         label: translate(key, textTransformers.humanize(action)),
+      });
+    }
+
+    // add action path param to breadcrum
+    if (parsed.id) {
+      breadcrumbs.push({
+        label: String(parsed.id),
+        href: parsed.pathname,
       });
     }
   }
