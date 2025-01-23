@@ -1,5 +1,5 @@
 import { getDefaultFilter, useSubscription, useTable } from "@refinedev/core";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import {
   Table,

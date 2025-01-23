@@ -89,6 +89,7 @@ export const DocThumbsUpDownFeedbackWidget = (
       {props.children}
       <div
         className={clsx(
+          "refine-feedback-widget",
           "relative",
           "z-popover",
           "hidden md:flex",

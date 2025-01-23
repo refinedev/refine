@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useState } from "react";
 
 import { HamburgerIcon } from "./icons/hamburger";
-import { RefineLogoIcon } from "./icons/refine-logo";
 
 import { openFigma } from "../utils/open-figma";
 import { Menu } from "./common-header/menu";
@@ -14,6 +13,7 @@ import { TopAnnouncement } from "./top-announcement";
 
 import { LandingGithubStarButton } from "./landing-github-star-button";
 import SearchBar from "../theme/SearchBar";
+import { RefineLogoIcon } from "./icons/refine-logo";
 
 type Props = {
   hasSticky?: boolean;

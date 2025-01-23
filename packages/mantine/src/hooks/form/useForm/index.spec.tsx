@@ -1,6 +1,6 @@
 import React from "react";
 import { MockJSONServer, TestWrapper, render, waitFor } from "@test";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import { useForm } from ".";
 import { Select, TextInput } from "@mantine/core";
 import { useSelect } from "@hooks/useSelect";

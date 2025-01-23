@@ -13,15 +13,13 @@ import {
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
 } from "@refinedev/core";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import type {
   DataGridProps,
   GridFilterModel,
   GridSortModel,
 } from "@mui/x-data-grid";
-
-import { darken, useTheme } from "@mui/material/styles";
 
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
@@ -48,7 +46,6 @@ type DataGridPropsType = Required<
     | "onSortModelChange"
     | "filterMode"
     | "onFilterModelChange"
-    | "sx"
     | "disableRowSelectionOnClick"
     | "onStateChange"
     | "paginationMode"
@@ -162,10 +159,9 @@ export function useDataGrid<
   TSearchVariables,
   TData
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
-  const theme = useTheme();
   const liveMode = useLiveMode(liveModeFromProp);
 
-  const [columnsTypes, setColumnsType] = useState<Record<string, string>>();
+  const columnsTypes = useRef<Record<string, string>>();
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 
@@ -337,7 +333,7 @@ export function useDataGrid<
       filterMode: isServerSideFilteringEnabled ? "server" : "client",
       filterModel: transformCrudFiltersToFilterModel(
         differenceWith(muiCrudFilters, preferredPermanentFilters, isEqual),
-        columnsTypes,
+        columnsTypes.current,
       ),
       onFilterModelChange: handleFilterModelChange,
       onStateChange: (state) => {
@@ -349,24 +345,8 @@ export function useDataGrid<
         const isStateChanged = !isEqual(newColumnsTypes, columnsTypes);
 
         if (isStateChanged) {
-          setColumnsType(newColumnsTypes);
+          columnsTypes.current = newColumnsTypes;
         }
-      },
-      sx: {
-        border: "none",
-        "& .MuiDataGrid-columnHeaders": {
-          background: darken(theme.palette.background.paper, 0.05),
-          borderBottom: `1px solid ${darken(
-            theme.palette.background.paper,
-            0.1,
-          )}`,
-        },
-        "& .MuiDataGrid-cell": {
-          borderBottom: `1px solid ${darken(
-            theme.palette.background.paper,
-            0.05,
-          )}`,
-        },
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
     },

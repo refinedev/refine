@@ -1,6 +1,6 @@
 ---
 title: Strapi v4
-source: https://github.com/refinedev/refine/tree/master/packages/strapi-v4
+source: https://github.com/refinedev/refine/tree/main/packages/strapi-v4
 swizzle: true
 ---
 
@@ -80,7 +80,7 @@ However, we can use [normalizeData](https://github.com/refinedev/refine/blob/27a
 
 :::caution
 
-To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/master/packages/antd) package.
+To make this example more visual, we used the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/main/packages/antd) package. If you are using Refine headless, you need to provide the components, hooks, or helpers imported from the [`@refinedev/antd`](https://github.com/refinedev/refine/tree/main/packages/antd) package.
 
 :::
 
@@ -169,8 +169,8 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 
@@ -294,8 +294,8 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 
@@ -409,7 +409,7 @@ const App: React.FC = () => {
 render(<App />);
 ```
 
-##### Relations Population for `/me` request
+#### Relations Population for `/me` request
 
 If you need to the population for the `/me` request you can use it like this in your `authProvider`.
 
@@ -452,8 +452,8 @@ setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 
@@ -758,8 +758,8 @@ export const PostList: React.FC = () => {
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 import { ConfigProvider, Layout } from "antd";

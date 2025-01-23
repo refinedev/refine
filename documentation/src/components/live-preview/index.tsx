@@ -144,6 +144,7 @@ function Editor({ hidden, code }: { hidden: boolean; code: string }) {
       <button
         type="button"
         className={clsx(
+          "refine-live-preview-editor-toggle-button",
           "w-full",
           "focus:outline-none",
           "appearance-none",
@@ -265,7 +266,14 @@ const LivePreviewBase = ({
   const { isLast } = useDocsVersion();
 
   return (
-    <div className={clsx("overflow-hidden", "mb-6", "refine-wider-container")}>
+    <div
+      className={clsx(
+        "refine-live-preview",
+        "overflow-hidden",
+        "mb-6",
+        "refine-wider-container",
+      )}
+    >
       <>
         <BrowserWindow url={url} hasBottom={!previewOnly}>
           <div

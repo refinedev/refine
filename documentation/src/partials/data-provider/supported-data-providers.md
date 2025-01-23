@@ -5,11 +5,11 @@
 - [NestJS CRUD](/docs/data/packages/nestjsx-crud)
 - [Nestjs-Query](/docs/data/packages/nestjs-query)
 - [Airtable](/docs/data/packages/airtable)
-- [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi) - [Strapi v4](/docs/data/packages/strapi-v4)
+- [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi) - [Strapi v4](/docs/data/packages/strapi-v4)
 - [Supabase](/docs/data/packages/supabase)
 - [Hasura](/docs/data/packages/hasura)
 - [Appwrite](/docs/data/packages/appwrite)
-- [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa)
+- [Medusa](https://github.com/refinedev/refine/tree/main/packages/medusa)
 
 **Community ❤️**
 

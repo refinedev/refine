@@ -58,12 +58,13 @@ export const ImportList: React.FC = () => {
       {
         field: "category",
         headerName: "Category",
-        valueGetter: ({ row }) => {
+        valueGetter: (_, row) => {
           const value = row?.category?.id;
 
           return value;
         },
         minWidth: 300,
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryIsLoading ? (
             <>Loading...</>

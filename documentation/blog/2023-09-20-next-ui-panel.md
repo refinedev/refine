@@ -29,7 +29,6 @@ Steps we'll cover:
 - [How to create a Refine application](#how-to-create-a-refine-application)
 - [What is NextUI](#what-is-nextui)
 - [How to set up NextUI in a Refine application](#how-to-set-up-nextui-in-a-refine-application)
-- [How to build React admin dashboard with NextUI and Refine]
 - [How to build product CRUD pages with NextUI and Refine](#how-to-build-product-crud-pages-with-nextui-and-refine)
 - [How to build categories CRUD pages with NextUI and Refine](#how-to-build-categories-crud-pages-with-nextui-and-refine)
 - [Update the layout](#update-the-layout)
@@ -104,7 +103,7 @@ import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -1619,7 +1618,7 @@ import routerBindings, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { useTranslation } from "react-i18next";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
@@ -1742,7 +1741,7 @@ The list page we created in the previous sub-section has a button for creating a
 
 Let's create a component that will render when a user wants to create a new product. The component will render a form that a user can fill and submit to create a new product. To easily manage the forms, we will use react-hook-forms.
 
-The headless Refine project template we created using the refine.new platform integrates the [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/master/packages/react-hook-form) adapter out of the box. However, we need to install `react-hook-form` to use some of the features the `@refinedev/react-hook-form` adapter doesn't export.
+The headless Refine project template we created using the refine.new platform integrates the [`@refinedev/react-hook-form`](https://github.com/refinedev/refine/tree/main/packages/react-hook-form) adapter out of the box. However, we need to install `react-hook-form` to use some of the features the `@refinedev/react-hook-form` adapter doesn't export.
 
 Use the command below to install `react-hook-form`.
 

@@ -1,0 +1,75 @@
+name: Refine Registry Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      release-only:
+        type: boolean
+        default: false
+        description: "If true, tests will be skipped."
+  push:
+    paths:
+      - ".changeset/**"
+      - "packages/**"
+    branches:
+      - next
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+
+    strategy:
+      matrix:
+        node-version: [18.x]
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PANKOD_BOT_TOKEN }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "pnpm"
+      - name: Creating .npmrc
+        run: |
+          cat << EOF > "$HOME/.npmrc"
+            @refinedev:registry=https://registry.refine.dev
+            //registry.refine.dev/:_authToken=$NPM_TOKEN
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.REFINE_REGISTRY_TOKEN }}
+      - name: Install Dependencies & Build
+        run: pnpm install
+      - name: Lint
+        run: pnpm lint:ci
+        if: ${{ github.event.inputs.release-only != 'true' }}
+      - name: Syncpack
+        run: pnpm sp lint
+        if: ${{ github.event.inputs.release-only != 'true' }}
+      - name: Publint
+        run: pnpm publint:all
+        if: ${{ github.event.inputs.release-only != 'true' }}
+      - name: Are The Types Wrong
+        run: pnpm attw:all
+        if: ${{ github.event.inputs.release-only != 'true' }}
+      - name: Test
+        run: pnpm test:all
+        if: ${{ github.event.inputs.release-only != 'true' }}
+      - name: Prepare Community Edition changesets
+        run: node .github/workflows/scripts/changesets/prepare-community-edition-changesets.js
+      - name: Create Release Pull Request or Publish to npm
+        id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm version-packages
+          publish: pnpm publish-packages
+          commit: "ci(changesets): refine registry version packages"
+          title: "ci(changesets): refine registry version packages"
+          createGithubReleases: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.PANKOD_BOT_TOKEN }}
+          NPM_TOKEN: ${{ secrets.REFINE_REGISTRY_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.REFINE_REGISTRY_TOKEN }}
+          REFINE_RELEASE_TYPE: enterprise

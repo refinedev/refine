@@ -11,6 +11,8 @@ import {
 } from "@hooks";
 import type { GoConfig } from "../../contexts/router/types";
 
+export type AuthCheckParams = any;
+
 export type AuthenticatedCommonProps = {
   /**
    * Unique key to identify the component.
@@ -44,9 +46,13 @@ export type AuthenticatedCommonProps = {
    */
   loading?: React.ReactNode;
   /**
-   * Content to show if user is logged in
+   * Content to show if user is logged in.
    */
   children?: React.ReactNode;
+  /**
+   * optional params to be passed to the Auth Provider's check method via the useIsAuthenticated hook.
+   */
+  params?: AuthCheckParams;
 };
 
 export type LegacyAuthenticatedProps = {
@@ -97,6 +103,7 @@ export function Authenticated({
   children,
   fallback: fallbackContent,
   loading: loadingContent,
+  params,
 }: AuthenticatedProps | LegacyAuthenticatedProps): JSX.Element | null {
   const activeAuthProvider = useActiveAuthProvider();
   const routerType = useRouterType();
@@ -119,6 +126,7 @@ export function Authenticated({
     } = {},
   } = useIsAuthenticated({
     v3LegacyAuthProviderCompatible: isLegacyAuth,
+    params,
   });
 
   // Authentication status

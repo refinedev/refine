@@ -4,7 +4,7 @@ import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import {
   useNotificationProvider,
   RefineThemes,
@@ -12,7 +12,7 @@ import {
   ThemedLayoutV2,
 } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 import { BlogPostList } from "./pages/blog-posts/list";
 import { BlogPostCreate } from "./pages/blog-posts/create";

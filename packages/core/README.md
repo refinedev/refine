@@ -75,8 +75,8 @@ import React from "react";
 import { Refine, useMany } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
 
@@ -138,6 +138,7 @@ export const ProductList = () => {
         field: "category",
         flex: 1,
         headerName: "Category",
+        display: "flex",
         renderCell: ({ value }) =>
           isLoading
             ? "Loading..."
@@ -147,6 +148,7 @@ export const ProductList = () => {
         field: "createdAt",
         flex: 1,
         headerName: "Created at",
+        display: "flex",
         renderCell: ({ value }) => <DateField value={value} />,
       },
     ],
@@ -155,7 +157,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -184,7 +186,7 @@ You can take a look at some live examples that can be built using **Refine** fro
 ## Key Features
 
 - Refine Devtools - dive deeper into your app and provide useful insights
-- Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Nestjs-Query](https://github.com/refinedev/refine/tree/master/packages/nestjs-query), [Firebase](https://firebase.google.com/), [Sanity](https://www.sanity.io/), and [Directus](https://directus.io/).
+- Connectors for **15+ backend services** including [REST API](https://github.com/refinedev/refine/tree/main/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/main/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/main/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/main/packages/strapi-v4), [Supabase](https://github.com/refinedev/refine/tree/main/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/main/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/main/packages/appwrite), [Nestjs-Query](https://github.com/refinedev/refine/tree/main/packages/nestjs-query), [Firebase](https://firebase.google.com/), [Sanity](https://www.sanity.io/), and [Directus](https://directus.io/).
 - SSR support with Next.js & Remix and Advanced routing with any router library of your choice
 - Auto-generation of CRUD UIs based on your API data structure
 - Perfect state management & mutations with React Query

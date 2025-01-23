@@ -1,5 +1,31 @@
 # @refinedev/graphql
 
+## 7.1.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- Added error handler that will throw GraphQL errors via Tanstack query from urql
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
+## 7.1.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6506](https://github.com/refinedev/refine/pull/6506) [`d8c1d385486481b1df5e7267d7624fa62df12253`](https://github.com/refinedev/refine/commit/d8c1d385486481b1df5e7267d7624fa62df12253) Thanks [@sudeepjd](https://github.com/sudeepjd)! - Added error handler that will throw GraphQL errors via Tanstack query from urql
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6554](https://github.com/refinedev/refine/pull/6554) [`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706) Thanks [@necatiozmen](https://github.com/necatiozmen)! - chore: update package descriptions
+
 ## 7.0.0
 
 ### Major Changes

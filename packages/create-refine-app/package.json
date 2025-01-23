@@ -1,8 +1,8 @@
 {
   "name": "create-refine-app",
-  "version": "1.12.6",
+  "version": "1.12.9",
   "private": false,
-  "description": "refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Create Refine App, a scaffold tool for rapidly starting Refine applications.",
   "license": "MIT",
   "author": "refine",
   "main": "dist/index.js",
