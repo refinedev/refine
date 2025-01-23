@@ -82,7 +82,11 @@ export const useBreadcrumb = ({
 
       // innner route params: /:id in main-route/:id/sub-route
       if (hrefRaw) {
-        const regex = /[^/]+\/:id\//g;
+        // [^/]+  --> any number of letters not `/`
+        //      \/: ---> start with /:
+        //         [^/]+  --> any number of letters not `/`
+        //              \/ -- end with /
+        const regex = /[^/]+\/:[^/]+\//g;
         const hrefRegexMatch = hrefRaw.match(regex);
 
         if (hrefRegexMatch) {
