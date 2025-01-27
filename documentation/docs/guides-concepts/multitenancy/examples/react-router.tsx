@@ -30,7 +30,7 @@ const AppTsxCode = /* jsx */ `
 import { RefineEnterprise } from "@refinedev/enterprise";
 import { WithTenant } from "@refinedev/multitenancy";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 
 import { BrowserRouter, Outlet, Routes, Route } from "react-router";
 
