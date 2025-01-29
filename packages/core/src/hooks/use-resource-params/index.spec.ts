@@ -582,11 +582,11 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
                 action: "edit",
-                id: 123,
-              }) as any,
+                id: 123
+              }) as any),
           },
         }),
       });
@@ -608,9 +608,9 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
-                resource: "posts",
-              }) as any,
+              (({
+                resource: "posts"
+              }) as any),
           },
         }),
       });
@@ -632,10 +632,10 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
-                action: "list",
-              }) as any,
+                action: "list"
+              }) as any),
           },
         }),
       });
@@ -681,10 +681,10 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
-                id: "456",
-              }) as any,
+                id: "456"
+              }) as any),
           },
         }),
       });
@@ -706,10 +706,10 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
-                id: "123",
-              }) as any,
+                id: "123"
+              }) as any),
           },
         }),
       });
@@ -733,10 +733,10 @@ describe("useResourceParams Hook", () => {
             legacyRouterProvider: {
               ...mockLegacyRouterProvider(),
               useParams: () =>
-                ({
+                (({
                   resource: "posts",
-                  id: "123",
-                }) as any,
+                  id: "123"
+                }) as any),
             },
             resources: [{ name: "posts", identifier: "posts" }],
           }),
@@ -762,10 +762,10 @@ describe("useResourceParams Hook", () => {
             legacyRouterProvider: {
               ...mockLegacyRouterProvider(),
               useParams: () =>
-                ({
+                (({
                   resource: "posts",
-                  id: "123",
-                }) as any,
+                  id: "123"
+                }) as any),
             },
             resources: [{ name: "categories", identifier: "categories" }],
           }),
@@ -815,11 +815,11 @@ describe("useResourceParams Hook", () => {
             legacyRouterProvider: {
               ...mockLegacyRouterProvider(),
               useParams: () =>
-                ({
+                (({
                   resource: "posts",
                   action: "edit",
-                  id: "123",
-                }) as any,
+                  id: "123"
+                }) as any),
             },
             resources: [{ name: "categories", identifier: "categories" }],
           }),
@@ -845,11 +845,11 @@ describe("useResourceParams Hook", () => {
             legacyRouterProvider: {
               ...mockLegacyRouterProvider(),
               useParams: () =>
-                ({
+                (({
                   resource: "posts",
                   id: "123",
-                  action: "edit",
-                }) as any,
+                  action: "edit"
+                }) as any),
             },
             resources: [{ name: "posts", identifier: "posts" }],
           }),
@@ -873,11 +873,11 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 id: "123",
                 action: "edit",
-                resource: "posts",
-              }) as any,
+                resource: "posts"
+              }) as any),
           },
           resources: [{ name: "posts", identifier: "posts" }],
         }),
@@ -900,11 +900,11 @@ describe("useResourceParams Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
                 id: 123,
-                action: "edit",
-              }) as any,
+                action: "edit"
+              }) as any),
           },
         }),
       });

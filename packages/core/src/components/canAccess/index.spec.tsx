@@ -365,11 +365,11 @@ describe("CanAccess Component", () => {
                 legacyRouterProvider: {
                   ...mockLegacyRouterProvider(),
                   useParams: () =>
-                    ({
+                    (({
                       resource: "posts",
                       id: undefined,
-                      action: "list",
-                    }) as any,
+                      action: "list"
+                    }) as any),
                 },
                 accessControlProvider: {
                   can: async () => {

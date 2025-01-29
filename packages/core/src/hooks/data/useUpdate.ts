@@ -53,26 +53,26 @@ import {
 
 export type OptimisticUpdateMapType<TData, TVariables> = {
   list?:
-    | ((
-        previous: GetListResponse<TData> | null | undefined,
-        values: TVariables,
-        id: BaseKey,
-      ) => GetListResponse<TData> | null)
-    | boolean;
+  | ((
+    previous: GetListResponse<TData> | null | undefined,
+    values: TVariables,
+    id: BaseKey,
+  ) => GetListResponse<TData> | null)
+  | boolean;
   many?:
-    | ((
-        previous: GetManyResponse<TData> | null | undefined,
-        values: TVariables,
-        id: BaseKey,
-      ) => GetManyResponse<TData> | null)
-    | boolean;
+  | ((
+    previous: GetManyResponse<TData> | null | undefined,
+    values: TVariables,
+    id: BaseKey,
+  ) => GetManyResponse<TData> | null)
+  | boolean;
   detail?:
-    | ((
-        previous: GetOneResponse<TData> | null | undefined,
-        values: TVariables,
-        id: BaseKey,
-      ) => GetOneResponse<TData> | null)
-    | boolean;
+  | ((
+    previous: GetOneResponse<TData> | null | undefined,
+    values: TVariables,
+    id: BaseKey,
+  ) => GetOneResponse<TData> | null)
+  | boolean;
 };
 
 export type UpdateParams<TData, TError, TVariables> = {
@@ -344,26 +344,27 @@ export const useUpdate = <
         .resource(identifier);
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(preferLegacyKeys),
+        });
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(preferLegacyKeys),
         undefined,
-        {
-          silent: true,
-        },
-      );
+      });
 
       if (mutationModePropOrContext !== "pessimistic") {
         if (optimisticUpdateMap.list) {
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
-            resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("list")
+                .params(preferredMeta ?? {})
+                .get(preferLegacyKeys),
+            },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
                 return optimisticUpdateMap.list(previous, values, id);
@@ -394,7 +395,9 @@ export const useUpdate = <
 
         if (optimisticUpdateMap.many) {
           queryClient.setQueriesData(
-            resourceKeys.action("many").get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys.action("many").get(preferLegacyKeys),
+            },
             (previous?: GetManyResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.many === "function") {
                 return optimisticUpdateMap.many(previous, values, id);
@@ -424,11 +427,13 @@ export const useUpdate = <
 
         if (optimisticUpdateMap.detail) {
           queryClient.setQueriesData(
-            resourceKeys
-              .action("one")
-              .id(id)
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("one")
+                .id(id)
+                .params(preferredMeta ?? {})
+                .get(preferLegacyKeys),
+            },
             (previous?: GetOneResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.detail === "function") {
                 return optimisticUpdateMap.detail(previous, values, id);
@@ -640,7 +645,7 @@ export const useUpdate = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional

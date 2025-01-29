@@ -203,36 +203,36 @@ export const useMany = <
     },
     enabled: hasIds && hasResource,
     ...queryOptions,
-    onSuccess: (data) => {
-      queryOptions?.onSuccess?.(data);
+    // onSuccess: (data) => {
+    //   queryOptions?.onSuccess?.(data);
 
-      const notificationConfig =
-        typeof successNotification === "function"
-          ? successNotification(data, ids, identifier)
-          : successNotification;
+    //   const notificationConfig =
+    //     typeof successNotification === "function"
+    //       ? successNotification(data, ids, identifier)
+    //       : successNotification;
 
-      handleNotification(notificationConfig);
-    },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
+    //   handleNotification(notificationConfig);
+    // },
+    // onError: (err: TError) => {
+    //   checkError(err);
+    //   queryOptions?.onError?.(err);
 
-      const notificationConfig =
-        typeof errorNotification === "function"
-          ? errorNotification(err, ids, identifier)
-          : errorNotification;
+    //   const notificationConfig =
+    //     typeof errorNotification === "function"
+    //       ? errorNotification(err, ids, identifier)
+    //       : errorNotification;
 
-      handleNotification(notificationConfig, {
-        key: `${ids[0]}-${identifier}-getMany-notification`,
-        message: translate(
-          "notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
-        ),
-        description: err.message,
-        type: "error",
-      });
-    },
+    //   handleNotification(notificationConfig, {
+    //     key: `${ids[0]}-${identifier}-getMany-notification`,
+    //     message: translate(
+    //       "notifications.error",
+    //       { statusCode: err.statusCode },
+    //       `Error (status code: ${err.statusCode})`,
+    //     ),
+    //     description: err.message,
+    //     type: "error",
+    //   });
+    // },
     meta: {
       ...queryOptions?.meta,
       ...getXRay("useMany", preferLegacyKeys, resource?.name),

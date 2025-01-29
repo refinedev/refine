@@ -294,7 +294,7 @@ export const useCreateMany = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional

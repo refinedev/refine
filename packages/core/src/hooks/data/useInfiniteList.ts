@@ -264,7 +264,7 @@ export const useInfiniteList = <
 
       return getList<TQueryFnData>({
         resource: resource.name,
-        pagination: paginationProperties,
+        pagination: paginationProperties as Pagination,
         hasPagination: isServerPagination,
         filters: prefferedFilters,
         sort: prefferedSorters,
@@ -275,7 +275,7 @@ export const useInfiniteList = <
         return {
           data,
           total,
-          pagination: paginationProperties,
+          pagination: paginationProperties as Pagination,
           ...rest,
         };
       });

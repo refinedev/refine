@@ -193,50 +193,50 @@ export const useOne = <
       typeof queryOptions?.enabled !== "undefined"
         ? queryOptions?.enabled
         : typeof id !== "undefined",
-    onSuccess: (data) => {
-      queryOptions?.onSuccess?.(data);
+    // onSuccess: (data) => {
+    //   queryOptions?.onSuccess?.(data);
 
-      const notificationConfig =
-        typeof successNotification === "function"
-          ? successNotification(
-              data,
-              {
-                id,
-                ...combinedMeta,
-              },
-              identifier,
-            )
-          : successNotification;
+    //   const notificationConfig =
+    //     typeof successNotification === "function"
+    //       ? successNotification(
+    //           data,
+    //           {
+    //             id,
+    //             ...combinedMeta,
+    //           },
+    //           identifier,
+    //         )
+    //       : successNotification;
 
-      handleNotification(notificationConfig);
-    },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
+    //   handleNotification(notificationConfig);
+    // },
+    // onError: (err: TError) => {
+    //   checkError(err);
+    //   queryOptions?.onError?.(err);
 
-      const notificationConfig =
-        typeof errorNotification === "function"
-          ? errorNotification(
-              err,
-              {
-                id,
-                ...combinedMeta,
-              },
-              identifier,
-            )
-          : errorNotification;
+    //   const notificationConfig =
+    //     typeof errorNotification === "function"
+    //       ? errorNotification(
+    //           err,
+    //           {
+    //             id,
+    //             ...combinedMeta,
+    //           },
+    //           identifier,
+    //         )
+    //       : errorNotification;
 
-      handleNotification(notificationConfig, {
-        key: `${id}-${identifier}-getOne-notification`,
-        message: translate(
-          "notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
-        ),
-        description: err.message,
-        type: "error",
-      });
-    },
+    //   handleNotification(notificationConfig, {
+    //     key: `${id}-${identifier}-getOne-notification`,
+    //     message: translate(
+    //       "notifications.error",
+    //       { statusCode: err.statusCode },
+    //       `Error (status code: ${err.statusCode})`,
+    //     ),
+    //     description: err.message,
+    //     type: "error",
+    //   });
+    // },
     meta: {
       ...queryOptions?.meta,
       ...getXRay("useOne", preferLegacyKeys, resource?.name),

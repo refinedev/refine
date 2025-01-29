@@ -352,10 +352,10 @@ describe("useShow Hook", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
-                id: "1",
-              }) as any,
+                id: "1"
+              }) as any),
           },
         }),
       });

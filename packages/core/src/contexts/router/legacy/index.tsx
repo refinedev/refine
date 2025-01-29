@@ -5,7 +5,7 @@ import type { ILegacyRouterContext } from "./types";
 export const defaultProvider: ILegacyRouterContext = {
   useHistory: () => false,
   useLocation: () => false,
-  useParams: () => ({}) as any,
+  useParams: () => (({}) as any),
   Prompt: () => null,
   Link: () => null,
 };

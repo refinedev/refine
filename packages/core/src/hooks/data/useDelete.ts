@@ -279,24 +279,24 @@ export const useDelete = <
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(preferLegacyKeys),
+      });
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(preferLegacyKeys),
+        });
 
       if (mutationModePropOrContext !== "pessimistic") {
         // Set the previous queries to the new ones:
         queryClient.setQueriesData(
-          resourceKeys
-            .action("list")
-            .params(preferredMeta ?? {})
-            .get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys
+              .action("list")
+              .params(preferredMeta ?? {})
+              .get(preferLegacyKeys),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -313,7 +313,9 @@ export const useDelete = <
         );
 
         queryClient.setQueriesData(
-          resourceKeys.action("many").get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys.action("many").get(preferLegacyKeys),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -390,7 +392,9 @@ export const useDelete = <
       });
 
       // Remove the queries from the cache:
-      queryClient.removeQueries(context?.queryKey.detail(id));
+      queryClient.removeQueries({
+        queryKey: context?.queryKey.detail(id),
+      });
 
       const notificationConfig =
         typeof successNotification === "function"
@@ -443,7 +447,9 @@ export const useDelete = <
       });
 
       // Remove the queries from the cache:
-      queryClient.removeQueries(context?.queryKey.detail(id));
+      queryClient.removeQueries({
+        queryKey: context?.queryKey.detail(id),
+      });
     },
     onError: (
       err: TError,
@@ -494,7 +500,7 @@ export const useDelete = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   return { ...mutation, overtime: { elapsedTime } };

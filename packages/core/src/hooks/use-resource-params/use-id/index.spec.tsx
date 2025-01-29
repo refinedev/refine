@@ -39,11 +39,11 @@ describe("useId Hook", () => {
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
           useParams: () =>
-            ({
+            (({
               resource: "posts",
               action: "edit",
-              id: 123,
-            }) as any,
+              id: 123
+            }) as any),
         },
       }),
     });
@@ -69,11 +69,11 @@ describe("useId Hook", () => {
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
           useParams: () =>
-            ({
+            (({
               resource: "posts",
               action: "edit",
-              id: 456,
-            }) as any,
+              id: 456
+            }) as any),
         },
       }),
     });

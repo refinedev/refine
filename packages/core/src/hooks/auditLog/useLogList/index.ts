@@ -70,5 +70,5 @@ export const useLogList = <
     },
   });
 
-  return queryResponse;
+  return queryResponse as UseQueryResult<TData>;
 };
