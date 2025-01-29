@@ -59,6 +59,12 @@ export type {
  * @typeParam TResponseError - Custom error object that extends {@link https://refine.dev/docs/core/interface-references/#httperror `HttpError`}. Defaults to `TError`
  *
  */
+
+export {
+  CreateFormVariables,
+  ExtractFormVariables,
+  ExtractSubmissionVariables,
+} from "./types";
 export const useForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
