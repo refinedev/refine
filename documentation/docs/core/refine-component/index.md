@@ -50,7 +50,7 @@ const App = () => (
 
 Refine provides a simple interface from the `routerProvider` prop to infer the resource from route, pass, parse and sync the query parameters and handle navigation operations. This provider and its properties are optional but it is recommended to use it to get the most out of Refine. Bindings to pass to the `routerProvider` prop are provided for the following libraries:
 
-- React Router via `@refinedev/react-router-v6`
+- React Router via `@refinedev/react-router`
 - Next.js via `@refinedev/nextjs-router`
 - Remix via `@refinedev/remix-router`
 

@@ -622,7 +622,7 @@ Refine supports route parameters defined with `:param` syntax. You can use these
 
 ## Additional Components
 
-`@refinedev/react-router-v6` package also includes some additional components that can be useful in some cases.
+`@refinedev/react-router` package also includes some additional components that can be useful in some cases.
 
 ### NavigateToResource
 
