@@ -87,14 +87,20 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-setRefineProps({
-  resources: [
-    {
-      name: "posts",
-      list: PostList,
-    },
-  ],
-});
-
-render(<RefineAntdDemo />);
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
+);
 ```
