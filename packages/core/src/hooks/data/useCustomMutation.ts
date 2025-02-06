@@ -117,13 +117,8 @@ export const useCustomMutation = <
   const getMeta = useMeta();
   const { keys, preferLegacyKeys } = useKeys();
 
-  const mutation = useMutation<
-    CreateResponse<TData>,
-    TError,
-    useCustomMutationParams<TData, TError, TVariables>,
-    unknown
-  >(
-    ({
+  const mutation = useMutation({
+    mutationFn: ({
       url,
       method,
       values,
@@ -151,72 +146,70 @@ export const useCustomMutation = <
 
       throw Error("Not implemented custom on data provider.");
     },
-    {
-      onSuccess: (
-        data,
-        {
-          successNotification: successNotificationFromProp,
-          config,
-          meta,
-          metaData,
-        },
-      ) => {
-        const notificationConfig =
-          typeof successNotificationFromProp === "function"
-            ? successNotificationFromProp(data, {
-                ...config,
-                ...(pickNotDeprecated(meta, metaData) || {}),
-              })
-            : successNotificationFromProp;
 
-        handleNotification(notificationConfig);
+    onSuccess: (
+      data,
+      {
+        successNotification: successNotificationFromProp,
+        config,
+        meta,
+        metaData,
       },
-      onError: (
-        err: TError,
-        {
-          errorNotification: errorNotificationFromProp,
-          method,
-          config,
-          meta,
-          metaData,
-        },
-      ) => {
-        checkError(err);
+    ) => {
+      const notificationConfig =
+        typeof successNotificationFromProp === "function"
+          ? successNotificationFromProp(data, {
+            ...config,
+            ...(pickNotDeprecated(meta, metaData) || {}),
+          })
+          : successNotificationFromProp;
 
-        const notificationConfig =
-          typeof errorNotificationFromProp === "function"
-            ? errorNotificationFromProp(err, {
-                ...config,
-                ...(pickNotDeprecated(meta, metaData) || {}),
-              })
-            : errorNotificationFromProp;
-
-        handleNotification(notificationConfig, {
-          key: `${method}-notification`,
-          message: translate(
-            "notifications.error",
-            { statusCode: err.statusCode },
-            `Error (status code: ${err.statusCode})`,
-          ),
-          description: err.message,
-          type: "error",
-        });
-      },
-      mutationKey: keys()
-        .data()
-        .mutation("customMutation")
-        .get(preferLegacyKeys),
-      ...mutationOptions,
-      meta: {
-        ...mutationOptions?.meta,
-        ...getXRay("useCustomMutation", preferLegacyKeys),
-      },
+      handleNotification(notificationConfig);
     },
-  );
+
+    onError: (
+      err: TError,
+      {
+        errorNotification: errorNotificationFromProp,
+        method,
+        config,
+        meta,
+        metaData,
+      },
+    ) => {
+      checkError(err);
+
+      const notificationConfig =
+        typeof errorNotificationFromProp === "function"
+          ? errorNotificationFromProp(err, {
+            ...config,
+            ...(pickNotDeprecated(meta, metaData) || {}),
+          })
+          : errorNotificationFromProp;
+
+      handleNotification(notificationConfig, {
+        key: `${method}-notification`,
+        message: translate(
+          "notifications.error",
+          { statusCode: err.statusCode },
+          `Error (status code: ${err.statusCode})`,
+        ),
+        description: err.message,
+        type: "error",
+      });
+    },
+
+    ...mutationOptions,
+
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useCustomMutation", preferLegacyKeys),
+    }
+  });
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   return { ...mutation, overtime: { elapsedTime } };

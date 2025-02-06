@@ -182,7 +182,7 @@ export const useCreate = <
       const {
         resource: resourceName = resourceFromProps,
         successNotification:
-          successNotificationFromProp = successNotificationFromProps,
+        successNotificationFromProp = successNotificationFromProps,
         dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
         invalidates = invalidatesFromProps ?? ["list", "many"],
         values = valuesFromProps,
@@ -269,7 +269,7 @@ export const useCreate = <
       const {
         resource: resourceName = resourceFromProps,
         errorNotification:
-          errorNotificationFromProp = errorNotificationFromProps,
+        errorNotificationFromProp = errorNotificationFromProps,
         values = valuesFromProps,
       } = variables;
       if (!values) throw missingValuesError;
@@ -316,7 +316,7 @@ export const useCreate = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional

@@ -190,10 +190,10 @@ describe("legacy router provider", () => {
           legacyRouterProvider: {
             ...mockLegacyRouterProvider(),
             useParams: () =>
-              ({
+              (({
                 resource: "posts",
-                action: "list",
-              }) as any,
+                action: "list"
+              }) as any),
           },
         }),
       },
@@ -210,11 +210,11 @@ describe("legacy router provider", () => {
         legacyRouterProvider: {
           ...mockLegacyRouterProvider(),
           useParams: () =>
-            ({
+            (({
               resource: "posts",
               action: "show",
-              id: "1",
-            }) as any,
+              id: "1"
+            }) as any),
         },
       }),
     });

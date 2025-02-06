@@ -175,42 +175,42 @@ export const useCustom = <
           },
         }),
       ...queryOptions,
-      onSuccess: (data) => {
-        queryOptions?.onSuccess?.(data);
+      // onSuccess: (data) => {
+      //   queryOptions?.onSuccess?.(data);
 
-        const notificationConfig =
-          typeof successNotification === "function"
-            ? successNotification(data, {
-                ...config,
-                ...combinedMeta,
-              })
-            : successNotification;
+      //   const notificationConfig =
+      //     typeof successNotification === "function"
+      //       ? successNotification(data, {
+      //           ...config,
+      //           ...combinedMeta,
+      //         })
+      //       : successNotification;
 
-        handleNotification(notificationConfig);
-      },
-      onError: (err: TError) => {
-        checkError(err);
-        queryOptions?.onError?.(err);
+      //   handleNotification(notificationConfig);
+      // },
+      // onError: (err: TError) => {
+      //   checkError(err);
+      //   queryOptions?.onError?.(err);
 
-        const notificationConfig =
-          typeof errorNotification === "function"
-            ? errorNotification(err, {
-                ...config,
-                ...combinedMeta,
-              })
-            : errorNotification;
+      //   const notificationConfig =
+      //     typeof errorNotification === "function"
+      //       ? errorNotification(err, {
+      //           ...config,
+      //           ...combinedMeta,
+      //         })
+      //       : errorNotification;
 
-        handleNotification(notificationConfig, {
-          key: `${method}-notification`,
-          message: translate(
-            "notifications.error",
-            { statusCode: err.statusCode },
-            `Error (status code: ${err.statusCode})`,
-          ),
-          description: err.message,
-          type: "error",
-        });
-      },
+      //   handleNotification(notificationConfig, {
+      //     key: `${method}-notification`,
+      //     message: translate(
+      //       "notifications.error",
+      //       { statusCode: err.statusCode },
+      //       `Error (status code: ${err.statusCode})`,
+      //     ),
+      //     description: err.message,
+      //     type: "error",
+      //   });
+      // },
       meta: {
         ...queryOptions?.meta,
         ...getXRay("useCustom", preferLegacyKeys),
