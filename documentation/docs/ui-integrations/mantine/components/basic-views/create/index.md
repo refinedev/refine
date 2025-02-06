@@ -19,15 +19,11 @@ interface IPost {
 
 const Wrapper = ({ children }) => {
   return (
-    <MantineCore.MantineProvider
-      theme={RefineMantine.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
+    <MantineCore.MantineProvider theme={RefineMantine.LightTheme}>
       <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
+      <MantineNotifications.Notifications position="top-right">
         {children}
-      </MantineNotifications.NotificationsProvider>
+      </MantineNotifications.Notifications>
     </MantineCore.MantineProvider>
   );
 };

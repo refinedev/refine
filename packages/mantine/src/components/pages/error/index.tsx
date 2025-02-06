@@ -18,6 +18,7 @@ import {
   Space,
 } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
+import { useColorScheme } from "@mantine/hooks";
 
 export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
   const [errorMessage, setErrorMessage] = useState<string>();
@@ -25,6 +26,8 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
   const { push } = useNavigation();
   const go = useGo();
   const routerType = useRouterType();
+
+  const colorScheme = useColorScheme();
 
   const { resource, action } = useResource();
 
@@ -45,7 +48,7 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
 
   return (
     <Box
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -56,25 +59,24 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
       }}
     >
       <Title
-        sx={(theme) => ({
+        style={(theme) => ({
           textAlign: "center",
           fontWeight: 900,
           fontSize: 220,
           lineHeight: 1,
           color:
-            theme.colorScheme === "dark"
+            colorScheme === "dark"
               ? theme.colors.dark[4]
               : theme.colors.gray[2],
-
-          [theme.fn.smallerThan("sm")]: {
-            fontSize: 120,
-          },
+          /* [theme.fn.smallerThan("sm")]: {
+                        fontSize: 120,
+                    }, */
         })}
       >
         404
       </Title>
-      <Group spacing={4} align="center" sx={{ justifyContent: "center" }}>
-        <Text color="dimmed" size="lg" align="center" sx={{ maxWidth: 500 }}>
+      <Group gap={4} justify="center">
+        <Text color="dimmed" size="lg" ta="center" maw={500}>
           {translate(
             "pages.error.404",
             "Sorry, the page you visited does not exist.",

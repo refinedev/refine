@@ -12,8 +12,8 @@ describe("form-mantine-mutation-mode", () => {
   const fillForm = () => {
     cy.get("#title").clear().type(mockPost.title);
     cy.get("#content textarea").clear({ force: true }).type(mockPost.content);
-    cy.get("#status").click().get("#status-1").click();
-    cy.get("#categoryId").clear().get("#categoryId-1").click();
+    cy.fillMantineStatus("Draft");
+    cy.get("#categoryId").click().type("{downArrow}{enter}", { force: true });
   };
 
   const assertSuccessResponse = (response: any) => {

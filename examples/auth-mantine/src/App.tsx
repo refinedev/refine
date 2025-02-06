@@ -1,3 +1,6 @@
+import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
+
 import {
   type AuthProvider,
   Authenticated,
@@ -11,8 +14,8 @@ import {
   useNotificationProvider,
   RefineThemes,
 } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
-import { MantineProvider, Global } from "@mantine/core";
+import { Notifications } from "@mantine/notifications";
+import { MantineProvider } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   NavigateToResource,
@@ -153,137 +156,127 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <GitHubBanner />
-      <MantineProvider
-        theme={RefineThemes.Blue}
-        withNormalizeCSS
-        withGlobalStyles
-      >
-        <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
-          <Refine
-            dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-            authProvider={authProvider}
-            routerProvider={routerProvider}
-            notificationProvider={useNotificationProvider}
-            resources={[
-              {
-                name: "posts",
-                list: "/posts",
-                show: "/posts/show/:id",
-                edit: "/posts/edit/:id",
-                create: "/posts/create",
-              },
-            ]}
-            options={{
-              syncWithLocation: true,
-              warnWhenUnsavedChanges: true,
-            }}
-          >
-            <Routes>
-              <Route
-                element={
-                  <Authenticated
-                    key="authenticated-routes"
-                    fallback={<CatchAllNavigate to="/login" />}
-                  >
-                    <ThemedLayoutV2>
-                      <Outlet />
-                    </ThemedLayoutV2>
-                  </Authenticated>
-                }
-              >
-                <Route
-                  index
-                  element={<NavigateToResource resource="posts" />}
-                />
+      <MantineProvider theme={RefineThemes.Blue}>
+        <Refine
+          dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+          authProvider={authProvider}
+          routerProvider={routerProvider}
+          notificationProvider={useNotificationProvider}
+          resources={[
+            {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/:id",
+              edit: "/posts/edit/:id",
+              create: "/posts/create",
+            },
+          ]}
+          options={{
+            syncWithLocation: true,
+            warnWhenUnsavedChanges: true,
+          }}
+        >
+          <Routes>
+            <Route
+              element={
+                <Authenticated
+                  key="authenticated-routes"
+                  fallback={<CatchAllNavigate to="/login" />}
+                >
+                  <ThemedLayoutV2 Footer={GitHubBanner}>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route index element={<NavigateToResource resource="posts" />} />
 
-                <Route path="/posts">
-                  <Route index element={<PostList />} />
-                  <Route path="create" element={<PostCreate />} />
-                  <Route path="edit/:id" element={<PostEdit />} />
-                  <Route path="show/:id" element={<PostShow />} />
-                </Route>
+              <Route path="/posts">
+                <Route index element={<PostList />} />
+                <Route path="create" element={<PostCreate />} />
+                <Route path="edit/:id" element={<PostEdit />} />
+                <Route path="show/:id" element={<PostShow />} />
               </Route>
+            </Route>
 
+            <Route
+              element={
+                <Authenticated key="auth-pages" fallback={<Outlet />}>
+                  <NavigateToResource resource="posts" />
+                </Authenticated>
+              }
+            >
               <Route
+                path="/login"
                 element={
-                  <Authenticated key="auth-pages" fallback={<Outlet />}>
-                    <NavigateToResource resource="posts" />
-                  </Authenticated>
+                  <AuthPage
+                    type="login"
+                    formProps={{
+                      initialValues: {
+                        ...authCredentials,
+                      },
+                    }}
+                    providers={[
+                      {
+                        name: "google",
+                        label: "Sign in with Google",
+                        icon: <IconBrandGoogle />,
+                      },
+                      {
+                        name: "github",
+                        label: "Sign in with GitHub",
+                        icon: <IconBrandGithub />,
+                      },
+                    ]}
+                  />
                 }
-              >
-                <Route
-                  path="/login"
-                  element={
-                    <AuthPage
-                      type="login"
-                      formProps={{
-                        initialValues: {
-                          ...authCredentials,
-                        },
-                      }}
-                      providers={[
-                        {
-                          name: "google",
-                          label: "Sign in with Google",
-                          icon: <IconBrandGoogle />,
-                        },
-                        {
-                          name: "github",
-                          label: "Sign in with GitHub",
-                          icon: <IconBrandGithub />,
-                        },
-                      ]}
-                    />
-                  }
-                />
-                <Route
-                  path="/register"
-                  element={
-                    <AuthPage
-                      type="register"
-                      providers={[
-                        {
-                          name: "google",
-                          label: "Sign in with Google",
-                          icon: <IconBrandGoogle />,
-                        },
-                        {
-                          name: "github",
-                          label: "Sign in with GitHub",
-                          icon: <IconBrandGithub />,
-                        },
-                      ]}
-                    />
-                  }
-                />
-                <Route
-                  path="/forgot-password"
-                  element={<AuthPage type="forgotPassword" />}
-                />
-                <Route
-                  path="/update-password"
-                  element={<AuthPage type="updatePassword" />}
-                />
-              </Route>
+              />
+              <Route
+                path="/register"
+                element={
+                  <AuthPage
+                    type="register"
+                    providers={[
+                      {
+                        name: "google",
+                        label: "Sign in with Google",
+                        icon: <IconBrandGoogle />,
+                      },
+                      {
+                        name: "github",
+                        label: "Sign in with GitHub",
+                        icon: <IconBrandGithub />,
+                      },
+                    ]}
+                  />
+                }
+              />
+              <Route
+                path="/forgot-password"
+                element={<AuthPage type="forgotPassword" />}
+              />
+              <Route
+                path="/update-password"
+                element={<AuthPage type="updatePassword" />}
+              />
+            </Route>
 
-              <Route
-                element={
-                  <Authenticated key="catch-all">
-                    <ThemedLayoutV2>
-                      <Outlet />
-                    </ThemedLayoutV2>
-                  </Authenticated>
-                }
-              >
-                <Route path="*" element={<ErrorComponent />} />
-              </Route>
-            </Routes>
-            <UnsavedChangesNotifier />
-            <DocumentTitleHandler />
-          </Refine>
-        </NotificationsProvider>
+            <Route
+              element={
+                <Authenticated key="catch-all">
+                  <ThemedLayoutV2>
+                    <Outlet />
+                  </ThemedLayoutV2>
+                </Authenticated>
+              }
+            >
+              <Route path="*" element={<ErrorComponent />} />
+            </Route>
+          </Routes>
+          <UnsavedChangesNotifier />
+          <DocumentTitleHandler />
+        </Refine>
+        <Notifications />
       </MantineProvider>
     </BrowserRouter>
   );

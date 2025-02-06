@@ -1,10 +1,15 @@
 import React from "react";
+
 import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
-import { Avatar, Group, Header as MantineHeader, Title } from "@mantine/core";
+import { Avatar, Flex, Burger, Title } from "@mantine/core";
 
 import type { RefineLayoutHeaderProps } from "../types";
 
+import { useThemedLayoutContext } from "@hooks";
+
 export const Header: React.FC<RefineLayoutHeaderProps> = () => {
+  const { mobileSiderOpen, setMobileSiderOpen } = useThemedLayoutContext();
+
   const authProvider = useActiveAuthProvider();
   const { data: user } = useGetIdentity({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -13,11 +18,19 @@ export const Header: React.FC<RefineLayoutHeaderProps> = () => {
   const shouldRenderHeader = user && (user.name || user.avatar);
 
   return shouldRenderHeader ? (
-    <MantineHeader height={50} py={6} px="sm">
-      <Group position="right">
-        <Title order={6}>{user?.name}</Title>
+    <>
+      <Burger
+        opened={mobileSiderOpen}
+        onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
+        hiddenFrom="sm"
+        size="sm"
+      />
+      <Flex align="center" gap="sm">
+        <Title order={6} data-testid="header-user-name">
+          {user?.name}
+        </Title>
         <Avatar src={user?.avatar} alt={user?.name} radius="xl" />
-      </Group>
-    </MantineHeader>
+      </Flex>
+    </>
   ) : null;
 };
