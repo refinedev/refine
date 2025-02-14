@@ -1,5 +1,5 @@
 import React, { type PropsWithChildren, useEffect } from "react";
-import { useLoaderData } from "@remix-run/react";
+import { useLoaderData } from "react-router";
 
 import {
   useRefineContext,

@@ -1,5 +1,5 @@
 import React from "react";
-import { useLocation } from "@remix-run/react";
+import { useLocation } from "react-router";
 import { useResource } from "@refinedev/core";
 
 type RefineRoutesProps = {

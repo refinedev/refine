@@ -4,7 +4,7 @@ import {
   type ResourceRouterParams,
   type RouteAction,
 } from "@refinedev/core";
-import { useParams as useRemixParams } from "@remix-run/react";
+import { useParams as useRemixParams } from "react-router";
 
 const actions: RouteAction[] = ["clone", "create", "edit", "show"];
 

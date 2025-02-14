@@ -5,7 +5,7 @@ import {
   matchResourceFromRoute,
   type ParseResponse,
 } from "@refinedev/core";
-import { useParams, useLocation, useNavigate, Link } from "@remix-run/react";
+import { useParams, useLocation, useNavigate, Link } from "react-router";
 import qs from "qs";
 import React, { type ComponentProps, useCallback, useContext } from "react";
 import { paramsFromCurrentPath } from "./params-from-current-path";

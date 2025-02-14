@@ -1,5 +1,5 @@
 import React from "react";
-import { useBlocker } from "@remix-run/react";
+import { useBlocker } from "react-router";
 
 import type { PromptProps } from "@refinedev/core";
 

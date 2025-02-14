@@ -1,5 +1,5 @@
 import type { IRouterProvider } from "@refinedev/core";
-import { Link, useLocation, useNavigate } from "@remix-run/react";
+import { Link, useLocation, useNavigate } from "react-router";
 
 import { Prompt } from "./prompt";
 import { useParams } from "./useParams";

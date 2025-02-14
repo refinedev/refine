@@ -1,5 +1,5 @@
 import type { LegacyAuthProvider } from "@refinedev/core";
-import { redirect } from "@remix-run/node";
+import { redirect } from "react-router";
 
 export const checkAuthentication = async (
   authProvider: LegacyAuthProvider,
