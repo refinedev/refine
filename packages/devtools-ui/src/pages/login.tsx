@@ -5,7 +5,7 @@ import {
 } from "@refinedev/devtools-shared";
 import clsx from "clsx";
 import React from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 
 import { FeatureSlide, FeatureSlideMobile } from "src/components/feature-slide";
 import { GithubIcon } from "src/components/icons/github";

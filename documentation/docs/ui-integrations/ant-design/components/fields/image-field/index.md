@@ -15,7 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 Let's see how we can use `<ImageField>` with the example in the edit page:
 
-```tsx live
+```tsx live previewHeight=280px url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   List,
@@ -32,7 +34,7 @@ const PostList: React.FC = () => {
     <List>
       <Table {...tableProps} rowKey="id">
         <Table.Column dataIndex="id" title="ID" />
-        <Table.Column dataIndex="title" title="Title" width="50%" />
+        <Table.Column dataIndex="title" title="Title" />
         <Table.Column<IPost>
           title="Image"
           dataIndex="image"
@@ -58,21 +60,33 @@ interface IPost {
   image: [
     {
       url: string;
-      name: string;
     },
   ];
 }
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <PostList />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

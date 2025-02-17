@@ -19,7 +19,7 @@ import {
 import InputMask from "react-input-mask";
 import type { ICourier, IStore, IVehicle } from "../../interfaces";
 import { useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { CourierFormItemAvatar } from "../../components";
 
 export const CourierCreate = () => {

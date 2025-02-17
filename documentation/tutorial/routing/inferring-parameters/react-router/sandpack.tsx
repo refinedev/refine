@@ -25,7 +25,7 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 const ListProductsWithInference = /* tsx */ `
 import { useTable, useMany, useNavigation } from "@refinedev/core";
 
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {

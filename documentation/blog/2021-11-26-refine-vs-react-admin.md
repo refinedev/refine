@@ -582,13 +582,13 @@ Here we only make requests for queries that are necessary. As you can see, all y
 
 Connects to any REST or GraphQL custom backend.
 
-- NestJs CRUD: [https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/master/examples/data-provider-nestjsx-crud)
-- Airtable: [https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/master/examples/data-provider-airtable)
-- Strapi: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi)
-- Strapi v4: [https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- Supabase: [https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
-- Hasura: [https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/master/examples/data-provider-hasura)
-- Appwrite: [https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/master/examples/data-provider-appwrite)
+- NestJs CRUD: [https://github.com/refinedev/refine/tree/main/examples/data-provider-nestjsx-crud](https://github.com/refinedev/refine/tree/main/examples/data-provider-nestjsx-crud)
+- Airtable: [https://github.com/refinedev/refine/tree/main/examples/data-provider-airtable](https://github.com/refinedev/refine/tree/main/examples/data-provider-airtable)
+- Strapi: [https://github.com/refinedev/refine/tree/main/examples/data-provider-strapi](https://github.com/refinedev/refine/tree/main/examples/data-provider-strapi)
+- Strapi v4: [https://github.com/refinedev/refine/tree/main/examples/data-provider-strapi-v4](https://github.com/refinedev/refine/tree/main/examples/data-provider-strapi-v4)
+- Supabase: [https://github.com/refinedev/refine/tree/main/examples/data-provider-supabase](https://github.com/refinedev/refine/tree/main/examples/data-provider-supabase)
+- Hasura: [https://github.com/refinedev/refine/tree/main/examples/data-provider-hasura](https://github.com/refinedev/refine/tree/main/examples/data-provider-hasura)
+- Appwrite: [https://github.com/refinedev/refine/tree/main/examples/data-provider-appwrite](https://github.com/refinedev/refine/tree/main/examples/data-provider-appwrite)
 
 ### Customization
 

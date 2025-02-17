@@ -7,17 +7,17 @@ export default function LayoutNextjs() {
       showNavigator
       hidePreview
       dependencies={{
-        "@refinedev/mui": "5.0.0",
+        "@refinedev/mui": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
+        "@refinedev/react-router": "latest",
         "@refinedev/react-hook-form": "^4.8.12",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
-        "@mui/lab": "^5.0.0-alpha.85",
-        "@mui/material": "^5.14.2",
+        "@mui/lab": "^6.0.0-beta.14",
+        "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^6.6.0",
+        "@mui/x-data-grid": "^7.23.5",
         "@refinedev/nextjs-router": "latest",
       }}
       // template="nextjs"
@@ -104,7 +104,7 @@ export default function ProductList() {
 
   return (
     <List>
-        <DataGrid {...dataGridProps} columns={columns} autoHeight />
+        <DataGrid {...dataGridProps} columns={columns}  />
     </List>
   );
 };

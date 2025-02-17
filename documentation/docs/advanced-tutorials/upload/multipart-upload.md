@@ -6,9 +6,9 @@ title: Multipart Upload
 ```tsx live shared
 import { Refine } from "@refinedev/core";
 import { AuthPage, RefineThemes, ThemedLayoutV2, ErrorComponent, useNotificationProvider } from "@refinedev/antd";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { ConfigProvider } from "antd";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 const API_URL = "https://api.fake-rest.refine.dev";

@@ -150,7 +150,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -285,7 +285,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -350,7 +350,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -417,7 +417,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -484,7 +484,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row)=> {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -549,7 +549,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -604,7 +604,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;
@@ -658,7 +658,7 @@ export const renderer = ({
 
       const valueGetterProperty =
         field.accessor && !field.multiple && !Array.isArray(field.accessor)
-          ? `valueGetter: ({ row }) => {
+          ? `valueGetter: (_, row) => {
             const value = ${accessor("row", field.key, field.accessor, false)};
 
             return value;

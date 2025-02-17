@@ -1,9 +1,7 @@
 import React from "react";
-import * as ReactRouterDom from "react-router-dom";
+import * as ReactRouter from "react-router";
 import type * as RefineCoreTypes from "@refinedev/core";
-import { MemoryRouterComponent } from "@refinedev/react-router-v6/legacy";
-import * as LegacyRefineReactRouterV6Base from "@refinedev/react-router-v6/legacy";
-import * as RefineReactRouterV6Base from "@refinedev/react-router-v6";
+import * as RefineReactRouter from "@refinedev/react-router";
 import * as RefineSimpleRest from "@refinedev/simple-rest";
 import * as RefineReactHookForm from "@refinedev/react-hook-form";
 import * as RefineReactTable from "@refinedev/react-table";
@@ -104,48 +102,15 @@ const setRefineProps = (
   }
 };
 
-const DemoMemoryRouterComponent = (
-  props: React.ComponentProps<typeof MemoryRouterComponent>,
-): JSX.Element => {
-  return (
-    <MemoryRouterComponent
-      {...props}
-      {...(typeof window !== "undefined" ? window.routerSettings : {})}
-    />
-  );
-};
-
 const DemoMemoryRouter = (
-  props: React.ComponentProps<typeof ReactRouterDom.MemoryRouter>,
+  props: React.ComponentProps<typeof ReactRouter.MemoryRouter>,
 ): JSX.Element => {
   return (
-    <ReactRouterDom.MemoryRouter
+    <ReactRouter.MemoryRouter
       {...props}
       {...(typeof window !== "undefined" ? window.routerSettings : {})}
     />
   );
-};
-
-const LegacyRefineReactRouterV6 = {
-  ...LegacyRefineReactRouterV6Base,
-  MemoryRouterComponent: DemoMemoryRouterComponent,
-  default: {
-    ...LegacyRefineReactRouterV6Base.default,
-    RouterComponent: DemoMemoryRouterComponent,
-  },
-};
-
-/**
- * @deprecated please use `setInitialRoutes` instead
- */
-const LegacyRefineDemoReactRouterV6 = (
-  initialRoutes?: string[],
-): RefineCoreTypes.IRouterProvider => {
-  if (initialRoutes) {
-    setInitialRoutes(initialRoutes);
-  }
-
-  return LegacyRefineReactRouterV6.default;
 };
 
 const RefineHeadlessDemo: React.FC<
@@ -159,7 +124,7 @@ const RefineHeadlessDemo: React.FC<
 
   return (
     <Refine
-      legacyRouterProvider={LegacyRefineReactRouterV6.default}
+      routerProvider={RefineReactRouter.default}
       dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
       options={{
         disableTelemetry: true,
@@ -182,8 +147,8 @@ export const RefineCommonScope = {
     ExternalNavigationProvider,
     Refine,
   },
-  ReactRouterDom: {
-    ...ReactRouterDom,
+  ReactRouter: {
+    ...ReactRouter,
     BrowserRouter: DemoMemoryRouter,
   },
   // Data
@@ -191,9 +156,7 @@ export const RefineCommonScope = {
   // Utilities
   setInitialRoutes,
   setRefineProps,
-  RefineReactRouterV6: RefineReactRouterV6Base,
-  LegacyRefineReactRouterV6,
-  LegacyRefineDemoReactRouterV6,
+  RefineReactRouter,
   // UI
   RefineHeadlessDemo,
   // Other

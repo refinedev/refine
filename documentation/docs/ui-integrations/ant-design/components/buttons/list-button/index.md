@@ -15,7 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live url=http://localhost:3000/posts/show/123
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts/show/123"]);
+
 // visible-block-start
 import { useShow } from "@refinedev/core";
 import {
@@ -51,22 +53,34 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/show/123"]}
-    resources={[
-      {
-        name: "posts",
-        show: PostShow,
-        list: () => {
-          return (
-            <RefineAntd.List>
-              <p>Your list page here</p>
-            </RefineAntd.List>
-          );
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
         },
-      },
-    ]}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={<div>Your list page here...</div>}
+          />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -78,8 +92,8 @@ The button text is defined automatically by Refine based on the `resource` defin
 
 The redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/"]);
 
 // visible-block-start
 import { ListButton } from "@refinedev/antd";
@@ -91,25 +105,33 @@ const MyListComponent = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        list: () => {
-          return (
-            <RefineAntd.List>
-              <p>Your list page here</p>
-            </RefineAntd.List>
-          );
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "categories",
+          list: "/categories",
         },
-      },
-    ]}
-    DashboardPage={MyListComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyListComponent />} />
+          <ReactRouter.Route
+            path="/categories"
+            element={<div>Your list page here...</div>}
+          />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -135,13 +157,16 @@ const MyComponent = () => {
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live previewHeight=120px
+setInitialRoutes(["/"]);
+
 // visible-block-start
 import { ListButton } from "@refinedev/antd";
 
 const MyListComponent = () => {
   return (
     <ListButton
+      resource="posts"
       // highlight-next-line
       hideText={true}
     />
@@ -151,22 +176,33 @@ const MyListComponent = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return (
-            <RefineAntd.List>
-              <p>Your list page here</p>
-            </RefineAntd.List>
-          );
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
         },
-      },
-    ]}
-    DashboardPage={MyListComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyListComponent />} />
+          <ReactRouter.Route
+            path="/posts"
+            element={<div>Your list page here...</div>}
+          />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -179,7 +215,12 @@ import { ListButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
   return (
-    <ListButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+    <ListButton
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+    />
   );
 };
 ```

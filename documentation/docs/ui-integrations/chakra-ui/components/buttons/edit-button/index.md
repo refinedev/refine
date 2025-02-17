@@ -3,48 +3,6 @@ title: Edit
 swizzle: true
 ---
 
-```tsx live shared
-const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: sharedRouterProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-  catchAll: <RefineChakra.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-      {children}
-    </ChakraUI.ChakraProvider>
-  );
-};
-
-const EditPage = () => {
-  const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
-
-  return (
-    <ChakraUI.VStack alignItems="flex-start">
-      <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
-        URL Parameters:
-      </ChakraUI.Text>
-      <ChakraUI.Code>{JSON.stringify(params)}</ChakraUI.Code>
-
-      <ChakraUI.Button
-        size="sm"
-        onClick={() => list("posts")}
-        colorScheme="green"
-      >
-        Go back
-      </ChakraUI.Button>
-    </ChakraUI.VStack>
-  );
-};
-```
-
 `<EditButton>` uses Chakra UI's [`<Button>`](https://www.chakra-ui.com/docs/components/button#usage) component. It uses the `edit` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood. It can be useful when redirecting the app to the edit page with the record id route of resource.
 
 :::simple Good to know
@@ -55,14 +13,12 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live url=http://localhost:3000 previewHeight=420px hideCode
+```tsx live previewHeight=360px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@refinedev/core";
 
 // visible-block-start
 import {
   List,
-
   // highlight-next-line
   EditButton,
 } from "@refinedev/chakra-ui";
@@ -107,11 +63,7 @@ const PostList: React.FC = () => {
     [],
   );
 
-  const {
-    getHeaderGroups,
-    getRowModel,
-    refineCore: { setCurrent, pageCount, current },
-  } = useTable({
+  const { getHeaderGroups, getRowModel } = useTable({
     columns,
   });
 
@@ -166,24 +118,53 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
+const EditPage = () => {
+  const { list } = RefineCore.useNavigation();
+  const parsed = RefineCore.useParsed();
   return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
+    <ChakraUI.VStack alignItems="flex-start">
+      <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </ChakraUI.Text>
+      <ChakraUI.Code>{JSON.stringify(parsed, null, 2)}</ChakraUI.Code>
+
+      <ChakraUI.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
+        Go back
+      </ChakraUI.Button>
+    </ChakraUI.VStack>
+  );
+};
+
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
-          edit: EditPage,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="edit/:id" element={<EditPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -193,80 +174,134 @@ render(
 
 `recordItemId` is used to append the record id to the end of the route path.
 
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+```tsx live previewHeight=160px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { EditButton } from "@refinedev/chakra-ui";
 
 const MyEditComponent = () => {
-  return <EditButton colorScheme="black" recordItemId="123" />;
+  return <EditButton recordItemId="123" />;
 };
 // visible-block-end
 
-const App = () => {
+const EditPage = () => {
+  const { list } = RefineCore.useNavigation();
+  const parsed = RefineCore.useParsed();
   return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyEditComponent,
-          edit: EditPage,
-        },
-      ]}
-    />
+    <ChakraUI.VStack alignItems="flex-start">
+      <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </ChakraUI.Text>
+      <ChakraUI.Code>{JSON.stringify(parsed, null, 2)}</ChakraUI.Code>
+
+      <ChakraUI.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
+        Go back
+      </ChakraUI.Button>
+    </ChakraUI.VStack>
   );
 };
 
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path="edit/:id" element={<EditPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 ### resource
 
-Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
+`resource` is used to redirect the app to the `edit` action path of the given resource name. By default, the app redirects to the inferred resource's `edit` action path.
 
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+```tsx live previewHeight=160px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { EditButton } from "@refinedev/chakra-ui";
 
 const MyEditComponent = () => {
-  return (
-    <EditButton colorScheme="black" resource="categories" recordItemId="2" />
-  );
+  return <EditButton resource="categories" recordItemId="123" />;
 };
 // visible-block-end
 
-const App = () => {
+const CategoryEdit = () => {
+  const { list } = RefineCore.useNavigation();
+  const parsed = RefineCore.useParsed();
   return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyEditComponent,
-        },
-        {
-          name: "categories",
-          edit: EditPage,
-        },
-      ]}
-    />
+    <ChakraUI.VStack alignItems="flex-start">
+      <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </ChakraUI.Text>
+      <ChakraUI.Code>{JSON.stringify(parsed, null, 2)}</ChakraUI.Code>
+
+      <ChakraUI.Button
+        size="sm"
+        onClick={() => list("categories")}
+        colorScheme="green"
+      >
+        Go back
+      </ChakraUI.Button>
+    </ChakraUI.VStack>
   );
 };
 
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          edit: "/categories/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/categories"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path="edit/:id" element={<CategoryEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -274,7 +309,7 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/ro
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
-> For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
+> For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
 ### meta
 
@@ -292,50 +327,88 @@ const MyComponent = () => {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+```tsx live previewHeight=160px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { EditButton } from "@refinedev/chakra-ui";
 
 const MyEditComponent = () => {
-  return <EditButton colorScheme="black" recordItemId="123" hideText />;
+  return (
+    <EditButton
+      // highlight-next-line
+      hideText={true}
+      recordItemId="123"
+    />
+  );
 };
 // visible-block-end
 
-const App = () => {
+const EditPage = () => {
+  const { list } = RefineCore.useNavigation();
+  const parsed = RefineCore.useParsed();
   return (
-    <Refine
-      resources={[
-        {
-          name: "posts",
-          list: MyEditComponent,
-          edit: EditPage,
-        },
-      ]}
-    />
+    <ChakraUI.VStack alignItems="flex-start">
+      <ChakraUI.Text as="i" color="gray.700" fontSize="sm">
+        URL Parameters:
+      </ChakraUI.Text>
+      <ChakraUI.Code>{JSON.stringify(parsed, null, 2)}</ChakraUI.Code>
+
+      <ChakraUI.Button
+        size="sm"
+        onClick={() => list("posts")}
+        colorScheme="green"
+      >
+        Go back
+      </ChakraUI.Button>
+    </ChakraUI.VStack>
   );
 };
 
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path="edit/:id" element={<EditPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 ### accessControl
 
-The `accessControl` prop can be used to skip the access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
+This prop can be used to skip access control check with its `enabled` property or to hide the button when the user does not have the permission to access the resource with `hideIfUnauthorized` property. This is relevant only when an [`accessControlProvider`](/docs/authorization/access-control-provider) is provided to [`<Refine/>`](/docs/core/refine-component)
 
 ```tsx
 import { EditButton } from "@refinedev/chakra-ui";
 
 export const MyListComponent = () => {
   return (
-    <EditButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+    <EditButton
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+    />
   );
 };
 ```
@@ -349,3 +422,9 @@ Use `resource` prop instead.
 ### Properties
 
 <PropsTable module="@refinedev/chakra-ui/EditButton" />
+
+:::simple External Props
+
+It also accepts all props of Chakra UI [Button](https://chakra-ui.com/docs/components/button#props).
+
+:::

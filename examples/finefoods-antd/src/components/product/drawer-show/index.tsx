@@ -18,7 +18,7 @@ import {
   Typography,
   theme,
 } from "antd";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router";
 import { Drawer } from "../../drawer";
 import type { ICategory, IProduct } from "../../../interfaces";
 import { DeleteButton, NumberField } from "@refinedev/antd";

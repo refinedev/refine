@@ -240,7 +240,7 @@ export const useUpdate = <
       metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }) => {
-      if (!id) throw missingIdError;
+      if (typeof id === "undefined") throw missingIdError;
       if (!values) throw missingValuesError;
       if (!resourceName) throw missingResourceError;
 
@@ -321,7 +321,7 @@ export const useUpdate = <
         detail: true,
       },
     }) => {
-      if (!id) throw missingIdError;
+      if (typeof id === "undefined") throw missingIdError;
       if (!values) throw missingValuesError;
       if (!resourceName) throw missingResourceError;
 
@@ -462,7 +462,7 @@ export const useUpdate = <
         dataProviderName = dataProviderNameFromProps,
         invalidates = invalidatesFromProps ?? ["list", "many", "detail"],
       } = variables;
-      if (!id) throw missingIdError;
+      if (typeof id === "undefined") throw missingIdError;
       if (!resourceName) throw missingResourceError;
 
       const { identifier } = select(resourceName);
@@ -495,7 +495,7 @@ export const useUpdate = <
         meta = metaFromProps,
         metaData = metaDataFromProps,
       } = variables;
-      if (!id) throw missingIdError;
+      if (typeof id === "undefined") throw missingIdError;
       if (!values) throw missingValuesError;
       if (!resourceName) throw missingResourceError;
 
@@ -586,7 +586,7 @@ export const useUpdate = <
         errorNotification = errorNotificationFromProps,
         values = valuesFromProps,
       } = variables;
-      if (!id) throw missingIdError;
+      if (typeof id === "undefined") throw missingIdError;
       if (!values) throw missingValuesError;
       if (!resourceName) throw missingResourceError;
 
@@ -639,9 +639,8 @@ export const useUpdate = <
   const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
+    ...overtimeOptions,
     isLoading: mutation.isLoading,
-    interval: overtimeOptions?.interval,
-    onInterval: overtimeOptions?.onInterval,
   });
 
   // this function is used to make the `variables` parameter optional

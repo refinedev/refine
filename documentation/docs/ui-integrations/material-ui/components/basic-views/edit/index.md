@@ -8,6 +8,8 @@ swizzle: true
 We will show what `<Edit>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import React from "react";
 import { Edit, useAutocomplete } from "@refinedev/mui";
@@ -46,7 +48,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -60,7 +64,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -110,17 +116,46 @@ const SampleEdit = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/samples/edit/123"]}
-    resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<SampleEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 :::simple Good to know
-
 You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-packages) to customize it.
-
 :::
 
 ## Properties
@@ -129,39 +164,59 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 `title` allows the addition of titles inside the `<Edit>` component. If you don't pass title props it uses "Edit" prefix and singular resource name by default. For example, for the `/posts/edit` resource, it will be "Edit post".
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Typography } from "@mui/material";
 
-const EditPage: React.FC = () => {
+const PostEdit: React.FC = () => {
   return (
-    <Edit
-      // highlight-next-line
-      title={<Typography variant="h5">Custom Title</Typography>}
-    >
-      <span>Rest of your page here</span>
+    /* highlight-next-line */
+    <Edit title={<Typography variant="h5">Custom Title</Typography>}>
+      <p>Rest of your page here</p>
     </Edit>
   );
 };
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId="123" />
-          </div>
-        ),
-        edit: EditPage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -169,14 +224,9 @@ render(
 
 The `<Edit>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Edit>` component, you can use the `resource` prop.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
-// handle initial routes in new way
-setInitialRoutes(["/custom"]);
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
 
-import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/mui";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
@@ -184,38 +234,48 @@ const CustomPage: React.FC = () => {
   return (
     /* highlight-next-line */
     <Edit resource="posts" recordItemId={123}>
-      <span>Rest of your page here</span>
+      <p>Rest of your page here</p>
     </Edit>
   );
 };
 // visible-block-end
 
-const App: React.FC = () => {
-  return (
-    <Refine
-      legacyRouterProvider={{
-        ...routerProvider,
-        // highlight-start
-        routes: [
-          {
-            element: <CustomPage />,
-            path: "/custom",
-          },
-        ],
-        // highlight-end
-      }}
-      Layout={Layout}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
-  );
-};
-// visible-block-end
-
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<CustomPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -225,9 +285,11 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### saveButtonProps
 
-The `<Edit>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property like the code below:
+The `<Edit>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property:
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
@@ -235,28 +297,48 @@ const PostEdit: React.FC = () => {
   return (
     /* highlight-next-line */
     <Edit saveButtonProps={{ size: "small" }}>
-      <span>Rest of your page here</span>
+      <p>Rest of your page here</p>
     </Edit>
   );
 };
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="/posts/edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -268,58 +350,8 @@ render(
 
 When clicked on, the delete button executes the [`useDelete`](/docs/data/hooks/use-delete) method provided by the [`dataProvider`](/docs/data/data-provider).
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
-const { default: simpleRest } = RefineSimpleRest;
-
-const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
-
-const customDataProvider = {
-  ...dataProvider,
-  deleteOne: async ({ resource, id, variables }) => {
-    return {
-      data: {},
-    };
-  },
-};
-
-const authProvider = {
-  login: async () => {
-    return {
-      success: true,
-      redirectTo: "/",
-    };
-  },
-  register: async () => {
-    return {
-      success: true,
-    };
-  },
-  forgotPassword: async () => {
-    return {
-      success: true,
-    };
-  },
-  updatePassword: async () => {
-    return {
-      success: true,
-    };
-  },
-  logout: async () => {
-    return {
-      success: true,
-      redirectTo: "/",
-    };
-  },
-  check: async () => ({
-    authenticated: true,
-  }),
-  onError: async (error) => {
-    console.error(error);
-    return { error };
-  },
-  getPermissions: async () => ["admin"],
-  getIdentity: async () => null,
-};
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import { Edit } from "@refinedev/mui";
@@ -342,43 +374,51 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    authProvider={authProvider}
-    dataProvider={customDataProvider}
-    initialRoutes={["/posts/edit/123"]}
-    Layout={RefineMui.Layout}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId="123">
-              Edit Item 123
-            </RefineMui.EditButton>
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="/posts/edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions) documentations
 
 ### recordItemId
 
 The `<Edit>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL, like when its used on a custom page, modal or drawer.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
-// handle initial routes in new way
-setInitialRoutes(["/custom"]);
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
 
-import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
-import { Layout } from "@refinedev/mui";
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
@@ -391,44 +431,57 @@ const CustomPage: React.FC = () => {
   );
 };
 // visible-block-end
-const App: React.FC = () => {
-  return (
-    <Refine
-      legacyRouterProvider={{
-        ...routerProvider,
-        routes: [
-          {
-            element: <CustomPage />,
-            path: "/custom",
-          },
-        ],
-      }}
-      Layout={Layout}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
-  );
-};
 
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="/posts/edit/:id" element={<CustomPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-The `<Edit>` component needs the `id` information for the [`<RefreshButton>`](/docs/ui-integrations/material-ui/components/buttons/refresh-button) to work properly.
 
 ### mutationMode
 
 Determines which mode mutation will have while executing [`<DeleteButton>`](/docs/ui-integrations/material-ui/components/buttons/delete-button).
 
 ```tsx live hideCode url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import React from "react";
 import { Edit, useAutocomplete } from "@refinedev/mui";
 import { TextField, Autocomplete, Box } from "@mui/material";
-
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
@@ -468,7 +521,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -482,7 +537,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -532,14 +589,43 @@ const SampleEdit = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/samples/edit/123"]}
-    resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<SampleEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
 
 ### dataProviderName
 
@@ -577,25 +663,8 @@ export const App: React.FC = () => {
 
 To customize the back button or to disable it, you can use the `goBack` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
-import { useNavigation } from "@refinedev/core";
-
-const RealBackButton = () => {
-  const { goBack } = useNavigation();
-
-  return <Button onClick={goBack}>BACK!</Button>;
-};
-
-const RealPostEdit: React.FC = () => {
-  return (
-    <Edit
-      // highlight-next-line
-      goBack={<RealBackButton />}
-    >
-      <span>Rest of your page here</span>
-    </Edit>
-  );
-};
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
 
 // visible-block-start
 import { Edit } from "@refinedev/mui";
@@ -621,21 +690,41 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: RealPostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -643,7 +732,9 @@ render(
 
 To toggle the loading state of the `<Edit/>` component, you can use the `isLoading` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
@@ -662,29 +753,51 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
+### breadcrumb
 
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default it uses the `Breadcrumb` component from `@refinedev/mui` package.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit, Breadcrumb } from "@refinedev/mui";
 
@@ -711,37 +824,55 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/material-ui/components/breadcrumb)
 
 ### wrapperProps
 
 If you want to customize the wrapper of the `<Edit/>` component, you can use the `wrapperProps` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
@@ -759,37 +890,55 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`Card` documentation from Material UI &#8594](https://mui.com/material-ui/api/card/)
 
 ### headerProps
 
 If you want to customize the header of the `<Edit/>` component, you can use the `headerProps` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
@@ -807,37 +956,55 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`CardHeader` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-header/)
 
 ### contentProps
 
 If you want to customize the content of the `<Edit/>` component, you can use the `contentProps` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
@@ -855,25 +1022,43 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>{" "}
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`CardContent` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-content/)
 
 ### headerButtons
 
@@ -883,21 +1068,21 @@ You can customize the buttons at the header by using the `headerButtons` propert
 
 If "list" resource is not defined, the [`<ListButton>`][list-button] will not render and `listButtonProps` will be `undefined`.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
       headerButtons={({ defaultButtons }) => (
         <>
           {defaultButtons}
-          <Button type="primary">Custom Button</Button>
+          <Button variant="contained">Custom Button</Button>
         </>
       )}
       // highlight-end
@@ -909,34 +1094,54 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `refreshButtonProps` and `listButtonProps` to utilize the default values of the [`<ListButton>`][list-button] and [`<RefreshButton>`][refresh-button] components.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit, ListButton, RefreshButton } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
@@ -946,7 +1151,7 @@ const PostEdit: React.FC = () => {
           {listButtonProps && (
             <ListButton {...listButtonProps} meta={{ foo: "bar" }} />
           )}
-          <Button type="primary">Custom Button</Button>
+          <Button variant="contained">Custom Button</Button>
         </>
       )}
       // highlight-end
@@ -958,21 +1163,30 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -980,14 +1194,14 @@ render(
 
 You can customize the wrapper element of the buttons at the header by using the `headerButtonProps` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
@@ -1011,21 +1225,41 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1039,21 +1273,21 @@ You can customize the buttons at the footer by using the `footerButtons` propert
 
 If [`canDelete`](#candelete-and-deletebuttonprops) is `false`, the [`<DeleteButton>`][delete-button] will not render and `deleteButtonProps` will be `undefined`.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
       footerButtons={({ defaultButtons }) => (
         <>
           {defaultButtons}
-          <Button type="primary">Custom Button</Button>
+          <Button variant="contained">Custom Button</Button>
         </>
       )}
       // highlight-end
@@ -1065,27 +1299,49 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` and `deleteButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] and [`<DeleteButton>`][delete-button] components.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit, SaveButton, DeleteButton } from "@refinedev/mui";
 import { Button } from "@mui/material";
@@ -1114,21 +1370,42 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      initialRoutes={["/posts", "/posts/edit/123"]}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1136,14 +1413,14 @@ render(
 
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/edit/123
+```tsx live disableScroll previewHeight=320px url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
 // visible-block-start
 import { Edit } from "@refinedev/mui";
 import { Button } from "@mui/material";
 
 const PostEdit: React.FC = () => {
-  const [loading, setLoading] = React.useState(true);
-
   return (
     <Edit
       // highlight-start
@@ -1156,7 +1433,7 @@ const PostEdit: React.FC = () => {
       footerButtons={({ defaultButtons }) => (
         <>
           {defaultButtons}
-          <Button type="primary">Custom Button</Button>
+          <Button variant="contained">Custom Button</Button>
         </>
       )}
     >
@@ -1167,38 +1444,58 @@ const PostEdit: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/posts", "/posts/edit/123"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.EditButton recordItemId={123} />
-          </div>
-        ),
-        edit: PostEdit,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
-
-> For more information, refer to the [`CardActions` documentation from Material UI &#8594](https://mui.com/material-ui/api/card-actions/)
 
 ### autoSaveProps
 
 You can use the auto save feature of the `<Edit/>` component by using the `autoSaveProps` property.
 
 ```tsx live url=http://localhost:3000/posts/edit/123
+setInitialRoutes(["/posts/edit/123"]);
+
+// visible-block-start
 import React from "react";
 import { Edit, useAutocomplete } from "@refinedev/mui";
 import { TextField, Autocomplete, Box } from "@mui/material";
 import { useForm } from "@refinedev/react-hook-form";
 import { Controller } from "react-hook-form";
 
-// visible-block-start
 const SampleEdit = () => {
   const {
     saveButtonProps,
@@ -1246,7 +1543,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.id?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="number"
           label="Id"
           name="id"
@@ -1260,7 +1559,9 @@ const SampleEdit = () => {
           helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
-          InputLabelProps={{ shrink: true }}
+          slotProps={{
+            InputLabelProps: { shrink: true },
+          }}
           type="text"
           label="Title"
           name="title"
@@ -1310,10 +1611,41 @@ const SampleEdit = () => {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/samples/edit/123"]}
-    resources={[{ name: "samples", edit: SampleEdit, list: SampleList }]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.EditButton recordItemId="123">
+                  Edit Item 123
+                </RefineMui.EditButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="edit/:id" element={<SampleEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1335,95 +1667,6 @@ breadcrumb-default="[`<Breadcrumb/>`](/docs/ui-integrations/material-ui/componen
 goBack-default="`<ArrowLeft />`"
 goBack-type="`ReactNode`"
 />
-
-```tsx live shared
-const SampleList = () => {
-  const { dataGridProps } = RefineMui.useDataGrid();
-
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    RefineCore.useMany({
-      resource: "categories",
-      ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-      queryOptions: {
-        enabled: !!dataGridProps?.rows,
-      },
-    });
-
-  const columns = React.useMemo<GridColDef<any>[]>(
-    () => [
-      {
-        field: "id",
-        headerName: "Id",
-        type: "number",
-        minWidth: 50,
-      },
-      {
-        field: "title",
-        headerName: "Title",
-        minWidth: 200,
-      },
-      {
-        field: "category",
-        headerName: "Category",
-        valueGetter: ({ row }) => {
-          const value = row?.category?.id;
-
-          return value;
-        },
-        minWidth: 300,
-        renderCell: function render({ value }) {
-          return categoryIsLoading ? (
-            <>Loading...</>
-          ) : (
-            categoryData?.data?.find((item) => item.id === value)?.title
-          );
-        },
-      },
-      {
-        field: "createdAt",
-        headerName: "Created At",
-        minWidth: 250,
-        renderCell: function render({ value }) {
-          return <RefineMui.DateField value={value} />;
-        },
-      },
-      {
-        field: "actions",
-        headerName: "Actions",
-        renderCell: function render({ row }) {
-          return (
-            <>
-              <RefineMui.EditButton hideText recordItemId={row.id} />
-            </>
-          );
-        },
-        align: "center",
-        headerAlign: "center",
-        minWidth: 80,
-      },
-    ],
-    [categoryData?.data],
-  );
-
-  return (
-    <RefineMui.List>
-      <MuiXDataGrid.DataGrid {...dataGridProps} columns={columns} autoHeight />
-    </RefineMui.List>
-  );
-};
-
-const Wrapper = ({ children }) => {
-  return (
-    <MuiMaterial.ThemeProvider theme={RefineMui.LightTheme}>
-      <MuiMaterial.CssBaseline />
-      <MuiMaterial.GlobalStyles
-        styles={{ html: { WebkitFontSmoothing: "auto" } }}
-      />
-      {children}
-    </MuiMaterial.ThemeProvider>
-  );
-};
-```
 
 [list-button]: /docs/ui-integrations/material-ui/components/buttons/list-button
 [refresh-button]: /docs/ui-integrations/material-ui/components/buttons/refresh-button

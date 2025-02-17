@@ -3,6 +3,7 @@ import React from "react";
 import { socialLinks } from "./footer-data";
 
 export const CommonFooter = () => {
+  const currentYear = new Date().getFullYear();
   return (
     <footer
       className={clsx(
@@ -27,7 +28,7 @@ export const CommonFooter = () => {
             // "mt-4 sm:mt-0",
           )}
         >
-          Refine © 2023
+          Refine © {currentYear}
         </div>
 
         <div

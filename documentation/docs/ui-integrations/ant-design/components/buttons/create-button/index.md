@@ -15,8 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live previewHeight=300px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   List,
@@ -49,20 +50,36 @@ interface IPost {
 // visible-block-end
 
 const CreatePage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-        create: CreatePage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="create" element={<CreatePage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -72,42 +89,48 @@ render(
 
 `resource` is used to redirect the app to the `create` action path of the given resource name. By default, the app redirects to the inferred resource's `create` action path.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { CreateButton } from "@refinedev/antd";
 
 const MyCreateComponent = () => {
-  return (
-    <CreateButton
-      // highlight-next-line
-      resource="categories"
-    />
-  );
+  return <CreateButton resource="categories" />;
 };
 
 // visible-block-end
 
-const CreatePage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const CategoryCreate = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        create: CreatePage,
-      },
-    ]}
-    DashboardPage={MyCreateComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          create: "/categories/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<MyCreateComponent />} />
+        <ReactRouter.Route
+          path="/categories/create"
+          element={<CategoryCreate />}
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -133,8 +156,8 @@ const MyComponent = () => {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { CreateButton } from "@refinedev/antd";
@@ -151,21 +174,36 @@ const MyCreateComponent = () => {
 // visible-block-end
 
 const CreatePage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyCreateComponent,
-        create: CreatePage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCreateComponent />} />
+          <ReactRouter.Route path="create" element={<CreatePage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -178,7 +216,12 @@ import { CreateButton } from "@refinedev/antd";
 
 export const MyListComponent = () => {
   return (
-    <CreateButton accessControl={{ enabled: true, hideIfUnauthorized: true }} />
+    <CreateButton
+      accessControl={{
+        enabled: true,
+        hideIfUnauthorized: true,
+      }}
+    />
   );
 };
 ```

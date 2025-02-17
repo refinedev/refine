@@ -24,9 +24,9 @@ export const Sandpack = ({ children }: { children: React.ReactNode }) => {
 
 const AppTsxWithMaterialUIWrappers = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { RefineThemes } from "@refinedev/mui";
 
@@ -108,9 +108,9 @@ export default function App(): JSX.Element {
 
 const AppTsxWithLayout = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { RefineThemes, ThemedLayoutV2 } from "@refinedev/mui";
 
@@ -236,10 +236,11 @@ export const dependencies = {
   ...initialDependencies,
   "@emotion/react": "11.11.4",
   "@emotion/styled": "11.11.5",
-  "@mui/lab": "5.0.0-alpha.173",
-  "@mui/material": "5.16.5",
-  "@mui/x-data-grid": "6.19.11",
-  "@refinedev/mui": "5.0.0",
+  "@mui/lab": "^6.0.0-beta.14",
+  "@mui/material": "^6.1.7",
+  "@mui/x-data-grid": "^7.23.5",
+  "@refinedev/mui": "latest",
+  "@mui/system": "latest",
   "@refinedev/react-hook-form": "latest",
   "react-hook-form": "latest",
 };

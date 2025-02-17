@@ -6,7 +6,7 @@ import { Form, Input, Select } from "antd";
 
 export default function BlogPostEdit() {
   const { translate: t } = useTranslation();
-  const { formProps, saveButtonProps, query: queryResult } = useForm({});
+  const { formProps, saveButtonProps, query: queryResult } = useForm();
 
   const blogPostsData = queryResult?.data?.data;
 
@@ -65,9 +65,15 @@ export default function BlogPostEdit() {
           <Select
             defaultValue={"draft"}
             options={[
-              { value: "draft", label: "Draft" },
-              { value: "published", label: "Published" },
-              { value: "rejected", label: "Rejected" },
+              { value: "draft", label: t("blog_posts.fields.status.draft") },
+              {
+                value: "published",
+                label: t("blog_posts.fields.status.published"),
+              },
+              {
+                value: "rejected",
+                label: t("blog_posts.fields.status.rejected"),
+              },
             ]}
             style={{ width: 120 }}
           />

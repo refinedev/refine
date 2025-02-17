@@ -13,7 +13,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts/show/123"]);
+
 // visible-block-start
 import { useShow } from "@refinedev/core";
 import {
@@ -52,22 +54,31 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/show/123"]}
-    resources={[
-      {
-        name: "posts",
-        show: PostShow,
-        list: () => {
-          return (
-            <RefineAntd.List>
-              <p>Your list page here</p>
-            </RefineAntd.List>
-          );
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
         },
-      },
-    ]}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<div>List page here...</div>} />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -77,7 +88,9 @@ render(
 
 `recordItemId` allows us to manage which data is going to be refreshed. By default, the `recordItemId` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { RefreshButton } from "@refinedev/antd";
 
@@ -86,32 +99,48 @@ const MyRefreshComponent = () => {
     <RefreshButton
       resource="posts"
       // highlight-next-line
-      recordItemId="1"
+      recordItemId="123"
     />
   );
 };
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-    ]}
-    DashboardPage={MyRefreshComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyRefreshComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "1".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "123".
 
 ### resource
 
 `resource` allows us to manage which resource is going to be refreshed. By default, the `resource` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live previewHeight=120px
+setInitialRoutes(["/categories"]);
+
 // visible-block-start
 import { RefreshButton } from "@refinedev/antd";
 
@@ -121,25 +150,38 @@ const MyRefreshComponent = () => {
       // highlight-next-line
       resource="categories"
       // highlight-next-line
-      recordItemId="2"
+      recordItemId="123"
     />
   );
 };
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-      },
-    ]}
-    DashboardPage={MyRefreshComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/categories"
+          element={
+            <div style={{ padding: "16px" }}>
+              <MyRefreshComponent />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -153,7 +195,9 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
-```tsx live disableScroll previewHeight=120px
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { RefreshButton } from "@refinedev/antd";
 
@@ -168,15 +212,29 @@ const MyRefreshComponent = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-    ]}
-    DashboardPage={MyRefreshComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyRefreshComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

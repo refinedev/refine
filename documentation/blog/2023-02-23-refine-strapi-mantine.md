@@ -127,7 +127,7 @@ const { saveButtonProps, getInputProps } = useForm({
 
 ## `useTable` - For table management
 
-Another hook that we will use in this article is the [`useTable`](https://refine.dev/docs/packages/documentation/react-table/) hook. It is part of the [@refinedev/react-table](https://github.com/refinedev/refine/tree/master/packages/react-table) package. The `@refinedev/react-table` package is an adapter for the [TanStack Table](https://tanstack.com/table/v8). It has all the features of the [TanStack Table](https://tanstack.com/table/v8) package out of the box. It also has features for filtering, sorting, and pagination.
+Another hook that we will use in this article is the [`useTable`](https://refine.dev/docs/packages/documentation/react-table/) hook. It is part of the [@refinedev/react-table](https://github.com/refinedev/refine/tree/main/packages/react-table) package. The `@refinedev/react-table` package is an adapter for the [TanStack Table](https://tanstack.com/table/v8). It has all the features of the [TanStack Table](https://tanstack.com/table/v8) package out of the box. It also has features for filtering, sorting, and pagination.
 
 Similarly, we will use basic layout and UI components such as `List`, `Create`, `Edit`, and `Show`. As I pointed out above, the Refine documentation explains them well. Refer to the appropriate sections of the Refine documentation to understand a component that might be unfamiliar to you.
 
@@ -296,7 +296,7 @@ import routerBindings, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
   CatchAllNavigate,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import {
   MantineProvider,

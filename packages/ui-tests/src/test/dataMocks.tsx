@@ -8,7 +8,7 @@ import type {
   LegacyAuthProvider,
   IRouterContext,
 } from "@refinedev/core";
-import { useParams, useLocation, Link, useNavigate } from "react-router-dom";
+import { useParams, useLocation, Link, useNavigate } from "react-router";
 
 /* import {
     IDataContext,
