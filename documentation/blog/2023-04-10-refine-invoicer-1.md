@@ -29,7 +29,7 @@ In this series we are going to build a **Invoicer - React PDF Invoice Generator*
 
 [👉 The live version of the app is be available here.](https://invoice-generator.refine.dev/)
 
-[👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/master/examples/refine-week-invoice-generator)
+[👉 The final apps source code is available on GitHub.](https://github.com/refinedev/refine/tree/main/examples/refine-week-invoice-generator)
 
 To get completed client source code simply run:
 
@@ -56,7 +56,7 @@ A **Refine** app is centered mainly around the `<Refine />` component, which is 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerBindings from "@refinedev/react-router-v6";
+import routerBindings from "@refinedev/react-router";
 
 <Refine
   dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
@@ -67,7 +67,7 @@ import routerBindings from "@refinedev/react-router-v6";
 />;
 ```
 
-The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.  
+The code above shows a few of the props and their assigned objects. As can be inferred from this, rather than precisely being a component, [`<Refine />`](https://refine.dev/docs/api-reference/core/components/refine-config/) is largely a monolith of provider configurations backed by a context for each.
 Hence, inside [`dataProvider`](https://refine.dev/docs/data/data-provider), we should have a standard set of methods for making API requests; inside [`authProvider`](https://refine.dev/docs/authentication/auth-provider/#what-is-auth-provider), we should have methods for dealing with authentication and authorization; inside [`routerProvider`](https://refine.dev/docs/packages/documentation/routers/), we should have methods for dealing with standard routing - both RESTful and non-RESTful, etc. And each of these providers should have their own set of conventions and type definitions.
 
 For example, a `dataProvider` object should have the following signature to which any definition of a data provider object should conform:

@@ -12,14 +12,6 @@ exports[`ChakraUIInferencer should match the snapshot 1`] = `
         <div
           class="css-gqssyb"
         >
-          <nav
-            aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
-          >
-            <ol
-              class="chakra-breadcrumb__list css-70qvj9"
-            />
-          </nav>
           <h3
             class="chakra-heading refine-pageHeader-title css-0"
           />
@@ -14464,14 +14456,6 @@ exports[`ChakraUIInferencer should match the snapshot 2`] = `
         <div
           class="css-gqssyb"
         >
-          <nav
-            aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
-          >
-            <ol
-              class="chakra-breadcrumb__list css-70qvj9"
-            />
-          </nav>
           <div
             class="chakra-stack css-1igwmid"
           >
@@ -25389,14 +25373,6 @@ exports[`ChakraUIInferencer should match the snapshot 3`] = `
         <div
           class="css-gqssyb"
         >
-          <nav
-            aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
-          >
-            <ol
-              class="chakra-breadcrumb__list css-70qvj9"
-            />
-          </nav>
           <div
             class="chakra-stack css-9hjtr8"
           >
@@ -38038,14 +38014,6 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
         <div
           class="css-gqssyb"
         >
-          <nav
-            aria-label="breadcrumb"
-            class="chakra-breadcrumb css-h82jag"
-          >
-            <ol
-              class="chakra-breadcrumb__list css-70qvj9"
-            />
-          </nav>
           <div
             class="chakra-stack css-1igwmid"
           >

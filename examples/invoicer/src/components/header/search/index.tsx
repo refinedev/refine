@@ -2,7 +2,7 @@ import { useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
 import { AutoComplete, Avatar, Flex, Input, Typography } from "antd";
 import { useList, useNavigation } from "@refinedev/core";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { API_URL } from "@/utils/constants";
 import { getRandomColorFromString } from "@/utils/get-random-color";
 import type { Account, Client } from "@/types";

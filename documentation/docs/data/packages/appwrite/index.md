@@ -1,6 +1,6 @@
 ---
 title: Appwrite
-source: https://github.com/refinedev/refine/tree/master/packages/appwrite
+source: https://github.com/refinedev/refine/tree/main/packages/appwrite
 swizzle: true
 ---
 
@@ -386,8 +386,8 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
@@ -626,8 +626,8 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
@@ -861,8 +861,8 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,
@@ -1114,8 +1114,8 @@ import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
   ThemedLayoutV2,

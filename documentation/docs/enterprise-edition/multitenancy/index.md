@@ -12,12 +12,12 @@ pre-built components and hooks with minimal configuration.
 
 This package is included in Refine's Enterprise Edition. To learn more about Refine's Enterprise Edition, please [contact us](https://s.refine.dev/okta-enterprise).
 
-<InstallPackagesCommand args="@refinedev-ee/enterprise @refinedev-ee/multitenancy">
+<InstallPackagesCommand args="@refinedev/enterprise @refinedev/multitenancy">
 
 ```yml title=".npmrc"
-# A registry with the auth token should be added for the @refinedev-ee scope
-@refinedev-ee:registry=https://registry.npmjs.org/
-//registry.npmjs.org/:_authToken=$NPM_TOKEN
+# A registry with the auth token should be added for the @refinedev scope
+@refinedev:registry=https://registry.refine.dev/
+//registry.refine.dev/:_authToken=$NPM_TOKEN
 ```
 
 </InstallPackagesCommand>
@@ -27,8 +27,8 @@ This package is included in Refine's Enterprise Edition. To learn more about Ref
 To use the multitenancy feature, we need to wrap our application with the `<RefineEnterprise />` component and provide the `multitenancyProvider` prop.
 
 ```tsx
-import { RefineEnterprise } from "@refinedev-ee/enterprise";
-import { useRouterAdapter, WithTenant } from "@refinedev-ee/multitenancy";
+import { RefineEnterprise } from "@refinedev/enterprise";
+import { useRouterAdapter, WithTenant } from "@refinedev/multitenancy";
 
 type Tenant = {
   id: string;
@@ -88,7 +88,7 @@ Adapters define where tenant information is stored. Refine offers `useRouterAdap
 Extracts the tenantId from the URL and updates the route when the tenant changes.
 
 ```tsx
-import { useRouterAdapter } from "@refinedev-ee/multitenancy";
+import { useRouterAdapter } from "@refinedev/multitenancy";
 
 const multitenancyProvider = {
   adapter: useRouterAdapter({
@@ -110,7 +110,7 @@ const multitenancyProvider = {
 Retrieves tenantId from local storage and updates it when the tenant changes.
 
 ```tsx
-import { useLocalStorageAdapter } from "@refinedev-ee/multitenancy";
+import { useLocalStorageAdapter } from "@refinedev/multitenancy";
 
 const multitenancyProvider = {
   adapter: useLocalStorageAdapter({
@@ -130,8 +130,8 @@ const multitenancyProvider = {
 The `<WithTenant />` component is required to wrap your app code. It fetches `tenants`, handling the loading state and error state.
 
 ```tsx
-import { RefineEnterprise } from "@refinedev-ee/enterprise";
-import { WithTenant } from "@refinedev-ee/multitenancy";
+import { RefineEnterprise } from "@refinedev/enterprise";
+import { WithTenant } from "@refinedev/multitenancy";
 
 <WithTenant
   // render a component when the tenant is not available.
@@ -152,7 +152,7 @@ These components allow users to select a tenant from a list of available tenants
 <TabItem value="Ant Design">
 
 ```tsx
-import { TenantSelect } from "@refinedev-ee/multitenancy/antd";
+import { TenantSelect } from "@refinedev/multitenancy/antd";
 
 <TenantSelect
   // Specifies the tenant object field to display in the select component.
@@ -171,7 +171,7 @@ import { TenantSelect } from "@refinedev-ee/multitenancy/antd";
 <TabItem value="Material UI">
 
 ```tsx
-import { TenantSelect } from "@refinedev-ee/multitenancy/mui";
+import { TenantSelect } from "@refinedev/multitenancy/mui";
 
 <TenantSelect
   // Specifies the tenant object field to display in the select component.
@@ -198,7 +198,7 @@ Refine provides hooks to interact with the multitenancy feature.
 The `useMultitenancy` hook is used to interact with the multitenancy context.
 
 ```tsx
-import { useMultitenancy } from "@refinedev-ee/multitenancy";
+import { useMultitenancy } from "@refinedev/multitenancy";
 
 const {
   // The current tenant object.

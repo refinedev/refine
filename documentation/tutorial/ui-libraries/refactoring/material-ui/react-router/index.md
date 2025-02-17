@@ -62,6 +62,7 @@ export const ListProducts = () => {
         headerName: "Category",
         minWidth: 250,
         flex: 0.5,
+        display: "flex",
         renderCell: function render({ row }) {
           if (isLoading) return "Loading...";
 
@@ -85,6 +86,7 @@ export const ListProducts = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <div>
@@ -103,7 +105,7 @@ export const ListProducts = () => {
     <div>
       <h1>Products</h1>
       {/* highlight-next-line */}
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </div>
   );
 };
@@ -195,8 +197,7 @@ export const ListProducts = () => {
         // We're defining the column type as `singleSelect` and providing the options to the `valueOptions` prop.
         type: "singleSelect",
         valueOptions: categories,
-        // Since now the options are in an object format, we need to provide the `valueFormatter` prop to pick the value of the option.
-        valueFormatter: (params) => params.value,
+        display: "flex",
         renderCell: function render({ row }) {
           if (isLoading) {
             return "Loading...";
@@ -223,6 +224,7 @@ export const ListProducts = () => {
       {
         field: "actions",
         headerName: "Actions",
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <div>
@@ -239,7 +241,7 @@ export const ListProducts = () => {
   return (
     <div>
       <h1>Products</h1>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </div>
   );
 };

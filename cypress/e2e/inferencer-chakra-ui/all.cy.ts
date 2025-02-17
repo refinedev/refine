@@ -22,9 +22,6 @@ describe("inferencer-chakra-ui", () => {
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
 
-    cy.interceptGETCategories();
-    cy.interceptGETCategory();
-    cy.interceptGETBlogPosts();
     cy.visit("/");
 
     login();
@@ -41,9 +38,6 @@ describe("inferencer-chakra-ui", () => {
   });
 
   it("should show resource", () => {
-    cy.interceptGETBlogPost();
-    cy.interceptGETCategory();
-
     cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getChakraUILoadingOverlay().should("not.exist");
@@ -79,9 +73,6 @@ describe("inferencer-chakra-ui", () => {
   });
 
   it("should delete resource", () => {
-    cy.interceptGETBlogPost();
-    cy.interceptDELETEBlogPost();
-
     cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getChakraUILoadingOverlay().should("not.exist");
@@ -107,8 +98,6 @@ describe("inferencer-chakra-ui", () => {
   });
 
   it("should create resource", () => {
-    cy.interceptPOSTBlogPost();
-
     cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getChakraUILoadingOverlay().should("not.exist");
@@ -147,9 +136,6 @@ describe("inferencer-chakra-ui", () => {
   });
 
   it("should edit resource", () => {
-    cy.interceptPATCHBlogPost();
-    cy.interceptGETBlogPost();
-
     cy.wait("@getBlogPosts");
     cy.wait("@getCategories");
     cy.getChakraUILoadingOverlay().should("not.exist");

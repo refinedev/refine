@@ -15,7 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 Let's see how we can use `<EmailField>` with the example in the user list:
 
-```tsx live
+```tsx live previewHeight=280px url=http://localhost:3000/posts
+setInitialRoutes(["/users"]);
+
 // visible-block-start
 import {
   List,
@@ -39,7 +41,6 @@ const UserList: React.FC = () => {
           render={(value: string) => <EmailField value={value} />}
           width="100%"
         />
-        ...
       </Table>
     </List>
   );
@@ -52,14 +53,27 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "users",
-        list: UserList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "users",
+          list: "/users",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/users"
+          element={
+            <div style={{ padding: 16 }}>
+              <UserList />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

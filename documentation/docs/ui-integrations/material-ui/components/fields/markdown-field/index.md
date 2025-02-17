@@ -16,6 +16,8 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 Let's see how we can use `<MarkdownField>` in a show page.
 
 ```tsx live hideCode url=http://localhost:3000/posts/show/123
+setInitialRoutes(["/posts/show/123"]);
+
 // visible-block-start
 import React from "react";
 import { useShow } from "@refinedev/core";
@@ -27,7 +29,7 @@ import {
 } from "@refinedev/mui";
 import { Stack, Typography } from "@mui/material";
 
-const SampleShow = () => {
+const PostShow: React.FC = () => {
   const {
     queryResult: { data, isLoading },
   } = useShow();
@@ -51,26 +53,42 @@ const SampleShow = () => {
 };
 // visible-block-end
 
-Show.defaultProps = { breadcrumb: false };
-
 render(
-  <RefineMuiDemo
-    initialRoutes={["/samples", "/samples/show/123"]}
-    resources={[
-      {
-        name: "samples",
-        show: SampleShow,
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineMui.ShowButton recordItemId="123">
-              Show Item 123
-            </RefineMui.ShowButton>
-          </div>
-        ),
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          show: "/posts/show/:id",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMui.ShowButton recordItemId="123">
+                  Show Item 123
+                </RefineMui.ShowButton>
+              </div>
+            }
+          />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

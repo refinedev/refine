@@ -11,6 +11,7 @@ export const CommonWordWrapButton = ({ onClick, isEnabled }) => {
       type="button"
       onClick={() => onClick()}
       className={clsx(
+        "refine-code-block-word-wrap-button",
         "w-6 h-6",
         "flex justify-center items-center",
         "bg-gray-200",

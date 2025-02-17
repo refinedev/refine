@@ -16,6 +16,8 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 Let's see how we can use `<DateField>` with the example in the post list:
 
 ```tsx live url=http://localhost:3000/posts previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   useDataGrid,
@@ -31,6 +33,7 @@ const columns: GridColDef[] = [
   {
     field: "createdAt",
     headerName: "Created At",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <DateField format="LLL" value={row.createdAt} />;
@@ -46,7 +49,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -59,14 +62,29 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostsList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

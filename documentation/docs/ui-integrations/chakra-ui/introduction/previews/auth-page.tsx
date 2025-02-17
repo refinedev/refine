@@ -11,15 +11,14 @@ export default function AuthPage() {
         "@refinedev/chakra-ui": "^2.26.17",
         "@tabler/icons-react": "^3.1.0",
         "@refinedev/core": "^4.45.1",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "latest",
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-table": "^5.6.4",
         "@tanstack/react-table": "^8.2.6",
         "@refinedev/react-hook-form": "^4.8.12",
         "@chakra-ui/react": "^2.5.1",
         "react-dom": "^18.0.0",
-        "react-router": "latest",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
         "react-hook-form": "^7.43.5",
       }}
       startRoute="/login"
@@ -87,8 +86,8 @@ import React from "react";
 
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider, { NavigateToResource } from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router-dom";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import { ErrorComponent, RefineThemes, ThemedLayoutV2, notificationProvider, AuthPage } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";

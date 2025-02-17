@@ -9,7 +9,7 @@ export default function ServerSideValidationMantine() {
       dependencies={{
         "@refinedev/mantine": "^2.28.21",
         "@refinedev/core": "^4.45.1",
-        "@refinedev/react-router-v6": "^4.5.4",
+        "@refinedev/react-router": "^latest",
         "@refinedev/simple-rest": "^4.5.4",
         "@refinedev/react-table": "^5.6.4",
         "@tanstack/react-table": "^8.2.6",
@@ -19,8 +19,7 @@ export default function ServerSideValidationMantine() {
         "@mantine/hooks": "^5.10.4",
         "@mantine/form": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
-        "react-router": "latest",
-        "react-router-dom": "^6.8.1",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products/create"
       files={{
@@ -78,8 +77,8 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import routerProvider, {
     NavigateToResource,
-} from "@refinedev/react-router-v6";
-import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router-dom";
+} from "@refinedev/react-router";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
 import dataProvider from "./data-provider";
 

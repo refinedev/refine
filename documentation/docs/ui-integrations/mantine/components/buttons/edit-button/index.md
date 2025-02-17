@@ -4,50 +4,26 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-  catchAll: <RefineMantine.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider
-      theme={RefineMantine.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
+import * as React from "react";
 
 const EditPage = () => {
   const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
+  const params = RefineCore.useParsed();
 
   return (
     <div>
-      <RefineMantine.Text italic color="dimmed" size="sm">
+      <MantineCore.Text italic color="dimmed" size="sm">
         URL Parameters:
-      </RefineMantine.Text>
-      <RefineMantine.Code>{JSON.stringify(params)}</RefineMantine.Code>
-      <RefineMantine.Space h="md" />
-      <RefineMantine.Button
+      </MantineCore.Text>
+      <MantineCore.Code>{JSON.stringify(params, null, 2)}</MantineCore.Code>
+      <MantineCore.Space h="md" />
+      <MantineCore.Button
         size="xs"
         variant="outline"
         onClick={() => list("posts")}
       >
         Go back
-      </RefineMantine.Button>
+      </MantineCore.Button>
     </div>
   );
 };
@@ -65,7 +41,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine, useNavigation, useRouterContext } from "@refinedev/core";
+import * as React from "react";
 
 // visible-block-start
 import { List, EditButton } from "@refinedev/mantine";
@@ -158,23 +134,32 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
-          edit: EditPage,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="edit/:id" element={<EditPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -185,9 +170,8 @@ render(
 `recordItemId` is used to append the record id to the end of the route path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { EditButton } from "@refinedev/mantine";
@@ -197,24 +181,32 @@ const MyEditComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyEditComponent,
-          edit: EditPage,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path="edit/:id" element={<EditPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -223,9 +215,8 @@ render(
 Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { EditButton } from "@refinedev/mantine";
@@ -235,34 +226,50 @@ const MyEditComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyEditComponent,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
         {
           name: "categories",
-          edit: EditPage,
+          list: "/categories",
+          edit: "/categories/edit/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+        </ReactRouter.Route>
+        <ReactRouter.Route
+          path="/categories/edit/:id"
+          element={
+            <div style={{ padding: 16 }}>
+              <EditPage />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/routing/hooks/use-navigation) and then redirect the app to the `edit` action path of the resource, filling the necessary parameters in the route.
 
-If you have multiple resources with the same name, you can
-pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
+If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
 
 > For more information, refer to the [`identifier` section of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
@@ -283,36 +290,43 @@ const MyComponent = () => {
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { EditButton } from "@refinedev/mantine";
 
 const MyEditComponent = () => {
-  return <EditButton recordItemId="123" hideText />;
+  return <EditButton hideText recordItemId="1" />;
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyEditComponent,
-          edit: EditPage,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path="edit/:id" element={<EditPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

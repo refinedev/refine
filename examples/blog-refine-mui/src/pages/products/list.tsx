@@ -45,6 +45,7 @@ export const ProductList = () => {
         field: "price",
         flex: 0.5,
         headerName: translate("Price"),
+        display: "flex",
         renderCell: function render({ value }) {
           return formatCurrency.format(value);
         },
@@ -53,11 +54,12 @@ export const ProductList = () => {
         field: "category",
         flex: 0.5,
         headerName: translate("Category"),
-        valueGetter: ({ row }) => {
+        valueGetter: (_, row) => {
           const value = row?.category?.id;
 
           return value;
         },
+        display: "flex",
         renderCell: function render({ value }) {
           return categoryIsLoading ? (
             <>Loading...</>
@@ -71,6 +73,7 @@ export const ProductList = () => {
         flex: 1,
         headerName: translate("Description"),
         minWidth: 500,
+        display: "flex",
         renderCell: function render({ value }) {
           return <MarkdownField value={`${(value ?? "").slice(0, 80)}...`} />;
         },
@@ -79,6 +82,7 @@ export const ProductList = () => {
         field: "actions",
         headerName: translate("table.actions"),
         sortable: false,
+        display: "flex",
         renderCell: function render({ row }) {
           return (
             <>
@@ -98,7 +102,7 @@ export const ProductList = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };

@@ -4,15 +4,6 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-});
-
 const Wrapper = ({ children }) => {
   return (
     <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
@@ -36,7 +27,6 @@ Let's see how we can use `<EmailField>` with the example in the user list.
 
 ```tsx live url=http://localhost:3000/users previewHeight=420px hideCode
 setInitialRoutes(["/users"]);
-import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import {
@@ -146,18 +136,31 @@ interface IUser {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
-      resources={[{ name: "users", list: UserList }]}
-    />
-  );
-};
-
 render(
   <Wrapper>
-    <App />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        resources={[
+          {
+            name: "users",
+            list: "/users",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route
+            path="/users"
+            element={
+              <div style={{ padding: 16 }}>
+                <ReactRouter.Outlet />
+              </div>
+            }
+          >
+            <ReactRouter.Route index element={<UserList />} />
+          </ReactRouter.Route>
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   </Wrapper>,
 );
 ```

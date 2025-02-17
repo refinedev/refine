@@ -1,7 +1,9 @@
-import { useMenu, useNavigation, type LayoutProps } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-
-const { Link } = routerProvider;
+import {
+  Link,
+  useMenu,
+  useNavigation,
+  type LayoutProps,
+} from "@refinedev/core";
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { menuItems } = useMenu();

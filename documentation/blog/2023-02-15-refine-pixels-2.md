@@ -99,7 +99,7 @@ import "@refinedev/antd/dist/reset.css";
 import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import authProvider from "./authProvider";
@@ -227,7 +227,7 @@ Each item in this object is a method that has to be defined by us or **Refine**'
 
 **Refine** supports [15+ backend](https://refine.dev/integrations/) `dataProvider` integrations as optional packages that come with distinct definitions of these methods that handle CRUD operations according to their underlying architectures. The full list can be found [here](https://refine.dev/docs/packages/list-of-packages/#data-provider-packages).
 
-Normally, for our own backend API, we have to define each method we need for sending `http` requests inside a `dataProvider` object as above. But since we are using the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/master/packages/supabase) package, `dataProvider={dataProvider(supabaseClient)}` makes the following object available to us:
+Normally, for our own backend API, we have to define each method we need for sending `http` requests inside a `dataProvider` object as above. But since we are using the [`@refinedev/supabase`](https://github.com/refinedev/refine/tree/main/packages/supabase) package, `dataProvider={dataProvider(supabaseClient)}` makes the following object available to us:
 
 <details>
 <summary>Show Refine supabase data provider source code</summary>

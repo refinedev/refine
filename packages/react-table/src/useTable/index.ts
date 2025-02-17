@@ -1,9 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import isEqual from "lodash/isEqual";
 import {
   type BaseRecord,
   ConditionalFilter,
   type CrudFilter,
   CrudOperators,
+  type CrudSorting,
   type HttpError,
   LogicalFilter,
   useTable as useTableCore,
@@ -137,12 +139,14 @@ export function useTable<
 
   useEffect(() => {
     if (sorting !== undefined) {
-      setSorters(
-        sorting?.map((sorting) => ({
-          field: sorting.id,
-          order: sorting.desc ? "desc" : "asc",
-        })),
-      );
+      const newSorters: CrudSorting = sorting.map((sorting) => ({
+        field: sorting.id,
+        order: sorting.desc ? "desc" : "asc",
+      }));
+
+      if (!isEqual(sorters, newSorters)) {
+        setSorters(newSorters);
+      }
 
       if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
         setCurrent(1);
@@ -163,7 +167,9 @@ export function useTable<
       }),
     );
 
-    setFilters(crudFilters);
+    if (!isEqual(crudFilters, filtersCore)) {
+      setFilters(crudFilters);
+    }
 
     if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
       setCurrent(1);

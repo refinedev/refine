@@ -3,8 +3,6 @@
 
 describe("table-react-table-basic", () => {
   beforeEach(() => {
-    cy.interceptGETPosts();
-
     cy.visit("/");
   });
 
@@ -48,8 +46,6 @@ describe("table-react-table-basic", () => {
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
 
     cy.wait("@getAscPosts");
-
-    cy.interceptGETPosts();
 
     cy.get("thead th div").contains("ID").click();
 

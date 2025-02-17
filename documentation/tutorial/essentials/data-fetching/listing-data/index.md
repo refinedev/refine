@@ -378,7 +378,7 @@ Refine also offers `useInfiniteList` hook to fetch a list of records with infini
 
 :::simple Implementation Tips
 
-To see the full implementation of a REST data provider, please check the [source code of `@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/master/packages/simple-rest).
+To see the full implementation of a REST data provider, please check the [source code of `@refinedev/simple-rest`](https://github.com/refinedev/refine/tree/main/packages/simple-rest).
 
 :::
 

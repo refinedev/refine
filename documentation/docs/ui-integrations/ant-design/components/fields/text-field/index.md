@@ -15,7 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 Let's see how to use it in a basic list page:
 
-```tsx live
+```tsx live previewHeight=280px url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { useMany } from "@refinedev/core";
 import {
@@ -26,7 +28,7 @@ import {
 } from "@refinedev/antd";
 import { Table } from "antd";
 
-const PostList: React.FC = (props) => {
+const PostList: React.FC = () => {
   const { tableProps } = useTable<IPost>();
 
   const categoryIds =
@@ -41,12 +43,12 @@ const PostList: React.FC = (props) => {
   });
 
   return (
-    <List {...props}>
+    <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="title" title="title" width="50%" />
+        <Table.Column dataIndex="title" title="Title" />
         <Table.Column
           dataIndex={["category", "id"]}
-          title="category"
+          title="Category"
           render={(value: number) => {
             // highlight-start
             if (isLoading) {
@@ -63,7 +65,6 @@ const PostList: React.FC = (props) => {
             );
             // highlight-end
           }}
-          width="50%"
         />
       </Table>
     </List>
@@ -83,14 +84,27 @@ interface IPost {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <PostList />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

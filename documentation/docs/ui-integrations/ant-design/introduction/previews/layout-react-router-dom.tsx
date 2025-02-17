@@ -12,9 +12,8 @@ export default function LayoutReactRouterDom() {
         "@refinedev/antd": "latest",
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "@refinedev/react-router": "latest",
+        "react-router": "^7.0.2",
         antd: "^5.0.5",
       }}
       startRoute="/products"
@@ -73,8 +72,8 @@ import React from "react";
 
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
 import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";

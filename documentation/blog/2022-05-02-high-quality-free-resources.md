@@ -32,9 +32,9 @@ Table of Contents
 **[Lorem Ipsum](https://www.lipsum.com/)** is defined as a block of imitation writing.
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/lorem-ipsum.jpg" alt="lorem-ipsum" />
- 
+
 If you need dummy photos for your content, **[Lorem Picsum](https://picsum.photos/)** is the place for you.
- 
+
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-05-02-high-quality-free-resources/lorem-picsum.jpg" alt="lorem-picsum" />
 
 ### 2. Squoosh <a name="squoosh"></a>
@@ -115,7 +115,7 @@ If you're looking for a framework that will let your data- intensive application
 
 📦 **Out-of-the-box** : Routing, networking, authentication, state management, i18n and UI.
 
-🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/master/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/master/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/master/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/master/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/master/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/master/packages/strapi-v4), [Supabase](https://github.com/refinedev/refine/tree/master/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/master/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/master/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/master/packages/medusa), and [Firebase](https://firebase.google.com/).
+🔌 **Backend Agnostic** : Connects to any custom backend. Built-in support for [REST API](https://github.com/refinedev/refine/tree/main/packages/simple-rest), [GraphQL](https://github.com/refinedev/refine/tree/main/packages/graphql), [NestJs CRUD](https://github.com/refinedev/refine/tree/main/packages/nestjsx-crud), [Airtable](https://github.com/refinedev/refine/tree/main/packages/airtable), [Strapi](https://github.com/refinedev/refine/tree/main/packages/strapi), [Strapi v4](https://github.com/refinedev/refine/tree/main/packages/strapi-v4), [Supabase](https://github.com/refinedev/refine/tree/main/packages/supabase), [Hasura](https://github.com/refinedev/refine/tree/main/packages/hasura), [Appwrite](https://github.com/refinedev/refine/tree/main/packages/appwrite), [Medusa](https://github.com/refinedev/refine/tree/main/packages/medusa), and [Firebase](https://firebase.google.com/).
 
 📝 **Native Typescript Core** : You can always opt out for plain JavaScript.
 

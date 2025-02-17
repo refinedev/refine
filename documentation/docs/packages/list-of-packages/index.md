@@ -36,7 +36,7 @@ To learn more about Data Providers, check out [Data Provider](/docs/data/data-pr
 
 To learn more about Router Providers, check out [Routing](/docs/guides-concepts/routing) guide.
 
-- [`@refinedev/react-router-v6`](/docs/routing/integrations/react-router) - Router Provider for [React Router (v6)](https://reactrouter.com)
+- [`@refinedev/react-router`](/docs/routing/integrations/react-router) - Router Provider for [React Router](https://reactrouter.com)
 - [`@refinedev/nextjs-router`](/docs/routing/integrations/next-js) - Router Provider for [Next.js](https://nextjs.org/docs/api-reference/next/router#userouter)
 - [`@refinedev/remix-router`](/docs/routing/integrations/remix) - Router Provider for [Remix](https://remix.run/)
 - [`@refinenative/expo-router`](https://www.npmjs.com/package/@refinenative/expo-router) - Router Provider for [Expo](https://docs.expo.dev/)
@@ -79,3 +79,4 @@ To learn more about Live Providers, check out [Realtime](/docs/guides-concepts/r
 - [`@refine-auth/kinde-react`](https://github.com/hirenf14/refine-auth-kinde-react) - Support for [Kinde](https://kinde.com) authentication.
 - [`refine-pocketbase`](https://github.com/kruschid/refine-pocketbase) - Connector for backends created with [PocketBase](https://pocketbase.io/). Also has auth provider and live provider supports.
 - [`refine-postgrest-ts`](https://github.com/ffimnsr/refine-postgrest-ts) - Connector for [PostgREST](https://postgrest.org) backends.
+- [`refine-chakra-ui-v3-ts`](https://github.com/ffimnsr/refine-chakra-ui-v3-ts) - Integration for [Chakra UI v3](https://www.chakra-ui.com).

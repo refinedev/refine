@@ -8,7 +8,7 @@ Internally, it uses [Papa Parse][papaparse] to parse the file contents.
 
 It will return properties that are compatible with Ant Design's [`<Upload>`](https://ant.design/components/upload/) and [`<Button>`](https://ant.design/components/button/) components.
 
-The `useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/master/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
+The `useImport` hook is extended from [`useImport`][use-import-core] hook from the [`@refinedev/core`](https://github.com/refinedev/refine/tree/main/packages/core) package. This means that you can use all the features of [`useImport`][use-import-core] hook.
 
 ## Usage
 

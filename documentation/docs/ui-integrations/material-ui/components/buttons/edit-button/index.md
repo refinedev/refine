@@ -13,7 +13,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ## Usage
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live previewHeight=340px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   useDataGrid,
@@ -29,6 +31,7 @@ const columns: GridColDef[] = [
   {
     field: "actions",
     headerName: "Actions",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-next-line
       return <EditButton size="small" recordItemId={row.id} />;
@@ -44,7 +47,7 @@ const PostsList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -55,16 +58,30 @@ interface IPost {
 }
 // visible-block-end
 
+const PostEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostsList,
-        edit: () => <RefineMui.Edit>Rest of the page here...</RefineMui.Edit>,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<PostsList />} />
+          <ReactRouter.Route path=":id/edit" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -75,7 +92,8 @@ render(
 `recordItemId` is used to append the record id to the end of the route path for the edit route. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { EditButton } from "@refinedev/mui";
 
@@ -84,29 +102,37 @@ const MyEditComponent = () => {
     <EditButton
       resource="posts"
       // highlight-next-line
-      recordItemId="1"
+      recordItemId="123"
     />
   );
 };
 
 // visible-block-end
 
-const EditPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        edit: EditPage,
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path=":id/edit" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -117,8 +143,6 @@ Clicking the button will trigger the `edit` method of [`useNavigation`](/docs/ro
 Redirection endpoint is defined by the `resource` property and its `edit` action path. By default, `<EditButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
 // visible-block-start
 import { EditButton } from "@refinedev/mui";
 
@@ -127,32 +151,42 @@ const MyEditComponent = () => {
     <EditButton
       // highlight-next-line
       resource="categories"
-      recordItemId="2"
+      recordItemId="123"
     />
   );
 };
 
 // visible-block-end
 
-const EditPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const CategoryEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-      },
-      {
-        name: "categories",
-        edit: EditPage,
-      },
-    ]}
-    DashboardPage={MyEditComponent}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
+        },
+        {
+          name: "categories",
+          list: "/categories",
+          edit: "/categories/:id/edit",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/categories" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path=":id/edit" element={<CategoryEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -179,7 +213,7 @@ const MyComponent = () => {
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { EditButton } from "@refinedev/mui";
@@ -187,6 +221,8 @@ import { EditButton } from "@refinedev/mui";
 const MyEditComponent = () => {
   return (
     <EditButton
+      resource="posts"
+      recordItemId="123"
       // highlight-next-line
       hideText={true}
     />
@@ -195,22 +231,30 @@ const MyEditComponent = () => {
 
 // visible-block-end
 
-const EditPage = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+const PostEdit = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineMuiDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyEditComponent,
-        edit: EditPage,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          edit: "/posts/:id/edit",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<ReactRouter.Outlet />}>
+          <ReactRouter.Route index element={<MyEditComponent />} />
+          <ReactRouter.Route path=":id/edit" element={<PostEdit />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

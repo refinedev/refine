@@ -260,13 +260,13 @@ Flexible architecture of auth provider allows you to integrate your **own** or [
 
 You can use the following oAuth provider implementations as a starting point for your own auth provider or you can use them as it is.
 
-- [Google](https://github.com/refinedev/refine/tree/master/examples/auth-google-login)
-- [Auth0](https://github.com/refinedev/refine/tree/master/examples/auth-auth0)
-- [Kinde](https://github.com/refinedev/refine/tree/master/examples/auth-kinde)
-- [Keycloak](https://github.com/refinedev/refine/tree/master/examples/auth-keycloak)
-- [supabase](https://github.com/refinedev/refine/tree/master/examples/data-provider-supabase)
-- [Strapi](https://github.com/refinedev/refine/tree/master/examples/data-provider-strapi-v4)
-- [Auth.js](https://github.com/refinedev/refine/tree/master/examples/with-nextjs-next-auth)
+- [Google](https://github.com/refinedev/refine/tree/main/examples/auth-google-login)
+- [Auth0](https://github.com/refinedev/refine/tree/main/examples/auth-auth0)
+- [Kinde](https://github.com/refinedev/refine/tree/main/examples/auth-kinde)
+- [Keycloak](https://github.com/refinedev/refine/tree/main/examples/auth-keycloak)
+- [supabase](https://github.com/refinedev/refine/tree/main/examples/data-provider-supabase)
+- [Strapi](https://github.com/refinedev/refine/tree/main/examples/data-provider-strapi-v4)
+- [Auth.js](https://github.com/refinedev/refine/tree/main/examples/with-nextjs-next-auth)
 
 [To learn more about the `authProvider` interface, check out the reference page.](/docs/authentication/auth-provider)
 

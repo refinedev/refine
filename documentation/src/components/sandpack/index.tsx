@@ -27,6 +27,7 @@ import { DragHandle } from "./drag-handle";
 import { useResizable } from "./use-resizable";
 
 type Props = React.ComponentProps<SandpackInternal> & {
+  files: SandpackFiles;
   startRoute?: string;
   showOpenInCodeSandbox?: boolean;
   showNavigator?: boolean;
@@ -204,7 +205,9 @@ const SandpackBase = ({
 
   return (
     <>
-      <div className={clsx("pb-6", wrapperClassName)}>
+      <div
+        className={clsx("pb-6", "refine-sandpack-wrapper", wrapperClassName)}
+      >
         <div
           className={clsx(
             "absolute",
@@ -387,22 +390,48 @@ const SandpackBase = ({
         />
         <div className={clsx(showConsole ? "block" : "hidden", "h-[200px]")} />
       </div>
-      <section className="hidden max-w-0 max-h-0">
-        <p>{`Dependencies: ${Object.keys(dependencies ?? {}).map(
-          (k) => `${k}@${dependencies[k]}`,
-        )}`}</p>
-        <h3>{"Code Files"}</h3>
-        {Object.keys(files ?? {}).map((f) => (
-          <div key={f}>
-            <div>{`File: ${f}`}</div>
-            <div>
-              {`Content: ${"code" in files[f] ? files[f].code : files[f]}`}
-            </div>
-          </div>
-        ))}
-      </section>
+      <SandpackHiddenSnapshot files={files} dependencies={dependencies} />
     </>
   );
+};
+
+const SandpackHiddenSnapshot = ({
+  files,
+  dependencies,
+}: { files: SandpackFiles; dependencies: Record<string, string> }) => {
+  const dependencyList = (
+    <p>{`Dependencies: ${Object.keys(dependencies ?? {})
+      .map((k) => `${k}@${dependencies[k]}`)
+      .join(", ")}`}</p>
+  );
+
+  const visibleFiles = Object.keys(files ?? {}).filter(
+    (f) =>
+      typeof files[f] === "string" ||
+      (typeof files[f] === "object" && files[f].hidden !== true),
+  );
+
+  return (
+    <section className="hidden max-w-0 max-h-0">
+      <h6>Code Example</h6>
+      {/* {dependencyList} */}
+      {visibleFiles.map((f) => (
+        <div data-filename={f} key={f}>
+          <pre>
+            {`// file: ${f} \n`}
+            {getFileContent(files[f])}
+          </pre>
+        </div>
+      ))}
+    </section>
+  );
+};
+
+const getFileContent = (file: SandpackFiles[string]) => {
+  if (typeof file === "string") {
+    return file;
+  }
+  return "code" in file ? file.code : "";
 };
 
 const SandpackNextJS = (props: Props) => {

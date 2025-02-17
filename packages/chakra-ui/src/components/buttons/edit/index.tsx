@@ -32,17 +32,19 @@ export const EditButton: React.FC<EditButtonProps> = ({
     resource: resourceNameFromProps ?? resourceNameOrRouteName,
     id: recordItemId,
     accessControl,
-    meta,
   });
 
-  if (hidden) return null;
+  const isDisabled = disabled || rest.disabled;
+  const isHidden = hidden || rest.hidden;
+
+  if (isHidden) return null;
 
   return (
     <LinkComponent
       to={to}
       replace={false}
       onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-        if (disabled) {
+        if (isDisabled) {
           e.preventDefault();
           return;
         }
@@ -57,7 +59,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
           variant="outline"
           aria-label={label}
           title={title}
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}
           {...rest}
@@ -67,7 +69,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
       ) : (
         <Button
           variant="outline"
-          isDisabled={disabled}
+          isDisabled={isDisabled}
           leftIcon={<IconPencil size={20} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.EditButton}
