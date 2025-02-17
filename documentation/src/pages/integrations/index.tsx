@@ -47,6 +47,7 @@ const Integrations: React.FC = () => {
   const {
     communityPackages,
     dataProviderPackages,
+    communityUiFrameworkPackages,
     communityDataProviderPackages,
     frameworks,
     integrations,
@@ -56,6 +57,8 @@ const Integrations: React.FC = () => {
     return {
       uiPackages: integrationsData["ui-framework-packages"],
       dataProviderPackages: integrationsData["data-provider-packages"],
+      communityUiFrameworkPackages:
+        integrationsData["community-ui-framework-packages"],
       communityDataProviderPackages:
         integrationsData["community-data-provider-packages"],
       frameworks: integrationsData["frameworks"],
@@ -102,6 +105,9 @@ const Integrations: React.FC = () => {
 
       <Title className="mt-20">Data Provider Packages</Title>
       <List data={dataProviderPackages} />
+
+      <Title className="mt-20">UI Framework Packages by the Community ❤️</Title>
+      <List data={communityUiFrameworkPackages} />
 
       <Title className="mt-20">Data Provider Packages by the Community ❤️</Title>
       <List data={communityDataProviderPackages} />

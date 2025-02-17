@@ -115,7 +115,7 @@ export const Admonition = ({ type, title, children }: Props) => {
         )}
       >
         {(title || titles[type]) && (
-          <div
+          <h6
             className={clsx(
               "flex",
               "items-center",
@@ -128,7 +128,7 @@ export const Admonition = ({ type, title, children }: Props) => {
           >
             <Icon />
             <span className="uppercase">{title ?? titles[type] ?? ""}</span>
-          </div>
+          </h6>
         )}
         <div className={clsx("text-gray-0", "text-base", "last:mb-0")}>
           {children}

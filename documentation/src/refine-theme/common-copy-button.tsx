@@ -25,6 +25,7 @@ export const CommonCopyButton = ({ code, className }) => {
       aria-label={isCopied ? "Copied!" : "Copy code to clipboard"}
       title={"Copy code to clipboard"}
       className={clsx(
+        "refine-code-block-copy-button",
         "w-6 h-6",
         "flex justify-center items-center",
         "bg-gray-200",

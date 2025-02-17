@@ -21,7 +21,7 @@ const CodeSandboxExample: React.FC<Props> = ({
   const EDITOR_URL = `${CODESANDBOX_URL}?view=preview&theme=dark&runonclick=1&codemirror=1`;
 
   return (
-    <div>
+    <div className="refine-codesandbox-example">
       {!hideSource && <ExampleSourcePrompt path={path} />}
       {!hideLocal && <ExampleLocalPrompt path={path} />}
       {!hideSandbox && (

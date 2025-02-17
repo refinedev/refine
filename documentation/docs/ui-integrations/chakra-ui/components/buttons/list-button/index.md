@@ -3,26 +3,6 @@ title: List
 swizzle: true
 ---
 
-```tsx live shared
-const { default: sharedRouterProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: sharedRouterProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-  catchAll: <RefineChakra.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-      {children}
-    </ChakraUI.ChakraProvider>
-  );
-};
-```
-
 `<ListButton>` is using Chakra UI's [`<Button>`](https://www.chakra-ui.com/docs/components/button#usage) component. It uses the `list` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood. It can be useful when redirecting the app to the list page route of resource.
 
 :::simple Good to know
@@ -33,9 +13,10 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=360px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@refinedev/core";
+
+import { VStack } from "@chakra-ui/react";
 import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
@@ -43,7 +24,7 @@ import { useShow } from "@refinedev/core";
 import {
   Show,
   MarkdownField,
-  //highlight-next-line
+  // highlight-next-line
   ListButton,
 } from "@refinedev/chakra-ui";
 import { Heading, Text, Spacer } from "@chakra-ui/react";
@@ -54,8 +35,11 @@ const PostShow: React.FC = () => {
   const record = data?.data;
 
   return (
-    // highlight-next-line
-    <Show headerButtons={<ListButton />} isLoading={isLoading}>
+    <Show
+      // highlight-next-line
+      headerButtons={<ListButton />}
+      isLoading={isLoading}
+    >
       <Heading as="h5" size="sm">
         Id
       </Heading>
@@ -74,33 +58,50 @@ const PostShow: React.FC = () => {
     </Show>
   );
 };
+
+interface IPost {
+  id: number;
+  title: string;
+  content: string;
+}
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          show: PostShow,
-          list: () => (
-            <RefineChakra.VStack alignItems="flex-start">
-              <RefineChakra.Text>This page is empty.</RefineChakra.Text>
-              <ShowButton colorScheme="black" recordItemId="123">
-                Show Item 123
-              </ShowButton>
-            </RefineChakra.VStack>
-          ),
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <VStack alignItems="flex-start">
+                <Text>This is the list page of posts.</Text>
+                <ShowButton colorScheme="black" recordItemId="123">
+                  Show Item 123
+                </ShowButton>
+              </VStack>
+            }
+          />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -113,8 +114,10 @@ The button text is defined automatically by Refine, based on the `resource` defi
 Redirection endpoint is defined by the `resource`'s `list` action path. By default, `<ListButton>` uses the inferred resource from the route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/categories/show/123"]);
+
+import { VStack, Text } from "@chakra-ui/react";
+import { ShowButton } from "@refinedev/chakra-ui";
 
 // visible-block-start
 import { ListButton } from "@refinedev/chakra-ui";
@@ -124,49 +127,57 @@ const MyListComponent = () => {
 };
 // visible-block-end
 
-const ListPage = () => {
-  const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
-
-  return (
-    <RefineChakra.VStack alignItems="flex-start">
-      <RefineChakra.Text as="i" color="gray.700" fontSize="sm">
-        URL Parameters:
-      </RefineChakra.Text>
-      <RefineChakra.Code>{JSON.stringify(params)}</RefineChakra.Code>
-
-      <RefineChakra.Button
-        size="sm"
-        onClick={() => list("posts")}
-        colorScheme="green"
-      >
-        Go back
-      </RefineChakra.Button>
-    </RefineChakra.VStack>
-  );
-};
-
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: MyListComponent,
+          list: "/posts",
         },
         {
           name: "categories",
-          list: ListPage,
+          list: "/categories",
+          show: "/categories/show/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            path="/categories"
+            element={
+              <VStack alignItems="flex-start">
+                <Text>This is the list page of categories.</Text>
+                <ShowButton
+                  colorScheme="black"
+                  recordItemId="123"
+                  svgIconProps={{
+                    style: {
+                      display: "none",
+                    },
+                  }}
+                >
+                  Go back
+                </ShowButton>
+              </VStack>
+            }
+          />
+          <ReactRouter.Route
+            path="/categories/show/:id"
+            element={<MyListComponent />}
+          />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -192,10 +203,8 @@ const MyComponent = () => {
 
 It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
-```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+```tsx live url=http://localhost:3000 previewHeight=120px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { ListButton } from "@refinedev/chakra-ui";
@@ -205,23 +214,30 @@ const MyListComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: MyListComponent,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyListComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -248,3 +264,9 @@ Use `resource` prop instead.
 ### Properties
 
 <PropsTable module="@refinedev/chakra-ui/ListButton" />
+
+:::simple External Props
+
+It also accepts all props of Chakra UI [Button](https://chakra-ui.com/docs/components/button#props).
+
+:::

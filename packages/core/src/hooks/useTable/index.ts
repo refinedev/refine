@@ -47,10 +47,9 @@ import type {
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { BaseListProps } from "../data/useList";
-import {
-  type UseLoadingOvertimeOptionsProps,
-  type UseLoadingOvertimeReturnType,
-  useLoadingOvertime,
+import type {
+  UseLoadingOvertimeOptionsProps,
+  UseLoadingOvertimeReturnType,
 } from "../useLoadingOvertime";
 
 type SetFilterBehavior = "merge" | "replace";
@@ -597,6 +596,7 @@ export function useTable<
       ? unionSorters(preferredPermanentSorters, sorters)
       : undefined,
     queryOptions,
+    overtimeOptions,
     successNotification,
     errorNotification,
     meta: combinedMeta,
@@ -658,12 +658,6 @@ export function useTable<
     [preferredPermanentSorters],
   );
 
-  const { elapsedTime } = useLoadingOvertime({
-    isLoading: queryResult.isFetching,
-    interval: overtimeOptions?.interval,
-    onInterval: overtimeOptions?.onInterval,
-  });
-
   return {
     tableQueryResult: queryResult,
     tableQuery: queryResult,
@@ -681,8 +675,6 @@ export function useTable<
       ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
       : 1,
     createLinkForSyncWithLocation,
-    overtime: {
-      elapsedTime,
-    },
+    overtime: queryResult.overtime,
   };
 }

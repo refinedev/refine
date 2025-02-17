@@ -1,6 +1,12 @@
 name: Refine Registry Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      release-only:
+        type: boolean
+        default: false
+        description: "If true, tests will be skipped."
   push:
     paths:
       - ".changeset/**"
@@ -8,12 +14,10 @@ on:
     branches:
       - next
 
-env:
-  RELEASE_ONLY: ${{ secrets.RELEASE_ONLY }}
-
 jobs:
   publish:
     runs-on: ubuntu-latest
+
 
     strategy:
       matrix:
@@ -40,19 +44,19 @@ jobs:
         run: pnpm install
       - name: Lint
         run: pnpm lint:ci
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Syncpack
         run: pnpm sp lint
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Publint
         run: pnpm publint:all
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Are The Types Wrong
         run: pnpm attw:all
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Test
         run: pnpm test:all
-        if: ${{ env.RELEASE_ONLY != 'YES' }}
+        if: ${{ github.event.inputs.release-only != 'true' }}
       - name: Prepare Community Edition changesets
         run: node .github/workflows/scripts/changesets/prepare-community-edition-changesets.js
       - name: Create Release Pull Request or Publish to npm
