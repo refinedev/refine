@@ -440,7 +440,7 @@ describe("filtering", () => {
 
     expect(data).toHaveLength(2);
     expect(data[0].title).toBe("Black Psorotichia Lichen");
-    expect(data[1].title).toBe("Dust Lichen");
+    expect(data[1].title).toBe("Great Plains Flatsedge");
     expect(total).toBe(2);
   });
 
