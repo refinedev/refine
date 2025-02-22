@@ -1,4 +1,4 @@
-import type { useTranslate } from "@hooks/i18n";
+import type { useTranslate } from "../../../hooks/i18n";
 
 import type { IResourceItem } from "../../../contexts/resource/types";
 import { safeTranslate } from "../safe-translate";

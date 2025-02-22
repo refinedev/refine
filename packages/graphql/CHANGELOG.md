@@ -1,5 +1,17 @@
 # @refinedev/graphql
 
+## 7.1.2
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6678](https://github.com/refinedev/refine/pull/6678) [`989b438ae2e5441f20844fda42769378985d4284`](https://github.com/refinedev/refine/commit/989b438ae2e5441f20844fda42769378985d4284) Thanks [@shaun-ak](https://github.com/shaun-ak)! - fix: issue with custom mutation #6665
+
+  We missed passing param values for custom mutation
+
+  [Fixes #6665](https://github.com/refinedev/refine/issues/6665)
+
 ## 7.1.1
 
 ### Patch Changes
