@@ -288,24 +288,24 @@ export const useDeleteMany = <
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(preferLegacyKeys),
+      });
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(preferLegacyKeys),
+        });
 
       if (mutationModePropOrContext !== "pessimistic") {
         // Set the previous queries to the new ones:
         queryClient.setQueriesData(
-          resourceKeys
-            .action("list")
-            .params(preferredMeta ?? {})
-            .get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys
+              .action("list")
+              .params(preferredMeta ?? {})
+              .get(preferLegacyKeys),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -324,7 +324,9 @@ export const useDeleteMany = <
         );
 
         queryClient.setQueriesData(
-          resourceKeys.action("many").get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys.action("many").get(preferLegacyKeys),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -346,11 +348,13 @@ export const useDeleteMany = <
 
         for (const id of ids) {
           queryClient.setQueriesData(
-            resourceKeys
-              .action("one")
-              .id(id)
-              .params(preferredMeta)
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("one")
+                .id(id)
+                .params(preferredMeta)
+                .get(preferLegacyKeys),
+            },
             (previous?: any | null) => {
               if (!previous || previous.data.id === id) {
                 return null;
@@ -424,7 +428,9 @@ export const useDeleteMany = <
 
       // Remove the queries from the cache:
       ids.forEach((id) =>
-        queryClient.removeQueries(context?.queryKey.detail(id)),
+        queryClient.removeQueries({
+          queryKey: context?.queryKey.detail(id),
+        }),
       );
 
       const notificationConfig =
@@ -474,7 +480,9 @@ export const useDeleteMany = <
 
       // Remove the queries from the cache:
       ids.forEach((id) =>
-        queryClient.removeQueries(context?.queryKey.detail(id)),
+        queryClient.removeQueries({
+          queryKey: context?.queryKey.detail(id),
+        }),
       );
     },
     onError: (
@@ -525,7 +533,7 @@ export const useDeleteMany = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   return { ...mutation, overtime: { elapsedTime } };

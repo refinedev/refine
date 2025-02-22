@@ -13,9 +13,9 @@ describe("useInvalidate", () => {
 
     useReducerSpy.mockImplementation(
       () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
+        (({
+          invalidateQueries: dispatch
+        }) as any),
     );
 
     const { result } = renderHook(() => useInvalidate(), {
@@ -38,9 +38,9 @@ describe("useInvalidate", () => {
 
     useReducerSpy.mockImplementation(
       () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
+        (({
+          invalidateQueries: dispatch
+        }) as any),
     );
 
     const { result } = renderHook(() => useInvalidate(), {
@@ -63,9 +63,9 @@ describe("useInvalidate", () => {
 
     useReducerSpy.mockImplementation(
       () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
+        (({
+          invalidateQueries: dispatch
+        }) as any),
     );
 
     const { result } = renderHook(() => useInvalidate(), {
@@ -91,9 +91,9 @@ describe("useInvalidate", () => {
 
     useReducerSpy.mockImplementation(
       () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
+        (({
+          invalidateQueries: dispatch
+        }) as any),
     );
 
     const { result } = renderHook(() => useInvalidate(), {
@@ -126,9 +126,9 @@ describe("useInvalidate", () => {
 
     useReducerSpy.mockImplementation(
       () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
+        (({
+          invalidateQueries: dispatch
+        }) as any),
     );
 
     const { result } = renderHook(() => useInvalidate(), {
@@ -175,9 +175,9 @@ describe("useInvalidate", () => {
 
     useReducerSpy.mockImplementation(
       () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
+        (({
+          invalidateQueries: dispatch
+        }) as any),
     );
 
     const { result } = renderHook(() => useInvalidate(), {

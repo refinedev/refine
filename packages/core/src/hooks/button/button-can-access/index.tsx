@@ -8,7 +8,7 @@ import type { CanReturnType } from "../../../contexts/accessControl/types";
 import type { IResourceItem } from "../../../contexts/resource/types";
 import type { Action } from "../../../contexts/router/types";
 import type { BaseKey } from "../../../contexts/data/types";
-
+import { useKeys } from "../../useKeys";
 type ButtonCanAccessProps = {
   action: Action | "delete";
   resource?: IResourceItem;
@@ -31,7 +31,7 @@ export const useButtonCanAccess = (
 ): ButtonCanAccessValues => {
   const translate = useTranslate();
   const accessControlContext = React.useContext(AccessControlContext);
-
+  const { keys, preferLegacyKeys } = useKeys();
   const accessControlEnabled =
     props.accessControl?.enabled ??
     accessControlContext.options.buttons.enableAccessControl;
@@ -45,6 +45,7 @@ export const useButtonCanAccess = (
     action: props.action === "clone" ? "create" : props.action,
     params: { id: props.id, resource: props.resource },
     queryOptions: {
+      queryKey: keys().auth().get(preferLegacyKeys),
       enabled: accessControlEnabled,
     },
   });

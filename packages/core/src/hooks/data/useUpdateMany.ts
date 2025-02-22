@@ -55,26 +55,26 @@ import { ActionTypes } from "../../contexts/undoableQueue/types";
 
 export type OptimisticUpdateManyMapType<TData, TVariables> = {
   list?:
-    | ((
-        previous: GetListResponse<TData> | null | undefined,
-        values: TVariables,
-        ids: BaseKey[],
-      ) => GetListResponse<TData> | null)
-    | boolean;
+  | ((
+    previous: GetListResponse<TData> | null | undefined,
+    values: TVariables,
+    ids: BaseKey[],
+  ) => GetListResponse<TData> | null)
+  | boolean;
   many?:
-    | ((
-        previous: GetManyResponse<TData> | null | undefined,
-        values: TVariables,
-        ids: BaseKey[],
-      ) => GetManyResponse<TData> | null)
-    | boolean;
+  | ((
+    previous: GetManyResponse<TData> | null | undefined,
+    values: TVariables,
+    ids: BaseKey[],
+  ) => GetManyResponse<TData> | null)
+  | boolean;
   detail?:
-    | ((
-        previous: GetOneResponse<TData> | null | undefined,
-        values: TVariables,
-        id: BaseKey,
-      ) => GetOneResponse<TData> | null)
-    | boolean;
+  | ((
+    previous: GetOneResponse<TData> | null | undefined,
+    values: TVariables,
+    id: BaseKey,
+  ) => GetOneResponse<TData> | null)
+  | boolean;
 };
 
 export type UpdateManyParams<TData, TError, TVariables> = {
@@ -356,26 +356,23 @@ export const useUpdateMany = <
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(preferLegacyKeys),
+        silent: true,
+      });
 
       const previousQueries = queryClient.getQueriesData<QueryResponse<TData>>(
-        resourceKeys.get(preferLegacyKeys),
+        {
+          queryKey: resourceKeys.get(preferLegacyKeys),
+        }
       );
 
       if (mutationModePropOrContext !== "pessimistic") {
         if (optimisticUpdateMap.list) {
           // Set the previous queries to the new ones:
-          queryClient.setQueriesData(
-            resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+          queryClient.setQueriesData({
+            queryKey: resourceKeys.action("list").params(preferredMeta ?? {}).get(preferLegacyKeys),
+          },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
                 return optimisticUpdateMap.list(previous, values, ids);
@@ -411,8 +408,9 @@ export const useUpdateMany = <
         }
 
         if (optimisticUpdateMap.many) {
-          queryClient.setQueriesData(
-            resourceKeys.action("many").get(preferLegacyKeys),
+          queryClient.setQueriesData({
+            queryKey: resourceKeys.action("many").get(preferLegacyKeys),
+          },
             (previous?: GetManyResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.many === "function") {
                 return optimisticUpdateMap.many(previous, values, ids);
@@ -447,12 +445,9 @@ export const useUpdateMany = <
 
         if (optimisticUpdateMap.detail) {
           for (const id of ids) {
-            queryClient.setQueriesData(
-              resourceKeys
-                .action("one")
-                .id(id)
-                .params(preferredMeta ?? {})
-                .get(preferLegacyKeys),
+            queryClient.setQueriesData({
+              queryKey: resourceKeys.action("one").id(id).params(preferredMeta ?? {}).get(preferLegacyKeys),
+            },
               (previous?: GetOneResponse<TData> | null) => {
                 if (typeof optimisticUpdateMap.detail === "function") {
                   return optimisticUpdateMap.detail(previous, values, id);
@@ -677,7 +672,7 @@ export const useUpdateMany = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional

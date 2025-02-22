@@ -20,7 +20,7 @@ export type BaseOption = {
 /**
  * @deprecated Use `BaseOption` instead.
  */
-export interface Option extends BaseOption {}
+export interface Option extends BaseOption { }
 
 export type NestedField = {
   operation: string;
@@ -32,12 +32,12 @@ export type Fields = Array<string | object | NestedField>;
 
 export type VariableOptions =
   | {
-      type?: string;
-      name?: string;
-      value: any;
-      list?: boolean;
-      required?: boolean;
-    }
+    type?: string;
+    name?: string;
+    value: any;
+    list?: boolean;
+    required?: boolean;
+  }
   | { [k: string]: any };
 
 export interface QueryBuilderOptions {
@@ -209,11 +209,11 @@ export interface IQueryKeys {
     config?:
       | UseListConfig
       | {
-          pagination?: Required<Pagination>;
-          hasPagination?: boolean;
-          sorters?: CrudSort[];
-          filters?: CrudFilter[];
-        }
+        pagination?: Required<Pagination>;
+        hasPagination?: boolean;
+        sorters?: CrudSort[];
+        filters?: CrudFilter[];
+      }
       | undefined,
   ) => QueryKey;
   many: (ids?: BaseKey[]) => QueryKey;
@@ -223,10 +223,10 @@ export interface IQueryKeys {
 
 export interface ValidationErrors {
   [field: string]:
-    | string
-    | string[]
-    | boolean
-    | { key: string; message: string };
+  | string
+  | string[]
+  | boolean
+  | { key: string; message: string };
 }
 
 export interface HttpError extends Record<string, any> {
