@@ -21,7 +21,9 @@
       "@test/*": ["test/*"],
       "@test": ["test"],
       "@definitions/*": ["src/definitions/*"],
-      "@definitions": ["src/definitions"]
+      "@definitions": ["src/definitions"],
+      "@theme/*": ["src/theme/*"],
+      "@theme": ["src/theme"]
     },
     "typeRoots": [
       "./src/types",
