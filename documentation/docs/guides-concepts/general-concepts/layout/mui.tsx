@@ -19,7 +19,7 @@ export function MaterialUILayout() {
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.7",
         "@mui/system": "latest",
-        "@mui/x-data-grid": "^7.23.5",
+        "@mui/x-data-grid": "7.23.5",
       }}
       startRoute="/my-products"
       files={{
