@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 
 import type {
   QueryObserverResult,
@@ -11,6 +11,9 @@ import warnOnce from "warn-once";
 
 import { pickNotDeprecated } from "@definitions/helpers";
 import {
+  isEqualFilters,
+  mergeFilters,
+  mergeSorters,
   parseTableParams,
   setInitialFilters,
   setInitialSorters,
@@ -192,6 +195,11 @@ type SyncWithLocationParams = {
    * @deprecated `sorter` is deprecated. Use `sorters` instead.
    */
   sorter?: CrudSort[];
+  sorters: CrudSort[];
+  filters: CrudFilter[];
+};
+
+type LastUrlSyncParams = {
   sorters: CrudSort[];
   filters: CrudFilter[];
 };
@@ -384,6 +392,9 @@ export function useTable<
   const [current, setCurrent] = useState<number>(defaultCurrent);
   const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
+  const [urlUpdated, setUrlUpdated] = useState(false);
+  const lastSyncedUrlParams = useRef<LastUrlSyncParams | undefined>();
+
   const getCurrentQueryParams = (): object => {
     if (routerType === "new") {
       // We get QueryString parameters that are uncontrolled by refine.
@@ -495,8 +506,84 @@ export function useTable<
           shallow: true,
         });
       }
+
+      setUrlUpdated(true);
     }
   }, [syncWithLocation, current, pageSize, sorters, filters]);
+
+  // update lastSynched url params
+  useEffect(() => {
+    if (urlUpdated) {
+      lastSyncedUrlParams.current = {
+        filters: differenceWith(filters, preferredPermanentFilters, isEqual),
+        sorters: differenceWith(sorters, preferredPermanentSorters, isEqual),
+      };
+
+      // reset
+      setUrlUpdated(false);
+    }
+  }, [urlUpdated, filters, sorters]);
+
+  // watch URL filters, sorters to update internal filters, sorters
+  useEffect(() => {
+    if (syncWithLocation) {
+      // const currentFilters = filters;
+      // const currentUrlFilters = parsedParams?.params?.filters;
+      // const initialFilters = setInitialFilters(
+      //   preferredPermanentFilters,
+      //   defaultFilter ?? [],
+      // );
+      // const filtersAreEqual = isEqualFilters(currentUrlFilters, currentFilters);
+      // const isInternalSyncWithUrlFilters = isEqualFilters(
+      //   currentFilters,
+      //   lastSyncedUrlParams.current?.filters,
+      // );
+      // let newFilters: CrudFilter[] = [];
+      // const currentSorters = sorters;
+      // const currentUrlSorters = parsedParams.params?.sorters;
+      // const initialSorters = setInitialSorters(
+      //   preferredPermanentSorters,
+      //   defaultSorter ?? [],
+      // );
+      // const sortersAreEqual = (() => {
+      //   if (currentUrlSorters === undefined && currentSorters.length === 0)
+      //     return true;
+      //   return isEqual(currentUrlSorters, currentSorters);
+      // })();
+      // const isInternalSyncWithUrlSorters = isEqual(
+      //   currentSorters,
+      //   lastSyncedUrlParams.current?.sorters,
+      // );
+      // let newSorters: CrudSort[] = [];
+      // // if last changes were in sync; i.e: current internal state === last url state
+      // // &&
+      // // current url state changed but did not affect current internal state
+      // if (isInternalSyncWithUrlFilters && !filtersAreEqual) {
+      //   // fallback to initial
+      //   if (!currentUrlFilters || currentUrlFilters.length === 0) {
+      //     newFilters = initialFilters;
+      //   } else {
+      //     // since they aren't equal, merge the two
+      //     newFilters = mergeFilters(currentUrlFilters, currentFilters);
+      //   }
+      //   setFilters(newFilters);
+      // }
+      // if (isInternalSyncWithUrlSorters && !sortersAreEqual) {
+      //   // fallback to initial
+      //   if (!currentUrlSorters || currentUrlSorters.length === 0) {
+      //     newSorters = initialSorters;
+      //   } else {
+      //     // since they aren't equal, merge the two
+      //     newSorters = mergeSorters(currentUrlSorters, currentSorters);
+      //   }
+      //   setSorters(newSorters);
+      // }
+    }
+  }, [
+    parsedParams.params?.filters,
+    filters,
+    lastSyncedUrlParams.current?.filters,
+  ]);
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
