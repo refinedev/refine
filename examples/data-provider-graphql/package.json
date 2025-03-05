@@ -23,10 +23,10 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.45.1",
-    "@refinedev/cli": "^2.16.42",
-    "@refinedev/core": "^4.57.5",
-    "@refinedev/graphql": "^7.1.1",
+    "@refinedev/antd": "^5.45.2",
+    "@refinedev/cli": "^2.16.43",
+    "@refinedev/core": "^4.57.6",
+    "@refinedev/graphql": "^7.1.2",
     "@refinedev/react-router": "^1.0.1",
     "@uiw/react-md-editor": "^3.19.5",
     "@urql/core": "^5.0.6",

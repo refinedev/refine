@@ -10,7 +10,7 @@ import spinner from "@utils/spinner";
 import type {
   NpmOutdatedResponse,
   RefinePackageInstalledVersionData,
-} from "@definitions/package";
+} from "../../definitions/package";
 import semverDiff from "semver-diff";
 import { maxSatisfying } from "semver";
 
