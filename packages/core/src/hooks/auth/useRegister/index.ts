@@ -131,6 +131,8 @@ export function useRegister<TVariables = {}>({
         if (successNotification) {
           open?.(buildSuccessNotification(successNotification));
         }
+
+        await invalidateAuthStore();
       }
 
       if (error || !success) {
@@ -148,8 +150,6 @@ export function useRegister<TVariables = {}>({
           replace("/");
         }
       }
-
-      await invalidateAuthStore();
     },
     onError: (error: any) => {
       open?.(buildNotification(error));
