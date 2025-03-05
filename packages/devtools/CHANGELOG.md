@@ -1,5 +1,12 @@
 # @refinedev/devtools
 
+## 1.2.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @refinedev/cli@2.16.44
+
 ## 1.2.13
 
 ### Patch Changes

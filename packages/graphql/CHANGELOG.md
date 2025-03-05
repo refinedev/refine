@@ -1,5 +1,17 @@
 # @refinedev/graphql
 
+## 7.1.3
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- fix: issue with custom mutation #6665
+
+  We missed passing param values for custom mutation
+
+  [Fixes #6665](https://github.com/refinedev/refine/issues/6665)
+
 ## 7.1.2
 
 ### Patch Changes
