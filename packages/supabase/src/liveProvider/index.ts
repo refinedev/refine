@@ -6,6 +6,23 @@ import type {
 } from "@supabase/supabase-js";
 import { liveTypes, supabaseTypes } from "../types";
 import { mapOperator } from "../utils";
+import warnOnce from "warn-once";
+
+const supportedOperators = [
+  "eq",
+  "ne",
+  "nin",
+  "ina",
+  "nina",
+  "contains",
+  "ncontains",
+  "containss",
+  "ncontainss",
+  "between",
+  "nbetween",
+  "null",
+  "nnull",
+];
 
 export const liveProvider = (
   supabaseClient: SupabaseClient<any, any, any>,
@@ -49,19 +66,37 @@ export const liveProvider = (
         }
       };
 
-      const mapFilter = (filters?: CrudFilters): string | undefined => {
+      const mapFilter = (
+        filters?: CrudFilters,
+        meta?: any,
+      ): string | undefined => {
         if (!filters || filters?.length === 0) {
           return;
         }
 
-        return filters
+        if (filters.length > 1 && !meta?.realtimeFilter) {
+          warnOnce(
+            true,
+            `Warning: Multiple filters detected for resource "${resource}". Supabase Realtime currently supports only a single filter. The first filter will be applied. To customize this behavior, use the 'meta.realtimeFilter' property.`,
+          );
+        }
+
+        const effectiveFilter = meta?.realtimeFilter
+          ? [meta.realtimeFilter]
+          : [filters[0]];
+
+        return effectiveFilter
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
+              if (supportedOperators.includes(filter.operator)) {
+                return `${filter.field}=${mapOperator(filter.operator)}.${
+                  filter.value
+                }`;
+              }
+              warnOnce(true, `Unsupported filter operator: ${filter.operator}`);
+              return undefined;
             }
-            return;
+            return undefined;
           })
           .filter(Boolean)
           .join(",");
@@ -70,7 +105,7 @@ export const liveProvider = (
       const events = types
         .map((x) => supabaseTypes[x])
         .sort((a, b) => a.localeCompare(b));
-      const filter = mapFilter(params?.filters);
+      const filter = mapFilter(params?.filters, meta);
       const ch = `${channel}:${events.join("|")}${filter ? `:${filter}` : ""}`;
 
       let client = supabaseClient.channel(ch);
