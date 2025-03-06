@@ -25,7 +25,7 @@ jobs:
         uses: actions/checkout@v4
       - name: typos
         id: check_for_typos
-        uses: crate-ci/typos@master
+        uses: crate-ci/typos@v1.29.9
         with:
           config: ./typos.toml
   deploy_documentation:
