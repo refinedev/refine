@@ -10,8 +10,8 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.43",
-    "@refinedev/core": "^4.57.6",
+    "@refinedev/cli": "^2.16.44",
+    "@refinedev/core": "^4.57.7",
     "@refinedev/react-hook-form": "^4.9.3",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",

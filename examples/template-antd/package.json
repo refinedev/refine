@@ -11,9 +11,9 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/antd": "^5.45.2",
-    "@refinedev/cli": "^2.16.43",
-    "@refinedev/core": "^4.57.6",
+    "@refinedev/antd": "^5.45.3",
+    "@refinedev/cli": "^2.16.44",
+    "@refinedev/core": "^4.57.7",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
     "react": "^18.0.0",
