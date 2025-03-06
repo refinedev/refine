@@ -15,5 +15,11 @@ export const prepareQueryContext = (
     },
   });
 
-  return queryContext;
+  Object.defineProperty(queryContext, "direction", {
+    enumerable: true,
+    get: () => {
+      return context.direction;
+    },
+  });
+  return queryContext as QueryFunctionContext<QueryKey, any>;
 };

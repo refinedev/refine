@@ -21,8 +21,8 @@ import type { BaseKey } from "../../../contexts/data/types";
 
 type LogRenameData =
   | {
-      resource?: string;
-    }
+    resource?: string;
+  }
   | undefined;
 
 export type UseLogReturnType<TLogData, TLogRenameData> = {
@@ -81,16 +81,17 @@ export const useLog = <
   const {
     data: identityData,
     refetch,
-    isLoading,
+    isPending,
   } = useGetIdentity({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     queryOptions: {
+      queryKey: keys().auth().get(preferLegacyKeys),
       enabled: !!auditLogContext?.create,
     },
   });
 
-  const log = useMutation<TLogData, Error, LogParams, unknown>(
-    async (params) => {
+  const log = useMutation({
+    mutationFn: async (params) => {
       const resource = pickResource(params.resource, resources);
       const logPermissions = pickNotDeprecated(
         resource?.meta?.audit,
@@ -105,7 +106,7 @@ export const useLog = <
       }
 
       let authorData;
-      if (isLoading && !!auditLogContext?.create) {
+      if (isPending && !!auditLogContext?.create) {
         authorData = await refetch();
       }
 
@@ -114,45 +115,39 @@ export const useLog = <
         author: identityData ?? authorData?.data,
       });
     },
-    {
-      mutationKey: keys().audit().action("log").get(),
-      ...logMutationOptions,
-      meta: {
-        ...logMutationOptions?.meta,
-        ...getXRay("useLog", preferLegacyKeys),
-      },
-    },
-  );
 
-  const rename = useMutation<
-    TLogRenameData,
-    Error,
-    { id: BaseKey; name: string },
-    unknown
-  >(
-    async (params) => {
+    ...logMutationOptions,
+
+    meta: {
+      ...logMutationOptions?.meta,
+      ...getXRay("useLog", preferLegacyKeys),
+    }
+  });
+
+  const rename = useMutation({
+    mutationFn: async (params) => {
       return await auditLogContext.update?.(params);
     },
-    {
-      onSuccess: (data) => {
-        if (data?.resource) {
-          queryClient.invalidateQueries(
-            keys()
-              .audit()
-              .resource(data?.resource ?? "")
-              .action("list")
-              .get(preferLegacyKeys),
-          );
-        }
-      },
-      mutationKey: keys().audit().action("rename").get(),
-      ...renameMutationOptions,
-      meta: {
-        ...renameMutationOptions?.meta,
-        ...getXRay("useLog", preferLegacyKeys),
-      },
+
+    onSuccess: (data) => {
+      if (data?.resource) {
+        queryClient.invalidateQueries({
+          queryKey: keys()
+            .audit()
+            .resource(data?.resource ?? "")
+            .action("list")
+            .get(preferLegacyKeys),
+        });
+      }
     },
-  );
+
+    ...renameMutationOptions,
+
+    meta: {
+      ...renameMutationOptions?.meta,
+      ...getXRay("useLog", preferLegacyKeys),
+    }
+  });
 
   return { log, rename };
 };

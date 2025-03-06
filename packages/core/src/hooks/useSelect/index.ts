@@ -46,15 +46,15 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
    * @default `"title"`
    */
   optionLabel?:
-    | (keyof TData extends string ? keyof TData : never)
-    | ((item: TData) => string);
+  | (keyof TData extends string ? keyof TData : never)
+  | ((item: TData) => string);
   /**
    * Set the option's value
    * @default `"id"`
    */
   optionValue?:
-    | (keyof TData extends string ? keyof TData : never)
-    | ((item: TData) => string);
+  | (keyof TData extends string ? keyof TData : never)
+  | ((item: TData) => string);
   /**
    * Field name to search for.
    * @description If provided `optionLabel` is a string, uses `optionLabel`'s value.
@@ -167,11 +167,11 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
 
 export type UseSelectReturnType<
   TData extends BaseRecord = BaseRecord,
-  TError extends HttpError = HttpError,
+  TError = HttpError,
   TOption extends BaseOption = BaseOption,
 > = {
   query: QueryObserverResult<GetListResponse<TData>, TError>;
-  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>, TError>;
   /**
    * @deprecated Use `query` instead
    */
@@ -179,7 +179,7 @@ export type UseSelectReturnType<
   /**
    * @deprecated Use `defaultValueQuery` instead
    */
-  defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+  defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>, TError>;
   onSearch: (value: string) => void;
   options: TOption[];
 } & UseLoadingOvertimeReturnType;
@@ -278,10 +278,10 @@ export const useSelect = <
       setSelectedOptions(
         data.data.map(
           (item) =>
-            ({
-              label: getOptionLabel(item),
-              value: getOptionValue(item),
-            }) as TOption,
+          (({
+            label: getOptionLabel(item),
+            value: getOptionValue(item)
+          }) as TOption),
         ),
       );
     },
@@ -298,10 +298,10 @@ export const useSelect = <
       ...defaultValueQueryOptions,
       enabled:
         defaultValues.length > 0 && (defaultValueQueryOptions?.enabled ?? true),
-      onSuccess: (data) => {
-        defaultValueQueryOnSuccess(data);
-        defaultValueQueryOptions?.onSuccess?.(data);
-      },
+      // onSuccess: (data) => {
+      //   defaultValueQueryOnSuccess(data);
+      //   defaultValueQueryOptions?.onSuccess?.(data);
+      // },
     },
     overtimeOptions: { enabled: false },
     meta: combinedMeta,
@@ -315,10 +315,10 @@ export const useSelect = <
       setOptions(
         data.data.map(
           (item) =>
-            ({
-              label: getOptionLabel(item),
-              value: getOptionValue(item),
-            }) as TOption,
+          (({
+            label: getOptionLabel(item),
+            value: getOptionValue(item)
+          }) as TOption),
         ),
       );
     },
@@ -335,13 +335,14 @@ export const useSelect = <
       mode: pagination?.mode,
     },
     hasPagination,
-    queryOptions: {
-      ...queryOptions,
-      onSuccess: (data) => {
-        defaultQueryOnSuccess(data);
-        queryOptions?.onSuccess?.(data);
-      },
-    },
+    // TODO: fix this?
+    // queryOptions: {
+    //   ...queryOptions,
+    //   onSuccess: (data) => {
+    //     defaultQueryOnSuccess(data);
+    //     queryOptions?.onSuccess?.(data);
+    //   },
+    // },
     overtimeOptions: { enabled: false },
     successNotification,
     errorNotification,
