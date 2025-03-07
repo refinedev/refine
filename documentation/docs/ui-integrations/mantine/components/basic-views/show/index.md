@@ -341,6 +341,119 @@ render(
 
 > For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
 
+### deleteButtonProps
+
+If the resource has the `canDelete` property and you want to customize this button, you can use the `deleteButtonProps` property like the code below.
+
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/show/123"]);
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/mantine";
+import routerProvider from "@refinedev/react-router-v6/legacy";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { Show } from "@refinedev/mantine";
+import { usePermissions } from "@refinedev/core";
+import { Title } from "@mantine/core";
+
+const PostShow: React.FC = () => {
+  const { data: permissionsData } = usePermissions();
+
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ size: "small" }}
+      canEdit={permissionsData?.includes("admin")}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
+};
+// visible-block-end
+
+const App = () => {
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
+
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
+
+  const authProvider = {
+    login: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    register: async () => {
+      return {
+        success: true,
+      };
+    },
+    forgotPassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    updatePassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    logout: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    check: async () => ({
+      authenticated: true,
+    }),
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
+  };
+
+  return (
+    <Refine
+      legacyRouterProvider={routerProvider}
+      dataProvider={customDataProvider}
+      authProvider={authProvider}
+      resources={[
+        {
+          name: "posts",
+          show: PostShow,
+          list: () => (
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          ),
+        },
+      ]}
+    />
+  );
+};
+render(
+  <Wrapper>
+    <App />
+  </Wrapper>,
+);
+```
+
 ### recordItemId
 
 The `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL, such as when it's used on a custom page, modal or drawer.

@@ -280,6 +280,108 @@ render(
 
 > For more information, refer to the [`<DeleteButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/delete-button), [`<EditButton>` &#8594](/docs/ui-integrations/material-ui/components/buttons/edit-button) and [`usePermission` &#8594](/docs/authentication/hooks/use-permissions) documentations.
 
+### deleteButtonProps
+
+If the resource has the `canDelete` property and you want to customize this button, you can use the `deleteButtonProps` property like the code below.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+const { default: simpleRest } = RefineSimpleRest;
+
+const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
+
+const customDataProvider = {
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
+};
+
+const authProvider = {
+  login: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: async () => ({
+    authenticated: true,
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => ["admin"],
+  getIdentity: async () => null,
+};
+
+// visible-block-start
+import { Show } from "@refinedev/mui";
+import { usePermissions } from "@refinedev/core";
+
+const PostShow: React.FC = () => {
+  const { data: permissionsData } = usePermissions();
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ size: "small" }}
+      canEdit={
+        permissionsData?.includes("editor") ||
+        permissionsData?.includes("admin")
+      }
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
+};
+// visible-block-end
+
+render(
+  <RefineMuiDemo
+    authProvider={authProvider}
+    dataProvider={customDataProvider}
+    initialRoutes={["/posts/show/123"]}
+    Layout={RefineMui.Layout}
+    resources={[
+      {
+        name: "posts",
+        list: () => (
+          <div>
+            <p>This page is empty.</p>
+            <RefineMui.ShowButton recordItemId="123" />
+          </div>
+        ),
+        show: PostShow,
+      },
+    ]}
+  />,
+);
+```
+
 ### recordItemId
 
 `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
