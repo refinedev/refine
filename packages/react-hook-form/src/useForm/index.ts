@@ -128,6 +128,7 @@ export const useForm = <
     watch,
     setValue,
     getValues,
+    formState,
     handleSubmit: handleSubmitReactHookForm,
     setError,
   } = useHookFormResult;
@@ -229,11 +230,11 @@ export const useForm = <
     return () => subscription.unsubscribe();
   }, [watch]);
 
-  const onValuesChange = (changeValues: TVariables) => {
-    if (warnWhenUnsavedChanges) {
-      setWarnWhen(true);
-    }
+  useEffect(() => {
+    setWarnWhen(formState.isDirty && warnWhenUnsavedChanges);
+  }, [formState.isDirty, warnWhenUnsavedChanges]);
 
+  const onValuesChange = (changeValues: TVariables) => {
     if (refineCoreProps?.autoSave?.enabled) {
       setWarnWhen(false);
 
