@@ -143,19 +143,36 @@ useSelect({
 
 ### defaultValue
 
-The `defaultValue` is a property that can be used to not only set default options for a `<select>` component but also add extra options.
+Is used to fetch extra options from the API.
 
-However, issues may arise when the `<select>` component has many entries and pagination is required. In such cases, the `defaultValue` might not be visible among the currently displayed options, which could cause the `<select>` component to malfunction.
-
-To prevent this, a separate `useMany` query is sent to the backend carrying the `defaultValue` and added to the options of the `<select>` component, ensuring that the default values are always present in the current array of options.
-
-Since the `useMany` query is used to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
+If there are many `<select>` options and pagination is needed, the `defaultValue` might not be in the visible list. This can break the `<select>` component. To prevent this, a separate `useMany` query fetches the `defaultValue` from the backend and adds it to the options, ensuring it exists in the list. Since it uses `useMany`, `defaultValue` can be a single value or an array:
 
 ```tsx
 useSelect({
   defaultValue: 1, // or [1, 2]
 });
 ```
+
+:::info
+
+`defaultValue` **does not** set a default selection. It only ensures the default value exists in the options.
+
+To set a default selection, pass `defaultValue` to the `value` prop of `<Select>` or `useForm`:
+
+```tsx
+const form = useForm({
+  defaultValues: {
+    category: { id: 1 }, // Default selected value
+  },
+});
+
+const { selectProps } = useSelect({
+  resource: "categories",
+  defaultValue: [1], // Ensures the default value is included in options
+});
+```
+
+:::
 
 ### selectedOptionsOrder
 
