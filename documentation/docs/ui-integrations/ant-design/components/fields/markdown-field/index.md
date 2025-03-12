@@ -15,7 +15,10 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 Let's see how we can use `<MarkdownField>` in a show page:
 
-```tsx live
+```tsx live previewHeight=280px url=http://localhost:3000/samples/show/123
+setInitialRoutes(["/samples", "/samples/show/123"]);
+
+// visible-block-start
 import { useShow } from "@refinedev/core";
 import {
   Show,
@@ -46,29 +49,46 @@ const SampleShow: React.FC = () => {
 
 interface IPost {
   id: number;
-  title: string;
   content: string;
 }
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/samples", "/samples/show/123"]}
-    resources={[
-      {
-        name: "samples",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <RefineAntd.ShowButton recordItemId="123">
-              Show Item 123
-            </RefineAntd.ShowButton>
-          </div>
-        ),
-        show: SampleShow,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "samples",
+          list: "/samples",
+          show: "/samples/show/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/samples"
+          element={
+            <div style={{ padding: 16 }}>
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.ShowButton recordItemId="123">
+                  Show Item 123
+                </RefineAntd.ShowButton>
+              </div>
+            </div>
+          }
+        />
+        <ReactRouter.Route
+          path="/samples/show/:id"
+          element={
+            <div style={{ padding: 16 }}>
+              <SampleShow />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

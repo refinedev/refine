@@ -1,5 +1,85 @@
 # @refinedev/codemod
 
+## 4.3.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update package descriptions
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v6 to v7 codemod added.
+
+  For `@refinedev/react-router-v6` to `@refinedev/react-router`:
+
+  ```bash
+  npx @refinedev/codemod@latest refine-react-router-v6-to-refine-react-router
+  ```
+
+  ```diff
+   import routerProvider, { NavigateToResource, UnsavedChangesNotifier, DocumentTitleHandler }
+  - from "@refinedev/react-router-v6";
+   import routerProvider, { NavigateToResource, UnsavedChangesNotifier, DocumentTitleHandler }
+  + from "@refinedev/react-router";
+
+  ```
+
+  For `react-router-dom` to `react-router`:
+
+  ```bash
+  npx @refinedev/codemod@latest react-router-dom-to-react-router"
+  ```
+
+  ```diff
+  -import { RouterProvider } from "react-router-dom";
+  +import { RouterProvider } from "react-router";
+  ```
+
+  See the [migration guide React Router v6 to v7](https://refine.dev/docs/routing/integrations/react-router/migration-guide-v6-to-v7) for more information.
+
+## 4.3.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6556](https://github.com/refinedev/refine/pull/6556) [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: React Router v6 to v7 codemod added.
+
+  For `@refinedev/react-router-v6` to `@refinedev/react-router`:
+
+  ```bash
+  npx @refinedev/codemod@latest refine-react-router-v6-to-refine-react-router
+  ```
+
+  ```diff
+   import routerProvider, { NavigateToResource, UnsavedChangesNotifier, DocumentTitleHandler }
+  - from "@refinedev/react-router-v6";
+   import routerProvider, { NavigateToResource, UnsavedChangesNotifier, DocumentTitleHandler }
+  + from "@refinedev/react-router";
+
+  ```
+
+  For `react-router-dom` to `react-router`:
+
+  ```bash
+  npx @refinedev/codemod@latest react-router-dom-to-react-router"
+  ```
+
+  ```diff
+  -import { RouterProvider } from "react-router-dom";
+  +import { RouterProvider } from "react-router";
+  ```
+
+  See the [migration guide React Router v6 to v7](https://refine.dev/docs/routing/integrations/react-router/migration-guide-v6-to-v7) for more information.
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6554](https://github.com/refinedev/refine/pull/6554) [`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706) Thanks [@necatiozmen](https://github.com/necatiozmen)! - chore: update package descriptions
+
 ## 4.2.0
 
 ### Minor Changes

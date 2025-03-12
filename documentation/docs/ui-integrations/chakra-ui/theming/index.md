@@ -143,7 +143,7 @@ The theme object is where you define your application's color palette, type scal
 
 ## Predefined Themes
 
-[`RefineThemes`](https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/theme/index.ts#L92) has predefined themes for you. You can use them by importing them from the `@refinedev/chakra-ui` package. It is not required if you decide to use the default Chakra UI theme.
+[`RefineThemes`](https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/theme/index.ts#L92) has predefined themes for you. You can use them by importing them from the `@refinedev/chakra-ui` package. It is not required if you decide to use the default Chakra UI theme.
 
 ```ts
 const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
@@ -185,7 +185,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
@@ -200,7 +200,7 @@ import {
   extendTheme,
 } from "@chakra-ui/react";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 
@@ -259,7 +259,7 @@ const App = () => {
 render(<App />);
 ```
 
-[Refer to the `refineTheme` object in the source code to see the default theme values &#8594](https://github.com/refinedev/refine/blob/master/packages/chakra-ui/src/theme/index.ts)
+[Refer to the `refineTheme` object in the source code to see the default theme values &#8594](https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/theme/index.ts)
 
 ## Theme switching
 
@@ -274,7 +274,7 @@ setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
@@ -295,7 +295,7 @@ import {
 } from "@chakra-ui/react";
 import { IconSun, IconMoonStars } from "@tabler/icons-react";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { PostCreate, PostEdit, PostList } from "./pages";
 

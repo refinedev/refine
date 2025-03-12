@@ -8,9 +8,8 @@ export default function BasicUsage() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@refinedev/react-router-v6": "latest",
-        "react-router-dom": "latest",
-        "react-router": "latest",
+        "@refinedev/react-router": "latest",
+        "react-router": "^7.0.2",
       }}
       startRoute="/products/edit/123"
       files={{
@@ -35,8 +34,8 @@ const AppTsxCode = /* jsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { BrowserRouter, Route, Routes, Navigate, Link, Outlet } from "react-router-dom";
-import routerProvider from "@refinedev/react-router-v6";
+import { BrowserRouter, Route, Routes, Navigate, Link, Outlet } from "react-router";
+import routerProvider from "@refinedev/react-router";
 
 import "./style.css";
 

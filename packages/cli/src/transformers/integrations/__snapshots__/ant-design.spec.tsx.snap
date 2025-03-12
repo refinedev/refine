@@ -12,9 +12,9 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
     UnsavedChangesNotifier,
     DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+} from "@refinedev/react-router";
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 
 const App = () => {
     return (
@@ -41,23 +41,23 @@ const App = () => {
 
 export default App;
 ---------------------------------------------------- 1`] = `
-"import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
-import {
-  useNotificationProvider,
+"import {
+  ErrorComponent,
   RefineThemes,
   ThemedLayoutV2,
-  ErrorComponent,
+  useNotificationProvider,
 } from "@refinedev/antd";
-import dataProvider from "@refinedev/simple-rest";
+import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import routerProvider, {
-  UnsavedChangesNotifier,
   DocumentTitleHandler,
-} from "@refinedev/react-router-v6";
+  UnsavedChangesNotifier,
+} from "@refinedev/react-router";
+import dataProvider from "@refinedev/simple-rest";
 
-import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
-import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
+import { App as AntdApp, ConfigProvider } from "antd";
 
 const App = () => {
   return (
@@ -114,9 +114,9 @@ export default App;
 ---------------------------------------------------- 1`] = `
 "import { Refine, WelcomePage } from "@refinedev/core";
 
-import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
-import { ConfigProvider, App as AntdApp } from "antd";
+import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
+import { App as AntdApp, ConfigProvider } from "antd";
 
 function App() {
   return (
@@ -157,9 +157,9 @@ export default App;
 ---------------------------------------------------- 1`] = `
 "import { Refine, WelcomePage } from "@refinedev/core";
 
-import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
-import { ConfigProvider, App as AntdApp } from "antd";
+import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
+import { App as AntdApp, ConfigProvider } from "antd";
 
 function App() {
   return (

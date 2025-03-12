@@ -1,8 +1,8 @@
 {
   "name": "@refinedev/airtable",
-  "version": "4.4.11",
+  "version": "4.4.13",
   "private": false,
-  "description": "refine Airtable data provider. refine is a React-based framework for building internal tools, rapidly. It ships with Ant Design System, an enterprise-level UI toolkit.",
+  "description": "Airtable Data Provider for Refine, enabling seamless Airtable integrations.",
   "repository": {
     "type": "git",
     "url": "https://github.com/refinedev/refine.git",
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "4.56.0",
+    "@refinedev/core": "4.57.7",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",

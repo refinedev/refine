@@ -187,7 +187,7 @@ The `git switch` command replaced `git checkout` in 2020, although `git checkout
 
 ### Why git switch was needed?
 
-Let's assume you have a file named "test.txt" and at the same time, you have a branch named "test". If you are on master branch and you want to checkout to branch "test", you would use the command "git checkout test" but this would checkout the file "test", this is where `git switch` comes in.
+Let's assume you have a file named "test.txt" and at the same time, you have a branch named "test". If you are on main branch and you want to checkout to branch "test", you would use the command "git checkout test" but this would checkout the file "test", this is where `git switch` comes in.
 
 • `git switch test` will switch to branch "test" even if you have a file "test"
 • `git restore` will discard uncommitted local changes in the file "test" even if you have a branch "test".
@@ -235,7 +235,7 @@ Another interesting argument of this command is `git switch -`. If you have to f
 
 ## Difference between git checkout and git reset
 
-`git reset` moves the current branch reference, whereas `git checkout` just moves the head instead of the current branch reference.  
+`git reset` moves the current branch reference, whereas `git checkout` just moves the head instead of the current branch reference.
 `reset` resets the index without changing the working tree. The below example will reset the index to match HEAD, without touching the working tree:
 
 <div className="centered-image"  >
@@ -253,7 +253,7 @@ Note that you will use reset to undo the staging of a modified file.
 
 <br/>
 
-If your HEAD is currently set to the master branch, running `git reset 8e3f6r5` will point the master to "9e5e6a4". `Checkout` on the other hand, changes the head itself.
+If your HEAD is currently set to the main branch, running `git reset 8e3f6r5` will point the main to "9e5e6a4". `Checkout` on the other hand, changes the head itself.
 
 ## Difference between git checkout and git restore
 

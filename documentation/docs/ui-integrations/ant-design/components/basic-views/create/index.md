@@ -8,6 +8,8 @@ swizzle: true
 We will show what `<Create>` does using properties with examples.
 
 ```tsx live hideCode url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
 interface ICategory {
   id: number;
   title: string;
@@ -90,21 +92,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -121,7 +141,7 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 `title` allows you to add a title inside the `<Create>` component. If you don't pass the title props, it uses the "Create" prefix and the singular resource name by default. For example, for the `/posts/create` resource, it would be "Create post".
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -137,21 +157,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -160,7 +198,7 @@ render(
 The `<Create>` component has a save button that submits the form by default. If you want to customize this button you can use the `saveButtonProps` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { Form, Input, Select, useForm, useSelect, CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -176,21 +214,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -200,18 +256,16 @@ render(
 
 The `<Create>` component reads the `resource` information from the route by default. If you want to use a custom resource for the `<Create>` component, you can use the `resource` prop:
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/custom
-// handle initial routes in new way
-setInitialRoutes(["/custom"]);
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
 
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 import { Refine } from "@refinedev/core";
+import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
 
-const MyComponent: React.FC = () => {
+const CustomPage: React.FC = () => {
   return (
     /* highlight-next-line */
     <Create resource="posts">
@@ -221,27 +275,41 @@ const MyComponent: React.FC = () => {
 };
 // visible-block-end
 
-const App: React.FC = () => {
-  return (
+render(
+  <ReactRouter.BrowserRouter>
     <RefineAntdDemo
-      legacyRouterProvider={{
-        ...routerProvider,
-        // highlight-start
-        routes: [
-          {
-            element: <MyComponent />,
-            path: "/custom",
-          },
-        ],
-        // highlight-end
-      }}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
-  );
-};
-
-render(<App />);
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<CustomPage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
+);
 ```
 
 If you have multiple resources with the same name, you can pass the `identifier` instead of the `name` of the resource. It will only be used as the main matching key for the resource, data provider methods will still work with the `name` of the resource defined in the `<Refine/>` component.
@@ -253,7 +321,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 To customize the back button or to disable it, you can use the `goBack` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -271,21 +339,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts", "/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -316,7 +402,7 @@ const PostCreate: React.FC = () => {
 To toggle the loading state of the `<Create/>` component, you can use the `isLoading` property:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -332,21 +418,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -355,7 +459,7 @@ render(
 To customize or disable the breadcrumb, you can use the `breadcrumb` property. By default the `Breadcrumb` component from the `@refinedev/antd` package is used for breadcrumbs.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create, Breadcrumb } from "@refinedev/antd";
@@ -383,21 +487,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -408,7 +530,7 @@ render(
 You can use the `wrapperProps` property if you want to customize the wrapper of the `<Create/>` component. The `@refinedev/antd` wrapper elements are simply `<div/>`s and `wrapperProps` and can get every attribute that `<div/>` can get.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -432,21 +554,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -455,7 +595,7 @@ render(
 You can use the `headerProps` property to customize the header of the `<Create/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -480,21 +620,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -505,7 +663,7 @@ render(
 You can use the `contentProps` property to customize the content of the `<Create/>` component:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -529,21 +687,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -554,7 +730,7 @@ render(
 You can customize the buttons at the header by using the `headerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -579,21 +755,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -602,7 +796,7 @@ render(
 You can use the `headerButtonProps` property to customize the wrapper element of the buttons at the header:
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -614,6 +808,10 @@ const PostCreate: React.FC = () => {
       // highlight-start
       headerButtonProps={{
         style: {
+          // hide-start
+          float: "right",
+          marginRight: 24,
+          // hide-end
           backgroundColor: "cornflowerblue",
           padding: "16px",
         },
@@ -628,21 +826,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -655,7 +871,7 @@ By default, the `<Create/>` component has a [`<SaveButton>`][save-button] at the
 You can customize the buttons at the footer by using the `footerButtons` property. It accepts `React.ReactNode` or a render function `({ defaultButtons, saveButtonProps }) => React.ReactNode` which you can use to keep the existing buttons and add your own.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -680,27 +896,47 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
 Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `saveButtonProps` to utilize the default values of the [`<SaveButton>`][save-button] component.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
 // visible-block-start
 import { Create, SaveButton } from "@refinedev/antd";
 import { Button } from "antd";
@@ -727,25 +963,42 @@ const PostCreate: React.FC = () => {
     </Create>
   );
 };
-
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -754,7 +1007,7 @@ render(
 You can customize the wrapper element of the buttons at the footer by using the `footerButtonProps` property.
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/create
-const { CreateButton } = RefineAntd;
+setInitialRoutes(["/posts/create"]);
 
 // visible-block-start
 import { Create } from "@refinedev/antd";
@@ -783,21 +1036,39 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineAntd.CreateButton />
+              </div>
+            }
+          />
+          <ReactRouter.Route path="create" element={<PostCreate />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -810,3 +1081,5 @@ render(
 <PropsTable module="@refinedev/antd/Create" goBack-default="`<ArrowLeft />`" headerProps-type="[`PageHeaderProps`](https://procomponents.ant.design/en-US/components/page-header)" />
 
 [save-button]: /docs/ui-integrations/ant-design/components/buttons/save-button
+
+</rewritten_file>

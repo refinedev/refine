@@ -32,15 +32,19 @@
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
+    "publish-packages": "node scripts/update-create-refine-app-registry.js add && pnpm changeset publish && node scripts/update-create-refine-app-registry.js remove",
     "sp": "syncpack",
     "start": "lerna run start",
     "test": "lerna run test --stream",
     "test:all": "lerna run test --stream --scope @refinedev/* --scope create-refine-app",
     "test:all:coverage": "pnpm test:all -- -- --coverage",
     "test:coverage": "pnpm test -- -- --coverage",
-    "version-packages": "pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --no-frozen-lockfile && git add pnpm-lock.yaml"
+    "version-packages": "pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --no-frozen-lockfile --reporter=ndjson --stream && git add pnpm-lock.yaml"
   },
   "lint-staged": {
+    "documentation/blog/**": [
+      "typos -c ./typos.toml"
+    ],
     "*.{js,jsx,ts,tsx,json}": [
       "biome format --write --no-errors-on-unmatched"
     ],
@@ -91,6 +95,11 @@
   "engines": {
     "node": ">=18",
     "pnpm": ">=9"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@changesets/git@3.0.0": "patches/@changesets__git@3.0.0.patch"
+    }
   },
   "nx": {}
 }

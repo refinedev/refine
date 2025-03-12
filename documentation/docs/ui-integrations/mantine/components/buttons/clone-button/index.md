@@ -4,42 +4,16 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-  catchAll: <RefineMantine.ErrorComponent />,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <MantineCore.MantineProvider
-      theme={RefineMantine.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
-  );
-};
-
 const ClonePage = () => {
   const { list } = RefineCore.useNavigation();
-  const params = RefineCore.useRouterContext().useParams();
+  const params = RefineCore.useParsed();
 
   return (
     <div>
       <MantineCore.Text italic color="dimmed" size="sm">
         URL Parameters:
       </MantineCore.Text>
-      <MantineCore.Code>{JSON.stringify(params)}</MantineCore.Code>
+      <MantineCore.Code>{JSON.stringify(params, null, 2)}</MantineCore.Code>
       <MantineCore.Space h="md" />
       <MantineCore.Button
         size="xs"
@@ -66,12 +40,10 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ```tsx live url=http://localhost:3000 previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import { List, CloneButton } from "@refinedev/mantine";
 import { Table, Pagination } from "@mantine/core";
-
 import { useTable } from "@refinedev/react-table";
 import { ColumnDef, flexRender } from "@tanstack/react-table";
 
@@ -166,23 +138,32 @@ interface IPost {
 }
 // visible-block-end
 
-const App = () => {
-  return (
-    <RefineHeadlessDemo
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
-          create: ClonePage,
+          list: "/posts",
+          clone: "/posts/clone/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="clone/:id" element={<ClonePage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -193,8 +174,7 @@ render(
 `recordItemId` is used to append the record id to the end of the route path. By default `id` will be read from the route parameters.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { CloneButton } from "@refinedev/mantine";
@@ -204,24 +184,32 @@ const MyCloneComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <RefineHeadlessDemo
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          create: ClonePage,
-          list: MyCloneComponent,
+          list: "/posts",
+          clone: "/posts/clone/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+          <ReactRouter.Route path="clone/:id" element={<ClonePage />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -232,9 +220,7 @@ Clicking the button will trigger the `clone` method of [`useNavigation`](/docs/r
 It is used to redirect the app to the `clone` action of the given resource name. By default, the app redirects to the inferred resource's `clone` action path.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { CloneButton } from "@refinedev/mantine";
@@ -244,27 +230,40 @@ const MyCloneComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <RefineHeadlessDemo
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyCloneComponent,
+          list: "/posts",
+          clone: "/posts/clone/:id",
         },
         {
           name: "categories",
-          create: ClonePage,
+          list: "/categories",
+          clone: "/categories/clone/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+        </ReactRouter.Route>
+        <ReactRouter.Route
+          path="/categories/clone/:id"
+          element={<ClonePage />}
+        />
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -288,12 +287,10 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 ### hideText
 
-`hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
+It is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
 setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
 
 // visible-block-start
 import { CloneButton } from "@refinedev/mantine";
@@ -303,24 +300,31 @@ const MyCloneComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <RefineHeadlessDemo
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyCloneComponent,
-          create: ClonePage,
+          list: "/posts",
+          clone: "/posts/clone/:id",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyCloneComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

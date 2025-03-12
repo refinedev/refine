@@ -15,7 +15,9 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 Let's see how we can use `<EmailField>` with the example in the user list:
 
-```tsx live url=http://localhost:3000/posts previewHeight=340px
+```tsx live url=http://localhost:3000/users previewHeight=340px
+setInitialRoutes(["/users"]);
+
 // visible-block-start
 import {
   useDataGrid,
@@ -32,6 +34,7 @@ const columns: GridColDef[] = [
   {
     field: "email",
     headerName: "Email Address",
+    display: "flex",
     renderCell: function render({ row }) {
       // highlight-start
       return <EmailField value={row.email} />;
@@ -47,7 +50,7 @@ const UsersList: React.FC = () => {
 
   return (
     <List>
-      <DataGrid {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} />
     </List>
   );
 };
@@ -61,14 +64,29 @@ interface IUser {
 // visible-block-end
 
 render(
-  <RefineMuiDemo
-    resources={[
-      {
-        name: "users",
-        list: UsersList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineMuiDemo
+      resources={[
+        {
+          name: "users",
+          list: "/users",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/users"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<UsersList />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMuiDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

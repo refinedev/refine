@@ -15,8 +15,6 @@ Now our application is ready to use with layouts, views and notifications. Only 
 - Forgot password page with type `forgotPassword` which renders a forgot password form and works with the `useForgotPassword` hook.
 - Update password page with type `updatePassword` which renders a update password form and works with the `useUpdatePassword` hook.
 
-Now we've refactored our application with Material UI, we only have one thing left to do: handle notifications. Refine triggers notification in various scenarios, such as when a record is created, updated, or deleted, when there is an error from your data provider or your auth provider. It's important to provide feedback to the user when interacting with the application.
-
 ## Using `<AuthPage />` Component
 
 Now let's update our `<Login />` component to use the `<AuthPage />` from `@refinedev/mui` package. This component will provide a consistent look and feel with the rest of the application.

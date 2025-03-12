@@ -79,7 +79,7 @@ export const CompanyCreateModal = () => {
           rules={[{ required: true }]}
         >
           <Select
-            placeholder="Please sales owner user"
+            placeholder="Please enter sales owner user"
             {...selectProps}
             options={
               queryResult.data?.data?.map((user) => ({

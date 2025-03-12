@@ -17,8 +17,8 @@ values={[
 <TabItem value="resources">
 
 ```tsx
-import routerProvider from "@refinedev/react-router-v6";
-import { BrowserRouter } from "react-router-dom";
+import routerProvider from "@refinedev/react-router";
+import { BrowserRouter } from "react-router";
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
 
@@ -97,12 +97,12 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -156,12 +156,12 @@ setInitialRoutes(["/samples/show/123"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import { RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -215,12 +215,12 @@ setInitialRoutes(["/samples/create"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";
@@ -274,12 +274,12 @@ setInitialRoutes(["/samples/edit/123"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
-import routerProvider from "@refinedev/react-router-v6";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
 import { ConfigProvider } from "antd";
 
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
 import { AntdInferencer } from "@refinedev/inferencer/antd";

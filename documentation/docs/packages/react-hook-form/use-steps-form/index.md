@@ -1136,7 +1136,7 @@ It also accepts all props of [useForm](https://react-hook-form.com/api/useform) 
 
 <CodeSandboxExample path="form-react-hook-form-use-steps-form" />
 
-[@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/master/packages/react-hook-form
+[@refinedev/react-hook-form]: https://github.com/refinedev/refine/tree/main/packages/react-hook-form
 [refine-react-hook-form-use-form]: /docs/packages/list-of-packages
 [react-hook-form-use-form]: https://react-hook-form.com/api/useform
 [use-form-core]: /docs/data/hooks/use-form/

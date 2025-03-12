@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { logoutUser } from "src/utils/auth";
 import { getMe } from "src/utils/me";
 

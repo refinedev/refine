@@ -1,5 +1,57 @@
 # @refinedev/devtools
 
+## 1.2.14
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @refinedev/cli@2.16.44
+
+## 1.2.13
+
+### Patch Changes
+
+- Updated dependencies [[`a12a0821e3c573386c2a8eea4ac1582cc46dd26d`](https://github.com/refinedev/refine/commit/a12a0821e3c573386c2a8eea4ac1582cc46dd26d)]:
+  - @refinedev/cli@2.16.43
+
+## 1.2.12
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+- Updated dependencies []:
+  - @refinedev/cli@2.16.42
+  - @refinedev/devtools-server@1.1.40
+  - @refinedev/devtools-shared@1.1.14
+
+## 1.2.11
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6556](https://github.com/refinedev/refine/pull/6556) [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: React Router v7 support added.
+
+  🚨 These packages are not dependent on `react-router`. However, they use the `react-router` package for testing purposes on [Jest](https://jestjs.io/) environment.
+
+- Updated dependencies [[`3cb2ca6f687398e422b867692b597b0c0d911706`](https://github.com/refinedev/refine/commit/3cb2ca6f687398e422b867692b597b0c0d911706), [`1ced1baa1dda3251b2a3d058a9168533126efb53`](https://github.com/refinedev/refine/commit/1ced1baa1dda3251b2a3d058a9168533126efb53)]:
+  - @refinedev/cli@2.16.41
+  - @refinedev/devtools-server@1.1.39
+  - @refinedev/devtools-shared@1.1.13
+
+## 1.2.10
+
+### Patch Changes
+
+- Updated dependencies [[`6f2c1c22112a19ba89a9298469158d4da6096aa8`](https://github.com/refinedev/refine/commit/6f2c1c22112a19ba89a9298469158d4da6096aa8)]:
+  - @refinedev/devtools-server@1.1.38
+  - @refinedev/cli@2.16.40
+
 ## 1.2.9
 
 ### Patch Changes

@@ -2,7 +2,7 @@
 title: Contributing
 ---
 
-We follow a [code of conduct](https://github.com/refinedev/refine/blob/master/CODE_OF_CONDUCT.md) when participating in the community. Please read it before you make any contributions.
+We follow a [code of conduct](https://github.com/refinedev/refine/blob/main/CODE_OF_CONDUCT.md) when participating in the community. Please read it before you make any contributions.
 
 - If you plan to work on an issue, mention so in the issue page before you start working on it.
 - If you plan to work on a new feature, create an issue and discuss it with other community members/maintainers.
@@ -125,8 +125,8 @@ We're using [Codesandbox's Sandpack](https://sandpack.codesandbox.io) to provide
 Check out the example usage of `<Sandpack />` in Core API's `useForm` hook documentation:
 
 - [useForm Documentation](/docs/data/hooks/use-form/#usage)
-- [Source Code for Sandpack](https://github.com/refinedev/refine/blob/master/documentation/docs/data/hooks/use-form/basic-usage.tsx)
-- [Source Code for Markdown](https://github.com/refinedev/refine/blob/master/documentation/docs/data/hooks/use-form/index.md)
+- [Source Code for Sandpack](https://github.com/refinedev/refine/blob/main/documentation/docs/data/hooks/use-form/basic-usage.tsx)
+- [Source Code for Markdown](https://github.com/refinedev/refine/blob/main/documentation/docs/data/hooks/use-form/index.md)
 
 ## Committing Your Work and Preparing a Pull Request
 
@@ -226,6 +226,6 @@ We're looking forward to see your contributions! 🎉
 
 ## Release Cycle
 
-Refine follows a monthly release cycle. We're releasing a new version every month with the changes we've made in that month. Unless there's a critical bugfix, we're not releasing a new version in the middle of the month. If your PR is approved and ready to be merged, it will be labeled as `pr-ready` and will be merged to the `master` branch with the next release.
+Refine follows a monthly release cycle. We're releasing a new version every month with the changes we've made in that month. Unless there's a critical bugfix, we're not releasing a new version in the middle of the month. If your PR is approved and ready to be merged, it will be labeled as `pr-ready` and will be merged to the `main` branch with the next release.
 
 Each approved PR will be included to a milestone, these milestones are used to track the progress of the monthly release.

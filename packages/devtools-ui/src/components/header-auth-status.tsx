@@ -6,7 +6,7 @@ import { getMe } from "src/utils/me";
 
 import type { MeResponse } from "src/interfaces/api";
 import { logoutUser } from "src/utils/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 export const HeaderAuthStatus = () => {
   const [me, setMe] = React.useState<MeResponse | null>(null);

@@ -12,7 +12,7 @@ import type { ImportButtonProps } from "../types";
 
 /**
  * `<ImportButton>` is compatible with the {@link https://refine.dev/docs/api-reference/core/hooks/import-export/useImport/ `useImport`} core hook.
- * It uses Material UI {@link https://mui.com/material-ui/api/loading-button/#main-content  `<LoadingButton>`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
+ * It uses Material UI {@link https://mui.com/material-ui/react-button  `<Button>`} and native html {@link https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input  `<input>`} element.
  *
  * @see {@link https://refine.dev/docs/api-reference/mui/components/buttons/import-button} for more details.
  */

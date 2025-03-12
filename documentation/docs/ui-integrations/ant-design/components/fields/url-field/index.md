@@ -15,13 +15,10 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 Let's see how we can use `<UrlField>` with an example:
 
-```tsx live
-import {
-  List,
-  useTable,
-  // highlight-next-line
-  UrlField,
-} from "@refinedev/antd";
+```tsx live previewHeight=280px url=http://localhost:3000/posts
+setInitialRoutes(["/posts"]);
+
+import { List, UrlField, useTable } from "@refinedev/antd";
 import { Table } from "antd";
 
 const PostList: React.FC = () => {
@@ -30,14 +27,12 @@ const PostList: React.FC = () => {
   return (
     <List>
       <Table {...tableProps} rowKey="id">
-        <Table.Column dataIndex="title" title="Title" key="title" width="50%" />
+        <Table.Column dataIndex="title" title="Title" />
         <Table.Column
           dataIndex={["image", "0", "url"]}
-          title={"Image"}
-          key="image"
+          title="Image"
           // highlight-next-line
           render={(value: string) => <UrlField value={value} />}
-          width="50%"
         />
       </Table>
     </List>
@@ -53,17 +48,29 @@ interface IPost {
 interface IImage {
   url: string;
 }
-// visible-block-end
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <PostList />
+            </div>
+          }
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

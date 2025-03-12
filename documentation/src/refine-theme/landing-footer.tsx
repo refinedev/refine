@@ -334,7 +334,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               "font-normal",
             )}
           >
-            {"© 2024, Refine from San Francisco to wherever you're with "}
+            {"© 2025, Refine from San Francisco to wherever you're with "}
             <HeartOutlinedIcon
               className={clsx("ml-1", "text-refine-red", "inline", "leading-5")}
             />

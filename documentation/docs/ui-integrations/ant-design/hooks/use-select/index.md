@@ -1,7 +1,7 @@
 ---
 title: useSelect
 siderbar_label: useSelect
-source: https://github.com/refinedev/refine/blob/master/packages/antd/src/hooks/fields/useSelect/index.ts
+source: https://github.com/refinedev/refine/blob/main/packages/antd/src/hooks/fields/useSelect/index.ts
 ---
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";

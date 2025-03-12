@@ -40,6 +40,8 @@ Now let's prepare a rule that checks if the titles of the posts are unique. We h
 ```
 
 ```tsx live hideCode url=http://localhost:3000/posts/create
+setInitialRoutes(["/posts/create"]);
+
 // visible-block-start
 import { useForm, Create, CreateButton } from "@refinedev/antd";
 import { Form, Input } from "antd";
@@ -61,10 +63,14 @@ interface PostUniqueCheckRequestQuery {
 // highlight-end
 
 const PostCreate: React.FC = () => {
-  const { formProps, saveButtonProps } = useForm<IPost>();
+  const { formProps, saveButtonProps } = useForm<IPost>({
+    defaultFormValues: {
+      title: "Test",
+    },
+  });
 
   // highlight-next-line
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Test");
 
   // highlight-start
   const apiUrl = useApiUrl();
@@ -100,7 +106,8 @@ const PostCreate: React.FC = () => {
             },
             {
               validator: async (_, value) => {
-                if (!value) return;
+                if (!value)
+                  return Promise.reject(new Error("Please enter a title"));
                 const { data } = await refetch();
                 if (data && data.data.isAvailable) {
                   return Promise.resolve();
@@ -124,21 +131,30 @@ const PostCreate: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    initialRoutes={["/posts/create"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <CreateButton />
-          </div>
-        ),
-        create: PostCreate,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div>
+              <p>This page is empty.</p>
+              <CreateButton />
+            </div>
+          }
+        />
+        <ReactRouter.Route path="/posts/create" element={<PostCreate />} />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
