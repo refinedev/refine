@@ -26,7 +26,14 @@ export default function BrowserWindow({
   hasBottom = false,
 }: Props): JSX.Element {
   return (
-    <div className={clsx("flex", "flex-col", "h-full")}>
+    <div
+      className={clsx(
+        "refine-live-preview-browser-window",
+        "flex",
+        "flex-col",
+        "h-full",
+      )}
+    >
       <div
         className={clsx(
           "flex-shrink-0",

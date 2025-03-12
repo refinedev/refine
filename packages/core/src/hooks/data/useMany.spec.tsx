@@ -10,6 +10,8 @@ import {
 
 import type { IRefineContextProvider } from "../../contexts/refine/types";
 import { useMany } from "./useMany";
+import type { BaseKey } from "@contexts/data/types";
+import * as warnOnce from "warn-once";
 
 const mockRefineProvider: IRefineContextProvider = {
   hasDashboard: false,
@@ -961,6 +963,115 @@ describe("useMany Hook", () => {
           }),
         }),
       );
+    });
+  });
+
+  describe("should require `ids` and `resource` props", () => {
+    it("should require `ids` prop", () => {
+      const warnMock = jest.spyOn(console, "warn").mockImplementation(() => {});
+
+      const getManyMock = jest.fn().mockResolvedValue({
+        data: [],
+      });
+
+      const result = renderHook(
+        () =>
+          useMany({
+            resource: "posts",
+            ids: undefined as unknown as BaseKey[],
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getMany: getManyMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      expect(result.result.current.isLoading).toBeTruthy();
+      expect(result.result.current.fetchStatus).toBe("idle");
+      expect(getManyMock).not.toHaveBeenCalled();
+      expect(warnMock).toHaveBeenCalledWith(
+        expect.stringContaining('[useMany]: Missing "ids" prop.'),
+      );
+
+      warnMock.mockClear();
+    });
+
+    it("should require `resource` prop", () => {
+      const warnMock = jest.spyOn(console, "warn").mockImplementation(() => {});
+
+      const getManyMock = jest.fn().mockResolvedValue({
+        data: [],
+      });
+
+      const result = renderHook(
+        () =>
+          useMany({
+            resource: undefined as unknown as string,
+            ids: ["1", "2"],
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getMany: getManyMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      expect(result.result.current.isLoading).toBeTruthy();
+      expect(result.result.current.fetchStatus).toBe("idle");
+      expect(getManyMock).not.toHaveBeenCalled();
+      expect(warnMock).toHaveBeenCalledWith(
+        expect.stringContaining('[useMany]: Missing "resource" prop.'),
+      );
+
+      warnMock.mockClear();
+    });
+
+    it("should not warn if manually enabled", () => {
+      const warnMock = jest.spyOn(console, "warn").mockImplementation(() => {});
+
+      const getManyMock = jest.fn().mockResolvedValue({
+        data: [],
+      });
+
+      const result = renderHook(
+        () =>
+          useMany({
+            resource: undefined as unknown as string,
+            ids: ["1", "2"],
+            queryOptions: {
+              enabled: true,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getMany: getManyMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      expect(result.result.current.isLoading).toBeTruthy();
+      expect(result.result.current.fetchStatus).toBe("fetching");
+      expect(getManyMock).toHaveBeenCalled();
+      expect(warnMock).not.toHaveBeenCalled();
     });
   });
 });

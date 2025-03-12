@@ -42,6 +42,9 @@
     "version-packages": "pnpm changeset version && pnpm i --ignore-scripts --lockfile-only --no-frozen-lockfile --reporter=ndjson --stream && git add pnpm-lock.yaml"
   },
   "lint-staged": {
+    "documentation/blog/**": [
+      "typos -c ./typos.toml"
+    ],
     "*.{js,jsx,ts,tsx,json}": [
       "biome format --write --no-errors-on-unmatched"
     ],

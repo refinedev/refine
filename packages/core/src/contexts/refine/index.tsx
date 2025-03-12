@@ -51,6 +51,7 @@ export const defaultRefineOptions: IRefineContextOptions = {
     afterEdit: "list",
   },
   overtime: {
+    enabled: true,
     interval: 1000,
   },
   textTransformers: {

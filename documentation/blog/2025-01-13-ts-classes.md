@@ -4,11 +4,25 @@ description: TypeScript classes are a superset of JavaScript classes. This post 
 slug: typescript-classes
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-11-07-ts-classes/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on January 13, 2025, to include best practices for using TypeScript classes, a detailed table comparing TypeScript classes with JavaScript ES6 classes, and tips for avoiding common mistakes when implementing class features like readonly fields, access modifiers, and this bindings.**
+
 ## Introduction
+
+:::tip What is TypeScript Classes?
+TypeScript classes are an extension of the ES6 classes of JavaScript, adding type annotations, access modifiers (`public`, `private`, `protected`), and other features such as `readonly` fields, `static` members, and parameter properties.
+
+Key points to remember:
+
+- TypeScript Classes are typed versions of JavaScript ES6 classes.
+- Class members - fields, methods, and accessors can have type annotations and visibility modifiers.
+- The fields marked as `readonly` can only be assigned during declaration or in the constructor.
+- Declare and initialize fields directly in the constructor using parameter properties.
+- TypeScript mitigates the issues with `this` binding by using arrow functions or the `this` parameter. - Classes support generics and multiple interfaces using the `implements` keyword.
+  :::
 
 TypeScript supports all the features of JavaScript Class syntax introduced in ES2015. Basically, type annotations are applied to all members, namely: fields, constructors, methods and accessors -- and where applicable, parameters as well. TypeScript also bakes in a special syntax to class constructors called **parameter properties** which allows us to declare a class **field** from the constructor function's parameters.
 
@@ -28,11 +42,11 @@ Steps we'll cover in this post:
 - [`this` Object in TypeScript Classes](#this-object-in-typescript-classes)
   - [TypeScript Classes - Arrow Functions for Permanently Attaching `this` Object](#typescript-classes---arrow-functions-for-permanently-attaching-this-object)
   - [TypeScript Classes - Context Binding with `this` Parameter](#typescript-classes---context-binding-with-this-parameter)
+- [FAQ](#faq)
 - [TypeScript Generic Classes](#typescript-generic-classes)
 - [TypeScript Classes - Multiple Interfaces with `implements`](#typescript-classes---multiple-interfaces-with-implements)
 - [TypeScript Classes - Relationship Between Class Types](#typescript-classes---relationship-between-class-types)
-  - [TypeScript Classes - Classes with Identical Shapes are Type Compliant](#typescript-classes---classes-with-identical-shapes-are-type-compliant)
-  - [TypeScript Classes - Subtyped Classes are Type Compliant](#typescript-classes---subtyped-classes-are-type-compliant)
+- [TypeScript vs JavaScript Classes: Feature Comparison](#typescript-vs-javascript-classes-feature-comparison)
 
 ## Overview
 
@@ -511,11 +525,35 @@ Context binding with the `this` parameter is specifically useful when we are sur
 
 The drawback, as we can see above, is that the method loses the instance as its `this` when it is extracted out of context.
 
+## FAQ
+
+**Q: How are TypeScript classes different from JavaScript classes?**
+TypeScript classes differ from the ES6 classes of plain JavaScript in that they enable type annotations, access modifiers, `readonly` fields, parameter properties, generics, and multiple implementations of interfaces.
+
+**Q: Do classes in TypeScript have private fields?**
+Yes, you can use modifiers such as `private` or `protected` for classes in TypeScript. It's another syntax compared to `#private` syntax in JavaScript ES2022.
+
+**Q: What are the purposes of `readonly` fields in TypeScript?**
+The `readonly` fields are supposed to create immutable properties that can only be assigned during initialization or in the constructor.
+
+**Q: How does TypeScript bind this in classes?**
+TypeScript provides two means to deal with `this`:
+
+1. Use arrow functions for methods to permanently bind `this` to the class instance.
+2. Employing the special `this` parameter for explicitly specifying the type of class instance.
+
+**Q: Is it possible to implement multiple interfaces with classes in TypeScript?**
+Yes, TypeScript allows you to implement multiple interfaces using the keyword implements.
+
+**Q: Can static members in TypeScript have type parameters?**
+No, in TypeScript, static members cannot refer to class type parameters.
+
+**Q: What is the advantage of parameter properties in TypeScript?**
+Parameter properties in C# allow you to declare and initialize the fields directly in constructor parameters, which reduces boilerplate code.
+
 ## TypeScript Generic Classes
 
 As it does with other generic types, TypeScript allows us to declare generic classes by passing in type parameters at class declaration. The passed in type can then be used to annotate types for any member inside the class.
-
-Here's a simple example of generic class with modifications to an earlier example:
 
 ```ts
 class User<T> {
@@ -708,6 +746,28 @@ const dae: Admin = new User(); // Property 'role' is missing in type 'User' but 
 ```
 
 In this example, `joe`, is still compliant to `User` because the `Admin` has all the members of `User` and an additional one. The opposite (`dae: Admin`) is not true though, because `User` has the missing member `role` that is present in `Admin`.
+
+## TypeScript vs JavaScript Classes: Feature Comparison
+
+| Feature                           | TypeScript Classes                     | JavaScript ES6 Classes |
+| --------------------------------- | -------------------------------------- | ---------------------- |
+| Type Annotations                  | Yes (fields, methods, and parameters)  | No                     |
+| Access Modifiers (`private`)      | Yes (`public`, `private`, `protected`) | No                     |
+| `readonly` Fields                 | Yes                                    | No                     |
+| Parameter Properties              | Yes                                    | No                     |
+| `this` Parameter for Methods      | Yes                                    | No                     |
+| Generics                          | Yes                                    | No                     |
+| Multiple Interface Implementation | Yes (`implements`)                     | No                     |
+
+## Best Practices of TypeScript Classes
+
+- **Use Readonly Fields for Immutable Data**: Use the `readonly` modifier to ensure a field is never changed after it's initialized.
+- **Leverage Parameter Properties**: Reduce boilerplate code by initializing and declaring fields in the constructor.
+- **Use Access Modifiers**: Use access modifiers such as `private`, `protected`, and `public` to protect class members and guarantee encapsulation.
+- **Avoid Overusing Static Members**: Excessive use of static members can lead to tight coupling.
+- **Use Generics**: Write more flexible, reusable classes using type parameters.
+- **Annotate Method Return Types**: Specify the return types for methods to make the class behavior more explicit.
+- **Test `this` binding**: Use arrow functions or the `this` parameter to ensure the `this` context is correctly bound to class instances.
 
 ## Summary
 

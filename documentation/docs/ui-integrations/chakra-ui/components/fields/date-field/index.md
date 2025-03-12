@@ -4,15 +4,6 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-});
-
 const Wrapper = ({ children }) => {
   return (
     <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
@@ -36,8 +27,6 @@ Let's see how we can use `<DateField>` with the example in the post list.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import {
@@ -135,23 +124,31 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      notificationProvider={RefineChakra.notificationProvider()}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
-  );
-};
 render(
   <Wrapper>
-    <App />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route
+            path="/posts"
+            element={
+              <div style={{ padding: 16 }}>
+                <ReactRouter.Outlet />
+              </div>
+            }
+          >
+            <ReactRouter.Route index element={<PostList />} />
+          </ReactRouter.Route>
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   </Wrapper>,
 );
 ```

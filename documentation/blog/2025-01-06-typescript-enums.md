@@ -4,11 +4,38 @@ description: We'll explore TypeScript Enums with examples.
 slug: typescript-enum
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-21-typescript-enums/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-05-21-typescript-enums/social-2.png
 hide_table_of_contents: false
 ---
 
+**This article was last updated on January 6, 2025, to include sections on Common Mistakes with TypeScript Enums and Tips for Using Enums in TypeScript Classes.**
+
 ## Introduction
+
+### TL;DR;
+
+:::info FAQ
+
+1. What is an enum in TypeScript?
+
+- Enumeration or enum is a feature in TypeScript, which allows a set of named constants. This makes the code more readable and maintainable.
+
+2. What kinds of enums are there in TypeScript?
+
+- TypeScript supports two kinds of enums: string enums, such as enum Color { RED = "Red" }; and numeric enums, such as enum Day { MONDAY = 0 };.
+
+3. How do I initialize enum members in TypeScript?
+
+- String enums must be initialized explicitly; numeric enums can be uninitialized and will auto-increment starting from 0.
+
+4. What are the differences between constant and computed values in enums?
+
+- Constant means values are fixed, such as "Red", 0; computed means values are derived from expressions, such as "A".length.
+
+5. How do enums behave at runtime?
+
+- Enums create the JavaScript object versions at runtime; this therefore includes the ability for bi-directional mapping when these are numeric enums but still only unidirectional mapping exists for string enums
+  :::
 
 **Enum**s are constants based data structures that store a set of named constants grouped around a central theme or intent. In TypeScript, Enums are a feature that injects runtime JavaScript objects to an application in addition to providing usual type-level extensions.
 
@@ -27,6 +54,8 @@ Steps well'll cover:
 - [Enum Member Values in TypeScript: Constant vs Computed](#enum-member-values-in-typescript-constant-vs-computed)
 - [Types from TypeScript Enums](#types-from-typescript-enums)
 - [Using TypeScript Enums in Classes](#using-typescript-enums-in-classes)
+- [Practical Applications of TypeScript Enums](#practical-applications-of-typescript-enums)
+- [Common Pitfalls Using Enums](#common-pitfalls-using-enums)
 
 ## Prerequisites
 
@@ -103,7 +132,6 @@ Similarly, when all members have numerical values, the enum itself becomes numer
 
 ```tsx
 enum BillingSchedule {
-  // highlight-next-line
   FREE = 0,
   MONTHLY,
   QUARTERLY,
@@ -176,7 +204,6 @@ In our `BillingSchedule` enum, we explicitly assigned `0` to the first member:
 // First member initialized, subsequent members auto-increment
 
 enum BillingSchedule {
-  // highlight-next-line
   FREE = 0,
   MONTHLY,
   QUARTERLY,
@@ -198,8 +225,6 @@ As we can see, initializing a member with a number represents an offset value ba
 // No initialization
 
 enum BillingSchedule {
-  // highlight-next-line
-
   FREE,
   MONTHLY,
   QUARTERLY,
@@ -387,14 +412,12 @@ Individual types are generated from each member when all members of the enum are
 
 ```tsx
 type TPersonalAccount = {
-  // highlight-next-line
   tier: AccountType.PERSONAL;
   postsQuota: number;
   verified: boolean;
 };
 
 interface IStartupAccount {
-  // highlight-next-line
   tier: AccountType.STARTUP;
   postsQuota: number;
   verified: boolean;
@@ -504,12 +527,141 @@ class PersonalSubscription
 
 In the above code, for `BillingSchedule` we have used a numeric enum with all uninitialized members. The first member is therefore assigned `0` and subsequent ones get auto-incremented by `1`. We have used generics to pass in `AccountType` and `BillingSchedule` types to `TAccount` and `IBilling` respectively so their use becomes more flexible in the `PersonalAccount` and `FreeBilling` classes as well as in the `IPersonalSubscription` type, where we are using enum members both as constant values as well as type definitions.
 
-<br/>
-<div>
-<a href="https://discord.gg/refine">
-  <img  src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/discord_big_blue.png" alt="discord banner" />
-</a>
-</div>
+## Practical Applications of TypeScript Enums
+
+Enums are super useful when you have to organize a set of related constants. Here are some real-world examples:
+
+### 1. Role-Based Access Control
+
+Let's say you're building an app with different user roles. You could use enums to define those clearly:
+
+```typescript
+enum UserRole {
+  ADMIN = "Admin",
+  EDITOR = "Editor",
+  VIEWER = "Viewer",
+}
+
+function checkAccess(role: UserRole): void {
+  if (role === UserRole.ADMIN) {
+    console.log("You have full access!");
+  } else {
+    console.log("Limited access only.");
+  }
+}
+```
+
+### 2. HTTP Methods for APIs
+
+You can use enums to standardize HTTP methods when making API calls:
+
+```typescript
+enum HttpMethod {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
+
+function makeRequest(method: HttpMethod, url: string): void {
+  console.log(`Sending a ${method} request to ${url}`);
+}
+
+makeRequest(HttpMethod.POST, "/api/users");
+```
+
+### 3. Error Types
+
+Enums are much cleaner for handling errors. You can define error categories like so:
+
+```typescript
+enum ErrorType {
+  NETWORK = "Network Error",
+  VALIDATION = "Validation Error",
+  SERVER = "Server Error",
+}
+
+function logError(type: ErrorType): void {
+  console.log(`An error occurred: ${type}`);
+}
+
+logError(ErrorType.NETWORK);
+```
+
+Enums will make your code more readable and save you from using invalid values. No longer magic strings or numbers everywhere!
+
+## Common Pitfalls Using Enums
+
+Here are some mistakes I've run into when working with enums—and how I avoid them now:
+
+### Forgetting to Initialize String Enums
+
+If you are using string enums, then all members must have an initial value. Man, I forgot this one all the time! Nowadays, I initialize them upfront.
+
+```typescript
+// Wrong
+enum Color {
+RED,
+GREEN, // Error: Must have an initializer
+}
+
+// Correct
+enum Color {
+RED = "Red
+GREEN = "Green,
+}
+```
+
+### Hardcoded Values
+
+Early on, I would hard-code values like "Admin" or 0, which became a nightmare to maintain. Nowadays, I always use enums for cleaner, centralized constants.
+
+```typescript
+// Instead of this:
+const userRole = "Admin";
+
+// Use this:
+enum UserRole { ADMIN = "Admin,
+
+EDITOR = "Editor,
+
+
+}
+
+const userRole = UserRole.ADMIN;
+```
+
+### Confusing Enum Keys and Values
+
+I’ve definitely tried to use a value when a key was needed or vice versa. With numeric enums, you can go both ways, but string enums are more strict.
+
+```typescript
+enum Status {
+  ACTIVE = "Active",
+  INACTIVE = "Inactive",
+}
+
+console.log(Status.ACTIVE); // "Active"
+console.log(Status["Active"]); // Error: Property 'Active' does not exist
+```
+
+### No Logging for Errors
+
+Cron jobs used to fail silently until I started logging errors. The same principle applies to enums—you should always validate that the values you pass are correct, especially when enums interact with APIs or third-party systems.
+
+### Overcomplicating Numeric Enums
+
+I once manually assigned values to every member in a numeric enum. Turns out, you can let TypeScript auto-increment them for you:
+
+```typescript
+enum BillingCycle {
+  FREE = 0,
+  MONTHLY, // 1
+  YEARLY, // 2
+}
+```
+
+By avoiding these mistakes, my code has become more reliable and easier to debug! Enums are great when used well.
 
 ## Summary
 

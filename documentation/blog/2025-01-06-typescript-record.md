@@ -4,9 +4,13 @@ description: We'll explore TypeScript Record type with examples.
 slug: typescript-record-type
 authors: abdullah_numan
 tags: [typescript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-16-typescript-record/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-06-16-typescript-record/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on January 6, 2025, to include sections on Common Mistakes with TypeScript Record and Tips for Using Record in TypeScript.**
+
+## What is Record Type in TypeScript?
 
 The `Record<>` utility type in TypeScript is typically associated with a record or a collection of records returned from an API endpoint. It helps define a type with property names such as `id` and map the values to the type of the data.
 
@@ -15,6 +19,33 @@ The `Record<>` utility type in TypeScript is typically associated with a record 
 The `Record<>` type is a TypeScript object transformation type that is often used to derive stable object types for API data in an application. This is possible mainly because the property identifiers of the `Record<>` type are themselves types and the mapped value is also a type. As such, the `Record<>` type helps write error-free, maintainable and efficient code, and becomes increasingly useful when an application's API endpoints and versions start growing.
 
 This post explores the TypeScript Record type with a series of examples ranging from simple strings and numbers based types to more common ones involving API data and React components. With the examples, we see how to derive `Record<>` types by assigning types for `Keys` and `Value`, discuss how a `Record<>` type is advantageous over simple object types and index signatures, and try to understand the quirks of its usage.
+
+:::tip FAQs about TypeScript Record Type
+
+- Q: What is the `Record<>` type in TypeScript?
+  The `Record<>` type is useful in specifying an object whose keys and values have explicit types. Ensure type safety for dynamic objects.
+
+- Can the `Record<>` type have keys other than `string`?
+  Yes, for the keys we can use `string`, `number`, or `symbol`. All other types are prohibited for the keys.
+
+- How does `Record<>` differ from the index signature?
+  `Record<>` provides stricter type checking, while index signatures (`[key: string]: Value`) are more flexible but less type-safe.
+
+- Can I use the `Record<>` type with React components?
+  Yes, `Record<>` does work with JSX components as values. You can map component names or props to components.
+
+- How do I constrain keys in a `Record<>` type?
+
+You can define a union of allowed keys for the `Keys` type.
+
+For example:
+
+```ts
+type Permissions = "Admin" | "User" | "Guest";
+type PermissionMap = Record<Permissions, string>;
+```
+
+:::
 
 ## Understanding the Record Type
 
@@ -256,6 +287,37 @@ const dashboardPreviews: TDashboardPreview = {
 ```
 
 We can then use the map inside main dash page.
+
+## Common Mistakes and Best Practices
+
+### Using Types Not Allowed for Keys
+
+- Keys must be of type `string`, `number`, or `symbol`. Types like `boolean` are not permitted.
+
+```ts
+type InvalidRecord = Record<boolean, string>; // error
+```
+
+### Confusing Keys and Values
+
+- It is easy for developers to think that `Record<>` enforces key and value constraints together, which is just not true. Remember `Keys` applies only to the names of the properties.
+
+```typescript
+type Example = Record<string, number>;
+const data: Example = { key: "value" }; // Error: "value" is not a number
+```
+
+### Over-Complicating the Type
+
+- If it's something you can dynamically generate with enums, or mapped types then don't manually define every key in a union.
+
+### Best Practices
+
+- Use `Record<>` when: - You need type-safe objects with dynamic keys.
+- You must map keys to complex types, like objects, components or unions.
+- You need a lightweight alternative to creating interfaces or types for objects with simple mappings.
+- Use unions to constrain keys instead of an unnecessary flexibility being given.
+- Validate API responses when using `Record<>` to map backend data.
 
 ## Summary
 

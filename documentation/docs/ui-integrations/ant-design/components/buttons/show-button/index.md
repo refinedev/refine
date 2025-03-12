@@ -15,8 +15,9 @@ You can swizzle this component to customize it with the [**Refine CLI**](/docs/p
 
 ## Usage
 
-```tsx live previewHeight=300px
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=360px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import {
   List,
@@ -55,20 +56,36 @@ interface IPost {
 // visible-block-end
 
 const PostShow = () => {
-  const params = useRouterContext().useParams();
-  return <div>{JSON.stringify(params)}</div>;
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
 };
 
 render(
-  <RefineAntdDemo
-    resources={[
-      {
-        name: "posts",
-        list: PostList,
-        show: PostShow,
-      },
-    ]}
-  />,
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -78,8 +95,9 @@ render(
 
 `recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
+
 // visible-block-start
 import { ShowButton } from "@refinedev/antd";
 
@@ -95,22 +113,37 @@ const MyShowComponent = () => {
 
 // visible-block-end
 
+const PostShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
         },
-        show: () => {
-          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
-        },
-      },
-    ]}
-    DashboardPage={MyShowComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -120,8 +153,8 @@ Clicking the button will trigger the `show` method of [`useNavigation`](/docs/ro
 
 The redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/categories"]);
 
 // visible-block-start
 import { ShowButton } from "@refinedev/antd";
@@ -138,31 +171,45 @@ const MyShowComponent = () => {
 
 // visible-block-end
 
+const CategoryShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
         },
-        show: () => {
-          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+        {
+          name: "categories",
+          list: "/categories",
+          show: "/categories/show/:id",
         },
-      },
-      {
-        name: "categories",
-        list: () => {
-          return <RefineAntd.List>List page here...</RefineAntd.List>;
-        },
-        show: () => {
-          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
-        },
-      },
-    ]}
-    DashboardPage={MyShowComponent}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/categories"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route
+            path="/categories/show/:id"
+            element={<CategoryShow />}
+          />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -188,8 +235,8 @@ const MyComponent = () => {
 
 `hideText` is used to hide the text of the button. When its `true`, only the button icon will be visible.
 
-```tsx live disableScroll previewHeight=150px disableScroll
-const { useRouterContext } = RefineCore;
+```tsx live previewHeight=120px
+setInitialRoutes(["/posts"]);
 
 // visible-block-start
 import { ShowButton } from "@refinedev/antd";
@@ -197,28 +244,47 @@ import { ShowButton } from "@refinedev/antd";
 const MyShowComponent = () => {
   return (
     <ShowButton
-      recordItemId="123"
       // highlight-next-line
       hideText={true}
+      resource="posts"
+      recordItemId="123"
     />
   );
 };
 
 // visible-block-end
 
+const PostShow = () => {
+  const parsed = RefineCore.useParsed();
+  return <pre>{JSON.stringify(parsed, null, 2)}</pre>;
+};
+
 render(
-  <RefineAntdDemo
-    initialRoutes={["/"]}
-    resources={[
-      {
-        name: "posts",
-        list: MyShowComponent,
-        show: () => {
-          return <RefineAntd.Show>Show page here...</RefineAntd.Show>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
         },
-      },
-    ]}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyShowComponent />} />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -232,12 +298,10 @@ import { ShowButton } from "@refinedev/antd";
 export const MyListComponent = () => {
   return (
     <ShowButton
-      // highlight-start
       accessControl={{
         enabled: true,
         hideIfUnauthorized: true,
       }}
-      // highlight-end
     />
   );
 };
@@ -255,6 +319,6 @@ Use `resource` prop instead.
 
 :::simple External Props
 
-`<ShowButton>` also accepts all props of Ant Design's [Button](https://ant.design/components/button/#API) component.
+It also accepts all props of Ant Design [Button](https://ant.design/components/button/#API).
 
 :::

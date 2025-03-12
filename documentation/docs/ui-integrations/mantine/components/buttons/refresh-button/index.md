@@ -4,34 +4,32 @@ swizzle: true
 ---
 
 ```tsx live shared
-const { default: routerProvider } = LegacyRefineReactRouterV6;
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  legacyRouterProvider: routerProvider,
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  notificationProvider: RefineMantine.useNotificationProvider,
-  Layout: RefineMantine.Layout,
-  Sider: () => null,
-  catchAll: <RefineMantine.ErrorComponent />,
-});
+import * as React from "react";
 
-const Wrapper = ({ children }) => {
+const ShowPage = () => {
+  const { list } = RefineCore.useNavigation();
+  const params = RefineCore.useParsed();
+
   return (
-    <MantineCore.MantineProvider
-      theme={RefineMantine.LightTheme}
-      withNormalizeCSS
-      withGlobalStyles
-    >
-      <MantineCore.Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-      <MantineNotifications.NotificationsProvider position="top-right">
-        {children}
-      </MantineNotifications.NotificationsProvider>
-    </MantineCore.MantineProvider>
+    <div>
+      <MantineCore.Text italic color="dimmed" size="sm">
+        URL Parameters:
+      </MantineCore.Text>
+      <MantineCore.Code>{JSON.stringify(params, null, 2)}</MantineCore.Code>
+      <MantineCore.Space h="md" />
+      <MantineCore.Button
+        size="xs"
+        variant="outline"
+        onClick={() => list("posts")}
+      >
+        Go back
+      </MantineCore.Button>
+    </div>
   );
 };
 ```
 
-`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) omponent to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
+`<RefreshButton>` uses Mantine [`<Button>`](https://mantine.dev/core/button) component to update the data shown on the page via the [`useInvalidate`][use-invalidate] hook.
 
 :::simple Good to know
 
@@ -43,17 +41,11 @@ You can swizzle this component with the [**Refine CLI**](/docs/packages/list-of-
 
 ```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
 setInitialRoutes(["/posts/show/123"]);
-import { Refine } from "@refinedev/core";
-import { ShowButton } from "@refinedev/mantine";
+import * as React from "react";
 
 // visible-block-start
 import { useShow } from "@refinedev/core";
-import {
-  Show,
-  MarkdownField,
-  //highlight-next-line
-  RefreshButton,
-} from "@refinedev/mantine";
+import { Show, MarkdownField, RefreshButton } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC = () => {
@@ -81,28 +73,52 @@ const PostShow: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+interface IPost {
+  id: number;
+  title: string;
+  content: string;
+}
+
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          show: PostShow,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <ShowButton recordItemId="123">Show Item 123</ShowButton>
-            </div>
-          ),
+          list: "/posts",
+          show: "/posts/show/:id",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route
+            index
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <MantineCore.Button
+                  component={RefineCore.Link}
+                  to="/posts/show/123"
+                  variant="light"
+                >
+                  Show Item 123
+                </MantineCore.Button>
+              </div>
+            }
+          />
+          <ReactRouter.Route path="show/:id" element={<PostShow />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -113,54 +129,61 @@ render(
 `recordItemId` allows us to manage which data is going to be refreshed. By default, it will read the record id from the route parameters.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
-  return <RefreshButton recordItemId="1" />;
+  return <RefreshButton recordItemId="123" />;
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyRefreshComponent,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyRefreshComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
-Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "1".
+Clicking the button will trigger the [`useInvalidate`][use-invalidate] hook and then fetch the record whose resource is "post" and whose id is "123".
 
 ### resource
 
 `resource` allows us to manage which resource is going to be refreshed. By default, it will read the resource from the current route.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { RefreshButton } from "@refinedev/mantine";
 
 const MyRefreshComponent = () => {
   return (
-    <RefreshButton // highlight-next-line
+    <RefreshButton
+      // highlight-next-line
       resource="categories"
       // highlight-next-line
       recordItemId="2"
@@ -169,23 +192,34 @@ const MyRefreshComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyRefreshComponent,
+          list: "/posts",
+        },
+        {
+          name: "categories",
+          list: "/categories",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyRefreshComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -200,9 +234,8 @@ If you have multiple resources with the same name, you can pass the `identifier`
 `hideText` is used to show and not show the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live url=http://localhost:3000 previewHeight=200px
-setInitialRoutes(["/"]);
-
-import { Refine } from "@refinedev/core";
+setInitialRoutes(["/posts"]);
+import * as React from "react";
 
 // visible-block-start
 import { RefreshButton } from "@refinedev/mantine";
@@ -212,23 +245,30 @@ const MyRefreshComponent = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineMantineDemo
       resources={[
         {
           name: "posts",
-          list: MyRefreshComponent,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<MyRefreshComponent />} />
+        </ReactRouter.Route>
+      </ReactRouter.Routes>
+    </RefineMantineDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 

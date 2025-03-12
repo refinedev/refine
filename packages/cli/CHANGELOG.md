@@ -1,5 +1,33 @@
 # @refinedev/cli
 
+## 2.16.44
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- fix(types): remove path aliases from type imports
+
+  Since typescript doesn't resolve and replace path aliases, using them for the type imports will cause `d.ts` files to reference unresolvable paths and types.
+
+  While this doesn't break everything, it breaks the types in places where the path aliases are used for type imports.
+
+  This change removes the path aliases from the type imports and replaces them with relative imports.
+
+## 2.16.43
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6683](https://github.com/refinedev/refine/pull/6683) [`a12a0821e3c573386c2a8eea4ac1582cc46dd26d`](https://github.com/refinedev/refine/commit/a12a0821e3c573386c2a8eea4ac1582cc46dd26d) Thanks [@aliemir](https://github.com/aliemir)! - fix(types): remove path aliases from type imports
+
+  Since typescript doesn't resolve and replace path aliases, using them for the type imports will cause `d.ts` files to reference unresolvable paths and types.
+
+  While this doesn't break everything, it breaks the types in places where the path aliases are used for type imports.
+
+  This change removes the path aliases from the type imports and replaces them with relative imports.
+
 ## 2.16.42
 
 ### Patch Changes

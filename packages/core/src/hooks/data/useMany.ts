@@ -37,6 +37,7 @@ import {
   type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
+import warnOnce from "warn-once";
 
 export type UseManyProps<TQueryFnData, TError, TData> = {
   /**
@@ -133,17 +134,24 @@ export const useMany = <
 
   const combinedMeta = getMeta({ resource, meta: preferredMeta });
 
+  const hasIds = Array.isArray(ids);
+  const hasResource = Boolean(resource?.name);
+  const manuallyEnabled = queryOptions?.enabled === true;
+
+  warnOnce(!hasIds && !manuallyEnabled, idsWarningMessage(ids, resource?.name));
+  warnOnce(!hasResource && !manuallyEnabled, resourceWarningMessage());
+
   useResourceSubscription({
     resource: identifier,
     types: ["*"],
     params: {
-      ids: ids,
+      ids: ids ?? [],
       meta: combinedMeta,
       metaData: combinedMeta,
       subscriptionType: "useMany",
       ...liveParams,
     },
-    channel: `resources/${resource.name}`,
+    channel: `resources/${resource?.name ?? ""}`,
     enabled: isEnabled,
     liveMode,
     onLiveEvent,
@@ -163,7 +171,7 @@ export const useMany = <
       .data(pickedDataProvider)
       .resource(identifier)
       .action("many")
-      .ids(...ids)
+      .ids(...(ids ?? []))
       .params({
         ...(preferredMeta || {}),
       })
@@ -193,6 +201,7 @@ export const useMany = <
         ),
       );
     },
+    enabled: hasIds && hasResource,
     ...queryOptions,
     onSuccess: (data) => {
       queryOptions?.onSuccess?.(data);
@@ -231,10 +240,20 @@ export const useMany = <
   });
 
   const { elapsedTime } = useLoadingOvertime({
+    ...overtimeOptions,
     isLoading: queryResponse.isFetching,
-    interval: overtimeOptions?.interval,
-    onInterval: overtimeOptions?.onInterval,
   });
 
   return { ...queryResponse, overtime: { elapsedTime } };
 };
+
+const idsWarningMessage = (
+  ids: BaseKey[],
+  resource: string,
+) => `[useMany]: Missing "ids" prop. Expected an array of ids, but got "${typeof ids}". Resource: "${resource}"
+
+See https://refine.dev/docs/data/hooks/use-many/#ids-`;
+
+const resourceWarningMessage = () => `[useMany]: Missing "resource" prop. Expected a string, but got undefined.
+
+See https://refine.dev/docs/data/hooks/use-many/#resource-`;

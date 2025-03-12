@@ -4,13 +4,17 @@ description: We'll learn how to use JavaScript substring method to extract subst
 slug: javascript-substring-method
 authors: abdullah_numan
 tags: [javascript]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-23-js-substring/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-10-23-js-substring/social-2.png
 hide_table_of_contents: false
 ---
+
+**This article was last updated on December 31, 2024, to include common mistakes to avoid when working with JavaScript’s substring() method, such as skipping the endIndex or misunderstanding negative indices. A Frequently Asked Questions section has also been added to clarify common issues and provide practical examples.**
 
 ## Introduction
 
 This post is about how to effectively use the `String.prototype.substring()` method in JavaScript. We go through a few examples to understand how it works, play around to observe a few patterns and explore the quirks.
+
+### What is JavaScript `substring()`?
 
 JavaScript `substring()` is a `String` method that is typically used to extract and store part of a string. During the extraction, the original string remains intact, and the target part is returned as a new string.
 
@@ -22,6 +26,7 @@ In the later half of the post, we discuss some of the nuances associated with `s
 
 Step by step, we'll cover the following topics:
 
+- [Introduction](#introduction)
 - [JavaScript `substring()` Method](#javascript-substring-method)
   - [`Array.prototype.substring()` Method Signature](#arrayprototypesubstring-method-signature)
   - [JavaScript `substring()` with `startIndex` Only](#javascript-substring-with-startindex-only)
@@ -35,6 +40,11 @@ Step by step, we'll cover the following topics:
 - [`String.prototype.substring()` Comparison](#stringprototypesubstring-comparison)
   - [JavaScript `substring()` vs `slice()`](#javascript-substring-vs-slice)
   - [JavaScript `substring()` vs `substr()`](#javascript-substring-vs-substr)
+- [Common Mistakes When Working With substring()](#common-mistakes-when-working-with-substring)
+  - [Skipping endIndex](#skipping-endindex)
+  - [Reversed Indices Confusion](#reversed-indices-confusion)
+- [Frequently Asked Questions](#frequently-asked-questions)
+- [Summary](#summary)
 
 ## JavaScript `substring()` Method
 
@@ -256,6 +266,91 @@ console.log(mnemonic.substr(-10, 12)); // "padlocked."
 ```
 
 In this case, only `10` characters are picked because `2` out of targeted `12` are not available in the last `10` characters.
+
+## Common Mistakes When Working With substring()
+
+Over the years, I have encountered a few mistakes developers make using the substring() method. Let me outline them below.
+
+### Skipping endIndex
+
+A lot of us forget that the endIndex is optional. If you don’t pass it, substring() just extracts everything from the startIndex to the end of the string. That’s OK most of the time, but if you accidentally leave it out when you meant to extract a certain range, it may mess things up.
+
+```tsx
+const text = "Hello, World!";
+console.log(text.substring(7)); // "World!"
+console.log(text.substring(7, 12)); // "World"
+```
+
+Before using substring(), I double-check whether I really need the endIndex or not.
+
+```tsx
+const text = "Hello, World!";
+console.log(text.substring(-5)); // "Hello, World!" (negative becomes 0)
+console.log(text.slice(-5)); // "orld!"
+```
+
+What I do now: In cases when I need negative indexing, I stick with slice().
+
+### Reversed Indices Confusion
+
+If the value of startIndex is greater than the value of endIndex, substring() will swap them. If you’re not paying attention, it can lead to unexpected behavior.
+
+```tsx
+const text = "Hello, World!";
+console.log(text.substring(12, 7)); // "World" (indices are swapped)
+console.log(text.slice(12, 7)); // "" (slice doesn't swap, just returns an empty string)
+```
+
+What I do now: Always ensure that startIndex <= endIndex whenever using substring().
+
+## Frequently Asked Questions
+
+**What if startIndex equals endIndex?**
+
+You will get an empty string because substring() does not include the endIndex.
+
+```tsx
+const text = "Hello, World!";
+console.log(text.substring(5, 5)); // ""
+```
+
+**Can substring() change the original string?**
+
+Nope - it’s non-destructive, simply returning the new string and leaving the original alone.
+
+```tsx
+const text = "Hello, World!";
+const result = text.substring(7);
+console.log(result); // "World!"
+console.log(text); // "Hello, World!"
+```
+
+**What if the indices are out of range?**
+
+If the indices exceed the length of the string, substring() will simply stop at the string’s end.
+
+```tsx
+const text = "Hello";
+console.log(text.substring(2, 10)); // "llo"
+console.log(text.substring(10, 20)); // ""
+```
+
+**How does substring() differ from slice()?**
+
+Both do similar things, but here’s the difference:
+
+- substring() swaps indices if startIndex > endIndex. slice() doesn’t.
+- slice() supports negative indices; substring() doesn’t.
+
+```tsx
+const text = "Hello, World!";
+console.log(text.substring(7, 12)); // "World"
+console.log(text.slice(-5)); // "orld!"
+```
+
+**Negative Indices Misconception**
+
+Here’s a big one: substring() doesn’t handle negative numbers. If you pass in a negative startIndex or endIndex, it will just treat them as 0. I’ve seen people confuse this with slice(), which actually supports negative indices.
 
 ## Summary
 

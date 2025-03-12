@@ -7,16 +7,22 @@ describe("table-material-ui-advanced", () => {
   });
 
   it("should work with filter", () => {
-    // wait for loading
+    // wait for requests
     cy.wait("@getPosts");
+    cy.wait("@getCategories");
+    // wait for loadings
     cy.getMaterialUILoadingCircular().should("not.exist");
+    cy.get("[data-field='category.id']").should("have.length", 16);
+    cy.get("[data-field='category.id']").should("not.contain", "Loading...");
 
     // open the column menu of title
     cy.getMaterialUIColumnHeader(2).within(() =>
       cy.get(".MuiDataGrid-menuIcon > button").click({ force: true }),
     );
     // click the filter menu item
-    cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click();
+    cy.get(".MuiDataGrid-menu > div > .MuiList-root").children().eq(3).click({
+      force: true,
+    });
     // type the filter value
     cy.get("[placeholder='Filter value']").type("lorem");
     // url should contain the filter
