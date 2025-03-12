@@ -85,7 +85,7 @@ import { ViteRouter } from './vite/router';
 
 First, we need to install necessary packages:
 
-<InstallPackagesCommand args="@refinedev/core @refinedev/react-router-v6 @refinedev/simple-rest" />
+<InstallPackagesCommand args="@refinedev/core @refinedev/react-router @refinedev/simple-rest" />
 
 :::simple
 
@@ -157,7 +157,7 @@ import { ViteAntdLayout } from './vite/layout/antd';
 
 First, we need to install necessary packages:
 
-<InstallPackagesCommand args="@refinedev/core @refinedev/react-router-v6 @refinedev/antd @refinedev/simple-rest" />
+<InstallPackagesCommand args="@refinedev/core @refinedev/react-router @refinedev/antd @refinedev/simple-rest" />
 
 :::simple
 

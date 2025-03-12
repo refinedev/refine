@@ -3,44 +3,12 @@ title: List
 swizzle: true
 ---
 
-```tsx live shared
-const { default: simpleRest } = RefineSimpleRest;
-setRefineProps({
-  dataProvider: simpleRest("https://api.fake-rest.refine.dev"),
-  Layout: RefineChakra.Layout,
-  Sider: () => null,
-});
-
-const Wrapper = ({ children }) => {
-  return (
-    <ChakraUI.ChakraProvider theme={RefineChakra.refineTheme}>
-      {children}
-    </ChakraUI.ChakraProvider>
-  );
-};
-
-interface ICategory {
-  id: number;
-  title: string;
-}
-
-interface IPost {
-  id: number;
-  title: string;
-  content: string;
-  status: "published" | "draft" | "rejected";
-  category: { id: number };
-}
-```
-
 `<List>` provides us a layout to display the page. It does not contain any logic and just adds extra functionalities like a create button or giving the page titles.
 
 We will show what `<List>` does using properties with examples.
 
 ```tsx live url=http://localhost:3000/posts previewHeight=420px hideCode
 setInitialRoutes(["/posts"]);
-import { Refine } from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
 
 // visible-block-start
 import { List, DateField } from "@refinedev/chakra-ui";
@@ -140,24 +108,21 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      notificationProvider={RefineChakra.notificationProvider()}
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -192,23 +157,22 @@ const PostList: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <RefineHeadlessDemo
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
       dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
       resources={[
         {
           name: "posts",
-          list: PostList,
+          list: "/posts",
         },
       ]}
-    />
-  );
-};
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/posts" element={<PostList />} />
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -219,16 +183,11 @@ render(
 ```tsx live url=http://localhost:3000/custom previewHeight=280px
 setInitialRoutes(["/custom"]);
 
-import { Refine } from "@refinedev/core";
-import { Layout } from "@refinedev/chakra-ui";
-import routerProvider from "@refinedev/react-router-v6/legacy";
-import dataProvider from "@refinedev/simple-rest";
 // visible-block-start
 import { List } from "@refinedev/chakra-ui";
 
 const CustomPage: React.FC = () => {
   return (
-    /* highlight-next-line */
     <List resource="categories">
       <p>Rest of your page here</p>
     </List>
@@ -236,30 +195,21 @@ const CustomPage: React.FC = () => {
 };
 // visible-block-end
 
-const App = () => {
-  return (
-    <Refine
-      legacyRouterProvider={{
-        ...routerProvider,
-        // highlight-start
-        routes: [
-          {
-            element: <CustomPage />,
-            path: "/custom",
-          },
-        ],
-        // highlight-end
-      }}
-      Layout={Layout}
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[{ name: "posts" }]}
-    />
-  );
-};
 render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
+  <ReactRouter.BrowserRouter>
+    <RefineChakraDemo
+      resources={[
+        {
+          name: "categories",
+          list: "/categories",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route path="/custom" element={<CustomPage />} />
+      </ReactRouter.Routes>
+    </RefineChakraDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -351,23 +301,26 @@ const App = () => {
   };
 
   return (
-    <RefineHeadlessDemo
-      dataProvider={customDataProvider}
-      authProvider={authProvider}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={customDataProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+            create: "/posts/create",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 ### breadcrumb <GlobalConfigBadge id="core/refine-component/#breadcrumb" />
@@ -406,22 +359,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 > For more information, refer to the [`Breadcrumb` documentation &#8594](/docs/ui-integrations/chakra-ui/components/breadcrumb)
@@ -458,22 +413,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
@@ -510,22 +467,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
@@ -562,22 +521,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)
@@ -625,22 +586,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 Or, instead of using the `defaultButtons`, you can create your own buttons. If you want, you can use `createButtonProps` to utilize the default values of the [`<CreateButton>`][create-button] component.
@@ -678,22 +641,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 ### headerButtonProps
@@ -734,22 +699,24 @@ const PostList: React.FC = () => {
 
 const App = () => {
   return (
-    <RefineHeadlessDemo
-      dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-      resources={[
-        {
-          name: "posts",
-          list: PostList,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineChakraDemo
+        dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+        resources={[
+          {
+            name: "posts",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts" element={<PostList />} />
+        </ReactRouter.Routes>
+      </RefineChakraDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
-render(
-  <Wrapper>
-    <App />
-  </Wrapper>,
-);
+render(<App />);
 ```
 
 > For more information, refer to the [`Box` documentation from Chakra UI &#8594](https://www.chakra-ui.com/docs/components/box#usage)

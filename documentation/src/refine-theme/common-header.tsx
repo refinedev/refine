@@ -3,7 +3,6 @@ import clsx from "clsx";
 import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useState } from "react";
 
-import { RefineLogoXmas } from "./icons/refine-logo xmas";
 import { HamburgerIcon } from "./icons/hamburger";
 
 import { openFigma } from "../utils/open-figma";
@@ -14,6 +13,7 @@ import { TopAnnouncement } from "./top-announcement";
 
 import { LandingGithubStarButton } from "./landing-github-star-button";
 import SearchBar from "../theme/SearchBar";
+import { RefineLogoIcon } from "./icons/refine-logo";
 
 type Props = {
   hasSticky?: boolean;
@@ -82,7 +82,7 @@ export const CommonHeader = ({
           >
             <div className={clsx("w-[130px]", "landing-lg:w-[200px]")}>
               <Link to="/" onContextMenu={openFigma}>
-                <RefineLogoXmas className="text-gray-900 dark:text-gray-0" />
+                <RefineLogoIcon className="text-gray-900 dark:text-gray-0" />
               </Link>
             </div>
             <button
