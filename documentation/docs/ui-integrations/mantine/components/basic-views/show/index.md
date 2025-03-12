@@ -352,23 +352,34 @@ const App = () => {
   };
 
   return (
-    <Refine
-      legacyRouterProvider={routerProvider}
-      dataProvider={customDataProvider}
-      authProvider={authProvider}
-      resources={[
-        {
-          name: "posts",
-          show: PostShow,
-          list: () => (
-            <div>
-              <p>This page is empty.</p>
-              <ShowButton recordItemId="123">Show Item 123</ShowButton>
-            </div>
-          ),
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineMantineDemo
+        dataProvider={customDataProvider}
+        authProvider={authProvider}
+        resources={[
+          {
+            name: "posts",
+            show: "/posts/show/:id",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route
+            path="/posts"
+            element={
+              <div>
+                <p>This page is empty.</p>
+                <RefineMantine.ShowButton recordItemId="123">
+                  Show Item 123
+                </RefineMantine.ShowButton>
+              </div>
+            }
+          />
+          <ReactRouter.Route element={<PostShow />} path="/posts/show/:id" />
+        </ReactRouter.Routes>
+      </RefineMantineDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
 render(

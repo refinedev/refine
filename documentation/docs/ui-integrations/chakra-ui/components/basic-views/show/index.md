@@ -316,17 +316,23 @@ const App = () => {
   };
 
   return (
-    <RefineHeadlessDemo
-      dataProvider={customDataProvider}
-      authProvider={authProvider}
-      resources={[
-        {
-          name: "posts",
-          show: PostShow,
-          list: DummyListPage,
-        },
-      ]}
-    />
+    <ReactRouter.BrowserRouter>
+      <RefineHeadlessDemo
+        notificationProvider={RefineChakra.notificationProvider()}
+        resources={[
+          {
+            name: "posts",
+            show: "/posts/show/:id",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts/show/:id" element={<PostShow />} />
+          <ReactRouter.Route path="/posts" element={<DummyListPage />} />
+        </ReactRouter.Routes>
+      </RefineHeadlessDemo>
+    </ReactRouter.BrowserRouter>
   );
 };
 render(

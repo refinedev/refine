@@ -363,7 +363,8 @@ render(
 
 If the resource has the `canDelete` property and you want to customize this button, you can use the `deleteButtonProps` property like the code below.
 
-```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/2
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+setInitialRoutes(["/posts/show/123"]);
 const { ShowButton, Edit } = RefineAntd;
 
 const { default: simpleRest } = RefineSimpleRest;
@@ -439,26 +440,37 @@ const PostShow: React.FC = () => {
 // visible-block-end
 
 render(
-  <RefineAntdDemo
-    authProvider={authProvider}
-    dataProvider={customDataProvider}
-    initialRoutes={["/posts/show/2"]}
-    resources={[
-      {
-        name: "posts",
-        list: () => (
-          <div>
-            <p>This page is empty.</p>
-            <ShowButton>Show Item 2</ShowButton>
-          </div>
-        ),
-        show: PostShow,
-        edit: () => {
-          return <Edit>Edit Page</Edit>;
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      authProvider={authProvider}
+      dataProvider={customDataProvider}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+          edit: "/posts/edit/:id",
         },
-      },
-    ]}
-  />,
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          }
+        />
+        <ReactRouter.Route path="/posts/show/:id" element={<PostShow />} />
+        <ReactRouter.Route
+          path="/posts/edit/:id"
+          element={<Edit>Edit Page</Edit>}
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
 );
 ```
 
@@ -1000,7 +1012,6 @@ If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button]
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
-
 // visible-block-start
 import { Show } from "@refinedev/antd";
 import { Button } from "antd";
