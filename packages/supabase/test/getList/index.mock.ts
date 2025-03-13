@@ -2008,7 +2008,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
     select: "%2A",
     offset: "0",
     limit: "10",
-    or: "%28title.ilike.%25Black+Psorotichia%25%2Ccontent.ilike.%25Sed+sagittis%25%29",
+    or: "%28title.ilike.%22%25Black+Psorotichia%25%22%2Ccontent.ilike.%22%25Sed+sagittis%25%22%29",
   })
   .reply(
     200,
@@ -2052,7 +2052,7 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       "Access-Control-Allow-Origin",
       "*",
       "Content-Location",
-      "/posts?limit=10&offset=0&or=%28title.ilike.%25Black+Psorotichia%25%2Ccontent.ilike.%25Sed+sagittis%25%29&select=%2A",
+      "/posts?limit=10&offset=0&or=%28title.ilike.%22%25Black+Psorotichia%25%22%2Ccontent.ilike.%22%25Sed+sagittis%25%22%29&select=%2A",
       "Strict-Transport-Security",
       "max-age=15552000; includeSubDomains",
       "Vary",
