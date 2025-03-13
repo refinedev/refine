@@ -292,7 +292,7 @@ describe("Show", () => {
       expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
     });
 
-    it("should not render delete button on resource canDelete true & canDelete props false on component", async () => {
+    it("should not render delete button on resource canDelete true & canDelete props false on component with deleteButtonProps", async () => {
       const { queryByTestId } = render(
         <Routes>
           <Route
@@ -300,6 +300,7 @@ describe("Show", () => {
             element={
               <Show
                 canDelete={false}
+                deleteButtonProps={{ size: "lg" }}
                 headerButtons={({ defaultButtons, deleteButtonProps }) => {
                   expect(deleteButtonProps).not.toBeDefined();
                   return <>{defaultButtons}</>;
@@ -318,6 +319,33 @@ describe("Show", () => {
       );
 
       expect(queryByTestId(RefineButtonTestIds.DeleteButton)).toBeNull();
+    });
+
+    it("should render delete button on resource canDelete false & deleteButtonProps on component", async () => {
+      const { queryByTestId } = render(
+        <Routes>
+          <Route
+            path="/:resource/:action/:id"
+            element={
+              <Show
+                deleteButtonProps={{ size: "lg" }}
+                headerButtons={({ defaultButtons, deleteButtonProps }) => {
+                  expect(deleteButtonProps).toBeDefined();
+                  return <>{defaultButtons}</>;
+                }}
+              />
+            }
+          />
+        </Routes>,
+        {
+          wrapper: TestWrapper({
+            resources: [{ name: "posts", canDelete: false }],
+            routerInitialEntries: ["/posts/show/1"],
+          }),
+        },
+      );
+
+      expect(queryByTestId(RefineButtonTestIds.DeleteButton)).not.toBeNull();
     });
 
     it("should render delete button on resource canDelete false & canDelete props true on component", async () => {
