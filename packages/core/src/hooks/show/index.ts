@@ -1,6 +1,6 @@
 import warnOnce from "warn-once";
 import { useMeta, useOne, useResourceParams } from "@hooks";
-import { pickNotDeprecated } from "@definitions/helpers";
+import { keys, pickNotDeprecated } from "@definitions/helpers";
 
 import type { UseShowProps, UseShowReturnType } from "./types";
 import type { BaseKey, BaseRecord, HttpError } from "../../contexts/data/types";
@@ -51,7 +51,7 @@ export const useShow = <
   });
 
   const getMeta = useMeta();
-
+  // const { keys, preferLegacyKeys } = useKeys();
   const combinedMeta = getMeta({
     resource,
     meta: pickNotDeprecated(meta, metaData),
@@ -66,6 +66,7 @@ export const useShow = <
     resource: identifier,
     id: showId ?? "",
     queryOptions: {
+      queryKey: keys().data().resource(identifier).action("one").id(showId ?? "").get(),
       enabled: showId !== undefined,
       ...queryOptions,
     },

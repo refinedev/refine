@@ -57,7 +57,7 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
       return <>{success}</>;
     case "error":
       return <>{error}</>;
-    case "loading":
+    case "pending":
       return <>{loading}</>;
     default:
       return <>{idle}</>;

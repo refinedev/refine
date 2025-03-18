@@ -8,9 +8,9 @@ export const useInvalidateAuthStore = () => {
   const invalidate = async () => {
     await Promise.all(
       (["check", "identity", "permissions"] as const).map((action) =>
-        queryClient.invalidateQueries(
-          keys().auth().action(action).get(preferLegacyKeys),
-        ),
+        queryClient.invalidateQueries({
+          queryKey: keys().auth().action(action).get(preferLegacyKeys),
+        }),
       ),
     );
   };

@@ -98,7 +98,7 @@ export function useOnError({
           },
         }
       : {
-          mutationFn: () => ({}) as Promise<OnErrorResponse>,
+          mutationFn: () => (({}) as Promise<OnErrorResponse>),
         }),
     meta: {
       ...getXRay("useOnError", preferLegacyKeys),
