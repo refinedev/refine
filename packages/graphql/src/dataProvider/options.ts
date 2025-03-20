@@ -289,6 +289,7 @@ export const defaultOptions = {
     dataMapper: (response: OperationResult<any>, params: CustomParams) =>
       response.data ?? response.error?.message,
     buildVariables: (params: CustomParams) => ({
+      ...(typeof params.payload === "object" ? params.payload : {}),
       ...params?.meta?.variables,
       ...params?.meta?.gqlVariables,
     }),

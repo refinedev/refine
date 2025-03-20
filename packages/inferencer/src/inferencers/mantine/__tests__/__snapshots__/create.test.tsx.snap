@@ -237,11 +237,9 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           <div
             class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
             data-variant="default"
-            data-with-right-section="true"
-            style="--input-right-section-pointer-events: none;"
+            style="--input-right-section-pointer-events: all;"
           >
             <input
-              aria-controls=""
               aria-haspopup="listbox"
               aria-invalid="false"
               autocomplete="off"
@@ -289,11 +287,9 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
           <div
             class="m_6c018570 mantine-Input-wrapper mantine-Select-wrapper"
             data-variant="default"
-            data-with-right-section="true"
-            style="--input-right-section-pointer-events: none;"
+            style="--input-right-section-pointer-events: all;"
           >
             <input
-              aria-controls=""
               aria-haspopup="listbox"
               aria-invalid="false"
               autocomplete="off"
@@ -438,8 +434,7 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
             class="m_6c018570 mantine-Input-wrapper mantine-MultiSelect-wrapper"
             data-multiline="true"
             data-variant="default"
-            data-with-right-section="true"
-            style="--input-right-section-pointer-events: none;"
+            style="--input-right-section-pointer-events: all;"
           >
             <div
               class="m_8fb7ebe7 mantine-Input-input mantine-MultiSelect-input"
@@ -449,7 +444,6 @@ exports[`MantineCreateInferencer should match the snapshot 1`] = `
                 class="mantine-MultiSelect-pillsList m_1dcfd90b mantine-PillGroup-group"
               >
                 <input
-                  aria-controls=""
                   aria-haspopup="listbox"
                   aria-invalid="false"
                   autocomplete="off"

@@ -6,7 +6,7 @@ import { Sandpack, AddNotificationProviderToApp } from "./sandpack.tsx";
 
 <Sandpack>
 
-In this step, we will explore integrating Material UI's notification elements with Refine to deliver notifications to users.
+Now we've refactored our application with Material UI, we only have one thing left to do: handle notifications.
 
 Refine triggers notification in various scenarios, such as when a record is created, updated, or deleted, when there is an error from your data provider or your auth provider. It's important to provide feedback to the user when interacting with the application.
 
