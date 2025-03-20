@@ -1,4 +1,4 @@
-import type { ButtonProps } from "@mantine/core";
+import type { ActionIconProps, ButtonProps } from "@mantine/core";
 import type { UseImportInputPropsType } from "@refinedev/core";
 import type {
   RefineCloneButtonProps,
@@ -17,56 +17,65 @@ import type { IconProps } from "@tabler/icons-react";
 type CommonButtonProps = {
   hidden?: boolean;
   svgIconProps?: Omit<IconProps, "ref">;
+  size?: ButtonProps["size"] & ActionIconProps["size"];
+  classNames?: ButtonProps["classNames"] & ActionIconProps["classNames"];
+  vars?: ButtonProps["vars"] & ActionIconProps["vars"];
+  styles?: ButtonProps["styles"] & ActionIconProps["styles"];
 };
 
+type MantineButtonProps = Omit<
+  ButtonProps | ActionIconProps,
+  "size" | "classNames" | "vars" | "styles"
+>;
+
 export type ShowButtonProps = RefineShowButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type SaveButtonProps = RefineSaveButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type RefreshButtonProps = RefineRefreshButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type ListButtonProps = RefineListButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type ImportButtonProps = RefineImportButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps & {
     inputProps: UseImportInputPropsType;
   }
 >;
 
 export type ExportButtonProps = RefineExportButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type EditButtonProps = RefineEditButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type DeleteButtonProps = RefineDeleteButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type CreateButtonProps = RefineCreateButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;
 
 export type CloneButtonProps = RefineCloneButtonProps<
-  ButtonProps,
+  MantineButtonProps,
   CommonButtonProps
 >;

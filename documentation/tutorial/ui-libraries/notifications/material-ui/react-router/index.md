@@ -10,7 +10,6 @@ Now we've refactored our application with Material UI, we only have one thing le
 
 Refine triggers notification in various scenarios, such as when a record is created, updated, or deleted, when there is an error from your data provider or your auth provider. It's important to provide feedback to the user when interacting with the application.
 
-
 All these notifications are enabled just by providing a `notificationProvider` prop to the `<Refine />` component. A notification provider is responsible from displaying and dismissing notifications as well as handling undoable mutation notifications.
 
 Material UI provides a `<Snackbar />` component that can be used to display notifications but lacks the built-in ability to manage notifications. To handle the management of notifications, it's recommended to use the `notistack` library, which provides a notification system that can be used to handle these notifications.

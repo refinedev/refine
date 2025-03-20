@@ -1,5 +1,5 @@
-import { Create, useForm, useSelect } from "@refinedev/mantine";
-import { Select, TextInput, Text } from "@mantine/core";
+import { Create, useForm, useSelect, Select } from "@refinedev/mantine";
+import { TextInput, Text } from "@mantine/core";
 import MDEditor from "@uiw/react-md-editor";
 
 export const PostCreate: React.FC = () => {
@@ -53,12 +53,12 @@ export const PostCreate: React.FC = () => {
           {...getInputProps("category.id")}
           {...selectProps}
         />
-        <Text mt={8} weight={500} size="sm" color="#212529">
+        <Text mt={8} fw={500} size="sm" color="#212529">
           Content
         </Text>
         <MDEditor data-color-mode="light" {...getInputProps("content")} />
         {errors.content && (
-          <Text mt={2} weight={500} size="xs" color="red">
+          <Text mt={2} fw={500} size="xs" color="red">
             {errors.content}
           </Text>
         )}

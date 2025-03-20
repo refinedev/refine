@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Button } from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { SaveButtonProps } from "../types";
 
 /**
@@ -24,15 +23,11 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
 }) => {
   const { label } = useSaveButton();
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
-      {...(variant
-        ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
-          }
-        : { variant: "filled", color: "primary" })}
+      variant={variant || "default"}
       aria-label={label}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
@@ -42,11 +37,11 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     </ActionIcon>
   ) : (
     <Button
-      variant="filled"
-      leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
+      variant={variant || "filled"}
+      leftSection={<IconDeviceFloppy size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
-      {...rest}
+      {...commonProps}
     >
       {children ?? label}
     </Button>
