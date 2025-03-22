@@ -2,8 +2,8 @@
 <!-- Run the following command to append new results: -->
 <!-- npm run biome lint . >> .biome/todos -->
 
-> refinejs-repo@0.0.0 biome
-> biome lint .
+> refinejs-repo@0.0.0 biome  
+> biome nt .
 
 The number of diagnostics exceeds the number allowed by Biome.
 Diagnostics not shown: 5310.
