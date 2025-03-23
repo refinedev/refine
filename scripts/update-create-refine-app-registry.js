@@ -2,7 +2,10 @@ const fs = require("fs");
 const path = require("path");
 
 const packageJsonPath = path.join(
-  process.cwd(),
+  process.cwd()
+  
+  
+  ,
   "packages/create-refine-app/package.json",
 );
 
