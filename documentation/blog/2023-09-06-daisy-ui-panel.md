@@ -81,7 +81,7 @@ For this app, we are going to start with **Refine**'s headless core, using `crea
 
 So, let's get started with initializing the **Refine** app first.
 
-We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/documentation/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
+We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
 
 ```bash
 npm create refine-app@latest refine-daisyui

@@ -132,7 +132,7 @@ npm install react-bootstrap bootstrap@5.1.3
 
 💪 Ensure a future-proof and **robust architecture**.
 
-⌛️ Utilize the time-saving features of the built-in [CLI](https://refine.dev/docs/packages/documentation/cli/).
+⌛️ Utilize the time-saving features of the built-in [CLI](https://refine.dev/docs/packages/cli/).
 
 ✅ Benefit from comprehensive **test coverage** for enhanced reliability.
 
