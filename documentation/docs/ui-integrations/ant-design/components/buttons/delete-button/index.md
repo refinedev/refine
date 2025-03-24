@@ -256,7 +256,7 @@ render(<App />);
 
 Determines which mode mutation will have while executing `<DeleteButton>`.
 
-> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
+> For more information, refer to the [mutation mode documentation &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx live disableScroll previewHeight=360px
 setInitialRoutes(["/posts"]);
