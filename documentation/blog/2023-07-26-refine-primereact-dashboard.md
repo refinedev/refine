@@ -3,7 +3,7 @@ title: Building a React Admin Panel with PrimeReact and Refine
 description: We'll build a simple React admin Panel using Refine and PrimeReact.
 slug: building-react-admin-panel-with-primereact-and-refine
 authors: salih
-tags: [Refine, tutorial, react]
+tags: [refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-25-refine-primereact/cover.jpg
 hide_table_of_contents: false
 is_featured: true
@@ -49,9 +49,9 @@ You can choose the libraries and frameworks you want to work with, and the tool 
 
 For this tutorial, we'll be select the following options:
 
-**React Platform**: Vite  
-**UI Framework**: Headless  
-**Backend**: REST API  
+**React Platform**: Vite
+**UI Framework**: Headless
+**Backend**: REST API
 **Authentication Provider**: No Auth
 
 <div className="flex justify-center">

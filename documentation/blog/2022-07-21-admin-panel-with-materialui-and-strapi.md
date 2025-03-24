@@ -3,7 +3,7 @@ title: Building a CRUD app with Material UI and Strapi in React
 description: How to build CRUD admin panel with Material UI?
 slug: build-admin-panel-with-material-ui-and-strapi
 authors: necati
-tags: [Refine, react, material-ui, strapi]
+tags: [refine, react, material-ui, strapi]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/social.png
 featured_image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-07-21-admin-panel-with-materialui-and-strapi/featured.png
 hide_table_of_contents: false
