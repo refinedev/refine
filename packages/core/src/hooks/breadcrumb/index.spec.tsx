@@ -181,4 +181,62 @@ describe("useBreadcrumb Hook", () => {
       { label: "buttons.show" },
     ]);
   });
+
+  it("if resource has nested resource with dynamic id -> route/:id/nested-route, the nested should be in breadcrumbs", async () => {
+    const { result } = renderHook(() => useBreadcrumb(), {
+      wrapper: renderWrapper({
+        resources: [
+          {
+            name: "blog_posts",
+            list: "/blog-posts",
+            show: "/blog-posts/show/:id",
+            create: "/blog-posts/create",
+            edit: "/blog-posts/edit/:id",
+            meta: {
+              canDelete: true,
+            },
+          },
+
+          {
+            name: "comments",
+            list: "blog-posts/show/:id/comments",
+            show: "blog-posts/show/:id/comments/:id",
+            meta: {
+              parent: "blog-posts",
+            },
+          },
+        ],
+        routerProvider: mockRouterProvider({
+          action: "list",
+          id: "2",
+          pathname: "/blog-posts/show/2/comments",
+          resource: {
+            name: "comments",
+            list: "blog-posts/show/:id/comments",
+            show: "blog-posts/show/:id/comments/:id",
+            meta: {
+              parent: "blog-posts",
+            },
+          },
+        }),
+      }),
+    });
+
+    expect(result.current.breadcrumbs).toEqual([
+      {
+        label: "Blog posts",
+        href: undefined,
+        icon: undefined,
+      },
+      {
+        label: "2",
+        href: "blog-posts/show/2",
+      },
+      {
+        label: "Comments",
+        href: "/blog-posts/show/2/comments",
+        icon: undefined,
+      },
+    ]);
+  });
 });
