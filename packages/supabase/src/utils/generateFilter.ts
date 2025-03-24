@@ -60,7 +60,7 @@ export const generateFilter = (filter: CrudFilter, query: any) => {
             }
 
             if (item.operator === "contains" || item.operator === "containss") {
-              value = `%${value}%`;
+              value = `"%${value}%"`;
             }
 
             if (item.operator === "startswith") {
