@@ -3,7 +3,7 @@ title: Creating Mission and Invoice Pages
 description: We add more CRUD views to the Pdf Invoice Generator app we have been building using Refine and Strapi last few days.
 slug: refine-react-invoice-generator-4
 authors: abdullah_numan
-tags: [refine-week, Refine, strapi, ant-design]
+tags: [refine-week, refine, strapi, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-13-refine-invoicer-4/social.png
 hide_table_of_contents: false
 ---

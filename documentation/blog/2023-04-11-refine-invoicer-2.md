@@ -3,7 +3,7 @@ title: Setting Up the Invoicer App
 description: We start with setting up the Invoicer app by choosing Ant Design as a UI framework and Strapi as a dataprovider
 slug: refine-react-invoice-generator-2
 authors: abdullah_numan
-tags: [refine-week, Refine, strapi, ant-design]
+tags: [refine-week, refine, strapi, ant-design]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-04-11-refine-invoicer-2/social.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,7 @@ title: Building a React Admin Panel with Refine and daisyUI
 description: We'll build a simple React admin panel using Refine and daisyUI.
 slug: daisy-ui-react-admin-panel
 authors: abdullah_numan
-tags: [Refine, tutorial, react]
+tags: [refine, tutorial, react]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-09-06-daisy-ui-panel/daisyui.jpg
 hide_table_of_contents: false
 is_featured: true
@@ -81,7 +81,7 @@ For this app, we are going to start with **Refine**'s headless core, using `crea
 
 So, let's get started with initializing the **Refine** app first.
 
-We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/documentation/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
+We'll create a local repository by using the [`create refine-app`](https://refine.dev/docs/packages/cli/) CLI-based app scaffolder. Run the following `npm` command from the directory of your choice to interactively initialize the project.
 
 ```bash
 npm create refine-app@latest refine-daisyui
