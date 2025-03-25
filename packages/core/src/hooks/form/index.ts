@@ -160,6 +160,7 @@ export const useForm = <
     resource: identifier,
     id,
     queryOptions: {
+      queryKey: keys().data().resource(identifier).action("one").id(id).get(),
       // Only enable the query if it's not a create action and the `id` is defined
       enabled: !isCreate && id !== undefined,
       ...props.queryOptions,
@@ -183,7 +184,7 @@ export const useForm = <
   });
 
   const mutationResult = isEdit ? updateMutation : createMutation;
-  const isMutationLoading = mutationResult.isLoading;
+  const isMutationLoading = mutationResult.isPending;
   const formLoading = isMutationLoading || queryResult.isFetching;
 
   const { elapsedTime } = useLoadingOvertime({
@@ -262,11 +263,11 @@ export const useForm = <
         // Update specific variables
         ...(isEdit
           ? {
-              id: id ?? "",
-              mutationMode,
-              undoableTimeout: props.undoableTimeout,
-              optimisticUpdateMap: props.optimisticUpdateMap,
-            }
+            id: id ?? "",
+            mutationMode,
+            undoableTimeout: props.undoableTimeout,
+            optimisticUpdateMap: props.optimisticUpdateMap,
+          }
           : {}),
       };
 
@@ -277,13 +278,13 @@ export const useForm = <
         // These callbacks will not have an effect on the submission promise
         onSuccess: props.onMutationSuccess
           ? (data, _, context) => {
-              props.onMutationSuccess?.(data, values, context, isAutosave);
-            }
+            props.onMutationSuccess?.(data, values, context, isAutosave);
+          }
           : undefined,
         onError: props.onMutationError
           ? (error: TResponseError, _, context) => {
-              props.onMutationError?.(error, values, context, isAutosave);
-            }
+            props.onMutationError?.(error, values, context, isAutosave);
+          }
           : undefined,
       })
         // If the mutation mode is pessimistic, resolve the promise after the mutation is succeeded

@@ -49,38 +49,36 @@ export const useInvalidate = (): ((
         invalidates.map((key) => {
           switch (key) {
             case "all":
-              return queryClient.invalidateQueries(
-                keys().data(dp).get(preferLegacyKeys),
+              return queryClient.invalidateQueries({
+                queryKey: keys().data(dp).get(preferLegacyKeys),
                 invalidationFilters,
                 invalidationOptions,
-              );
+              });
             case "list":
-              return queryClient.invalidateQueries(
-                queryKey.action("list").get(preferLegacyKeys),
+              return queryClient.invalidateQueries({
+                queryKey: queryKey.action("list").get(preferLegacyKeys),
                 invalidationFilters,
                 invalidationOptions,
-              );
+              });
             case "many":
-              return queryClient.invalidateQueries(
-                queryKey.action("many").get(preferLegacyKeys),
+              return queryClient.invalidateQueries({
+                queryKey: queryKey.action("many").get(preferLegacyKeys),
                 invalidationFilters,
                 invalidationOptions,
-              );
+              });
             case "resourceAll":
-              return queryClient.invalidateQueries(
-                queryKey.get(preferLegacyKeys),
+              return queryClient.invalidateQueries({
+                queryKey: queryKey.get(preferLegacyKeys),
                 invalidationFilters,
                 invalidationOptions,
-              );
+              });
             case "detail":
-              return queryClient.invalidateQueries(
-                queryKey
+              return queryClient.invalidateQueries({
+                queryKey: queryKey
                   .action("one")
                   .id(id || "")
                   .get(preferLegacyKeys),
-                invalidationFilters,
-                invalidationOptions,
-              );
+              });
             default:
               return;
           }
