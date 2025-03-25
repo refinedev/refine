@@ -11,7 +11,7 @@ import {
 import BlogLayout from "@theme/BlogLayout";
 import BlogListPaginator from "@theme/BlogListPaginator";
 import SearchMetadata from "@theme/SearchMetadata";
-import BlogPostItems from "theme/BlogPostItems";
+import BlogPostItems from "@theme/BlogPostItems";
 import TagsList from "@theme/TagsList";
 import { ChevronLeft } from "../../components/blog/icons";
 
