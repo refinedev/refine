@@ -15,7 +15,6 @@ Now our application is ready to use with layouts, views and notifications. Only 
 - Forgot password page with type `forgotPassword` which renders a forgot password form and works with the `useForgotPassword` hook.
 - Update password page with type `updatePassword` which renders a update password form and works with the `useUpdatePassword` hook.
 
-
 ## Using `<AuthPage />` Component
 
 Now let's update our `<Login />` component to use the `<AuthPage />` from `@refinedev/mui` package. This component will provide a consistent look and feel with the rest of the application.

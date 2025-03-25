@@ -50,6 +50,7 @@ export type UrlFieldProps = RefineFieldUrlProps<
   string | undefined,
   AnchorProps & TextProps,
   {
+    children?: ReactNode;
     title?: string;
   }
 >;

@@ -1,5 +1,5 @@
-import { Create, useForm, useSelect } from "@refinedev/mantine";
-import { TextInput, Select } from "@mantine/core";
+import { Create, useForm, useSelect, Select } from "@refinedev/mantine";
+import { TextInput } from "@mantine/core";
 
 import type { ICategory } from "../../interfaces";
 

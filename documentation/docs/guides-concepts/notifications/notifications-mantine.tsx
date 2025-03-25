@@ -9,10 +9,10 @@ export default function NotificationMantine() {
       dependencies={{
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/notifications": "^7.12.2",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
         "@refinedev/mantine": "^2.28.21",
       }}
       startRoute="/"
@@ -33,7 +33,7 @@ const AppTsxCode = /* jsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
 import { useNotificationProvider, RefineThemes } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import { HomePage } from "./home-page";
@@ -46,7 +46,7 @@ const App: React.FC = () => {
             withGlobalStyles
         >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
+            <Notifications position="top-right">
                 <Refine
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
@@ -55,7 +55,7 @@ const App: React.FC = () => {
                 >
                     <HomePage />
                 </Refine>
-            </NotificationsProvider>
+            </Notifications>
         </MantineProvider>
     );
 };

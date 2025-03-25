@@ -6,7 +6,7 @@ import {
 import get from "lodash/get";
 import has from "lodash/has";
 import set from "lodash/set";
-import type { UseFormInput } from "@mantine/form/lib/types";
+import type { UseFormInput } from "@mantine/form";
 import {
   type BaseRecord,
   type HttpError,
@@ -85,7 +85,7 @@ export type UseFormProps<
 export const useForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
