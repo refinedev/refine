@@ -12,17 +12,10 @@ import {
   metaFieldsToGqlFields,
   upperCaseValues,
 } from "../utils";
-import camelcase from "camelcase";
 import gqlTag from "graphql-tag";
+import { getIdType, HasuraProviderOptions } from "../types";
 
-type IDType = "uuid" | "Int" | "String" | "Numeric";
-
-export type NamingConvention = "hasura-default" | "graphql-default";
-
-export type HasuraDataProviderOptions = {
-  idType?: IDType | ((resource: string) => IDType);
-  namingConvention?: NamingConvention;
-};
+export type HasuraDataProviderOptions = HasuraProviderOptions & {};
 
 const dataProvider = (
   client: GraphQLClient,
@@ -31,19 +24,12 @@ const dataProvider = (
   const { idType, namingConvention = "hasura-default" } = options ?? {};
   const defaultNamingConvention = namingConvention === "hasura-default";
 
-  const getIdType = (resource: string) => {
-    if (typeof idType === "function") {
-      return idType(resource);
-    }
-    return idType ?? "uuid";
-  };
-
   return {
     getOne: async ({ resource, id, meta }) => {
       const operation = defaultNamingConvention
         ? `${meta?.operation ?? resource}_by_pk`
         : camelCase(`${meta?.operation ?? resource}_by_pk`);
-      const pascalOperation = camelcase(operation, {
+      const pascalOperation = camelCase(operation, {
         pascalCase: true,
       });
 
@@ -60,7 +46,7 @@ const dataProvider = (
           const stringFields = getOperationFields(gqlOperation);
 
           query = gqlTag`
-                        query Get${pascalOperation}($id: ${getIdType(resource)}!) {
+                        query Get${pascalOperation}($id: ${getIdType(resource, idType)}!) {
                             ${operation}(id: $id) {
                             ${stringFields}
                             }
@@ -80,7 +66,7 @@ const dataProvider = (
         variables: {
           id: {
             value: id,
-            type: getIdType(resource),
+            type: getIdType(resource, idType),
             required: true,
           },
           ...meta?.variables,
@@ -306,7 +292,7 @@ const dataProvider = (
 
     createMany: async ({ resource, variables: variablesFromParams, meta }) => {
       const operation = meta?.operation ?? resource;
-      const pascalOperation = camelcase(operation, {
+      const pascalOperation = camelCase(operation, {
         pascalCase: true,
       });
       const insertOperation = defaultNamingConvention
@@ -421,7 +407,7 @@ const dataProvider = (
       meta,
     }) => {
       const operation = meta?.operation ?? resource;
-      const pascalOperation = camelcase(operation, {
+      const pascalOperation = camelCase(operation, {
         pascalCase: true,
       });
       const updateOperation = defaultNamingConvention
@@ -495,7 +481,7 @@ const dataProvider = (
         variables: {
           id: {
             value: id,
-            type: getIdType(resource),
+            type: getIdType(resource, idType),
             required: true,
           },
           ...meta?.variables,
@@ -512,7 +498,7 @@ const dataProvider = (
 
     deleteMany: async ({ resource, ids, meta }) => {
       const operation = meta?.operation ?? resource;
-      const pascalOperation = camelcase(operation, {
+      const pascalOperation = camelCase(operation, {
         pascalCase: true,
       });
       const deleteOperation = defaultNamingConvention
