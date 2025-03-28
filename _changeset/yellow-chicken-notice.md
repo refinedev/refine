@@ -1,9 +1,9 @@
 ---
-"@refinedev/chakra-ui": minor
-"@refinedev/ui-types": minor
-"@refinedev/mantine": minor
-"@refinedev/antd": minor
-"@refinedev/mui": minor
+"@refinedev/chakra-ui": patch
+"@refinedev/ui-types": patch
+"@refinedev/mantine": patch
+"@refinedev/antd": patch
+"@refinedev/mui": patch
 ---
 
 - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI

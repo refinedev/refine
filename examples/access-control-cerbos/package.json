@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@cerbos/http": "^0.6.0",
-    "@refinedev/antd": "^5.45.3",
+    "@refinedev/antd": "^5.46.0",
     "@refinedev/cli": "^2.16.44",
     "@refinedev/core": "^4.57.7",
     "@refinedev/react-router": "^1.0.1",
