@@ -368,6 +368,10 @@ export type RefineCrudShowProps<
    */
   canDelete?: boolean;
   /**
+   * Adds properties for `<DeleteButton />`
+   */
+  deleteButtonProps?: TDeleteButtonProps;
+  /**
    * Adds a `<EditButton />`
    * @default If the resource is passed a edit component, `true` else `false`
    */
