@@ -11,7 +11,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@ant-design/nextjs-registry": "^1.0.0",
-    "@refinedev/antd": "^5.45.3",
+    "@refinedev/antd": "^5.46.0",
     "@refinedev/cli": "^2.16.44",
     "@refinedev/core": "^4.57.7",
     "@refinedev/devtools": "^1.2.14",
