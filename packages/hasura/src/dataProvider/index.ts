@@ -13,7 +13,7 @@ import {
   upperCaseValues,
 } from "../utils";
 import gqlTag from "graphql-tag";
-import { getIdType, HasuraProviderOptions } from "../types";
+import { getIdType, type HasuraProviderOptions } from "../types";
 
 export type HasuraDataProviderOptions = HasuraProviderOptions & {};
 
@@ -46,7 +46,10 @@ const dataProvider = (
           const stringFields = getOperationFields(gqlOperation);
 
           query = gqlTag`
-                        query Get${pascalOperation}($id: ${getIdType(resource, idType)}!) {
+                        query Get${pascalOperation}($id: ${getIdType(
+                          resource,
+                          idType,
+                        )}!) {
                             ${operation}(id: $id) {
                             ${stringFields}
                             }

@@ -4,7 +4,7 @@ import * as gql from "gql-query-builder";
 import { type HasuraCrudFilters, generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
 import { getOperationFields } from "./graphql";
-import { NamingConvention } from "../types";
+import type { NamingConvention } from "../types";
 import camelcase from "camelcase";
 
 type GenerateUseListSubscriptionParams = {

@@ -6,7 +6,7 @@ import {
   generateUseOneSubscription,
   generateUseListSubscription,
 } from "../utils";
-import { getIdType, HasuraProviderOptions } from "../types";
+import { getIdType, type HasuraProviderOptions } from "../types";
 
 const subscriptions = {
   useList: generateUseListSubscription,
