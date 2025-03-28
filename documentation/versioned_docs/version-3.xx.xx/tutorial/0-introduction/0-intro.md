@@ -16,7 +16,7 @@ We'll cover the following topics:
 - Setting up your development environment
 - Create your first refine app
 - Understanding the [`dataProvider`](/docs/3.xx.xx/api-reference/core/providers/data-provider/)
-- What is the [`resources`](docs/3.xx.xx/api-reference/core/components/refine-config/#resources) concept
+- What is the [`resources`](/docs/3.xx.xx/api-reference/core/components/refine-config/#resources) concept
 - Adding CRUD pages
 <!-- -   Understanding the `authProvider` -->
 

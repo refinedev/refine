@@ -47,7 +47,7 @@ Instead of being a limited set of pre-styled components, **refine** is a collect
 
 💪 Future-proof, **robust architecture**
 
-⌛️ Built-in [CLI](https://refine.dev/docs/packages/documentation/cli/) with time-saving features
+⌛️ Built-in [CLI](https://refine.dev/docs/packages/cli/) with time-saving features
 
 ✅ Full **test coverage**
 

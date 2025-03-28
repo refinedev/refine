@@ -3,7 +3,7 @@ title: Build internal tools using Low-Code with Refine, React-based framework
 description: Why you should be using low-code app Refine to build internal tools? Learn how to build low-code apps using Refine, React and Ant Design.
 slug: build-internal-tools-using-low-code-with-refine
 authors: salih
-tags: [Refine, react, tutorial]
+tags: [refine, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/website/static/img/placeholder.png
 hide_table_of_contents: false
 ---

@@ -3,7 +3,7 @@ title: Building a React Admin Dashboard with Refine
 description: We will be building a Complete React CRUD application using Refine and Airtable, a famous backend service to illustrate how you can power your applications with refine.
 slug: building-react-admin-dashboard
 authors: peter_osah
-tags: [Refine, react, tutorial]
+tags: [refine, react, tutorial]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Fsocial.png
 hide_table_of_contents: false
 ---
@@ -430,7 +430,7 @@ export default App;
 </p>
 </details>
 
-In the code above, we created routes for login, register using the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/docs/api-reference/core/components/auth/authenticated/docs/api-reference/core/hooks/auth/useIsAuthenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
+In the code above, we created routes for login, register using the `AuthPage` imported into the `App.tsx` file. We also included the `<Authenticated/>` component which is a component form of the [useIsAuthenticated](https://refine.dev/docs/authentication/hooks/use-is-authenticated/) hook which saves the authentication status of the user. The component is used when you want to render a fallback or redirect to a certain page where the authentication status of the user is either true or false. The view of the login and register pages are shown below:
 
 <img src="https://refine.ams3.cdn.digitaloceanspaces.com/blog%2F2023-04-04-finefoods-admin-dashboard%2Flogin.png"  alt="react crud app airtable" />
 
