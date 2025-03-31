@@ -3335,8 +3335,8 @@ importers:
         specifier: ^0.9.0
         version: 0.9.1
       next:
-        specifier: ^14.1.0
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        specifier: ^14.2.26
+        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4995,7 +4995,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.46.0
         version: link:../../packages/antd
@@ -5027,14 +5027,14 @@ importers:
         specifier: ^3.0.1
         version: 3.0.5
       next:
-        specifier: ^14.1.0
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        specifier: ^14.2.26
+        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       next-compose-plugins:
         specifier: ^2.2.1
         version: 2.2.1
       next-intl:
         specifier: ^3.25.3
-        version: 3.25.3(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0)
+        version: 3.25.3(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -10086,7 +10086,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.46.0
         version: link:../../packages/antd
@@ -10118,8 +10118,8 @@ importers:
         specifier: ^3.0.1
         version: 3.0.5
       next:
-        specifier: ^14.1.0
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        specifier: ^14.2.26
+        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       nookies:
         specifier: ^2.5.2
         version: 2.5.2
@@ -10159,7 +10159,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.46.0
         version: link:../../packages/antd
@@ -10194,11 +10194,11 @@ importers:
         specifier: ^3.0.1
         version: 3.0.5
       next:
-        specifier: ^14.1.0
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        specifier: ^14.2.26
+        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       next-auth:
         specifier: ^4.24.5
-        version: 4.24.7(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 4.24.7(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -12504,8 +12504,8 @@ importers:
         specifier: ^1.4.4
         version: 1.5.0
       next:
-        specifier: ^14.1.0
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        specifier: ^14.2.26
+        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       qs:
         specifier: ^6.10.1
         version: 6.12.1
@@ -13012,8 +13012,8 @@ importers:
         specifier: ^29.3.1
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       next:
-        specifier: ^14.1.0
-        version: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        specifier: ^14.2.26
+        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
@@ -17233,59 +17233,59 @@ packages:
     resolution: {integrity: sha512-jV/P7o8+v1XaEGb7wvFfkF1fSLggAxjg7WYoBPkD3R93bsI6xmCDKBcUJ/6g7lqECRXt4dGKApSFtGk/pUmAHw==}
     engines: {node: '>=18.0.0'}
 
-  '@next/env@14.2.3':
-    resolution: {integrity: sha512-W7fd7IbkfmeeY2gXrzJYDx8D2lWKbVoTIj1o1ScPHNzvp30s1AuoEFSdr39bC5sjxJaxTtq3OTCZboNp0lNWHA==}
+  '@next/env@14.2.26':
+    resolution: {integrity: sha512-vO//GJ/YBco+H7xdQhzJxF7ub3SUwft76jwaeOyVVQFHCi5DCnkP16WHB+JBylo4vOKPoZBlR94Z8xBxNBdNJA==}
 
-  '@next/swc-darwin-arm64@14.2.3':
-    resolution: {integrity: sha512-3pEYo/RaGqPP0YzwnlmPN2puaF2WMLM3apt5jLW2fFdXD9+pqcoTzRk+iZsf8ta7+quAe4Q6Ms0nR0SFGFdS1A==}
+  '@next/swc-darwin-arm64@14.2.26':
+    resolution: {integrity: sha512-zDJY8gsKEseGAxG+C2hTMT0w9Nk9N1Sk1qV7vXYz9MEiyRoF5ogQX2+vplyUMIfygnjn9/A04I6yrUTRTuRiyQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@14.2.3':
-    resolution: {integrity: sha512-6adp7waE6P1TYFSXpY366xwsOnEXM+y1kgRpjSRVI2CBDOcbRjsJ67Z6EgKIqWIue52d2q/Mx8g9MszARj8IEA==}
+  '@next/swc-darwin-x64@14.2.26':
+    resolution: {integrity: sha512-U0adH5ryLfmTDkahLwG9sUQG2L0a9rYux8crQeC92rPhi3jGQEY47nByQHrVrt3prZigadwj/2HZ1LUUimuSbg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@14.2.3':
-    resolution: {integrity: sha512-cuzCE/1G0ZSnTAHJPUT1rPgQx1w5tzSX7POXSLaS7w2nIUJUD+e25QoXD/hMfxbsT9rslEXugWypJMILBj/QsA==}
+  '@next/swc-linux-arm64-gnu@14.2.26':
+    resolution: {integrity: sha512-SINMl1I7UhfHGM7SoRiw0AbwnLEMUnJ/3XXVmhyptzriHbWvPPbbm0OEVG24uUKhuS1t0nvN/DBvm5kz6ZIqpg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@14.2.3':
-    resolution: {integrity: sha512-0D4/oMM2Y9Ta3nGuCcQN8jjJjmDPYpHX9OJzqk42NZGJocU2MqhBq5tWkJrUQOQY9N+In9xOdymzapM09GeiZw==}
+  '@next/swc-linux-arm64-musl@14.2.26':
+    resolution: {integrity: sha512-s6JaezoyJK2DxrwHWxLWtJKlqKqTdi/zaYigDXUJ/gmx/72CrzdVZfMvUc6VqnZ7YEvRijvYo+0o4Z9DencduA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@14.2.3':
-    resolution: {integrity: sha512-ENPiNnBNDInBLyUU5ii8PMQh+4XLr4pG51tOp6aJ9xqFQ2iRI6IH0Ds2yJkAzNV1CfyagcyzPfROMViS2wOZ9w==}
+  '@next/swc-linux-x64-gnu@14.2.26':
+    resolution: {integrity: sha512-FEXeUQi8/pLr/XI0hKbe0tgbLmHFRhgXOUiPScz2hk0hSmbGiU8aUqVslj/6C6KA38RzXnWoJXo4FMo6aBxjzg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@14.2.3':
-    resolution: {integrity: sha512-BTAbq0LnCbF5MtoM7I/9UeUu/8ZBY0i8SFjUMCbPDOLv+un67e2JgyN4pmgfXBwy/I+RHu8q+k+MCkDN6P9ViQ==}
+  '@next/swc-linux-x64-musl@14.2.26':
+    resolution: {integrity: sha512-BUsomaO4d2DuXhXhgQCVt2jjX4B4/Thts8nDoIruEJkhE5ifeQFtvW5c9JkdOtYvE5p2G0hcwQ0UbRaQmQwaVg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@14.2.3':
-    resolution: {integrity: sha512-AEHIw/dhAMLNFJFJIJIyOFDzrzI5bAjI9J26gbO5xhAKHYTZ9Or04BesFPXiAYXDNdrwTP2dQceYA4dL1geu8A==}
+  '@next/swc-win32-arm64-msvc@14.2.26':
+    resolution: {integrity: sha512-5auwsMVzT7wbB2CZXQxDctpWbdEnEW/e66DyXO1DcgHxIyhP06awu+rHKshZE+lPLIGiwtjo7bsyeuubewwxMw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-ia32-msvc@14.2.3':
-    resolution: {integrity: sha512-vga40n1q6aYb0CLrM+eEmisfKCR45ixQYXuBXxOOmmoV8sYST9k7E3US32FsY+CkkF7NtzdcebiFT4CHuMSyZw==}
+  '@next/swc-win32-ia32-msvc@14.2.26':
+    resolution: {integrity: sha512-GQWg/Vbz9zUGi9X80lOeGsz1rMH/MtFO/XqigDznhhhTfDlDoynCM6982mPCbSlxJ/aveZcKtTlwfAjwhyxDpg==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@14.2.3':
-    resolution: {integrity: sha512-Q1/zm43RWynxrO7lW4ehciQVj+5ePBhOK+/K2P7pLFX3JaJ/IZVC69SHidrmZSOkqz7ECIOhhy7XhAFG4JYyHA==}
+  '@next/swc-win32-x64-msvc@14.2.26':
+    resolution: {integrity: sha512-2rdB3T1/Gp7bv1eQTTm9d1Y1sv9UuJ2LAwOE0Pe2prHKe32UNscj7YS13fRB37d0GAiGNR+Y7ZcW8YjDI8Ns0w==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -25084,8 +25084,8 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  next@14.2.3:
-    resolution: {integrity: sha512-dowFkFTR8v79NPJO4QsBUtxv0g9BrS/phluVpMAt2ku7H+cbcBJlopXjkWlwxrk/xGqMemr7JkGPGemPrLLX7A==}
+  next@14.2.26:
+    resolution: {integrity: sha512-b81XSLihMwCfwiUVRRja3LphLo4uBBMZEzBBWMaISbKTwOmq3wPknIETy/8000tr7Gq4WmbuFYPS7jOYIf+ZJw==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -30233,11 +30233,11 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      next: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      next: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -36074,33 +36074,33 @@ snapshots:
 
   '@netlify/plugin-nextjs@5.2.2': {}
 
-  '@next/env@14.2.3': {}
+  '@next/env@14.2.26': {}
 
-  '@next/swc-darwin-arm64@14.2.3':
+  '@next/swc-darwin-arm64@14.2.26':
     optional: true
 
-  '@next/swc-darwin-x64@14.2.3':
+  '@next/swc-darwin-x64@14.2.26':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@14.2.3':
+  '@next/swc-linux-arm64-gnu@14.2.26':
     optional: true
 
-  '@next/swc-linux-arm64-musl@14.2.3':
+  '@next/swc-linux-arm64-musl@14.2.26':
     optional: true
 
-  '@next/swc-linux-x64-gnu@14.2.3':
+  '@next/swc-linux-x64-gnu@14.2.26':
     optional: true
 
-  '@next/swc-linux-x64-musl@14.2.3':
+  '@next/swc-linux-x64-musl@14.2.26':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@14.2.3':
+  '@next/swc-win32-arm64-msvc@14.2.26':
     optional: true
 
-  '@next/swc-win32-ia32-msvc@14.2.3':
+  '@next/swc-win32-ia32-msvc@14.2.26':
     optional: true
 
-  '@next/swc-win32-x64-msvc@14.2.3':
+  '@next/swc-win32-x64-msvc@14.2.26':
     optional: true
 
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
@@ -46633,13 +46633,13 @@ snapshots:
 
   netstats@0.0.6: {}
 
-  next-auth@4.24.7(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  next-auth@4.24.7(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.24.4
       '@panva/hkdf': 1.1.1
       cookie: 0.5.0
       jose: 4.15.5
-      next: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      next: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       oauth: 0.9.15
       openid-client: 5.6.5
       preact: 10.20.2
@@ -46650,19 +46650,19 @@ snapshots:
 
   next-compose-plugins@2.2.1: {}
 
-  next-intl@3.25.3(next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0):
+  next-intl@3.25.3(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.4
       negotiator: 1.0.0
-      next: 14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      next: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react: 18.3.0
       use-intl: 3.25.3(react@18.3.0)
 
   next-tick@1.1.0: {}
 
-  next@14.2.3(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0):
+  next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0):
     dependencies:
-      '@next/env': 14.2.3
+      '@next/env': 14.2.26
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
       caniuse-lite: 1.0.30001612
@@ -46672,15 +46672,15 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       styled-jsx: 5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@18.3.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.3
-      '@next/swc-darwin-x64': 14.2.3
-      '@next/swc-linux-arm64-gnu': 14.2.3
-      '@next/swc-linux-arm64-musl': 14.2.3
-      '@next/swc-linux-x64-gnu': 14.2.3
-      '@next/swc-linux-x64-musl': 14.2.3
-      '@next/swc-win32-arm64-msvc': 14.2.3
-      '@next/swc-win32-ia32-msvc': 14.2.3
-      '@next/swc-win32-x64-msvc': 14.2.3
+      '@next/swc-darwin-arm64': 14.2.26
+      '@next/swc-darwin-x64': 14.2.26
+      '@next/swc-linux-arm64-gnu': 14.2.26
+      '@next/swc-linux-arm64-musl': 14.2.26
+      '@next/swc-linux-x64-gnu': 14.2.26
+      '@next/swc-linux-x64-musl': 14.2.26
+      '@next/swc-win32-arm64-msvc': 14.2.26
+      '@next/swc-win32-ia32-msvc': 14.2.26
+      '@next/swc-win32-x64-msvc': 14.2.26
       sass: 1.75.0
     transitivePeerDependencies:
       - '@babel/core'
