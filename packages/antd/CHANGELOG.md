@@ -2765,13 +2765,13 @@
 
   ## Upgrade
 
-  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
+  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/cli/#update) command.
 
   ```bash
   npm run refine update
   ```
 
-  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
+  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/cli/#how-to-add-to-an-existing-project)
 
   ### 🪄 Migrating your project automatically with Codemod ✨
 
@@ -2809,13 +2809,13 @@
 
   ## Upgrade
 
-  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
+  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/cli/#update) command.
 
   ```bash
   npm run refine update
   ```
 
-  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
+  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/cli/#how-to-add-to-an-existing-project)
 
   ### 🪄 Migrating your project automatically with Codemod ✨
 
