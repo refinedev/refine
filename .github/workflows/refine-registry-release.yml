@@ -14,10 +14,13 @@ on:
     branches:
       - next
 
+concurrency:
+  group: next-refine-registry-release
+  cancel-in-progress: false
+
 jobs:
   publish:
     runs-on: ubuntu-latest
-
 
     strategy:
       matrix:
