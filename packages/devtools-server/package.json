@@ -94,7 +94,7 @@
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.4.15"
   },
   "peerDependencies": {
     "@types/react": "^17.0.0 || ^18.0.0",
