@@ -119,7 +119,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -186,7 +186,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -238,7 +238,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -308,13 +308,13 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
         specifier: ^1.3.5
@@ -420,7 +420,7 @@ importers:
   examples/audit-log-provider:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -472,7 +472,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -527,7 +527,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -585,7 +585,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -640,7 +640,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -692,7 +692,7 @@ importers:
   examples/auth-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -747,7 +747,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -808,7 +808,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -872,7 +872,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -942,7 +942,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -997,7 +997,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1049,13 +1049,13 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -1107,7 +1107,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1159,7 +1159,7 @@ importers:
   examples/base-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1226,7 +1226,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1296,13 +1296,13 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^6.1.0
@@ -1357,7 +1357,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1409,7 +1409,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1461,7 +1461,7 @@ importers:
   examples/core-use-import:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1504,7 +1504,7 @@ importers:
   examples/core-use-menu:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1547,7 +1547,7 @@ importers:
   examples/core-use-modal:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1590,7 +1590,7 @@ importers:
   examples/core-use-select:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1636,7 +1636,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1688,7 +1688,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1743,7 +1743,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1792,7 +1792,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1844,7 +1844,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1893,7 +1893,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -1948,7 +1948,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2015,7 +2015,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2085,7 +2085,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2140,7 +2140,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2192,7 +2192,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2244,7 +2244,7 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/appwrite
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2296,7 +2296,7 @@ importers:
         specifier: ^7.0.1
         version: link:../../packages/appwrite
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2351,7 +2351,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2421,7 +2421,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2491,7 +2491,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2543,7 +2543,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2616,7 +2616,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2668,13 +2668,13 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -2729,7 +2729,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2799,7 +2799,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2860,7 +2860,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2912,7 +2912,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -2964,7 +2964,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3016,7 +3016,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3068,7 +3068,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3132,7 +3132,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3208,7 +3208,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3308,13 +3308,13 @@ importers:
   examples/finefoods-client:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/nextjs-router':
-        specifier: ^6.2.1
+        specifier: ^6.2.2
         version: link:../../packages/nextjs-router
       '@refinedev/react-table':
         specifier: ^5.6.15
@@ -3393,7 +3393,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3502,7 +3502,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3554,7 +3554,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3606,7 +3606,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3655,7 +3655,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3707,7 +3707,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3756,7 +3756,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3811,7 +3811,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3869,7 +3869,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3927,7 +3927,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -3985,7 +3985,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4037,7 +4037,7 @@ importers:
   examples/form-core-use-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4107,7 +4107,7 @@ importers:
         specifier: ^5.4.1
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4177,7 +4177,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4250,7 +4250,7 @@ importers:
         specifier: ^5.4.1
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4320,7 +4320,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4393,7 +4393,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4466,7 +4466,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4536,7 +4536,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4603,7 +4603,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4670,7 +4670,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4737,7 +4737,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4789,7 +4789,7 @@ importers:
   examples/form-react-hook-form-use-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4838,7 +4838,7 @@ importers:
   examples/form-react-hook-form-use-modal-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4887,7 +4887,7 @@ importers:
   examples/form-react-hook-form-use-steps-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -4939,7 +4939,7 @@ importers:
   examples/form-save-and-continue:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5000,19 +5000,19 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^6.2.1
+        specifier: ^6.2.2
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -5073,7 +5073,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5137,7 +5137,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5201,7 +5201,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5268,7 +5268,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5323,7 +5323,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5408,7 +5408,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5502,7 +5502,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5575,7 +5575,7 @@ importers:
   examples/inferencer-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5672,7 +5672,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5775,7 +5775,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5863,7 +5863,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5915,7 +5915,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -5967,13 +5967,13 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -6040,7 +6040,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6092,7 +6092,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6165,7 +6165,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6217,7 +6217,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6272,7 +6272,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6327,7 +6327,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6412,13 +6412,13 @@ importers:
         specifier: ^7.23.3
         version: 7.23.3(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(date-fns@2.30.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^6.1.0
@@ -6491,7 +6491,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6552,7 +6552,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6610,7 +6610,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6665,7 +6665,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6732,7 +6732,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6802,7 +6802,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6857,7 +6857,7 @@ importers:
   examples/starter-vite:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6906,7 +6906,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -6961,7 +6961,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7016,7 +7016,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7068,7 +7068,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7117,7 +7117,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7166,7 +7166,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7221,7 +7221,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7279,7 +7279,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7334,7 +7334,7 @@ importers:
         specifier: ^12.1.2
         version: 12.4.0(handsontable@12.4.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7398,7 +7398,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7468,7 +7468,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7535,7 +7535,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7611,7 +7611,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7675,7 +7675,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7742,7 +7742,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7809,7 +7809,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7873,7 +7873,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7937,7 +7937,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -7989,7 +7989,7 @@ importers:
         specifier: ^2.0.0
         version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8047,7 +8047,7 @@ importers:
   examples/table-react-table-basic:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8099,7 +8099,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8163,7 +8163,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8233,7 +8233,7 @@ importers:
   examples/template-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8315,7 +8315,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8403,7 +8403,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8470,7 +8470,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8525,7 +8525,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8592,7 +8592,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8662,7 +8662,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8720,7 +8720,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8790,7 +8790,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8863,7 +8863,7 @@ importers:
   examples/tutorial-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -8948,7 +8948,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9039,7 +9039,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9112,7 +9112,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9161,7 +9161,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9216,7 +9216,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9277,7 +9277,7 @@ importers:
         specifier: ^2.35.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9350,7 +9350,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9423,7 +9423,7 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mantine/hooks@5.10.5(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9493,7 +9493,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9560,7 +9560,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9612,7 +9612,7 @@ importers:
   examples/use-infinite-list:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9667,7 +9667,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9716,7 +9716,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9765,13 +9765,13 @@ importers:
   examples/win95:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
@@ -9856,7 +9856,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9908,7 +9908,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -9963,13 +9963,13 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.16
@@ -10039,7 +10039,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10091,19 +10091,19 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^6.2.1
+        specifier: ^6.2.2
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -10164,13 +10164,13 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^1.2.14
+        specifier: ^1.2.15
         version: link:../../packages/devtools
       '@refinedev/inferencer':
         specifier: ^5.0.3
@@ -10179,7 +10179,7 @@ importers:
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^6.2.1
+        specifier: ^6.2.2
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -10234,7 +10234,7 @@ importers:
   examples/with-persist-query:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10295,7 +10295,7 @@ importers:
   examples/with-react-toastify:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10353,7 +10353,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10411,7 +10411,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10484,7 +10484,7 @@ importers:
   examples/with-remix-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10563,7 +10563,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10627,7 +10627,7 @@ importers:
   examples/with-remix-vite-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -10694,7 +10694,7 @@ importers:
         specifier: ^5.46.0
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.44
+        specifier: ^2.16.45
         version: link:../../packages/cli
       '@refinedev/core':
         specifier: ^4.57.7
@@ -11108,7 +11108,7 @@ importers:
         specifier: ^5.2.0
         version: 5.2.0
       '@refinedev/devtools-server':
-        specifier: 1.1.40
+        specifier: 1.1.41
         version: link:../devtools-server
       boxen:
         specifier: ^5.1.2
@@ -11526,13 +11526,13 @@ importers:
         specifier: ^0.4.0
         version: 0.4.1
       '@refinedev/cli':
-        specifier: 2.16.44
+        specifier: 2.16.45
         version: link:../cli
       '@refinedev/core':
         specifier: ^4.46.1
         version: link:../core
       '@refinedev/devtools-server':
-        specifier: 1.1.40
+        specifier: 1.1.41
         version: link:../devtools-server
       '@refinedev/devtools-shared':
         specifier: 1.1.14
@@ -50113,7 +50113,7 @@ snapshots:
     dependencies:
       chokidar: 3.6.0
       immutable: 4.3.5
-      source-map-js: 1.2.0
+      source-map-js: 1.2.1
     optional: true
 
   sax@1.2.4: {}
