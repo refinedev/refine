@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@refinedev/antd": "^5.46.0",
-    "@refinedev/cli": "^2.16.44",
+    "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.7",
     "@refinedev/graphql": "^7.1.3",
     "@refinedev/react-router": "^1.0.1",

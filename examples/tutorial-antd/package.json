@@ -24,7 +24,7 @@
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
     "@refinedev/antd": "^5.46.0",
-    "@refinedev/cli": "^2.16.44",
+    "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.7",
     "@refinedev/inferencer": "^5.0.3",
     "@refinedev/react-router": "^1.0.1",

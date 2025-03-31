@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@handsontable/react": "^12.1.2",
-    "@refinedev/cli": "^2.16.44",
+    "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.7",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
