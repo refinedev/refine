@@ -2075,3 +2075,79 @@ nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
       'h3=":443"; ma=86400',
     ],
   );
+
+nock("https://iwdfzvfqbtokqetmbmbp.supabase.co:443", {
+  encodedQueryParams: true,
+})
+  .get("/rest/v1/posts")
+  .query({
+    select: "%2A",
+    offset: "0",
+    limit: "10",
+    or: "%28id.in.%28%221%22%2C%222%22%29%29",
+  })
+  .reply(
+    200,
+    [
+      {
+        id: 1,
+        title: "Black Psorotichia Lichen",
+        slug: "61a31089-c85d-48a0-a4be-d5dce5c96b6a",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
+        content:
+          "Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat.\n\nPraesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede.\n\nMorbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+        categoryId: 7,
+        images: null,
+      },
+      {
+        id: 2,
+        title: "Great Plains Flatsedge",
+        slug: "5aecd7b0-cf28-40b4-ad48-7d4c6718837e",
+        createdAt: "2024-04-24T13:20:10.200327+00:00",
+        content:
+          "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.\n\nNulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.\n\nCras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.",
+        categoryId: 8,
+        images: null,
+      },
+    ],
+    [
+      "Date",
+      "Thu, 20 Feb 2025 09:06:45 GMT",
+      "Content-Type",
+      "application/json; charset=utf-8",
+      "Transfer-Encoding",
+      "chunked",
+      "Connection",
+      "close",
+      "Content-Range",
+      "0-1/2",
+      "CF-Ray",
+      "914d57a7bac9c287-VIE",
+      "CF-Cache-Status",
+      "DYNAMIC",
+      "Content-Location",
+      "/posts?limit=10&offset=0&or=%28id.in.%28%221%22%2C%222%22%29%29&select=%2A",
+      "Strict-Transport-Security",
+      "max-age=31536000; includeSubDomains",
+      "Vary",
+      "Accept-Encoding",
+      "content-profile",
+      "public",
+      "preference-applied",
+      "count=exact",
+      "sb-gateway-version",
+      "1",
+      "sb-project-ref",
+      "iwdfzvfqbtokqetmbmbp",
+      "X-Content-Type-Options",
+      "nosniff",
+      "x-envoy-attempt-count",
+      "1",
+      "x-envoy-upstream-service-time",
+      "34",
+      "Server",
+      "cloudflare",
+      "alt-svc",
+      'h3=":443"; ma=86400',
+    ],
+  );

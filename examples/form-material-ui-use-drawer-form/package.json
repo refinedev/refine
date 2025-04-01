@@ -28,7 +28,7 @@
     "@mui/lab": "^6.0.0-beta.14",
     "@mui/material": "^6.1.7",
     "@mui/x-data-grid": "^7.23.5",
-    "@refinedev/cli": "^2.16.44",
+    "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.7",
     "@refinedev/mui": "^6.1.0",
     "@refinedev/react-hook-form": "^4.9.3",
@@ -45,6 +45,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.4.15"
   }
 }

@@ -27,7 +27,7 @@
     "@mantine/form": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
     "@mantine/notifications": "^5.10.4",
-    "@refinedev/cli": "^2.16.44",
+    "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.7",
     "@refinedev/mantine": "^2.36.0",
     "@refinedev/react-router": "^1.0.1",
@@ -50,6 +50,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.4.15"
   }
 }
