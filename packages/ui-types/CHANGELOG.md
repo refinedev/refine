@@ -1,5 +1,16 @@
 # @refinedev/ui-types
 
+## 1.24.1
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6728](https://github.com/refinedev/refine/pull/6728) [`1663501c9c9f37b98434af83afd8d0fc41d27af2`](https://github.com/refinedev/refine/commit/1663501c9c9f37b98434af83afd8d0fc41d27af2) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: wrong JSDoc links in components
+
+- Updated dependencies [[`1663501c9c9f37b98434af83afd8d0fc41d27af2`](https://github.com/refinedev/refine/commit/1663501c9c9f37b98434af83afd8d0fc41d27af2)]:
+  - @refinedev/core@4.57.8
+
 ## 1.24.0
 
 ### Minor Changes
