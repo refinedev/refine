@@ -118,7 +118,7 @@ type ActionFormProps<
    */
   mutationMeta?: MetaQuery;
   /**
-   * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+   * [Determines when mutations are executed](/docs/advanced-tutorials/mutation-mode/)
    * @default `"pessimistic"*`
    */
   mutationMode?: MutationMode;
