@@ -1,11 +1,14 @@
 import type { MetaQuery, BaseKey } from "@refinedev/core";
 import * as gql from "gql-query-builder";
 import { getOperationFields } from "./graphql";
+import type { IDType, NamingConvention } from "../types";
 
 type GenerateUseOneSubscriptionParams = {
   resource: string;
   meta: MetaQuery;
   id?: BaseKey;
+  idType?: IDType;
+  namingConvention?: NamingConvention;
 };
 
 type GenerateUseOneSubscriptionReturnValues = {

@@ -4,6 +4,7 @@ import * as gql from "gql-query-builder";
 import { type HasuraCrudFilters, generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
 import { getOperationFields } from "./graphql";
+import type { NamingConvention } from "../types";
 
 type GenerateUseListSubscriptionParams = {
   resource: string;
@@ -11,6 +12,7 @@ type GenerateUseListSubscriptionParams = {
   pagination?: Pagination;
   sorters?: CrudSorting;
   filters?: HasuraCrudFilters;
+  namingConvention?: NamingConvention;
 };
 
 type GenerateUseListSubscriptionReturnValues = {
