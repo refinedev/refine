@@ -10,7 +10,7 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.44",
+    "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.7",
     "@refinedev/react-hook-form": "^4.9.3",
     "@refinedev/react-router": "^1.0.1",
@@ -26,6 +26,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.4.15"
   }
 }
