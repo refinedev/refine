@@ -15,7 +15,7 @@ import {
 import camelcase from "camelcase";
 import gqlTag from "graphql-tag";
 
-type IDType = "uuid" | "Int" | "String" | "Numeric";
+export type IDType = "uuid" | "Int" | "String" | "Numeric";
 
 export type NamingConvention = "hasura-default" | "graphql-default";
 
