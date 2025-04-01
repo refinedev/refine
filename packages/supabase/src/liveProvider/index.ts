@@ -11,17 +11,11 @@ import warnOnce from "warn-once";
 const supportedOperators = [
   "eq",
   "ne",
-  "nin",
-  "ina",
-  "nina",
-  "contains",
-  "ncontains",
-  "containss",
-  "ncontainss",
-  "between",
-  "nbetween",
-  "null",
-  "nnull",
+  "lt",
+  "lte",
+  "gt",
+  "gte",
+  "in",
 ];
 
 export const liveProvider = (
