@@ -106,10 +106,6 @@ const waitOnFor = async (resource) => {
 const waitForServer = async (port) => {
   // biome-ignore lint/suspicious/noAsyncPromiseExecutor: We have a valid use-case here.
   return new Promise(async (resolve, reject) => {
-    setTimeout(() => {
-      resolve(false);
-    }, 120000);
-
     try {
       const resolvedResource = await Promise.any([
         waitOnFor(`tcp:${port}`),
