@@ -2,7 +2,7 @@ import type { MetaQuery, BaseKey } from "@refinedev/core";
 import camelcase from "camelcase";
 import * as gql from "gql-query-builder";
 import { getOperationFields } from "./graphql";
-import type { NamingConvention } from "../dataProvider";
+import type { NamingConvention } from "../types";
 
 type GenerateUseManySubscriptionParams = {
   resource: string;

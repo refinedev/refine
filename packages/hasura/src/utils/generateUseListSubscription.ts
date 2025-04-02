@@ -4,7 +4,7 @@ import camelcase from "camelcase";
 import { type HasuraCrudFilters, generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
 import { getOperationFields } from "./graphql";
-import type { NamingConvention } from "../dataProvider";
+import type { NamingConvention } from "../types";
 
 type GenerateUseListSubscriptionParams = {
   resource: string;
