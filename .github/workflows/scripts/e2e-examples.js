@@ -101,7 +101,7 @@ const waitOnFor = async (resource) => {
 
     return resource;
   } catch (error) {
-    if (error) console.log(error);
+    if (error) console.log(JSON.stringify(error, null, 2));
 
     return false;
   }
@@ -123,7 +123,7 @@ const waitForServer = async (port) => {
 
       resolve(resolvedResource);
     } catch (error) {
-      if (error) console.log(error);
+      if (error) console.log(JSON.stringify(error, null, 2));
 
       resolve(false);
     }
@@ -146,7 +146,7 @@ const waitForClose = (resource) => {
 
       resolve(resource);
     } catch (error) {
-      if (error) console.log(error);
+      if (error) console.log(JSON.stringify(error, null, 2));
 
       resolve(false);
     }
@@ -207,7 +207,7 @@ const runTests = async () => {
       }
     } catch (error) {
       prettyLog("red", "Error occured on waiting for the server to start");
-      if (error) console.log(error);
+      if (error) console.log(JSON.stringify(error, null, 2));
 
       failed = true;
     }
@@ -232,7 +232,7 @@ const runTests = async () => {
       }
     } catch (error) {
       prettyLog("red", `Error occured on tests for ${path}`);
-      if (error) console.log(error);
+      if (error) console.log(JSON.stringify(error, null, 2));
 
       failed = true;
     } finally {
@@ -256,7 +256,7 @@ const runTests = async () => {
         }
       } catch (error) {
         prettyLog("red", "Error occured on killing the dev server");
-        if (error) console.log(error);
+        if (error) console.log(JSON.stringify(error, null, 2));
         failed = true;
       }
     }
@@ -286,7 +286,7 @@ runTests()
       process.exit(0);
     } else {
       prettyLog("red", "Tests Failed or an Error Occured");
-      if (error) console.log(error);
+      if (error) console.log(JSON.stringify(error, null, 2));
 
       if (failedExamples)
         prettyLog(
@@ -302,7 +302,7 @@ runTests()
   })
   .catch((error) => {
     prettyLog("red", "Tests Failed or an Error Occured");
-    if (error) console.log(error);
+    if (error) console.log(JSON.stringify(error, null, 2));
     process.exitCode = 1;
     process.exit(1);
   });
