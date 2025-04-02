@@ -26,7 +26,7 @@
     "@refinedev/antd": "^5.46.0",
     "@refinedev/cli": "^2.16.45",
     "@refinedev/core": "^4.57.8",
-    "@refinedev/hasura": "^6.6.10",
+    "@refinedev/hasura": "^6.6.11",
     "@refinedev/inferencer": "^5.0.3",
     "@refinedev/kbar": "^1.3.16",
     "@refinedev/react-router": "^1.0.1",
