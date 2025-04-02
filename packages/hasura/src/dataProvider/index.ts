@@ -13,15 +13,9 @@ import {
 } from "../utils";
 import camelcase from "camelcase";
 import gqlTag from "graphql-tag";
+import { getIdType, type HasuraProviderOptions } from "../types";
 
-type IDType = "uuid" | "Int" | "String" | "Numeric";
-
-export type NamingConvention = "hasura-default" | "graphql-default";
-
-export type HasuraDataProviderOptions = {
-  idType?: IDType | ((resource: string) => IDType);
-  namingConvention?: NamingConvention;
-};
+export type HasuraDataProviderOptions = HasuraProviderOptions & {};
 
 const dataProvider = (
   client: GraphQLClient,
@@ -29,13 +23,6 @@ const dataProvider = (
 ): Required<DataProvider> => {
   const { idType, namingConvention = "hasura-default" } = options ?? {};
   const defaultNamingConvention = namingConvention === "hasura-default";
-
-  const getIdType = (resource: string) => {
-    if (typeof idType === "function") {
-      return idType(resource);
-    }
-    return idType ?? "uuid";
-  };
 
   return {
     getOne: async ({ resource, id, meta }) => {
@@ -59,7 +46,10 @@ const dataProvider = (
           const stringFields = getOperationFields(gqlOperation);
 
           query = gqlTag`
-                        query Get${pascalOperation}($id: ${getIdType(resource)}!) {
+                        query Get${pascalOperation}($id: ${getIdType(
+                          resource,
+                          idType,
+                        )}!) {
                             ${operation}(id: $id) {
                             ${stringFields}
                             }
@@ -79,7 +69,7 @@ const dataProvider = (
         variables: {
           id: {
             value: id,
-            type: getIdType(resource),
+            type: getIdType(resource, idType),
             required: true,
           },
           ...meta?.variables,
@@ -494,7 +484,7 @@ const dataProvider = (
         variables: {
           id: {
             value: id,
-            type: getIdType(resource),
+            type: getIdType(resource, idType),
             required: true,
           },
           ...meta?.variables,
