@@ -1,6 +1,6 @@
 import type { CrudSorting, MetaQuery, Pagination } from "@refinedev/core";
 import * as gql from "gql-query-builder";
-
+import camelcase from "camelcase";
 import { type HasuraCrudFilters, generateFilters } from "./generateFilters";
 import { generateSorting } from "./generateSorting";
 import { getOperationFields } from "./graphql";
@@ -27,17 +27,21 @@ export const generateUseListSubscription = ({
   pagination,
   sorters,
   filters,
+  namingConvention,
 }: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
   const {
     current = 1,
     pageSize: limit = 10,
     mode = "server",
   } = pagination ?? {};
+  const defaultNamingConvention = namingConvention === "hasura-default";
 
   const hasuraSorting = generateSorting(sorters);
   const hasuraFilters = generateFilters(filters, "hasura-default");
 
-  const operation = meta.operation ?? resource;
+  const operation = defaultNamingConvention
+    ? meta.operation ?? resource
+    : camelcase(meta.operation ?? resource);
 
   const hasuraSortingType = `[${operation}_order_by!]`;
   const hasuraFiltersType = `${operation}_bool_exp`;
