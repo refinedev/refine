@@ -1,5 +1,13 @@
 # @refinedev/core
 
+## 4.57.9
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- fix: wrong JSDoc links in components
+
 ## 4.57.8
 
 ### Patch Changes

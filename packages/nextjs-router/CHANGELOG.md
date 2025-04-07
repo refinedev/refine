@@ -1,5 +1,15 @@
 # @refinedev/nextjs-router
 
+## 6.2.3
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: update Next.js version to 14.2.26 for security patches
+
+  https://github.com/vercel/next.js/security/advisories/GHSA-f82v-jwr5-mffw
+
 ## 6.2.2
 
 ### Patch Changes

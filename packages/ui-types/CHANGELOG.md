@@ -1,5 +1,23 @@
 # @refinedev/ui-types
 
+## 1.24.2
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+📢 **Refine Community Release** 📢
+
+- fix: wrong JSDoc links in components
+
+- Updated dependencies []:
+  - @refinedev/core@4.57.9
+
 ## 1.24.1
 
 ### Patch Changes
