@@ -229,7 +229,118 @@ render(
 );
 ```
 
-### canEdit and editButtonProps
+> For more information, refer to the [`usePermission` documentation &#8594](/docs/authentication/hooks/use-permissions)
+
+### deleteButtonProps
+
+If the resource has the `canDelete` property and you want to customize this button, you can use the `deleteButtonProps` property like the code below.
+
+```tsx live url=http://localhost:3000/posts/show/123 previewHeight=420px hideCode
+setInitialRoutes(["/posts/show/123"]);
+import { Refine } from "@refinedev/core";
+import { ShowButton } from "@refinedev/chakra-ui";
+import dataProvider from "@refinedev/simple-rest";
+
+// visible-block-start
+import { Show } from "@refinedev/chakra-ui";
+import { usePermissions } from "@refinedev/core";
+
+const PostShow: React.FC = () => {
+  const { data: permissionsData } = usePermissions();
+
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ size: "small" }}
+      canEdit={permissionsData?.includes("admin")}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
+};
+// visible-block-end
+
+const App = () => {
+  const simpleRestDataProvider = dataProvider(
+    "https://api.fake-rest.refine.dev",
+  );
+
+  const customDataProvider = {
+    ...simpleRestDataProvider,
+    deleteOne: async ({ resource, id, variables }) => {
+      return {
+        data: {},
+      };
+    },
+  };
+
+  const authProvider = {
+    login: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    register: async () => {
+      return {
+        success: true,
+      };
+    },
+    forgotPassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    updatePassword: async () => {
+      return {
+        success: true,
+      };
+    },
+    logout: async () => {
+      return {
+        success: true,
+        redirectTo: "/",
+      };
+    },
+    check: async () => ({
+      authenticated: true,
+    }),
+    onError: async (error) => {
+      console.error(error);
+      return { error };
+    },
+    getPermissions: async () => ["admin"],
+    getIdentity: async () => null,
+  };
+
+  return (
+    <ReactRouter.BrowserRouter>
+      <RefineHeadlessDemo
+        notificationProvider={RefineChakra.notificationProvider()}
+        resources={[
+          {
+            name: "posts",
+            show: "/posts/show/:id",
+            list: "/posts",
+          },
+        ]}
+      >
+        <ReactRouter.Routes>
+          <ReactRouter.Route path="/posts/show/:id" element={<PostShow />} />
+          <ReactRouter.Route path="/posts" element={<DummyListPage />} />
+        </ReactRouter.Routes>
+      </RefineHeadlessDemo>
+    </ReactRouter.BrowserRouter>
+  );
+};
+render(
+  <Wrapper>
+    <App />
+  </Wrapper>,
+);
+```
 
 `canEdit` allows you to add an edit button inside the `<Show>` component. If the resource has the `canEdit` property, Refine adds the edit button by default. If you want to customize this button you can use the `editButtonProps` property.
 
