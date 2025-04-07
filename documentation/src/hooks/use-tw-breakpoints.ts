@@ -8,13 +8,14 @@ import React from "react";
  * xl: 1280px
  *
  * landing breakpoints
+ * xs: 360px
  * sm: 720px
  * md: 960px
  * lg: 1296px
  * xl: 1440px
  */
 const breakpoints = {
-  landing: [720, 960, 1296, 1440, 1584],
+  landing: [375, 720, 960, 1296, 1440],
   tw: [640, 768, 1024, 1280, 1536],
 };
 

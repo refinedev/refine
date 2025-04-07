@@ -7,7 +7,6 @@ documentation/.docusaurus/
 documentation/build/
 documentation/node_modules/
 documentation/plugins/
-documentation/src/
 documentation/static/
 documentation/test/
 documentation/versioned_docs/
