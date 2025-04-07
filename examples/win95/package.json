@@ -22,13 +22,13 @@
     ]
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.44",
-    "@refinedev/core": "^4.57.7",
-    "@refinedev/devtools": "^1.2.14",
+    "@refinedev/cli": "^2.16.45",
+    "@refinedev/core": "^4.57.8",
+    "@refinedev/devtools": "^1.2.15",
     "@refinedev/react-hook-form": "^4.9.3",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/react-table": "^5.6.15",
-    "@refinedev/supabase": "^5.9.6",
+    "@refinedev/supabase": "^5.9.7",
     "@tanstack/react-table": "^8.2.6",
     "dayjs": "^1.10.7",
     "ditherjs": "^0.10.0",
@@ -50,7 +50,7 @@
     "@types/react-modal": "^3.16.3",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6",
+    "vite": "^5.4.15",
     "vite-tsconfig-paths": "^4.2.1"
   }
 }

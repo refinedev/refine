@@ -1,5 +1,17 @@
 # @refinedev/supabase
 
+## 5.9.7
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6652](https://github.com/refinedev/refine/pull/6652) [`47807b7937cf0a9e93c9ad6bac570b644f9be2e0`](https://github.com/refinedev/refine/commit/47807b7937cf0a9e93c9ad6bac570b644f9be2e0) Thanks [@jkronlachner](https://github.com/jkronlachner)! - fix: fixed 'in'-filter when used inside 'or' not generating correct supabase syntax
+
+  When using the 'in'-filter inside a Conditional 'or' Filter the syntax being pushed to supabase would be incorrect.
+
+  This resolves #6651
+
 ## 5.9.6
 
 ### Patch Changes

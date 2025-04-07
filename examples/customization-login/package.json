@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@craco/craco": "^7.1.0",
-    "@refinedev/antd": "^5.45.3",
-    "@refinedev/cli": "^2.16.44",
-    "@refinedev/core": "^4.57.7",
+    "@refinedev/antd": "^5.46.0",
+    "@refinedev/cli": "^2.16.45",
+    "@refinedev/core": "^4.57.8",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
     "@uiw/react-md-editor": "^3.19.5",

@@ -1,5 +1,22 @@
 # @refinedev/hasura
 
+## 6.6.11
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6736](https://github.com/refinedev/refine/pull/6736) [`d628a62bb61bbb21eb84040e926f37b8e7511ea2`](https://github.com/refinedev/refine/commit/d628a62bb61bbb21eb84040e926f37b8e7511ea2) Thanks [@thanaParis](https://github.com/thanaParis)! - refactored HasuraDataProviderOptions to extend HasuraProviderOptions in new src/types/ folder
+  added HasuraLiveProviderOptions which extends HasuraProviderOptions as argument to hasura's liveProvider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6737](https://github.com/refinedev/refine/pull/6737) [`96693589a7a1a456a170345c246183a8f24f3281`](https://github.com/refinedev/refine/commit/96693589a7a1a456a170345c246183a8f24f3281) Thanks [@thanaParis](https://github.com/thanaParis)! - added IDTag and NamingConvention to hasura's liveProvider subscription generators
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6735](https://github.com/refinedev/refine/pull/6735) [`33c93b585186fd123f7c7d7e7349bf4eafe67899`](https://github.com/refinedev/refine/commit/33c93b585186fd123f7c7d7e7349bf4eafe67899) Thanks [@thanaParis](https://github.com/thanaParis)! - 'camelcase' utility imported twice from camelcase, with different capitalization. refactored to only import 'camelcase' since 'camelCase' is used by lodash, which is also in the dependency tree.
+
 ## 6.6.10
 
 ### Patch Changes
