@@ -1,5 +1,19 @@
 # @refinedev/chakra-ui
 
+## 2.35.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+- Updated dependencies []:
+  - @refinedev/ui-types@1.24.2
+
 ## 2.35.0
 
 ### Minor Changes

@@ -8,9 +8,9 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.45",
-    "@refinedev/core": "^4.57.8",
-    "@refinedev/nextjs-router": "^6.2.2",
+    "@refinedev/cli": "^2.16.46",
+    "@refinedev/core": "^4.57.9",
+    "@refinedev/nextjs-router": "^6.2.3",
     "@refinedev/react-table": "^5.6.15",
     "@refinedev/simple-rest": "^5.0.10",
     "@tanstack/react-table": "^8.2.6",

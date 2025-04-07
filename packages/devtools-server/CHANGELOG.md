@@ -1,5 +1,16 @@
 # @refinedev/devtools-server
 
+## 1.1.42
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- chore: vite upgraded to 5.4.15 for security patches
+  https://github.com/refinedev/refine/security/dependabot/295
+  https://github.com/refinedev/refine/security/dependabot/352
+  https://github.com/refinedev/refine/security/dependabot/261
+
 ## 1.1.41
 
 ### Patch Changes

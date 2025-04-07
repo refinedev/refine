@@ -1,5 +1,24 @@
 # @refinedev/antd
 
+## 5.46.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- Fixes event handler issue in ImportButton, ensuring Tooltip works correctly.
+  Fixes #6631.
+
+📢 **Refine Community Release** 📢
+
+- - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+- Updated dependencies []:
+  - @refinedev/ui-types@1.24.2
+
 ## 5.46.0
 
 ### Minor Changes

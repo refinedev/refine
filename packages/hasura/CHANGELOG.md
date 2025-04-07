@@ -1,5 +1,22 @@
 # @refinedev/hasura
 
+## 6.6.12
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- refactored HasuraDataProviderOptions to extend HasuraProviderOptions in new src/types/ folder
+  added HasuraLiveProviderOptions which extends HasuraProviderOptions as argument to hasura's liveProvider
+
+📢 **Refine Community Release** 📢
+
+- added IDTag and NamingConvention to hasura's liveProvider subscription generators
+
+📢 **Refine Community Release** 📢
+
+- 'camelcase' utility imported twice from camelcase, with different capitalization. refactored to only import 'camelcase' since 'camelCase' is used by lodash, which is also in the dependency tree.
+
 ## 6.6.11
 
 ### Patch Changes
