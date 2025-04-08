@@ -42,7 +42,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
             "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.55)]",
           )}
         >
-          <span className="block landing-md:inline-block">confidence</span>
+          <span className="block landing-md:inline">confidence</span>
         </span>
       </h2>
 
