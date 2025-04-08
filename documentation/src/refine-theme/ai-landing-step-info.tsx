@@ -25,7 +25,8 @@ export const AiLandingStepInfo = ({
         "pl-4 landing-sm:pl-0",
         "w-full",
         "landing-lg:w-[548px]",
-        "landing-md:min-h-[220px]",
+        "landing-sm:min-h-[220px]",
+        "landing-lg:min-h-max",
         "flex-shrink-0",
         className,
       )}
