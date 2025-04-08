@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./ai-landing-step-two.module.css";
+import "./ai-landing-step-two.css";
 import clsx from "clsx";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
