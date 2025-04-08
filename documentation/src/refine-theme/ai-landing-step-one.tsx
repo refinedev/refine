@@ -1,5 +1,5 @@
 import React from "react";
-import "./ai-landing-step-one.css";
+import "./ai-landing-step-one.module.css";
 import clsx from "clsx";
 import { useColorMode } from "@docusaurus/theme-common";
 
