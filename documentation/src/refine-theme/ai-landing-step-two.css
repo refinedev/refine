@@ -26,6 +26,11 @@
   stroke: #3333ff;
 }
 
+.ai-landing-step-two-animation .item .node_in,
+.ai-landing-step-two-animation .item .node_out {
+  fill: white;
+}
+
 .ai-landing-step-two-animation .icons {
   transition: transform 300ms ease-in-out;
 }
@@ -63,6 +68,11 @@
 [data-theme="dark"] .ai-landing-step-two-animation .item .node_in,
 [data-theme="dark"] .ai-landing-step-two-animation .item .node_out {
   stroke: #6c7793;
+}
+
+[data-theme="dark"] .ai-landing-step-two-animation .item .node_in,
+[data-theme="dark"] .ai-landing-step-two-animation .item .node_out {
+  fill: #14141f;
 }
 
 [data-theme="dark"] .ai-landing-step-two-animation .item.active .box,

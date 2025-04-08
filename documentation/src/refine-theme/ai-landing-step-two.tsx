@@ -230,7 +230,7 @@ const ActiveItems = ({
           cx="174"
           cy="180"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
         <circle
@@ -238,7 +238,7 @@ const ActiveItems = ({
           cx="246"
           cy="228"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
       </g>
@@ -271,7 +271,7 @@ const ActiveItems = ({
           cx="414"
           cy="180"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
         <circle
@@ -279,7 +279,7 @@ const ActiveItems = ({
           cx="342"
           cy="228"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
       </g>
@@ -312,7 +312,7 @@ const ActiveItems = ({
           cx="206"
           cy="244"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
         <circle
@@ -320,7 +320,7 @@ const ActiveItems = ({
           cx="246"
           cy="244"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
       </g>
@@ -353,7 +353,7 @@ const ActiveItems = ({
           cx="382"
           cy="244"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
         <circle
@@ -361,7 +361,7 @@ const ActiveItems = ({
           cx="342"
           cy="244"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
       </g>
@@ -394,7 +394,7 @@ const ActiveItems = ({
           cx="174"
           cy="308"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
         <circle
@@ -402,7 +402,7 @@ const ActiveItems = ({
           cx="246"
           cy="260"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
       </g>
@@ -435,7 +435,7 @@ const ActiveItems = ({
           cx="414"
           cy="308"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
         <circle
@@ -443,7 +443,7 @@ const ActiveItems = ({
           cx="342"
           cy="260"
           r="3"
-          fill="#14141F"
+          fill="currentColor"
           strokeWidth="2"
         />
       </g>

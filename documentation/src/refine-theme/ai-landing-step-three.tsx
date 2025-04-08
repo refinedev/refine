@@ -143,14 +143,6 @@ export const AiLandingStepThree = () => {
     return 300;
   };
 
-  console.log({
-    w: getContentWidth(),
-    xl,
-    lg,
-    md,
-    sm,
-  });
-
   const contentWidth = getContentWidth();
   const scale = contentWidth / 556;
   const contentStyle = {

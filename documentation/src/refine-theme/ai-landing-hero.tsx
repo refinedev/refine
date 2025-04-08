@@ -19,17 +19,22 @@ export const AiLandingHero = ({
         "max-w-[1200px]",
         "mx-auto",
         "w-full",
-        "px-6 py-8",
-        "landing-md:h-[560px]",
+        "landing-md:px-0",
+        "px-6",
+        "py-8",
+        "landing-md:h-[400px]",
+        "landing-lg:h-[560px]",
         "relative",
         "flex",
         "items-center",
         "justify-start",
         className,
+        "z-[2]",
       )}
     >
       <div
         className={clsx(
+          "z-[1]",
           "absolute",
           "top-0",
           "left-0",
@@ -43,7 +48,12 @@ export const AiLandingHero = ({
         )}
       />
       <div
-        className={clsx("not-prose", "w-full max-w-[620px]", contentClassName)}
+        className={clsx(
+          "not-prose",
+          "w-full max-w-[620px]",
+          "z-[2]",
+          contentClassName,
+        )}
       >
         <h2
           className={clsx(
@@ -70,6 +80,7 @@ export const AiLandingHero = ({
             "text-gray-600",
             "dark:text-gray-200",
             "mt-6",
+            "max-w-[588px]",
           )}
         >
           The next-gen approach to build enterprise-ready React-based internal
@@ -79,13 +90,16 @@ export const AiLandingHero = ({
       </div>
       <video
         className={clsx(
+          "z-[2]",
           "absolute",
-          "right-0",
-          "top-10",
-          "w-[556px]",
-          "object-cover",
           "hidden",
+          "top-10",
           "landing-md:block",
+          "landing-md:w-[278px]",
+          "landing-md:right-[150px]",
+          "landing-lg:right-0",
+          "landing-lg:w-[556px]",
+          "object-cover",
         )}
         src={
           isDarkTheme
