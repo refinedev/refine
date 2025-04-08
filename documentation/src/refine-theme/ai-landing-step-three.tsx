@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ai-landing-step-three.css";
 import { useColorMode } from "@docusaurus/theme-common";
 import { useTWBreakpoints } from "../hooks/use-tw-breakpoints";
+import clsx from "clsx";
 
 type Row = {
   id: string;
@@ -11,7 +12,7 @@ type Row = {
   amountValue: number;
 };
 
-export const AiLandingStepThree: React.FC = () => {
+export const AiLandingStepThree = () => {
   const { colorMode } = useColorMode();
   const { sm, md, lg, xl } = useTWBreakpoints({ variant: "landing" });
 
@@ -91,8 +92,10 @@ export const AiLandingStepThree: React.FC = () => {
   }, []);
 
   useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
     if (currentDirection === 1) {
-      const timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         const sortedRows = [...rows].sort(
           (a, b) => b.amountValue - a.amountValue,
         );
@@ -102,12 +105,10 @@ export const AiLandingStepThree: React.FC = () => {
           setCurrentDirection(2);
         }, 2000);
       }, 1000);
-
-      return () => clearTimeout(timeout);
     }
 
     if (currentDirection === 2) {
-      const timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowActionsColumn(true);
         setShowAddButton(true);
         setBorderRadiusChanged(true);
@@ -116,12 +117,10 @@ export const AiLandingStepThree: React.FC = () => {
           setCurrentDirection(3);
         }, 2000);
       }, 1000);
-
-      return () => clearTimeout(timeout);
     }
 
     if (currentDirection === 3) {
-      const timeout = setTimeout(() => {
+      timeout = setTimeout(() => {
         setShowActionsColumn(false);
         setShowAddButton(false);
         setBorderRadiusChanged(false);
@@ -131,18 +130,26 @@ export const AiLandingStepThree: React.FC = () => {
           setCurrentDirection(1);
         }, 2000);
       }, 1000);
-
-      return () => clearTimeout(timeout);
     }
+
+    return () => clearTimeout(timeout);
   }, [currentDirection, rows, initialRows]);
 
   const getContentWidth = () => {
-    if (xl) return 588;
-    if (lg) return 436;
-    if (md) return 588;
-    if (sm) return 500;
-    return 420;
+    if (xl) return 508;
+    if (lg) return 376;
+    if (md) return 508;
+    if (sm) return 508;
+    return 300;
   };
+
+  console.log({
+    w: getContentWidth(),
+    xl,
+    lg,
+    md,
+    sm,
+  });
 
   const contentWidth = getContentWidth();
   const scale = contentWidth / 556;
@@ -152,7 +159,16 @@ export const AiLandingStepThree: React.FC = () => {
   };
 
   return (
-    <div className={`ai-landing-step-three-animation ${colorMode}`}>
+    <div
+      className={clsx(
+        "ai-landing-step-three-animation",
+        "flex",
+        "justify-center",
+        "landing-md:justify-start",
+        "items-center",
+        colorMode,
+      )}
+    >
       <div className="ai-landing-step-three-content" style={contentStyle}>
         <div className="ai-landing-step-three-header">
           <span>Invoices</span>
@@ -177,7 +193,7 @@ export const AiLandingStepThree: React.FC = () => {
             {rows.map((row, index) => (
               <span
                 key={`customer-${row.id}`}
-                className={`ai-landing-step-three-row${index + 1}`}
+                className={`ai-landing-step-three-row${index + 1} customer`}
               >
                 {md ? row.customer : row.customer.split(" ")[0]}
               </span>

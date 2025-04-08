@@ -1,8 +1,4 @@
 .ai-landing-step-three-animation {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .ai-landing-step-three-content {
@@ -28,7 +24,7 @@
   top: 70px;
   left: 50%;
   transform: translateX(-50%);
-  width: 530px;
+  width: 580px;
   height: 32px;
   overflow: hidden;
 }
@@ -67,7 +63,7 @@
 }
 
 .ai-landing-step-three-table {
-  width: 530px;
+  width: 580px;
   height: 304px;
   display: flex;
   flex-direction: row;
@@ -251,9 +247,9 @@
 
 .ai-landing-step-three-directions {
   position: absolute;
-  bottom: 32px;
   left: 0;
   right: 0;
+  top: calc(114px + 304px - 20px);
 }
 
 .ai-landing-step-three-directions b {
@@ -389,16 +385,95 @@
   opacity: 1;
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
+/* Responsive breakpoints */
+/* xl breakpoint */
+@media (min-width: 1296px) {
+  .ai-landing-step-three-content {
+    width: 508px;
+    height: 446px;
+  }
+
   .ai-landing-step-three-table {
-    width: 90%;
-    max-width: 530px;
+    width: 508px;
+    height: 348px;
   }
 
   .ai-landing-step-three-header {
-    width: 90%;
-    max-width: 530px;
+    width: 508px;
+  }
+
+  .ai-landing-step-three-directions {
+    top: calc(114px + 348px - 30px);
+  }
+}
+
+/* lg breakpoint */
+@media (min-width: 1024px) and (max-width: 1295px) {
+  .ai-landing-step-three-content {
+    width: 376px;
+    height: 330px;
+  }
+
+  .ai-landing-step-three-animation {
+    height: 260px;
+  }
+
+  .ai-landing-step-three-table {
+    width: 376px;
+    height: 260px;
+  }
+
+  .ai-landing-step-three-header {
+    width: 376px;
+  }
+
+  .ai-landing-step-three-table
+    .ai-landing-step-three-column.ai-landing-step-three-id {
+    width: 60px;
+  }
+
+  .ai-landing-step-three-table
+    .ai-landing-step-three-column.ai-landing-step-three-date {
+    width: 80px;
+  }
+
+  .ai-landing-step-three-table
+    .ai-landing-step-three-column.ai-landing-step-three-amount {
+    width: 76px;
+  }
+
+  .ai-landing-step-three-table .ai-landing-step-three-column b,
+  .ai-landing-step-three-table .ai-landing-step-three-column span {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .ai-landing-step-three-directions {
+    top: calc(114px + 260px - 50px);
+  }
+
+  /* Ensure smooth transition during revert */
+  .ai-landing-step-three-table .ai-landing-step-three-column span {
+    transition: top 1s ease-in-out;
+  }
+}
+
+/* md breakpoint */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ai-landing-step-three-content {
+    width: 508px;
+    height: 446px;
+  }
+
+  .ai-landing-step-three-table {
+    width: 508px;
+    height: 348px;
+    max-width: 90%;
+  }
+
+  .ai-landing-step-three-header {
+    width: 508px;
+    max-width: 90%;
   }
 
   .ai-landing-step-three-table
@@ -422,9 +497,8 @@
     padding: 8px 10px;
   }
 
-  .ai-landing-step-three-directions b {
-    font-size: 14px;
-    padding: 10px 15px;
+  .ai-landing-step-three-directions {
+    top: calc(114px + 348px - 30px);
   }
 
   @keyframes ai-landing-step-three-showActions {
@@ -439,7 +513,68 @@
   }
 }
 
-@media (max-width: 480px) {
+/* sm breakpoint */
+@media (min-width: 480px) and (max-width: 767px) {
+  .ai-landing-step-three-content {
+    width: 508px;
+    height: 446px;
+  }
+
+  .ai-landing-step-three-table {
+    width: 508px;
+    height: 348px;
+    max-width: 90%;
+  }
+
+  .ai-landing-step-three-header {
+    width: 508px;
+    max-width: 90%;
+  }
+
+  .ai-landing-step-three-table
+    .ai-landing-step-three-column.ai-landing-step-three-id {
+    width: 60px;
+  }
+
+  .ai-landing-step-three-table
+    .ai-landing-step-three-column.ai-landing-step-three-date {
+    width: 85px;
+  }
+
+  .ai-landing-step-three-table
+    .ai-landing-step-three-column.ai-landing-step-three-amount {
+    width: 80px;
+  }
+
+  .ai-landing-step-three-table .ai-landing-step-three-column b,
+  .ai-landing-step-three-table .ai-landing-step-three-column span {
+    font-size: 11px;
+    padding: 8px 10px;
+  }
+
+  .ai-landing-step-three-directions {
+    top: calc(114px + 348px - 30px);
+  }
+}
+
+/* xs breakpoint */
+@media (max-width: 479px) {
+  .ai-landing-step-three-content {
+    width: 300px;
+    height: 263px;
+  }
+
+  .ai-landing-step-three-table {
+    width: 300px;
+    height: 204px;
+    max-width: 90%;
+  }
+
+  .ai-landing-step-three-header {
+    width: 300px;
+    max-width: 90%;
+  }
+
   .ai-landing-step-three-table
     .ai-landing-step-three-column.ai-landing-step-three-id {
     width: 50px;
@@ -461,11 +596,8 @@
     padding: 6px 8px;
   }
 
-  .ai-landing-step-three-directions b {
-    font-size: 12px;
-    padding: 8px 12px;
-    width: 80%;
-    text-align: center;
+  .ai-landing-step-three-directions {
+    top: calc(114px + 204px - 30px);
   }
 
   @keyframes ai-landing-step-three-showActions {
@@ -562,4 +694,10 @@
   100% {
     border-radius: 2px 12px 2px 2px;
   }
+}
+
+.customer {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

@@ -42,6 +42,7 @@ export const AiLandingStepTwo = () => {
     <div
       className={clsx(
         "ai-landing-step-two-animation",
+        "landing-lg:translate-x-8",
         "relative",
         "overflow-hidden",
         "flex-shrink-0",

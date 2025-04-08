@@ -24,6 +24,7 @@ export const AiLandingHero = ({
         "relative",
         "flex",
         "items-center",
+        "justify-start",
         className,
       )}
     >
@@ -74,7 +75,7 @@ export const AiLandingHero = ({
           The next-gen approach to build enterprise-ready React-based internal
           tools, admin panels, dashboards & B2B apps with the power of GenAI.
         </p>
-        <JoinWaitlist className={clsx("mt-6 landing-md:mt-12")} />
+        <JoinWaitlist className={clsx("mt-6 landing-md:mt-12", "mx-0")} />
       </div>
       <video
         className={clsx(

@@ -15,7 +15,9 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
     <div className={clsx("not-prose", className)}>
       <h2
         className={clsx(
-          "text-2xl landing-sm:text-[32px]",
+          "text-2xl",
+          "landing-sm:text-[32px]",
+          "landing-sm:leading-10",
           "tracking-tight",
           "text-start",
           "pl-4 landing-sm:pl-0",
@@ -40,7 +42,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
             "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.55)]",
           )}
         >
-          confidence
+          <span className="block landing-md:inline-block">confidence</span>
         </span>
       </h2>
 

@@ -46,7 +46,7 @@ const RefineAIPage = () => {
           >
             <StepList className="mt-14" />
             <JoinWaitlist className="mt-16" />
-            <AiLandingManageWithEaseScaleWithConfidence className="mt-8 landing-md:mt-20" />
+            <AiLandingManageWithEaseScaleWithConfidence className="mt-8 landing-sm:mt-20" />
             <JoinWaitlist className="mt-16" />
           </div>
 

@@ -9,9 +9,10 @@ export const AiLandingStepFour = () => {
   return (
     <div
       className={clsx(
-        "max-w-[524px]",
+        "landing-lg:translate-x-8",
+        "max-w-[588px]",
         "h-auto",
-        "aspect-[524/404]",
+        "aspect-[588/488]",
         "overflow-hidden",
         "flex-shrink-0",
       )}
