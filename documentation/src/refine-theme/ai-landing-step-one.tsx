@@ -33,7 +33,6 @@ export const AiLandingStepOne = () => {
     >
       <div
         className={clsx(
-          "mx-4",
           "w-[412px] h-[360px]",
           "landing-lg:w-[556px]",
           "landing-lg:h-[488px]",
@@ -200,10 +199,10 @@ export const AiLandingStepOne = () => {
           "m-0",
           "p-0",
           "top-0",
-          "left-[16px]",
+          "left-0",
           "z-[4]",
-          "w-[556px]",
-          "h-[488px]",
+          "w-full",
+          "h-full",
           "list-none",
         )}
       >
