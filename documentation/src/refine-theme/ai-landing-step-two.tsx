@@ -64,7 +64,7 @@ export const AiLandingStepTwo = () => {
           "text-center",
           "z-[3]",
           "w-full",
-          "top-[50px] landing-sm:top-[60px] landing-md:top-[60px] landing-lg:top-[104px]",
+          "top-[100px] landing-md:top-[60px] landing-lg:top-[104px]",
           "px-4",
           "whitespace-nowrap",
         )}

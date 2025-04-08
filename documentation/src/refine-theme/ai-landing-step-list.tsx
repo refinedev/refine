@@ -33,11 +33,11 @@ export const StepList = ({ className }: { className?: string }) => {
         className={clsx(
           "grid",
           "grid-cols-1 landing-md:grid-cols-2 landing-lg:grid-cols-1",
-          "gap-6 landing-lg:gap-12",
+          "gap-6 landing-lg:gap-8",
           "mt-8 landing-lg:mt-12",
         )}
       >
-        <StepContainer>
+        <StepContainer className="!gap-0 landing-md:gap-8">
           <AiLandingStepOne />
           <AiLandingStepInfo
             title="Go beyond simple prompts!"
@@ -45,7 +45,7 @@ export const StepList = ({ className }: { className?: string }) => {
             step={"01."}
           />
         </StepContainer>
-        <StepContainer className="landing-lg:flex-row-reverse">
+        <StepContainer className="landing-lg:flex-row-reverse !gap-0 landing-md:gap-8">
           <AiLandingStepTwo />
           <AiLandingStepInfo
             title="Collabrotive planning"
@@ -53,7 +53,7 @@ export const StepList = ({ className }: { className?: string }) => {
             step={"02."}
           />
         </StepContainer>
-        <StepContainer>
+        <StepContainer className="!gap-12 landing-md:gap-8">
           <AiLandingStepThree />
           <AiLandingStepInfo
             title="Vibe coding your internal software"
