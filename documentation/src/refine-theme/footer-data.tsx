@@ -23,20 +23,6 @@ export const menuItems = [
         href: "/blog",
       },
       {
-        label: "React Admin Panel",
-        href: "https://reactadminpanel.com",
-      },
-    ],
-  },
-  {
-    label: "Product",
-    items: [
-      {
-        label: "Enterprise",
-        icon: <NewBadgeIcon />,
-        href: "/enterprise",
-      },
-      {
         label: "Templates",
         href: "/templates",
       },
@@ -44,14 +30,41 @@ export const menuItems = [
         label: "Integrations",
         href: "/integrations",
       },
-      // {
-      //     label: "Become an Expert",
-      //     href: "/become-an-expert",
-      // },
-      // {
-      //     label: "Cloud",
-      //     href: "/cloud",
-      // },
+      {
+        label: "Awesome Refine",
+        href: "https://github.com/refinedev/awesome-refine",
+      },
+    ],
+  },
+  {
+    label: "Product",
+    items: [
+      {
+        label: "Refine AI",
+        icon: <NewBadgeIcon />,
+        href: "/ai",
+      },
+      {
+        label: "Enterprise",
+        href: "/enterprise",
+      },
+    ],
+  },
+  {
+    label: "Community",
+    items: [
+      {
+        label: "Contributing",
+        href: "/docs/guides-concepts/contributing/",
+      },
+      {
+        label: "RefineWeeks",
+        href: "/week-of-refine",
+      },
+      {
+        label: "Hackathons",
+        href: "https://s.refine.dev/hackathon2",
+      },
     ],
   },
   {

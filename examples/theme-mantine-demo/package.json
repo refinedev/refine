@@ -15,9 +15,9 @@
     "@mantine/form": "^7.16.0",
     "@mantine/hooks": "^7.16.0",
     "@mantine/notifications": "^7.16.0",
-    "@refinedev/cli": "^2.16.44",
-    "@refinedev/core": "^4.57.7",
-    "@refinedev/mantine": "^2.35.3",
+    "@refinedev/cli": "^2.16.46",
+    "@refinedev/core": "^4.57.9",
+    "@refinedev/mantine": "^2.36.1",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/react-table": "^5.6.15",
     "@refinedev/simple-rest": "^5.0.10",
@@ -33,6 +33,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.4.15"
   }
 }

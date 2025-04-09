@@ -28,7 +28,7 @@ export const Menu: React.FC<Props> = ({ variant = "landing" }) => {
               item={item}
               variant={variant}
             >
-              {item.label === "Open-source" && (
+              {item.label === "Resources" && (
                 <>
                   <div
                     className={clsx(
