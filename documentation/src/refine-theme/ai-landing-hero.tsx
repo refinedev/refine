@@ -89,6 +89,7 @@ export const AiLandingHero = ({
         <JoinWaitlist className={clsx("mt-6 landing-md:mt-12", "mx-0")} />
       </div>
       <video
+        key={colorMode}
         className={clsx(
           "z-[2]",
           "absolute",
