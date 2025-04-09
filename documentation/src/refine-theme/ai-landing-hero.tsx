@@ -72,7 +72,7 @@ export const AiLandingHero = ({
           >
             AI Coding agents
           </div>
-          <div>for building web apps.</div>
+          <div>for building internal software.</div>
         </h2>
         <p
           className={clsx(
