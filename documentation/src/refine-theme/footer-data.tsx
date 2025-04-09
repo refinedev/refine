@@ -32,8 +32,12 @@ export const menuItems = [
     label: "Product",
     items: [
       {
-        label: "Enterprise",
+        label: "Refine AI",
         icon: <NewBadgeIcon />,
+        href: "/ai",
+      },
+      {
+        label: "Enterprise",
         href: "/enterprise",
       },
       {
@@ -44,14 +48,6 @@ export const menuItems = [
         label: "Integrations",
         href: "/integrations",
       },
-      // {
-      //     label: "Become an Expert",
-      //     href: "/become-an-expert",
-      // },
-      // {
-      //     label: "Cloud",
-      //     href: "/cloud",
-      // },
     ],
   },
   {
