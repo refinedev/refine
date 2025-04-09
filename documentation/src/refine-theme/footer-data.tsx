@@ -23,8 +23,16 @@ export const menuItems = [
         href: "/blog",
       },
       {
-        label: "React Admin Panel",
-        href: "https://reactadminpanel.com",
+        label: "Templates",
+        href: "/templates",
+      },
+      {
+        label: "Integrations",
+        href: "/integrations",
+      },
+      {
+        label: "Awesome Refine",
+        href: "https://github.com/refinedev/awesome-refine",
       },
     ],
   },
@@ -40,13 +48,22 @@ export const menuItems = [
         label: "Enterprise",
         href: "/enterprise",
       },
+    ],
+  },
+  {
+    label: "Community",
+    items: [
       {
-        label: "Templates",
-        href: "/templates",
+        label: "Contributing",
+        href: "/docs/guides-concepts/contributing/",
       },
       {
-        label: "Integrations",
-        href: "/integrations",
+        label: "RefineWeeks",
+        href: "/week-of-refine",
+      },
+      {
+        label: "Hackathons",
+        href: "https://s.refine.dev/hackathon2",
       },
     ],
   },
