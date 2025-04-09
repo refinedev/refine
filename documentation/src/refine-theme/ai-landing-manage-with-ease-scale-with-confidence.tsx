@@ -104,6 +104,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
             }}
             title="Best developer experience"
             description="Web based IDE featuring blazing fast live previews, file editor and powerful conversation tools including rollbacks."
+            imageClassName={clsx("landing-lg:!aspect-[352/208]")}
           />
           <AiLandingCard
             imageUrl={{
@@ -113,6 +114,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
             }}
             title="1-Click deployments"
             description="Deploy your project to Netlify with single click, without requiring a Netlify account or prior setup."
+            imageClassName={clsx("landing-lg:!aspect-[352/208]")}
           />
           <AiLandingCard
             imageUrl={{
@@ -122,6 +124,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
             }}
             title="Your preference of UI framework"
             description="Works with MUI or Ant Design. Tailwind support coming soon."
+            imageClassName={clsx("landing-lg:!aspect-[352/208]")}
           />
         </div>
       </div>

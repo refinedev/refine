@@ -49,6 +49,7 @@
   color: #26d97f;
   transform: translateX(110%);
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .ai-landing-step-three-header b::before {
@@ -101,6 +102,7 @@
   border-radius: 2px;
   background: rgba(108, 119, 147, 0.1);
   transition: top 1s ease-in-out;
+  will-change: top;
 }
 
 .ai-landing-step-three-table
@@ -196,6 +198,7 @@
   b.ai-landing-step-three-border-radius-changed {
   border-radius: 2px 2px 2px 2px;
   animation: ai-landing-step-three-borderradius 1s ease-out forwards;
+  will-change: border-radius;
 }
 
 .ai-landing-step-three-table
@@ -204,6 +207,7 @@
   opacity: 0;
   text-align: right;
   overflow: hidden;
+  will-change: width, opacity;
 }
 
 .ai-landing-step-three-table
@@ -250,6 +254,7 @@
   left: 0;
   right: 0;
   top: calc(114px + 304px - 20px);
+  will-change: transform, opacity;
 }
 
 .ai-landing-step-three-directions b {
@@ -267,6 +272,7 @@
   color: #26d97f;
   transform: translateX(-50%) translateY(100%);
   opacity: 0;
+  will-change: transform, opacity;
 }
 
 .ai-landing-step-three-directions b.ai-landing-step-three-direction-up {

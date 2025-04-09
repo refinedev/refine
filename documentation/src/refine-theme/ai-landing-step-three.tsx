@@ -12,6 +12,65 @@ type Row = {
   amountValue: number;
 };
 
+const initialRows: Row[] = [
+  {
+    id: "144526",
+    customer: "Rita McClure",
+    amount: "$3.600,00",
+    date: "25.03.2025",
+    amountValue: 3600,
+  },
+  {
+    id: "169220",
+    customer: "Michael Ferry",
+    amount: "$4.000,00",
+    date: "20.03.2025",
+    amountValue: 4000,
+  },
+  {
+    id: "136388",
+    customer: "Jerome Gerhold",
+    amount: "$4.800,00",
+    date: "12.03.2025",
+    amountValue: 4800,
+  },
+  {
+    id: "157345",
+    customer: "Janis Ferry",
+    amount: "$4.250,00",
+    date: "21.03.2025",
+    amountValue: 4250,
+  },
+  {
+    id: "119065",
+    customer: "Hugo Hackett",
+    amount: "$2.250,00",
+    date: "16.03.2025",
+    amountValue: 2250,
+  },
+  {
+    id: "181854",
+    customer: "Toby Haag",
+    amount: "$3.750,00",
+    date: "27.02.2025",
+    amountValue: 3750,
+  },
+  {
+    id: "124806",
+    customer: "Nichole Lueilwitz",
+    amount: "$1.500,00",
+    date: "24.03.2025",
+    amountValue: 1500,
+  },
+  {
+    id: "197532",
+    customer: "Martin Franci",
+    amount: "$3.900,00",
+    date: "11.03.2025",
+    amountValue: 3900,
+  },
+];
+
 export const AiLandingStepThree = () => {
   const { colorMode } = useColorMode();
   const { sm, md, lg, xl } = useTWBreakpoints({ variant: "landing" });
@@ -21,65 +80,6 @@ export const AiLandingStepThree = () => {
   const [showAddButton, setShowAddButton] = useState(false);
   const [showActionsColumn, setShowActionsColumn] = useState(false);
   const [borderRadiusChanged, setBorderRadiusChanged] = useState(false);
-
-  const initialRows: Row[] = [
-    {
-      id: "144526",
-      customer: "Rita McClure",
-      amount: "$3.600,00",
-      date: "25.03.2025",
-      amountValue: 3600,
-    },
-    {
-      id: "169220",
-      customer: "Michael Ferry",
-      amount: "$4.000,00",
-      date: "20.03.2025",
-      amountValue: 4000,
-    },
-    {
-      id: "136388",
-      customer: "Jerome Gerhold",
-      amount: "$4.800,00",
-      date: "12.03.2025",
-      amountValue: 4800,
-    },
-    {
-      id: "157345",
-      customer: "Janis Ferry",
-      amount: "$4.250,00",
-      date: "21.03.2025",
-      amountValue: 4250,
-    },
-    {
-      id: "119065",
-      customer: "Hugo Hackett",
-      amount: "$2.250,00",
-      date: "16.03.2025",
-      amountValue: 2250,
-    },
-    {
-      id: "181854",
-      customer: "Toby Haag",
-      amount: "$3.750,00",
-      date: "27.02.2025",
-      amountValue: 3750,
-    },
-    {
-      id: "124806",
-      customer: "Nichole Lueilwitz",
-      amount: "$1.500,00",
-      date: "24.03.2025",
-      amountValue: 1500,
-    },
-    {
-      id: "197532",
-      customer: "Martin Franci",
-      amount: "$3.900,00",
-      date: "11.03.2025",
-      amountValue: 3900,
-    },
-  ];
 
   const [rows, setRows] = useState<Row[]>(initialRows);
 
