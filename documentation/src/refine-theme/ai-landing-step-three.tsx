@@ -138,7 +138,7 @@ export const AiLandingStepThree = () => {
   const getContentWidth = () => {
     if (xl) return 508;
     if (lg) return 376;
-    if (md) return 508;
+    if (md) return 436;
     if (sm) return 508;
     return 300;
   };
