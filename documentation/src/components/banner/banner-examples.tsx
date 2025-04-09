@@ -14,11 +14,11 @@ type Props = {
 };
 
 export const BannerExamples: FC<Props> = ({
-  title = "Open-source Retool alternative for enterprise",
-  description = "Build React-based internal tools, dashboards & B2B apps with unmatched flexibility",
+  title = "Refine AI is in closed beta!",
+  description = "The next-gen approach to build enterprise-ready React-based internal tools apps with the power of GenAI.",
   button = {
-    text: "Discover Refine",
-    href: "https://s.refine.dev/blog-retool?ref=banner-retool-alternative",
+    text: "Explore Refine AI",
+    href: "https://s.refine.dev/blog-banner-no-image?ref=banner-examples",
     onClick: undefined,
   },
 }) => {

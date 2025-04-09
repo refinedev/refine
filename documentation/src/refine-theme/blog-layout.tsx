@@ -4,7 +4,7 @@ import { CommonHeader } from "./common-header";
 import { BlogFooter } from "./blog-footer";
 import clsx from "clsx";
 import { BannerSidebar } from "../components/banner/banner-sidebar";
-import { BannerModal } from "../components/banner/banner-modal";
+// import { BannerModal } from "../components/banner/banner-modal";
 import useScrollTracker from "../hooks/use-scroll-tracker";
 import { BlogHero } from "./blog-hero";
 
@@ -96,7 +96,7 @@ export const RefineBlogLayout = (props: Props) => {
         )}
       </div>
       <BlogFooter variant="blog" />
-      <BannerModal />
+      {/* <BannerModal /> */}
     </CommonLayout>
   );
 };
