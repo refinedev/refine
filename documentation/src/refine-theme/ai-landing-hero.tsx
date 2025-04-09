@@ -101,15 +101,29 @@ export const AiLandingHero = ({
           "landing-lg:w-[556px]",
           "object-cover",
         )}
-        src={
-          isDarkTheme
-            ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.webm"
-            : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.webm"
-        }
-        autoPlay
-        muted
-        loop
-      />
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        playsInline={true}
+        controls={false}
+      >
+        <source
+          type='video/mp4; codecs="hvc1"'
+          src={
+            isDarkTheme
+              ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.mov"
+              : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.mov"
+          }
+        />
+        <source
+          type="video/webm;"
+          src={
+            isDarkTheme
+              ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.webm"
+              : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.webm"
+          }
+        />
+      </video>
     </div>
   );
 };
