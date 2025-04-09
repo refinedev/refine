@@ -11,6 +11,7 @@ module.exports = {
   testPathIgnorePatterns: ["<rootDir>/node_modules/"],
   moduleNameMapper: {
     ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
+    // "^@test$": "<rootDir>/test",
     "\\.css$": "identity-obj-proxy",
   },
   displayName: "mantine",

@@ -1,10 +1,17 @@
 import React from "react";
 import type { RefineThemedLayoutV2Props } from "@refinedev/ui-types";
 
-import { render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
 
 export const layoutLayoutTests = (
   LayoutElement: React.ComponentType<RefineThemedLayoutV2Props>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Layout Element", () => {
     it("Layout renders sider, header, footer, title, offLayoutArea if given props", async () => {

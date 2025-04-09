@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Button } from "@mantine/core";
 import { IconFileExport } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { ExportButtonProps } from "../types";
 
 /**
@@ -25,15 +24,12 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
 }) => {
   const { label } = useExportButton();
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return hideText ? (
     <ActionIcon
-      {...(variant
-        ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
-          }
-        : { variant: "default" })}
+      size="md"
+      variant={variant || "default"}
       loading={loading}
       aria-label={label}
       data-testid={RefineButtonTestIds.ExportButton}
@@ -44,12 +40,12 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     </ActionIcon>
   ) : (
     <Button
-      variant="default"
+      variant={variant || "default"}
       loading={loading}
-      leftIcon={<IconFileExport size={18} {...svgIconProps} />}
+      leftSection={<IconFileExport size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
-      {...rest}
+      {...commonProps}
     >
       {children ?? label}
     </Button>

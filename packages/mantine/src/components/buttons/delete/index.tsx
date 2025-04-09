@@ -7,7 +7,6 @@ import {
 import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { DeleteButtonProps } from "../types";
 
 /**
@@ -62,7 +61,31 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
 
   const [opened, setOpened] = useState(false);
 
-  const { variant, styles, ...commonProps } = rest;
+  // const onConfirm = () => {
+  //   if ((recordItemId ?? id) && identifier) {
+  //     setWarnWhen(false);
+  //     setOpened(false);
+  //     mutate(
+  //       {
+  //         id: recordItemId ?? id ?? "",
+  //         resource: identifier,
+  //         mutationMode,
+  //         successNotification,
+  //         errorNotification,
+  //         meta: pickNotDeprecated(meta, metaData),
+  //         metaData: pickNotDeprecated(meta, metaData),
+  //         dataProviderName,
+  //       },
+  //       {
+  //         onSuccess: (value) => {
+  //           onSuccess?.(value);
+  //         },
+  //       },
+  //     );
+  //   }
+  // };
+
+  const { variant, ...commonProps } = rest;
 
   const isDisabled = disabled || rest.disabled;
   const isHidden = hidden || rest.hidden;
@@ -86,11 +109,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             loading={loading}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
-            {...(variant
-              ? {
-                  variant: mapButtonVariantToActionIconVariant(variant),
-                }
-              : { variant: "outline" })}
+            variant={variant || "default"}
             {...commonProps}
           >
             <IconTrash size={18} {...svgIconProps} />
@@ -103,20 +122,18 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             disabled={loading || isDisabled}
             loading={loading}
             title={title}
-            leftIcon={<IconTrash size={18} {...svgIconProps} />}
+            leftSection={<IconTrash size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
-            {...rest}
+            {...commonProps}
           >
             {children ?? label}
           </Button>
         )}
       </Popover.Target>
       <Popover.Dropdown py="xs">
-        <Text size="sm" weight="bold">
-          {confirmTitle ?? defaultConfirmTitle}
-        </Text>
-        <Group position="center" noWrap spacing="xs" mt="xs">
+        <Text>{confirmTitle ?? defaultConfirmTitle}</Text>
+        <Group mt="xs">
           <Button onClick={() => setOpened(false)} variant="default" size="xs">
             {confirmCancelText ?? defaultCancelLabel}
           </Button>
