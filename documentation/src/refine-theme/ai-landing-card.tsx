@@ -1,10 +1,12 @@
+import { useColorMode } from "@docusaurus/theme-common";
 import clsx from "clsx";
 import React from "react";
-import { useColorMode } from "@docusaurus/theme-common";
+
 export const AiLandingCard = ({
   imageUrl,
   title,
   description,
+  imageClassName,
 }: {
   imageUrl: {
     dark: string;
@@ -12,6 +14,7 @@ export const AiLandingCard = ({
   };
   title: string;
   description: string;
+  imageClassName?: string;
 }) => {
   const { colorMode } = useColorMode();
   const isDarkTheme = colorMode === "dark";
@@ -47,7 +50,11 @@ export const AiLandingCard = ({
               "h-auto",
               "w-full",
               "max-w-[624px]",
-              "aspect-[352/208]",
+              "aspect-[576/336]",
+              "landing-sm:aspect-[624/364]",
+              "landing-md:aspect-[404/236]",
+              "landing-lg:aspect-[556/288]",
+              imageClassName,
             )}
           />
         </div>

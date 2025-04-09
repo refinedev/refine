@@ -72,7 +72,7 @@ export const AiLandingHero = ({
           >
             AI Coding agents
           </div>
-          <div>for building web apps.</div>
+          <div>for building internal software.</div>
         </h2>
         <p
           className={clsx(
@@ -89,6 +89,7 @@ export const AiLandingHero = ({
         <JoinWaitlist className={clsx("mt-6 landing-md:mt-12", "mx-0")} />
       </div>
       <video
+        key={colorMode}
         className={clsx(
           "z-[2]",
           "absolute",
@@ -101,15 +102,29 @@ export const AiLandingHero = ({
           "landing-lg:w-[556px]",
           "object-cover",
         )}
-        src={
-          isDarkTheme
-            ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.webm"
-            : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.webm"
-        }
-        autoPlay
-        muted
-        loop
-      />
+        autoPlay={true}
+        muted={true}
+        loop={true}
+        playsInline={true}
+        controls={false}
+      >
+        <source
+          type='video/mp4; codecs="hvc1"'
+          src={
+            isDarkTheme
+              ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.mov"
+              : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.mov"
+          }
+        />
+        <source
+          type="video/webm;"
+          src={
+            isDarkTheme
+              ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.webm"
+              : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.webm"
+          }
+        />
+      </video>
     </div>
   );
 };
