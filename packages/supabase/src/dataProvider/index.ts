@@ -61,11 +61,9 @@ export const dataProvider = (
 
       const query = client.from(resource).select(meta?.select ?? "*");
 
-      if (meta?.idColumnName) {
-        query.in(meta.idColumnName, ids);
-      } else {
-        query.in("id", ids);
-      }
+      const idColumn = meta?.idColumnName ?? "id";
+
+      (query as any).in(idColumn, ids);
 
       const { data, error } = await query;
 
@@ -126,12 +124,12 @@ export const dataProvider = (
       const query = client.from(resource).update(variables);
 
       if (meta?.idColumnName) {
-        query.eq(meta.idColumnName, id);
+        (query as any).eq(meta.idColumnName, id);
       } else {
-        query.match({ id });
+        (query as any).match({ id });
       }
 
-      query.select(meta?.select ?? "*");
+      (query as any).select(meta?.select ?? "*");
 
       const { data, error } = await query;
       if (error) {
@@ -153,12 +151,12 @@ export const dataProvider = (
           const query = client.from(resource).update(variables);
 
           if (meta?.idColumnName) {
-            query.eq(meta.idColumnName, id);
+            (query as any).eq(meta.idColumnName, id);
           } else {
-            query.match({ id });
+            (query as any).match({ id });
           }
 
-          query.select(meta?.select ?? "*");
+          (query as any).select(meta?.select ?? "*");
 
           const { data, error } = await query;
           if (error) {
@@ -182,9 +180,9 @@ export const dataProvider = (
       const query = client.from(resource).select(meta?.select ?? "*");
 
       if (meta?.idColumnName) {
-        query.eq(meta.idColumnName, id);
+        (query as any).eq(meta.idColumnName, id);
       } else {
-        query.match({ id });
+        (query as any).match({ id });
       }
 
       const { data, error } = await query;
@@ -205,9 +203,9 @@ export const dataProvider = (
       const query = client.from(resource).delete();
 
       if (meta?.idColumnName) {
-        query.eq(meta.idColumnName, id);
+        (query as any).eq(meta.idColumnName, id);
       } else {
-        query.match({ id });
+        (query as any).match({ id });
       }
 
       const { data, error } = await query;
@@ -230,9 +228,9 @@ export const dataProvider = (
           const query = client.from(resource).delete();
 
           if (meta?.idColumnName) {
-            query.eq(meta.idColumnName, id);
+            (query as any).eq(meta.idColumnName, id);
           } else {
-            query.match({ id });
+            (query as any).match({ id });
           }
 
           const { data, error } = await query;
@@ -256,5 +254,5 @@ export const dataProvider = (
     custom: () => {
       throw Error("Not implemented on refine-supabase data provider.");
     },
-  };
+  } as Required<DataProvider>;
 };
