@@ -1,0 +1,5 @@
+---
+"@refinedev/supabase": major
+---
+
+@refinedev/supabase: majorBREAKING CHANGE: Removed direct usage of `window.location.origin` in auth and identity providers, replacing it with configurable baseUrl parameters.WHY: This change improves configurability for different deployment environments, enables better server-side rendering support, and enhances testability by removing direct browser API dependencies.HOW TO UPDATE: When using the auth provider or identity provider, you can now provide configuration objects:For auth provider:`typescriptconst authProvider = createAuthProvider(  supabaseClient,  {}, // Auth provider options  { baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com" } // Config with baseUrl);`For identity provider:`typescriptconst identityProvider = supabaseIdentityDataProvider(  supabaseClient,  { baseUrl: process.env.NEXT_PUBLIC_BASE_URL || "https://yourdomain.com" });`If no baseUrl is provided, the code will still fall back to window.location.origin in browser environments for backward compatibility.

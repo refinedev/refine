@@ -9,6 +9,7 @@ describe("handleError", () => {
       code: "404",
       details: "Not found",
       hint: "Check your endpoint",
+      name: "PostgrestError",
     };
 
     const expectedHttpError: HttpError = {
