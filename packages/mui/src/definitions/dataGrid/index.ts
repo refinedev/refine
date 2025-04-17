@@ -196,7 +196,7 @@ export const transformCrudFiltersToFilterModel = (
         (filter) => filter.operator === "or",
       )?.value as LogicalFilter[];
 
-      orLogicalFilters.map(({ field, value, operator }, ind) => {
+      orLogicalFilters.map(({ field, value, operator }) => {
         const columnType = columnsType[field];
         const id = field + operator;
 
@@ -211,22 +211,20 @@ export const transformCrudFiltersToFilterModel = (
         });
       });
     } else {
-      (crudFilters as LogicalFilter[]).map(
-        ({ field, value, operator }, ind) => {
-          const columnType = columnsType[field];
-          const id = field + operator;
+      (crudFilters as LogicalFilter[]).map(({ field, value, operator }) => {
+        const columnType = columnsType[field];
+        const id = field + operator;
 
-          fieldOperatorCount[id] = (fieldOperatorCount[id] || 0) + 1;
-          const uniqueId = id + String(fieldOperatorCount[id]);
+        fieldOperatorCount[id] = (fieldOperatorCount[id] || 0) + 1;
+        const uniqueId = id + String(fieldOperatorCount[id]);
 
-          gridFilterItems.push({
-            field: field,
-            operator: transformCrudOperatorToMuiOperator(operator, columnType),
-            value: value === "" ? undefined : value,
-            id: fieldOperatorCount[id] > 1 ? uniqueId : id,
-          });
-        },
-      );
+        gridFilterItems.push({
+          field: field,
+          operator: transformCrudOperatorToMuiOperator(operator, columnType),
+          value: value === "" ? undefined : value,
+          id: fieldOperatorCount[id] > 1 ? uniqueId : id,
+        });
+      });
     }
   }
 
