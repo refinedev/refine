@@ -184,6 +184,7 @@ export const transformCrudFiltersToFilterModel = (
   columnsType?: Record<string, string>,
 ): GridFilterModel | undefined => {
   const gridFilterItems: GridFilterItem[] = [];
+  const fieldOperatorCount: Record<string, number> = {};
 
   const isExistOrFilter = crudFilters.some(
     (filter) => filter.operator === "or",
@@ -197,23 +198,31 @@ export const transformCrudFiltersToFilterModel = (
 
       orLogicalFilters.map(({ field, value, operator }) => {
         const columnType = columnsType[field];
+        const id = field + operator;
+
+        fieldOperatorCount[id] = (fieldOperatorCount[id] || 0) + 1;
+        const uniqueId = id + String(fieldOperatorCount[id]);
 
         gridFilterItems.push({
           field: field,
           operator: transformCrudOperatorToMuiOperator(operator, columnType),
           value: value === "" ? undefined : value,
-          id: field + operator,
+          id: fieldOperatorCount[id] > 1 ? uniqueId : id,
         });
       });
     } else {
       (crudFilters as LogicalFilter[]).map(({ field, value, operator }) => {
         const columnType = columnsType[field];
+        const id = field + operator;
+
+        fieldOperatorCount[id] = (fieldOperatorCount[id] || 0) + 1;
+        const uniqueId = id + String(fieldOperatorCount[id]);
 
         gridFilterItems.push({
           field: field,
           operator: transformCrudOperatorToMuiOperator(operator, columnType),
           value: value === "" ? undefined : value,
-          id: field + operator,
+          id: fieldOperatorCount[id] > 1 ? uniqueId : id,
         });
       });
     }
