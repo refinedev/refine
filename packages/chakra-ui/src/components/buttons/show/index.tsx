@@ -32,6 +32,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     resource: resourceNameFromProps ?? resourceNameOrRouteName,
     id: recordItemId,
     accessControl,
+    meta,
   });
 
   const isDisabled = disabled || rest.disabled;
