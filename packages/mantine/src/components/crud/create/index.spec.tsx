@@ -22,7 +22,7 @@ const renderCreate = (create: ReactNode) => {
 };
 
 describe("Create", () => {
-  crudCreateTests.bind(this)(Create);
+  crudCreateTests.bind(this)(Create, TestWrapper);
 
   it("should customize default buttons with default props", async () => {
     const { queryByTestId } = renderCreate(

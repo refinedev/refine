@@ -124,7 +124,7 @@ describe("auth-mantine", () => {
   describe("logout", () => {
     it("should logout", () => {
       login();
-      cy.get("button")
+      cy.get("a")
         .contains(/logout/i)
         .click();
       cy.location("pathname").should("eq", "/login");
@@ -134,8 +134,9 @@ describe("auth-mantine", () => {
   describe("get identity", () => {
     it("should render getIdentity response on header", () => {
       login();
-      cy.get(".mantine-Text-root").contains(/jane doe/i);
-      cy.get(".mantine-Avatar-image").should("have.attr", "src");
+
+      cy.get("header .mantine-Title-root").contains(/jane doe/i);
+      cy.get("header .mantine-Avatar-image").should("have.attr", "src");
     });
   });
 });

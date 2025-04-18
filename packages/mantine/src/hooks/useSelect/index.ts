@@ -11,6 +11,8 @@ import {
   type BaseOption,
   type Prettify,
 } from "@refinedev/core";
+import { useCallback } from "react";
+import { getOptionValue } from "../../utils";
 
 export type UseSelectReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -55,19 +57,27 @@ export const useSelect = <
 >(
   props: UseSelectProps<TQueryFnData, TError, TData>,
 ): UseSelectReturnType<TData, TOption> => {
+  const { optionValue = "id" } = props;
+  const getOptionValueCallback = useCallback(
+    (item: TData): string => getOptionValue(item, optionValue),
+    [optionValue],
+  );
+
   const { query, defaultValueQuery, onSearch, options } = useSelectCore<
     TQueryFnData,
     TError,
     TData,
     TOption
-  >(props);
+  >({
+    ...props,
+    optionValue: getOptionValueCallback,
+  });
 
   return {
     selectProps: {
       data: options,
       onSearchChange: onSearch,
       searchable: true,
-      filterDataOnExactSearchMatch: true,
       clearable: true,
     },
     query,

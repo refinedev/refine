@@ -4,7 +4,7 @@ import * as util from "util";
 
 jest.setTimeout(30000);
 
-/** Antd mocks */
+/** Antd & Mantine mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     matches: false,
@@ -12,6 +12,9 @@ window.matchMedia = jest.fn().mockImplementation((query) => {
     onchange: null,
     addListener: jest.fn(),
     removeListener: jest.fn(),
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
   };
 });
 

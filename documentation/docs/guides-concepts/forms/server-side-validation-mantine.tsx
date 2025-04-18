@@ -15,10 +15,10 @@ export default function ServerSideValidationMantine() {
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/form": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
+        "@mantine/form": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
         "react-router": "^7.0.2",
       }}
       startRoute="/products/create"
@@ -73,7 +73,7 @@ import {
     useNotificationProvider,
     AuthPage
 } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import routerProvider, {
     NavigateToResource,
@@ -93,7 +93,7 @@ const App: React.FC = () => {
                 withGlobalStyles
             >
                 <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-                <NotificationsProvider position="top-right">
+                <Notifications position="top-right">
                     <Refine
                         notificationProvider={useNotificationProvider}
                         routerProvider={routerProvider}
@@ -121,7 +121,7 @@ const App: React.FC = () => {
                             </Route>
                         </Routes>
                     </Refine>
-                </NotificationsProvider>
+                </Notifications>
             </MantineProvider>
         </BrowserRouter>
     );
