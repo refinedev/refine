@@ -13,6 +13,7 @@ import type {
   RefineCrudListProps,
   RefineCrudShowProps,
 } from "@refinedev/ui-types";
+import type { MetaQuery } from "@refinedev/core";
 
 export type ListProps = RefineCrudListProps<
   CreateButtonProps,
@@ -33,7 +34,9 @@ export type ShowProps = RefineCrudShowProps<
   DeleteButtonProps,
   RefreshButtonProps,
   ListButtonProps
->;
+> & {
+  meta?: MetaQuery;
+};
 
 export type CreateProps = RefineCrudCreateProps<
   SaveButtonProps,

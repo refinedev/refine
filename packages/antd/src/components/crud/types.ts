@@ -56,4 +56,6 @@ export type ShowProps = RefineCrudShowProps<
   DeleteButtonProps,
   RefreshButtonProps,
   ListButtonProps
->;
+> & {
+  meta?: MetaQuery;
+};

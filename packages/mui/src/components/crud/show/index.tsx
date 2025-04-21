@@ -45,6 +45,7 @@ import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
  * @see {@link https://refine.dev/docs/ui-frameworks/mui/components/basic-views/show} for more details.
  */
 export const Show: React.FC<ShowProps> = ({
+  meta,
   title,
   canEdit,
   canDelete,
@@ -95,14 +96,13 @@ export const Show: React.FC<ShowProps> = ({
       : breadcrumbFromProps;
 
   const hasList = resource?.list && !recordItemId;
-  const hasDelete =
+  const isDeleteButtonVisible =
     canDelete ??
-    ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+    ((meta?.canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete) ||
       deleteButtonPropsFromProps);
 
-  const isDeleteButtonVisible = hasDelete && typeof id !== "undefined";
-
-  const isEditButtonVisible = canEdit ?? resource?.canEdit ?? !!resource?.edit;
+  const isEditButtonVisible =
+    canEdit ?? meta?.canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
   const breadcrumbComponent =
     typeof breadcrumb !== "undefined" ? (

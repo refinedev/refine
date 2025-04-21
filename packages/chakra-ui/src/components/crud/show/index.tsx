@@ -29,27 +29,27 @@ import {
 import type { ShowProps } from "../types";
 import { RefinePageHeaderClassNames } from "@refinedev/ui-types";
 
-export const Show: React.FC<ShowProps> = (props) => {
-  const {
-    children,
-    resource: resourceFromProps,
-    recordItemId,
-    canDelete,
-    deleteButtonProps: deleteButtonPropsFromProps,
-    canEdit,
-    dataProviderName,
-    isLoading,
-    footerButtons: footerButtonsFromProps,
-    footerButtonProps,
-    headerButtons: headerButtonsFromProps,
-    headerButtonProps,
-    wrapperProps,
-    contentProps,
-    headerProps,
-    goBack: goBackFromProps,
-    breadcrumb: breadcrumbFromProps,
-    title,
-  } = props;
+export const Show: React.FC<ShowProps> = ({
+  meta,
+  children,
+  resource: resourceFromProps,
+  recordItemId,
+  canDelete,
+  deleteButtonProps: deleteButtonPropsFromProps,
+  canEdit,
+  dataProviderName,
+  isLoading,
+  footerButtons: footerButtonsFromProps,
+  footerButtonProps,
+  headerButtons: headerButtonsFromProps,
+  headerButtonProps,
+  wrapperProps,
+  contentProps,
+  headerProps,
+  goBack: goBackFromProps,
+  breadcrumb: breadcrumbFromProps,
+  title,
+}) => {
   const translate = useTranslate();
   const {
     options: { breadcrumb: globalBreadcrumb } = {},

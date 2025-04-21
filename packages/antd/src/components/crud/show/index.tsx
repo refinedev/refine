@@ -10,6 +10,7 @@ import {
   useRouterType,
   useBack,
   useGo,
+  useShow,
 } from "@refinedev/core";
 
 import {
@@ -33,6 +34,7 @@ import type { ShowProps } from "../types";
  * @see {@link https://refine.dev/docs/ui-frameworks/antd/components/basic-views/show} for more details.
  */
 export const Show: React.FC<ShowProps> = ({
+  meta,
   title,
   canEdit,
   canDelete,
@@ -134,6 +136,8 @@ export const Show: React.FC<ShowProps> = ({
       <RefreshButton {...refreshButtonProps} />
     </>
   );
+
+  const { queryResult } = useShow({ meta, resource: identifier, id });
 
   return (
     <div {...(wrapperProps ?? {})}>

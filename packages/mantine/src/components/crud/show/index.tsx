@@ -55,6 +55,7 @@ export const Show: React.FC<ShowProps> = (props) => {
     goBack: goBackFromProps,
     breadcrumb: breadcrumbFromProps,
     title,
+    meta,
   } = props;
   const translate = useTranslate();
   const {
@@ -96,10 +97,11 @@ export const Show: React.FC<ShowProps> = (props) => {
   const hasList = resource?.list && !recordItemId;
   const isDeleteButtonVisible =
     canDelete ??
-    ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+    ((meta?.canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete) ||
       deleteButtonPropsFromProps);
 
-  const isEditButtonVisible = canEdit ?? resource?.canEdit ?? !!resource?.edit;
+  const isEditButtonVisible =
+    canEdit ?? meta?.canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
   const listButtonProps: ListButtonProps | undefined = hasList
     ? {
