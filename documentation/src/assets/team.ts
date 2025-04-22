@@ -35,13 +35,6 @@ export const team = [
     linkedin: "https://www.linkedin.com/in/alicanerdurmaz/",
   },
   {
-    name: "Necati Ozmen",
-    avatar:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/necati.png",
-    role1: "Head of Growth",
-    linkedin: "https://www.linkedin.com/in/necatiozmen/",
-  },
-  {
     name: "Recep Kütük",
     avatar:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/recep.png",
