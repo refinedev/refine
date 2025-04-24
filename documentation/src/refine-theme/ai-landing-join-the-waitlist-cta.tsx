@@ -5,7 +5,7 @@ export const JoinWaitlist = ({ className }: { className?: string }) => {
   return (
     <div className={clsx("not-prose", "flex", "mx-auto", className)}>
       <a
-        href="https://form.typeform.com/to/htzq03hP"
+        href="https://s.refine.dev/ai-join"
         target="_blank"
         rel="noreferrer"
         className={clsx(
