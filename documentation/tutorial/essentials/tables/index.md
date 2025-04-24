@@ -402,7 +402,7 @@ export const ListProducts = () => {
             <span onClick={() => onPage(current - 1)}>{current - 1}</span>
           )}
           <span className="current">{current}</span>
-          {current + 1 < pageCount && (
+          {current + 1 <= pageCount && (
             <span onClick={() => onPage(current + 1)}>{current + 1}</span>
           )}
         </div>
