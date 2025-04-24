@@ -495,7 +495,7 @@ export const ListProducts = () => {
         <div>
           {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
           <span className="current">{current}</span>
-          {current + 1 < pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+          {current + 1 <= pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
         </div>
         <button type="button" onClick={onNext}>
           {">"}
@@ -618,7 +618,7 @@ export const ListProducts = () => {
         <div>
           {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
           <span className="current">{current}</span>
-          {current + 1 < pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+          {current + 1 <= pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
         </div>
         <button type="button" onClick={onNext}>
           {">"}
