@@ -40,6 +40,7 @@ import {
   type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
+import { useCallback, useMemo } from "react";
 
 export interface UseListConfig {
   pagination?: Pagination;
@@ -173,11 +174,15 @@ export const useList = <
     hasPagination,
     config?.hasPagination,
   );
-  const prefferedPagination = handlePaginationParams({
-    pagination,
-    configPagination: config?.pagination,
-    hasPagination: prefferedHasPagination,
-  });
+  const prefferedPagination = useMemo(
+    () =>
+      handlePaginationParams({
+        pagination,
+        configPagination: config?.pagination,
+        hasPagination: prefferedHasPagination,
+      }),
+    [pagination, config?.pagination, prefferedHasPagination],
+  );
   const isServerPagination = prefferedPagination.mode === "server";
 
   const combinedMeta = getMeta({ resource, meta: preferredMeta });
@@ -225,6 +230,32 @@ export const useList = <
     },
   });
 
+  const querySelectCB = (rawData: GetListResponse<TQueryFnData>) => {
+    let data = rawData;
+
+    const { current, mode, pageSize } = prefferedPagination;
+
+    if (mode === "client") {
+      data = {
+        ...data,
+        data: data.data.slice((current - 1) * pageSize, current * pageSize),
+        total: data.total,
+      };
+    }
+
+    if (queryOptions?.select) {
+      return queryOptions?.select?.(data);
+    }
+
+    return data as unknown as GetListResponse<TData>;
+  };
+  const querySelect = useCallback(querySelectCB, [
+    prefferedPagination,
+    queryOptions?.select,
+  ]);
+
+  console.log([prefferedPagination, queryOptions?.select]);
+
   const queryResponse = useQuery<
     GetListResponse<TQueryFnData>,
     TError,
@@ -270,25 +301,7 @@ export const useList = <
       typeof queryOptions?.enabled !== "undefined"
         ? queryOptions?.enabled
         : !!resource?.name,
-    select: (rawData) => {
-      let data = rawData;
-
-      const { current, mode, pageSize } = prefferedPagination;
-
-      if (mode === "client") {
-        data = {
-          ...data,
-          data: data.data.slice((current - 1) * pageSize, current * pageSize),
-          total: data.total,
-        };
-      }
-
-      if (queryOptions?.select) {
-        return queryOptions?.select?.(data);
-      }
-
-      return data as unknown as GetListResponse<TData>;
-    },
+    select: querySelect,
     onSuccess: (data) => {
       queryOptions?.onSuccess?.(data);
 
