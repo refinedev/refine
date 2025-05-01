@@ -320,7 +320,7 @@ export type CrudOperators =
 export type SortOrder = "desc" | "asc" | null;
 
 export type LogicalFilter = {
-  key: undefined;
+  key?: undefined;
   field: string;
   operator: Exclude<CrudOperators, "or" | "and">;
   value: any;
@@ -328,7 +328,7 @@ export type LogicalFilter = {
 
 export type ConditionalFilter = {
   key?: string;
-  field: undefined;
+  field?: undefined;
   operator: Extract<CrudOperators, "or" | "and">;
   value: (LogicalFilter | ConditionalFilter)[];
 };
