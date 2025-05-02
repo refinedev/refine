@@ -1,5 +1,45 @@
 # @refinedev/antd
 
+## 5.46.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- Fixes event handler issue in ImportButton, ensuring Tooltip works correctly.
+  Fixes #6631.
+
+📢 **Refine Community Release** 📢
+
+- - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+- Updated dependencies []:
+  - @refinedev/ui-types@1.24.2
+
+## 5.46.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6699](https://github.com/refinedev/refine/pull/6699) [`cd938b04cb004b61174d65811467469abaf2db3f`](https://github.com/refinedev/refine/commit/cd938b04cb004b61174d65811467469abaf2db3f) Thanks [@arndom](https://github.com/arndom)! - - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+
+  - Add documenation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6701](https://github.com/refinedev/refine/pull/6701) [`b72c7ce83133011fa96bb81d660fbb2c23ab8acc`](https://github.com/refinedev/refine/commit/b72c7ce83133011fa96bb81d660fbb2c23ab8acc) Thanks [@mohit-2003](https://github.com/mohit-2003)! - Fixes event handler issue in ImportButton, ensuring Tooltip works correctly.
+  Fixes #6631.
+- Updated dependencies [[`cd938b04cb004b61174d65811467469abaf2db3f`](https://github.com/refinedev/refine/commit/cd938b04cb004b61174d65811467469abaf2db3f)]:
+  - @refinedev/ui-types@1.24.0
+
 ## 5.45.3
 
 ### Patch Changes
@@ -2765,13 +2805,13 @@
 
   ## Upgrade
 
-  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
+  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/cli/#update) command.
 
   ```bash
   npm run refine update
   ```
 
-  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
+  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/cli/#how-to-add-to-an-existing-project)
 
   ### 🪄 Migrating your project automatically with Codemod ✨
 
@@ -2809,13 +2849,13 @@
 
   ## Upgrade
 
-  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/documentation/cli/#update) command.
+  ⚡️ You can easily update **refine** packages with **refine** CLI [`update`](https://refine.dev/docs/packages/cli/#update) command.
 
   ```bash
   npm run refine update
   ```
 
-  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project)
+  > [How to add refine CLI to an existing project?](https://refine.dev/docs/packages/cli/#how-to-add-to-an-existing-project)
 
   ### 🪄 Migrating your project automatically with Codemod ✨
 
