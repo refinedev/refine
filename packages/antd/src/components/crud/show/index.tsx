@@ -36,6 +36,7 @@ export const Show: React.FC<ShowProps> = ({
   title,
   canEdit,
   canDelete,
+  deleteButtonProps: deleteButtonPropsFromProps,
   isLoading = false,
   children,
   resource: resourceFromProps,
@@ -83,7 +84,10 @@ export const Show: React.FC<ShowProps> = ({
 
   const hasList = resource?.list && !recordItemId;
   const isDeleteButtonVisible =
-    canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
+    canDelete ??
+    ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+      deleteButtonPropsFromProps);
+
   const isEditButtonVisible = canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
   const listButtonProps: ListButtonProps | undefined = hasList
@@ -112,6 +116,7 @@ export const Show: React.FC<ShowProps> = ({
           }
         },
         dataProviderName,
+        ...deleteButtonPropsFromProps,
       }
     : undefined;
   const refreshButtonProps: RefreshButtonProps = {

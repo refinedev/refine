@@ -85,7 +85,7 @@ export type UpdateParams<TData, TError, TVariables> = {
    */
   id?: BaseKey;
   /**
-   * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+   * [Determines when mutations are executed](/docs/advanced-tutorials/mutation-mode/)
    */
   mutationMode?: MutationMode;
   /**
