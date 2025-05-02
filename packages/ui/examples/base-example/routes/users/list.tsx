@@ -14,7 +14,7 @@ import {
 } from "@/registry/default/ui/avatar";
 import { Badge } from "@/registry/default/ui/badge";
 import { DataTablePagination } from "@/registry/default/refine-ui/table/pagination";
-import type { User } from "@/examples/example-auth-form/types/resources";
+import type { User } from "@/examples/base-example/types/resources";
 import { cn } from "@/lib/utils";
 
 export function UsersListPage() {

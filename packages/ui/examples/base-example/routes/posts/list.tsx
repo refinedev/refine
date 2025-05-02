@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import { cn } from "@/lib/utils";
 import type { ColumnDef, HeaderContext } from "@tanstack/react-table";
-import type { Post } from "@/examples/example-auth-form/types/resources";
+import type { Post } from "@/examples/base-example/types/resources";
 import { Button } from "@/registry/default/ui/button";
 import {
   DropdownMenu,

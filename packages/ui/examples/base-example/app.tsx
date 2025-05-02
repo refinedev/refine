@@ -8,15 +8,15 @@ import routerProvider, {
   CatchAllNavigate,
 } from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import { authProvider } from "@/examples/example-auth-form/providers/auth";
-import { createDataProvider } from "@/examples/example-auth-form/providers/data";
-import { API_URL } from "@/examples/example-auth-form/constants";
-import { LoginForm } from "@/examples/example-auth-form/components/login-form";
-import { notificationProvider } from "./providers/notification";
 import { Toaster } from "@/registry/default/ui/sonner";
+import { authProvider } from "./providers/auth";
+import { notificationProvider } from "./providers/notification";
+import { createDataProvider } from "./providers/data";
+import { LoginForm } from "./components/login-form";
 import { AppLayout } from "./components/layout";
 import { PostsListPage } from "./routes/posts/list";
 import { UsersListPage } from "./routes/users/list";
+import { API_URL } from "./constants";
 import {
   BellIcon,
   CreditCardIcon,
@@ -27,10 +27,11 @@ import {
   SettingsIcon,
   UserIcon,
 } from "lucide-react";
+import { HomePage } from "./routes/home";
 
-export function AuthFormExample() {
+export function BaseExample() {
   return (
-    <BrowserRouter basename="/auth-form">
+    <BrowserRouter basename="/base-example">
       <Refine
         dataProvider={createDataProvider(API_URL)}
         authProvider={authProvider}
@@ -48,6 +49,10 @@ export function AuthFormExample() {
           {
             name: "posts",
             list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
+            show: "/posts/show/:id",
+            clone: "/posts/clone/:id",
             icon: <FileIcon />,
           },
           {
@@ -120,7 +125,7 @@ export function AuthFormExample() {
               </AppLayout>
             }
           >
-            <Route path="/" element={<div>Home</div>} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/posts" element={<PostsListPage />} />
             <Route path="/users" element={<UsersListPage />} />
             <Route path="/settings" element={<div>Settings List Page</div>} />
