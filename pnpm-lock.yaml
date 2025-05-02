@@ -6344,6 +6344,9 @@ importers:
       casbin:
         specifier: ^5.15.2
         version: 5.29.0
+      dayjs:
+        specifier: ^1.11.13
+        version: 1.11.13
       dotenv:
         specifier: ^16.0.3
         version: 16.4.5
@@ -38897,7 +38900,7 @@ snapshots:
       '@rc-component/trigger': 2.1.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       classnames: 2.5.1
       copy-to-clipboard: 3.3.3
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       qrcode.react: 3.1.0(react@18.3.0)
       rc-cascader: 3.24.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-checkbox: 3.2.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -38914,7 +38917,7 @@ snapshots:
       rc-motion: 2.9.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-notification: 5.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-pagination: 4.0.4(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      rc-picker: 4.4.2(date-fns@2.30.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      rc-picker: 4.4.2(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-progress: 4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-rate: 2.12.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       rc-resize-observer: 1.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -40750,7 +40753,7 @@ snapshots:
       cli-table3: 0.6.4
       commander: 6.2.1
       common-tags: 1.8.2
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       debug: 4.3.4(supports-color@8.1.1)
       enquirer: 2.4.1
       eventemitter2: 6.4.7
@@ -48623,7 +48626,7 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  rc-picker@4.4.2(date-fns@2.30.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  rc-picker@4.4.2(date-fns@2.30.0)(dayjs@1.11.13)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.26.0
       '@rc-component/trigger': 2.2.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -48635,7 +48638,7 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
     optionalDependencies:
       date-fns: 2.30.0
-      dayjs: 1.11.10
+      dayjs: 1.11.13
       luxon: 3.4.4
       moment: 2.30.1
 
