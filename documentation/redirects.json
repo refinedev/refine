@@ -2197,6 +2197,14 @@
         "/docs/core/hooks/translate/useSetLocale/",
         "/docs/core/hooks/translate/useTranslate/"
       ]
+    },
+    {
+      "from": "/docs/packages/documentation/cli/",
+      "to": "/docs/packages/cli/"
+    },
+    {
+      "from": "/advanced-tutorials/mutation-mode.md",
+      "to": "/docs/advanced-tutorials/mutation-mode/"
     }
   ]
 }
