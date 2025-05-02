@@ -30,7 +30,7 @@
     "@refinedev/supabase": "^5.9.8",
     "antd": "^5.17.0",
     "casbin": "^5.15.2",
-    "dayjs": "^1.11.13",
+    "dayjs": "^1.10.7",
     "dotenv": "^16.0.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
