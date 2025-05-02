@@ -1,5 +1,5 @@
 ---
-"@refinedev/chakra-ui": minor
+"@refinedev/chakra-ui": patch
 ---
 
 - Ensure `meta` prop is passed to the `ShowButton` component of Charka-UI

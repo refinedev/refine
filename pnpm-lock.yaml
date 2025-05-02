@@ -582,7 +582,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -1104,7 +1104,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -1945,7 +1945,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3808,7 +3808,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3866,7 +3866,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3924,7 +3924,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3982,7 +3982,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -5405,7 +5405,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -6665,7 +6665,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -7221,7 +7221,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -7279,7 +7279,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -8163,7 +8163,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -8525,7 +8525,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -8790,7 +8790,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -9216,7 +9216,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -9277,7 +9277,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.35.1
+        specifier: ^2.36.0
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -10769,55 +10769,9 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
-      '@refinedev/core':
-        specifier: ^4.57.1
-        version: link:../core
-      '@types/jest':
-        specifier: ^29.2.4
-        version: 29.5.12
-      jest:
-        specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
-      jest-environment-jsdom:
-        specifier: ^29.3.1
-        version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      nock:
-        specifier: ^13.4.0
-        version: 13.5.4
-      ts-jest:
-        specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
-      tslib:
-        specifier: ^2.6.2
-        version: 2.6.2
-      tsup:
-        specifier: ^6.7.0
-        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
-      typescript:
-        specifier: ^5.4.2
-        version: 5.4.5
-
-  packages/airtable:
-    dependencies:
-      '@qualifyze/airtable-formulator':
-        specifier: ^1.0.1
-        version: 1.3.1
-      airtable:
-        specifier: ^0.11.1
-        version: 0.11.6(encoding@0.1.13)
-      asyncairtable:
-        specifier: ^2.1.0
-        version: 2.3.1(encoding@0.1.13)
-      query-string:
-        specifier: ^7.1.1
-        version: 7.1.3
-    devDependencies:
-      '@esbuild-plugins/node-resolve':
-        specifier: ^0.1.4
         version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
-        specifier: 4.57.9
+        specifier: ^4.57.1
         version: link:../core
       '@types/jest':
         specifier: ^29.2.4
@@ -10840,6 +10794,52 @@ importers:
       tsup:
         specifier: ^6.7.0
         version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5)
+      typescript:
+        specifier: ^5.4.2
+        version: 5.4.5
+
+  packages/airtable:
+    dependencies:
+      '@qualifyze/airtable-formulator':
+        specifier: ^1.0.1
+        version: 1.3.1
+      airtable:
+        specifier: ^0.11.1
+        version: 0.11.6(encoding@0.1.13)
+      asyncairtable:
+        specifier: ^2.1.0
+        version: 2.3.1(encoding@0.1.13)
+      query-string:
+        specifier: ^7.1.1
+        version: 7.1.3
+    devDependencies:
+      '@esbuild-plugins/node-resolve':
+        specifier: ^0.1.4
+        version: 0.1.4(esbuild@0.21.5)
+      '@refinedev/core':
+        specifier: 4.57.9
+        version: link:../core
+      '@types/jest':
+        specifier: ^29.2.4
+        version: 29.5.12
+      jest:
+        specifier: ^29.3.1
+        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))
+      jest-environment-jsdom:
+        specifier: ^29.3.1
+        version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      nock:
+        specifier: ^13.4.0
+        version: 13.5.4
+      ts-jest:
+        specifier: ^29.1.2
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      tsup:
+        specifier: ^6.7.0
+        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5))(typescript@5.4.5)
       typescript:
         specifier: ^5.4.2
         version: 5.4.5
