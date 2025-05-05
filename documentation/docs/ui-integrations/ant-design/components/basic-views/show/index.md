@@ -359,6 +359,121 @@ render(
 
 [Refer to the `usePermissions` documentation for detailed usage. &#8594](/docs/api-reference/core/hooks/authentication/usePermissions/)
 
+### deleteButtonProps
+
+If the resource has the `canDelete` property and you want to customize this button, you can use the `deleteButtonProps` property like the code below.
+
+```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
+setInitialRoutes(["/posts/show/123"]);
+const { ShowButton, Edit } = RefineAntd;
+
+const { default: simpleRest } = RefineSimpleRest;
+
+const dataProvider = simpleRest("https://api.fake-rest.refine.dev");
+
+const customDataProvider = {
+  ...dataProvider,
+  deleteOne: async ({ resource, id, variables }) => {
+    return {
+      data: {},
+    };
+  },
+};
+
+const authProvider = {
+  login: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  register: async () => {
+    return {
+      success: true,
+    };
+  },
+  forgotPassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  updatePassword: async () => {
+    return {
+      success: true,
+    };
+  },
+  logout: async () => {
+    return {
+      success: true,
+      redirectTo: "/",
+    };
+  },
+  check: () => ({
+    authenticated: true,
+  }),
+  onError: async (error) => {
+    console.error(error);
+    return { error };
+  },
+  getPermissions: async () => ["admin"],
+  getIdentity: async () => null,
+};
+
+// visible-block-start
+import { Show } from "@refinedev/antd";
+import { usePermissions } from "@refinedev/core";
+
+const PostShow: React.FC = () => {
+  const { data: permissionsData } = usePermissions();
+  return (
+    <Show
+      /* highlight-start */
+      canDelete={permissionsData?.includes("admin")}
+      deleteButtonProps={{ size: "small" }}
+      canEdit={permissionsData?.includes("admin")}
+      /* highlight-end */
+    >
+      <p>Rest of your page here</p>
+    </Show>
+  );
+};
+// visible-block-end
+
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      authProvider={authProvider}
+      dataProvider={customDataProvider}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          show: "/posts/show/:id",
+          edit: "/posts/edit/:id",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div>
+              <p>This page is empty.</p>
+              <ShowButton recordItemId="123">Show Item 123</ShowButton>
+            </div>
+          }
+        />
+        <ReactRouter.Route path="/posts/show/:id" element={<PostShow />} />
+        <ReactRouter.Route
+          path="/posts/edit/:id"
+          element={<Edit>Edit Page</Edit>}
+        />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
+);
+```
+
 ### recordItemId
 
 The `<Show>` component reads the `id` information from the route by default. `recordItemId` is used when it cannot read from the URL (when used on a custom page, modal or drawer).
@@ -897,7 +1012,6 @@ If [`canEdit`](#candelete-and-canedit) is `false`, [`<EditButton>`][edit-button]
 
 ```tsx live disableScroll previewHeight=280px url=http://localhost:3000/posts/show/123
 setInitialRoutes(["/posts/show/123"]);
-
 // visible-block-start
 import { Show } from "@refinedev/antd";
 import { Button } from "antd";

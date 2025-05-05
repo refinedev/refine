@@ -37,7 +37,7 @@ export type MenuItemType = NavbarPopoverItemType | NavbarItemType;
 export const MENU_ITEMS: MenuItemType[] = [
   {
     isPopover: true,
-    label: "Open-source",
+    label: "Resources",
     items: [
       {
         label: "Documentation",
@@ -79,33 +79,14 @@ export const MENU_ITEMS: MenuItemType[] = [
   },
   {
     isPopover: false,
-    label: "Enterprise",
-    href: "/enterprise",
+    label: "Refine AI",
+    href: "/ai",
     icon: NewBadgeIcon,
   },
   {
-    isPopover: true,
-    label: "Community",
-    items: [
-      {
-        label: "Contributing",
-        description: "Join open-source contributors.",
-        link: "/docs/guides-concepts/contributing/",
-        icon: ContributeIcon,
-      },
-      {
-        label: "RefineWeek",
-        description: "Weekly projects to practice refine.",
-        link: "/week-of-refine",
-        icon: RefineWeekIcon,
-      },
-      {
-        label: "Hackathons",
-        description: "Compete in hackathons and earn prizes!",
-        link: "https://s.refine.dev/hackathon2",
-        icon: HackathonsIcon,
-      },
-    ],
+    isPopover: false,
+    label: "Enterprise",
+    href: "/enterprise",
   },
   {
     isPopover: true,

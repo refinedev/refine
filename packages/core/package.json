@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/core",
-  "version": "4.57.7",
+  "version": "4.57.9",
   "private": false,
   "description": "Refine is a React meta-framework for building enterprise-level, data-intensive applications rapidly with support for modern UI libraries and headless integrations.",
   "repository": {

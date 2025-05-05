@@ -1,5 +1,46 @@
 # @refinedev/mui
 
+## 6.1.2
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6756](https://github.com/refinedev/refine/pull/6756) [`293668873913c246edbd95c74c7593438de4980f`](https://github.com/refinedev/refine/commit/293668873913c246edbd95c74c7593438de4980f) Thanks [@arndom](https://github.com/arndom)! - Add support for unique id to `transformCrudFiltersToFilterModel` when filters have the same field and operator.
+
+  [Resolves #6710](https://github.com/refinedev/refine/issues/6710)
+
+## 6.1.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+- Updated dependencies []:
+  - @refinedev/ui-types@1.24.2
+
+## 6.1.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6699](https://github.com/refinedev/refine/pull/6699) [`cd938b04cb004b61174d65811467469abaf2db3f`](https://github.com/refinedev/refine/commit/cd938b04cb004b61174d65811467469abaf2db3f) Thanks [@arndom](https://github.com/arndom)! - - Add `deleteButtonProps` prop to the `Show` component of UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+
+  - Add documenation for this addition
+
+  [Resolves #6692](https://github.com/refinedev/refine/issues/6692)
+
+### Patch Changes
+
+- Updated dependencies [[`cd938b04cb004b61174d65811467469abaf2db3f`](https://github.com/refinedev/refine/commit/cd938b04cb004b61174d65811467469abaf2db3f)]:
+  - @refinedev/ui-types@1.24.0
+
 ## 6.0.3
 
 ### Patch Changes

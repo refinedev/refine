@@ -1,5 +1,21 @@
 # @refinedev/devtools
 
+## 1.2.16
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @refinedev/devtools-server@1.1.42
+  - @refinedev/cli@2.16.46
+
+## 1.2.15
+
+### Patch Changes
+
+- Updated dependencies [[`274fa2c92afdf4e5b9ee8ba057861bf9fb39cab5`](https://github.com/refinedev/refine/commit/274fa2c92afdf4e5b9ee8ba057861bf9fb39cab5)]:
+  - @refinedev/devtools-server@1.1.41
+  - @refinedev/cli@2.16.45
+
 ## 1.2.14
 
 ### Patch Changes
@@ -480,7 +496,7 @@
   npm install @refinedev/cli@latest
   ```
 
-  > 🚨 If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/documentation/cli/#how-to-add-to-an-existing-project) to add it to your project.
+  > 🚨 If you don't have `@refinedev/cli` installed already, you can follow the [installation guide](https://refine.dev/docs/packages/cli/#how-to-add-to-an-existing-project) to add it to your project.
 
   Install `@refinedev/devtools` with `@refinedev/cli`
 

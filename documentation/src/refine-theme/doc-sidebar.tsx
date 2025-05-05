@@ -274,7 +274,6 @@ const EnterpriseEditionItem = ({
     >
       <div className={"flex items-center flex-1"}>
         <span className="z-[1] flex-shrink-0">{item.label}</span>
-        <NewBadgePurple className="flex-shrink-0 ml-auto" />
       </div>
     </Link>
   );

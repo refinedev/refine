@@ -41,6 +41,7 @@ export const Show: React.FC<ShowProps> = (props) => {
     resource: resourceFromProps,
     recordItemId,
     canDelete,
+    deleteButtonProps: deleteButtonPropsFromProps,
     canEdit,
     dataProviderName,
     isLoading,
@@ -94,7 +95,10 @@ export const Show: React.FC<ShowProps> = (props) => {
 
   const hasList = resource?.list && !recordItemId;
   const isDeleteButtonVisible =
-    canDelete ?? resource?.meta?.canDelete ?? resource?.canDelete;
+    canDelete ??
+    ((resource?.meta?.canDelete ?? resource?.canDelete) ||
+      deleteButtonPropsFromProps);
+
   const isEditButtonVisible = canEdit ?? resource?.canEdit ?? !!resource?.edit;
 
   const listButtonProps: ListButtonProps | undefined = hasList
@@ -125,6 +129,7 @@ export const Show: React.FC<ShowProps> = (props) => {
           }
         },
         dataProviderName,
+        ...deleteButtonPropsFromProps,
       }
     : undefined;
   const refreshButtonProps: RefreshButtonProps = {

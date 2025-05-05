@@ -7,13 +7,6 @@ export const team = [
     linkedin: "https://www.linkedin.com/in/civan-%C3%B6zseyhan-1ab48814/",
   },
   {
-    name: "Ömer Aplak",
-    avatar:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/omer.png",
-    role1: "Co-Founder / CTO",
-    linkedin: "https://www.linkedin.com/in/omer-aplak-14b87099/",
-  },
-  {
     name: "Eren Erkalkan",
     avatar:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/eren.png",
@@ -40,13 +33,6 @@ export const team = [
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/alican.png",
     role1: "Software Developer",
     linkedin: "https://www.linkedin.com/in/alicanerdurmaz/",
-  },
-  {
-    name: "Necati Ozmen",
-    avatar:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/necati.png",
-    role1: "Head of Growth",
-    linkedin: "https://www.linkedin.com/in/necatiozmen/",
   },
   {
     name: "Recep Kütük",

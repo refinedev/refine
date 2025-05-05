@@ -6,6 +6,7 @@ on:
       - "packages/**"
       - "examples/**"
       - "cypress/e2e/**"
+      - ".github/workflows/scripts/**"
     types:
       - labeled
       - synchronize

@@ -80,15 +80,38 @@ useAutocomplete({
 });
 ```
 
-### defaultValue
+### `defaultValue`
 
-Allows to make options selected by default. Adds extra options to `<select>` component. In some cases like there are many entries for the `<select>` and pagination is required, `defaultValue` may not be present in the current visible options and this can break the `<select>` component. To avoid such cases, A separate `useMany` query is sent to the backend with the `defaultValue` and appended to the options of `<select>`, ensuring the default values exist in the current options array. Since it uses `useMany` to query the necessary data, the `defaultValue` can be a single value or an array of values like the following:
+Is used to fetch extra options from the API.
+
+If there are many `<select>` options and pagination is needed, the `defaultValue` might not be in the visible list. This can break the `<select>` component. To prevent this, a separate `useMany` query fetches the `defaultValue` from the backend and adds it to the options, ensuring it exists in the list. Since it uses `useMany`, `defaultValue` can be a single value or an array:
 
 ```tsx
 useAutocomplete({
   defaultValue: 1, // or [1, 2]
 });
 ```
+
+:::info
+
+`defaultValue` **does not** set a default selection. It only ensures the default value exists in the options.
+
+To set a default selection, pass `defaultValue` to the `value` prop of `<Autocomplete>` or `useForm`:
+
+```tsx
+const form = useForm({
+  defaultValues: {
+    category: { id: 1 }, // Default selected value
+  },
+});
+
+const { autocompleteProps } = useAutocomplete({
+  resource: "categories",
+  defaultValue: [1], // Ensures the default value is included in options
+});
+```
+
+:::
 
 ### selectedOptionsOrder
 

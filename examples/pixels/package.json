@@ -23,11 +23,11 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
-    "@refinedev/antd": "^5.45.3",
-    "@refinedev/cli": "^2.16.44",
-    "@refinedev/core": "^4.57.7",
+    "@refinedev/antd": "^5.46.1",
+    "@refinedev/cli": "^2.16.46",
+    "@refinedev/core": "^4.57.9",
     "@refinedev/react-router": "^1.0.1",
-    "@refinedev/supabase": "^5.9.6",
+    "@refinedev/supabase": "^5.9.8",
     "antd": "^5.17.0",
     "dotenv": "^16.0.3",
     "react": "^18.0.0",
@@ -40,6 +40,6 @@
     "@types/react-dom": "^18.0.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.4.2",
-    "vite": "^5.1.6"
+    "vite": "^5.4.15"
   }
 }

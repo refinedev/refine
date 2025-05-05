@@ -358,7 +358,7 @@ We're recommending [`@refinedev/devtools`](/docs/guides-concepts/development/#us
 
 ## How do invalidation works in queries?
 
-Refine invalidates and refetches the related queries after a successful mutation. To have a better understanding of how invalidation works in Refine, check out the [State Management section of General Concepts guide.](docs/guides-concepts/general-concepts/#state-management)
+Refine invalidates and refetches the related queries after a successful mutation. To have a better understanding of how invalidation works in Refine, check out the [State Management section of General Concepts guide.](/docs/guides-concepts/general-concepts/#state-management)
 
 ## How to handle filters and sorters when using client side pagination?
 

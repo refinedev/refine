@@ -58,7 +58,7 @@ export type DeleteParams<TData, TError, TVariables> = {
    */
   resource: string;
   /**
-   * [Determines when mutations are executed](/advanced-tutorials/mutation-mode.md)
+   * [Determines when mutations are executed](/docs/advanced-tutorials/mutation-mode/)
    */
   mutationMode?: MutationMode;
   /**

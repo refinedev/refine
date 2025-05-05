@@ -273,7 +273,7 @@ interface IPost {
 }
 ```
 
-> For more information, refer to the [mutation mode documentation &#8594](/advanced-tutorials/mutation-mode.md)
+> For more information, refer to the [mutation mode documentation &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ### hideText
 
