@@ -13,11 +13,11 @@ type RefreshButtonProps = {
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 
-export const RefreshButton = ({
+export function RefreshButton({
   refineCoreProps = {},
   children,
   ...rest
-}: RefreshButtonProps) => {
+}: RefreshButtonProps) {
   const { onClick, loading } = useRefreshButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
@@ -41,4 +41,4 @@ export const RefreshButton = ({
       {children}
     </Button>
   );
-};
+}

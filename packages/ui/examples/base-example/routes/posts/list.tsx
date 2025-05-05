@@ -10,9 +10,11 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
-import { Edit, MoreVertical, Trash, Hash, Search } from "lucide-react";
-import { Input } from "@/registry/default/ui/input";
+import { MoreVertical, Trash, Hash, Search, Pencil } from "lucide-react";
 import { DataTable } from "@/registry/default/refine-ui/table/data-table";
+import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
+import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
+import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
 
 export function PostsListPage() {
   const columns = useMemo<ColumnDef<Post>[]>(
@@ -122,17 +124,33 @@ export function PostsListPage() {
                   <MoreVertical className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => console.log("Edit", post.id)}>
-                  <Edit className="mr-2 h-4 w-4" />
-                  <span>Edit</span>
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => console.log("Delete", post.id)}
+              <DropdownMenuContent
+                align="end"
+                className="flex flex-col gap-2 p-2"
+              >
+                <EditButton
+                  variant="ghost"
+                  size="sm"
+                  className="w-full items-center justify-start"
+                  refineCoreProps={{
+                    resource: "posts",
+                    recordItemId: post.id,
+                  }}
                 >
-                  <Trash className="mr-2 h-4 w-4 text-destructive" />
-                  <span className="text-destructive">Delete</span>
-                </DropdownMenuItem>
+                  <Pencil className="h-4 w-4" />
+                  Edit
+                </EditButton>
+                <DeleteButton
+                  size="sm"
+                  className="w-full items-center justify-start"
+                  refineCoreProps={{
+                    resource: "posts",
+                    recordItemId: post.id,
+                  }}
+                >
+                  <Trash className="h-4 w-4" />
+                  Delete
+                </DeleteButton>
               </DropdownMenuContent>
             </DropdownMenu>
           );
@@ -154,6 +172,7 @@ export function PostsListPage() {
 
   return (
     <div className="flex flex-col gap-4">
+      <Breadcrumb />
       <DataTable table={table} />
     </div>
   );

@@ -15,12 +15,12 @@ type EditButtonProps = {
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 
-export const EditButton = ({
+export function EditButton({
   refineCoreProps = {},
   children,
   onClick,
   ...rest
-}: EditButtonProps) => {
+}: EditButtonProps) {
   const { hidden, disabled, LinkComponent, to } = useEditButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
@@ -51,4 +51,4 @@ export const EditButton = ({
       </LinkComponent>
     </Button>
   );
-};
+}

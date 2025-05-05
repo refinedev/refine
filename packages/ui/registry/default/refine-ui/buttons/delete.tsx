@@ -19,11 +19,11 @@ type DeleteButtonProps = {
 } & Omit<React.ComponentProps<typeof Button>, "onClick"> & // Omit Button's onClick
   VariantProps<typeof buttonVariants>;
 
-export const DeleteButton = ({
+export function DeleteButton({
   refineCoreProps = {},
   children,
   ...rest
-}: DeleteButtonProps) => {
+}: DeleteButtonProps) {
   // Correctly extract loading and onConfirm from the hook's return object
   const {
     hidden,
@@ -84,4 +84,4 @@ export const DeleteButton = ({
       </PopoverContent>
     </Popover>
   );
-};
+}

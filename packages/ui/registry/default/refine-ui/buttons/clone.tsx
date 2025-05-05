@@ -15,12 +15,12 @@ type CloneButtonProps = {
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 
-export const CloneButton = ({
+export function CloneButton({
   refineCoreProps = {},
   children,
   onClick,
   ...rest
-}: CloneButtonProps) => {
+}: CloneButtonProps) {
   const { hidden, disabled, LinkComponent, to } = useCloneButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
@@ -51,4 +51,4 @@ export const CloneButton = ({
       </LinkComponent>
     </Button>
   );
-};
+}

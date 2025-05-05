@@ -15,12 +15,12 @@ type ShowButtonProps = {
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 
-export const ShowButton = ({
+export function ShowButton({
   refineCoreProps = {},
   children,
   onClick,
   ...rest
-}: ShowButtonProps) => {
+}: ShowButtonProps) {
   const { hidden, disabled, LinkComponent, to } = useShowButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
@@ -51,4 +51,4 @@ export const ShowButton = ({
       </LinkComponent>
     </Button>
   );
-};
+}

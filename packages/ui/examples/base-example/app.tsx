@@ -28,6 +28,7 @@ import {
   UserIcon,
 } from "lucide-react";
 import { HomePage } from "./routes/home";
+import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
 
 export function BaseExample() {
   return (
@@ -78,7 +79,8 @@ export function BaseExample() {
           },
           {
             name: "notifications",
-            list: "/notifications",
+            list: "/settings/notifications",
+            edit: "/settings/notifications/:id/edit",
             icon: <BellIcon />,
             meta: {
               parent: "settings",
@@ -129,11 +131,27 @@ export function BaseExample() {
             <Route path="/posts" element={<PostsListPage />} />
             <Route path="/users" element={<UsersListPage />} />
             <Route path="/settings" element={<div>Settings List Page</div>} />
-            <Route path="/profile" element={<div>Profile List Page</div>} />
             <Route
-              path="/notifications"
-              element={<div>Notifications List Page</div>}
+              path="/settings/notifications"
+              element={
+                <div>
+                  <Breadcrumb />
+
+                  <h1>Notifications List Page</h1>
+                </div>
+              }
             />
+            <Route
+              path="/settings/notifications/:id/edit"
+              element={
+                <div>
+                  <Breadcrumb />
+
+                  <h1>Notifications Edit Page</h1>
+                </div>
+              }
+            />
+            <Route path="/profile" element={<div>Profile List Page</div>} />
             <Route path="/finance" element={<div>Finance List Page</div>} />
             <Route path="/expenses" element={<div>Expenses List Page</div>} />
             <Route path="/income" element={<div>Income List Page</div>} />

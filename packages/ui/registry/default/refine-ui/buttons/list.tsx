@@ -15,12 +15,12 @@ type ListButtonProps = {
 } & React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants>;
 
-export const ListButton = ({
+export function ListButton({
   refineCoreProps = {},
   children,
   onClick,
   ...rest
-}: ListButtonProps) => {
+}: ListButtonProps) {
   const { hidden, disabled, LinkComponent, to } =
     useListButton(refineCoreProps);
 
@@ -49,4 +49,4 @@ export const ListButton = ({
       </LinkComponent>
     </Button>
   );
-};
+}
