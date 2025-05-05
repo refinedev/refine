@@ -32,9 +32,9 @@ This unit will be UI framework agnostic. Related parts of routing for the UI fra
 
 ## Adding Router Provider
 
-Let's get started with adding our dependencies. For routing, we will use `react-router`, and to integrate it with Refine, we'll be using `@refinedev/react-router-v6` package.
+Let's get started with adding our dependencies. For routing, we will use `react-router`, and to integrate it with Refine, we'll be using `@refinedev/react-router` package.
 
-<InstallPackagesCommand args="react-router @refinedev/react-router-v6"/>
+<InstallPackagesCommand args="react-router @refinedev/react-router"/>
 
 Then we'll pass our router provider to the `<Refine />` component. Additionally, we'll be wrapping our app with `<BrowserRouter />` from `react-router`.
 

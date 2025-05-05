@@ -37,6 +37,8 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 
+import "./lib/init-dayjs";
+
 function App() {
   const { t, i18n } = useTranslation();
 

@@ -273,12 +273,32 @@ module.exports = {
         "landing-trusted-by-developers": [
           "radial-gradient(40% 100% at 110% 20%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
         ],
-        "landing-packages-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          "radial-gradient(50% 100% at 50% -40%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+        "ai-landing-hero-dark-md": [
+          "radial-gradient(50% 50% at 50% 50%, rgba(38, 217, 126, 0.2) 20%, rgba(38, 217, 126, 0) 100%)",
         ],
-        "landing-packages": [
-          "radial-gradient(50% 100% at 50% -60%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
+        "ai-landing-hero-md": [
+          "radial-gradient(50% 50% at 50% 50%, rgba(51, 51, 255, 0.2) 20%, rgba(51, 51, 255, 0) 100%)",
+        ],
+        "ai-landing-hero-dark": [
+          "radial-gradient(100% 249.65% at 0% 47.87%, rgba(38, 217, 126, 0.25) 0%, rgba(38, 217, 126, 0) 100%)",
+        ],
+        "ai-landing-hero": [
+          "radial-gradient(100% 249.65% at 0% 47.87%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
+        ],
+        "ai-landing-packages-dark": [
+          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "radial-gradient(50% 100% at 100% 0%, rgba(38, 217, 127, 0.25) 0%, rgba(38, 217, 127, 0) 100%)",
+        ],
+        "ai-landing-packages": [
+          "radial-gradient(50% 100% at 100% 0%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
+        ],
+        "ai-landing-packages-mobile-dark": [
+          "radial-gradient(50% 47.81% at 100% 0%, rgba(38, 217, 127, 0.25) 0%, rgba(38, 217, 127, 0) 100%)",
+          "radial-gradient(50% 47.81% at 0% 0%, rgba(38, 217, 127, 0.25) 0%, rgba(38, 217, 127, 0) 100%)",
+        ],
+        "ai-landing-packages-mobile": [
+          "radial-gradient(50% 100% at 100% 0%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
+          "radial-gradient(50% 100% at 0% 0%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
         ],
         "landing-sweet-spot-glow-red-dark": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
@@ -567,7 +587,7 @@ module.exports = {
         "mini-bounce": "mini-bounce 3s ease-in-out infinite",
         "dot-waves": "dot-waves 2.5s linear infinite",
         "landing-packages-left": "landing-packages-left 65s linear infinite",
-        "landing-packages-right": "landing-packages-right 60s linear infinite",
+        "landing-packages-right": "landing-packages-right 25s linear infinite",
         "code-scroll": "code-scroll 25s linear infinite",
         "beam-spin": "beam-spin 3s linear 1 forwards",
         "landing-hero-beam-line":
@@ -602,6 +622,8 @@ module.exports = {
         "progress-fill": "progressFill 1s linear 1 forwards",
         "refine-ai-video-play-button":
           "refine-ai-video-play-button 1.8s ease-out infinite",
+        "ai-landing-packages-right":
+          "ai-landing-packages-right 80s linear infinite",
       },
       keyframes: {
         "refine-ai-video-play-button": {
@@ -779,8 +801,8 @@ module.exports = {
           "100%": { transform: "translateX(-50%)" },
         },
         "landing-packages-right": {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(50%)" },
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
         },
         "beam-spin": {
           "0%": {
@@ -909,6 +931,10 @@ module.exports = {
         "new-badge-border": {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
+        },
+        "ai-landing-packages-right": {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(0%)" },
         },
       },
     },

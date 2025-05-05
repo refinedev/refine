@@ -6,17 +6,17 @@ import BrowserOnly from "@docusaurus/BrowserOnly";
 const data = [
   {
     description:
-      "Refine is a React Framework used by over monthly 15K developers for building enterprise internal tools, dashboards, and B2B apps",
+      "The next-gen approach to build enterprise-ready React-based internal tools, admin panels, dashboards & B2B apps with the power of GenAI.",
     image: {
-      src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-tweet.jpg",
-      alt: "X tweet about Refine",
-      href: "https://s.refine.dev/blog-twitter?ref=banner-twitter",
+      src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-refine-ai.png",
+      alt: "Refine AI Image",
+      href: "https://s.refine.dev/banner-with-image?ref=refine-ai-banner",
     },
     button: {
-      text: "Learn more",
-      href: "https://s.refine.dev/blog-twitter?ref=banner-twitter",
+      text: "Join the waitlist",
+      href: "https://s.refine.dev/banner-join-waitlist?ref=banner-refine-ai-banner",
     },
-    bannerName: "banner-twitter",
+    bannerName: "banner-refine-ai",
   },
   /*    {
         title: "Save developer hours!",
