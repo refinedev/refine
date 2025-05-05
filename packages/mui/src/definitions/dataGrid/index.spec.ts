@@ -437,4 +437,50 @@ describe("transformCrudFiltersToFilterModel", () => {
       logicOperator: "and",
     });
   });
+
+  it("Should have unique IDs for filters with the same field and operator", () => {
+    const crudFilters: CrudFilters = [
+      {
+        operator: "or",
+        value: [
+          {
+            field: "status",
+            operator: "eq",
+            value: "draft",
+          },
+          {
+            field: "status",
+            operator: "eq",
+            value: "published",
+          },
+        ],
+      },
+    ];
+
+    const columnsLookup = {
+      status: "string",
+    };
+
+    const filterModel: GridFilterModel = {
+      items: [
+        {
+          field: "status",
+          operator: "equals",
+          value: "draft",
+          id: "statuseq",
+        },
+        {
+          field: "status",
+          operator: "equals",
+          value: "published",
+          id: "statuseq2",
+        },
+      ],
+      logicOperator: GridLogicOperator.Or,
+    };
+
+    expect(
+      transformCrudFiltersToFilterModel(crudFilters, columnsLookup),
+    ).toEqual(filterModel);
+  });
 });
