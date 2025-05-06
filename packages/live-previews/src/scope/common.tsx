@@ -123,17 +123,19 @@ const RefineHeadlessDemo: React.FC<
   }
 
   return (
-    <Refine
-      routerProvider={RefineReactRouter.default}
-      dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
-      options={{
-        disableTelemetry: true,
-        reactQuery: {
-          devtoolConfig: false,
-        },
-      }}
-      {...rest}
-    />
+    <div style={{ padding: "12px" }}>
+      <Refine
+        routerProvider={RefineReactRouter.default}
+        dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
+        options={{
+          disableTelemetry: true,
+          reactQuery: {
+            devtoolConfig: false,
+          },
+        }}
+        {...rest}
+      />
+    </div>
   );
 };
 
