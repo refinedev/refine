@@ -421,6 +421,7 @@ const dataProvider = (
         const response = await client.request<BaseRecord>(meta.gqlMutation, {
           ids,
           _set: variablesFromParams,
+          ...meta?.gqlVariables,
         });
 
         return {
