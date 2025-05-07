@@ -569,7 +569,7 @@ const dataProvider = (
       if (gqlOperation) {
         const response: any = await client.request(
           gqlOperation,
-          meta?.variables ?? {},
+          meta?.gqlVariables ?? {},
         );
 
         return { data: response };
