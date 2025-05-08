@@ -51,11 +51,11 @@ export const liveProvider = (
         );
       }
 
-      const genereteSubscription = subscriptions[subscriptionType];
+      const generateSubscription = subscriptions[subscriptionType];
 
       const idType = getIdType(resource, options?.idType);
-      const namingConvention = options?.namingConvention;
-      const { query, variables, operation } = genereteSubscription({
+      const namingConvention = options?.namingConvention ?? "hasura-default";
+      const { query, variables, operation } = generateSubscription({
         ids,
         id,
         idType,
