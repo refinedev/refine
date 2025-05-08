@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/chakra-ui",
-  "version": "2.36.0",
+  "version": "2.36.1",
   "private": false,
   "description": "Chakra UI support for Refine, providing flexible and accessible UI components.",
   "license": "MIT",
