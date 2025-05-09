@@ -1,5 +1,25 @@
 # @refinedev/chakra-ui
 
+## 2.36.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- - Ensure `meta` prop is passed to the `ShowButton` component of Charka-UI
+
+  [Resolves #6707](https://github.com/refinedev/refine/issues/6707)
+
+## 2.36.0
+
+### Minor Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6740](https://github.com/refinedev/refine/pull/6740) [`16d9fa1d5a1d265ee6ba942c46473456883b4400`](https://github.com/refinedev/refine/commit/16d9fa1d5a1d265ee6ba942c46473456883b4400) Thanks [@arndom](https://github.com/arndom)! - - Ensure `meta` prop is passed to the `ShowButton` component of Charka-UI
+
+  [Resolves #6707](https://github.com/refinedev/refine/issues/6707)
+
 ## 2.35.1
 
 ### Patch Changes
