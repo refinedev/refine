@@ -18,7 +18,8 @@ export function MaterialUILayout() {
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.7",
-        "@mui/system": "latest",
+        "@mui/system": "^6.4.11",
+        "@mui/utils": "^7.1.0",
         "@mui/x-data-grid": "7.23.5",
       }}
       startRoute="/my-products"

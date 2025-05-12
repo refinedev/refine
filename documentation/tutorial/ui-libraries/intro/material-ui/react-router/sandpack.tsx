@@ -237,10 +237,11 @@ export const dependencies = {
   "@emotion/react": "11.11.4",
   "@emotion/styled": "11.11.5",
   "@mui/lab": "^6.0.0-beta.14",
+  "@mui/utils": "^7.1.0",
   "@mui/material": "^6.1.7",
   "@mui/x-data-grid": "7.23.5",
   "@refinedev/mui": "latest",
-  "@mui/system": "latest",
+  "@mui/system": "^6.4.11",
   "@refinedev/react-hook-form": "latest",
   "react-hook-form": "latest",
 };
