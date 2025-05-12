@@ -513,13 +513,26 @@ const dataProvider = (
         : camelcase(`delete_${operation}`);
 
       if (meta?.gqlMutation) {
-        const response = await client.request<BaseRecord>(meta?.gqlMutation, {
-          where: {
+        const hasuraFilters = mergeHasuraFilters(
+          {
             id: {
               _in: ids,
             },
           },
-        });
+          meta?.gqlVariables?.where,
+        );
+
+        const variables = {
+          ...(meta.gqlVariables && meta.gqlVariables),
+          ...(hasuraFilters && {
+            where: hasuraFilters,
+          }),
+        };
+
+        const response = await client.request<BaseRecord>(
+          meta?.gqlMutation,
+          variables,
+        );
 
         return {
           data: response[deleteOperation]["returning"],
