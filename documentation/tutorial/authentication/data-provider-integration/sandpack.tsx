@@ -261,14 +261,18 @@ import { AuthProvider } from "@refinedev/core";
 
 export const authProvider: AuthProvider = {
     onError: async (error) => {
-        if (error?.status === 401) {
-            return {
-                logout: true,
-                error: { message: "Unauthorized" },
-            }
+      if (error?.status === 401) {
+        return {
+          logout: true,
+          error: {
+            message: "Unauthorized",
+            name: “Error”,
+            statusCode: error?.status ?? 403,
+          },
         }
+      }
 
-        return {};
+      return {};
     },
     getIdentity: async () => {
       const response = await fetch("https://api.fake-rest.refine.dev/auth/me", {
