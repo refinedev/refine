@@ -353,6 +353,7 @@ const dataProvider = (
         const response = await client.request<BaseRecord>(gqlOperation, {
           id,
           object: variables || {},
+          ...meta?.gqlVariables,
         });
 
         return {
