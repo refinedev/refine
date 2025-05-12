@@ -1,17 +1,20 @@
 import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
-import { cn } from "@/lib/utils";
-import type { ColumnDef, HeaderContext } from "@tanstack/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
 import type { Post } from "@/examples/base-example/types/resources";
 import { Button } from "@/registry/default/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
-import { MoreVertical, Trash, Hash, Search, Pencil } from "lucide-react";
-import { DataTable } from "@/registry/default/refine-ui/table/data-table";
+import { MoreVertical, Trash, Pencil } from "lucide-react";
+import {
+  DataTable,
+  TableHeaderSorter,
+  TableHeaderFilterDropdownText,
+  TableHeaderFilterCombobox,
+} from "@/registry/default/refine-ui/table/data-table";
 import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
 import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
 import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
@@ -21,21 +24,21 @@ export function PostsListPage() {
     () => [
       {
         id: "id",
-        header: "ID",
         accessorKey: "id",
-        size: 80,
-        meta: {
-          variant: "text",
-          icon: (context: HeaderContext<Post, unknown>) => (
-            <Hash
-              className={cn(
-                context.column.getIsFiltered()
-                  ? "text-primary"
-                  : "text-muted-foreground",
-              )}
-            />
-          ),
-          placeholder: "Filter by ID",
+        size: 96,
+        header: ({ column }) => {
+          return (
+            <div className="flex items-center gap-1">
+              <span>ID</span>
+              <div>
+                <TableHeaderSorter column={column} />
+                <TableHeaderFilterDropdownText
+                  column={column}
+                  placeholder="Filter by ID"
+                />
+              </div>
+            </div>
+          );
         },
       },
       {
@@ -43,8 +46,6 @@ export function PostsListPage() {
         header: "Image",
         accessorKey: "image",
         size: 100,
-        enableSorting: false,
-        enableColumnFilter: false,
         cell: ({ row }) => {
           const imageUrl = row.original.image?.[0]?.url;
           return imageUrl ? (
@@ -60,23 +61,23 @@ export function PostsListPage() {
       },
       {
         id: "title",
-        header: "Title",
         accessorKey: "title",
         size: 300,
-        enableSorting: false,
         meta: {
-          variant: "text",
-          icon: (context: HeaderContext<Post, any>) => (
-            <Search
-              className={cn(
-                context.column.getIsFiltered()
-                  ? "text-primary"
-                  : "text-muted-foreground",
-              )}
-            />
-          ),
-          placeholder: "Search by title",
           filterOperator: "contains",
+        },
+        header: ({ column }) => {
+          return (
+            <div className="flex items-center gap-1">
+              <span>Title</span>
+              <div>
+                <TableHeaderFilterDropdownText
+                  column={column}
+                  placeholder="Filter by title"
+                />
+              </div>
+            </div>
+          );
         },
       },
       {
@@ -89,19 +90,22 @@ export function PostsListPage() {
       },
       {
         id: "status",
-        header: "Status",
         accessorKey: "status",
         size: 100,
-        enableSorting: false,
-        meta: {
-          filterOperator: "eq",
-          variant: "combobox",
-          placeholder: "Filter by status",
-          options: [
-            { label: "Published", value: "published" },
-            { label: "Draft", value: "draft" },
-            { label: "Rejected", value: "rejected" },
-          ],
+        header: ({ column }) => {
+          return (
+            <div className="flex items-center gap-1">
+              <span>Status</span>
+              <TableHeaderFilterCombobox
+                column={column}
+                options={[
+                  { label: "Published", value: "published" },
+                  { label: "Draft", value: "draft" },
+                  { label: "Rejected", value: "rejected" },
+                ]}
+              />
+            </div>
+          );
         },
       },
       {

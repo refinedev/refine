@@ -1,8 +1,8 @@
-import type { CrudFilter, HttpError, BaseRecord } from "@refinedev/core";
+import type { HttpError, BaseRecord } from "@refinedev/core";
 import type { UseTableReturnType } from "@refinedev/react-table";
 import { flexRender } from "@tanstack/react-table";
 import { cn } from "@/lib/utils";
-import type { Column, HeaderContext } from "@tanstack/react-table";
+import type { Column } from "@tanstack/react-table";
 import { Button } from "@/registry/default/ui/button";
 import { ArrowUp, ArrowDown, ArrowUpDown, Filter, Check } from "lucide-react";
 import {
@@ -20,7 +20,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/registry/default/ui/popover";
-import { useCallback } from "react";
+import { useState } from "react";
 import {
   Command,
   CommandEmpty,
@@ -29,24 +29,15 @@ import {
   CommandItem,
   CommandList,
 } from "@/registry/default/ui/command";
+import { Separator } from "@/registry/default/ui/separator";
 
-export type TableMeta = {
-  variant?: "text" | "combobox";
-  icon?:
-    | React.ReactNode
-    | ((context: HeaderContext<any, any>) => React.ReactNode);
-  options?: { label: string; value: string }[];
-  placeholder?: string;
-  filterOperator?: CrudFilter["operator"];
-};
-
-type DataTableProps<TData extends BaseRecord, TValue> = {
+type DataTableProps<TData extends BaseRecord> = {
   table: UseTableReturnType<TData, HttpError>;
 };
 
-export function DataTable<TData extends BaseRecord, TValue>({
+export function DataTable<TData extends BaseRecord>({
   table,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData>) {
   const {
     getHeaderGroups,
     getRowModel,
@@ -67,13 +58,10 @@ export function DataTable<TData extends BaseRecord, TValue>({
     <div className={cn("flex", "flex-col", "flex-1", "gap-4", "p-4")}>
       <div className={cn("rounded-md", "border")}>
         <Table style={{ tableLayout: "fixed", width: "100%" }}>
-          <TableHeader>
+          <TableHeader className={cn("bg-muted")}>
             {getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
-                  const context = header.getContext();
-                  const isSortable = header.column.getCanSort();
-                  const isFilterable = header.column.getCanFilter();
                   const isPlaceholder = header.isPlaceholder;
 
                   return (
@@ -89,14 +77,6 @@ export function DataTable<TData extends BaseRecord, TValue>({
                             header.column.columnDef.header,
                             header.getContext(),
                           )}
-                          <div className={cn("flex", "items-center")}>
-                            {isSortable && (
-                              <TableHeaderSorter context={context} />
-                            )}
-                            {isFilterable && (
-                              <TableHeaderFilterDropdown context={context} />
-                            )}
-                          </div>
                         </div>
                       )}
                     </TableHead>
@@ -164,153 +144,236 @@ export function DataTable<TData extends BaseRecord, TValue>({
   );
 }
 
-type TableHeaderSorterProps<TData, TValue> = {
-  context: HeaderContext<TData, TValue>;
-};
+export type TableHeaderSorterProps<TData> = {
+  column: Column<TData>;
+} & React.ComponentProps<typeof Button>;
 
-function TableHeaderSorter<TData, TValue>({
-  context,
-}: TableHeaderSorterProps<TData, TValue>) {
+export function TableHeaderSorter<TData>({
+  column,
+  className,
+  ...props
+}: TableHeaderSorterProps<TData>) {
+  const title =
+    column.getIsSorted() === "desc"
+      ? `Sort by ${column.id} as descending`
+      : column.getIsSorted() === "asc"
+        ? `Sort by ${column.id} as ascending`
+        : `Sort by ${column.id}`;
+
   return (
     <Button
       variant="ghost"
       size="icon"
-      onClick={() => context.column.toggleSorting(undefined, true)}
-      className={cn("data-[state=open]:bg-accent", "w-6 h-6")}
+      onClick={() => column.toggleSorting(undefined, true)}
+      title={title}
+      aria-label={title}
+      {...props}
+      className={cn("data-[state=open]:bg-accent", "w-6 h-6", className)}
     >
-      {context.column.getIsSorted() === "desc" ? (
-        <ArrowDown className={cn("text-primary")} />
-      ) : context.column.getIsSorted() === "asc" ? (
-        <ArrowUp className={cn("text-primary")} />
+      {column.getIsSorted() === "desc" ? (
+        <ArrowDown className={cn("text-primary", "!w-3", "!h-3")} />
+      ) : column.getIsSorted() === "asc" ? (
+        <ArrowUp className={cn("text-primary", "!w-3", "!h-3")} />
       ) : (
-        <ArrowUpDown className={cn("text-muted-foreground")} />
+        <ArrowUpDown className={cn("text-muted-foreground", "!w-3", "!h-3")} />
       )}
     </Button>
   );
 }
 
-type TableHeaderFilterDropdownProps<TData, TValue> = {
-  context: HeaderContext<TData, TValue>;
+export type TableHeaderFilterDropdownProps<TData> = {
+  column: Column<TData>;
+  className?: string;
+  children: (args: {
+    isOpen: boolean;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  }) => React.ReactNode;
 };
 
-function TableHeaderFilterDropdown<TData, TValue>({
-  context,
-}: TableHeaderFilterDropdownProps<TData, TValue>) {
-  const meta = (context.column.columnDef?.meta as TableMeta) ?? {};
-  const metaWithDefault = {
-    ...meta,
-    variant: meta?.variant ?? "text",
-    icon: meta?.icon ?? <Filter className="!h-3 !w-3 text-muted-foreground" />,
-    placeholder: meta?.placeholder ?? "Filter by ID",
-  };
+export function TableHeaderFilterDropdown<TData>({
+  column,
+  className,
+  children,
+}: TableHeaderFilterDropdownProps<TData>) {
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isFiltered = context.column.getIsFiltered();
-  const filterValue = (context.column.getFilterValue() as string) ?? "";
-  const variant = metaWithDefault.variant;
-
-  const handleSetFilterValue = useCallback(
-    (value: string) => {
-      context.column.setFilterValue(value);
-    },
-    [context.column],
-  );
+  const isFiltered = column.getIsFiltered();
 
   return (
-    <Popover>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
+          onClick={() => setIsOpen(true)}
           variant="ghost"
           size="icon"
           className={cn(
             "data-[state=open]:bg-accent",
             "w-6 h-6",
-            isFiltered && "text-primary",
+            {
+              "text-primary": isFiltered,
+              "text-muted-foreground": !isFiltered,
+            },
+            className,
           )}
         >
-          {typeof metaWithDefault.icon === "function"
-            ? metaWithDefault.icon(context)
-            : metaWithDefault.icon}
+          <Filter className="!h-3 !w-3" />
         </Button>
       </PopoverTrigger>
       <PopoverContent align="start">
-        {variant === "text" && (
-          <TableHeaderFilterText
-            value={filterValue}
-            placeholder={metaWithDefault.placeholder}
-            onChange={handleSetFilterValue}
-          />
-        )}
-        {variant === "combobox" && (
-          <TableHeaderFilterCombobox
-            value={filterValue}
-            options={metaWithDefault.options ?? []}
-            onSelect={handleSetFilterValue}
-          />
-        )}
+        {children({ isOpen, setIsOpen })}
       </PopoverContent>
     </Popover>
   );
 }
 
-type TableHeaderFilterTextProps = {
-  value: string;
+export type TableHeaderFilterDropdownTextProps<TData> = {
+  column: Column<TData>;
   placeholder: string;
-  onChange: (value: string) => void;
 };
 
-function TableHeaderFilterText({
-  value,
+export function TableHeaderFilterDropdownText<TData>({
+  column,
   placeholder,
-  onChange,
-}: TableHeaderFilterTextProps) {
+}: TableHeaderFilterDropdownTextProps<TData>) {
+  const [filterValue, setFilterValue] = useState(
+    (column.getFilterValue() as string) || "",
+  );
+
   return (
-    <Input
-      placeholder={placeholder}
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-    />
+    <TableHeaderFilterDropdown column={column}>
+      {({ isOpen: _, setIsOpen }) => {
+        return (
+          <div
+            className="flex flex-col items-center gap-4"
+            onKeyDown={(event) => {
+              if (event.key === "Enter") {
+                column.setFilterValue(filterValue);
+                setIsOpen(false);
+              }
+            }}
+          >
+            <Input
+              placeholder={placeholder}
+              value={filterValue}
+              onChange={(event) => {
+                setFilterValue(event.target.value);
+              }}
+            />
+            <div className="flex items-center justify-end w-full gap-2">
+              <Button
+                size="sm"
+                variant="destructive"
+                onClick={() => {
+                  column.setFilterValue("");
+                  setFilterValue("");
+                  setIsOpen(false);
+                }}
+              >
+                Clear
+              </Button>
+
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  column.setFilterValue(filterValue);
+                  setIsOpen(false);
+                }}
+              >
+                Save
+              </Button>
+            </div>
+          </div>
+        );
+      }}
+    </TableHeaderFilterDropdown>
   );
 }
 
-type TableHeaderFilterComboboxProps = {
-  value: string;
+export type TableHeaderFilterComboboxProps<TData> = {
+  column: Column<TData>;
   options: { label: string; value: string }[];
-  onSelect: (value: string) => void;
+  placeholder?: string;
+  noResultsText?: string;
 };
 
-function TableHeaderFilterCombobox({
-  value,
+export function TableHeaderFilterCombobox<TData>({
+  column,
   options,
-  onSelect,
-}: TableHeaderFilterComboboxProps) {
+  placeholder = "Search...",
+  noResultsText = "No results found.",
+}: TableHeaderFilterComboboxProps<TData>) {
+  const [filterValue, setFilterValue] = useState<string | null>(
+    column.getFilterValue() as string | null,
+  );
+
   return (
-    <Command>
-      <CommandInput placeholder="Search framework..." />
-      <CommandList>
-        <CommandEmpty>No framework found.</CommandEmpty>
-        <CommandGroup>
-          {options.map((option) => (
-            <CommandItem
-              key={option.value}
-              value={option.value}
-              onSelect={onSelect}
-            >
-              {option.label}
-              <Check
-                className={cn(
-                  "ml-auto",
-                  value === option.value ? "opacity-100" : "opacity-0",
-                )}
-              />
-            </CommandItem>
-          ))}
-        </CommandGroup>
-      </CommandList>
-    </Command>
+    <TableHeaderFilterDropdown column={column}>
+      {({ isOpen: _, setIsOpen }) => {
+        return (
+          <div>
+            <Command>
+              <CommandInput placeholder={placeholder} />
+              <CommandList>
+                <CommandEmpty>{noResultsText}</CommandEmpty>
+                <CommandGroup className="mt-2">
+                  {options.map((option) => (
+                    <CommandItem
+                      key={option.value}
+                      value={option.value}
+                      onSelect={() => {
+                        setFilterValue(option.value);
+                      }}
+                    >
+                      {option.label}
+                      <Check
+                        className={cn(
+                          "ml-auto",
+                          filterValue === option.value
+                            ? "opacity-100"
+                            : "opacity-0",
+                        )}
+                      />
+                    </CommandItem>
+                  ))}
+                </CommandGroup>
+              </CommandList>
+            </Command>
+
+            <Separator className="my-2" />
+
+            <div className="flex items-center justify-end w-full gap-2">
+              <Button
+                size="sm"
+                variant="destructive"
+                onClick={() => {
+                  column.setFilterValue(null);
+                  setFilterValue(null);
+                  setIsOpen(false);
+                }}
+              >
+                Clear
+              </Button>
+
+              <Button
+                size="sm"
+                variant="outline"
+                onClick={() => {
+                  column.setFilterValue(filterValue);
+                  setIsOpen(false);
+                }}
+              >
+                Save
+              </Button>
+            </div>
+          </div>
+        );
+      }}
+    </TableHeaderFilterDropdown>
   );
 }
 
-function getCommonStyles<TData>({
+export function getCommonStyles<TData>({
   column,
 }: {
   column: Column<TData>;
@@ -331,7 +394,7 @@ function getCommonStyles<TData>({
     right: isPinned === "right" ? `${column.getAfter("right")}px` : undefined,
     opacity: 1,
     position: isPinned ? "sticky" : "relative",
-    background: isPinned ? "var(--background)" : "",
+    // background: isPinned ? "var(--background)" : "",
     borderTopRightRadius: isPinned === "right" ? "var(--radius)" : undefined,
     borderBottomRightRadius: isPinned === "right" ? "var(--radius)" : undefined,
     borderTopLeftRadius: isPinned === "left" ? "var(--radius)" : undefined,

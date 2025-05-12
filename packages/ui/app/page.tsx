@@ -1,5 +1,4 @@
 import * as React from "react";
-import Link from "next/link";
 
 export default function Home() {
   return (
@@ -14,7 +13,7 @@ export default function Home() {
         <div className="flex flex-col gap-4 border rounded-lg p-4 min-h-[450px] relative">
           <div className="flex items-center justify-between">
             <h2 className="text-sm text-muted-foreground sm:pl-3">
-              Refine UI Auth Form Example
+              Refine UI Base Example
             </h2>
           </div>
           <div className="flex items-center justify-center min-h-[400px] relative">
@@ -24,7 +23,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="underline"
             >
-              go to Auth Form
+              go to Base Example
             </a>
           </div>
         </div>
