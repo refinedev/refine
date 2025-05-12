@@ -13,11 +13,12 @@ export function MaterialUIAuth() {
         "@refinedev/react-router": "latest",
         "@refinedev/mui": "latest",
         "react-router": "^7.0.2",
+        "@mui/utils": "^7.1.0",
         "@emotion/react": "^11.8.2",
         "@emotion/styled": "^11.8.1",
         "@mui/lab": "^6.0.0-beta.14",
         "@mui/material": "^6.1.7",
-        "@mui/system": "latest",
+        "@mui/system": "^6.4.11",
         "@mui/x-data-grid": "7.23.5",
       }}
       startRoute="/login"
