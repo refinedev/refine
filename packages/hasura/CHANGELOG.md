@@ -1,5 +1,41 @@
 # @refinedev/hasura
 
+## 6.6.13
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6783](https://github.com/refinedev/refine/pull/6783) [`cce3f5b749a174155d48932d99aabf24eb1f7558`](https://github.com/refinedev/refine/commit/cce3f5b749a174155d48932d99aabf24eb1f7558) Thanks [@thanaParis](https://github.com/thanaParis)! - meta.gqlVariables now passed to createMany query for Hasura data provider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6793](https://github.com/refinedev/refine/pull/6793) [`12977e97e68694b494112135df1234522056e1ef`](https://github.com/refinedev/refine/commit/12977e97e68694b494112135df1234522056e1ef) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - meta.gqlVariables now passed to deleteOne query for Hasura data provider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6776](https://github.com/refinedev/refine/pull/6776) [`27f626c06d2c10c4f4d41c1917dce24535bbafe5`](https://github.com/refinedev/refine/commit/27f626c06d2c10c4f4d41c1917dce24535bbafe5) Thanks [@thanaParis](https://github.com/thanaParis)! - meta.gqlVariables now passed to update query for Hasura data provider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6784](https://github.com/refinedev/refine/pull/6784) [`66ea5267d62674e35051d24dc7c6ab8f4e5f47ed`](https://github.com/refinedev/refine/commit/66ea5267d62674e35051d24dc7c6ab8f4e5f47ed) Thanks [@thanaParis](https://github.com/thanaParis)! - Hasura live provider now uses hasura-default as default naming convention
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6777](https://github.com/refinedev/refine/pull/6777) [`82ea31540ea8f89b104ec0c809fcb6370ccd6f9f`](https://github.com/refinedev/refine/commit/82ea31540ea8f89b104ec0c809fcb6370ccd6f9f) Thanks [@thanaParis](https://github.com/thanaParis)! - meta.gqlVariables now passed to create query for Hasura data provider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6793](https://github.com/refinedev/refine/pull/6793) [`12977e97e68694b494112135df1234522056e1ef`](https://github.com/refinedev/refine/commit/12977e97e68694b494112135df1234522056e1ef) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - meta.gqlVariables now passed to deleteMany query for Hasura data provider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6782](https://github.com/refinedev/refine/pull/6782) [`45e47b11bd062c1eafcfb6b156e9f9b1b35c25a6`](https://github.com/refinedev/refine/commit/45e47b11bd062c1eafcfb6b156e9f9b1b35c25a6) Thanks [@thanaParis](https://github.com/thanaParis)! - meta.gqlVariables now passed to updateMany query for Hasura data provider
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6779](https://github.com/refinedev/refine/pull/6779) [`272ac4f10972b29b67a9d48526f146d86ee23242`](https://github.com/refinedev/refine/commit/272ac4f10972b29b67a9d48526f146d86ee23242) Thanks [@thanaParis](https://github.com/thanaParis)! - meta.gqlVariables now passed to custom query for Hasura data provider
+
 ## 6.6.12
 
 ### Patch Changes
