@@ -587,7 +587,7 @@ module.exports = {
         "mini-bounce": "mini-bounce 3s ease-in-out infinite",
         "dot-waves": "dot-waves 2.5s linear infinite",
         "landing-packages-left": "landing-packages-left 65s linear infinite",
-        "landing-packages-right": "landing-packages-right 25s linear infinite",
+        "landing-packages-right": "landing-packages-right 65s linear infinite",
         "code-scroll": "code-scroll 25s linear infinite",
         "beam-spin": "beam-spin 3s linear 1 forwards",
         "landing-hero-beam-line":
@@ -801,8 +801,8 @@ module.exports = {
           "100%": { transform: "translateX(-50%)" },
         },
         "landing-packages-right": {
-          "0%": { transform: "translateX(-100%)" },
-          "100%": { transform: "translateX(0%)" },
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(50%)" },
         },
         "beam-spin": {
           "0%": {
