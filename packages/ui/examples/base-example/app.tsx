@@ -29,6 +29,9 @@ import {
 } from "lucide-react";
 import { HomePage } from "./routes/home";
 import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
+import CreatePost from "./routes/posts/create";
+import ShowPost from "./routes/posts/show";
+import EditPost from "./routes/posts/edit";
 
 export function BaseExample() {
   return (
@@ -129,6 +132,9 @@ export function BaseExample() {
           >
             <Route path="/" element={<HomePage />} />
             <Route path="/posts" element={<PostsListPage />} />
+            <Route path="/posts/create" element={<CreatePost />} />
+            <Route path="/posts/edit/:id" element={<EditPost />} />
+            <Route path="/posts/show/:id" element={<ShowPost />} />
             <Route path="/users" element={<UsersListPage />} />
             <Route path="/settings" element={<div>Settings List Page</div>} />
             <Route

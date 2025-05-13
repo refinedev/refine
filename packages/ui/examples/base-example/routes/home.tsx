@@ -20,9 +20,6 @@ export const HomePage = () => {
         <h2>Navigation Buttons</h2>
         <div className="flex flex-col items-start justify-start gap-6">
           <ListButton
-            onClick={() => {
-              console.log("list");
-            }}
             refineCoreProps={{
               resource: "posts",
             }}

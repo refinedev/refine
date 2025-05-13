@@ -1,0 +1,106 @@
+import { cn } from "@/lib/utils";
+import {
+  useBack,
+  useResource,
+  useResourceParams,
+  useUserFriendlyName,
+} from "@refinedev/core";
+import type { PropsWithChildren } from "react";
+import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
+import { Separator } from "@/registry/default/ui/separator";
+import { Button } from "@/registry/default/ui/button";
+import { RefreshButton } from "@/registry/default/refine-ui/buttons/refresh";
+import { ArrowLeftIcon } from "lucide-react";
+
+type ShowViewProps = PropsWithChildren<{
+  className?: string;
+}>;
+
+export function ShowView({ children, className }: ShowViewProps) {
+  return (
+    <div className={cn("flex flex-col", "gap-4", className)}>{children}</div>
+  );
+}
+
+type ShowViewHeaderProps = PropsWithChildren<{
+  resource?: string;
+  title?: string;
+  hideBreadcrumb?: boolean;
+  wrapperClassName?: string;
+  headerClassName?: string;
+}>;
+
+export const ShowViewHeader = ({
+  resource: resourceFromProps,
+  title: titleFromProps,
+  hideBreadcrumb,
+  wrapperClassName,
+  headerClassName,
+}: ShowViewHeaderProps) => {
+  const back = useBack();
+
+  const getUserFriendlyName = useUserFriendlyName();
+
+  const { resource, identifier } = useResource(resourceFromProps);
+  const { id: recordItemId } = useResourceParams();
+
+  const resourceName = resource?.name ?? identifier;
+
+  const title =
+    titleFromProps ??
+    getUserFriendlyName(
+      resource?.meta?.label ??
+        resource?.options?.label ??
+        resource?.label ??
+        identifier,
+      "singular",
+    );
+
+  return (
+    <div className={cn("flex flex-col", "gap-4", wrapperClassName)}>
+      {!hideBreadcrumb && (
+        <div className="flex items-center relative gap-2">
+          <div className="bg-background z-[2] pr-4">
+            <Breadcrumb />
+          </div>
+          <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+        </div>
+      )}
+      <div
+        className={cn(
+          "flex",
+          "gap-1",
+          "items-center",
+          "justify-between",
+          "-ml-2.5",
+          headerClassName,
+        )}
+      >
+        <div className="flex items-center gap-1">
+          <Button variant="ghost" size="icon" onClick={back}>
+            <ArrowLeftIcon className="h-4 w-4" />
+          </Button>
+          <h2 className="text-2xl font-bold">{title}</h2>
+        </div>
+
+        <div className="flex items-center gap-1">
+          <RefreshButton
+            variant="outline"
+            refineCoreProps={{
+              recordItemId,
+              resource: resourceName,
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export const ShowViewContent = (
+  props: PropsWithChildren<{
+    className?: string;
+  }>,
+) => {
+  return <div className={cn(props.className)}>{props.children}</div>;
+};

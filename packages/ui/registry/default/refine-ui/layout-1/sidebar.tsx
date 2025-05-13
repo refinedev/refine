@@ -46,7 +46,7 @@ export function Sidebar() {
           "flex",
           "flex-col",
           "gap-2",
-          "pt-6",
+          "pt-2",
           "pb-2",
           {
             "px-3": open,

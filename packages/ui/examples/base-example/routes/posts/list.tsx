@@ -8,7 +8,7 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
-import { MoreVertical, Trash, Pencil } from "lucide-react";
+import { MoreVertical, Trash, Pencil, Eye } from "lucide-react";
 import {
   DataTable,
   TableHeaderSorter,
@@ -17,7 +17,12 @@ import {
 } from "@/registry/default/refine-ui/table/data-table";
 import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
 import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
-import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
+import {
+  ListViewContent,
+  ListViewHeader,
+  ListView,
+} from "@/registry/default/refine-ui/views/list-view";
+import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
 
 export function PostsListPage() {
   const columns = useMemo<ColumnDef<Post>[]>(
@@ -132,6 +137,18 @@ export function PostsListPage() {
                 align="end"
                 className="flex flex-col gap-2 p-2"
               >
+                <ShowButton
+                  variant="ghost"
+                  size="sm"
+                  className="w-full items-center justify-start"
+                  refineCoreProps={{
+                    resource: "posts",
+                    recordItemId: post.id,
+                  }}
+                >
+                  <Eye className="h-4 w-4" />
+                  Show
+                </ShowButton>
                 <EditButton
                   variant="ghost"
                   size="sm"
@@ -175,9 +192,11 @@ export function PostsListPage() {
   });
 
   return (
-    <div className="flex flex-col gap-4">
-      <Breadcrumb />
-      <DataTable table={table} />
-    </div>
+    <ListView>
+      <ListViewHeader canCreate={true} />
+      <ListViewContent>
+        <DataTable table={table} />
+      </ListViewContent>
+    </ListView>
   );
 }

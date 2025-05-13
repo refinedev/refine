@@ -2,7 +2,8 @@ import { useRefreshButton } from "@refinedev/core";
 import type { VariantProps } from "class-variance-authority";
 import type { RefineRefreshButtonProps } from "@refinedev/ui-types";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
-import { Loader2 } from "lucide-react";
+import { RefreshCcw } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type RefreshButtonProps = {
   /**
@@ -18,7 +19,11 @@ export function RefreshButton({
   children,
   ...rest
 }: RefreshButtonProps) {
-  const { onClick, loading } = useRefreshButton({
+  const {
+    onClick: refresh,
+    loading,
+    label,
+  } = useRefreshButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
   });
@@ -32,13 +37,19 @@ export function RefreshButton({
           e.preventDefault();
           return;
         }
-        onClick();
+        refresh();
       }}
       {...rest}
       disabled={isDisabled}
     >
-      {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-      {children}
+      {children ?? (
+        <div className="flex items-center gap-2">
+          <RefreshCcw
+            className={cn(loading && "animate-spin", "h-4 w-4", rest.className)}
+          />
+          <span>{label ?? "Refresh"}</span>
+        </div>
+      )}
     </Button>
   );
 }

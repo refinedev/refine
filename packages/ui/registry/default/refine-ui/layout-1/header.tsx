@@ -21,6 +21,7 @@ export function Header() {
         "bg-sidebar",
         "pr-3",
         "justify-between",
+        "z-40",
       )}
     >
       <SidebarTrigger

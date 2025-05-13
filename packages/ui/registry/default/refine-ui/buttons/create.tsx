@@ -2,6 +2,7 @@ import { useCreateButton } from "@refinedev/core";
 import type { RefineCreateButtonProps } from "@refinedev/ui-types";
 import type { VariantProps } from "class-variance-authority";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Plus } from "lucide-react";
 
 type CreateButtonProps = {
   /**
@@ -21,7 +22,7 @@ export function CreateButton({
   onClick,
   ...rest
 }: CreateButtonProps) {
-  const { hidden, disabled, LinkComponent, to } =
+  const { hidden, disabled, LinkComponent, to, label } =
     useCreateButton(refineCoreProps);
 
   const isDisabled = disabled || rest.disabled;
@@ -45,7 +46,12 @@ export function CreateButton({
           }
         }}
       >
-        {children}
+        {children ?? (
+          <div className="flex items-center gap-2">
+            <Plus className="w-4 h-4" />
+            <span>{label ?? "Create"}</span>
+          </div>
+        )}
       </LinkComponent>
     </Button>
   );

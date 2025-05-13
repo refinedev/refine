@@ -15,6 +15,8 @@ export function Layout({ children }: PropsWithChildren) {
           <main
             className={cn(
               "@container/main",
+              "container",
+              "mx-auto",
               "relative",
               "w-full",
               "flex",

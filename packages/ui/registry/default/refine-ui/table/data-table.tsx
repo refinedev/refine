@@ -55,10 +55,10 @@ export function DataTable<TData extends BaseRecord>({
   const columns = getAllColumns();
 
   return (
-    <div className={cn("flex", "flex-col", "flex-1", "gap-4", "p-4")}>
+    <div className={cn("flex", "flex-col", "flex-1", "gap-4")}>
       <div className={cn("rounded-md", "border")}>
         <Table style={{ tableLayout: "fixed", width: "100%" }}>
-          <TableHeader className={cn("bg-muted")}>
+          <TableHeader>
             {getHeaderGroups().map((headerGroup) => (
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
@@ -394,7 +394,7 @@ export function getCommonStyles<TData>({
     right: isPinned === "right" ? `${column.getAfter("right")}px` : undefined,
     opacity: 1,
     position: isPinned ? "sticky" : "relative",
-    // background: isPinned ? "var(--background)" : "",
+    background: isPinned ? "var(--background)" : "",
     borderTopRightRadius: isPinned === "right" ? "var(--radius)" : undefined,
     borderBottomRightRadius: isPinned === "right" ? "var(--radius)" : undefined,
     borderTopLeftRadius: isPinned === "left" ? "var(--radius)" : undefined,
