@@ -2,6 +2,7 @@ import React from "react";
 
 import { useQuerySubscription } from "@refinedev/devtools-internal";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ErrorBoundary } from "@components/errorBoundary";
 
 import { ReadyPage as DefaultReadyPage, RouteChangeHandler } from "@components";
 import { Telemetry } from "@components/telemetry";
@@ -28,6 +29,8 @@ import { UnsavedWarnContextProvider } from "../../../contexts/unsavedWarn";
 
 import type { RefineProps } from "../../../contexts/refine/types";
 import { useRouterMisuseWarning } from "../../../hooks/router/use-router-misuse-warning/index";
+
+type RouterComponentType = React.ComponentType<{ children?: React.ReactNode }>;
 
 /**
  * {@link https://refine.dev/docs/api-reference/core/components/refine-config `<Refine> component`} is the entry point of a refine app.
@@ -61,7 +64,7 @@ export const Refine: React.FC<RefineProps> = ({
   OffLayoutArea,
   onLiveEvent,
   options,
-}) => {
+}: RefineProps) => {
   const {
     optionsWithDefaults,
     disableTelemetryWithDefault,
@@ -129,89 +132,96 @@ export const Refine: React.FC<RefineProps> = ({
    *
    */
   const { RouterComponent = React.Fragment } = !routerProvider
-    ? legacyRouterProvider ?? {}
+    ? (legacyRouterProvider ?? {}) as { RouterComponent?: RouterComponentType }
     : {};
   /** */
 
+  const handleError = React.useCallback((error: Error) => {
+    console.error("Refine Error:", error);
+    // You can add additional error handling logic here
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
-      <NotificationContextProvider {...notificationProviderContextValues}>
-        <LegacyAuthContextProvider
-          {...(legacyAuthProvider ?? {})}
-          isProvided={Boolean(legacyAuthProvider)}
-        >
-          <AuthBindingsContextProvider
-            {...(authProvider ?? {})}
-            isProvided={Boolean(authProvider)}
+      <ErrorBoundary onError={handleError}>
+        <NotificationContextProvider {...notificationProviderContextValues}>
+          <LegacyAuthContextProvider
+            {...(legacyAuthProvider ?? {})}
+            isProvided={Boolean(legacyAuthProvider)}
           >
-            <DataContextProvider dataProvider={dataProvider}>
-              <LiveContextProvider liveProvider={liveProvider}>
-                <RouterPickerProvider
-                  value={
-                    legacyRouterProvider && !routerProvider ? "legacy" : "new"
-                  }
-                >
-                  <RouterContextProvider router={routerProvider}>
-                    <LegacyRouterContextProvider {...legacyRouterProvider}>
-                      <ResourceContextProvider resources={resources ?? []}>
-                        <I18nContextProvider i18nProvider={i18nProvider}>
-                          <AccessControlContextProvider
-                            {...(accessControlProvider ?? {})}
-                          >
-                            <AuditLogContextProvider
-                              {...(auditLogProvider ?? {})}
+            <AuthBindingsContextProvider
+              {...(authProvider ?? {})}
+              isProvided={Boolean(authProvider)}
+            >
+              <DataContextProvider dataProvider={dataProvider}>
+                <LiveContextProvider liveProvider={liveProvider}>
+                  <RouterPickerProvider
+                    value={
+                      legacyRouterProvider && !routerProvider ? "legacy" : "new"
+                    }
+                  >
+                    <RouterContextProvider router={routerProvider}>
+                      <LegacyRouterContextProvider {...legacyRouterProvider}>
+                        <ResourceContextProvider resources={resources ?? []}>
+                          <I18nContextProvider i18nProvider={i18nProvider}>
+                            <AccessControlContextProvider
+                              {...(accessControlProvider ?? {})}
                             >
-                              <UndoableQueueContextProvider>
-                                <RefineContextProvider
-                                  mutationMode={
-                                    optionsWithDefaults.mutationMode
-                                  }
-                                  warnWhenUnsavedChanges={
-                                    optionsWithDefaults.warnWhenUnsavedChanges
-                                  }
-                                  syncWithLocation={
-                                    optionsWithDefaults.syncWithLocation
-                                  }
-                                  Title={Title}
-                                  undoableTimeout={
-                                    optionsWithDefaults.undoableTimeout
-                                  }
-                                  catchAll={catchAll}
-                                  DashboardPage={DashboardPage}
-                                  LoginPage={LoginPage}
-                                  Layout={Layout}
-                                  Sider={Sider}
-                                  Footer={Footer}
-                                  Header={Header}
-                                  OffLayoutArea={OffLayoutArea}
-                                  hasDashboard={!!DashboardPage}
-                                  liveMode={optionsWithDefaults.liveMode}
-                                  onLiveEvent={onLiveEvent}
-                                  options={optionsWithDefaults}
-                                >
-                                  <UnsavedWarnContextProvider>
-                                    <RouterComponent>
-                                      {children}
-                                      {!disableTelemetryWithDefault && (
-                                        <Telemetry />
-                                      )}
-                                      <RouteChangeHandler />
-                                    </RouterComponent>
-                                  </UnsavedWarnContextProvider>
-                                </RefineContextProvider>
-                              </UndoableQueueContextProvider>
-                            </AuditLogContextProvider>
-                          </AccessControlContextProvider>
-                        </I18nContextProvider>
-                      </ResourceContextProvider>
-                    </LegacyRouterContextProvider>
-                  </RouterContextProvider>
-                </RouterPickerProvider>
-              </LiveContextProvider>
-            </DataContextProvider>
-          </AuthBindingsContextProvider>
-        </LegacyAuthContextProvider>
-      </NotificationContextProvider>
+                              <AuditLogContextProvider
+                                {...(auditLogProvider ?? {})}
+                              >
+                                <UndoableQueueContextProvider>
+                                  <RefineContextProvider
+                                    mutationMode={
+                                      optionsWithDefaults.mutationMode
+                                    }
+                                    warnWhenUnsavedChanges={
+                                      optionsWithDefaults.warnWhenUnsavedChanges
+                                    }
+                                    syncWithLocation={
+                                      optionsWithDefaults.syncWithLocation
+                                    }
+                                    Title={Title}
+                                    undoableTimeout={
+                                      optionsWithDefaults.undoableTimeout
+                                    }
+                                    catchAll={catchAll}
+                                    DashboardPage={DashboardPage}
+                                    LoginPage={LoginPage}
+                                    Layout={Layout}
+                                    Sider={Sider}
+                                    Footer={Footer}
+                                    Header={Header}
+                                    OffLayoutArea={OffLayoutArea}
+                                    hasDashboard={!!DashboardPage}
+                                    liveMode={optionsWithDefaults.liveMode}
+                                    onLiveEvent={onLiveEvent}
+                                    options={optionsWithDefaults}
+                                  >
+                                    <UnsavedWarnContextProvider>
+                                      <RouterComponent>
+                                        {children}
+                                        {!disableTelemetryWithDefault && (
+                                          <Telemetry />
+                                        )}
+                                        <RouteChangeHandler />
+                                      </RouterComponent>
+                                    </UnsavedWarnContextProvider>
+                                  </RefineContextProvider>
+                                </UndoableQueueContextProvider>
+                              </AuditLogContextProvider>
+                            </AccessControlContextProvider>
+                          </I18nContextProvider>
+                        </ResourceContextProvider>
+                      </LegacyRouterContextProvider>
+                    </RouterContextProvider>
+                  </RouterPickerProvider>
+                </LiveContextProvider>
+              </DataContextProvider>
+            </AuthBindingsContextProvider>
+          </LegacyAuthContextProvider>
+        </NotificationContextProvider>
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 };

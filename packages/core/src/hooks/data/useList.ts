@@ -40,6 +40,8 @@ import {
   type UseLoadingOvertimeReturnType,
   useLoadingOvertime,
 } from "../useLoadingOvertime";
+import { useCacheConfig } from "./useCacheConfig";
+import type { QueryFunctionContext, QueryKey } from "@tanstack/react-query";
 
 export interface UseListConfig {
   pagination?: Pagination;
@@ -87,7 +89,7 @@ export type BaseListProps = {
   dataProviderName?: string;
 };
 
-export type UseListProps<TQueryFnData, TError, TData> = {
+export type UseListProps<TQueryFnData extends BaseRecord = BaseRecord, TError extends HttpError = HttpError, TData extends BaseRecord = TQueryFnData> = {
   /**
    * Resource name for API data interactions
    */
@@ -200,6 +202,8 @@ export const useList = <
 
   const { getList } = dataProvider(pickedDataProvider);
 
+  const { getCacheConfig } = useCacheConfig(resource?.name);
+
   useResourceSubscription({
     resource: identifier,
     types: ["*"],
@@ -249,7 +253,7 @@ export const useList = <
         }),
       })
       .get(preferLegacyKeys),
-    queryFn: (context) => {
+    queryFn: (context: QueryFunctionContext<QueryKey>) => {
       const meta = {
         ...combinedMeta,
         queryContext: prepareQueryContext(context),
@@ -265,12 +269,18 @@ export const useList = <
         metaData: meta,
       });
     },
-    ...queryOptions,
+    ...getCacheConfig({
+      staleTime: queryOptions?.staleTime,
+      cacheTime: queryOptions?.cacheTime,
+      refetchOnWindowFocus: typeof queryOptions?.refetchOnWindowFocus === 'boolean' ? queryOptions.refetchOnWindowFocus : undefined,
+      refetchOnMount: typeof queryOptions?.refetchOnMount === 'boolean' ? queryOptions.refetchOnMount : undefined,
+      refetchOnReconnect: typeof queryOptions?.refetchOnReconnect === 'boolean' ? queryOptions.refetchOnReconnect : undefined,
+    }),
     enabled:
       typeof queryOptions?.enabled !== "undefined"
         ? queryOptions?.enabled
         : !!resource?.name,
-    select: (rawData) => {
+    select: (rawData: GetListResponse<TQueryFnData>) => {
       let data = rawData;
 
       const { current, mode, pageSize } = prefferedPagination;
@@ -289,7 +299,7 @@ export const useList = <
 
       return data as unknown as GetListResponse<TData>;
     },
-    onSuccess: (data) => {
+    onSuccess: (data: GetListResponse<TData>) => {
       queryOptions?.onSuccess?.(data);
 
       const notificationConfig =
