@@ -1,4 +1,5 @@
 import React, { type ReactNode } from "react";
+import type { JSX } from "react";
 
 import type { QueryClient, QueryClientConfig } from "@tanstack/react-query";
 
@@ -62,6 +63,24 @@ export type TextTransformers = {
    */
   singular?: (word: string) => string;
 };
+
+export interface CacheConfig {
+  staleTime?: number;
+  cacheTime?: number;
+  refetchOnWindowFocus?: boolean;
+  refetchOnMount?: boolean;
+  refetchOnReconnect?: boolean;
+}
+
+export interface PerformanceMonitoring {
+  enabled: boolean;
+  onMetrics?: (metrics: {
+    componentName: string;
+    renderTime: number;
+    mountTime: number;
+    updateCount: number;
+  }) => void;
+}
 
 export interface IRefineOptions {
   breadcrumb?: ReactNode;
@@ -127,6 +146,10 @@ export interface IRefineContextOptions {
     icon?: React.ReactNode;
     text?: React.ReactNode;
   };
+  cacheConfig?: {
+    [key: string]: CacheConfig;
+  };
+  performanceMonitoring?: PerformanceMonitoring;
 }
 
 export interface IRefineContext {
