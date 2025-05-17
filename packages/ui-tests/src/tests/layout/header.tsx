@@ -3,7 +3,11 @@ import React from "react";
 import type { AuthProvider } from "@refinedev/core";
 import type { RefineLayoutHeaderProps } from "@refinedev/ui-types";
 
-import { render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  render,
+  TestWrapper as DefaultTestWrapper,
+} from "@test";
 
 const mockLegacyAuthProvider = {
   login: () => Promise.resolve(),
@@ -27,6 +31,9 @@ const mockAuthProvider: AuthProvider = {
 
 export const layoutHeaderTests = (
   HeaderElement: React.ComponentType<RefineLayoutHeaderProps>,
+  TestWrapper: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }> = DefaultTestWrapper,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Header Element", () => {
     // NOTE : Will be removed in v5

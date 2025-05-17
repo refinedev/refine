@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { CloneButtonProps } from "../types";
 
 /**
@@ -42,7 +41,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -65,11 +64,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
           disabled={isDisabled}
           title={title}
           aria-label={label}
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
+          variant={variant || "default"}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
           {...commonProps}
@@ -79,12 +74,12 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
       ) : (
         <Button
           disabled={isDisabled}
-          variant="default"
-          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          variant={variant || "default"}
+          leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

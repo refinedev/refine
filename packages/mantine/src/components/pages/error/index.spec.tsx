@@ -27,7 +27,7 @@ const TestWrapper = (props: ITestWrapperProps) =>
   });
 
 describe("ErrorComponent", () => {
-  pageErrorTests.bind(this)(ErrorComponent);
+  pageErrorTests.bind(this)(ErrorComponent, BaseTestWrapper);
 
   it("renders subtitle successfully", async () => {
     const { getByText } = render(<ErrorComponent />, {
