@@ -160,6 +160,7 @@ const siteConfig = {
           ],
         ]),
     "./plugins/clarity.js",
+    "./plugins/ahref.js",
     "./plugins/templates.js",
     "./plugins/example-redirects.js",
     "./plugins/tutorial-navigation.js",
