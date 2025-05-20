@@ -111,11 +111,11 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
         preload="auto"
       >
         <source
-          type="video/quicktime;"
+          type="video/quicktime"
           src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-bg-video.mov"
         />
         <source
-          type="video/mp4;"
+          type="video/mp4"
           src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-bg-video.mp4"
         />
       </video>
@@ -144,11 +144,11 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
         preload="auto"
       >
         <source
-          type="video/quicktime;"
+          type="video/quicktime"
           src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-logo-ball.mov"
         />
         <source
-          type="video/mp4;"
+          type="video/mp4"
           src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-logo-ball.mp4"
         />
       </video>
