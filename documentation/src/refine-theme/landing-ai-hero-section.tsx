@@ -155,6 +155,7 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
 
       <img
         src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-logo.png"
+        alt="Refine AI Banner Logo"
         className={clsx(
           "hidden",
           "landing-md:block",
