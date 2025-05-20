@@ -28,7 +28,7 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
             "text-2xl",
             "landing-sm:text-[32px]",
             "landing-sm:leading-10",
-            "tracking-[2%]",
+            "tracking-[-0.02em]",
             "text-gray-600",
           )}
         >
@@ -40,7 +40,7 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
             "leading-10",
             "landing-sm:text-[56px]",
             "landing-sm:leading-[72px]",
-            "tracking-[2%]",
+            "tracking-[-0.02em]",
             "font-bold",
             "text-gray-900",
           )}
