@@ -84,8 +84,6 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
           </a>
           <Link
             to="/ai"
-            target="_blank"
-            rel="noopener noreferrer"
             className={clsx("text-refine-indigo", "underline", "z-[4]")}
           >
             Learn more
