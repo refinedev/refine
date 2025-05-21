@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import React from "react";
+import Link from "@docusaurus/Link";
 
 export const LandingAiHeroSection = ({ className }: { className?: string }) => {
   return (
@@ -81,14 +82,14 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
           >
             Start for free!
           </a>
-          <a
-            href="/ai"
+          <Link
+            to="/ai"
             target="_blank"
             rel="noopener noreferrer"
             className={clsx("text-refine-indigo", "underline", "z-[4]")}
           >
             Learn more
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -110,10 +111,6 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
         controls={false}
         preload="auto"
       >
-        <source
-          type="video/quicktime"
-          src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-bg-video.mov"
-        />
         <source
           type="video/mp4"
           src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-bg-video.mp4"
@@ -143,10 +140,6 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
         controls={false}
         preload="auto"
       >
-        <source
-          type="video/quicktime"
-          src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-logo-ball.mov"
-        />
         <source
           type="video/mp4"
           src="https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-banner-logo-ball.mp4"
