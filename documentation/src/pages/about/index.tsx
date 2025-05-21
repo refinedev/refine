@@ -333,7 +333,7 @@ const OurTeam = () => {
     <div
       className={clsx(
         "not-prose",
-        "landing-sm:max-w-[656px] landing-md:max-w-[896px] landing-lg:max-w-[1200px]",
+        "landing-sm:max-w-[656px] landing-md:max-w-[896px]",
         "max-w-[514px]",
         "w-full mx-auto",
       )}
