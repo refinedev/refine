@@ -1,5 +1,5 @@
-import React from "react";
 import clsx from "clsx";
+import React from "react";
 
 export const LandingAiHeroSection = ({ className }: { className?: string }) => {
   return (
@@ -64,7 +64,7 @@ export const LandingAiHeroSection = ({ className }: { className?: string }) => {
           )}
         >
           <a
-            href="https://s.refine.dev/ai-join"
+            href="https://s.refine.dev/ai-banner"
             target="_blank"
             rel="noreferrer"
             className={clsx(
