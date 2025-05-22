@@ -79,7 +79,7 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
   UseLoadingOvertimeOptionsProps;
 
 /**
- * `useOne` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/guides/queries `useQuery`} used for retrieving single items from a `resource`.
+ * `useOne` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`} used for retrieving single items from a `resource`.
  *
  * It uses `getOne` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *
