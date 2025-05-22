@@ -2427,7 +2427,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.12
+        specifier: ^6.6.13
         version: link:../../packages/hasura
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -5508,7 +5508,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.12
+        specifier: ^6.6.13
         version: link:../../packages/hasura
       '@refinedev/inferencer':
         specifier: ^5.0.3
