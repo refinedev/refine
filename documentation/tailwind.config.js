@@ -176,7 +176,12 @@ module.exports = {
       backdropBlur: {
         "header-blur": "12px",
       },
+
       backgroundImage: {
+        "pricing-card-pro-dark":
+          "radial-gradient(100% 124.29% at 100% 0%, rgba(8, 126, 164, 0.5) 0%, rgba(35, 39, 47, 0) 50%) ,radial-gradient(100% 124.29% at 0% 100%, rgba(8, 126, 164, 0.25) 0%, rgba(35, 39, 47, 0) 50%)",
+        "pricing-card-pro-light":
+          "radial-gradient(146.45% 100% at 100% 100%, rgba(255, 255, 255, 0) 0%, rgba(88, 196, 220, 0.125) 50%, rgba(255, 255, 255, 0) 100%)",
         "landing-noise": [
           "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
         ],
@@ -973,6 +978,7 @@ module.exports = {
   },
   plugins: [
     require("@tailwindcss/typography"),
+    require("tailwindcss-animate"),
     plugin(({ addVariant }) => {
       addVariant("light", `[data-theme="light"] &`);
     }),

@@ -2,6 +2,7 @@ import { useColorMode } from "@docusaurus/theme-common";
 import clsx from "clsx";
 import React from "react";
 import { JoinWaitlist } from "./ai-landing-join-the-waitlist-cta";
+import BrowserOnly from "@docusaurus/BrowserOnly";
 
 export const AiLandingHero = ({
   className,
@@ -10,9 +11,6 @@ export const AiLandingHero = ({
   className?: string;
   contentClassName?: string;
 }) => {
-  const { colorMode } = useColorMode();
-  const isDarkTheme = colorMode === "dark";
-
   return (
     <div
       className={clsx(
@@ -70,9 +68,9 @@ export const AiLandingHero = ({
               "dark:text-refine-react-dark-green-alt dark:drop-shadow-[0_0_30px_rgba(38,217,127,0.55)]",
             )}
           >
-            AI Coding agents
+            Instant React Dashboards
           </div>
-          <div>for building internal software.</div>
+          <div>straight from your APIs.</div>
         </h2>
         <p
           className={clsx(
@@ -83,48 +81,57 @@ export const AiLandingHero = ({
             "max-w-[588px]",
           )}
         >
-          The next-gen approach to build enterprise-ready React-based internal
-          tools, admin panels, dashboards & B2B apps with the power of GenAI.
+          Powered by AI, secure by default and fully React. Export or deploy
+          whenever you’re ready.
         </p>
         <JoinWaitlist className={clsx("mt-6 landing-md:mt-12", "mx-0")} />
       </div>
-      <video
-        key={colorMode}
-        className={clsx(
-          "z-[2]",
-          "absolute",
-          "hidden",
-          "top-10",
-          "landing-md:block",
-          "landing-md:w-[278px]",
-          "landing-md:right-[150px]",
-          "landing-lg:right-0",
-          "landing-lg:w-[556px]",
-          "object-cover",
-        )}
-        autoPlay={true}
-        muted={true}
-        loop={true}
-        playsInline={true}
-        controls={false}
-      >
-        <source
-          type='video/mp4; codecs="hvc1"'
-          src={
-            isDarkTheme
-              ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.mov"
-              : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.mov"
-          }
-        />
-        <source
-          type="video/webm;"
-          src={
-            isDarkTheme
-              ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.webm"
-              : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.webm"
-          }
-        />
-      </video>
+      <BrowserOnly>{() => <Video />}</BrowserOnly>
     </div>
+  );
+};
+
+const Video = () => {
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === "dark";
+
+  return (
+    <video
+      key={colorMode}
+      className={clsx(
+        "z-[2]",
+        "absolute",
+        "hidden",
+        "top-10",
+        "landing-md:block",
+        "landing-md:w-[278px]",
+        "landing-md:right-[150px]",
+        "landing-lg:right-0",
+        "landing-lg:w-[556px]",
+        "object-cover",
+      )}
+      autoPlay={true}
+      muted={true}
+      loop={true}
+      playsInline={true}
+      controls={false}
+    >
+      <source
+        type='video/mp4; codecs="hvc1"'
+        src={
+          isDarkTheme
+            ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.mov"
+            : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.mov"
+        }
+      />
+      <source
+        type="video/webm;"
+        src={
+          isDarkTheme
+            ? "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-dark.webm"
+            : "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/ai-landing-page/ai-hero-video-light.webm"
+        }
+      />
+    </video>
   );
 };

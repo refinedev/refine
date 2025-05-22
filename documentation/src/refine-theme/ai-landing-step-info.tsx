@@ -22,7 +22,7 @@ export const AiLandingStepInfo = ({
         "landing-sm:flex-row",
         "gap-4",
         "landing-sm:gap-6",
-        "pl-4 landing-sm:pl-0",
+        "pl-4 landing-sm:pl-10",
         "w-full",
         "landing-lg:w-[548px]",
         "landing-sm:min-h-[220px]",
