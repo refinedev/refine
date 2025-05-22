@@ -155,7 +155,7 @@ const PricingCardStarter = () => {
 
       <div className={clsx("mt-4", "px-4")}>
         <a
-          href="https://s.refine.dev/ai-landing-pricing-card?utm_campaign=starter"
+          href="https://s.refine.dev/ai-landing-pricing-card-starter"
           target="_blank"
           rel="noreferrer"
           className={clsx("appearance-none", "no-underline")}
@@ -414,7 +414,7 @@ const PricingCardPro = () => {
 
       <div className={clsx("mt-4", "px-4")}>
         <a
-          href={`https://s.refine.dev/ai-landing-pricing-card?utm_campaign=${selectedTier?.planKey}`}
+          href={`https://s.refine.dev/ai-landing-pricing-card-${selectedTier?.planKey}`}
           target="_blank"
           rel="noreferrer"
           className={clsx("appearance-none", "no-underline")}
