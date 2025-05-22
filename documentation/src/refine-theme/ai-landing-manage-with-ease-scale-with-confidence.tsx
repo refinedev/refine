@@ -20,7 +20,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
           "landing-sm:leading-10",
           "tracking-tight",
           "text-start",
-          "pl-4 landing-sm:pl-0",
+          "pl-4 landing-sm:pl-10",
           "dark:text-gray-0 text-gray-900",
         )}
       >
@@ -42,9 +42,11 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
             "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.55)]",
           )}
         >
-          <span className="block landing-md:inline">confidence</span>
+          <span className="block landing-md:inline">
+            confidence
+            <span className={clsx("text-gray-900", "dark:text-white")}>.</span>
+          </span>
         </span>
-        <span>.</span>
       </h2>
 
       <div

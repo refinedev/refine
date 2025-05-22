@@ -19,23 +19,13 @@ type PricingCardProps = {
 export const AiPricingCards = ({ className }: PricingCardProps) => {
   return (
     <div className={className}>
-      <div
-        className={clsx(
-          "flex",
-          "items-center",
-          "justify-between",
-          "flex-wrap",
-          "gap-4",
-          "px-4",
-          "sm:px-10",
-        )}
-      >
+      <div className={clsx("not-prose")}>
         <h2
           className={clsx(
             "text-2xl",
             "font-semibold",
             "landing-sm:text-[32px] landing-sm:leading-[40px]",
-            "pl-4 landing-sm:pl-0",
+            "pl-4 landing-sm:pl-10",
           )}
         >
           <span>Select your plan and</span>{" "}
@@ -48,8 +38,8 @@ export const AiPricingCards = ({ className }: PricingCardProps) => {
             )}
           >
             get started
+            <span className={clsx("text-gray-900", "dark:text-white")}>.</span>
           </span>
-          <span>.</span>
         </h2>
       </div>
       <div
@@ -75,7 +65,9 @@ export const AiPricingCards = ({ className }: PricingCardProps) => {
             "hidden",
             "refine-sm:flex",
             "w-full",
-            "max-w-[436px]",
+            "max-w-[344px]",
+            "landing-sm:max-w-[420px]",
+            "landing-md:max-w-[436px]",
             "landing-lg:max-w-[384px]",
           )}
         />
@@ -104,7 +96,9 @@ const PricingCardStarter = () => {
         "py-10",
         "px-6",
         "w-full",
-        "max-w-[436px]",
+        "max-w-[344px]",
+        "landing-sm:max-w-[420px]",
+        "landing-md:max-w-[436px]",
         "landing-lg:max-w-[384px]",
         "border",
         "dark:border-[#343A46]",
@@ -320,7 +314,9 @@ const PricingCardPro = () => {
         "py-10",
         "px-6",
         "w-full",
-        "max-w-[436px]",
+        "max-w-[344px]",
+        "landing-sm:max-w-[420px]",
+        "landing-md:max-w-[436px]",
         "landing-lg:max-w-[384px]",
         "border",
         "dark:border-[#343A46]",
@@ -476,7 +472,9 @@ const PricingCardEnterprise = () => {
         "py-10",
         "px-6",
         "w-full",
-        "max-w-[436px]",
+        "max-w-[344px]",
+        "landing-sm:max-w-[420px]",
+        "landing-md:max-w-[436px]",
         "landing-lg:max-w-[384px]",
         "border",
         "dark:border-[#343A46]",
