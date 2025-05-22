@@ -26,8 +26,9 @@ export const StepList = ({ className }: { className?: string }) => {
             "dark:text-refine-react-dark-green-alt dark:drop-shadow-[0_0_30px_rgba(38,217,127,0.55)]",
           )}
         >
-          step by step.
+          step by step
         </span>
+        <span>.</span>
       </h2>
       <div
         className={clsx(

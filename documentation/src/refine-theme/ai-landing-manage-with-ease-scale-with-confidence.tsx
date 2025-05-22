@@ -44,6 +44,7 @@ export const AiLandingManageWithEaseScaleWithConfidence = ({
         >
           <span className="block landing-md:inline">confidence</span>
         </span>
+        <span>.</span>
       </h2>
 
       <div
