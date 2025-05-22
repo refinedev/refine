@@ -35,8 +35,8 @@ export const AiFaq = ({ className }: AiFaqProps) => {
 };
 
 type AccordionItemProps = {
-  question: string;
-  answer: string;
+  question: React.ReactNode;
+  answer: React.ReactNode;
 };
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer }) => {
@@ -149,8 +149,20 @@ const faqData = [
   },
   {
     question: "What happens when I downgrade?",
-    answer:
-      "Downgrades take effect at the start of your next billing cycle. You’ll remain on your current tier until then. Example: You’re on $40 / 3 K-tokens with 800 tokens left. You downgrade to $20 / 1.5 K-tokens. You can still use the remaining 800 tokens this month; on your next billing date your bucket resets to 1 500 tokens.",
+    answer: (
+      <div>
+        <p>
+          Downgrades take effect at the start of your next billing cycle. You’ll
+          remain on your current tier until then.
+        </p>
+        <p className={clsx("mt-1")}>
+          <span className={clsx("font-bold")}>Example:</span> You’re on $40 / 3
+          K-tokens with 800 tokens left. You downgrade to $20 / 1.5 K-tokens.
+          You can still use the remaining 800 tokens this month; on your next
+          billing date your bucket resets to 1 500 tokens.
+        </p>
+      </div>
+    ),
   },
   {
     question: "Will I lose unused credits when I change plans?",
