@@ -16,7 +16,7 @@ const data = [
       text: "Start for Free",
       href: "https://s.refine.dev/banner-join-waitlist?ref=banner-refine-ai-banner",
     },
-    bannerName: "banner-refine-ai-beta",
+    bannerName: "banner-refine-ai",
   },
   /*    {
         title: "Save developer hours!",
