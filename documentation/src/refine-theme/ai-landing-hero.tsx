@@ -68,9 +68,9 @@ export const AiLandingHero = ({
               "dark:text-refine-react-dark-green-alt dark:drop-shadow-[0_0_30px_rgba(38,217,127,0.55)]",
             )}
           >
-            AI Coding agents
+            Instant React Dashboards
           </div>
-          <div>for building internal software.</div>
+          <div>straight from your APIs.</div>
         </h2>
         <p
           className={clsx(
@@ -81,8 +81,8 @@ export const AiLandingHero = ({
             "max-w-[588px]",
           )}
         >
-          The next-gen approach to build enterprise-ready React-based internal
-          tools, admin panels, dashboards & B2B apps with the power of GenAI.
+          Powered by AI, secure by default and fully React. Export or deploy
+          whenever you’re ready.
         </p>
         <JoinWaitlist className={clsx("mt-6 landing-md:mt-12", "mx-0")} />
       </div>

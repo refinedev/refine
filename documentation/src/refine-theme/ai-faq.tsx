@@ -130,7 +130,7 @@ const faqData = [
   {
     question: "What are credits?",
     answer:
-      "Credits are the usage units you spend when generating code, previewing output, or using any other feature in Refine AI. Every paid plan includes a monthly credit allowance based on your tier.",
+      "Credits are the usage units you spend when generating code, previewing output, or using any other feature in Refine AI. Every paid plan refills a fixed number of credits at the start of each billing month.",
   },
   {
     question: "How many real tokens does one credit equal?",
@@ -140,32 +140,27 @@ const faqData = [
   {
     question: "What happens when I run out of credits?",
     answer:
-      "When your credits run out, you can continue working within your existing projects — but generating new outputs will pause until your next renewal. If you need to keep building right away, you can upgrade your plan at any time. Upgrades take effect immediately and reset your credit balance so you can pick up where you left off.",
+      "You can still view and edit the code you’ve already generated, but new AI actions pause until the next refill. Need to keep building right away? Upgrade your plan—credits and billing cycle refresh instantly.",
   },
   {
     question: "Can I upgrade my plan at any time?",
     answer:
-      "Yes — upgrades take effect immediately. You’ll receive additional credits right away, and your billing cycle will restart from the upgrade date. Your previous payment is prorated and credited automatically.",
+      "Yes — upgrades take effect immediately. You’ll receive additional credits right away.",
   },
   {
     question: "What happens when I downgrade?",
     answer:
-      "Downgrades take effect at the start of your next billing cycle. You’ll remain on your current tier until then.",
+      "Downgrades take effect at the start of your next billing cycle. You’ll remain on your current tier until then. Example: You’re on $40 / 3 K-tokens with 800 tokens left. You downgrade to $20 / 1.5 K-tokens. You can still use the remaining 800 tokens this month; on your next billing date your bucket resets to 1 500 tokens.",
   },
   {
     question: "Will I lose unused credits when I change plans?",
     answer:
-      "If you upgrade, any unused credits carry over but still expire at the end of your current billing cycle. If you downgrade, your new monthly credit limit will apply at the start of the next cycle.",
+      "If you upgrade, your balance is topped-up to the full allowance of the new plan right away. Example: You’re on the $20 / 1.5 K-token plan and have 600 tokens left. Mid-month you upgrade to $40 / 3 K-tokens. Your bucket is immediately refilled to 3 000 tokens for the rest of the current cycle.",
   },
   {
     question: "Do unused credits roll over month-to-month?",
     answer:
       "No — credits reset each month unless you’re on an Enterprise plan with a custom rollover agreement.",
-  },
-  {
-    question: "How does billing work when I upgrade mid-month?",
-    answer:
-      "We use prorated billing — you’ll only pay the difference for the time remaining in your current billing cycle. This is handled automatically through Stripe.",
   },
   {
     question: "Can I buy extra credits without upgrading?",
