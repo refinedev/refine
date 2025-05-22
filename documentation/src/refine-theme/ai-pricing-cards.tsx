@@ -160,7 +160,7 @@ const PricingCardStarter = () => {
             className={clsx(
               "mt-auto",
               "text-refine-react-light-green dark:text-refine-react-dark-green",
-              "bg-refine-react-light-green/10 dark:bg-refine-react-dark-green/20",
+              "bg-refine-react-dark-green/10 dark:bg-refine-react-dark-green/20",
             )}
           />
         </a>
@@ -572,7 +572,6 @@ const SubscribeButton = ({
         "rounded-lg",
         "py-3",
         "font-medium",
-        "text-white",
         "transition-colors",
         className,
       )}
