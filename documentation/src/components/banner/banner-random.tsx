@@ -13,7 +13,7 @@ const data = [
       href: "https://s.refine.dev/banner-with-image?ref=refine-ai-banner",
     },
     button: {
-      text: "Start for Free",
+      text: "Start for free",
       href: "https://s.refine.dev/banner-join-waitlist?ref=banner-refine-ai-banner",
     },
     bannerName: "banner-refine-ai",
