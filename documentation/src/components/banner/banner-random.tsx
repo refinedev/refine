@@ -8,6 +8,20 @@ const data = [
     description:
       "The next-gen approach to build enterprise-ready React-based internal tools, admin panels, dashboards & B2B apps with the power of GenAI.",
     image: {
+      src: "https://refine.ams3.cdn.digitaloceanspaces.com/blog-banners/refine-ai-banner-wide.png",
+      alt: "Refine AI Image",
+      href: "https://s.refine.dev/banner-with-image?ref=refine-ai-banner",
+    },
+    button: {
+      text: "Start for Free",
+      href: "https://s.refine.dev/banner-join-waitlist?ref=banner-refine-ai-banner",
+    },
+    bannerName: "banner-refine-ai-beta",
+  },
+  /*   {
+    description:
+      "The next-gen approach to build enterprise-ready React-based internal tools, admin panels, dashboards & B2B apps with the power of GenAI.",
+    image: {
       src: "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/banners/banner-refine-ai.png",
       alt: "Refine AI Image",
       href: "https://s.refine.dev/banner-with-image?ref=refine-ai-banner",
@@ -16,8 +30,8 @@ const data = [
       text: "Join the waitlist",
       href: "https://s.refine.dev/banner-join-waitlist?ref=banner-refine-ai-banner",
     },
-    bannerName: "banner-refine-ai",
-  },
+    bannerName: "banner-refine-ai-beta",
+  }, */
   /*    {
         title: "Save developer hours!",
         description:
