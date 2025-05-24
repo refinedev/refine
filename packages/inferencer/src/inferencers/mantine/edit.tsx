@@ -1,7 +1,12 @@
-import { Edit, useForm, useSelect } from "@refinedev/mantine";
 import {
+  Edit,
+  useForm,
+  useSelect,
+  useMultiSelect,
   MultiSelect,
   Select,
+} from "@refinedev/mantine";
+import {
   TextInput,
   Group,
   Checkbox,
@@ -53,6 +58,7 @@ export const renderer = ({
   const imports: Array<
     [element: string, module: string, isDefaultImport?: boolean]
   > = [
+    ["React", "react", true],
     ["Edit", "@refinedev/mantine"],
     ["useForm", "@refinedev/mantine"],
   ];
@@ -76,7 +82,11 @@ export const renderer = ({
     .filter(Boolean)
     .map((field) => {
       if (field?.relation && !field.fieldable && field.resource) {
-        imports.push(["useSelect", "@refinedev/mantine"]);
+        if (field.multiple) {
+          imports.push(["useMultiSelect", "@refinedev/mantine"]);
+        } else {
+          imports.push(["useSelect", "@refinedev/mantine"]);
+        }
 
         let val = accessor(recordName, field.key, field.accessor, false);
 
@@ -104,7 +114,7 @@ export const renderer = ({
                   field.key,
                   "SelectProps",
                 )} } =
-                useSelect({
+                ${field.multiple ? "useMultiSelect" : "useSelect"}({
                     resource: "${field.resource.name}",
                     defaultValue: ${val},
                     ${getOptionLabel(field)}
@@ -140,7 +150,7 @@ export const renderer = ({
       const variableName = getVariableName(field.key, "SelectProps");
 
       if (field.multiple) {
-        imports.push(["MultiSelect", "@mantine/core"]);
+        imports.push(["MultiSelect", "@refinedev/mantine"]);
 
         return jsx`
                     <MultiSelect mt="sm" label=${translatePrettyString({
@@ -150,11 +160,11 @@ export const renderer = ({
                     })} {...getInputProps("${dotAccessor(
                       field.key,
                       undefined,
-                    )}")} {...${variableName}} filterDataOnExactSearchMatch={undefined} />
+                    )}")} {...${variableName}} />
                 `;
       }
 
-      imports.push(["Select", "@mantine/core"]);
+      imports.push(["Select", "@refinedev/mantine"]);
 
       return jsx`
                 <Select mt="sm" label=${translatePrettyString({
@@ -191,7 +201,7 @@ export const renderer = ({
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
         return `
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                         <TextInput mt="sm" key={index} label=${translatePrettyString(
                           {
@@ -225,10 +235,10 @@ export const renderer = ({
   const imageFields = (field: InferField) => {
     if (field.type === "image") {
       return jsx`
-            {/* 
+            {/*
                 Dropzone component is not included in "@refinedev/mantine" package.
                 To use a <Dropzone> component, you can follow the official documentation for Mantine.
-                
+
                 Docs: https://mantine.dev/others/dropzone/
             */}
             `;
@@ -251,7 +261,7 @@ export const renderer = ({
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
         return `
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                         <Checkbox mt="sm" key={index} label=${translatePrettyString(
                           {
@@ -285,10 +295,10 @@ export const renderer = ({
       const textInputRender = textFields(field);
 
       return `
-                {/* 
+                {/*
                     DatePicker component is not included in "@refinedev/mantine" package.
                     To use a <DatePicker> component, you can follow the official documentation for Mantine.
-                    
+
                     Docs: https://mantine.dev/dates/date-picker/
                 */}
                 ${textInputRender}
@@ -312,7 +322,7 @@ export const renderer = ({
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
         return `
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                         <Textarea mt="sm" key={index} label=${translatePrettyString(
                           {
@@ -357,7 +367,7 @@ export const renderer = ({
         const val = dotAccessor(field.key, "${index}", field.accessor);
 
         return `
-                <Group spacing="xs">
+                <Group gap="xs">
                     {${accessor(recordName, field.key)}?.map((item: any, index: number) => (
                         <NumberInput mt="sm" key={index} label=${translatePrettyString(
                           {
@@ -426,7 +436,7 @@ export const renderer = ({
 
   return jsx`
     ${printImports(imports)}
-    
+
     export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { getInputProps, saveButtonProps, setFieldValue, refineCore: { query } } = useForm({
@@ -441,7 +451,7 @@ export const renderer = ({
                           resource?.identifier ?? resource?.name,
                           meta,
                           ["update", "getOne"],
-                        )}  
+                        )}
                     }`
                 : getMetaProps(resource?.identifier ?? resource?.name, meta, [
                       "update",
@@ -476,13 +486,22 @@ export const renderer = ({
 export const EditInferencer: InferencerResultComponent = createInferencer({
   type: "edit",
   additionalScope: [
-    ["@refinedev/mantine", "RefineMantine", { Edit, useForm, useSelect }],
+    [
+      "@refinedev/mantine",
+      "RefineMantine",
+      {
+        Edit,
+        useForm,
+        useSelect,
+        useMultiSelect,
+        MultiSelect,
+        Select,
+      },
+    ],
     [
       "@mantine/core",
       "MantineCore",
       {
-        MultiSelect,
-        Select,
         TextInput,
         Group,
         Checkbox,

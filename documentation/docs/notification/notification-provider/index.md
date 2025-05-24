@@ -117,15 +117,15 @@ return (
 
 ```tsx
 import { useNotificationProvider } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 
 return (
-  <NotificationsProvider position="top-right">
+  <Notifications position="top-right">
     <Refine
       //...
       notificationProvider={useNotificationProvider}
     />
-  </NotificationsProvider>
+  </Notifications>
 );
 ```
 

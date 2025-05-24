@@ -87,11 +87,7 @@ export const Show: React.FC<ShowProps> = (props) => {
       : breadcrumbFromProps;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const hasList = resource?.list && !recordItemId;
   const isDeleteButtonVisible =
@@ -110,7 +106,7 @@ export const Show: React.FC<ShowProps> = (props) => {
   const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
     ? {
         ...(isLoading ? { disabled: true } : {}),
-        color: "primary",
+        color: undefined,
         variant: "filled",
         resource: routerType === "legacy" ? resource?.route : identifier,
         recordItemId: id,
@@ -151,8 +147,9 @@ export const Show: React.FC<ShowProps> = (props) => {
   );
 
   const buttonBack =
-    goBackFromProps === (false || null) ? null : (
+    goBackFromProps === false || goBackFromProps === null ? null : (
       <ActionIcon
+        variant="subtle"
         onClick={
           action !== "list" && typeof action !== "undefined"
             ? routerType === "legacy"
@@ -190,17 +187,13 @@ export const Show: React.FC<ShowProps> = (props) => {
   return (
     <Card p="md" {...wrapperProps}>
       <LoadingOverlay visible={loadingOverlayVisible} />
-      <Group position="apart" align="center" {...headerProps}>
-        <Stack spacing="xs">
+      <Group justify="space-between" align="center" {...headerProps}>
+        <Stack gap="xs">
           {breadcrumbComponent}
-          <Group spacing="xs">
+          <Group gap="xs">
             {buttonBack}
             {title ?? (
-              <Title
-                order={3}
-                transform="capitalize"
-                className={RefinePageHeaderClassNames.Title}
-              >
+              <Title order={3} className={RefinePageHeaderClassNames.Title}>
                 {translate(
                   `${identifier}.titles.show`,
                   `Show ${getUserFriendlyName(
@@ -215,14 +208,12 @@ export const Show: React.FC<ShowProps> = (props) => {
             )}
           </Group>
         </Stack>
-        <Group spacing="xs" {...headerButtonProps}>
-          {headerButtons}
-        </Group>
+        <Group {...headerButtonProps}>{headerButtons}</Group>
       </Group>
       <Box pt="sm" {...contentProps}>
         {children}
       </Box>
-      <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+      <Group mt="md" {...footerButtonProps}>
         {footerButtons}
       </Group>
     </Card>

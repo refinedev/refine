@@ -1,10 +1,14 @@
 import React, { type ReactChild } from "react";
 import type { RefineFieldNumberProps } from "@refinedev/ui-types";
 
-import { render } from "@test";
+import type { ITestWrapperProps } from "@test";
+import { render } from "@testing-library/react";
 
 export const fieldNumberTests = (
   NumberField: React.ComponentType<RefineFieldNumberProps<ReactChild, any>>,
+  TestWrapper?: (
+    props: ITestWrapperProps,
+  ) => React.FC<{ children?: React.ReactNode }>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Number Field", () => {
     it("renders numbers with given formatting", () => {
@@ -19,6 +23,7 @@ export const fieldNumberTests = (
 
       const { getByText } = render(
         <NumberField value={testPrice} locale={locale} options={options} />,
+        { wrapper: TestWrapper?.({}) },
       );
 
       const formattedTestPrice = testPrice
@@ -30,13 +35,17 @@ export const fieldNumberTests = (
     });
 
     it("should render NaN when value is undefined", () => {
-      const { getByText } = render(<NumberField value={undefined} />);
+      const { getByText } = render(<NumberField value={undefined} />, {
+        wrapper: TestWrapper?.({}),
+      });
 
       getByText("NaN");
     });
 
     it("should render NaN when value is string", () => {
-      const { getByText } = render(<NumberField value={"not a number"} />);
+      const { getByText } = render(<NumberField value={"not a number"} />, {
+        wrapper: TestWrapper?.({}),
+      });
 
       getByText("NaN");
     });

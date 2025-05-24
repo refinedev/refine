@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { ShowButtonProps } from "../types";
 
 /**
@@ -36,7 +35,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     meta,
   });
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   const isDisabled = disabled || rest.disabled;
   const isHidden = hidden || rest.hidden;
@@ -61,11 +60,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
+          variant={variant || "default"}
           disabled={isDisabled}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
@@ -76,13 +71,13 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "default"}
           disabled={isDisabled}
-          leftIcon={<IconEye size={18} {...svgIconProps} />}
+          leftSection={<IconEye size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>
