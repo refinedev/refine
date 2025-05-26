@@ -8,6 +8,8 @@ import { AiLandingManageWithEaseScaleWithConfidence } from "@site/src/refine-the
 import { JoinWaitlist } from "@site/src/refine-theme/ai-landing-join-the-waitlist-cta";
 import { AiLandingHero } from "@site/src/refine-theme/ai-landing-hero";
 import { StepList } from "@site/src/refine-theme/ai-landing-step-list";
+import { AiPricingCards } from "@site/src/refine-theme/ai-pricing-cards";
+import { AiFaq } from "@site/src/refine-theme/ai-faq";
 
 const title = "Refine AI";
 
@@ -47,7 +49,8 @@ const RefineAIPage = () => {
             <StepList className="mt-14" />
             <JoinWaitlist className="mt-16" />
             <AiLandingManageWithEaseScaleWithConfidence className="mt-8 landing-sm:mt-20" />
-            <JoinWaitlist className="mt-16" />
+            <AiPricingCards className="mt-28" />
+            <AiFaq className="mt-12" />
           </div>
 
           <div className="mt-auto">
