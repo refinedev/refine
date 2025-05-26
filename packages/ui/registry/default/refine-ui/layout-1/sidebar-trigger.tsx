@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/default/ui/button";
 import { useSidebar } from "@/registry/default/ui/sidebar";
@@ -37,3 +39,5 @@ export function SidebarTrigger({
     </Button>
   );
 }
+
+SidebarTrigger.displayName = "SidebarTrigger";

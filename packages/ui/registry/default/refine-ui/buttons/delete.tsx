@@ -1,14 +1,19 @@
-import { useDeleteButton } from "@refinedev/core";
+"use client";
+
+import React from "react";
+
 import type { VariantProps } from "class-variance-authority";
 import type { RefineDeleteButtonProps } from "@refinedev/ui-types";
+import { useDeleteButton } from "@refinedev/core";
+
+import { Loader2 } from "lucide-react";
+
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/registry/default/ui/popover";
-import React from "react";
-import { Loader2 } from "lucide-react";
 
 type DeleteButtonProps = {
   /**
@@ -85,3 +90,5 @@ export function DeleteButton({
     </Popover>
   );
 }
+
+DeleteButton.displayName = "DeleteButton";

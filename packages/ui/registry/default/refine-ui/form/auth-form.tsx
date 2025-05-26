@@ -1,4 +1,9 @@
+"use client";
+
 import { useState } from "react";
+
+import { CircleHelp } from "lucide-react";
+
 import { useLogin, useRefineOptions, useLink } from "@refinedev/core";
 import { Button } from "@/registry/default/ui/button";
 import { Input } from "@/registry/default/ui/input";
@@ -14,7 +19,6 @@ import {
 } from "@/registry/default/ui/card";
 import { Separator } from "@/registry/default/ui/separator";
 import { InputPassword } from "@/registry/default/refine-ui/form/input-password";
-import { CircleHelp } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export const AuthForm = () => {
@@ -209,3 +213,5 @@ export const AuthForm = () => {
     </>
   );
 };
+
+AuthForm.displayName = "AuthForm";

@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import type { Post } from "@/examples/base-example/types/resources";
+import { useMany } from "@refinedev/core";
 import { Button } from "@/registry/default/ui/button";
 import {
   DropdownMenu,
@@ -47,24 +48,6 @@ export function PostsListPage() {
         },
       },
       {
-        id: "image",
-        header: "Image",
-        accessorKey: "image",
-        size: 100,
-        cell: ({ row }) => {
-          const imageUrl = row.original.image?.[0]?.url;
-          return imageUrl ? (
-            <img
-              src={imageUrl}
-              alt={row.original.title}
-              className="h-10 w-10 object-cover"
-            />
-          ) : (
-            "No Image"
-          );
-        },
-      },
-      {
         id: "title",
         accessorKey: "title",
         size: 300,
@@ -92,6 +75,21 @@ export function PostsListPage() {
         size: 400,
         enableSorting: false,
         enableColumnFilter: false,
+      },
+      {
+        id: "category",
+        header: "Category",
+        accessorKey: "category.id",
+        size: 200,
+        cell: ({ getValue, table }) => {
+          const meta = table.options.meta as {
+            categoriesData?: { data?: Array<{ id: number; title: string }> };
+          };
+          const category = meta?.categoriesData?.data?.find(
+            (item) => item.id === getValue(),
+          );
+          return category?.title || "-";
+        },
       },
       {
         id: "status",
@@ -190,6 +188,26 @@ export function PostsListPage() {
       },
     },
   });
+
+  const posts = table.options.data as Post[] | undefined;
+  const categoryIds =
+    posts?.map((item) => item.category?.id).filter(Boolean) ?? [];
+
+  const { data: categoriesData } = useMany({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
+
+  table.setOptions((prev) => ({
+    ...prev,
+    meta: {
+      ...prev.meta,
+      categoriesData,
+    },
+  }));
 
   return (
     <ListView>

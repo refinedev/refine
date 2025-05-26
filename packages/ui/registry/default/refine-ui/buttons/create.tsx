@@ -1,8 +1,12 @@
-import { useCreateButton } from "@refinedev/core";
+"use client";
+
 import type { RefineCreateButtonProps } from "@refinedev/ui-types";
 import type { VariantProps } from "class-variance-authority";
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { useCreateButton } from "@refinedev/core";
+
 import { Plus } from "lucide-react";
+
+import { Button, type buttonVariants } from "@/registry/default/ui/button";
 
 type CreateButtonProps = {
   /**
@@ -56,3 +60,5 @@ export function CreateButton({
     </Button>
   );
 }
+
+CreateButton.displayName = "CreateButton";

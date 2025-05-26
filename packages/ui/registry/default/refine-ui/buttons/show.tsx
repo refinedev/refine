@@ -1,6 +1,8 @@
-import { useShowButton } from "@refinedev/core";
+"use client";
+
 import type { VariantProps } from "class-variance-authority";
 import type { RefineShowButtonProps } from "@refinedev/ui-types";
+import { useShowButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
 
 type ShowButtonProps = {
@@ -52,3 +54,5 @@ export function ShowButton({
     </Button>
   );
 }
+
+ShowButton.displayName = "ShowButton";

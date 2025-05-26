@@ -1,4 +1,7 @@
+"use client";
+
 import { Fragment, useMemo } from "react";
+import { Home } from "lucide-react";
 import {
   matchResourceFromRoute,
   useBreadcrumb,
@@ -11,10 +14,7 @@ import {
   BreadcrumbList as ShadcnBreadcrumbList,
   BreadcrumbPage as ShadcnBreadcrumbPage,
   Breadcrumb as ShadcnBreadcrumb,
-  BreadcrumbLink as ShadcnBreadcrumbLink,
-  BreadcrumbPage,
 } from "@/registry/default/ui/breadcrumb";
-import { Home } from "lucide-react";
 
 export function Breadcrumb() {
   const Link = useLink();
@@ -77,3 +77,5 @@ export function Breadcrumb() {
     </ShadcnBreadcrumb>
   );
 }
+
+Breadcrumb.displayName = "Breadcrumb";

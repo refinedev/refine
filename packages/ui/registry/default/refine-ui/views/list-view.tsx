@@ -1,9 +1,12 @@
-import { cn } from "@/lib/utils";
-import { useResource, useUserFriendlyName } from "@refinedev/core";
+"use client";
+
 import type { PropsWithChildren } from "react";
+
+import { useResource, useUserFriendlyName } from "@refinedev/core";
 import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
 import { Separator } from "@/registry/default/ui/separator";
 import { CreateButton } from "@/registry/default/refine-ui/buttons/create";
+import { cn } from "@/lib/utils";
 
 type ListViewProps = PropsWithChildren<{
   className?: string;
@@ -78,3 +81,6 @@ export const ListViewContent = (
 ) => {
   return <div className={cn(props.className)}>{props.children}</div>;
 };
+
+ListView.displayName = "ListView";
+ListViewContent.displayName = "ListViewContent";

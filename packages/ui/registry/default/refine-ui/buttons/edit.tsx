@@ -1,6 +1,8 @@
-import { useEditButton } from "@refinedev/core";
+"use client";
+
 import type { VariantProps } from "class-variance-authority";
 import type { RefineEditButtonProps } from "@refinedev/ui-types";
+import { useEditButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
 
 type EditButtonProps = {
@@ -52,3 +54,5 @@ export function EditButton({
     </Button>
   );
 }
+
+EditButton.displayName = "EditButton";

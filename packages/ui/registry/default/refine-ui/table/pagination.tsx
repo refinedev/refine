@@ -1,3 +1,12 @@
+"use client";
+
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from "lucide-react";
+
 import {
   Select,
   SelectContent,
@@ -6,12 +15,6 @@ import {
   SelectValue,
 } from "@/registry/default/ui/select";
 import { Button } from "@/registry/default/ui/button";
-import {
-  ChevronLeft,
-  ChevronRight,
-  ChevronsLeft,
-  ChevronsRight,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type DataTablePaginationProps = {
@@ -127,3 +130,5 @@ export function DataTablePagination({
     </div>
   );
 }
+
+DataTablePagination.displayName = "DataTablePagination";

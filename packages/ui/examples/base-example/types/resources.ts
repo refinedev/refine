@@ -25,6 +25,11 @@ export type Post = {
   language: number;
 };
 
+export type Category = {
+  id: number;
+  title: string;
+};
+
 export type User = {
   id: number;
   firstName: string;

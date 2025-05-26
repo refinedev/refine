@@ -1,3 +1,5 @@
+"use client";
+
 import { useSidebar } from "@/registry/default/ui/sidebar";
 import { SidebarTrigger } from "@/registry/default/refine-ui/layout-1/sidebar-trigger";
 import { ThemeToggle } from "@/registry/default/refine-ui/theme/theme-toggle";
@@ -39,3 +41,5 @@ export function Header() {
     </header>
   );
 }
+
+Header.displayName = "Header";

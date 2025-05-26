@@ -1,10 +1,21 @@
+"use client";
+
+import { useState } from "react";
 import type { HttpError, BaseRecord } from "@refinedev/core";
 import type { UseTableReturnType } from "@refinedev/react-table";
-import { flexRender } from "@tanstack/react-table";
-import { cn } from "@/lib/utils";
 import type { Column } from "@tanstack/react-table";
+import { flexRender } from "@tanstack/react-table";
+
+import {
+  ArrowUp,
+  ArrowDown,
+  ArrowUpDown,
+  Filter,
+  Check,
+  Loader2,
+} from "lucide-react";
+
 import { Button } from "@/registry/default/ui/button";
-import { ArrowUp, ArrowDown, ArrowUpDown, Filter, Check } from "lucide-react";
 import {
   Table,
   TableBody,
@@ -20,7 +31,6 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/registry/default/ui/popover";
-import { useState } from "react";
 import {
   Command,
   CommandEmpty,
@@ -30,6 +40,7 @@ import {
   CommandList,
 } from "@/registry/default/ui/command";
 import { Separator } from "@/registry/default/ui/separator";
+import { cn } from "@/lib/utils";
 
 type DataTableProps<TData extends BaseRecord> = {
   table: UseTableReturnType<TData, HttpError>;
@@ -53,6 +64,8 @@ export function DataTable<TData extends BaseRecord>({
   } = table;
 
   const columns = getAllColumns();
+  const leafColumns = table.getAllLeafColumns();
+  const isLoading = tableQuery.isLoading;
 
   return (
     <div className={cn("flex", "flex-col", "flex-1", "gap-4")}>
@@ -85,16 +98,50 @@ export function DataTable<TData extends BaseRecord>({
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
-            {tableQuery.isLoading ? (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className={cn("h-24", "text-center")}
-                >
-                  Loading...
-                </TableCell>
-              </TableRow>
+          <TableBody className="relative">
+            {isLoading ? (
+              <>
+                {Array.from({ length: pageSize < 1 ? 1 : pageSize }).map(
+                  (_, rowIndex) => (
+                    <TableRow
+                      key={`skeleton-row-${rowIndex}`}
+                      aria-hidden="true"
+                    >
+                      {leafColumns.map((column) => (
+                        <TableCell
+                          key={`skeleton-cell-${rowIndex}-${column.id}`}
+                          style={{
+                            ...getCommonStyles({ column }),
+                          }}
+                          className={cn("truncate")}
+                        >
+                          <div className="h-8" />
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  ),
+                )}
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className={cn("absolute", "inset-0", "pointer-events-none")}
+                  >
+                    <Loader2
+                      className={cn(
+                        "absolute",
+                        "top-1/2",
+                        "left-1/2",
+                        "animate-spin",
+                        "text-primary",
+                        "h-8",
+                        "w-8",
+                        "-translate-x-1/2",
+                        "-translate-y-1/2",
+                      )}
+                    />
+                  </TableCell>
+                </TableRow>
+              </>
             ) : getRowModel().rows?.length ? (
               getRowModel().rows.map((row) => (
                 <TableRow
@@ -108,12 +155,13 @@ export function DataTable<TData extends BaseRecord>({
                         style={{
                           ...getCommonStyles({ column: cell.column }),
                         }}
-                        className={cn("truncate")}
                       >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
+                        <div className="h-8 truncate">
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext(),
+                          )}
+                        </div>
                       </TableCell>
                     );
                   })}
@@ -403,3 +451,9 @@ export function getCommonStyles<TData>({
     zIndex: isPinned ? 1 : 0,
   };
 }
+
+DataTable.displayName = "DataTable";
+TableHeaderSorter.displayName = "TableHeaderSorter";
+TableHeaderFilterDropdown.displayName = "TableHeaderFilterDropdown";
+TableHeaderFilterDropdownText.displayName = "TableHeaderFilterDropdownText";
+TableHeaderFilterCombobox.displayName = "TableHeaderFilterCombobox";

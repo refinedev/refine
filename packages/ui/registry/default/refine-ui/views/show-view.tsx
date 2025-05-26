@@ -1,16 +1,19 @@
-import { cn } from "@/lib/utils";
+"use client";
+
+import type { PropsWithChildren } from "react";
+
+import { ArrowLeftIcon } from "lucide-react";
 import {
   useBack,
   useResource,
   useResourceParams,
   useUserFriendlyName,
 } from "@refinedev/core";
-import type { PropsWithChildren } from "react";
 import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
 import { Separator } from "@/registry/default/ui/separator";
 import { Button } from "@/registry/default/ui/button";
 import { RefreshButton } from "@/registry/default/refine-ui/buttons/refresh";
-import { ArrowLeftIcon } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 type ShowViewProps = PropsWithChildren<{
   className?: string;
@@ -97,10 +100,4 @@ export const ShowViewHeader = ({
   );
 };
 
-export const ShowViewContent = (
-  props: PropsWithChildren<{
-    className?: string;
-  }>,
-) => {
-  return <div className={cn(props.className)}>{props.children}</div>;
-};
+ShowView.displayName = "ShowView";

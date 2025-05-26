@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import {
   useBack,
@@ -97,10 +99,4 @@ export const EditViewHeader = ({
   );
 };
 
-export const EditViewContent = (
-  props: PropsWithChildren<{
-    className?: string;
-  }>,
-) => {
-  return <div className={cn(props.className)}>{props.children}</div>;
-};
+EditView.displayName = "EditView";

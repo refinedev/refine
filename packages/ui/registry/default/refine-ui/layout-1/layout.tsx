@@ -1,3 +1,5 @@
+"use client";
+
 import type { PropsWithChildren } from "react";
 import { SidebarProvider, SidebarInset } from "@/registry/default/ui/sidebar";
 import { Sidebar } from "@/registry/default/refine-ui/layout-1/sidebar";
@@ -34,3 +36,5 @@ export function Layout({ children }: PropsWithChildren) {
     </ThemeProvider>
   );
 }
+
+Layout.displayName = "Layout";

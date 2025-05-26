@@ -1,6 +1,8 @@
-import { useCloneButton } from "@refinedev/core";
+"use client";
+
 import type { VariantProps } from "class-variance-authority";
 import type { RefineCloneButtonProps } from "@refinedev/ui-types";
+import { useCloneButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
 
 type CloneButtonProps = {
@@ -52,3 +54,5 @@ export function CloneButton({
     </Button>
   );
 }
+
+CloneButton.displayName = "CloneButton";

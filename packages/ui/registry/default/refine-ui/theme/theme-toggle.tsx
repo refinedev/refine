@@ -1,3 +1,5 @@
+"use client";
+
 import { useTheme } from "@/registry/default/refine-ui/theme/theme-provider";
 import { Button } from "@/registry/default/ui/button";
 import { cn } from "@/lib/utils";
@@ -39,3 +41,5 @@ export function ThemeToggle() {
     </Button>
   );
 }
+
+ThemeToggle.displayName = "ThemeToggle";

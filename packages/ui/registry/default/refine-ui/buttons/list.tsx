@@ -1,6 +1,8 @@
-import { useListButton } from "@refinedev/core";
+"use client";
+
 import type { RefineListButtonProps } from "@refinedev/ui-types";
 import type { VariantProps } from "class-variance-authority";
+import { useListButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
 
 type ListButtonProps = {
@@ -50,3 +52,5 @@ export function ListButton({
     </Button>
   );
 }
+
+ListButton.displayName = "ListButton";

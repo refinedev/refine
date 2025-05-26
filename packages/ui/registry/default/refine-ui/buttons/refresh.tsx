@@ -1,8 +1,12 @@
-import { useRefreshButton } from "@refinedev/core";
+"use client";
+
 import type { VariantProps } from "class-variance-authority";
 import type { RefineRefreshButtonProps } from "@refinedev/ui-types";
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { useRefreshButton } from "@refinedev/core";
+
 import { RefreshCcw } from "lucide-react";
+
+import { Button, type buttonVariants } from "@/registry/default/ui/button";
 import { cn } from "@/lib/utils";
 
 type RefreshButtonProps = {

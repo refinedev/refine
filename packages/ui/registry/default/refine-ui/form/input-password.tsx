@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
+import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/registry/default/ui/input";
 import { cn } from "@/lib/utils";
-import { Eye, EyeOff } from "lucide-react";
 
 type InputPasswordProps = React.ComponentProps<"input">;
 
@@ -32,3 +34,5 @@ export const InputPassword = ({ className, ...props }: InputPasswordProps) => {
     </div>
   );
 };
+
+InputPassword.displayName = "InputPassword";

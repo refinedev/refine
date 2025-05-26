@@ -47,7 +47,6 @@ export function useRefreshButton(
   });
 
   const onClick = () => {
-    console.log({ id, identifier });
     invalidates({
       id,
       invalidates: ["detail"],

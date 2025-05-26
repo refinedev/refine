@@ -1,3 +1,5 @@
+"use client";
+
 import { cn } from "@/lib/utils";
 import { useBack, useResource, useUserFriendlyName } from "@refinedev/core";
 import type { PropsWithChildren } from "react";
@@ -82,3 +84,6 @@ export const CreateViewContent = (
 ) => {
   return <div className={cn(props.className)}>{props.children}</div>;
 };
+
+CreateView.displayName = "CreateView";
+CreateViewContent.displayName = "CreateViewContent";

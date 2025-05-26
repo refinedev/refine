@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import {
   useMenu,
@@ -374,3 +376,5 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
     </Button>
   );
 };
+
+Sidebar.displayName = "Sidebar";

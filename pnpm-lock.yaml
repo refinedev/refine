@@ -583,7 +583,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -949,7 +949,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -1105,7 +1105,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -1306,7 +1306,7 @@ importers:
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -1946,7 +1946,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -2092,7 +2092,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -3139,7 +3139,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -3403,7 +3403,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(vw2iusjtldo7vtgi2xkd3ez5bi)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -3809,7 +3809,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -3867,7 +3867,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -3925,7 +3925,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -3983,7 +3983,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -4473,7 +4473,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4543,7 +4543,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4610,7 +4610,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4677,7 +4677,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -4744,7 +4744,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -5275,7 +5275,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -5406,7 +5406,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -5788,7 +5788,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -6422,7 +6422,7 @@ importers:
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(vw2iusjtldo7vtgi2xkd3ez5bi)
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.12
         version: link:../../packages/nestjsx-crud
@@ -6663,7 +6663,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -6809,7 +6809,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7219,7 +7219,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -7277,7 +7277,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -7542,7 +7542,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7618,7 +7618,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
@@ -7682,7 +7682,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7749,7 +7749,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7816,7 +7816,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7880,7 +7880,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -7944,7 +7944,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -8161,7 +8161,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -8410,7 +8410,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -8523,7 +8523,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -8669,7 +8669,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -8788,7 +8788,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -9049,7 +9049,7 @@ importers:
         version: link:../../packages/inferencer
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9214,7 +9214,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -9275,7 +9275,7 @@ importers:
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
         specifier: ^2.35.1
-        version: link:../../packages/chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -9500,7 +9500,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9567,7 +9567,7 @@ importers:
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -9976,7 +9976,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../../packages/react-hook-form
@@ -10576,7 +10576,7 @@ importers:
         version: link:../../packages/kbar
       '@refinedev/mui':
         specifier: ^6.1.1
-        version: link:../../packages/mui
+        version: 6.1.3(snixt3ynvuzykxbeacgrhayere)
       '@refinedev/remix-router':
         specifier: ^3.0.8
         version: link:../../packages/remix-router
@@ -10766,7 +10766,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
         specifier: ^4.57.1
         version: link:../core
@@ -10784,7 +10784,7 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@22.14.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@22.14.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -10812,7 +10812,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: 4.57.9
         version: link:../core
@@ -10830,7 +10830,7 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@22.14.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.4.5)))(typescript@5.4.5)
+        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.17.19)(jest@29.7.0(@types/node@22.14.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.4.5)))(typescript@5.4.5)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -12219,13 +12219,13 @@ importers:
         version: link:../antd
       '@refinedev/chakra-ui':
         specifier: ^2.34.1
-        version: link:../chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.10)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@refinedev/mantine':
         specifier: ^2.35.1
         version: link:../mantine
       '@refinedev/mui':
         specifier: ^6.0.3
-        version: link:../mui
+        version: 6.1.3(vw2iusjtldo7vtgi2xkd3ez5bi)
       '@refinedev/react-hook-form':
         specifier: ^4.9.3
         version: link:../react-hook-form
@@ -12412,7 +12412,7 @@ importers:
         version: link:../appwrite
       '@refinedev/chakra-ui':
         specifier: ^2.34.0
-        version: link:../chakra-ui
+        version: 2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
       '@refinedev/core':
         specifier: ^4.57.0
         version: link:../core
@@ -12430,7 +12430,7 @@ importers:
         version: link:../mantine
       '@refinedev/mui':
         specifier: ^6.0.1
-        version: link:../mui
+        version: 6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)
       '@refinedev/nestjs-query':
         specifier: ^1.3.4
         version: link:../nestjs-query
@@ -13514,7 +13514,7 @@ importers:
     dependencies:
       '@hookform/resolvers':
         specifier: ^5.0.1
-        version: 5.0.1(react-hook-form@7.56.1(react@19.1.0))
+        version: 5.0.1(react-hook-form@7.51.3(react@19.1.0))
       '@radix-ui/react-accordion':
         specifier: ^1.2.8
         version: 1.2.8(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -13654,8 +13654,8 @@ importers:
         specifier: 19.1.0
         version: 19.1.0(react@19.1.0)
       react-hook-form:
-        specifier: ^7.56.1
-        version: 7.56.1(react@19.1.0)
+        specifier: 7.51.3
+        version: 7.51.3(react@19.1.0)
       react-resizable-panels:
         specifier: ^2.1.8
         version: 2.1.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -18970,6 +18970,43 @@ packages:
     peerDependencies:
       '@refinedev/core': ^4.28.2
 
+  '@refinedev/chakra-ui@2.36.1':
+    resolution: {integrity: sha512-aWBZeTms3SEL2Yh1wRSbSGhx/9GPko/Lt2CVDuddhqjLxmB+jTxbkhCzFSsboGqjMsVZjf7fHaKZ7dIxgnlPBQ==}
+    peerDependencies:
+      '@chakra-ui/react': ^2.5.1
+      '@refinedev/cli': ^2.0.0
+      '@refinedev/core': ^4.46.1
+      dayjs: ^1.10.7
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+      react-hook-form: ^7.43.5
+
+  '@refinedev/mui@6.1.3':
+    resolution: {integrity: sha512-LPPD9zwKRhmnadth80SlCix1bEe2obxhrSH5xiVp8aHnF7tTcISbwAeF3yLz1cWn+pReZDOuLRD9X0A9lZ/VhA==}
+    peerDependencies:
+      '@emotion/react': ^11.8.2
+      '@emotion/styled': ^11.8.1
+      '@mui/lab': ^6.0.0-beta.14
+      '@mui/material': ^6.1.7
+      '@mui/x-data-grid': ^7.23.5
+      '@refinedev/core': ^4.46.1
+      '@refinedev/react-hook-form': ^4.0.0
+      dayjs: ^1.10.7
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+      react-hook-form: ^7.43.5
+
+  '@refinedev/react-hook-form@4.9.3':
+    resolution: {integrity: sha512-quAHYPe9TzknXg1AFP6ZSeigkRFL8Mbk8B7pXCsT+/M5MAfQsdtd8hq3PX8hDapQFKz8HbB3UVNXdWZgG8fOOA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@refinedev/core': ^4.46.1
+      '@types/react': ^17.0.0 || ^18.0.0
+      '@types/react-dom': ^17.0.0 || ^18.0.0
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
+      react-hook-form: ^7.43.5
+
   '@refinedev/strapi-graphql@6.0.5':
     resolution: {integrity: sha512-ugNv7xbTKxmw59yC6phRH3qGPJGRIPwfeqXLPREtjUb9/tjBfJt0Qs/301fjnX28ghiJScMF9twjQHAekFGa/Q==}
     engines: {node: '>=10'}
@@ -18978,6 +19015,13 @@ packages:
       '@refinedev/core': ^4.46.1
       gql-query-builder: ^3.5.5
       graphql-request: ^5.2.0
+
+  '@refinedev/ui-types@1.24.2':
+    resolution: {integrity: sha512-VWhTpqSzv2AzH+SaF3xZzZFlr19874yM9Hfhnfrl0zWmpnppzYxAXbkv8tYl3l7S1YYK6zTwZO7G+pdB/LvCtQ==}
+    peerDependencies:
+      '@refinedev/core': ^4.46.1
+      react: ^17.0.0 || ^18.0.0
+      react-dom: ^17.0.0 || ^18.0.0
 
   '@remix-run/dev@2.9.1':
     resolution: {integrity: sha512-/YhegnnRrarsqU+11+HdGwjcIT1KgkS9L7kWCM0+ivDvyiBYAuI6xbPG/q/FY6LqLAPYeOxsJmUNl+aj+yMltA==}
@@ -32514,7 +32558,7 @@ snapshots:
 
   '@antv/dom-util@2.0.4':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@antv/event-emitter@0.1.3': {}
 
@@ -32647,7 +32691,7 @@ snapshots:
       fmin: 0.0.2
       pdfast: 0.2.0
       size-sensor: 1.0.2
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@antv/g6-core@0.8.24':
     dependencies:
@@ -32774,7 +32818,7 @@ snapshots:
   '@antv/util@2.0.17':
     dependencies:
       csstype: 3.1.3
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@antv/util@3.3.7':
     dependencies:
@@ -35440,7 +35484,7 @@ snapshots:
   '@dnd-kit/accessibility@3.1.0(react@18.3.0)':
     dependencies:
       react: 18.3.0
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@dnd-kit/core@6.1.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
@@ -35467,7 +35511,7 @@ snapshots:
   '@dnd-kit/utilities@3.2.2(react@18.3.0)':
     dependencies:
       react: 18.3.0
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@effect/schema@0.66.5(effect@3.0.3)(fast-check@3.17.2)':
     dependencies:
@@ -36139,7 +36183,7 @@ snapshots:
 
   '@formatjs/intl-localematcher@0.5.4':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/intl-localematcher@0.5.8':
     dependencies:
@@ -36600,7 +36644,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@15.8.0)
       '@whatwg-node/fetch': 0.9.17
       graphql: 15.8.0
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - encoding
 
@@ -36610,7 +36654,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@16.9.0)
       '@whatwg-node/fetch': 0.9.17
       graphql: 16.9.0
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - encoding
 
@@ -36636,7 +36680,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@15.8.0)
       globby: 11.1.0
       graphql: 15.8.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -36647,7 +36691,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@16.9.0)
       globby: 11.1.0
       graphql: 16.9.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -36785,7 +36829,7 @@ snapshots:
       graphql: 15.8.0
       is-glob: 4.0.3
       micromatch: 4.0.5
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -36797,7 +36841,7 @@ snapshots:
       graphql: 16.9.0
       is-glob: 4.0.3
       micromatch: 4.0.5
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - supports-color
@@ -36810,7 +36854,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@15.8.0)
       '@whatwg-node/fetch': 0.9.17
       graphql: 15.8.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       value-or-promise: 1.0.12
     transitivePeerDependencies:
       - '@types/node'
@@ -36825,7 +36869,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@16.9.0)
       '@whatwg-node/fetch': 0.9.17
       graphql: 16.9.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       value-or-promise: 1.0.12
     transitivePeerDependencies:
       - '@types/node'
@@ -36838,7 +36882,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@15.8.0)
       globby: 11.1.0
       graphql: 15.8.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
 
   '@graphql-tools/graphql-file-loader@8.0.1(graphql@16.9.0)':
@@ -36847,7 +36891,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@16.9.0)
       globby: 11.1.0
       graphql: 16.9.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
 
   '@graphql-tools/graphql-tag-pluck@8.3.0(graphql@15.8.0)':
@@ -36895,7 +36939,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@15.8.0)
       globby: 11.1.0
       graphql: 15.8.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
 
   '@graphql-tools/json-file-loader@8.0.1(graphql@16.9.0)':
@@ -36903,7 +36947,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@16.9.0)
       globby: 11.1.0
       graphql: 16.9.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       unixify: 1.0.0
 
   '@graphql-tools/load@8.0.2(graphql@15.8.0)':
@@ -36912,7 +36956,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@15.8.0)
       graphql: 15.8.0
       p-limit: 3.1.0
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@graphql-tools/load@8.0.2(graphql@16.9.0)':
     dependencies:
@@ -36920,7 +36964,7 @@ snapshots:
       '@graphql-tools/utils': 10.1.3(graphql@16.9.0)
       graphql: 16.9.0
       p-limit: 3.1.0
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@graphql-tools/merge@9.0.3(graphql@15.8.0)':
     dependencies:
@@ -36973,7 +37017,7 @@ snapshots:
       json-stable-stringify: 1.1.1
       lodash: 4.17.21
       scuid: 1.1.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       yaml-ast-parser: 0.0.43
     transitivePeerDependencies:
       - '@types/node'
@@ -37001,7 +37045,7 @@ snapshots:
       json-stable-stringify: 1.1.1
       lodash: 4.17.21
       scuid: 1.1.0
-      tslib: 2.6.2
+      tslib: 2.8.1
       yaml-ast-parser: 0.0.43
     transitivePeerDependencies:
       - '@types/node'
@@ -37079,7 +37123,7 @@ snapshots:
       '@whatwg-node/fetch': 0.9.17
       graphql: 15.8.0
       isomorphic-ws: 5.0.0(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      tslib: 2.6.2
+      tslib: 2.8.1
       value-or-promise: 1.0.12
       ws: 8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
@@ -37101,7 +37145,7 @@ snapshots:
       '@whatwg-node/fetch': 0.9.17
       graphql: 16.9.0
       isomorphic-ws: 5.0.0(ws@8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))
-      tslib: 2.6.2
+      tslib: 2.8.1
       value-or-promise: 1.0.12
       ws: 8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
@@ -37116,7 +37160,7 @@ snapshots:
       cross-inspect: 1.0.0
       dset: 3.1.3
       graphql: 15.8.0
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@graphql-tools/utils@10.1.3(graphql@16.9.0)':
     dependencies:
@@ -37124,7 +37168,7 @@ snapshots:
       cross-inspect: 1.0.0
       dset: 3.1.3
       graphql: 16.9.0
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@graphql-tools/utils@8.13.1(graphql@15.8.0)':
     dependencies:
@@ -37197,10 +37241,10 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       react-hook-form: 7.51.3(react@18.3.0)
 
-  '@hookform/resolvers@5.0.1(react-hook-form@7.56.1(react@19.1.0))':
+  '@hookform/resolvers@5.0.1(react-hook-form@7.51.3(react@19.1.0))':
     dependencies:
       '@standard-schema/utils': 0.3.0
-      react-hook-form: 7.56.1(react@19.1.0)
+      react-hook-form: 7.51.3(react@19.1.0)
 
   '@humanfs/core@0.19.1': {}
 
@@ -38122,7 +38166,7 @@ snapshots:
       '@motionone/types': 10.17.0
       '@motionone/utils': 10.17.0
       hey-listen: 1.0.8
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@motionone/easing@10.17.0':
     dependencies:
@@ -38664,7 +38708,7 @@ snapshots:
   '@nrwl/tao@18.2.2':
     dependencies:
       nx: 18.2.2
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@swc-node/register'
       - '@swc/core'
@@ -38679,7 +38723,7 @@ snapshots:
       nx: 18.2.2
       semver: 7.6.0
       tmp: 0.2.3
-      tslib: 2.6.2
+      tslib: 2.8.1
       yargs-parser: 21.1.1
 
   '@nx/nx-darwin-arm64@18.2.2':
@@ -39917,6 +39961,184 @@ snapshots:
       - react
       - react-dom
 
+  '@refinedev/chakra-ui@2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.10)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@chakra-ui/react': 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@chakra-ui/theme-tools': 2.1.2(@chakra-ui/styled-system@2.9.2)
+      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@refinedev/cli': link:packages/cli
+      '@refinedev/core': link:packages/core
+      '@refinedev/react-hook-form': 4.9.3(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
+      '@refinedev/ui-types': 1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@tabler/icons-react': 3.2.0(react@18.3.0)
+      dayjs: 1.11.10
+      framer-motion: 7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.51.3(react@18.3.0)
+      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
+      remark-gfm: 1.0.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@chakra-ui/styled-system'
+      - '@types/react'
+      - '@types/react-dom'
+      - supports-color
+
+  '@refinedev/chakra-ui@2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@chakra-ui/react': 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@chakra-ui/theme-tools': 2.1.2(@chakra-ui/styled-system@2.9.2)
+      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@refinedev/cli': link:packages/cli
+      '@refinedev/core': link:packages/core
+      '@refinedev/react-hook-form': 4.9.3(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
+      '@refinedev/ui-types': 1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@tabler/icons-react': 3.2.0(react@18.3.0)
+      dayjs: 1.11.13
+      framer-motion: 7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.51.3(react@18.3.0)
+      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
+      remark-gfm: 1.0.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@chakra-ui/styled-system'
+      - '@types/react'
+      - '@types/react-dom'
+      - supports-color
+
+  '@refinedev/chakra-ui@2.36.1(@chakra-ui/react@2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@chakra-ui/styled-system@2.9.2)(@refinedev/cli@packages+cli)(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(dayjs@1.11.13)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@chakra-ui/react': 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@chakra-ui/theme-tools': 2.1.2(@chakra-ui/styled-system@2.9.2)
+      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@refinedev/cli': link:packages/cli
+      '@refinedev/core': link:packages/core
+      '@refinedev/react-hook-form': 4.9.3(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)
+      '@refinedev/ui-types': 1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@tabler/icons-react': 3.2.0(react@18.3.0)
+      dayjs: 1.11.13
+      framer-motion: 7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.56.1(react@18.3.0)
+      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
+      remark-gfm: 1.0.0
+      tslib: 2.8.1
+    transitivePeerDependencies:
+      - '@chakra-ui/styled-system'
+      - '@types/react'
+      - '@types/react-dom'
+      - supports-color
+
+  '@refinedev/mui@6.1.3(l5f2jmqcnj2kkengmaqdfjz4yu)':
+    dependencies:
+      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/icons-material': 6.1.6(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/lab': 6.0.0-beta.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/material': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/system': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/x-data-grid': 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@refinedev/core': link:packages/core
+      '@refinedev/react-hook-form': link:packages/react-hook-form
+      '@refinedev/ui-types': 1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      dayjs: 1.11.13
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      notistack: 2.0.8(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.51.3(react@18.3.0)
+      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
+      remark-gfm: 1.0.0
+      tslib: 2.8.1
+      warn-once: 0.1.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+
+  '@refinedev/mui@6.1.3(snixt3ynvuzykxbeacgrhayere)':
+    dependencies:
+      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/icons-material': 6.1.6(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/lab': 6.0.0-beta.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/material': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/system': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/x-data-grid': 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@refinedev/core': link:packages/core
+      '@refinedev/react-hook-form': link:packages/react-hook-form
+      '@refinedev/ui-types': 1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      dayjs: 1.11.13
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      notistack: 2.0.8(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.56.1(react@18.3.0)
+      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
+      remark-gfm: 1.0.0
+      tslib: 2.8.1
+      warn-once: 0.1.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+
+  '@refinedev/mui@6.1.3(vw2iusjtldo7vtgi2xkd3ez5bi)':
+    dependencies:
+      '@emotion/react': 11.11.4(@types/react@18.3.0)(react@18.3.0)
+      '@emotion/styled': 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/icons-material': 6.1.6(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/lab': 6.0.0-beta.14(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/material': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@mui/system': 6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
+      '@mui/x-data-grid': 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@refinedev/core': link:packages/core
+      '@refinedev/react-hook-form': link:packages/react-hook-form
+      '@refinedev/ui-types': 1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      dayjs: 1.11.10
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      notistack: 2.0.8(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.51.3(react@18.3.0)
+      react-markdown: 6.0.3(@types/react@18.3.0)(react@18.3.0)
+      remark-gfm: 1.0.0
+      tslib: 2.8.1
+      warn-once: 0.1.1
+    transitivePeerDependencies:
+      - '@types/react'
+      - supports-color
+
+  '@refinedev/react-hook-form@4.9.3(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      '@types/react': 18.3.0
+      '@types/react-dom': 18.3.0
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.51.3(react@18.3.0)
+
+  '@refinedev/react-hook-form@4.9.3(@refinedev/core@packages+core)(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.56.1(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      '@types/react': 18.3.0
+      '@types/react-dom': 18.3.0
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      react-hook-form: 7.56.1(react@18.3.0)
+
   '@refinedev/strapi-graphql@6.0.5(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.9.0))':
     dependencies:
       '@refinedev/core': link:packages/core
@@ -39926,6 +40148,14 @@ snapshots:
       graphql-request: 6.1.0(encoding@0.1.13)(graphql@16.9.0)
       pluralize: 8.0.0
       query-string: 7.1.3
+
+  '@refinedev/ui-types@1.24.2(@refinedev/core@packages+core)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+    dependencies:
+      '@refinedev/core': link:packages/core
+      dayjs: 1.11.13
+      react: 18.3.0
+      react-dom: 18.3.0(react@18.3.0)
+      tslib: 2.8.1
 
   '@remix-run/dev@2.9.1(@remix-run/react@2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5))(@remix-run/serve@2.9.1(typescript@5.4.5))(@types/node@22.14.1)(bufferutil@4.0.8)(lightningcss@1.29.2)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@22.14.1)(typescript@5.4.5))(typescript@5.4.5)(utf-8-validate@5.0.10)(vite@5.4.15(@types/node@22.14.1)(lightningcss@1.29.2)(sass@1.75.0)(terser@5.30.4))':
     dependencies:
@@ -40748,7 +40978,7 @@ snapshots:
   '@swc/helpers@0.5.5':
     dependencies:
       '@swc/counter': 0.1.3
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@szmarczak/http-timer@1.1.2':
     dependencies:
@@ -42036,7 +42266,7 @@ snapshots:
   '@yarnpkg/parsers@3.0.0-rc.46':
     dependencies:
       js-yaml: 3.14.1
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@zag-js/dom-query@0.16.0': {}
 
@@ -42569,7 +42799,7 @@ snapshots:
 
   ast-types@0.14.2:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   ast-types@0.16.1:
     dependencies:
@@ -46740,7 +46970,7 @@ snapshots:
       jiti: 1.21.0
       minimatch: 4.2.3
       string-env-interpolation: 1.0.1
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -46761,7 +46991,7 @@ snapshots:
       jiti: 1.21.0
       minimatch: 4.2.3
       string-env-interpolation: 1.0.1
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -53384,9 +53614,13 @@ snapshots:
     dependencies:
       react: 18.3.0
 
-  react-hook-form@7.56.1(react@19.1.0):
+  react-hook-form@7.51.3(react@19.1.0):
     dependencies:
       react: 19.1.0
+
+  react-hook-form@7.56.1(react@18.3.0):
+    dependencies:
+      react: 18.3.0
 
   react-hot-toast@2.4.1(csstype@3.1.3)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
@@ -53532,7 +53766,7 @@ snapshots:
       react: 18.3.0
       react-remove-scroll-bar: 2.3.6(@types/react@18.3.0)(react@18.3.0)
       react-style-singleton: 2.2.1(@types/react@18.3.0)(react@18.3.0)
-      tslib: 2.6.2
+      tslib: 2.8.1
       use-callback-ref: 1.3.2(@types/react@18.3.0)(react@18.3.0)
       use-sidecar: 1.1.2(@types/react@18.3.0)(react@18.3.0)
     optionalDependencies:
@@ -53890,7 +54124,7 @@ snapshots:
       ast-types: 0.14.2
       esprima: 4.0.1
       source-map: 0.6.1
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   recast@0.23.6:
     dependencies:
@@ -54466,7 +54700,7 @@ snapshots:
 
   rxjs@7.8.1:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   sade@1.8.1:
     dependencies:

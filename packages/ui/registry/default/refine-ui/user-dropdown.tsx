@@ -1,4 +1,9 @@
+"use client";
+
 import { useGetIdentity, useLogout } from "@refinedev/core";
+
+import { ChevronUp, LogOut } from "lucide-react";
+
 import {
   Avatar,
   AvatarFallback,
@@ -12,7 +17,6 @@ import {
 } from "@/registry/default/ui/dropdown-menu";
 import { Button } from "@/registry/default/ui/button";
 import { Skeleton } from "@/registry/default/ui/skeleton";
-import { ChevronUp, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 type User = {
@@ -128,3 +132,5 @@ const getInitials = (name = "") => {
   }
   return initials;
 };
+
+UserDropdown.displayName = "UserDropdown";
