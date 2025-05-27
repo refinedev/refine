@@ -24,6 +24,8 @@ import {
   ListView,
 } from "@/registry/default/refine-ui/views/list-view";
 import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
+import { NumberField } from "@/registry/default/refine-ui/fields/number";
+import { DateField } from "@/registry/default/refine-ui/fields/date";
 
 export function PostsListPage() {
   const columns = useMemo<ColumnDef<Post>[]>(
@@ -92,6 +94,15 @@ export function PostsListPage() {
         },
       },
       {
+        id: "hit",
+        header: "Hit",
+        accessorKey: "hit",
+        size: 100,
+        cell: ({ row }) => {
+          return <NumberField value={row.original.hit} />;
+        },
+      },
+      {
         id: "status",
         accessorKey: "status",
         size: 100,
@@ -108,6 +119,17 @@ export function PostsListPage() {
                 ]}
               />
             </div>
+          );
+        },
+      },
+      {
+        id: "createdAt",
+        accessorKey: "createdAt",
+        size: 120,
+        header: "Created At",
+        cell: ({ row }) => {
+          return (
+            <DateField value={row.original.createdAt} format="DD.MM.YYYY" />
           );
         },
       },

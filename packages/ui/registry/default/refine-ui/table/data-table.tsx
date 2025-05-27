@@ -231,7 +231,8 @@ export function TableHeaderSorter<TData>({
 
 export type TableHeaderFilterDropdownProps<TData> = {
   column: Column<TData>;
-  className?: string;
+  contentClassName?: string;
+  triggerClassName?: string;
   children: (args: {
     isOpen: boolean;
     setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -240,7 +241,8 @@ export type TableHeaderFilterDropdownProps<TData> = {
 
 export function TableHeaderFilterDropdown<TData>({
   column,
-  className,
+  triggerClassName,
+  contentClassName,
   children,
 }: TableHeaderFilterDropdownProps<TData>) {
   const [isOpen, setIsOpen] = useState(false);
@@ -261,13 +263,13 @@ export function TableHeaderFilterDropdown<TData>({
               "text-primary": isFiltered,
               "text-muted-foreground": !isFiltered,
             },
-            className,
+            triggerClassName,
           )}
         >
           <Filter className="!h-3 !w-3" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent align="start">
+      <PopoverContent align="start" className={cn(contentClassName)}>
         {children({ isOpen, setIsOpen })}
       </PopoverContent>
     </Popover>
@@ -390,7 +392,7 @@ export function TableHeaderFilterCombobox<TData>({
 
             <Separator className="my-2" />
 
-            <div className="flex items-center justify-end w-full gap-2">
+            <div className="flex items-center justify-end w-full gap-2 mt-4">
               <Button
                 size="sm"
                 variant="destructive"

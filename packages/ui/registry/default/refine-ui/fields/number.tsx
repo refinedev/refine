@@ -1,10 +1,10 @@
 import { cn } from "@/lib/utils";
+import type { RefineFieldNumberProps } from "@refinedev/ui-types";
 
-type NumberFieldProps = React.ComponentProps<"div"> & {
-  value: number;
-  locale?: string | string[];
-  options?: Intl.NumberFormatOptions;
-};
+type NumberFieldProps = RefineFieldNumberProps<
+  string | number,
+  React.ComponentProps<"div">
+>;
 
 export function NumberField({
   value,
