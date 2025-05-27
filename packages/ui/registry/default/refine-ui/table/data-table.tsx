@@ -1,18 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import type { HttpError, BaseRecord } from "@refinedev/core";
+import { type HttpError, type BaseRecord, useTranslate } from "@refinedev/core";
 import type { UseTableReturnType } from "@refinedev/react-table";
-import type { Column } from "@tanstack/react-table";
+import type { Column, Table as ReactTable } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
+
+// 3 shadcn nerede bitircem
 
 import {
   ArrowUp,
   ArrowDown,
-  ArrowUpDown,
-  Filter,
   Check,
   Loader2,
+  ChevronsUpDown,
+  ListFilter,
+  X,
 } from "lucide-react";
 
 import { Button } from "@/registry/default/ui/button";
@@ -41,6 +44,13 @@ import {
 } from "@/registry/default/ui/command";
 import { Separator } from "@/registry/default/ui/separator";
 import { cn } from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../../ui/select";
 
 type DataTableProps<TData extends BaseRecord> = {
   table: UseTableReturnType<TData, HttpError>;
@@ -156,7 +166,7 @@ export function DataTable<TData extends BaseRecord>({
                           ...getCommonStyles({ column: cell.column }),
                         }}
                       >
-                        <div className="h-8 truncate">
+                        <div className="truncate">
                           {flexRender(
                             cell.column.columnDef.cell,
                             cell.getContext(),
@@ -216,14 +226,16 @@ export function TableHeaderSorter<TData>({
       title={title}
       aria-label={title}
       {...props}
-      className={cn("data-[state=open]:bg-accent", "w-6 h-6", className)}
+      className={cn("data-[state=open]:bg-accent", "w-5 h-5", className)}
     >
       {column.getIsSorted() === "desc" ? (
         <ArrowDown className={cn("text-primary", "!w-3", "!h-3")} />
       ) : column.getIsSorted() === "asc" ? (
         <ArrowUp className={cn("text-primary", "!w-3", "!h-3")} />
       ) : (
-        <ArrowUpDown className={cn("text-muted-foreground", "!w-3", "!h-3")} />
+        <ChevronsUpDown
+          className={cn("text-muted-foreground", "!w-3", "!h-3")}
+        />
       )}
     </Button>
   );
@@ -258,7 +270,7 @@ export function TableHeaderFilterDropdown<TData>({
           size="icon"
           className={cn(
             "data-[state=open]:bg-accent",
-            "w-6 h-6",
+            "w-5 h-5",
             {
               "text-primary": isFiltered,
               "text-muted-foreground": !isFiltered,
@@ -266,7 +278,7 @@ export function TableHeaderFilterDropdown<TData>({
             triggerClassName,
           )}
         >
-          <Filter className="!h-3 !w-3" />
+          <ListFilter className="!h-3 !w-3" />
         </Button>
       </PopoverTrigger>
       <PopoverContent align="start" className={cn(contentClassName)}>
@@ -276,63 +288,171 @@ export function TableHeaderFilterDropdown<TData>({
   );
 }
 
+type TableHeaderFilterDropdownActionsProps = {
+  className?: string;
+  onClear: () => void;
+  onApply: () => void;
+};
+
+export function TableHeaderFilterDropdownActions({
+  className,
+  onClear,
+  onApply,
+}: TableHeaderFilterDropdownActionsProps) {
+  const t = useTranslate();
+
+  return (
+    <div
+      className={cn(
+        "flex",
+        "items-center",
+        "justify-between",
+        "w-full",
+        "gap-2",
+        className,
+      )}
+    >
+      <Button
+        size="sm"
+        variant="ghost"
+        className={cn(
+          "h-6",
+          "!px-2",
+          "!py-1",
+          "rounded-sm",
+          "text-xs",
+          "font-semibold",
+          "text-muted-foreground",
+        )}
+        onClick={() => {
+          onClear();
+        }}
+      >
+        <X className={cn("w-3.5", "h-3.5", "text-muted-foreground")} />
+        {t("buttons.clear", "Clear")}
+      </Button>
+
+      <Button
+        size="sm"
+        className={cn(
+          "h-6",
+          "!px-2",
+          "!py-1",
+          "rounded-sm",
+          "text-xs",
+          "font-semibold",
+        )}
+        onClick={() => {
+          onApply();
+        }}
+      >
+        {t("buttons.apply", "Apply")}
+      </Button>
+    </div>
+  );
+}
+
 export type TableHeaderFilterDropdownTextProps<TData> = {
   column: Column<TData>;
+  table: ReactTable<TData>;
   placeholder: string;
 };
 
 export function TableHeaderFilterDropdownText<TData>({
-  column,
+  column: columnFromProps,
+  table: tableFromProps,
   placeholder,
 }: TableHeaderFilterDropdownTextProps<TData>) {
-  const [filterValue, setFilterValue] = useState(
-    (column.getFilterValue() as string) || "",
+  const t = useTranslate();
+
+  const columnMeta = columnFromProps?.columnDef?.meta as {
+    filterOperator?: string;
+  };
+
+  const [filterType, setFilterType] = useState(
+    columnMeta?.filterOperator || "eq",
   );
 
+  const [filterValue, setFilterValue] = useState(
+    (columnFromProps.getFilterValue() as string) || "",
+  );
+
+  const handleFilterTypeChange = (type: string) => {
+    setFilterType(type);
+    tableFromProps.setOptions((prev) => ({
+      ...prev,
+      columns: prev.columns.map((column) => {
+        if (column.id === columnFromProps.id) {
+          console.log("column", {
+            ...column.meta,
+            filterOperator: type,
+          });
+          return {
+            ...column,
+            meta: {
+              ...column.meta,
+              filterOperator: type,
+            },
+          };
+        }
+        return column;
+      }),
+    }));
+  };
+
+  console.log("columnMeta", columnMeta);
+
   return (
-    <TableHeaderFilterDropdown column={column}>
+    <TableHeaderFilterDropdown column={columnFromProps}>
       {({ isOpen: _, setIsOpen }) => {
         return (
           <div
-            className="flex flex-col items-center gap-4"
+            className={cn(
+              "flex",
+              "flex-col",
+              "items-center",
+              "gap-4",
+              "w-full",
+            )}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
-                column.setFilterValue(filterValue);
+                columnFromProps.setFilterValue(filterValue);
                 setIsOpen(false);
               }
             }}
           >
-            <Input
-              placeholder={placeholder}
-              value={filterValue}
-              onChange={(event) => {
-                setFilterValue(event.target.value);
+            <div className={cn("flex", "items-center", "gap-2")}>
+              <Select value={filterType} onValueChange={handleFilterTypeChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a filter" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="contains">Contains</SelectItem>
+                  <SelectItem value="equals">Equals</SelectItem>
+                </SelectContent>
+              </Select>
+
+              <Input
+                placeholder={
+                  placeholder ?? t("table.filter.text.placeholder", "Search...")
+                }
+                value={filterValue}
+                onChange={(event) => {
+                  setFilterValue(event.target.value);
+                }}
+              />
+            </div>
+            <TableHeaderFilterDropdownActions
+              onClear={() => {
+                columnFromProps.setFilterValue("");
+                setFilterValue("");
+                setIsOpen(false);
+              }}
+              onApply={() => {
+                columnFromProps.setFilterValue(filterValue);
+                setIsOpen(false);
               }}
             />
-            <div className="flex items-center justify-end w-full gap-2">
-              <Button
-                size="sm"
-                variant="destructive"
-                onClick={() => {
-                  column.setFilterValue("");
-                  setFilterValue("");
-                  setIsOpen(false);
-                }}
-              >
-                Clear
-              </Button>
-
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => {
-                  column.setFilterValue(filterValue);
-                  setIsOpen(false);
-                }}
-              >
-                Save
-              </Button>
-            </div>
           </div>
         );
       }}
@@ -350,9 +470,11 @@ export type TableHeaderFilterComboboxProps<TData> = {
 export function TableHeaderFilterCombobox<TData>({
   column,
   options,
-  placeholder = "Search...",
-  noResultsText = "No results found.",
+  placeholder,
+  noResultsText,
 }: TableHeaderFilterComboboxProps<TData>) {
+  const t = useTranslate();
+
   const [filterValue, setFilterValue] = useState<string | null>(
     column.getFilterValue() as string | null,
   );
@@ -363,9 +485,17 @@ export function TableHeaderFilterCombobox<TData>({
         return (
           <div>
             <Command>
-              <CommandInput placeholder={placeholder} />
+              <CommandInput
+                placeholder={
+                  placeholder ??
+                  t("table.filter.combobox.placeholder", "Search...")
+                }
+              />
               <CommandList>
-                <CommandEmpty>{noResultsText}</CommandEmpty>
+                <CommandEmpty>
+                  {noResultsText ??
+                    t("table.filter.combobox.noResults", "Results not found.")}
+                </CommandEmpty>
                 <CommandGroup className="mt-2">
                   {options.map((option) => (
                     <CommandItem
@@ -390,32 +520,19 @@ export function TableHeaderFilterCombobox<TData>({
               </CommandList>
             </Command>
 
-            <Separator className="my-2" />
+            <Separator className={cn("mt-4", "mb-4")} />
 
-            <div className="flex items-center justify-end w-full gap-2 mt-4">
-              <Button
-                size="sm"
-                variant="destructive"
-                onClick={() => {
-                  column.setFilterValue(null);
-                  setFilterValue(null);
-                  setIsOpen(false);
-                }}
-              >
-                Clear
-              </Button>
-
-              <Button
-                size="sm"
-                variant="outline"
-                onClick={() => {
-                  column.setFilterValue(filterValue);
-                  setIsOpen(false);
-                }}
-              >
-                Save
-              </Button>
-            </div>
+            <TableHeaderFilterDropdownActions
+              onClear={() => {
+                column.setFilterValue(null);
+                setFilterValue(null);
+                setIsOpen(false);
+              }}
+              onApply={() => {
+                column.setFilterValue(filterValue);
+                setIsOpen(false);
+              }}
+            />
           </div>
         );
       }}
@@ -459,3 +576,5 @@ TableHeaderSorter.displayName = "TableHeaderSorter";
 TableHeaderFilterDropdown.displayName = "TableHeaderFilterDropdown";
 TableHeaderFilterDropdownText.displayName = "TableHeaderFilterDropdownText";
 TableHeaderFilterCombobox.displayName = "TableHeaderFilterCombobox";
+TableHeaderFilterDropdownActions.displayName =
+  "TableHeaderFilterDropdownActions";

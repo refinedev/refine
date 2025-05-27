@@ -1,7 +1,6 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
-import type { Post } from "@/examples/base-example/types/resources";
 import { useMany } from "@refinedev/core";
 import { Button } from "@/registry/default/ui/button";
 import {
@@ -24,8 +23,8 @@ import {
   ListView,
 } from "@/registry/default/refine-ui/views/list-view";
 import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
-import { NumberField } from "@/registry/default/refine-ui/fields/number";
-import { DateField } from "@/registry/default/refine-ui/fields/date";
+
+import type { Post, Category } from "../../types/resources";
 
 export function PostsListPage() {
   const columns = useMemo<ColumnDef<Post>[]>(
@@ -40,10 +39,11 @@ export function PostsListPage() {
               <span>ID</span>
               <div>
                 <TableHeaderSorter column={column} />
-                <TableHeaderFilterDropdownText
+                {/* <TableHeaderFilterDropdownText
                   column={column}
+                  table={table}
                   placeholder="Filter by ID"
-                />
+                /> */}
               </div>
             </div>
           );
@@ -56,13 +56,14 @@ export function PostsListPage() {
         meta: {
           filterOperator: "contains",
         },
-        header: ({ column }) => {
+        header: ({ column, table }) => {
           return (
             <div className="flex items-center gap-1">
               <span>Title</span>
               <div>
                 <TableHeaderFilterDropdownText
                   column={column}
+                  table={table}
                   placeholder="Filter by title"
                 />
               </div>
@@ -85,23 +86,16 @@ export function PostsListPage() {
         size: 200,
         cell: ({ getValue, table }) => {
           const meta = table.options.meta as {
-            categoriesData?: { data?: Array<{ id: number; title: string }> };
+            categories: Category[];
           };
-          const category = meta?.categoriesData?.data?.find(
+          const category = meta?.categories?.find(
             (item) => item.id === getValue(),
           );
+
           return category?.title || "-";
         },
       },
-      {
-        id: "hit",
-        header: "Hit",
-        accessorKey: "hit",
-        size: 100,
-        cell: ({ row }) => {
-          return <NumberField value={row.original.hit} />;
-        },
-      },
+
       {
         id: "status",
         accessorKey: "status",
@@ -127,11 +121,6 @@ export function PostsListPage() {
         accessorKey: "createdAt",
         size: 120,
         header: "Created At",
-        cell: ({ row }) => {
-          return (
-            <DateField value={row.original.createdAt} format="DD.MM.YYYY" />
-          );
-        },
       },
       {
         id: "actions",
@@ -165,10 +154,7 @@ export function PostsListPage() {
                     resource: "posts",
                     recordItemId: post.id,
                   }}
-                >
-                  <Eye className="h-4 w-4" />
-                  Show
-                </ShowButton>
+                />
                 <EditButton
                   variant="ghost"
                   size="sm"
@@ -177,10 +163,7 @@ export function PostsListPage() {
                     resource: "posts",
                     recordItemId: post.id,
                   }}
-                >
-                  <Pencil className="h-4 w-4" />
-                  Edit
-                </EditButton>
+                />
                 <DeleteButton
                   size="sm"
                   className="w-full items-center justify-start"
@@ -188,10 +171,7 @@ export function PostsListPage() {
                     resource: "posts",
                     recordItemId: post.id,
                   }}
-                >
-                  <Trash className="h-4 w-4" />
-                  Delete
-                </DeleteButton>
+                />
               </DropdownMenuContent>
             </DropdownMenu>
           );
@@ -215,19 +195,20 @@ export function PostsListPage() {
   const categoryIds =
     posts?.map((item) => item.category?.id).filter(Boolean) ?? [];
 
-  const { data: categoriesData } = useMany({
-    resource: "categories",
-    ids: categoryIds,
-    queryOptions: {
-      enabled: categoryIds.length > 0,
-    },
-  });
+  const { data: categoriesData, isLoading: isCategoriesLoading } =
+    useMany<Category>({
+      resource: "categories",
+      ids: categoryIds,
+      queryOptions: {
+        enabled: categoryIds.length > 0,
+      },
+    });
 
   table.setOptions((prev) => ({
     ...prev,
     meta: {
       ...prev.meta,
-      categoriesData,
+      categories: categoriesData?.data ?? [],
     },
   }));
 

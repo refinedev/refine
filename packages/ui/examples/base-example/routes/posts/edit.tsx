@@ -156,7 +156,6 @@ export default function EditPost() {
                           <CommandEmpty>No category found.</CommandEmpty>
                           <CommandGroup>
                             {categoryOptions?.map((option) => {
-                              console.log(option);
                               return (
                                 <CommandItem
                                   key={option.value}

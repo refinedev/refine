@@ -23,41 +23,34 @@ export const HomePage = () => {
             refineCoreProps={{
               resource: "posts",
             }}
-          >
-            List Posts
-          </ListButton>
+          />
 
           <CreateButton
             refineCoreProps={{
               resource: "posts",
             }}
-          >
-            Create Post
-          </CreateButton>
+          />
+
           <EditButton
             refineCoreProps={{
               resource: "posts",
               recordItemId: "123",
             }}
-          >
-            Edit Post
-          </EditButton>
+          />
+
           <ShowButton
             refineCoreProps={{
               resource: "posts",
               recordItemId: "123",
             }}
-          >
-            Show Post
-          </ShowButton>
+          />
+
           <CloneButton
             refineCoreProps={{
               resource: "posts",
               recordItemId: "123",
             }}
-          >
-            Clone Post
-          </CloneButton>
+          />
         </div>
       </div>
 
@@ -71,17 +64,13 @@ export const HomePage = () => {
               resource: "posts",
               recordItemId: "123",
             }}
-          >
-            Delete Post
-          </DeleteButton>
+          />
           <RefreshButton
             refineCoreProps={{
               resource: "posts",
               recordItemId: "123",
             }}
-          >
-            Refresh
-          </RefreshButton>
+          />
         </div>
       </div>
     </div>

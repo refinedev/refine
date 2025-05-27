@@ -4,6 +4,7 @@ import type { VariantProps } from "class-variance-authority";
 import type { RefineCloneButtonProps } from "@refinedev/ui-types";
 import { useCloneButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Copy } from "lucide-react";
 
 type CloneButtonProps = {
   /**
@@ -23,7 +24,7 @@ export function CloneButton({
   onClick,
   ...rest
 }: CloneButtonProps) {
-  const { hidden, disabled, LinkComponent, to } = useCloneButton({
+  const { hidden, disabled, LinkComponent, to, label } = useCloneButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
   });
@@ -49,7 +50,12 @@ export function CloneButton({
           }
         }}
       >
-        {children}
+        {children ?? (
+          <div className="flex items-center gap-2 font-semibold">
+            <Copy className="h-4 w-4" />
+            <span>{label}</span>
+          </div>
+        )}
       </LinkComponent>
     </Button>
   );

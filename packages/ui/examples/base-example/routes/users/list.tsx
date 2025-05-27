@@ -61,7 +61,7 @@ export function UsersListPage() {
                 </TableRow>
               ) : (
                 users.map((user) => (
-                  <TableRow key={user.firstName}>
+                  <TableRow key={user.id}>
                     <TableCell>
                       <div className={cn("flex", "items-center", "gap-2")}>
                         <Avatar>

@@ -6,7 +6,7 @@ import type { VariantProps } from "class-variance-authority";
 import type { RefineDeleteButtonProps } from "@refinedev/ui-types";
 import { useDeleteButton } from "@refinedev/core";
 
-import { Loader2 } from "lucide-react";
+import { Loader2, Trash } from "lucide-react";
 
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
 import {
@@ -35,6 +35,7 @@ export function DeleteButton({
     disabled,
     loading,
     onConfirm,
+    label,
     confirmTitle: defaultConfirmTitle,
     confirmOkLabel: defaultConfirmOkLabel,
     cancelLabel: defaultCancelLabel,
@@ -60,7 +61,12 @@ export function DeleteButton({
         <span>
           <Button variant="destructive" {...rest} disabled={isDisabled}>
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {children}
+            {children ?? (
+              <div className="flex items-center gap-2 font-semibold">
+                <Trash className="h-4 w-4" />
+                <span>{label}</span>
+              </div>
+            )}
           </Button>
         </span>
       </PopoverTrigger>

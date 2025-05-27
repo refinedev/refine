@@ -4,6 +4,7 @@ import type { VariantProps } from "class-variance-authority";
 import type { RefineEditButtonProps } from "@refinedev/ui-types";
 import { useEditButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Pencil } from "lucide-react";
 
 type EditButtonProps = {
   /**
@@ -23,7 +24,7 @@ export function EditButton({
   onClick,
   ...rest
 }: EditButtonProps) {
-  const { hidden, disabled, LinkComponent, to } = useEditButton({
+  const { hidden, disabled, LinkComponent, to, label } = useEditButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
   });
@@ -49,7 +50,12 @@ export function EditButton({
           }
         }}
       >
-        {children}
+        {children ?? (
+          <div className="flex items-center gap-2 font-semibold">
+            <Pencil className="h-4 w-4" />
+            <span>{label}</span>
+          </div>
+        )}
       </LinkComponent>
     </Button>
   );

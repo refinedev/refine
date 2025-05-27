@@ -51,7 +51,7 @@ export function CreateButton({
         }}
       >
         {children ?? (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 font-semibold">
             <Plus className="w-4 h-4" />
             <span>{label ?? "Create"}</span>
           </div>

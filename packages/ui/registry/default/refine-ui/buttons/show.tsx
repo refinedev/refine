@@ -4,6 +4,7 @@ import type { VariantProps } from "class-variance-authority";
 import type { RefineShowButtonProps } from "@refinedev/ui-types";
 import { useShowButton } from "@refinedev/core";
 import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Eye } from "lucide-react";
 
 type ShowButtonProps = {
   /**
@@ -23,7 +24,7 @@ export function ShowButton({
   onClick,
   ...rest
 }: ShowButtonProps) {
-  const { hidden, disabled, LinkComponent, to } = useShowButton({
+  const { hidden, disabled, LinkComponent, to, label } = useShowButton({
     ...refineCoreProps,
     id: refineCoreProps.recordItemId,
   });
@@ -49,7 +50,12 @@ export function ShowButton({
           }
         }}
       >
-        {children}
+        {children ?? (
+          <div className="flex items-center gap-2 font-semibold">
+            <Eye className="h-4 w-4" />
+            <span>{label}</span>
+          </div>
+        )}
       </LinkComponent>
     </Button>
   );

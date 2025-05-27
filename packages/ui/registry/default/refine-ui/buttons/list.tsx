@@ -1,21 +1,16 @@
 "use client";
 
 import type { RefineListButtonProps } from "@refinedev/ui-types";
-import type { VariantProps } from "class-variance-authority";
 import { useListButton } from "@refinedev/core";
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Button } from "@/registry/default/ui/button";
+import { List } from "lucide-react";
 
 type ListButtonProps = {
-  /**
-   * Props are related to refine core.
-   * @link https://refine.dev/docs/guides-concepts/ui-libraries/#buttons
-   */
   refineCoreProps?: Pick<
     RefineListButtonProps,
     "resource" | "accessControl" | "meta"
   >;
-} & React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants>;
+} & React.ComponentProps<typeof Button>;
 
 export function ListButton({
   refineCoreProps = {},
@@ -23,7 +18,7 @@ export function ListButton({
   onClick,
   ...rest
 }: ListButtonProps) {
-  const { hidden, disabled, LinkComponent, to } =
+  const { hidden, disabled, LinkComponent, to, label } =
     useListButton(refineCoreProps);
 
   const isDisabled = disabled || rest.disabled;
@@ -47,7 +42,12 @@ export function ListButton({
           }
         }}
       >
-        {children}
+        {children ?? (
+          <div className="flex items-center gap-2 font-semibold">
+            <List className="w-4 h-4" />
+            <span>{label}</span>
+          </div>
+        )}
       </LinkComponent>
     </Button>
   );
