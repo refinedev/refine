@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useMany } from "@refinedev/core";
@@ -8,12 +8,13 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
-import { MoreVertical, Trash, Pencil, Eye } from "lucide-react";
+import { MoreVertical } from "lucide-react";
 import {
   DataTable,
   TableHeaderSorter,
   TableHeaderFilterDropdownText,
   TableHeaderFilterCombobox,
+  TableHeaderFilterDropdownDateRange,
 } from "@/registry/default/refine-ui/table/data-table";
 import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
 import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
@@ -33,17 +34,18 @@ export function PostsListPage() {
         id: "id",
         accessorKey: "id",
         size: 96,
-        header: ({ column }) => {
+        header: ({ column, table }) => {
           return (
             <div className="flex items-center gap-1">
               <span>ID</span>
               <div>
                 <TableHeaderSorter column={column} />
-                {/* <TableHeaderFilterDropdownText
+                <TableHeaderFilterDropdownText
+                  defaultOperator="eq"
                   column={column}
                   table={table}
                   placeholder="Filter by ID"
-                /> */}
+                />
               </div>
             </div>
           );
@@ -53,15 +55,13 @@ export function PostsListPage() {
         id: "title",
         accessorKey: "title",
         size: 300,
-        meta: {
-          filterOperator: "contains",
-        },
-        header: ({ column, table }) => {
+        header: ({ column }) => {
           return (
             <div className="flex items-center gap-1">
               <span>Title</span>
               <div>
                 <TableHeaderFilterDropdownText
+                  defaultOperator="contains"
                   column={column}
                   table={table}
                   placeholder="Filter by title"
@@ -120,7 +120,32 @@ export function PostsListPage() {
         id: "createdAt",
         accessorKey: "createdAt",
         size: 120,
-        header: "Created At",
+        meta: {
+          filterOperator: "between",
+        },
+        header: ({ column }) => {
+          return (
+            <div className="flex items-center gap-1">
+              <span>Created At</span>
+              <TableHeaderFilterDropdownDateRange
+                column={column}
+                formatDateRange={(dateRange) => {
+                  if (!dateRange?.from || !dateRange?.to) {
+                    return undefined;
+                  }
+
+                  return [
+                    dateRange.from.toISOString(),
+                    dateRange.to.toISOString(),
+                  ];
+                }}
+              />
+            </div>
+          );
+        },
+        cell: ({ row }) => {
+          return <div>{row.original.createdAt}</div>;
+        },
       },
       {
         id: "actions",
@@ -150,27 +175,21 @@ export function PostsListPage() {
                   variant="ghost"
                   size="sm"
                   className="w-full items-center justify-start"
-                  refineCoreProps={{
-                    resource: "posts",
-                    recordItemId: post.id,
-                  }}
+                  resource="posts"
+                  recordItemId={post.id}
                 />
                 <EditButton
                   variant="ghost"
                   size="sm"
                   className="w-full items-center justify-start"
-                  refineCoreProps={{
-                    resource: "posts",
-                    recordItemId: post.id,
-                  }}
+                  resource="posts"
+                  recordItemId={post.id}
                 />
                 <DeleteButton
                   size="sm"
                   className="w-full items-center justify-start"
-                  refineCoreProps={{
-                    resource: "posts",
-                    recordItemId: post.id,
-                  }}
+                  resource="posts"
+                  recordItemId={post.id}
                 />
               </DropdownMenuContent>
             </DropdownMenu>
@@ -195,14 +214,13 @@ export function PostsListPage() {
   const categoryIds =
     posts?.map((item) => item.category?.id).filter(Boolean) ?? [];
 
-  const { data: categoriesData, isLoading: isCategoriesLoading } =
-    useMany<Category>({
-      resource: "categories",
-      ids: categoryIds,
-      queryOptions: {
-        enabled: categoryIds.length > 0,
-      },
-    });
+  const { data: categoriesData } = useMany<Category>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
   table.setOptions((prev) => ({
     ...prev,

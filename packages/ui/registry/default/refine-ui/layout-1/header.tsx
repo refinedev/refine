@@ -1,7 +1,6 @@
 "use client";
 
-import { useSidebar } from "@/registry/default/ui/sidebar";
-import { SidebarTrigger } from "@/registry/default/refine-ui/layout-1/sidebar-trigger";
+import { useSidebar, SidebarTrigger } from "@/registry/default/ui/sidebar";
 import { ThemeToggle } from "@/registry/default/refine-ui/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 
@@ -27,14 +26,11 @@ export function Header() {
       )}
     >
       <SidebarTrigger
-        className={cn({
-          "rotate-0": isMobile,
+        className={cn("text-muted-foreground", "rotate-180", "ml-1", {
           "opacity-0": open,
           "opacity-100": !open || isMobile,
           "pointer-events-auto": !open || isMobile,
           "pointer-events-none": open && !isMobile,
-          "w-9": !open || isMobile,
-          "w-0": open && !isMobile,
         })}
       />
       <ThemeToggle />

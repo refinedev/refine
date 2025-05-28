@@ -1,14 +1,9 @@
 "use client";
 
 import React from "react";
-
-import type { VariantProps } from "class-variance-authority";
-import type { RefineDeleteButtonProps } from "@refinedev/ui-types";
-import { useDeleteButton } from "@refinedev/core";
-
+import { type BaseKey, useDeleteButton } from "@refinedev/core";
 import { Loader2, Trash } from "lucide-react";
-
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Button } from "@/registry/default/ui/button";
 import {
   Popover,
   PopoverContent,
@@ -17,19 +12,37 @@ import {
 
 type DeleteButtonProps = {
   /**
-   * Props are related to refine core.
-   * @link https://refine.dev/docs/guides-concepts/ui-libraries/#buttons
+   * Resource name for API data interactions. `identifier` of the resource can be used instead of the `name` of the resource.
+   * @default Inferred resource name from the route
    */
-  refineCoreProps?: RefineDeleteButtonProps;
-} & Omit<React.ComponentProps<typeof Button>, "onClick"> & // Omit Button's onClick
-  VariantProps<typeof buttonVariants>;
+  resource?: string;
+  /**
+   * Data item identifier for the actions with the API
+   * @default Reads `:id` from the URL
+   */
+  recordItemId?: BaseKey;
+  /**
+   * Access Control configuration for the button
+   * @default `{ enabled: true, hideIfUnauthorized: false }`
+   */
+  accessControl?: {
+    enabled?: boolean;
+    hideIfUnauthorized?: boolean;
+  };
+  /**
+   * `meta` property is used when creating the URL for the related action and path.
+   */
+  meta?: Record<string, unknown>;
+} & React.ComponentProps<typeof Button>;
 
 export function DeleteButton({
-  refineCoreProps = {},
+  resource,
+  recordItemId,
+  accessControl,
+  meta,
   children,
   ...rest
 }: DeleteButtonProps) {
-  // Correctly extract loading and onConfirm from the hook's return object
   const {
     hidden,
     disabled,
@@ -40,8 +53,10 @@ export function DeleteButton({
     confirmOkLabel: defaultConfirmOkLabel,
     cancelLabel: defaultCancelLabel,
   } = useDeleteButton({
-    ...refineCoreProps,
-    id: refineCoreProps.recordItemId,
+    resource,
+    id: recordItemId,
+    accessControl,
+    meta,
   });
   const [open, setOpen] = React.useState(false);
 
@@ -50,10 +65,9 @@ export function DeleteButton({
 
   if (isHidden) return null;
 
-  const confirmCancelText =
-    refineCoreProps.confirmCancelText ?? defaultCancelLabel;
-  const confirmOkText = refineCoreProps.confirmOkText ?? defaultConfirmOkLabel;
-  const confirmTitle = refineCoreProps.confirmTitle ?? defaultConfirmTitle;
+  const confirmCancelText = defaultCancelLabel;
+  const confirmOkText = defaultConfirmOkLabel;
+  const confirmTitle = defaultConfirmTitle;
 
   return (
     <Popover open={open} onOpenChange={setOpen}>

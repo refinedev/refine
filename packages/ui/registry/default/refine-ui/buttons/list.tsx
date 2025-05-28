@@ -1,25 +1,42 @@
 "use client";
 
-import type { RefineListButtonProps } from "@refinedev/ui-types";
-import { useListButton } from "@refinedev/core";
+import { type BaseKey, useListButton } from "@refinedev/core";
 import { Button } from "@/registry/default/ui/button";
 import { List } from "lucide-react";
 
 type ListButtonProps = {
-  refineCoreProps?: Pick<
-    RefineListButtonProps,
-    "resource" | "accessControl" | "meta"
-  >;
+  /**
+   * Resource name for API data interactions. `identifier` of the resource can be used instead of the `name` of the resource.
+   * @default Inferred resource name from the route
+   */
+  resource?: BaseKey;
+  /**
+   * Access Control configuration for the button
+   * @default `{ enabled: true, hideIfUnauthorized: false }`
+   */
+  accessControl?: {
+    enabled?: boolean;
+    hideIfUnauthorized?: boolean;
+  };
+  /**
+   * `meta` property is used when creating the URL for the related action and path.
+   */
+  meta?: Record<string, unknown>;
 } & React.ComponentProps<typeof Button>;
 
 export function ListButton({
-  refineCoreProps = {},
+  resource,
+  accessControl,
+  meta,
   children,
   onClick,
   ...rest
 }: ListButtonProps) {
-  const { hidden, disabled, LinkComponent, to, label } =
-    useListButton(refineCoreProps);
+  const { hidden, disabled, LinkComponent, to, label } = useListButton({
+    resource,
+    accessControl,
+    meta,
+  });
 
   const isDisabled = disabled || rest.disabled;
   const isHidden = hidden || rest.hidden;

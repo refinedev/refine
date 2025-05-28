@@ -1,13 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import { type HttpError, type BaseRecord, useTranslate } from "@refinedev/core";
+import { useState, useEffect, useMemo } from "react";
+import {
+  type HttpError,
+  type BaseRecord,
+  useTranslate,
+  type CrudOperators,
+} from "@refinedev/core";
 import type { UseTableReturnType } from "@refinedev/react-table";
 import type { Column, Table as ReactTable } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
-
-// 3 shadcn nerede bitircem
-
+import type { DateRange } from "react-day-picker";
 import {
   ArrowUp,
   ArrowDown,
@@ -43,14 +46,8 @@ import {
   CommandList,
 } from "@/registry/default/ui/command";
 import { Separator } from "@/registry/default/ui/separator";
+import { Calendar } from "@/registry/default/ui/calendar";
 import { cn } from "@/lib/utils";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../../ui/select";
 
 type DataTableProps<TData extends BaseRecord> = {
   table: UseTableReturnType<TData, HttpError>;
@@ -290,12 +287,16 @@ export function TableHeaderFilterDropdown<TData>({
 
 type TableHeaderFilterDropdownActionsProps = {
   className?: string;
+  isClearDisabled?: boolean;
+  isApplyDisabled?: boolean;
   onClear: () => void;
   onApply: () => void;
 };
 
 export function TableHeaderFilterDropdownActions({
   className,
+  isClearDisabled,
+  isApplyDisabled,
   onClear,
   onApply,
 }: TableHeaderFilterDropdownActionsProps) {
@@ -315,6 +316,7 @@ export function TableHeaderFilterDropdownActions({
       <Button
         size="sm"
         variant="ghost"
+        disabled={isClearDisabled}
         className={cn(
           "h-6",
           "!px-2",
@@ -334,6 +336,7 @@ export function TableHeaderFilterDropdownActions({
 
       <Button
         size="sm"
+        disabled={isApplyDisabled}
         className={cn(
           "h-6",
           "!px-2",
@@ -355,52 +358,39 @@ export function TableHeaderFilterDropdownActions({
 export type TableHeaderFilterDropdownTextProps<TData> = {
   column: Column<TData>;
   table: ReactTable<TData>;
-  placeholder: string;
+  defaultOperator?: CrudOperators;
+  placeholder?: string;
 };
 
 export function TableHeaderFilterDropdownText<TData>({
   column: columnFromProps,
   table: tableFromProps,
+  defaultOperator: defaultOperatorFromProps = "eq",
   placeholder,
 }: TableHeaderFilterDropdownTextProps<TData>) {
   const t = useTranslate();
 
-  const columnMeta = columnFromProps?.columnDef?.meta as {
-    filterOperator?: string;
-  };
-
-  const [filterType, setFilterType] = useState(
-    columnMeta?.filterOperator || "eq",
-  );
-
   const [filterValue, setFilterValue] = useState(
     (columnFromProps.getFilterValue() as string) || "",
   );
+  const [operator, setOperator] = useState<CrudOperators>(() => {
+    const columnFilter = tableFromProps
+      .getState()
+      .columnFilters.find((filter) => filter.id === columnFromProps.id);
 
-  const handleFilterTypeChange = (type: string) => {
-    setFilterType(type);
-    tableFromProps.setOptions((prev) => ({
-      ...prev,
-      columns: prev.columns.map((column) => {
-        if (column.id === columnFromProps.id) {
-          console.log("column", {
-            ...column.meta,
-            filterOperator: type,
-          });
-          return {
-            ...column,
-            meta: {
-              ...column.meta,
-              filterOperator: type,
-            },
-          };
-        }
-        return column;
-      }),
-    }));
-  };
+    if (columnFilter && "operator" in columnFilter) {
+      return columnFilter.operator as CrudOperators;
+    }
 
-  console.log("columnMeta", columnMeta);
+    return defaultOperatorFromProps;
+  });
+
+  useEffect(() => {
+    columnFromProps.columnDef.meta = {
+      ...columnFromProps.columnDef.meta,
+      filterOperator: operator,
+    };
+  }, [operator, columnFromProps]);
 
   return (
     <TableHeaderFilterDropdown column={columnFromProps}>
@@ -421,27 +411,20 @@ export function TableHeaderFilterDropdownText<TData>({
               }
             }}
           >
-            <div className={cn("flex", "items-center", "gap-2")}>
-              <Select value={filterType} onValueChange={handleFilterTypeChange}>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select a filter" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="contains">Contains</SelectItem>
-                  <SelectItem value="equals">Equals</SelectItem>
-                </SelectContent>
-              </Select>
+            <TableFilterOperatorSelect
+              value={operator}
+              onValueChange={setOperator}
+            />
+            <Input
+              placeholder={
+                placeholder ?? t("table.filter.text.placeholder", "Search...")
+              }
+              value={filterValue}
+              onChange={(event) => {
+                setFilterValue(event.target.value);
+              }}
+            />
 
-              <Input
-                placeholder={
-                  placeholder ?? t("table.filter.text.placeholder", "Search...")
-                }
-                value={filterValue}
-                onChange={(event) => {
-                  setFilterValue(event.target.value);
-                }}
-              />
-            </div>
             <TableHeaderFilterDropdownActions
               onClear={() => {
                 columnFromProps.setFilterValue("");
@@ -540,6 +523,272 @@ export function TableHeaderFilterCombobox<TData>({
   );
 }
 
+export type TableHeaderFilterDropdownDateProps<TData> = {
+  column: Column<TData>;
+  formatDateRange?: (dateRange: DateRange | undefined) => string[] | undefined;
+};
+
+export function TableHeaderFilterDropdownDateRange<TData>({
+  column,
+  formatDateRange,
+}: TableHeaderFilterDropdownDateProps<TData>) {
+  const columnFilterValue = column.getFilterValue() as string[];
+
+  const parseDateRange = (
+    value: string[] | undefined,
+  ): DateRange | undefined => {
+    if (!value || !Array.isArray(value) || value.length !== 2) return undefined;
+
+    const from = value[0] ? new Date(value[0]) : undefined;
+    const to = value[1] ? new Date(value[1]) : undefined;
+
+    if (
+      !from ||
+      !to ||
+      Number.isNaN(from.getTime()) ||
+      Number.isNaN(to.getTime())
+    )
+      return undefined;
+    return { from, to };
+  };
+
+  const [filterValue, setFilterValue] = useState<DateRange | undefined>(() =>
+    parseDateRange(columnFilterValue),
+  );
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: objects are always different
+  useEffect(() => {
+    setFilterValue(parseDateRange(columnFilterValue));
+  }, [JSON.stringify(columnFilterValue)]);
+
+  const hasDateRange = filterValue?.from && filterValue?.to;
+
+  const handleApply = () => {
+    if (!filterValue?.from || !filterValue?.to) return;
+
+    const values = formatDateRange?.(filterValue) ?? [
+      filterValue.from.toISOString(),
+      filterValue.to.toISOString(),
+    ];
+    column.setFilterValue(values);
+  };
+
+  return (
+    <TableHeaderFilterDropdown
+      column={column}
+      contentClassName={cn("w-fit", "p-0")}
+    >
+      {({ isOpen: _, setIsOpen }) => {
+        return (
+          <div
+            className="flex flex-col items-center"
+            onKeyDown={(event) => {
+              if (!hasDateRange) return;
+              if (event.key === "Enter") {
+                handleApply();
+                setIsOpen(false);
+              }
+            }}
+          >
+            <Calendar
+              mode="range"
+              numberOfMonths={2}
+              selected={filterValue}
+              onSelect={(date) => {
+                setFilterValue({
+                  from: date?.from,
+                  to: date?.to,
+                });
+              }}
+            />
+
+            <div className="px-4 w-full">
+              <Separator />
+            </div>
+
+            <TableHeaderFilterDropdownActions
+              className={cn("p-4")}
+              isApplyDisabled={!hasDateRange}
+              onClear={() => {
+                column.setFilterValue(undefined);
+                setFilterValue(undefined);
+                setIsOpen(false);
+              }}
+              onApply={() => {
+                handleApply();
+                setIsOpen(false);
+              }}
+            />
+          </div>
+        );
+      }}
+    </TableHeaderFilterDropdown>
+  );
+}
+
+const CRUD_OPERATOR_LABELS: Record<
+  CrudOperators,
+  { i18nKey: string; defaultLabel: string }
+> = {
+  eq: { i18nKey: "table.filter.operator.eq", defaultLabel: "Equals" },
+  ne: { i18nKey: "table.filter.operator.ne", defaultLabel: "Not equals" },
+  lt: { i18nKey: "table.filter.operator.lt", defaultLabel: "Less than" },
+  gt: { i18nKey: "table.filter.operator.gt", defaultLabel: "Greater than" },
+  lte: {
+    i18nKey: "table.filter.operator.lte",
+    defaultLabel: "Less than or equal",
+  },
+  gte: {
+    i18nKey: "table.filter.operator.gte",
+    defaultLabel: "Greater than or equal",
+  },
+  in: { i18nKey: "table.filter.operator.in", defaultLabel: "In" },
+  nin: { i18nKey: "table.filter.operator.nin", defaultLabel: "Not in" },
+  ina: { i18nKey: "table.filter.operator.ina", defaultLabel: "Includes any" },
+  nina: {
+    i18nKey: "table.filter.operator.nina",
+    defaultLabel: "Not includes any",
+  },
+  contains: {
+    i18nKey: "table.filter.operator.contains",
+    defaultLabel: "Contains",
+  },
+  ncontains: {
+    i18nKey: "table.filter.operator.ncontains",
+    defaultLabel: "Not contains",
+  },
+  containss: {
+    i18nKey: "table.filter.operator.containss",
+    defaultLabel: "Contains (case sensitive)",
+  },
+  ncontainss: {
+    i18nKey: "table.filter.operator.ncontainss",
+    defaultLabel: "Not contains (case sensitive)",
+  },
+  between: {
+    i18nKey: "table.filter.operator.between",
+    defaultLabel: "Between",
+  },
+  nbetween: {
+    i18nKey: "table.filter.operator.nbetween",
+    defaultLabel: "Not between",
+  },
+  null: { i18nKey: "table.filter.operator.null", defaultLabel: "Is null" },
+  nnull: {
+    i18nKey: "table.filter.operator.nnull",
+    defaultLabel: "Is not null",
+  },
+  startswith: {
+    i18nKey: "table.filter.operator.startswith",
+    defaultLabel: "Starts with",
+  },
+  nstartswith: {
+    i18nKey: "table.filter.operator.nstartswith",
+    defaultLabel: "Not starts with",
+  },
+  startswiths: {
+    i18nKey: "table.filter.operator.startswiths",
+    defaultLabel: "Starts with (case sensitive)",
+  },
+  nstartswiths: {
+    i18nKey: "table.filter.operator.nstartswiths",
+    defaultLabel: "Not starts with (case sensitive)",
+  },
+  endswith: {
+    i18nKey: "table.filter.operator.endswith",
+    defaultLabel: "Ends with",
+  },
+  nendswith: {
+    i18nKey: "table.filter.operator.nendswith",
+    defaultLabel: "Not ends with",
+  },
+  endswiths: {
+    i18nKey: "table.filter.operator.endswiths",
+    defaultLabel: "Ends with (case sensitive)",
+  },
+  nendswiths: {
+    i18nKey: "table.filter.operator.nendswiths",
+    defaultLabel: "Not ends with (case sensitive)",
+  },
+  or: { i18nKey: "table.filter.operator.or", defaultLabel: "Or" },
+  and: { i18nKey: "table.filter.operator.and", defaultLabel: "And" },
+};
+
+export type TableFilterOperatorSelectProps = {
+  value: CrudOperators;
+  onValueChange: (value: CrudOperators) => void;
+  placeholder?: string;
+  className?: string;
+};
+
+export function TableFilterOperatorSelect({
+  value,
+  onValueChange,
+  placeholder,
+  className,
+}: TableFilterOperatorSelectProps) {
+  const t = useTranslate();
+
+  const [open, setOpen] = useState(false);
+
+  const operators = useMemo(() => Object.entries(CRUD_OPERATOR_LABELS), []);
+
+  const selectedLabel = t(
+    CRUD_OPERATOR_LABELS[value].i18nKey,
+    CRUD_OPERATOR_LABELS[value].defaultLabel,
+  );
+  const placeholderText =
+    placeholder ?? t("table.filter.operator.placeholder", "Search operator...");
+  const noResultsText = t(
+    "table.filter.operator.noResults",
+    "No operator found.",
+  );
+
+  return (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          role="combobox"
+          aria-expanded={open}
+          className={cn("w-full justify-between", className)}
+        >
+          {selectedLabel ?? placeholderText}
+          <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-[250px] p-0" forceMount>
+        <Command>
+          <CommandInput placeholder={placeholderText} />
+          <CommandList>
+            <CommandEmpty>{noResultsText}</CommandEmpty>
+            <CommandGroup>
+              {operators.map(([op, { i18nKey, defaultLabel }]) => (
+                <CommandItem
+                  key={op}
+                  value={op}
+                  onSelect={() => {
+                    onValueChange(op as CrudOperators);
+                    setOpen(false);
+                  }}
+                >
+                  <Check
+                    className={cn(
+                      "mr-2 h-4 w-4",
+                      value === op ? "opacity-100" : "opacity-0",
+                    )}
+                  />
+                  {t(i18nKey, defaultLabel)}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </CommandList>
+        </Command>
+      </PopoverContent>
+    </Popover>
+  );
+}
+
 export function getCommonStyles<TData>({
   column,
 }: {
@@ -576,5 +825,8 @@ TableHeaderSorter.displayName = "TableHeaderSorter";
 TableHeaderFilterDropdown.displayName = "TableHeaderFilterDropdown";
 TableHeaderFilterDropdownText.displayName = "TableHeaderFilterDropdownText";
 TableHeaderFilterCombobox.displayName = "TableHeaderFilterCombobox";
+TableHeaderFilterDropdownDateRange.displayName =
+  "TableHeaderFilterDropdownDateRange";
+TableFilterOperatorSelect.displayName = "TableFilterOperatorSelect";
 TableHeaderFilterDropdownActions.displayName =
   "TableHeaderFilterDropdownActions";

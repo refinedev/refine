@@ -19,38 +19,15 @@ export const HomePage = () => {
       <div className="flex flex-col items-start justify-start gap-2">
         <h2>Navigation Buttons</h2>
         <div className="flex flex-col items-start justify-start gap-6">
-          <ListButton
-            refineCoreProps={{
-              resource: "posts",
-            }}
-          />
+          <ListButton resource="posts" />
 
-          <CreateButton
-            refineCoreProps={{
-              resource: "posts",
-            }}
-          />
+          <CreateButton resource="posts" />
 
-          <EditButton
-            refineCoreProps={{
-              resource: "posts",
-              recordItemId: "123",
-            }}
-          />
+          <EditButton resource="posts" recordItemId="123" />
 
-          <ShowButton
-            refineCoreProps={{
-              resource: "posts",
-              recordItemId: "123",
-            }}
-          />
+          <ShowButton resource="posts" recordItemId="123" />
 
-          <CloneButton
-            refineCoreProps={{
-              resource: "posts",
-              recordItemId: "123",
-            }}
-          />
+          <CloneButton resource="posts" recordItemId="123" />
         </div>
       </div>
 
@@ -59,18 +36,8 @@ export const HomePage = () => {
       <div className="flex flex-col items-start justify-start gap-2">
         <h2>Action Buttons</h2>
         <div className="flex flex-col items-start justify-start gap-6">
-          <DeleteButton
-            refineCoreProps={{
-              resource: "posts",
-              recordItemId: "123",
-            }}
-          />
-          <RefreshButton
-            refineCoreProps={{
-              resource: "posts",
-              recordItemId: "123",
-            }}
-          />
+          <DeleteButton resource="posts" recordItemId="123" />
+          <RefreshButton resource="posts" recordItemId="123" />
         </div>
       </div>
     </div>

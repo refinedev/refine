@@ -120,7 +120,9 @@ export const authProvider: AuthProvider = {
   getPermissions: async (params) => params?.permissions,
   getIdentity: async () => ({
     id: 1,
-    name: "Jane Doe",
+    firstName: "Jane",
+    lastName: "Doe",
+    fullName: "Jane Doe",
     avatar: "https://unsplash.com/photos/IWLOvomUmWU/download?force=true&w=640",
     email: "jane.doe@example.com",
   }),

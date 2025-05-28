@@ -1,33 +1,42 @@
 "use client";
 
-import type { RefineCreateButtonProps } from "@refinedev/ui-types";
-import type { VariantProps } from "class-variance-authority";
-import { useCreateButton } from "@refinedev/core";
-
+import { type BaseKey, useCreateButton } from "@refinedev/core";
 import { Plus } from "lucide-react";
-
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Button } from "@/registry/default/ui/button";
 
 type CreateButtonProps = {
   /**
-   * Props are related to refine core.
-   * @link https://refine.dev/docs/guides-concepts/ui-libraries/#buttons
+   * Resource name for API data interactions. `identifier` of the resource can be used instead of the `name` of the resource.
+   * @default Inferred resource name from the route
    */
-  refineCoreProps?: Pick<
-    RefineCreateButtonProps,
-    "resource" | "accessControl" | "meta"
-  >;
-} & React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants>;
+  resource?: BaseKey;
+  /**
+   * Access Control configuration for the button
+   * @default `{ enabled: true, hideIfUnauthorized: false }`
+   */
+  accessControl?: {
+    enabled?: boolean;
+    hideIfUnauthorized?: boolean;
+  };
+  /**
+   * `meta` property is used when creating the URL for the related action and path.
+   */
+  meta?: Record<string, unknown>;
+} & React.ComponentProps<typeof Button>;
 
 export function CreateButton({
-  refineCoreProps = {},
+  resource,
+  accessControl,
+  meta,
   children,
   onClick,
   ...rest
 }: CreateButtonProps) {
-  const { hidden, disabled, LinkComponent, to, label } =
-    useCreateButton(refineCoreProps);
+  const { hidden, disabled, LinkComponent, to, label } = useCreateButton({
+    resource,
+    accessControl,
+    meta,
+  });
 
   const isDisabled = disabled || rest.disabled;
   const isHidden = hidden || rest.hidden;

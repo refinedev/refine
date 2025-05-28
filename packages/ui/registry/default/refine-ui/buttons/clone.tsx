@@ -1,32 +1,48 @@
 "use client";
 
-import type { VariantProps } from "class-variance-authority";
-import type { RefineCloneButtonProps } from "@refinedev/ui-types";
-import { useCloneButton } from "@refinedev/core";
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { type BaseKey, useCloneButton } from "@refinedev/core";
 import { Copy } from "lucide-react";
+import { Button } from "@/registry/default/ui/button";
 
 type CloneButtonProps = {
   /**
-   * Props are related to refine core.
-   * @link https://refine.dev/docs/guides-concepts/ui-libraries/#buttons
+   * Resource name for API data interactions. `identifier` of the resource can be used instead of the `name` of the resource.
+   * @default Inferred resource name from the route
    */
-  refineCoreProps?: Pick<
-    RefineCloneButtonProps,
-    "resource" | "accessControl" | "meta" | "recordItemId"
-  >;
-} & React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants>;
+  resource?: string;
+  /**
+   * Data item identifier for the actions with the API
+   * @default Reads `:id` from the URL
+   */
+  recordItemId?: BaseKey;
+  /**
+   * Access Control configuration for the button
+   * @default `{ enabled: true, hideIfUnauthorized: false }`
+   */
+  accessControl?: {
+    enabled?: boolean;
+    hideIfUnauthorized?: boolean;
+  };
+  /**
+   * `meta` property is used when creating the URL for the related action and path.
+   */
+  meta?: Record<string, unknown>;
+} & React.ComponentProps<typeof Button>;
 
 export function CloneButton({
-  refineCoreProps = {},
+  resource,
+  recordItemId,
+  accessControl,
+  meta,
   children,
   onClick,
   ...rest
 }: CloneButtonProps) {
   const { hidden, disabled, LinkComponent, to, label } = useCloneButton({
-    ...refineCoreProps,
-    id: refineCoreProps.recordItemId,
+    accessControl,
+    resource,
+    id: recordItemId,
+    meta,
   });
 
   const isDisabled = disabled || rest.disabled;

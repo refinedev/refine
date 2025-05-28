@@ -1,25 +1,37 @@
 "use client";
 
-import type { VariantProps } from "class-variance-authority";
-import type { RefineRefreshButtonProps } from "@refinedev/ui-types";
-import { useRefreshButton } from "@refinedev/core";
-
+import { type BaseKey, useRefreshButton } from "@refinedev/core";
 import { RefreshCcw } from "lucide-react";
-
-import { Button, type buttonVariants } from "@/registry/default/ui/button";
+import { Button } from "@/registry/default/ui/button";
 import { cn } from "@/lib/utils";
 
 type RefreshButtonProps = {
   /**
-   * Props are related to refine core.
-   * @link https://refine.dev/docs/guides-concepts/ui-libraries/#buttons
+   * Resource name for API data interactions. `identifier` of the resource can be used instead of the `name` of the resource.
+   * @default Inferred resource name from the route
    */
-  refineCoreProps?: RefineRefreshButtonProps;
-} & React.ComponentProps<"button"> &
-  VariantProps<typeof buttonVariants>;
+  resource?: string;
+  /**
+   * Data item identifier for the actions with the API
+   * @default Reads `:id` from the URL
+   */
+  recordItemId?: BaseKey;
+  /**
+   * Target data provider name for API call to be made
+   * @default `"default"`
+   */
+  dataProviderName?: string;
+  /**
+   * `meta` property is used when creating the URL for the related action and path.
+   */
+  meta?: Record<string, unknown>;
+} & React.ComponentProps<typeof Button>;
 
 export function RefreshButton({
-  refineCoreProps = {},
+  resource,
+  recordItemId,
+  dataProviderName,
+  meta,
   children,
   ...rest
 }: RefreshButtonProps) {
@@ -28,8 +40,10 @@ export function RefreshButton({
     loading,
     label,
   } = useRefreshButton({
-    ...refineCoreProps,
-    id: refineCoreProps.recordItemId,
+    resource,
+    id: recordItemId,
+    dataProviderName,
+    meta,
   });
 
   const isDisabled = rest.disabled || loading;
@@ -49,7 +63,9 @@ export function RefreshButton({
       {children ?? (
         <div className="flex items-center gap-2">
           <RefreshCcw
-            className={cn(loading && "animate-spin", "h-4 w-4", rest.className)}
+            className={cn("h-4 w-4", {
+              "animate-spin": loading,
+            })}
           />
           <span>{label ?? "Refresh"}</span>
         </div>

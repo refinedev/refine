@@ -155,8 +155,12 @@ export function useTable<
   }, [sorting]);
 
   useEffect(() => {
+    const allColumns = reactTableResult
+      .getAllColumns()
+      .map((col) => col.columnDef);
+
     const crudFilters: CrudFilter[] = columnFiltersToCrudFilters({
-      columns,
+      columns: allColumns,
       columnFilters,
     });
 

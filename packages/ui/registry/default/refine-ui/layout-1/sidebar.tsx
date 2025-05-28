@@ -1,17 +1,19 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import {
   useMenu,
   useLink,
   useRefineOptions,
   type ITreeMenu,
+  useLogout,
 } from "@refinedev/core";
 import {
   Sidebar as ShadcnSidebar,
   SidebarContent as ShadcnSidebarContent,
   SidebarHeader as ShadcnSidebarHeader,
   useSidebar as useShadcnSidebar,
+  SidebarTrigger as ShadcnSidebarTrigger,
 } from "@/registry/default/ui/sidebar";
 import {
   DropdownMenu,
@@ -25,11 +27,11 @@ import {
   CollapsibleTrigger,
 } from "@/registry/default/ui/collapsible";
 import { Button } from "@/registry/default/ui/button";
-import { SidebarTrigger } from "@/registry/default/refine-ui/layout-1/sidebar-trigger";
 import { Separator } from "@/registry/default/ui/separator";
-import { ChevronRight } from "lucide-react";
+import { UserAvatar } from "@/registry/default/refine-ui/user/user-avatar";
+import { UserInfo } from "@/registry/default/refine-ui/user/user-info";
+import { ChevronDown, ChevronRight, ChevronUp, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { UserDropdown } from "../user-dropdown";
 
 export function Sidebar() {
   const { open } = useShadcnSidebar();
@@ -84,7 +86,7 @@ export function Sidebar() {
         })}
       >
         <Separator className={cn("mb-3")} />
-        <UserDropdown />
+        <SidebarFooter />
       </div>
     </ShadcnSidebar>
   );
@@ -112,7 +114,7 @@ function SidebarItem({ item, selectedKey }: MenuItemProps) {
   return <SidebarItemLink item={item} selectedKey={selectedKey} />;
 }
 
-const SidebarItemGroup: React.FC<MenuItemProps> = ({ item, selectedKey }) => {
+function SidebarItemGroup({ item, selectedKey }: MenuItemProps) {
   const { children } = item;
   const { open } = useShadcnSidebar();
 
@@ -153,7 +155,7 @@ const SidebarItemGroup: React.FC<MenuItemProps> = ({ item, selectedKey }) => {
       )}
     </div>
   );
-};
+}
 
 function SidebarItemCollapsible({ item, selectedKey }: MenuItemProps) {
   const { name, children } = item;
@@ -226,11 +228,11 @@ function SidebarItemDropdown({ item, selectedKey }: MenuItemProps) {
   );
 }
 
-const SidebarItemLink: React.FC<MenuItemProps> = ({ item, selectedKey }) => {
+function SidebarItemLink({ item, selectedKey }: MenuItemProps) {
   const isSelected = item.key === selectedKey;
 
   return <SidebarButton item={item} isSelected={isSelected} asLink={true} />;
-};
+}
 
 function SidebarHeader() {
   const { title } = useRefineOptions();
@@ -283,8 +285,8 @@ function SidebarHeader() {
         </h2>
       </div>
 
-      <SidebarTrigger
-        className={cn({
+      <ShadcnSidebarTrigger
+        className={cn("text-muted-foreground", "mr-1", {
           "opacity-0": !open,
           "opacity-100": open || isMobile,
           "pointer-events-auto": open || isMobile,
@@ -295,27 +297,31 @@ function SidebarHeader() {
   );
 }
 
-const getDisplayName = (item: ITreeMenu) =>
-  item.meta?.label ?? item.label ?? item.name;
+function getDisplayName(item: ITreeMenu) {
+  return item.meta?.label ?? item.label ?? item.name;
+}
 
 type IconProps = {
   icon: React.ReactNode;
   isSelected?: boolean;
 };
 
-const ItemIcon: React.FC<IconProps> = ({ icon, isSelected }) =>
-  icon ? (
-    <div
-      className={cn("w-4", {
-        "text-muted-foreground": !isSelected,
-        "text-sidebar-primary-foreground": isSelected,
-      })}
-    >
-      {icon}
-    </div>
-  ) : (
-    <span className={cn("w-4")} />
-  );
+function ItemIcon({ icon, isSelected }: IconProps) {
+  if (icon) {
+    return (
+      <div
+        className={cn("w-4", {
+          "text-muted-foreground": !isSelected,
+          "text-sidebar-primary-foreground": isSelected,
+        })}
+      >
+        {icon}
+      </div>
+    );
+  }
+
+  return <span className={cn("w-4")} />;
+}
 
 type SidebarButtonProps = React.ComponentProps<typeof Button> & {
   item: ITreeMenu;
@@ -325,7 +331,7 @@ type SidebarButtonProps = React.ComponentProps<typeof Button> & {
   onClick?: () => void;
 };
 
-const SidebarButton: React.FC<SidebarButtonProps> = ({
+function SidebarButton({
   item,
   isSelected = false,
   rightIcon,
@@ -333,7 +339,7 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
   className,
   onClick,
   ...props
-}) => {
+}: SidebarButtonProps) {
   const Link = useLink();
 
   const buttonContent = (
@@ -375,6 +381,65 @@ const SidebarButton: React.FC<SidebarButtonProps> = ({
       )}
     </Button>
   );
-};
+}
+
+function SidebarFooter() {
+  const { mutate: logout, isLoading: logoutIsLoading } = useLogout();
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <button
+          className={cn(
+            "flex",
+            "items-center",
+            "gap-x-2",
+            "py-3",
+            "pr-2",
+            "w-full",
+            "text-left",
+            "focus:outline-none",
+          )}
+        >
+          <UserAvatar />
+          <UserInfo />
+          <ChevronUp
+            className={cn(
+              "h-4",
+              "w-4",
+              "ml-auto",
+              "text-muted-foreground",
+              "transition-transform",
+              "duration-200",
+              "group-data-[state=open]:rotate-180",
+            )}
+          />
+        </button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className={cn("w-60", "shadow-xl")}>
+        <DropdownMenuItem className={cn("p-0")}>
+          <Button
+            variant="ghost"
+            size="lg"
+            onClick={() => logout()}
+            disabled={logoutIsLoading}
+            className={cn(
+              "text-destructive",
+              "hover:text-destructive",
+              "w-full",
+              "flex",
+              "items-center",
+              "justify-start",
+              "gap-x-2",
+            )}
+          >
+            <LogOut className={cn("h-4", "w-4", "text-destructive")} />
+            Log out
+          </Button>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+}
 
 Sidebar.displayName = "Sidebar";

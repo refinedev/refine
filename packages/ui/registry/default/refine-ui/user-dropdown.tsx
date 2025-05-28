@@ -75,7 +75,7 @@ export function UserDropdown({ className }: UserDropdownProps) {
         >
           <Avatar className={cn("h-10", "w-10")}>
             {avatar && <AvatarImage src={avatar} alt={name} />}
-            <AvatarFallback>{getInitials(name)}</AvatarFallback>
+            <AvatarFallback>AA</AvatarFallback>
           </Avatar>
           <div className={cn("flex", "flex-col", "gap-y-1")}>
             <span
@@ -122,15 +122,5 @@ export function UserDropdown({ className }: UserDropdownProps) {
     </DropdownMenu>
   );
 }
-
-const getInitials = (name = "") => {
-  const names = name.split(" ");
-  let initials = names[0].substring(0, 1).toUpperCase();
-
-  if (names.length > 1) {
-    initials += names[names.length - 1].substring(0, 1).toUpperCase();
-  }
-  return initials;
-};
 
 UserDropdown.displayName = "UserDropdown";

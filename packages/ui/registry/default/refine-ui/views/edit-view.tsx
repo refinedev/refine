@@ -88,10 +88,8 @@ export const EditViewHeader = ({
         <div className="flex items-center gap-1">
           <RefreshButton
             variant="outline"
-            refineCoreProps={{
-              recordItemId,
-              resource: resourceName,
-            }}
+            recordItemId={recordItemId}
+            resource={resourceName}
           />
         </div>
       </div>
