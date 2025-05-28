@@ -33,7 +33,7 @@ const renderShow = (
 };
 
 describe("Show", () => {
-  crudShowTests.bind(this)(Show);
+  crudShowTests.bind(this)(Show, TestWrapper);
 
   it("depending on the accessControlProvider it should get the buttons successfully", async () => {
     const { getByTestId } = renderShow(

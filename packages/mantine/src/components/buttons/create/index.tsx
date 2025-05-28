@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
@@ -34,7 +33,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 
   if (isHidden) return null;
 
-  const { variant, styles, ...commonProps } = rest;
+  const { variant, ...commonProps } = rest;
 
   return (
     <Anchor
@@ -57,12 +56,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           title={title}
           disabled={isDisabled}
           aria-label={label}
-          color="primary"
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "filled" })}
+          variant={variant || "default"}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
           {...commonProps}
@@ -72,13 +66,12 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
       ) : (
         <Button
           disabled={isDisabled}
-          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
-          color="primary"
-          variant="filled"
-          {...rest}
+          variant={variant || "filled"}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

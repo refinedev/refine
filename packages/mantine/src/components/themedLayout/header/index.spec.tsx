@@ -1,59 +1,16 @@
 import React from "react";
-import { render, TestWrapper } from "@test";
+
+import { layoutHeaderTests } from "@refinedev/ui-tests";
+
 import { ThemedHeader } from "./index";
-import type { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
+import { AppShell } from "@mantine/core";
+import { TestWrapper } from "@test/index";
 
-const mockLegacyAuthProvider: LegacyAuthProvider = {
-  login: () => Promise.resolve(),
-  logout: () => Promise.resolve(),
-  checkError: () => Promise.resolve(),
-  checkAuth: () => Promise.resolve(),
-  getPermissions: () => Promise.resolve(["admin"]),
-  getUserIdentity: () =>
-    Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
-};
-
-const mockAuthProvider: AuthProvider = {
-  login: () =>
-    Promise.resolve({
-      success: true,
-    }),
-  logout: () =>
-    Promise.resolve({
-      success: true,
-    }),
-  onError: () => Promise.resolve({}),
-  check: () =>
-    Promise.resolve({
-      authenticated: true,
-    }),
-  getIdentity: () =>
-    Promise.resolve({ name: "John Doe", avatar: "localhost:3000" }),
-};
-
-describe("ThemedHeader", () => {
-  it("should render successfull user name and avatar fallback in header", async () => {
-    const { findByText, getByTitle } = render(<ThemedHeader />, {
-      wrapper: TestWrapper({
-        authProvider: mockAuthProvider,
-      }),
-    });
-
-    await findByText("John Doe");
-    getByTitle("John Doe");
-  });
-});
-
-// NOTE: Will be removed in the refine v5
-describe("ThemedHeader with legacyAuthProvider", () => {
-  it("should render successfull user name and avatar fallback in header", async () => {
-    const { findByText, getByTitle } = render(<ThemedHeader />, {
-      wrapper: TestWrapper({
-        legacyAuthProvider: mockLegacyAuthProvider,
-      }),
-    });
-
-    await findByText("John Doe");
-    getByTitle("John Doe");
-  });
+const Header = () => (
+  <AppShell>
+    <ThemedHeader />
+  </AppShell>
+);
+describe("Header", () => {
+  layoutHeaderTests.bind(this)(Header, TestWrapper);
 });

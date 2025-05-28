@@ -27,7 +27,7 @@ export const PostList: React.FC = () => {
     () => [
       {
         id: "id",
-        header: "ID",
+        header: "ID test",
         accessorKey: "id",
       },
       {
@@ -52,6 +52,7 @@ export const PostList: React.FC = () => {
                   { label: "Draft", value: "draft" },
                   { label: "Rejected", value: "rejected" },
                 ]}
+                comboboxProps={{ withinPortal: false }}
                 {...props}
               />
             );
@@ -91,7 +92,7 @@ export const PostList: React.FC = () => {
         enableSorting: false,
         cell: function render({ getValue }) {
           return (
-            <Group spacing="xs" noWrap>
+            <Group gap="xs" wrap="nowrap">
               <ShowButton hideText recordItemId={getValue() as number} />
               <EditButton hideText recordItemId={getValue() as number} />
               <DeleteButton hideText recordItemId={getValue() as number} />
@@ -110,11 +111,19 @@ export const PostList: React.FC = () => {
     refineCore: {
       setCurrent,
       pageCount,
+      pageSize,
       current,
       tableQuery: { data: tableData },
     },
   } = useTable({
     columns,
+    refineCoreProps: {
+      pagination: {
+        current: 3,
+        pageSize: 30,
+        mode: "server",
+      },
+    },
   });
 
   const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
@@ -135,62 +144,66 @@ export const PostList: React.FC = () => {
   }));
 
   return (
-    <ScrollArea>
-      <List>
+    <List
+      wrapperProps={{
+        h: "calc(100vh - var(--app-shell-header-height, 0px) - var(--app-shell-footer-height, 0px) - 32px)",
+        style: { flexGrow: 1 },
+      }}
+      contentProps={{
+        style: { flexGrow: 1, height: "100%" },
+      }}
+    >
+      <ScrollArea style={{ flexGrow: 1, height: "90%" }}>
         <Table highlightOnHover>
-          <thead>
+          <Table.Thead>
             {getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <Table.Tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th key={header.id}>
+                    <Table.Th key={header.id}>
                       {!header.isPlaceholder && (
-                        <Group spacing="xs" noWrap>
+                        <Group gap="xs" wrap="nowrap">
                           <Box>
                             {flexRender(
                               header.column.columnDef.header,
                               header.getContext(),
                             )}
                           </Box>
-                          <Group spacing="xs" noWrap>
+                          <Group gap="xs" wrap="nowrap">
                             <ColumnSorter column={header.column} />
                             <ColumnFilter column={header.column} />
                           </Group>
                         </Group>
                       )}
-                    </th>
+                    </Table.Th>
                   );
                 })}
-              </tr>
+              </Table.Tr>
             ))}
-          </thead>
-          <tbody>
+          </Table.Thead>
+          <Table.Tbody>
             {getRowModel().rows.map((row) => {
               return (
-                <tr key={row.id}>
+                <Table.Tr key={row.id}>
                   {row.getVisibleCells().map((cell) => {
                     return (
-                      <td key={cell.id}>
+                      <Table.Td key={cell.id}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext(),
                         )}
-                      </td>
+                      </Table.Td>
                     );
                   })}
-                </tr>
+                </Table.Tr>
               );
             })}
-          </tbody>
+          </Table.Tbody>
         </Table>
-        <br />
-        <Pagination
-          position="right"
-          total={pageCount}
-          page={current}
-          onChange={setCurrent}
-        />
-      </List>
-    </ScrollArea>
+      </ScrollArea>
+      <Group mt="md" justify="right">
+        <Pagination total={pageCount} value={current} onChange={setCurrent} />
+      </Group>
+    </List>
   );
 };
