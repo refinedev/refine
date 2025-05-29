@@ -1,21 +1,23 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
-import { useMany } from "@refinedev/core";
+import { useList } from "@refinedev/core";
 import { Button } from "@/registry/default/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
-import { MoreVertical } from "lucide-react";
+import { MoreHorizontal, MoreVertical } from "lucide-react";
+import { DataTable } from "@/registry/default/refine-ui/table/data-table";
+import { DataTableSorter } from "@/registry/default/refine-ui/table/data-table-sorter";
 import {
-  DataTable,
-  TableHeaderSorter,
-  TableHeaderFilterDropdownText,
-  TableHeaderFilterCombobox,
-  TableHeaderFilterDropdownDateRange,
-} from "@/registry/default/refine-ui/table/data-table";
+  DataTableFilterDropdownText,
+  DataTableFilterCombobox,
+  DataTableFilterDropdownDateRangePicker,
+  DataTableFilterDropdownDateSinglePicker,
+  DataTableFilterDropdownNumeric,
+} from "@/registry/default/refine-ui/table/data-table-filter";
 import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
 import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
 import {
@@ -24,10 +26,15 @@ import {
   ListView,
 } from "@/registry/default/refine-ui/views/list-view";
 import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
-
 import type { Post, Category } from "../../types/resources";
+import { cn } from "@/lib/utils";
 
 export function PostsListPage() {
+  const { data: categoriesData } = useList<Category>({
+    resource: "categories",
+  });
+  const categories = categoriesData?.data ?? [];
+
   const columns = useMemo<ColumnDef<Post>[]>(
     () => [
       {
@@ -39,8 +46,8 @@ export function PostsListPage() {
             <div className="flex items-center gap-1">
               <span>ID</span>
               <div>
-                <TableHeaderSorter column={column} />
-                <TableHeaderFilterDropdownText
+                <DataTableSorter column={column} />
+                <DataTableFilterDropdownNumeric
                   defaultOperator="eq"
                   column={column}
                   table={table}
@@ -60,7 +67,7 @@ export function PostsListPage() {
             <div className="flex items-center gap-1">
               <span>Title</span>
               <div>
-                <TableHeaderFilterDropdownText
+                <DataTableFilterDropdownText
                   defaultOperator="contains"
                   column={column}
                   table={table}
@@ -80,17 +87,27 @@ export function PostsListPage() {
         enableColumnFilter: false,
       },
       {
-        id: "category",
-        header: "Category",
+        id: "category.id",
         accessorKey: "category.id",
         size: 200,
-        cell: ({ getValue, table }) => {
-          const meta = table.options.meta as {
-            categories: Category[];
-          };
-          const category = meta?.categories?.find(
-            (item) => item.id === getValue(),
+        header: ({ column }) => {
+          return (
+            <div className="flex items-center gap-1">
+              <span>Category</span>
+              <DataTableFilterCombobox
+                column={column}
+                defaultOperator="in"
+                multiple={true}
+                options={categories.map((item) => ({
+                  label: item.title,
+                  value: item.id.toString(),
+                }))}
+              />
+            </div>
           );
+        },
+        cell: ({ getValue }) => {
+          const category = categories.find((item) => item.id === getValue());
 
           return category?.title || "-";
         },
@@ -104,8 +121,10 @@ export function PostsListPage() {
           return (
             <div className="flex items-center gap-1">
               <span>Status</span>
-              <TableHeaderFilterCombobox
+              <DataTableFilterCombobox
                 column={column}
+                defaultOperator="in"
+                multiple={true}
                 options={[
                   { label: "Published", value: "published" },
                   { label: "Draft", value: "draft" },
@@ -119,15 +138,12 @@ export function PostsListPage() {
       {
         id: "createdAt",
         accessorKey: "createdAt",
-        size: 120,
-        meta: {
-          filterOperator: "between",
-        },
+        size: 220,
         header: ({ column }) => {
           return (
             <div className="flex items-center gap-1">
               <span>Created At</span>
-              <TableHeaderFilterDropdownDateRange
+              <DataTableFilterDropdownDateRangePicker
                 column={column}
                 formatDateRange={(dateRange) => {
                   if (!dateRange?.from || !dateRange?.to) {
@@ -148,23 +164,62 @@ export function PostsListPage() {
         },
       },
       {
+        id: "updatedAt",
+        accessorKey: "createdAt",
+        size: 220,
+        header: ({ column }) => {
+          return (
+            <div className="flex items-center gap-1">
+              <span>Updated At</span>
+              <DataTableFilterDropdownDateSinglePicker
+                column={column}
+                defaultOperator="eq"
+                formatDate={(date) => {
+                  if (!date) return undefined;
+                  return date.toISOString().split("T")[0];
+                }}
+              />
+            </div>
+          );
+        },
+        cell: ({ row }) => {
+          return <div>{row.original.createdAt}</div>;
+        },
+      },
+      {
         id: "actions",
-        header: "",
-        size: 64,
+        size: 84,
         enableSorting: false,
         enableColumnFilter: false,
+        header: () => {
+          return (
+            <div
+              className={cn("flex", "w-full", "items-center", "justify-center")}
+            >
+              Actions
+            </div>
+          );
+        },
         cell: ({ row }) => {
           const post = row.original;
-
           return (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="flex size-8 text-muted-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground ml-auto"
+                  className={cn(
+                    "flex",
+                    "size-8",
+                    "border",
+                    "rounded-full",
+                    "text-muted-foreground",
+                    "data-[state=open]:bg-muted",
+                    "data-[state=open]:text-foreground",
+                    "mx-auto",
+                  )}
                 >
                   <span className="sr-only">Open menu</span>
-                  <MoreVertical className="h-4 w-4" />
+                  <MoreHorizontal className="h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent
@@ -197,7 +252,7 @@ export function PostsListPage() {
         },
       },
     ],
-    [],
+    [categories],
   );
 
   const table = useTable<Post>({
@@ -209,26 +264,6 @@ export function PostsListPage() {
       },
     },
   });
-
-  const posts = table.options.data as Post[] | undefined;
-  const categoryIds =
-    posts?.map((item) => item.category?.id).filter(Boolean) ?? [];
-
-  const { data: categoriesData } = useMany<Category>({
-    resource: "categories",
-    ids: categoryIds,
-    queryOptions: {
-      enabled: categoryIds.length > 0,
-    },
-  });
-
-  table.setOptions((prev) => ({
-    ...prev,
-    meta: {
-      ...prev.meta,
-      categories: categoriesData?.data ?? [],
-    },
-  }));
 
   return (
     <ListView>

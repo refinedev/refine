@@ -68,7 +68,6 @@ export default function EditPost() {
 
   const {
     refineCore: { onFinish, formLoading },
-    saveButtonProps,
     ...form
   } = useForm<Post, HttpError, PostFormValues>({
     resolver: zodResolver(postFormSchema),
@@ -220,7 +219,7 @@ export default function EditPost() {
               >
                 Cancel
               </Button>
-              <Button {...saveButtonProps}>
+              <Button type="submit" disabled={formLoading}>
                 {formLoading && <Loader2 className="h-4 w-4 animate-spin" />}
                 Save
               </Button>

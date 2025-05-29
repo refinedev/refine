@@ -274,6 +274,8 @@ export type ContextQuery<T = BaseRecord> = {
 // | gte                 | Greater than or equal to          |
 // | in                  | Included in an array              |
 // | nin                 | Not included in an array          |
+// | ina                 | Included in an array, case sensitive|
+// | nina                | Not included in an array, case sensitive|
 // | contains            | Contains                          |
 // | ncontains           | Doesn't contain                   |
 // | containss           | Contains, case sensitive          |
