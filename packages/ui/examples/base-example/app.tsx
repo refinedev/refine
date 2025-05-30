@@ -1,6 +1,6 @@
 "use client";
 
-import { Refine, ErrorComponent, Authenticated } from "@refinedev/core";
+import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -9,14 +9,8 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { Toaster } from "@/registry/default/ui/sonner";
-import { authProvider } from "./providers/auth";
-import { notificationProvider } from "./providers/notification";
-import { createDataProvider } from "./providers/data";
-import { LoginForm } from "./components/login-form";
-import { AppLayout } from "./components/layout";
-import { PostsListPage } from "./routes/posts/list";
-import { UsersListPage } from "./routes/users/list";
-import { API_URL } from "./constants";
+import { Breadcrumb } from "@/registry/default/refine-ui/layout/breadcrumb";
+import { ErrorComponent } from "@/registry/default/refine-ui/layout/error-component";
 import {
   BellIcon,
   CreditCardIcon,
@@ -27,8 +21,15 @@ import {
   SettingsIcon,
   UserIcon,
 } from "lucide-react";
+import { authProvider } from "./providers/auth";
+import { notificationProvider } from "./providers/notification";
+import { createDataProvider } from "./providers/data";
+import { LoginForm } from "./components/login-form";
+import { AppLayout } from "./components/layout";
+import { PostsListPage } from "./routes/posts/list";
+import { UsersListPage } from "./routes/users/list";
+import { API_URL } from "./constants";
 import { HomePage } from "./routes/home";
-import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
 import CreatePost from "./routes/posts/create";
 import ShowPost from "./routes/posts/show";
 import EditPost from "./routes/posts/edit";
@@ -162,6 +163,7 @@ export function BaseExample() {
             <Route path="/expenses" element={<div>Expenses List Page</div>} />
             <Route path="/income" element={<div>Income List Page</div>} />
             <Route path="/directory" element={<div>Directory List Page</div>} />
+            <Route path="*" element={<ErrorComponent />} />
           </Route>
 
           <Route

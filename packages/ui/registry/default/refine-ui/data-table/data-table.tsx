@@ -15,7 +15,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/registry/default/ui/table";
-import { DataTablePagination } from "@/registry/default/refine-ui/table/data-table-pagination";
+import { DataTablePagination } from "@/registry/default/refine-ui/data-table/data-table-pagination";
 import { cn } from "@/lib/utils";
 
 type DataTableProps<TData extends BaseRecord> = {

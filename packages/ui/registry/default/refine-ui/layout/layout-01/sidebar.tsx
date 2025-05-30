@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   useMenu,
   useLink,
@@ -28,9 +28,8 @@ import {
 } from "@/registry/default/ui/collapsible";
 import { Button } from "@/registry/default/ui/button";
 import { Separator } from "@/registry/default/ui/separator";
-import { UserAvatar } from "@/registry/default/refine-ui/user/user-avatar";
 import { UserInfo } from "@/registry/default/refine-ui/user/user-info";
-import { ChevronDown, ChevronRight, ChevronUp, LogOut } from "lucide-react";
+import { ChevronRight, ChevronUp, ListIcon, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Sidebar() {
@@ -45,7 +44,7 @@ export function Sidebar() {
       <SidebarHeader />
       <ShadcnSidebarContent
         className={cn(
-          "transition-all",
+          "transition-discrete",
           "duration-200",
           "flex",
           "flex-col",
@@ -85,7 +84,7 @@ export function Sidebar() {
           "px-1": !open,
         })}
       >
-        <Separator className={cn("mb-3")} />
+        <Separator />
         <SidebarFooter />
       </div>
     </ShadcnSidebar>
@@ -260,7 +259,7 @@ function SidebarHeader() {
           "items-center",
           "justify-start",
           "gap-2",
-          "transition-all",
+          "transition-discrete",
           "duration-200",
           {
             "pl-3": !open,
@@ -273,7 +272,7 @@ function SidebarHeader() {
           className={cn(
             "text-sm",
             "font-bold",
-            "transition-all",
+            "transition-opacity",
             "duration-200",
             {
               "opacity-0": !open,
@@ -307,20 +306,16 @@ type IconProps = {
 };
 
 function ItemIcon({ icon, isSelected }: IconProps) {
-  if (icon) {
-    return (
-      <div
-        className={cn("w-4", {
-          "text-muted-foreground": !isSelected,
-          "text-sidebar-primary-foreground": isSelected,
-        })}
-      >
-        {icon}
-      </div>
-    );
-  }
-
-  return <span className={cn("w-4")} />;
+  return (
+    <div
+      className={cn("w-4", {
+        "text-muted-foreground": !isSelected,
+        "text-sidebar-primary-foreground": isSelected,
+      })}
+    >
+      {icon ?? <ListIcon />}
+    </div>
+  );
 }
 
 type SidebarButtonProps = React.ComponentProps<typeof Button> & {
@@ -346,7 +341,16 @@ function SidebarButton({
     <>
       <ItemIcon icon={item.meta?.icon ?? item.icon} isSelected={isSelected} />
       <span
-        className={cn(rightIcon ? "flex-1 text-left" : "truncate line-clamp-1")}
+        className={cn("tracking-[-0.00875rem]", {
+          "flex-1": rightIcon,
+          "text-left": rightIcon,
+          "line-clamp-1": !rightIcon,
+          truncate: !rightIcon,
+          "font-normal": !isSelected,
+          "font-semibold": isSelected,
+          "text-sidebar-primary-foreground": isSelected,
+          "text-foreground": !isSelected,
+        })}
       >
         {getDisplayName(item)}
       </span>
@@ -401,7 +405,6 @@ function SidebarFooter() {
             "focus:outline-none",
           )}
         >
-          <UserAvatar />
           <UserInfo />
           <ChevronUp
             className={cn(

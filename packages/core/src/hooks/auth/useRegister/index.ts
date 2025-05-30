@@ -124,7 +124,12 @@ export function useRegister<TVariables = {}>({
   >({
     mutationKey: keys().auth().action("register").get(preferLegacyKeys),
     mutationFn: registerFromContext,
-    onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+    onSuccess: async ({
+      success = false,
+      redirectTo,
+      error,
+      successNotification,
+    }) => {
       if (success) {
         close?.("register-error");
 

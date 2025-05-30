@@ -9,11 +9,12 @@ import {
   useResourceParams,
   useUserFriendlyName,
 } from "@refinedev/core";
-import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
+import { Breadcrumb } from "@/registry/default/refine-ui/layout/breadcrumb";
 import { Separator } from "@/registry/default/ui/separator";
 import { Button } from "@/registry/default/ui/button";
 import { RefreshButton } from "@/registry/default/refine-ui/buttons/refresh";
 import { cn } from "@/lib/utils";
+import { EditButton } from "../buttons/edit";
 
 type ShowViewProps = PropsWithChildren<{
   className?: string;
@@ -28,7 +29,6 @@ export function ShowView({ children, className }: ShowViewProps) {
 type ShowViewHeaderProps = PropsWithChildren<{
   resource?: string;
   title?: string;
-  hideBreadcrumb?: boolean;
   wrapperClassName?: string;
   headerClassName?: string;
 }>;
@@ -36,7 +36,6 @@ type ShowViewHeaderProps = PropsWithChildren<{
 export const ShowViewHeader = ({
   resource: resourceFromProps,
   title: titleFromProps,
-  hideBreadcrumb,
   wrapperClassName,
   headerClassName,
 }: ShowViewHeaderProps) => {
@@ -61,14 +60,12 @@ export const ShowViewHeader = ({
 
   return (
     <div className={cn("flex flex-col", "gap-4", wrapperClassName)}>
-      {!hideBreadcrumb && (
-        <div className="flex items-center relative gap-2">
-          <div className="bg-background z-[2] pr-4">
-            <Breadcrumb />
-          </div>
-          <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+      <div className="flex items-center relative gap-2">
+        <div className="bg-background z-[2] pr-4">
+          <Breadcrumb />
         </div>
-      )}
+        <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+      </div>
       <div
         className={cn(
           "flex",
@@ -86,8 +83,13 @@ export const ShowViewHeader = ({
           <h2 className="text-2xl font-bold">{title}</h2>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
           <RefreshButton
+            variant="outline"
+            recordItemId={recordItemId}
+            resource={resourceName}
+          />
+          <EditButton
             variant="outline"
             recordItemId={recordItemId}
             resource={resourceName}

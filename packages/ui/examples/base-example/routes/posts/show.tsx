@@ -18,7 +18,7 @@ import {
 } from "@/registry/default/ui/avatar";
 import { Label } from "@/registry/default/ui/label";
 import { Separator } from "@/registry/default/ui/separator";
-import { LoadingOverlay } from "@/registry/default/refine-ui/loading-overlay";
+import { LoadingOverlay } from "@/registry/default/refine-ui/layout/loading-overlay";
 import { Calendar, User, Tag, Image as ImageIcon, Hash } from "lucide-react";
 
 import type { Post } from "../../types/resources";

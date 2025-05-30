@@ -8,26 +8,25 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger,
 } from "@/registry/default/ui/dropdown-menu";
-import { MoreHorizontal, MoreVertical } from "lucide-react";
-import { DataTable } from "@/registry/default/refine-ui/table/data-table";
-import { DataTableSorter } from "@/registry/default/refine-ui/table/data-table-sorter";
+import { MoreHorizontal } from "lucide-react";
+import { DataTable } from "@/registry/default/refine-ui/data-table/data-table";
+import { DataTableSorter } from "@/registry/default/refine-ui/data-table/data-table-sorter";
 import {
   DataTableFilterDropdownText,
   DataTableFilterCombobox,
   DataTableFilterDropdownDateRangePicker,
   DataTableFilterDropdownDateSinglePicker,
   DataTableFilterDropdownNumeric,
-} from "@/registry/default/refine-ui/table/data-table-filter";
+} from "@/registry/default/refine-ui/data-table/data-table-filter";
 import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
 import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
 import {
-  ListViewContent,
   ListViewHeader,
   ListView,
 } from "@/registry/default/refine-ui/views/list-view";
 import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
-import type { Post, Category } from "../../types/resources";
 import { cn } from "@/lib/utils";
+import type { Post, Category } from "../../types/resources";
 
 export function PostsListPage() {
   const { data: categoriesData } = useList<Category>({
@@ -268,9 +267,7 @@ export function PostsListPage() {
   return (
     <ListView>
       <ListViewHeader canCreate={true} />
-      <ListViewContent>
-        <DataTable table={table} />
-      </ListViewContent>
+      <DataTable table={table} />
     </ListView>
   );
 }

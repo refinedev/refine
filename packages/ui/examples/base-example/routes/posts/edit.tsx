@@ -27,8 +27,7 @@ import {
 } from "@/registry/default/refine-ui/views/edit-view";
 import { useNavigate } from "react-router";
 import { Loader2 } from "lucide-react";
-import { LoadingOverlay } from "@/registry/default/refine-ui/loading-overlay";
-import type { Post, Category } from "../../types/resources";
+import { LoadingOverlay } from "@/registry/default/refine-ui/layout/loading-overlay";
 import { useSelect } from "@refinedev/core";
 import {
   Popover,
@@ -45,6 +44,7 @@ import {
 } from "@/registry/default/ui/command";
 import { ChevronsUpDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
+import type { Post } from "../../types/resources";
 
 const postFormSchema = z.object({
   title: z.string().min(2, {

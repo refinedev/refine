@@ -8,7 +8,7 @@ import {
   useUserFriendlyName,
 } from "@refinedev/core";
 import type { PropsWithChildren } from "react";
-import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
+import { Breadcrumb } from "@/registry/default/refine-ui/layout/breadcrumb";
 import { Separator } from "@/registry/default/ui/separator";
 import { Button } from "@/registry/default/ui/button";
 import { RefreshButton } from "@/registry/default/refine-ui/buttons/refresh";
@@ -27,7 +27,6 @@ export function EditView({ children, className }: EditViewProps) {
 type EditViewHeaderProps = PropsWithChildren<{
   resource?: string;
   title?: string;
-  hideBreadcrumb?: boolean;
   wrapperClassName?: string;
   headerClassName?: string;
 }>;
@@ -35,7 +34,6 @@ type EditViewHeaderProps = PropsWithChildren<{
 export const EditViewHeader = ({
   resource: resourceFromProps,
   title: titleFromProps,
-  hideBreadcrumb,
   wrapperClassName,
   headerClassName,
 }: EditViewHeaderProps) => {
@@ -60,14 +58,12 @@ export const EditViewHeader = ({
 
   return (
     <div className={cn("flex flex-col", "gap-4", wrapperClassName)}>
-      {!hideBreadcrumb && (
-        <div className="flex items-center relative gap-2">
-          <div className="bg-background z-[2] pr-4">
-            <Breadcrumb />
-          </div>
-          <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+      <div className="flex items-center relative gap-2">
+        <div className="bg-background z-[2] pr-4">
+          <Breadcrumb />
         </div>
-      )}
+        <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+      </div>
       <div
         className={cn(
           "flex",

@@ -21,7 +21,7 @@ import { Separator } from "@/registry/default/ui/separator";
 import { InputPassword } from "@/registry/default/refine-ui/form/input-password";
 import { cn } from "@/lib/utils";
 
-export const AuthForm = () => {
+export const SignInForm = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,7 +54,7 @@ export const AuthForm = () => {
   };
 
   return (
-    <>
+    <div className={cn("flex", "flex-col", "items-center", "justify-center")}>
       <div className={cn("flex", "items-center", "justify-center", "gap-2")}>
         {title.icon && <div>{title.icon}</div>}
         {title.text && (
@@ -62,7 +62,7 @@ export const AuthForm = () => {
         )}
       </div>
 
-      <Card className={cn("w-full", "max-w-[456px]", "p-12", "mt-6")}>
+      <Card className={cn("sm:w-[456px]", "p-12", "mt-6")}>
         <CardHeader className={cn("px-0")}>
           <CardTitle className={cn("text-primary", "text-3xl")}>
             Sign in
@@ -70,7 +70,7 @@ export const AuthForm = () => {
           <CardDescription
             className={cn("text-muted-foreground", "font-medium")}
           >
-            Welcome back to lorem ipsum dolor.
+            Welcome back
           </CardDescription>
         </CardHeader>
 
@@ -100,7 +100,14 @@ export const AuthForm = () => {
               />
             </div>
 
-            <div className={cn("flex items-center justify-between", "mt-4")}>
+            <div
+              className={cn(
+                "flex items-center justify-between",
+                "flex-wrap",
+                "gap-2",
+                "mt-4",
+              )}
+            >
               <div className={cn("flex items-center", "space-x-2")}>
                 <Checkbox
                   id="remember"
@@ -210,8 +217,8 @@ export const AuthForm = () => {
           </div>
         </CardFooter>
       </Card>
-    </>
+    </div>
   );
 };
 
-AuthForm.displayName = "AuthForm";
+SignInForm.displayName = "SignInForm";

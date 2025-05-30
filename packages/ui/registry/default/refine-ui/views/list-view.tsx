@@ -3,7 +3,7 @@
 import type { PropsWithChildren } from "react";
 
 import { useResource, useUserFriendlyName } from "@refinedev/core";
-import { Breadcrumb } from "@/registry/default/refine-ui/breadcrumb";
+import { Breadcrumb } from "@/registry/default/refine-ui/layout/breadcrumb";
 import { Separator } from "@/registry/default/ui/separator";
 import { CreateButton } from "@/registry/default/refine-ui/buttons/create";
 import { cn } from "@/lib/utils";
@@ -22,7 +22,6 @@ type ListHeaderProps = PropsWithChildren<{
   resource?: string;
   title?: string;
   canCreate?: boolean;
-  hideBreadcrumb?: boolean;
   headerClassName?: string;
   wrapperClassName?: string;
 }>;
@@ -31,7 +30,6 @@ export const ListViewHeader = ({
   canCreate,
   resource: resourceFromProps,
   title: titleFromProps,
-  hideBreadcrumb,
   wrapperClassName,
   headerClassName,
 }: ListHeaderProps) => {
@@ -54,14 +52,12 @@ export const ListViewHeader = ({
 
   return (
     <div className={cn("flex flex-col", "gap-4", wrapperClassName)}>
-      {!hideBreadcrumb && (
-        <div className="flex items-center relative gap-2">
-          <div className="bg-background z-[2] pr-4">
-            <Breadcrumb />
-          </div>
-          <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+      <div className="flex items-center relative gap-2">
+        <div className="bg-background z-[2] pr-4">
+          <Breadcrumb />
         </div>
-      )}
+        <Separator className={cn("absolute", "left-0", "right-0", "z-[1]")} />
+      </div>
       <div className={cn("flex", "justify-between", "gap-4", headerClassName)}>
         <h2 className="text-2xl font-bold">{title}</h2>
         {isCreateButtonVisible && (
@@ -74,13 +70,4 @@ export const ListViewHeader = ({
   );
 };
 
-export const ListViewContent = (
-  props: PropsWithChildren<{
-    className?: string;
-  }>,
-) => {
-  return <div className={cn(props.className)}>{props.children}</div>;
-};
-
 ListView.displayName = "ListView";
-ListViewContent.displayName = "ListViewContent";

@@ -2,9 +2,9 @@
 
 import type { PropsWithChildren } from "react";
 import { SidebarProvider, SidebarInset } from "@/registry/default/ui/sidebar";
-import { Sidebar } from "@/registry/default/refine-ui/layout-1/sidebar";
-import { Header } from "@/registry/default/refine-ui/layout-1/header";
-import { ThemeProvider } from "@/registry/default/refine-ui/theme/theme-provider";
+import { Sidebar } from "@/registry/default/refine-ui/layout/layout-01/sidebar";
+import { Header } from "@/registry/default/refine-ui/layout/layout-01/header";
+import { ThemeProvider } from "@/registry/default/refine-ui/layout/theme-provider";
 import { cn } from "@/lib/utils";
 
 export function Layout({ children }: PropsWithChildren) {

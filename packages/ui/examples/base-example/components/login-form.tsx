@@ -1,5 +1,5 @@
-import { AuthForm } from "@/registry/default/refine-ui/form/auth-form";
+import { SignInForm } from "@/registry/default/refine-ui/form/sign-in-form";
 
 export const LoginForm = () => {
-  return <AuthForm />;
+  return <SignInForm />;
 };

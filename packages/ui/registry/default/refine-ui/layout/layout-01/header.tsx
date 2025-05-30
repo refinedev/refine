@@ -1,7 +1,7 @@
 "use client";
 
 import { useSidebar, SidebarTrigger } from "@/registry/default/ui/sidebar";
-import { ThemeToggle } from "@/registry/default/refine-ui/theme/theme-toggle";
+import { ThemeToggle } from "@/registry/default/refine-ui/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 
 export function Header() {
