@@ -15,6 +15,7 @@ import { LandingHeroSection } from "../refine-theme/landing-hero-section";
 import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
 import { CommonHeader } from "../refine-theme/common-header";
 import { LandingTestimonial } from "../refine-theme/landing-testimonial";
+import { LandingAiHeroSection } from "../refine-theme/landing-ai-hero-section";
 
 function Home() {
   const title = "Refine | Open-source Retool for Enterprise";
@@ -46,7 +47,8 @@ function Home() {
             <div
               className={clsx("mt-0", "landing-sm:mt-8", "landing-lg:mt-20")}
             >
-              <LandingHeroSection />
+              <LandingAiHeroSection />
+              <LandingHeroSection className={clsx("mt-8")} />
               <LandingTrustedByDevelopers
                 className={clsx(
                   "mt-12",

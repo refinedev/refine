@@ -14,19 +14,22 @@ export const StepList = ({ className }: { className?: string }) => {
           "text-2xl",
           "font-semibold",
           "landing-sm:text-[32px] landing-sm:leading-[40px]",
-          "pl-4 landing-sm:pl-0",
+          "pl-4 landing-sm:pl-10",
         )}
       >
         <span>Seamless workflow,</span>{" "}
-        <span
-          className={clsx(
-            "text-refine-indigo",
-            "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.55)]",
-            "dark:text-refine-green-alt",
-            "dark:text-refine-react-dark-green-alt dark:drop-shadow-[0_0_30px_rgba(38,217,127,0.55)]",
-          )}
-        >
-          step by step.
+        <span>
+          <span
+            className={clsx(
+              "text-refine-indigo",
+              "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.55)]",
+              "dark:text-refine-green-alt",
+              "dark:text-refine-react-dark-green-alt dark:drop-shadow-[0_0_30px_rgba(38,217,127,0.55)]",
+            )}
+          >
+            step by step
+            <span className={clsx("text-gray-900", "dark:text-white")}>.</span>
+          </span>
         </span>
       </h2>
       <div
