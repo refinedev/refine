@@ -20,7 +20,7 @@ export default function Usage() {
         "@chakra-ui/react": "^2.5.1",
         "react-dom": "^18.0.0",
         "react-router": "^7.0.2",
-        "react-hook-form": "^7.43.5",
+        "react-hook-form": "^7.57.0",
       }}
       startRoute="/products"
       files={{
