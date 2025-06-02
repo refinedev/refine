@@ -68,6 +68,7 @@ function InputOTPSlot({
 
 function InputOTPSeparator({ ...props }: React.ComponentProps<"div">) {
   return (
+    // biome-ignore lint/a11y/useAriaPropsForRole: This component is not interactive.
     <div data-slot="input-otp-separator" role="separator" {...props}>
       <MinusIcon />
     </div>
