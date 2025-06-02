@@ -19,7 +19,7 @@ export default function UsageNextjs() {
         "@mui/material": "^6.1.7",
         "@mui/system": "^6.4.11",
         "@mui/x-data-grid": "7.23.5",
-        "react-hook-form": "^7.43.5",
+        "react-hook-form": "^7.57.0",
         "@refinedev/nextjs-router": "latest",
       }}
       // template="nextjs"
