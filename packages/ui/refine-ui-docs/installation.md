@@ -65,10 +65,11 @@ npx shadcn@latest add http://localhost:3000/r/layout-01.json
 **Installs:**
 
 - `src/components/refine-ui/layout/layout.tsx`
-- `src/components/refine-ui/layout/header.tsx`
+- `src/components/refine-ui/layout/mobile-header.tsx`
 - `src/components/refine-ui/layout/sidebar.tsx`
 - `src/components/refine-ui/layout/user-avatar.tsx`
 - `src/components/refine-ui/layout/user-info.tsx`
+- `src/components/refine-ui/layout/theme-select.tsx`
 
 **Description:** A complete layout system with sidebar, header, and main content area for Refine applications
 
@@ -202,6 +203,7 @@ npx shadcn@latest add http://localhost:3000/r/theme-provider.json
 
 - `src/components/refine-ui/layout/theme-provider.tsx`
 - `src/components/refine-ui/layout/theme-toggle.tsx`
+- `src/components/refine-ui/layout/theme-select.tsx`
 
 **Description:** A complete theme system with provider and toggle components. Supports dark, light, and system themes with localStorage persistence
 

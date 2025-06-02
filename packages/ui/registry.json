@@ -317,13 +317,13 @@
     {
       "name": "theme-provider",
       "type": "registry:component",
-      "title": "Theme Provider & Toggle",
+      "title": "Theme Provider & Toggle & Select",
       "description": "A complete theme system with provider and toggle components. Supports dark, light, and system themes with localStorage persistence.",
       "dependencies": ["lucide-react"],
       "registryDependencies": ["button"],
       "author": "Refine <info@refine.dev>",
       "docs": "https://github.com/refinedev/refine",
-      "categories": ["theme", "dark-mode", "toggle", "provider"],
+      "categories": ["theme", "dark-mode", "toggle", "select", "provider"],
       "files": [
         {
           "path": "registry/default/refine-ui/layout/theme-provider.tsx",
@@ -334,6 +334,11 @@
           "path": "registry/default/refine-ui/layout/theme-toggle.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/theme-toggle.tsx"
+        },
+        {
+          "path": "registry/default/refine-ui/layout/theme-select.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/layout/theme-select.tsx"
         }
       ]
     },
