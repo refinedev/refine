@@ -27,7 +27,7 @@ export const JoinWaitlist = ({ className }: { className?: string }) => {
           "text-base",
         )}
       >
-        Join the waitlist
+        Start for free
       </a>
     </div>
   );

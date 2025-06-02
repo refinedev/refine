@@ -14,7 +14,7 @@ type Props = {
 };
 
 export const BannerExamples: FC<Props> = ({
-  title = "Refine AI is in closed beta!",
+  title = "Refine AI is here!",
   description = "The next-gen approach to build enterprise-ready React-based internal tools apps with the power of GenAI.",
   button = {
     text: "Explore Refine AI",
