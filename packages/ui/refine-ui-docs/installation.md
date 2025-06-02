@@ -13,7 +13,7 @@ Make sure you have shadcn/ui set up in your project. If not, follow the [shadcn/
 #### Sign In Form
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/sign-in-form.json
+npx shadcn@latest add https://ui.refine.dev/r/sign-in-form.json
 ```
 
 **Installs:**
@@ -28,7 +28,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/sign-in-form.json
 #### Sign Up Form
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/sign-up-form.json
+npx shadcn@latest add https://ui.refine.dev/r/sign-up-form.json
 ```
 
 **Installs:**
@@ -43,7 +43,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/sign-up-form.json
 #### Forgot Password Form
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/forgot-password-form.json
+npx shadcn@latest add https://ui.refine.dev/r/forgot-password-form.json
 ```
 
 **Installs:**
@@ -59,7 +59,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/forgot-password-form.json
 #### Layout System
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/layout-01.json
+npx shadcn@latest add https://ui.refine.dev/r/layout-01.json
 ```
 
 **Installs:**
@@ -78,7 +78,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/layout-01.json
 #### Breadcrumb Navigation
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/breadcrumb.json
+npx shadcn@latest add https://ui.refine.dev/r/breadcrumb.json
 ```
 
 **Installs:**
@@ -92,7 +92,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/breadcrumb.json
 #### Error Component
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/error-component.json
+npx shadcn@latest add https://ui.refine.dev/r/error-component.json
 ```
 
 **Installs:**
@@ -108,7 +108,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/error-component.json
 #### Data Table
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/data-table.json
+npx shadcn@latest add https://ui.refine.dev/r/data-table.json
 ```
 
 **Installs:**
@@ -127,7 +127,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/data-table.json
 #### CRUD Buttons
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/buttons.json
+npx shadcn@latest add https://ui.refine.dev/r/buttons.json
 ```
 
 **Installs:**
@@ -149,7 +149,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/buttons.json
 #### View Templates
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/views.json
+npx shadcn@latest add https://ui.refine.dev/r/views.json
 ```
 
 **Installs:**
@@ -168,7 +168,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/views.json
 #### Notification Provider
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/notification-provider.json
+npx shadcn@latest add https://ui.refine.dev/r/notification-provider.json
 ```
 
 **Installs:**
@@ -182,7 +182,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/notification-provider.json
 #### Loading Overlay
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/loading-overlay.json
+npx shadcn@latest add https://ui.refine.dev/r/loading-overlay.json
 ```
 
 **Installs:**
@@ -196,7 +196,7 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/loading-overlay.json
 #### Theme System
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/theme-provider.json
+npx shadcn@latest add https://ui.refine.dev/r/theme-provider.json
 ```
 
 **Installs:**
@@ -214,18 +214,18 @@ npx shadcn@latest add https://refine-ui.netlify.app/r/theme-provider.json
 To install all Refine UI components at once:
 
 ```bash
-npx shadcn@latest add https://refine-ui.netlify.app/r/sign-in-form.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/sign-up-form.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/forgot-password-form.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/notification-provider.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/layout-01.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/data-table.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/buttons.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/views.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/breadcrumb.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/loading-overlay.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/theme-provider.json
-npx shadcn@latest add https://refine-ui.netlify.app/r/error-component.json
+npx shadcn@latest add https://ui.refine.dev/r/sign-in-form.json
+npx shadcn@latest add https://ui.refine.dev/r/sign-up-form.json
+npx shadcn@latest add https://ui.refine.dev/r/forgot-password-form.json
+npx shadcn@latest add https://ui.refine.dev/r/notification-provider.json
+npx shadcn@latest add https://ui.refine.dev/r/layout-01.json
+npx shadcn@latest add https://ui.refine.dev/r/data-table.json
+npx shadcn@latest add https://ui.refine.dev/r/buttons.json
+npx shadcn@latest add https://ui.refine.dev/r/views.json
+npx shadcn@latest add https://ui.refine.dev/r/breadcrumb.json
+npx shadcn@latest add https://ui.refine.dev/r/loading-overlay.json
+npx shadcn@latest add https://ui.refine.dev/r/theme-provider.json
+npx shadcn@latest add https://ui.refine.dev/r/error-component.json
 ```
 
 ## Dependencies

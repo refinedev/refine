@@ -105,7 +105,7 @@
         "separator",
         "dropdown-menu",
         "collapsible",
-        "https://refine-ui.netlify.app/r/theme-provider.json"
+        "https://ui.refine.dev/r/theme-provider.json"
       ],
       "author": "Refine <info@refine.dev>",
       "docs": "https://github.com/refinedev/refine",
@@ -248,9 +248,9 @@
       "dependencies": ["@refinedev/core", "lucide-react"],
       "registryDependencies": [
         "separator",
-        "https://refine-ui.netlify.app/r/buttons.json",
-        "https://refine-ui.netlify.app/r/breadcrumb.json",
-        "https://refine-ui.netlify.app/r/loading-overlay.json"
+        "https://ui.refine.dev/r/buttons.json",
+        "https://ui.refine.dev/r/breadcrumb.json",
+        "https://ui.refine.dev/r/loading-overlay.json"
       ],
       "author": "Refine <info@refine.dev>",
       "docs": "https://github.com/refinedev/refine",
