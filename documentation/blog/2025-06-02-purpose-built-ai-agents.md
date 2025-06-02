@@ -4,7 +4,7 @@ description: How AI shapes the internal enterprise software development with pur
 slug: ai-future-of-internal-enterprise-apps
 authors: civan
 tags: [ai]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-02-12-lovable/social.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-02-purpose-built-ai-agents/purpose-built-ai-agents.png
 hide_table_of_contents: false
 is_featured: true
 ---
@@ -96,4 +96,4 @@ For internal tools — where clarity, stability, and maintainability matter more
 Not everything needs to be a playground. Sometimes, you need a partner that understands what production means.
 
 
-[Refine](https://s.refine.dev/purpose) AI gets that.
+[Refine AI](https://s.refine.dev/purpose) gets that.
