@@ -1,5 +1,6 @@
 packages:
   - "packages/*"
+  - "!packages/ui"
   - "examples/*"
   - "!examples/monorepo-*"
   - "!examples/with-nx"
