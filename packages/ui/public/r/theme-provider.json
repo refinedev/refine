@@ -1,0 +1,26 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "theme-provider",
+  "type": "registry:component",
+  "title": "Theme Provider & Toggle",
+  "author": "Refine <info@refine.dev>",
+  "description": "A complete theme system with provider and toggle components. Supports dark, light, and system themes with localStorage persistence.",
+  "dependencies": ["lucide-react"],
+  "registryDependencies": ["button"],
+  "files": [
+    {
+      "path": "registry/default/refine-ui/layout/theme-provider.tsx",
+      "content": "\"use client\";\n\nimport { createContext, useContext, useEffect, useState } from \"react\";\n\ntype Theme = \"dark\" | \"light\" | \"system\";\n\ntype ThemeProviderProps = {\n  children: React.ReactNode;\n  defaultTheme?: Theme;\n  storageKey?: string;\n};\n\ntype ThemeProviderState = {\n  theme: Theme;\n  setTheme: (theme: Theme) => void;\n};\n\nconst initialState: ThemeProviderState = {\n  theme: \"system\",\n  setTheme: () => null,\n};\n\nconst ThemeProviderContext = createContext<ThemeProviderState>(initialState);\n\nexport function ThemeProvider({\n  children,\n  defaultTheme = \"system\",\n  storageKey = \"vite-ui-theme\",\n  ...props\n}: ThemeProviderProps) {\n  const [theme, setTheme] = useState<Theme>(\n    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme,\n  );\n\n  useEffect(() => {\n    const root = window.document.documentElement;\n\n    root.classList.remove(\"light\", \"dark\");\n\n    if (theme === \"system\") {\n      const systemTheme = window.matchMedia(\"(prefers-color-scheme: dark)\")\n        .matches\n        ? \"dark\"\n        : \"light\";\n\n      root.classList.add(systemTheme);\n      return;\n    }\n\n    root.classList.add(theme);\n  }, [theme]);\n\n  const value = {\n    theme,\n    setTheme: (theme: Theme) => {\n      localStorage.setItem(storageKey, theme);\n      setTheme(theme);\n    },\n  };\n\n  return (\n    <ThemeProviderContext.Provider {...props} value={value}>\n      {children}\n    </ThemeProviderContext.Provider>\n  );\n}\n\nexport function useTheme() {\n  const context = useContext(ThemeProviderContext);\n\n  if (context === undefined)\n    throw new Error(\"useTheme must be used within a ThemeProvider\");\n\n  return context;\n}\n\nThemeProvider.displayName = \"ThemeProvider\";\n",
+      "type": "registry:component",
+      "target": "src/components/refine-ui/layout/theme-provider.tsx"
+    },
+    {
+      "path": "registry/default/refine-ui/layout/theme-toggle.tsx",
+      "content": "\"use client\";\n\nimport { useTheme } from \"@/registry/default/refine-ui/layout/theme-provider\";\nimport { Button } from \"@/registry/default/ui/button\";\nimport { cn } from \"@/lib/utils\";\nimport { Moon, Sun, Monitor } from \"lucide-react\";\n\ntype ThemeToggleProps = {\n  className?: string;\n};\n\nexport function ThemeToggle({ className }: ThemeToggleProps) {\n  const { theme, setTheme } = useTheme();\n\n  const cycleTheme = () => {\n    switch (theme) {\n      case \"light\":\n        setTheme(\"dark\");\n        break;\n      case \"dark\":\n        setTheme(\"system\");\n        break;\n      case \"system\":\n        setTheme(\"light\");\n        break;\n      default:\n        setTheme(\"light\");\n    }\n  };\n\n  return (\n    <Button\n      variant=\"outline\"\n      size=\"icon\"\n      onClick={cycleTheme}\n      className={cn(\n        \"rounded-full\",\n        \"border-sidebar-border\",\n        \"bg-transparent\",\n        className,\n      )}\n    >\n      <Sun\n        className={cn(\n          \"h-[1.2rem]\",\n          \"w-[1.2rem]\",\n          \"rotate-0\",\n          \"scale-100\",\n          \"transition-all\",\n          \"duration-200\",\n          {\n            \"-rotate-90 scale-0\": theme === \"dark\" || theme === \"system\",\n          },\n        )}\n      />\n      <Moon\n        className={cn(\n          \"absolute\",\n          \"h-[1.2rem]\",\n          \"w-[1.2rem]\",\n          \"rotate-90\",\n          \"scale-0\",\n          \"transition-all\",\n          \"duration-200\",\n          {\n            \"rotate-0 scale-100\": theme === \"dark\",\n            \"rotate-90 scale-0\": theme === \"light\" || theme === \"system\",\n          },\n        )}\n      />\n      <Monitor\n        className={cn(\n          \"absolute\",\n          \"h-[1.2rem]\",\n          \"w-[1.2rem]\",\n          \"rotate-0\",\n          \"scale-0\",\n          \"transition-all\",\n          \"duration-200\",\n          {\n            \"scale-100\": theme === \"system\",\n            \"scale-0\": theme === \"light\" || theme === \"dark\",\n          },\n        )}\n      />\n      <span className=\"sr-only\">Toggle theme (Light → Dark → System)</span>\n    </Button>\n  );\n}\n\nThemeToggle.displayName = \"ThemeToggle\";\n",
+      "type": "registry:component",
+      "target": "src/components/refine-ui/layout/theme-toggle.tsx"
+    }
+  ],
+  "docs": "https://github.com/refinedev/refine",
+  "categories": ["theme", "dark-mode", "toggle", "provider"]
+}

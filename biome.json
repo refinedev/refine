@@ -68,12 +68,13 @@
         "noExcessiveNestedTestSuites": "off"
       },
       "correctness": {
+        "useHookAtTopLevel": "error",
         "noConstantCondition": "error",
         "noEmptyPattern": "error",
         "noSwitchDeclarations": "error",
         "noUnreachable": "error",
         "noUnsafeOptionalChaining": "error",
-        "useExhaustiveDependencies": "off",
+        "useExhaustiveDependencies": "warn",
         "useJsxKeyInIterable": "off"
       },
       "performance": {
