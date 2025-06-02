@@ -13693,6 +13693,9 @@ importers:
       '@eslint/eslintrc':
         specifier: ^3
         version: 3.3.1
+      '@netlify/plugin-nextjs':
+        specifier: ^5.11.2
+        version: 5.11.2
       '@tailwindcss/postcss':
         specifier: ^4.1.4
         version: 4.1.8
@@ -17676,6 +17679,10 @@ packages:
 
   '@nestjsx/util@5.0.0-alpha.3':
     resolution: {integrity: sha512-UTYIxtyx80M42gOZ0VIInSiOLn78P6k1BCziiN8gE3FglzivQ1RGvPpmsRwioYEWG27gOgnMwOQnXv8Zbq8dzQ==}
+
+  '@netlify/plugin-nextjs@5.11.2':
+    resolution: {integrity: sha512-9Hgd/J5nP2U/Vv0teytq9uUAGppiKV9t5tzpsuMLqeqUGD9STxXwKmyZd2v8Z4THSW9rw4+8w7dH7LVlFoym2A==}
+    engines: {node: '>=18.0.0'}
 
   '@netlify/plugin-nextjs@5.2.2':
     resolution: {integrity: sha512-jV/P7o8+v1XaEGb7wvFfkF1fSLggAxjg7WYoBPkD3R93bsI6xmCDKBcUJ/6g7lqECRXt4dGKApSFtGk/pUmAHw==}
@@ -35625,7 +35632,7 @@ snapshots:
 
   '@emnapi/wasi-threads@1.0.2':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@emotion/babel-plugin@11.11.0':
@@ -38607,6 +38614,8 @@ snapshots:
 
   '@nestjsx/util@5.0.0-alpha.3': {}
 
+  '@netlify/plugin-nextjs@5.11.2': {}
+
   '@netlify/plugin-nextjs@5.2.2': {}
 
   '@next/env@14.2.26': {}
@@ -40864,7 +40873,7 @@ snapshots:
 
   '@swc/helpers@0.4.14':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@swc/helpers@0.4.36':
     dependencies:
