@@ -24,7 +24,7 @@
     "next-intl": "^3.25.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-hook-form": "^7.43.5"
+    "react-hook-form": "^7.57.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
