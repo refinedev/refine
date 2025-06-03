@@ -13,7 +13,7 @@
     "separator",
     "dropdown-menu",
     "collapsible",
-    "http://localhost:3000/r/theme-provider.json"
+    "https://ui.refine.dev/r/theme-provider.json"
   ],
   "files": [
     {

@@ -8,9 +8,9 @@
   "dependencies": ["@refinedev/core", "lucide-react"],
   "registryDependencies": [
     "separator",
-    "http://localhost:3000/r/buttons.json",
-    "http://localhost:3000/r/breadcrumb.json",
-    "http://localhost:3000/r/loading-overlay.json"
+    "https://ui.refine.dev/r/buttons.json",
+    "https://ui.refine.dev/r/breadcrumb.json",
+    "https://ui.refine.dev/r/loading-overlay.json"
   ],
   "files": [
     {
