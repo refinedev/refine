@@ -8,6 +8,8 @@ const authCredentials = {
   password: "demodemo",
 };
 
+const TOKEN_KEY = "refine-auth";
+
 export const authProvider: AuthProvider = {
   login: async ({ providerName, email }) => {
     if (providerName === "google") {
@@ -23,7 +25,7 @@ export const authProvider: AuthProvider = {
     }
 
     if (email === authCredentials.email) {
-      localStorage.setItem("email", email);
+      localStorage.setItem(TOKEN_KEY, email);
       return {
         success: true,
         redirectTo: "/",
@@ -40,7 +42,7 @@ export const authProvider: AuthProvider = {
   },
   register: async (params) => {
     if (params.email === authCredentials.email && params.password) {
-      localStorage.setItem("email", params.email);
+      localStorage.setItem(TOKEN_KEY, params.email);
       return {
         success: true,
         redirectTo: "/",
@@ -85,7 +87,7 @@ export const authProvider: AuthProvider = {
     };
   },
   logout: async () => {
-    localStorage.removeItem("email");
+    localStorage.removeItem(TOKEN_KEY);
     return {
       success: true,
       redirectTo: "/login",
@@ -101,9 +103,9 @@ export const authProvider: AuthProvider = {
     return { error };
   },
   check: async () => {
-    const email = localStorage.getItem("email") ?? "alice@refine.dev";
+    const token = localStorage.getItem(TOKEN_KEY);
 
-    return email
+    return token
       ? {
           authenticated: true,
         }
