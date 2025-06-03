@@ -28,6 +28,7 @@ import {
 import { useNavigate } from "react-router";
 import { Loader2 } from "lucide-react";
 import { LoadingOverlay } from "@/registry/default/refine-ui/layout/loading-overlay";
+import { AutoSaveIndicator } from "@/registry/default/refine-ui/form/auto-save-indicator";
 import { useSelect } from "@refinedev/core";
 import {
   Popover,
@@ -67,10 +68,15 @@ export default function EditPost() {
   const navigate = useNavigate();
 
   const {
-    refineCore: { onFinish, formLoading },
+    refineCore: { onFinish, autoSaveProps, query },
     ...form
   } = useForm<Post, HttpError, PostFormValues>({
     resolver: zodResolver(postFormSchema),
+    refineCoreProps: {
+      autoSave: {
+        enabled: true,
+      },
+    },
     defaultValues: {
       title: "",
       content: "",
@@ -83,16 +89,24 @@ export default function EditPost() {
     resource: "categories",
     optionValue: "id",
     optionLabel: "title",
+    pagination: {
+      pageSize: 999,
+    },
   });
 
   function onSubmit(values: PostFormValues) {
     onFinish(values);
   }
 
+  const isLoading = !query?.isFetched || query.isRefetching;
+
   return (
     <EditView>
-      <EditViewHeader title="Edit Post" />
-      <LoadingOverlay loading={formLoading}>
+      <EditViewHeader
+        title="Edit Post"
+        actionsSlot={<AutoSaveIndicator {...autoSaveProps} />}
+      />
+      <LoadingOverlay loading={isLoading}>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
@@ -219,8 +233,8 @@ export default function EditPost() {
               >
                 Cancel
               </Button>
-              <Button type="submit" disabled={formLoading}>
-                {formLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+              <Button type="submit" disabled={isLoading}>
+                {isLoading && <Loader2 className="h-4 w-4 animate-spin" />}
                 Save
               </Button>
             </div>

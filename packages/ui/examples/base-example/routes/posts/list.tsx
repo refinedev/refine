@@ -255,11 +255,6 @@ export function PostsListPage() {
 
   const table = useTable<Post>({
     columns,
-    refineCoreProps: {
-      pagination: {
-        pageSize: 5,
-      },
-    },
     initialState: {
       columnPinning: {
         left: [],

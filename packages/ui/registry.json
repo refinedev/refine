@@ -374,6 +374,24 @@
           "target": "src/components/refine-ui/layout/error-component.tsx"
         }
       ]
+    },
+    {
+      "name": "auto-save-indicator",
+      "type": "registry:component",
+      "title": "Auto Save Indicator",
+      "description": "A visual indicator component for auto-save functionality in Refine forms. Shows loading, success, error, and idle states with smooth transitions and customizable elements.",
+      "dependencies": ["@refinedev/core", "lucide-react"],
+      "registryDependencies": [],
+      "author": "Refine <info@refine.dev>",
+      "docs": "https://github.com/refinedev/refine",
+      "categories": ["form", "auto-save", "indicator", "feedback", "ui"],
+      "files": [
+        {
+          "path": "registry/default/refine-ui/form/auto-save-indicator.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/form/auto-save-indicator.tsx"
+        }
+      ]
     }
   ]
 }

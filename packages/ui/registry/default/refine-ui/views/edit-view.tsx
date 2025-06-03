@@ -29,11 +29,13 @@ type EditViewHeaderProps = PropsWithChildren<{
   title?: string;
   wrapperClassName?: string;
   headerClassName?: string;
+  actionsSlot?: React.ReactNode;
 }>;
 
 export const EditViewHeader = ({
   resource: resourceFromProps,
   title: titleFromProps,
+  actionsSlot,
   wrapperClassName,
   headerClassName,
 }: EditViewHeaderProps) => {
@@ -81,7 +83,8 @@ export const EditViewHeader = ({
           <h2 className="text-2xl font-bold">{title}</h2>
         </div>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-2">
+          {actionsSlot}
           <RefreshButton
             variant="outline"
             recordItemId={recordItemId}

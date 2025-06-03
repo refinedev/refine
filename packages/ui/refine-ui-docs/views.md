@@ -173,13 +173,14 @@ Designed for building record editing pages.
 
 Includes `RefreshButton` and `ListButton` by default.
 
-| Prop               | Type      | Default          | Description                                           |
-| ------------------ | --------- | ---------------- | ----------------------------------------------------- |
-| `resource`         | `string`  | Current resource | Override the resource name for title and actions.     |
-| `title`            | `string`  | Auto-generated   | Custom title for the header.                          |
-| `hideBreadcrumb`   | `boolean` | `false`          | Set to `true` to hide the breadcrumb.                 |
-| `wrapperClassName` | `string`  | -                | CSS classes for the header's main wrapper div.        |
-| `headerClassName`  | `string`  | -                | CSS classes for the div containing title and actions. |
+| Prop               | Type        | Default          | Description                                           |
+| ------------------ | ----------- | ---------------- | ----------------------------------------------------- |
+| `resource`         | `string`    | Current resource | Override the resource name for title and actions.     |
+| `title`            | `string`    | Auto-generated   | Custom title for the header.                          |
+| `hideBreadcrumb`   | `boolean`   | `false`          | Set to `true` to hide the breadcrumb.                 |
+| `wrapperClassName` | `string`    | -                | CSS classes for the header's main wrapper div.        |
+| `headerClassName`  | `string`    | -                | CSS classes for the div containing title and actions. |
+| `actionsSlot`      | `ReactNode` | -                | Custom actions to render in the header.               |
 
 ### `EditView` Usage Example
 
