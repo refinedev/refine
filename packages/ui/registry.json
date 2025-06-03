@@ -76,19 +76,39 @@
     },
     {
       "name": "notification-provider",
-      "type": "registry:hook",
+      "type": "registry:component",
       "title": "Notification Provider",
-      "description": "A notification provider hook for Refine that uses sonner toast notifications",
+      "description": "A comprehensive notification system for Refine with toast notifications, undoable notifications, and provider hooks using sonner",
       "dependencies": ["@refinedev/core", "sonner"],
-      "registryDependencies": [],
+      "registryDependencies": [
+        "button",
+        "dropdown-menu",
+        "https://ui.refine.dev/r/theme-provider.json"
+      ],
       "author": "Refine <info@refine.dev>",
       "docs": "https://github.com/refinedev/refine",
-      "categories": ["providers", "notifications", "toast", "hooks"],
+      "categories": [
+        "providers",
+        "notifications",
+        "toast",
+        "hooks",
+        "undoable"
+      ],
       "files": [
         {
-          "path": "registry/default/refine-ui/hooks/use-notification-provider.tsx",
+          "path": "registry/default/refine-ui/notification/use-notification-provider.tsx",
           "type": "registry:hook",
-          "target": "src/components/refine-ui/hooks/use-notification-provider.tsx"
+          "target": "src/components/refine-ui/notification/use-notification-provider.tsx"
+        },
+        {
+          "path": "registry/default/refine-ui/notification/toaster.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/notification/toaster.tsx"
+        },
+        {
+          "path": "registry/default/refine-ui/notification/undoable-notification.tsx",
+          "type": "registry:component",
+          "target": "src/components/refine-ui/notification/undoable-notification.tsx"
         }
       ]
     },
@@ -135,11 +155,6 @@
           "path": "registry/default/refine-ui/user/user-info.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/user-info.tsx"
-        },
-        {
-          "path": "registry/default/refine-ui/layout/theme-select.tsx",
-          "type": "registry:component",
-          "target": "src/components/refine-ui/layout/theme-select.tsx"
         }
       ]
     },
@@ -318,27 +333,27 @@
       "name": "theme-provider",
       "type": "registry:component",
       "title": "Theme Provider & Toggle & Select",
-      "description": "A complete theme system with provider and toggle components. Supports dark, light, and system themes with localStorage persistence.",
+      "description": "A complete theme system with provider, toggle, and select components. Supports dark, light, and system themes with localStorage persistence.",
       "dependencies": ["lucide-react"],
-      "registryDependencies": ["button"],
+      "registryDependencies": ["button", "dropdown-menu"],
       "author": "Refine <info@refine.dev>",
       "docs": "https://github.com/refinedev/refine",
       "categories": ["theme", "dark-mode", "toggle", "select", "provider"],
       "files": [
         {
-          "path": "registry/default/refine-ui/layout/theme-provider.tsx",
+          "path": "registry/default/refine-ui/theme/theme-provider.tsx",
           "type": "registry:component",
-          "target": "src/components/refine-ui/layout/theme-provider.tsx"
+          "target": "src/components/refine-ui/theme/theme-provider.tsx"
         },
         {
-          "path": "registry/default/refine-ui/layout/theme-toggle.tsx",
+          "path": "registry/default/refine-ui/theme/theme-toggle.tsx",
           "type": "registry:component",
-          "target": "src/components/refine-ui/layout/theme-toggle.tsx"
+          "target": "src/components/refine-ui/theme/theme-toggle.tsx"
         },
         {
-          "path": "registry/default/refine-ui/layout/theme-select.tsx",
+          "path": "registry/default/refine-ui/theme/theme-select.tsx",
           "type": "registry:component",
-          "target": "src/components/refine-ui/layout/theme-select.tsx"
+          "target": "src/components/refine-ui/theme/theme-select.tsx"
         }
       ]
     },

@@ -31,7 +31,7 @@ import { Button } from "@/registry/default/ui/button";
 import { Separator } from "@/registry/default/ui/separator";
 import { UserInfo } from "@/registry/default/refine-ui/user/user-info";
 import { UserAvatar } from "@/registry/default/refine-ui/user/user-avatar";
-import { ThemeSelect } from "@/registry/default/refine-ui/layout/theme-select";
+import { ThemeSelect } from "@/registry/default/refine-ui/theme/theme-select";
 import { ChevronRight, ChevronUp, ListIcon, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 
