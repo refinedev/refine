@@ -200,7 +200,6 @@ export type DataTableFilterDropdownNumericProps<TData> = {
   defaultOperator?: CrudOperators;
   operators?: CrudOperators[];
   placeholder?: string;
-  transformValue?: (value: string) => any;
 };
 
 export function DataTableFilterDropdownNumeric<TData>({
@@ -268,10 +267,10 @@ export function DataTableFilterCombobox<TData>({
         const currentValues = multiple
           ? Array.isArray(value)
             ? value
-            : value
+            : value && typeof value === "string"
               ? [value]
               : []
-          : value
+          : value && typeof value === "string"
             ? [value]
             : [];
 
@@ -280,7 +279,7 @@ export function DataTableFilterCombobox<TData>({
             const newValues = currentValues.includes(optionValue)
               ? currentValues.filter((v) => v !== optionValue)
               : [...currentValues, optionValue];
-            onChange(newValues.length > 0 ? (newValues as any) : "");
+            onChange(newValues);
           } else {
             onChange(optionValue);
             setIsOpen(false);
@@ -290,7 +289,7 @@ export function DataTableFilterCombobox<TData>({
         const handleRemove = (optionValue: string) => {
           if (multiple) {
             const newValues = currentValues.filter((v) => v !== optionValue);
-            onChange(newValues.length > 0 ? (newValues as any) : "");
+            onChange(newValues);
           }
         };
 
@@ -430,6 +429,7 @@ export function DataTableFilterCombobox<TData>({
                         key={option.value}
                         value={option.value}
                         onSelect={() => handleSelect(option.value)}
+                        keywords={option.label.split(" ")}
                       >
                         {option.label}
                         <Check
@@ -506,7 +506,7 @@ export function DataTableFilterDropdownDateSinglePicker<TData>({
       column={column}
       contentClassName={cn("w-fit", "p-0")}
     >
-      {({ isOpen: _, setIsOpen }) => {
+      {({ setIsOpen }) => {
         return (
           <div
             className={cn("flex", "flex-col", "items-center")}
@@ -592,9 +592,9 @@ export function DataTableFilterDropdownDateRangePicker<TData>({
     };
   }, [defaultOperator, column]);
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: objects are always different
   useEffect(() => {
     setFilterValue(parseDateRange(columnFilterValue));
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- objects are always different
   }, [JSON.stringify(columnFilterValue)]);
 
   const hasDateRange = filterValue?.from && filterValue?.to;
@@ -614,7 +614,7 @@ export function DataTableFilterDropdownDateRangePicker<TData>({
       column={column}
       contentClassName={cn("w-fit", "p-0")}
     >
-      {({ isOpen: _, setIsOpen }) => {
+      {({ setIsOpen }) => {
         return (
           <div
             className={cn("flex", "flex-col", "items-center")}
@@ -668,8 +668,8 @@ export type DataTableFilterInputProps<TData> = {
   defaultOperator?: CrudOperators;
   operators?: CrudOperators[];
   renderInput: (props: {
-    value: string;
-    onChange: (value: string) => void;
+    value: string | string[];
+    onChange: (value: string | string[]) => void;
   }) => React.ReactNode;
 };
 
@@ -681,7 +681,7 @@ export function DataTableFilterInput<TData>({
   renderInput,
 }: DataTableFilterInputProps<TData>) {
   const [filterValue, setFilterValue] = useState(
-    (columnFromProps.getFilterValue() as string) || "",
+    (columnFromProps.getFilterValue() as string | string[]) || "",
   );
 
   const [operator, setOperator] = useState<CrudOperators>(() => {
@@ -721,7 +721,7 @@ export function DataTableFilterInput<TData>({
 
   return (
     <DataTableFilterDropdown column={columnFromProps}>
-      {({ isOpen: _, setIsOpen }) => {
+      {({ setIsOpen }) => {
         return (
           <div
             className={cn(
