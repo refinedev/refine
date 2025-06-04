@@ -49,28 +49,33 @@ export const liveProvider = (
         }
       };
 
-      const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
-          return;
+      const mapFilter = (
+        filters?: CrudFilters,
+        meta?: any
+      ): string | undefined => {
+        // Use custom override if provided
+        if (meta?.realtimeFilter) {
+          return meta.realtimeFilter;
         }
 
-        return filters
-          .map((filter: CrudFilter): string | undefined => {
-            if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
-            }
-            return;
-          })
-          .filter(Boolean)
-          .join(",");
+        if (!filters || filters.length === 0) return;
+
+        if (filters.length > 1) {
+          console.warn(
+            "[liveProvider] Supabase Realtime does not support multiple filters. Using the first filter only."
+          );
+        }
+
+        const firstFilter = filters.find((f) => "field" in f);
+        if (!firstFilter) return;
+
+        return `${firstFilter.field}=${mapOperator(firstFilter.operator)}.${firstFilter.value}`;
       };
 
       const events = types
         .map((x) => supabaseTypes[x])
         .sort((a, b) => a.localeCompare(b));
-      const filter = mapFilter(params?.filters);
+      const filter = mapFilter(params?.filters, meta);
       const ch = `${channel}:${events.join("|")}${filter ? `:${filter}` : ""}`;
 
       let client = supabaseClient.channel(ch);
