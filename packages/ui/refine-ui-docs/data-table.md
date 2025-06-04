@@ -37,16 +37,7 @@ This command will install the `DataTable` main component and all its sub-compone
   - `calendar`
   - `select`
 
-**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
-
-## File Structure & Paths
-
-The registry will generate the following files under `src/components/refine-ui/data-table/`:
-
-- `data-table.tsx` (Main `DataTable` component)
-- `data-table-sorter.tsx` (`DataTableSorter` component)
-- `data-table-filter.tsx` (All `DataTableFilterDropdown*` components)
-- `data-table-pagination.tsx` (`DataTablePagination` component)
+**Note:** The CLI will automatically install required npm dependencies.
 
 ## Core Component: `DataTable`
 
@@ -125,29 +116,29 @@ import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { useList } from "@refinedev/core";
-import { Button } from "@/registry/default/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuTrigger,
-} from "@/registry/default/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import { MoreHorizontal } from "lucide-react";
-import { DataTable } from "@/registry/default/refine-ui/data-table/data-table";
-import { DataTableSorter } from "@/registry/default/refine-ui/data-table/data-table-sorter";
+import { DataTable } from "@/components/refine-ui/data-table/data-table";
+import { DataTableSorter } from "@/components/refine-ui/data-table/data-table-sorter";
 import {
   DataTableFilterDropdownText,
   DataTableFilterCombobox,
   DataTableFilterDropdownDateRangePicker,
   DataTableFilterDropdownDateSinglePicker,
   DataTableFilterDropdownNumeric,
-} from "@/registry/default/refine-ui/data-table/data-table-filter";
-import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
-import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
+} from "@/components/refine-ui/data-table/data-table-filter";
+import { EditButton } from "@/components/refine-ui/buttons/edit";
+import { DeleteButton } from "@/components/refine-ui/buttons/delete";
 import {
   ListViewHeader,
   ListView,
-} from "@/registry/default/refine-ui/views/list-view";
-import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
+} from "@/components/refine-ui/views/list-view";
+import { ShowButton } from "@/components/refine-ui/buttons/show";
 import { cn } from "@/lib/utils";
 import type { Post, Category } from "../../types/resources"; // Define your types
 

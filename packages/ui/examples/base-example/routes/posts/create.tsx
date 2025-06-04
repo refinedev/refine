@@ -11,21 +11,21 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/registry/default/ui/form";
-import { Input } from "@/registry/default/ui/input";
-import { Textarea } from "@/registry/default/ui/textarea";
-import { Button } from "@/registry/default/ui/button";
+} from "@/registry/new-york/ui/form";
+import { Input } from "@/registry/new-york/ui/input";
+import { Textarea } from "@/registry/new-york/ui/textarea";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/default/ui/select";
+} from "@/registry/new-york/ui/select";
 import {
   CreateView,
   CreateViewHeader,
-} from "@/registry/default/refine-ui/views/create-view";
+} from "@/registry/new-york/refine-ui/views/create-view";
 import type { Post } from "../../types/resources";
 
 const postFormSchema = z.object({

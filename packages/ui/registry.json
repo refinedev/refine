@@ -22,12 +22,12 @@
       "categories": ["auth", "form", "login", "sign-in"],
       "files": [
         {
-          "path": "registry/default/refine-ui/form/sign-in-form.tsx",
+          "path": "registry/new-york/refine-ui/form/sign-in-form.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/form/sign-in-form.tsx"
         },
         {
-          "path": "registry/default/refine-ui/form/input-password.tsx",
+          "path": "registry/new-york/refine-ui/form/input-password.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/form/input-password.tsx"
         }
@@ -45,12 +45,12 @@
       "categories": ["auth", "form", "register", "signup"],
       "files": [
         {
-          "path": "registry/default/refine-ui/form/sign-up-form.tsx",
+          "path": "registry/new-york/refine-ui/form/sign-up-form.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/form/sign-up-form.tsx"
         },
         {
-          "path": "registry/default/refine-ui/form/input-password.tsx",
+          "path": "registry/new-york/refine-ui/form/input-password.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/form/input-password.tsx"
         }
@@ -68,7 +68,7 @@
       "categories": ["auth", "form", "password", "reset"],
       "files": [
         {
-          "path": "registry/default/refine-ui/form/forgot-password-form.tsx",
+          "path": "registry/new-york/refine-ui/form/forgot-password-form.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/form/forgot-password-form.tsx"
         }
@@ -96,17 +96,17 @@
       ],
       "files": [
         {
-          "path": "registry/default/refine-ui/notification/use-notification-provider.tsx",
+          "path": "registry/new-york/refine-ui/notification/use-notification-provider.tsx",
           "type": "registry:hook",
           "target": "src/components/refine-ui/notification/use-notification-provider.tsx"
         },
         {
-          "path": "registry/default/refine-ui/notification/toaster.tsx",
+          "path": "registry/new-york/refine-ui/notification/toaster.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/notification/toaster.tsx"
         },
         {
-          "path": "registry/default/refine-ui/notification/undoable-notification.tsx",
+          "path": "registry/new-york/refine-ui/notification/undoable-notification.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/notification/undoable-notification.tsx"
         }
@@ -132,27 +132,27 @@
       "categories": ["layout", "sidebar", "navigation", "dashboard"],
       "files": [
         {
-          "path": "registry/default/refine-ui/layout/layout-01/layout.tsx",
+          "path": "registry/new-york/refine-ui/layout/layout-01/layout.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/layout.tsx"
         },
         {
-          "path": "registry/default/refine-ui/layout/layout-01/mobile-header.tsx",
+          "path": "registry/new-york/refine-ui/layout/layout-01/mobile-header.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/mobile-header.tsx"
         },
         {
-          "path": "registry/default/refine-ui/layout/layout-01/sidebar.tsx",
+          "path": "registry/new-york/refine-ui/layout/layout-01/sidebar.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/sidebar.tsx"
         },
         {
-          "path": "registry/default/refine-ui/user/user-avatar.tsx",
+          "path": "registry/new-york/refine-ui/user/user-avatar.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/user-avatar.tsx"
         },
         {
-          "path": "registry/default/refine-ui/user/user-info.tsx",
+          "path": "registry/new-york/refine-ui/user/user-info.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/user-info.tsx"
         }
@@ -186,22 +186,22 @@
       "categories": ["data", "table", "pagination", "sorting", "filtering"],
       "files": [
         {
-          "path": "registry/default/refine-ui/data-table/data-table.tsx",
+          "path": "registry/new-york/refine-ui/data-table/data-table.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/data-table/data-table.tsx"
         },
         {
-          "path": "registry/default/refine-ui/data-table/data-table-filter.tsx",
+          "path": "registry/new-york/refine-ui/data-table/data-table-filter.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/data-table/data-table-filter.tsx"
         },
         {
-          "path": "registry/default/refine-ui/data-table/data-table-sorter.tsx",
+          "path": "registry/new-york/refine-ui/data-table/data-table-sorter.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/data-table/data-table-sorter.tsx"
         },
         {
-          "path": "registry/default/refine-ui/data-table/data-table-pagination.tsx",
+          "path": "registry/new-york/refine-ui/data-table/data-table-pagination.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/data-table/data-table-pagination.tsx"
         }
@@ -219,37 +219,37 @@
       "categories": ["buttons", "actions", "crud", "navigation"],
       "files": [
         {
-          "path": "registry/default/refine-ui/buttons/create.tsx",
+          "path": "registry/new-york/refine-ui/buttons/create.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/create.tsx"
         },
         {
-          "path": "registry/default/refine-ui/buttons/edit.tsx",
+          "path": "registry/new-york/refine-ui/buttons/edit.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/edit.tsx"
         },
         {
-          "path": "registry/default/refine-ui/buttons/show.tsx",
+          "path": "registry/new-york/refine-ui/buttons/show.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/show.tsx"
         },
         {
-          "path": "registry/default/refine-ui/buttons/delete.tsx",
+          "path": "registry/new-york/refine-ui/buttons/delete.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/delete.tsx"
         },
         {
-          "path": "registry/default/refine-ui/buttons/clone.tsx",
+          "path": "registry/new-york/refine-ui/buttons/clone.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/clone.tsx"
         },
         {
-          "path": "registry/default/refine-ui/buttons/list.tsx",
+          "path": "registry/new-york/refine-ui/buttons/list.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/list.tsx"
         },
         {
-          "path": "registry/default/refine-ui/buttons/refresh.tsx",
+          "path": "registry/new-york/refine-ui/buttons/refresh.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/buttons/refresh.tsx"
         }
@@ -272,22 +272,22 @@
       "categories": ["views", "layout", "crud", "pages"],
       "files": [
         {
-          "path": "registry/default/refine-ui/views/create-view.tsx",
+          "path": "registry/new-york/refine-ui/views/create-view.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/views/create-view.tsx"
         },
         {
-          "path": "registry/default/refine-ui/views/edit-view.tsx",
+          "path": "registry/new-york/refine-ui/views/edit-view.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/views/edit-view.tsx"
         },
         {
-          "path": "registry/default/refine-ui/views/show-view.tsx",
+          "path": "registry/new-york/refine-ui/views/show-view.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/views/show-view.tsx"
         },
         {
-          "path": "registry/default/refine-ui/views/list-view.tsx",
+          "path": "registry/new-york/refine-ui/views/list-view.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/views/list-view.tsx"
         }
@@ -305,7 +305,7 @@
       "categories": ["navigation", "breadcrumb", "layout"],
       "files": [
         {
-          "path": "registry/default/refine-ui/layout/breadcrumb.tsx",
+          "path": "registry/new-york/refine-ui/layout/breadcrumb.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/breadcrumb.tsx"
         }
@@ -323,7 +323,7 @@
       "categories": ["loading", "overlay", "feedback", "ui"],
       "files": [
         {
-          "path": "registry/default/refine-ui/layout/loading-overlay.tsx",
+          "path": "registry/new-york/refine-ui/layout/loading-overlay.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/loading-overlay.tsx"
         }
@@ -341,17 +341,17 @@
       "categories": ["theme", "dark-mode", "toggle", "select", "provider"],
       "files": [
         {
-          "path": "registry/default/refine-ui/theme/theme-provider.tsx",
+          "path": "registry/new-york/refine-ui/theme/theme-provider.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/theme/theme-provider.tsx"
         },
         {
-          "path": "registry/default/refine-ui/theme/theme-toggle.tsx",
+          "path": "registry/new-york/refine-ui/theme/theme-toggle.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/theme/theme-toggle.tsx"
         },
         {
-          "path": "registry/default/refine-ui/theme/theme-select.tsx",
+          "path": "registry/new-york/refine-ui/theme/theme-select.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/theme/theme-select.tsx"
         }
@@ -369,7 +369,7 @@
       "categories": ["error", "layout", "404", "pages"],
       "files": [
         {
-          "path": "registry/default/refine-ui/layout/error-component.tsx",
+          "path": "registry/new-york/refine-ui/layout/error-component.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/layout/error-component.tsx"
         }
@@ -387,7 +387,7 @@
       "categories": ["form", "auto-save", "indicator", "feedback", "ui"],
       "files": [
         {
-          "path": "registry/default/refine-ui/form/auto-save-indicator.tsx",
+          "path": "registry/new-york/refine-ui/form/auto-save-indicator.tsx",
           "type": "registry:component",
           "target": "src/components/refine-ui/form/auto-save-indicator.tsx"
         }

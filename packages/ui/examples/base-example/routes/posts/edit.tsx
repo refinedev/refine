@@ -10,31 +10,31 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/registry/default/ui/form";
-import { Input } from "@/registry/default/ui/input";
-import { Textarea } from "@/registry/default/ui/textarea";
-import { Button } from "@/registry/default/ui/button";
+} from "@/registry/new-york/ui/form";
+import { Input } from "@/registry/new-york/ui/input";
+import { Textarea } from "@/registry/new-york/ui/textarea";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/default/ui/select";
+} from "@/registry/new-york/ui/select";
 import {
   EditView,
   EditViewHeader,
-} from "@/registry/default/refine-ui/views/edit-view";
+} from "@/registry/new-york/refine-ui/views/edit-view";
 import { useNavigate } from "react-router";
 import { Loader2 } from "lucide-react";
-import { LoadingOverlay } from "@/registry/default/refine-ui/layout/loading-overlay";
-import { AutoSaveIndicator } from "@/registry/default/refine-ui/form/auto-save-indicator";
+import { LoadingOverlay } from "@/registry/new-york/refine-ui/layout/loading-overlay";
+import { AutoSaveIndicator } from "@/registry/new-york/refine-ui/form/auto-save-indicator";
 import { useSelect } from "@refinedev/core";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/default/ui/popover";
+} from "@/registry/new-york/ui/popover";
 import {
   Command,
   CommandEmpty,
@@ -42,7 +42,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-} from "@/registry/default/ui/command";
+} from "@/registry/new-york/ui/command";
 import { ChevronsUpDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Post } from "../../types/resources";

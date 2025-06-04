@@ -6,14 +6,14 @@ import {
   TableRow,
   TableHead,
   TableCell,
-} from "@/registry/default/ui/table";
+} from "@/registry/new-york/ui/table";
 import {
   Avatar,
   AvatarFallback,
   AvatarImage,
-} from "@/registry/default/ui/avatar";
-import { Badge } from "@/registry/default/ui/badge";
-import { DataTablePagination } from "@/registry/default/refine-ui/data-table/data-table-pagination";
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { DataTablePagination } from "@/registry/new-york/refine-ui/data-table/data-table-pagination";
 import type { User } from "@/examples/base-example/types/resources";
 import { cn } from "@/lib/utils";
 

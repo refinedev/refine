@@ -2,23 +2,23 @@ import { useShow } from "@refinedev/core";
 import {
   ShowView,
   ShowViewHeader,
-} from "@/registry/default/refine-ui/views/show-view";
+} from "@/registry/new-york/refine-ui/views/show-view";
 import {
   Card,
   CardHeader,
   CardTitle,
   CardContent,
   CardDescription,
-} from "@/registry/default/ui/card";
-import { Badge } from "@/registry/default/ui/badge";
+} from "@/registry/new-york/ui/card";
+import { Badge } from "@/registry/new-york/ui/badge";
 import {
   Avatar,
   AvatarImage,
   AvatarFallback,
-} from "@/registry/default/ui/avatar";
-import { Label } from "@/registry/default/ui/label";
-import { Separator } from "@/registry/default/ui/separator";
-import { LoadingOverlay } from "@/registry/default/refine-ui/layout/loading-overlay";
+} from "@/registry/new-york/ui/avatar";
+import { Label } from "@/registry/new-york/ui/label";
+import { Separator } from "@/registry/new-york/ui/separator";
+import { LoadingOverlay } from "@/registry/new-york/refine-ui/layout/loading-overlay";
 import { Calendar, User, Tag, Image as ImageIcon, Hash } from "lucide-react";
 
 import type { Post } from "../../types/resources";

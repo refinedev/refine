@@ -8,9 +8,9 @@ import routerProvider, {
   CatchAllNavigate,
 } from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import { Toaster } from "@/registry/default/ui/sonner";
-import { Breadcrumb } from "@/registry/default/refine-ui/layout/breadcrumb";
-import { ErrorComponent } from "@/registry/default/refine-ui/layout/error-component";
+import { Toaster } from "@/registry/new-york/ui/sonner";
+import { Breadcrumb } from "@/registry/new-york/refine-ui/layout/breadcrumb";
+import { ErrorComponent } from "@/registry/new-york/refine-ui/layout/error-component";
 import {
   BellIcon,
   CreditCardIcon,

@@ -1,11 +1,11 @@
-import { CloneButton } from "@/registry/default/refine-ui/buttons/clone";
-import { CreateButton } from "@/registry/default/refine-ui/buttons/create";
-import { DeleteButton } from "@/registry/default/refine-ui/buttons/delete";
-import { EditButton } from "@/registry/default/refine-ui/buttons/edit";
-import { ListButton } from "@/registry/default/refine-ui/buttons/list";
-import { RefreshButton } from "@/registry/default/refine-ui/buttons/refresh";
-import { ShowButton } from "@/registry/default/refine-ui/buttons/show";
-import { Separator } from "@/registry/default/ui/separator";
+import { CloneButton } from "@/registry/new-york/refine-ui/buttons/clone";
+import { CreateButton } from "@/registry/new-york/refine-ui/buttons/create";
+import { DeleteButton } from "@/registry/new-york/refine-ui/buttons/delete";
+import { EditButton } from "@/registry/new-york/refine-ui/buttons/edit";
+import { ListButton } from "@/registry/new-york/refine-ui/buttons/list";
+import { RefreshButton } from "@/registry/new-york/refine-ui/buttons/refresh";
+import { ShowButton } from "@/registry/new-york/refine-ui/buttons/show";
+import { Separator } from "@/registry/new-york/ui/separator";
 import { useOne } from "@refinedev/core";
 
 export const HomePage = () => {
