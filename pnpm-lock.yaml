@@ -1326,8 +1326,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -2109,8 +2109,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -2427,7 +2427,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.12
+        specifier: ^6.6.13
         version: link:../../packages/hasura
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -3156,8 +3156,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -3450,8 +3450,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4490,8 +4490,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4560,8 +4560,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4627,8 +4627,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4694,8 +4694,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4761,8 +4761,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4911,8 +4911,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -5450,8 +5450,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -5508,7 +5508,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.12
+        specifier: ^6.6.13
         version: link:../../packages/hasura
       '@refinedev/inferencer':
         specifier: ^5.0.3
@@ -5814,8 +5814,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -6448,8 +6448,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-hot-toast:
         specifier: ^2.4.1
         version: 2.4.1(csstype@3.1.3)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -6832,8 +6832,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7571,8 +7571,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7769,8 +7769,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7990,7 +7990,7 @@ importers:
     dependencies:
       '@hookform/error-message':
         specifier: ^2.0.0
-        version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
+        version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.57.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -8022,8 +8022,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -8689,8 +8689,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9069,8 +9069,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9520,8 +9520,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9587,8 +9587,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9996,8 +9996,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -11029,8 +11029,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
         version: 6.0.3(@types/react@18.3.0)(react@18.3.0)
@@ -11920,8 +11920,8 @@ importers:
         specifier: ^2.6.3
         version: 2.6.3(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-json-view-lite:
         specifier: ^1.3.0
         version: 1.4.0(react@18.3.0)
@@ -12202,8 +12202,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
         version: 6.0.3(@types/react@18.3.0)(react@18.3.0)
@@ -12519,8 +12519,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -12777,8 +12777,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
         version: 6.0.3(@types/react@18.3.0)(react@18.3.0)
@@ -13051,8 +13051,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -27115,11 +27115,11 @@ packages:
     peerDependencies:
       react: '*'
 
-  react-hook-form@7.51.3:
-    resolution: {integrity: sha512-cvJ/wbHdhYx8aviSWh28w9ImjmVsb5Y05n1+FW786vEZQJV5STNM0pW6ujS+oiBecb0ARBxJFyAnXj9+GHXACQ==}
-    engines: {node: '>=12.22.0'}
+  react-hook-form@7.57.0:
+    resolution: {integrity: sha512-RbEks3+cbvTP84l/VXGUZ+JMrKOS8ykQCRYdm5aYsxnDquL0vspsyNhGRO7pcH6hsZqWlPOjLye7rJqdtdAmlg==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-hot-toast@2.4.1:
     resolution: {integrity: sha512-j8z+cQbWIM5LY37pR6uZR6D4LfseplqnuAO4co4u8917hBUvXlEqyP1ZzqVLcqoyUesZZv/ImreoCeHVDpE5pQ==}
@@ -34960,11 +34960,11 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@hookform/error-message@2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)':
+  '@hookform/error-message@2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.57.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
-      react-hook-form: 7.51.3(react@18.3.0)
+      react-hook-form: 7.57.0(react@18.3.0)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -49073,7 +49073,7 @@ snapshots:
       query-string: 4.3.4
       react: 18.3.0
 
-  react-hook-form@7.51.3(react@18.3.0):
+  react-hook-form@7.57.0(react@18.3.0):
     dependencies:
       react: 18.3.0
 
