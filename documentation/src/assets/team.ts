@@ -14,6 +14,20 @@ export const team = [
     linkedin: "https://www.linkedin.com/in/eren-erkalkan-1b31a89a/",
   },
   {
+    name: "Arda Yüceler",
+    avatar:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/arda.png",
+    role1: "Technical Product Manager",
+    linkedin: "https://www.linkedin.com/in/ayuceler/",
+  },
+  {
+    name: "Recep Kütük",
+    avatar:
+      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/recep.png",
+    role1: "Sr. Product Designer",
+    linkedin: "https://www.linkedin.com/in/recepkutuk/",
+  },
+  {
     name: "Batuhan Özgür Özdemir",
     avatar:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/batuhan.png",
@@ -31,22 +45,15 @@ export const team = [
     name: "Alican Erdurmaz",
     avatar:
       "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/alican.png",
-    role1: "Software Developer",
+    role1: "Sr. Software Developer",
     linkedin: "https://www.linkedin.com/in/alicanerdurmaz/",
   },
   {
-    name: "Arda Yüceler",
+    name: "Eren Kurnaz",
     avatar:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/arda.png",
-    role1: "Technical Product Manager",
-    linkedin: "https://www.linkedin.com/in/ayuceler/",
-  },
-  {
-    name: "Recep Kütük",
-    avatar:
-      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/recep.png",
-    role1: "Sr. Product Designer",
-    linkedin: "https://www.linkedin.com/in/recepkutuk/",
+      "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/about/images/team-avatars2/eren-kurnaz.png",
+    role1: "Software Developer",
+    linkedin: "https://www.linkedin.com/in/erenkurnaz/",
   },
   {
     name: "Doğuhan Özgür Akça",
