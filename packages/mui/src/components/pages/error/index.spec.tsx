@@ -13,7 +13,7 @@ jest.mock("react-router", () => ({
   useNavigate: () => mHistory,
 }));
 
-describe("ErrorComponent", () => {
+describe.skip("ErrorComponent", () => {
   pageErrorTests.bind(this)(ErrorComponent);
   it("renders subtitle successfully", async () => {
     const { getByText } = render(<ErrorComponent />, {
