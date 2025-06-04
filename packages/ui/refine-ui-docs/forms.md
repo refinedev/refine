@@ -15,10 +15,10 @@ Refine's `useForm` hook, in conjunction with `react-hook-form` and a schema vali
 
 ## Installation
 
-First, ensure you have `@refinedev/react-hook-form` and `zod` installed:
+First, ensure you have `@refinedev/react-hook-form` installed:
 
 ```bash
-npm install @refinedev/react-hook-form zod
+npm install @refinedev/react-hook-form
 ```
 
 You'll also need to have `shadcn/ui` initialized in your project and the necessary form-related components added (e.g., `form`, `input`, `button`, `select`, `textarea`). If you haven't already, you can add them via the CLI:

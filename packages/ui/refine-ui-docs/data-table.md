@@ -15,7 +15,7 @@ The `DataTable` component and its associated sub-components (`DataTableSorter`, 
 Install the `data-table` component package via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/data-table.json
+npx shadcn@latest add https://ui.refine.dev/r/data-table.json
 ```
 
 This command will install the `DataTable` main component and all its sub-components for filtering, sorting, and pagination.

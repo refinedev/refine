@@ -5,7 +5,7 @@ A modern, elegant 404 error page component for Refine applications with custom S
 ## Installation
 
 ```bash
-npx shadcn add error-component
+npx shadcn@latest add https://ui.refine.dev/r/error-component.json
 ```
 
 ## Dependencies
@@ -24,31 +24,5 @@ import { ErrorComponent } from "@/components/refine-ui/layout/error-component";
 
 export default function NotFoundPage() {
   return <ErrorComponent />;
-}
-```
-
-## Next.js Integration
-
-```tsx
-// pages/404.tsx
-import { ErrorComponent } from "@/components/refine-ui/layout/error-component";
-
-export default function Custom404() {
-  return <ErrorComponent />;
-}
-```
-
-## React Router
-
-```tsx
-import { ErrorComponent } from "@/components/refine-ui/layout/error-component";
-
-function App() {
-  return (
-    <Routes>
-      {/* Other routes */}
-      <Route path="*" element={<ErrorComponent />} />
-    </Routes>
-  );
 }
 ```

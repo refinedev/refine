@@ -14,7 +14,7 @@ The `SignUpForm` component provides a user registration interface for Refine app
 Install the `sign-up-form` component via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/sign-up-form.json
+npx shadcn@latest add https://ui.refine.dev/r/sign-up-form.json
 ```
 
 This command will install the `SignUpForm` component along with its dependencies:

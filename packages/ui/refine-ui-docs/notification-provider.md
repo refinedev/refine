@@ -1,21 +1,30 @@
 # useNotificationProvider Hook
 
-A notification provider hook for Refine that integrates with Sonner toast notifications.
+A comprehensive notification system for Refine that integrates with Sonner toast notifications, featuring theme support and undoable notifications.
 
 ## Installation
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/notification-provider.json
+npx shadcn@latest add https://ui.refine.dev/r/notification-provider.json
 ```
 
 **Dependencies:** `@refinedev/core`, `sonner`
+**Registry Dependencies:** `button`, `dropdown-menu`, `theme-provider`
+
+## Components Included
+
+This package includes three main components:
+
+- `useNotificationProvider` - The main hook that provides notification functionality
+- `Toaster` - A themed toast container component
+- `UndoableNotification` - A custom notification component for undoable actions
 
 ## Setup
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { useNotificationProvider } from "@/components/refine-ui/hooks/use-notification-provider";
-import { Toaster } from "sonner";
+import { useNotificationProvider } from "@/components/refine-ui/notification/use-notification-provider";
+import { Toaster } from "@/components/refine-ui/notification/toaster";
 
 function App() {
   return (
@@ -78,19 +87,12 @@ open?.({
 ```tsx
 open?.({
   type: "progress",
-  message: "Progress",
-  description: "Operation in progress...",
+  message: "Record deleted",
+  description: "The record has been moved to trash",
   undoableTimeout: 5,
   cancelMutation: () => {
     // when undo button is clicked, run this callback
+    console.log("Undoing operation...");
   },
 });
 ```
-
-## Fully integrated with Refine
-
-Once configured, Refine will automatically show notifications for:
-
-- Data mutations (create, update, delete operations)
-- Authentication actions (login, logout, register)
-- Form validation errors

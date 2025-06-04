@@ -15,7 +15,7 @@
 Install the `layout-01` block via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/layout-01.json
+npx shadcn@latest add https://ui.refine.dev/r/layout-01.json
 ```
 
 This command will install the `Layout` component and its sub-components (`Header`, `Sidebar`), along with their dependencies:
@@ -30,7 +30,7 @@ This command will install the `Layout` component and its sub-components (`Header
   - `separator` (shadcn/ui component)
   - `dropdown-menu` (shadcn/ui component)
   - `collapsible` (shadcn/ui component)
-  - `theme-provider` (Refine UI component, installed via `http://localhost:3000/r/theme-provider.json`)
+  - `theme-provider` (Refine UI component, installed via `https://ui.refine.dev/r/theme-provider.json`)
 
 **Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies if they are not already in your project.
 

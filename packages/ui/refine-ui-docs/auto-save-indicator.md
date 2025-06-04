@@ -8,10 +8,6 @@ A visual indicator component for auto-save functionality in Refine forms. Shows 
 npx shadcn@latest add https://ui.refine.dev/r/auto-save-indicator.json
 ```
 
-**Installs:**
-
-- `src/components/refine-ui/form/auto-save-indicator.tsx`
-
 **Dependencies:** `@refinedev/core`, `lucide-react`
 
 ## Overview

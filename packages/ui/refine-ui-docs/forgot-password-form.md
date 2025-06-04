@@ -14,7 +14,7 @@ The `ForgotPasswordForm` component provides an interface for users to request a 
 Install the `forgot-password-form` component via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/forgot-password-form.json
+npx shadcn@latest add https://ui.refine.dev/r/forgot-password-form.json
 ```
 
 This command will install the `ForgotPasswordForm` component along with its dependencies:

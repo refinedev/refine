@@ -14,7 +14,7 @@ The `SignInForm` component provides a ready-to-use sign-in interface for Refine 
 Install the `sign-in-form` component via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/sign-in-form.json
+npx shadcn@latest add https://ui.refine.dev/r/sign-in-form.json
 ```
 
 This command will install the `SignInForm` component along with its dependencies:

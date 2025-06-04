@@ -15,7 +15,7 @@ The `buttons` registry item provides a comprehensive set of pre-styled action bu
 Install the `buttons` component package via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/buttons.json
+npx shadcn@latest add https://ui.refine.dev/r/buttons.json
 ```
 
 This command will install all the button components listed below.

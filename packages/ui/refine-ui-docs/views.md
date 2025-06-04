@@ -15,7 +15,7 @@ The `views` registry item provides a set of components designed to structure sta
 Install the `views` component package via shadcn/ui registry:
 
 ```bash
-npx shadcn@latest add http://localhost:3000/r/views.json
+npx shadcn@latest add https://ui.refine.dev/r/views.json
 ```
 
 This command will install all view components and their dependencies:
