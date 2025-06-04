@@ -1,9 +1,9 @@
 ---
-"@refinedev/react-hook-form": minor
-"@refinedev/devtools-ui": minor
-"@refinedev/inferencer": minor
-"@refinedev/chakra-ui": minor
-"@refinedev/mui": minor
+"@refinedev/react-hook-form": patch
+"@refinedev/devtools-ui": patch
+"@refinedev/inferencer": patch
+"@refinedev/chakra-ui": patch
+"@refinedev/mui": patch
 ---
 
 chore: update `react-hook-form` to `7.57.0` to support new features like [`subscribe`](https://react-hook-form.com/docs/useform/subscribe).

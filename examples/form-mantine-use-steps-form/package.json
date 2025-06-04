@@ -20,7 +20,7 @@
     "@refinedev/core": "^4.57.9",
     "@refinedev/mantine": "^2.36.1",
     "@refinedev/react-router": "^1.0.1",
-    "@refinedev/react-table": "^5.6.15",
+    "@refinedev/react-table": "^5.6.16",
     "@refinedev/simple-rest": "^5.0.10",
     "@tabler/icons-react": "^3.1.0",
     "@tanstack/react-table": "^8.2.6",
