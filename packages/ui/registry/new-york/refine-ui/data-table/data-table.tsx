@@ -50,7 +50,6 @@ export function DataTable<TData extends BaseRecord>({
     vertical: false,
   });
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: we want to re-calculate on data changes
   useEffect(() => {
     const checkOverflow = () => {
       if (tableRef.current && tableContainerRef.current) {
@@ -79,7 +78,7 @@ export function DataTable<TData extends BaseRecord>({
       window.removeEventListener("resize", checkOverflow);
       clearTimeout(timeoutId);
     };
-  }, [tableQuery.data, pageSize]);
+  }, [tableQuery.data?.data, pageSize]);
 
   return (
     <div className={cn("flex", "flex-col", "flex-1", "gap-4")}>
