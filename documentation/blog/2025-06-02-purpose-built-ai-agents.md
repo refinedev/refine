@@ -22,7 +22,7 @@ Internal enterprise applications represent a distinct category where a high leve
 In this article, I want to explore whether the previously discussed agentic tools and vibe-coding platforms—despite their general-purpose approach—are suitable for creating high-quality internal software, or if we need solutions that are more specialized and tailored to specific domains. Below are the topics I want to cover:
 
 - [The Fragility of Generic AI](#the-fragility-of-generic-ai)
-- [Meet the Specialist](#enter-the-specialist)
+- [Meet the Specialist](#meet-the-specialist)
 - [Why Refine AI Works Differently](#why-refine-ai-works-differently)
 - [Real-World Thinking, Built In](#real-world-thinking-built-in)
 - [A Clear Difference](#a-clear-difference)
