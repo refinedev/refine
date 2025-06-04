@@ -48,6 +48,18 @@ export const TasksListPage = ({ children }: React.PropsWithChildren) => {
     meta: {
       gqlQuery: TASK_STAGES_QUERY,
     },
+    queryOptions: {
+      select: React.useCallback((data) => {
+        console.log("select", Math.random());
+        return data;
+      }, []),
+    },
+    // queryOptions: {
+    //   select: (data) => {
+    //     console.log("select", Math.random());
+    //     return data;
+    //   },
+    // },
   });
 
   const { data: tasks, isLoading: isLoadingTasks } = useList<
