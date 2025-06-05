@@ -45,6 +45,10 @@ type useEditableTableProps<
      * When true, row will be closed after successful submit.
      */
     autoSubmitClose?: boolean;
+    /**
+     * Show confirmation dialog when navigating away with unsaved changes
+     */
+    warnWhenUnsavedChanges?: boolean;
   };
 
 /**
@@ -89,11 +93,18 @@ export const useEditableTable = <
     successNotification: undefined,
     errorNotification: undefined,
   });
-  const edit = useForm<TQueryFnData, TError, TVariables>({
-    ...props,
+  const { warnWhenUnsavedChanges, ...restProps } = props;
+
+  const formProps: UseFormProps<TQueryFnData, TError, TVariables> = {
+    ...restProps,
     action: "edit",
     redirect: false,
-  });
+    ...(typeof warnWhenUnsavedChanges !== "undefined"
+      ? { warnWhenUnsavedChanges }
+      : {}),
+  };
+
+  const edit = useForm<TQueryFnData, TError, TVariables>(formProps);
 
   const { id: editId, setId, saveButtonProps } = edit;
 
@@ -117,11 +128,14 @@ export const useEditableTable = <
     formProps: {
       ...edit.formProps,
       onFinish: async (values) => {
-        const result = await edit.onFinish(values);
-        if (autoSubmitClose) {
-          setId(undefined);
+        if (typeof edit.onFinish === "function") {
+          const result = await edit.onFinish(values);
+          if (autoSubmitClose) {
+            setId(undefined);
+          }
+          return result;
         }
-        return result;
+        return Promise.resolve();
       },
     },
     saveButtonProps,
