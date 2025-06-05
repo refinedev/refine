@@ -35,8 +35,8 @@ module.exports = {
     // Devtools
     {
       type: "link",
-      href: "/enterprise",
-      label: "Enterprise Edition",
+      href: "https://ai.refine.dev",
+      label: "Refine AI",
       className: "enterprise-badge",
     },
     // Guides & Concepts
