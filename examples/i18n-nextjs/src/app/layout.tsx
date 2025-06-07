@@ -30,13 +30,11 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body>
-        <Suspense>
-          <AntdRegistry>
-            <NextIntlClientProvider locale={locale} messages={messages}>
-              <RefineContext themeMode={theme?.value}>{children}</RefineContext>
-            </NextIntlClientProvider>
-          </AntdRegistry>
-        </Suspense>
+        <AntdRegistry>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <RefineContext themeMode={theme?.value}>{children}</RefineContext>
+          </NextIntlClientProvider>
+        </AntdRegistry>
       </body>
     </html>
   );
