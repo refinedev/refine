@@ -2,10 +2,10 @@ import React from "react";
 import { fieldBooleanTests } from "@refinedev/ui-tests";
 
 import { BooleanField } from "./";
-import { fireEvent, render } from "@test";
+import { fireEvent, render, TestWrapper } from "@test";
 
 describe("BooleanField", () => {
-  fieldBooleanTests.bind(this)(BooleanField);
+  fieldBooleanTests.bind(this)(BooleanField, TestWrapper);
 
   describe("BooleanField with default props values", () => {
     const initialValues = [true, false, "true", "false", "", undefined];
@@ -30,6 +30,7 @@ describe("BooleanField", () => {
           <div data-testid="default-field">
             <BooleanField value={element} />
           </div>,
+          { wrapper: TestWrapper({}) },
         );
 
         fireEvent.mouseOver(baseDom.getByTestId("default-field").children[0]);

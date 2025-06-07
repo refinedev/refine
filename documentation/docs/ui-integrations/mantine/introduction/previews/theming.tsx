@@ -17,10 +17,10 @@ export default function Usage() {
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/form": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
+        "@mantine/form": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
         "react-router": "^7.0.2",
       }}
       startRoute="/products"
@@ -103,7 +103,7 @@ export * from "./create";
 
 const ThemeProviderTsxCode = /* jsx */ `
 import { RefineThemes } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
 export const ThemeProvider = ({ children }) => (
@@ -111,13 +111,11 @@ export const ThemeProvider = ({ children }) => (
         // Available themes: Blue, Purple, Magenta, Red, Orange, Yellow, Green
         // Change the line below to change the theme
         theme={RefineThemes.Magenta}
-        withNormalizeCSS
-        withGlobalStyles
     >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
+        <Notifications position="top-right">
             {children}
-        </NotificationsProvider>
+        </Notifications>
     </MantineProvider>
 );
 `.trim();

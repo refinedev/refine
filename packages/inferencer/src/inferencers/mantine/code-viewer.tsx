@@ -46,9 +46,9 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
       return (
         <>
           <Affix position={{ bottom: 12, right: 60 }}>
-            <Group spacing="xs">
+            <Group gap="xs">
               <Button
-                leftIcon={<IconCode size={18} />}
+                leftSection={<IconCode size={18} />}
                 variant="filled"
                 color="primary"
                 onClick={() => setVisible(true)}
@@ -56,7 +56,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
                 Show Code
               </Button>
               <Button
-                leftIcon={<IconMessageCircle size={18} />}
+                leftSection={<IconMessageCircle size={18} />}
                 variant="default"
                 component="a"
                 target="_blank"
@@ -67,22 +67,11 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
             </Group>
           </Affix>
           <div style={{ height: "50px" }} />
-          <Modal
-            size={800}
-            opened={visible}
-            onClose={() => setVisible(false)}
-            styles={{
-              modal: {
-                padding: "0px !important",
-                borderRadius: 0,
-              },
-              header: { display: "none" },
-            }}
-          >
+          <Modal size={800} opened={visible} onClose={() => setVisible(false)}>
             <ActionIcon
               onClick={() => setVisible(false)}
               variant="transparent"
-              sx={{
+              style={{
                 position: "absolute",
                 right: 0,
                 top: 0,
@@ -108,7 +97,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               }}
             />
             <Button
-              sx={{
+              style={{
                 position: "absolute",
                 bottom: 12,
                 right: 12,
@@ -116,7 +105,7 @@ export const CodeViewerComponent: CreateInferencerConfig["codeViewerComponent"] 
               }}
               key="copy"
               variant="default"
-              leftIcon={
+              leftSection={
                 isCopied ? (
                   <IconCheck size={18} style={{ color: "green" }} />
                 ) : (

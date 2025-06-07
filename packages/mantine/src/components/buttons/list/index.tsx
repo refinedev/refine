@@ -7,7 +7,6 @@ import {
 import { ActionIcon, Anchor, Button } from "@mantine/core";
 import { IconList } from "@tabler/icons-react";
 
-import { mapButtonVariantToActionIconVariant } from "@definitions/button";
 import type { ListButtonProps } from "../types";
 
 /**
@@ -58,12 +57,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
     >
       {hideText ? (
         <ActionIcon
-          {...(variant
-            ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
-              }
-            : { variant: "default" })}
-          aria-label={label}
+          variant={variant || "default"}
           disabled={disabled}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}
@@ -74,13 +68,13 @@ export const ListButton: React.FC<ListButtonProps> = ({
         </ActionIcon>
       ) : (
         <Button
-          variant="default"
+          variant={variant || "default"}
           disabled={isDisabled}
-          leftIcon={<IconList size={18} {...svgIconProps} />}
+          leftSection={<IconList size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ListButton}
           className={RefineButtonClassNames.ListButton}
-          {...rest}
+          {...commonProps}
         >
           {children ?? label}
         </Button>

@@ -16,9 +16,9 @@ export function MantineLayout() {
         "react-router": "^7.0.2",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
-        "@mantine/core": "^5.10.4",
-        "@mantine/hooks": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/hooks": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
       }}
       startRoute="/my-products"
       files={{
@@ -41,7 +41,7 @@ const AppTsxCode = /* tsx */ `
 import React from "react";
 
 import { Global, MantineProvider } from "@mantine/core";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { Refine } from "@refinedev/core";
@@ -65,7 +65,7 @@ export default function App() {
         withGlobalStyles
       >
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-        <NotificationsProvider position="top-right">
+        <Notifications position="top-right">
           <Refine
             routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
@@ -100,7 +100,7 @@ export default function App() {
               </Route>
             </Routes>
           </Refine>
-        </NotificationsProvider>
+        </Notifications>
       </MantineProvider>
     </BrowserRouter>
   );

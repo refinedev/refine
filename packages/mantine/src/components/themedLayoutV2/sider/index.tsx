@@ -15,26 +15,22 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import {
-  Box,
-  Drawer,
-  Navbar,
   NavLink,
-  type NavLinkStylesNames,
-  type NavLinkStylesParams,
   ScrollArea,
-  MediaQuery,
   Tooltip,
   type TooltipProps,
-  type Styles,
-  useMantineTheme,
   Flex,
+  Burger,
+  Box,
 } from "@mantine/core";
+
 import { IconList, IconPower, IconDashboard } from "@tabler/icons-react";
 
 import { ThemedTitleV2 as DefaultTitle } from "@components";
 import { useThemedLayoutContext } from "@hooks";
 
 import type { RefineThemedLayoutV2SiderProps } from "../types";
+import { useColorScheme, useMediaQuery } from "@mantine/hooks";
 
 const defaultNavIcon = <IconList size={20} />;
 
@@ -44,7 +40,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   Title: TitleFromProps,
   activeItemDisabled = false,
 }) => {
-  const theme = useMantineTheme();
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
     useThemedLayoutContext();
 
@@ -66,31 +61,17 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
 
-  const drawerWidth = () => {
-    if (siderCollapsed) return 80;
-    return 200;
-  };
+  const isDesktop = useMediaQuery("(min-width: 62em)");
+  const collapsedLayout = (isDesktop && siderCollapsed) || false;
 
-  const borderColor =
-    theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[2];
-
-  const commonNavLinkStyles: Styles<NavLinkStylesNames, NavLinkStylesParams> = {
-    root: {
-      display: "flex",
-      marginTop: "12px",
-      justifyContent:
-        siderCollapsed && !mobileSiderOpen ? "center" : "flex-start",
-    },
-    icon: {
-      marginRight: siderCollapsed && !mobileSiderOpen ? 0 : 12,
-    },
-    body: {
-      display: siderCollapsed && !mobileSiderOpen ? "none" : "flex",
-    },
+  const commonNavLinkStyles = {
+    display: "flex",
+    marginTop: "12px",
+    justifyContent: collapsedLayout ? "center" : "flex-start",
   };
 
   const commonTooltipProps: Partial<TooltipProps> = {
-    disabled: !siderCollapsed || mobileSiderOpen,
+    disabled: collapsedLayout,
     position: "right",
     withinPortal: true,
     withArrow: true,
@@ -125,14 +106,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           <Tooltip label={label} {...commonTooltipProps}>
             <NavLink
               key={item.key}
-              label={siderCollapsed && !mobileSiderOpen ? null : label}
-              icon={icon ?? defaultNavIcon}
+              label={collapsedLayout ? null : label}
+              leftSection={icon ?? defaultNavIcon}
               active={isSelected}
-              childrenOffset={siderCollapsed && !mobileSiderOpen ? 0 : 12}
+              childrenOffset={collapsedLayout ? 0 : 12}
               defaultOpened={defaultOpenKeys.includes(item.key || "")}
-              pl={siderCollapsed || mobileSiderOpen ? "12px" : "18px"}
-              styles={commonNavLinkStyles}
-              style={disablePointerStyle}
+              pl={collapsedLayout ? "18px" : "12px"}
+              style={[commonNavLinkStyles, disablePointerStyle]}
               {...additionalLinkProps}
             >
               {isParent && renderTreeView(children, selectedKey)}
@@ -153,16 +133,13 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       >
         <NavLink
           key="dashboard"
-          label={
-            siderCollapsed && !mobileSiderOpen
-              ? null
-              : t("dashboard.title", "Dashboard")
-          }
-          icon={<IconDashboard size={20} />}
+          label={collapsedLayout ? null : t("dashboard.title", "Dashboard")}
+          leftSection={<IconDashboard size={20} />}
+          pl={collapsedLayout ? "18px" : "12px"}
           component={Link as any}
           to="/"
           active={selectedKey === "/"}
-          styles={commonNavLinkStyles}
+          style={commonNavLinkStyles}
         />
       </Tooltip>
     </CanAccess>
@@ -190,15 +167,11 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     <Tooltip label={t("buttons.logout", "Logout")} {...commonTooltipProps}>
       <NavLink
         key="logout"
-        label={
-          siderCollapsed && !mobileSiderOpen
-            ? null
-            : t("buttons.logout", "Logout")
-        }
-        icon={<IconPower size={20} />}
-        pl={siderCollapsed || mobileSiderOpen ? "12px" : "18px"}
+        label={collapsedLayout ? null : t("buttons.logout", "Logout")}
+        leftSection={<IconPower size={20} />}
+        pl={collapsedLayout ? "18px" : "12px"}
         onClick={handleLogout}
-        styles={commonNavLinkStyles}
+        style={commonNavLinkStyles}
       />
     </Tooltip>
   );
@@ -209,7 +182,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         dashboard,
         logout,
         items,
-        collapsed: siderCollapsed,
+        collapsed: collapsedLayout,
       });
     }
     return (
@@ -223,87 +196,43 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   return (
     <>
-      <MediaQuery largerThan="md" styles={{ display: "none" }}>
-        <Drawer
-          opened={mobileSiderOpen}
-          onClose={() => setMobileSiderOpen(false)}
-          size={200}
-          zIndex={1200}
-          withCloseButton={false}
-          styles={{
-            drawer: {
-              overflow: "hidden",
-            },
-          }}
-        >
-          <Navbar.Section
-            pl={8}
-            sx={{
-              height: "64px",
-              display: "flex",
-              alignItems: "center",
-              paddingLeft: "10px",
-              borderBottom: `1px solid ${borderColor}`,
-            }}
-          >
-            <RenderToTitle collapsed={false} />
-          </Navbar.Section>
-          <Navbar.Section component={ScrollArea} grow mx="-xs" px="xs">
-            {renderSider()}
-          </Navbar.Section>
-        </Drawer>
-      </MediaQuery>
+      <Flex
+        pl={collapsedLayout ? 0 : "16px"}
+        align="center"
+        justify={collapsedLayout ? "center" : "flex-start"}
+        style={{
+          height: "var(--app-shell-header-height)",
+          borderBottom: "1px solid var(--app-shell-border-color)",
+          borderRight: "0",
+        }}
+      >
+        <RenderToTitle collapsed={collapsedLayout} />
 
-      <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-        <Box
-          sx={{
-            width: drawerWidth(),
-            transition: "width 200ms ease, min-width 200ms ease",
-            flexShrink: 0,
+        <Burger
+          opened={mobileSiderOpen}
+          onClick={() => setMobileSiderOpen(!mobileSiderOpen)}
+          hiddenFrom="md"
+          size="sm"
+          style={{
+            marginLeft: "auto",
+            marginRight: "1rem",
           }}
         />
-      </MediaQuery>
-
-      <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-        <Navbar
-          width={{ base: drawerWidth() }}
-          sx={{
-            overflow: "hidden",
-            transition: "width 200ms ease, min-width 200ms ease",
-            position: "fixed",
-            top: 0,
-            height: "100vh",
-            borderRight: 0,
-            zIndex: 199,
-          }}
-        >
-          <Flex
-            h="64px"
-            pl={siderCollapsed ? 0 : "16px"}
-            align="center"
-            justify={siderCollapsed ? "center" : "flex-start"}
-            sx={{
-              borderBottom: `1px solid ${borderColor}`,
-            }}
-          >
-            <RenderToTitle collapsed={siderCollapsed} />
-          </Flex>
-          <Navbar.Section
-            grow
-            component={ScrollArea}
-            mx="-xs"
-            px="xs"
-            sx={{
-              ".mantine-ScrollArea-viewport": {
-                borderRight: `1px solid ${borderColor}`,
-                borderBottom: `1px solid ${borderColor}`,
-              },
-            }}
-          >
-            {renderSider()}
-          </Navbar.Section>
-        </Navbar>
-      </MediaQuery>
+      </Flex>
+      <Box
+        mod={"grow"}
+        component={ScrollArea}
+        mx="-xs"
+        pl="xs"
+        pr="0"
+        mr="0"
+        style={{
+          borderRight: "1px solid var(--app-shell-border-color)",
+          minHeight: "calc(100vh - var(--app-shell-header-height))",
+        }}
+      >
+        {renderSider()}
+      </Box>
     </>
   );
 };

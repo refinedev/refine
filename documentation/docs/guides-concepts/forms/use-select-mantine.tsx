@@ -10,10 +10,10 @@ export default function UseSelectMantine() {
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-hook-form": "latest",
         "@refinedev/mantine": "^2.28.21",
-        "@mantine/core": "^5.10.4",
-        "@mantine/notifications": "^5.10.4",
+        "@mantine/core": "^7.12.2",
+        "@mantine/notifications": "^7.12.2",
         "@emotion/react": "^11.8.2",
-        "@mantine/form": "^5.10.4",
+        "@mantine/form": "^7.12.2",
       }}
       startRoute="/"
       files={{
@@ -33,7 +33,7 @@ const AppTsxCode = /* tsx */ `
 import React from "react";
 import { Refine } from "@refinedev/core";
 import { useNotificationProvider, RefineThemes } from "@refinedev/mantine";
-import { NotificationsProvider } from "@mantine/notifications";
+import { Notifications } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 import dataProvider from "@refinedev/simple-rest";
 import { EditPage } from "./edit-page";
@@ -46,7 +46,7 @@ const App: React.FC = () => {
             withGlobalStyles
         >
             <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />
-            <NotificationsProvider position="top-right">
+            <Notifications position="top-right">
                 <Refine
                     dataProvider={dataProvider(
                         "https://api.fake-rest.refine.dev",
@@ -71,7 +71,7 @@ const App: React.FC = () => {
                 >
                     <EditPage />
                 </Refine>
-            </NotificationsProvider>
+            </Notifications>
         </MantineProvider>
     );
 };
