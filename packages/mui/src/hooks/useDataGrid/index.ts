@@ -303,6 +303,7 @@ export function useDataGrid<
           resource: identifier,
           id: newRow.id as string,
           values: newRow,
+          meta: updateMutationOptions?.meta,
         },
         {
           onError: (error) => {
