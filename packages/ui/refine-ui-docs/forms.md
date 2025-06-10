@@ -2,8 +2,6 @@
 
 This guide explains how to create and manage forms in your Refine applications using the `@refinedev/react-hook-form` adapter and `shadcn/ui` components. We'll cover basic setup, validation with Zod, and provide examples for create and edit scenarios.
 
-## Purpose & Overview
-
 Refine's `useForm` hook, in conjunction with `react-hook-form` and a schema validation library like Zod, provides a robust solution for handling form state, submission, and validation. When combined with `shadcn/ui` components, you can build accessible and visually consistent forms.
 
 **Key Features:**

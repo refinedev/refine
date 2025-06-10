@@ -1,8 +1,18 @@
 # Refine DataTable Component
 
-## Purpose & Overview
-
 The `DataTable` component and its associated sub-components (`DataTableSorter`, `DataTableFilterDropdown*`, `DataTablePagination`) provide a powerful and flexible solution for displaying and managing tabular data in Refine applications. It's built on top of TanStack Table and integrates seamlessly with Refine's data hooks and shadcn/ui components.
+
+Features:
+
+- **Built on TanStack Table**: Leverages the power and flexibility of TanStack Table v8.
+- **Refine Integration**: Works seamlessly with `@refinedev/react-table` adapter and `useTable` hook for data fetching, filtering, sorting, and pagination state management.
+- **Comprehensive Filtering**: Multiple filter types (text, numeric, date, combobox) with customizable operators.
+- **Sorting**: Easy-to-use sorter component for column headers.
+- **Pagination**: Includes a pagination component with page navigation and page size selection.
+- **shadcn/ui Styling**: All components are styled using shadcn/ui primitives, ensuring consistency with your UI.
+- **Customizable Column Definitions**: Define columns using TanStack Table's `ColumnDef` API, allowing for custom cell rendering, header components, and more.
+- **Sticky Header/Columns**: Optional props for sticky table header and actions column.
+- **Action Buttons**: The "actions" column in the example uses `DropdownMenu` with `ShowButton`, `EditButton`, and `DeleteButton` from the Refine UI `buttons` package. You can customize these as needed.
 
 **When to use:**
 
@@ -39,75 +49,19 @@ This command will install the `DataTable` main component and all its sub-compone
 
 **Note:** The CLI will automatically install required npm dependencies.
 
-## Core Component: `DataTable` from `@/components/refine-ui/data-table/data-table`
+After installation, you will have the following files in your project:
 
-The main component that renders the table structure.
+```
+src/components/refine-ui/
+├── data-table/
+│   ├── data-table.tsx
+│   ├── data-table-sorter.tsx
+│   ├── data-table-filter.tsx
+│   ├── data-table-pagination.tsx
+└── ... (other registry components)
+```
 
-### `DataTable` Props
-
-| Prop    | Type                                                                   | Required | Description                                                                                                                                            |
-| ------- | ---------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `table` | `UseTableReturnType<TData, HttpError>` (from `@refinedev/react-table`) | Yes      | The TanStack Table instance, typically obtained from Refine's `useTable` hook. This object contains all the necessary state and methods for the table. |
-
-## Sub-Components
-
-These components are typically used within the `header` a or `footer` of your `ColumnDef` in TanStack Table.
-
-### 1. `DataTableSorter`
-
-Provides a button to sort a column.
-
-**Component:** `DataTableSorter` from `@/components/refine-ui/data-table/data-table-sorter`
-
-**Props:**
-
-| Prop     | Type                                      | Required | Description                                           |
-| -------- | ----------------------------------------- | -------- | ----------------------------------------------------- |
-| `column` | `Column<TData, unknown>` (TanStack Table) | Yes      | The column instance from TanStack Table to be sorted. |
-
-### 2. Filter Components (`DataTableFilterDropdown*`)
-
-These components provide various UI elements for filtering column data. They are found in `data-table-filter.tsx`.
-
-**Common Props for Filter Dropdowns:**
-
-| Prop              | Type                                      | Required | Description                                                                                             |
-| ----------------- | ----------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| `column`          | `Column<TData, unknown>` (TanStack Table) | Yes      | The column instance to apply the filter to.                                                             |
-| `table`           | `Table<TData>` (TanStack Table)           | Yes      | The table instance.                                                                                     |
-| `defaultOperator` | `string`                                  | Yes      | The default filter operator (e.g., `eq`, `contains`, `in`, `gte`, `lte`). Specific to each filter type. |
-| `placeholder`     | `string`                                  | No       | Placeholder text for the input/select field.                                                            |
-
-**Available Filter Components:**
-
-- **`DataTableFilterDropdownText`**: For text-based filtering (e.g., contains, equals, startsWith).
-  - `defaultOperator` examples: `"contains"`, `"eq"`, `"startsWith"`, `"endsWith"`, `"empty"`, `"notEmpty"`
-- **`DataTableFilterDropdownNumeric`**: For numeric filtering (e.g., equals, greater than, less than).
-  - `defaultOperator` examples: `"eq"`, `"ne"`, `"gt"`, `"gte"`, `"lt"`, `"lte"`, `"empty"`, `"notEmpty"`
-- **`DataTableFilterDropdownDateSinglePicker`**: For filtering by a single date.
-  - `formatDate?: (date: Date | undefined) => string | number | undefined;`
-  - `defaultOperator` examples: `"eq"`, `"ne"`, `"gt"`, `"gte"`, `"lt"`, `"lte"`
-- **`DataTableFilterDropdownDateRangePicker`**: For filtering by a date range.
-  - `formatDateRange?: (dateRange: { from?: Date; to?: Date } | undefined) => [string, string] | [number, number] | undefined;`
-- **`DataTableFilterCombobox`**: For filtering based on a selection from a list of options (single or multiple).
-  - `options: Array<{ label: string; value: string; icon?: React.ComponentType<{ className?: string }> }>` (Required)
-  - `multiple?: boolean` (Default: `false`)
-  - `defaultOperator` examples: `"in"`, `"eq"` (for single select)
-
-### 3. `DataTablePagination`
-
-Provides pagination controls for the table.
-
-**Component:** `DataTablePagination` from `@/components/refine-ui/data-table/data-table-pagination`
-
-**Props:**
-
-| Prop        | Type                                 | Required | Description                                          |
-| ----------- | ------------------------------------ | -------- | ---------------------------------------------------- |
-| `table`     | `Table<TData>` (from TanStack Table) | Yes      | The TanStack Table instance.                         |
-| `className` | `string`                             | No       | Additional CSS classes for the pagination container. |
-
-## Usage Example
+## Usage
 
 This example demonstrates how to use `DataTable` with sorting, various filters, and pagination within a Refine list page.
 
@@ -486,14 +440,17 @@ This approach efficiently batches the fetching of related data and correctly pas
 
 Refer to the [Refine `useMany` hook documentation](https://refine.dev/docs/data/hooks/use-many/) and the [Refine `useTable` with TanStack Table for relational data](https://refine.dev/docs/packages/tanstack-table/use-table/#how-can-i-handle-relational-data) for more details.
 
-## Features
+## How to pin columns
 
-- **Built on TanStack Table**: Leverages the power and flexibility of TanStack Table v8.
-- **Refine Integration**: Works seamlessly with `@refinedev/react-table` adapter and `useTable` hook for data fetching, filtering, sorting, and pagination state management.
-- **Comprehensive Filtering**: Multiple filter types (text, numeric, date, combobox) with customizable operators.
-- **Sorting**: Easy-to-use sorter component for column headers.
-- **Pagination**: Includes a pagination component with page navigation and page size selection.
-- **shadcn/ui Styling**: All components are styled using shadcn/ui primitives, ensuring consistency with your UI.
-- **Customizable Column Definitions**: Define columns using TanStack Table's `ColumnDef` API, allowing for custom cell rendering, header components, and more.
-- **Sticky Header/Columns**: Optional props for sticky table header and actions column.
-- **Action Buttons**: The "actions" column in the example uses `DropdownMenu` with `ShowButton`, `EditButton`, and `DeleteButton` from the Refine UI `buttons` package. You can customize these as needed.
+With `useTable` hook, you can pin columns to the left or right of the table by using the `initialState` prop.
+
+```tsx
+const table = useTable<Post>({
+  initialState: {
+    columnPinning: {
+      left: ["id"],
+      right: ["actions"],
+    },
+  },
+});
+```
