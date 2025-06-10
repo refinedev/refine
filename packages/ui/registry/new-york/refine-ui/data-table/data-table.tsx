@@ -162,33 +162,35 @@ export function DataTable<TData extends BaseRecord>({
                 </TableRow>
               </>
             ) : getRowModel().rows?.length ? (
-              getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => {
-                    return (
-                      <TableCell
-                        key={cell.id}
-                        style={{
-                          ...getCommonStyles({
-                            column: cell.column,
-                            isOverflowing: isOverflowing,
-                          }),
-                        }}
-                      >
-                        <div className="truncate">
-                          {flexRender(
-                            cell.column.columnDef.cell,
-                            cell.getContext(),
-                          )}
-                        </div>
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))
+              getRowModel().rows.map((row) => {
+                return (
+                  <TableRow
+                    key={row.original?.id ?? row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => {
+                      return (
+                        <TableCell
+                          key={cell.id}
+                          style={{
+                            ...getCommonStyles({
+                              column: cell.column,
+                              isOverflowing: isOverflowing,
+                            }),
+                          }}
+                        >
+                          <div className="truncate">
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext(),
+                            )}
+                          </div>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              })
             ) : (
               <DataTableNoData
                 isOverflowing={isOverflowing}
