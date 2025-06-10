@@ -7,6 +7,7 @@ import {
   useRefineOptions,
   type ITreeMenu,
   useLogout,
+  useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   SidebarRail as ShadcnSidebarRail,
@@ -88,7 +89,6 @@ export function Sidebar() {
           "px-1": !open,
         })}
       >
-        <Separator />
         <SidebarFooter />
       </div>
     </ShadcnSidebar>
@@ -396,83 +396,92 @@ function SidebarFooter() {
 
   const { mutate: logout, isLoading: logoutIsLoading } = useLogout();
 
+  const authProvider = useActiveAuthProvider();
+
+  if (!authProvider?.getIdentity) {
+    return null;
+  }
+
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button
-          className={cn(
-            "flex",
-            "items-center",
-            "gap-x-2",
-            "py-3",
-            "pr-2",
-            "w-full",
-            "text-left",
-            "focus:outline-none",
-          )}
-        >
-          {open ? (
-            <>
-              <UserInfo />
-              <ChevronUp
-                className={cn(
-                  "h-4",
-                  "w-4",
-                  "ml-auto",
-                  "text-muted-foreground",
-                  "transition-transform",
-                  "duration-200",
-                  "group-data-[state=open]:rotate-180",
-                )}
-              />
-            </>
-          ) : (
-            <UserAvatar />
-          )}
-        </button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        align="start"
-        className={cn("w-full", "shadow-xl", "p-0", {
-          "min-w-[272px]": isMobile,
-          "min-w-[240px]": !isMobile,
-        })}
-      >
-        {!open && (
-          <>
-            <div className={cn("py-3", "px-2")}>
-              <UserInfo />
-            </div>
-            <Separator />
-          </>
-        )}
-        <div className={cn("p-2")}>
-          <ThemeSelect />
-        </div>
-        <Separator />
-        <div className={cn("p-2")}>
-          <Button
-            variant="ghost"
-            size="lg"
-            onClick={() => logout()}
-            disabled={logoutIsLoading}
+    <>
+      <Separator />
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <button
             className={cn(
-              "!px-3",
-              "text-destructive",
-              "hover:text-destructive",
-              "w-full",
               "flex",
               "items-center",
-              "justify-start",
               "gap-x-2",
+              "py-3",
+              "pr-2",
+              "w-full",
+              "text-left",
+              "focus:outline-none",
             )}
           >
-            <LogOut className={cn("h-4", "w-4", "text-destructive")} />
-            Log out
-          </Button>
-        </div>
-      </DropdownMenuContent>
-    </DropdownMenu>
+            {open ? (
+              <>
+                <UserInfo />
+                <ChevronUp
+                  className={cn(
+                    "h-4",
+                    "w-4",
+                    "ml-auto",
+                    "text-muted-foreground",
+                    "transition-transform",
+                    "duration-200",
+                    "group-data-[state=open]:rotate-180",
+                  )}
+                />
+              </>
+            ) : (
+              <UserAvatar />
+            )}
+          </button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          align="start"
+          className={cn("w-full", "shadow-xl", "p-0", {
+            "min-w-[272px]": isMobile,
+            "min-w-[240px]": !isMobile,
+          })}
+        >
+          {!open && (
+            <>
+              <div className={cn("py-3", "px-2")}>
+                <UserInfo />
+              </div>
+              <Separator />
+            </>
+          )}
+          <div className={cn("p-2")}>
+            <ThemeSelect />
+          </div>
+          <Separator />
+          <div className={cn("p-2")}>
+            <Button
+              variant="ghost"
+              size="lg"
+              onClick={() => logout()}
+              disabled={logoutIsLoading}
+              className={cn(
+                "!px-3",
+                "text-destructive",
+                "hover:text-destructive",
+                "w-full",
+                "flex",
+                "items-center",
+                "justify-start",
+                "gap-x-2",
+              )}
+            >
+              <LogOut className={cn("h-4", "w-4", "text-destructive")} />
+              Log out
+            </Button>
+          </div>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 }
 
