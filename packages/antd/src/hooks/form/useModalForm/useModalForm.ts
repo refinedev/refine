@@ -322,14 +322,29 @@ export const useModalForm = <
       onValuesChange: formProps?.onValuesChange,
       onKeyUp: formProps?.onKeyUp,
       onFinish: async (values) => {
-        await onFinish(values);
+        try {
+          await onFinish(values); // This calls setWarnWhen(false) in core useForm
 
-        if (autoSubmitClose) {
-          close();
-        }
+          // If successful, proceed to close
+          if (autoSubmitClose) {
+            // Give React a moment to process the setWarnWhen(false) state update
+            // before the modal closing might trigger navigation checks.
+            setTimeout(() => {
+              close(); // This is sunflowerUseModal.close(), direct close.
+            }, 0);
+          }
 
-        if (autoResetForm) {
-          form.resetFields();
+          if (autoResetForm) {
+            form.resetFields();
+          }
+        } catch (error) {
+          // If onFinish (mutation) fails, the modal likely stays open,
+          // and warnWhen might still be true or reset by error handlers.
+          // The error should be propagated or handled by useForm's onMutationError.
+          // console.error("Form submission failed in useModalForm:", error);
+          // Re-throw the error so that form.submit() can catch it if needed,
+          // or it's handled by the mutation's own error handling.
+          throw error;
         }
       },
     },
