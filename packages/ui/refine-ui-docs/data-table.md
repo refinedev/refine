@@ -39,7 +39,7 @@ This command will install the `DataTable` main component and all its sub-compone
 
 **Note:** The CLI will automatically install required npm dependencies.
 
-## Core Component: `DataTable`
+## Core Component: `DataTable` from `@/components/refine-ui/data-table/data-table`
 
 The main component that renders the table structure.
 

@@ -1,17 +1,5 @@
 # Auto Save Indicator
 
-A visual indicator component for auto-save functionality in Refine forms. Shows loading, success, error, and idle states with smooth transitions and customizable elements.
-
-## Installation
-
-```bash
-npx shadcn@latest add https://ui.refine.dev/r/auto-save-indicator.json
-```
-
-**Dependencies:** `@refinedev/core`, `lucide-react`
-
-## Overview
-
 The `AutoSaveIndicator` component provides visual feedback for auto-save operations in forms. It displays different states (loading, success, error, idle) with appropriate icons and messages, making it clear to users when their data is being saved automatically.
 
 **Key Features:**
@@ -22,9 +10,30 @@ The `AutoSaveIndicator` component provides visual feedback for auto-save operati
 - **Internationalization**: Supports translation through Refine's `useTranslate` hook
 - **Responsive Design**: Works seamlessly across different screen sizes
 
-## Usage
+## Installation
 
-### Basic Usage
+```bash
+npx shadcn@latest add https://ui.refine.dev/r/auto-save-indicator.json
+```
+
+This command will install the `AutoSaveIndicator` component along with its dependencies:
+
+- **Dependencies** (npm packages):
+  - `@refinedev/core`
+  - `lucide-react`
+
+**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
+
+After installation, you will have the following files in your project:
+
+```
+src/components/refine-ui/
+├── form/
+│   ├── auto-save-indicator.tsx
+└── ... (other registry components)
+```
+
+## Usage
 
 The `AutoSaveIndicator` is typically used with Refine's `useForm` hook when auto-save is enabled:
 
@@ -88,24 +97,7 @@ const {
 });
 ```
 
-## API Reference
-
-### Props
-
 | Prop       | Type                                          | Description                             |
 | ---------- | --------------------------------------------- | --------------------------------------- |
 | `status`   | `"loading" \| "success" \| "error" \| "idle"` | Current auto-save status                |
 | `elements` | `AutoSaveIndicatorElements`                   | Optional custom elements for each state |
-
-### AutoSaveIndicatorElements
-
-You can customize the display elements for each state:
-
-```tsx
-interface AutoSaveIndicatorElements {
-  loading?: React.ReactNode;
-  success?: React.ReactNode;
-  error?: React.ReactNode;
-  idle?: React.ReactNode;
-}
-```

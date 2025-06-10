@@ -8,16 +8,28 @@ A modern, elegant 404 error page component for Refine applications with custom S
 npx shadcn@latest add https://ui.refine.dev/r/error-component.json
 ```
 
-## Dependencies
+This command will install the `ErrorComponent` component along with its dependencies:
 
-This component requires the following dependencies:
+- **Dependencies** (npm packages):
+  - `@refinedev/core`
+- **Registry Dependencies** (other shadcn/ui or Refine UI components):
+  - `button`
+  - `tooltip`
 
-- `@refinedev/core` - For Refine hooks and utilities
-- `lucide-react` - For icons
-- `button` (shadcn/ui)
-- `tooltip` (shadcn/ui)
+**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
+
+After installation, you will have the following files in your project:
+
+```
+src/components/refine-ui/
+├── layout/
+│   ├── error-component.tsx
+└── ... (other registry components)
+```
 
 ## Usage
+
+The `ErrorComponent` is typically used on a dedicated error page. It is used to display a 404 error page.
 
 ```tsx
 import { ErrorComponent } from "@/components/refine-ui/layout/error-component";

@@ -1,7 +1,5 @@
 # Layout 01 Component
 
-## Purpose & Overview
-
 `Layout 01` provides a complete, responsive application layout system for Refine applications. It includes a collapsible sidebar, a fixed header, and a main content area. This layout integrates seamlessly with Refine's routing and authentication mechanisms.
 
 **When to use:**
@@ -34,20 +32,23 @@ This command will install the `Layout` component and its sub-components (`Header
 
 **Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies if they are not already in your project.
 
-## File Structure & Paths
-
-The registry will generate the following files:
+After installation, you will have the following files in your project:
 
 ```
 src/components/refine-ui/
 ├── layout/
-│   ├── layout.tsx       # Main Layout component
-│   ├── header.tsx       # Header sub-component
-│   ├── sidebar.tsx      # Sidebar sub-component
-│   ├── theme-provider.tsx # (from theme-provider dependency)
-│   ├── theme-toggle.tsx   # (from theme-provider dependency)
-│   ├── user-avatar.tsx  # UserAvatar sub-component for sidebar/header
-│   └── user-info.tsx    # UserInfo sub-component for sidebar/header
+│   ├── breadcrumb.tsx
+│   ├── error-component.tsx
+│   ├── layout.tsx
+│   ├── loading-overlay.tsx
+│   ├── mobile-header.tsx
+│   ├── sidebar.tsx
+│   ├── user-avatar.tsx
+│   └── user-info.tsx
+├── theme/
+│   ├── theme-provider.tsx
+│   ├── theme-toggle.tsx
+│   └── theme-select.tsx
 └── ... (other registry components)
 ```
 
@@ -110,46 +111,3 @@ function App() {
 
 export default App;
 ```
-
-## Components & Props
-
-### Main `Layout` Component
-
-Wraps the entire authenticated part of your application. It utilizes `SidebarProvider` and `ThemeProvider` internally.
-
-| Prop       | Type        | Default | Description                               |
-| ---------- | ----------- | ------- | ----------------------------------------- |
-| `children` | `ReactNode` | -       | The content of the current page (Outlet). |
-
-### `Header` Component (Sub-component)
-
-Displayed at the top of the layout. Contains a trigger to toggle the sidebar and a theme toggle button.
-
-- No direct props are typically needed; it consumes context from `SidebarProvider` and `ThemeProvider`.
-
-### `Sidebar` Component (Sub-component)
-
-Displays navigation links, user information, and other relevant sidebar content. It is highly customizable through its own props and by modifying its internal structure.
-
-- **Key Functionality:**
-  - Responsive: Collapses on smaller screens, expandable on larger screens.
-  - Navigation: Uses Refine's `useMenu` hook to generate navigation items based on your defined resources.
-  - User Info: Displays user avatar and name/email using `useGetIdentity`.
-  - Theme Toggle: Integrated within the `Header`.
-
-For detailed props of `Sidebar`, `Header`, `UserAvatar`, `UserInfo`, `ThemeProvider`, and `ThemeToggle`, please refer to their respective individual documentation or source code if not yet documented.
-
-## Features
-
-- **Responsive Design**: Adapts to different screen sizes, with a collapsible sidebar.
-- **Integrated Navigation**: Automatically generates sidebar navigation from Refine resources.
-- **Theme Support**: Includes a theme provider and toggle for light/dark mode, powered by the `theme-provider` registry component.
-- **User Identity**: Displays user avatar and information in the sidebar.
-- **Context Providers**: Manages sidebar state (`SidebarProvider`) and theme state (`ThemeProvider`).
-
-## Customization
-
-- **Sidebar Content**: Modify `src/components/refine-ui/layout/sidebar.tsx` to change navigation links, add custom sections, or adjust user information display.
-- **Header Content**: Modify `src/components/refine-ui/layout/header.tsx` to add custom elements or change the theme toggle's position.
-- **Styling**: Use Tailwind CSS utility classes directly in the component files or override default styles in your global CSS.
-- **Theme**: Customize light/dark mode variables via the `ThemeProvider` and your Tailwind configuration as per shadcn/ui theming docs.

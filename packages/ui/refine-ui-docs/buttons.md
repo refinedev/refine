@@ -1,7 +1,5 @@
 # Refine Action Buttons
 
-## Purpose & Overview
-
 The `buttons` registry item provides a comprehensive set of pre-styled action buttons commonly used in Refine applications for CRUD operations and navigation. These buttons integrate with Refine's hooks for functionality like navigation, data operations, and access control.
 
 **When to use:**
@@ -30,9 +28,20 @@ This command will install all the button components listed below.
 
 **Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
 
-## File Structure & Paths
+After installation, you will have the following files in your project:
 
-The registry will generate the following files under `src/components/refine-ui/buttons/`:
+```
+src/components/refine-ui/
+├── buttons/
+│   ├── create.tsx
+│   ├── edit.tsx
+│   ├── show.tsx
+│   ├── delete.tsx
+│   ├── clone.tsx
+│   ├── list.tsx
+│   └── refresh.tsx
+└── ... (other registry components)
+```
 
 - `create.tsx` (CreateButton)
 - `edit.tsx` (EditButton)
@@ -42,21 +51,19 @@ The registry will generate the following files under `src/components/refine-ui/b
 - `list.tsx` (ListButton)
 - `refresh.tsx` (RefreshButton)
 
-## Available Buttons & Usage
+## Usage
 
-All buttons are designed to work seamlessly with Refine's resource and routing system. They typically infer the `resource` and `recordId` (where applicable) from the current route but can also be explicitly provided via props.
+All buttons are designed to work seamlessly with Refine's resource and routing system. They typically infer the `resource` and `recordItemId` (where applicable) from the current route but can also be explicitly provided via props.
 
-### Common Props
-
-Most buttons share a common set of props for customization and behavior control:
+Props
 
 | Prop            | Type                                                   | Default                                               | Description                                                                                                                   |
 | --------------- | ------------------------------------------------------ | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | `resource`      | `string`                                               | Inferred from route                                   | The resource name or identifier.                                                                                              |
-| `recordId`      | `BaseKey` (string or number)                           | Inferred for item actions (edit, show, delete, clone) | The ID of the record for item-specific actions.                                                                               |
+| `recordItemId`  | `BaseKey` (string or number)                           | Inferred for item actions (edit, show, delete, clone) | The ID of the record for item-specific actions.                                                                               |
 | `accessControl` | `{ enabled?: boolean; hideIfUnauthorized?: boolean; }` | `{ enabled: true, hideIfUnauthorized: false }`        | Configures access control. If `hideIfUnauthorized` is true, the button will not render if the user lacks permission.          |
 | `meta`          | `Record<string, unknown>`                              | -                                                     | Additional metadata to pass to data hooks or navigation.                                                                      |
-| `hideText`      | `boolean`                                              | `false`                                               | If true, only the icon will be shown.                                                                                         |
+| ``              | `boolean`                                              | `false`                                               | If true, only the icon will be shown.                                                                                         |
 | `children`      | `ReactNode`                                            | Default text & icon                                   | Custom content for the button. Overrides default text and icon.                                                               |
 | `...rest`       | `React.ComponentProps<typeof Button>`                  | -                                                     | Other props are passed down to the underlying shadcn/ui `Button` component (e.g., `variant`, `size`, `className`, `onClick`). |
 
@@ -69,9 +76,7 @@ Navigates to the create page of a resource.
 ```tsx
 import { CreateButton } from "@/components/refine-ui/buttons/create";
 
-<CreateButton resource="posts" />
-// With custom text and icon hidden
-<CreateButton resource="posts" hideText>Create New Post</CreateButton>
+<CreateButton resource="posts" />;
 ```
 
 ### `EditButton`
@@ -83,9 +88,7 @@ Navigates to the edit page for a specific record.
 ```tsx
 import { EditButton } from "@/components/refine-ui/buttons/edit";
 
-<EditButton resource="posts" recordId={123} />
-// Icon only
-<EditButton resource="posts" recordId={123} hideText />
+<EditButton resource="posts" recordItemId={123} />;
 ```
 
 ### `ShowButton`
@@ -97,7 +100,7 @@ Navigates to the show page for a specific record.
 ```tsx
 import { ShowButton } from "@/components/refine-ui/buttons/show";
 
-<ShowButton resource="posts" recordId={123} />;
+<ShowButton resource="posts" recordItemId={123} />;
 ```
 
 ### `DeleteButton`
@@ -120,9 +123,7 @@ Deletes a specific record, usually with a confirmation popover.
 ```tsx
 import { DeleteButton } from "@/components/refine-ui/buttons/delete";
 
-<DeleteButton resource="posts" recordId={123} />
-// With custom confirmation title
-<DeleteButton resource="posts" recordId={123} confirmTitle="Permanently delete this post?" />
+<DeleteButton resource="posts" recordItemId={123} />;
 ```
 
 ### `CloneButton`
@@ -134,7 +135,7 @@ Navigates to the create page, often pre-filling form data from the record being 
 ```tsx
 import { CloneButton } from "@/components/refine-ui/buttons/clone";
 
-<CloneButton resource="posts" recordId={123} />;
+<CloneButton resource="posts" recordItemId={123} />;
 ```
 
 ### `ListButton`
@@ -146,7 +147,6 @@ Navigates to the list page of a resource.
 ```tsx
 import { ListButton } from "@/components/refine-ui/buttons/list";
 
-// Typically used on edit/show/create pages to go back to the list
 <ListButton resource="posts" />;
 ```
 
@@ -158,7 +158,7 @@ Refreshes the data for the current view or a specific record.
 
 **Additional Props:**
 
-| Prop        | Type                         | Default | Description                                           |
-| ----------- | ---------------------------- | ------- | ----------------------------------------------------- |
-| `recordId`  | `BaseKey` (string or number) | -       | If provided, refreshes data for this specific record. |
-| `onRefresh` | `                            |
+| Prop           | Type                         | Default | Description                                           |
+| -------------- | ---------------------------- | ------- | ----------------------------------------------------- |
+| `recordItemId` | `BaseKey` (string or number) | -       | If provided, refreshes data for this specific record. |
+| `onRefresh`    | `                            |

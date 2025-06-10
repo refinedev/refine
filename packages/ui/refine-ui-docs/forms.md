@@ -89,9 +89,8 @@ This example shows a form for creating a new post, typically found in a file lik
 
 ```tsx
 import React from "react";
-import type { HttpError } from "@refinedev/core";
+import { type HttpError, useBack } from "@refinedev/core";
 import { useForm } from "@refinedev/react-hook-form";
-import { useNavigate } from "react-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
@@ -139,7 +138,7 @@ interface Post {
 }
 
 export default function CreatePostPage() {
-  const navigate = useNavigate();
+  const back = useBack();
 
   const {
     refineCore: { onFinish, formLoading },
@@ -224,11 +223,7 @@ export default function CreatePostPage() {
             )}
           />
           <div className="flex justify-end space-x-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={() => navigate("/posts")}
-            >
+            <Button type="button" variant="outline" onClick={() => back()}>
               Cancel
             </Button>
             <Button type="submit" disabled={formLoading}>

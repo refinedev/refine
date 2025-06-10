@@ -32,29 +32,36 @@ This command will install all view components and their dependencies:
 
 **Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies if they are not already in your project.
 
-## File Structure & Paths
+After installation, you will have the following files in your project:
 
-The registry will generate the following files under `src/components/refine-ui/views/`:
-
-- `list-view.tsx` (ListView, ListViewHeader)
-- `create-view.tsx` (CreateView, CreateViewHeader)
-- `edit-view.tsx` (EditView, EditViewHeader)
-- `show-view.tsx` (ShowView, ShowViewHeader)
-
----
+```
+src/components/refine-ui/
+├── views/
+│   ├── list-view.tsx
+│   ├── create-view.tsx
+│   ├── edit-view.tsx
+│   └── show-view.tsx
+└── ... (other registry components)
+```
 
 ## `ListView` & `ListViewHeader`
 
 Designed for displaying a list of records.
 
-### `ListView` Props
+`ListView` Features
+
+- **Resource Integration**: Automatic resource detection and title generation.
+- **Breadcrumb Navigation**: Built-in breadcrumb component.
+- **Optional Create Button**: `CreateButton` (from `buttons` package) is displayed based on resource definition or `canCreate` prop.
+
+`ListView` Props
 
 | Prop        | Type        | Default | Description                              |
 | ----------- | ----------- | ------- | ---------------------------------------- |
 | `children`  | `ReactNode` | -       | Content to render inside the view        |
 | `className` | `string`    | -       | Additional CSS classes for the container |
 
-### `ListViewHeader` Props
+`ListViewHeader` Props
 
 | Prop               | Type      | Default          | Description                                           |
 | ------------------ | --------- | ---------------- | ----------------------------------------------------- |
@@ -98,26 +105,24 @@ export default function PostListPage() {
 }
 ```
 
-### `ListView` Features
-
-- **Resource Integration**: Automatic resource detection and title generation.
-- **Breadcrumb Navigation**: Built-in breadcrumb component.
-- **Optional Create Button**: `CreateButton` (from `buttons` package) is displayed based on resource definition or `canCreate` prop.
-
----
-
 ## `CreateView` & `CreateViewHeader`
 
 Designed for building record creation pages.
 
-### `CreateView` Props
+`CreateView` Features
+
+- **Automatic Navigation**: Back button functionality via `useBack()` hook.
+- **Resource Integration**: Automatic resource detection and title generation.
+- **Breadcrumb Navigation**: Built-in breadcrumb component.
+
+`CreateView` Props
 
 | Prop        | Type        | Default | Description                              |
 | ----------- | ----------- | ------- | ---------------------------------------- |
 | `children`  | `ReactNode` | -       | Content to render inside the view        |
 | `className` | `string`    | -       | Additional CSS classes for the container |
 
-### `CreateViewHeader` Props
+`CreateViewHeader` Props
 
 | Prop               | Type      | Default          | Description                                           |
 | ------------------ | --------- | ---------------- | ----------------------------------------------------- |
@@ -150,26 +155,26 @@ export default function PostCreatePage() {
 }
 ```
 
-### `CreateView` Features
-
-- **Automatic Navigation**: Back button functionality via `useBack()` hook.
-- **Resource Integration**: Automatic resource detection and title generation.
-- **Breadcrumb Navigation**: Built-in breadcrumb component.
-
----
-
 ## `EditView` & `EditViewHeader`
 
 Designed for building record editing pages.
 
-### `EditView` Props
+`EditView` Features
+
+- **Automatic Navigation**: Back button and List button functionality.
+- **Resource Integration**: Automatic resource detection and title generation.
+- **Breadcrumb Navigation**: Built-in breadcrumb component.
+- **Refresh Functionality**: Built-in `RefreshButton` for the current record.
+- **Loading States**: `LoadingOverlay` can be used to cover both data fetching and form submission loading states.
+
+`EditView` Props
 
 | Prop        | Type        | Default | Description                              |
 | ----------- | ----------- | ------- | ---------------------------------------- |
 | `children`  | `ReactNode` | -       | Content to render inside the view        |
 | `className` | `string`    | -       | Additional CSS classes for the container |
 
-### `EditViewHeader` Props
+`EditViewHeader` Props
 
 Includes `RefreshButton` and `ListButton` by default.
 
@@ -216,28 +221,25 @@ export default function PostEditPage() {
 }
 ```
 
-### `EditView` Features
-
-- **Automatic Navigation**: Back button and List button functionality.
-- **Resource Integration**: Automatic resource detection and title generation.
-- **Breadcrumb Navigation**: Built-in breadcrumb component.
-- **Refresh Functionality**: Built-in `RefreshButton` for the current record.
-- **Loading States**: `LoadingOverlay` can be used to cover both data fetching and form submission loading states.
-
----
-
 ## `ShowView` & `ShowViewHeader`
 
 Designed for displaying detailed information about a single record.
 
-### `ShowView` Props
+`ShowView` Features
+
+- **Automatic Navigation**: Back button and List button functionality.
+- **Resource Integration**: Automatic resource detection and title generation.
+- **Breadcrumb Navigation**: Built-in breadcrumb component.
+- **Action Buttons**: Includes `RefreshButton` and `EditButton` (if applicable).
+
+`ShowView` Props
 
 | Prop        | Type        | Default | Description                              |
 | ----------- | ----------- | ------- | ---------------------------------------- |
 | `children`  | `ReactNode` | -       | Content to render inside the view        |
 | `className` | `string`    | -       | Additional CSS classes for the container |
 
-### `ShowViewHeader` Props
+`ShowViewHeader` Props
 
 Includes `EditButton` (if resource has an edit page), `ListButton`, and `RefreshButton` by default.
 
@@ -281,16 +283,3 @@ export default function PostShowPage() {
   );
 }
 ```
-
-### `ShowView` Features
-
-- **Automatic Navigation**: Back button and List button functionality.
-- **Resource Integration**: Automatic resource detection and title generation.
-- **Breadcrumb Navigation**: Built-in breadcrumb component.
-- **Action Buttons**: Includes `RefreshButton` and `EditButton` (if applicable).
-
-## General Customization for All Views
-
-- **Content Area**: The `children` of `ListView`, `CreateView`, `EditView`, and `ShowView` are rendered within a `LoadingOverlay`. You should place your data tables, forms, or detail displays here.
-- **Header Actions**: While headers come with default action buttons (like Create on List, Refresh on Edit/Show), you can customize these by modifying the respective header component's source code in `src/components/refine-ui/views/` if needed, or by passing specific props like `canCreate={false}` to `ListViewHeader`.
-- **Styling**: Use Tailwind CSS utility classes directly in your page components or by modifying the view components' source files for deeper structural styling changes.

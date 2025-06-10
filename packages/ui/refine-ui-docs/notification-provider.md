@@ -8,10 +8,24 @@ A comprehensive notification system for Refine that integrates with Sonner toast
 npx shadcn@latest add https://ui.refine.dev/r/notification-provider.json
 ```
 
-**Dependencies:** `@refinedev/core`, `sonner`
-**Registry Dependencies:** `button`, `dropdown-menu`, `theme-provider`
+This command will install the `useNotificationProvider` hook along with its dependencies:
 
-## Components Included
+- **Dependencies** (npm packages):
+  - `@refinedev/core`
+  - `sonner`
+
+**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
+
+After installation, you will have the following files in your project:
+
+```
+src/components/refine-ui/
+├── notification/
+│   ├── use-notification-provider.tsx
+│   ├── toaster.tsx
+│   └── undoable-notification.tsx
+└── ... (other registry components)
+```
 
 This package includes three main components:
 
@@ -19,7 +33,9 @@ This package includes three main components:
 - `Toaster` - A themed toast container component
 - `UndoableNotification` - A custom notification component for undoable actions
 
-## Setup
+## Usage
+
+First we need to give the `useNotificationProvider` hook to the `Refine` component.
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -41,14 +57,14 @@ function App() {
 }
 ```
 
-## Usage
+Then we can use the `useNotification` hook to open and close notifications.
 
 ```tsx
 import { useNotification } from "@refinedev/core";
 
 const { open, close } = useNotification();
 
-// open notification
+// open success notification
 open?.({
   key: "my-notification",
   type: "success",
@@ -56,35 +72,16 @@ open?.({
   description: "This is a success message",
 });
 
-// close notification
-close?.("my-notification");
-```
-
-### Success Notification
-
-```tsx
-open?.({
-  type: "success",
-  message: "Success!",
-  description: "Operation completed successfully",
-  key: "my-notification",
-});
-```
-
-### Error Notification
-
-```tsx
+// open error notification
 open?.({
   type: "error",
   message: "Error!",
   description: "Something went wrong",
   key: "error-notification",
 });
-```
 
-### Progress Notification (Undoable)
-
-```tsx
+// open progress notification (undoable)
+// when undo button is clicked, run the `cancelMutation` callback
 open?.({
   type: "progress",
   message: "Record deleted",
@@ -95,4 +92,7 @@ open?.({
     console.log("Undoing operation...");
   },
 });
+
+// close notification by key
+close?.("my-notification");
 ```

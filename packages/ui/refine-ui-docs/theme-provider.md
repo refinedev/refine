@@ -9,9 +9,19 @@ npx shadcn@latest add https://ui.refine.dev/r/theme-provider.json
 ```
 
 **Dependencies:** `lucide-react`
+
 **Registry Dependencies:** `button`, `dropdown-menu`
 
-## Components Included
+After installation, you will have the following files in your project:
+
+```
+src/components/refine-ui/
+├── theme/
+│   ├── theme-provider.tsx
+│   ├── theme-toggle.tsx
+│   └── theme-select.tsx
+└── ... (other registry components)
+```
 
 This package includes three main components:
 
@@ -21,7 +31,9 @@ This package includes three main components:
 
 ## Setup
 
-### 1. Wrap your app with ThemeProvider
+1. Wrap your app with ThemeProvider
+
+> All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
 
 ```tsx
 import { ThemeProvider } from "@/components/refine-ui/theme/theme-provider";
@@ -35,7 +47,9 @@ function App() {
 }
 ```
 
-### 2. Add theme components to your layout
+2. Add theme components to your layout
+
+> All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
 
 ```tsx
 import { ThemeToggle } from "@/components/refine-ui/theme/theme-toggle";
@@ -58,9 +72,15 @@ function Layout() {
 }
 ```
 
-## Components
-
 ### ThemeProvider
+
+Is a context provider that provides the theme to the app. It is used to wrap the app in the `App.tsx` file.
+
+> All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
+
+```tsx
+<ThemeProvider>{/* Your app content */}</ThemeProvider>
+```
 
 | Prop           | Type                            | Default             | Description                       |
 | -------------- | ------------------------------- | ------------------- | --------------------------------- |
@@ -88,7 +108,9 @@ Dropdown menu for explicit theme selection.
 <ThemeSelect />
 ```
 
-## Usage
+### useTheme
+
+Custom hook to get the current theme and set the theme.
 
 ```tsx
 import { useTheme } from "@/components/refine-ui/theme/theme-provider";
@@ -104,7 +126,3 @@ function CustomComponent() {
   );
 }
 ```
-
-## Integration
-
-All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
