@@ -35,14 +35,10 @@ type DeleteButtonProps = {
   meta?: Record<string, unknown>;
 } & React.ComponentProps<typeof Button>;
 
-export function DeleteButton({
-  resource,
-  recordItemId,
-  accessControl,
-  meta,
-  children,
-  ...rest
-}: DeleteButtonProps) {
+export const DeleteButton = React.forwardRef<
+  React.ComponentRef<typeof Button>,
+  DeleteButtonProps
+>(({ resource, recordItemId, accessControl, meta, children, ...rest }, ref) => {
   const {
     hidden,
     disabled,
@@ -73,7 +69,12 @@ export function DeleteButton({
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <span>
-          <Button variant="destructive" {...rest} disabled={isDisabled}>
+          <Button
+            variant="destructive"
+            {...rest}
+            ref={ref}
+            disabled={isDisabled}
+          >
             {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {children ?? (
               <div className="flex items-center gap-2 font-semibold">
@@ -109,6 +110,6 @@ export function DeleteButton({
       </PopoverContent>
     </Popover>
   );
-}
+});
 
 DeleteButton.displayName = "DeleteButton";

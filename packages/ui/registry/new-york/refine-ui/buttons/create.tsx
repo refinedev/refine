@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { type BaseKey, useCreateButton } from "@refinedev/core";
 import { Plus } from "lucide-react";
 import { Button } from "@/registry/new-york/ui/button";
@@ -24,14 +25,10 @@ type CreateButtonProps = {
   meta?: Record<string, unknown>;
 } & React.ComponentProps<typeof Button>;
 
-export function CreateButton({
-  resource,
-  accessControl,
-  meta,
-  children,
-  onClick,
-  ...rest
-}: CreateButtonProps) {
+export const CreateButton = React.forwardRef<
+  React.ComponentRef<typeof Button>,
+  CreateButtonProps
+>(({ resource, accessControl, meta, children, onClick, ...rest }, ref) => {
   const { hidden, disabled, LinkComponent, to, label } = useCreateButton({
     resource,
     accessControl,
@@ -44,7 +41,7 @@ export function CreateButton({
   if (isHidden) return null;
 
   return (
-    <Button {...rest} disabled={isDisabled} asChild>
+    <Button {...rest} ref={ref} disabled={isDisabled} asChild>
       <LinkComponent
         to={to}
         replace={false}
@@ -68,6 +65,6 @@ export function CreateButton({
       </LinkComponent>
     </Button>
   );
-}
+});
 
 CreateButton.displayName = "CreateButton";

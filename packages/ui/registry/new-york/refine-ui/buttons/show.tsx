@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { type BaseKey, useShowButton } from "@refinedev/core";
 import { Eye } from "lucide-react";
 import { Button } from "@/registry/new-york/ui/button";
@@ -29,52 +30,52 @@ type ShowButtonProps = {
   meta?: Record<string, unknown>;
 } & React.ComponentProps<typeof Button>;
 
-export function ShowButton({
-  resource,
-  recordItemId,
-  accessControl,
-  meta,
-  children,
-  onClick,
-  ...rest
-}: ShowButtonProps) {
-  const { hidden, disabled, LinkComponent, to, label } = useShowButton({
-    resource,
-    id: recordItemId,
-    accessControl,
-    meta,
-  });
+export const ShowButton = React.forwardRef<
+  React.ComponentRef<typeof Button>,
+  ShowButtonProps
+>(
+  (
+    { resource, recordItemId, accessControl, meta, children, onClick, ...rest },
+    ref,
+  ) => {
+    const { hidden, disabled, LinkComponent, to, label } = useShowButton({
+      resource,
+      id: recordItemId,
+      accessControl,
+      meta,
+    });
 
-  const isDisabled = disabled || rest.disabled;
-  const isHidden = hidden || rest.hidden;
+    const isDisabled = disabled || rest.disabled;
+    const isHidden = hidden || rest.hidden;
 
-  if (isHidden) return null;
+    if (isHidden) return null;
 
-  return (
-    <Button {...rest} disabled={isDisabled} asChild>
-      <LinkComponent
-        to={to}
-        replace={false}
-        onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
-          if (isDisabled) {
-            e.preventDefault();
-            return;
-          }
-          if (onClick) {
-            e.preventDefault();
-            onClick(e);
-          }
-        }}
-      >
-        {children ?? (
-          <div className="flex items-center gap-2 font-semibold">
-            <Eye className="h-4 w-4" />
-            <span>{label}</span>
-          </div>
-        )}
-      </LinkComponent>
-    </Button>
-  );
-}
+    return (
+      <Button {...rest} ref={ref} disabled={isDisabled} asChild>
+        <LinkComponent
+          to={to}
+          replace={false}
+          onClick={(e: React.PointerEvent<HTMLButtonElement>) => {
+            if (isDisabled) {
+              e.preventDefault();
+              return;
+            }
+            if (onClick) {
+              e.preventDefault();
+              onClick(e);
+            }
+          }}
+        >
+          {children ?? (
+            <div className="flex items-center gap-2 font-semibold">
+              <Eye className="h-4 w-4" />
+              <span>{label}</span>
+            </div>
+          )}
+        </LinkComponent>
+      </Button>
+    );
+  },
+);
 
 ShowButton.displayName = "ShowButton";

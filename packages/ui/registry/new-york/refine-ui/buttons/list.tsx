@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { type BaseKey, useListButton } from "@refinedev/core";
 import { Button } from "@/registry/new-york/ui/button";
 import { List } from "lucide-react";
@@ -24,14 +25,10 @@ type ListButtonProps = {
   meta?: Record<string, unknown>;
 } & React.ComponentProps<typeof Button>;
 
-export function ListButton({
-  resource,
-  accessControl,
-  meta,
-  children,
-  onClick,
-  ...rest
-}: ListButtonProps) {
+export const ListButton = React.forwardRef<
+  React.ComponentRef<typeof Button>,
+  ListButtonProps
+>(({ resource, accessControl, meta, children, onClick, ...rest }, ref) => {
   const { hidden, disabled, LinkComponent, to, label } = useListButton({
     resource,
     accessControl,
@@ -44,7 +41,7 @@ export function ListButton({
   if (isHidden) return null;
 
   return (
-    <Button {...rest} disabled={isDisabled} asChild>
+    <Button {...rest} ref={ref} disabled={isDisabled} asChild>
       <LinkComponent
         to={to}
         replace={false}
@@ -68,6 +65,6 @@ export function ListButton({
       </LinkComponent>
     </Button>
   );
-}
+});
 
 ListButton.displayName = "ListButton";
