@@ -408,6 +408,7 @@ function SidebarFooter() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <button
+            type="button"
             className={cn(
               "flex",
               "items-center",
