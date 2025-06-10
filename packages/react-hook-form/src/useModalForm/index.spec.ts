@@ -271,4 +271,104 @@ describe("useModalForm Hook", () => {
       undefined,
     );
   });
+
+  it("when 'autoResetFormWhenClose' is true, 'reset' should be called when 'close' is called", async () => {
+    const resetSpy = jest.fn();
+    
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action: "create",
+          },
+          modalProps: {
+            autoResetFormWhenClose: true,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    // Mock the reset function
+    result.current.reset = resetSpy;
+
+    await act(async () => {
+      result.current.modal.show();
+    });
+
+    await act(async () => {
+      result.current.modal.close();
+    });
+
+    expect(resetSpy).toHaveBeenCalledTimes(1);
+  });
+
+  it("when 'autoResetFormWhenClose' is false, 'reset' should not be called when 'close' is called", async () => {
+    const resetSpy = jest.fn();
+    
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action: "create",
+          },
+          modalProps: {
+            autoResetFormWhenClose: false,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    // Mock the reset function
+    result.current.reset = resetSpy;
+
+    await act(async () => {
+      result.current.modal.show();
+    });
+
+    await act(async () => {
+      result.current.modal.close();
+    });
+
+    expect(resetSpy).not.toHaveBeenCalled();
+  });
+
+  it("when 'autoResetFormWhenClose' is true for edit action, 'reset' should be called when 'close' is called", async () => {
+    const resetSpy = jest.fn();
+    
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action: "edit",
+            id: "5",
+          },
+          modalProps: {
+            autoResetFormWhenClose: true,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    // Mock the reset function
+    result.current.reset = resetSpy;
+
+    await act(async () => {
+      result.current.modal.show();
+    });
+
+    await act(async () => {
+      result.current.modal.close();
+    });
+
+    expect(resetSpy).toHaveBeenCalledTimes(1);
+  });
 });
