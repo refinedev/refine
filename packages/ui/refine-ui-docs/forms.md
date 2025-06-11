@@ -25,11 +25,9 @@ You'll also need to have `shadcn/ui` initialized in your project and the necessa
 npx shadcn-ui@latest add form input button select textarea
 ```
 
-## Core Concepts
+## Usage
 
-### 1. `useForm` Hook
-
-The `useForm` hook from `@refinedev/react-hook-form` is the cornerstone of form management. It provides:
+The `useForm` hook from `@refinedev/react-hook-form` is used to manage the form state and validation.
 
 - `refineCore`:
   - `onFinish`: A function to handle form submission. It will automatically call the appropriate data provider method (`create` or `update`).
@@ -41,9 +39,7 @@ The `useForm` hook from `@refinedev/react-hook-form` is the cornerstone of form 
 - `control`: Passed to `shadcn/ui`'s `Form` component and `FormField` for integrating `react-hook-form`.
 - ...and other `react-hook-form` utilities.
 
-**API Reference:** [Refine `useForm` Hook Documentation](https://refine.dev/docs/packages/react-hook-form/use-form/#usage)
-
-### 2. Schema Validation with Zod
+1. Schema Validation with Zod
 
 Zod is a TypeScript-first schema declaration and validation library. You define a schema for your form data, and `zodResolver` from `@hookform/resolvers/zod` integrates it with `react-hook-form`.
 
@@ -65,7 +61,7 @@ const postFormSchema = z.object({
 type PostFormValues = z.infer<typeof postFormSchema>;
 ```
 
-### 3. `shadcn/ui` Form Components
+2. `shadcn/ui` Form Components
 
 `shadcn/ui` provides a set of components to build forms:
 
@@ -77,11 +73,9 @@ type PostFormValues = z.infer<typeof postFormSchema>;
 - `<FormMessage />`: Displays validation errors for a field.
 - `<Input />`, `<Textarea />`, `<Select />`, etc.: The actual input elements.
 
-## Usage Examples
-
 The following examples demonstrate creating and editing a "Post" resource.
 
-### 1. Creating a New Record (`CreatePost` Page)
+3. Creating a New Record (`CreatePost` Page)
 
 This example shows a form for creating a new post, typically found in a file like `src/routes/posts/create.tsx`.
 
@@ -235,7 +229,7 @@ export default function CreatePostPage() {
 }
 ```
 
-### 2. Editing an Existing Record (`EditPost` Page)
+3. Editing an Existing Record (`EditPost` Page)
 
 This example shows a form for editing an existing post, typically in a file like `src/routes/posts/edit.tsx`. It includes handling relational data (categories) using `useSelect` and a `Popover` + `Command` for selection.
 
@@ -502,30 +496,3 @@ export default function EditPostPage() {
   );
 }
 ```
-
-Key differences in the edit form:
-
-- `action: "edit"` and `id` are passed to `useForm`.
-- `queryResult` from `useForm` provides the initial data for the form. A `React.useEffect` hook is often used to `form.reset()` with this data once it's available.
-- `useSelect` (from `@refinedev/core`) is used to fetch options for relational fields (e.g., categories).
-- The UI for selecting a category uses `Popover` and `Command` from `shadcn/ui` for a searchable combobox experience.
-- Input fields like `Select` should have their `value` prop explicitly controlled by `field.value` to correctly display the fetched data.
-
-## Handling Relational Data
-
-As seen in the `EditPostPage` example, `useSelect` from `@refinedev/core` is useful for fetching data for select inputs (e.g., categories for a post). You can then map these options to `SelectItem` or use them in a more complex component like the `Popover` + `Command` combobox.
-
-When submitting the form, ensure your Zod schema and form data structure match what your backend API expects for relational fields (e.g., sending `category: { id: 123 }` or just `categoryId: 123`).
-
-## Customization
-
-- **Zod Schema**: Tailor your Zod schema for precise validation rules, including transformations, refinements, and more complex type definitions.
-- **`shadcn/ui` Components**: Customize the appearance and behavior of `shadcn/ui` components as needed. Refer to their documentation for styling and prop options.
-- **`refineCoreProps`**: Explore other options within `refineCoreProps` in `useForm` for features like:
-  - `redirect`: Control navigation after form submission.
-  - `successNotification` / `errorNotification`: Customize feedback to the user.
-  - `mutationMode`: Control how optimistic/pessimistic updates are handled.
-- **Form Layout**: Structure your form fields within the `<form>` tag using divs, grids, or other layout primitives to achieve your desired design.
-- **Advanced `react-hook-form` Features**: Leverage more advanced features of `react-hook-form` such as `watch`, `setValue`, `trigger`, field arrays (`useFieldArray`), etc., for complex form interactions.
-
-This guide provides a foundation for building forms in Refine with `react-hook-form` and `shadcn/ui`. Remember to adapt the paths to your components and type definitions according to your project structure.

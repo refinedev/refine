@@ -75,6 +75,7 @@ export default function EditPost() {
     refineCoreProps: {
       autoSave: {
         enabled: true,
+        debounce: 1000,
       },
     },
     defaultValues: {

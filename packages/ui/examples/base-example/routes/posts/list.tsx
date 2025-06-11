@@ -1,7 +1,7 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
-import { useList } from "@refinedev/core";
+import { type GetManyResponse, useList, useMany } from "@refinedev/core";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   DropdownMenu,
@@ -26,11 +26,17 @@ import {
 } from "@/registry/new-york/refine-ui/views/list-view";
 import { ShowButton } from "@/registry/new-york/refine-ui/buttons/show";
 import { cn } from "@/lib/utils";
-import type { Post, Category } from "../../types/resources";
+import type { Post, Category, Tag } from "../../types/resources";
+import { Badge } from "@/registry/new-york/ui/badge";
 
 export function PostsListPage() {
+  // fetch all categories to use in the combobox filter
   const { data: categoriesData } = useList<Category>({
     resource: "categories",
+    pagination: {
+      current: 1,
+      pageSize: 999,
+    },
   });
   const categories = categoriesData?.data ?? [];
 
@@ -61,7 +67,8 @@ export function PostsListPage() {
         id: "title",
         accessorKey: "title",
         size: 300,
-        header: ({ column }) => {
+        header: ({ column, table }) => {
+          // Added table prop for filter
           return (
             <div className="flex items-center gap-1">
               <span>Title</span>
@@ -69,7 +76,7 @@ export function PostsListPage() {
                 <DataTableFilterDropdownText
                   defaultOperator="contains"
                   column={column}
-                  table={table}
+                  table={table} // Pass table instance
                   placeholder="Filter by title"
                 />
               </div>
@@ -87,7 +94,7 @@ export function PostsListPage() {
       },
       {
         id: "category.id",
-        accessorKey: "category.id",
+        accessorKey: "category.id", // Ensure this matches your data structure
         size: 200,
         header: ({ column }) => {
           return (
@@ -106,9 +113,33 @@ export function PostsListPage() {
           );
         },
         cell: ({ getValue }) => {
-          const category = categories.find((item) => item.id === getValue());
-
+          const categoryId = getValue<number>();
+          const category = categories.find((item) => item.id === categoryId);
           return category?.title || "-";
+        },
+      },
+      {
+        id: "tags",
+        accessorKey: "tags",
+        size: 200,
+        header: "Tags",
+        cell: ({ getValue, table }) => {
+          const meta = table.options.meta as {
+            tagsData: GetManyResponse<Tag> | undefined;
+            tagsIsLoading: boolean;
+          };
+          const tags = meta?.tagsData?.data ?? [];
+          const tagsByPost = tags.filter((tag) =>
+            getValue<number[]>().includes(tag.id),
+          );
+
+          return (
+            <div className="flex flex-wrap gap-2">
+              {tagsByPost.map((tag) => (
+                <Badge key={tag.id}>{tag.title}</Badge>
+              ))}
+            </div>
+          );
         },
       },
       {
@@ -132,6 +163,21 @@ export function PostsListPage() {
             </div>
           );
         },
+        cell: ({ getValue }) => {
+          const status = getValue<string>();
+          const variantMap = {
+            published: "default",
+            draft: "outline",
+            rejected: "destructive",
+          };
+          return (
+            <Badge
+              variant={variantMap[status as keyof typeof variantMap] as any}
+            >
+              {status}
+            </Badge>
+          );
+        },
       },
       {
         id: "createdAt",
@@ -147,7 +193,6 @@ export function PostsListPage() {
                   if (!dateRange?.from || !dateRange?.to) {
                     return undefined;
                   }
-
                   return [
                     dateRange.from.toISOString(),
                     dateRange.to.toISOString(),
@@ -162,8 +207,8 @@ export function PostsListPage() {
         },
       },
       {
-        id: "updatedAt",
-        accessorKey: "createdAt",
+        id: "updatedAt", // If you have an updatedAt field
+        accessorKey: "updatedAt", // Change to updatedAt if available
         size: 220,
         header: ({ column }) => {
           return (
@@ -239,6 +284,8 @@ export function PostsListPage() {
                   recordItemId={post.id}
                 />
                 <DeleteButton
+                  // add key for each button for popover to work
+                  key={post.id}
                   size="sm"
                   className="w-full items-center justify-start"
                   resource="posts"
@@ -254,14 +301,44 @@ export function PostsListPage() {
   );
 
   const table = useTable<Post>({
+    refineCoreProps: {
+      // Pass Refine core props for filtering, sorting, pagination
+    },
     columns,
+    // TanStack Table options can be passed here
     initialState: {
       columnPinning: {
         left: [],
-        right: ["actions"],
+        right: ["actions"], // Pin actions column to the right
       },
     },
   });
+
+  const tableData = table.refineCore.tableQuery.data;
+
+  // get all tag ids from the table data to fetch all tags. we will use this to get relational data
+  const tagIds = useMemo(() => {
+    return (
+      tableData?.data?.flatMap((post) => post.tags.map((tag) => tag)) ?? []
+    );
+  }, [tableData]);
+
+  // fetch all tags available in the table data
+  const { data: tagsData, isLoading: tagsIsLoading } = useMany<Tag>({
+    resource: "tags",
+    ids: tagIds,
+    queryOptions: {
+      enabled: tagIds.length > 0,
+    },
+  });
+
+  // set the tags data to the table meta to handle relations
+  useEffect(() => {
+    table.setOptions((prev) => ({
+      ...prev,
+      meta: { ...prev.meta, tagsData: tagsData, tagsIsLoading: tagsIsLoading },
+    }));
+  }, [table, tagsData, tagsIsLoading]);
 
   return (
     <ListView>

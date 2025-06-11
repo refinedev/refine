@@ -58,13 +58,7 @@ Integrate the `Layout` component into your Refine application's routing structur
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Outlet,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet, Navigate } from "react-router";
 
 import { Layout } from "@/components/refine-ui/layout/layout";
 

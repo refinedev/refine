@@ -48,3 +48,8 @@ export type User = {
     url: string;
   }>;
 };
+
+export type Tag = {
+  id: number;
+  title: string;
+};
