@@ -41,7 +41,7 @@ src/components/refine-ui/
 │   ├── error-component.tsx
 │   ├── layout.tsx
 │   ├── loading-overlay.tsx
-│   ├── mobile-header.tsx
+│   ├── header.tsx
 │   ├── sidebar.tsx
 │   ├── user-avatar.tsx
 │   └── user-info.tsx

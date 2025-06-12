@@ -3,7 +3,7 @@
 import type { PropsWithChildren } from "react";
 import { SidebarProvider, SidebarInset } from "@/registry/new-york/ui/sidebar";
 import { Sidebar } from "@/registry/new-york/refine-ui/layout/layout-01/sidebar";
-import { MobileHeader } from "@/registry/new-york/refine-ui/layout/layout-01/mobile-header";
+import { Header } from "@/registry/new-york/refine-ui/layout/layout-01/header";
 import { ThemeProvider } from "@/registry/new-york/refine-ui/theme/theme-provider";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,7 @@ export function Layout({ children }: PropsWithChildren) {
       <SidebarProvider>
         <Sidebar />
         <SidebarInset>
-          <MobileHeader />
+          <Header />
           <main
             className={cn(
               "@container/main",
@@ -27,8 +27,9 @@ export function Layout({ children }: PropsWithChildren) {
               "px-2",
               "pt-4",
               "md:p-4",
+              "md:pb-0",
               "lg:px-6",
-              "lg:pt-5.5",
+              "lg:pt-6",
             )}
           >
             {children}

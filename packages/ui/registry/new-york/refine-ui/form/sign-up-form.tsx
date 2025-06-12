@@ -71,15 +71,25 @@ export const SignUpForm = () => {
   return (
     <div className={cn("flex", "flex-col", "items-center", "justify-center")}>
       <div className={cn("flex", "items-center", "justify-center", "gap-2")}>
-        {title.icon && <div>{title.icon}</div>}
-        {title.text && (
-          <div className={cn("text-primary", "text-2xl")}>{title.text}</div>
+        {title.icon && (
+          <div
+            className={cn("text-foreground", "[&>svg]:w-12", "[&>svg]:h-12")}
+          >
+            {title.icon}
+          </div>
         )}
       </div>
 
       <Card className={cn("sm:w-[456px]", "p-12", "mt-6")}>
         <CardHeader className={cn("px-0")}>
-          <CardTitle className={cn("text-green-600", "text-3xl")}>
+          <CardTitle
+            className={cn(
+              "text-green-600",
+              "dark:text-green-400",
+              "text-3xl",
+              "font-semibold",
+            )}
+          >
             Sign up
           </CardTitle>
           <CardDescription

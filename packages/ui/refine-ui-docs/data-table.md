@@ -454,3 +454,223 @@ const table = useTable<Post>({
   },
 });
 ```
+
+## DataTablePagination
+
+Pagination component for data tables. Implement pagination with useTable or useList hooks. Includes page navigation, page size selection, and row count display.
+
+Props
+
+| Prop          | Type                     | Description                         |
+| ------------- | ------------------------ | ----------------------------------- |
+| `current`     | `number`                 | Current page number (1-based)       |
+| `pageCount`   | `number`                 | Total number of pages               |
+| `setCurrent`  | `(page: number) => void` | Function to change the current page |
+| `pageSize`    | `number`                 | Number of rows per page             |
+| `setPageSize` | `(size: number) => void` | Function to change the page size    |
+| `total`       | `number` (optional)      | Total number of rows in the dataset |
+
+You can also use `DataTablePagination` independently with your own pagination state:
+
+```tsx
+import { useState } from "react";
+import { DataTablePagination } from "@/components/refine-ui/data-table/data-table-pagination";
+
+export function MyPaginatedList() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
+
+  // Your data fetching logic here
+  const currentPage = 1;
+  const pageSize = 10;
+  const total = 100;
+  const pageCount = Math.ceil(total / pageSize);
+
+  return (
+    <div>
+      {/* Your data display component */}
+
+      <DataTablePagination
+        current={currentPage}
+        pageCount={pageCount}
+        setCurrent={setCurrentPage}
+        pageSize={pageSize}
+        setPageSize={setPageSize}
+        total={total}
+      />
+    </div>
+  );
+}
+```
+
+## DataTableFilterDropdownText
+
+Text filtering for data tables. Filter table by text fields with useTable hook. Supports contains, equals, startswith, endswith operators. Perfect for filtering by title, name, or description columns.
+
+```tsx
+import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
+
+// In your TanStack Table column definition
+{
+  id: "title",
+  accessorKey: "title",
+  header: ({ column, table }) => {
+    return (
+      <div className="flex items-center gap-1">
+        <span>Title</span>
+        <DataTableFilterDropdownText
+          defaultOperator="contains"
+          column={column}
+          table={table}
+          placeholder="Filter by title"
+          operators={["eq", "ne", "contains", "ncontains", "startswith", "endswith"]}
+        />
+      </div>
+    );
+  },
+}
+```
+
+## DataTableFilterDropdownNumeric
+
+Numeric filtering for data tables. Filter table by numbers with useTable hook. Supports equals, greater than, less than operators. Perfect for filtering by ID, price, or quantity columns.
+
+```tsx
+import { DataTableFilterDropdownNumeric } from "@/components/refine-ui/data-table/data-table-filter";
+
+// In your TanStack Table column definition
+{
+  id: "id",
+  accessorKey: "id",
+  header: ({ column, table }) => {
+    return (
+      <div className="flex items-center gap-1">
+        <span>ID</span>
+        <DataTableFilterDropdownNumeric
+          defaultOperator="eq"
+          column={column}
+          table={table}
+          placeholder="Filter by ID"
+          operators={["eq", "ne", "gt", "lt", "gte", "lte"]}
+        />
+      </div>
+    );
+  },
+}
+```
+
+## DataTableFilterCombobox
+
+Select filtering for data tables. Filter table by predefined options with useTable hook. Supports single and multiple selection. Perfect for filtering by status, category, or tags columns.
+
+```tsx
+import { DataTableFilterCombobox } from "@/components/refine-ui/data-table/data-table-filter";
+
+// Single selection
+{
+  id: "status",
+  accessorKey: "status",
+  header: ({ column }) => {
+    return (
+      <div className="flex items-center gap-1">
+        <span>Status</span>
+        <DataTableFilterCombobox
+          column={column}
+          defaultOperator="eq"
+          multiple={false}
+          options={[
+            { label: "Published", value: "published" },
+            { label: "Draft", value: "draft" },
+            { label: "Rejected", value: "rejected" },
+          ]}
+        />
+      </div>
+    );
+  },
+}
+
+// Multiple selection
+{
+  id: "category.id",
+  accessorKey: "category.id",
+  header: ({ column }) => {
+    return (
+      <div className="flex items-center gap-1">
+        <span>Category</span>
+        <DataTableFilterCombobox
+          column={column}
+          defaultOperator="in"
+          multiple={true}
+          options={categories.map((item) => ({
+            label: item.title,
+            value: item.id.toString(),
+          }))}
+        />
+      </div>
+    );
+  },
+}
+```
+
+## DataTableFilterDropdownDateSinglePicker
+
+Date filtering for data tables. Filter table by specific date with useTable hook. Includes calendar picker interface. Perfect for filtering by created date or updated date columns.
+
+```tsx
+import { DataTableFilterDropdownDateSinglePicker } from "@/components/refine-ui/data-table/data-table-filter";
+
+// In your TanStack Table column definition
+{
+  id: "createdAt",
+  accessorKey: "createdAt",
+  header: ({ column }) => {
+    return (
+      <div className="flex items-center gap-1">
+        <span>Created At</span>
+        <DataTableFilterDropdownDateSinglePicker
+          column={column}
+          defaultOperator="eq"
+          formatDate={(date) => {
+            if (!date) return undefined;
+            return date.toISOString().split("T")[0]; // Format as YYYY-MM-DD
+          }}
+        />
+      </div>
+    );
+  },
+}
+```
+
+## DataTableFilterDropdownDateRangePicker
+
+Date range filtering for data tables. Filter table by date range with useTable hook. Includes dual calendar picker for start and end dates. Perfect for filtering data created between dates.
+
+```tsx
+import { DataTableFilterDropdownDateRangePicker } from "@/components/refine-ui/data-table/data-table-filter";
+
+// In your TanStack Table column definition
+{
+  id: "dateRange",
+  accessorKey: "createdAt",
+  header: ({ column }) => {
+    return (
+      <div className="flex items-center gap-1">
+        <span>Date Range</span>
+        <DataTableFilterDropdownDateRangePicker
+          column={column}
+          defaultOperator="between"
+          formatDateRange={(dateRange) => {
+            if (!dateRange?.from || !dateRange?.to) {
+              return undefined;
+            }
+            return [
+              dateRange.from.toISOString(),
+              dateRange.to.toISOString(),
+            ];
+          }}
+        />
+      </div>
+    );
+  },
+}
+```

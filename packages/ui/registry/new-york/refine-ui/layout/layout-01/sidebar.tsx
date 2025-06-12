@@ -6,8 +6,6 @@ import {
   useLink,
   useRefineOptions,
   type ITreeMenu,
-  useLogout,
-  useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   SidebarRail as ShadcnSidebarRail,
@@ -29,11 +27,7 @@ import {
   CollapsibleTrigger,
 } from "@/registry/new-york/ui/collapsible";
 import { Button } from "@/registry/new-york/ui/button";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { UserInfo } from "@/registry/new-york/refine-ui/user/user-info";
-import { UserAvatar } from "@/registry/new-york/refine-ui/user/user-avatar";
-import { ThemeSelect } from "@/registry/new-york/refine-ui/theme/theme-select";
-import { ChevronRight, ChevronUp, ListIcon, LogOut } from "lucide-react";
+import { ChevronRight, ListIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export function Sidebar() {
@@ -41,10 +35,7 @@ export function Sidebar() {
   const { menuItems, selectedKey } = useMenu();
 
   return (
-    <ShadcnSidebar
-      collapsible="icon"
-      className={cn("border-r", "border-sidebar-border")}
-    >
+    <ShadcnSidebar collapsible="icon" className={cn("border-none")}>
       <ShadcnSidebarRail />
       <SidebarHeader />
       <ShadcnSidebarContent
@@ -56,6 +47,8 @@ export function Sidebar() {
           "gap-2",
           "pt-2",
           "pb-2",
+          "border-r",
+          "border-border",
           {
             "px-3": open,
             "px-1": !open,
@@ -69,28 +62,7 @@ export function Sidebar() {
             selectedKey={selectedKey}
           />
         ))}
-        <div
-          className={cn(
-            "absolute",
-            "bottom-[81px]",
-            "left-0",
-            "w-full",
-            "h-16",
-            "bg-gradient-to-b",
-            "from-white/0",
-            "dark:from-black/0",
-            "to-sidebar",
-          )}
-        />
       </ShadcnSidebarContent>
-      <div
-        className={cn("mt-auto", "pb-1", {
-          "px-2": open,
-          "px-1": !open,
-        })}
-      >
-        <SidebarFooter />
-      </div>
     </ShadcnSidebar>
   );
 }
@@ -247,7 +219,7 @@ function SidebarHeader() {
         "p-0",
         "h-16",
         "border-b",
-        "border-sidebar-border",
+        "border-border",
         "flex-row",
         "items-center",
         "justify-between",
@@ -289,7 +261,7 @@ function SidebarHeader() {
       </div>
 
       <ShadcnSidebarTrigger
-        className={cn("text-muted-foreground", "mr-1", {
+        className={cn("text-muted-foreground", "mr-1.5", {
           "opacity-0": !open,
           "opacity-100": open || isMobile,
           "pointer-events-auto": open || isMobile,
@@ -388,101 +360,6 @@ function SidebarButton({
         buttonContent
       )}
     </Button>
-  );
-}
-
-function SidebarFooter() {
-  const { open, isMobile } = useShadcnSidebar();
-
-  const { mutate: logout, isLoading: logoutIsLoading } = useLogout();
-
-  const authProvider = useActiveAuthProvider();
-
-  if (!authProvider?.getIdentity) {
-    return null;
-  }
-
-  return (
-    <>
-      <Separator />
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button
-            type="button"
-            className={cn(
-              "flex",
-              "items-center",
-              "gap-x-2",
-              "py-3",
-              "pr-2",
-              "w-full",
-              "text-left",
-              "focus:outline-none",
-            )}
-          >
-            {open ? (
-              <>
-                <UserInfo />
-                <ChevronUp
-                  className={cn(
-                    "h-4",
-                    "w-4",
-                    "ml-auto",
-                    "text-muted-foreground",
-                    "transition-transform",
-                    "duration-200",
-                    "group-data-[state=open]:rotate-180",
-                  )}
-                />
-              </>
-            ) : (
-              <UserAvatar />
-            )}
-          </button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent
-          align="start"
-          className={cn("w-full", "shadow-xl", "p-0", {
-            "min-w-[272px]": isMobile,
-            "min-w-[240px]": !isMobile,
-          })}
-        >
-          {!open && (
-            <>
-              <div className={cn("py-3", "px-2")}>
-                <UserInfo />
-              </div>
-              <Separator />
-            </>
-          )}
-          <div className={cn("p-2")}>
-            <ThemeSelect />
-          </div>
-          <Separator />
-          <div className={cn("p-2")}>
-            <Button
-              variant="ghost"
-              size="lg"
-              onClick={() => logout()}
-              disabled={logoutIsLoading}
-              className={cn(
-                "!px-3",
-                "text-destructive",
-                "hover:text-destructive",
-                "w-full",
-                "flex",
-                "items-center",
-                "justify-start",
-                "gap-x-2",
-              )}
-            >
-              <LogOut className={cn("h-4", "w-4", "text-destructive")} />
-              Log out
-            </Button>
-          </div>
-        </DropdownMenuContent>
-      </DropdownMenu>
-    </>
   );
 }
 

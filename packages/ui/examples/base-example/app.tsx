@@ -25,6 +25,7 @@ import { authProvider } from "./providers/auth";
 import { useNotificationProvider } from "./providers/notification";
 import { createDataProvider } from "./providers/data";
 import { LoginForm } from "./components/login-form";
+import { RegisterForm } from "./components/register-form";
 import { AppLayout } from "./components/layout";
 import { PostsListPage } from "./routes/posts/list";
 import { UsersListPage } from "./routes/users/list";
@@ -33,6 +34,7 @@ import { HomePage } from "./routes/home";
 import CreatePost from "./routes/posts/create";
 import ShowPost from "./routes/posts/show";
 import EditPost from "./routes/posts/edit";
+import { ForgotPasswordForm } from "./components/forgot-password-form";
 
 export function BaseExample() {
   return (
@@ -174,6 +176,8 @@ export function BaseExample() {
             }
           >
             <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegisterForm />} />
+            <Route path="/forgot-password" element={<ForgotPasswordForm />} />
           </Route>
 
           <Route

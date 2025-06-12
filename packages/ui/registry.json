@@ -137,9 +137,9 @@
           "target": "src/components/refine-ui/layout/layout.tsx"
         },
         {
-          "path": "registry/new-york/refine-ui/layout/layout-01/mobile-header.tsx",
+          "path": "registry/new-york/refine-ui/layout/layout-01/header.tsx",
           "type": "registry:component",
-          "target": "src/components/refine-ui/layout/mobile-header.tsx"
+          "target": "src/components/refine-ui/layout/header.tsx"
         },
         {
           "path": "registry/new-york/refine-ui/layout/layout-01/sidebar.tsx",

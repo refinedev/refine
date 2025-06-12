@@ -429,7 +429,7 @@ export function DataTableFilterCombobox<TData>({
                         key={option.value}
                         value={option.value}
                         onSelect={() => handleSelect(option.value)}
-                        keywords={option.label.split(" ")}
+                        keywords={option.label?.split(" ") ?? []}
                       >
                         {option.label}
                         <Check
