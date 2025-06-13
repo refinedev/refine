@@ -1,5 +1,22 @@
 # @refinedev/mui
 
+## 6.2.1
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- Add support for unique id to `transformCrudFiltersToFilterModel` when filters have the same field and operator.
+
+  [Resolves #6710](https://github.com/refinedev/refine/issues/6710)
+
+📢 **Refine Community Release** 📢
+
+- chore: update `react-hook-form` to `7.57.0` to support new features like [`subscribe`](https://react-hook-form.com/docs/useform/subscribe).
+  for more information, see [React Hook Form release notes](https://github.com/react-hook-form/react-hook-form/releases).
+- Updated dependencies []:
+  - @refinedev/react-hook-form@4.10.1
+
 ## 6.2.0
 
 ### Minor Changes

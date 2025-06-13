@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/devtools-ui",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "repository": {

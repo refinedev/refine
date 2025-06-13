@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-hook-form",
-  "version": "4.10.0",
+  "version": "4.10.1",
   "private": false,
   "description": "refine offers a React Hook Form adapter that allows you to use the React Hook Form library with refine.",
   "repository": {

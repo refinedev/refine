@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/inferencer",
-  "version": "5.1.0",
+  "version": "5.1.1",
   "private": false,
   "description": "refine is a React-based framework for building internal tools, rapidly.",
   "repository": {
@@ -126,12 +126,12 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/antd": "^5.45.1",
-    "@refinedev/chakra-ui": "^2.37.0",
+    "@refinedev/chakra-ui": "^2.37.1",
     "@refinedev/core": "^4.57.5",
     "@refinedev/mantine": "^2.35.1",
-    "@refinedev/mui": "^6.2.0",
-    "@refinedev/react-hook-form": "^4.10.0",
-    "@refinedev/react-table": "^5.6.16",
+    "@refinedev/mui": "^6.2.1",
+    "@refinedev/react-hook-form": "^4.10.1",
+    "@refinedev/react-table": "^5.6.17",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/react-hooks": "^8.0.0",
