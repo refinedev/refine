@@ -13,7 +13,7 @@
     "@refinedev/antd": "^5.46.1",
     "@refinedev/cli": "^2.16.46",
     "@refinedev/core": "^4.57.9",
-    "@refinedev/inferencer": "^5.0.3",
+    "@refinedev/inferencer": "^5.1.0",
     "@refinedev/remix-router": "^3.0.8",
     "@refinedev/simple-rest": "^5.0.10",
     "@remix-run/node": "^2.4.0",

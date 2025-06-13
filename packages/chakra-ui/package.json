@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/chakra-ui",
-  "version": "2.36.1",
+  "version": "2.37.0",
   "private": false,
   "description": "Chakra UI support for Refine, providing flexible and accessible UI components.",
   "license": "MIT",
@@ -35,12 +35,12 @@
     "@chakra-ui/theme-tools": "^2.1.2",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
-    "@refinedev/react-hook-form": "^4.9.3",
+    "@refinedev/react-hook-form": "^4.10.0",
     "@refinedev/ui-types": "^1.24.2",
     "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
     "framer-motion": "^7.5.3",
-    "react-hook-form": "^7.43.5",
+    "react-hook-form": "^7.57.0",
     "react-markdown": "^6.0.1",
     "remark-gfm": "^1.0.0",
     "tslib": "^2.6.2"
@@ -75,7 +75,7 @@
     "dayjs": "^1.10.7",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0",
-    "react-hook-form": "^7.43.5"
+    "react-hook-form": "^7.57.0"
   },
   "publishConfig": {
     "access": "public"
