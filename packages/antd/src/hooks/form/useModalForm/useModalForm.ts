@@ -89,6 +89,7 @@ export type UseModalFormProps<
     defaultVisible?: boolean;
     autoSubmitClose?: boolean;
     autoResetForm?: boolean;
+    autoResetFormWhenClose?: boolean;
   };
 /**
  * `useModalForm` hook allows you to manage a form within a modal. It returns Ant Design {@link https://ant.design/components/form/ Form} and {@link https://ant.design/components/modal/ Modal} components props.
@@ -113,6 +114,7 @@ export const useModalForm = <
   defaultVisible = false,
   autoSubmitClose = true,
   autoResetForm = true,
+  autoResetFormWhenClose = true,
   autoSave,
   invalidates,
   ...rest
@@ -291,6 +293,10 @@ export const useModalForm = <
 
     setId?.(undefined);
     sunflowerUseModal.close();
+
+    if (autoResetFormWhenClose) {
+      form.resetFields();
+    }
   }, [warnWhen, autoSaveProps.status]);
 
   const handleShow = useCallback(
