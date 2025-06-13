@@ -1,5 +1,41 @@
 # @refinedev/hasura
 
+## 6.6.14
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to createMany query for Hasura data provider
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to deleteOne query for Hasura data provider
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to update query for Hasura data provider
+
+📢 **Refine Community Release** 📢
+
+- Hasura live provider now uses hasura-default as default naming convention
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to create query for Hasura data provider
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to deleteMany query for Hasura data provider
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to updateMany query for Hasura data provider
+
+📢 **Refine Community Release** 📢
+
+- meta.gqlVariables now passed to custom query for Hasura data provider
+
 ## 6.6.13
 
 ### Patch Changes

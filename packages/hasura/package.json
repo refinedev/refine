@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/hasura",
-  "version": "6.6.13",
+  "version": "6.6.14",
   "private": false,
   "description": "Hasura integration for Refine, leveraging Hasura's GraphQL APIs.",
   "repository": {
