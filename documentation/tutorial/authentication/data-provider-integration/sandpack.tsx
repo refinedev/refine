@@ -266,7 +266,7 @@ export const authProvider: AuthProvider = {
           logout: true,
           error: {
             message: "Unauthorized",
-            name: “Error”,
+            name: "Error",
             statusCode: error?.status ?? 403,
           },
         }
