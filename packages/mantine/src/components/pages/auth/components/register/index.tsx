@@ -101,14 +101,14 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     if (providers && providers.length > 0) {
       return (
         <>
-          <Stack spacing={8}>
+          <Stack>
             {providers.map((provider) => {
               return (
                 <Button
                   key={provider.name}
                   variant="default"
                   fullWidth
-                  leftIcon={provider.icon}
+                  leftSection={provider.icon}
                   onClick={() =>
                     register({
                       ...mutationVariables,
@@ -139,10 +139,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 
   const CardContent = (
     <Card style={cardStyles} {...(contentProps ?? {})}>
-      <Title
-        style={titleStyles}
-        color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
-      >
+      <Title style={titleStyles}>
         {translate("pages.register.title", "Sign up for your account")}
       </Title>
       <Space h="sm" />
@@ -184,7 +181,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
         </FormProvider>
       )}
       {loginLink ?? (
-        <Group mt="md" position="center">
+        <Group mt="md" justify="center">
           <Text size="xs">
             {translate(
               "pages.register.buttons.haveAccount",
