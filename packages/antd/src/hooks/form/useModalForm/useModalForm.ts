@@ -289,6 +289,7 @@ export const useModalForm = <
       }
     }
 
+    form.resetFields();
     setId?.(undefined);
     sunflowerUseModal.close();
   }, [warnWhen, autoSaveProps.status]);
@@ -332,6 +333,7 @@ export const useModalForm = <
           form.resetFields();
         }
       },
+      hidden: formLoading,
     },
     modalProps: {
       ...newModalProps,
