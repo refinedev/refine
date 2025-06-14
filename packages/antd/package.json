@@ -74,7 +74,7 @@
     "jest-environment-jsdom": "^29.3.1",
     "postcss": "^8.1.4",
     "react-router": "^7.0.2",
-    "ts-jest": "^29.1.2",
+    "ts-jest": "^29.3.4",
     "tsup": "^6.7.0",
     "typescript": "^5.4.2"
   },
