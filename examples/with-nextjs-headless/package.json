@@ -20,7 +20,7 @@
     "@tanstack/react-table": "^8.2.6",
     "cross-env": "^7.0.3",
     "js-cookie": "^3.0.1",
-    "next": "^15.2.4",
+    "next": "^14.2.30",
     "next-intl": "^3.25.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
