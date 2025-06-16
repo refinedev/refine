@@ -88,3 +88,5 @@ For internal tools — where clarity, stability, and maintainability matter more
 Not everything needs to be a playground. Sometimes, you need a partner that understands what production means.
 
 [Refine AI](https://s.refine.dev/purpose) gets that.
+
+Make sure to sign up at [ai.refine.dev](https://ai.refine.dev) to get notified of coming features and sneakpeeks early via our new newsletter!
