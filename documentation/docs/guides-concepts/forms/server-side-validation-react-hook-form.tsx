@@ -14,7 +14,7 @@ export default function ServerSideValidationReactHookForm() {
         "@refinedev/react-hook-form": "^4.8.12",
         "react-dom": "^18.0.0",
         "react-router": "^7.0.2",
-        "react-hook-form": "^7.43.5",
+        "react-hook-form": "^7.57.0",
       }}
       startRoute="/products/create"
       files={{
