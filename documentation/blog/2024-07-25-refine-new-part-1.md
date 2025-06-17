@@ -5,6 +5,7 @@ slug: refine-new-explored-part-1
 authors: batuhan
 tags: [Refine]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-07-25-refine-new-part-1/social.png
+is_featured: true
 hide_table_of_contents: false
 ---
 
