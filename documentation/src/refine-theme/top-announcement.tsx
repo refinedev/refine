@@ -5,7 +5,7 @@ export const TopAnnouncement = () => {
   return (
     <div className="not-prose">
       <a
-        href="https://www.producthunt.com/products/refine-2?launch=refineai-2"
+        href="https://dub.sh/refine-ai-launch"
         target="_blank"
         rel="noopener noreferrer"
         className={clsx(
