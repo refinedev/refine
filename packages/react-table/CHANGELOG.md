@@ -1,5 +1,21 @@
 # @refinedev/react-table
 
+## 5.6.17
+
+### Patch Changes
+
+📢 **Refine Community Release** 📢
+
+- fix: get always latest `columns` from `table ref` when `columnFilters` or `filters` are changed.
+
+## 5.6.16
+
+### Patch Changes
+
+⚡ **Refine Enterprise Release** ⚡
+
+- [#6823](https://github.com/refinedev/refine/pull/6823) [`8a17ea50ce615b3213832bd66d01c946351621ea`](https://github.com/refinedev/refine/commit/8a17ea50ce615b3213832bd66d01c946351621ea) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: get always latest `columns` from `table ref` when `columnFilters` or `filters` are changed.
+
 ## 5.6.15
 
 ### Patch Changes
