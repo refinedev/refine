@@ -36,3 +36,6 @@ examples/**/package-lock.json
 
 # nx daemon
 .nx
+
+# cursor
+.cursorrules

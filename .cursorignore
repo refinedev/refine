@@ -11,7 +11,6 @@ documentation/static/
 documentation/test/
 documentation/versioned_docs/
 documentation/versioned_sidebars/
-examples/
 hackathon/
 patches/
 pnpm-lock.yaml

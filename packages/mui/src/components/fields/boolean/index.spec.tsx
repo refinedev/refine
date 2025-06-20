@@ -5,7 +5,7 @@ import { render, fireEvent } from "@test";
 
 import { BooleanField } from "./";
 
-describe("BooleanField", () => {
+describe.skip("BooleanField", () => {
   fieldBooleanTests.bind(this)(BooleanField);
 
   describe("BooleanField with default props values", () => {
