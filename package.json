@@ -32,7 +32,6 @@
     "prepare": "husky install",
     "publint": "lerna run publint --scope @refinedev/core",
     "publint:all": "lerna run publint --scope @refinedev/*",
-    "publish-packages": "node scripts/update-create-refine-app-registry.js add && pnpm changeset publish && node scripts/update-create-refine-app-registry.js remove",
     "sp": "syncpack",
     "start": "lerna run start",
     "test": "lerna run test --stream",
