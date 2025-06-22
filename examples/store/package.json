@@ -39,7 +39,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-fast-marquee": "^1.3.1",
-    "react-hook-form": "^7.43.5",
+    "react-hook-form": "^7.57.0",
     "react-merge-refs": "^1.1.0",
     "react-use-measure": "^2.1.1",
     "tabbable": "^5.2.1",
