@@ -221,3 +221,35 @@ Refine is a community-driven project, and your contributions continually improve
 ## License
 
 Licensed under the MIT License, Copyright © 2021-present Refinedev
+
+## 🔧 Built With
+
+- [React](https://reactjs.org/) – JavaScript Library for UI
+- [TypeScript](https://www.typescriptlang.org/) – Static typing for JavaScript
+- [Refine](https://refine.dev/) – React-based meta-framework
+- [React Router](https://reactrouter.com/) – Declarative routing
+- [Material UI](https://mui.com/) – Component UI Library
+- [React Query](https://tanstack.com/query) – Data-fetching & state management
+- [Vite](https://vitejs.dev/) – Fast development build tool
+
+---
+
+## 🚀 Getting Started
+
+To run Refine locally on your machine:
+
+```bash
+# Clone the repository
+git clone https://github.com/refinedev/refine.git
+
+# Navigate to the repo
+cd refine
+
+# Install dependencies
+npm install
+
+# Start the development server
+npm run dev
+
+# Open your browser at
+http://localhost:3000
