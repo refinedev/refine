@@ -264,6 +264,7 @@ const dataProvider = (
       if (gqlOperation) {
         const response = await client.request<BaseRecord>(gqlOperation, {
           object: variables || {},
+          ...meta?.gqlVariables,
         });
 
         return {
@@ -305,6 +306,7 @@ const dataProvider = (
       if (meta?.gqlMutation) {
         const response = await client.request<BaseRecord>(meta.gqlMutation, {
           objects: variablesFromParams,
+          ...meta?.gqlVariables,
         });
 
         return {
@@ -351,6 +353,7 @@ const dataProvider = (
         const response = await client.request<BaseRecord>(gqlOperation, {
           id,
           object: variables || {},
+          ...meta?.gqlVariables,
         });
 
         return {
@@ -421,6 +424,7 @@ const dataProvider = (
         const response = await client.request<BaseRecord>(meta.gqlMutation, {
           ids,
           _set: variablesFromParams,
+          ...meta?.gqlVariables,
         });
 
         return {
@@ -471,7 +475,7 @@ const dataProvider = (
       if (meta?.gqlMutation) {
         const response = await client.request<BaseRecord>(meta.gqlMutation, {
           id,
-          ...meta?.variables,
+          ...meta?.gqlVariables,
         });
 
         return {
@@ -509,13 +513,26 @@ const dataProvider = (
         : camelcase(`delete_${operation}`);
 
       if (meta?.gqlMutation) {
-        const response = await client.request<BaseRecord>(meta?.gqlMutation, {
-          where: {
+        const hasuraFilters = mergeHasuraFilters(
+          {
             id: {
               _in: ids,
             },
           },
-        });
+          meta?.gqlVariables?.where,
+        );
+
+        const variables = {
+          ...(meta.gqlVariables && meta.gqlVariables),
+          ...(hasuraFilters && {
+            where: hasuraFilters,
+          }),
+        };
+
+        const response = await client.request<BaseRecord>(
+          meta?.gqlMutation,
+          variables,
+        );
 
         return {
           data: response[deleteOperation]["returning"],
@@ -569,7 +586,7 @@ const dataProvider = (
       if (gqlOperation) {
         const response: any = await client.request(
           gqlOperation,
-          meta?.variables ?? {},
+          meta?.gqlVariables ?? {},
         );
 
         return { data: response };
