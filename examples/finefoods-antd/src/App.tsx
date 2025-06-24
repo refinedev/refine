@@ -1,49 +1,52 @@
-import React from "react";
-import { Authenticated, Refine } from "@refinedev/core";
-import { RefineKbarProvider, RefineKbar } from "@refinedev/kbar";
 import {
-  useNotificationProvider,
-  ThemedLayoutV2,
+  DashboardOutlined,
+  MessageOutlined,
+  ShopOutlined,
+  ShoppingOutlined,
+  TagsOutlined,
+  UnorderedListOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
+import { FeedbackList } from "./pages/feedback/list";
+
+import {
   ErrorComponent,
+  ThemedLayoutV2,
+  useNotificationProvider,
 } from "@refinedev/antd";
+import { Authenticated, Refine } from "@refinedev/core";
+import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import routerProvider, {
   CatchAllNavigate,
+  DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-  DocumentTitleHandler,
 } from "@refinedev/react-router";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router";
-import {
-  ShoppingOutlined,
-  ShopOutlined,
-  DashboardOutlined,
-  UserOutlined,
-  UnorderedListOutlined,
-  TagsOutlined,
-} from "@ant-design/icons";
 import jsonServerDataProvider from "@refinedev/simple-rest";
+import React from "react";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { authProvider } from "./authProvider";
 
 import "dayjs/locale/de";
 
-import { DashboardPage } from "./pages/dashboard";
-import { OrderList, OrderShow } from "./pages/orders";
-import { AuthPage } from "./pages/auth";
-import { CustomerShow, CustomerList } from "./pages/customers";
-import { CourierList, CourierCreate, CourierEdit } from "./pages/couriers";
-import {
-  ProductList,
-  ProductCreate,
-  ProductEdit,
-  ProductShow,
-} from "./pages/products";
-import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
-import { CategoryList } from "./pages/categories";
 import { useTranslation } from "react-i18next";
 import { Header, Title } from "./components";
 import { BikeWhiteIcon } from "./components/icons";
 import { ConfigProvider } from "./context";
 import { useAutoLoginForDemo } from "./hooks";
+import { AuthPage } from "./pages/auth";
+import { CategoryList } from "./pages/categories";
+import { CourierCreate, CourierEdit, CourierList } from "./pages/couriers";
+import { CustomerList, CustomerShow } from "./pages/customers";
+import { DashboardPage } from "./pages/dashboard";
+import { OrderList, OrderShow } from "./pages/orders";
+import {
+  ProductCreate,
+  ProductEdit,
+  ProductList,
+  ProductShow,
+} from "./pages/products";
+import { StoreCreate, StoreEdit, StoreList } from "./pages/stores";
 
 import "@refinedev/antd/dist/reset.css";
 
@@ -90,6 +93,25 @@ const App: React.FC = () => {
                   icon: <DashboardOutlined />,
                 },
               },
+              {
+                name: "feedback",
+                list: "/feedback",
+                create: "/feedback/create",
+                meta: {
+                  label: "Customer Feedback",
+                  icon: <UserOutlined />,
+                },
+              },
+
+              {
+                name: "feedbacks",
+                list: "/feedbacks",
+                meta: {
+                  label: "Feedback",
+                  icon: <MessageOutlined />, // optional, import it from AntD icons
+                },
+              },
+
               {
                 name: "orders",
                 list: "/orders",
@@ -182,6 +204,8 @@ const App: React.FC = () => {
                 >
                   <Route path=":id" element={<CustomerShow />} />
                 </Route>
+
+                <Route path="/feedbacks" element={<FeedbackList />} />
 
                 <Route
                   path="/products"
