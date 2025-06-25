@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-table",
-  "version": "5.6.15",
+  "version": "5.6.17",
   "private": false,
   "description": "refine offers a React Table adapter that allows you to use the React Table library with refine.",
   "repository": {

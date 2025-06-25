@@ -24,9 +24,9 @@
   "dependencies": {
     "@refinedev/cli": "^2.16.46",
     "@refinedev/core": "^4.57.9",
-    "@refinedev/react-hook-form": "^4.9.3",
+    "@refinedev/react-hook-form": "^4.10.1",
     "@refinedev/react-router": "^1.0.1",
-    "@refinedev/react-table": "^5.6.15",
+    "@refinedev/react-table": "^5.6.17",
     "@refinedev/simple-rest": "^5.0.10",
     "@tanstack/query-sync-storage-persister": "^4.22.0",
     "@tanstack/react-query": "^4.10.1",

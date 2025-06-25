@@ -30,14 +30,14 @@
     "@refinedev/cli": "^2.16.46",
     "@refinedev/core": "^4.57.9",
     "@refinedev/devtools": "^1.2.16",
-    "@refinedev/mui": "^6.1.3",
-    "@refinedev/react-hook-form": "^4.9.3",
+    "@refinedev/mui": "^6.2.1",
+    "@refinedev/react-hook-form": "^4.10.1",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
     "@uiw/react-md-editor": "^3.19.5",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-hook-form": "^7.43.5",
+    "react-hook-form": "^7.57.0",
     "react-router": "^7.0.2"
   },
   "devDependencies": {

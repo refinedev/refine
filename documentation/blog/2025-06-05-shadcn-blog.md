@@ -92,3 +92,5 @@ This profound potential for AI synergy is not just theoretical; it's actively be
 ### Conclusion: A Shift Towards Developer Empowerment and AI Synergy
 
 shadcn/ui represents a notable shift in how developers can integrate and manage UI components. By prioritizing direct code ownership, it offers enhanced control, transparency, and performance. The inherent design, particularly its deep integration with Tailwind CSS and its provision of source code, not only benefits human developers by simplifying customization and reducing bloat but also presents a more conducive environment for emerging AI-assisted development tools. This approach allows for building UI systems that are both highly tailored and potentially more easily understood and manipulated by AI agents, paving the way for more efficient and intelligent development workflows, arguably setting a new standard for how UI libraries can be architected to thrive in an AI-first development landscape.
+
+If you want to be notified when the shadcn/ui is fully integrated into Refine AI and other Refine related news, make sure to sign up at [ai.refine.dev](https://ai.refine.dev)!

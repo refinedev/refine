@@ -426,7 +426,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -582,7 +582,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -591,13 +591,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -698,13 +698,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -884,7 +884,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -948,10 +948,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -1104,7 +1104,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -1113,13 +1113,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -1165,13 +1165,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -1238,7 +1238,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -1305,10 +1305,10 @@ importers:
         specifier: ^1.2.16
         version: link:../../packages/devtools
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -1326,8 +1326,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -1945,7 +1945,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -1954,13 +1954,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -2027,7 +2027,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -2091,10 +2091,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -2109,8 +2109,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -2427,7 +2427,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.12
+        specifier: ^6.6.14
         version: link:../../packages/hasura
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -3138,10 +3138,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -3156,8 +3156,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -3317,7 +3317,7 @@ importers:
         specifier: ^6.2.3
         version: link:../../packages/nextjs-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -3402,16 +3402,16 @@ importers:
         specifier: 1.3.16
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -3450,8 +3450,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -3808,7 +3808,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3817,13 +3817,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -3866,7 +3866,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3875,13 +3875,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -3924,7 +3924,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3933,13 +3933,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -3982,7 +3982,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -3991,13 +3991,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4043,13 +4043,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4119,7 +4119,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4189,7 +4189,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4262,7 +4262,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4332,7 +4332,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4405,7 +4405,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -4472,10 +4472,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4490,8 +4490,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4542,10 +4542,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4560,8 +4560,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4609,10 +4609,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4627,8 +4627,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4676,10 +4676,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4694,8 +4694,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4743,10 +4743,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4761,8 +4761,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -4795,7 +4795,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4844,7 +4844,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4893,7 +4893,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -4911,8 +4911,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -5213,7 +5213,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -5274,10 +5274,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -5329,7 +5329,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
@@ -5405,7 +5405,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -5414,19 +5414,19 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -5450,8 +5450,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -5508,10 +5508,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/hasura':
-        specifier: ^6.6.12
+        specifier: ^6.6.14
         version: link:../../packages/hasura
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
@@ -5581,19 +5581,19 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -5678,7 +5678,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
@@ -5690,7 +5690,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -5781,16 +5781,16 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -5814,8 +5814,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -6424,13 +6424,13 @@ importers:
         specifier: ^1.2.16
         version: link:../../packages/devtools
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/nestjsx-crud':
         specifier: ^5.0.12
         version: link:../../packages/nestjsx-crud
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -6448,8 +6448,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-hot-toast:
         specifier: ^2.4.1
         version: 2.4.1(csstype@3.1.3)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -6500,7 +6500,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
@@ -6665,7 +6665,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -6674,13 +6674,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -6747,7 +6747,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -6811,10 +6811,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -6832,8 +6832,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7221,7 +7221,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -7230,13 +7230,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -7279,7 +7279,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -7288,13 +7288,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -7413,7 +7413,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -7483,7 +7483,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -7544,16 +7544,16 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -7571,8 +7571,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7620,7 +7620,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -7684,10 +7684,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -7751,10 +7751,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -7769,8 +7769,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -7818,10 +7818,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -7882,10 +7882,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -7946,10 +7946,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -7990,7 +7990,7 @@ importers:
     dependencies:
       '@hookform/error-message':
         specifier: ^2.0.0
-        version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)
+        version: 2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.57.0(react@18.3.0))(react@18.3.0)
       '@refinedev/cli':
         specifier: ^2.16.46
         version: link:../../packages/cli
@@ -7998,13 +7998,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8022,8 +8022,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -8059,7 +8059,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8163,7 +8163,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -8172,13 +8172,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8242,13 +8242,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8330,7 +8330,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8412,10 +8412,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -8525,7 +8525,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -8534,13 +8534,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8607,7 +8607,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8671,10 +8671,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -8689,8 +8689,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -8729,7 +8729,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -8790,7 +8790,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -8799,16 +8799,16 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8872,16 +8872,16 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -8957,7 +8957,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/mantine':
         specifier: ^2.36.1
@@ -8966,7 +8966,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -9048,13 +9048,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -9069,8 +9069,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9216,7 +9216,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -9225,13 +9225,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -9277,7 +9277,7 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(framer-motion@7.10.3(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/chakra-ui':
-        specifier: ^2.36.1
+        specifier: ^2.37.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
         specifier: ^2.16.46
@@ -9286,13 +9286,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -9365,7 +9365,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -9438,7 +9438,7 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -9502,10 +9502,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -9520,8 +9520,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9569,10 +9569,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -9587,8 +9587,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -9621,13 +9621,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -9777,13 +9777,13 @@ importers:
         specifier: ^1.2.16
         version: link:../../packages/devtools
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/supabase':
         specifier: ^5.9.8
@@ -9978,10 +9978,10 @@ importers:
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
@@ -9996,8 +9996,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -10176,7 +10176,7 @@ importers:
         specifier: ^1.2.16
         version: link:../../packages/devtools
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
@@ -10243,13 +10243,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -10304,13 +10304,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/simple-rest':
         specifier: ^5.0.10
@@ -10420,7 +10420,7 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/remix-router':
         specifier: ^3.0.8
@@ -10493,10 +10493,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/remix-router':
         specifier: ^3.0.8
@@ -10572,13 +10572,13 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^5.0.3
+        specifier: ^5.1.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^1.3.16
         version: link:../../packages/kbar
       '@refinedev/mui':
-        specifier: ^6.1.3
+        specifier: ^6.2.1
         version: link:../../packages/mui
       '@refinedev/remix-router':
         specifier: ^3.0.8
@@ -10636,10 +10636,10 @@ importers:
         specifier: ^4.57.9
         version: link:../../packages/core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../../packages/react-hook-form
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../../packages/react-table
       '@refinedev/remix-router':
         specifier: ^3.0.8
@@ -11008,7 +11008,7 @@ importers:
         specifier: ^11.8.1
         version: 11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0)
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../react-hook-form
       '@refinedev/ui-types':
         specifier: ^1.24.2
@@ -11029,8 +11029,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
         version: 6.0.3(@types/react@18.3.0)(react@18.3.0)
@@ -11748,7 +11748,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/devtools-ui':
-        specifier: 1.1.31
+        specifier: 1.2.1
         version: link:../devtools-ui
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -11920,8 +11920,8 @@ importers:
         specifier: ^2.6.3
         version: 2.6.3(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-json-view-lite:
         specifier: ^1.3.0
         version: 1.4.0(react@18.3.0)
@@ -12202,8 +12202,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
         version: 6.0.3(@types/react@18.3.0)(react@18.3.0)
@@ -12221,19 +12221,19 @@ importers:
         specifier: ^5.45.1
         version: link:../antd
       '@refinedev/chakra-ui':
-        specifier: ^2.34.1
+        specifier: ^2.37.1
         version: link:../chakra-ui
       '@refinedev/mantine':
         specifier: ^2.35.1
         version: link:../mantine
       '@refinedev/mui':
-        specifier: ^6.0.3
+        specifier: ^6.2.1
         version: link:../mui
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../react-hook-form
       '@refinedev/react-table':
-        specifier: ^5.6.15
+        specifier: ^5.6.17
         version: link:../react-table
       '@testing-library/jest-dom':
         specifier: ^5.16.4
@@ -12519,8 +12519,8 @@ importers:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-i18next:
         specifier: ^11.8.11
         version: 11.18.6(i18next@20.6.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
@@ -12753,7 +12753,7 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(@mui/system@6.1.6(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react@18.3.0))(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
+        specifier: ^4.10.1
         version: link:../react-hook-form
       '@refinedev/ui-types':
         specifier: ^1.24.2
@@ -12777,8 +12777,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
       react-markdown:
         specifier: ^6.0.1
         version: 6.0.3(@types/react@18.3.0)(react@18.3.0)
@@ -13051,8 +13051,8 @@ importers:
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0(react@18.3.0)
       react-hook-form:
-        specifier: ^7.43.5
-        version: 7.51.3(react@18.3.0)
+        specifier: ^7.57.0
+        version: 7.57.0(react@18.3.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -27115,11 +27115,11 @@ packages:
     peerDependencies:
       react: '*'
 
-  react-hook-form@7.51.3:
-    resolution: {integrity: sha512-cvJ/wbHdhYx8aviSWh28w9ImjmVsb5Y05n1+FW786vEZQJV5STNM0pW6ujS+oiBecb0ARBxJFyAnXj9+GHXACQ==}
-    engines: {node: '>=12.22.0'}
+  react-hook-form@7.57.0:
+    resolution: {integrity: sha512-RbEks3+cbvTP84l/VXGUZ+JMrKOS8ykQCRYdm5aYsxnDquL0vspsyNhGRO7pcH6hsZqWlPOjLye7rJqdtdAmlg==}
+    engines: {node: '>=18.0.0'}
     peerDependencies:
-      react: ^16.8.0 || ^17 || ^18
+      react: ^16.8.0 || ^17 || ^18 || ^19
 
   react-hot-toast@2.4.1:
     resolution: {integrity: sha512-j8z+cQbWIM5LY37pR6uZR6D4LfseplqnuAO4co4u8917hBUvXlEqyP1ZzqVLcqoyUesZZv/ImreoCeHVDpE5pQ==}
@@ -34960,11 +34960,11 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@hookform/error-message@2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.51.3(react@18.3.0))(react@18.3.0)':
+  '@hookform/error-message@2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.57.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
-      react-hook-form: 7.51.3(react@18.3.0)
+      react-hook-form: 7.57.0(react@18.3.0)
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -49073,7 +49073,7 @@ snapshots:
       query-string: 4.3.4
       react: 18.3.0
 
-  react-hook-form@7.51.3(react@18.3.0):
+  react-hook-form@7.57.0(react@18.3.0):
     dependencies:
       react: 18.3.0
 
