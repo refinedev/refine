@@ -68,17 +68,21 @@ export type UseModalFormProps<
      * `autoSubmitClose`: Whether the form should be submitted when the modal is closed.
      * 
      * `autoResetForm`: Whether the form should be reset when the form is submitted.
+     * 
+     * `autoResetFormWhenClose`: Whether the form should be reset to defaultValues when the modal is closed.
      * @type `{
       defaultVisible?: boolean;
       autoSubmitClose?: boolean;
       autoResetForm?: boolean;
+      autoResetFormWhenClose?: boolean;
       }`
-     * @default `defaultVisible = false` `autoSubmitClose = true` `autoResetForm = true`
+     * @default `defaultVisible = false` `autoSubmitClose = true` `autoResetForm = true` `autoResetFormWhenClose = true`
      */
   modalProps?: {
     defaultVisible?: boolean;
     autoSubmitClose?: boolean;
     autoResetForm?: boolean;
+    autoResetFormWhenClose?: boolean;
   };
 } & FormWithSyncWithLocationParams;
 
@@ -146,6 +150,7 @@ export const useModalForm = <
     defaultVisible = false,
     autoSubmitClose = true,
     autoResetForm = true,
+    autoResetFormWhenClose = true,
   } = modalProps ?? {};
 
   const useHookFormResult = useForm<
@@ -271,6 +276,10 @@ export const useModalForm = <
 
     setId?.(undefined);
     close();
+
+    if (autoResetFormWhenClose) {
+      reset();
+    }
   }, [warnWhen, autoSaveProps.status]);
 
   const handleShow = useCallback(

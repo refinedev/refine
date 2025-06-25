@@ -74,6 +74,7 @@ export type UseModalFormProps<
     defaultVisible?: boolean;
     autoSubmitClose?: boolean;
     autoResetForm?: boolean;
+    autoResetFormWhenClose?: boolean;
   };
 } & FormWithSyncWithLocationParams;
 
@@ -123,6 +124,7 @@ export const useModalForm = <
     defaultVisible = false,
     autoSubmitClose = true,
     autoResetForm = true,
+    autoResetFormWhenClose = true,
   } = modalProps ?? {};
 
   const {
@@ -277,6 +279,10 @@ export const useModalForm = <
 
     setId?.(undefined);
     close();
+
+    if (autoResetFormWhenClose) {
+      reset();
+    }
   }, [warnWhen, autoSaveProps.status]);
 
   const handleShow = useCallback(
