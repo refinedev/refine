@@ -11,15 +11,21 @@
     <a href="https://refine.dev/docs/">Documentation</a> |
     <a href="https://refine.dev/examples/">Examples</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/blog/">Blog</a>
+    <a href="https://refine.dev/blog/">Blog</a> |
+    <a href="https://ai.refine.dev/">Refine AI</a>
 </div>
 </div>
 
 <br/>
 <br/>
 
-<div align="center"><strong>The sweet spot between the low/no code and “starting from scratch” for CRUD-heavy applications.</strong><br> Refine is as an open source, React meta-framework for enterprise. It provides a headless solution for everything from admin panels to dashboards and internal tools.
+<div align="center"><strong>The sweet spot between the low/no code and “starting from scratch” for CRUD-heavy applications.</strong><br>
+
+Refine is as an open source, React meta-framework for enterprise. It provides a headless solution for everything from admin panels to
+dashboards and internal tools.
 <br />
+
+<strong>Refine also now powers <a href="https://ai.refine.dev/">Refine AI</a>, our purpose built AI Agent.</strong>
 <br />
 
 </div>
@@ -64,6 +70,14 @@ Or you can create a new project on your browser:
 
 <a href="https://refine.dev/?playground=true" target="_blank">
   <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-it-in-your-browser.png" />
+</a>
+
+<br>
+
+You can also try Refine AI for free to create projects:
+
+<a href="https://ai.refine.dev" target="_blank">
+  <img height="48" width="245" src="https://refine.ams3.cdn.digitaloceanspaces.com/assets/try-out-refine-ai-2.png" />
 </a>
 
 ## Quick Start
