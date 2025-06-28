@@ -10,7 +10,7 @@ A `notificationProvider` must include following methods:
 
 ```tsx
 const notificationProvider = {
-  show: () => {},
+  open: () => {},
   close: () => {},
 };
 ```
