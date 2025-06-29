@@ -321,7 +321,7 @@ const higherOrderComponent = Component => {
     }
 
     render() {
-      return <Component name={this.state.name {...this.props} />
+      return <Component name={this.state.name} {...this.props} />
     }
  }
 
