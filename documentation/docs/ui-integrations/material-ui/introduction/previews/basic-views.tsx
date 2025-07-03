@@ -20,7 +20,7 @@ export default function BasicViews() {
         "@mui/system": "^6.4.11",
         "@mui/x-data-grid": "7.23.5",
         "react-router": "^7.0.2",
-        "react-hook-form": "^7.43.5",
+        "react-hook-form": "^7.57.0",
       }}
       startRoute="/products"
       files={{
