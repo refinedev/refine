@@ -1,6 +1,6 @@
 ---
 title: "Quality Code Generation: Multi-Agent Systems and Token Dilution"
-description: How shadcn/ui's component architecture and direct code ownership are setting the standard for AI-native UI development.
+description: How Refine AI's multi-agent system architecture effectively tackles token dilution, drastically improving code generation quality.
 slug: quality-code-generation
 authors: youwei
 tags: [ai]
