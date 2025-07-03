@@ -663,6 +663,18 @@ const modalForm = useModalForm({
 });
 ```
 
+### autoResetFormWhenClose
+
+When `true`, form will be reset when modal closes. Defaults to `true`.
+
+```tsx
+const modalForm = useModalForm({
+  modalProps: {
+    autoResetFormWhenClose: false,
+  },
+});
+```
+
 ### warnWhenUnsavedChanges
 
 When you have unsaved changes and try to leave the current page, Refine shows a confirmation modal box. To activate this feature. By default, this feature is disabled.
