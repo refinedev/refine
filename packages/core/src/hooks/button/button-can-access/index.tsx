@@ -44,7 +44,7 @@ export const useButtonCanAccess = (
   const { data: canAccess } = useCan({
     resource: props.resource?.name,
     action: props.action === "clone" ? "create" : props.action,
-    params: { ...props.meta, id: props.id, resource: props.resource },
+    params: { meta: props.meta, id: props.id, resource: props.resource },
     queryOptions: {
       enabled: accessControlEnabled,
     },

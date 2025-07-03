@@ -1,5 +1,5 @@
 ---
-"@refinedev/core": major
+"@refinedev/core": patch
 ---
 
 fix: pass meta params to useCan hook params
