@@ -68,7 +68,7 @@ export const AiLandingHero = ({
               "dark:text-refine-react-dark-green-alt dark:drop-shadow-[0_0_30px_rgba(38,217,127,0.55)]",
             )}
           >
-            Instant React Dashboards
+            Instant Internal Software
           </div>
           <div>straight from your APIs.</div>
         </h2>

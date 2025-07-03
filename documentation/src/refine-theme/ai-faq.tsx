@@ -159,15 +159,27 @@ const faqData = [
           <span className={clsx("font-bold")}>Example:</span> You’re on $40 / 3
           K-tokens with 800 tokens left. You downgrade to $20 / 1.5 K-tokens.
           You can still use the remaining 800 tokens this month; on your next
-          billing date your bucket resets to 1 500 tokens.
+          billing date your bucket resets to 1,500 tokens.
         </p>
       </div>
     ),
   },
   {
     question: "Will I lose unused credits when I change plans?",
-    answer:
-      "If you upgrade, your balance is topped-up to the full allowance of the new plan right away. Example: You’re on the $20 / 1.5 K-token plan and have 600 tokens left. Mid-month you upgrade to $40 / 3 K-tokens. Your bucket is immediately refilled to 3 000 tokens for the rest of the current cycle.",
+    answer: (
+      <div>
+        <p>
+          If you upgrade, your balance is topped-up to the full allowance of the
+          new plan right away.
+        </p>
+        <p className={clsx("mt-1")}>
+          <span className={clsx("font-bold")}>Example:</span> You’re on the $20
+          / 1.5 K-token plan and have 600 tokens left. Mid-month you upgrade to
+          $40 / 3 K-tokens. Your bucket is immediately refilled to 3,000 tokens
+          for the rest of the current cycle.
+        </p>
+      </div>
+    ),
   },
   {
     question: "Do unused credits roll over month-to-month?",
