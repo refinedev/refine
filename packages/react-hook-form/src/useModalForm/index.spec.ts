@@ -274,7 +274,7 @@ describe("useModalForm Hook", () => {
 
   it("when 'autoResetFormWhenClose' is true, 'reset' should be called when 'close' is called", async () => {
     const resetSpy = jest.fn();
-    
+
     const { result } = renderHook(
       () =>
         useModalForm({
@@ -307,7 +307,7 @@ describe("useModalForm Hook", () => {
 
   it("when 'autoResetFormWhenClose' is false, 'reset' should not be called when 'close' is called", async () => {
     const resetSpy = jest.fn();
-    
+
     const { result } = renderHook(
       () =>
         useModalForm({
@@ -340,7 +340,7 @@ describe("useModalForm Hook", () => {
 
   it("when 'autoResetFormWhenClose' is true for edit action, 'reset' should be called when 'close' is called", async () => {
     const resetSpy = jest.fn();
-    
+
     const { result } = renderHook(
       () =>
         useModalForm({
