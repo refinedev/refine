@@ -271,4 +271,99 @@ describe("useModalForm Hook", () => {
       undefined,
     );
   });
+
+  it("when 'autoResetFormWhenClose' is true, 'reset' should be called when 'close' is called", async () => {
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action: "create",
+          },
+          modalProps: {
+            autoResetFormWhenClose: true,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await act(async () => {
+      result.current.modal.show();
+      // register values to form
+      result.current.register("test");
+      result.current.setValue("test", "test");
+    });
+
+    await act(async () => {
+      result.current.modal.close();
+    });
+
+    // check if form is reset. (values object should be empty)
+    expect(result.current.getValues()).toStrictEqual({});
+  });
+
+  it("when 'autoResetFormWhenClose' is false, 'reset' should not be called when 'close' is called", async () => {
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action: "create",
+          },
+          modalProps: {
+            autoResetFormWhenClose: false,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await act(async () => {
+      result.current.modal.show();
+      // register values to form
+      result.current.register("test");
+      result.current.setValue("test", "test");
+    });
+
+    await act(async () => {
+      result.current.modal.close();
+    });
+
+    // check if form is not reset. (values object should NOT be empty)
+    expect(result.current.getValues()).toStrictEqual({ test: "test" });
+  });
+
+  it("when 'autoResetFormWhenClose' is true for edit action, 'reset' should be called when 'close' is called", async () => {
+    const { result } = renderHook(
+      () =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action: "edit",
+            id: "5",
+          },
+          modalProps: {
+            autoResetFormWhenClose: true,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+      },
+    );
+
+    await act(async () => {
+      result.current.modal.show();
+      result.current.register("test");
+      result.current.setValue("test", "test");
+    });
+
+    await act(async () => {
+      result.current.modal.close();
+    });
+
+    expect(result.current.getValues()).toStrictEqual({});
+  });
 });
