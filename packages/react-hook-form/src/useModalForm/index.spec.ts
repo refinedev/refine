@@ -273,8 +273,6 @@ describe("useModalForm Hook", () => {
   });
 
   it("when 'autoResetFormWhenClose' is true, 'reset' should be called when 'close' is called", async () => {
-    const resetSpy = jest.fn();
-
     const { result } = renderHook(
       () =>
         useModalForm({
@@ -291,23 +289,22 @@ describe("useModalForm Hook", () => {
       },
     );
 
-    // Mock the reset function
-    result.current.reset = resetSpy;
-
     await act(async () => {
       result.current.modal.show();
+      // register values to form
+      result.current.register("test");
+      result.current.setValue("test", "test");
     });
 
     await act(async () => {
       result.current.modal.close();
     });
 
-    expect(resetSpy).toHaveBeenCalledTimes(1);
+    // check if form is reset. (values object should be empty)
+    expect(result.current.getValues()).toStrictEqual({});
   });
 
   it("when 'autoResetFormWhenClose' is false, 'reset' should not be called when 'close' is called", async () => {
-    const resetSpy = jest.fn();
-
     const { result } = renderHook(
       () =>
         useModalForm({
@@ -324,23 +321,22 @@ describe("useModalForm Hook", () => {
       },
     );
 
-    // Mock the reset function
-    result.current.reset = resetSpy;
-
     await act(async () => {
       result.current.modal.show();
+      // register values to form
+      result.current.register("test");
+      result.current.setValue("test", "test");
     });
 
     await act(async () => {
       result.current.modal.close();
     });
 
-    expect(resetSpy).not.toHaveBeenCalled();
+    // check if form is not reset. (values object should NOT be empty)
+    expect(result.current.getValues()).toStrictEqual({ test: "test" });
   });
 
   it("when 'autoResetFormWhenClose' is true for edit action, 'reset' should be called when 'close' is called", async () => {
-    const resetSpy = jest.fn();
-
     const { result } = renderHook(
       () =>
         useModalForm({
@@ -358,17 +354,16 @@ describe("useModalForm Hook", () => {
       },
     );
 
-    // Mock the reset function
-    result.current.reset = resetSpy;
-
     await act(async () => {
       result.current.modal.show();
+      result.current.register("test");
+      result.current.setValue("test", "test");
     });
 
     await act(async () => {
       result.current.modal.close();
     });
 
-    expect(resetSpy).toHaveBeenCalledTimes(1);
+    expect(result.current.getValues()).toStrictEqual({});
   });
 });
