@@ -1,5 +1,13 @@
 # @refinedev/antd
 
+## 5.46.2
+
+### Patch Changes
+
+- [#6835](https://github.com/refinedev/refine/pull/6835) [`e78213ff7fdcace9bac455861123299bfdab4452`](https://github.com/refinedev/refine/commit/e78213ff7fdcace9bac455861123299bfdab4452) Thanks [@amulyavarshney](https://github.com/amulyavarshney)! - feat: add `autoResetFormWhenClose` option to `useModalForm` hook
+
+  Added `autoResetFormWhenClose` prop to reset form when modal closes. Default is `true`.
+
 ## 5.46.1
 
 ### Patch Changes
