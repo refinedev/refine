@@ -213,12 +213,11 @@ export function useDataGrid<
 
   const rowCountRef = useRef(data?.total || 0);
   const rowCount = useMemo(() => {
-    if (data && data.total) {
+    if (data?.total) {
       rowCountRef.current = data.total;
     }
     return rowCountRef.current;
   }, [data]);
-
 
   const isServerSideFilteringEnabled =
     (filtersFromProp?.mode || "server") === "server";
