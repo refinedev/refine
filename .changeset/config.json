@@ -1,6 +1,6 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@2.0.0/schema.json",
-  "changelog": ["./format.js", { "repo": "refinedev/refine" }],
+  "changelog": ["@changesets/changelog-github", { "repo": "refinedev/refine" }],
   "commit": false,
   "fixed": [],
   "linked": [],

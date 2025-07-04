@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-12-20-git-switch
 hide_table_of_contents: false
 ---
 
-**This article was last updated on November 27, 2024, to add to update switching explanations for Git switch post.**
+**This article was last updated on July 2, 2025, to improve the explanations of 'git switch' and align with current best practices.**
 
 ## Introduction
 
@@ -101,13 +101,13 @@ You will have a detached HEAD state when you checkout a commit that is not a bra
 - Create a new branch from the detached HEAD state:
 
 ```sh
-git checkout -b <new-branch>
+git switch -c <new-branch>
 ```
 
 - Or maybe you just want to switch back to an old branch:
 
 ```sh
-git checkout <branch-name>
+git switch main
 ```
 
 ### Undoing a Commit
@@ -155,7 +155,7 @@ git stash
 - Switch branches:
 
 ```sh
-git checkout <branch-name>
+git switch <branch-name>
 ```
 
 - Apply the stashed changes:
@@ -164,7 +164,8 @@ git checkout <branch-name>
 git stash apply
 ```
 
-**6. Check Branch Tracking Information:**
+### Check Branch Tracking Information:\*\*
+
 Use this to see which remote branch your local branch is tracking:
 
 ```sh
@@ -191,6 +192,8 @@ Let's assume you have a file named "test.txt" and at the same time, you have a b
 
 • `git switch test` will switch to branch "test" even if you have a file "test"
 • `git restore` will discard uncommitted local changes in the file "test" even if you have a branch "test".
+
+In modern Git practices, git switch is now favored for its improved clarity and safety. It handles only branch operations, which prevents the common mistake of accidentally overwriting files that can happen with the multi-purpose git checkout command. For example, creating a branch from a specific commit is much more intuitive using git switch -c `}<new-branch />{` `}<start-point />{`. This focused design makes your workflow more predictable and is the recommended approach in today's development environments.
 
 Let's try this command.
 
