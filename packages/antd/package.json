@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/antd",
-  "version": "5.46.1",
+  "version": "5.46.2",
   "private": false,
   "description": "Ant Design UI support for Refine, offering enterprise-level UI components.",
   "repository": {
