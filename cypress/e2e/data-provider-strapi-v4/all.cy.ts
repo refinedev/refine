@@ -133,8 +133,22 @@ describe("data-provider-strapi-v4", () => {
 
       cy.getAntdFilterTrigger(0).click();
       cy.get(".ant-select-selector").eq(1).click();
+
+      // Wait for dropdown options to be visible and have proper dimensions
+      cy.get(".ant-select-dropdown").should("be.visible");
+      cy.get(".ant-select-item-option-content").should(
+        "have.length.at.least",
+        1,
+      );
+
       cy.fixture("categories").then((categories) => {
         const category = categories[0];
+
+        cy.get(".ant-select-item-option-content")
+          .contains(category.title)
+          .should("be.visible")
+          .should("have.css", "width")
+          .and("not.equal", "0px");
 
         cy.get(".ant-select-item-option-content")
           .contains(category.title)
