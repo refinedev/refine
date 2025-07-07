@@ -4,4 +4,4 @@
 
 fix(mui): on page change, `useDataGrid` resets to first page. #6828 #6798
 
-Fixes #6828 #6798
+Resolves [#6828] [#6798]
