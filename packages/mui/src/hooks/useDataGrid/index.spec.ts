@@ -6,6 +6,7 @@ import { useDataGrid } from "./";
 import type { CrudFilters } from "@refinedev/core";
 import { act } from "react-dom/test-utils";
 import { posts } from "@test/dataMocks";
+import * as core from "@refinedev/core";
 
 describe("useDataGrid Hook", () => {
   it("controlled filtering with 'onSubmit' and 'onSearch'", async () => {
@@ -260,5 +261,49 @@ describe("useDataGrid Hook", () => {
     });
 
     expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
+  });
+
+  it("should pass meta from updateMutationOptions to mutate function", async () => {
+    const mockMeta = { customData: "test" };
+
+    const mockDataProvider = {
+      ...MockJSONServer,
+      update: jest.fn().mockImplementation((params) => {
+        expect(params).toEqual(
+          expect.objectContaining({
+            meta: mockMeta,
+          }),
+        );
+        return Promise.resolve({ data: params.variables });
+      }),
+    };
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+          editable: true,
+          updateMutationOptions: {
+            meta: mockMeta,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: mockDataProvider,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    const mockRow = { id: "1", title: "Test" };
+    const mockOldRow = { id: "1", title: "Old Test" };
+
+    await act(async () => {
+      await result.current.dataGridProps.processRowUpdate!(
+        mockRow,
+        mockOldRow,
+        { rowId: "1" },
+      );
+    });
   });
 });

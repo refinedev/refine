@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/mui",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "private": false,
   "description": "Material-UI (MUI) support for Refine, providing enterprise-level UI components.",
   "license": "MIT",
@@ -38,7 +38,7 @@
     "@mui/material": "^6.1.7",
     "@mui/system": "^6.1.6",
     "@mui/x-data-grid": "^7.23.5",
-    "@refinedev/react-hook-form": "^4.10.1",
+    "@refinedev/react-hook-form": "^4.10.2",
     "@refinedev/ui-types": "^1.24.2",
     "dayjs": "^1.10.7",
     "lodash": "^4.17.21",
@@ -53,7 +53,7 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.9",
+    "@refinedev/core": "^4.57.10",
     "@refinedev/ui-tests": "^1.15.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",

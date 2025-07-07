@@ -793,6 +793,18 @@ const modalForm = useModalForm({
 });
 ```
 
+### autoResetFormWhenClose
+
+When `true`, form will be reset when modal closes. It is `true` by default.
+
+```tsx
+const modalForm = useModalForm({
+  modalProps: {
+    autoResetFormWhenClose: false,
+  },
+});
+```
+
 ### syncWithLocation
 
 When `true`, the modals visibility state and the `id` of the record will be synced with the URL. It is `false` by default.
