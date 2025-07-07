@@ -1,5 +1,15 @@
 # @refinedev/core
 
+## 4.57.10
+
+### Patch Changes
+
+- [#6826](https://github.com/refinedev/refine/pull/6826) [`9dca95e276fa704911c32599473a54a71a6c5246`](https://github.com/refinedev/refine/commit/9dca95e276fa704911c32599473a54a71a6c5246) Thanks [@devarsh-mavani-19](https://github.com/devarsh-mavani-19)! - fix: pass meta params to useCan hook params #6833
+
+  Now access control provider can receive additional arguments through meta params.
+
+  Resolves [#6833]
+
 ## 4.57.9
 
 ### Patch Changes
