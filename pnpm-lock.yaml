@@ -10610,6 +10610,9 @@ importers:
       react-dom:
         specifier: ^18.0.0
         version: 18.3.0(react@18.3.0)
+      react-transition-group:
+        specifier: ^4.4.5
+        version: 4.4.5(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
     devDependencies:
       '@remix-run/dev':
         specifier: ^2.3.1
