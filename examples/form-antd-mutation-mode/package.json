@@ -29,16 +29,16 @@
     "@refinedev/simple-rest": "^5.0.11",
     "@uiw/react-md-editor": "^3.19.5",
     "antd": "^5.17.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-router": "^7.0.2"
   },
   "devDependencies": {
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15"
   }
 }
