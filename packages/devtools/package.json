@@ -60,16 +60,16 @@
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "@refinedev/cli": "2.16.47",
     "@refinedev/core": "^4.46.1",
     "@refinedev/devtools-server": "1.1.42",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
     "node": ">=10"

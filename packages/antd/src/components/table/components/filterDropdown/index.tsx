@@ -12,7 +12,7 @@ export type MapValueEvent = "onChange" | "value";
 
 export type FilterDropdownProps = AntdFilterDropdownProps & {
   mapValue?: (selectedKeys: React.Key[], event: MapValueEvent) => any;
-  children: JSX.Element;
+  children: React.JSX.Element;
 };
 
 /**

@@ -23,7 +23,7 @@ export type LayoutProps = {
   Sider?: React.FC<{
     Title?: React.FC<TitleProps>;
     render?: (props: {
-      items: JSX.Element[];
+      items: React.JSX.Element[];
       logout: React.ReactNode;
       dashboard: React.ReactNode;
       collapsed: boolean;

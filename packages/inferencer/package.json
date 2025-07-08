@@ -140,8 +140,8 @@
     "@types/lodash": "^4.14.171",
     "@types/pluralize": "^0.0.29",
     "@types/prismjs": "^1.26.0",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@types/react-test-renderer": "^18.0.0",
     "@types/testing-library__jest-dom": "^5.14.3",
     "esbuild-copy-static-files": "^0.1.0",
@@ -153,7 +153,7 @@
     "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "@ant-design/icons": "^5.5.1",
@@ -175,12 +175,12 @@
     "@refinedev/react-hook-form": "^4.0.0",
     "@refinedev/react-table": "^5.0.0",
     "@tanstack/react-table": "^8.2.6",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
     "antd": "^5.0.3",
     "dayjs": "^1.10.7",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
     "react-hook-form": "^7.57.0"
   },
   "peerDependenciesMeta": {

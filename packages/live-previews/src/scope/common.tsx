@@ -62,7 +62,7 @@ const NavigationHandler = () => {
 
 const Refine = (
   props: React.ComponentProps<typeof RefineCore.Refine>,
-): JSX.Element => {
+): React.JSX.Element => {
   const { options: hiddenRefineOptions, ...hiddenRefineProps } =
     window.refineProps ?? {};
   return (
@@ -104,7 +104,7 @@ const setRefineProps = (
 
 const DemoMemoryRouter = (
   props: React.ComponentProps<typeof ReactRouter.MemoryRouter>,
-): JSX.Element => {
+): React.JSX.Element => {
   return (
     <ReactRouter.MemoryRouter
       {...props}

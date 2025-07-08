@@ -4,7 +4,7 @@ export type SiderRenderProps = {
   /**
    * menu items created depending on the `resources` defined in `<Refine>` component.
    */
-  items: JSX.Element[];
+  items: React.JSX.Element[];
   /**
    * logout button if you have `authProvider` defined and the current session is authenticated.
    */

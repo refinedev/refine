@@ -64,8 +64,8 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@types/testing-library__jest-dom": "^5.14.3",
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-plugin-inline-image": "^0.0.8",
@@ -76,16 +76,16 @@
     "react-router": "^7.0.2",
     "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
     "@refinedev/core": "^4.46.1",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
     "antd": "^5.17.0",
     "dayjs": "^1.10.7",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "publishConfig": {
     "access": "public"
