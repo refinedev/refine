@@ -6,7 +6,7 @@ function resolveBin(name: string) {
       return require.resolve(`.bin/${name}.exe`);
     } catch {}
   }
-  return return require.resolve(`.bin/${name}`);
+  return require.resolve(`.bin/${name}`);
 }
 
 /**
