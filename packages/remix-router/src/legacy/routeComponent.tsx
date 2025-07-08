@@ -63,7 +63,7 @@ export function RemixRouteComponent(
     }
   }, [pathname]);
 
-  const renderLoginRouteElement = (): JSX.Element => {
+  const renderLoginRouteElement = (): React.JSX.Element => {
     if (LoginPage) return <LoginPage />;
     return <DefaultLoginPage />;
   };

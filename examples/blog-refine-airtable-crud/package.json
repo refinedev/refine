@@ -31,8 +31,8 @@
     "@refinedev/react-router": "^0.1.0",
     "@refinedev/react-table": "^5.6.13",
     "@tanstack/react-table": "^8.2.6",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-router": "^7.0.2",
     "web-vitals": "^1.1.1"
   },
@@ -42,13 +42,13 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.1",
     "postcss": "^8.1.4",
     "tailwindcss": "^3.0.11",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15"
   }
 }

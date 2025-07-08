@@ -79,7 +79,7 @@ export type AuthenticatedProps = {
  */
 export function Authenticated(
   props: LegacyAuthenticatedProps,
-): JSX.Element | null;
+): React.JSX.Element | null;
 
 /**
  * `<Authenticated>` is the component form of {@link https://refine.dev/docs/api-reference/core/hooks/auth/useAuthenticated `useAuthenticated`}. It internally uses `useAuthenticated` to provide it's functionality.
@@ -95,7 +95,9 @@ export function Authenticated(
  *
  * @see {@link https://refine.dev/docs/core/components/auth/authenticated `<Authenticated>`} component for more details.
  */
-export function Authenticated(props: AuthenticatedProps): JSX.Element | null;
+export function Authenticated(
+  props: AuthenticatedProps,
+): React.JSX.Element | null;
 
 export function Authenticated({
   redirectOnFail = true,
@@ -104,7 +106,7 @@ export function Authenticated({
   fallback: fallbackContent,
   loading: loadingContent,
   params,
-}: AuthenticatedProps | LegacyAuthenticatedProps): JSX.Element | null {
+}: AuthenticatedProps | LegacyAuthenticatedProps): React.JSX.Element | null {
   const activeAuthProvider = useActiveAuthProvider();
   const routerType = useRouterType();
 

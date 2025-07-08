@@ -192,7 +192,7 @@ type RouteProviderProps = {
 
 export const RouteProvider = ({
   initialRoute,
-}: RouteProviderProps): JSX.Element => {
+}: RouteProviderProps): React.JSX.Element => {
   const { resources } = useResource();
   const { catchAll, DashboardPage, LoginPage } = useRefineContext();
 
@@ -230,14 +230,14 @@ export const RouteProvider = ({
     );
   }
 
-  const CustomPathAfterLogin: React.FC = (): JSX.Element | null => {
+  const CustomPathAfterLogin: React.FC = (): React.JSX.Element | null => {
     const { pathname, search } = location;
     const toURL = `${pathname}${search}`;
 
     return <Navigate to={`/login?to=${encodeURIComponent(toURL)}`} />;
   };
 
-  const resourceRoutes: JSX.Element[] = [];
+  const resourceRoutes: React.JSX.Element[] = [];
 
   resources.map((resource) => {
     const route = (
@@ -316,7 +316,7 @@ export const RouteProvider = ({
     </Routes>
   );
 
-  const renderLoginRouteElement = (): JSX.Element => {
+  const renderLoginRouteElement = (): React.JSX.Element => {
     if (LoginPage) return <LoginPage />;
     return <DefaultLoginPage />;
   };

@@ -4,9 +4,9 @@ import { usePathname } from "next/navigation";
 
 type RefineRoutesProps = {
   children?: (
-    renderedRoute: JSX.Element | undefined,
+    renderedRoute: React.JSX.Element | undefined,
     pathname: string | undefined,
-  ) => JSX.Element;
+  ) => React.JSX.Element;
 };
 
 export const RefineRoutes = ({ children }: RefineRoutesProps) => {

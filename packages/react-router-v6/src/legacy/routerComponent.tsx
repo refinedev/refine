@@ -13,7 +13,7 @@ import { RouteProvider } from "./routeProvider";
 export function BrowserRouterComponent(
   this: { initialRoute?: string },
   { children, ...props }: BrowserRouterProps,
-): JSX.Element {
+): React.JSX.Element {
   return (
     <BrowserRouter {...props}>
       <RouteProvider
@@ -29,7 +29,7 @@ export function BrowserRouterComponent(
 export function MemoryRouterComponent(
   this: { initialRoute?: string },
   { children, ...props }: MemoryRouterProps,
-): JSX.Element {
+): React.JSX.Element {
   return (
     <MemoryRouter {...props}>
       <RouteProvider
@@ -45,7 +45,7 @@ export function MemoryRouterComponent(
 export function HashRouterComponent(
   this: { initialRoute?: string },
   { children, ...props }: HashRouterProps,
-): JSX.Element {
+): React.JSX.Element {
   return (
     <HashRouter {...props}>
       <RouteProvider

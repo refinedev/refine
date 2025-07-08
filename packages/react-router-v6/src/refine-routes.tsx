@@ -4,7 +4,7 @@ import { createResourceRoutes } from "./create-resource-routes";
 import { Routes } from "react-router-dom";
 
 type RefineRoutesProps = {
-  children?: (routes: JSX.Element[]) => JSX.Element;
+  children?: (routes: React.JSX.Element[]) => React.JSX.Element;
 };
 
 export const RefineRoutes = ({ children }: RefineRoutesProps) => {

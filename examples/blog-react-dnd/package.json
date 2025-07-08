@@ -35,10 +35,10 @@
     "cross-env": "^7.0.3",
     "immutability-helper": "^3.1.1",
     "next": "^14.2.26",
-    "react": "^18.0.0",
+    "react": "^19.1.0",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
-    "react-dom": "^18.0.0",
+    "react-dom": "^19.1.0",
     "react-router": "^7.0.2",
     "react-scripts": "^5.0.0",
     "web-vitals": "^1.1.1"
@@ -49,8 +49,8 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.4.2"
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
   }
 }

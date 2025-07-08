@@ -31,8 +31,8 @@
     "@refinedev/supabase": "^5.9.4",
     "antd": "^5.17.0",
     "cross-env": "^7.0.3",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-router": "^7.0.2",
     "react-scripts": "^5.0.0"
   },
@@ -42,8 +42,8 @@
     "@testing-library/user-event": "^14.1.1",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.4.2"
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
   }
 }
