@@ -61,6 +61,7 @@ export function useNavigationButton(
   const { canAccess, title, hidden, disabled } = useButtonCanAccess({
     action: props.action,
     accessControl: props.accessControl,
+    meta: props.meta,
     id,
     resource,
   });

@@ -1,5 +1,32 @@
 # @refinedev/mui
 
+## 6.2.2
+
+### Patch Changes
+
+- [#6834](https://github.com/refinedev/refine/pull/6834) [`5e032d577502cd81593b7396f55269749ccb6e5f`](https://github.com/refinedev/refine/commit/5e032d577502cd81593b7396f55269749ccb6e5f) Thanks [@kdevo](https://github.com/kdevo)! - fix(mui): pass `meta` to `useUpdate` in `useDataGrid` hook for editable data grid. #6833
+
+  ```tsx
+  import { useDataGrid } from "@refinedev/mui";
+
+  const { dataGridProps } = useDataGrid({
+    resource: "posts",
+    editable: true,
+    updateMutationOptions: {
+      meta: { foo: "bar" },
+    },
+  });
+  ```
+
+  Resolves [#6833]
+
+- [#6859](https://github.com/refinedev/refine/pull/6859) [`d6a9809f354bfd0065cb447f5741116ab3b56682`](https://github.com/refinedev/refine/commit/d6a9809f354bfd0065cb447f5741116ab3b56682) Thanks [@garrylachman](https://github.com/garrylachman)! - fix(mui): on page change, `useDataGrid` resets to first page. #6828 #6798
+
+  Resolves [#6828] [#6798]
+
+- Updated dependencies [[`e78213ff7fdcace9bac455861123299bfdab4452`](https://github.com/refinedev/refine/commit/e78213ff7fdcace9bac455861123299bfdab4452)]:
+  - @refinedev/react-hook-form@4.10.2
+
 ## 6.2.1
 
 ### Patch Changes
