@@ -58,11 +58,7 @@ export const List: React.FC<ListProps> = (props) => {
   ) : null;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const headerButtons = headerButtonsFromProps
     ? typeof headerButtonsFromProps === "function"

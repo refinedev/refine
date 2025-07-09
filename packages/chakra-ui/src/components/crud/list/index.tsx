@@ -114,7 +114,7 @@ export const List: React.FC<ListProps> = (props) => {
       >
         <Box minW={200}>
           {typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
+            <>{breadcrumb}</>
           ) : (
             <Breadcrumb />
           )}

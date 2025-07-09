@@ -67,11 +67,7 @@ export const Create: React.FC<CreateProps> = ({
       : breadcrumbFromProps;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const saveButtonProps: SaveButtonProps = {
     ...(isLoading ? { disabled: true } : {}),

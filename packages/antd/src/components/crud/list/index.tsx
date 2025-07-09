@@ -97,11 +97,7 @@ export const List: React.FC<ListProps> = ({
           )
         }
         breadcrumb={
-          typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
-          ) : (
-            <Breadcrumb />
-          )
+          typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />
         }
         {...(headerProps ?? {})}
       >

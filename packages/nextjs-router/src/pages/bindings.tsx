@@ -6,7 +6,7 @@ import {
   type ParseResponse,
 } from "@refinedev/core";
 import { useRouter } from "next/router";
-import Link from "next/link";
+import NextLink from "next/link";
 import qs from "qs";
 import React, { type ComponentProps, useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
@@ -92,7 +92,8 @@ export const routerBindings: RouterBindings = {
   },
   parse: () => {
     const { query, asPath: pathname, isReady } = useRouter();
-    const { resources } = useContext(ResourceContext);
+    const resourceContext = useContext(ResourceContext as any) || {};
+    const resources = (resourceContext as any)?.resources || [];
 
     const cleanPathname = pathname.split("?")[0].split("#")[0];
 
@@ -157,8 +158,8 @@ export const routerBindings: RouterBindings = {
   },
   Link: React.forwardRef<
     HTMLAnchorElement,
-    ComponentProps<NonNullable<RouterBindings["Link"]>>
+    React.PropsWithChildren<{ to: string; [prop: string]: any }>
   >(function RefineLink({ to, ...props }, ref) {
-    return <Link href={to} {...props} ref={ref} />;
+    return React.createElement(NextLink as any, { href: to, ...props, ref });
   }),
 };

@@ -175,11 +175,7 @@ export const Show: React.FC<ShowProps> = ({
           </Space>
         }
         breadcrumb={
-          typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
-          ) : (
-            <Breadcrumb />
-          )
+          typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />
         }
         {...(headerProps ?? {})}
       >

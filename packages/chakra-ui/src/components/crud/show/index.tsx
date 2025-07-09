@@ -239,7 +239,7 @@ export const Show: React.FC<ShowProps> = (props) => {
       >
         <Box minW={200}>
           {typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
+            <>{breadcrumb}</>
           ) : (
             <Breadcrumb />
           )}

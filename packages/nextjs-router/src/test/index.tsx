@@ -52,18 +52,18 @@ export const TestWrapper: (
     });
   }
 
-  return ({ children }): React.ReactElement => {
+  return ({ children }): React.JSX.Element => {
     return (
       <BrowserRouter>
-        <Refine
-          dataProvider={dataProvider ?? MockJSONServer}
-          i18nProvider={i18nProvider}
-          routerProvider={routerProvider ?? mockRouterBindings()}
-          authProvider={authProvider}
-          notificationProvider={notificationProvider}
-          resources={resources ?? [{ name: "posts", list: "/posts" }]}
-          accessControlProvider={accessControlProvider}
-          options={{
+        {(Refine as any)({
+          dataProvider: dataProvider ?? MockJSONServer,
+          i18nProvider,
+          routerProvider: routerProvider ?? mockRouterBindings(),
+          authProvider,
+          notificationProvider,
+          resources: resources ?? [{ name: "posts", list: "/posts" }],
+          accessControlProvider,
+          options: {
             ...options,
             disableTelemetry: true,
             reactQuery: {
@@ -77,10 +77,9 @@ export const TestWrapper: (
                 },
               },
             },
-          }}
-        >
-          {children}
-        </Refine>
+          },
+          children,
+        })}
       </BrowserRouter>
     );
   };

@@ -140,6 +140,6 @@ export const routerBindings: RouterBindings = {
     HTMLAnchorElement,
     ComponentProps<NonNullable<RouterBindings["Link"]>>
   >(function RefineLink(props, ref) {
-    return <Link {...props} ref={ref} />;
+    return <Link to={props.to} {...props} ref={ref} />;
   }),
 };
