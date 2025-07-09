@@ -74,7 +74,7 @@ export const FilterDropdown: React.FC<FilterDropdownProps> = (props) => {
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return React.cloneElement(child as React.ReactElement, {
+      return React.cloneElement(child as React.ReactElement<any>, {
         onChange,
         value: mapValue(selectedKeys, "value"),
       });

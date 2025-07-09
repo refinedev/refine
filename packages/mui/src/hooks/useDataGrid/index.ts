@@ -161,7 +161,7 @@ export function useDataGrid<
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
   const liveMode = useLiveMode(liveModeFromProp);
 
-  const columnsTypes = useRef<Record<string, string>>();
+  const columnsTypes = useRef<Record<string, string>>({});
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 

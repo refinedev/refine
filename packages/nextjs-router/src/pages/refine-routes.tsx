@@ -26,15 +26,16 @@ export const RefineRoutes = ({ children }: RefineRoutesProps) => {
         ? resourceAction.component
         : undefined;
 
+  const Component = ResourceActionComponent as
+    | React.ComponentType<any>
+    | undefined;
+
   return (
     <>
       {children ? (
-        children(
-          ResourceActionComponent ? <ResourceActionComponent /> : undefined,
-          pathname,
-        )
-      ) : ResourceActionComponent ? (
-        <ResourceActionComponent />
+        children(Component ? <Component /> : undefined, pathname)
+      ) : Component ? (
+        <Component />
       ) : undefined}
     </>
   );

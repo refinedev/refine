@@ -99,11 +99,7 @@ export const Edit: React.FC<EditProps> = (props) => {
       deleteButtonPropsFromProps);
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const loadingOverlayVisible =
     isLoading ?? saveButtonPropsFromProps?.disabled ?? false;

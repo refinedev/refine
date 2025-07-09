@@ -108,11 +108,7 @@ export const Edit: React.FC<EditProps> = ({
       deleteButtonPropsFromProps);
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const listButtonProps: ListButtonProps | undefined = hasList
     ? {

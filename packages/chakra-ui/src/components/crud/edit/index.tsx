@@ -251,7 +251,7 @@ export const Edit: React.FC<EditProps> = (props) => {
       >
         <Box minW={200}>
           {typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
+            <>{breadcrumb}</>
           ) : (
             <Breadcrumb />
           )}

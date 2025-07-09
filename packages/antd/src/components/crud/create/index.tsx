@@ -94,11 +94,7 @@ export const Create: React.FC<CreateProps> = ({
           )
         }
         breadcrumb={
-          typeof breadcrumb !== "undefined" ? (
-            <>{breadcrumb}</> ?? undefined
-          ) : (
-            <Breadcrumb />
-          )
+          typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />
         }
         extra={
           <Space wrap {...(headerButtonProps ?? {})}>
