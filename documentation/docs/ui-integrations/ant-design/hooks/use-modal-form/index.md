@@ -475,6 +475,16 @@ const modalForm = useModalForm({
 });
 ```
 
+### autoResetFormWhenClose
+
+`autoResetFormWhenClose` will reset the form when modal closes. It is `true` by default.
+
+```tsx
+const modalForm = useModalForm({
+  autoResetFormWhenClose: false,
+});
+```
+
 ### warnWhenUnsavedChanges
 
 When set to true, `warnWhenUnsavedChanges` shows a warning when the user tries to leave the page with unsaved changes. It is used to prevent the user from accidentally leaving the page. It is `false` by default

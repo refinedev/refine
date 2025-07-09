@@ -13,7 +13,7 @@ import {
   type useTableReturnType as useTableReturnTypeCore,
   useResourceParams,
 } from "@refinedev/core";
-import { useRef, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 
 import type {
   DataGridProps,
@@ -211,6 +211,14 @@ export function useDataGrid<
 
   const { data, isFetched, isLoading } = tableQueryResult;
 
+  const rowCountRef = useRef(data?.total || 0);
+  const rowCount = useMemo(() => {
+    if (data?.total) {
+      rowCountRef.current = data.total;
+    }
+    return rowCountRef.current;
+  }, [data]);
+
   const isServerSideFilteringEnabled =
     (filtersFromProp?.mode || "server") === "server";
   const isServerSideSortingEnabled =
@@ -303,6 +311,7 @@ export function useDataGrid<
           resource: identifier,
           id: newRow.id as string,
           values: newRow,
+          meta: updateMutationOptions?.meta,
         },
         {
           onError: (error) => {
@@ -323,7 +332,7 @@ export function useDataGrid<
       disableRowSelectionOnClick: true,
       rows: data?.data || [],
       loading: liveMode === "auto" ? isLoading : !isFetched,
-      rowCount: data?.total || 0,
+      rowCount,
       ...dataGridPaginationValues(),
       sortingMode: isServerSideSortingEnabled ? "server" : "client",
       sortModel: transformCrudSortingToSortModel(
