@@ -8,7 +8,7 @@ import { Sandpack, AddRouterProviderToApp } from "./sandpack.tsx";
 
 Now we've learned the data fetching essentials and basics of authentication in Refine. In this unit, we'll learn how to add a router provider to our app and the features we're unlocking with a router provider.
 
-Refine provides integrations for the most popular routing options such as [React Router](/docs/routing/integrations/react-router), [Next.js](/docs/routing//integrations/next-js) and [Remix](/docs/routing/integrations/remix).
+Refine provides integrations for the most popular routing options such as [React Router](/docs/routing/integrations/react-router), [Next.js](/docs/routing/integrations/next-js) and [Remix](/docs/routing/integrations/remix).
 
 :::simple Implementation Tips
 
