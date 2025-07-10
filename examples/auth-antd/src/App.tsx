@@ -17,7 +17,10 @@ import {
   DashboardOutlined,
 } from "@ant-design/icons";
 
-import dataProvider from "@refinedev/simple-rest";
+import {
+  createDataProvider,
+  simpleRestDataProviderOptions,
+} from "@refinedev/rest";
 import routerProvider, {
   NavigateToResource,
   CatchAllNavigate,
@@ -167,7 +170,10 @@ const App: React.FC = () => {
         <AntdApp>
           <Refine
             authProvider={authProvider}
-            dataProvider={dataProvider(API_URL)}
+            dataProvider={createDataProvider(
+              API_URL,
+              simpleRestDataProviderOptions,
+            )}
             routerProvider={routerProvider}
             resources={[
               {
