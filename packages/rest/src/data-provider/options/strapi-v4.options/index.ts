@@ -13,6 +13,7 @@ import type {
 import type { WretchResponse } from "wretch/types";
 import { generateFilter } from "./utils/generateFilter";
 import { normalizeData } from "./utils/normalizeData";
+import { transformHttpError } from "./utils/transformHttpError";
 
 export const strapiV4DataProviderOptions = {
   getList: {
@@ -110,13 +111,29 @@ export const strapiV4DataProviderOptions = {
       return params.meta?.headers ?? {};
     },
     async buildQueryParams(params: GetOneParams) {
-      return params.meta?.query ?? {};
+      const { meta } = params ?? {};
+
+      const locale = meta?.locale;
+      const fields = meta?.fields;
+      const populate = meta?.populate;
+      const publicationState = meta?.publicationState;
+
+      const queryParams = {
+        locale,
+        fields,
+        populate,
+        publicationState,
+      };
+
+      return queryParams;
     },
     async mapResponse(
       response: WretchResponse,
       params: GetOneParams,
     ): Promise<Record<string, any>> {
-      return await response.json();
+      const body = await response.json();
+
+      return normalizeData(body);
     },
   },
   getMany: {
@@ -127,11 +144,26 @@ export const strapiV4DataProviderOptions = {
       return params.meta?.headers ?? {};
     },
     async buildQueryParams(params: GetManyParams) {
-      const queryParams = {
-        ids: params.ids.join(","),
+      const { ids, meta } = params ?? {};
+      const locale = meta?.locale;
+      const fields = meta?.fields;
+      const populate = meta?.populate;
+      const publicationState = meta?.publicationState;
+
+      const filters = generateFilter([
+        { field: "id", operator: "in", value: ids },
+      ]);
+
+      const query = {
+        locale,
+        fields,
+        populate,
+        publicationState,
+        filters,
+        pagination: { pageSize: ids.length },
       };
 
-      return params.meta?.query ?? queryParams;
+      return query;
     },
     async mapResponse(response: WretchResponse, params: GetManyParams) {
       const body = await response.json();
@@ -143,20 +175,30 @@ export const strapiV4DataProviderOptions = {
     getEndpoint(params: CreateParams<any>): string {
       return `/${params.resource}`;
     },
-    async buildHeaders(params: CreateParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: CreateParams<any>) {
-      return params.meta?.query ?? {};
-    },
+
     async buildBodyParams(params: CreateParams<any>) {
-      return params.variables;
+      const { resource, variables } = params;
+      let bodyParams = { data: variables };
+
+      if (resource === "users") {
+        bodyParams = variables;
+      }
+
+      return bodyParams;
     },
     async mapResponse(
       response: WretchResponse,
-      params: CreateParams<any>,
+      _params: CreateParams<any>,
     ): Promise<Record<string, any>> {
-      return await response.json();
+      if (response.status >= 400) {
+        const httpError = transformHttpError(response);
+
+        throw httpError;
+      }
+
+      const body = await response.json();
+
+      return body;
     },
   },
   createMany: {
