@@ -2807,9 +2807,9 @@ importers:
       '@refinedev/react-router':
         specifier: ^1.0.1
         version: link:../../packages/react-router
-      '@refinedev/strapi-v4':
-        specifier: ^6.0.11
-        version: link:../../packages/strapi-v4
+      '@refinedev/rest':
+        specifier: ^1.0.0
+        version: link:../../packages/rest
       '@uiw/react-md-editor':
         specifier: ^3.19.5
         version: 3.25.6(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)

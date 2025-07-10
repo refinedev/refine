@@ -40,7 +40,7 @@ export const createDataProvider = (
 
       const response = await client
         .headers(headers)
-        .query(qs.stringify(query))
+        .query(qs.stringify(query, { encodeValuesOnly: true }))
         .get(endpoint)
         .res();
 

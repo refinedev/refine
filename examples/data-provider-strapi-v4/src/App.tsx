@@ -1,38 +1,43 @@
 import {
+  AuthPage,
+  ErrorComponent,
+  RefineThemes,
+  ThemedLayoutV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
+import {
+  Authenticated,
   GitHubBanner,
   Refine,
   type AuthProvider,
-  Authenticated,
 } from "@refinedev/core";
-import {
-  useNotificationProvider,
-  ThemedLayoutV2,
-  ErrorComponent,
-  AuthPage,
-  RefineThemes,
-} from "@refinedev/antd";
-import { DataProvider, AuthHelper } from "@refinedev/strapi-v4";
 import routerProvider, {
   CatchAllNavigate,
+  DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
-  DocumentTitleHandler,
 } from "@refinedev/react-router";
+import {
+  authHeaderMiddleware,
+  createDataProvider,
+  strapiV4DataProviderOptions,
+} from "@refinedev/rest";
+import { AuthHelper, DataProvider } from "@refinedev/strapi-v4";
 import axios from "axios";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router";
+import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import "@refinedev/antd/dist/reset.css";
 
-import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";
-import { UserList } from "../src/pages/users";
 import {
-  CategoryList,
   CategoryCreate,
   CategoryEdit,
+  CategoryList,
 } from "../src/pages/categories";
+import { PostCreate, PostEdit, PostList, PostShow } from "../src/pages/posts";
+import { UserList } from "../src/pages/users";
 
-import { TOKEN_KEY, API_URL } from "./constants";
-import { ConfigProvider, App as AntdApp } from "antd";
+import { App as AntdApp, ConfigProvider } from "antd";
+import { API_URL, TOKEN_KEY } from "./constants";
 
 const App: React.FC = () => {
   const axiosInstance = axios.create();
@@ -137,7 +142,12 @@ const App: React.FC = () => {
         <AntdApp>
           <Refine
             authProvider={authProvider}
-            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+            dataProvider={createDataProvider(`${API_URL}/api`, {
+              ...strapiV4DataProviderOptions,
+              middlewares: {
+                global: [authHeaderMiddleware({ ACCESS_TOKEN_KEY: TOKEN_KEY })],
+              },
+            })}
             routerProvider={routerProvider}
             resources={[
               {
