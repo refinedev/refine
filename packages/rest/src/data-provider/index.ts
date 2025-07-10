@@ -39,10 +39,12 @@ export const createDataProvider = (
       const query = await options.getList.buildQueryParams(params);
 
       const response = await client
+        .errorType("json")
         .headers(headers)
         .query(qs.stringify(query, { encodeValuesOnly: true }))
         .get(endpoint)
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.getList.mapResponse(response.clone(), params);
 
@@ -61,10 +63,12 @@ export const createDataProvider = (
       const query = await options.getOne.buildQueryParams(params);
 
       const response = await client
+        .errorType("json")
         .headers(headers)
         .query(qs.stringify(query))
         .get(endpoint)
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.getOne.mapResponse(response, params);
 
@@ -79,9 +83,11 @@ export const createDataProvider = (
 
       const response = await client
         .headers(headers)
+        .errorType("json")
         .query(qs.stringify(query))
         .get(endpoint)
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.getMany.mapResponse(response, params);
 
@@ -98,10 +104,12 @@ export const createDataProvider = (
 
       const response = await client
         .url(endpoint)
+        .errorType("json")
         .headers(headers)
         .query(qs.stringify(query))
         .post(body)
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.create.mapResponse(response, params);
 
@@ -117,11 +125,13 @@ export const createDataProvider = (
       const body = await options.createMany.buildBodyParams(params);
 
       const response = await client
+        .errorType("json")
         .url(endpoint)
         .headers(headers)
         .query(qs.stringify(query))
         .post(body)
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.createMany.mapResponse(response, params);
 
@@ -140,13 +150,15 @@ export const createDataProvider = (
       const body = await options.update.buildBodyParams(params);
 
       const response = await client
+        .errorType("json")
         .url(endpoint)
         .headers(headers)
         .query(qs.stringify(query))
         .body(JSON.stringify(body))
         .options({ method })
         .fetch()
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.update.mapResponse(response, params);
 
@@ -164,13 +176,15 @@ export const createDataProvider = (
       const body = await options.updateMany.buildBodyParams(params);
 
       const response = await client
+        .errorType("json")
         .url(endpoint)
         .headers(headers)
         .query(qs.stringify(query))
         .body(JSON.stringify(body))
         .options({ method })
         .fetch()
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.updateMany.mapResponse(response, params);
 
@@ -184,11 +198,13 @@ export const createDataProvider = (
       const query = await options.deleteOne.buildQueryParams(params);
 
       const response = await client
+        .errorType("json")
         .url(endpoint)
         .headers(headers)
         .query(qs.stringify(query))
         .delete()
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.deleteOne.mapResponse(response, params);
 
@@ -202,11 +218,13 @@ export const createDataProvider = (
       const query = await options.deleteMany.buildQueryParams(params);
 
       const response = await client
+        .errorType("json")
         .url(endpoint)
         .headers(headers)
         .query(qs.stringify(query))
         .delete()
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.deleteMany.mapResponse(response, params);
 
@@ -216,6 +234,7 @@ export const createDataProvider = (
       const { method, url } = params;
 
       const client = wretch(url)
+        .errorType("json")
         .addon(queryStringAddon)
         .headers(options.defaultHeaders);
 
@@ -237,7 +256,8 @@ export const createDataProvider = (
       const response = await request
         .options({ method: method.toUpperCase() })
         .fetch()
-        .res();
+        .res()
+        .catch((response) => response.json.error);
 
       const data = await options.custom.mapResponse(response, params);
 
