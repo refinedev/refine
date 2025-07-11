@@ -6,7 +6,7 @@ import type { RedirectAction } from "../../hooks/form/types";
 import type { UseLoadingOvertimeRefineContext } from "../../hooks/useLoadingOvertime";
 import type { AccessControlProvider } from "../accessControl/types";
 import type { AuditLogProvider } from "../auditLog/types";
-import type { AuthProvider, LegacyAuthProvider } from "../auth/types";
+import type { AuthProvider } from "../auth/types";
 import type { DataProvider, DataProviders, MutationMode } from "../data/types";
 import type { I18nProvider } from "../i18n/types";
 import type { LiveModeProps, LiveProvider } from "../live/types";
@@ -95,7 +95,6 @@ export interface IRefineOptions {
    * The project id of your refine project. Will be set automatically. Don't modify.
    */
   projectId?: string;
-  useNewQueryKeys?: boolean;
   /**
    * Icon and name for the app title. These values are used as default values in the <ThemedLayoutV2 /> and <AuthPage /> components.
    * By default, `icon` is the Refine logo and `text` is "Refine Project".
@@ -122,7 +121,6 @@ export interface IRefineContextOptions {
   textTransformers: Required<TextTransformers>;
   disableServerSideValidation: boolean;
   projectId?: string;
-  useNewQueryKeys?: boolean;
   title: {
     icon?: React.ReactNode;
     text?: React.ReactNode;
@@ -231,12 +229,6 @@ export interface RefineProps {
    * @type [`AuthProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
    */
   authProvider?: AuthProvider;
-  /**
-   * `legacyAuthProvider` handles authentication logic like login, logout flow and checking user credentials. It is an object with methods that refine uses when necessary.
-   * @type [`AuthProvider`](https://refine.dev/docs/api-reference/core/providers/auth-provider/)
-   * @deprecated `legacyAuthProvider` is deprecated with refine@4, use `authProvider` instead.
-   */
-  legacyAuthProvider?: LegacyAuthProvider;
   /**
    * **refine** lets you add Realtime support to your app via `liveProvider`. It can be used to update and show data in Realtime throughout your app.
    * @type [`LiveProvider`](https://refine.dev/docs/api-reference/core/providers/live-provider/)

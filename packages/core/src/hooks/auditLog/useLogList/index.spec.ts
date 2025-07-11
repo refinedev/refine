@@ -137,6 +137,7 @@ describe("useLogList Hook", () => {
           meta: { id: 1 },
           metaData: { fields: ["id", "action", "data"] },
           queryOptions: {
+            queryKey: ["custom", "queryFn", "test"],
             queryFn: queryFnMock,
           },
         }),

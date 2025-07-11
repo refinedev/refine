@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type QueryObserverResult,
@@ -5,11 +6,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import {
-  pickNotDeprecated,
-  useActiveAuthProvider,
-  prepareQueryContext,
-} from "@definitions/helpers";
+import { pickNotDeprecated, prepareQueryContext } from "@definitions/helpers";
 import {
   useDataProvider,
   useHandleNotification,
@@ -47,6 +44,24 @@ interface UseCustomConfig<TQuery, TPayload> {
   headers?: {};
 }
 
+// Clean type without custom callback extensions
+export type UseCustomQueryOptions<TQueryFnData, TError, TData> = Omit<
+  UseQueryOptions<CustomResponse<TQueryFnData>, TError, CustomResponse<TData>>,
+  "queryKey" | "queryFn"
+> & {
+  // Make queryKey and queryFn optional for backward compatibility
+  queryKey?: UseQueryOptions<
+    CustomResponse<TQueryFnData>,
+    TError,
+    CustomResponse<TData>
+  >["queryKey"];
+  queryFn?: UseQueryOptions<
+    CustomResponse<TQueryFnData>,
+    TError,
+    CustomResponse<TData>
+  >["queryFn"];
+};
+
 export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
   /**
    * request's URL
@@ -61,13 +76,9 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
    */
   config?: UseCustomConfig<TQuery, TPayload>;
   /**
-   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options"
+   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<
-    CustomResponse<TQueryFnData>,
-    TError,
-    CustomResponse<TData>
-  >;
+  queryOptions?: UseCustomQueryOptions<TQueryFnData, TError, TData>;
   /**
    * meta data for `dataProvider`
    */
@@ -81,6 +92,14 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
    * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
    */
   dataProviderName?: string;
+  /**
+   * Callback to be called when the query is successful
+   */
+  onSuccess?: (data: CustomResponse<TData>) => void;
+  /**
+   * Callback to be called when the query encounters an error
+   */
+  onError?: (error: TError) => void;
 } & SuccessErrorNotification<
   CustomResponse<TData>,
   TError,
@@ -120,6 +139,8 @@ export const useCustom = <
   metaData,
   dataProviderName,
   overtimeOptions,
+  onSuccess,
+  onError,
 }: UseCustomProps<
   TQueryFnData,
   TError,
@@ -129,14 +150,11 @@ export const useCustom = <
 >): QueryObserverResult<CustomResponse<TData>, TError> &
   UseLoadingOvertimeReturnType => {
   const dataProvider = useDataProvider();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
   const translate = useTranslate();
+  const { mutate: checkError } = useOnError();
   const handleNotification = useHandleNotification();
   const getMeta = useMeta();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const preferredMeta = pickNotDeprecated(meta, metaData);
 
@@ -159,7 +177,7 @@ export const useCustom = <
           ...config,
           ...(preferredMeta || {}),
         })
-        .get(preferLegacyKeys),
+        .get(),
       queryFn: (context) =>
         custom<TQueryFnData>({
           url,
@@ -167,34 +185,50 @@ export const useCustom = <
           ...config,
           meta: {
             ...combinedMeta,
-            queryContext: prepareQueryContext(context),
+            queryContext: prepareQueryContext(context as any),
           },
           metaData: {
             ...combinedMeta,
-            queryContext: prepareQueryContext(context),
+            queryContext: prepareQueryContext(context as any),
           },
         }),
       ...queryOptions,
-      onSuccess: (data) => {
-        queryOptions?.onSuccess?.(data);
+      meta: {
+        ...queryOptions?.meta,
+        ...getXRay("useCustom"),
+      },
+    });
 
+    // Handle success
+    useEffect(() => {
+      if (queryResponse.isSuccess && queryResponse.data) {
         const notificationConfig =
           typeof successNotification === "function"
-            ? successNotification(data, {
+            ? successNotification(queryResponse.data, {
                 ...config,
                 ...combinedMeta,
               })
             : successNotification;
 
         handleNotification(notificationConfig);
-      },
-      onError: (err: TError) => {
-        checkError(err);
-        queryOptions?.onError?.(err);
+
+        onSuccess?.(queryResponse.data);
+      }
+    }, [
+      queryResponse.isSuccess,
+      queryResponse.data,
+      successNotification,
+      onSuccess,
+    ]);
+
+    // Handle error
+    useEffect(() => {
+      if (queryResponse.isError && queryResponse.error) {
+        checkError(queryResponse.error);
 
         const notificationConfig =
           typeof errorNotification === "function"
-            ? errorNotification(err, {
+            ? errorNotification(queryResponse.error, {
                 ...config,
                 ...combinedMeta,
               })
@@ -204,24 +238,36 @@ export const useCustom = <
           key: `${method}-notification`,
           message: translate(
             "notifications.error",
-            { statusCode: err.statusCode },
-            `Error (status code: ${err.statusCode})`,
+            { statusCode: queryResponse.error.statusCode },
+            `Error (status code: ${queryResponse.error.statusCode})`,
           ),
-          description: err.message,
+          description: queryResponse.error.message,
           type: "error",
         });
-      },
-      meta: {
-        ...queryOptions?.meta,
-        ...getXRay("useCustom", preferLegacyKeys),
-      },
-    });
+
+        onError?.(queryResponse.error);
+      }
+    }, [
+      queryResponse.isError,
+      queryResponse.error,
+      errorNotification,
+      onError,
+    ]);
     const { elapsedTime } = useLoadingOvertime({
       ...overtimeOptions,
       isLoading: queryResponse.isFetching,
     });
 
-    return { ...queryResponse, overtime: { elapsedTime } };
+    return {
+      ...queryResponse,
+      // Map v5 isPending to v4 isLoading for backward compatibility
+      isLoading: queryResponse.isPending,
+      // Map v5 'pending' status to v4 'loading' status
+      status:
+        queryResponse.status === "pending" ? "loading" : queryResponse.status,
+      overtime: { elapsedTime },
+    } as QueryObserverResult<CustomResponse<TData>, TError> &
+      UseLoadingOvertimeReturnType;
   }
   throw Error("Not implemented custom on data provider.");
 };

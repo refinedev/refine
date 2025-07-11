@@ -438,8 +438,14 @@ describe("useSelect Hook", () => {
         useSelect({
           resource: "posts",
           queryOptions: {
-            onSuccess: () => {
+            queryKey: ["test-key"],
+            queryFn: async () => {
               mockFunc();
+              return MockJSONServer.default.getList({
+                resource: "posts",
+                hasPagination: false,
+                filters: [],
+              });
             },
           },
         }),
@@ -478,8 +484,14 @@ describe("useSelect Hook", () => {
         useSelect({
           resource: "posts",
           queryOptions: {
-            onSuccess: () => {
+            queryKey: ["test-key-2"],
+            queryFn: async () => {
               mockFunc();
+              return MockJSONServer.default.getList({
+                resource: "posts",
+                hasPagination: false,
+                filters: [],
+              });
             },
           },
           defaultValue: [1],
@@ -562,8 +574,13 @@ describe("useSelect Hook", () => {
           resource: "posts",
           defaultValue: ["1", "2", "3", "4"],
           defaultValueQueryOptions: {
-            onSuccess: () => {
+            queryKey: ["test-key-defaultValue"],
+            queryFn: async () => {
               mockFunc();
+              return MockJSONServer.default!.getMany({
+                resource: "posts",
+                ids: ["1", "2", "3", "4"],
+              });
             },
           },
         }),
@@ -651,6 +668,7 @@ describe("useSelect Hook", () => {
                 }),
             queryOptions: {
               enabled: !!enabled,
+              queryKey: ["test-enabled", enabled],
             },
           }),
         {

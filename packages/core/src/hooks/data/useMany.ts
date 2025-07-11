@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type QueryObserverResult,
@@ -10,7 +11,6 @@ import {
   pickDataProvider,
   pickNotDeprecated,
   prepareQueryContext,
-  useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
   useDataProvider,
@@ -39,6 +39,27 @@ import {
 } from "../useLoadingOvertime";
 import warnOnce from "warn-once";
 
+export type UseManyQueryOptions<TQueryFnData, TError, TData> = Omit<
+  UseQueryOptions<
+    GetManyResponse<TQueryFnData>,
+    TError,
+    GetManyResponse<TData>
+  >,
+  "queryKey" | "queryFn"
+> & {
+  // Make queryKey and queryFn optional for backward compatibility
+  queryKey?: UseQueryOptions<
+    GetManyResponse<TQueryFnData>,
+    TError,
+    GetManyResponse<TData>
+  >["queryKey"];
+  queryFn?: UseQueryOptions<
+    GetManyResponse<TQueryFnData>,
+    TError,
+    GetManyResponse<TData>
+  >["queryFn"];
+};
+
 export type UseManyProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
@@ -52,11 +73,7 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
   /**
    * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<
-    GetManyResponse<TQueryFnData>,
-    TError,
-    GetManyResponse<TData>
-  >;
+  queryOptions?: UseManyQueryOptions<TQueryFnData, TError, TData>;
   /**
    * Metadata query for `dataProvider`,
    */
@@ -71,6 +88,14 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
    * @default "default"
    */
   dataProviderName?: string;
+  /**
+   * Callback to be called when the query is successful
+   */
+  onSuccess?: (data: GetManyResponse<TData>) => void;
+  /**
+   * Callback to be called when the query encounters an error
+   */
+  onError?: (error: TError) => void;
 } & SuccessErrorNotification<GetManyResponse<TData>, TError, BaseKey[]> &
   LiveModeProps &
   UseLoadingOvertimeOptionsProps;
@@ -105,6 +130,8 @@ export const useMany = <
   liveParams,
   dataProviderName,
   overtimeOptions,
+  onSuccess,
+  onError,
 }: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
   GetManyResponse<TData>,
   TError
@@ -113,13 +140,10 @@ export const useMany = <
   const { resources, resource, identifier } = useResource(resourceFromProp);
   const dataProvider = useDataProvider();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const handleNotification = useHandleNotification();
   const getMeta = useMeta();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const preferredMeta = pickNotDeprecated(meta, metaData);
   const pickedDataProvider = pickDataProvider(
@@ -175,11 +199,11 @@ export const useMany = <
       .params({
         ...(preferredMeta || {}),
       })
-      .get(preferLegacyKeys),
+      .get(),
     queryFn: (context) => {
       const meta = {
         ...combinedMeta,
-        queryContext: prepareQueryContext(context),
+        queryContext: prepareQueryContext(context as any),
       };
 
       if (getMany) {
@@ -203,48 +227,71 @@ export const useMany = <
     },
     enabled: hasIds && hasResource,
     ...queryOptions,
-    onSuccess: (data) => {
-      queryOptions?.onSuccess?.(data);
+    meta: {
+      ...queryOptions?.meta,
+      ...getXRay("useMany", resource?.name),
+    },
+  });
 
+  // Handle success
+  useEffect(() => {
+    if (queryResponse.isSuccess && queryResponse.data) {
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(data, ids, identifier)
+          ? successNotification(queryResponse.data, ids, identifier)
           : successNotification;
 
       handleNotification(notificationConfig);
-    },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
+
+      onSuccess?.(queryResponse.data);
+    }
+  }, [
+    queryResponse.isSuccess,
+    queryResponse.data,
+    successNotification,
+    onSuccess,
+  ]);
+
+  // Handle error
+  useEffect(() => {
+    if (queryResponse.isError && queryResponse.error) {
+      checkError(queryResponse.error);
 
       const notificationConfig =
         typeof errorNotification === "function"
-          ? errorNotification(err, ids, identifier)
+          ? errorNotification(queryResponse.error, ids, identifier)
           : errorNotification;
 
       handleNotification(notificationConfig, {
         key: `${ids[0]}-${identifier}-getMany-notification`,
         message: translate(
           "notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
+          { statusCode: queryResponse.error.statusCode },
+          `Error (status code: ${queryResponse.error.statusCode})`,
         ),
-        description: err.message,
+        description: queryResponse.error.message,
         type: "error",
       });
-    },
-    meta: {
-      ...queryOptions?.meta,
-      ...getXRay("useMany", preferLegacyKeys, resource?.name),
-    },
-  });
+
+      onError?.(queryResponse.error);
+    }
+  }, [queryResponse.isError, queryResponse.error, errorNotification, onError]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
     isLoading: queryResponse.isFetching,
   });
 
-  return { ...queryResponse, overtime: { elapsedTime } };
+  return {
+    ...queryResponse,
+    // Map v5 isPending to v4 isLoading for backward compatibility
+    isLoading: queryResponse.isPending,
+    // Map v5 'pending' status to v4 'loading' status
+    status:
+      queryResponse.status === "pending" ? "loading" : queryResponse.status,
+    overtime: { elapsedTime },
+  } as QueryObserverResult<GetManyResponse<TData>, TError> &
+    UseLoadingOvertimeReturnType;
 };
 
 const idsWarningMessage = (

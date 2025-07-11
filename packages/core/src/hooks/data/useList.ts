@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type QueryObserverResult,
@@ -10,7 +12,6 @@ import {
   pickDataProvider,
   pickNotDeprecated,
   prepareQueryContext,
-  useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
   useDataProvider,
@@ -87,6 +88,27 @@ export type BaseListProps = {
   dataProviderName?: string;
 };
 
+export type UseListQueryOptions<TQueryFnData, TError, TData> = Omit<
+  UseQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >,
+  "queryKey" | "queryFn"
+> & {
+  // Make queryKey and queryFn optional
+  queryKey?: UseQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >["queryKey"];
+  queryFn?: UseQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >["queryFn"];
+};
+
 export type UseListProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
@@ -96,11 +118,15 @@ export type UseListProps<TQueryFnData, TError, TData> = {
   /**
    * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
-  >;
+  queryOptions?: UseListQueryOptions<TQueryFnData, TError, TData>;
+  /**
+   * Callback to be called when the query is successful
+   */
+  onSuccess?: (data: GetListResponse<TData>) => void;
+  /**
+   * Callback to be called when the query encounters an error
+   */
+  onError?: (error: TError) => void;
 } & BaseListProps &
   SuccessErrorNotification<
     GetListResponse<TData>,
@@ -144,6 +170,8 @@ export const useList = <
   liveParams,
   dataProviderName,
   overtimeOptions,
+  onSuccess,
+  onError,
 }: UseListProps<TQueryFnData, TError, TData> = {}): QueryObserverResult<
   GetListResponse<TData>,
   TError
@@ -153,13 +181,10 @@ export const useList = <
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const handleNotification = useHandleNotification();
   const getMeta = useMeta();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const pickedDataProvider = pickDataProvider(
     identifier,
@@ -248,11 +273,11 @@ export const useList = <
           sort: config?.sort,
         }),
       })
-      .get(preferLegacyKeys),
+      .get(),
     queryFn: (context) => {
       const meta = {
         ...combinedMeta,
-        queryContext: prepareQueryContext(context),
+        queryContext: prepareQueryContext(context as any),
       };
       return getList<TQueryFnData>({
         resource: resource?.name ?? "",
@@ -289,46 +314,77 @@ export const useList = <
 
       return data as unknown as GetListResponse<TData>;
     },
-    onSuccess: (data) => {
-      queryOptions?.onSuccess?.(data);
+    meta: {
+      ...queryOptions?.meta,
+      ...getXRay("useList", resource?.name),
+    },
+  });
 
+  // Handle success
+  useEffect(() => {
+    if (queryResponse.isSuccess && queryResponse.data) {
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(data, notificationValues, identifier)
+          ? successNotification(
+              queryResponse.data,
+              notificationValues,
+              identifier,
+            )
           : successNotification;
 
       handleNotification(notificationConfig);
-    },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
+
+      onSuccess?.(queryResponse.data);
+    }
+  }, [
+    queryResponse.isSuccess,
+    queryResponse.data,
+    successNotification,
+    onSuccess,
+  ]);
+
+  // Handle error
+  useEffect(() => {
+    if (queryResponse.isError && queryResponse.error) {
+      checkError(queryResponse.error);
 
       const notificationConfig =
         typeof errorNotification === "function"
-          ? errorNotification(err, notificationValues, identifier)
+          ? errorNotification(
+              queryResponse.error,
+              notificationValues,
+              identifier,
+            )
           : errorNotification;
 
       handleNotification(notificationConfig, {
         key: `${identifier}-useList-notification`,
         message: translate(
           "notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
+          { statusCode: queryResponse.error.statusCode },
+          `Error (status code: ${queryResponse.error.statusCode})`,
         ),
-        description: err.message,
+        description: queryResponse.error.message,
         type: "error",
       });
-    },
-    meta: {
-      ...queryOptions?.meta,
-      ...getXRay("useList", preferLegacyKeys, resource?.name),
-    },
-  });
+
+      onError?.(queryResponse.error);
+    }
+  }, [queryResponse.isError, queryResponse.error, errorNotification, onError]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
     isLoading: queryResponse.isFetching,
   });
 
-  return { ...queryResponse, overtime: { elapsedTime } };
+  return {
+    ...queryResponse,
+    // Map v5 isPending to v4 isLoading for backward compatibility
+    isLoading: queryResponse.isPending,
+    // Map v5 'pending' status to v4 'loading' status - cast the entire return to maintain compatibility
+    status:
+      queryResponse.status === "pending" ? "loading" : queryResponse.status,
+    overtime: { elapsedTime },
+  } as QueryObserverResult<GetListResponse<TData>, TError> &
+    UseLoadingOvertimeReturnType;
 };

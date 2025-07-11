@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { getXRay } from "@refinedev/devtools-internal";
 import {
@@ -8,7 +8,7 @@ import {
 } from "@tanstack/react-query";
 import qs from "qs";
 
-import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
+import { useAuthBindingsContext } from "@contexts/auth";
 import {
   useGo,
   useKeys,
@@ -22,22 +22,12 @@ import {
 import type {
   AuthActionResponse,
   SuccessNotificationResponse,
-  TLoginData,
 } from "../../../contexts/auth/types";
 import type { RefineError } from "../../../contexts/data/types";
 import type { OpenNotificationParams } from "../../../contexts/notification/types";
 import { useInvalidateAuthStore } from "../useInvalidateAuthStore";
 
-export type UseLoginLegacyProps<TVariables> = {
-  v3LegacyAuthProviderCompatible: true;
-  mutationOptions?: Omit<
-    UseMutationOptions<TLoginData, Error | RefineError, TVariables, unknown>,
-    "mutationFn" | "onError" | "onSuccess"
-  >;
-};
-
 export type UseLoginProps<TVariables> = {
-  v3LegacyAuthProviderCompatible?: false;
   mutationOptions?: Omit<
     UseMutationOptions<
       AuthActionResponse,
@@ -49,51 +39,14 @@ export type UseLoginProps<TVariables> = {
   >;
 };
 
-export type UseLoginCombinedProps<TVariables> = {
-  v3LegacyAuthProviderCompatible: boolean;
-  mutationOptions?: Omit<
-    UseMutationOptions<
-      AuthActionResponse | TLoginData,
-      Error | RefineError,
-      TVariables,
-      unknown
-    >,
-    "mutationFn"
-  >;
-};
-
-export type UseLoginLegacyReturnType<TVariables> = UseMutationResult<
-  TLoginData,
-  Error | RefineError,
-  TVariables,
-  unknown
->;
-
 export type UseLoginReturnType<TVariables> = UseMutationResult<
   AuthActionResponse,
   Error | RefineError,
   TVariables,
   unknown
->;
-
-export type UseLoginCombinedReturnType<TVariables> = UseMutationResult<
-  AuthActionResponse | TLoginData,
-  Error | RefineError,
-  TVariables,
-  unknown
->;
-
-export function useLogin<TVariables = {}>(
-  props: UseLoginLegacyProps<TVariables>,
-): UseLoginLegacyReturnType<TVariables>;
-
-export function useLogin<TVariables = {}>(
-  props?: UseLoginProps<TVariables>,
-): UseLoginReturnType<TVariables>;
-
-export function useLogin<TVariables = {}>(
-  props?: UseLoginCombinedProps<TVariables>,
-): UseLoginCombinedReturnType<TVariables>;
+> & {
+  isLoading: boolean;
+};
 
 /**
  * `useLogin` calls `login` method from {@link https://refine.dev/docs/api-reference/core/providers/auth-provider `authProvider`} under the hood.
@@ -105,11 +58,8 @@ export function useLogin<TVariables = {}>(
  *
  */
 export function useLogin<TVariables = {}>({
-  v3LegacyAuthProviderCompatible,
   mutationOptions,
-}: UseLoginProps<TVariables> | UseLoginLegacyProps<TVariables> = {}):
-  | UseLoginLegacyReturnType<TVariables>
-  | UseLoginReturnType<TVariables> {
+}: UseLoginProps<TVariables> = {}): UseLoginReturnType<TVariables> {
   const invalidateAuthStore = useInvalidateAuthStore();
   const routerType = useRouterType();
 
@@ -122,9 +72,8 @@ export function useLogin<TVariables = {}>({
   const { search } = useLocation();
 
   const { close, open } = useNotification();
-  const { login: legacyLoginFromContext } = useLegacyAuthContext();
   const { login: loginFromContext } = useAuthBindingsContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const to = React.useMemo(() => {
     if (routerType === "legacy") {
@@ -142,9 +91,20 @@ export function useLogin<TVariables = {}>({
     TVariables,
     unknown
   >({
-    mutationKey: keys().auth().action("login").get(preferLegacyKeys),
+    mutationKey: keys().auth().action("login").get(),
     mutationFn: loginFromContext,
-    onSuccess: async ({ success, redirectTo, error, successNotification }) => {
+    ...mutationOptions,
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useLogin"),
+    },
+  });
+
+  // Handle success with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isSuccess && mutation.data) {
+      const { success, redirectTo, error, successNotification } = mutation.data;
+
       if (success) {
         close?.("login-error");
 
@@ -178,68 +138,20 @@ export function useLogin<TVariables = {}>({
       setTimeout(() => {
         invalidateAuthStore();
       }, 32);
-    },
-    onError: (error: any) => {
-      open?.(buildNotification(error));
-    },
-    ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions),
-    meta: {
-      ...(v3LegacyAuthProviderCompatible === true ? {} : mutationOptions?.meta),
-      ...getXRay("useLogin", preferLegacyKeys),
-    },
-  });
+    }
+  }, [mutation.isSuccess, mutation.data]);
 
-  const v3LegacyAuthProviderCompatibleMutation = useMutation<
-    TLoginData,
-    Error | RefineError,
-    TVariables,
-    unknown
-  >({
-    mutationKey: [
-      ...keys().auth().action("login").get(preferLegacyKeys),
-      "v3LegacyAuthProviderCompatible",
-    ],
-    mutationFn: legacyLoginFromContext,
-    onSuccess: async (redirectPathFromAuth) => {
-      if (to) {
-        replace(to as string);
-      }
+  // Handle error with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isError && mutation.error) {
+      open?.(buildNotification(mutation.error));
+    }
+  }, [mutation.isError, mutation.error]);
 
-      if (redirectPathFromAuth !== false && !to) {
-        if (typeof redirectPathFromAuth === "string") {
-          if (routerType === "legacy") {
-            replace(redirectPathFromAuth);
-          } else {
-            go({ to: redirectPathFromAuth, type: "replace" });
-          }
-        } else {
-          if (routerType === "legacy") {
-            replace("/");
-          } else {
-            go({ to: "/", type: "replace" });
-          }
-        }
-      }
-
-      setTimeout(() => {
-        invalidateAuthStore();
-      }, 32);
-
-      close?.("login-error");
-    },
-    onError: (error: any) => {
-      open?.(buildNotification(error));
-    },
-    ...(v3LegacyAuthProviderCompatible ? mutationOptions : {}),
-    meta: {
-      ...(v3LegacyAuthProviderCompatible ? mutationOptions?.meta : {}),
-      ...getXRay("useLogin", preferLegacyKeys),
-    },
-  });
-
-  return v3LegacyAuthProviderCompatible
-    ? v3LegacyAuthProviderCompatibleMutation
-    : mutation;
+  return {
+    ...mutation,
+    isLoading: mutation.isPending,
+  };
 }
 
 const buildNotification = (

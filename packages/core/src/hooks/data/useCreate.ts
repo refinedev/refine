@@ -1,8 +1,5 @@
-import {
-  pickDataProvider,
-  pickNotDeprecated,
-  useActiveAuthProvider,
-} from "@definitions/helpers";
+import { useEffect } from "react";
+import { pickDataProvider, pickNotDeprecated } from "@definitions/helpers";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
@@ -76,6 +73,23 @@ export type UseCreateReturnType<
   TError,
   UseCreateParams<TData, TError, TVariables>,
   unknown
+> & {
+  isLoading: boolean;
+};
+
+// Custom type to extend UseMutationOptions
+export type UseCreateMutationOptions<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = Omit<
+  UseMutationOptions<
+    CreateResponse<TData>,
+    TError,
+    UseCreateParams<TData, TError, TVariables>,
+    unknown
+  >,
+  "mutationFn"
 >;
 
 export type UseCreateProps<
@@ -83,17 +97,20 @@ export type UseCreateProps<
   TError extends HttpError = HttpError,
   TVariables = {},
 > = {
-  mutationOptions?: Omit<
-    UseMutationOptions<
-      CreateResponse<TData>,
-      TError,
-      UseCreateParams<TData, TError, TVariables>,
-      unknown
-    >,
-    "mutationFn"
-  >;
+  mutationOptions?: UseCreateMutationOptions<TData, TError, TVariables>;
 } & UseLoadingOvertimeOptionsProps &
-  UseCreateParams<TData, TError, TVariables>;
+  UseCreateParams<TData, TError, TVariables> & {
+    onSuccess?: (
+      data: CreateResponse<TData>,
+      variables: UseCreateParams<TData, TError, TVariables>,
+      context: unknown,
+    ) => void;
+    onError?: (
+      error: TError,
+      variables: UseCreateParams<TData, TError, TVariables>,
+      context: unknown,
+    ) => void;
+  };
 
 /**
  * `useCreate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
@@ -123,16 +140,15 @@ export const useCreate = <
   metaData: metaDataFromProps,
   mutationOptions,
   overtimeOptions,
+  onSuccess,
+  onError,
 }: UseCreateProps<TData, TError, TVariables> = {}): UseCreateReturnType<
   TData,
   TError,
   TVariables
 > &
   UseLoadingOvertimeReturnType => {
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const dataProvider = useDataProvider();
   const invalidateStore = useInvalidate();
   const { resources, select } = useResource();
@@ -144,7 +160,7 @@ export const useCreate = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutationResult = useMutation<
     CreateResponse<TData>,
@@ -152,6 +168,7 @@ export const useCreate = <
     UseCreateParams<TData, TError, TVariables>,
     unknown
   >({
+    mutationKey: keys().data().mutation("create").get(),
     mutationFn: ({
       resource: resourceName = resourceFromProps,
       values = valuesFromProps,
@@ -178,7 +195,24 @@ export const useCreate = <
         metaData: combinedMeta,
       });
     },
-    onSuccess: (data, variables, context) => {
+    ...mutationOptions,
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useCreate"),
+    },
+  });
+
+  // Handle success
+  useEffect(() => {
+    if (
+      mutationResult.isSuccess &&
+      mutationResult.data &&
+      mutationResult.variables
+    ) {
+      const data = mutationResult.data;
+      const variables = mutationResult.variables;
+      const context = undefined;
+
       const {
         resource: resourceName = resourceFromProps,
         successNotification:
@@ -263,9 +297,27 @@ export const useCreate = <
         },
       });
 
-      mutationOptions?.onSuccess?.(data, variables, context);
-    },
-    onError: (err: TError, variables, context) => {
+      // Also call user's onSuccess if provided
+      onSuccess?.(data, variables, context);
+    }
+  }, [
+    mutationResult.isSuccess,
+    mutationResult.data,
+    mutationResult.variables,
+    onSuccess,
+  ]);
+
+  // Handle error
+  useEffect(() => {
+    if (
+      mutationResult.isError &&
+      mutationResult.error &&
+      mutationResult.variables
+    ) {
+      const err = mutationResult.error;
+      const variables = mutationResult.variables;
+      const context = undefined;
+
       const {
         resource: resourceName = resourceFromProps,
         errorNotification:
@@ -303,20 +355,19 @@ export const useCreate = <
         type: "error",
       });
 
-      mutationOptions?.onError?.(err, variables, context);
-    },
-    mutationKey: keys().data().mutation("create").get(preferLegacyKeys),
-    ...mutationOptions,
-    meta: {
-      ...mutationOptions?.meta,
-      ...getXRay("useCreate", preferLegacyKeys),
-    },
-  });
+      onError?.(err, variables, context);
+    }
+  }, [
+    mutationResult.isError,
+    mutationResult.error,
+    mutationResult.variables,
+    onError,
+  ]);
   const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutationResult.isPending, // v5 uses isPending instead of isLoading
   });
 
   // this function is used to make the `variables` parameter optional
@@ -347,10 +398,12 @@ export const useCreate = <
 
   return {
     ...mutation,
+    isLoading: mutationResult.isPending,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },
-  };
+  } as UseCreateReturnType<TData, TError, TVariables> &
+    UseLoadingOvertimeReturnType;
 };
 
 const missingResourceError = new Error(

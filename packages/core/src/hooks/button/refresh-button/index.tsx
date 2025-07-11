@@ -26,7 +26,7 @@ export function useRefreshButton(
   props: RefreshButtonProps,
 ): RefreshButtonValues {
   const translate = useTranslate();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const queryClient = useQueryClient();
   const invalidates = useInvalidate();
@@ -43,7 +43,7 @@ export function useRefreshButton(
       .data(pickDataProvider(identifier, props.dataProviderName, resources))
       .resource(identifier)
       .action("one")
-      .get(preferLegacyKeys),
+      .get(),
   });
 
   const onClick = () => {

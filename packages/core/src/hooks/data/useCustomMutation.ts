@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
@@ -5,7 +6,7 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 
-import { pickNotDeprecated, useActiveAuthProvider } from "@definitions/helpers";
+import { pickNotDeprecated } from "@definitions/helpers";
 import {
   useDataProvider,
   useHandleNotification,
@@ -63,6 +64,19 @@ export type UseCustomMutationReturnType<
   TError,
   useCustomMutationParams<TData, TError, TVariables>,
   unknown
+> & {
+  isLoading: boolean;
+};
+
+export type UseCustomMutationOptions<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = UseMutationOptions<
+  CreateResponse<TData>,
+  TError,
+  useCustomMutationParams<TData, TError, TVariables>,
+  unknown
 >;
 
 export type UseCustomMutationProps<
@@ -70,15 +84,7 @@ export type UseCustomMutationProps<
   TError extends HttpError = HttpError,
   TVariables = {},
 > = {
-  mutationOptions?: Omit<
-    UseMutationOptions<
-      CreateResponse<TData>,
-      TError,
-      useCustomMutationParams<TData, TError, TVariables>,
-      unknown
-    >,
-    "mutationFn" | "onError" | "onSuccess"
-  >;
+  mutationOptions?: UseCustomMutationOptions<TData, TError, TVariables>;
 } & UseLoadingOvertimeOptionsProps;
 
 /**
@@ -107,23 +113,21 @@ export const useCustomMutation = <
   TVariables
 > = {}): UseCustomMutationReturnType<TData, TError, TVariables> &
   UseLoadingOvertimeReturnType => {
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const handleNotification = useHandleNotification();
   const dataProvider = useDataProvider();
   const translate = useTranslate();
   const getMeta = useMeta();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutation = useMutation<
     CreateResponse<TData>,
     TError,
     useCustomMutationParams<TData, TError, TVariables>,
     unknown
-  >(
-    ({
+  >({
+    mutationKey: keys().data().mutation("customMutation").get(),
+    mutationFn: ({
       url,
       method,
       values,
@@ -151,73 +155,78 @@ export const useCustomMutation = <
 
       throw Error("Not implemented custom on data provider.");
     },
-    {
-      onSuccess: (
-        data,
-        {
-          successNotification: successNotificationFromProp,
-          config,
-          meta,
-          metaData,
-        },
-      ) => {
-        const notificationConfig =
-          typeof successNotificationFromProp === "function"
-            ? successNotificationFromProp(data, {
-                ...config,
-                ...(pickNotDeprecated(meta, metaData) || {}),
-              })
-            : successNotificationFromProp;
-
-        handleNotification(notificationConfig);
-      },
-      onError: (
-        err: TError,
-        {
-          errorNotification: errorNotificationFromProp,
-          method,
-          config,
-          meta,
-          metaData,
-        },
-      ) => {
-        checkError(err);
-
-        const notificationConfig =
-          typeof errorNotificationFromProp === "function"
-            ? errorNotificationFromProp(err, {
-                ...config,
-                ...(pickNotDeprecated(meta, metaData) || {}),
-              })
-            : errorNotificationFromProp;
-
-        handleNotification(notificationConfig, {
-          key: `${method}-notification`,
-          message: translate(
-            "notifications.error",
-            { statusCode: err.statusCode },
-            `Error (status code: ${err.statusCode})`,
-          ),
-          description: err.message,
-          type: "error",
-        });
-      },
-      mutationKey: keys()
-        .data()
-        .mutation("customMutation")
-        .get(preferLegacyKeys),
-      ...mutationOptions,
-      meta: {
-        ...mutationOptions?.meta,
-        ...getXRay("useCustomMutation", preferLegacyKeys),
-      },
+    ...mutationOptions,
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useCustomMutation"),
     },
-  );
+  });
+
+  // Handle success with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isSuccess && mutation.data && mutation.variables) {
+      const {
+        successNotification: successNotificationFromProp,
+        config,
+        meta,
+        metaData,
+      } = mutation.variables;
+
+      const notificationConfig =
+        typeof successNotificationFromProp === "function"
+          ? successNotificationFromProp(mutation.data, {
+              ...config,
+              ...(pickNotDeprecated(meta, metaData) || {}),
+            })
+          : successNotificationFromProp;
+
+      handleNotification(notificationConfig);
+    }
+  }, [mutation.isSuccess, mutation.data, mutation.variables]);
+
+  // Handle error with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isError && mutation.error && mutation.variables) {
+      const {
+        errorNotification: errorNotificationFromProp,
+        method,
+        config,
+        meta,
+        metaData,
+      } = mutation.variables;
+
+      checkError(mutation.error);
+
+      const notificationConfig =
+        typeof errorNotificationFromProp === "function"
+          ? errorNotificationFromProp(mutation.error, {
+              ...config,
+              ...(pickNotDeprecated(meta, metaData) || {}),
+            })
+          : errorNotificationFromProp;
+
+      handleNotification(notificationConfig, {
+        key: `${method}-notification`,
+        message: translate(
+          "notifications.error",
+          { statusCode: mutation.error.statusCode },
+          `Error (status code: ${mutation.error.statusCode})`,
+        ),
+        description: mutation.error.message,
+        type: "error",
+      });
+    }
+  }, [mutation.isError, mutation.error, mutation.variables]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending, // v5 uses isPending instead of isLoading
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  return {
+    ...mutation,
+    isLoading: mutation.isPending,
+    overtime: { elapsedTime },
+  } as UseCustomMutationReturnType<TData, TError, TVariables> &
+    UseLoadingOvertimeReturnType;
 };

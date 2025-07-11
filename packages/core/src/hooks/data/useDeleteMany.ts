@@ -5,13 +5,13 @@ import {
   useMutation,
   useQueryClient,
 } from "@tanstack/react-query";
+import { useEffect } from "react";
 
 import {
   handleMultiple,
   pickDataProvider,
   pickNotDeprecated,
   queryKeysReplacement,
-  useActiveAuthProvider,
 } from "@definitions";
 import {
   useCancelNotification,
@@ -101,24 +101,50 @@ export type UseDeleteManyReturnType<
   DeleteManyResponse<TData>,
   TError,
   DeleteManyParams<TData, TError, TVariables>,
-  unknown
+  DeleteContext<TData>
 > &
-  UseLoadingOvertimeReturnType;
+  UseLoadingOvertimeReturnType & {
+    isLoading: boolean;
+  };
+
+export type UseDeleteManyMutationOptions<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = Omit<
+  UseMutationOptions<
+    DeleteManyResponse<TData>,
+    TError,
+    DeleteManyParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >,
+  "mutationFn"
+> & {
+  // Add v4 callbacks for backward compatibility
+  onSuccess?: (
+    data: DeleteManyResponse<TData>,
+    variables: DeleteManyParams<TData, TError, TVariables>,
+    context: DeleteContext<TData>,
+  ) => void;
+  onError?: (
+    error: TError,
+    variables: DeleteManyParams<TData, TError, TVariables>,
+    context: DeleteContext<TData>,
+  ) => void;
+  onSettled?: (
+    data: DeleteManyResponse<TData> | undefined,
+    error: TError | null,
+    variables: DeleteManyParams<TData, TError, TVariables>,
+    context: DeleteContext<TData>,
+  ) => void;
+};
 
 export type UseDeleteManyProps<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TVariables = {},
 > = {
-  mutationOptions?: Omit<
-    UseMutationOptions<
-      DeleteManyResponse<TData>,
-      TError,
-      DeleteManyParams<TData, TError, TVariables>,
-      DeleteContext<TData>
-    >,
-    "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
-  >;
+  mutationOptions?: UseDeleteManyMutationOptions<TData, TError, TVariables>;
 } & UseLoadingOvertimeOptionsProps;
 
 /**
@@ -145,10 +171,7 @@ export const useDeleteMany = <
   TError,
   TVariables
 > => {
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
 
   const {
     mutationMode: mutationModeContext,
@@ -167,7 +190,11 @@ export const useDeleteMany = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
+
+  // Extract v4 callbacks from mutationOptions
+  const { onSuccess, onError, onSettled, ...cleanMutationOptions } =
+    mutationOptions || {};
 
   const mutation = useMutation<
     DeleteManyResponse<TData>,
@@ -276,7 +303,7 @@ export const useDeleteMany = <
         ...preferredMeta
       } = pickNotDeprecated(meta, metaData) ?? {};
 
-      const queryKey = queryKeysReplacement(preferLegacyKeys)(
+      const queryKey = queryKeysReplacement()(
         identifier,
         pickDataProvider(identifier, dataProviderName, resources),
         preferredMeta,
@@ -288,24 +315,24 @@ export const useDeleteMany = <
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(),
+      });
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(),
+        });
 
       if (mutationModePropOrContext !== "pessimistic") {
         // Set the previous queries to the new ones:
         queryClient.setQueriesData(
-          resourceKeys
-            .action("list")
-            .params(preferredMeta ?? {})
-            .get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys
+              .action("list")
+              .params(preferredMeta ?? {})
+              .get(),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -324,7 +351,9 @@ export const useDeleteMany = <
         );
 
         queryClient.setQueriesData(
-          resourceKeys.action("many").get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys.action("many").get(),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -346,11 +375,13 @@ export const useDeleteMany = <
 
         for (const id of ids) {
           queryClient.setQueriesData(
-            resourceKeys
-              .action("one")
-              .id(id)
-              .params(preferredMeta)
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("one")
+                .id(id)
+                .params(preferredMeta)
+                .get(),
+            },
             (previous?: any | null) => {
               if (!previous || previous.data.id === id) {
                 return null;
@@ -396,19 +427,45 @@ export const useDeleteMany = <
         type: ActionTypes.REMOVE,
         payload: { id: ids, resource: identifier },
       });
+
+      // Also call user's onSettled if provided
+      onSettled?.(
+        _data,
+        _error,
+        {
+          resource: resourceName,
+          ids,
+          dataProviderName,
+          invalidates,
+        } as DeleteManyParams<TData, TError, TVariables>,
+        {} as DeleteContext<TData>,
+      );
     },
-    onSuccess: (
-      _data,
-      {
+    // onSuccess and onError removed for v5 compatibility
+    mutationKey: keys().data().mutation("deleteMany").get(),
+    ...cleanMutationOptions,
+    meta: {
+      ...cleanMutationOptions?.meta,
+      ...getXRay("useDeleteMany"),
+    },
+  });
+
+  // Handle success with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isSuccess && mutation.data && mutation.variables) {
+      const _data = mutation.data;
+      const variables = mutation.variables;
+      const context = {} as DeleteContext<TData>;
+
+      const {
         ids,
         resource: resourceName,
         meta,
         metaData,
         dataProviderName: dataProviderNameFromProp,
         successNotification,
-      },
-      context,
-    ) => {
+      } = variables;
+
       const { resource, identifier } = select(resourceName);
 
       const dataProviderName = pickDataProvider(
@@ -424,7 +481,9 @@ export const useDeleteMany = <
 
       // Remove the queries from the cache:
       ids.forEach((id) =>
-        queryClient.removeQueries(context?.queryKey.detail(id)),
+        queryClient.removeQueries({
+          queryKey: context?.queryKey?.detail(id),
+        }),
       );
 
       const notificationConfig =
@@ -474,14 +533,25 @@ export const useDeleteMany = <
 
       // Remove the queries from the cache:
       ids.forEach((id) =>
-        queryClient.removeQueries(context?.queryKey.detail(id)),
+        queryClient.removeQueries({
+          queryKey: context?.queryKey?.detail(id),
+        }),
       );
-    },
-    onError: (
-      err,
-      { ids, resource: resourceName, errorNotification },
-      context,
-    ) => {
+
+      // Also call user's onSuccess if provided
+      onSuccess?.(_data, variables, context);
+    }
+  }, [mutation.isSuccess, mutation.data, mutation.variables, onSuccess]);
+
+  // Handle error with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isError && mutation.error && mutation.variables) {
+      const err = mutation.error;
+      const variables = mutation.variables;
+      const context = {} as DeleteContext<TData>;
+
+      const { ids, resource: resourceName, errorNotification } = variables;
+
       const { identifier } = select(resourceName);
 
       // set back the queries to the context:
@@ -514,19 +584,20 @@ export const useDeleteMany = <
           type: "error",
         });
       }
-    },
-    mutationKey: keys().data().mutation("deleteMany").get(preferLegacyKeys),
-    ...mutationOptions,
-    meta: {
-      ...mutationOptions?.meta,
-      ...getXRay("useDeleteMany", preferLegacyKeys),
-    },
-  });
+
+      // Also call user's onError if provided
+      onError?.(err, variables, context);
+    }
+  }, [mutation.isError, mutation.error, mutation.variables, onError]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending, // v5 uses isPending instead of isLoading
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  return {
+    ...mutation,
+    isLoading: mutation.isPending,
+    overtime: { elapsedTime },
+  };
 };

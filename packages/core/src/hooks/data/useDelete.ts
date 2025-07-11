@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
@@ -10,7 +11,6 @@ import {
   pickDataProvider,
   pickNotDeprecated,
   queryKeysReplacement,
-  useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
   useCancelNotification,
@@ -102,22 +102,49 @@ export type UseDeleteReturnType<
   DeleteParams<TData, TError, TVariables>,
   DeleteContext<TData>
 > &
-  UseLoadingOvertimeReturnType;
+  UseLoadingOvertimeReturnType & {
+    isLoading: boolean;
+  };
+
+// Custom type to extend UseMutationOptions with v4 callbacks for backward compatibility
+export type UseDeleteMutationOptions<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = Omit<
+  UseMutationOptions<
+    DeleteOneResponse<TData>,
+    TError,
+    DeleteParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >,
+  "mutationFn"
+> & {
+  // Add v4 callbacks for backward compatibility
+  onSuccess?: (
+    data: DeleteOneResponse<TData>,
+    variables: DeleteParams<TData, TError, TVariables>,
+    context: DeleteContext<TData>,
+  ) => void;
+  onError?: (
+    error: TError,
+    variables: DeleteParams<TData, TError, TVariables>,
+    context: DeleteContext<TData>,
+  ) => void;
+  onSettled?: (
+    data: DeleteOneResponse<TData> | undefined,
+    error: TError | null,
+    variables: DeleteParams<TData, TError, TVariables>,
+    context: DeleteContext<TData>,
+  ) => void;
+};
 
 export type UseDeleteProps<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TVariables = {},
 > = {
-  mutationOptions?: Omit<
-    UseMutationOptions<
-      DeleteOneResponse<TData>,
-      TError,
-      DeleteParams<TData, TError, TVariables>,
-      DeleteContext<TData>
-    >,
-    "mutationFn" | "onError" | "onSuccess" | "onSettled" | "onMutate"
-  >;
+  mutationOptions?: UseDeleteMutationOptions<TData, TError, TVariables>;
 } & UseLoadingOvertimeOptionsProps;
 
 /**
@@ -144,10 +171,7 @@ export const useDelete = <
   TError,
   TVariables
 > => {
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const dataProvider = useDataProvider();
 
   const { resources, select } = useResource();
@@ -168,7 +192,11 @@ export const useDelete = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
+
+  // Clean mutationOptions - remove v4 callbacks that don't exist in v5
+  const { onSuccess, onError, onSettled, ...cleanMutationOptions } =
+    mutationOptions || {};
 
   const mutation = useMutation<
     DeleteOneResponse<TData>,
@@ -176,6 +204,7 @@ export const useDelete = <
     DeleteParams<TData, TError, TVariables>,
     DeleteContext<TData>
   >({
+    mutationKey: keys().data().mutation("delete").get(),
     mutationFn: ({
       id,
       mutationMode,
@@ -267,7 +296,7 @@ export const useDelete = <
         ...preferredMeta
       } = pickNotDeprecated(meta, metaData) ?? {};
 
-      const queryKey = queryKeysReplacement(preferLegacyKeys)(
+      const queryKey = queryKeysReplacement()(
         identifier,
         pickDataProvider(identifier, dataProviderName, resources),
         preferredMeta,
@@ -279,24 +308,24 @@ export const useDelete = <
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(),
+      });
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(),
+        });
 
       if (mutationModePropOrContext !== "pessimistic") {
         // Set the previous queries to the new ones:
         queryClient.setQueriesData(
-          resourceKeys
-            .action("list")
-            .params(preferredMeta ?? {})
-            .get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys
+              .action("list")
+              .params(preferredMeta ?? {})
+              .get(),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -313,7 +342,9 @@ export const useDelete = <
         );
 
         queryClient.setQueriesData(
-          resourceKeys.action("many").get(preferLegacyKeys),
+          {
+            queryKey: resourceKeys.action("many").get(),
+          },
           (previous?: GetListResponse<TData> | null) => {
             if (!previous) {
               return null;
@@ -335,6 +366,8 @@ export const useDelete = <
         queryKey,
       };
     },
+    // onSuccess and onError removed for v5 compatibility
+    // onSettled callback kept as it's used for cleanup
     onSettled: (
       _data,
       _error,
@@ -362,19 +395,44 @@ export const useDelete = <
         type: ActionTypes.REMOVE,
         payload: { id, resource: identifier },
       });
+
+      // Also call user's onSettled if provided
+      onSettled?.(
+        _data,
+        _error,
+        {
+          id,
+          resource: resourceName,
+          dataProviderName,
+          invalidates,
+        } as DeleteParams<TData, TError, TVariables>,
+        {} as DeleteContext<TData>,
+      );
     },
-    onSuccess: (
-      _data,
-      {
+    // onSuccess and onError removed for v5 compatibility
+    ...cleanMutationOptions,
+    meta: {
+      ...cleanMutationOptions?.meta,
+      ...getXRay("useDelete"),
+    },
+  });
+
+  // Handle success with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isSuccess && mutation.data && mutation.variables) {
+      const _data = mutation.data;
+      const variables = mutation.variables;
+      const context = {} as DeleteContext<TData>;
+
+      const {
         id,
         resource: resourceName,
         successNotification,
         dataProviderName: dataProviderNameFromProp,
         meta,
         metaData,
-      },
-      context,
-    ) => {
+      } = variables;
+
       const { resource, identifier } = select(resourceName);
       const resourceSingular = textTransformers.singular(identifier);
 
@@ -390,7 +448,9 @@ export const useDelete = <
       });
 
       // Remove the queries from the cache:
-      queryClient.removeQueries(context?.queryKey.detail(id));
+      queryClient.removeQueries({
+        queryKey: context?.queryKey?.detail(id),
+      });
 
       const notificationConfig =
         typeof successNotification === "function"
@@ -443,13 +503,24 @@ export const useDelete = <
       });
 
       // Remove the queries from the cache:
-      queryClient.removeQueries(context?.queryKey.detail(id));
-    },
-    onError: (
-      err: TError,
-      { id, resource: resourceName, errorNotification },
-      context,
-    ) => {
+      queryClient.removeQueries({
+        queryKey: context?.queryKey?.detail(id),
+      });
+
+      // Also call user's onSuccess if provided
+      onSuccess?.(_data, variables, context);
+    }
+  }, [mutation.isSuccess, mutation.data, mutation.variables, onSuccess]);
+
+  // Handle error with useEffect for v5 compatibility
+  useEffect(() => {
+    if (mutation.isError && mutation.error && mutation.variables) {
+      const err = mutation.error;
+      const variables = mutation.variables;
+      const context = {} as DeleteContext<TData>;
+
+      const { id, resource: resourceName, errorNotification } = variables;
+
       const { identifier } = select(resourceName);
 
       // set back the queries to the context:
@@ -483,19 +554,20 @@ export const useDelete = <
           type: "error",
         });
       }
-    },
-    mutationKey: keys().data().mutation("delete").get(preferLegacyKeys),
-    ...mutationOptions,
-    meta: {
-      ...mutationOptions?.meta,
-      ...getXRay("useDelete", preferLegacyKeys),
-    },
-  });
+
+      // Also call user's onError if provided
+      onError?.(err, variables, context);
+    }
+  }, [mutation.isError, mutation.error, mutation.variables, onError]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending, // v5 uses isPending instead of isLoading
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  return {
+    ...mutation,
+    isLoading: mutation.isPending,
+    overtime: { elapsedTime },
+  };
 };

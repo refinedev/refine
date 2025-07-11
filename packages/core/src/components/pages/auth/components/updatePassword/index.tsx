@@ -27,9 +27,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 
   const authProvider = useActiveAuthProvider();
   const { mutate: updatePassword, isLoading } =
-    useUpdatePassword<UpdatePasswordFormTypes>({
-      v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+    useUpdatePassword<UpdatePasswordFormTypes>();
 
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

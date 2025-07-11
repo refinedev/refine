@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
@@ -10,7 +11,6 @@ import {
   pickDataProvider,
   pickNotDeprecated,
   queryKeysReplacement,
-  useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
   useCancelNotification,
@@ -143,7 +143,9 @@ export type UseUpdateReturnType<
   UpdateParams<TData, TError, TVariables>,
   UpdateContext<TData>
 > &
-  UseLoadingOvertimeReturnType;
+  UseLoadingOvertimeReturnType & {
+    isLoading: boolean;
+  };
 
 export type UseUpdateProps<
   TData extends BaseRecord = BaseRecord,
@@ -207,11 +209,8 @@ export const useUpdate = <
     mutationMode: mutationModeContext,
     undoableTimeout: undoableTimeoutContext,
   } = useMutationMode();
+  const { mutate: checkError } = useOnError();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
   const publish = usePublish();
   const { log } = useLog();
   const { notificationDispatch } = useCancelNotification();
@@ -221,7 +220,7 @@ export const useUpdate = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutationResult = useMutation<
     UpdateResponse<TData>,
@@ -333,7 +332,7 @@ export const useUpdate = <
         ...preferredMeta
       } = pickNotDeprecated(meta, metaData) ?? {};
 
-      const queryKey = queryKeysReplacement(preferLegacyKeys)(
+      const queryKey = queryKeysReplacement()(
         identifier,
         pickDataProvider(identifier, dataProviderName, resources),
         preferredMeta,
@@ -344,26 +343,26 @@ export const useUpdate = <
         .resource(identifier);
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(),
+        });
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(),
+      });
 
       if (mutationModePropOrContext !== "pessimistic") {
         if (optimisticUpdateMap.list) {
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
-            resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("list")
+                .params(preferredMeta ?? {})
+                .get(),
+            },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
                 return optimisticUpdateMap.list(previous, values, id);
@@ -394,7 +393,9 @@ export const useUpdate = <
 
         if (optimisticUpdateMap.many) {
           queryClient.setQueriesData(
-            resourceKeys.action("many").get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys.action("many").get(),
+            },
             (previous?: GetManyResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.many === "function") {
                 return optimisticUpdateMap.many(previous, values, id);
@@ -424,11 +425,13 @@ export const useUpdate = <
 
         if (optimisticUpdateMap.detail) {
           queryClient.setQueriesData(
-            resourceKeys
-              .action("one")
-              .id(id)
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("one")
+                .id(id)
+                .params(preferredMeta ?? {})
+                .get(),
+            },
             (previous?: GetOneResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.detail === "function") {
                 return optimisticUpdateMap.detail(previous, values, id);
@@ -483,9 +486,29 @@ export const useUpdate = <
         payload: { id, resource: identifier },
       });
 
+      // Also call user's onSettled if provided
       mutationOptions?.onSettled?.(data, error, variables, context);
     },
-    onSuccess: (data, variables, context) => {
+    // onSuccess and onError removed for v5 compatibility
+    mutationKey: keys().data().mutation("update").get(),
+    ...mutationOptions,
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useUpdate"),
+    },
+  });
+
+  // Handle success with useEffect for v5 compatibility
+  useEffect(() => {
+    if (
+      mutationResult.isSuccess &&
+      mutationResult.data &&
+      mutationResult.variables
+    ) {
+      const data = mutationResult.data;
+      const variables = mutationResult.variables;
+      const context = mutationResult.context;
+
       const {
         id = idFromProps,
         resource: resourceName = resourceFromProps,
@@ -549,8 +572,12 @@ export const useUpdate = <
 
       let previousData: any;
       if (context) {
+        const resourceKeys = keys()
+          .data(pickDataProvider(identifier, dataProviderName, resources))
+          .resource(identifier);
+
         const queryData = queryClient.getQueryData<UpdateResponse<TData>>(
-          context.queryKey.detail(id),
+          resourceKeys.action("one").id(id).get(),
         );
 
         previousData = Object.keys(values || {}).reduce<any>((acc, item) => {
@@ -577,9 +604,29 @@ export const useUpdate = <
         },
       });
 
-      mutationOptions?.onSuccess?.(data, variables, context);
-    },
-    onError: (err: TError, variables, context) => {
+      // Also call user's onSuccess if provided
+      if (context) {
+        mutationOptions?.onSuccess?.(data, variables, context);
+      }
+    }
+  }, [
+    mutationResult.isSuccess,
+    mutationResult.data,
+    mutationResult.variables,
+    mutationOptions?.onSuccess,
+  ]);
+
+  // Handle error with useEffect for v5 compatibility
+  useEffect(() => {
+    if (
+      mutationResult.isError &&
+      mutationResult.error &&
+      mutationResult.variables
+    ) {
+      const err = mutationResult.error;
+      const variables = mutationResult.variables;
+      const context = mutationResult.context;
+
       const {
         id = idFromProps,
         resource: resourceName = resourceFromProps,
@@ -593,14 +640,14 @@ export const useUpdate = <
       const { identifier } = select(resourceName);
 
       // set back the queries to the context:
-      if (context) {
+      if (context?.previousQueries) {
         for (const query of context.previousQueries) {
           queryClient.setQueryData(query[0], query[1]);
         }
       }
 
       if (err.message !== "mutationCancelled") {
-        checkError?.(err);
+        checkError(err);
 
         const resourceSingular = textTransformers.singular(identifier);
 
@@ -627,20 +674,23 @@ export const useUpdate = <
         });
       }
 
-      mutationOptions?.onError?.(err, variables, context);
-    },
-    mutationKey: keys().data().mutation("update").get(preferLegacyKeys),
-    ...mutationOptions,
-    meta: {
-      ...mutationOptions?.meta,
-      ...getXRay("useUpdate", preferLegacyKeys),
-    },
-  });
+      // Also call user's onError if provided
+      if (context) {
+        mutationOptions?.onError?.(err, variables, context);
+      }
+    }
+  }, [
+    mutationResult.isError,
+    mutationResult.error,
+    mutationResult.variables,
+    mutationOptions?.onError,
+  ]);
+
   const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional
@@ -671,6 +721,7 @@ export const useUpdate = <
 
   return {
     ...mutation,
+    isLoading: mutation.isPending,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },

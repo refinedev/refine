@@ -40,9 +40,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   const translate = useTranslate();
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: login } = useLogin<LoginFormTypes>({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: login } = useLogin<LoginFormTypes>();
 
   const renderLink = (link: string, text?: string) => {
     return <ActiveLink to={link}>{text}</ActiveLink>;

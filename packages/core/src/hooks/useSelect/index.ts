@@ -171,7 +171,7 @@ export type UseSelectReturnType<
   TOption extends BaseOption = BaseOption,
 > = {
   query: QueryObserverResult<GetListResponse<TData>, TError>;
-  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>>;
+  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>, TError>;
   /**
    * @deprecated Use `query` instead
    */
@@ -179,7 +179,7 @@ export type UseSelectReturnType<
   /**
    * @deprecated Use `defaultValueQuery` instead
    */
-  defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>>;
+  defaultValueQueryResult: QueryObserverResult<GetManyResponse<TData>, TError>;
   onSearch: (value: string) => void;
   options: TOption[];
 } & UseLoadingOvertimeReturnType;
@@ -291,17 +291,23 @@ export const useSelect = <
   const defaultValueQueryOptions =
     defaultValueQueryOptionsFromProps ?? (queryOptions as any);
 
+  // Clean queryOptions - remove callbacks for v5 compatibility
+  const defaultValueOnSuccess = (defaultValueQueryOptions as any)?.onSuccess;
+  const cleanDefaultValueQueryOptions = defaultValueQueryOptions
+    ? { ...defaultValueQueryOptions }
+    : {};
+  if ("onSuccess" in cleanDefaultValueQueryOptions) {
+    delete (cleanDefaultValueQueryOptions as any).onSuccess;
+  }
+
   const defaultValueQueryResult = useMany<TQueryFnData, TError, TData>({
     resource: identifier,
     ids: defaultValues,
     queryOptions: {
-      ...defaultValueQueryOptions,
+      ...cleanDefaultValueQueryOptions,
       enabled:
-        defaultValues.length > 0 && (defaultValueQueryOptions?.enabled ?? true),
-      onSuccess: (data) => {
-        defaultValueQueryOnSuccess(data);
-        defaultValueQueryOptions?.onSuccess?.(data);
-      },
+        defaultValues.length > 0 &&
+        (cleanDefaultValueQueryOptions?.enabled ?? true),
     },
     overtimeOptions: { enabled: false },
     meta: combinedMeta,
@@ -309,6 +315,20 @@ export const useSelect = <
     liveMode: "off",
     dataProviderName,
   });
+
+  // Implement callback logic with useEffect for defaultValueQuery
+  useEffect(() => {
+    if (defaultValueQueryResult.isSuccess && defaultValueQueryResult.data) {
+      defaultValueQueryOnSuccess(defaultValueQueryResult.data);
+      // Also call user's onSuccess if provided
+      defaultValueOnSuccess?.(defaultValueQueryResult.data);
+    }
+  }, [
+    defaultValueQueryResult.isSuccess,
+    defaultValueQueryResult.data,
+    defaultValueQueryOnSuccess,
+    defaultValueOnSuccess,
+  ]);
 
   const defaultQueryOnSuccess = useCallback(
     (data: GetListResponse<TData>) => {
@@ -325,6 +345,13 @@ export const useSelect = <
     [optionLabel, optionValue],
   );
 
+  // Clean queryOptions - remove callbacks for v5 compatibility
+  const queryOnSuccess = (queryOptions as any)?.onSuccess;
+  const cleanQueryOptions = queryOptions ? { ...queryOptions } : {};
+  if ("onSuccess" in cleanQueryOptions) {
+    delete (cleanQueryOptions as any).onSuccess;
+  }
+
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
     sorters: pickNotDeprecated(sorters, sort),
@@ -335,13 +362,7 @@ export const useSelect = <
       mode: pagination?.mode,
     },
     hasPagination,
-    queryOptions: {
-      ...queryOptions,
-      onSuccess: (data) => {
-        defaultQueryOnSuccess(data);
-        queryOptions?.onSuccess?.(data);
-      },
-    },
+    queryOptions: cleanQueryOptions,
     overtimeOptions: { enabled: false },
     successNotification,
     errorNotification,
@@ -352,6 +373,20 @@ export const useSelect = <
     onLiveEvent,
     dataProviderName,
   });
+
+  // Implement callback logic with useEffect for main query
+  useEffect(() => {
+    if (queryResult.isSuccess && queryResult.data) {
+      defaultQueryOnSuccess(queryResult.data);
+      // Also call user's onSuccess if provided
+      queryOnSuccess?.(queryResult.data);
+    }
+  }, [
+    queryResult.isSuccess,
+    queryResult.data,
+    defaultQueryOnSuccess,
+    queryOnSuccess,
+  ]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,

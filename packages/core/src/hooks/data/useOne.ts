@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type QueryObserverResult,
@@ -9,7 +10,6 @@ import {
   pickDataProvider,
   pickNotDeprecated,
   prepareQueryContext,
-  useActiveAuthProvider,
 } from "@definitions";
 import {
   useDataProvider,
@@ -38,6 +38,24 @@ import {
   useLoadingOvertime,
 } from "../useLoadingOvertime";
 
+// Clean type without custom callback extensions
+export type UseOneQueryOptions<TQueryFnData, TError, TData> = Omit<
+  UseQueryOptions<GetOneResponse<TQueryFnData>, TError, GetOneResponse<TData>>,
+  "queryKey" | "queryFn"
+> & {
+  // Make queryKey and queryFn optional
+  queryKey?: UseQueryOptions<
+    GetOneResponse<TQueryFnData>,
+    TError,
+    GetOneResponse<TData>
+  >["queryKey"];
+  queryFn?: UseQueryOptions<
+    GetOneResponse<TQueryFnData>,
+    TError,
+    GetOneResponse<TData>
+  >["queryFn"];
+};
+
 export type UseOneProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
@@ -51,11 +69,7 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
   /**
    * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<
-    GetOneResponse<TQueryFnData>,
-    TError,
-    GetOneResponse<TData>
-  >;
+  queryOptions?: UseOneQueryOptions<TQueryFnData, TError, TData>;
   /**
    * Metadata query for `dataProvider`,
    */
@@ -70,6 +84,14 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
    * @default `"default"``
    */
   dataProviderName?: string;
+  /**
+   * Callback to be called when the query is successful
+   */
+  onSuccess?: (data: GetOneResponse<TData>) => void;
+  /**
+   * Callback to be called when the query encounters an error
+   */
+  onError?: (error: TError) => void;
 } & SuccessErrorNotification<
   GetOneResponse<TData>,
   TError,
@@ -108,6 +130,8 @@ export const useOne = <
   liveParams,
   dataProviderName,
   overtimeOptions,
+  onSuccess,
+  onError,
 }: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
   GetOneResponse<TData>,
   TError
@@ -117,13 +141,10 @@ export const useOne = <
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const handleNotification = useHandleNotification();
   const getMeta = useMeta();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const preferredMeta = pickNotDeprecated(meta, metaData);
   const pickedDataProvider = pickDataProvider(
@@ -135,6 +156,11 @@ export const useOne = <
   const { getOne } = dataProvider(pickedDataProvider);
 
   const combinedMeta = getMeta({ resource, meta: preferredMeta });
+
+  const isEnabled =
+    typeof queryOptions?.enabled !== "undefined"
+      ? queryOptions?.enabled === true
+      : typeof resource?.name !== "undefined" && typeof id !== "undefined";
 
   useResourceSubscription({
     resource: identifier,
@@ -148,10 +174,7 @@ export const useOne = <
       subscriptionType: "useOne",
       ...liveParams,
     },
-    enabled:
-      typeof queryOptions?.enabled !== "undefined"
-        ? queryOptions?.enabled
-        : typeof resource?.name !== "undefined" && typeof id !== "undefined",
+    enabled: isEnabled,
     liveMode,
     onLiveEvent,
     dataProviderName: pickedDataProvider,
@@ -174,32 +197,35 @@ export const useOne = <
       .params({
         ...(preferredMeta || {}),
       })
-      .get(preferLegacyKeys),
+      .get(),
     queryFn: (context) =>
       getOne<TQueryFnData>({
         resource: resource?.name ?? "",
         id: id!,
         meta: {
           ...combinedMeta,
-          queryContext: prepareQueryContext(context),
+          queryContext: prepareQueryContext(context as any),
         },
         metaData: {
           ...combinedMeta,
-          queryContext: prepareQueryContext(context),
+          queryContext: prepareQueryContext(context as any),
         },
       }),
     ...queryOptions,
-    enabled:
-      typeof queryOptions?.enabled !== "undefined"
-        ? queryOptions?.enabled
-        : typeof id !== "undefined",
-    onSuccess: (data) => {
-      queryOptions?.onSuccess?.(data);
+    enabled: isEnabled,
+    meta: {
+      ...queryOptions?.meta,
+      ...getXRay("useOne", resource?.name),
+    },
+  });
 
+  // Handle success
+  useEffect(() => {
+    if (queryResponse.isSuccess && queryResponse.data) {
       const notificationConfig =
         typeof successNotification === "function"
           ? successNotification(
-              data,
+              queryResponse.data,
               {
                 id,
                 ...combinedMeta,
@@ -209,15 +235,25 @@ export const useOne = <
           : successNotification;
 
       handleNotification(notificationConfig);
-    },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
+
+      onSuccess?.(queryResponse.data);
+    }
+  }, [
+    queryResponse.isSuccess,
+    queryResponse.data,
+    successNotification,
+    onSuccess,
+  ]);
+
+  // Handle error
+  useEffect(() => {
+    if (queryResponse.isError && queryResponse.error) {
+      checkError(queryResponse.error);
 
       const notificationConfig =
         typeof errorNotification === "function"
           ? errorNotification(
-              err,
+              queryResponse.error,
               {
                 id,
                 ...combinedMeta,
@@ -230,23 +266,30 @@ export const useOne = <
         key: `${id}-${identifier}-getOne-notification`,
         message: translate(
           "notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
+          { statusCode: queryResponse.error.statusCode },
+          `Error (status code: ${queryResponse.error.statusCode})`,
         ),
-        description: err.message,
+        description: queryResponse.error.message,
         type: "error",
       });
-    },
-    meta: {
-      ...queryOptions?.meta,
-      ...getXRay("useOne", preferLegacyKeys, resource?.name),
-    },
-  });
+
+      onError?.(queryResponse.error);
+    }
+  }, [queryResponse.isError, queryResponse.error, errorNotification, onError]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
     isLoading: queryResponse.isFetching,
   });
 
-  return { ...queryResponse, overtime: { elapsedTime } };
+  return {
+    ...queryResponse,
+    // Map v5 isPending to v4 isLoading for backward compatibility
+    isLoading: queryResponse.isPending,
+    // Map v5 'pending' status to v4 'loading' status
+    status:
+      queryResponse.status === "pending" ? "loading" : queryResponse.status,
+    overtime: { elapsedTime },
+  } as QueryObserverResult<GetOneResponse<TData>, TError> &
+    UseLoadingOvertimeReturnType;
 };

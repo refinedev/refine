@@ -49,7 +49,7 @@ export const queryKeys = (
   return keys;
 };
 
-export const queryKeysReplacement = (preferLegacyKeys?: boolean) => {
+export const queryKeysReplacement = () => {
   return (
     resource?: string,
     dataProviderName?: string,
@@ -62,11 +62,11 @@ export const queryKeysReplacement = (preferLegacyKeys?: boolean) => {
     const providerName = dataProviderName || "default";
 
     const keys: IQueryKeys = {
-      all: newKeys().data(providerName).get(preferLegacyKeys),
+      all: newKeys().data(providerName).get(),
       resourceAll: newKeys()
         .data(dataProviderName)
         .resource(resource ?? "")
-        .get(preferLegacyKeys),
+        .get(),
       list: (config) =>
         newKeys()
           .data(dataProviderName)
@@ -76,7 +76,7 @@ export const queryKeysReplacement = (preferLegacyKeys?: boolean) => {
             ...config,
             ...(pickNotDeprecated(meta, metaData) || {}),
           })
-          .get(preferLegacyKeys),
+          .get(),
       many: (ids) =>
         newKeys()
           .data(dataProviderName)
@@ -86,7 +86,7 @@ export const queryKeysReplacement = (preferLegacyKeys?: boolean) => {
           .params({
             ...(pickNotDeprecated(meta, metaData) || {}),
           })
-          .get(preferLegacyKeys),
+          .get(),
       detail: (id) =>
         newKeys()
           .data(dataProviderName)
@@ -96,7 +96,7 @@ export const queryKeysReplacement = (preferLegacyKeys?: boolean) => {
           .params({
             ...(pickNotDeprecated(meta, metaData) || {}),
           })
-          .get(preferLegacyKeys),
+          .get(),
       logList: (meta) =>
         [
           ...newKeys()
@@ -104,7 +104,7 @@ export const queryKeysReplacement = (preferLegacyKeys?: boolean) => {
             .resource(resource)
             .action("list")
             .params(meta)
-            .get(preferLegacyKeys),
+            .get(),
           metaData as QueryKey,
         ].filter((item) => item !== undefined),
     };

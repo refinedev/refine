@@ -86,7 +86,6 @@ export const handleRefineOptions = ({
       options?.disableServerSideValidation ??
       defaultRefineOptions.disableServerSideValidation,
     projectId: options?.projectId,
-    useNewQueryKeys: options?.useNewQueryKeys,
     title: {
       icon:
         typeof options?.title?.icon === "undefined"

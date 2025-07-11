@@ -19,7 +19,9 @@ export type UseCanProps = CanParams & {
   /**
    * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<CanReturnType>;
+  queryOptions?: Omit<UseQueryOptions<CanReturnType>, "queryKey"> & {
+    queryKey?: UseQueryOptions<CanReturnType>["queryKey"];
+  };
 };
 
 /**
@@ -37,7 +39,7 @@ export const useCan = ({
   queryOptions: hookQueryOptions,
 }: UseCanProps): UseQueryResult<CanReturnType> => {
   const { can, options: globalOptions } = useContext(AccessControlContext);
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const { queryOptions: globalQueryOptions } = globalOptions || {};
 
@@ -63,7 +65,7 @@ export const useCan = ({
         params: { ...paramsRest, resource: sanitizedResource },
         enabled: mergedQueryOptions?.enabled,
       })
-      .get(preferLegacyKeys),
+      .get(),
     // Enabled check for `can` is enough to be sure that it's defined in the query function but TS is not smart enough to know that.
     queryFn: () =>
       can?.({
@@ -75,7 +77,7 @@ export const useCan = ({
     ...mergedQueryOptions,
     meta: {
       ...mergedQueryOptions?.meta,
-      ...getXRay("useCan", preferLegacyKeys, resource, [
+      ...getXRay("useCan", resource, [
         "useButtonCanAccess",
         "useNavigationButton",
       ]),

@@ -11,7 +11,6 @@ import {
   pickDataProvider,
   pickNotDeprecated,
   queryKeysReplacement,
-  useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
   useCancelNotification,
@@ -145,7 +144,9 @@ export type UseUpdateManyReturnType<
   UpdateManyParams<TData, TError, TVariables>,
   UpdateContext<TData>
 > &
-  UseLoadingOvertimeReturnType;
+  UseLoadingOvertimeReturnType & {
+    isLoading: boolean;
+  };
 
 export type UseUpdateManyProps<
   TData extends BaseRecord = BaseRecord,
@@ -209,10 +210,7 @@ export const useUpdateMany = <
     mutationMode: mutationModeContext,
     undoableTimeout: undoableTimeoutContext,
   } = useMutationMode();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const { notificationDispatch } = useCancelNotification();
   const publish = usePublish();
   const handleNotification = useHandleNotification();
@@ -222,7 +220,7 @@ export const useUpdateMany = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutationResult = useMutation<
     UpdateManyResponse<TData>,
@@ -344,7 +342,7 @@ export const useUpdateMany = <
         ...preferredMeta
       } = pickNotDeprecated(meta, metaData) ?? {};
 
-      const queryKey = queryKeysReplacement(preferLegacyKeys)(
+      const queryKey = queryKeysReplacement()(
         identifier,
         pickDataProvider(identifier, dataProviderName, resources),
         preferredMeta,
@@ -356,26 +354,24 @@ export const useUpdateMany = <
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(),
+      });
 
-      const previousQueries = queryClient.getQueriesData<QueryResponse<TData>>(
-        resourceKeys.get(preferLegacyKeys),
-      );
+      const previousQueries = queryClient.getQueriesData<QueryResponse<TData>>({
+        queryKey: resourceKeys.get(),
+      });
 
       if (mutationModePropOrContext !== "pessimistic") {
         if (optimisticUpdateMap.list) {
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
-            resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("list")
+                .params(preferredMeta ?? {})
+                .get(),
+            },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
                 return optimisticUpdateMap.list(previous, values, ids);
@@ -412,7 +408,9 @@ export const useUpdateMany = <
 
         if (optimisticUpdateMap.many) {
           queryClient.setQueriesData(
-            resourceKeys.action("many").get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys.action("many").get(),
+            },
             (previous?: GetManyResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.many === "function") {
                 return optimisticUpdateMap.many(previous, values, ids);
@@ -448,11 +446,13 @@ export const useUpdateMany = <
         if (optimisticUpdateMap.detail) {
           for (const id of ids) {
             queryClient.setQueriesData(
-              resourceKeys
-                .action("one")
-                .id(id)
-                .params(preferredMeta ?? {})
-                .get(preferLegacyKeys),
+              {
+                queryKey: resourceKeys
+                  .action("one")
+                  .id(id)
+                  .params(preferredMeta ?? {})
+                  .get(),
+              },
               (previous?: GetOneResponse<TData> | null) => {
                 if (typeof optimisticUpdateMap.detail === "function") {
                   return optimisticUpdateMap.detail(previous, values, id);
@@ -640,7 +640,7 @@ export const useUpdateMany = <
       }
 
       if (err.message !== "mutationCancelled") {
-        checkError?.(err);
+        checkError(err);
 
         const resourceSingular = textTransformers.singular(identifier);
 
@@ -666,18 +666,18 @@ export const useUpdateMany = <
 
       mutationOptions?.onError?.(err, variables, context);
     },
-    mutationKey: keys().data().mutation("updateMany").get(preferLegacyKeys),
+    mutationKey: keys().data().mutation("updateMany").get(),
     ...mutationOptions,
     meta: {
       ...mutationOptions?.meta,
-      ...getXRay("useUpdateMany", preferLegacyKeys),
+      ...getXRay("useUpdateMany"),
     },
   });
   const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional
@@ -708,6 +708,7 @@ export const useUpdateMany = <
 
   return {
     ...mutation,
+    isLoading: mutation.isPending,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },

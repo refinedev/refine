@@ -42,9 +42,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   const translate = useTranslate();
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: register, isLoading } = useRegister({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: register, isLoading } = useRegister();
 
   const renderLink = (link: string, text?: string) => {
     return <ActiveLink to={link}>{text}</ActiveLink>;

@@ -5,15 +5,11 @@ export const prepareQueryContext = (
 ): Omit<QueryFunctionContext<QueryKey, any>, "meta"> => {
   const queryContext = {
     queryKey: context.queryKey,
-    pageParam: context.pageParam,
+    pageParam: context.pageParam ?? undefined,
+    signal: context.signal,
+    client: context.client,
+    direction: context.direction ?? ("forward" as any),
   };
-
-  Object.defineProperty(queryContext, "signal", {
-    enumerable: true,
-    get: () => {
-      return context.signal;
-    },
-  });
 
   return queryContext;
 };

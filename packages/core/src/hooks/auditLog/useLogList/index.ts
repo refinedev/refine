@@ -42,9 +42,9 @@ export const useLogList = <
   author,
   metaData,
   queryOptions,
-}: UseLogProps<TQueryFnData, TError, TData>): UseQueryResult<TData> => {
+}: UseLogProps<TQueryFnData, TError, TData>): UseQueryResult<TData, TError> => {
   const { get } = useContext(AuditLogContext);
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const queryResponse = useQuery<TQueryFnData, TError, TData>({
     queryKey: keys()
@@ -52,7 +52,7 @@ export const useLogList = <
       .resource(resource)
       .action("list")
       .params(meta)
-      .get(preferLegacyKeys),
+      .get(),
     queryFn: () =>
       get?.({
         resource,
@@ -66,7 +66,7 @@ export const useLogList = <
     retry: false,
     meta: {
       ...queryOptions?.meta,
-      ...getXRay("useLogList", preferLegacyKeys, resource),
+      ...getXRay("useLogList", resource),
     },
   });
 

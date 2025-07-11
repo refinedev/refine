@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type UseMutationOptions,
@@ -56,6 +57,19 @@ export type UseCreateManyReturnType<
   TError,
   UseCreateManyParams<TData, TError, TVariables>,
   unknown
+> & {
+  isLoading: boolean;
+};
+
+// Clean type without custom callback extensions
+export type UseCreateManyMutationOptions<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+  TVariables = {},
+> = UseMutationOptions<
+  CreateManyResponse<TData>,
+  TError,
+  UseCreateManyParams<TData, TError, TVariables>
 >;
 
 export type UseCreateManyProps<
@@ -63,14 +77,7 @@ export type UseCreateManyProps<
   TError extends HttpError = HttpError,
   TVariables = {},
 > = {
-  mutationOptions?: Omit<
-    UseMutationOptions<
-      CreateManyResponse<TData>,
-      TError,
-      UseCreateManyParams<TData, TError, TVariables>
-    >,
-    "mutationFn"
-  >;
+  mutationOptions?: UseCreateManyMutationOptions<TData, TError, TVariables>;
 } & UseLoadingOvertimeOptionsProps &
   UseCreateManyParams<TData, TError, TVariables>;
 
@@ -118,13 +125,14 @@ export const useCreateMany = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutationResult = useMutation<
     CreateManyResponse<TData>,
     TError,
     UseCreateManyParams<TData, TError, TVariables>
   >({
+    mutationKey: keys().data().mutation("createMany").get(),
     mutationFn: ({
       resource: resourceName = resourceFromProps,
       values = valuesFromProps,
@@ -165,7 +173,24 @@ export const useCreateMany = <
         ),
       );
     },
-    onSuccess: (response, variables, context) => {
+    ...mutationOptions,
+    meta: {
+      ...mutationOptions?.meta,
+      ...getXRay("useCreateMany"),
+    },
+  });
+
+  // Handle success with useEffect for v5 compatibility
+  useEffect(() => {
+    if (
+      mutationResult.isSuccess &&
+      mutationResult.data &&
+      mutationResult.variables
+    ) {
+      const response = mutationResult.data;
+      const variables = mutationResult.variables;
+      const context = undefined;
+
       const {
         resource: resourceName = resourceFromProps,
         successNotification = successNotificationFromProps,
@@ -248,10 +273,20 @@ export const useCreateMany = <
           ...rest,
         },
       });
+    }
+  }, [mutationResult.isSuccess, mutationResult.data, mutationResult.variables]);
 
-      mutationOptions?.onSuccess?.(response, variables, context);
-    },
-    onError: (err: TError, variables, context) => {
+  // Handle error with useEffect for v5 compatibility
+  useEffect(() => {
+    if (
+      mutationResult.isError &&
+      mutationResult.error &&
+      mutationResult.variables
+    ) {
+      const err = mutationResult.error;
+      const variables = mutationResult.variables;
+      const context = undefined;
+
       const {
         resource: resourceName = resourceFromProps,
         errorNotification = errorNotificationFromProps,
@@ -280,21 +315,13 @@ export const useCreateMany = <
         ),
         type: "error",
       });
-
-      mutationOptions?.onError?.(err, variables, context);
-    },
-    mutationKey: keys().data().mutation("createMany").get(preferLegacyKeys),
-    ...mutationOptions,
-    meta: {
-      ...mutationOptions?.meta,
-      ...getXRay("useCreateMany", preferLegacyKeys),
-    },
-  });
+    }
+  }, [mutationResult.isError, mutationResult.error, mutationResult.variables]);
   const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutationResult.isPending, // v5 uses isPending instead of isLoading
   });
 
   // this function is used to make the `variables` parameter optional
@@ -325,10 +352,12 @@ export const useCreateMany = <
 
   return {
     ...mutation,
+    isLoading: mutationResult.isPending,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },
-  };
+  } as UseCreateManyReturnType<TData, TError, TVariables> &
+    UseLoadingOvertimeReturnType;
 };
 
 const missingResourceError = new Error(

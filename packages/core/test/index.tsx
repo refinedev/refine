@@ -4,10 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { AuditLogContextProvider } from "@contexts/auditLog";
-import {
-  AuthBindingsContextProvider,
-  LegacyAuthContextProvider,
-} from "@contexts/auth";
+import { AuthBindingsContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { I18nContextProvider } from "@contexts/i18n";
 import { LiveContextProvider } from "@contexts/live";
@@ -22,10 +19,7 @@ import { UndoableQueueContextProvider } from "@contexts/undoableQueue";
 
 import type { AccessControlProvider } from "../src/contexts/accessControl/types";
 import type { AuditLogProvider } from "../src/contexts/auditLog/types";
-import type {
-  AuthProvider,
-  ILegacyAuthContext,
-} from "../src/contexts/auth/types";
+import type { AuthProvider } from "../src/contexts/auth/types";
 import type { DataProvider, DataProviders } from "../src/contexts/data/types";
 import type { I18nProvider } from "../src/contexts/i18n/types";
 import type { LiveProvider } from "../src/contexts/live/types";
@@ -35,17 +29,10 @@ import type { LegacyRouterProvider } from "../src/contexts/router/legacy/types";
 import type { RouterProvider } from "../src/contexts/router/types";
 
 export const queryClient = new QueryClient({
-  logger: {
-    log: console.log,
-    warn: console.warn,
-    // ✅ no more errors on the console
-    error: () => {
-      return {};
-    },
-  },
+  // Note: logger option removed in v5
   defaultOptions: {
     queries: {
-      cacheTime: 0,
+      gcTime: 0, // v5: cacheTime renamed to gcTime
       retry: 0,
     },
   },
@@ -56,7 +43,6 @@ beforeEach(() => {
 });
 
 export interface ITestWrapperProps {
-  legacyAuthProvider?: ILegacyAuthContext;
   authProvider?: AuthProvider;
   dataProvider?: DataProvider | DataProviders;
   i18nProvider?: I18nProvider;
@@ -74,7 +60,6 @@ export interface ITestWrapperProps {
 export const TestWrapper: (
   props: ITestWrapperProps,
 ) => React.FC<{ children: ReactNode }> = ({
-  legacyAuthProvider,
   authProvider,
   dataProvider,
   resources,
@@ -181,26 +166,15 @@ export const TestWrapper: (
       </UndoableQueueContextProvider>
     );
 
-    const withLegacyAuth = legacyAuthProvider ? (
-      <LegacyAuthContextProvider
-        {...legacyAuthProvider}
-        isProvided={Boolean(legacyAuthProvider)}
-      >
-        {withNotification}
-      </LegacyAuthContextProvider>
-    ) : (
-      withNotification
-    );
-
     const withAuth = authProvider ? (
       <AuthBindingsContextProvider
         {...authProvider}
         isProvided={Boolean(authProvider)}
       >
-        {withLegacyAuth}
+        {withNotification}
       </AuthBindingsContextProvider>
     ) : (
-      withLegacyAuth
+      withNotification
     );
 
     const withRefine = refineProvider ? (
