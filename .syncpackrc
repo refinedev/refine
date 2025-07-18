@@ -78,7 +78,7 @@
         "@netlify/plugin-nextjs"
       ],
       "packages": [
-        "@refinedev/ui"
+        "@refinedev/refine-ui"
       ],
       "isIgnored": true
     }
