@@ -13,19 +13,7 @@ import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 Here is a basic example of how to use `useNotification` hook.
 
-```tsx
-const { open, close } = useNotification();
-
-// open notification
-open?.({
-  type: "success",
-  message: "Success",
-  description: "This is a success message",
-});
-
-// close notification
-close?.("notification-key");
-```
+ <BasicUsageLivePreview/>
 
 ## Properties
 
