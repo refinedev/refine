@@ -97,6 +97,7 @@ export const handleRefineOptions = ({
           ? defaultRefineOptions.title.text
           : options?.title?.text,
     },
+    siderItems: options?.siderItems,
   };
 
   const disableTelemetryWithDefault =

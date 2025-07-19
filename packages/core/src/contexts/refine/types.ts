@@ -104,6 +104,12 @@ export interface IRefineOptions {
     icon?: React.ReactNode;
     text?: React.ReactNode;
   };
+  /**
+   * Default collapsed/expanded of multi-level sider items
+   */
+  siderItems?: {
+    isCollapsed: boolean;
+  };
 }
 
 export interface IRefineContextOptions {
@@ -126,6 +132,9 @@ export interface IRefineContextOptions {
   title: {
     icon?: React.ReactNode;
     text?: React.ReactNode;
+  };
+  siderItems?: {
+    isCollapsed?: boolean;
   };
 }
 
