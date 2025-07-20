@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React, { useCallback, type CSSProperties } from "react";
 import {
   CanAccess,
   type ITreeMenu,
@@ -53,7 +53,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const TitleFromContext = useTitle();
   const isExistAuthentication = useIsExistAuthentication();
   const t = useTranslate();
-  const { hasDashboard } = useRefineContext();
+  const { hasDashboard, options: refineOptions } = useRefineContext();
+  const siderItemsOptions = refineOptions.siderItems;
   const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
   const { mutate: mutateLogout } = useLogout({
@@ -73,6 +74,21 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     isDisabled: !siderCollapsed || mobileSiderOpen,
   };
 
+  const getDefaultExpandMenuItemsCB = (key?: string) => {
+    const defaultExpandedIndex = defaultOpenKeys.includes(key || "")
+      ? [0]
+      : [-1];
+
+    if (!siderItemsOptions) return defaultExpandedIndex;
+    if (siderItemsOptions.isCollapsed) return defaultExpandedIndex;
+
+    return menuItems.map((_, ind) => ind);
+  };
+  const getDefaultExpandMenuItems = useCallback(
+    getDefaultExpandMenuItemsCB,
+    [],
+  );
+
   const renderTreeView = (tree: ITreeMenu[]) => {
     return tree.map((item) => {
       const { label, route, name, icon, children } = item;
@@ -90,6 +106,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       const linkStyle: CSSProperties =
         activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
 
+      const defaultExpandMenuItems = getDefaultExpandMenuItems(item.key);
+
       return (
         <CanAccess
           key={item.key}
@@ -100,7 +118,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           }}
         >
           <Accordion
-            defaultIndex={defaultOpenKeys.includes(item.key || "") ? 0 : -1}
+            defaultIndex={defaultExpandMenuItems}
+            allowMultiple
             width="full"
             mb={2}
             allowToggle

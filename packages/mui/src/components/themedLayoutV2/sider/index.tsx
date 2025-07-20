@@ -62,7 +62,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const Link = useLink();
   const { Link: LegacyLink } = useRouterContext();
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-  const { hasDashboard } = useRefineContext();
+  const { hasDashboard, options: refineOptions } = useRefineContext();
+  const siderItemsOptions = refineOptions.siderItems;
   const translate = useTranslate();
 
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
@@ -74,7 +75,25 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
 
-  const [open, setOpen] = useState<{ [k: string]: any }>({});
+  const defaultExpandMenuItems = (() => {
+    const defaultOpenKeys = {};
+
+    if (!siderItemsOptions) return defaultOpenKeys;
+    if (siderItemsOptions.isCollapsed) return defaultOpenKeys;
+
+    return menuItems.reduce((prev, curr) => {
+      const { key } = curr;
+
+      return {
+        ...prev,
+        [key]: true,
+      };
+    }, {});
+  })();
+
+  const [open, setOpen] = useState<{ [k: string]: any }>(
+    defaultExpandMenuItems,
+  );
 
   React.useEffect(() => {
     setOpen((previous) => {

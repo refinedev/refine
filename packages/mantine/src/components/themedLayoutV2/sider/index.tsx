@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React, { useCallback, type CSSProperties } from "react";
 import {
   CanAccess,
   type ITreeMenu,
@@ -57,7 +57,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const TitleFromContext = useTitle();
   const isExistAuthentication = useIsExistAuthentication();
   const t = useTranslate();
-  const { hasDashboard } = useRefineContext();
+  const { hasDashboard, options: refineOptions } = useRefineContext();
+  const siderItemsOptions = refineOptions.siderItems;
   const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
   const { mutate: mutateLogout } = useLogout({
@@ -99,6 +100,19 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     offset: 4,
   };
 
+  const getDefaultExpandMenuItemsCB = (key?: string) => {
+    const defaultOpened = defaultOpenKeys.includes(key || "");
+
+    if (!siderItemsOptions) return defaultOpened;
+    if (siderItemsOptions.isCollapsed) return defaultOpened;
+
+    return true;
+  };
+  const getDefaultExpandMenuItems = useCallback(
+    getDefaultExpandMenuItemsCB,
+    [],
+  );
+
   const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
     return tree.map((item) => {
       const { icon, label, route, name, children } = item;
@@ -112,6 +126,8 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
       const disablePointerStyle: CSSProperties =
         activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
+
+      const defaultExpandMenuItems = getDefaultExpandMenuItems(item.key);
 
       return (
         <CanAccess
@@ -129,7 +145,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
               icon={icon ?? defaultNavIcon}
               active={isSelected}
               childrenOffset={siderCollapsed && !mobileSiderOpen ? 0 : 12}
-              defaultOpened={defaultOpenKeys.includes(item.key || "")}
+              defaultOpened={defaultExpandMenuItems}
               pl={siderCollapsed || mobileSiderOpen ? "12px" : "18px"}
               styles={commonNavLinkStyles}
               style={disablePointerStyle}
