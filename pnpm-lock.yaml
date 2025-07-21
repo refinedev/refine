@@ -6436,8 +6436,8 @@ importers:
         specifier: ^1.0.1
         version: link:../../packages/react-router
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -10258,11 +10258,11 @@ importers:
         specifier: ^4.22.0
         version: 4.36.1
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       '@tanstack/react-query-persist-client':
         specifier: ^4.22.0
-        version: 4.36.1(@tanstack/react-query@4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        version: 4.36.1(@tanstack/react-query@5.81.5(react@19.1.0))
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -10859,8 +10859,8 @@ importers:
         specifier: ^1.24.2
         version: link:../ui-types
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       antd:
         specifier: ^5.17.0
         version: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -11356,8 +11356,8 @@ importers:
         specifier: 1.1.16
         version: link:../devtools-internal
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -11614,8 +11614,8 @@ importers:
         specifier: 1.1.14
         version: link:../devtools-shared
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       '@types/react':
         specifier: ^18.0.0 || ^19.0.0
         version: 19.1.8
@@ -11823,8 +11823,8 @@ importers:
   packages/devtools-shared:
     dependencies:
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       '@types/react':
         specifier: ^18.0.0 || ^19.0.0
         version: 19.1.8
@@ -12595,8 +12595,8 @@ importers:
         specifier: ^3.1.0
         version: 3.2.0(react@19.1.0)
       '@tanstack/react-query':
-        specifier: ^4.10.1
-        version: 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.81.5
+        version: 5.81.5(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
@@ -13126,58 +13126,6 @@ importers:
       react-router:
         specifier: ^7.0.2
         version: 7.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-    devDependencies:
-      '@esbuild-plugins/node-resolve':
-        specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
-      '@refinedev/core':
-        specifier: ^4.57.1
-        version: link:../core
-      '@types/jest':
-        specifier: ^29.2.4
-        version: 29.5.12
-      '@types/qs':
-        specifier: ^6.9.7
-        version: 6.9.15
-      jest:
-        specifier: ^29.3.1
-        version: 29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))
-      jest-environment-jsdom:
-        specifier: ^29.3.1
-        version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      ts-jest:
-        specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
-      tslib:
-        specifier: ^2.6.2
-        version: 2.6.2
-      tsup:
-        specifier: ^6.7.0
-        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-
-  packages/react-router-v6:
-    dependencies:
-      '@types/react':
-        specifier: ^18.0.0 || ^19.0.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^18.0.0 || ^19.0.0
-        version: 19.1.6(@types/react@19.1.8)
-      qs:
-        specifier: ^6.10.1
-        version: 6.13.0
-      react:
-        specifier: ^18.0.0 || ^19.0.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^18.0.0 || ^19.0.0
-        version: 19.1.0(react@19.1.0)
-      react-router-dom:
-        specifier: ^6.8.1
-        version: 6.23.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -18514,6 +18462,9 @@ packages:
   '@tanstack/query-core@4.36.1':
     resolution: {integrity: sha512-DJSilV5+ytBP1FbFcEJovv4rnnm/CokuVvrBEtW/Va9DvuJ3HksbXUJEpI0aV1KtuL4ZoO9AVE6PyNLzF7tLeA==}
 
+  '@tanstack/query-core@5.81.5':
+    resolution: {integrity: sha512-ZJOgCy/z2qpZXWaj/oxvodDx07XcQa9BF92c0oINjHkoqUPsmm3uG08HpTaviviZ/N9eP1f9CM7mKSEkIo7O1Q==}
+
   '@tanstack/query-persist-client-core@4.36.1':
     resolution: {integrity: sha512-eocgCeI7D7TRv1IUUBMfVwOI0wdSmMkBIbkKhqEdTrnUHUQEeOaYac8oeZk2cumAWJdycu6P/wB+WqGynTnzXg==}
 
@@ -18525,17 +18476,10 @@ packages:
     peerDependencies:
       '@tanstack/react-query': ^4.36.1
 
-  '@tanstack/react-query@4.36.1':
-    resolution: {integrity: sha512-y7ySVHFyyQblPl3J3eQBWpXZkliroki3ARnBKsdJchlgt7yJLRDUcf4B8soufgiYt3pEQIkBWBx1N9/ZPIeUWw==}
+  '@tanstack/react-query@5.81.5':
+    resolution: {integrity: sha512-lOf2KqRRiYWpQT86eeeftAGnjuTR35myTP8MXyvHa81VlomoAWNEd8x5vkcAfQefu0qtYCvyqLropFZqgI2EQw==}
     peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
+      react: ^18 || ^19
 
   '@tanstack/react-table@8.16.0':
     resolution: {integrity: sha512-rKRjnt8ostqN2fercRVOIH/dq7MAmOENCMvVlKx6P9Iokhh6woBGnIZEkqsY/vEJf1jN3TqLOb34xQGLVRuhAg==}
@@ -37657,6 +37601,8 @@ snapshots:
 
   '@tanstack/query-core@4.36.1': {}
 
+  '@tanstack/query-core@5.81.5': {}
+
   '@tanstack/query-persist-client-core@4.36.1':
     dependencies:
       '@tanstack/query-core': 4.36.1
@@ -37665,18 +37611,15 @@ snapshots:
     dependencies:
       '@tanstack/query-persist-client-core': 4.36.1
 
-  '@tanstack/react-query-persist-client@4.36.1(@tanstack/react-query@4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
+  '@tanstack/react-query-persist-client@4.36.1(@tanstack/react-query@5.81.5(react@19.1.0))':
     dependencies:
       '@tanstack/query-persist-client-core': 4.36.1
-      '@tanstack/react-query': 4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@tanstack/react-query': 5.81.5(react@19.1.0)
 
-  '@tanstack/react-query@4.36.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@tanstack/react-query@5.81.5(react@19.1.0)':
     dependencies:
-      '@tanstack/query-core': 4.36.1
+      '@tanstack/query-core': 5.81.5
       react: 19.1.0
-      use-sync-external-store: 1.2.1(react@19.1.0)
-    optionalDependencies:
-      react-dom: 19.1.0(react@19.1.0)
 
   '@tanstack/react-table@8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
