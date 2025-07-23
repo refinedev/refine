@@ -5,44 +5,33 @@ describe("sanitizeResource", () => {
     expect(
       sanitizeResource({
         name: "posts",
-        icon: "icon",
+        meta: { icon: "icon" },
       }),
     ).toEqual({
       name: "posts",
+      meta: {},
     });
   });
-  it("should remove meta.icon property", () => {
+
+  it("should remove meta.icon property without affecting other properties", () => {
     expect(
       sanitizeResource({
         name: "posts",
         meta: {
           icon: "meta-icon",
           label: "meta-label",
+          canDelete: true,
         },
       }),
     ).toEqual({
       name: "posts",
       meta: {
         label: "meta-label",
+        canDelete: true,
       },
     });
   });
-  it("should remove options.icon property", () => {
-    expect(
-      sanitizeResource({
-        name: "posts",
-        options: {
-          icon: "options-icon",
-          label: "options-label",
-        },
-      }),
-    ).toEqual({
-      name: "posts",
-      options: {
-        label: "options-label",
-      },
-    });
-  });
+
   it("should return undefined if resource is not passed", () => {
     expect(sanitizeResource()).toEqual(undefined);
   });

@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import { TestWrapper, mockRouterProvider } from "@test";
@@ -79,7 +79,6 @@ describe("useLoadingOvertime Hook", () => {
       {
         wrapper: TestWrapper({
           refineProvider: {
-            hasDashboard: false,
             ...defaultRefineOptions,
             options: {
               ...defaultRefineOptions,
@@ -119,7 +118,6 @@ describe("useLoadingOvertime Hook", () => {
             },
           ],
           refineProvider: {
-            hasDashboard: false,
             ...defaultRefineOptions,
             options: {
               ...defaultRefineOptions,

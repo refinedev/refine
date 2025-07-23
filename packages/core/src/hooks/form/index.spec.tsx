@@ -2,13 +2,7 @@ import React from "react";
 
 import { renderHook, waitFor } from "@testing-library/react";
 
-import {
-  MockJSONServer,
-  TestWrapper,
-  act,
-  mockLegacyRouterProvider,
-  mockRouterProvider,
-} from "@test";
+import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
 import { posts } from "@test/dataMocks";
 import {
   assertList,
@@ -355,77 +349,6 @@ describe("useForm Hook", () => {
         meta: expect.objectContaining({
           likes: 100,
         }),
-      }),
-    );
-  });
-
-  it("if id is not provided while using legacy router provider, it should infer id from route when resources are matched", async () => {
-    const legacyRouterProvider = {
-      ...mockLegacyRouterProvider(),
-      useParams: () => ({
-        resource: "posts",
-        action: "edit",
-        id: "1",
-      }),
-    } as any;
-
-    const { result } = renderHook(
-      () =>
-        useForm({
-          resource: "posts",
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          legacyRouterProvider: legacyRouterProvider,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    expect(result.current.id).toEqual("1");
-  });
-
-  it("legacy router provider should infer resource, action and id from route", async () => {
-    const updateMock = jest.fn();
-    const legacyRouterProvider = {
-      ...mockLegacyRouterProvider(),
-      useParams: () => ({
-        resource: "posts",
-        action: "edit",
-        id: "1",
-      }),
-    } as any;
-
-    const { result } = renderHook(() => useForm({}), {
-      wrapper: TestWrapper({
-        dataProvider: {
-          default: {
-            ...MockJSONServer.default,
-            update: updateMock,
-          },
-        },
-        legacyRouterProvider: legacyRouterProvider,
-        resources: [
-          {
-            name: "posts",
-          },
-        ],
-      }),
-    });
-
-    await act(async () => {
-      await result.current.onFinish({});
-    });
-
-    await waitFor(() => {
-      expect(updateMock).toBeCalled();
-    });
-
-    expect(updateMock).toBeCalledWith(
-      expect.objectContaining({
-        resource: "posts",
-        id: "1",
       }),
     );
   });
@@ -808,7 +731,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutation?.isLoading).toBeTruthy();
+        expect(result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
         expect(onInterval).toBeCalled();
       });
@@ -816,7 +739,7 @@ describe("useForm Hook", () => {
       await promise;
 
       await waitFor(() => {
-        expect(!result.current.mutation?.isLoading).toBeTruthy();
+        expect(!result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBeUndefined();
       });
     });
@@ -1060,7 +983,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutation?.isLoading).toBeTruthy();
+        expect(result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
         expect(onInterval).toBeCalled();
       });
@@ -1068,7 +991,7 @@ describe("useForm Hook", () => {
       await promise;
 
       await waitFor(() => {
-        expect(!result.current.mutation?.isLoading).toBeTruthy();
+        expect(!result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBeUndefined();
       });
     });

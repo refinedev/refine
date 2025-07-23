@@ -12,7 +12,6 @@ import type { IRefineContextProvider } from "../../contexts/refine/types";
 import { useOne } from "./useOne";
 
 const mockRefineProvider: IRefineContextProvider = {
-  hasDashboard: false,
   ...defaultRefineOptions,
   options: defaultRefineOptions,
 };
@@ -30,7 +29,7 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.isLoading).toBeTruthy();
+      expect(!result.current.isPending).toBeTruthy();
     });
 
     const { status, data } = result.current;
@@ -104,7 +103,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(!result.current.isLoading).toBeTruthy();
+          expect(!result.current.isPending).toBeTruthy();
         });
 
         expect(onSubscribeMock).toBeCalled();
@@ -116,9 +115,11 @@ describe("useOne Hook", () => {
             id: "1",
             resource: "posts",
             subscriptionType: "useOne",
+            meta: {
+              route: undefined,
+            },
           }),
           types: ["*"],
-          dataProviderName,
           meta: {
             dataProviderName,
           },
@@ -148,7 +149,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).not.toBeCalled();
@@ -176,7 +177,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).toBeCalled();
@@ -205,7 +206,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).toBeCalled();
@@ -416,6 +417,9 @@ describe("useOne Hook", () => {
                 },
               },
               authProvider: {
+                login: () => Promise.resolve({ success: true }),
+                logout: () => Promise.resolve({ success: true }),
+                check: () => Promise.resolve({ authenticated: true }),
                 onError: onErrorMock,
               } as any,
               resources: [{ name: "posts" }],
@@ -448,8 +452,11 @@ describe("useOne Hook", () => {
                   getOne: getOneMock,
                 },
               },
-              legacyAuthProvider: {
-                checkError: onErrorMock,
+              authProvider: {
+                login: () => Promise.resolve({ success: true }),
+                logout: () => Promise.resolve({ success: true }),
+                check: () => Promise.resolve({ authenticated: true }),
+                onError: onErrorMock,
               },
               resources: [{ name: "posts" }],
             }),
@@ -465,76 +472,6 @@ describe("useOne Hook", () => {
     });
 
     describe("queryOptions", () => {
-      it("should run `queryOptions.onSuccess` callback on success", async () => {
-        const onSuccessMock = jest.fn();
-        const getOneMock = jest.fn().mockResolvedValue({
-          data: [{ id: 1, title: "foo" }],
-        });
-
-        const { result } = renderHook(
-          () =>
-            useOne({
-              resource: "posts",
-              id: "1",
-              queryOptions: {
-                onSuccess: onSuccessMock,
-              },
-            }),
-          {
-            wrapper: TestWrapper({
-              dataProvider: {
-                default: {
-                  ...MockJSONServer.default,
-                  getOne: getOneMock,
-                },
-              },
-              resources: [{ name: "posts" }],
-            }),
-          },
-        );
-
-        await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(onSuccessMock).toBeCalledWith({
-          data: [{ id: 1, title: "foo" }],
-        });
-      });
-
-      it("should run `queryOptions.onError` callback on error", async () => {
-        const onErrorMock = jest.fn();
-        const getOneMcok = jest.fn().mockRejectedValue(new Error("Error"));
-
-        const { result } = renderHook(
-          () =>
-            useOne({
-              resource: "posts",
-              id: "1",
-              queryOptions: {
-                onError: onErrorMock,
-              },
-            }),
-          {
-            wrapper: TestWrapper({
-              dataProvider: {
-                default: {
-                  ...MockJSONServer.default,
-                  getOne: getOneMcok,
-                },
-              },
-              resources: [{ name: "posts" }],
-            }),
-          },
-        );
-
-        await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
-        });
-
-        expect(onErrorMock).toBeCalledWith(new Error("Error"));
-      });
-
       it("should override `queryKey` with `queryOptions.queryKey`", async () => {
         const getOneMock = jest.fn().mockResolvedValue({
           data: { id: 1, title: "foo" },
@@ -569,9 +506,7 @@ describe("useOne Hook", () => {
         expect(getOneMock).toBeCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
-              queryContext: expect.objectContaining({
-                queryKey: ["foo", "bar"],
-              }),
+              queryKey: ["foo", "bar"],
             }),
           }),
         );
@@ -810,15 +745,14 @@ describe("useOne Hook", () => {
         expect(getOneMock).toBeCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
-              queryContext: expect.objectContaining({
-                queryKey: [
-                  "default",
-                  "featured-posts",
-                  "detail",
-                  "1",
-                  expect.any(Object),
-                ],
-              }),
+              queryKey: [
+                "data",
+                "default",
+                "featured-posts",
+                "one",
+                "1",
+                expect.any(Object),
+              ],
             }),
           }),
         );
@@ -908,13 +842,13 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

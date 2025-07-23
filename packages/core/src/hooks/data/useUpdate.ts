@@ -6,12 +6,7 @@ import {
   useQueryClient,
 } from "@tanstack/react-query";
 
-import {
-  pickDataProvider,
-  pickNotDeprecated,
-  queryKeysReplacement,
-  useActiveAuthProvider,
-} from "@definitions/helpers";
+import { pickDataProvider } from "@definitions/helpers";
 import {
   useCancelNotification,
   useDataProvider,
@@ -106,9 +101,6 @@ export type UpdateParams<TData, TError, TVariables> = {
   meta?: MetaQuery;
   /**
    * Metadata query for dataProvider
-   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-   */
-  metaData?: MetaQuery;
   /**
    * If there is more than one `dataProvider`, you should use the `dataProviderName` that you will use.
    * @default "default"
@@ -186,7 +178,6 @@ export const useUpdate = <
   successNotification: successNotificationFromProps,
   errorNotification: errorNotificationFromProps,
   meta: metaFromProps,
-  metaData: metaDataFromProps,
   mutationMode: mutationModeFromProps,
   undoableTimeout: undoableTimeoutFromProps,
   onCancel: onCancelFromProps,
@@ -207,11 +198,8 @@ export const useUpdate = <
     mutationMode: mutationModeContext,
     undoableTimeout: undoableTimeoutContext,
   } = useMutationMode();
+  const { mutate: checkError } = useOnError();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
   const publish = usePublish();
   const { log } = useLog();
   const { notificationDispatch } = useCancelNotification();
@@ -221,7 +209,7 @@ export const useUpdate = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutationResult = useMutation<
     UpdateResponse<TData>,
@@ -237,7 +225,6 @@ export const useUpdate = <
       undoableTimeout = undoableTimeoutFromProps,
       onCancel = onCancelFromProps,
       meta = metaFromProps,
-      metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }) => {
       if (typeof id === "undefined") throw missingIdError;
@@ -248,7 +235,7 @@ export const useUpdate = <
 
       const combinedMeta = getMeta({
         resource,
-        meta: pickNotDeprecated(meta, metaData),
+        meta: meta,
       });
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
@@ -264,7 +251,6 @@ export const useUpdate = <
           id,
           variables: values,
           meta: combinedMeta,
-          metaData: combinedMeta,
         });
       }
       const updatePromise = new Promise<UpdateResponse<TData>>(
@@ -278,7 +264,6 @@ export const useUpdate = <
                 id,
                 variables: values,
                 meta: combinedMeta,
-                metaData: combinedMeta,
               })
               .then((result) => resolve(result))
               .catch((err) => reject(err));
@@ -314,7 +299,6 @@ export const useUpdate = <
       values = valuesFromProps,
       dataProviderName = dataProviderNameFromProps,
       meta = metaFromProps,
-      metaData = metaDataFromProps,
       optimisticUpdateMap = optimisticUpdateMapFromProps ?? {
         list: true,
         many: true,
@@ -327,43 +311,37 @@ export const useUpdate = <
 
       const { identifier } = select(resourceName);
 
-      const {
-        gqlMutation: _,
-        gqlQuery: __,
-        ...preferredMeta
-      } = pickNotDeprecated(meta, metaData) ?? {};
+      const { gqlMutation: _, gqlQuery: __, ...preferredMeta } = meta ?? {};
 
-      const queryKey = queryKeysReplacement(preferLegacyKeys)(
-        identifier,
-        pickDataProvider(identifier, dataProviderName, resources),
-        preferredMeta,
-      );
+      const queryKey = keys()
+        .data(pickDataProvider(identifier, dataProviderName, resources))
+        .resource(identifier);
 
       const resourceKeys = keys()
         .data(pickDataProvider(identifier, dataProviderName, resources))
         .resource(identifier);
 
       const previousQueries: PreviousQuery<TData>[] =
-        queryClient.getQueriesData(resourceKeys.get(preferLegacyKeys));
+        queryClient.getQueriesData({
+          queryKey: resourceKeys.get(),
+        });
 
       const mutationModePropOrContext = mutationMode ?? mutationModeContext;
 
-      await queryClient.cancelQueries(
-        resourceKeys.get(preferLegacyKeys),
-        undefined,
-        {
-          silent: true,
-        },
-      );
+      await queryClient.cancelQueries({
+        queryKey: resourceKeys.get(),
+      });
 
       if (mutationModePropOrContext !== "pessimistic") {
         if (optimisticUpdateMap.list) {
           // Set the previous queries to the new ones:
           queryClient.setQueriesData(
-            resourceKeys
-              .action("list")
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("list")
+                .params(preferredMeta ?? {})
+                .get(),
+            },
             (previous?: GetListResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.list === "function") {
                 return optimisticUpdateMap.list(previous, values, id);
@@ -394,7 +372,9 @@ export const useUpdate = <
 
         if (optimisticUpdateMap.many) {
           queryClient.setQueriesData(
-            resourceKeys.action("many").get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys.action("many").get(),
+            },
             (previous?: GetManyResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.many === "function") {
                 return optimisticUpdateMap.many(previous, values, id);
@@ -424,11 +404,13 @@ export const useUpdate = <
 
         if (optimisticUpdateMap.detail) {
           queryClient.setQueriesData(
-            resourceKeys
-              .action("one")
-              .id(id)
-              .params(preferredMeta ?? {})
-              .get(preferLegacyKeys),
+            {
+              queryKey: resourceKeys
+                .action("one")
+                .id(id)
+                .params(preferredMeta ?? {})
+                .get(),
+            },
             (previous?: GetOneResponse<TData> | null) => {
               if (typeof optimisticUpdateMap.detail === "function") {
                 return optimisticUpdateMap.detail(previous, values, id);
@@ -452,7 +434,6 @@ export const useUpdate = <
 
       return {
         previousQueries,
-        queryKey,
       };
     },
     onSettled: (data, error, variables, context) => {
@@ -483,6 +464,7 @@ export const useUpdate = <
         payload: { id, resource: identifier },
       });
 
+      // Also call user's onSettled if provided
       mutationOptions?.onSettled?.(data, error, variables, context);
     },
     onSuccess: (data, variables, context) => {
@@ -493,7 +475,6 @@ export const useUpdate = <
         dataProviderName: dataProviderNameFromProp = dataProviderNameFromProps,
         values = valuesFromProps,
         meta = metaFromProps,
-        metaData = metaDataFromProps,
       } = variables;
       if (typeof id === "undefined") throw missingIdError;
       if (!values) throw missingValuesError;
@@ -510,7 +491,7 @@ export const useUpdate = <
 
       const combinedMeta = getMeta({
         resource,
-        meta: pickNotDeprecated(meta, metaData),
+        meta: meta,
       });
 
       const notificationConfig =
@@ -549,8 +530,12 @@ export const useUpdate = <
 
       let previousData: any;
       if (context) {
+        const resourceKeys = keys()
+          .data(pickDataProvider(identifier, dataProviderName, resources))
+          .resource(identifier);
+
         const queryData = queryClient.getQueryData<UpdateResponse<TData>>(
-          context.queryKey.detail(id),
+          resourceKeys.action("one").id(id).get(),
         );
 
         previousData = Object.keys(values || {}).reduce<any>((acc, item) => {
@@ -593,14 +578,14 @@ export const useUpdate = <
       const { identifier } = select(resourceName);
 
       // set back the queries to the context:
-      if (context) {
+      if (context?.previousQueries) {
         for (const query of context.previousQueries) {
           queryClient.setQueryData(query[0], query[1]);
         }
       }
 
       if (err.message !== "mutationCancelled") {
-        checkError?.(err);
+        checkError(err);
 
         const resourceSingular = textTransformers.singular(identifier);
 
@@ -629,18 +614,19 @@ export const useUpdate = <
 
       mutationOptions?.onError?.(err, variables, context);
     },
-    mutationKey: keys().data().mutation("update").get(preferLegacyKeys),
+    mutationKey: keys().data().mutation("update").get(),
     ...mutationOptions,
     meta: {
       ...mutationOptions?.meta,
-      ...getXRay("useUpdate", preferLegacyKeys),
+      ...getXRay("useUpdate"),
     },
   });
+
   const { mutate, mutateAsync, ...mutation } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutation.isPending,
   });
 
   // this function is used to make the `variables` parameter optional

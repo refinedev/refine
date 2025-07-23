@@ -1,6 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
 
-import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
+import {
+  MockJSONServer,
+  TestWrapper,
+  mockAuthProvider,
+  mockRouterProvider,
+} from "@test";
 
 import { useCustomMutation } from "./useCustomMutation";
 
@@ -263,8 +268,11 @@ describe("useCustomMutation Hook", () => {
               custom: customMock,
             },
           },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
+          authProvider: {
+            login: () => Promise.resolve({ success: true }),
+            logout: () => Promise.resolve({ success: true }),
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: onErrorMock,
           },
           resources: [{ name: "posts" }],
         }),
@@ -357,13 +365,13 @@ describe("useCustomMutation Hook", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

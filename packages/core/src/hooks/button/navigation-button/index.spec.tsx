@@ -62,12 +62,12 @@ describe("useNavigationButton", () => {
         {
           wrapper: TestWrapper({
             resources: [resource],
-            routerProvider: {
-              ...mockRouterProvider({
-                resource: resource,
-              }),
-              go: () => goMock,
-            },
+            routerProvider: mockRouterProvider({
+              resource: resource,
+              fns: {
+                go: () => goMock,
+              },
+            }),
           }),
         },
       );

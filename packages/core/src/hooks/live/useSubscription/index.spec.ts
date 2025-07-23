@@ -18,7 +18,9 @@ describe("useSubscribe Hook", () => {
         useSubscription({
           channel: "channel",
           onLiveEvent: onLiveEventMock,
-          dataProviderName: "test",
+          meta: {
+            dataProviderName: "test",
+          },
         }),
       {
         wrapper: TestWrapper({
@@ -37,7 +39,6 @@ describe("useSubscribe Hook", () => {
       callback: subscriptionParams.onLiveEvent,
       params: undefined,
       types: ["*"],
-      dataProviderName: "test",
       meta: {
         dataProviderName: "test",
       },
@@ -81,7 +82,9 @@ describe("useSubscribe Hook", () => {
           channel: "channel",
           onLiveEvent: onLiveEventMock,
           types: ["test", "test2"],
-          dataProviderName: "default",
+          meta: {
+            dataProviderName: "default",
+          },
         }),
       {
         wrapper: TestWrapper({
@@ -100,7 +103,6 @@ describe("useSubscribe Hook", () => {
       callback: subscriptionParams.onLiveEvent,
       params: undefined,
       types: ["test", "test2"],
-      dataProviderName: "default",
       meta: {
         dataProviderName: "default",
       },
@@ -138,7 +140,6 @@ describe("useSubscribe Hook", () => {
       callback: subscriptionParams.onLiveEvent,
       params: undefined,
       types: ["*"],
-      dataProviderName: "default",
       meta: {
         dataProviderName: "default",
       },

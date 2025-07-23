@@ -38,7 +38,7 @@
   },
   "dependencies": {
     "@refinedev/devtools-internal": "1.1.16",
-    "@tanstack/react-query": "^4.10.1",
+    "@tanstack/react-query": "^5.81.5",
     "lodash": "^4.17.21",
     "lodash-es": "^4.17.21",
     "papaparse": "^5.3.0",
@@ -72,7 +72,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@tanstack/react-query": "^4.10.1",
+    "@tanstack/react-query": "^5.81.5",
     "@types/react": "^18.0.0 || ^19.0.0",
     "@types/react-dom": "^18.0.0 || ^19.0.0",
     "react": "^18.0.0 || ^19.0.0",
