@@ -45,7 +45,7 @@
     "@ant-design/icons": "^5.5.1",
     "@ant-design/pro-layout": "^7.21.1",
     "@refinedev/ui-types": "^1.24.2",
-    "@tanstack/react-query": "^4.10.1",
+    "@tanstack/react-query": "^5.81.5",
     "antd": "^5.17.0",
     "dayjs": "^1.10.7",
     "react-markdown": "^6.0.1",

@@ -21,16 +21,6 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
-    },
-    "./legacy": {
-      "import": {
-        "types": "./dist/legacy/index.d.mts",
-        "default": "./dist/legacy.mjs"
-      },
-      "require": {
-        "types": "./dist/legacy/index.d.cts",
-        "default": "./dist/legacy.cjs"
-      }
     }
   },
   "main": "dist/index.cjs",
@@ -39,9 +29,6 @@
     "*": {
       ".": [
         "dist/index.d.ts"
-      ],
-      "legacy": [
-        "dist/legacy/index.d.ts"
       ]
     }
   },

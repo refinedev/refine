@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@refinedev/devtools-shared": "1.1.14",
-    "@tanstack/react-query": "^4.10.1",
+    "@tanstack/react-query": "^5.81.5",
     "error-stack-parser": "^2.1.4"
   },
   "devDependencies": {
