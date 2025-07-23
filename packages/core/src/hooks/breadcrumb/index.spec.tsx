@@ -39,13 +39,13 @@ describe("useBreadcrumb Hook", () => {
         resources: [
           {
             name: "posts",
-            icon: DummyIcon,
+            meta: { icon: DummyIcon },
           },
         ],
         routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
-            icon: DummyIcon,
+            meta: { icon: DummyIcon },
           },
         }),
       }),
@@ -62,15 +62,13 @@ describe("useBreadcrumb Hook", () => {
         resources: [
           {
             name: "posts",
-            route: "posts",
-            list: DummyResourcePage,
+            list: "/posts",
           },
         ],
         routerProvider: mockRouterProvider({
           resource: {
             name: "posts",
-            route: "posts",
-            list: DummyResourcePage,
+            list: "/posts",
           },
         }),
       }),
@@ -87,18 +85,18 @@ describe("useBreadcrumb Hook", () => {
         resources: [
           {
             name: "posts",
-            icon: DummyIcon,
-            list: DummyResourcePage,
-            create: DummyResourcePage,
+            list: "/posts",
+            create: "/posts/create",
+            meta: { icon: DummyIcon },
           },
         ],
         routerProvider: mockRouterProvider({
           action: "create",
           resource: {
             name: "posts",
+            list: "/posts",
+            create: "/posts/create",
             meta: { icon: DummyIcon },
-            list: DummyResourcePage,
-            create: DummyResourcePage,
           },
         }),
       }),
@@ -120,8 +118,8 @@ describe("useBreadcrumb Hook", () => {
           {
             meta: { parent: "cms", icon: DummyIcon },
             name: "posts",
-            list: DummyResourcePage,
-            create: DummyResourcePage,
+            list: "/posts",
+            create: "/posts/create",
           },
         ],
         routerProvider: mockRouterProvider({
@@ -129,8 +127,8 @@ describe("useBreadcrumb Hook", () => {
           resource: {
             name: "posts",
             meta: { parent: "cms", icon: DummyIcon },
-            list: DummyResourcePage,
-            create: DummyResourcePage,
+            list: "/posts",
+            create: "/posts/create",
           },
         }),
       }),

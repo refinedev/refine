@@ -112,7 +112,13 @@ describe("useCan Hook", () => {
           resource: "posts",
           params: {
             id: 1,
-            resource: { icon: "test", name: "posts" } as any,
+            resource: {
+              name: "posts",
+              meta: {
+                icon: "test",
+                label: "Posts",
+              },
+            },
           },
         }),
       {
@@ -128,7 +134,7 @@ describe("useCan Hook", () => {
       action: "list",
       params: {
         id: 1,
-        resource: { name: "posts" },
+        resource: { name: "posts", meta: { label: "Posts" } },
       },
       resource: "posts",
     });
@@ -312,10 +318,8 @@ describe("useCanWithoutCache", () => {
         id: 1,
         resource: {
           name: "posts",
-          meta: { icon: "test" },
-          options: { icon: "test" },
-          icon: "test",
-        } as any,
+          meta: { icon: "test", label: "Posts" },
+        },
       },
     });
 
@@ -326,8 +330,7 @@ describe("useCanWithoutCache", () => {
         id: 1,
         resource: {
           name: "posts",
-          meta: {},
-          options: {},
+          meta: { label: "Posts" },
         },
       },
     });

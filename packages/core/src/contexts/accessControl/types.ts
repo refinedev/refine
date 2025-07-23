@@ -22,6 +22,7 @@ import type { UseQueryOptions } from "@tanstack/react-query";
 
 import type { BaseKey } from "../data/types";
 import type { IResourceItem, ITreeMenu } from "../resource/types";
+import type { MakeOptional } from "../../definitions/types/index";
 
 export type CanResponse = {
   can: boolean;
@@ -68,7 +69,10 @@ type AccessControlOptions = {
     enableAccessControl?: boolean;
     hideIfUnauthorized?: boolean;
   };
-  queryOptions?: UseQueryOptions<CanReturnType>;
+  queryOptions?: MakeOptional<
+    UseQueryOptions<CanReturnType>,
+    "queryFn" | "queryKey"
+  >;
 };
 
 export interface IAccessControlContext {
@@ -83,7 +87,10 @@ export type IAccessControlContextReturnType = {
       enableAccessControl: boolean;
       hideIfUnauthorized: boolean;
     };
-    queryOptions?: UseQueryOptions<CanReturnType>;
+    queryOptions?: MakeOptional<
+      UseQueryOptions<CanReturnType>,
+      "queryFn" | "queryKey"
+    >;
   };
 };
 

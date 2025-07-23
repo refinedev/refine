@@ -2,11 +2,7 @@ import React from "react";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import {
-  TestWrapper,
-  mockLegacyRouterProvider,
-  mockRouterProvider,
-} from "@test";
+import { TestWrapper, mockRouterProvider } from "@test";
 
 import { ErrorComponent } from ".";
 
@@ -42,31 +38,6 @@ describe("ErrorComponent", () => {
     getByText(
       `You may have forgotten to add the "create" component to "posts" resource.`,
     );
-  });
-
-  it("back home button should work with legacy router provider", async () => {
-    const pushMock = jest.fn();
-
-    const { getByText } = render(<ErrorComponent />, {
-      wrapper: TestWrapper({
-        legacyRouterProvider: {
-          ...mockLegacyRouterProvider(),
-          useHistory: () => ({
-            goBack: jest.fn(),
-            push: pushMock,
-            replace: jest.fn(),
-          }),
-        },
-      }),
-    });
-
-    fireEvent.click(getByText("Back Home"));
-
-    await waitFor(() => {
-      expect(pushMock).toBeCalledTimes(1);
-    });
-
-    expect(pushMock).toBeCalledWith("/");
   });
 
   it("back home button should work with router provider", async () => {

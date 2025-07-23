@@ -6,7 +6,7 @@ import { mockRouterProvider, posts } from "@test/dataMocks";
 
 import { downloadInBrowser } from "../../definitions/helpers/downloadInBrowser";
 import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
-import { type ExportOptions, useExport } from "./";
+import { useExport } from "./";
 
 const testCsv = "col1,col2\r\ncell1,cell2";
 jest.mock("papaparse", () => ({
@@ -247,9 +247,16 @@ describe("useExport Hook", () => {
       jest.clearAllMocks();
     },
   );
-  describe("should exportOptions be backwards compatible", () => {
+  describe("should work with new export configuration", () => {
     type TestCase = {
-      exportOptions?: ExportOptions;
+      exportConfig?: {
+        filename?: string;
+        useTextFile?: boolean;
+        useBom?: boolean;
+        title?: string;
+        showTitle?: boolean;
+        unparseConfig?: papaparse.UnparseConfig;
+      };
       expectations?: {
         unparseConfig: papaparse.UnparseConfig;
         filename: string | RegExp;
@@ -258,11 +265,8 @@ describe("useExport Hook", () => {
       };
     };
     const defaultUnparseConfig: papaparse.UnparseConfig = {
-      quoteChar: '"',
-      header: true,
-      delimiter: undefined,
-      columns: undefined,
       quotes: true,
+      header: true,
     };
 
     const defaultExpect: TestCase["expectations"] = {
@@ -289,10 +293,10 @@ describe("useExport Hook", () => {
     const TEST_CASES: TestCase[] = [
       {},
       {
-        exportOptions: undefined,
+        exportConfig: undefined,
       },
       {
-        exportOptions: {
+        exportConfig: {
           filename: "my file",
         },
         expectations: createExpectations({
@@ -300,7 +304,7 @@ describe("useExport Hook", () => {
         }),
       },
       {
-        exportOptions: {
+        exportConfig: {
           useTextFile: true,
         },
         expectations: createExpectations({
@@ -308,12 +312,7 @@ describe("useExport Hook", () => {
         }),
       },
       {
-        exportOptions: {
-          title: "some-tile",
-        },
-      },
-      {
-        exportOptions: {
+        exportConfig: {
           title: "some-title",
           showTitle: true,
         },
@@ -322,7 +321,7 @@ describe("useExport Hook", () => {
         }),
       },
       {
-        exportOptions: {
+        exportConfig: {
           useBom: false,
         },
         expectations: createExpectations({
@@ -330,96 +329,30 @@ describe("useExport Hook", () => {
         }),
       },
       {
-        exportOptions: {
-          useBom: true,
-        },
-        expectations: createExpectations({
-          useBom: true,
-        }),
-      },
-      {
-        exportOptions: {
-          quoteStrings: "my-quote",
-        },
-        expectations: createExpectations({
+        exportConfig: {
           unparseConfig: {
-            quoteChar: "my-quote",
-          },
-        }),
-      },
-      {
-        exportOptions: {
-          fieldSeparator: "my-field-separator",
-        },
-        expectations: createExpectations({
-          unparseConfig: {
-            delimiter: "my-field-separator",
-          },
-        }),
-      },
-      {
-        exportOptions: {
-          decimalSeparator: "does nothing",
-        },
-      },
-      {
-        exportOptions: {
-          useKeysAsHeaders: false,
-        },
-        expectations: createExpectations({
-          unparseConfig: {
+            delimiter: ",",
             header: false,
           },
-        }),
-      },
-      {
-        // useKeysAsHeaders takes priority over options.headers
-        exportOptions: {
-          headers: ["col1"],
-        },
-      },
-      {
-        exportOptions: {
-          useKeysAsHeaders: false,
-          headers: ["col1"],
         },
         expectations: createExpectations({
           unparseConfig: {
+            delimiter: ",",
             header: false,
-            columns: ["col1"],
-          },
-        }),
-      },
-      {
-        exportOptions: {
-          useKeysAsHeaders: false,
-          showLabels: true,
-          headers: ["col1"],
-        },
-        expectations: createExpectations({
-          unparseConfig: {
-            header: true,
-            columns: ["col1"],
           },
         }),
       },
     ];
 
     it.each(TEST_CASES)(
-      "exportOptions=$exportOptions",
-      async ({ exportOptions, expectations }) => {
-        const { result } = renderHook(
-          () =>
-            useExport({
-              exportOptions,
-            }),
-          {
-            wrapper: TestWrapper({
-              dataProvider: MockJSONServer,
-              resources: [{ name: "posts" }],
-            }),
-          },
-        );
+      "exportConfig=$exportConfig",
+      async ({ exportConfig, expectations }) => {
+        const { result } = renderHook(() => useExport(exportConfig), {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        });
 
         let resultCSV = null;
         await act(async () => {
@@ -436,7 +369,7 @@ describe("useExport Hook", () => {
           expect.stringMatching(expectations.filename),
           `${expectations.useBom ? "\ufeff" : ""}${expectations.csvToSave}`,
           expect.stringContaining(
-            exportOptions?.useTextFile ? "text/plain" : "text/csv",
+            exportConfig?.useTextFile ? "text/plain" : "text/csv",
           ),
         );
       },

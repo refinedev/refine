@@ -38,3 +38,6 @@ export type UseMutationResult<
   mutate: MutateFunction<TData, TError, TVariables, TContext>;
   mutateAsync: MutateAsyncFunction<TData, TError, TVariables, TContext>;
 };
+
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
+  Partial<Pick<T, K>>;

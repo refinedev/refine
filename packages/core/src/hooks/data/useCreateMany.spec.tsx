@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import {
   MockJSONServer,
   TestWrapper,
+  mockAuthProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
@@ -126,6 +127,14 @@ describe("useCreateMany Hook [with params]", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                name: "John Doe",
+                id: "1",
+              }),
+          },
           auditLogProvider: {
             create: createMock,
             get: jest.fn(),
@@ -153,7 +162,10 @@ describe("useCreateMany Hook [with params]", () => {
       expect(createMock).toBeCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "createMany",
-        author: {},
+        author: {
+          id: "1",
+          name: "John Doe",
+        },
         data: [
           {
             title: "title1",
@@ -664,13 +676,13 @@ describe("useCreateMany Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -923,6 +935,14 @@ describe("useCreateMany Hook [with props]", () => {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
+            authProvider: {
+              ...mockAuthProvider,
+              getIdentity: () =>
+                Promise.resolve({
+                  name: "John Doe",
+                  id: "1",
+                }),
+            },
             auditLogProvider: {
               create: createMock,
               get: jest.fn(),
@@ -950,7 +970,7 @@ describe("useCreateMany Hook [with props]", () => {
       expect(createMock).toBeCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "createMany",
-        author: {},
+        author: { id: "1", name: "John Doe" },
         data: [
           {
             title: "title1",
@@ -1516,13 +1536,13 @@ describe("useCreateMany Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -1712,7 +1732,6 @@ describe("useCreateMany Hook should work with params and props", () => {
       resource: options.params.resource,
       variables: options.params.values,
       meta: options.params.meta,
-      metaData: options.params.meta,
     });
     expect(openNotificationMock).toHaveBeenCalledWith({
       description: "Successfully created post",

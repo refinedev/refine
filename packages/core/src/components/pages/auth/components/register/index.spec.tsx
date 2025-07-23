@@ -2,7 +2,7 @@ import React from "react";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
-import { TestWrapper, mockLegacyRouterProvider } from "@test/index";
+import { TestWrapper } from "@test/index";
 
 import { RegisterPage } from ".";
 import type { AuthProvider } from "../../../../../contexts/auth/types";
@@ -173,28 +173,6 @@ describe("Auth Page Register", () => {
       email: "demo@refine.dev",
       password: "demo",
     });
-  });
-
-  it("should work with legacy router provider Link", async () => {
-    const LinkComponentMock = jest.fn();
-
-    render(<RegisterPage />, {
-      wrapper: TestWrapper({
-        legacyRouterProvider: {
-          ...mockLegacyRouterProvider(),
-          useLocation: jest.fn(),
-          Link: LinkComponentMock,
-        },
-      }),
-    });
-
-    expect(LinkComponentMock).toBeCalledWith(
-      {
-        to: "/login",
-        children: "Sign in",
-      },
-      {},
-    );
   });
 
   it("should run register mutation when provider button is clicked", async () => {

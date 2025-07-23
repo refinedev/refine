@@ -19,7 +19,6 @@ import {
   redirectPage,
   asyncDebounce,
   deferExecution,
-  pickNotDeprecated,
 } from "@definitions/helpers";
 
 import type { UpdateParams } from "../data/useUpdate";
@@ -42,7 +41,6 @@ export type {
   AutoSaveReturnType,
   FormAction,
   RedirectAction,
-  RedirectionTypes,
   FormWithSyncWithLocationParams,
 } from "./types";
 
@@ -91,7 +89,7 @@ export const useForm = <
   const { setWarnWhen } = useWarnAboutChange();
   const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-  const pickedMeta = pickNotDeprecated(props.meta, props.metaData);
+  const pickedMeta = props.meta;
   const mutationMode = props.mutationMode ?? defaultMutationMode;
 
   const {
@@ -183,7 +181,7 @@ export const useForm = <
   });
 
   const mutationResult = isEdit ? updateMutation : createMutation;
-  const isMutationLoading = mutationResult.isLoading;
+  const isMutationLoading = mutationResult.isPending;
   const formLoading = isMutationLoading || queryResult.isFetching;
 
   const { elapsedTime } = useLoadingOvertime({
@@ -254,7 +252,6 @@ export const useForm = <
         values,
         resource: identifier ?? resource.name,
         meta: { ...combinedMeta, ...props.mutationMeta },
-        metaData: { ...combinedMeta, ...props.mutationMeta },
         dataProviderName: props.dataProviderName,
         invalidates: isAutosave ? [] : props.invalidates,
         successNotification: isAutosave ? false : props.successNotification,
@@ -323,9 +320,7 @@ export const useForm = <
     onFinish,
     onFinishAutoSave,
     formLoading,
-    mutationResult,
     mutation: mutationResult,
-    queryResult,
     query: queryResult,
     autoSaveProps,
     id,

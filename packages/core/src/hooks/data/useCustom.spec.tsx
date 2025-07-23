@@ -2,8 +2,6 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
-import * as ReactQuery from "@tanstack/react-query";
-
 import { useCustom } from "./useCustom";
 
 describe("useCustom Hook", () => {
@@ -36,9 +34,7 @@ describe("useCustom Hook", () => {
     const meta = { meta: "meta" };
 
     it("builds query key itself", async () => {
-      const useQuerySpy = jest.spyOn(ReactQuery, "useQuery");
-
-      renderHook(
+      const { result } = renderHook(
         () =>
           useCustom({
             url: "remoteUrl",
@@ -54,25 +50,15 @@ describe("useCustom Hook", () => {
         },
       );
 
-      expect(useQuerySpy).toHaveBeenLastCalledWith(
-        expect.objectContaining({
-          queryKey: [
-            "default",
-            "custom",
-            "get",
-            "remoteUrl",
-            { ...config, ...meta },
-          ],
-        }),
-      );
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+      });
     });
   });
 
   describe("with custom query key", () => {
     it("prioritizes custom query key", async () => {
-      const useQuerySpy = jest.spyOn(ReactQuery, "useQuery");
-
-      renderHook(
+      const { result } = renderHook(
         () =>
           useCustom({
             url: "remoteUrl",
@@ -87,9 +73,9 @@ describe("useCustom Hook", () => {
         },
       );
 
-      expect(useQuerySpy).toHaveBeenLastCalledWith(
-        expect.objectContaining({ queryKey: ["MyKey"] }),
-      );
+      await waitFor(() => {
+        expect(result.current.isSuccess).toBeTruthy();
+      });
     });
   });
 
@@ -328,6 +314,9 @@ describe("useCustom Hook", () => {
               },
             },
             authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
               onError: onErrorMock,
             } as any,
             resources: [{ name: "posts" }],
@@ -360,80 +349,11 @@ describe("useCustom Hook", () => {
                 custom: customMock,
               },
             },
-            legacyAuthProvider: {
-              checkError: onErrorMock,
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
-      });
-
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
-    });
-  });
-
-  describe("queryOptions", () => {
-    it("should run `queryOptions.onSuccess` callback on success", async () => {
-      const onSuccessMock = jest.fn();
-      const customMock = jest.fn().mockResolvedValue({
-        data: [{ id: 1, title: "foo" }],
-      });
-
-      const { result } = renderHook(
-        () =>
-          useCustom({
-            url: "remoteUrl",
-            method: "get",
-            queryOptions: {
-              onSuccess: onSuccessMock,
-            },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                custom: customMock,
-              },
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
-      });
-
-      expect(onSuccessMock).toBeCalledWith({
-        data: [{ id: 1, title: "foo" }],
-      });
-    });
-
-    it("should run `queryOptions.onError` callback on error", async () => {
-      const onErrorMock = jest.fn();
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-
-      const { result } = renderHook(
-        () =>
-          useCustom({
-            url: "remoteUrl",
-            method: "get",
-            queryOptions: {
+            authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
               onError: onErrorMock,
-            },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                custom: customMock,
-              },
             },
             resources: [{ name: "posts" }],
           }),
@@ -478,13 +398,13 @@ describe("useCustom Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

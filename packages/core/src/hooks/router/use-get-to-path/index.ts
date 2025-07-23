@@ -1,7 +1,6 @@
 import React from "react";
 
 import type { IResourceItem } from "../../../contexts/resource/types";
-import { useRouterType } from "../../../contexts/router/picker";
 import type { Action } from "../../../contexts/router/types";
 import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
 import { composeRoute } from "../../../definitions/helpers/router/compose-route";
@@ -12,7 +11,6 @@ type UseToPathParams = {
   resource?: IResourceItem;
   action: Action;
   meta?: Record<string, unknown>;
-  legacy?: boolean;
 };
 
 type GetToPathFn = (params: UseToPathParams) => string | undefined;
@@ -25,7 +23,6 @@ type GetToPathFn = (params: UseToPathParams) => string | undefined;
  * `meta` can be provided to compose the routes with parameters. (Can be used for nested routes.)
  */
 export const useGetToPath = (): GetToPathFn => {
-  const routerType = useRouterType();
   const { resource: resourceFromRoute, resources } = useResource();
   const parsed = useParsed();
 
@@ -40,7 +37,6 @@ export const useGetToPath = (): GetToPathFn => {
       const actionRoutes = getActionRoutesFromResource(
         selectedResource,
         resources,
-        routerType === "legacy",
       );
 
       const actionRoute = actionRoutes.find(

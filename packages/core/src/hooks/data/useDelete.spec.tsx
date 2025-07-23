@@ -3,11 +3,11 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import {
   MockJSONServer,
   TestWrapper,
+  mockAuthProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
 
-import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   assertList,
   assertListLength,
@@ -129,34 +129,6 @@ describe("useDelete Hook", () => {
     await assertMutationSuccess(result);
   });
 
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const catchFn = jest.fn();
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const { result } = renderHook(() => useDelete(), {
-      wrapper: TestWrapper({}),
-    });
-
-    const resource = "posts";
-
-    result.current.mutate({
-      resource,
-      id: 1,
-      meta: {
-        foo: "bar",
-        gqlQuery: "gqlQuery" as any,
-        gqlMutation: "gqlMutation" as any,
-      },
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
-  });
-
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
     const deleteMock = jest.fn();
 
@@ -234,13 +206,13 @@ describe("useDelete Hook", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toBeCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -298,6 +270,14 @@ describe("useDelete Hook", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                name: "John Doe",
+                id: "1",
+              }),
+          },
           auditLogProvider: {
             create: createMock,
             get: jest.fn(),
@@ -319,7 +299,10 @@ describe("useDelete Hook", () => {
       expect(createMock).toBeCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "delete",
-        author: {},
+        author: {
+          id: "1",
+          name: "John Doe",
+        },
         meta: {
           dataProviderName: "default",
           id: "1",
@@ -546,8 +529,11 @@ describe("useDelete Hook", () => {
               deleteOne: deleteOneMock,
             },
           },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
+          authProvider: {
+            login: () => Promise.resolve({ success: true }),
+            logout: () => Promise.resolve({ success: true }),
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: onErrorMock,
           },
           resources: [{ name: "posts" }],
         }),

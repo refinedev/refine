@@ -2,40 +2,10 @@ import React from "react";
 
 import { act, waitFor } from "@testing-library/react";
 
-import {
-  MockJSONServer,
-  TestWrapper,
-  mockLegacyRouterProvider,
-  render,
-} from "@test";
+import { MockJSONServer, TestWrapper, render, mockRouterProvider } from "@test";
 
 import type { AuthProvider } from "../../contexts/auth/types";
-import type { LegacyRouterProvider } from "../../contexts/router/legacy/types";
 import { Authenticated } from "./";
-
-const legacyMockAuthProvider = {
-  login: () => Promise.resolve(),
-  logout: () => Promise.resolve(),
-  checkError: () => Promise.resolve(),
-  checkAuth: () => Promise.resolve(),
-  getPermissions: () => Promise.resolve(["admin"]),
-  getUserIdentity: () => Promise.resolve(),
-};
-
-const mockReplace = jest.fn();
-
-const mockLegacyRouter: LegacyRouterProvider = {
-  ...mockLegacyRouterProvider(),
-  useHistory: () => ({
-    goBack: jest.fn(),
-    push: jest.fn(),
-    replace: mockReplace,
-  }),
-  useLocation: () => ({
-    pathname: "/posts",
-    search: "",
-  }),
-};
 
 const mockAuthProvider: AuthProvider = {
   login: () =>
@@ -47,115 +17,6 @@ const mockAuthProvider: AuthProvider = {
   check: () => Promise.resolve({ authenticated: true }),
   getPermissions: () => Promise.resolve(),
 };
-
-describe("v3LegacyAuthProviderCompatible Authenticated", () => {
-  beforeEach(() => {
-    jest.spyOn(console, "error").mockImplementation((message) => {
-      if (typeof message !== "undefined") console.warn(message);
-    });
-  });
-
-  it("should render children successfully", async () => {
-    const { getByText } = render(
-      <Authenticated
-        key="should-render-children-legacy"
-        v3LegacyAuthProviderCompatible={true}
-      >
-        Custom Authenticated
-      </Authenticated>,
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          legacyAuthProvider: legacyMockAuthProvider,
-          resources: [{ name: "posts", route: "posts" }],
-        }),
-      },
-    );
-
-    await waitFor(() => getByText("Custom Authenticated"));
-  });
-
-  it("not authenticated test", async () => {
-    const { queryByText } = render(
-      <Authenticated
-        key="not-authenticated-legacy"
-        v3LegacyAuthProviderCompatible={true}
-      >
-        Custom Authenticated
-      </Authenticated>,
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          legacyAuthProvider: {
-            ...legacyMockAuthProvider,
-            checkAuth: () => Promise.reject(),
-          },
-          legacyRouterProvider: mockLegacyRouter,
-          resources: [{ name: "posts", route: "posts" }],
-        }),
-      },
-    );
-
-    await waitFor(() => {
-      expect(queryByText("Custom Authenticated")).toBeNull();
-      expect(mockReplace).toBeCalledTimes(1);
-    });
-  });
-
-  it("not authenticated fallback component test", async () => {
-    legacyMockAuthProvider.checkAuth = jest
-      .fn()
-      .mockImplementation(() => Promise.reject());
-
-    const { queryByText } = render(
-      <Authenticated
-        key="fallback-component-test"
-        fallback={<div>Error fallback</div>}
-        v3LegacyAuthProviderCompatible={true}
-      >
-        Custom Authenticated
-      </Authenticated>,
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          legacyAuthProvider: legacyMockAuthProvider,
-          resources: [{ name: "posts", route: "posts" }],
-        }),
-      },
-    );
-
-    await act(async () => {
-      expect(queryByText("Error fallback"));
-    });
-  });
-
-  it("loading test", async () => {
-    legacyMockAuthProvider.checkAuth = jest
-      .fn()
-      .mockImplementation(() => Promise.reject());
-
-    const { queryByText } = render(
-      <Authenticated
-        key="loading-test"
-        loading={<div>loading</div>}
-        v3LegacyAuthProviderCompatible={true}
-      >
-        Custom Authenticated
-      </Authenticated>,
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          legacyAuthProvider: legacyMockAuthProvider,
-          resources: [{ name: "posts", route: "posts" }],
-        }),
-      },
-    );
-
-    await act(async () => {
-      expect(queryByText("loading"));
-    });
-  });
-});
 
 describe("Authenticated", () => {
   beforeEach(() => {
@@ -173,7 +34,7 @@ describe("Authenticated", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           authProvider: mockAuthProvider,
-          resources: [{ name: "posts", route: "posts" }],
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -193,15 +54,13 @@ describe("Authenticated", () => {
             ...mockAuthProvider,
             check: () => Promise.resolve({ authenticated: false }),
           },
-          resources: [{ name: "posts", route: "posts" }],
-          legacyRouterProvider: mockLegacyRouter,
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
 
     await waitFor(() => {
       expect(queryByText("Custom Authenticated")).toBeNull();
-      expect(mockReplace).toBeCalledTimes(1);
     });
   });
 
@@ -224,7 +83,7 @@ describe("Authenticated", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           authProvider: mockAuthProvider,
-          resources: [{ name: "posts", route: "posts" }],
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -243,7 +102,7 @@ describe("Authenticated", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           authProvider: mockAuthProvider,
-          resources: [{ name: "posts", route: "posts" }],
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -272,10 +131,12 @@ describe("Authenticated", () => {
               };
             },
           },
-          routerProvider: {
-            go: () => mockGo,
-          },
-          resources: [{ name: "posts", route: "posts" }],
+          routerProvider: mockRouterProvider({
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -313,10 +174,12 @@ describe("Authenticated", () => {
               };
             },
           },
-          routerProvider: {
-            go: () => mockGo,
-          },
-          resources: [{ name: "posts", route: "posts" }],
+          routerProvider: mockRouterProvider({
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -362,10 +225,12 @@ describe("Authenticated", () => {
               };
             },
           },
-          routerProvider: {
-            go: () => mockGo,
-          },
-          resources: [{ name: "posts", route: "posts" }],
+          routerProvider: mockRouterProvider({
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -428,7 +293,7 @@ describe("Authenticated", () => {
               });
             },
           },
-          resources: [{ name: "posts", route: "posts" }],
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -496,7 +361,7 @@ describe("Authenticated", () => {
               });
             },
           },
-          resources: [{ name: "posts", route: "posts" }],
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -537,10 +402,12 @@ describe("Authenticated", () => {
               };
             },
           },
-          routerProvider: {
-            go: () => mockGo,
-          },
-          resources: [{ name: "posts", route: "posts" }],
+          routerProvider: mockRouterProvider({
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -582,10 +449,12 @@ describe("Authenticated", () => {
               };
             },
           },
-          routerProvider: {
-            go: () => mockGo,
-          },
-          resources: [{ name: "posts", route: "posts" }],
+          routerProvider: mockRouterProvider({
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );
@@ -627,10 +496,12 @@ describe("Authenticated", () => {
                 : { authenticated: false, redirectTo: "/login" };
             },
           },
-          routerProvider: {
-            go: () => mockGo,
-          },
-          resources: [{ name: "posts", route: "posts" }],
+          routerProvider: mockRouterProvider({
+            fns: {
+              go: () => mockGo,
+            },
+          }),
+          resources: [{ name: "posts", list: "/posts" }],
         }),
       },
     );

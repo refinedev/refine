@@ -43,7 +43,13 @@ type CanAccessBaseProps = {
    */
   onUnauthorized?: (props: OnUnauthorizedProps) => void;
   children: React.ReactNode;
-  queryOptions?: UseQueryOptions<CanReturnType>;
+  queryOptions?: Omit<
+    UseQueryOptions<CanReturnType>,
+    "queryKey" | "queryFn"
+  > & {
+    queryKey?: UseQueryOptions<CanReturnType>["queryKey"];
+    queryFn?: UseQueryOptions<CanReturnType>["queryFn"];
+  };
 };
 
 type CanAccessWithoutParamsProps = {

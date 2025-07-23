@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import * as papaparse from "papaparse";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 

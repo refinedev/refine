@@ -16,7 +16,6 @@ jest.mock("@tanstack/react-query", () => ({
 }));
 
 const mockRefineProvider: IRefineContextProvider = {
-  hasDashboard: false,
   ...defaultRefineOptions,
   options: defaultRefineOptions,
 };
@@ -72,7 +71,6 @@ describe("useResourceSubscription Hook", () => {
       },
       types: ["*"],
       callback: expect.any(Function),
-      dataProviderName: "dataProviderName",
       meta: {
         fields: ["title"],
         operation: "update",
@@ -265,10 +263,11 @@ describe("useResourceSubscription Hook", () => {
 
     expect(onSubscribeMock).toBeCalled();
     expect(onLiveEventMock).toBeCalledWith(mockCallbackEventPayload);
-    expect(invalidateQueriesMock).toBeCalledWith(
-      ["default", "featured-posts"],
-      expect.anything(),
-      expect.anything(),
-    );
+    expect(invalidateQueriesMock).toBeCalledWith({
+      queryKey: ["data", "default", "featured-posts"],
+      type: "active",
+      refetchType: "active",
+      cancelRefetch: false,
+    });
   });
 });
