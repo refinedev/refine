@@ -52,7 +52,7 @@ describe("useUpdatePassword Hook", () => {
     });
 
     expect(result.current.data).toEqual({ success: true });
-    expect(mockFn).not.toBeCalledWith();
+    expect(mockFn).not.toHaveBeenCalledWith();
   });
 
   it("succeed update password", async () => {
@@ -93,7 +93,7 @@ describe("useUpdatePassword Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({
+    expect(mockGo).toHaveBeenCalledWith({
       to: "redirectTo",
       type: "replace",
     });
@@ -131,7 +131,7 @@ describe("useUpdatePassword Hook", () => {
       success: false,
       error: new Error("Missing fields"),
     });
-    expect(mockFn).not.toBeCalledWith();
+    expect(mockFn).not.toHaveBeenCalledWith();
   });
 
   it("success and redirect", async () => {
@@ -179,7 +179,7 @@ describe("useUpdatePassword Hook", () => {
       success: true,
       redirectTo: "/login",
     });
-    expect(mockGo).toBeCalledWith({
+    expect(mockGo).toHaveBeenCalledWith({
       to: "/login",
       type: "replace",
     });
@@ -231,7 +231,7 @@ describe("useUpdatePassword Hook", () => {
       error: new Error("Missing fields"),
       redirectTo: "/register",
     });
-    expect(mockGo).toBeCalledWith({
+    expect(mockGo).toHaveBeenCalledWith({
       to: "/register",
       type: "replace",
     });
@@ -267,7 +267,7 @@ describe("useUpdatePassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "update-password-error",
         type: "error",
         message: "Error",
@@ -307,7 +307,7 @@ describe("useUpdatePassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "update-password-error",
         type: "error",
         message: "Update Password Error",
@@ -322,7 +322,9 @@ describe("useUpdatePassword Hook", () => {
       updatePassword({});
     });
     await waitFor(() => {
-      expect(closeNotificationMock).toBeCalledWith("update-password-error");
+      expect(closeNotificationMock).toHaveBeenCalledWith(
+        "update-password-error",
+      );
     });
   });
 
@@ -354,7 +356,7 @@ describe("useUpdatePassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "update-password-error",
         type: "error",
         message: "Error",
@@ -396,7 +398,7 @@ describe("useUpdatePassword Hook", () => {
       updatePassword({});
     });
     await waitFor(() => {
-      expect(onErrorMock).toBeCalledTimes(1);
+      expect(onErrorMock).toHaveBeenCalledTimes(1);
     });
 
     updatePasswordMock.mockResolvedValueOnce({
@@ -406,7 +408,7 @@ describe("useUpdatePassword Hook", () => {
       updatePassword({});
     });
     await waitFor(() => {
-      expect(onSuccessMock).toBeCalledTimes(1);
+      expect(onSuccessMock).toHaveBeenCalledTimes(1);
     });
 
     updatePasswordMock.mockResolvedValueOnce({
@@ -416,7 +418,7 @@ describe("useUpdatePassword Hook", () => {
       updatePassword({});
     });
     await waitFor(() => {
-      expect(onSuccessMock).toBeCalledTimes(2);
+      expect(onSuccessMock).toHaveBeenCalledTimes(2);
     });
   });
 
@@ -452,8 +454,8 @@ describe("useUpdatePassword Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updatePasswordMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updatePasswordMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {

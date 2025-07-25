@@ -60,7 +60,7 @@ describe("useLogout Hook", () => {
     });
 
     await act(async () => {
-      expect(mockGo).toBeCalledWith({ to: "/login" });
+      expect(mockGo).toHaveBeenCalledWith({ to: "/login" });
     });
   });
 
@@ -89,7 +89,7 @@ describe("useLogout Hook", () => {
     });
 
     await act(async () => {
-      expect(mockGo).not.toBeCalled();
+      expect(mockGo).not.toHaveBeenCalled();
     });
   });
 
@@ -115,7 +115,7 @@ describe("useLogout Hook", () => {
     });
 
     await act(async () => {
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({ to: "/custom-path" }),
       );
     });
@@ -144,7 +144,7 @@ describe("useLogout Hook", () => {
     });
 
     await act(async () => {
-      expect(mockGo).toBeCalledWith({ to: "/custom-path" });
+      expect(mockGo).toHaveBeenCalledWith({ to: "/custom-path" });
     });
   });
 
@@ -232,7 +232,7 @@ describe("useLogout Hook", () => {
     });
 
     await act(async () => {
-      expect(mockGo).toBeCalledTimes(0);
+      expect(mockGo).toHaveBeenCalledTimes(0);
     });
   });
 
@@ -263,7 +263,7 @@ describe("useLogout Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "useLogout-error",
         type: "error",
         message: "Error",
@@ -295,7 +295,7 @@ describe("useLogout Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "useLogout-error",
         type: "error",
         message: "Logout Error",
@@ -306,6 +306,10 @@ describe("useLogout Hook", () => {
 
   it("should open notification when throw error", async () => {
     const openNotificationMock = jest.fn();
+
+    jest.spyOn(console, "warn").mockImplementation((message) => {
+      return message;
+    });
 
     const { result } = renderHook(() => useLogout(), {
       wrapper: TestWrapper({
@@ -329,7 +333,7 @@ describe("useLogout Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "useLogout-error",
         type: "error",
         message: "Error",
@@ -367,8 +371,8 @@ describe("useLogout Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(logoutMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(logoutMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {

@@ -102,10 +102,10 @@ describe("useForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
         meta: expect.objectContaining({
@@ -282,10 +282,10 @@ describe("useForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -333,10 +333,10 @@ describe("useForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           startDate: "2021-01-01",
@@ -344,7 +344,7 @@ describe("useForm Hook", () => {
       }),
     );
 
-    expect(getOneMock).not.toBeCalledWith(
+    expect(getOneMock).not.toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           likes: 100,
@@ -389,7 +389,7 @@ describe("useForm Hook", () => {
 
     result.current.redirect("edit", 1);
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/edit/1",
       type: "push",
     });
@@ -432,7 +432,7 @@ describe("useForm Hook", () => {
 
     result.current.redirect("edit");
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/edit/123",
       type: "push",
     });
@@ -478,7 +478,7 @@ describe("useForm Hook", () => {
     await waitFor(() => {
       expect(result.current.query?.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -525,10 +525,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(createMock).toBeCalled();
+        expect(createMock).toHaveBeenCalled();
       });
 
-      expect(createMock).toBeCalledWith(
+      expect(createMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           variables: {
@@ -568,10 +568,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(createMock).toBeCalled();
+        expect(createMock).toHaveBeenCalled();
       });
 
-      expect(createMock).toBeCalledWith(
+      expect(createMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           meta: expect.objectContaining({
@@ -608,7 +608,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(createMock).not.toBeCalled();
+        expect(createMock).not.toHaveBeenCalled();
       });
     });
 
@@ -638,7 +638,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(onMutationSuccessMock).toBeCalledWith(
+      expect(onMutationSuccessMock).toHaveBeenCalledWith(
         { data: posts[0] },
         {
           title: "foo",
@@ -680,7 +680,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onMutationErrorMock).toBeCalledWith(
+      expect(onMutationErrorMock).toHaveBeenCalledWith(
         new Error("Error"),
         {
           title: "foo",
@@ -733,7 +733,7 @@ describe("useForm Hook", () => {
       await waitFor(() => {
         expect(result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
-        expect(onInterval).toBeCalled();
+        expect(onInterval).toHaveBeenCalled();
       });
 
       await promise;
@@ -772,10 +772,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(updateMock).toBeCalled();
+        expect(updateMock).toHaveBeenCalled();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           variables: {
@@ -817,10 +817,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(updateMock).toBeCalled();
+        expect(updateMock).toHaveBeenCalled();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           meta: expect.objectContaining({
@@ -857,7 +857,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(updateMock).not.toBeCalled();
+        expect(updateMock).not.toHaveBeenCalled();
       });
     });
 
@@ -888,7 +888,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(onMutationSuccessMock).toBeCalledWith(
+      expect(onMutationSuccessMock).toHaveBeenCalledWith(
         { data: posts[0] },
         {
           title: "foo",
@@ -931,7 +931,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onMutationErrorMock).toBeCalledWith(
+      expect(onMutationErrorMock).toHaveBeenCalledWith(
         new Error("Error"),
         {
           title: "foo",
@@ -985,7 +985,7 @@ describe("useForm Hook", () => {
       await waitFor(() => {
         expect(result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
-        expect(onInterval).toBeCalled();
+        expect(onInterval).toHaveBeenCalled();
       });
 
       await promise;
@@ -1083,7 +1083,7 @@ describe("useForm Hook", () => {
       );
 
       await waitFor(() => {
-        expect(warnMock).toBeCalled();
+        expect(warnMock).toHaveBeenCalled();
       });
     });
 
@@ -1106,7 +1106,7 @@ describe("useForm Hook", () => {
       );
 
       await waitFor(() => {
-        expect(warnMock).not.toBeCalled();
+        expect(warnMock).not.toHaveBeenCalled();
       });
     });
   });

@@ -65,7 +65,7 @@ describe("useLogin Hook", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({ to: "/", type: "replace" });
   });
 
   it("should successfully login with no redirect", async () => {
@@ -139,7 +139,10 @@ describe("useLogin Hook", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "/custom-path", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({
+      to: "/custom-path",
+      type: "replace",
+    });
   });
 
   it("fail login", async () => {
@@ -180,7 +183,7 @@ describe("useLogin Hook", () => {
       });
     });
 
-    expect(mockGo).not.toBeCalled();
+    expect(mockGo).not.toHaveBeenCalled();
   });
 
   it("login rejected with undefined error", async () => {
@@ -243,7 +246,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-error",
         type: "error",
         message: "Error",
@@ -280,7 +283,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-error",
         type: "error",
         message: "Login Error",
@@ -316,7 +319,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-error",
         type: "error",
         message: "Error",
@@ -354,8 +357,8 @@ describe("useLogin Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(loginMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(loginMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -423,7 +426,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-success",
         type: "success",
         message: "Login successful",
@@ -477,7 +480,7 @@ describe("useLogin Hook redirect support", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "/redirectTo", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({ to: "/redirectTo", type: "replace" });
   });
 
   it("should be redirect `redirectTo` param on routerProvider ", async () => {
@@ -515,6 +518,6 @@ describe("useLogin Hook redirect support", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "redirectTo", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({ to: "redirectTo", type: "replace" });
   });
 });

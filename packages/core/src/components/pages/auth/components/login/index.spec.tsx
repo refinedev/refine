@@ -216,10 +216,10 @@ describe("Auth Page Login", () => {
     fireEvent.click(getByDisplayValue(/sign in/i));
 
     await waitFor(() => {
-      expect(loginMock).toBeCalledTimes(1);
+      expect(loginMock).toHaveBeenCalledTimes(1);
     });
 
-    expect(loginMock).toBeCalledWith({
+    expect(loginMock).toHaveBeenCalledWith({
       email: "demo@refine.dev",
       password: "demo",
       remember: true,
@@ -252,10 +252,10 @@ describe("Auth Page Login", () => {
     fireEvent.click(getByText(/google/i));
 
     await waitFor(() => {
-      expect(loginMock).toBeCalledTimes(1);
+      expect(loginMock).toHaveBeenCalledTimes(1);
     });
 
-    expect(loginMock).toBeCalledWith({
+    expect(loginMock).toHaveBeenCalledWith({
       providerName: "Google",
     });
   });

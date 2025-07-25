@@ -87,7 +87,7 @@ describe("useImport hook", () => {
       });
     });
 
-    expect(onProgressMock).toBeCalledWith({
+    expect(onProgressMock).toHaveBeenCalledWith({
       totalAmount: parsedData.length,
       processedAmount: 3,
     });
@@ -511,7 +511,7 @@ describe("useImport hook", () => {
       });
 
       await waitFor(() => {
-        expect(onProgressMock).toBeCalledWith({
+        expect(onProgressMock).toHaveBeenCalledWith({
           totalAmount: parsedData.length,
           processedAmount: 3,
         });

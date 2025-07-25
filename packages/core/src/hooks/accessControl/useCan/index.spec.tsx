@@ -130,7 +130,7 @@ describe("useCan Hook", () => {
       },
     );
 
-    expect(mockFn).toBeCalledWith({
+    expect(mockFn).toHaveBeenCalledWith({
       action: "list",
       params: {
         id: 1,
@@ -161,7 +161,7 @@ describe("useCan Hook", () => {
       },
     );
 
-    expect(mockFn).not.toBeCalled();
+    expect(mockFn).not.toHaveBeenCalled();
   });
 
   it("should not throw error when accessControlProvider is undefined", async () => {
@@ -248,8 +248,8 @@ describe("useCan Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(canMock).not.toBeCalled();
-    expect(queryFnMock).toBeCalled();
+    expect(canMock).not.toHaveBeenCalled();
+    expect(queryFnMock).toHaveBeenCalled();
   });
 
   it("should use global queryOptions from AccessControlContext", async () => {
@@ -274,7 +274,7 @@ describe("useCan Hook", () => {
       expect(result.current.isFetched).toBeFalsy();
     });
 
-    expect(mockFn).not.toBeCalled();
+    expect(mockFn).not.toHaveBeenCalled();
   });
 });
 
@@ -295,7 +295,7 @@ describe("useCanWithoutCache", () => {
       resource: "posts",
     });
 
-    expect(canMock).toBeCalledWith({
+    expect(canMock).toHaveBeenCalledWith({
       action: "list",
       resource: "posts",
     });
@@ -323,7 +323,7 @@ describe("useCanWithoutCache", () => {
       },
     });
 
-    expect(canMock).toBeCalledWith({
+    expect(canMock).toHaveBeenCalledWith({
       action: "list",
       resource: "posts",
       params: {

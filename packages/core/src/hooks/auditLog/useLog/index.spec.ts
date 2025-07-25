@@ -65,8 +65,8 @@ describe("useLog Hook", () => {
         expect(result.current.log.isSuccess).toBeTruthy();
       });
 
-      expect(auditLogProviderCreateMock).toBeCalledWith(logEventPayload);
-      expect(auditLogProviderCreateMock).toBeCalledTimes(1);
+      expect(auditLogProviderCreateMock).toHaveBeenCalledWith(logEventPayload);
+      expect(auditLogProviderCreateMock).toHaveBeenCalledTimes(1);
     });
 
     it("should not called logEvent if no includes permissions", async () => {
@@ -101,7 +101,7 @@ describe("useLog Hook", () => {
         expect(result.current.log.isSuccess).toBeTruthy();
       });
 
-      expect(auditLogProviderGetMock).not.toBeCalled();
+      expect(auditLogProviderGetMock).not.toHaveBeenCalled();
     });
 
     it("should called logEvent if exist auditLogPermissions", async () => {
@@ -136,7 +136,7 @@ describe("useLog Hook", () => {
         expect(result.current.log.isSuccess).toBeTruthy();
       });
 
-      expect(auditLogProviderCreateMock).toBeCalled();
+      expect(auditLogProviderCreateMock).toHaveBeenCalled();
     });
 
     it("should not invoke `useGetIdentity` if `auditLogProvider.create` is not defined", async () => {
@@ -174,7 +174,7 @@ describe("useLog Hook", () => {
         expect(result.current.log.isSuccess).toBeTruthy();
       });
 
-      expect(getUserIdentityMock).not.toBeCalled();
+      expect(getUserIdentityMock).not.toHaveBeenCalled();
     });
 
     it("should invoke `useGetIdentity` if `auditLogProvider.create` is defined", async () => {
@@ -214,7 +214,7 @@ describe("useLog Hook", () => {
         expect(result.current.log.isSuccess).toBeTruthy();
       });
 
-      expect(getUserIdentityMock).toBeCalled();
+      expect(getUserIdentityMock).toHaveBeenCalled();
     });
 
     it.each(["new"])("should work with %s auth provider", async (testCase) => {
@@ -355,14 +355,14 @@ describe("useLog Hook", () => {
         expect(result.current.rename.isSuccess).toBeTruthy();
       });
 
-      expect(auditLogProviderUpdateMock).toBeCalledWith({
+      expect(auditLogProviderUpdateMock).toHaveBeenCalledWith({
         id: 1,
         name: "test name",
       });
-      expect(auditLogProviderUpdateMock).toBeCalledTimes(1);
+      expect(auditLogProviderUpdateMock).toHaveBeenCalledTimes(1);
 
-      expect(invalidateQueriesMock).toBeCalledTimes(1);
-      expect(invalidateQueriesMock).toBeCalledWith({
+      expect(invalidateQueriesMock).toHaveBeenCalledTimes(1);
+      expect(invalidateQueriesMock).toHaveBeenCalledWith({
         queryKey: ["audit", "posts", "list"],
       });
     });
@@ -389,13 +389,13 @@ describe("useLog Hook", () => {
         expect(result.current.rename.isSuccess).toBeTruthy();
       });
 
-      expect(auditLogProviderUpdateMock).toBeCalledWith({
+      expect(auditLogProviderUpdateMock).toHaveBeenCalledWith({
         id: 1,
         name: "test name",
       });
-      expect(auditLogProviderUpdateMock).toBeCalledTimes(1);
+      expect(auditLogProviderUpdateMock).toHaveBeenCalledTimes(1);
 
-      expect(invalidateQueriesMock).toBeCalledTimes(0);
+      expect(invalidateQueriesMock).toHaveBeenCalledTimes(0);
     });
   });
 });

@@ -31,7 +31,7 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(mockInvalidateQueries).not.toBeCalled();
+    expect(mockInvalidateQueries).not.toHaveBeenCalled();
   });
 
   it("with false invalidation", async () => {
@@ -46,7 +46,7 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(mockInvalidateQueries).not.toBeCalled();
+    expect(mockInvalidateQueries).not.toHaveBeenCalled();
   });
 
   it("with list invalidation", async () => {
@@ -60,7 +60,7 @@ describe("useInvalidate", () => {
       dataProviderName: "rest",
     });
 
-    expect(mockInvalidateQueries).toBeCalledWith(
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
@@ -104,22 +104,22 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(mockInvalidateQueries).toBeCalledWith(
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "one", "1"],
       }),
     );
-    expect(mockInvalidateQueries).toBeCalledWith(
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest"],
       }),
     );
-    expect(mockInvalidateQueries).toBeCalledWith(
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "list"],
       }),
     );
-    expect(mockInvalidateQueries).toBeCalledWith(
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
       expect.objectContaining({
         queryKey: ["data", "rest", "posts", "many"],
       }),
@@ -138,6 +138,6 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(mockInvalidateQueries).not.toBeCalled();
+    expect(mockInvalidateQueries).not.toHaveBeenCalled();
   });
 });

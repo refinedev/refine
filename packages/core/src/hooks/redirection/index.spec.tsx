@@ -30,7 +30,7 @@ describe("redirectionAfterSubmission Hook", () => {
       id: "1",
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts",
       type: "path",
       query: undefined,
@@ -44,7 +44,7 @@ describe("redirectionAfterSubmission Hook", () => {
       id: "1",
     });
 
-    expect(goMock).not.toBeCalled();
+    expect(goMock).not.toHaveBeenCalled();
   });
 
   it("redirect show, canShow false", async () => {
@@ -57,7 +57,7 @@ describe("redirectionAfterSubmission Hook", () => {
       id: "1",
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts",
       type: "path",
       query: undefined,
@@ -76,7 +76,7 @@ describe("redirectionAfterSubmission Hook", () => {
       id: "1",
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/show/1",
       type: "path",
       query: undefined,
@@ -95,7 +95,7 @@ describe("redirectionAfterSubmission Hook", () => {
       id: "1",
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/edit/1",
       type: "path",
       query: undefined,
@@ -113,7 +113,7 @@ describe("redirectionAfterSubmission Hook", () => {
       id: "1",
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts",
       type: "path",
       query: undefined,
@@ -130,7 +130,7 @@ describe("redirectionAfterSubmission Hook", () => {
       },
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/create",
       type: "path",
       query: undefined,
@@ -147,7 +147,7 @@ describe("redirectionAfterSubmission Hook", () => {
       },
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts",
       type: "path",
       query: undefined,
@@ -164,7 +164,7 @@ describe("redirectionAfterSubmission Hook", () => {
       },
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts",
       type: "path",
       query: undefined,
@@ -182,7 +182,7 @@ describe("redirectionAfterSubmission Hook", () => {
       },
     });
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts",
       type: "path",
       query: undefined,

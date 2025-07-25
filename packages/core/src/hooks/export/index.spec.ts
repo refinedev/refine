@@ -43,7 +43,7 @@ describe("useExport Hook", () => {
       resultingCSV = await result.current.triggerExport();
     });
 
-    expect(papaparse.unparse).toBeCalledWith(posts, expect.anything());
+    expect(papaparse.unparse).toHaveBeenCalledWith(posts, expect.anything());
     expect(resultingCSV).toEqual(testCsv);
   });
 
@@ -72,7 +72,7 @@ describe("useExport Hook", () => {
         await result.current.triggerExport();
       });
 
-      expect(getListMock).toBeCalledWith(testCase);
+      expect(getListMock).toHaveBeenCalledWith(testCase);
     },
   );
 
@@ -99,7 +99,7 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(getListMock).toBeCalledWith("posts");
+    expect(getListMock).toHaveBeenCalledWith("posts");
   });
 
   it("should cut the amount of data to be exported when given maxItemCount", async () => {
@@ -120,7 +120,10 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(papaparse.unparse).toBeCalledWith([posts[0]], expect.anything());
+    expect(papaparse.unparse).toHaveBeenCalledWith(
+      [posts[0]],
+      expect.anything(),
+    );
   });
 
   it("should work with custom pageSize", async () => {
@@ -141,7 +144,7 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(papaparse.unparse).toBeCalledWith(posts, expect.anything());
+    expect(papaparse.unparse).toHaveBeenCalledWith(posts, expect.anything());
   });
 
   it("should work with custom mapData", async () => {
@@ -165,7 +168,7 @@ describe("useExport Hook", () => {
       await result.current.triggerExport();
     });
 
-    expect(papaparse.unparse).toBeCalledWith(
+    expect(papaparse.unparse).toHaveBeenCalledWith(
       posts.map((post) => ({
         id: post.id,
         title: post.title,
@@ -201,9 +204,9 @@ describe("useExport Hook", () => {
     });
 
     expect(result.current.isLoading).toEqual(false);
-    expect(onError).toBeCalledWith(Error("Error"));
+    expect(onError).toHaveBeenCalledWith(Error("Error"));
 
-    expect(papaparse.unparse).not.toBeCalled();
+    expect(papaparse.unparse).not.toHaveBeenCalled();
   });
 
   it.each(["identifier", "name"])(
@@ -232,16 +235,20 @@ describe("useExport Hook", () => {
         await result.current.triggerExport();
       });
 
-      expect(papaparse.unparse).toBeCalledWith(posts, expect.anything());
+      expect(papaparse.unparse).toHaveBeenCalledWith(posts, expect.anything());
 
       if (isIdentifier) {
-        expect(pickDataProviderSpy).toBeCalledWith(
+        expect(pickDataProviderSpy).toHaveBeenCalledWith(
           "postsIdentifier",
           undefined,
           [],
         );
       } else {
-        expect(pickDataProviderSpy).toBeCalledWith("postsName", undefined, []);
+        expect(pickDataProviderSpy).toHaveBeenCalledWith(
+          "postsName",
+          undefined,
+          [],
+        );
       }
 
       jest.clearAllMocks();
@@ -361,11 +368,11 @@ describe("useExport Hook", () => {
 
         expectations = expectations ?? defaultExpect;
         expect(resultCSV).toEqual(expectations.csvToSave);
-        expect(papaparse.unparse).toBeCalledWith(
+        expect(papaparse.unparse).toHaveBeenCalledWith(
           posts,
           expectations.unparseConfig,
         );
-        expect(downloadInBrowser).toBeCalledWith(
+        expect(downloadInBrowser).toHaveBeenCalledWith(
           expect.stringMatching(expectations.filename),
           `${expectations.useBom ? "\ufeff" : ""}${expectations.csvToSave}`,
           expect.stringContaining(
@@ -395,6 +402,6 @@ describe("useExport Hook", () => {
     });
 
     expect(resultCSV).toEqual(testCsv);
-    expect(downloadInBrowser).not.toBeCalled();
+    expect(downloadInBrowser).not.toHaveBeenCalled();
   });
 });

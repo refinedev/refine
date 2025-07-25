@@ -37,7 +37,7 @@ describe("useLogList Hook", () => {
       expect(result.current.isFetched).toBeTruthy();
     });
 
-    expect(auditLogProviderGetMock).toBeCalledWith({
+    expect(auditLogProviderGetMock).toHaveBeenCalledWith({
       resource: "posts",
       action: "list",
       meta: { id: 1 },
@@ -130,7 +130,7 @@ describe("useLogList Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getMock).not.toBeCalled();
-    expect(queryFnMock).toBeCalled();
+    expect(getMock).not.toHaveBeenCalled();
+    expect(queryFnMock).toHaveBeenCalled();
   });
 });

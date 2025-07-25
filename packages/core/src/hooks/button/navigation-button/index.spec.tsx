@@ -72,7 +72,7 @@ describe("useNavigationButton", () => {
         },
       );
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: resource[action].replace(":id", "123"),
         type: "path",
       });
@@ -140,7 +140,7 @@ describe("useNavigationButton", () => {
           },
         );
 
-        expect(goMock).not.toBeCalled();
+        expect(goMock).not.toHaveBeenCalled();
       });
     }
   });

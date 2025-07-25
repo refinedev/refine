@@ -106,10 +106,10 @@ describe("useCustom Hook", () => {
     );
 
     await waitFor(() => {
-      expect(customMock).toBeCalled();
+      expect(customMock).toHaveBeenCalled();
     });
 
-    expect(customMock).toBeCalledWith(
+    expect(customMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -151,7 +151,7 @@ describe("useCustom Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "get-notification",
         message: "Error (status code: undefined)",
@@ -189,7 +189,7 @@ describe("useCustom Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -222,7 +222,7 @@ describe("useCustom Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -261,7 +261,7 @@ describe("useCustom Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -291,7 +291,7 @@ describe("useCustom Hook", () => {
           }),
         },
       ),
-    ).toThrowError("Not implemented custom on data provider.");
+    ).toThrow("Not implemented custom on data provider.");
   });
 
   describe("useOnError", () => {
@@ -328,7 +328,7 @@ describe("useCustom Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -364,7 +364,7 @@ describe("useCustom Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -400,7 +400,7 @@ describe("useCustom Hook", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {

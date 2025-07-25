@@ -146,10 +146,10 @@ describe("useDeleteMany Hook", () => {
     });
 
     await waitFor(() => {
-      expect(deleteManyMock).toBeCalled();
+      expect(deleteManyMock).toHaveBeenCalled();
     });
 
-    expect(deleteManyMock).toBeCalledWith(
+    expect(deleteManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -196,7 +196,7 @@ describe("useDeleteMany Hook", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -233,7 +233,7 @@ describe("useDeleteMany Hook", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -282,7 +282,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "deleteMany",
         author: {
@@ -320,10 +320,10 @@ describe("useDeleteMany Hook", () => {
     });
 
     await waitFor(() => {
-      expect(deleteOneMock).toBeCalled();
+      expect(deleteOneMock).toHaveBeenCalled();
     });
 
-    expect(deleteOneMock).toBeCalledTimes(2);
+    expect(deleteOneMock).toHaveBeenCalledTimes(2);
     expect(deleteOneMock).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
@@ -364,7 +364,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Success",
         key: "1,2-posts-notification",
         message: "Successfully deleted posts",
@@ -401,7 +401,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1,2-posts-notification",
         message: "Error (status code: undefined)",
@@ -437,7 +437,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -468,7 +468,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -505,7 +505,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -542,7 +542,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should select correct dataProviderName", async () => {
@@ -584,12 +584,12 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(deleteManyFooMock).toBeCalledWith(
+      expect(deleteManyFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(deleteManyDefaultMock).not.toBeCalled();
+      expect(deleteManyDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should get correct `meta` of related resource", async () => {
@@ -623,7 +623,7 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(deleteManyMock).toBeCalledWith(
+      expect(deleteManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             foo: "bar",
@@ -673,12 +673,12 @@ describe("useDeleteMany Hook", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(deleteManyFooMock).toBeCalledWith(
+        expect(deleteManyFooMock).toHaveBeenCalledWith(
           expect.objectContaining({
             resource: "posts",
           }),
         );
-        expect(deleteManyDefaultMock).not.toBeCalled();
+        expect(deleteManyDefaultMock).not.toHaveBeenCalled();
       });
 
       it("should invalidate query store with `identifier`", async () => {
@@ -714,7 +714,7 @@ describe("useDeleteMany Hook", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(invalidateStore).toBeCalledWith(
+        expect(invalidateStore).toHaveBeenCalledWith(
           expect.objectContaining({
             resource: "featured-posts",
           }),
@@ -760,7 +760,7 @@ describe("useDeleteMany Hook", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(deleteManyMock).toBeCalledWith(
+        expect(deleteManyMock).toHaveBeenCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
               bar: "baz",
@@ -806,8 +806,8 @@ describe("useDeleteMany Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(useDeleteManyMock).not.toBeCalled();
-      expect(mutationFnMock).toBeCalled();
+      expect(useDeleteManyMock).not.toHaveBeenCalled();
+      expect(mutationFnMock).toHaveBeenCalled();
     });
 
     it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {

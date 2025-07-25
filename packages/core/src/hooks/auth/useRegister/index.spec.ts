@@ -64,7 +64,7 @@ describe("useRegister Hook", () => {
 
     expect(result.current.data?.success).toBeTruthy();
 
-    expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({ to: "/", type: "replace" });
   });
 
   it("should successfully register with no redirect", async () => {
@@ -98,7 +98,7 @@ describe("useRegister Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(mockGo).not.toBeCalled();
+    expect(mockGo).not.toHaveBeenCalled();
   });
 
   it("fail register", async () => {
@@ -197,7 +197,7 @@ describe("useRegister Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "register-error",
         type: "error",
         message: "Error",
@@ -229,7 +229,7 @@ describe("useRegister Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "register-error",
         type: "error",
         message: "Register Error",
@@ -263,7 +263,7 @@ describe("useRegister Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "register-error",
         type: "error",
         message: "Error",
@@ -301,8 +301,8 @@ describe("useRegister Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(registerMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(registerMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {

@@ -48,7 +48,7 @@ describe("useOnError Hook", () => {
     });
 
     await act(async () => {
-      expect(mockLogout).toBeCalledWith({ redirectPath: "/login" });
+      expect(mockLogout).toHaveBeenCalledWith({ redirectPath: "/login" });
     });
   });
 
@@ -87,7 +87,7 @@ describe("useOnError Hook", () => {
     });
 
     await act(async () => {
-      expect(mockGo).toBeCalledWith({
+      expect(mockGo).toHaveBeenCalledWith({
         to: "/login",
         type: "replace",
       });

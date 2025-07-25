@@ -146,7 +146,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({ to: "/my-path", type: "replace" }),
       ),
     );
@@ -189,7 +189,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({ to: "/my-path", type: "replace" }),
       ),
     );
@@ -240,7 +240,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({ to: "/my-path", type: "replace" }),
       ),
     );
@@ -303,7 +303,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/my-path",
           query: {
@@ -371,7 +371,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/my-path",
           query: {
@@ -417,7 +417,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/login",
           type: "replace",
@@ -464,7 +464,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/login",
           type: "replace",
@@ -512,7 +512,7 @@ describe("Authenticated", () => {
     });
 
     await waitFor(() =>
-      expect(mockGo).toBeCalledWith(
+      expect(mockGo).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/login",
           type: "replace",
