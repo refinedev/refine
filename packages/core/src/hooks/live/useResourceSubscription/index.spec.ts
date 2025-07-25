@@ -64,7 +64,7 @@ describe("useResourceSubscription Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalledWith({
+    expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       params: {
         resource: "posts",
@@ -112,7 +112,7 @@ describe("useResourceSubscription Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).not.toBeCalled();
+    expect(onSubscribeMock).not.toHaveBeenCalled();
   });
 
   it("useResourceSubscription liveMode on context off, params auto", async () => {
@@ -152,10 +152,10 @@ describe("useResourceSubscription Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
-    expect(invalidateQueriesMock).toBeCalledTimes(1);
-    expect(onLiveEventMock).toBeCalledWith(mockCallbackEventPayload);
-    expect(onLiveEventFromContextCallbackMock).toBeCalledWith(
+    expect(onSubscribeMock).toHaveBeenCalled();
+    expect(invalidateQueriesMock).toHaveBeenCalledTimes(1);
+    expect(onLiveEventMock).toHaveBeenCalledWith(mockCallbackEventPayload);
+    expect(onLiveEventFromContextCallbackMock).toHaveBeenCalledWith(
       mockCallbackEventPayload,
     );
   });
@@ -185,7 +185,7 @@ describe("useResourceSubscription Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).not.toBeCalled();
+    expect(onSubscribeMock).not.toHaveBeenCalled();
   });
 
   it("useResourceSubscription calls unsubscribe on unmount", async () => {
@@ -219,11 +219,11 @@ describe("useResourceSubscription Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
 
     unmount();
-    expect(onUnsubscribeMock).toBeCalledWith(true);
-    expect(onUnsubscribeMock).toBeCalledTimes(1);
+    expect(onUnsubscribeMock).toHaveBeenCalledWith(true);
+    expect(onUnsubscribeMock).toHaveBeenCalledTimes(1);
   });
 
   it("should invalidate queries based on queryKey created with `identifier`", async () => {
@@ -261,9 +261,9 @@ describe("useResourceSubscription Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
-    expect(onLiveEventMock).toBeCalledWith(mockCallbackEventPayload);
-    expect(invalidateQueriesMock).toBeCalledWith({
+    expect(onSubscribeMock).toHaveBeenCalled();
+    expect(onLiveEventMock).toHaveBeenCalledWith(mockCallbackEventPayload);
+    expect(invalidateQueriesMock).toHaveBeenCalledWith({
       queryKey: ["data", "default", "featured-posts"],
       type: "active",
       refetchType: "active",

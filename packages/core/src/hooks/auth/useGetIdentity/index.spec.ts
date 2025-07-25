@@ -130,7 +130,7 @@ describe("useGetIdentity Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getIdentityMock).not.toBeCalled();
-    expect(queryFnMock).toBeCalled();
+    expect(getIdentityMock).not.toHaveBeenCalled();
+    expect(queryFnMock).toHaveBeenCalled();
   });
 });

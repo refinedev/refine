@@ -47,7 +47,7 @@ describe("useNavigation Hook [new]", () => {
     it("navigate to show page with push", async () => {
       result.current.show("posts", "1", "push");
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "/posts/show/1",
         type: "push",
       });
@@ -56,7 +56,7 @@ describe("useNavigation Hook [new]", () => {
     it("navigate to create page with push", async () => {
       result.current.create("posts", "push");
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "/posts/create",
         type: "push",
       });
@@ -65,7 +65,7 @@ describe("useNavigation Hook [new]", () => {
     it("navigate to edit page with push", async () => {
       result.current.edit("posts", "1", "push");
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "/posts/edit/1",
         type: "push",
       });
@@ -74,7 +74,7 @@ describe("useNavigation Hook [new]", () => {
     it("navigate to clone page with push", async () => {
       result.current.clone("posts", "1", "push");
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "/posts/create/1",
         type: "push",
       });
@@ -83,7 +83,7 @@ describe("useNavigation Hook [new]", () => {
     it("navigate to list page with push", async () => {
       result.current.list("posts", "push");
 
-      expect(goMock).toBeCalledWith({ to: "/posts", type: "push" });
+      expect(goMock).toHaveBeenCalledWith({ to: "/posts", type: "push" });
     });
     it("by default navigation methods should use push", async () => {
       result.current.show("posts", "1");
@@ -92,8 +92,10 @@ describe("useNavigation Hook [new]", () => {
       result.current.clone("posts", "1");
       result.current.list("posts");
 
-      expect(goMock).toBeCalledTimes(5);
-      expect(goMock).toBeCalledWith(expect.objectContaining({ type: "push" }));
+      expect(goMock).toHaveBeenCalledTimes(5);
+      expect(goMock).toHaveBeenCalledWith(
+        expect.objectContaining({ type: "push" }),
+      );
     });
   });
 
@@ -108,35 +110,35 @@ describe("useNavigation Hook [new]", () => {
       });
 
       result.current.show("posts", "1", "push");
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "",
         type: "push",
       });
       goMock.mockReset();
 
       result.current.create("posts", "push");
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "",
         type: "push",
       });
       goMock.mockReset();
 
       result.current.edit("posts", "1", "push");
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "",
         type: "push",
       });
       goMock.mockReset();
 
       result.current.clone("posts", "1", "push");
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "",
         type: "push",
       });
       goMock.mockReset();
 
       result.current.list("posts", "push");
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: "",
         type: "push",
       });

@@ -134,7 +134,7 @@ describe("useForgotPassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "forgot-password-error",
         type: "error",
         message: "Error",
@@ -169,7 +169,7 @@ describe("useForgotPassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "forgot-password-error",
         type: "error",
         message: "Forgot Password Error",
@@ -203,7 +203,7 @@ describe("useForgotPassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "forgot-password-error",
         type: "error",
         message: "Error",
@@ -241,8 +241,8 @@ describe("useForgotPassword Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(forgotPasswordMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(forgotPasswordMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -308,7 +308,7 @@ describe("useForgotPassword Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "forgot-password-success",
         type: "success",
         message: "Password reset successful",

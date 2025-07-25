@@ -433,7 +433,7 @@ describe("useTable Hook", () => {
     await waitFor(() => {
       expect(result.current.tableQuery.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -484,7 +484,7 @@ describe("useTable Hook", () => {
     await waitFor(() => {
       expect(result.current.tableQuery.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalledTimes(9);
+      expect(onInterval).toHaveBeenCalledTimes(9);
     });
 
     await waitFor(() => {
@@ -1314,8 +1314,8 @@ describe("useTable Filters", () => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
 
-    expect(setterFunction).toBeCalledTimes(1);
-    expect(setterFunction).toBeCalledWith(initialFilter);
+    expect(setterFunction).toHaveBeenCalledTimes(1);
+    expect(setterFunction).toHaveBeenCalledWith(initialFilter);
 
     expect(result.current.filters).toBeInstanceOf(Array);
     expect(result.current.filters).toEqual(
@@ -1413,10 +1413,10 @@ describe("useTable Filters", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1461,10 +1461,10 @@ describe("useTable Filters", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           startDate: "2021-01-01",
@@ -1472,7 +1472,7 @@ describe("useTable Filters", () => {
       }),
     );
 
-    expect(getListMock).not.toBeCalledWith(
+    expect(getListMock).not.toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           likes: 100,

@@ -34,10 +34,10 @@ describe("useTranslation", () => {
       }),
     });
 
-    expect(translateMock).toBeCalledTimes(1);
-    expect(translateMock).toBeCalledWith("key", undefined, undefined);
-    expect(getLocaleMock).toBeCalledTimes(1);
-    expect(changeLocale).toBeCalledTimes(1);
-    expect(changeLocale).toBeCalledWith("en");
+    expect(translateMock).toHaveBeenCalledTimes(1);
+    expect(translateMock).toHaveBeenCalledWith("key", undefined, undefined);
+    expect(getLocaleMock).toHaveBeenCalledTimes(1);
+    expect(changeLocale).toHaveBeenCalledTimes(1);
+    expect(changeLocale).toHaveBeenCalledWith("en");
   });
 });

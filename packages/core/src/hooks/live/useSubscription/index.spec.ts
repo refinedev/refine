@@ -33,7 +33,7 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
     expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       callback: subscriptionParams.onLiveEvent,
@@ -66,7 +66,7 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).not.toBeCalled();
+    expect(onSubscribeMock).not.toHaveBeenCalled();
   });
 
   it("useSubscribe spesific type", async () => {
@@ -97,7 +97,7 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
     expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       callback: subscriptionParams.onLiveEvent,
@@ -134,7 +134,7 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
     expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       callback: subscriptionParams.onLiveEvent,
@@ -146,8 +146,8 @@ describe("useSubscribe Hook", () => {
     });
 
     unmount();
-    expect(onUnsubscribeMock).toBeCalledWith(true);
-    expect(onUnsubscribeMock).toBeCalledTimes(1);
+    expect(onUnsubscribeMock).toHaveBeenCalledWith(true);
+    expect(onUnsubscribeMock).toHaveBeenCalledTimes(1);
   });
 
   it("should not throw error when liveProvider is undefined", async () => {

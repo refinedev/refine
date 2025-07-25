@@ -232,7 +232,7 @@ describe("useSelect Hook", () => {
       expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledTimes(1);
+    expect(getListMock).toHaveBeenCalledTimes(1);
 
     const { onSearch } = result.current;
 
@@ -243,7 +243,7 @@ describe("useSelect Hook", () => {
     onSearch("1");
 
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(2);
+      expect(getListMock).toHaveBeenCalledTimes(2);
     });
 
     await waitFor(() => {
@@ -278,23 +278,23 @@ describe("useSelect Hook", () => {
       expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledTimes(1);
+    expect(getListMock).toHaveBeenCalledTimes(1);
 
     const { onSearch } = result.current;
 
     onSearch("1");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(2);
+      expect(getListMock).toHaveBeenCalledTimes(2);
     });
 
     onSearch("2");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(3);
+      expect(getListMock).toHaveBeenCalledTimes(3);
     });
 
     onSearch("3");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(4);
+      expect(getListMock).toHaveBeenCalledTimes(4);
     });
 
     await waitFor(() => {
@@ -303,7 +303,7 @@ describe("useSelect Hook", () => {
 
     onSearch("");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(5);
+      expect(getListMock).toHaveBeenCalledTimes(5);
     });
 
     await waitFor(() => {
@@ -533,21 +533,21 @@ describe("useSelect Hook", () => {
 
       await waitFor(() => {
         if (typeof enabled === "undefined") {
-          expect(mockDataProvider.default?.getList).toBeCalledTimes(0);
-          expect(mockDataProvider.default?.getMany).toBeCalledTimes(0);
+          expect(mockDataProvider.default?.getList).toHaveBeenCalledTimes(0);
+          expect(mockDataProvider.default?.getMany).toHaveBeenCalledTimes(0);
           return;
         }
 
         if (enabled) {
-          expect(mockDataProvider.default?.getList).toBeCalledTimes(1);
-          expect(mockDataProvider.default?.getMany).toBeCalledTimes(0);
+          expect(mockDataProvider.default?.getList).toHaveBeenCalledTimes(1);
+          expect(mockDataProvider.default?.getMany).toHaveBeenCalledTimes(0);
 
           return;
         }
 
         if (!enabled && typeof enabled !== "undefined") {
-          expect(mockDataProvider.default?.getList).toBeCalledTimes(0);
-          expect(mockDataProvider.default?.getMany).toBeCalledTimes(1);
+          expect(mockDataProvider.default?.getList).toHaveBeenCalledTimes(0);
+          expect(mockDataProvider.default?.getMany).toHaveBeenCalledTimes(1);
           return;
         }
       });
@@ -885,10 +885,10 @@ describe("useSelect Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -933,10 +933,10 @@ describe("useSelect Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           startDate: "2021-01-01",
@@ -944,7 +944,7 @@ describe("useSelect Hook", () => {
       }),
     );
 
-    expect(getListMock).not.toBeCalledWith(
+    expect(getListMock).not.toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           likes: 100,
@@ -1025,7 +1025,7 @@ describe("useSelect Hook", () => {
     await waitFor(() => {
       expect(result.current.query.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {

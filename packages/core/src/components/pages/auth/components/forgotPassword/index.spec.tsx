@@ -140,10 +140,10 @@ describe("Auth Page Forgot Password", () => {
     fireEvent.click(getByDisplayValue(/send reset/i));
 
     await waitFor(() => {
-      expect(forgotPasswordMock).toBeCalledTimes(1);
+      expect(forgotPasswordMock).toHaveBeenCalledTimes(1);
     });
 
-    expect(forgotPasswordMock).toBeCalledWith({
+    expect(forgotPasswordMock).toHaveBeenCalledWith({
       email: "demo@refine.dev",
     });
   });

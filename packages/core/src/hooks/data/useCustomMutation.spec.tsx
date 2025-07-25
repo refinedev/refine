@@ -36,10 +36,10 @@ describe("useCustomMutation Hook", () => {
     });
 
     await waitFor(() => {
-      expect(customMock).toBeCalled();
+      expect(customMock).toHaveBeenCalled();
     });
 
-    expect(customMock).toBeCalledWith(
+    expect(customMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -108,7 +108,7 @@ describe("useCustomMutation Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "post-notification",
         message: "Error (status code: undefined)",
@@ -145,7 +145,7 @@ describe("useCustomMutation Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -177,7 +177,7 @@ describe("useCustomMutation Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -215,7 +215,7 @@ describe("useCustomMutation Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -253,7 +253,7 @@ describe("useCustomMutation Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -288,7 +288,7 @@ describe("useCustomMutation Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -322,7 +322,7 @@ describe("useCustomMutation Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(customMock).toBeCalledWith(
+    expect(customMock).toHaveBeenCalledWith(
       expect.objectContaining({
         headers: {
           "X-Custom-Header": "Custom header value",
@@ -367,7 +367,7 @@ describe("useCustomMutation Hook", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {

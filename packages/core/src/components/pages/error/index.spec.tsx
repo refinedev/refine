@@ -56,9 +56,9 @@ describe("ErrorComponent", () => {
     fireEvent.click(getByText("Back Home"));
 
     await waitFor(() => {
-      expect(goMock).toBeCalledTimes(1);
+      expect(goMock).toHaveBeenCalledTimes(1);
     });
 
-    expect(goMock).toBeCalledWith({ to: "/" });
+    expect(goMock).toHaveBeenCalledWith({ to: "/" });
   });
 });

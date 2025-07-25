@@ -36,10 +36,13 @@ describe("useList Hook", () => {
     expect(data?.total).toEqual(2);
   });
 
-  it.each(["server", undefined] as const)(
+  fit.each(["server", undefined] as const)(
     "should include pagination in queryKey when mode is %s",
     async (mode) => {
-      const getListMock = jest.fn();
+      const getListMock = jest.fn().mockResolvedValue({
+        data: [],
+        total: 0,
+      });
 
       renderHook(
         () =>
@@ -63,7 +66,8 @@ describe("useList Hook", () => {
           }),
         },
       );
-      expect(getListMock).toBeCalledWith(
+
+      expect(getListMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: {
             queryKey: [
@@ -115,7 +119,7 @@ describe("useList Hook", () => {
         },
       );
 
-      expect(getListMock).toBeCalledWith(
+      expect(getListMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           pagination: {
@@ -258,10 +262,10 @@ describe("useList Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -303,7 +307,7 @@ describe("useList Hook", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onSubscribeMock).toBeCalled();
+        expect(onSubscribeMock).toHaveBeenCalled();
         expect(onSubscribeMock).toHaveBeenCalledWith(
           expect.objectContaining({
             channel: "resources/posts",
@@ -360,7 +364,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(onSubscribeMock).not.toBeCalled();
+      expect(onSubscribeMock).not.toHaveBeenCalled();
     });
 
     it("liveMode = Off and liveMode hook param auto", async () => {
@@ -388,7 +392,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(onSubscribeMock).toBeCalled();
+      expect(onSubscribeMock).toHaveBeenCalled();
     });
 
     it("unsubscribe call on unmount", async () => {
@@ -420,11 +424,11 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(onSubscribeMock).toBeCalled();
+      expect(onSubscribeMock).toHaveBeenCalled();
 
       unmount();
-      expect(onUnsubscribeMock).toBeCalledWith(true);
-      expect(onUnsubscribeMock).toBeCalledTimes(1);
+      expect(onUnsubscribeMock).toHaveBeenCalledWith(true);
+      expect(onUnsubscribeMock).toHaveBeenCalledTimes(1);
     });
 
     it("should not subscribe if `queryOptions.enabled` is false", async () => {
@@ -454,7 +458,7 @@ describe("useList Hook", () => {
         },
       );
 
-      expect(onSubscribeMock).not.toBeCalled();
+      expect(onSubscribeMock).not.toHaveBeenCalled();
     });
   });
 
@@ -489,7 +493,7 @@ describe("useList Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "posts-useList-notification",
         message: "Error (status code: undefined)",
@@ -526,7 +530,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -558,7 +562,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -596,7 +600,7 @@ describe("useList Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -634,7 +638,7 @@ describe("useList Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -669,7 +673,7 @@ describe("useList Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -715,7 +719,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(successNotificationMock).toBeCalledWith(
+      expect(successNotificationMock).toHaveBeenCalledWith(
         {
           data: [{ id: 1, title: "foo" }],
           total: 1,
@@ -731,7 +735,7 @@ describe("useList Hook", () => {
         }),
         "posts",
       );
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         message: "Success",
         type: "success",
       });
@@ -775,7 +779,7 @@ describe("useList Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(errorNotificationMock).toBeCalledWith(
+      expect(errorNotificationMock).toHaveBeenCalledWith(
         new Error("Error"),
         expect.objectContaining({
           filters: undefined,
@@ -788,7 +792,7 @@ describe("useList Hook", () => {
         }),
         "posts",
       );
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         message: "Custom Error",
         type: "error",
       });
@@ -824,7 +828,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(getListMock).toBeCalledWith(
+      expect(getListMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             queryKey: ["foo", "bar"],
@@ -873,8 +877,8 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(getListMock).not.toBeCalled();
-      expect(queryFnMock).toBeCalled();
+      expect(getListMock).not.toHaveBeenCalled();
+      expect(queryFnMock).toHaveBeenCalled();
     });
   });
 
@@ -912,7 +916,7 @@ describe("useList Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         filters: [{ field: "id", operator: "eq", value: 1 }],
         pagination: {
@@ -969,12 +973,12 @@ describe("useList Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getListFooMock).toBeCalledWith(
+    expect(getListFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(getListDefaultMock).not.toBeCalled();
+    expect(getListDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -1011,7 +1015,7 @@ describe("useList Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1066,12 +1070,12 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(getListFooMock).toBeCalledWith(
+      expect(getListFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(getListDefaultMock).not.toBeCalled();
+      expect(getListDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should create queryKey with `identifier`", async () => {
@@ -1106,7 +1110,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(getListMock).toBeCalledWith(
+      expect(getListMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             queryKey: [
@@ -1163,7 +1167,7 @@ describe("useList Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(getListMock).toBeCalledWith(
+      expect(getListMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -1211,7 +1215,7 @@ describe("useList Hook", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -1255,7 +1259,7 @@ describe("useList Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),

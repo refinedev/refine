@@ -24,7 +24,7 @@ describe("useBack Hook", () => {
 
     result.current();
 
-    expect(mockBack).toBeCalledTimes(1);
+    expect(mockBack).toHaveBeenCalledTimes(1);
   });
 
   it("if routerProvider back function is not defined, should return undefined", () => {

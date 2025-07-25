@@ -175,10 +175,10 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(updateMock).toBeCalled();
+      expect(updateMock).toHaveBeenCalled();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -228,7 +228,7 @@ describe("useUpdate Hook [with params]", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -268,7 +268,7 @@ describe("useUpdate Hook [with params]", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -350,7 +350,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successful",
         key: "1-posts-notification",
         message: "Successfully updated post",
@@ -388,7 +388,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-notification",
         message: "Error when updating post (status code: undefined)",
@@ -425,7 +425,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -457,7 +457,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -495,7 +495,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -533,7 +533,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -579,12 +579,12 @@ describe("useUpdate Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateFooMock).toBeCalledWith(
+    expect(updateFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(updateDefaultMock).not.toBeCalled();
+    expect(updateDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -621,7 +621,7 @@ describe("useUpdate Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -674,12 +674,12 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateFooMock).toBeCalledWith(
+      expect(updateFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(updateDefaultMock).not.toBeCalled();
+      expect(updateDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -718,7 +718,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -767,7 +767,7 @@ describe("useUpdate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -991,8 +991,8 @@ describe("useUpdate Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updateMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -1317,10 +1317,10 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(updateMock).toBeCalled();
+      expect(updateMock).toHaveBeenCalled();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1370,7 +1370,7 @@ describe("useUpdate Hook [with props]", () => {
     await waitFor(() => {
       expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -1415,7 +1415,7 @@ describe("useUpdate Hook [with props]", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -1499,7 +1499,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successful",
         key: "1-posts-notification",
         message: "Successfully updated post",
@@ -1538,7 +1538,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-notification",
         message: "Error when updating post (status code: undefined)",
@@ -1580,7 +1580,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -1617,7 +1617,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -1660,7 +1660,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -1699,7 +1699,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -1746,12 +1746,12 @@ describe("useUpdate Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateFooMock).toBeCalledWith(
+    expect(updateFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(updateDefaultMock).not.toBeCalled();
+    expect(updateDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -1789,7 +1789,7 @@ describe("useUpdate Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1843,12 +1843,12 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateFooMock).toBeCalledWith(
+      expect(updateFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(updateDefaultMock).not.toBeCalled();
+      expect(updateDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -1888,7 +1888,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -1938,7 +1938,7 @@ describe("useUpdate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -2177,8 +2177,8 @@ describe("useUpdate Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updateMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
