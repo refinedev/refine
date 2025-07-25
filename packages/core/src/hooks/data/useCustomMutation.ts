@@ -82,7 +82,7 @@ export type UseCustomMutationProps<
 } & UseLoadingOvertimeOptionsProps;
 
 /**
- * `useCustomMutation` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for create mutations.
+ * `useCustomMutation` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/reference/useMutation `useMutation`} for create mutations.
  *
  * It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
  *

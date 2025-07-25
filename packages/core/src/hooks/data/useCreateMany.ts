@@ -75,7 +75,7 @@ export type UseCreateManyProps<
   UseCreateManyParams<TData, TError, TVariables>;
 
 /**
- * `useCreateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple create mutations.
+ * `useCreateMany` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/reference/useMutation `useMutation`} for multiple create mutations.
  *
  * It uses `createMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
