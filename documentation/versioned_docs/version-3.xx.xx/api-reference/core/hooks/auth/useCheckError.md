@@ -8,7 +8,7 @@ description: useCheckError data hook from refine is a modified version of react-
 `useCheckError` calls the `checkError` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.
 If the `checkError` returns a rejected promise, `useCheckError` calls the `logout` method of the `authProvider` and the app is unauthenticated.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
+It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v4/docs/framework/react/reference/useMutation).
 Data that is resolved from the `checkError` will be returned as the `data` in the query result.
 
 ## Usage

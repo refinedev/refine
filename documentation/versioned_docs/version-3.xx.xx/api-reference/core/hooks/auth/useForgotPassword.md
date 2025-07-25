@@ -7,7 +7,7 @@ description: useForgotPassword data hook from refine is a modified version of re
 
 `useForgotPassword` calls `forgotPassword` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood. It forgot passwords the user if `forgotPassword` method from `authProvider` resolves and if it rejects shows an error notification.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
+It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v4/docs/framework/react/reference/useMutation).
 
 Data that is resolved from `forgotPassword` will be returned as the `data` in the query result.
 
@@ -20,24 +20,24 @@ If we want to build a custom forgotPassword page instead of default one that com
 import { useForgotPassword } from "@pankod/refine-core";
 
 type forgotPasswordVariables = {
-    email: string;
+  email: string;
 };
 
 export const forgotPasswordPage = () => {
-    const { mutate: forgotPassword } =
-        useForgotPassword<forgotPasswordVariables>();
+  const { mutate: forgotPassword } =
+    useForgotPassword<forgotPasswordVariables>();
 
-    const onSubmit = (values: forgotPasswordVariables) => {
-        forgotPassword(values);
-    };
+  const onSubmit = (values: forgotPasswordVariables) => {
+    forgotPassword(values);
+  };
 
-    return (
-        <form onSubmit={onSubmit}>
-            <label>Email</label>
-            <input name="email" value="test@refine.com" />
-            <button type="submit">Submit</button>
-        </form>
-    );
+  return (
+    <form onSubmit={onSubmit}>
+      <label>Email</label>
+      <input name="email" value="test@refine.com" />
+      <button type="submit">Submit</button>
+    </form>
+  );
 };
 ```
 
@@ -55,7 +55,7 @@ const { mutate: forgotPassword } = useForgotPassword<{ email: string }>();
 
 We have 2 options for redirecting the app after forgotPassword successfully .
 
--   A custom url can be resolved from the promise returned from the `forgotPassword` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
+- A custom url can be resolved from the promise returned from the `forgotPassword` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -91,7 +91,7 @@ const authProvider: AuthProvider = {
 
 ```
 
--   If the promise returned from the `forgotPassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
+- If the promise returned from the `forgotPassword` method of the `authProvider` gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {
