@@ -8,7 +8,7 @@ description: useLogout data hook from refine is a modified version of react-quer
 `useLogout` calls the `logout` method from the [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.  
 It unauthenticates the app if the `logout` method from the `authProvider` resolves and if it rejects, it keeps authentication state the same.
 
-It returns the result of `react-query`'s [`useMutation`](https://react-query.tanstack.com/reference/useMutation).
+It returns the result of `react-query`'s [`useMutation`](https://tanstack.com/query/v4/docs/framework/react/reference/useMutation).
 Data that is resolved from the `logout` will be returned as the `data` in the query result.
 
 ## Usage
@@ -20,9 +20,9 @@ If you want to build a custom logout button instead of the default one, `useLogo
 import { useLogout } from "@pankod/refine-core";
 
 export const LogoutButton = () => {
-    const { mutate: logout } = useLogout();
+  const { mutate: logout } = useLogout();
 
-    return <button onClick={() => logout()}>Logout</button>;
+  return <button onClick={() => logout()}>Logout</button>;
 };
 ```
 
@@ -30,9 +30,9 @@ export const LogoutButton = () => {
 
 We have 3 options to manage the redirection after logout process.
 
--   If promise returned from `logout` is resolved with nothing, app will be redirected to the `/login` route by default.
+- If promise returned from `logout` is resolved with nothing, app will be redirected to the `/login` route by default.
 
--   A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
+- A custom url can be resolved from the promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -68,7 +68,7 @@ const authProvider: AuthProvider = {
 
 ```
 
--   If promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md) gets resolved with `false` no redirection will occur.
+- If promise returned from the `logout` method of the [authProvider](/api-reference/core/providers/auth-provider.md) gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {
