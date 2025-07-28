@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[36254],{88991:a=>{a.exports=JSON.parse('{"label":"philosophy","permalink":"/blog/tags/philosophy","allTagsPath":"/blog/tags","count":1}')}}]);
