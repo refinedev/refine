@@ -65,7 +65,7 @@ export const useQuerySubscription =
             DevtoolsEvent.DEVTOOLS_INVALIDATE_QUERY_ACTION,
             ({ queryKey }) => {
               if (queryKey) {
-                queryClient.invalidateQueries(queryKey);
+                queryClient.invalidateQueries({ queryKey });
               }
             },
           );
