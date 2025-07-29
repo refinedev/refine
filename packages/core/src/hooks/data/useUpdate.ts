@@ -163,7 +163,7 @@ export type UseUpdateProps<
   UpdateParams<TData, TError, TVariables>;
 
 /**
- * `useUpdate` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for update mutations.
+ * `useUpdate` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/reference/useMutation `useMutation`} for update mutations.
  *
  * It uses `update` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
