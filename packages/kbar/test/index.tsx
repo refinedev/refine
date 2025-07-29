@@ -7,39 +7,23 @@ import { MockRouterProvider, MockJSONServer } from "@test";
 import type {
   I18nProvider,
   AccessControlProvider,
-  LegacyAuthProvider,
   DataProvider,
   NotificationProvider,
   IResourceItem,
+  RouterBindings,
 } from "@refinedev/core";
 
 import { RefineKbarProvider } from "../src/index";
 
-/* interface ITestWrapperProps {
-    authProvider?: IAuthContext;
-    dataProvider?: IDataContext;
-    i18nProvider?: I18nProvider;
-    accessControlProvider?: IAccessControlContext;
-    liveProvider?: ILiveContext;
-    resources?: IResourceItem[];
-    children?: React.ReactNode;
-    routerInitialEntries?: string[];
-    refineProvider?: IRefineContextProvider;
-} */
-
-const List = () => {
-  return <div>hede</div>;
-};
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
   authProvider?: AuthProvider;
-  legacyAuthProvider?: LegacyAuthProvider;
   resources?: IResourceItem[];
+  routerProvider?: RouterBindings;
   notificationProvider?: NotificationProvider;
   accessControlProvider?: AccessControlProvider;
   i18nProvider?: I18nProvider;
   routerInitialEntries?: string[];
-  DashboardPage?: React.FC;
 }
 
 export const TestWrapper: (
@@ -47,12 +31,11 @@ export const TestWrapper: (
 ) => React.FC<{ children?: React.ReactNode }> = ({
   dataProvider,
   authProvider,
-  legacyAuthProvider,
+  routerProvider,
   resources,
   notificationProvider,
   accessControlProvider,
   routerInitialEntries,
-  DashboardPage,
   i18nProvider,
 }) => {
   // Previously, MemoryRouter was used in this wrapper. However, the
@@ -74,13 +57,11 @@ export const TestWrapper: (
           <Refine
             dataProvider={dataProvider ?? MockJSONServer}
             i18nProvider={i18nProvider}
-            legacyRouterProvider={MockRouterProvider}
             authProvider={authProvider}
-            legacyAuthProvider={legacyAuthProvider}
             notificationProvider={notificationProvider}
-            resources={resources ?? [{ name: "posts", list: List }]}
+            routerProvider={routerProvider ?? MockRouterProvider()}
+            resources={resources ?? [{ name: "posts", list: "/list" }]}
             accessControlProvider={accessControlProvider}
-            DashboardPage={DashboardPage ?? undefined}
             options={{ disableTelemetry: true }}
           >
             {children}

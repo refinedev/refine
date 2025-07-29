@@ -1,14 +1,13 @@
 import { useEffect, useState, useContext } from "react";
 import {
-  useNavigation,
   useDelete,
   useTranslate,
   useResource,
   type IResourceItem,
   useCanWithoutCache,
   useUserFriendlyName,
-  useRouterType,
   useGo,
+  useResourceParams,
 } from "@refinedev/core";
 import {
   useRegisterActions,
@@ -31,23 +30,12 @@ enum RefineKbarActionType {
 
 export const useRefineKbar = (): void => {
   const t = useTranslate();
-  const {
-    resource: resourceFromParams,
-    resources,
-    id: idFromParams,
-    action: actionFromParams,
-  } = useResource();
-  const routerType = useRouterType();
+  const { resource: resourceFromParams, resources } = useResource();
+  const { id: idFromParams, action: actionFromParams } = useResourceParams();
   const getToPath = useGetToPath();
   const go = useGo();
   const { mutate } = useDelete();
-  const {
-    push,
-    list: goToList,
-    create: goToCreate,
-    show: goToShow,
-    edit: goToEdit,
-  } = useNavigation();
+
   const getUserFriendlyName = useUserFriendlyName();
 
   const kbarContext = useContext(KBarContext);
@@ -94,31 +82,13 @@ export const useRefineKbar = (): void => {
   };
 
   const createActionWithResource = async (resource: IResourceItem) => {
-    const {
-      name,
-      label: deprecatedLabel,
-      list,
-      create,
-      canCreate,
-      canEdit,
-      canShow,
-      icon: deprecatedIcon,
-      show,
-      canDelete: deprecatedCanDelete,
-      edit,
-      route,
-    } = resource;
+    const { name, list, create, show, edit } = resource;
 
-    const label =
-      resource?.meta?.label ?? resource?.options?.label ?? deprecatedLabel;
+    const label = resource?.meta?.label;
 
-    const icon =
-      resource?.meta?.icon ?? resource?.options?.icon ?? deprecatedIcon;
+    const icon = resource?.meta?.icon;
 
-    const canDelete =
-      resource?.meta?.canDelete ??
-      resource?.options?.canDelete ??
-      deprecatedCanDelete;
+    const canDelete = resource?.meta?.canDel;
 
     const section =
       label ??
@@ -149,15 +119,10 @@ export const useRefineKbar = (): void => {
               const p = getToPath({
                 resource,
                 action: "list",
-                legacy: routerType === "legacy",
               });
 
               if (p) {
-                if (routerType === "legacy") {
-                  push(p);
-                } else {
-                  go({ to: p });
-                }
+                go({ to: p });
               }
             },
           }),
@@ -165,7 +130,7 @@ export const useRefineKbar = (): void => {
       }
     }
     if (
-      (canCreate || !!create) &&
+      (resource?.meta?.canCreate || !!create) &&
       create &&
       (RefineKbarActionType.Create !== actionFromParams ||
         resourceFromParams?.name !== name)
@@ -187,15 +152,10 @@ export const useRefineKbar = (): void => {
               const p = getToPath({
                 resource,
                 action: "create",
-                legacy: routerType === "legacy",
               });
 
               if (p) {
-                if (routerType === "legacy") {
-                  push(p);
-                } else {
-                  go({ to: p });
-                }
+                go({ to: p });
               }
             },
           }),
@@ -205,7 +165,7 @@ export const useRefineKbar = (): void => {
 
     if (resourceFromParams?.name === name && idFromParams) {
       if (
-        (canShow || !!show) &&
+        (resource?.meta?.canShow || !!show) &&
         show &&
         RefineKbarActionType.Show !== actionFromParams
       ) {
@@ -225,18 +185,13 @@ export const useRefineKbar = (): void => {
                 const p = getToPath({
                   resource,
                   action: "show",
-                  legacy: routerType === "legacy",
                   meta: {
                     id: idFromParams,
                   },
                 });
 
                 if (p) {
-                  if (routerType === "legacy") {
-                    push(p);
-                  } else {
-                    go({ to: p });
-                  }
+                  go({ to: p });
                 }
               },
             }),
@@ -244,7 +199,7 @@ export const useRefineKbar = (): void => {
         }
       }
       if (
-        (canEdit || !!edit) &&
+        (resource?.meta?.canEdit || !!edit) &&
         edit &&
         RefineKbarActionType.Edit !== actionFromParams
       ) {
@@ -263,18 +218,13 @@ export const useRefineKbar = (): void => {
                 const p = getToPath({
                   resource,
                   action: "edit",
-                  legacy: routerType === "legacy",
                   meta: {
                     id: idFromParams,
                   },
                 });
 
                 if (p) {
-                  if (routerType === "legacy") {
-                    push(p);
-                  } else {
-                    go({ to: p });
-                  }
+                  go({ to: p });
                 }
               },
             }),
@@ -316,15 +266,10 @@ export const useRefineKbar = (): void => {
                       const p = getToPath({
                         resource,
                         action: "list",
-                        legacy: routerType === "legacy",
                       });
 
                       if (p) {
-                        if (routerType === "legacy") {
-                          push(p);
-                        } else {
-                          go({ to: p });
-                        }
+                        go({ to: p });
                       }
                     },
                   },
