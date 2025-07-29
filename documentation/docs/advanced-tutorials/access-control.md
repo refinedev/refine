@@ -453,25 +453,41 @@ const adapter = new CasbinStringAdapter(`
 p, editor, posts, list
 `);
 
-setRefineProps({
-  accessControlProvider: {
-    can: async ({ resource, action }) => {
-      const enforcer = await CasbinNewEnforcer(model, adapter);
-      const can = await enforcer.enforce("editor", resource, action);
+render(
+  <ReactRouter.BrowserRouter>
+    <RefineAntdDemo
+      accessControlProvider={{
+        can: async ({ resource, action }) => {
+          const enforcer = await CasbinNewEnforcer(model, adapter);
+          const can = await enforcer.enforce("editor", resource, action);
 
-      return { can };
-    },
-  },
-  resources: [
-    {
-      name: "posts",
-      list: PostList,
-      create: PostCreate,
-    },
-  ],
-});
-
-render(<RefineAntdDemo />);
+          return { can };
+        },
+      }}
+      resources={[
+        {
+          name: "posts",
+          list: "/posts",
+          create: "/posts/create",
+        },
+      ]}
+    >
+      <ReactRouter.Routes>
+        <ReactRouter.Route
+          path="/posts"
+          element={
+            <div style={{ padding: 16 }}>
+              <ReactRouter.Outlet />
+            </div>
+          }
+        >
+          <ReactRouter.Route index element={<PostList />} />
+        </ReactRouter.Route>
+        <ReactRouter.Route path="/posts/create" element={<PostCreate />} />
+      </ReactRouter.Routes>
+    </RefineAntdDemo>
+  </ReactRouter.BrowserRouter>,
+);
 ```
 
 ## Adding Different Roles

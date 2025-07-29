@@ -51,7 +51,7 @@ export const StepList = ({ className }: { className?: string }) => {
         <StepContainer className="landing-lg:flex-row-reverse !gap-0 landing-md:gap-8">
           <AiLandingStepTwo />
           <AiLandingStepInfo
-            title="Collabrotive planning"
+            title="Collaborative planning"
             description="Refine AI knows all the steps to build enterprise-grade, production-ready internal software. Before writing a single line of code, Refine AI ensures that all requirements and preferences are carefully gathered and validated."
             step={"02."}
           />
