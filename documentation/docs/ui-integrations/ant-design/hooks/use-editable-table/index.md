@@ -364,7 +364,7 @@ Takes a `id` as a parameter and returns `true` if the given `BaseKey` is equal t
 [useform]: /docs/ui-integrations/ant-design/hooks/use-table
 [usetable]: /docs/ui-integrations/ant-design/hooks/use-table
 [usequery]: https://react-query.tanstack.com/reference/useQuery
-[usemutation]: https://react-query.tanstack.com/reference/useMutation
+[usemutation]: https://tanstack.com/query/v4/docs/framework/react/reference/useMutation
 [baserecord]: /docs/core/interface-references#baserecord
 [basekey]: /docs/core/interface-references#basekey
 [crudsorting]: /docs/core/interface-references#crudsorting
