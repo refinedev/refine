@@ -13,8 +13,9 @@ export function generateDefaultDocumentTitle(
   action?: string,
   id?: string,
   resourceName?: string,
+  getUserFriendlyName?: (name: string, type: "singular" | "plural") => string,
 ) {
-  const getFriendlyName = useUserFriendlyName();
+  const getFriendlyName = getUserFriendlyName || useUserFriendlyName();
 
   const actionPrefixMatcher = {
     create: "Create new ",
@@ -28,7 +29,9 @@ export function generateDefaultDocumentTitle(
 
   const resourceNameFallback =
     resource?.meta?.label ??
-    getFriendlyName(identifier, action === "list" ? "plural" : "singular");
+    (identifier
+      ? getFriendlyName(identifier, action === "list" ? "plural" : "singular")
+      : identifier);
 
   const resourceNameWithFallback = resourceName ?? resourceNameFallback;
 
