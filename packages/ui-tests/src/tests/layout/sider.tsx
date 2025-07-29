@@ -2,18 +2,7 @@ import React from "react";
 import type { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
 
 import { act, mockRouterBindings, render, TestWrapper, waitFor } from "@test";
-import type { AuthProvider, LegacyAuthProvider } from "@refinedev/core";
-import { Route, Router, Routes } from "react-router";
-
-const mockLegacyAuthProvider: LegacyAuthProvider & { isProvided: boolean } = {
-  login: () => Promise.resolve(),
-  logout: () => Promise.resolve(),
-  checkError: () => Promise.resolve(),
-  checkAuth: () => Promise.resolve(),
-  getPermissions: () => Promise.resolve(["admin"]),
-  getUserIdentity: () => Promise.resolve(),
-  isProvided: true,
-};
+import type { AuthProvider } from "@refinedev/core";
 
 const mockAuthProvider: AuthProvider = {
   check: () => Promise.resolve({ authenticated: true }),
@@ -38,7 +27,7 @@ export const layoutSiderTests = (
     it("should render logout menu item successful", async () => {
       const { getAllByText } = render(<SiderElement />, {
         wrapper: TestWrapper({
-          legacyAuthProvider: mockLegacyAuthProvider,
+          authProvider: mockAuthProvider,
         }),
       });
 
@@ -51,31 +40,12 @@ export const layoutSiderTests = (
     it("should work menu item click", async () => {
       const { getAllByText } = render(<SiderElement />, {
         wrapper: TestWrapper({
-          legacyAuthProvider: mockLegacyAuthProvider,
+          authProvider: mockAuthProvider,
         }),
       });
 
       await waitFor(() => getAllByText("Posts")[0].click());
       await waitFor(() => expect(window.location.pathname).toBe("/posts"));
-    });
-
-    // NOTE : Will be removed in v5
-    it("should work legacy logout menu item click", async () => {
-      const logoutMockedAuthProvider = {
-        ...mockLegacyAuthProvider,
-        logout: jest.fn().mockImplementation(() => Promise.resolve()),
-      };
-      const { getAllByText } = render(<SiderElement />, {
-        wrapper: TestWrapper({
-          legacyAuthProvider: logoutMockedAuthProvider,
-        }),
-      });
-
-      await act(async () => {
-        getAllByText("Logout")[0].click();
-      });
-
-      expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
     });
 
     it("should work logout menu item click", async () => {
@@ -104,15 +74,11 @@ export const layoutSiderTests = (
           resources: [
             {
               name: "posts",
-              list: function render() {
-                return <div>posts</div>;
-              },
+              list: "/posts",
             },
             {
               name: "users",
-              list: function render() {
-                return <div>users</div>;
-              },
+              list: "/users",
             },
           ],
           accessControlProvider: {
@@ -149,7 +115,7 @@ export const layoutSiderTests = (
         />,
         {
           wrapper: TestWrapper({
-            legacyAuthProvider: mockLegacyAuthProvider,
+            authProvider: mockAuthProvider,
             DashboardPage: function Dashboard() {
               return <div>Dashboard</div>;
             },

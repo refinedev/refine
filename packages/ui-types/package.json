@@ -30,7 +30,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/core": "^4.57.9",
+    "@refinedev/core": "^4.57.10",
     "dayjs": "^1.10.7",
     "tslib": "^2.6.2"
   },

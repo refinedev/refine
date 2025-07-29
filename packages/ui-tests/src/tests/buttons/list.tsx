@@ -422,7 +422,7 @@ export const buttonListTests = (
             resources: [
               {
                 name: "posts",
-                options: { route: "custom-route-posts" },
+                list: "/posts",
               },
               { name: "posts" },
             ],

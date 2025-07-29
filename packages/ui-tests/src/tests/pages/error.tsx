@@ -3,7 +3,6 @@ import type { RefineErrorPageProps } from "@refinedev/ui-types";
 
 import {
   fireEvent,
-  mockLegacyRouterProvider,
   mockRouterBindings,
   render,
   TestWrapper,
@@ -20,31 +19,6 @@ export const pageErrorTests = (
       });
 
       expect(container).toBeTruthy();
-    });
-
-    it("back home button should work with legacy router provider", async () => {
-      const pushMock = jest.fn();
-
-      const { getByText } = render(<ErrorPage />, {
-        wrapper: TestWrapper({
-          legacyRouterProvider: {
-            ...mockLegacyRouterProvider(),
-            useHistory: () => ({
-              goBack: jest.fn(),
-              push: pushMock,
-              replace: jest.fn(),
-            }),
-          },
-        }),
-      });
-
-      fireEvent.click(getByText("Back Home"));
-
-      await waitFor(() => {
-        expect(pushMock).toBeCalledTimes(1);
-      });
-
-      expect(pushMock).toBeCalledWith("/");
     });
 
     it("back home button should work with router provider", async () => {
