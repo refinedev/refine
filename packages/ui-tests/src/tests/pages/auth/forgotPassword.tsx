@@ -5,7 +5,6 @@ import {
   fireEvent,
   mockAuthProvider,
   mockRouterBindings,
-  MockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -198,29 +197,6 @@ export const pageForgotPasswordTests = (
       expect(forgotPasswordMock).toBeCalledWith({
         email: "demo@refine.dev",
       });
-    });
-
-    it("should work with legacy router provider Link", async () => {
-      jest.spyOn(console, "error").mockImplementation((message) => {
-        console.warn(message);
-      });
-      const LinkComponentMock = jest.fn();
-
-      render(<ForgotPasswordPage />, {
-        wrapper: TestWrapper({
-          legacyRouterProvider: {
-            ...MockRouterProvider,
-            Link: LinkComponentMock,
-          },
-        }),
-      });
-
-      expect(LinkComponentMock).toBeCalledWith(
-        expect.objectContaining({
-          to: "/login",
-        }),
-        {},
-      );
     });
 
     it("should work with new router provider Link", async () => {

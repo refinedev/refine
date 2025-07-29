@@ -131,7 +131,7 @@ export const crudEditTests = (
         />,
         undefined,
         {
-          resources: [{ name: "posts", canDelete: true }],
+          resources: [{ name: "posts", meta: { canDelete: true } }],
           routerInitialEntries: ["/posts/edit/1"],
         },
       );

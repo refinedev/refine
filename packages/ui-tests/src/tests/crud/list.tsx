@@ -102,7 +102,7 @@ export const crudListTests = (
           resources: [
             {
               name: "posts",
-              create: () => null,
+              create: "/posts/create",
             },
           ],
           routerInitialEntries: ["/posts"],
@@ -125,7 +125,7 @@ export const crudListTests = (
           resources: [
             {
               name: "posts",
-              canCreate: false,
+              meta: { canCreate: false },
             },
           ],
           routerInitialEntries: ["/posts"],
@@ -167,7 +167,7 @@ export const crudListTests = (
           resources: [
             {
               name: "posts",
-              create: () => null,
+              create: "/posts/create",
             },
           ],
           routerInitialEntries: ["/posts"],

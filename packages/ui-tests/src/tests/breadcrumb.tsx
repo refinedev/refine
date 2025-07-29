@@ -18,8 +18,6 @@ const renderBreadcrumb = (
   );
 };
 
-const DummyResourcePage = () => <div>Dummy</div>;
-
 export const breadcrumbTests = (
   Breadcrumb: React.ComponentType<RefineBreadcrumbProps<any>>,
 ): void => {
@@ -51,7 +49,7 @@ export const breadcrumbTests = (
 
     it("should render breadcrumb items with link", async () => {
       const { container } = renderBreadcrumb(<Breadcrumb />, {
-        resources: [{ name: "posts", list: DummyResourcePage }],
+        resources: [{ name: "posts", list: "/posts" }],
         routerInitialEntries: ["/posts/create"],
       });
 
@@ -64,7 +62,9 @@ export const breadcrumbTests = (
         resources: [
           {
             name: "posts",
-            icon: <div data-testid="resource-icon" />,
+            meta: {
+              icon: <div data-testid="resource-icon" />,
+            },
           },
         ],
         routerInitialEntries: ["/posts/create"],
@@ -78,7 +78,9 @@ export const breadcrumbTests = (
         resources: [
           {
             name: "posts",
-            icon: <div data-testid="resource-icon" />,
+            meta: {
+              icon: <div data-testid="resource-icon" />,
+            },
           },
         ],
         routerInitialEntries: ["/posts/create"],
