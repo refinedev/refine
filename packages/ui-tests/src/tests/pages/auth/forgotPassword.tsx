@@ -191,10 +191,10 @@ export const pageForgotPasswordTests = (
       fireEvent.click(getByText(/send reset instructions/i));
 
       await waitFor(() => {
-        expect(forgotPasswordMock).toBeCalledTimes(1);
+        expect(forgotPasswordMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(forgotPasswordMock).toBeCalledWith({
+      expect(forgotPasswordMock).toHaveBeenCalledWith({
         email: "demo@refine.dev",
       });
     });
@@ -215,7 +215,7 @@ export const pageForgotPasswordTests = (
         }),
       });
 
-      expect(LinkComponentMock).toBeCalledWith(
+      expect(LinkComponentMock).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/login",
         }),

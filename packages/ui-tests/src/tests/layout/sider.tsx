@@ -65,7 +65,7 @@ export const layoutSiderTests = (
         getAllByText("Logout")[0].click();
       });
 
-      expect(logoutMockedAuthProvider.logout).toBeCalledTimes(1);
+      expect(logoutMockedAuthProvider.logout).toHaveBeenCalledTimes(1);
     });
 
     it("should render only allowed menu items", async () => {

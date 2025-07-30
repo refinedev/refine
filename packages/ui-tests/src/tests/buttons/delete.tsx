@@ -449,7 +449,7 @@ export const buttonDeleteTests = (
         fireEvent.click(deleteButtons[1]);
       });
 
-      expect(deleteOneMock).toBeCalledTimes(1);
+      expect(deleteOneMock).toHaveBeenCalledTimes(1);
     });
 
     it("should confirm Popconfirm successfuly with recordItemId", async () => {
@@ -483,7 +483,7 @@ export const buttonDeleteTests = (
         fireEvent.click(deleteButtons[1]);
       });
 
-      expect(deleteOneMock).toBeCalledWith(
+      expect(deleteOneMock).toHaveBeenCalledWith(
         expect.objectContaining({ id: "record-id" }),
       );
     });
@@ -523,8 +523,8 @@ export const buttonDeleteTests = (
         fireEvent.click(deleteButtons[1]);
       });
 
-      expect(deleteOneMock).toBeCalledTimes(1);
-      expect(onSuccessMock).toBeCalledTimes(1);
+      expect(deleteOneMock).toHaveBeenCalledTimes(1);
+      expect(onSuccessMock).toHaveBeenCalledTimes(1);
     });
 
     it("should confirm Popconfirm successfuly with onSuccess", async () => {
@@ -568,8 +568,8 @@ export const buttonDeleteTests = (
         fireEvent.click(getByText("confirmOkText"));
       });
 
-      expect(deleteOneMock).toBeCalledTimes(1);
-      expect(onSuccessMock).toBeCalledTimes(1);
+      expect(deleteOneMock).toHaveBeenCalledTimes(1);
+      expect(onSuccessMock).toHaveBeenCalledTimes(1);
     });
 
     it("should render with custom mutationMode", async () => {

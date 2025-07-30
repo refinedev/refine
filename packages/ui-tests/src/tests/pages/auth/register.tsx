@@ -220,10 +220,10 @@ export const pageRegisterTests = (
       fireEvent.click(getAllByText(/sign up/i)[1]);
 
       await waitFor(() => {
-        expect(registerMock).toBeCalledTimes(1);
+        expect(registerMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(registerMock).toBeCalledWith({
+      expect(registerMock).toHaveBeenCalledWith({
         email: "demo@refine.dev",
         password: "demo",
       });
@@ -255,10 +255,10 @@ export const pageRegisterTests = (
       fireEvent.click(getByText(/google/i));
 
       await waitFor(() => {
-        expect(registerMock).toBeCalledTimes(1);
+        expect(registerMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(registerMock).toBeCalledWith({
+      expect(registerMock).toHaveBeenCalledWith({
         providerName: "Google",
       });
     });
@@ -279,7 +279,7 @@ export const pageRegisterTests = (
         }),
       });
 
-      expect(LinkComponentMock).toBeCalledWith(
+      expect(LinkComponentMock).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/login",
         }),
