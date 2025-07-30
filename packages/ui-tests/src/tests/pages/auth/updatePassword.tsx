@@ -151,10 +151,10 @@ export const pageUpdatePasswordTests = (
       fireEvent.click(getAllByText(/update/i)[0]);
 
       await waitFor(() => {
-        expect(updatePasswordMock).toBeCalledTimes(1);
+        expect(updatePasswordMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(updatePasswordMock).toBeCalledWith({
+      expect(updatePasswordMock).toHaveBeenCalledWith({
         password: "demo",
         confirmPassword: "demo",
       });

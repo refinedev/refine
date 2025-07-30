@@ -270,10 +270,10 @@ export const pageLoginTests = (
       fireEvent.click(getAllByText(/sign in/i)[1]);
 
       await waitFor(() => {
-        expect(loginMock).toBeCalledTimes(1);
+        expect(loginMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(loginMock).toBeCalledWith({
+      expect(loginMock).toHaveBeenCalledWith({
         email: "demo@refine.dev",
         password: "demo",
         remember: true,
@@ -296,14 +296,14 @@ export const pageLoginTests = (
         }),
       });
 
-      expect(LinkComponentMock).toBeCalledWith(
+      expect(LinkComponentMock).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/forgot-password",
         }),
         {},
       );
 
-      expect(LinkComponentMock).toBeCalledWith(
+      expect(LinkComponentMock).toHaveBeenCalledWith(
         expect.objectContaining({
           to: "/register",
         }),
@@ -337,10 +337,10 @@ export const pageLoginTests = (
       fireEvent.click(getByText(/google/i));
 
       await waitFor(() => {
-        expect(loginMock).toBeCalledTimes(1);
+        expect(loginMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(loginMock).toBeCalledWith({
+      expect(loginMock).toHaveBeenCalledWith({
         providerName: "Google",
       });
     });
