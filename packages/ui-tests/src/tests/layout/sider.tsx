@@ -102,11 +102,10 @@ export const layoutSiderTests = (
     it("should render custom element passed with render prop", async () => {
       const { getAllByText, queryAllByText } = render(
         <SiderElement
-          render={({ logout, dashboard, items }) => {
+          render={({ logout, items }) => {
             return (
               <>
                 <div>custom-element</div>
-                {dashboard}
                 {items}
                 {logout}
               </>
@@ -127,7 +126,6 @@ export const layoutSiderTests = (
         expect(getAllByText("Posts").length).toBeGreaterThanOrEqual(1),
       );
       expect(queryAllByText("Logout").length).toBeGreaterThanOrEqual(1);
-      expect(queryAllByText("Dashboard").length).toBeGreaterThanOrEqual(1);
       expect(queryAllByText("custom-element").length).toBeGreaterThanOrEqual(1);
     });
 

@@ -10,11 +10,6 @@ export type SiderRenderProps = {
    */
   logout: React.ReactNode;
   /**
-   * Dashboard menu item, if you have `DashboardPage` defined in `<Refine>` component.
-   * @deprecated This only works with legacy router providers. Please use `resources` array instead.
-   */
-  dashboard: React.ReactNode;
-  /**
    * Whether the sider is collapsed or not.
    */
   collapsed: boolean;
@@ -90,10 +85,5 @@ export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
 };
 export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
-  /**
-   * Whether the header is sticky or not.
-   * @deprecated `isSticky` is deprecated. Please use `sticky` instead.
-   */
-  isSticky?: boolean;
   sticky?: boolean;
 };
