@@ -37,7 +37,7 @@
     "@refinedev/react-router-v6": "^4.6.0",
     "@refinedev/simple-rest": "^5.0.8",
     "apexcharts": "^3.36.3",
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "cross-env": "^7.0.3",
     "react": "^18.0.0",
     "react-apexcharts": "^1.4.0",

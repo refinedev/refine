@@ -29,7 +29,7 @@
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
     "antd": "^5.17.0",
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router": "^7.0.2"
