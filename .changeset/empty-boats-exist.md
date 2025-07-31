@@ -1,5 +1,4 @@
 ---
-"@refinedev/live-previews": patch
 "@refinedev/nestjsx-crud": patch
 "@refinedev/simple-rest": patch
 "@refinedev/strapi-v4": patch
