@@ -27,7 +27,7 @@
     "@refinedev/react-hook-form": "^4.10.2",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.10",
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.57.0",
