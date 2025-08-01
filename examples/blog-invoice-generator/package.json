@@ -30,7 +30,7 @@
     "@refinedev/core": "^4.56.0",
     "@refinedev/react-router": "^0.1.0",
     "@refinedev/strapi-v4": "^6.0.9",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "axios": "^1.6.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

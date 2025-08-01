@@ -49,7 +49,7 @@
     "@tabler/icons-react": "^3.1.0",
     "@tanstack/react-table": "^8.2.6",
     "@uiw/react-md-editor": "^3.19.5",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "axios": "^1.6.2",
     "base64url": "^3.0.1",
     "casbin": "^5.15.2",

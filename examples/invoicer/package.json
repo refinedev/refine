@@ -28,7 +28,7 @@
     "@refinedev/devtools": "^1.2.16",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/strapi-v4": "^6.0.11",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "antd-style": "^3.6.1",
     "axios": "^1.6.2",
     "react": "^19.1.0",
