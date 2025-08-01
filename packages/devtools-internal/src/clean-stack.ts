@@ -1,4 +1,4 @@
-import type { StackFrame } from "error-stack-parser";
+import type { StackFrame } from "error-stack-parser-es";
 
 const unrelatedFunctionName = "renderWithHooks";
 

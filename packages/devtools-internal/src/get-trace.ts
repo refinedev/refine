@@ -1,4 +1,4 @@
-import ErrorStackParser from "error-stack-parser";
+import { parse } from "error-stack-parser-es";
 import { cleanStack } from "./clean-stack";
 import { isRefineStack } from "./is-refine-stack";
 import { getPackageNameFromFilename } from "./get-package-name-from-filename";
@@ -10,7 +10,7 @@ export function getTrace(excludeFromTrace?: string[]) {
   }
   try {
     const error = new Error();
-    const stack = ErrorStackParser.parse(error);
+    const stack = parse(error);
     const clean = cleanStack(stack);
     const traces = clean
       .map(

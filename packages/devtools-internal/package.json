@@ -42,7 +42,7 @@
   "dependencies": {
     "@refinedev/devtools-shared": "1.1.14",
     "@tanstack/react-query": "^4.10.1",
-    "error-stack-parser": "^2.1.4"
+    "error-stack-parser-es": "^1.0.5"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
