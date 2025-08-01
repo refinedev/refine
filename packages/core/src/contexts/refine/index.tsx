@@ -1,6 +1,6 @@
 import React from "react";
 
-import pluralize from "pluralize";
+import * as pluralize from "pluralize";
 
 import { DefaultLayout } from "@components/layoutWrapper/defaultLayout";
 

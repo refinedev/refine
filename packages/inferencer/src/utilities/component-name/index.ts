@@ -1,4 +1,4 @@
-import pluralize from "pluralize";
+import * as pluralize from "pluralize";
 import { prettyString } from "../pretty-string";
 
 /**
