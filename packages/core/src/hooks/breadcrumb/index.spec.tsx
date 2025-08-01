@@ -16,7 +16,6 @@ const renderWrapper = (wrapperProps: ITestWrapperProps = {}) => {
   return WrapperWith;
 };
 
-const DummyResourcePage = () => <div>resource page</div>;
 const DummyIcon = <div>icon</div>;
 
 describe("useBreadcrumb Hook", () => {

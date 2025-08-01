@@ -284,31 +284,20 @@ export const pageLoginTests = (
       jest.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
-      const LinkComponentMock = jest.fn();
 
-      render(<LoginPage />, {
+      const { getByText } = render(<LoginPage />, {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
-            fns: {
-              Link: LinkComponentMock,
-            },
-          }),
+          routerProvider: mockRouterBindings({}),
         }),
       });
 
-      expect(LinkComponentMock).toHaveBeenCalledWith(
-        expect.objectContaining({
-          to: "/forgot-password",
-        }),
-        {},
-      );
+      const forgotPasswordLink = getByText(/forgot password/i);
+      expect(forgotPasswordLink).toBeInTheDocument();
+      expect(forgotPasswordLink.getAttribute("href")).toBe("/forgot-password");
 
-      expect(LinkComponentMock).toHaveBeenCalledWith(
-        expect.objectContaining({
-          to: "/register",
-        }),
-        {},
-      );
+      const registerLink = getByText(/sign up/i);
+      expect(registerLink).toBeInTheDocument();
+      expect(registerLink.getAttribute("href")).toBe("/register");
     });
 
     it("should run login mutation when provider button is clicked", async () => {

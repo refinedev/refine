@@ -104,14 +104,3 @@ export interface RouteableProperties {
   canDelete?: boolean;
   canList?: boolean;
 }
-
-/* Backward compatible version of 'TreeMenuItem' */
-export type ITreeMenu = IResourceItem & {
-  key?: string;
-  children: ITreeMenu[];
-};
-
-export type IMenuItem = IResourceItem & {
-  key: string;
-  route: string;
-};

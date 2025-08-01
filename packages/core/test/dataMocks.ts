@@ -107,8 +107,8 @@ export const mockRouterProvider = ({
 } = {}): RouterProvider => {
   const routerProvider: RouterProvider = {
     go: () => {
-      return ({ type }) => {
-        if (type === "path") return "";
+      return ({ type, to }) => {
+        if (type === "path") return to || "";
         return undefined;
       };
     },

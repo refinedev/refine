@@ -24,7 +24,6 @@ export interface ITestWrapperProps {
   i18nProvider?: I18nProvider;
   routerProvider?: RouterBindings;
   routerInitialEntries?: string[];
-  DashboardPage?: React.FC;
   options?: IRefineOptions;
 }
 

@@ -6,7 +6,12 @@ import {
 } from "@refinedev/ui-types";
 import type { AccessControlProvider } from "@refinedev/core";
 
-import { type ITestWrapperProps, render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  mockRouterBindings,
+  render,
+  TestWrapper,
+} from "@test";
 
 const renderShow = (
   show: React.ReactNode,
@@ -18,14 +23,28 @@ const renderShow = (
       <Route path="/:resource/:action/:id" element={show} />
     </Routes>,
     {
-      wrapper: TestWrapper(
-        wrapperProps
-          ? wrapperProps
-          : {
-              routerInitialEntries: ["/posts/show/1"],
-              accessControlProvider,
+      wrapper: TestWrapper({
+        routerInitialEntries: ["/posts/show/1"],
+        accessControlProvider,
+        routerProvider: {
+          ...mockRouterBindings(),
+          parse: () => () => ({
+            params: { id: "1" },
+            action: "show",
+            resource: {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+              clone: "/posts/clone/1",
+              show: "/posts/show/1",
+              edit: "/posts/edit/1",
+              meta: { canDelete: true },
             },
-      ),
+            pathname: "/posts/show/1",
+          }),
+        },
+        ...wrapperProps,
+      }),
     },
   );
 };

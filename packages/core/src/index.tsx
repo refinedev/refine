@@ -170,8 +170,6 @@ export {
   IResourceComponentsProps,
   IResourceContext,
   IResourceItem,
-  ITreeMenu,
-  IMenuItem,
   ResourceAuditLogPermissions,
   ResourceBindings,
   RouteableProperties,
@@ -202,3 +200,5 @@ export {
   MetaContextProvider,
   useMetaContext,
 } from "./contexts/metaContext/index.js";
+
+export { TreeMenuItem, UseMenuProps } from "./hooks/menu/useMenu.js";

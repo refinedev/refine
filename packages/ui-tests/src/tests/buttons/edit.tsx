@@ -4,7 +4,14 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  fireEvent,
+  render,
+  TestWrapper,
+  waitFor,
+  mockRouterBindings,
+} from "@test";
 import { Route, Routes } from "react-router";
 
 export const buttonEditTests = (
@@ -373,50 +380,14 @@ export const buttonEditTests = (
         <Routes>
           <Route
             path="/:resource"
-            element={
-              <EditButton
-                resourceNameOrRouteName="categories"
-                recordItemId="1"
-              />
-            }
-          />
-        </Routes>,
-        {
-          wrapper: TestWrapper({
-            resources: [{ name: "posts" }, { name: "categories" }],
-            routerInitialEntries: ["/posts"],
-          }),
-        },
-      );
-
-      await act(async () => {
-        fireEvent.click(getByText("Edit"));
-      });
-
-      expect(window.location.pathname).toBe("/categories/edit/1");
-    });
-
-    it("should redirect with custom route called function successfully if click the button", async () => {
-      const { getByText } = render(
-        <Routes>
-          <Route
-            path="/:resource"
-            element={
-              <EditButton
-                resourceNameOrRouteName="custom-route-posts"
-                recordItemId={1}
-              />
-            }
+            element={<EditButton resource="categories" recordItemId="1" />}
           />
         </Routes>,
         {
           wrapper: TestWrapper({
             resources: [
-              {
-                name: "posts",
-                meta: { route: "custom-route-posts" },
-              },
-              { name: "posts" },
+              { name: "posts", edit: "/posts/edit/:id" },
+              { name: "categories", edit: "/categories/edit/:id" },
             ],
             routerInitialEntries: ["/posts"],
           }),
@@ -427,7 +398,9 @@ export const buttonEditTests = (
         fireEvent.click(getByText("Edit"));
       });
 
-      expect(window.location.pathname).toBe("/custom-route-posts/edit/1");
+      const editLink = getByText("Edit").closest("a");
+      expect(editLink).toBeTruthy();
+      expect(editLink?.getAttribute("href")).toBe("/categories/edit/1");
     });
   });
 };

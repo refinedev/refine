@@ -2,7 +2,13 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
-import { act, type ITestWrapperProps, render, TestWrapper } from "@test";
+import {
+  act,
+  type ITestWrapperProps,
+  render,
+  TestWrapper,
+  mockRouterBindings,
+} from "@test";
 
 const renderBreadcrumb = (
   children: React.ReactNode,
@@ -13,7 +19,23 @@ const renderBreadcrumb = (
       <Route path="/:resource/:action" element={children} />
     </Routes>,
     {
-      wrapper: TestWrapper(wrapperProps),
+      wrapper: TestWrapper({
+        routerProvider: {
+          ...mockRouterBindings(),
+          parse() {
+            return () => ({
+              pathname: "/posts",
+              resource: {
+                name: "posts",
+                list: "/posts",
+                create: "/posts/create",
+              },
+              action: "create",
+            });
+          },
+        },
+        ...wrapperProps,
+      }),
     },
   );
 };
@@ -39,7 +61,17 @@ export const breadcrumbTests = (
 
     it("should render breadcrumb when the number of items is greater than or equal to minItems", async () => {
       const { getByText } = renderBreadcrumb(<Breadcrumb minItems={2} />, {
-        resources: [{ name: "posts" }],
+        resources: [{ name: "posts", list: "/posts", create: "/posts/create" }],
+        routerInitialEntries: ["/posts/create"],
+      });
+
+      expect(getByText("Posts")).toBeInTheDocument();
+      expect(getByText("Create")).toBeInTheDocument();
+    });
+
+    it("should render breadcrumb items with resource name", async () => {
+      const { getByText } = renderBreadcrumb(<Breadcrumb />, {
+        resources: [{ name: "posts", list: "/posts", create: "/posts/create" }],
         routerInitialEntries: ["/posts/create"],
       });
 
@@ -67,6 +99,7 @@ export const breadcrumbTests = (
             },
           },
         ],
+
         routerInitialEntries: ["/posts/create"],
       });
 
