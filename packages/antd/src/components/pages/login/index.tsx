@@ -1,5 +1,5 @@
 import React from "react";
-import { type LoginPageProps, useActiveAuthProvider } from "@refinedev/core";
+import type { LoginPageProps } from "@refinedev/core";
 import {
   Row,
   Col,
@@ -36,10 +36,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
   const [form] = Form.useForm<ILoginForm>();
   const translate = useTranslate();
 
-  const authProvider = useActiveAuthProvider();
-  const { mutate: login, isLoading } = useLogin<ILoginForm>({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: login, isPending } = useLogin<ILoginForm>();
 
   const CardTitle = (
     <Typography.Title level={3} style={titleStyles}>
@@ -122,7 +119,7 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
                   type="primary"
                   size="large"
                   htmlType="submit"
-                  loading={isLoading}
+                  loading={isPending}
                   block
                 >
                   {translate("pages.login.signin", "Sign in")}

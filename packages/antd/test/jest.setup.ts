@@ -1,9 +1,26 @@
 import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/react";
 import { configure } from "@testing-library/dom";
 import * as util from "util";
 
-jest.retryTimes(3, { logErrorsBeforeRetry: true });
+// Mock ReactDOM.render for React 19 compatibility with antd/rc-util
+jest.mock("react-dom", () => {
+  const originalModule = jest.requireActual("react-dom");
+  return {
+    ...originalModule,
+    render: jest.fn((element, container) => {
+      // Use createRoot for React 19 compatibility
+      if (originalModule.createRoot && container) {
+        const root = originalModule.createRoot(container);
+        root.render(element);
+        return root;
+      }
+      return originalModule.render?.(element, container);
+    }),
+  };
+});
+
+jest.retryTimes(0, { logErrorsBeforeRetry: true });
 
 configure({
   asyncUtilTimeout: 10000,

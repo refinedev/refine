@@ -1,22 +1,14 @@
 import React from "react";
 import { Layout as AntdLayout, Typography, Avatar, Space, theme } from "antd";
-import {
-  pickNotDeprecated,
-  useActiveAuthProvider,
-  useGetIdentity,
-} from "@refinedev/core";
+import { useGetIdentity } from "@refinedev/core";
 import type { RefineThemedLayoutV2HeaderProps } from "../types";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
-  isSticky,
   sticky,
 }) => {
   const { token } = theme.useToken();
 
-  const authProvider = useActiveAuthProvider();
-  const { data: user } = useGetIdentity({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { data: user } = useGetIdentity();
 
   const shouldRenderHeader = user && (user.name || user.avatar);
 
@@ -33,7 +25,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     height: "64px",
   };
 
-  if (pickNotDeprecated(sticky, isSticky)) {
+  if (sticky) {
     headerStyles.position = "sticky";
     headerStyles.top = 0;
     headerStyles.zIndex = 1;

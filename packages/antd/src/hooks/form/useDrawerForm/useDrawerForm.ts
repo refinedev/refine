@@ -9,7 +9,7 @@ import {
   type BaseRecord,
   type FormWithSyncWithLocationParams,
   type BaseKey,
-  useResource,
+  useResourceParams,
   useParsed,
   useGo,
   useModal,
@@ -106,6 +106,7 @@ export const useDrawerForm = <
   autoResetForm = true,
   autoSave,
   invalidates,
+
   ...rest
 }: UseDrawerFormProps<
   TQueryFnData,
@@ -133,11 +134,12 @@ export const useDrawerForm = <
     resource,
     action: actionFromParams,
     identifier,
-  } = useResource(rest.resource);
+  } = useResourceParams({
+    resource: rest.resource,
+  });
 
   const parsed = useParsed();
   const go = useGo();
-
   const action = rest.action ?? actionFromParams ?? "";
 
   const syncingId = !(

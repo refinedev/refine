@@ -8,7 +8,6 @@ import {
   useTable as useTableCore,
   type useTableProps as useTablePropsCore,
   type useTableReturnType,
-  pickNotDeprecated,
 } from "@refinedev/core";
 import { useLiveMode } from "@refinedev/core";
 import { PaginationLink } from "@hooks/table/useTable/paginationLink";
@@ -23,13 +22,9 @@ export type useSimpleListReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
   TSearchVariables = unknown,
   TData extends BaseRecord = TQueryFnData,
-> = Omit<useTableReturnType<TData>, "tableQueryResult" | "tableQuery"> & {
+> = Omit<useTableReturnType<TData>, "tableQuery"> & {
   listProps: ListProps<TData>;
-  /**
-   * @deprecated Use `query` instead
-   */
-  queryResult: useTableReturnType["tableQueryResult"];
-  query: useTableReturnType["tableQuery"];
+  query: useTableReturnType<TData>["tableQuery"];
   searchFormProps: FormProps<TSearchVariables>;
 };
 
@@ -53,15 +48,8 @@ export const useSimpleList = <
   TData extends BaseRecord = TQueryFnData,
 >({
   resource,
-  initialCurrent,
-  initialPageSize,
-  pagination,
-  hasPagination = true,
-  initialSorter,
-  permanentSorter,
-  initialFilter,
-  permanentFilter,
-  defaultSetFilterBehavior,
+  pagination: paginationFromProp,
+
   filters: filtersFromProp,
   sorters: sortersFromProp,
   onSearch,
@@ -73,7 +61,6 @@ export const useSimpleList = <
   onLiveEvent,
   liveParams,
   meta,
-  metaData,
   dataProviderName,
 }: useSimpleListProps<
   TQueryFnData,
@@ -83,7 +70,6 @@ export const useSimpleList = <
 > = {}): useSimpleListReturnType<TData, TSearchVariables> => {
   const {
     sorters,
-    sorter,
     filters,
     current,
     pageSize,
@@ -91,40 +77,27 @@ export const useSimpleList = <
     setFilters,
     setCurrent,
     setPageSize,
-    setSorter,
     setSorters,
     createLinkForSyncWithLocation,
-    tableQueryResult: queryResult,
-    tableQuery: query,
+    tableQuery,
     overtime,
   } = useTableCore({
     resource,
-    initialSorter,
-    permanentSorter,
-    initialFilter,
-    permanentFilter,
+    pagination: paginationFromProp,
     filters: filtersFromProp,
     sorters: sortersFromProp,
-    defaultSetFilterBehavior,
-    initialCurrent,
-    initialPageSize,
     queryOptions,
     successNotification,
     errorNotification,
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
-    meta: pickNotDeprecated(meta, metaData),
-    metaData: pickNotDeprecated(meta, metaData),
+    meta,
     syncWithLocation,
     dataProviderName,
-    pagination,
-    hasPagination,
   });
 
-  const hasPaginationString = hasPagination === false ? "off" : "server";
-  const isPaginationEnabled =
-    (pagination?.mode ?? hasPaginationString) !== "off";
+  const isPaginationEnabled = paginationFromProp?.mode !== "off";
 
   const breakpoint = Grid.useBreakpoint();
 
@@ -132,7 +105,7 @@ export const useSimpleList = <
 
   const [form] = Form.useForm<TSearchVariables>();
 
-  const { data, isFetched, isLoading } = queryResult;
+  const { data, isFetched, isLoading } = tableQuery;
 
   const onChange = (page: number, pageSize?: number): void => {
     if (isPaginationEnabled) {
@@ -213,12 +186,9 @@ export const useSimpleList = <
       loading: liveMode === "auto" ? isLoading : !isFetched,
       pagination: antdPagination(),
     },
-    query,
-    queryResult,
+    query: tableQuery,
     filters,
     setFilters,
-    sorter,
-    setSorter,
     sorters,
     setSorters,
     current,

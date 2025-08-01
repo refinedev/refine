@@ -1,11 +1,9 @@
 import React from "react";
 import { Card, Space, Spin } from "antd";
 import {
-  useNavigation,
   useTranslate,
   useUserFriendlyName,
   useRefineContext,
-  useRouterType,
   useResource,
   useBack,
 } from "@refinedev/core";
@@ -45,12 +43,10 @@ export const Create: React.FC<CreateProps> = ({
     options: { breadcrumb: globalBreadcrumb } = {},
   } = useRefineContext();
 
-  const routerType = useRouterType();
   const back = useBack();
-  const { goBack } = useNavigation();
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, action, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResource(resourceFromProps);
 
   const breadcrumb =
     typeof breadcrumbFromProps === "undefined"
@@ -73,22 +69,13 @@ export const Create: React.FC<CreateProps> = ({
     <div {...(wrapperProps ?? {})}>
       <PageHeader
         backIcon={goBackFromProps}
-        onBack={
-          action !== "list" || typeof action !== "undefined"
-            ? routerType === "legacy"
-              ? goBack
-              : back
-            : undefined
-        }
+        onBack={back}
         title={
           title ??
           translate(
             `${identifier}.titles.create`,
             `Create ${getUserFriendlyName(
-              resource?.meta?.label ??
-                resource?.options?.label ??
-                resource?.label ??
-                identifier,
+              resource?.meta?.label ?? identifier,
               "singular",
             )}`,
           )
