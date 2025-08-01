@@ -6,14 +6,6 @@ import type { IResourceItem } from "../../../contexts/resource/types";
 import { pickResource } from "../../../definitions/helpers/pick-resource";
 import { useParsed } from "../../router/use-parsed";
 
-export type UseResourceProps = {
-  /**
-   * Determines which resource to use for redirection
-   * @default Resource name that it reads from route
-   */
-  resourceNameOrRouteName?: string;
-};
-
 /**
  * Matches the resource by identifier.
  * If not provided, the resource from the route will be returned.
@@ -41,7 +33,6 @@ type UseResourceReturnTypeWithResource = UseResourceReturnType & {
 };
 
 export function useResource(): UseResourceReturnType;
-export function useResource(props: UseResourceProps): UseResourceReturnType;
 export function useResource<TIdentifier = UseResourceParam>(
   identifier: TIdentifier,
 ): TIdentifier extends NonNullable<UseResourceParam>
@@ -52,11 +43,8 @@ export function useResource<TIdentifier = UseResourceParam>(
  *
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/resource/useResource} for more details.
  *
- * @deprecated Use `useResourceParams` instead for better integration with the routerProvider.
  */
-export function useResource(
-  args?: UseResourceParam | UseResourceProps,
-): UseResourceReturnType {
+export function useResource(args?: UseResourceParam): UseResourceReturnType {
   const { resources } = useContext(ResourceContext);
 
   const params = useParsed();
@@ -93,8 +81,7 @@ export function useResource(
 
   let resource: IResourceItem | undefined = undefined;
   // we try to pick the resource from props first
-  const identifier =
-    typeof args === "string" ? args : args?.resourceNameOrRouteName;
+  const identifier = args;
   if (identifier) {
     const pickedFromProps = pickResource(identifier, resources);
     if (pickedFromProps) {

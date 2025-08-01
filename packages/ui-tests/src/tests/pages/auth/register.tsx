@@ -267,24 +267,16 @@ export const pageRegisterTests = (
       jest.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
-      const LinkComponentMock = jest.fn();
 
-      render(<RegisterPage />, {
+      const { getByText } = render(<RegisterPage />, {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
-            fns: {
-              Link: LinkComponentMock,
-            },
-          }),
+          routerProvider: mockRouterBindings({}),
         }),
       });
 
-      expect(LinkComponentMock).toHaveBeenCalledWith(
-        expect.objectContaining({
-          to: "/login",
-        }),
-        {},
-      );
+      const loginLink = getByText(/sign in/i);
+      expect(loginLink).toBeInTheDocument();
+      expect(loginLink).toHaveAttribute("href", "/login");
     });
 
     it("should not render form when `hideForm` is true", async () => {

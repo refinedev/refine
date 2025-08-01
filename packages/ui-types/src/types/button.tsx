@@ -17,12 +17,6 @@ export type RefineButtonCommonProps = PropsWithChildren<{
 
 export type RefineButtonResourceProps = {
   /**
-   * Resource name for API data interactions
-   * @default Reads `:resource` from the URL
-   * @deprecated Please use `resource` instead.
-   */
-  resourceNameOrRouteName?: string;
-  /**
    * Resource name for API data interactions. `identifier` of the resource can be used instead of the `name` of the resource.
    * @default Inferred resource name from the route
    */

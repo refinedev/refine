@@ -33,7 +33,7 @@ export const posts = [
   },
 ];
 
-const MockDataProvider = () => {
+export const MockDataProvider = () => {
   return {
     create: () => Promise.resolve({ data: posts[0] }),
     createMany: () => Promise.resolve({ data: posts }),
@@ -88,8 +88,8 @@ export const mockRouterBindings = ({
 } = {}): RouterBindings => {
   const bindings: RouterBindings = {
     go: () => {
-      return ({ type }) => {
-        if (type === "path") return "";
+      return ({ type, to }) => {
+        if (type === "path") return to || "";
         return undefined;
       };
     },
@@ -109,8 +109,8 @@ export const mockRouterBindings = ({
     back: () => {
       return () => undefined;
     },
-    Link: ({ to, children, ...props }) => (
-      <a href={to} {...props}>
+    Link: ({ children, to, href, ...props }) => (
+      <a href={to || href || ""} {...props}>
         {children}
       </a>
     ),

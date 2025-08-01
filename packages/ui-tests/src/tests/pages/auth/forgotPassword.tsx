@@ -203,24 +203,15 @@ export const pageForgotPasswordTests = (
       jest.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
-      const LinkComponentMock = jest.fn();
 
-      render(<ForgotPasswordPage />, {
-        wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
-            fns: {
-              Link: LinkComponentMock,
-            },
-          }),
-        }),
+      const { getByText } = render(<ForgotPasswordPage />, {
+        wrapper: TestWrapper({}),
       });
 
-      expect(LinkComponentMock).toHaveBeenCalledWith(
-        expect.objectContaining({
-          to: "/login",
-        }),
-        {},
-      );
+      const link = getByText(/sign in/i);
+
+      expect(link).toBeInTheDocument();
+      expect(link.getAttribute("href")).toBe("/login");
     });
 
     it("should should accept 'mutationVariables'", async () => {

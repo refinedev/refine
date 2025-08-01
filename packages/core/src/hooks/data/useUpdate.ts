@@ -313,10 +313,6 @@ export const useUpdate = <
 
       const { gqlMutation: _, gqlQuery: __, ...preferredMeta } = meta ?? {};
 
-      const queryKey = keys()
-        .data(pickDataProvider(identifier, dataProviderName, resources))
-        .resource(identifier);
-
       const resourceKeys = keys()
         .data(pickDataProvider(identifier, dataProviderName, resources))
         .resource(identifier);
@@ -464,7 +460,6 @@ export const useUpdate = <
         payload: { id, resource: identifier },
       });
 
-      // Also call user's onSettled if provided
       mutationOptions?.onSettled?.(data, error, variables, context);
     },
     onSuccess: (data, variables, context) => {
@@ -491,7 +486,7 @@ export const useUpdate = <
 
       const combinedMeta = getMeta({
         resource,
-        meta: meta,
+        meta,
       });
 
       const notificationConfig =
@@ -585,7 +580,7 @@ export const useUpdate = <
       }
 
       if (err.message !== "mutationCancelled") {
-        checkError(err);
+        checkError?.(err);
 
         const resourceSingular = textTransformers.singular(identifier);
 

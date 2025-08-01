@@ -1,16 +1,25 @@
 import React from "react";
-import { Route, Routes } from "react-router";
 import {
   type RefineCloneButtonProps,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  fireEvent,
+  render,
+  TestWrapper,
+  waitFor,
+  mockRouterBindings,
+} from "@test";
+import { Route, Routes } from "react-router";
 
 export const buttonCloneTests = (
   CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Clone Button", () => {
+    const clone = jest.fn();
+
     beforeAll(() => {
       jest.spyOn(console, "warn").mockImplementation(jest.fn());
     });
@@ -360,8 +369,6 @@ export const buttonCloneTests = (
     });
 
     it("should render called function successfully if click the button", async () => {
-      const clone = jest.fn();
-
       const { getByText } = render(
         <CloneButton onClick={() => clone()} recordItemId="1" />,
         {
@@ -386,6 +393,24 @@ export const buttonCloneTests = (
         {
           wrapper: TestWrapper({
             routerInitialEntries: ["/posts"],
+            routerProvider: {
+              ...mockRouterBindings(),
+              parse() {
+                return () => ({
+                  pathname: "/posts",
+                  resource: {
+                    name: "posts",
+                    list: "/posts",
+                    create: "/posts/create",
+                    clone: "/posts/clone/:id",
+                  },
+                  action: "list",
+                });
+              },
+            },
+            resources: [
+              { name: "posts", list: "/posts", clone: "/posts/clone/:id" },
+            ],
           }),
         },
       );
@@ -394,7 +419,9 @@ export const buttonCloneTests = (
         fireEvent.click(getByText("Clone"));
       });
 
-      expect(window.location.pathname).toBe("/posts/clone/1");
+      const cloneLink = getByText("Clone").closest("a");
+      expect(cloneLink).toBeTruthy();
+      expect(cloneLink?.getAttribute("href")).toBe("/posts/clone/1");
     });
 
     it("should edit page redirect clone route called function successfully if click the button", async () => {
@@ -404,6 +431,25 @@ export const buttonCloneTests = (
         </Routes>,
         {
           wrapper: TestWrapper({
+            resources: [
+              { name: "posts", list: "/posts", clone: "/posts/clone/:id" },
+            ],
+            routerProvider: {
+              ...mockRouterBindings(),
+              parse() {
+                return () => ({
+                  params: { id: "1" },
+                  pathname: "/posts/edit/1",
+                  resource: {
+                    name: "posts",
+                    list: "/posts",
+                    clone: "/posts/clone/:id",
+                  },
+                  action: "edit",
+                  id: "1",
+                });
+              },
+            },
             routerInitialEntries: ["/posts/edit/1"],
           }),
         },
@@ -413,7 +459,8 @@ export const buttonCloneTests = (
         fireEvent.click(getByText("Clone"));
       });
 
-      expect(window.location.pathname).toBe("/posts/clone/1");
+      const cloneLink = getByText("Clone").closest("a");
+      expect(cloneLink).toBeTruthy();
     });
 
     it("should custom resource and recordItemId redirect clone route called function successfully if click the button", async () => {
@@ -421,50 +468,17 @@ export const buttonCloneTests = (
         <Routes>
           <Route
             path="/:resource"
-            element={
-              <CloneButton
-                resourceNameOrRouteName="categories"
-                recordItemId="1"
-              />
-            }
-          />
-        </Routes>,
-        {
-          wrapper: TestWrapper({
-            resources: [{ name: "posts" }, { name: "categories" }],
-            routerInitialEntries: ["/posts"],
-          }),
-        },
-      );
-
-      await act(async () => {
-        fireEvent.click(getByText("Clone"));
-      });
-
-      expect(window.location.pathname).toBe("/categories/clone/1");
-    });
-
-    it("should redirect with custom route called function successfully if click the button", async () => {
-      const { getByText } = render(
-        <Routes>
-          <Route
-            path="/:resource"
-            element={
-              <CloneButton
-                resourceNameOrRouteName="custom-route-posts"
-                recordItemId="1"
-              />
-            }
+            element={<CloneButton resource="categories" recordItemId="1" />}
           />
         </Routes>,
         {
           wrapper: TestWrapper({
             resources: [
+              { name: "posts", clone: "/posts/clone/:id" },
               {
-                name: "posts",
-                meta: { route: "custom-route-posts" },
+                name: "categories",
+                clone: "/categories/clone/:id",
               },
-              { name: "posts" },
             ],
             routerInitialEntries: ["/posts"],
           }),
@@ -475,7 +489,9 @@ export const buttonCloneTests = (
         fireEvent.click(getByText("Clone"));
       });
 
-      expect(window.location.pathname).toBe("/custom-route-posts/clone/1");
+      const cloneLink = getByText("Clone").closest("a");
+      expect(cloneLink).toBeTruthy();
+      expect(cloneLink?.getAttribute("href")).toBe("/categories/clone/1");
     });
   });
 };

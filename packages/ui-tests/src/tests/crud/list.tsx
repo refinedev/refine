@@ -9,6 +9,7 @@ import {
 import {
   act,
   type ITestWrapperProps,
+  mockRouterBindings,
   render,
   TestWrapper,
   waitFor,
@@ -80,9 +81,21 @@ export const crudListTests = (
         resources: [
           {
             name: "posts",
-            meta: { route: "posts", label: "test" },
+            meta: { label: "test" },
           },
         ],
+        routerProvider: {
+          ...mockRouterBindings(),
+          parse() {
+            return () => ({
+              params: {},
+              pathname: "/posts",
+              resource: { name: "posts", meta: { label: "test" } },
+              action: "list",
+              id: undefined,
+            });
+          },
+        },
         routerInitialEntries: ["/posts"],
       });
 
@@ -106,6 +119,18 @@ export const crudListTests = (
             },
           ],
           routerInitialEntries: ["/posts"],
+          routerProvider: {
+            ...mockRouterBindings(),
+            parse() {
+              return () => ({
+                params: {},
+                pathname: "/posts",
+                resource: { name: "posts", create: "/posts/create" },
+                action: "list",
+                id: undefined,
+              });
+            },
+          },
         },
       );
 
@@ -145,7 +170,21 @@ export const crudListTests = (
           }}
         />,
         undefined,
-        { routerInitialEntries: ["/posts"] },
+        {
+          routerInitialEntries: ["/posts"],
+          routerProvider: {
+            ...mockRouterBindings(),
+            parse() {
+              return () => ({
+                params: {},
+                pathname: "/posts",
+                resource: { name: "posts", meta: { canCreate: false } },
+                action: "list",
+                id: undefined,
+              });
+            },
+          },
+        },
       );
 
       expect(queryByTestId(RefineButtonTestIds.CreateButton)).not.toBeNull();
