@@ -1,6 +1,5 @@
 import React from "react";
 import type { Action, ResourceProps } from "@refinedev/core";
-
 import { Route } from "react-router-dom";
 
 export const createResourcePathWithAction = (
@@ -56,6 +55,7 @@ export const createResourceRoutes = (resources: ResourceProps[]) => {
       path: string;
     }[] = [];
 
+    // ✅ Existing CRUD route generation
     (["list", "show", "edit", "create"] as const).forEach((action) => {
       const item = resource[action];
       if (typeof item !== "undefined" && typeof item !== "string") {
@@ -73,11 +73,37 @@ export const createResourceRoutes = (resources: ResourceProps[]) => {
       }
     });
 
-    return actions.map(({ action, element: Component, path }) => {
-      const element = <Component />;
+    // ✅ New: Add support for custom routes
+    const customRoutes =
+      (resource as any).custom?.map(
+        (
+          custom: { path: string; component: React.ComponentType<any> },
+          idx: number,
+        ) => {
+          const CustomComponent = custom.component;
+          return (
+            <Route
+              key={`custom-${resource.name}-${idx}`}
+              path={`/${resource.name}/${custom.path}`}
+              element={<CustomComponent />}
+            />
+          );
+        },
+      ) || [];
 
-      return <Route key={`${action}-${path}`} path={path} element={element} />;
-    });
+    // Return CRUD routes + custom routes
+    return [
+      ...actions.map(({ action, element: Component, path }) => {
+        return (
+          <Route
+            key={`${action}-${path}`}
+            path={path}
+            element={<Component />}
+          />
+        );
+      }),
+      ...customRoutes,
+    ];
   });
 
   return routes;
