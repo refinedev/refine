@@ -1,8 +1,7 @@
 import React from "react";
-import {
-  type UpdatePasswordPageProps,
-  type UpdatePasswordFormTypes,
-  useActiveAuthProvider,
+import type {
+  UpdatePasswordPageProps,
+  UpdatePasswordFormTypes,
 } from "@refinedev/core";
 import {
   Row,
@@ -51,11 +50,8 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
   const { token } = theme.useToken();
   const [form] = Form.useForm<UpdatePasswordFormTypes>();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: updatePassword, isLoading } =
-    useUpdatePassword<UpdatePasswordFormTypes>({
-      v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+  const { mutate: updatePassword, isPending } =
+    useUpdatePassword<UpdatePasswordFormTypes>();
 
   const PageTitle =
     title === false ? null : (
@@ -166,7 +162,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             type="primary"
             size="large"
             htmlType="submit"
-            loading={isLoading}
+            loading={isPending}
             block
           >
             {translate("pages.updatePassword.buttons.submit", "Update")}

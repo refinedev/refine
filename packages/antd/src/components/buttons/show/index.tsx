@@ -18,7 +18,6 @@ import type { ShowButtonProps } from "../types";
  */
 export const ShowButton: React.FC<ShowButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName: propResourceNameOrRouteName,
   recordItemId,
   hideText = false,
   accessControl,
@@ -28,7 +27,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
   ...rest
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useShowButton({
-    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    resource: resourceNameFromProps,
     id: recordItemId,
     accessControl,
     meta,

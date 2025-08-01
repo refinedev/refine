@@ -1,17 +1,11 @@
+import React from "react";
+
 import type {
   ParsedParams,
   IResourceItem,
   Action,
-  RouterBindings,
+  RouterProvider,
 } from "@refinedev/core";
-import { useParams, useLocation, Link, useNavigate } from "react-router";
-
-/* import {
-    IDataContext,
-    IRouterContext,
-    IAccessControlContext,
-    ILiveContext,
-} from "@refinedev/core"; */
 
 export const posts = [
   {
@@ -44,7 +38,7 @@ export const posts = [
   },
 ];
 
-const MockDataProvider = () => {
+export const MockDataProvider = () => {
   return {
     create: () => Promise.resolve({ data: posts[0] }),
     createMany: () => Promise.resolve({ data: posts }),
@@ -62,31 +56,7 @@ const MockDataProvider = () => {
 
 export const MockJSONServer = MockDataProvider() as any;
 
-export const MockRouterProvider = {
-  useHistory: () => {
-    const navigate = useNavigate();
-
-    return {
-      push: navigate,
-      replace: (path: string) => {
-        navigate(path, { replace: true });
-      },
-      goBack: () => {
-        navigate(-1);
-      },
-    };
-  },
-  useLocation,
-  useParams: () => {
-    const params = useParams();
-
-    return params as any;
-  },
-  Link,
-  Prompt: () => null,
-};
-
-export const mockRouterBindings = ({
+export const MockRouterProvider = ({
   pathname,
   params,
   resource,
@@ -99,12 +69,12 @@ export const mockRouterBindings = ({
   resource?: IResourceItem;
   action?: Action;
   id?: string;
-  fns?: Partial<RouterBindings>;
-} = {}): RouterBindings => {
-  const bindings: RouterBindings = {
+  fns?: Partial<RouterProvider>;
+} = {}): RouterProvider => {
+  const routerProvider: RouterProvider = {
     go: () => {
-      return ({ type }) => {
-        if (type === "path") return "";
+      return ({ type, to }) => {
+        if (type === "path") return to || "";
         return undefined;
       };
     },
@@ -124,11 +94,15 @@ export const mockRouterBindings = ({
     back: () => {
       return () => undefined;
     },
-    Link: () => null,
+    Link: ({ children, to, href, ...props }) => (
+      <a href={to || href || ""} {...props}>
+        {children}
+      </a>
+    ),
     ...fns,
   };
 
-  return bindings;
+  return routerProvider;
 };
 
 export const MockAccessControlProvider: any = {

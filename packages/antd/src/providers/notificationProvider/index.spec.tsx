@@ -4,7 +4,7 @@ import { renderHook, waitFor } from "@testing-library/react";
 import { notification, App } from "antd";
 import { UndoableNotification } from "@components/undoableNotification";
 import { act } from "@test";
-import { notificationProvider, useNotificationProvider } from ".";
+import { useNotificationProvider } from ".";
 
 const mockNotification: OpenNotificationParams = {
   key: "test-notification",
@@ -13,87 +13,6 @@ const mockNotification: OpenNotificationParams = {
 };
 
 const cancelMutation = jest.fn();
-
-describe("Antd notificationProvider", () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
-  const notificationOpenSpy = jest.spyOn(notification, "open");
-  const notificationCloseSpy = jest.spyOn(notification, "destroy");
-
-  it("should render notification type succes notification", async () => {
-    notificationProvider.open?.(mockNotification);
-
-    expect(notificationOpenSpy).toBeCalledTimes(1);
-    expect(notificationOpenSpy).toBeCalledWith({
-      ...mockNotification,
-      message: null,
-      description: mockNotification.message,
-    });
-  });
-
-  it("should render notification type error notification", async () => {
-    notificationProvider.open?.({
-      ...mockNotification,
-      type: "error",
-    });
-
-    expect(notificationOpenSpy).toBeCalledTimes(1);
-    expect(notificationOpenSpy).toBeCalledWith({
-      ...mockNotification,
-      message: null,
-      description: mockNotification.message,
-      type: "error",
-    });
-  });
-
-  it("should render notification with description", async () => {
-    notificationProvider.open?.({
-      ...mockNotification,
-      description: "Notification Description",
-    });
-
-    expect(notificationOpenSpy).toBeCalledTimes(1);
-    expect(notificationOpenSpy).toBeCalledWith({
-      ...mockNotification,
-      message: "Notification Description",
-      description: "Test Notification Message",
-    });
-  });
-
-  it("should render notification type error notification", async () => {
-    notificationProvider.open?.({
-      ...mockNotification,
-      type: "progress",
-      cancelMutation,
-      undoableTimeout: 5,
-    });
-
-    expect(notificationOpenSpy).toBeCalledTimes(1);
-    expect(notificationOpenSpy).toBeCalledWith({
-      key: "test-notification",
-      message: null,
-      closeIcon: <React.Fragment />,
-      description: (
-        <UndoableNotification
-          message="Test Notification Message"
-          notificationKey="test-notification"
-          cancelMutation={expect.any(Function)}
-          undoableTimeout={5}
-        />
-      ),
-      duration: 0,
-    });
-  });
-
-  it("should close notification", async () => {
-    notificationProvider.close?.("notification-key");
-
-    expect(notificationCloseSpy).toBeCalledTimes(1);
-    expect(notificationCloseSpy).toBeCalledWith("notification-key");
-  });
-});
 
 describe("Antd useNotificationProvider", () => {
   describe("using without Ant design's App component", () => {
@@ -109,8 +28,8 @@ describe("Antd useNotificationProvider", () => {
 
       result.current.open?.(mockNotification);
 
-      expect(notificationOpenSpy).toBeCalledTimes(1);
-      expect(notificationOpenSpy).toBeCalledWith({
+      expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
+      expect(notificationOpenSpy).toHaveBeenCalledWith({
         ...mockNotification,
         message: null,
         description: mockNotification.message,
@@ -125,8 +44,8 @@ describe("Antd useNotificationProvider", () => {
         type: "error",
       });
 
-      expect(notificationOpenSpy).toBeCalledTimes(1);
-      expect(notificationOpenSpy).toBeCalledWith({
+      expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
+      expect(notificationOpenSpy).toHaveBeenCalledWith({
         ...mockNotification,
         message: null,
         description: mockNotification.message,
@@ -142,8 +61,8 @@ describe("Antd useNotificationProvider", () => {
         description: "Notification Description",
       });
 
-      expect(notificationOpenSpy).toBeCalledTimes(1);
-      expect(notificationOpenSpy).toBeCalledWith({
+      expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
+      expect(notificationOpenSpy).toHaveBeenCalledWith({
         ...mockNotification,
         message: "Notification Description",
         description: "Test Notification Message",
@@ -160,8 +79,8 @@ describe("Antd useNotificationProvider", () => {
         undoableTimeout: 5,
       });
 
-      expect(notificationOpenSpy).toBeCalledTimes(1);
-      expect(notificationOpenSpy).toBeCalledWith({
+      expect(notificationOpenSpy).toHaveBeenCalledTimes(1);
+      expect(notificationOpenSpy).toHaveBeenCalledWith({
         key: "test-notification",
         message: null,
         closeIcon: <React.Fragment />,
@@ -182,8 +101,8 @@ describe("Antd useNotificationProvider", () => {
 
       result.current.close?.("notification-key");
 
-      expect(notificationCloseSpy).toBeCalledTimes(1);
-      expect(notificationCloseSpy).toBeCalledWith("notification-key");
+      expect(notificationCloseSpy).toHaveBeenCalledTimes(1);
+      expect(notificationCloseSpy).toHaveBeenCalledWith("notification-key");
     });
   });
 
@@ -212,8 +131,8 @@ describe("Antd useNotificationProvider", () => {
       });
 
       await waitFor(() => {
-        expect(openFn).toBeCalledTimes(1);
-        expect(openFn).toBeCalledWith({
+        expect(openFn).toHaveBeenCalledTimes(1);
+        expect(openFn).toHaveBeenCalledWith({
           ...mockNotification,
           message: null,
           description: mockNotification.message,
@@ -232,8 +151,8 @@ describe("Antd useNotificationProvider", () => {
       });
 
       await waitFor(() => {
-        expect(openFn).toBeCalledTimes(1);
-        expect(openFn).toBeCalledWith({
+        expect(openFn).toHaveBeenCalledTimes(1);
+        expect(openFn).toHaveBeenCalledWith({
           ...mockNotification,
           message: null,
           description: mockNotification.message,
@@ -253,8 +172,8 @@ describe("Antd useNotificationProvider", () => {
       });
 
       await waitFor(() => {
-        expect(openFn).toBeCalledTimes(1);
-        expect(openFn).toBeCalledWith({
+        expect(openFn).toHaveBeenCalledTimes(1);
+        expect(openFn).toHaveBeenCalledWith({
           ...mockNotification,
           message: "Notification Description",
           description: "Test Notification Message",
@@ -275,8 +194,8 @@ describe("Antd useNotificationProvider", () => {
       });
 
       await waitFor(() => {
-        expect(openFn).toBeCalledTimes(1);
-        expect(openFn).toBeCalledWith({
+        expect(openFn).toHaveBeenCalledTimes(1);
+        expect(openFn).toHaveBeenCalledWith({
           key: "test-notification",
           message: null,
           closeIcon: <React.Fragment />,
@@ -301,8 +220,8 @@ describe("Antd useNotificationProvider", () => {
       });
 
       await waitFor(() => {
-        expect(destroyFn).toBeCalledTimes(1);
-        expect(destroyFn).toBeCalledWith("notification-key");
+        expect(destroyFn).toHaveBeenCalledTimes(1);
+        expect(destroyFn).toHaveBeenCalledWith("notification-key");
       });
     });
   });
