@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import chunk from "lodash/chunk";
-import papaparse from "papaparse";
+import * as papaparse from "papaparse";
 
 import {
   importCSVMapper,

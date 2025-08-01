@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import papaparse from "papaparse";
+import * as papaparse from "papaparse";
 import warnOnce from "warn-once";
 
 import {
