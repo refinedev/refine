@@ -158,12 +158,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         collapsed: siderCollapsed,
       });
     }
-    return (
-      <>
-        {items}
-        {logout}
-      </>
-    );
+    return [...items, logout].filter(Boolean);
   };
 
   const renderMenu = () => {
