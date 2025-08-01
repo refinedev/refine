@@ -28,7 +28,7 @@
     "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/supabase": "^5.9.8",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "casbin": "^5.15.2",
     "dayjs": "^1.10.7",
     "dotenv": "^16.0.3",

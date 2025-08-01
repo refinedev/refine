@@ -27,7 +27,7 @@
     "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.11",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "dayjs": "^1.10.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

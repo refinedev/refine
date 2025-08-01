@@ -18,7 +18,7 @@
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "react": "^19.1.0",
