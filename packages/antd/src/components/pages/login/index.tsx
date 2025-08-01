@@ -61,7 +61,12 @@ export const LoginPage: React.FC<LoginPageProps> = () => {
                 alt="Refine Logo"
               />
             </div>
-            <Card title={CardTitle} headStyle={{ borderBottom: 0 }}>
+            <Card
+              title={CardTitle}
+              styles={{
+                header: { borderBottom: 0 },
+              }}
+            >
               <Form<ILoginForm>
                 layout="vertical"
                 form={form}
