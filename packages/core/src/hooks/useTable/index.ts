@@ -6,7 +6,7 @@ import type {
 } from "@tanstack/react-query";
 import differenceWith from "lodash/differenceWith";
 import isEqual from "lodash/isEqual";
-import qs from "qs";
+import * as qs from "qs";
 import warnOnce from "warn-once";
 
 import { pickNotDeprecated } from "@definitions/helpers";

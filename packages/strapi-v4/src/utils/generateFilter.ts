@@ -4,7 +4,7 @@ import type {
   ConditionalFilter,
 } from "@refinedev/core";
 import { mapOperator } from "./mapOperator";
-import qs from "qs";
+import * as qs from "qs";
 
 export const generateNestedFilterField = (field: string) => {
   const fields = field.split(".");

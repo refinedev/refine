@@ -1,4 +1,4 @@
-import qs from "qs";
+import * as qs from "qs";
 import type { ParsedParams } from "@refinedev/core";
 
 export const parseTableParams = (search: string) => {

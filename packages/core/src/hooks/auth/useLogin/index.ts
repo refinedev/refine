@@ -6,7 +6,7 @@ import {
   type UseMutationResult,
   useMutation,
 } from "@tanstack/react-query";
-import qs from "qs";
+import * as qs from "qs";
 
 import { useAuthBindingsContext, useLegacyAuthContext } from "@contexts/auth";
 import {
