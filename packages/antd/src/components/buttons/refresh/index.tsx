@@ -21,8 +21,6 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
   hideText = false,
   dataProviderName,
   children,
-  meta: _meta,
-  metaData: _metaData,
   ...rest
 }) => {
   const { onClick, label, loading } = useRefreshButton({

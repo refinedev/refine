@@ -25,7 +25,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   errorNotification,
   hideText = false,
   accessControl,
-  metaData,
   meta,
   dataProviderName,
   confirmTitle,
