@@ -101,11 +101,6 @@ export type RefineDeleteButtonProps<
      */
     meta?: MetaQuery;
     /**
-     * Additional meta data to pass to the delete mutation from the data provider
-     * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-     */
-    metaData?: MetaQuery;
-    /**
      * Target data provider name for API call to be made
      * @default `"default"`
      */
@@ -187,18 +182,7 @@ export type RefineRefreshButtonProps<
   RefineButtonDataProps &
   RefineButtonLinkingProps &
   TComponentProps &
-  TExtraProps & {
-    /**
-     * `meta` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
-     * @deprecated `meta` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
-     */
-    meta?: MetaQuery;
-    /**
-     * `metaData` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
-     * @deprecated `metaData` is deprecated with refine@4, <RefreshButton /> will use `useInvalidates` instead of `useOne`.
-     */
-    metaData?: MetaQuery;
-  };
+  TExtraProps & {};
 
 export type RefineSaveButtonProps<
   TComponentProps extends {} = Record<string, unknown>,

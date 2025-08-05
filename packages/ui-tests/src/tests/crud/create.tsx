@@ -106,7 +106,8 @@ export const crudCreateTests = (
         resources: [
           {
             name: "posts",
-            meta: { route: "posts", meta: { label: "test label" } },
+            create: "/posts/create",
+            meta: { label: "test label" },
           },
         ],
         routerProvider: {
