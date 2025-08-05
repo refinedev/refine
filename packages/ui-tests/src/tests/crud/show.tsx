@@ -29,7 +29,8 @@ const renderShow = (
         routerProvider: {
           ...mockRouterBindings(),
           parse: () => () => ({
-            params: { id: "1" },
+            params: {},
+            id: 1,
             action: "show",
             resource: {
               name: "posts",
@@ -38,7 +39,7 @@ const renderShow = (
               clone: "/posts/clone/1",
               show: "/posts/show/1",
               edit: "/posts/edit/1",
-              meta: { canDelete: true },
+              meta: { canDelete: true, canEdit: true },
             },
             pathname: "/posts/show/1",
           }),
