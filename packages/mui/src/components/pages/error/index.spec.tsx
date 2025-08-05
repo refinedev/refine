@@ -1,17 +1,9 @@
 import React from "react";
 import { pageErrorTests } from "@refinedev/ui-tests";
-import type ReactRouterDom from "react-router";
 import { Route, Routes } from "react-router";
 
 import { ErrorComponent } from ".";
-import { render, fireEvent, TestWrapper, act } from "@test";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router", () => ({
-  ...(jest.requireActual("react-router") as typeof ReactRouterDom),
-  useNavigate: () => mHistory,
-}));
+import { render, fireEvent, TestWrapper, act, MockRouterProvider } from "@test";
 
 describe("ErrorComponent", () => {
   pageErrorTests.bind(this)(ErrorComponent);
@@ -32,16 +24,23 @@ describe("ErrorComponent", () => {
     getByText("Back Home");
   });
 
-  it("renders called function successfully if click the button", async () => {
+  it("renders called go function successfully if click the button", async () => {
+    const mockGo = jest.fn();
+
     const { getByText } = render(<ErrorComponent />, {
-      wrapper: TestWrapper({}),
+      wrapper: TestWrapper({
+        routerProvider: {
+          ...MockRouterProvider(),
+          go: () => mockGo,
+        },
+      }),
     });
 
     await act(async () => {
       fireEvent.click(getByText("Back Home"));
     });
 
-    expect(mHistory).toBeCalledWith("/");
+    expect(mockGo).toHaveBeenCalledWith({ to: "/" });
   });
 
   it("renders error messages if resources action's not found", async () => {
@@ -52,6 +51,25 @@ describe("ErrorComponent", () => {
       {
         wrapper: TestWrapper({
           routerInitialEntries: ["/posts/create"],
+          routerProvider: {
+            ...MockRouterProvider(),
+            parse: () => () => ({
+              action: "create",
+              resource: {
+                name: "posts",
+                list: "/posts",
+                create: "/posts/create",
+              },
+              pathname: "/posts/create",
+            }),
+          },
+          resources: [
+            {
+              name: "posts",
+              list: "/posts",
+              create: "/posts/create",
+            },
+          ],
         }),
       },
     );
