@@ -35,10 +35,10 @@ describe("Auth Page Register", () => {
     fireEvent.click(getAllByText(/sign up/i)[1]);
 
     await waitFor(() => {
-      expect(onSubmit).toBeCalledTimes(1);
+      expect(onSubmit).toHaveBeenCalledTimes(1);
     });
 
-    expect(onSubmit).toBeCalledWith({
+    expect(onSubmit).toHaveBeenCalledWith({
       email: "demo@refine.dev",
       password: "demo",
     });

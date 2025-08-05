@@ -1,13 +1,10 @@
 import React from "react";
 import {
-  useNavigation,
   useTranslate,
   useUserFriendlyName,
-  useRefineContext,
-  useRouterType,
   useBack,
   useGo,
-  useResource,
+  useResourceParams,
   useToPath,
 } from "@refinedev/core";
 
@@ -65,14 +62,9 @@ export const Show: React.FC<ShowProps> = ({
   goBack: goBackFromProps,
 }) => {
   const translate = useTranslate();
-  const {
-    options: { breadcrumb: globalBreadcrumb } = {},
-  } = useRefineContext();
 
-  const routerType = useRouterType();
   const back = useBack();
   const go = useGo();
-  const { goBack, list: legacyGoList } = useNavigation();
   const getUserFriendlyName = useUserFriendlyName();
 
   const {
@@ -80,7 +72,7 @@ export const Show: React.FC<ShowProps> = ({
     action,
     id: idFromParams,
     identifier,
-  } = useResource(resourceFromProps);
+  } = useResourceParams({ resource: resourceFromProps, id: recordItemId });
 
   const goListPath = useToPath({
     resource,
@@ -89,20 +81,16 @@ export const Show: React.FC<ShowProps> = ({
 
   const id = recordItemId ?? idFromParams;
 
-  const breadcrumb =
-    typeof breadcrumbFromProps === "undefined"
-      ? globalBreadcrumb
-      : breadcrumbFromProps;
+  const breadcrumb = breadcrumbFromProps;
 
   const hasList = resource?.list && !recordItemId;
   const hasDelete =
-    canDelete ??
-    ((resource?.meta?.canDelete ?? resource?.canDelete) ||
-      deleteButtonPropsFromProps);
+    canDelete ?? (resource?.meta?.canDelete || deleteButtonPropsFromProps);
 
   const isDeleteButtonVisible = hasDelete && typeof id !== "undefined";
 
-  const isEditButtonVisible = canEdit ?? resource?.canEdit ?? !!resource?.edit;
+  const isEditButtonVisible =
+    canEdit ?? resource?.meta?.canEdit ?? !!resource?.edit;
 
   const breadcrumbComponent =
     typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
@@ -110,27 +98,23 @@ export const Show: React.FC<ShowProps> = ({
   const listButtonProps: ListButtonProps | undefined = hasList
     ? {
         ...(isLoading ? { disabled: true } : {}),
-        resource: routerType === "legacy" ? resource?.route : identifier,
+        resource: identifier ?? resource?.name,
       }
     : undefined;
   const editButtonProps: EditButtonProps | undefined = isEditButtonVisible
     ? {
         ...(isLoading ? { disabled: true } : {}),
-        resource: routerType === "legacy" ? resource?.route : identifier,
+        resource: identifier ?? resource?.name,
         recordItemId: id,
       }
     : undefined;
   const deleteButtonProps: DeleteButtonProps | undefined = isDeleteButtonVisible
     ? {
         ...(isLoading ? { disabled: true } : {}),
-        resource: routerType === "legacy" ? resource?.route : identifier,
+        resource: identifier ?? resource?.name,
         recordItemId: id,
         onSuccess: () => {
-          if (routerType === "legacy") {
-            legacyGoList(resource?.route ?? resource?.name ?? "");
-          } else {
-            go({ to: goListPath });
-          }
+          go({ to: goListPath });
         },
         dataProviderName,
         ...deleteButtonPropsFromProps,
@@ -138,7 +122,7 @@ export const Show: React.FC<ShowProps> = ({
     : undefined;
   const refreshButtonProps: RefreshButtonProps = {
     ...(isLoading ? { disabled: true } : {}),
-    resource: routerType === "legacy" ? resource?.route : identifier,
+    resource: identifier ?? resource?.name,
     recordItemId: id,
     dataProviderName,
   };
@@ -195,10 +179,7 @@ export const Show: React.FC<ShowProps> = ({
               {translate(
                 `${identifier}.titles.show`,
                 `Show ${getUserFriendlyName(
-                  resource?.meta?.label ??
-                    resource?.options?.label ??
-                    resource?.label ??
-                    identifier,
+                  resource?.meta?.label ?? identifier,
                   "singular",
                 )}`,
               )}
@@ -212,9 +193,7 @@ export const Show: React.FC<ShowProps> = ({
             <IconButton
               onClick={
                 action !== "list" && typeof action !== "undefined"
-                  ? routerType === "legacy"
-                    ? goBack
-                    : back
+                  ? back
                   : undefined
               }
             >

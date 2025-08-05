@@ -88,8 +88,6 @@ export const useAutocomplete = <
     onSearch,
     query,
     defaultValueQuery,
-    queryResult: query,
-    defaultValueQueryResult: defaultValueQuery,
     overtime,
   };
 };

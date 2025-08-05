@@ -20,18 +20,13 @@ import Dashboard from "@mui/icons-material/Dashboard";
 
 import {
   CanAccess,
-  type ITreeMenu,
+  type TreeMenuItem,
   useIsExistAuthentication,
   useLogout,
-  useTitle,
   useTranslate,
-  useRouterContext,
-  useRouterType,
   useLink,
   useMenu,
-  useRefineContext,
   useActiveAuthProvider,
-  pickNotDeprecated,
   useWarnAboutChange,
 } from "@refinedev/core";
 import type { RefineThemedLayoutV2SiderProps } from "../types";
@@ -58,21 +53,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   };
 
   const t = useTranslate();
-  const routerType = useRouterType();
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-  const { hasDashboard } = useRefineContext();
   const translate = useTranslate();
 
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
   const isExistAuthentication = useIsExistAuthentication();
-  const TitleFromContext = useTitle();
   const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
-  const { mutate: mutateLogout } = useLogout({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: mutateLogout } = useLogout();
 
   const [open, setOpen] = useState<{ [k: string]: any }>({});
 
@@ -89,23 +77,19 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     });
   }, [defaultOpenKeys]);
 
-  const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
+  const RenderToTitle = TitleFromProps ?? DefaultTitle;
 
   const handleClick = (key: string) => {
     setOpen({ ...open, [key]: !open[key] });
   };
 
-  const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
-    return tree.map((item: ITreeMenu) => {
-      const { icon, label, route, name, children, parentName, meta, options } =
-        item;
+  const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+    return tree.map((item: TreeMenuItem) => {
+      const { icon, label, route, name, children, meta } = item;
       const isOpen = open[item.key || ""] || false;
 
       const isSelected = item.key === selectedKey;
-      const isNested = !(
-        pickNotDeprecated(meta?.parent, options?.parent, parentName) ===
-        undefined
-      );
+      const isNested = !(meta?.parent === undefined);
 
       if (children.length > 0) {
         return (
@@ -206,7 +190,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
             arrow
           >
             <ListItemButton
-              component={ActiveLink}
+              component={Link as any}
               to={route}
               selected={isSelected}
               style={linkStyle}
@@ -245,7 +229,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     });
   };
 
-  const dashboard = hasDashboard ? (
+  const dashboard = (
     <CanAccess resource="dashboard" action="list">
       <Tooltip
         title={translate("dashboard.title", "Dashboard")}
@@ -253,43 +237,46 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         disableHoverListener={!siderCollapsed}
         arrow
       >
-        <ListItemButton
-          component={ActiveLink}
+        <Link
           to="/"
-          selected={selectedKey === "/"}
+          style={{ textDecoration: "none" }}
           onClick={() => {
             setMobileSiderOpen(false);
           }}
-          sx={{
-            pl: 2,
-            py: 1,
-            justifyContent: "center",
-            color: selectedKey === "/" ? "primary.main" : "text.primary",
-          }}
         >
-          <ListItemIcon
+          <ListItemButton
+            selected={selectedKey === "/"}
             sx={{
+              pl: 2,
+              py: 1,
               justifyContent: "center",
-              minWidth: "24px",
-              transition: "margin-right 0.3s",
-              marginRight: siderCollapsed ? "0px" : "12px",
-              color: "currentColor",
-              fontSize: "14px",
+              color: selectedKey === "/" ? "primary.main" : "text.primary",
             }}
           >
-            <Dashboard />
-          </ListItemIcon>
-          <ListItemText
-            primary={translate("dashboard.title", "Dashboard")}
-            primaryTypographyProps={{
-              noWrap: true,
-              fontSize: "14px",
-            }}
-          />
-        </ListItemButton>
+            <ListItemIcon
+              sx={{
+                justifyContent: "center",
+                minWidth: "24px",
+                transition: "margin-right 0.3s",
+                marginRight: siderCollapsed ? "0px" : "12px",
+                color: "currentColor",
+                fontSize: "14px",
+              }}
+            >
+              <Dashboard />
+            </ListItemIcon>
+            <ListItemText
+              primary={translate("dashboard.title", "Dashboard")}
+              primaryTypographyProps={{
+                noWrap: true,
+                fontSize: "14px",
+              }}
+            />
+          </ListItemButton>
+        </Link>
       </Tooltip>
     </CanAccess>
-  ) : null;
+  );
 
   const handleLogout = () => {
     if (warnWhen) {
@@ -350,7 +337,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const renderSider = () => {
     if (render) {
       return render({
-        dashboard,
         logout,
         items,
         collapsed: siderCollapsed,

@@ -57,11 +57,8 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
     ...useFormProps,
   });
 
-  const authProvider = useActiveAuthProvider();
-  const { mutate: update, isLoading } =
-    useUpdatePassword<UpdatePasswordFormTypes>({
-      v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+  const { mutate: update, isPending } =
+    useUpdatePassword<UpdatePasswordFormTypes>();
 
   const translate = useTranslate();
 
@@ -175,7 +172,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             sx={{
               mt: "24px",
             }}
-            disabled={isLoading}
+            disabled={isPending}
           >
             {translate("pages.updatePassword.buttons.submit", "Update")}
           </Button>
