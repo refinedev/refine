@@ -1,0 +1,27 @@
+{
+  "name": "refine-tanstack-router-example",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Example Refine application using TanStack Router",
+  "scripts": {
+    "build": "tsc && vite build",
+    "dev": "vite",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@refinedev/core": "^4.57.10",
+    "@refinedev/simple-rest": "^5.0.8",
+    "@refinedev/tanstack-router": "workspace:*",
+    "@tanstack/react-router": "^1.87.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@tanstack/router-cli": "^1.87.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.4.2",
+    "vite": "^5.4.15"
+  }
+}
