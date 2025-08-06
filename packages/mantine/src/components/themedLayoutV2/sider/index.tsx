@@ -1,16 +1,12 @@
 import React, { type CSSProperties } from "react";
 import {
   CanAccess,
-  type ITreeMenu,
   useIsExistAuthentication,
   useLink,
   useLogout,
   useMenu,
   useActiveAuthProvider,
   useRefineContext,
-  useRouterContext,
-  useRouterType,
-  useTitle,
   useTranslate,
   useWarnAboutChange,
 } from "@refinedev/core";
@@ -48,23 +44,16 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
     useThemedLayoutContext();
 
-  const routerType = useRouterType();
-  const NewLink = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const Link = routerType === "legacy" ? LegacyLink : NewLink;
+  const Link = useLink();
 
   const { defaultOpenKeys, menuItems, selectedKey } = useMenu({ meta });
-  const TitleFromContext = useTitle();
   const isExistAuthentication = useIsExistAuthentication();
   const t = useTranslate();
-  const { hasDashboard } = useRefineContext();
   const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
-  const { mutate: mutateLogout } = useLogout({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: mutateLogout } = useLogout();
 
-  const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
+  const RenderToTitle = TitleFromProps ?? DefaultTitle;
 
   const drawerWidth = () => {
     if (siderCollapsed) return 80;
@@ -99,7 +88,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     offset: 4,
   };
 
-  const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
+  const renderTreeView = (tree: any[], selectedKey?: string) => {
     return tree.map((item) => {
       const { icon, label, route, name, children } = item;
 
@@ -145,29 +134,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   const items = renderTreeView(menuItems, selectedKey);
 
-  const dashboard = hasDashboard ? (
-    <CanAccess resource="dashboard" action="list">
-      <Tooltip
-        label={t("dashboard.title", "Dashboard")}
-        {...commonTooltipProps}
-      >
-        <NavLink
-          key="dashboard"
-          label={
-            siderCollapsed && !mobileSiderOpen
-              ? null
-              : t("dashboard.title", "Dashboard")
-          }
-          icon={<IconDashboard size={20} />}
-          component={Link as any}
-          to="/"
-          active={selectedKey === "/"}
-          styles={commonNavLinkStyles}
-        />
-      </Tooltip>
-    </CanAccess>
-  ) : null;
-
   const handleLogout = () => {
     if (warnWhen) {
       const confirm = window.confirm(
@@ -206,7 +172,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const renderSider = () => {
     if (render) {
       return render({
-        dashboard,
         logout,
         items,
         collapsed: siderCollapsed,
@@ -214,7 +179,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     }
     return (
       <>
-        {dashboard}
         {items}
         {logout}
       </>
