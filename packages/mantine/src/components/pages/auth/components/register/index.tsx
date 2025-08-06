@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  type RegisterPageProps,
-  type RegisterFormTypes,
-  useActiveAuthProvider,
-} from "@refinedev/core";
-import {
-  useTranslate,
-  useRouterContext,
-  useRouterType,
-  useLink,
-  useRegister,
-} from "@refinedev/core";
+import type { RegisterPageProps, RegisterFormTypes } from "@refinedev/core";
+import { useTranslate, useLink, useRegister } from "@refinedev/core";
 import {
   Box,
   Card,
@@ -60,11 +50,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   const { useForm, FormProvider } = FormContext;
   const { onSubmit: onSubmitProp, ...useFormProps } = formProps || {};
   const translate = useTranslate();
-  const routerType = useRouterType();
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   const form = useForm({
     initialValues: {
@@ -85,10 +71,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   });
   const { onSubmit, getInputProps } = form;
 
-  const authProvider = useActiveAuthProvider();
-  const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: register, isPending } = useRegister<RegisterFormTypes>({});
 
   const PageTitle =
     title === false ? null : (
@@ -176,7 +159,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               fullWidth
               size="md"
               type="submit"
-              loading={isLoading}
+              loading={isPending}
             >
               {translate("pages.register.buttons.submit", "Sign up")}
             </Button>
@@ -190,7 +173,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               "pages.register.buttons.haveAccount",
               "Have an account?",
             )}{" "}
-            <Anchor component={ActiveLink as any} to="/login" weight={700}>
+            <Anchor component={Link as any} to="/login" weight={700}>
               {translate("pages.register.signin", "Sign in")}
             </Anchor>
           </Text>

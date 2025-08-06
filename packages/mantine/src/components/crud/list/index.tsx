@@ -4,7 +4,6 @@ import {
   useRefineContext,
   useResource,
   useUserFriendlyName,
-  useRouterType,
   useTranslate,
 } from "@refinedev/core";
 
@@ -31,14 +30,12 @@ export const List: React.FC<ListProps> = (props) => {
     options: { breadcrumb: globalBreadcrumb } = {},
   } = useRefineContext();
 
-  const routerType = useRouterType();
   const getUserFriendlyName = useUserFriendlyName();
 
   const { resource, identifier } = useResource(resourceFromProps);
 
   const isCreateButtonVisible =
-    canCreate ??
-    ((resource?.canCreate ?? !!resource?.create) || createButtonPropsFromProps);
+    canCreate ?? (!!resource?.create || createButtonPropsFromProps);
 
   const breadcrumb =
     typeof breadcrumbFromProps === "undefined"
@@ -48,7 +45,7 @@ export const List: React.FC<ListProps> = (props) => {
   const createButtonProps: CreateButtonProps | undefined = isCreateButtonVisible
     ? ({
         size: "sm",
-        resource: routerType === "legacy" ? resource?.route : identifier,
+        resource: identifier,
         ...createButtonPropsFromProps,
       } as const)
     : undefined;
@@ -83,10 +80,7 @@ export const List: React.FC<ListProps> = (props) => {
               {translate(
                 `${identifier}.titles.list`,
                 getUserFriendlyName(
-                  resource?.meta?.label ??
-                    resource?.options?.label ??
-                    resource?.label ??
-                    identifier,
+                  resource?.meta?.label ?? identifier,
                   "plural",
                 ),
               )}
