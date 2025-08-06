@@ -68,8 +68,7 @@ export const layoutSiderTests = (
       });
 
       await waitFor(() =>
-        // expect(getAllByText("Posts")[0].getAttribute("href")).toBe("/posts"),
-        console.log(getAllByText("Posts")[0].getAttribute("href")),
+        expect(getAllByText("Posts")[0].getAttribute("href")).toBe("/posts"),
       );
     });
 
