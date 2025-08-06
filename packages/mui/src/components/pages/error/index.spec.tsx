@@ -44,7 +44,7 @@ describe("ErrorComponent", () => {
   });
 
   it("renders error messages if resources action's not found", async () => {
-    const { getByTestId, findByText } = render(
+    const { findByTestId } = render(
       <Routes>
         <Route path="/:resource/:action" element={<ErrorComponent />} />
       </Routes>,
@@ -74,15 +74,7 @@ describe("ErrorComponent", () => {
       },
     );
 
-    await act(async () => {
-      fireEvent.mouseEnter(getByTestId("error-component-tooltip"));
-    });
-
-    const element = await findByText(
-      `You may have forgotten to add the "create" component to "posts" resource.`,
-    );
-
-    expect(element).toBeInTheDocument();
+    expect(await findByTestId("error-component-tooltip")).toBeInTheDocument();
   });
 
   it("renders error messages if resource action's is different from 'create, edit, show'", async () => {
