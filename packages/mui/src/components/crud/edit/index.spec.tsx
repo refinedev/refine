@@ -412,6 +412,20 @@ describe("Edit", () => {
         undefined,
         {
           resources: [{ name: "posts", list: undefined }],
+          routerProvider: {
+            ...MockRouterProvider(),
+            parse: () => () => ({
+              action: "edit",
+              id: "1",
+              pathname: "/posts/edit/1",
+              resource: {
+                name: "posts",
+                list: undefined,
+                create: "/posts/create",
+                edit: "/posts/edit/1",
+              },
+            }),
+          },
         },
       );
       await waitFor(() =>
