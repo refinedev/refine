@@ -2,8 +2,6 @@ import React from "react";
 import {
   useTranslate,
   useLink,
-  useRouterType,
-  useRouterContext,
   useForgotPassword,
   type ForgotPasswordFormTypes,
   type ForgotPasswordPageProps,
@@ -46,11 +44,7 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
   const { onSubmit, ...useFormProps } = formProps || {};
   const { mutate } = useForgotPassword<ForgotPasswordFormTypes>();
   const translate = useTranslate();
-
-  const routerType = useRouterType();
-  const NewLink = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const Link = routerType === "legacy" ? LegacyLink : NewLink;
+  const Link = useLink();
 
   const {
     handleSubmit,
@@ -141,7 +135,12 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
                 ),
               )}
             </span>
-            <ChakraLink color={importantTextColor} ml="1" as={Link} to="/login">
+            <ChakraLink
+              as={Link as any}
+              to="/login"
+              color={importantTextColor}
+              ml="1"
+            >
               {translate(
                 "pages.forgotPassword.signin",
                 translate("pages.login.signin", "Sign in"),

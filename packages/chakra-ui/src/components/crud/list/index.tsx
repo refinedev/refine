@@ -3,7 +3,6 @@ import {
   useTranslate,
   useUserFriendlyName,
   useRefineContext,
-  useRouterType,
   useResource,
 } from "@refinedev/core";
 
@@ -32,14 +31,12 @@ export const List: React.FC<ListProps> = (props) => {
     options: { breadcrumb: globalBreadcrumb } = {},
   } = useRefineContext();
 
-  const routerType = useRouterType();
   const getUserFriendlyName = useUserFriendlyName();
 
   const { resource, identifier } = useResource(resourceFromProps);
 
   const isCreateButtonVisible =
-    canCreate ??
-    ((resource?.canCreate ?? !!resource?.create) || createButtonPropsFromProps);
+    canCreate ?? (!!resource?.create || createButtonPropsFromProps);
 
   const breadcrumb =
     typeof breadcrumbFromProps === "undefined"
@@ -48,7 +45,7 @@ export const List: React.FC<ListProps> = (props) => {
 
   const createButtonProps: CreateButtonProps | undefined = isCreateButtonVisible
     ? {
-        resource: routerType === "legacy" ? resource?.route : identifier,
+        resource: identifier,
         ...createButtonPropsFromProps,
       }
     : undefined;
@@ -89,13 +86,7 @@ export const List: React.FC<ListProps> = (props) => {
       <Heading as="h3" size="lg" className={RefinePageHeaderClassNames.Title}>
         {translate(
           `${identifier}.titles.list`,
-          getUserFriendlyName(
-            resource?.meta?.label ??
-              resource?.options?.label ??
-              resource?.label ??
-              identifier,
-            "plural",
-          ),
+          getUserFriendlyName(resource?.meta?.label ?? identifier, "plural"),
         )}
       </Heading>
     );

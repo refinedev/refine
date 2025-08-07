@@ -63,12 +63,16 @@ export const layoutSiderTests = (
     });
 
     it("should work menu item click", async () => {
-      const { getAllByText } = render(<SiderElement />, {
+      const { getAllByText, debug } = render(<SiderElement />, {
         wrapper: testWrapper(),
       });
 
       await waitFor(() =>
-        expect(getAllByText("Posts")[0].getAttribute("href")).toBe("/posts"),
+        expect(
+          (
+            getAllByText("Posts")[0].closest("a") as HTMLAnchorElement
+          ).getAttribute("href"),
+        ).toBe("/posts"),
       );
     });
 

@@ -1,5 +1,12 @@
-import type { AuthProvider } from "@refinedev/core";
-import { useParams, useLocation, Link, useNavigate } from "react-router";
+import React from "react";
+
+import type {
+  Action,
+  AuthProvider,
+  IResourceItem,
+  ParsedParams,
+  RouterProvider,
+} from "@refinedev/core";
 
 export const posts = [
   {
@@ -12,7 +19,7 @@ export const posts = [
     categoryId: 1,
     status: "active",
     userId: 5,
-    tags: [16, 31, 45],
+    tags: [1, 2],
   },
   {
     id: "2",
@@ -20,14 +27,14 @@ export const posts = [
     slug: "consequatur-molestiae-rerum",
     content:
       "Quia ut autem. Hic dolorum magni est quisquam. Modi est id et est. Est sapiente velit iure non voluptatem natus enim. Distinctio ipsa repellendus est. Sunt ipsam dignissimos vero error est cumque eaque. Consequatur voluptas suscipit optio incidunt doloremque quia harum harum. Totam voluptatibus aperiam quia. Est omnis deleniti et aut at fugit temporibus debitis modi. Magni aut vel quod magnam.",
-    categoryId: 38,
+    categoryId: 2,
     status: "active",
     userId: 36,
     tags: [16, 30, 46],
   },
 ];
 
-const MockDataProvider = () => {
+export const MockDataProvider = () => {
   return {
     create: () => Promise.resolve({ data: posts[0] }),
     createMany: () => Promise.resolve({ data: posts }),
@@ -45,28 +52,59 @@ const MockDataProvider = () => {
 
 export const MockJSONServer = MockDataProvider() as any;
 
-export const MockRouterProvider = {
-  useHistory: () => {
-    const navigate = useNavigate();
-
-    return {
-      push: navigate,
-      replace: (path: string) => {
-        navigate(path, { replace: true });
+export const MockRouterProvider = ({
+  pathname,
+  params,
+  resource,
+  action,
+  id,
+  fns,
+}: {
+  pathname?: string;
+  params?: ParsedParams;
+  resource?: IResourceItem;
+  action?: Action;
+  id?: string;
+  fns?: Partial<RouterProvider>;
+} = {}): RouterProvider => {
+  const routerProvider: RouterProvider = {
+    go: () => {
+      return ({ type, to }) => {
+        if (type === "path") return to || "";
+        return undefined;
+      };
+    },
+    parse: () => {
+      return () => {
+        return {
+          params: {
+            ...params,
+          },
+          pathname,
+          resource: resource,
+          action: action,
+          id: id || undefined,
+        };
+      };
+    },
+    back: () => {
+      return () => undefined;
+    },
+    Link: React.forwardRef<HTMLAnchorElement, any>(
+      ({ children, to, href, ...props }, ref) => {
+        // Convert "to" prop to "href" and ensure it gets passed through
+        const finalHref = to || href || "";
+        return (
+          <a ref={ref} href={finalHref} {...props}>
+            {children}
+          </a>
+        );
       },
-      goBack: () => {
-        navigate(-1);
-      },
-    };
-  },
-  useLocation,
-  useParams: () => {
-    const params = useParams();
+    ),
+    ...fns,
+  };
 
-    return params as any;
-  },
-  Link,
-  Prompt: () => null,
+  return routerProvider;
 };
 export const MockAccessControlProvider: any = {
   can: () => Promise.resolve({ can: true }),
@@ -83,7 +121,7 @@ export const MockAuthProvider: AuthProvider = {
   check: async () => ({ authenticated: true }),
   onError: async () => ({}),
   logout: async () => ({ success: true }),
-  forgotPassword: jest.fn(),
-  register: jest.fn(),
-  updatePassword: jest.fn(),
+  forgotPassword: jest.fn().mockResolvedValue({ success: true }),
+  register: jest.fn().mockResolvedValue({ success: true }),
+  updatePassword: jest.fn().mockResolvedValue({ success: true }),
 };
