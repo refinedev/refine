@@ -39,7 +39,7 @@
     "@refinedev/simple-rest": "^5.0.10",
     "@tanstack/react-table": "^8.2.6",
     "@uiw/react-md-editor": "^3.19.5",
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "dayjs": "^1.10.7",
     "google-map-react": "^2.1.10",
     "i18next": "^20.1.0",
