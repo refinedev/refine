@@ -23,9 +23,9 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
-    "@refinedev/antd": "^5.46.2",
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/antd": "^5.46.3",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/supabase": "^5.9.8",
     "@uiw/react-md-editor": "^3.19.5",
