@@ -40,7 +40,7 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "kbar": "^0.1.0-beta.40"
+    "kbar": "0.1.0-beta.40"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
