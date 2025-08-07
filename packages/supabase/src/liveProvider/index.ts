@@ -70,7 +70,7 @@ export const liveProvider = (
       const events = types
         .map((x) => supabaseTypes[x])
         .sort((a, b) => a.localeCompare(b));
-      // const filter = mapFilter(params?.filters);
+      
       if (params?.filters?.length > 1) {
     console.warn(
         "[LiveProvider] Supabase Realtime does not support multiple filters. Only the first filter will be used.",
