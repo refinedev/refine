@@ -1,5 +1,15 @@
 # @refinedev/antd
 
+## 5.46.3
+
+### Patch Changes
+
+- [#6892](https://github.com/refinedev/refine/pull/6892) [`5c77cf157afdfa4406bb5832474a9d1637d5f033`](https://github.com/refinedev/refine/commit/5c77cf157afdfa4406bb5832474a9d1637d5f033) Thanks [@arndom](https://github.com/arndom)! - - Add `useDrawer` hook.
+
+  - Refactor `useDrawerForm` to use `useDrawer`.
+
+  [Resolves #6770](https://github.com/refinedev/refine/issues/6770)
+
 ## 5.46.2
 
 ### Patch Changes

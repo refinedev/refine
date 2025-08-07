@@ -1,5 +1,11 @@
 # @refinedev/cli
 
+## 2.16.47
+
+### Patch Changes
+
+- [#6870](https://github.com/refinedev/refine/pull/6870) [`992f202624c3f71a39fde26c71fe0ab6b8125b40`](https://github.com/refinedev/refine/commit/992f202624c3f71a39fde26c71fe0ab6b8125b40) Thanks [@typed-sigterm](https://github.com/typed-sigterm)! - Fix bun compatability.
+
 ## 2.16.46
 
 ### Patch Changes

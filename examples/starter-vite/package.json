@@ -11,8 +11,8 @@
     "start": "refine start"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },
