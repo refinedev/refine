@@ -109,11 +109,13 @@ export const mockRouterBindings = ({
     back: () => {
       return () => undefined;
     },
-    Link: ({ children, to, href, ...props }) => (
-      <a href={to || href || ""} {...props}>
-        {children}
-      </a>
-    ),
+    Link: ({ children, to, href, ...props }) => {
+      return (
+        <a href={to || href || ""} {...props}>
+          {children}
+        </a>
+      );
+    },
     ...fns,
   };
 

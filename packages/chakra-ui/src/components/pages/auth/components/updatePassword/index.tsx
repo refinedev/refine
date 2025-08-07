@@ -6,7 +6,6 @@ import {
   type UpdatePasswordPageProps,
   type BaseRecord,
   type HttpError,
-  useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
@@ -41,10 +40,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate } = useUpdatePassword<UpdatePasswordFormTypes>();
   const {
     register,
     watch,

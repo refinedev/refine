@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  useRouterContext,
-  useRouterType,
-  useLink,
-  useRefineOptions,
-} from "@refinedev/core";
+import { useLink, useRefineOptions } from "@refinedev/core";
 import { Link as ChakraLink, Icon, HStack, Heading } from "@chakra-ui/react";
 import type { RefineLayoutThemedTitleProps } from "../types";
 
@@ -21,15 +16,11 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
     typeof iconFromProps === "undefined" ? defaultIcon : iconFromProps;
   const text =
     typeof textFromProps === "undefined" ? defaultText : textFromProps;
-  const routerType = useRouterType();
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   return (
     <ChakraLink
-      as={ActiveLink}
+      as={Link as any}
       to="/"
       fontSize="inherit"
       textDecoration="none"

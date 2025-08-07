@@ -1,16 +1,11 @@
 import React, { type CSSProperties } from "react";
 import {
   CanAccess,
-  type ITreeMenu,
+  type TreeMenuItem,
   useIsExistAuthentication,
   useLink,
   useLogout,
   useMenu,
-  useActiveAuthProvider,
-  useRefineContext,
-  useRouterContext,
-  useRouterType,
-  useTitle,
   useTranslate,
   useWarnAboutChange,
 } from "@refinedev/core";
@@ -30,7 +25,7 @@ import {
   useColorModeValue,
   VStack,
 } from "@chakra-ui/react";
-import { IconList, IconDashboard, IconPower } from "@tabler/icons-react";
+import { IconList, IconPower } from "@tabler/icons-react";
 
 import { ThemedTitleV2 as DefaultTitle } from "../title";
 import type { RefineThemedLayoutV2SiderProps } from "../types";
@@ -45,22 +40,14 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
     useThemedLayoutContext();
 
-  const routerType = useRouterType();
-  const NewLink = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const Link = routerType === "legacy" ? LegacyLink : NewLink;
+  const Link = useLink();
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
-  const TitleFromContext = useTitle();
   const isExistAuthentication = useIsExistAuthentication();
   const t = useTranslate();
-  const { hasDashboard } = useRefineContext();
-  const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
-  const { mutate: mutateLogout } = useLogout({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: mutateLogout } = useLogout();
 
-  const RenderToTitle = TitleFromProps ?? TitleFromContext ?? DefaultTitle;
+  const RenderToTitle = TitleFromProps ?? DefaultTitle;
 
   const siderWidth = () => {
     if (siderCollapsed) return "56px";
@@ -73,7 +60,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     isDisabled: !siderCollapsed || mobileSiderOpen,
   };
 
-  const renderTreeView = (tree: ITreeMenu[]) => {
+  const renderTreeView = (tree: TreeMenuItem[]) => {
     return tree.map((item) => {
       const { label, route, name, icon, children } = item;
 
@@ -154,10 +141,12 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                     style={linkStyle}
                     {...linkProps}
                   >
-                    {(mobileSiderOpen || !siderCollapsed) && (
+                    {mobileSiderOpen || !siderCollapsed ? (
                       <Box flexGrow={1} textAlign="left">
                         {label}
                       </Box>
+                    ) : (
+                      label
                     )}
                   </Button>
                 </AccordionButton>
@@ -181,35 +170,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   };
 
   const items = renderTreeView(menuItems);
-
-  const dashboard = hasDashboard ? (
-    <CanAccess resource="dashboard" action="list">
-      <Tooltip
-        label={t("dashboard.title", "Dashboard")}
-        {...commonTooltipProps}
-      >
-        <Button
-          width="full"
-          justifyContent={
-            !mobileSiderOpen && siderCollapsed ? "center" : "flex-start"
-          }
-          fontWeight="normal"
-          leftIcon={<IconDashboard size={16} />}
-          variant="ghost"
-          isActive={selectedKey === "/"}
-          _active={{
-            color: "brand.200",
-            backgroundColor: "brand.900",
-          }}
-          as={Link}
-          to="/"
-        >
-          {(mobileSiderOpen || !siderCollapsed) &&
-            t("dashboard.title", "Dashboard")}
-        </Button>
-      </Tooltip>
-    </CanAccess>
-  ) : null;
 
   const handleLogout = () => {
     if (warnWhen) {
@@ -258,7 +218,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const renderSider = () => {
     if (render) {
       return render({
-        dashboard,
         logout,
         items,
         collapsed: false,
@@ -266,7 +225,6 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     }
     return (
       <>
-        {dashboard}
         {items}
         {logout}
       </>
