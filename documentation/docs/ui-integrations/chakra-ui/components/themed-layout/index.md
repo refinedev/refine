@@ -193,7 +193,7 @@ const App: React.FC = () => {
 | `render`                 | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSider>` |
 | `meta`                   | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                        |
 | `activeItemDisabled`     | `boolean`                                     | Whether clicking on an active sider item should reload the page                 |
-| `siderItemsAreCollapsed` | `boolean`                                     | Whether nested sider items are by default default expanded or collapsed         |
+| `siderItemsAreCollapsed` | `boolean`                                     | Whether nested sider items are by default expanded or collapsed                 |
 
 ```tsx
 type SiderRenderFunction = (props: {
