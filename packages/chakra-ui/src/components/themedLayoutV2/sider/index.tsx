@@ -41,6 +41,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   render,
   meta,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
     useThemedLayoutContext();
@@ -53,8 +54,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const TitleFromContext = useTitle();
   const isExistAuthentication = useIsExistAuthentication();
   const t = useTranslate();
-  const { hasDashboard, options: refineOptions } = useRefineContext();
-  const siderItemsOptions = refineOptions.siderItems;
+  const { hasDashboard } = useRefineContext();
   const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
   const { mutate: mutateLogout } = useLogout({
@@ -79,8 +79,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
       ? [0]
       : [-1];
 
-    if (!siderItemsOptions) return defaultExpandedIndex;
-    if (siderItemsOptions.isCollapsed) return defaultExpandedIndex;
+    if (siderItemsAreCollapsed) return defaultExpandedIndex;
 
     return menuItems.map((_, ind) => ind);
   };

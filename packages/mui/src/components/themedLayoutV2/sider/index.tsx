@@ -44,6 +44,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   render,
   meta,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const {
     siderCollapsed,
@@ -62,8 +63,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const Link = useLink();
   const { Link: LegacyLink } = useRouterContext();
   const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
-  const { hasDashboard, options: refineOptions } = useRefineContext();
-  const siderItemsOptions = refineOptions.siderItems;
+  const { hasDashboard } = useRefineContext();
   const translate = useTranslate();
 
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
@@ -78,8 +78,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const defaultExpandMenuItems = (() => {
     const defaultOpenKeys = {};
 
-    if (!siderItemsOptions) return defaultOpenKeys;
-    if (siderItemsOptions.isCollapsed) return defaultOpenKeys;
+    if (siderItemsAreCollapsed) return defaultOpenKeys;
 
     return menuItems.reduce((prev, curr) => {
       const { key } = curr;

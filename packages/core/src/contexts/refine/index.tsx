@@ -61,9 +61,6 @@ export const defaultRefineOptions: IRefineContextOptions = {
   },
   disableServerSideValidation: false,
   title: defaultTitle,
-  siderItems: {
-    isCollapsed: true,
-  },
 };
 
 export const RefineContext = React.createContext<IRefineContext>({

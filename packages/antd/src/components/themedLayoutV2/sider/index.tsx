@@ -44,6 +44,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   meta,
   fixed,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const { token } = theme.useToken();
   const {
@@ -64,8 +65,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const translate = useTranslate();
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
   const breakpoint = Grid.useBreakpoint();
-  const { hasDashboard, options: refineOptions } = useRefineContext();
-  const siderItemsOptions = refineOptions.siderItems;
+  const { hasDashboard } = useRefineContext();
   const authProvider = useActiveAuthProvider();
   const { mutate: mutateLogout } = useLogout({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
@@ -183,8 +183,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   ) : null;
 
   const defaultExpandMenuItems = (() => {
-    if (!siderItemsOptions) return [];
-    if (siderItemsOptions.isCollapsed) return [];
+    if (siderItemsAreCollapsed) return [];
 
     return menuItems.map(({ key }) => key);
   })();

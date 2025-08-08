@@ -717,28 +717,6 @@ const App = () => {
 };
 ```
 
-### siderItems
-
-If you want to set the default expand/collapse behaviour of all nested sider items, you can use the `siderItems` object.
-
-```tsx
-const App = () => (
-  <Refine
-    // highlight-start
-    options={{
-      siderItems: {
-        isCollapsed: true,
-      },
-    }}
-    // highlight-end
-  />
-);
-```
-
-#### isCollapsed
-
-This is true by default, making all nested sider items collapsed. If set to false, all nested sider items are expanded`.
-
 ## onLiveEvent
 
 Callback to handle all live events.

@@ -43,6 +43,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   meta,
   Title: TitleFromProps,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const theme = useMantineTheme();
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
@@ -57,8 +58,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const TitleFromContext = useTitle();
   const isExistAuthentication = useIsExistAuthentication();
   const t = useTranslate();
-  const { hasDashboard, options: refineOptions } = useRefineContext();
-  const siderItemsOptions = refineOptions.siderItems;
+  const { hasDashboard } = useRefineContext();
   const authProvider = useActiveAuthProvider();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
   const { mutate: mutateLogout } = useLogout({
@@ -103,8 +103,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   const getDefaultExpandMenuItemsCB = (key?: string) => {
     const defaultOpened = defaultOpenKeys.includes(key || "");
 
-    if (!siderItemsOptions) return defaultOpened;
-    if (siderItemsOptions.isCollapsed) return defaultOpened;
+    if (siderItemsAreCollapsed) return defaultOpened;
 
     return true;
   };

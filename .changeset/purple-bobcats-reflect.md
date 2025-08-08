@@ -6,8 +6,7 @@
 "@refinedev/mui": minor
 ---
 
-- Add `siderItems.isCollapsed` to Refine options to set default expanded/collapsed nested sider items.
-- Add `siderItems.isCollapsed` support to all `Sider` components to reflect that change.
+- Add `siderItemsAreCollapsed` prop to all `Sider` components to set default expanded/collapsed nested sider items.
   - UI packages: AntDesign, Manitine, Charka-UI, Material-UI
 - Add documentation for this addition
 
