@@ -50,71 +50,48 @@ import {
 type Post = {
   id: number;
   title: string;
-  status: string;
-  category?: { id: number; title: string };
+  content: string;
+  status: "published" | "draft" | "rejected";
+  category: { id: number };
   createdAt: string;
 };
 
-type Category = {
-  id: number;
-  title: string;
-};
-
-export function PostsList() {
-  const { data: categoriesData } = useList<Category>({
+export default function PostList() {
+  const { data: categories } = useList({
     resource: "categories",
   });
-  const categories = categoriesData?.data ?? [];
 
   const columns = useMemo<ColumnDef<Post>[]>(
     () => [
       {
         id: "id",
         accessorKey: "id",
-        size: 96,
-        header: ({ column, table }) => (
-          <div className="flex items-center gap-1">
-            <span>ID</span>
-            <div>
-              <DataTableSorter column={column} />
-              <DataTableFilterDropdownNumeric
-                defaultOperator="eq"
-                column={column}
-                table={table}
-                placeholder="Filter by ID"
-              />
-            </div>
-          </div>
+        size: 80,
+        header: ({ column }) => (
+          <DataTableSorter column={column}>ID</DataTableSorter>
         ),
+        cell: ({ getValue }) => getValue(),
       },
       {
         id: "title",
         accessorKey: "title",
         size: 300,
-        header: ({ column, table }) => (
+        header: ({ column }) => (
           <div className="flex items-center gap-1">
-            <span>Title</span>
-            <div>
-              <DataTableFilterDropdownText
-                defaultOperator="contains"
-                column={column}
-                table={table}
-                placeholder="Filter by title"
-              />
-            </div>
+            <DataTableSorter column={column}>Title</DataTableSorter>
+            <DataTableFilterDropdownText column={column} />
           </div>
         ),
       },
       {
         id: "status",
         accessorKey: "status",
-        size: 140,
-        header: ({ column, table }) => (
+        size: 120,
+        header: ({ column }) => (
           <div className="flex items-center gap-1">
             <span>Status</span>
             <DataTableFilterCombobox
               column={column}
-              table={table}
               options={[
                 { label: "Published", value: "published" },
                 { label: "Draft", value: "draft" },
@@ -125,67 +102,31 @@ export function PostsList() {
         ),
       },
       {
-        id: "category",
-        accessorKey: "category.title",
-        size: 200,
-        header: "Category",
-        cell: ({ row }) => {
-          return row.original.category?.title ?? "No Category";
-        },
-      },
-      {
         id: "actions",
-        size: 84,
+        size: 100,
         enableSorting: false,
         enableColumnFilter: false,
-        header: () => (
-          <div className="flex w-full items-center justify-center">Actions</div>
+        header: "Actions",
+        cell: ({ row }) => (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" className="h-8 w-8 p-0">
+                <MoreHorizontal className="h-4 w-4" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <ShowButton hideText size="sm" recordItemId={row.original.id} />
+              <EditButton hideText size="sm" recordItemId={row.original.id} />
+              <DeleteButton hideText size="sm" recordItemId={row.original.id} />
+            </DropdownMenuContent>
+          </DropdownMenu>
         ),
-        cell: ({ row }) => {
-          const post = row.original;
-          return (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="flex size-8 border rounded-full text-muted-foreground data-[state=open]:bg-muted data-[state=open]:text-foreground mx-auto"
-                >
-                  <span className="sr-only">Open menu</span>
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="flex flex-col gap-2 p-2"
-              >
-                <ShowButton
-                  variant="ghost"
-                  size="sm"
-                  recordItemId={post.id}
-                  className="justify-start"
-                />
-                <EditButton
-                  variant="ghost"
-                  size="sm"
-                  recordItemId={post.id}
-                  className="justify-start"
-                />
-                <DeleteButton
-                  variant="ghost"
-                  size="sm"
-                  recordItemId={post.id}
-                  className="justify-start"
-                />
-              </DropdownMenuContent>
-            </DropdownMenu>
-          );
-        },
       },
     ],
     [categories],
   );
 
-  const table = useTable({
+  const table = useTable<Post>({
     columns,
     refineCoreProps: {
       resource: "posts",
@@ -202,246 +143,34 @@ export function PostsList() {
 ```
 
 This example demonstrates the key features: sortable columns, multiple filter types (text, numeric, dropdown), and action buttons in a dropdown menu.
-<div className="flex items-center gap-1">
-Title
-<DataTableFilterDropdownText
-              column={column}
-              table={table}
-              placeholder="Search titles..."
-            />
-</div>
-),
-},
-{
-accessorKey: "status",
-header: "Status",
-},
-{
-id: "actions",
-header: "Actions",
-cell: ({ row }) => (
-<div className="flex gap-2">
-<EditButton recordItemId={row.original.id} />
-<DeleteButton recordItemId={row.original.id} />
-</div>
-),
-},
-],
-[],
-);
 
-const table = useTable({
-columns,
-refineCoreProps: {
-resource: "posts",
-},
-});
+## Key Features
 
-return <DataTable table={table} />;
-}
+### Column Sorting
 
-```
+Click any column header to sort by that field. The DataTable automatically handles the sorting state and sends the appropriate parameters to your data provider.
 
-This example shows the essential features: sortable columns, text filtering, and action buttons. You can add more filter types and customize columns as needed for your specific data.
-        header: "Description",
-        accessorKey: "content",
-        size: 400,
-        enableSorting: false,
-        enableColumnFilter: false,
-      },
-      {
-        id: "category.id",
-        accessorKey: "category.id", // Ensure this matches your data structure
-        size: 200,
-        header: ({ column }) => {
-          return (
-            <div className="flex items-center gap-1">
-              <span>Category</span>
-              <DataTableFilterCombobox
-                column={column}
-                defaultOperator="in"
-                multiple={true}
-                options={categories.map((item) => ({
-                  label: item.title,
-                  value: item.id.toString(),
-                }))}
-              />
-            </div>
-          );
-        },
-        cell: ({ getValue }) => {
-          const categoryId = getValue<number>();
-          const category = categories.find((item) => item.id === categoryId);
-          return category?.title || "-";
-        },
-      },
-      {
-        id: "status",
-        accessorKey: "status",
-        size: 100,
-        header: ({ column }) => {
-          return (
-            <div className="flex items-center gap-1">
-              <span>Status</span>
-              <DataTableFilterCombobox
-                column={column}
-                defaultOperator="in"
-                multiple={true}
-                options={[
-                  { label: "Published", value: "published" },
-                  { label: "Draft", value: "draft" },
-                  { label: "Rejected", value: "rejected" },
-                ]}
-              />
-            </div>
-          );
-        },
-      },
-      {
-        id: "createdAt",
-        accessorKey: "createdAt",
-        size: 220,
-        header: ({ column }) => {
-          return (
-            <div className="flex items-center gap-1">
-              <span>Created At</span>
-              <DataTableFilterDropdownDateRangePicker
-                column={column}
-                formatDateRange={(dateRange) => {
-                  if (!dateRange?.from || !dateRange?.to) {
-                    return undefined;
-                  }
-                  return [
-                    dateRange.from.toISOString(),
-                    dateRange.to.toISOString(),
-                  ];
-                }}
-              />
-            </div>
-          );
-        },
-        cell: ({ row }) => {
-          return <div>{row.original.createdAt}</div>;
-        },
-      },
-      {
-        id: "updatedAt", // If you have an updatedAt field
-        accessorKey: "updatedAt", // Change to updatedAt if available
-        size: 220,
-        header: ({ column }) => {
-          return (
-            <div className="flex items-center gap-1">
-              <span>Updated At</span>
-              <DataTableFilterDropdownDateSinglePicker
-                column={column}
-                defaultOperator="eq"
-                formatDate={(date) => {
-                  if (!date) return undefined;
-                  return date.toISOString().split("T")[0];
-                }}
-              />
-            </div>
-          );
-        },
-        cell: ({ row }) => {
-          return <div>{row.original.createdAt}</div>;
-        },
-      },
-      {
-        id: "actions",
-        size: 84,
-        enableSorting: false,
-        enableColumnFilter: false,
-        header: () => {
-          return (
-            <div
-              className={cn("flex", "w-full", "items-center", "justify-center")}
-            >
-              Actions
-            </div>
-          );
-        },
-        cell: ({ row }) => {
-          const post = row.original;
-          return (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className={cn(
-                    "flex",
-                    "size-8",
-                    "border",
-                    "rounded-full",
-                    "text-muted-foreground",
-                    "data-[state=open]:bg-muted",
-                    "data-[state=open]:text-foreground",
-                    "mx-auto",
-                  )}
-                >
-                  <span className="sr-only">Open menu</span>
-                  <MoreHorizontal className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="flex flex-col gap-2 p-2"
-              >
-                <ShowButton
-                  variant="ghost"
-                  size="sm"
-                  className="w-full items-center justify-start"
-                  resource="posts"
-                  recordItemId={post.id}
-                />
-                <EditButton
-                  variant="ghost"
-                  size="sm"
-                  className="w-full items-center justify-start"
-                  resource="posts"
-                  recordItemId={post.id}
-                />
-                <DeleteButton
-                  // add key for each button for popover to work
-                  key={post.id}
-                  size="sm"
-                  className="w-full items-center justify-start"
-                  resource="posts"
-                  recordItemId={post.id}
-                />
-              </DropdownMenuContent>
-            </DropdownMenu>
-          );
-        },
-      },
-    ],
-    [categories],
-  );
+### Filtering Options
 
-  const table = useTable<Post>({
-    // Replace Post with your data type
-    columns,
-    refineCoreProps: {
-      // Pass Refine core props for filtering, sorting, pagination
-      // Example: filters, sorters, pagination controlled by Refine
-    },
-    // TanStack Table options can be passed here
-    initialState: {
-      columnPinning: {
-        left: [],
-        right: ["actions"], // Pin actions column to the right
-      },
-    },
-  });
+The DataTable supports several filter types:
 
-  return (
-    <ListView>
-      <ListViewHeader canCreate={true} />
-      <DataTable table={table} />
-    </ListView>
-  );
-}
-```
+- **Text filters**: Search within text columns
+- **Numeric filters**: Range filtering for numbers
+- **Dropdown filters**: Select from predefined options
+- **Date filters**: Date range selection
+
+### Action Buttons
+
+Add action buttons for each row using the dropdown menu pattern shown above.
+
+## Component Structure
+
+The DataTable is built from several focused components:
+
+- **DataTable**: Main table component that handles rendering
+- **DataTableSorter**: Column header sorting controls
+- **DataTableFilter**: Various filter components for different data types
+- **DataTablePagination**: Pagination controls
 
 ## Handling Relational Data
 
@@ -450,8 +179,6 @@ When your main data records (e.g., `posts`) contain references to other resource
 The `@refinedev/core` package provides the `useMany` hook, which is ideal for this scenario. You can collect all the foreign key IDs (e.g., `category.id` from all posts in the current table view) and pass them to `useMany` to fetch all related categories in a single request.
 
 The recommended way to make this related data available to your column cell renderers is by using the `setOptions` function returned by `useTable` (from `@refinedev/react-table`) to add the fetched data to the table's `meta` object.
-
-**Steps:**
 
 ## Adding Filters and Sorting
 
@@ -462,252 +189,228 @@ You can add different types of filters to your columns. Here are the most common
 ```tsx
 import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
 
-{
-  accessorKey: "title",
-  header: ({ column, table }) => (
-    <div className="flex items-center gap-1">
-      Title
-      <DataTableFilterDropdownText
-        column={column}
-        table={table}
-        placeholder="Search titles..."
-      />
-    </div>
-  ),
-}
+// In your column definition:
+header: ({ column }) => (
+  <div className="flex items-center gap-1">
+    <DataTableSorter column={column}>Title</DataTableSorter>
+    <DataTableFilterDropdownText column={column} />
+  </div>
+),
 ```
 
-### Number Filter
-
-```tsx
-import { DataTableFilterDropdownNumeric } from "@/components/refine-ui/data-table/data-table-filter";
-
-{
-  accessorKey: "price",
-  header: ({ column, table }) => (
-    <div className="flex items-center gap-1">
-      Price
-      <DataTableFilterDropdownNumeric
-        column={column}
-        table={table}
-        placeholder="Filter by price"
-      />
-    </div>
-  ),
-}
-```
-
-### Dropdown Select Filter
+### Dropdown/Select Filter
 
 ```tsx
 import { DataTableFilterCombobox } from "@/components/refine-ui/data-table/data-table-filter";
 
-{
-  accessorKey: "status",
-  header: ({ column, table }) => (
-    <div className="flex items-center gap-1">
-      Status
-      <DataTableFilterCombobox
-        column={column}
-        table={table}
-        options={[
-          { label: "Published", value: "published" },
-          { label: "Draft", value: "draft" },
-        ]}
-      />
-    </div>
-  ),
-}
+// In your column definition:
+header: ({ column }) => (
+  <div className="flex items-center gap-1">
+    <span>Status</span>
+    <DataTableFilterCombobox
+      column={column}
+      options={[
+        { label: "Published", value: "published" },
+        { label: "Draft", value: "draft" },
+      ]}
+    />
+  </div>
+),
 ```
 
-## Pagination
-
-The DataTable automatically includes pagination when you use it with the `useTable` hook. You can customize the page size:
+### Numeric Range Filter
 
 ```tsx
-const table = useTable({
-  columns,
-  refineCoreProps: {
-    resource: "posts",
-    pagination: {
-      pageSize: 20, // Show 20 items per page
-    },
-  },
-});
+import { DataTableFilterDropdownNumeric } from "@/components/refine-ui/data-table/data-table-filter";
+
+// In your column definition:
+header: ({ column }) => (
+  <div className="flex items-center gap-1">
+    <DataTableSorter column={column}>Price</DataTableSorter>
+    <DataTableFilterDropdownNumeric column={column} />
+  </div>
+),
 ```
 
-Props
-
-| Prop          | Type                     | Description                         |
-| ------------- | ------------------------ | ----------------------------------- |
-| `current`     | `number`                 | Current page number (1-based)       |
-| `pageCount`   | `number`                 | Total number of pages               |
-| `setCurrent`  | `(page: number) => void` | Function to change the current page |
-| `pageSize`    | `number`                 | Number of rows per page             |
-| `setPageSize` | `(size: number) => void` | Function to change the page size    |
-| `total`       | `number` (optional)      | Total number of rows in the dataset |
-
-You can also use `DataTablePagination` independently with your own pagination state:
+### Date Range Filter
 
 ```tsx
-import { useState } from "react";
-import { DataTablePagination } from "@/components/refine-ui/data-table/data-table-pagination";
+import { DataTableFilterDropdownDateRangePicker } from "@/components/refine-ui/data-table/data-table-filter";
 
-export function MyPaginatedList() {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+// In your column definition:
+header: ({ column }) => (
+  <div className="flex items-center gap-1">
+    <span>Created</span>
+    <DataTableFilterDropdownDateRangePicker
+      column={column}
+      formatDateRange={(dateRange) => {
+        if (!dateRange?.from || !dateRange?.to) return undefined;
+        return [
+          dateRange.from.toISOString(),
+          dateRange.to.toISOString(),
+        ];
+      }}
+    />
+  </div>
+),
+```
 
-  // Your data fetching logic here
-  const currentPage = 1;
-  const pageSize = 10;
-  const total = 100;
-  const pageCount = Math.ceil(total / pageSize);
+### Column Sorting
+
+```tsx
+import { DataTableSorter } from "@/components/refine-ui/data-table/data-table-sorter";
+
+// In your column definition:
+header: ({ column }) => (
+  <DataTableSorter column={column}>Column Name</DataTableSorter>
+),
+```
+
+## Props
+
+### DataTable
+
+| Prop  | Type           | Description                                  |
+| ----- | -------------- | -------------------------------------------- |
+| table | `Table<TData>` | TanStack Table instance from `useTable` hook |
+
+### DataTableSorter
+
+| Prop     | Type              | Description                              |
+| -------- | ----------------- | ---------------------------------------- |
+| column   | `Column<TData>`   | TanStack Table column instance           |
+| children | `React.ReactNode` | Content to display (usually column name) |
+
+### DataTableFilterDropdownText
+
+| Prop   | Type            | Description                    |
+| ------ | --------------- | ------------------------------ |
+| column | `Column<TData>` | TanStack Table column instance |
+
+### DataTableFilterCombobox
+
+| Prop     | Type                                      | Description                    |
+| -------- | ----------------------------------------- | ------------------------------ |
+| column   | `Column<TData>`                           | TanStack Table column instance |
+| options  | `Array<{ label: string; value: string }>` | Dropdown options               |
+| multiple | `boolean`                                 | Allow multiple selections      |
+
+### DataTableFilterDropdownNumeric
+
+| Prop   | Type            | Description                    |
+| ------ | --------------- | ------------------------------ |
+| column | `Column<TData>` | TanStack Table column instance |
+
+## Examples
+
+### Basic Data Table
+
+The most common use case - displaying a list of resources with basic sorting and filtering:
+
+```tsx
+export default function UserList() {
+  const columns = useMemo<ColumnDef<User>[]>(
+    () => [
+      {
+        id: "name",
+        accessorKey: "name",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <DataTableSorter column={column}>Name</DataTableSorter>
+            <DataTableFilterDropdownText column={column} />
+          </div>
+        ),
+      },
+      {
+        id: "email",
+        accessorKey: "email",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <DataTableSorter column={column}>Email</DataTableSorter>
+            <DataTableFilterDropdownText column={column} />
+          </div>
+        ),
+      },
+    ],
+    [],
+  );
+
+  const table = useTable<User>({ columns });
 
   return (
-    <div>
-      {/* Your data display component */}
-
-      <DataTablePagination
-        current={currentPage}
-        pageCount={pageCount}
-        setCurrent={setCurrentPage}
-        pageSize={pageSize}
-        setPageSize={setPageSize}
-        total={total}
-      />
-    </div>
+    <ListView>
+      <ListViewHeader title="Users" />
+      <DataTable table={table} />
+    </ListView>
   );
 }
 ```
 
-## DataTableFilterDropdownText
+### Advanced Filtering Example
 
-Text filtering for data tables. Filter table by text fields with useTable hook. Supports contains, equals, startswith, endswith operators. Perfect for filtering by title, name, or description columns.
-
-```tsx
-import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
-
-// In your TanStack Table column definition
-{
-  id: "title",
-  accessorKey: "title",
-  header: ({ column, table }) => {
-    return (
-      <div className="flex items-center gap-1">
-        <span>Title</span>
-        <DataTableFilterDropdownText
-          defaultOperator="contains"
-          column={column}
-          table={table}
-          placeholder="Filter by title"
-          operators={["eq", "ne", "contains", "ncontains", "startswith", "endswith"]}
-        />
-      </div>
-    );
-  },
-}
-```
-
-## DataTableFilterDropdownNumeric
-
-Numeric filtering for data tables. Filter table by numbers with useTable hook. Supports equals, greater than, less than operators. Perfect for filtering by ID, price, or quantity columns.
+Using multiple filter types and relational data:
 
 ```tsx
-import { DataTableFilterDropdownNumeric } from "@/components/refine-ui/data-table/data-table-filter";
+export default function ProductList() {
+  const { data: categories } = useList({ resource: "categories" });
 
-// In your TanStack Table column definition
-{
-  id: "id",
-  accessorKey: "id",
-  header: ({ column, table }) => {
-    return (
-      <div className="flex items-center gap-1">
-        <span>ID</span>
-        <DataTableFilterDropdownNumeric
-          defaultOperator="eq"
-          column={column}
-          table={table}
-          placeholder="Filter by ID"
-          operators={["eq", "ne", "gt", "lt", "gte", "lte"]}
-        />
-      </div>
-    );
-  },
+  const columns = useMemo<ColumnDef<Product>[]>(
+    () => [
+      {
+        id: "name",
+        accessorKey: "name",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <DataTableSorter column={column}>Product</DataTableSorter>
+            <DataTableFilterDropdownText column={column} />
+          </div>
+        ),
+      },
+      {
+        id: "price",
+        accessorKey: "price",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <DataTableSorter column={column}>Price</DataTableSorter>
+            <DataTableFilterDropdownNumeric column={column} />
+          </div>
+        ),
+        cell: ({ getValue }) => `$${getValue()}`,
+      },
+      {
+        id: "category",
+        accessorKey: "category.id",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <span>Category</span>
+            <DataTableFilterCombobox
+              column={column}
+              options={
+                categories?.map((cat) => ({
+                  label: cat.name,
+                  value: cat.id.toString(),
+                })) || []
+              }
+            />
+          </div>
+        ),
+        cell: ({ row }) => {
+          const categoryId = row.original.category?.id;
+          const category = categories?.find((c) => c.id === categoryId);
+          return category?.name || "-";
+        },
+      },
+    ],
+    [categories],
+  );
+
+  const table = useTable<Product>({ columns });
+
+  return (
+    <ListView>
+      <ListViewHeader title="Products" />
+      <DataTable table={table} />
+    </ListView>
+  );
 }
-```
-
-## DataTableFilterCombobox
-
-Select filtering for data tables. Filter table by predefined options with useTable hook. Supports single and multiple selection. Perfect for filtering by status, category, or tags columns.
-
-```tsx
-import { DataTableFilterCombobox } from "@/components/refine-ui/data-table/data-table-filter";
-
-// Single selection
-{
-  id: "status",
-  accessorKey: "status",
-  header: ({ column }) => {
-    return (
-      <div className="flex items-center gap-1">
-        <span>Status</span>
-        <DataTableFilterCombobox
-          column={column}
-          defaultOperator="eq"
-          multiple={false}
-          options={[
-            { label: "Published", value: "published" },
-            { label: "Draft", value: "draft" },
-            { label: "Rejected", value: "rejected" },
-          ]}
-        />
-      </div>
-    );
-  },
-}
-
-// Multiple selection
-{
-  id: "category.id",
-  accessorKey: "category.id",
-  header: ({ column }) => {
-    return (
-      <div className="flex items-center gap-1">
-        <span>Category</span>
-        <DataTableFilterCombobox
-          column={column}
-          defaultOperator="in"
-          multiple={true}
-          options={categories.map((item) => ({
-            label: item.title,
-            value: item.id.toString(),
-          }))}
-        />
-      </div>
-## API Reference
-
-### DataTable
-
-| Prop    | Type                        | Description                                    |
-| ------- | --------------------------- | ---------------------------------------------- |
-| `table` | `Table<TData>`              | TanStack Table instance from `useTable` hook  |
-
-### Filter Components
-
-All filter components accept these common props:
-
-| Prop          | Type                   | Description                               |
-| ------------- | ---------------------- | ----------------------------------------- |
-| `column`      | `Column<TData>`        | TanStack Table column instance            |
-| `table`       | `Table<TData>`         | TanStack Table instance                   |
-| `placeholder` | `string`               | Placeholder text for the filter input    |
-
-### Available Filter Types
-
-- `DataTableFilterDropdownText` - Text search filter
-- `DataTableFilterDropdownNumeric` - Number range filter
-- `DataTableFilterCombobox` - Dropdown select filter
-- `DataTableFilterDropdownDateSinglePicker` - Single date picker
-- `DataTableFilterDropdownDateRangePicker` - Date range picker
-- `DataTableSorter` - Column sorting button
 ```
