@@ -1,57 +1,68 @@
-# Forgot Password Form Component
+# Forgot Password Form
 
-The `ForgotPasswordForm` component provides an interface for users to request a password reset link. It typically collects the user's email address.
+Users occasionally forget their passwords, especially in admin systems where they might not log in daily. The `ForgotPasswordForm` provides a simple interface for users to request a password reset link via email.
+
+This component integrates with Refine's authentication system to handle password reset requests, providing clear feedback when the email is sent successfully.
 
 ## Installation
 
-Install the `forgot-password-form` component via shadcn/ui registry:
+Add the forgot password form to your project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/forgot-password-form.json
 ```
 
-This command will install the `ForgotPasswordForm` component along with its dependencies:
-
-- **Dependencies** (npm packages):
-  - `@refinedev/core`
-- **Registry Dependencies** (other shadcn/ui or Refine UI components):
-  - `button`
-  - `input`
-  - `label`
-  - `card`
-
-**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
-
-After installation, you will have the following files in your project:
-
-```
-src/components/refine-ui/
-├── form/
-│   ├── forgot-password-form.tsx # Main ForgotPasswordForm component
-└── ... (other registry components)
-```
+This installs the password reset request form with email validation.
 
 ## Usage
 
-The `ForgotPasswordForm` is typically used on a dedicated "Forgot Password" or password reset request page. It relies on Refine's `useForgotPassword` hook and `authProvider` for its functionality.
+Create a dedicated page for password reset requests:
 
 ```tsx
 import { ForgotPasswordForm } from "@/components/refine-ui/form/forgot-password-form";
-import { cn } from "@/lib/utils";
 
 export default function ForgotPasswordPage() {
   return (
-    <div
-      className={cn(
-        "flex",
-        "items-center",
-        "justify-center",
-        "h-screen",
-        "w-screen",
-      )}
-    >
+    <div className="flex items-center justify-center min-h-screen">
       <ForgotPasswordForm />
     </div>
   );
 }
 ```
+
+The form collects the user's email address and sends a password reset request through your authentication provider. Users receive clear feedback when the email is sent successfully.
+
+## Requirements
+
+You need to implement a `forgotPassword` method in your `authProvider`:
+
+```tsx
+import { AuthProvider } from "@refinedev/core";
+
+const authProvider: AuthProvider = {
+  forgotPassword: async ({ email }) => {
+    // Send password reset email
+    const response = await fetch("/api/forgot-password", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
+
+    if (response.ok) {
+      return { success: true };
+    }
+
+    return {
+      success: false,
+      error: { message: "Failed to send reset email" },
+    };
+  },
+  // ... other auth methods
+};
+```
+
+## API Reference
+
+### ForgotPasswordForm
+
+The component requires no props and integrates automatically with Refine's `useForgotPassword` hook. It handles email validation and submission internally.

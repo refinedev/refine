@@ -3,41 +3,26 @@ title: <AutoSaveIndicator />
 description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
 ---
 
-The `<AutoSaveIndicator />` component provides visual feedback for auto-save operations in your forms. It displays different states (loading, success, error, idle) with appropriate icons and messages, making it clear to users when their data is being saved automatically.
+When you're editing data in admin panels, users want to know if their changes are being saved. The `<AutoSaveIndicator />` component shows exactly that - it gives your users clear visual feedback about auto-save operations happening in the background.
 
-## Key Features
-
-- **Real-time Status Updates**: Shows current auto-save status with visual indicators
-- **Smooth Transitions**: Includes fade effects for better user experience
-- **Customizable Elements**: Override default elements for each state
-- **Internationalization**: Supports translation through Refine's `useTranslate` hook
-- **Responsive Design**: Works seamlessly across different screen sizes
+This component automatically displays different states like "Saving...", "Saved", or error messages with appropriate icons, so users always know what's happening with their data. It's particularly useful in edit forms where you want to reassure users that their work isn't lost.
 
 ## Installation
+
+Add the Auto Save Indicator component to your project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/auto-save-indicator.json
 ```
 
-This command will install the `AutoSaveIndicator` component along with its dependencies:
+This will install the component with its dependencies:
 
-**Dependencies** (npm packages):
+- `@refinedev/core` - For Refine integration
+- `lucide-react` - For status icons
 
-- `@refinedev/core`
-- `lucide-react`
+## Usage
 
-After installation, you will have the following files in your project:
-
-```
-src/components/refine-ui/
-├── form/
-│   ├── auto-save-indicator.tsx
-└── ... (other registry components)
-```
-
-## Basic Usage
-
-The `AutoSaveIndicator` is typically used with Refine's `useForm` hook when auto-save is enabled:
+The most common use case is adding auto-save feedback to your edit forms. Here's how to set it up with React Hook Form:
 
 ```tsx
 import { useForm } from "@refinedev/react-hook-form";
@@ -66,15 +51,17 @@ export default function EditPost() {
         title="Edit Post"
         actionsSlot={<AutoSaveIndicator {...autoSaveProps} />}
       />
-      {/* Your form content */}
+      {/* Your form fields here */}
     </EditView>
   );
 }
 ```
 
-## Auto-Save Configuration
+That's it! The indicator will automatically show "Saving..." when the user makes changes, "Saved" when the operation completes, or error messages if something goes wrong.
 
-Configure auto-save functionality through the `useForm` hook's `refineCoreProps.autoSave` option:
+## Configuring Auto-Save Behavior
+
+You can customize how auto-save works by configuring the `autoSave` options:
 
 ```tsx
 const {
@@ -99,32 +86,36 @@ const {
 });
 ```
 
+The `debounce` setting is particularly important - it prevents the component from saving on every keystroke, which would create too many API calls.
+
+## Customizing the Appearance
+
+If you want to change how the status messages look, you can provide custom elements:
+
+```tsx
+const customElements = {
+  success: <span className="text-green-600">✓ Changes saved</span>,
+  error: <span className="text-red-600">⚠ Save failed - try again</span>,
+  loading: <span className="text-blue-600">Saving your changes...</span>,
+};
+
+<AutoSaveIndicator {...autoSaveProps} elements={customElements} />;
+```
+
+This is useful when you want to match your app's specific design language or provide more detailed messaging.
+
 ## API Reference
 
-### Properties
+### AutoSaveIndicator
 
 | Prop       | Type                                          | Description                             |
 | ---------- | --------------------------------------------- | --------------------------------------- |
 | `status`   | `"loading" \| "success" \| "error" \| "idle"` | Current auto-save status                |
 | `elements` | `AutoSaveIndicatorElements`                   | Optional custom elements for each state |
 
-### Status States
+The component automatically handles the different status states:
 
-- **`loading`**: Displays a spinner and "Saving..." message while the auto-save operation is in progress
-- **`success`**: Shows a checkmark and "Saved" message when auto-save completes successfully
-- **`error`**: Displays an error icon and "Auto save failed" message when there's an error
-- **`idle`**: Hidden state when no auto-save operation is active
-
-### Custom Elements
-
-You can customize the appearance of each state by providing custom elements:
-
-```tsx
-const customElements = {
-  success: <span className="text-green-600">✓ Saved successfully</span>,
-  error: <span className="text-red-600">⚠ Save failed</span>,
-  loading: <span className="text-blue-600">⏳ Saving...</span>,
-};
-
-<AutoSaveIndicator {...autoSaveProps} elements={customElements} />;
-```
+- `loading` - Shows while saving is in progress
+- `success` - Briefly displays when save completes
+- `error` - Shows when save operation fails
+- `idle` - Component is hidden (no active operation)

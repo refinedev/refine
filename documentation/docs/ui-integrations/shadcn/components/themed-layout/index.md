@@ -1,39 +1,22 @@
 # Theme System
 
-A complete theme system with provider, toggle, and select components. Supports dark, light, and system themes with localStorage persistence.
+Modern admin dashboards should support both light and dark themes. Users often prefer dark mode for late-night work, while others prefer light mode during the day. This theme system provides everything you need to add theme switching to your Refine app.
+
+The system includes a provider for theme management, toggle buttons for quick switching, and dropdown selectors for explicit theme choice. It automatically saves the user's preference and supports system theme detection.
 
 ## Installation
+
+Add the theme system to your project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/theme-provider.json
 ```
 
-**Dependencies:** `lucide-react`
-
-**Registry Dependencies:** `button`, `dropdown-menu`
-
-After installation, you will have the following files in your project:
-
-```
-src/components/refine-ui/
-├── theme/
-│   ├── theme-provider.tsx
-│   ├── theme-toggle.tsx
-│   └── theme-select.tsx
-└── ... (other registry components)
-```
-
-This package includes three main components:
-
-- `ThemeProvider` - Context provider for theme management
-- `ThemeToggle` - Cycling button component to switch between themes
-- `ThemeSelect` - Dropdown menu component for theme selection
+This installs the complete theme system with light/dark/system theme support.
 
 ## Setup
 
-1. Wrap your app with ThemeProvider
-
-> All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
+First, wrap your app with the theme provider:
 
 ```tsx
 import { ThemeProvider } from "@/components/refine-ui/theme/theme-provider";
@@ -47,9 +30,11 @@ function App() {
 }
 ```
 
-2. Add theme components to your layout
+The `defaultTheme="system"` means it will automatically match the user's operating system preference. The theme choice is automatically saved to localStorage so users don't have to re-select their preference.
 
-> All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
+## Adding Theme Controls
+
+Now you can add theme switching controls to your layout. The most common approach is adding a theme toggle to your header:
 
 ```tsx
 import { ThemeToggle } from "@/components/refine-ui/theme/theme-toggle";
@@ -58,12 +43,13 @@ import { ThemeSelect } from "@/components/refine-ui/theme/theme-select";
 function Layout() {
   return (
     <div>
-      {/* Header with theme toggle */}
-      <header>
+      <header className="flex items-center justify-between p-4">
+        <h1>My Admin Dashboard</h1>
+        {/* Quick theme toggle button */}
         <ThemeToggle />
       </header>
 
-      {/* Or use theme select in dropdown menus */}
+      {/* Or use a dropdown in user menus */}
       <nav>
         <ThemeSelect />
       </nav>
@@ -72,15 +58,32 @@ function Layout() {
 }
 ```
 
-### ThemeProvider
+The `ThemeToggle` cycles through light → dark → system themes with each click. The `ThemeSelect` shows a dropdown with explicit options.
 
-Is a context provider that provides the theme to the app. It is used to wrap the app in the `App.tsx` file.
+## Custom Theme Control
 
-> All layout components in the Refine registry support the theme provider and automatically adapt to theme changes.
+You can also build custom theme controls using the `useTheme` hook:
 
 ```tsx
-<ThemeProvider>{/* Your app content */}</ThemeProvider>
+import { useTheme } from "@/components/refine-ui/theme/theme-provider";
+
+function CustomThemeButton() {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <div className="flex gap-2">
+      <span>Current: {theme}</span>
+      <button onClick={() => setTheme("light")}>Light</button>
+      <button onClick={() => setTheme("dark")}>Dark</button>
+      <button onClick={() => setTheme("system")}>System</button>
+    </div>
+  );
+}
 ```
+
+## API Reference
+
+### ThemeProvider
 
 | Prop           | Type                            | Default             | Description                       |
 | -------------- | ------------------------------- | ------------------- | --------------------------------- |
@@ -90,11 +93,7 @@ Is a context provider that provides the theme to the app. It is used to wrap the
 
 ### ThemeToggle
 
-Cycling button that switches between light → dark → system themes.
-
-```tsx
-<ThemeToggle className="rounded-md" />
-```
+Cycling button that switches between themes.
 
 | Prop        | Type     | Description            |
 | ----------- | -------- | ---------------------- |
@@ -102,27 +101,11 @@ Cycling button that switches between light → dark → system themes.
 
 ### ThemeSelect
 
-Dropdown menu for explicit theme selection.
+Dropdown menu for theme selection.
 
-```tsx
-<ThemeSelect />
-```
+### useTheme Hook
 
-### useTheme
-
-Custom hook to get the current theme and set the theme.
-
-```tsx
-import { useTheme } from "@/components/refine-ui/theme/theme-provider";
-
-function CustomComponent() {
-  const { theme, setTheme } = useTheme();
-
-  return (
-    <div>
-      <p>Current theme: {theme}</p>
-      <button onClick={() => setTheme("dark")}>Switch to dark</button>
-    </div>
-  );
-}
-```
+| Return Value | Type                                             | Description              |
+| ------------ | ------------------------------------------------ | ------------------------ |
+| `theme`      | `"light" \| "dark" \| "system"`                  | Current theme            |
+| `setTheme`   | `(theme: "light" \| "dark" \| "system") => void` | Function to change theme |

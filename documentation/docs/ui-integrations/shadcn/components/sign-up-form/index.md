@@ -1,66 +1,68 @@
-# Sign Up Form Component
+# Sign Up Form
 
-The `SignUpForm` component provides a user registration interface for Refine applications. It handles new user sign-up with email/password and includes password confirmation.
+When building admin dashboards, you often need to allow new team members to register for accounts. The `SignUpForm` provides a complete registration interface with email/password fields, password confirmation, and proper validation.
 
-**When to use:**
-
-- For the registration page of your Refine application.
-- When you need a standardized form for new users to create an account.
+This component integrates with Refine's authentication system to handle user registration, including proper error handling and success notifications.
 
 ## Installation
 
-Install the `sign-up-form` component via shadcn/ui registry:
+Add the sign-up form to your project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/sign-up-form.json
 ```
 
-This command will install the `SignUpForm` component along with its dependencies:
-
-- **Dependencies** (npm packages):
-  - `@refinedev/core`
-- **Registry Dependencies** (other shadcn/ui or Refine UI components):
-  - `button`
-  - `input`
-  - `label`
-  - `card`
-  - `separator`
-
-It will also install the shared `input-password.tsx` component if not already present.
-
-**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
-
-After installation, you will have the following files in your project:
-
-```
-src/components/refine-ui/
-├── form/
-│   ├── sign-up-form.tsx     # Main SignUpForm component
-│   └── input-password.tsx   # Shared password input component (if not already present)
-└── ... (other registry components)
-```
+This installs the complete registration form with password input and validation components.
 
 ## Usage
 
-The `SignUpForm` is typically used on a dedicated registration page. It relies on Refine's `useRegister` hook, `useNotification` hook, and `authProvider` for its functionality.
+Use the sign-up form on your registration page:
 
 ```tsx
 import { SignUpForm } from "@/components/refine-ui/form/sign-up-form";
-import { cn } from "@/lib/utils";
 
 export default function RegisterPage() {
   return (
-    <div
-      className={cn(
-        "flex",
-        "items-center",
-        "justify-center",
-        "h-screen",
-        "w-screen",
-      )}
-    >
+    <div className="flex items-center justify-center min-h-screen">
       <SignUpForm />
     </div>
   );
 }
 ```
+
+The form automatically handles user registration through your `authProvider`. It includes email and password fields with confirmation, plus client-side validation to ensure passwords match.
+
+## Requirements
+
+To use the sign-up form, you need to configure an `authProvider` with a `register` method:
+
+```tsx
+import { AuthProvider } from "@refinedev/core";
+
+const authProvider: AuthProvider = {
+  register: async ({ email, password }) => {
+    // Your registration logic here
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      return { success: true };
+    }
+
+    return {
+      success: false,
+      error: { message: "Registration failed" },
+    };
+  },
+  // ... other auth methods
+};
+```
+
+## API Reference
+
+### SignUpForm
+
+The component accepts no props and integrates automatically with Refine's authentication system. It handles form validation, submission, and error display internally.

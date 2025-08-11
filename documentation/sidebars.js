@@ -858,6 +858,58 @@ module.exports = {
             "ui-integrations/mantine/theming/index",
           ],
         },
+        // shadcn/ui
+        {
+          type: "category",
+          label: "shadcn/ui",
+          collapsed: false,
+          // className: "category-as-header",
+          items: [
+            "ui-integrations/shadcn/introduction/index",
+            {
+              type: "category",
+              label: "Components",
+              items: [
+                "ui-integrations/shadcn/components/themed-layout/index",
+                "ui-integrations/shadcn/components/sign-in-form/index",
+                "ui-integrations/shadcn/components/sign-up-form/index",
+                "ui-integrations/shadcn/components/forgot-password/index",
+                "ui-integrations/shadcn/components/error-component/index",
+                "ui-integrations/shadcn/components/notification-provider/index",
+                "ui-integrations/shadcn/components/auto-save-indicator/index",
+                "ui-integrations/shadcn/components/data-table/index",
+                {
+                  type: "category",
+                  label: "Basic Views",
+                  items: [
+                    "ui-integrations/shadcn/components/basic-views/create/index",
+                    "ui-integrations/shadcn/components/basic-views/edit/index",
+                    "ui-integrations/shadcn/components/basic-views/list/index",
+                    "ui-integrations/shadcn/components/basic-views/show/index",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Buttons",
+                  items: [
+                    "ui-integrations/shadcn/components/buttons/clone-button/index",
+                    "ui-integrations/shadcn/components/buttons/create-button/index",
+                    "ui-integrations/shadcn/components/buttons/delete-button/index",
+                    "ui-integrations/shadcn/components/buttons/edit-button/index",
+                    "ui-integrations/shadcn/components/buttons/list-button/index",
+                    "ui-integrations/shadcn/components/buttons/refresh-button/index",
+                    "ui-integrations/shadcn/components/buttons/show-button/index",
+                  ],
+                },
+              ],
+            },
+            {
+              type: "category",
+              label: "Hooks",
+              items: ["ui-integrations/shadcn/hooks/use-form/index"],
+            },
+          ],
+        },
       ],
     },
     // Packages

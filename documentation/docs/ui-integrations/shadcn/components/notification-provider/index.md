@@ -1,41 +1,22 @@
-# useNotificationProvider Hook
+# Notification Provider
 
-A comprehensive notification system for Refine that integrates with Sonner toast notifications, featuring theme support and undoable notifications.
+Admin dashboards need to show feedback when users perform actions - whether it's successfully saving data, handling errors, or allowing users to undo operations. The notification provider gives you a complete toast notification system that integrates seamlessly with Refine's data operations.
+
+Built on Sonner, it automatically handles notifications for CRUD operations and supports undoable actions where users can reverse operations like deletions.
 
 ## Installation
+
+Add the notification system to your project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/notification-provider.json
 ```
 
-This command will install the `useNotificationProvider` hook along with its dependencies:
+This installs the notification provider with the `sonner` toast library.
 
-- **Dependencies** (npm packages):
-  - `@refinedev/core`
-  - `sonner`
+## Setup
 
-**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
-
-After installation, you will have the following files in your project:
-
-```
-src/components/refine-ui/
-├── notification/
-│   ├── use-notification-provider.tsx
-│   ├── toaster.tsx
-│   └── undoable-notification.tsx
-└── ... (other registry components)
-```
-
-This package includes three main components:
-
-- `useNotificationProvider` - The main hook that provides notification functionality
-- `Toaster` - A themed toast container component
-- `UndoableNotification` - A custom notification component for undoable actions
-
-## Usage
-
-First we need to give the `useNotificationProvider` hook to the `Refine` component.
+Configure the notification provider in your app root:
 
 ```tsx
 import { Refine } from "@refinedev/core";
@@ -50,49 +31,94 @@ function App() {
         // ... other props
       >
         {/* Your app content */}
-        <Toaster />
       </Refine>
+      <Toaster />
     </>
   );
 }
 ```
 
-Then we can use the `useNotification` hook to open and close notifications.
+That's it! Refine will now automatically show notifications when users create, update, or delete data. You'll see success messages when operations complete and error messages when something goes wrong.
+
+## Manual Notifications
+
+You can also trigger notifications manually in your components:
 
 ```tsx
 import { useNotification } from "@refinedev/core";
 
-const { open, close } = useNotification();
+export function MyComponent() {
+  const { open } = useNotification();
 
-// open success notification
-open?.({
-  key: "my-notification",
-  type: "success",
-  message: "Success",
-  description: "This is a success message",
-});
+  const handleCustomAction = () => {
+    // Show success notification
+    open?.({
+      type: "success",
+      message: "Profile updated",
+      description: "Your profile changes have been saved successfully",
+    });
+  };
 
-// open error notification
-open?.({
-  type: "error",
-  message: "Error!",
-  description: "Something went wrong",
-  key: "error-notification",
-});
+  const handleError = () => {
+    // Show error notification
+    open?.({
+      type: "error",
+      message: "Upload failed",
+      description: "The file could not be uploaded. Please try again.",
+    });
+  };
 
-// open progress notification (undoable)
-// when undo button is clicked, run the `cancelMutation` callback
-open?.({
-  type: "progress",
-  message: "Record deleted",
-  description: "The record has been moved to trash",
-  undoableTimeout: 5,
-  cancelMutation: () => {
-    // when undo button is clicked, run this callback
-    console.log("Undoing operation...");
-  },
-});
-
-// close notification by key
-close?.("my-notification");
+  return (
+    <div>
+      <button onClick={handleCustomAction}>Update Profile</button>
+      <button onClick={handleError}>Simulate Error</button>
+    </div>
+  );
+}
 ```
+
+## Undoable Actions
+
+For destructive actions like deletions, you can show notifications that allow users to undo the operation:
+
+```tsx
+const handleDelete = (id: string) => {
+  open?.({
+    type: "progress",
+    message: "Post deleted",
+    description: "The post has been moved to trash",
+    undoableTimeout: 5, // Show undo button for 5 seconds
+    cancelMutation: () => {
+      // This runs if user clicks undo
+      console.log("Restoring post...");
+    },
+  });
+};
+```
+
+This is particularly useful for delete operations where you want to give users a chance to recover their data.
+
+## API Reference
+
+### useNotificationProvider
+
+Returns notification functions for the Refine context.
+
+### Toaster
+
+The toast container component that displays notifications.
+
+| Prop       | Type                            | Description                                         |
+| ---------- | ------------------------------- | --------------------------------------------------- |
+| `position` | `ToasterPosition`               | Position of toasts on screen (default: "top-right") |
+| `theme`    | `"light" \| "dark" \| "system"` | Theme for toast styling                             |
+
+### Notification Options
+
+| Prop              | Type                                 | Description                                      |
+| ----------------- | ------------------------------------ | ------------------------------------------------ |
+| `type`            | `"success" \| "error" \| "progress"` | Type of notification                             |
+| `message`         | `string`                             | Main notification message                        |
+| `description`     | `string`                             | Additional details                               |
+| `undoableTimeout` | `number`                             | Seconds to show undo button (progress type only) |
+| `cancelMutation`  | `() => void`                         | Function to call when undo is clicked            |
