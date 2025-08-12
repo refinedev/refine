@@ -58,7 +58,10 @@ export const renderer = ({
   isCustomPage,
   i18n,
 }: RendererContext) => {
-  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "list");
+  const COMPONENT_NAME = componentName(
+    resource.meta?.label ?? resource.name,
+    "list",
+  );
   const recordName = "tableData?.data";
   const imports: Array<ImportElement> = [
     ["useTable", "@refinedev/react-table"],
@@ -670,14 +673,11 @@ export const renderer = ({
     return undefined;
   };
 
-  const {
-    canEdit,
-    canShow,
-    canDelete: canDeleteProp,
-    meta: resourceMeta,
-  } = resource ?? {};
+  const { meta: resourceMeta } = resource ?? {};
 
-  const canDelete = canDeleteProp || resourceMeta?.canDelete;
+  const canEdit = resourceMeta?.canEdit;
+  const canShow = resourceMeta?.canShow;
+  const canDelete = resourceMeta?.canDelete;
 
   if (canEdit) {
     imports.push(["EditButton", "@refinedev/mantine"]);

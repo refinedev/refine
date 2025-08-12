@@ -73,7 +73,6 @@ const Refine = (
         ...(props?.options || {}),
         ...(hiddenRefineOptions || {}),
         reactQuery: {
-          devtoolConfig: false,
           ...(props?.options?.reactQuery || {}),
           ...(hiddenRefineOptions?.reactQuery || {}),
         },
@@ -129,9 +128,6 @@ const RefineHeadlessDemo: React.FC<
         dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
         options={{
           disableTelemetry: true,
-          reactQuery: {
-            devtoolConfig: false,
-          },
         }}
         {...rest}
       />
