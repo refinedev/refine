@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/devtools",
-  "version": "1.2.16",
+  "version": "1.2.17",
   "private": false,
   "description": "refine devtools offers a set of features from monitoring to quickly prototyping a UI.",
   "repository": {
@@ -63,7 +63,7 @@
     "typescript": "^5.4.2"
   },
   "peerDependencies": {
-    "@refinedev/cli": "2.16.46",
+    "@refinedev/cli": "2.16.47",
     "@refinedev/core": "^4.46.1",
     "@refinedev/devtools-server": "1.1.42",
     "@types/react": "^17.0.0 || ^18.0.0",

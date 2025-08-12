@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/cli",
-  "version": "2.16.46",
+  "version": "2.16.47",
   "private": false,
   "description": "Refine CLI tool, streamlining the development of Refine applications.",
   "license": "MIT",
