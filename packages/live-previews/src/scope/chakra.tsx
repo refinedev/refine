@@ -75,9 +75,6 @@ const RefineChakraDemo: React.FC<
         notificationProvider={RefineChakra.notificationProvider}
         options={{
           disableTelemetry: true,
-          reactQuery: {
-            devtoolConfig: false,
-          },
         }}
         {...rest}
       />

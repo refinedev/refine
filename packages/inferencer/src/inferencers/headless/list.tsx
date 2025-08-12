@@ -47,7 +47,10 @@ export const renderer = ({
   isCustomPage,
   i18n,
 }: RendererContext) => {
-  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "list");
+  const COMPONENT_NAME = componentName(
+    resource.meta?.label ?? resource.name,
+    "list",
+  );
   const recordName = "tableData?.data";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
@@ -625,7 +628,9 @@ export const renderer = ({
     return undefined;
   };
 
-  const { canEdit, canShow, canCreate } = resource ?? {};
+  const canEdit = resource?.meta?.canEdit;
+  const canShow = resource?.meta?.canShow;
+  const canCreate = resource?.meta?.canCreate;
 
   const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
 
