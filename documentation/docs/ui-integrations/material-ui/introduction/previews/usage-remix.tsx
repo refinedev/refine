@@ -283,8 +283,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 export default function ProductShow() {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
 
   const record = data?.data;
 
@@ -330,7 +330,7 @@ import { Controller } from "react-hook-form";
 export default function ProductEdit() {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -413,7 +413,7 @@ import { Controller } from "react-hook-form";
 export default function ProductCreate() {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },

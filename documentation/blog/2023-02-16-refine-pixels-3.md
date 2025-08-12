@@ -485,7 +485,7 @@ import { SponsorsBanner } from "../../components/banners";
 import { Canvas } from "../../types";
 
 export const CanvasList: React.FC = () => {
-  const { listProps, queryResult } = useSimpleList<Canvas>({
+  const { listProps, query } = useSimpleList<Canvas>({
     resource: "canvases",
     pagination: {
       pageSize: 12,
@@ -500,7 +500,7 @@ export const CanvasList: React.FC = () => {
     },
   });
 
-  const { isLoading } = queryResult;
+  const { isLoading } = query;
 
   return (
     <div className="container">
@@ -526,7 +526,7 @@ export const CanvasList: React.FC = () => {
 };
 ```
 
-There are a few of things to note here: the first being the use of **Ant Design** with **Refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `queryResult` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
+There are a few of things to note here: the first being the use of **Ant Design** with **Refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `query` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
 
 Let's briefly discuss what's going on:
 
@@ -1045,7 +1045,7 @@ export const CanvasShow: React.FC = () => {
   const { data: { authenticated } = {} } = useIsAuthenticated();
 
   const {
-    queryResult: { data: { data: canvas } = {} },
+    query: { data: { data: canvas } = {} },
   } = useShow<Canvas>();
   const { mutate } = useCreate();
   const { list, push } = useNavigation();
@@ -1162,7 +1162,7 @@ In the code above, we have two instances of data hooks in action. First, with th
 
 ```tsx title="src/pages/canvases/show.tsx"
 const {
-  queryResult: { data: { data: canvas } = {} },
+  query: { data: { data: canvas } = {} },
 } = useShow<Canvas>();
 ```
 

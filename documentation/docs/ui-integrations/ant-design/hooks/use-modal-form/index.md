@@ -665,10 +665,6 @@ A function that can submit the `<Form>` inside `<Modal>`. It's useful when you w
 
 A function that can close the `<Modal>`. It's useful when you want to close the modal manually.
 
-#### ~~visible~~ <PropTag deprecated />
-
-Please use `open` instead.
-
 ### open
 
 Current visible state of `<Modal>`. Default value depends on `defaultVisible` prop.
@@ -883,7 +879,7 @@ export const UserCreate: React.FC = () => {
 | form                     | Ant Design form instance                                                                                       | [`FormInstance<TVariables>`](https://ant.design/components/form/#FormInstance)                                                                             |
 | id                       | Record id for edit action                                                                                      | [`BaseKey`][basekey] \| `undefined`                                                                                                                        |
 | setId                    | `id` setter                                                                                                    | `Dispatch<SetStateAction<` [`BaseKey`][basekey] \| `undefined>>`                                                                                           |
-| queryResult              | Result of the query of a record                                                                                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                              |
+| query                    | Result of the query of a record                                                                                | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery)                                                              |
 | mutation                 | Result of the mutation triggered by submitting the form                                                        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://react-query.tanstack.com/reference/useMutation) |
 | overtime                 | Overtime loading props                                                                                         | `{ elapsedTime?: number }`                                                                                                                                 |
 | autoSaveProps            | Auto save props                                                                                                | `{ data: UpdateResponse<TData>` \| `undefined, error: HttpError` \| `null, status: "loading"` \| `"error"` \| `"idle"` \| `"success" }`                    |

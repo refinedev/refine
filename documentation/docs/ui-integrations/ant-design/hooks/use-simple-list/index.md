@@ -469,38 +469,6 @@ return (
 );
 ```
 
-### ~~initialCurrent~~ <PropTag deprecated />
-
-Use `pagination.current` instead.
-
-### ~~initialPageSize~~ <PropTag deprecated />
-
-Use `pagination.pageSize` instead.
-
-### ~~hasPagination~~ <PropTag deprecated />
-
-Use `pagination.mode` instead.
-
-### ~~initialSorter~~ <PropTag deprecated />
-
-Use `sorters.initial` instead.
-
-### ~~permanentSorter~~ <PropTag deprecated />
-
-Use `sorters.permanent` instead.
-
-### ~~initialFilter~~ <PropTag deprecated />
-
-Use `filters.initial` instead.
-
-### ~~permanentFilter~~ <PropTag deprecated />
-
-Use `filters.permanent` instead.
-
-### ~~defaultSetFilterBehavior~~ <PropTag deprecated />
-
-Use `filters.defaultBehavior` instead.
-
 ### overtimeOptions
 
 If you want the loading overtime for the request, you can pass the `overtimeOptions` prop to the this hook. It is useful if you want to show a loading indicator when the request takes too long.
@@ -665,18 +633,6 @@ const { overtime } = useSimpleList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
-
-### ~~sorter~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
-### ~~setSorter~~ <PropTag deprecated />
-
-Use `setSorters` instead.
-
-### ~~queryResult~~ <PropTag deprecated />
-
-Use [`query`](#query) instead.
 
 ## API
 

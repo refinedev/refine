@@ -466,7 +466,7 @@ console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
 ```tsx title=components/products/show.tsx
 import { useShow } from "@refinedev/core";
 
-const { queryResult: showResponse } = useShow({
+const { query: showResponse } = useShow({
   // removed-start
   resource: "products",
   id: "1",
@@ -476,7 +476,7 @@ const { queryResult: showResponse } = useShow({
 console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
 
 // added-line
-const { queryResult: showResponse } = useShow();
+const { query: showResponse } = useShow();
 
 console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
 ```

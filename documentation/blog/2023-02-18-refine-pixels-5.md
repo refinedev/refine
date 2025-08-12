@@ -1084,7 +1084,7 @@ We also grouped content inside a cell, with `<Button />` and `<DeleteButton />` 
             values: {
               is_featured: !record.is_featured,
             },
-            metaData: {
+            meta: {
               canvas: record,
             },
           })

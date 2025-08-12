@@ -17,7 +17,7 @@ import { AuditLogProvider } from "@refinedev/core";
 
 export const auditLogProvider: AuditLogProvider = {
   get: async (params) => {
-    const { resource, meta, action, author, metaData } = params;
+    const { resource, meta, action, author } = params;
 
     const response = await fetch(
       `https://example.com/api/audit-logs/${resource}/${meta.id}`,

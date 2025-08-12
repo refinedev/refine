@@ -293,8 +293,8 @@ import { Show, TextField, NumberField } from "@refinedev/antd";
 import { Typography } from "antd";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow<IProduct>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IProduct>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (

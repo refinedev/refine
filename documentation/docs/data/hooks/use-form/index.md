@@ -460,14 +460,6 @@ An object with `data`, `error` and `status` values that can be used for the auto
 const { autoSaveProps: { data, error, status } } = useForm({ ... });
 ```
 
-### ~~mutationResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
-
-### ~~queryResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
-
 ## API Reference
 
 ### Properties

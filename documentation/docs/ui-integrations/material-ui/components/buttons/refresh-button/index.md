@@ -23,8 +23,8 @@ import { Show, RefreshButton } from "@refinedev/mui";
 import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (
@@ -236,10 +236,6 @@ render(
   </ReactRouter.BrowserRouter>,
 );
 ```
-
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use the `resource` prop instead.
 
 ## API Reference
 

@@ -336,10 +336,6 @@ export const MyListComponent = () => {
 };
 ```
 
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use `resource` prop instead.
-
 ## API Reference
 
 ### Properties
