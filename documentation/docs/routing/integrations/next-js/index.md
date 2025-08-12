@@ -143,7 +143,7 @@ type IPost = {
 export default function PostShow() {
     // `posts` resource and the `id` will be inferred from the route.
     // Because we've defined `/posts/show/:id` as the `show` action of the `posts` resource.
-    const { queryResult: { data, isLoading } } = useShow<IPost>();
+    const { query: { data, isLoading } } = useShow<IPost>();
 
     const postData = data?.data;
 
@@ -212,7 +212,7 @@ export default function CategoryShow() {
   // `categories` resource and the `id` will be inferred from the route.
   // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow<ICategory>();
 
   const categoryData = data?.data;
@@ -354,7 +354,7 @@ type IPost = {
 export default function PostShow() {
     // `posts` resource and the `id` will be inferred from the route.
     // Because we've defined `/posts/show/:id` as the `show` action of the `posts` resource.
-    const { queryResult: { data, isLoading } } = useShow<IPost>();
+    const { query: { data, isLoading } } = useShow<IPost>();
 
     const postData = data?.data;
 
@@ -419,7 +419,7 @@ export default function CategoryShow() {
   // `categories` resource and the `id` will be inferred from the route.
   // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow<ICategory>();
 
   const categoryData = data?.data;

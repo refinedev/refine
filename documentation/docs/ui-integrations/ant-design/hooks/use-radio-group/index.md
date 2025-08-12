@@ -252,10 +252,6 @@ const { radioGroupProps } = useRadioGroup({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~sort~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
 ## API Reference
 
 ### Properties
@@ -275,7 +271,7 @@ Use `sorters` instead.
 | Property        | Description                      | Type                                                                                          |
 | --------------- | -------------------------------- | --------------------------------------------------------------------------------------------- |
 | radioGroupProps | Ant design radio group props     | [`Radio Group`](https://ant.design/components/radio/#RadioGroup)                              |
-| queryResult     | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
+| query           | Results of the query of a record | [`QueryObserverResult<{ data: TData }>`](https://react-query.tanstack.com/reference/useQuery) |
 
 ## Example
 

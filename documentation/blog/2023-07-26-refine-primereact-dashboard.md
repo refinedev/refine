@@ -1685,7 +1685,7 @@ export const ProductEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     handleSubmit,
     control,
     formState: { errors },
@@ -1727,7 +1727,7 @@ export const ProductEdit = () => {
             label="Refresh"
             icon="pi pi-refresh"
             outlined
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           />
         </div>
       }
@@ -1925,8 +1925,8 @@ import { ICategory, IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<IProduct>();
-  const product = queryResult?.data?.data;
+  const { query } = useShow<IProduct>();
+  const product = query?.data?.data;
 
   const { data: categoryData } = useOne<ICategory>({
     resource: "categories",
@@ -2436,7 +2436,7 @@ export const CategoryEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     handleSubmit,
     control,
     formState: { errors },
@@ -2473,7 +2473,7 @@ export const CategoryEdit = () => {
             label="Refresh"
             icon="pi pi-refresh"
             outlined
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           />
         </div>
       }
@@ -2528,8 +2528,8 @@ import { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
-  const category = queryResult?.data?.data;
+  const { query } = useShow<ICategory>();
+  const category = query?.data?.data;
 
   return (
     <Card

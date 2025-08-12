@@ -742,11 +742,11 @@ import { Form, Input, Select } from "antd";
 import { IInvoice } from "interfaces";
 
 export const EditInvoice = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
+  const { formProps, saveButtonProps, query } = useForm<IInvoice>({
     meta: { populate: ["company", "contact", "missions"] },
   });
 
-  const defaultValue = queryResult?.data?.data;
+  const defaultValue = query?.data?.data;
 
   const { selectProps: companySelectProps } = useSelect({
     resource: "companies",
@@ -901,7 +901,7 @@ const {
   onLiveEvent,
   liveParams,
   meta: pickNotDeprecated(meta, metaData),
-  metaData: pickNotDeprecated(meta, metaData),
+  meta: pickNotDeprecated(meta, metaData),
   dataProviderName,
 });
 ```
@@ -916,7 +916,7 @@ Then, it's the core `useTable()` hook that is leveraging `useList()` data hook i
 <p>
 
 ```tsx title="node_modules/@refinedev/core/src/hooks/useTable/index.ts"
-const queryResult = useList<TData, TError>({
+const query = useList<TData, TError>({
   resource: resourceInUse,
   hasPagination,
   pagination: { current, pageSize, mode: pagination?.mode },
@@ -926,7 +926,7 @@ const queryResult = useList<TData, TError>({
   successNotification,
   errorNotification,
   meta: preferredMeta,
-  metaData: preferredMeta,
+  meta: preferredMeta,
   liveMode,
   liveParams,
   onLiveEvent,
@@ -960,7 +960,7 @@ The `useList()` hook is also being utilized **for** the `useSelect()` **refine-A
 The source code of `useSelect()` inside `@refinedev/antd` package uses `useSelectCore()` in the following snippet:
 
 ```tsx title="node_modules/@refinedev/antd/src/hooks/field/useSelect/index.ts"
-const { queryResult, defaultValueQueryResult, onSearch, options } =
+const { query, defaultValueQueryResult, onSearch, options } =
   useSelectCore(props);
 
 return {
@@ -971,7 +971,7 @@ return {
     showSearch: true,
     filterOption: false,
   },
-  queryResult,
+  query,
   defaultValueQueryResult,
 };
 ```
@@ -983,7 +983,7 @@ Inside the core version, `useList()` is key to fetching data from the backend AP
 <p>
 
 ```tsx title="node_modules/@refinedev/core/src/hooks/useSelect/index.ts"
-const queryResult = useList<TData, TError>({
+const query = useList<TData, TError>({
   resource,
   sorters: pickNotDeprecated(sorters, sort),
   filters: filters.concat(search),
@@ -1003,7 +1003,6 @@ const queryResult = useList<TData, TError>({
   successNotification,
   errorNotification,
   meta: pickNotDeprecated(meta, metaData),
-  metaData: pickNotDeprecated(meta, metaData),
   liveMode,
   liveParams,
   onLiveEvent,
@@ -1025,7 +1024,7 @@ return {
     showSearch: true,
     filterOption: false,
   },
-  queryResult,
+  query,
   defaultValueQueryResult,
 };
 ```
@@ -1054,7 +1053,6 @@ return (
                         successNotification,
                         errorNotification,
                         meta: pickNotDeprecated(meta, metaData),
-                        metaData: pickNotDeprecated(meta, metaData),
                         dataProviderName,
                         invalidates,
                     },

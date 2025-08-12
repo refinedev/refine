@@ -330,8 +330,8 @@ import { Show, TextField, NumberField, MarkdownField } from "@refinedev/mantine"
 import { Title } from "@mantine/core";
 
 export const ProductShow = () => {
-    const { queryResult } = useShow();
-    const { data, isLoading } = queryResult;
+    const { query } = useShow();
+    const { data, isLoading } = query;
     const record = data?.data;
 
     return (
@@ -364,7 +364,7 @@ export const ProductEdit = () => {
       saveButtonProps,
       getInputProps,
       errors,
-      refineCore: { queryResult, autoSaveProps },
+      refineCore: { query, autoSaveProps },
   } = useForm({
         initialValues: {
           name: "",

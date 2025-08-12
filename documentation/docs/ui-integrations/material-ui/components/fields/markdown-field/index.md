@@ -31,7 +31,7 @@ import { Stack, Typography } from "@mui/material";
 
 const PostShow: React.FC = () => {
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = useShow();
   const record = data?.data;
 

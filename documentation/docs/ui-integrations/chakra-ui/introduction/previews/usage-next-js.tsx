@@ -436,8 +436,8 @@ import { Heading } from "@chakra-ui/react";
 import authProvider from "../../src/auth-provider";
 
 export default function ProductShow() {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (
@@ -507,7 +507,7 @@ import authProvider from "../../../src/auth-provider";
 
 export default function ProductEdit() {
   const {
-    refineCore: { formLoading, queryResult, autoSaveProps },
+    refineCore: { formLoading, query, autoSaveProps },
     saveButtonProps,
     register,
     formState: { errors },
