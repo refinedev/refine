@@ -15,8 +15,8 @@ import CodeBlock from '@theme/CodeBlock';
 
 - **Step 1**: [Upgrade dependencies](#1-upgrade-all-refine-dependencies-to-v5)
 - **Step 2**: [Remove deprecated APIs](#2-remove-all-deprecated-apis-from-refine-v4)
-- **Step 3**: [Update router provider](router-provider-migration)
-- **Step 4**: [Update auth provider](auth-provider-migration)
+- **Step 3**: [Update router provider][router-provider-migration]
+- **Step 4**: [Update auth provider][auth-provider-migration]
 - **Step 5**: [Upgrade TanStack Query](#5-upgrade-tanstack-query-to-v5)
 - **Step 6**: [Optional: Upgrade React](#6-optionally-upgrade-react-to-v19)
 
@@ -585,14 +585,14 @@ If your project is still using the `legacyRouterProvider` provider, you'll need 
 
 Please refer these guides to refactor your project:
 
-- [Migrating Router Provider from 3.x.x to 4.x.x](/docs/migration-guide/router-provider/)
+- [Migrating Router Provider from 3.x.x to 4.x.x][router-provider-migration]
 - [React Router v6 to v7](/docs/routing/integrations/react-router/migration-guide-v6-to-v7)
 
 ## 4. Refactor Legacy Auth Provider to use new Auth Provider
 
 If your project is still using the legacy auth provider `legacyAuthProvider` or auth hooks with `v3LegacyAuthProviderCompatible: true`, you **must** migrate to the modern auth provider structure because these are completely removed.
 
-For complete migration instructions, please refer to the [Auth Provider Migration Guide](auth-provider-migration).
+For complete migration instructions, please refer to the [Auth Provider Migration Guide][auth-provider-migration].
 
 ```diff
 useLogin({
@@ -614,3 +614,5 @@ You'll need to upgrade TanStack Query from v4 to v5. Please refer to the [TanSta
 Refine v5 supports both React 18 and React 19. If you want to take advantage of the latest React features, you can optionally upgrade to React 19. Please refer to the [React 19 release notes](https://react.dev/blog/2024/04/25/react-19) for more information about the new features and migration considerations.
 
 [refine-codemod]: https://github.com/refinedev/refine/tree/main/packages/codemod
+[router-provider-migration]: /docs/migration-guide/router-provider/
+[auth-provider-migration]: /docs/migration-guide/auth-provider/
