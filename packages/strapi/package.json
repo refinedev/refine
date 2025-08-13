@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/strapi",
-  "version": "4.1.14",
+  "version": "4.1.15",
   "private": false,
   "description": "Strapi Data Provider for Refine, supporting content management with Strapi.",
   "repository": {
@@ -39,12 +39,12 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "query-string": "^7.1.1"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^4.57.11",
     "@types/jest": "^29.2.4",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",

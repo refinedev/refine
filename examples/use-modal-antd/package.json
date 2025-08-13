@@ -22,11 +22,11 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.46.2",
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/antd": "^5.46.3",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
-    "@refinedev/simple-rest": "^5.0.10",
+    "@refinedev/simple-rest": "^5.0.11",
     "antd": "^5.23.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/nestjsx-crud",
-  "version": "5.0.12",
+  "version": "5.0.13",
   "private": false,
   "description": "“Nestjsx CRUD Data Provider for Refine, enabling easy integration with NestJS CRUD operations.",
   "repository": {
@@ -41,13 +41,13 @@
   },
   "dependencies": {
     "@nestjsx/crud-request": "^5.0.0-alpha.3",
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "query-string": "^7.1.1"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.42",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@types/jest": "^29.2.4",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",

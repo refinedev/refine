@@ -12,12 +12,12 @@ import {
   useResourceParams,
   useParsed,
   useGo,
-  useModal,
   useInvalidate,
 } from "@refinedev/core";
 
 import { useForm, type UseFormProps, type UseFormReturnType } from "../useForm";
 import type { DeleteButtonProps } from "../../../components";
+import { useDrawer } from "@hooks/drawer";
 
 export interface UseDrawerFormConfig {
   action: "show" | "edit" | "create" | "clone";
@@ -126,9 +126,12 @@ export const useDrawerForm = <
   const invalidate = useInvalidate();
   const [initiallySynced, setInitiallySynced] = React.useState(false);
 
-  const { visible, show, close } = useModal({
-    defaultVisible,
+  const { show, close, drawerProps } = useDrawer({
+    drawerProps: {
+      open: defaultVisible,
+    },
   });
+  const visible = drawerProps.open || false;
 
   const {
     resource,
@@ -314,6 +317,7 @@ export const useDrawerForm = <
       },
     },
     drawerProps: {
+      ...drawerProps,
       width: "500px",
       onClose: handleClose,
       open: visible,

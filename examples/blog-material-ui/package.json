@@ -36,7 +36,7 @@
     "@refinedev/react-hook-form": "^4.9.1",
     "@refinedev/react-router": "^0.1.0",
     "@refinedev/strapi-v4": "^6.0.9",
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",

@@ -1,5 +1,13 @@
 # @refinedev/core
 
+## 4.57.11
+
+### Patch Changes
+
+- [#6889](https://github.com/refinedev/refine/pull/6889) [`6087f72c2d38977410e401efae61c5583d61425d`](https://github.com/refinedev/refine/commit/6087f72c2d38977410e401efae61c5583d61425d) Thanks [@DoguhanOzgurAkca](https://github.com/DoguhanOzgurAkca)! - [chore: replace outdated and broken `@tanstack/query` links](https://github.com/refinedev/refine/pull/6889)
+
+  Updated broken links to `@tanstack/query` documentation for `useMutation` in TSDoc definitions.
+
 ## 4.57.10
 
 ### Patch Changes

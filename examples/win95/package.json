@@ -22,9 +22,9 @@
     ]
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
-    "@refinedev/devtools": "^1.2.16",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
+    "@refinedev/devtools": "^1.2.17",
     "@refinedev/react-hook-form": "^4.10.2",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/react-table": "^5.6.17",

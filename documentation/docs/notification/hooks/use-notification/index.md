@@ -5,7 +5,7 @@ source: https://github.com/refinedev/refine/blob/main/packages/core/src/hooks/no
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
+import BasicUsageLivePreview from "./basic-usage-live-preview.md";
 
 `useNotification` can be used to `open` or `close` notification at any time. It returns the `open` and `close` method from [`notificationProvider`](/docs/notification/notification-provider) under the hood.
 
@@ -13,19 +13,7 @@ import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 Here is a basic example of how to use `useNotification` hook.
 
-```tsx
-const { open, close } = useNotification();
-
-// open notification
-open?.({
-  type: "success",
-  message: "Success",
-  description: "This is a success message",
-});
-
-// close notification
-close?.("notification-key");
-```
+ <BasicUsageLivePreview/>
 
 ## Properties
 

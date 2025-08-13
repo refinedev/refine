@@ -156,7 +156,7 @@ export type UseUpdateManyProps<
   UpdateManyParams<TData, TError, TVariables>;
 
 /**
- * `useUpdateMany` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for multiple update mutations.
+ * `useUpdateMany` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/reference/useMutation `useMutation`} for multiple update mutations.
  *
  * It uses `updateMany` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *

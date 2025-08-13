@@ -113,7 +113,7 @@ export type UseDeleteProps<
 } & UseLoadingOvertimeOptionsProps;
 
 /**
- * `useDelete` is a modified version of `react-query`'s {@link https://react-query.tanstack.com/reference/useMutation `useMutation`} for delete mutations.
+ * `useDelete` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/reference/useMutation `useMutation`} for delete mutations.
  *
  * It uses `deleteOne` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *
