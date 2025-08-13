@@ -7,6 +7,7 @@ import { pickResource } from "../../../definitions/helpers/pick-resource";
 import { useParsed } from "../../router/use-parsed";
 
 /**
+ * @internal
  * Matches the resource by identifier.
  * If not provided, the resource from the route will be returned.
  * If your resource does not explicitly define an identifier, the resource name will be used.
