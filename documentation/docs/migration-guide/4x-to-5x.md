@@ -37,6 +37,9 @@ All Refine packages have been bumped to the next major version as a coordinated 
 | `@refinedev/chakra-ui`       | 2.x.x      | 3.x.x      |
 | `@refinedev/react-hook-form` | 4.x.x      | 5.x.x      |
 | `@refinedev/react-table`     | 5.x.x      | 6.x.x      |
+| `@refinedev/react-router`    | 1.x.x      | 2.x.x      |
+| `@refinedev/nextjs-router`   | 6.x.x      | 7.x.x      |
+| `@refinedev/remix-router`    | 3.x.x      | 4.x.x      |
 
 <Tabs
 defaultValue="refine-cli"
@@ -59,8 +62,64 @@ npm run refine update
 
 <TabItem value="manual">
 
+You need to update all `@refinedev/*` packages to their compatible v5 versions. Use the version table above to find the correct version for each package you're using in your project.
+
+**Core packages (required):**
+
 ```bash
-npm i @refinedev/antd@latest
+npm i @refinedev/core@^5.0.0 @tanstack/react-query@^5.0.0
+```
+
+**UI library packages (choose based on what you're using):**
+
+```bash
+# If using Ant Design
+npm i @refinedev/antd@^6.0.0
+
+# If using Material-UI
+npm i @refinedev/mui@^7.0.0
+
+# If using Mantine
+npm i @refinedev/mantine@^3.0.0
+
+# If using Chakra UI
+npm i @refinedev/chakra-ui@^3.0.0
+```
+
+**Router packages (choose based on your router):**
+
+```bash
+# If using React Router
+npm i @refinedev/react-router@^2.0.0
+
+# If using Next.js
+npm i @refinedev/nextjs-router@^7.0.0
+
+# If using Remix
+npm i @refinedev/remix-router@^4.0.0
+```
+
+**Additional packages (if you're using them):**
+
+```bash
+# Form handling
+npm i @refinedev/react-hook-form@^5.0.0
+
+# Table handling
+npm i @refinedev/react-table@^6.0.0
+
+# Data providers (update the ones you use)
+npm i @refinedev/simple-rest@^5.0.0
+npm i @refinedev/graphql@^6.0.0
+npm i @refinedev/strapi-v4@^5.0.0
+npm i @refinedev/supabase@^5.0.0
+# ... and others based on your data provider
+```
+
+**Example for a complete Ant Design project:**
+
+```bash
+npm i @refinedev/core@^5.0.0 @refinedev/antd@^6.0.0 @refinedev/react-router@^2.0.0 @refinedev/simple-rest@^5.0.0 @tanstack/react-query@^5.0.0
 ```
 
 </TabItem>
@@ -85,7 +144,17 @@ Simply `cd` into the root folder of your project (where the `package.json` is lo
 npx @refinedev/codemod@latest refine4-to-refine5
 ```
 
+:::caution Important Notes
+The codemod **cannot automatically migrate** legacy router providers and auth providers. You'll need to manually update these:
+
+- **Legacy Router Provider**: If you're using `legacyRouterProvider`, follow the [Router Provider migration section](#3-refactor-legacy-router-provider-to-use-new-router-provider) below
+- **Legacy Auth Provider**: If you're using `legacyAuthProvider` and `v3LegacyAuthProviderCompatible`, follow the [Auth Provider Migration Guide](#4-refactor-legacy-auth-provider-to-use-new-auth-provider) below
+
+:::
+
 ### Manual Migration Guide
+
+If you prefer to migrate manually or the codemod didn't handle all your use cases, you can follow this comprehensive guide to update your codebase step by step. Each section below covers a specific breaking change with before/after examples.
 
 #### metaData → meta
 
@@ -271,48 +340,56 @@ const {
 -    tableQueryResult,
 +    sorters,
 +    setSorters,
-+    queryResult,
++    tableQuery,
 } = useTable();
 ```
 
 #### queryResult → query
 
-🚨 Affects: useList, useShow, useTable, useDataGrid, useMany
-
-````diff
-const {
--    queryResult,
-+    query,
-} = useShow();
+🚨 Affects: useForm, useSelect, useShow, useSimpleList, useMany
 
 ```diff
 const {
 -    queryResult,
 +    query,
-} = useList();
+} = useShow();
 
+const {
+-    queryResult,
++    query,
+} = useForm();
 
+```
+
+#### defaultValueQueryResult → defaultValueQuery
+
+🚨 Affects: useSelect
+
+```diff
+const {
+-    defaultValueQueryResult,
++    defaultValueQuery,
+} = useSelect();
+```
+
+#### tableQueryResult → tableQuery
+
+🚨 Affects: useTable, useDataGrid
+
+```diff
 const {
 -    tableQueryResult,
 +    tableQuery,
 } = useTable();
-
-````
+```
 
 #### mutationResult → mutation
 
 🚨 Affects: useCreate, useUpdate, useDelete, useCreateMany, useUpdateMany, useDeleteMany, useCustomMutation
 
 ```diff
-const {
--    mutationResult,
-+    mutation,
-} = useCreate();
-
 
 const {
--    queryResult,
-+    query,
 -    mutationResult,
 +    mutation,
 } = useForm();
