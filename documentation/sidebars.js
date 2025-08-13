@@ -930,6 +930,7 @@ module.exports = {
       label: "Migration Guide 🚀",
       className: "category-as-header",
       items: [
+        "migration-guide/4x-to-5x",
         "migration-guide/3x-to-4x",
         "migration-guide/auth-provider",
         "migration-guide/router-provider",
