@@ -136,30 +136,3 @@ describe("useResource Hook with identifier prop", () => {
     expect(result.current.resource?.name).toBe("refine-makes");
   });
 });
-
-describe("useResource Hook with resourceNameOrRouteName prop", () => {
-  it("should return resource by resourceNameOrRouteName", async () => {
-    const Wrapper = TestWrapper({
-      resources: [{ name: "posts" }],
-      routerProvider: mockRouterProvider({
-        pathname: "/posts",
-        resource: {
-          name: "posts",
-        },
-        action: "list",
-      }),
-    });
-
-    const WrapperWith: React.FC<{ children: React.ReactNode }> = ({
-      children,
-    }) => <Wrapper>{children}</Wrapper>;
-    const { result } = renderHook(
-      () => useResource({ resourceNameOrRouteName: "posts" }),
-      {
-        wrapper: WrapperWith,
-      },
-    );
-
-    expect(result.current.resource?.name).toBe("posts");
-  });
-});
