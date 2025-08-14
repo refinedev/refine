@@ -101,62 +101,52 @@ export const Create: React.FC<CreateProps> = ({
           },
         }}
         title={
-          <>
-            {title ?? (
-              <Typography
-                variant="h5"
-                className={RefinePageHeaderClassNames.Title}
-              >
-                {translate(
-                  `${identifier}.titles.create`,
-                  `Create ${getUserFriendlyName(
-                    resource?.meta?.label ?? identifier,
-                    "singular",
-                  )}`,
-                )}
-              </Typography>
-            )}
-          </>
+          title ?? (
+            <Typography
+              variant="h5"
+              className={RefinePageHeaderClassNames.Title}
+            >
+              {translate(
+                `${identifier}.titles.create`,
+                `Create ${getUserFriendlyName(
+                  resource?.meta?.label ?? identifier,
+                  "singular",
+                )}`,
+              )}
+            </Typography>
+          )
         }
         avatar={
-          <>
-            {typeof goBackFromProps !== "undefined" ? (
-              goBackFromProps
-            ) : (
-              <IconButton
-                onClick={
-                  action !== "list" || typeof action !== "undefined"
-                    ? back
-                    : undefined
-                }
-              >
-                <ArrowBackIcon />
-              </IconButton>
-            )}
-          </>
+          typeof goBackFromProps !== "undefined" ? (
+            goBackFromProps
+          ) : (
+            <IconButton
+              onClick={
+                action !== "list" || typeof action !== "undefined"
+                  ? back
+                  : undefined
+              }
+            >
+              <ArrowBackIcon />
+            </IconButton>
+          )
         }
         action={
           headerButtons ? (
-            <>
-              <Box display="flex" gap="16px" {...(headerButtonProps ?? {})}>
-                <>
-                  {headerButtons
-                    ? typeof headerButtons === "function"
-                      ? headerButtons({
-                          defaultButtons: null,
-                        })
-                      : headerButtons
-                    : null}
-                </>
-              </Box>
-            </>
+            <Box display="flex" gap="16px" {...(headerButtonProps ?? {})}>
+              {headerButtons
+                ? typeof headerButtons === "function"
+                  ? headerButtons({
+                      defaultButtons: null,
+                    })
+                  : headerButtons
+                : null}
+            </Box>
           ) : undefined
         }
         {...(headerProps ?? {})}
       />
-      <CardContent {...(contentProps ?? {})}>
-        <>{children}</>
-      </CardContent>
+      <CardContent {...(contentProps ?? {})}>{children}</CardContent>
       <CardActions
         sx={{
           display: "flex",
@@ -166,16 +156,14 @@ export const Create: React.FC<CreateProps> = ({
         }}
         {...(footerButtonProps ?? {})}
       >
-        <>
-          {footerButtons
-            ? typeof footerButtons === "function"
-              ? footerButtons({
-                  defaultButtons: defaultFooterButtons,
-                  saveButtonProps,
-                })
-              : footerButtons
-            : defaultFooterButtons}
-        </>
+        {footerButtons
+          ? typeof footerButtons === "function"
+            ? footerButtons({
+                defaultButtons: defaultFooterButtons,
+                saveButtonProps,
+              })
+            : footerButtons
+          : defaultFooterButtons}
       </CardActions>
     </Card>
   );

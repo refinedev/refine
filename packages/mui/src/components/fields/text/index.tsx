@@ -11,7 +11,7 @@ import type { TextFieldProps } from "../types";
 const TextField: React.FC<TextFieldProps> = ({ value, ...rest }) => {
   return (
     <Typography variant="body2" {...rest}>
-      <>{value}</>
+      {value}
     </Typography>
   );
 };

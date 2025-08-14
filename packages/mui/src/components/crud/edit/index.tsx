@@ -181,60 +181,52 @@ export const Edit: React.FC<EditProps> = ({
           },
         }}
         title={
-          <>
-            {title ?? (
-              <Typography
-                variant="h5"
-                className={RefinePageHeaderClassNames.Title}
-              >
-                {translate(
-                  `${identifier}.titles.edit`,
-                  `Edit ${getUserFriendlyName(
-                    resource?.meta?.label ?? identifier,
-                    "singular",
-                  )}`,
-                )}
-              </Typography>
-            )}
-          </>
+          title ?? (
+            <Typography
+              variant="h5"
+              className={RefinePageHeaderClassNames.Title}
+            >
+              {translate(
+                `${identifier}.titles.edit`,
+                `Edit ${getUserFriendlyName(
+                  resource?.meta?.label ?? identifier,
+                  "singular",
+                )}`,
+              )}
+            </Typography>
+          )
         }
         avatar={
-          <>
-            {typeof goBackFromProps !== "undefined" ? (
-              goBackFromProps
-            ) : (
-              <IconButton
-                onClick={
-                  action !== "list" && typeof action !== "undefined"
-                    ? back
-                    : undefined
-                }
-              >
-                <ArrowBackIcon />
-              </IconButton>
-            )}
-          </>
+          typeof goBackFromProps !== "undefined" ? (
+            goBackFromProps
+          ) : (
+            <IconButton
+              onClick={
+                action !== "list" && typeof action !== "undefined"
+                  ? back
+                  : undefined
+              }
+            >
+              <ArrowBackIcon />
+            </IconButton>
+          )
         }
         action={
           <Box display="flex" gap="16px" {...(headerButtonProps ?? {})}>
-            <>
-              {headerButtons
-                ? typeof headerButtons === "function"
-                  ? headerButtons({
-                      defaultButtons: defaultHeaderButtons,
-                      listButtonProps,
-                      refreshButtonProps,
-                    })
-                  : headerButtons
-                : defaultHeaderButtons}
-            </>
+            {headerButtons
+              ? typeof headerButtons === "function"
+                ? headerButtons({
+                    defaultButtons: defaultHeaderButtons,
+                    listButtonProps,
+                    refreshButtonProps,
+                  })
+                : headerButtons
+              : defaultHeaderButtons}
           </Box>
         }
         {...(headerProps ?? {})}
       />
-      <CardContent {...(contentProps ?? {})}>
-        <>{children}</>
-      </CardContent>
+      <CardContent {...(contentProps ?? {})}>{children}</CardContent>
       <CardActions
         sx={{
           display: "flex",
@@ -244,17 +236,15 @@ export const Edit: React.FC<EditProps> = ({
         }}
         {...(footerButtonProps ?? {})}
       >
-        <>
-          {footerButtons
-            ? typeof footerButtons === "function"
-              ? footerButtons({
-                  defaultButtons: defaultFooterButtons,
-                  deleteButtonProps,
-                  saveButtonProps,
-                })
-              : footerButtons
-            : defaultFooterButtons}
-        </>
+        {footerButtons
+          ? typeof footerButtons === "function"
+            ? footerButtons({
+                defaultButtons: defaultFooterButtons,
+                deleteButtonProps,
+                saveButtonProps,
+              })
+            : footerButtons
+          : defaultFooterButtons}
       </CardActions>
     </Card>
   );

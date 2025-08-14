@@ -9,6 +9,7 @@ import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
+import { Link as MuiLink } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
 import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs";
@@ -62,15 +63,13 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           color="inherit"
           to="/"
         >
-          {rootRouteResource?.resource?.meta?.icon ? (
-            <>
-              <HomeOutlined
-                sx={{
-                  fontSize: "18px",
-                }}
-              />
-            </>
-          ) : undefined}
+          {rootRouteResource?.resource?.meta?.icon ?? (
+            <HomeOutlined
+              sx={{
+                fontSize: "18px",
+              }}
+            />
+          )}
         </LinkRouter>
       )}
       {breadcrumbs.map(({ label, icon, href }) => {

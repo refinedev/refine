@@ -205,45 +205,43 @@ export const LoginPage: React.FC<LoginProps> = ({
                 alignItems: "center",
               }}
             >
-              <>
-                {rememberMe ?? (
-                  <FormControlLabel
-                    sx={{
-                      span: {
-                        fontSize: "14px",
-                        color: "text.secondary",
-                      },
-                    }}
-                    color="secondary"
-                    control={
-                      <Checkbox
-                        size="small"
-                        id="remember"
-                        {...register("remember")}
-                      />
-                    }
-                    label={translate(
-                      "pages.login.buttons.rememberMe",
-                      "Remember me",
-                    )}
-                  />
-                )}
-                {forgotPasswordLink ?? (
-                  <MuiLink
-                    variant="body2"
-                    color="primary"
-                    fontSize="12px"
-                    component={Link as any}
-                    underline="none"
-                    to="/forgot-password"
-                  >
-                    {translate(
-                      "pages.login.buttons.forgotPassword",
-                      "Forgot password?",
-                    )}
-                  </MuiLink>
-                )}
-              </>
+              {rememberMe ?? (
+                <FormControlLabel
+                  sx={{
+                    span: {
+                      fontSize: "14px",
+                      color: "text.secondary",
+                    },
+                  }}
+                  color="secondary"
+                  control={
+                    <Checkbox
+                      size="small"
+                      id="remember"
+                      {...register("remember")}
+                    />
+                  }
+                  label={translate(
+                    "pages.login.buttons.rememberMe",
+                    "Remember me",
+                  )}
+                />
+              )}
+              {forgotPasswordLink ?? (
+                <MuiLink
+                  variant="body2"
+                  color="primary"
+                  fontSize="12px"
+                  component={Link as any}
+                  underline="none"
+                  to="/forgot-password"
+                >
+                  {translate(
+                    "pages.login.buttons.forgotPassword",
+                    "Forgot password?",
+                  )}
+                </MuiLink>
+              )}
             </Box>
             <Button
               type="submit"
@@ -256,42 +254,40 @@ export const LoginPage: React.FC<LoginProps> = ({
             </Button>
           </Box>
         )}
-        <>
-          {registerLink ?? (
-            <Box
-              sx={{
-                mt: "24px",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+        {registerLink ?? (
+          <Box
+            sx={{
+              mt: "24px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Typography
+              textAlign="center"
+              variant="body2"
+              component="span"
+              fontSize="12px"
             >
-              <Typography
-                textAlign="center"
-                variant="body2"
-                component="span"
-                fontSize="12px"
-              >
-                {translate(
-                  "pages.login.buttons.noAccount",
-                  "Don’t have an account?",
-                )}
-              </Typography>
-              <MuiLink
-                ml="4px"
-                fontSize="12px"
-                variant="body2"
-                color="primary"
-                component={Link as any}
-                underline="none"
-                to="/register"
-                fontWeight="bold"
-              >
-                {translate("pages.login.signup", "Sign up")}
-              </MuiLink>
-            </Box>
-          )}
-        </>
+              {translate(
+                "pages.login.buttons.noAccount",
+                "Don’t have an account?",
+              )}
+            </Typography>
+            <MuiLink
+              ml="4px"
+              fontSize="12px"
+              variant="body2"
+              color="primary"
+              component={Link as any}
+              underline="none"
+              to="/register"
+              fontWeight="bold"
+            >
+              {translate("pages.login.signup", "Sign up")}
+            </MuiLink>
+          </Box>
+        )}
       </CardContent>
     </Card>
   );
@@ -321,16 +317,14 @@ export const LoginPage: React.FC<LoginProps> = ({
               paddingTop: hideForm ? "15dvh" : 0,
             }}
           >
-            <>
-              {renderContent ? (
-                renderContent(Content, PageTitle)
-              ) : (
-                <>
-                  {PageTitle}
-                  {Content}
-                </>
-              )}
-            </>
+            {renderContent ? (
+              renderContent(Content, PageTitle)
+            ) : (
+              <>
+                {PageTitle}
+                {Content}
+              </>
+            )}
           </Box>
         </Container>
       </Box>

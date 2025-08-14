@@ -171,70 +171,60 @@ export const Show: React.FC<ShowProps> = ({
           },
         }}
         title={
-          <>
-            {title ?? (
-              <Typography
-                variant="h5"
-                className={RefinePageHeaderClassNames.Title}
-              >
-                {translate(
-                  `${identifier}.titles.show`,
-                  `Show ${getUserFriendlyName(
-                    resource?.meta?.label ?? identifier,
-                    "singular",
-                  )}`,
-                )}
-              </Typography>
-            )}
-          </>
+          title ?? (
+            <Typography
+              variant="h5"
+              className={RefinePageHeaderClassNames.Title}
+            >
+              {translate(
+                `${identifier}.titles.show`,
+                `Show ${getUserFriendlyName(
+                  resource?.meta?.label ?? identifier,
+                  "singular",
+                )}`,
+              )}
+            </Typography>
+          )
         }
         avatar={
-          <>
-            {typeof goBackFromProps !== "undefined" ? (
-              goBackFromProps
-            ) : (
-              <IconButton
-                onClick={
-                  action !== "list" && typeof action !== "undefined"
-                    ? back
-                    : undefined
-                }
-              >
-                <ArrowBackIcon />
-              </IconButton>
-            )}
-          </>
+          typeof goBackFromProps !== "undefined" ? (
+            goBackFromProps
+          ) : (
+            <IconButton
+              onClick={
+                action !== "list" && typeof action !== "undefined"
+                  ? back
+                  : undefined
+              }
+            >
+              <ArrowBackIcon />
+            </IconButton>
+          )
         }
         action={
           <Box display="flex" gap="16px" {...(headerButtonProps ?? {})}>
-            <>
-              {headerButtons
-                ? typeof headerButtons === "function"
-                  ? headerButtons({
-                      defaultButtons: defaultHeaderButtons,
-                      deleteButtonProps,
-                      editButtonProps,
-                      listButtonProps,
-                      refreshButtonProps,
-                    })
-                  : headerButtons
-                : defaultHeaderButtons}
-            </>
+            {headerButtons
+              ? typeof headerButtons === "function"
+                ? headerButtons({
+                    defaultButtons: defaultHeaderButtons,
+                    deleteButtonProps,
+                    editButtonProps,
+                    listButtonProps,
+                    refreshButtonProps,
+                  })
+                : headerButtons
+              : defaultHeaderButtons}
           </Box>
         }
         {...(headerProps ?? {})}
       />
-      <CardContent {...(contentProps ?? {})}>
-        <>{children}</>
-      </CardContent>
+      <CardContent {...(contentProps ?? {})}>{children}</CardContent>
       <CardActions sx={{ padding: "16px" }} {...(footerButtonProps ?? {})}>
-        <>
-          {footerButtons
-            ? typeof footerButtons === "function"
-              ? footerButtons({ defaultButtons: null })
-              : footerButtons
-            : null}
-        </>
+        {footerButtons
+          ? typeof footerButtons === "function"
+            ? footerButtons({ defaultButtons: null })
+            : footerButtons
+          : null}
       </CardActions>
     </Card>
   );

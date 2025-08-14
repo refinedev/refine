@@ -72,7 +72,7 @@ export const ThemedLayoutV2: React.FC<ExtendedRefineThemedLayoutV2Props> = ({
             }}
             {...restChildrenProps}
           >
-            <>{children}</>
+            {children}
           </Box>
           {Footer && <Footer />}
         </Box>
