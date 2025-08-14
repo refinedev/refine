@@ -10,9 +10,61 @@ import {
   type IResourceItem,
   type AuthProvider,
   type RouterBindings,
+  type Action,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
+
+const mockResources = [
+  {
+    name: "posts",
+    list: "/list",
+    create: "/create",
+    show: "/show/:id",
+    edit: "/edit/:id",
+    meta: {
+      canEdit: true,
+      canShow: true,
+      canDelete: true,
+    },
+  },
+  {
+    name: "categories",
+    list: "/list",
+    create: "/create",
+    show: "/show/:id",
+    edit: "/edit/:id",
+    meta: {
+      canEdit: true,
+      canShow: true,
+      canDelete: true,
+    },
+  },
+  {
+    name: "users",
+    list: "/list",
+    create: "/create",
+    show: "/show/:id",
+    edit: "/edit/:id",
+    meta: {
+      canEdit: true,
+      canShow: true,
+      canDelete: true,
+    },
+  },
+  {
+    name: "tags",
+    list: "/list",
+    create: "/create",
+    show: "/show/:id",
+    edit: "/edit/:id",
+    meta: {
+      canEdit: true,
+      canShow: true,
+      canDelete: true,
+    },
+  },
+];
 
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
@@ -51,15 +103,47 @@ export const TestWrapper: (
   }
 
   return ({ children }): React.ReactElement => {
+    let action: Action | undefined = undefined;
+    let id = undefined;
+    let resource = undefined;
+
+    if (routerInitialEntries) {
+      // find action, id and resource from routerInitialEntries:  /posts/show/1, /posts/create, /posts/edit/11
+      const [
+        resourcePath = undefined,
+        actionPath = undefined,
+        idParam = undefined,
+      ] = routerInitialEntries[0].split("/").slice(1);
+      resource = resourcePath;
+      action = actionPath as Action | undefined;
+      if (!action && resource === "posts") {
+        action = "list";
+      }
+      id = idParam;
+    }
+
+    const finalRouterProvider =
+      routerProvider ??
+      MockRouterProvider({
+        pathname: routerInitialEntries?.[0],
+        params: {
+          id: id || undefined,
+        },
+        resource:
+          mockResources.find((item) => item.name === resource) ?? undefined,
+        action: action,
+        id: id,
+      });
+
     return (
       <BrowserRouter>
         <Refine
           dataProvider={dataProvider ?? MockJSONServer}
           i18nProvider={i18nProvider}
           authProvider={authProvider}
-          routerProvider={routerProvider ?? MockRouterProvider()}
+          routerProvider={finalRouterProvider}
           notificationProvider={notificationProvider}
-          resources={resources ?? [{ name: "posts", list: "/list" }]}
+          resources={resources ?? mockResources}
           accessControlProvider={accessControlProvider}
           options={{
             disableTelemetry: true,

@@ -780,7 +780,7 @@ export const renderer = ({
                 setCurrent,
                 pageCount,
                 current,
-                tableQueryResult: { data: tableData },
+                tableQuery: { data: tableData },
             },
         } = useTable({
             columns,

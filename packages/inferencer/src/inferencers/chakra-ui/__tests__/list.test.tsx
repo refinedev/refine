@@ -4,14 +4,14 @@ import { Route, Routes } from "react-router";
 import { render, act, TestWrapper } from "@test";
 import { ListInferencer, renderer } from "../list";
 
-describe("ChakraListInferencer", () => {
+describe.only("ChakraListInferencer", () => {
   it("should match the snapshot", async () => {
     const Wrapper = TestWrapper({
       routerInitialEntries: ["/posts"],
       resources: [
         {
           name: "posts",
-          list: ListInferencer,
+          list: "/posts",
         },
         {
           name: "categories",
