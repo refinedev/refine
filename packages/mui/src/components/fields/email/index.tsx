@@ -14,7 +14,7 @@ export const EmailField: React.FC<EmailFieldProps> = ({ value, ...rest }) => {
   return (
     <Typography variant="body2">
       <Link href={`mailto:${value}`} {...rest}>
-        <>{value}</>
+        {value}
       </Link>
     </Typography>
   );
