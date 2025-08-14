@@ -1,3 +1,4 @@
+import React from "react";
 import type {
   Action,
   DataProvider,
@@ -84,6 +85,8 @@ export const posts = [
     },
     user: {
       id: 21,
+      firstName: "Eriberto",
+      lastName: "Leannon",
     },
     status: "draft",
     status_color: "orange",
@@ -113,6 +116,8 @@ export const posts = [
     },
     user: {
       id: 49,
+      firstName: "Tressie",
+      lastName: "Reichel",
     },
     status: "published",
     status_color: "lime",
@@ -149,11 +154,12 @@ const MockDataProvider = (): DataProvider => {
     deleteOne: ({ resource = "posts" }) =>
       Promise.resolve({ data: data[resource][0] }),
     deleteMany: () => Promise.resolve({ data: [] }),
-    getList: ({ resource = "posts" }) =>
-      Promise.resolve({
+    getList: ({ resource = "posts" }) => {
+      return Promise.resolve({
         data: data[resource],
         total: data[resource].length,
-      }),
+      });
+    },
     getMany: ({ resource = "posts" }) =>
       Promise.resolve({ data: [...data[resource]] }),
     getOne: ({ resource = "posts" }) => {
@@ -167,7 +173,7 @@ const MockDataProvider = (): DataProvider => {
   };
 };
 
-export const MockJSONServer = MockDataProvider() as any;
+export const MockJSONServer = MockDataProvider();
 
 export const MockRouterProvider = ({
   pathname,
@@ -186,8 +192,8 @@ export const MockRouterProvider = ({
 } = {}): RouterProvider => {
   const routerProvider: RouterProvider = {
     go: () => {
-      return ({ type }) => {
-        if (type === "path") return "";
+      return ({ type, to }) => {
+        if (type === "path") return to || "";
         return undefined;
       };
     },
@@ -207,7 +213,11 @@ export const MockRouterProvider = ({
     back: () => {
       return () => undefined;
     },
-    Link: () => null,
+    Link: ({ children, to, href, ...props }) => (
+      <a href={to || href || ""} {...props}>
+        {children}
+      </a>
+    ),
     ...fns,
   };
 
