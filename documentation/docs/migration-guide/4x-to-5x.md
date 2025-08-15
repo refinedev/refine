@@ -40,6 +40,8 @@ All Refine packages have been bumped to the next major version as a coordinated 
 | `@refinedev/react-router`    | 1.x.x      | 2.x.x      |
 | `@refinedev/nextjs-router`   | 6.x.x      | 7.x.x      |
 | `@refinedev/remix-router`    | 3.x.x      | 4.x.x      |
+| `@refinedev/inferencer`      | 5.x.x      | 6.x.x      |
+| `@refinedev/devtools`        | 1.x.x      | 2.x.x      |
 
 <Tabs
 defaultValue="refine-cli"
