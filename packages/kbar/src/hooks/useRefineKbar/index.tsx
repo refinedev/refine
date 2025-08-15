@@ -88,7 +88,7 @@ export const useRefineKbar = (): void => {
 
     const icon = resource?.meta?.icon;
 
-    const canDelete = resource?.meta?.canDel;
+    const canDelete = resource?.meta?.canDelete;
 
     const section =
       label ??
