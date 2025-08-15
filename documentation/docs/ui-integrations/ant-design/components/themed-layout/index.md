@@ -203,14 +203,15 @@ const App: React.FC = () => {
 
 #### Sider Props
 
-| Prop                 | Type                                          | Description                                                                       |
-| -------------------- | --------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`Title`](#title)    | `React.FC`                                    | Component to render at the top                                                    |
-| `render`             | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSiderV2>` |
-| `meta`               | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                          |
-| `fixed`              | `boolean`                                     | Whether the sider is fixed or not                                                 |
-| `activeItemDisabled` | `boolean`                                     | Whether clicking on an active sider item should reload the page                   |
-| `onSiderCollapsed`   | `(collapsed: boolean) => void`                | Callback function invoked when the sider collapses or expands                     |
+| Prop                     | Type                                          | Description                                                                       |
+| ------------------------ | --------------------------------------------- | --------------------------------------------------------------------------------- |
+| [`Title`](#title)        | `React.FC`                                    | Component to render at the top                                                    |
+| `render`                 | [`SiderRenderFunction`](#siderrenderfunction) | Function to render the menu items and other elements inside the `<ThemedSiderV2>` |
+| `meta`                   | `Record<string,any>`                          | Meta data to use when creating routes for the menu items                          |
+| `fixed`                  | `boolean`                                     | Whether the sider is fixed or not                                                 |
+| `activeItemDisabled`     | `boolean`                                     | Whether clicking on an active sider item should reload the page                   |
+| `onSiderCollapsed`       | `(collapsed: boolean) => void`                | Callback function invoked when the sider collapses or expands                     |
+| `siderItemsAreCollapsed` | `boolean`                                     | Whether nested sider items are by default expanded or collapsed                   |
 
 ```tsx
 type SiderRenderFunction = (props: {

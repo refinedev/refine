@@ -44,6 +44,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   render,
   meta,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const {
     siderCollapsed,
@@ -74,7 +75,24 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
 
-  const [open, setOpen] = useState<{ [k: string]: any }>({});
+  const defaultExpandMenuItems = (() => {
+    const defaultOpenKeys = {};
+
+    if (siderItemsAreCollapsed) return defaultOpenKeys;
+
+    return menuItems.reduce((prev, curr) => {
+      const { key } = curr;
+
+      return {
+        ...prev,
+        [key]: true,
+      };
+    }, {});
+  })();
+
+  const [open, setOpen] = useState<{ [k: string]: any }>(
+    defaultExpandMenuItems,
+  );
 
   React.useEffect(() => {
     setOpen((previous) => {
