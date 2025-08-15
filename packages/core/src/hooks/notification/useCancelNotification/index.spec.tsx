@@ -64,7 +64,7 @@ describe("useCancelNotification Hook", () => {
       }),
     });
 
-    expect(dispatch).not.toBeCalled();
+    expect(dispatch).not.toHaveBeenCalled();
   });
 
   it("context dispatch called", async () => {
@@ -81,6 +81,6 @@ describe("useCancelNotification Hook", () => {
 
     result.current.notificationDispatch({});
 
-    expect(dispatch).toBeCalled();
+    expect(dispatch).toHaveBeenCalled();
   });
 });

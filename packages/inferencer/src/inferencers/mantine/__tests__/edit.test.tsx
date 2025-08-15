@@ -11,8 +11,8 @@ describe("MantineEditInferencer", () => {
       resources: [
         {
           name: "posts",
-          list: () => <div>list</div>,
-          edit: EditInferencer,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
         {
           name: "categories",
@@ -27,6 +27,7 @@ describe("MantineEditInferencer", () => {
     const rendering = render(
       <Wrapper>
         <Routes>
+          <Route path="/:resource" element={<div>list</div>} />
           <Route
             path="/:resource/edit/:id"
             element={<EditInferencer resource="posts" />}

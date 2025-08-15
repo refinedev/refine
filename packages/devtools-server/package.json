@@ -65,15 +65,15 @@
     "marked": "^4.3.0",
     "node-fetch": "^2.6.7",
     "package-manager-detector": "^0.1.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "sanitize-html": "^2.11.0",
     "ws": "^8.13.0"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/devtools-ui": "1.2.1",
-    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/jest-dom": "^6.6.3",
     "@types/dedent": "^0.7.0",
     "@types/express": "^4.17.21",
     "@types/fs-extra": "^9.0.13",
@@ -87,20 +87,20 @@
     "@types/ws": "^8.5.5",
     "@vitejs/plugin-react": "^4.2.1",
     "esbuild-copy-static-files": "^0.1.0",
-    "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "react-router": "^7.0.2",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15"
   },
   "peerDependencies": {
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0"
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
     "node": ">=10"

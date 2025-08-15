@@ -3,7 +3,7 @@ import { crudListTests } from "@refinedev/ui-tests";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 import { Route, Routes } from "react-router";
 import { CreateButton } from "@components/buttons";
-import { MockLegacyRouterProvider, render, TestWrapper } from "@test";
+import { MockRouterProvider, render, TestWrapper } from "@test";
 import { List } from "./index";
 
 const renderList = (list: ReactNode) => {
@@ -14,7 +14,7 @@ const renderList = (list: ReactNode) => {
     {
       wrapper: TestWrapper({
         routerInitialEntries: ["/posts"],
-        legacyRouterProvider: MockLegacyRouterProvider,
+        routerProvider: MockRouterProvider(),
       }),
     },
   );

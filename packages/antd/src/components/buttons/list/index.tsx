@@ -18,7 +18,6 @@ import type { ListButtonProps } from "../types";
  */
 export const ListButton: React.FC<ListButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName: propResourceNameOrRouteName,
   hideText = false,
   accessControl,
   meta,
@@ -27,7 +26,7 @@ export const ListButton: React.FC<ListButtonProps> = ({
   ...rest
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useListButton({
-    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    resource: resourceNameFromProps,
     meta,
     accessControl,
   });

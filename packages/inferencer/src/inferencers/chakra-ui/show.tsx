@@ -48,7 +48,10 @@ export const renderer = ({
   id,
   i18n,
 }: RendererContext) => {
-  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "show");
+  const COMPONENT_NAME = componentName(
+    resource.meta?.label ?? resource.name,
+    "show",
+  );
   const recordName = "record";
   const imports: Array<ImportElement> = [
     ["useShow", "@refinedev/core"],

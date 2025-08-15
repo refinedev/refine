@@ -11,7 +11,6 @@ import type { CreateButtonProps } from "../types";
 
 export const CreateButton: React.FC<CreateButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName,
   hideText = false,
   accessControl,
   svgIconProps,
@@ -22,7 +21,7 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useCreateButton(
     {
-      resource: resourceNameFromProps ?? resourceNameOrRouteName,
+      resource: resourceNameFromProps,
       accessControl,
       meta,
     },

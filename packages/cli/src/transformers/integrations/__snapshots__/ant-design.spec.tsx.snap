@@ -1,63 +1,67 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`ant-design transformer should transform the file
-----------------------------------------------------
+exports[`ant-design transformer should transform the file\\n----------------------------------------------------\\nimport { Refine, WelcomePage } from "@refinedev/core";\\n\\nfunction App() {\\n    return (\\n        <Refine>\\n            <WelcomePage />\\n        </Refine>\\n    );\\n}\\n\\nexport default App;\\n---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage } from "@refinedev/core";
+
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
+import "@refinedev/antd/dist/reset.css";
+
+function App() {
+  return (
+    <ConfigProvider theme={RefineThemes.Blue}>
+      <AntdApp>
+        <Refine notificationProvider={useNotificationProvider}>
+          <WelcomePage />
+        </Refine>
+      </AntdApp>
+    </ConfigProvider>
+  );
+}
+
+export default App;"
+`;
+
+exports[`ant-design transformer should transform the file\\n----------------------------------------------------\\nimport { Refine, WelcomePage } from "@refinedev/core";\\n\\nimport { useNotificationProvider, RefineThemes } from "@refinedev/antd";\\nimport { ConfigProvider, App as AntdApp } from "antd";\\nimport "@refinedev/antd/dist/reset.css";\\n\\nfunction App() {\\n    return (\\n        <ConfigProvider theme={RefineThemes.Blue}>\\n            <AntdApp>\\n                <Refine notificationProvider={useNotificationProvider}>\\n                    <WelcomePage />\\n                </Refine>\\n            </AntdApp>\\n        </ConfigProvider>\\n    );\\n}\\n\\nexport default App;\\n---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage } from "@refinedev/core";
+
+import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
+import { ConfigProvider, App as AntdApp } from "antd";
+import "@refinedev/antd/dist/reset.css";
+
+function App() {
+  return (
+    <ConfigProvider theme={RefineThemes.Blue}>
+      <AntdApp>
+        <Refine notificationProvider={useNotificationProvider}>
+          <WelcomePage />
+        </Refine>
+      </AntdApp>
+    </ConfigProvider>
+  );
+}
+
+export default App;"
+`;
+
+exports[`ant-design transformer should transform the file\\n----------------------------------------------------\\nimport {\\n    GitHubBanner,\\n    Refine,\\n    ErrorComponent,\\n    WelcomePage,\\n} from "@refinedev/core";\\nimport dataProvider from "@refinedev/simple-rest";\\nimport routerProvider, {\\n    UnsavedChangesNotifier,\\n    DocumentTitleHandler,\\n} from "@refinedev/react-router";\\n\\nimport { BrowserRouter, Route, Routes } from "react-router";\\n\\nconst App = () => {\\n    return (\\n        <BrowserRouter>\\n            <GitHubBanner />\\n            <Refine\\n                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}\\n                routerProvider={routerProvider}\\n                options={{\\n                    syncWithLocation: true,\\n                    warnWhenUnsavedChanges: true,\\n                }}\\n            >\\n                <Routes>\\n                    <Route index element={<WelcomePage />} />\\n                    <Route path="*" element={<ErrorComponent />} />\\n                </Routes>\\n                <UnsavedChangesNotifier />\\n                <DocumentTitleHandler />\\n            </Refine>\\n        </BrowserRouter>\\n    );\\n};\\n\\nexport default App;\\n---------------------------------------------------- 1`] = `
+"import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import {
-    GitHubBanner,
-    Refine,
-    ErrorComponent,
-    WelcomePage,
-} from "@refinedev/core";
-import dataProvider from "@refinedev/simple-rest";
-import routerProvider, {
-    UnsavedChangesNotifier,
-    DocumentTitleHandler,
-} from "@refinedev/react-router";
-
-import { BrowserRouter, Route, Routes } from "react-router";
-
-const App = () => {
-    return (
-        <BrowserRouter>
-            <GitHubBanner />
-            <Refine
-                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-                routerProvider={routerProvider}
-                options={{
-                    syncWithLocation: true,
-                    warnWhenUnsavedChanges: true,
-                }}
-            >
-                <Routes>
-                    <Route index element={<WelcomePage />} />
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-                <UnsavedChangesNotifier />
-                <DocumentTitleHandler />
-            </Refine>
-        </BrowserRouter>
-    );
-};
-
-export default App;
----------------------------------------------------- 1`] = `
-"import {
-  ErrorComponent,
+  useNotificationProvider,
   RefineThemes,
   ThemedLayoutV2,
-  useNotificationProvider,
+  ErrorComponent,
 } from "@refinedev/antd";
-import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
-import routerProvider, {
-  DocumentTitleHandler,
-  UnsavedChangesNotifier,
-} from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
+import routerProvider, {
+  UnsavedChangesNotifier,
+  DocumentTitleHandler,
+} from "@refinedev/react-router";
 
-import { BrowserRouter, Outlet, Route, Routes } from "react-router";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
+import { ConfigProvider, App as AntdApp } from "antd";
 import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
 
 const App = () => {
   return (
@@ -94,84 +98,6 @@ const App = () => {
     </BrowserRouter>
   );
 };
-
-export default App;"
-`;
-
-exports[`ant-design transformer should transform the file
-----------------------------------------------------
-import { Refine, WelcomePage } from "@refinedev/core";
-
-function App() {
-    return (
-        <Refine>
-            <WelcomePage />
-        </Refine>
-    );
-}
-
-export default App;
----------------------------------------------------- 1`] = `
-"import { Refine, WelcomePage } from "@refinedev/core";
-
-import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
-import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
-
-function App() {
-  return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
-        <Refine notificationProvider={useNotificationProvider}>
-          <WelcomePage />
-        </Refine>
-      </AntdApp>
-    </ConfigProvider>
-  );
-}
-
-export default App;"
-`;
-
-exports[`ant-design transformer should transform the file
-----------------------------------------------------
-import { Refine, WelcomePage } from "@refinedev/core";
-
-import { useNotificationProvider, RefineThemes } from "@refinedev/antd";
-import { ConfigProvider, App as AntdApp } from "antd";
-import "@refinedev/antd/dist/reset.css";
-
-function App() {
-    return (
-        <ConfigProvider theme={RefineThemes.Blue}>
-            <AntdApp>
-                <Refine notificationProvider={useNotificationProvider}>
-                    <WelcomePage />
-                </Refine>
-            </AntdApp>
-        </ConfigProvider>
-    );
-}
-
-export default App;
----------------------------------------------------- 1`] = `
-"import { Refine, WelcomePage } from "@refinedev/core";
-
-import { RefineThemes, useNotificationProvider } from "@refinedev/antd";
-import "@refinedev/antd/dist/reset.css";
-import { App as AntdApp, ConfigProvider } from "antd";
-
-function App() {
-  return (
-    <ConfigProvider theme={RefineThemes.Blue}>
-      <AntdApp>
-        <Refine notificationProvider={useNotificationProvider}>
-          <WelcomePage />
-        </Refine>
-      </AntdApp>
-    </ConfigProvider>
-  );
-}
 
 export default App;"
 `;

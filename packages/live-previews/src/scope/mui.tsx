@@ -58,9 +58,6 @@ const RefineMuiDemo: React.FC<
           notificationProvider={RefineMui.useNotificationProvider}
           options={{
             disableTelemetry: true,
-            reactQuery: {
-              devtoolConfig: false,
-            },
           }}
           {...rest}
         />

@@ -50,7 +50,7 @@ describe("useRefreshButton", () => {
     result.current.onClick();
 
     await waitFor(() => {
-      expect(invalidateMock).toBeCalled();
+      expect(invalidateMock).toHaveBeenCalled();
     });
 
     mock.mockRestore();

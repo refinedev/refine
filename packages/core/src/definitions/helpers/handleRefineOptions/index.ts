@@ -26,7 +26,6 @@ type HandleRefineOptionsReturnValues = {
   disableTelemetryWithDefault: boolean;
   reactQueryWithDefaults: {
     clientConfig: QueryClientConfig | InstanceType<typeof QueryClient>;
-    devtoolConfig: false | any;
   };
 };
 
@@ -86,7 +85,6 @@ export const handleRefineOptions = ({
       options?.disableServerSideValidation ??
       defaultRefineOptions.disableServerSideValidation,
     projectId: options?.projectId,
-    useNewQueryKeys: options?.useNewQueryKeys,
     title: {
       icon:
         typeof options?.title?.icon === "undefined"
@@ -105,8 +103,7 @@ export const handleRefineOptions = ({
   const reactQueryWithDefaults = {
     clientConfig:
       options?.reactQuery?.clientConfig ?? reactQueryClientConfig ?? {},
-    devtoolConfig:
-      options?.reactQuery?.devtoolConfig ?? reactQueryDevtoolConfig ?? {},
+    devtoolConfig: reactQueryDevtoolConfig ?? {},
   };
 
   return {

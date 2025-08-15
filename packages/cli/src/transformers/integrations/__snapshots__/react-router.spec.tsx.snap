@@ -1,23 +1,10 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`react-router transformer should transform the file
-----------------------------------------------------
-import { Refine, WelcomePage } from "@refinedev/core";
-
-function App() {
-    return (
-        <Refine>
-            <WelcomePage />
-        </Refine>
-    );
-}
-
-export default App;
----------------------------------------------------- 1`] = `
-"import { ErrorComponent, Refine, WelcomePage } from "@refinedev/core";
+exports[`react-router transformer should transform the file\\n----------------------------------------------------\\nimport { Refine, WelcomePage } from "@refinedev/core";\\n\\nfunction App() {\\n    return (\\n        <Refine>\\n            <WelcomePage />\\n        </Refine>\\n    );\\n}\\n\\nexport default App;\\n---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
 
 import routerProvider from "@refinedev/react-router";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 function App() {
   return (
@@ -35,29 +22,11 @@ function App() {
 export default App;"
 `;
 
-exports[`react-router transformer should transform the file
-----------------------------------------------------
-import { Refine, WelcomePage } from "@refinedev/core";
-
-import { UseListExample, UseOneExample, UseUpdateExample } from 'examples';
-
-function App() {
-    return (
-        <Refine>
-            <WelcomePage />
-            <UseListExample />
-            <UseOneExample />
-            <UseUpdateExample />
-        </Refine>
-    );
-}
-
-export default App;
----------------------------------------------------- 1`] = `
-"import { ErrorComponent, Refine, WelcomePage } from "@refinedev/core";
+exports[`react-router transformer should transform the file\\n----------------------------------------------------\\nimport { Refine, WelcomePage } from "@refinedev/core";\\n\\nimport { UseListExample, UseOneExample, UseUpdateExample } from 'examples';\\n\\nfunction App() {\\n    return (\\n        <Refine>\\n            <WelcomePage />\\n            <UseListExample />\\n            <UseOneExample />\\n            <UseUpdateExample />\\n        </Refine>\\n    );\\n}\\n\\nexport default App;\\n---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
 
 import routerProvider from "@refinedev/react-router";
-import { BrowserRouter, Route, Routes } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 
 import { UseListExample, UseOneExample, UseUpdateExample } from "examples";
 
@@ -80,32 +49,11 @@ function App() {
 export default App;"
 `;
 
-exports[`react-router transformer should transform the file
-----------------------------------------------------
-import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
+exports[`react-router transformer should transform the file\\n----------------------------------------------------\\nimport { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";\\n\\nimport routerProvider from "@refinedev/react-router";\\nimport { BrowserRouter, Routes, Route } from "react-router";\\n\\nfunction App() {\\n    return (\\n        <BrowserRouter>\\n            <Refine routerProvider={routerProvider}>\\n                <Routes>\\n                    <Route index element={<WelcomePage />} />\\n                    <Route path="*" element={<ErrorComponent />} />\\n                </Routes>\\n            </Refine>\\n        </BrowserRouter>\\n    );\\n}\\n\\nexport default App;\\n---------------------------------------------------- 1`] = `
+"import { Refine, WelcomePage, ErrorComponent } from "@refinedev/core";
 
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route } from "react-router";
-
-function App() {
-    return (
-        <BrowserRouter>
-            <Refine routerProvider={routerProvider}>
-                <Routes>
-                    <Route index element={<WelcomePage />} />
-                    <Route path="*" element={<ErrorComponent />} />
-                </Routes>
-            </Refine>
-        </BrowserRouter>
-    );
-}
-
-export default App;
----------------------------------------------------- 1`] = `
-"import { ErrorComponent, Refine, WelcomePage } from "@refinedev/core";
-
-import routerProvider from "@refinedev/react-router";
-import { BrowserRouter, Route, Routes } from "react-router";
 
 function App() {
   return (

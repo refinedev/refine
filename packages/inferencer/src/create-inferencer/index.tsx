@@ -344,11 +344,7 @@ export const createInferencer: CreateInferencer = ({
               code={prepareLiveCode(
                 code,
                 componentName(
-                  resource?.meta?.label ??
-                    resource?.options?.label ??
-                    resource?.label ??
-                    resource?.name ??
-                    "Resource",
+                  resource?.meta?.label ?? resource?.name ?? "Resource",
                   type,
                 ),
               )}

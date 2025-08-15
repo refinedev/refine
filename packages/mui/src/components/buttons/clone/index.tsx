@@ -20,7 +20,6 @@ import type { CloneButtonProps } from "../types";
  */
 export const CloneButton: React.FC<CloneButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName,
   recordItemId,
   hideText = false,
   accessControl,
@@ -31,7 +30,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
   ...rest
 }) => {
   const { to, label, title, hidden, disabled, LinkComponent } = useCloneButton({
-    resource: resourceNameFromProps ?? resourceNameOrRouteName,
+    resource: resourceNameFromProps,
     id: recordItemId,
     meta,
     accessControl,

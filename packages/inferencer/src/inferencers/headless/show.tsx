@@ -37,7 +37,10 @@ export const renderer = ({
   id,
   i18n,
 }: RendererContext) => {
-  const COMPONENT_NAME = componentName(resource.label ?? resource.name, "show");
+  const COMPONENT_NAME = componentName(
+    resource.meta?.label ?? resource.name,
+    "show",
+  );
   const recordName = "record";
   const imports: Array<ImportElement> = [
     ["React", "react", true],
@@ -627,8 +630,8 @@ export const renderer = ({
     }
   });
 
-  const { canEdit, list } = resource ?? {};
-  const canList = !!list;
+  const canEdit = resource?.meta?.canEdit;
+  const canList = !!resource?.list;
 
   noOp(imports);
   const useTranslateHook = i18n && "const translate = useTranslate();";

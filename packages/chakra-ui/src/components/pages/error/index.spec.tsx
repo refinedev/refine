@@ -5,14 +5,7 @@ import { Route, Routes } from "react-router";
 import userEvent from "@testing-library/user-event";
 
 import { ErrorComponent } from ".";
-import { render, fireEvent, TestWrapper } from "@test";
-
-const mHistory = jest.fn();
-
-jest.mock("react-router", () => ({
-  ...(jest.requireActual("react-router") as typeof ReactRouterDom),
-  useNavigate: () => mHistory,
-}));
+import { render, fireEvent, TestWrapper, MockRouterProvider } from "@test";
 
 describe("ErrorComponent", () => {
   pageErrorTests.bind(this)(ErrorComponent);
@@ -35,13 +28,20 @@ describe("ErrorComponent", () => {
   });
 
   it("renders called function successfully if click the button", async () => {
+    const mockGo = jest.fn();
+
     const { getByText } = render(<ErrorComponent />, {
-      wrapper: TestWrapper({}),
+      wrapper: TestWrapper({
+        routerProvider: {
+          ...MockRouterProvider(),
+          go: () => mockGo,
+        },
+      }),
     });
 
     fireEvent.click(getByText("Back Home"));
 
-    expect(mHistory).toBeCalledWith("/");
+    expect(mockGo).toHaveBeenCalledWith({ to: "/" });
   });
 
   it("renders error messages if resources action's not found", async () => {
@@ -51,7 +51,16 @@ describe("ErrorComponent", () => {
       </Routes>,
       {
         wrapper: TestWrapper({
+          resources: [{ name: "posts" }],
           routerInitialEntries: ["/posts/create"],
+          routerProvider: {
+            ...MockRouterProvider(),
+            parse: () => () => ({
+              action: "create",
+              resource: { name: "posts" },
+              pathname: "/posts/create",
+            }),
+          },
         }),
       },
     );

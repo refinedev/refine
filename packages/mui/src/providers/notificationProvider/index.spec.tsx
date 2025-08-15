@@ -73,7 +73,7 @@ describe("Notistack notificationProvider", () => {
     notificationProviderHandle.open({ ...mockNotification, type: "error" });
 
     expect(enqueueSnackbarMock).toHaveBeenCalledTimes(1);
-    expect(enqueueSnackbarMock).toBeCalledWith(
+    expect(enqueueSnackbarMock).toHaveBeenCalledWith(
       <Box>
         <Typography variant="subtitle2" component="h6">
           {mockNotification.description}
@@ -95,7 +95,7 @@ describe("Notistack notificationProvider", () => {
     notificationProviderHandle.open(mockNotificationUndoable);
 
     expect(enqueueSnackbarMock).toHaveBeenCalledTimes(1);
-    expect(enqueueSnackbarMock).toBeCalledWith(
+    expect(enqueueSnackbarMock).toHaveBeenCalledWith(
       <>
         <CircularDeterminate
           undoableTimeout={5}
@@ -116,6 +116,6 @@ describe("Notistack notificationProvider", () => {
   it("should close notification", async () => {
     notificationProviderHandle.close("");
 
-    expect(closeSnackbarMock).toBeCalledTimes(1);
+    expect(closeSnackbarMock).toHaveBeenCalledTimes(1);
   });
 });

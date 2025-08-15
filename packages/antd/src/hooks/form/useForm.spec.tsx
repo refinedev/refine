@@ -14,7 +14,7 @@ import {
   renderHook,
   act,
 } from "@test";
-import { mockRouterBindings } from "@test/dataMocks";
+import { MockRouterProvider } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
 
 interface IPost {
@@ -95,7 +95,7 @@ const renderForm = ({
     {
       wrapper: TestWrapper({
         options: refineOptions,
-        routerProvider: mockRouterBindings(),
+        routerProvider: MockRouterProvider(),
         i18nProvider: {
           changeLocale: () => Promise.resolve(),
           getLocale: () => "en",

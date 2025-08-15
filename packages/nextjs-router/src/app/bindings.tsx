@@ -6,7 +6,7 @@ import {
   type ParseResponse,
 } from "@refinedev/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import NextLink from "next/link";
 import qs from "qs";
 import React, { type ComponentProps, useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
@@ -146,6 +146,6 @@ export const routerBindings: RouterBindings = {
     HTMLAnchorElement,
     ComponentProps<NonNullable<RouterBindings["Link"]>>
   >(function RefineLink({ to, ...props }, ref) {
-    return <Link href={to} {...props} ref={ref} />;
+    return <NextLink href={to} {...props} ref={ref} />;
   }),
 };

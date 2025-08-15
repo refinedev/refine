@@ -11,7 +11,7 @@ describe("MantineListInferencer", () => {
       resources: [
         {
           name: "posts",
-          list: ListInferencer,
+          list: "/posts",
         },
         {
           name: "categories",

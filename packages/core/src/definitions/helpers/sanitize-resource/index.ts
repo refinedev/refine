@@ -13,25 +13,13 @@ export const sanitizeResource = (
     return undefined;
   }
 
-  const {
-    icon,
-    list,
-    edit,
-    create,
-    show,
-    clone,
-    children,
-    meta,
-    options,
-    ...restResource
-  } = resource;
+  const { list, edit, create, show, clone, children, meta, ...restResource } =
+    resource;
 
   const { icon: _metaIcon, ...restMeta } = meta ?? {};
-  const { icon: _optionsIcon, ...restOptions } = options ?? {};
 
   return {
     ...restResource,
     ...(meta ? { meta: restMeta } : {}),
-    ...(options ? { options: restOptions } : {}),
   };
 };

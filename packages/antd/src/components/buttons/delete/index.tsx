@@ -17,7 +17,6 @@ import type { DeleteButtonProps } from "../types";
  */
 export const DeleteButton: React.FC<DeleteButtonProps> = ({
   resource: resourceNameFromProps,
-  resourceNameOrRouteName: propResourceNameOrRouteName,
   recordItemId,
   onSuccess,
   mutationMode: mutationModeProp,
@@ -26,7 +25,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   errorNotification,
   hideText = false,
   accessControl,
-  metaData,
   meta,
   dataProviderName,
   confirmTitle,
@@ -46,7 +44,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
     cancelLabel: defaultCancelLabel,
     onConfirm,
   } = useDeleteButton({
-    resource: resourceNameFromProps ?? propResourceNameOrRouteName,
+    resource: resourceNameFromProps,
     id: recordItemId,
     dataProviderName,
     invalidates,

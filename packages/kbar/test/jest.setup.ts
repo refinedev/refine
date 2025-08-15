@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/react";
 import { TextEncoder, TextDecoder } from "util";
 
 global.TextEncoder = TextEncoder;

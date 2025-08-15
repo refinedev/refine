@@ -1,5 +1,4 @@
-import { waitFor } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
 import { posts } from "@test/dataMocks";
@@ -28,7 +27,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -61,7 +60,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -93,7 +92,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -125,7 +124,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -158,7 +157,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -192,7 +191,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -230,10 +229,10 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledTimes(1);
+    expect(getListMock).toHaveBeenCalledTimes(1);
 
     const { onSearch } = result.current;
 
@@ -244,11 +243,11 @@ describe("useSelect Hook", () => {
     onSearch("1");
 
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(2);
+      expect(getListMock).toHaveBeenCalledTimes(2);
     });
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
   });
 
@@ -276,39 +275,39 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(getListMock).toBeCalledTimes(1);
+    expect(getListMock).toHaveBeenCalledTimes(1);
 
     const { onSearch } = result.current;
 
     onSearch("1");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(2);
+      expect(getListMock).toHaveBeenCalledTimes(2);
     });
 
     onSearch("2");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(3);
+      expect(getListMock).toHaveBeenCalledTimes(3);
     });
 
     onSearch("3");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(4);
+      expect(getListMock).toHaveBeenCalledTimes(4);
     });
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     onSearch("");
     await waitFor(() => {
-      expect(getListMock).toBeCalledTimes(5);
+      expect(getListMock).toHaveBeenCalledTimes(5);
     });
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
   });
 
@@ -358,9 +357,7 @@ describe("useSelect Hook", () => {
 
     await waitFor(() => expect(getListMock).toHaveBeenCalledTimes(3));
 
-    await waitFor(() =>
-      expect(result.current.queryResult.isSuccess).toBeTruthy(),
-    );
+    await waitFor(() => expect(result.current.query.isSuccess).toBeTruthy());
   });
 
   it("should respond to onSearch prop changes without breaking the debounce interval", async () => {
@@ -380,10 +377,7 @@ describe("useSelect Hook", () => {
       },
     ]);
 
-    const { result, rerender } = renderHook<
-      Parameters<typeof useSelect>[0],
-      ReturnType<typeof useSelect>
-    >((props) => useSelect(props), {
+    const { result, rerender } = renderHook((props) => useSelect(props), {
       initialProps: {
         resource: "posts",
         onSearch: initialOnSearch,
@@ -425,91 +419,7 @@ describe("useSelect Hook", () => {
     await waitFor(() => expect(initialOnSearch).toHaveBeenCalledTimes(1));
     await waitFor(() => expect(secondOnSearch).toHaveBeenCalledTimes(1));
 
-    await waitFor(() =>
-      expect(result.current.queryResult.isSuccess).toBeTruthy(),
-    );
-  });
-
-  it("should invoke queryOptions methods successfully", async () => {
-    const mockFunc = jest.fn();
-
-    const { result } = renderHook(
-      () =>
-        useSelect({
-          resource: "posts",
-          queryOptions: {
-            onSuccess: () => {
-              mockFunc();
-            },
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
-    });
-
-    const { options } = result.current;
-
-    expect(options).toHaveLength(2);
-    expect(options).toEqual([
-      {
-        label:
-          "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-        value: "1",
-      },
-      { label: "Recusandae consectetur aut atque est.", value: "2" },
-    ]);
-
-    expect(mockFunc).toBeCalled();
-  });
-
-  it("should invoke queryOptions methods for defaultValue and default query successfully", async () => {
-    const mockFunc = jest.fn();
-
-    const { result } = renderHook(
-      () =>
-        useSelect({
-          resource: "posts",
-          queryOptions: {
-            onSuccess: () => {
-              mockFunc();
-            },
-          },
-          defaultValue: [1],
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
-    });
-
-    const { options } = result.current;
-
-    expect(options).toHaveLength(2);
-    expect(options).toEqual([
-      {
-        label:
-          "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-        value: "1",
-      },
-      { label: "Recusandae consectetur aut atque est.", value: "2" },
-    ]);
-
-    // for init call and defaultValue
-    expect(mockFunc).toBeCalledTimes(2);
+    await waitFor(() => expect(result.current.query.isSuccess).toBeTruthy());
   });
 
   it("should sort default data first with selectedOptionsOrder for defaultValue", async () => {
@@ -539,7 +449,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(result.current.options).toHaveLength(2);
@@ -551,46 +461,6 @@ describe("useSelect Hook", () => {
         value: "1",
       },
     ]);
-  });
-
-  it("should invoke queryOptions methods for default value successfully", async () => {
-    const mockFunc = jest.fn();
-
-    const { result } = renderHook(
-      () =>
-        useSelect({
-          resource: "posts",
-          defaultValue: ["1", "2", "3", "4"],
-          defaultValueQueryOptions: {
-            onSuccess: () => {
-              mockFunc();
-            },
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
-    });
-
-    const { options } = result.current;
-
-    expect(options).toHaveLength(2);
-    expect(options).toEqual([
-      {
-        label:
-          "Necessitatibus necessitatibus id et cupiditate provident est qui amet.",
-        value: "1",
-      },
-      { label: "Recusandae consectetur aut atque est.", value: "2" },
-    ]);
-    expect(mockFunc).toBeCalled();
   });
 
   it("should generate options with custom optionLabel and optionValue functions", async () => {
@@ -610,7 +480,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
     const { options } = result.current;
     expect(options).toHaveLength(2);
@@ -663,21 +533,21 @@ describe("useSelect Hook", () => {
 
       await waitFor(() => {
         if (typeof enabled === "undefined") {
-          expect(mockDataProvider.default?.getList).toBeCalledTimes(0);
-          expect(mockDataProvider.default?.getMany).toBeCalledTimes(0);
+          expect(mockDataProvider.default?.getList).toHaveBeenCalledTimes(0);
+          expect(mockDataProvider.default?.getMany).toHaveBeenCalledTimes(0);
           return;
         }
 
         if (enabled) {
-          expect(mockDataProvider.default?.getList).toBeCalledTimes(1);
-          expect(mockDataProvider.default?.getMany).toBeCalledTimes(0);
+          expect(mockDataProvider.default?.getList).toHaveBeenCalledTimes(1);
+          expect(mockDataProvider.default?.getMany).toHaveBeenCalledTimes(0);
 
           return;
         }
 
         if (!enabled && typeof enabled !== "undefined") {
-          expect(mockDataProvider.default?.getList).toBeCalledTimes(0);
-          expect(mockDataProvider.default?.getMany).toBeCalledTimes(1);
+          expect(mockDataProvider.default?.getList).toHaveBeenCalledTimes(0);
+          expect(mockDataProvider.default?.getMany).toHaveBeenCalledTimes(1);
           return;
         }
       });
@@ -709,8 +579,10 @@ describe("useSelect Hook", () => {
         useSelect({
           resource: "posts",
           defaultValue: ["1", "2"],
-          hasPagination: true,
-          fetchSize: 20,
+          pagination: {
+            current: 1,
+            pageSize: 20,
+          },
         }),
       {
         wrapper: TestWrapper({
@@ -720,52 +592,33 @@ describe("useSelect Hook", () => {
       },
     );
 
-    await act(() => {});
+    await act(async () => {
+      await Promise.resolve();
+    });
 
     expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
       expect.objectContaining({
         filters: [],
-        hasPagination: true,
-        pagination: { pageSize: 20, current: 1, mode: "server" },
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            "data",
+            "default",
+            "posts",
+            "list",
+            expect.objectContaining({
+              pagination: expect.objectContaining({
+                pageSize: 20,
+              }),
+            }),
+          ]),
+        }),
+        pagination: {
+          current: 1,
+          mode: "server",
+          pageSize: 20,
+        },
         resource: "posts",
-        meta: {
-          queryContext: {
-            queryKey: [
-              "default",
-              "posts",
-              "list",
-              {
-                filters: [],
-                hasPagination: true,
-                pagination: {
-                  current: 1,
-                  mode: "server",
-                  pageSize: 20,
-                },
-              },
-            ],
-            signal: new AbortController().signal,
-          },
-        },
-        metaData: {
-          queryContext: {
-            queryKey: [
-              "default",
-              "posts",
-              "list",
-              {
-                filters: [],
-                hasPagination: true,
-                pagination: {
-                  current: 1,
-                  mode: "server",
-                  pageSize: 20,
-                },
-              },
-            ],
-            signal: new AbortController().signal,
-          },
-        },
+        sorters: undefined,
       }),
     );
   });
@@ -815,89 +668,63 @@ describe("useSelect Hook", () => {
 
     const { onSearch } = result.current;
 
-    expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
-      filters: [],
-      hasPagination: false,
-      resource: "posts",
-      meta: {
-        queryContext: {
-          queryKey: [
+    expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filters: [],
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            "data",
             "default",
             "posts",
             "list",
-            {
-              hasPagination: false,
-              filters: [],
-            },
-          ],
-          signal: new AbortController().signal,
+            expect.objectContaining({
+              pagination: expect.objectContaining({
+                pageSize: 10,
+                mode: "server",
+              }),
+            }),
+          ]),
+        }),
+        pagination: {
+          current: 1,
+          mode: "server",
+          pageSize: 10,
         },
-      },
-      metaData: {
-        queryContext: {
-          queryKey: [
-            "default",
-            "posts",
-            "list",
-            {
-              hasPagination: false,
-              filters: [],
-            },
-          ],
-          signal: new AbortController().signal,
-        },
-      },
-      pagination: {
-        current: 1,
-        mode: "off",
-        pageSize: 10,
-      },
-    });
+        resource: "posts",
+        sorters: undefined,
+      }),
+    );
 
     await act(async () => {
       onSearch("1");
     });
 
-    await waitFor(() => {
-      expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
-        filters,
-        hasPagination: false,
-        resource: "posts",
-        meta: {
-          queryContext: {
-            queryKey: [
-              "default",
-              "posts",
-              "list",
-              {
-                hasPagination: false,
-                filters,
-              },
-            ],
-            signal: new AbortController().signal,
-          },
-        },
-        metaData: {
-          queryContext: {
-            queryKey: [
-              "default",
-              "posts",
-              "list",
-              {
-                hasPagination: false,
-                filters,
-              },
-            ],
-            signal: new AbortController().signal,
-          },
-        },
+    expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filters: [],
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            "data",
+            "default",
+            "posts",
+            "list",
+            expect.objectContaining({
+              pagination: expect.objectContaining({
+                pageSize: 10,
+                mode: "server",
+              }),
+            }),
+          ]),
+        }),
         pagination: {
           current: 1,
-          mode: "off",
+          mode: "server",
           pageSize: 10,
         },
-      });
-    });
+        resource: "posts",
+        sorters: undefined,
+      }),
+    );
   });
 
   describe("searchField", () => {
@@ -925,7 +752,7 @@ describe("useSelect Hook", () => {
     it.each(cases)("$name", async (params: any) => {
       const getListMock = jest.fn(async () => ({ data: [], total: 0 }));
 
-      const { result, waitForNextUpdate } = renderHook(
+      const { result } = renderHook(
         () =>
           useSelect({
             resource: "posts",
@@ -946,10 +773,10 @@ describe("useSelect Hook", () => {
 
       result.current.onSearch("John");
 
-      await waitForNextUpdate();
-      await waitForNextUpdate();
+      await waitFor(() => {
+        expect(getListMock).toHaveBeenCalledTimes(2);
+      });
 
-      expect(getListMock).toHaveBeenCalledTimes(2);
       expect(getListMock).toHaveBeenCalledWith(
         expect.objectContaining({
           filters: [
@@ -993,7 +820,6 @@ describe("useSelect Hook", () => {
         useSelect({
           resource: "posts",
           defaultValue: ["1", "2", "3"],
-          hasPagination: true,
           pagination: {
             current: 2,
             pageSize: 1,
@@ -1007,52 +833,36 @@ describe("useSelect Hook", () => {
       },
     );
 
-    await act(() => {});
-
-    expect(mockDataProvider.default?.getList).toHaveBeenCalledWith({
-      filters: [],
-      pagination: { current: 2, mode: "server", pageSize: 1 },
-      hasPagination: true,
-      resource: "posts",
-      meta: {
-        queryContext: {
-          queryKey: [
-            "default",
-            "posts",
-            "list",
-            {
-              filters: [],
-              hasPagination: true,
-              pagination: {
-                current: 2,
-                mode: "server",
-                pageSize: 1,
-              },
-            },
-          ],
-          signal: new AbortController().signal,
-        },
-      },
-      metaData: {
-        queryContext: {
-          queryKey: [
-            "default",
-            "posts",
-            "list",
-            {
-              filters: [],
-              hasPagination: true,
-              pagination: {
-                current: 2,
-                mode: "server",
-                pageSize: 1,
-              },
-            },
-          ],
-          signal: new AbortController().signal,
-        },
-      },
+    await act(async () => {
+      await Promise.resolve();
     });
+
+    expect(mockDataProvider.default?.getList).toHaveBeenCalledWith(
+      expect.objectContaining({
+        filters: [],
+        pagination: {
+          current: 2,
+          mode: "server",
+          pageSize: 1,
+        },
+        resource: "posts",
+        sorters: undefined,
+        meta: expect.objectContaining({
+          queryKey: expect.arrayContaining([
+            "data",
+            "default",
+            "posts",
+            "list",
+            expect.objectContaining({
+              filters: [],
+              pagination: expect.objectContaining({
+                pageSize: 1,
+              }),
+            }),
+          ]),
+        }),
+      }),
+    );
   });
 
   it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
@@ -1075,10 +885,10 @@ describe("useSelect Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1123,10 +933,10 @@ describe("useSelect Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getListMock).toBeCalled();
+      expect(getListMock).toHaveBeenCalled();
     });
 
-    expect(getListMock).toBeCalledWith(
+    expect(getListMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           startDate: "2021-01-01",
@@ -1134,7 +944,7 @@ describe("useSelect Hook", () => {
       }),
     );
 
-    expect(getListMock).not.toBeCalledWith(
+    expect(getListMock).not.toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           likes: 100,
@@ -1160,7 +970,7 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     const { options } = result.current;
@@ -1213,36 +1023,14 @@ describe("useSelect Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.queryResult.isLoading).toBeTruthy();
+      expect(result.current.query.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(!result.current.queryResult.isLoading).toBeTruthy();
+      expect(!result.current.query.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
-  });
-
-  it("should work with queryResult and query", async () => {
-    const { result } = renderHook(
-      () =>
-        useSelect({
-          resource: "posts",
-          defaultValue: ["1", "2", "3", "4"],
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    await waitFor(() => {
-      expect(result.current.queryResult.isSuccess).toBeTruthy();
-    });
-
-    expect(result.current.query).toEqual(result.current.queryResult);
   });
 });

@@ -21,7 +21,8 @@
     "build": "tsc -d -p tsconfig.json",
     "dev": "tsc -w -d -p tsconfig.json",
     "jscodeshift": "jscodeshift -d --transform=src/transformations/refine1-to-refine2.ts",
-    "prepare": "pnpm build"
+    "prepare": "pnpm build",
+    "test": "jest --passWithNoTests --runInBand"
   },
   "dependencies": {
     "@npmcli/package-json": "^5.2.0",
@@ -41,10 +42,10 @@
     "@types/jest": "^29.2.4",
     "@types/jscodeshift": "^0.11.11",
     "@types/npmcli__package-json": "^4.0.4",
-    "jest": "^29.3.1",
+    "jest": "^30.0.5",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=10"

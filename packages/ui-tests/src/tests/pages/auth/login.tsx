@@ -270,10 +270,10 @@ export const pageLoginTests = (
       fireEvent.click(getAllByText(/sign in/i)[1]);
 
       await waitFor(() => {
-        expect(loginMock).toBeCalledTimes(1);
+        expect(loginMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(loginMock).toBeCalledWith({
+      expect(loginMock).toHaveBeenCalledWith({
         email: "demo@refine.dev",
         password: "demo",
         remember: true,
@@ -284,31 +284,20 @@ export const pageLoginTests = (
       jest.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
-      const LinkComponentMock = jest.fn();
 
-      render(<LoginPage />, {
+      const { getByText } = render(<LoginPage />, {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
-            fns: {
-              Link: LinkComponentMock,
-            },
-          }),
+          routerProvider: mockRouterBindings({}),
         }),
       });
 
-      expect(LinkComponentMock).toBeCalledWith(
-        expect.objectContaining({
-          to: "/forgot-password",
-        }),
-        {},
-      );
+      const forgotPasswordLink = getByText(/forgot password/i);
+      expect(forgotPasswordLink).toBeInTheDocument();
+      expect(forgotPasswordLink.getAttribute("href")).toBe("/forgot-password");
 
-      expect(LinkComponentMock).toBeCalledWith(
-        expect.objectContaining({
-          to: "/register",
-        }),
-        {},
-      );
+      const registerLink = getByText(/sign up/i);
+      expect(registerLink).toBeInTheDocument();
+      expect(registerLink.getAttribute("href")).toBe("/register");
     });
 
     it("should run login mutation when provider button is clicked", async () => {
@@ -337,10 +326,10 @@ export const pageLoginTests = (
       fireEvent.click(getByText(/google/i));
 
       await waitFor(() => {
-        expect(loginMock).toBeCalledTimes(1);
+        expect(loginMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(loginMock).toBeCalledWith({
+      expect(loginMock).toHaveBeenCalledWith({
         providerName: "Google",
       });
     });

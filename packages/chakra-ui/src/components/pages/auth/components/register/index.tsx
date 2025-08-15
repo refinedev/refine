@@ -1,15 +1,12 @@
 import React from "react";
 import {
   useTranslate,
-  useRouterType,
   useLink,
-  useRouterContext,
   useRegister,
   type RegisterPageProps,
   type RegisterFormTypes,
   type BaseRecord,
   type HttpError,
-  useActiveAuthProvider,
 } from "@refinedev/core";
 import {
   Box,
@@ -50,15 +47,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
 }) => {
   const { onSubmit, ...useFormProps } = formProps || {};
 
-  const routerType = useRouterType();
-  const NewLink = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const Link = routerType === "legacy" ? LegacyLink : NewLink;
+  const Link = useLink();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate } = useRegister({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate } = useRegister();
   const {
     register,
     handleSubmit,
@@ -205,11 +196,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
                 )}
               </span>
               <ChakraLink
+                as={Link as any}
+                to="/login"
                 color={importantTextColor}
                 ml="1"
                 fontWeight="bold"
-                as={Link}
-                to="/login"
               >
                 {translate(
                   "pages.register.signin",
@@ -230,11 +221,11 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             )}
           </span>
           <ChakraLink
+            as={Link as any}
+            to="/login"
             color={importantTextColor}
             ml="1"
-            as={Link}
             fontWeight="bold"
-            to="/login"
           >
             {translate(
               "pages.register.signin",

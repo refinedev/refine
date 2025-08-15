@@ -23,6 +23,7 @@ export type AutoSaveIndicatorProps<
    * The status of the update request.
    */
   status: UseUpdateReturnType<TData, TError, TVariables>["status"];
+
   /**
    * The elements to display for each status.
    */
@@ -57,8 +58,10 @@ export const AutoSaveIndicator: React.FC<AutoSaveIndicatorProps> = ({
       return <>{success}</>;
     case "error":
       return <>{error}</>;
-    case "loading":
+    case "pending":
       return <>{loading}</>;
+    case "idle":
+      return <>{idle}</>;
     default:
       return <>{idle}</>;
   }

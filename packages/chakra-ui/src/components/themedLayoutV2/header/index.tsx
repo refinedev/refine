@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  useGetIdentity,
-  useActiveAuthProvider,
-  pickNotDeprecated,
-} from "@refinedev/core";
+import { useGetIdentity, useActiveAuthProvider } from "@refinedev/core";
 import {
   Box,
   Avatar,
@@ -16,13 +12,9 @@ import type { RefineThemedLayoutV2HeaderProps } from "../types";
 import { HamburgerMenu } from "../hamburgerMenu";
 
 export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
-  isSticky,
   sticky,
 }) => {
-  const authProvider = useActiveAuthProvider();
-  const { data: user } = useGetIdentity({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { data: user } = useGetIdentity();
 
   const bgColor = useColorModeValue(
     "refine.header.bg.light",
@@ -30,7 +22,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   );
 
   let stickyProps: BoxProps = {};
-  if (pickNotDeprecated(sticky, isSticky)) {
+  if (sticky) {
     stickyProps = {
       position: "sticky",
       top: 0,

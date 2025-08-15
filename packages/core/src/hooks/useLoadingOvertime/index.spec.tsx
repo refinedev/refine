@@ -1,5 +1,5 @@
 import { renderHook } from "@testing-library/react";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import { TestWrapper, mockRouterProvider } from "@test";
@@ -79,7 +79,6 @@ describe("useLoadingOvertime Hook", () => {
       {
         wrapper: TestWrapper({
           refineProvider: {
-            hasDashboard: false,
             ...defaultRefineOptions,
             options: {
               ...defaultRefineOptions,
@@ -99,9 +98,9 @@ describe("useLoadingOvertime Hook", () => {
 
     const { elapsedTime } = result.current;
     expect(elapsedTime).toBe(2000);
-    expect(onInterval).toBeCalledTimes(1);
+    expect(onInterval).toHaveBeenCalledTimes(1);
     // should not be called global interval
-    expect(onIntervalGlobal).toBeCalledTimes(0);
+    expect(onIntervalGlobal).toHaveBeenCalledTimes(0);
   });
 
   it("should run global interval and onInterval", () => {
@@ -119,7 +118,6 @@ describe("useLoadingOvertime Hook", () => {
             },
           ],
           refineProvider: {
-            hasDashboard: false,
             ...defaultRefineOptions,
             options: {
               ...defaultRefineOptions,
@@ -144,8 +142,8 @@ describe("useLoadingOvertime Hook", () => {
 
     const { elapsedTime } = result.current;
     expect(elapsedTime).toBe(1000);
-    expect(onInterval).toBeCalledTimes(1);
-    expect(onInterval).toBeCalledWith(1000);
+    expect(onInterval).toHaveBeenCalledTimes(1);
+    expect(onInterval).toHaveBeenCalledWith(1000);
   });
 
   it("should not run interval when enabled is false", () => {

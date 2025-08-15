@@ -163,7 +163,7 @@ describe("useForm hook", () => {
         expect(document.body).not.toHaveTextContent("loading");
       });
 
-      expect(onMutationError).toBeCalledTimes(1);
+      expect(onMutationError).toHaveBeenCalledTimes(1);
 
       expect(getByText("Title is required")).toBeInTheDocument();
       expect(getByText("Category is required")).toBeInTheDocument();
@@ -222,7 +222,7 @@ describe("useForm hook", () => {
 
     await waitFor(() => {
       expect(document.body).not.toHaveTextContent("loading");
-      expect(onMutationErrorMock).toBeCalledTimes(1);
+      expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
     });
 
     await waitFor(() => {

@@ -27,7 +27,7 @@ describe("usePublish Hook", () => {
     };
     publish?.(publishPayload);
 
-    expect(publishMock).toBeCalledWith(publishPayload);
-    expect(publishMock).toBeCalledTimes(1);
+    expect(publishMock).toHaveBeenCalledWith(publishPayload);
+    expect(publishMock).toHaveBeenCalledTimes(1);
   });
 });

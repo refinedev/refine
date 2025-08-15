@@ -3,8 +3,6 @@ import unionWith from "lodash/unionWith";
 import qs, { type IStringifyOptions } from "qs";
 import warnOnce from "warn-once";
 
-import { pickNotDeprecated } from "@definitions/helpers";
-
 import type {
   CrudFilter,
   CrudOperators,
@@ -13,21 +11,27 @@ import type {
 } from "../../contexts/data/types";
 
 export const parseTableParams = (url: string) => {
-  const { current, pageSize, sorter, sorters, filters } = qs.parse(
+  const { current, pageSize, sorters, sorter, filters } = qs.parse(
     url.substring(1), // remove first ? character
   );
 
   return {
     parsedCurrent: current && Number(current),
     parsedPageSize: pageSize && Number(pageSize),
-    parsedSorter: (pickNotDeprecated(sorters, sorter) as CrudSort[]) ?? [],
+    parsedSorter: (sorters as CrudSort[]) || (sorter as CrudSort[]) || [],
     parsedFilters: (filters as CrudFilter[]) ?? [],
   };
 };
 
 export const parseTableParamsFromQuery = (params: any) => {
-  const url = qs.stringify(params);
-  return parseTableParams(`/${url}`);
+  const { current, pageSize, sorters, sorter, filters } = params;
+
+  return {
+    parsedCurrent: current && Number(current),
+    parsedPageSize: pageSize && Number(pageSize),
+    parsedSorter: (sorters as CrudSort[]) || (sorter as CrudSort[]) || [],
+    parsedFilters: (filters as CrudFilter[]) ?? [],
+  };
 };
 
 /**
@@ -36,6 +40,7 @@ export const parseTableParamsFromQuery = (params: any) => {
 export const stringifyTableParams = (params: {
   pagination?: { current?: number; pageSize?: number };
   sorters: CrudSort[];
+  sorter?: CrudSort[];
   filters: CrudFilter[];
   [key: string]: any;
 }): string => {
@@ -44,13 +49,16 @@ export const stringifyTableParams = (params: {
     arrayFormat: "indices",
     encode: false,
   };
-  const { pagination, sorter, sorters, filters, ...rest } = params;
+  const { pagination, sorters, sorter, filters, ...rest } = params;
+
+  // Prioritize sorters over sorter
+  const finalSorters = sorters && sorters.length > 0 ? sorters : sorter;
 
   const queryString = qs.stringify(
     {
       ...rest,
       ...(pagination ? pagination : {}),
-      sorters: pickNotDeprecated(sorters, sorter),
+      sorters: finalSorters,
       filters,
     },
     options,

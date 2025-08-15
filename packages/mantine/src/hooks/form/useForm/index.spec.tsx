@@ -6,7 +6,7 @@ import { Select, TextInput } from "@mantine/core";
 import { useSelect } from "@hooks/useSelect";
 import { Edit } from "@components/crud";
 import type { IRefineOptions, HttpError } from "@refinedev/core";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 const renderForm = ({
   refineCoreProps,
@@ -40,7 +40,7 @@ const renderForm = ({
       },
     });
 
-    const { selectProps, queryResult: categoriesQueryResult } = useSelect({
+    const { selectProps, query: categoriesQueryResult } = useSelect({
       resource: "categories",
       defaultValue: query?.data?.data?.category?.id,
     });

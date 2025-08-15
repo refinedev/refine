@@ -1,9 +1,9 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   MockJSONServer,
   TestWrapper,
+  mockAuthProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
@@ -157,35 +157,6 @@ describe("useUpdateMany Hook [with params]", () => {
     await assertMutationSuccess(result);
   });
 
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const resource = "posts";
-
-    const catchFn = jest.fn();
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const { result } = renderHook(() => useUpdateMany(), {
-      wrapper: TestWrapper({}),
-    });
-
-    result.current.mutate({
-      resource,
-      ids: [1],
-      values: {},
-      meta: {
-        foo: "bar",
-        gqlQuery: "gqlQuery" as any,
-        gqlMutation: "gqlMutation" as any,
-      },
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
-  });
-
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
     const updateManyMock = jest.fn();
 
@@ -216,10 +187,10 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(updateManyMock).toBeCalled();
+      expect(updateManyMock).toHaveBeenCalled();
     });
 
-    expect(updateManyMock).toBeCalledWith(
+    expect(updateManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -267,13 +238,13 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -309,7 +280,7 @@ describe("useUpdateMany Hook [with params]", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -333,6 +304,14 @@ describe("useUpdateMany Hook [with params]", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                name: "John Doe",
+                id: "1",
+              }),
+          },
           auditLogProvider: {
             create: updateManyMock,
             get: jest.fn(),
@@ -353,10 +332,13 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateManyMock).toBeCalled();
+      expect(updateManyMock).toHaveBeenCalled();
       expect(updateManyMock).toHaveBeenCalledWith({
         action: "updateMany",
-        author: {},
+        author: {
+          id: "1",
+          name: "John Doe",
+        },
         data: {
           status: "published",
         },
@@ -400,10 +382,10 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(updateManyMock).toBeCalled();
+      expect(updateManyMock).toHaveBeenCalled();
     });
 
-    expect(updateManyMock).toBeCalledTimes(2);
+    expect(updateManyMock).toHaveBeenCalledTimes(2);
     expect(updateManyMock).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
@@ -447,7 +429,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successful",
         key: "1-posts-notification",
         message: "Successfully updated post",
@@ -485,7 +467,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-updateMany-error-notification",
         message: "Error when updating post (status code: undefined)",
@@ -522,7 +504,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -554,7 +536,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -592,7 +574,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -630,7 +612,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -645,8 +627,11 @@ describe("useUpdateMany Hook [with params]", () => {
               updateMany: updateManyMock,
             },
           },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
+          authProvider: {
+            login: () => Promise.resolve({ success: true }),
+            logout: () => Promise.resolve({ success: true }),
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: onErrorMock,
           },
           resources: [{ name: "posts" }],
         }),
@@ -662,7 +647,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -708,12 +693,12 @@ describe("useUpdateMany Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateManyFooMock).toBeCalledWith(
+    expect(updateManyFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(updateManyDefaultMock).not.toBeCalled();
+    expect(updateManyDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -750,7 +735,7 @@ describe("useUpdateMany Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateManyMock).toBeCalledWith(
+    expect(updateManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -803,12 +788,12 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateManyFooMock).toBeCalledWith(
+      expect(updateManyFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(updateManyDefaultMock).not.toBeCalled();
+      expect(updateManyDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -847,7 +832,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -896,7 +881,7 @@ describe("useUpdateMany Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateManyMock).toBeCalledWith(
+      expect(updateManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -1135,8 +1120,8 @@ describe("useUpdateMany Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateManyMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updateManyMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -1439,40 +1424,6 @@ describe("useUpdateMany Hook [with props]", () => {
     await assertMutationSuccess(result);
   });
 
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const catchFn = jest.fn();
-
-    const resource = "posts";
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const { result } = renderHook(
-      () =>
-        useUpdateMany({
-          resource,
-          ids: [1],
-          meta: {
-            foo: "bar",
-            gqlQuery: "gqlQuery" as any,
-            gqlMutation: "gqlMutation" as any,
-          },
-        }),
-      {
-        wrapper: TestWrapper({}),
-      },
-    );
-
-    result.current.mutate({
-      values: {},
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
-  });
-
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
     const updateManyMock = jest.fn();
 
@@ -1508,10 +1459,10 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(updateManyMock).toBeCalled();
+      expect(updateManyMock).toHaveBeenCalled();
     });
 
-    expect(updateManyMock).toBeCalledWith(
+    expect(updateManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1560,13 +1511,13 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -1607,7 +1558,7 @@ describe("useUpdateMany Hook [with props]", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -1639,6 +1590,14 @@ describe("useUpdateMany Hook [with props]", () => {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
+            authProvider: {
+              ...mockAuthProvider,
+              getIdentity: () =>
+                Promise.resolve({
+                  name: "John Doe",
+                  id: "1",
+                }),
+            },
             auditLogProvider: {
               create: updateManyMock,
               get: jest.fn(),
@@ -1656,10 +1615,13 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateManyMock).toBeCalled();
+      expect(updateManyMock).toHaveBeenCalled();
       expect(updateManyMock).toHaveBeenCalledWith({
         action: "updateMany",
-        author: {},
+        author: {
+          id: "1",
+          name: "John Doe",
+        },
         data: {
           status: "published",
         },
@@ -1708,10 +1670,10 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(updateManyMock).toBeCalled();
+      expect(updateManyMock).toHaveBeenCalled();
     });
 
-    expect(updateManyMock).toBeCalledTimes(2);
+    expect(updateManyMock).toHaveBeenCalledTimes(2);
     expect(updateManyMock).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
@@ -1760,7 +1722,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successful",
         key: "1-posts-notification",
         message: "Successfully updated post",
@@ -1803,7 +1765,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-updateMany-error-notification",
         message: "Error when updating post (status code: undefined)",
@@ -1845,7 +1807,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -1882,7 +1844,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -1925,7 +1887,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -1964,7 +1926,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -1985,8 +1947,11 @@ describe("useUpdateMany Hook [with props]", () => {
                 updateMany: updateManyMock,
               },
             },
-            legacyAuthProvider: {
-              checkError: onErrorMock,
+            authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
+              onError: onErrorMock,
             },
             resources: [{ name: "posts" }],
           }),
@@ -2001,7 +1966,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -2048,12 +2013,12 @@ describe("useUpdateMany Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateManyFooMock).toBeCalledWith(
+    expect(updateManyFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(updateManyDefaultMock).not.toBeCalled();
+    expect(updateManyDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -2095,7 +2060,7 @@ describe("useUpdateMany Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateManyMock).toBeCalledWith(
+    expect(updateManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -2153,12 +2118,12 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateManyFooMock).toBeCalledWith(
+      expect(updateManyFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(updateManyDefaultMock).not.toBeCalled();
+      expect(updateManyDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -2198,7 +2163,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -2252,7 +2217,7 @@ describe("useUpdateMany Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(updateManyMock).toBeCalledWith(
+      expect(updateManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -2506,8 +2471,8 @@ describe("useUpdateMany Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(updateManyMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updateManyMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -2727,7 +2692,6 @@ describe("useUpdateMany Hook should work with params and props", () => {
       resource: options.params.resource,
       variables: options.params.values,
       meta: options.params.meta,
-      metaData: options.params.meta,
     });
     expect(openNotificationMock).toHaveBeenCalledWith({
       description: "Successfully created post",

@@ -102,7 +102,7 @@ describe("useDrawer Hook", () => {
     });
 
     expect(result.current.drawerProps.open).toEqual(false);
-    expect(mockedOnClose).toBeCalledTimes(1);
+    expect(mockedOnClose).toHaveBeenCalledTimes(1);
   });
 
   it("should call close when drawerProps onClose is undefined", async () => {

@@ -102,7 +102,7 @@ describe("useModal Hook", () => {
     });
 
     expect(result.current.modalProps.open).toEqual(false);
-    expect(mockedOnClose).toBeCalledTimes(1);
+    expect(mockedOnClose).toHaveBeenCalledTimes(1);
   });
 
   it("should call close if modalProps onCancel is undefined", async () => {

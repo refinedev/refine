@@ -3,16 +3,13 @@ import {
   matchResourceFromRoute,
   useBreadcrumb,
   useLink,
-  useRefineContext,
   useResource,
-  useRouterContext,
-  useRouterType,
 } from "@refinedev/core";
 import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
+import { Link as MuiLink } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 
 import type { BreadcrumbsProps as MuiBreadcrumbProps } from "@mui/material/Breadcrumbs";
@@ -30,13 +27,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   minItems = 2,
 }) => {
   const { breadcrumbs } = useBreadcrumb({ meta });
-  const routerType = useRouterType();
-  const NewLink = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : NewLink;
-
-  const { hasDashboard } = useRefineContext();
+  const Link = useLink();
 
   const { resources } = useResource();
 
@@ -44,9 +35,14 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   if (breadcrumbs.length < minItems) return null;
 
-  const LinkRouter = (props: LinkProps & { to?: string }) => (
-    <Link {...props} component={ActiveLink} />
-  );
+  const LinkRouter = (props: LinkProps & { to?: string }) => {
+    const { to, children, ...restProps } = props;
+    return (
+      <Link to={to || ""}>
+        <span {...restProps}>{children}</span>
+      </Link>
+    );
+  };
 
   return (
     <Breadcrumbs
@@ -57,7 +53,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
       }}
       {...breadcrumbProps}
     >
-      {showHome && (hasDashboard || rootRouteResource.found) && (
+      {showHome && rootRouteResource.found && (
         <LinkRouter
           underline="hover"
           sx={{
@@ -96,11 +92,11 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
                   display: "flex",
                   alignItems: "center",
                   fontSize: "14px",
+                  marginLeft: 0.5,
                 }}
                 color="inherit"
                 to={href}
                 variant="subtitle1"
-                marginLeft={0.5}
               >
                 {label}
               </LinkRouter>

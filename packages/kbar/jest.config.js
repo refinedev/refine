@@ -15,7 +15,7 @@ module.exports = {
   moduleNameMapper: {
     ...pathsToModuleNameMapper(paths, { prefix: "<rootDir>/" }),
     "\\.css$": "identity-obj-proxy",
-    "^(..?/.+).js?$": "$1",
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
   transform: {
     "^.+\\.tsx?$": [

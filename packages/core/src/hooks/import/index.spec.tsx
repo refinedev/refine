@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import * as papaparse from "papaparse";
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
@@ -87,7 +87,7 @@ describe("useImport hook", () => {
       });
     });
 
-    expect(onProgressMock).toBeCalledWith({
+    expect(onProgressMock).toHaveBeenCalledWith({
       totalAmount: parsedData.length,
       processedAmount: 3,
     });
@@ -511,7 +511,7 @@ describe("useImport hook", () => {
       });
 
       await waitFor(() => {
-        expect(onProgressMock).toBeCalledWith({
+        expect(onProgressMock).toHaveBeenCalledWith({
           totalAmount: parsedData.length,
           processedAmount: 3,
         });

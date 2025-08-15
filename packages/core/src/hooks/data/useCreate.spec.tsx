@@ -3,6 +3,7 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import {
   MockJSONServer,
   TestWrapper,
+  mockAuthProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
@@ -56,10 +57,10 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
     });
 
-    expect(createMock).toBeCalledWith(
+    expect(createMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -103,13 +104,13 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -142,7 +143,7 @@ describe("useCreate Hook [with params]", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -204,6 +205,14 @@ describe("useCreate Hook [with params]", () => {
       const { result } = renderHook(() => useCreate(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                name: "John Doe",
+                id: "1",
+              }),
+          },
           resources: [{ name: "posts" }],
           auditLogProvider: {
             create: createMock,
@@ -219,16 +228,20 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "create",
-        author: {},
         data: {
           id: 1,
+        },
+        author: {
+          id: "1",
+          name: "John Doe",
         },
         meta: {
           dataProviderName: "default",
           id: "1",
+          route: undefined,
         },
         resource: "posts",
       });
@@ -262,7 +275,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Success",
         key: "create-posts-notification",
         message: "Successfully created post",
@@ -302,7 +315,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "create-posts-notification",
         message: "There was an error creating post (status code: undefined)",
@@ -341,7 +354,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -375,7 +388,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -415,7 +428,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -455,10 +468,10 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
-    it("should call `checkError` from the legacy auth provider on error", async () => {
+    it("should call `onError` from the auth provider on error", async () => {
       const createMock = jest.fn().mockRejectedValue(new Error("Error"));
       const onErrorMock = jest.fn();
 
@@ -470,8 +483,11 @@ describe("useCreate Hook [with params]", () => {
               create: createMock,
             },
           },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
+          authProvider: {
+            login: () => Promise.resolve({ success: true }),
+            logout: () => Promise.resolve({ success: true }),
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: onErrorMock,
           },
           resources: [{ name: "posts" }],
         }),
@@ -489,7 +505,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -534,12 +550,12 @@ describe("useCreate Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(createFooMock).toBeCalledWith(
+    expect(createFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(createDefaultMock).not.toBeCalled();
+    expect(createDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -575,7 +591,7 @@ describe("useCreate Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(createMock).toBeCalledWith(
+    expect(createMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -627,12 +643,12 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createFooMock).toBeCalledWith(
+      expect(createFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(createDefaultMock).not.toBeCalled();
+      expect(createDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -675,7 +691,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -723,7 +739,7 @@ describe("useCreate Hook [with params]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalledWith(
+      expect(createMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -768,8 +784,8 @@ describe("useCreate Hook [with params]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(createMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(createMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -899,10 +915,10 @@ describe("useCreate Hook [with props]", () => {
     result.current.mutate();
 
     await waitFor(() => {
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
     });
 
-    expect(createMock).toBeCalledWith(
+    expect(createMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -946,13 +962,13 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -986,7 +1002,7 @@ describe("useCreate Hook [with props]", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -1054,6 +1070,15 @@ describe("useCreate Hook [with props]", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                id: "1",
+                name: "John Doe",
+              }),
+          },
+
           auditLogProvider: {
             create: createMock,
             get: jest.fn(),
@@ -1068,16 +1093,20 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "create",
-        author: {},
         data: {
           id: 1,
+        },
+        author: {
+          id: "1",
+          name: "John Doe",
         },
         meta: {
           dataProviderName: "default",
           id: "1",
+          route: undefined,
         },
         resource: "posts",
       });
@@ -1116,7 +1145,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Success",
         key: "create-posts-notification",
         message: "Successfully created post",
@@ -1155,7 +1184,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "create-posts-notification",
         message: "There was an error creating post (status code: undefined)",
@@ -1199,7 +1228,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -1235,7 +1264,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -1280,7 +1309,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -1325,7 +1354,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -1340,8 +1369,11 @@ describe("useCreate Hook [with props]", () => {
               create: createMock,
             },
           },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
+          authProvider: {
+            login: () => Promise.resolve({ success: true }),
+            logout: () => Promise.resolve({ success: true }),
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: onErrorMock,
           },
           resources: [{ name: "posts" }],
         }),
@@ -1358,7 +1390,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -1402,12 +1434,12 @@ describe("useCreate Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(createFooMock).toBeCalledWith(
+    expect(createFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(createDefaultMock).not.toBeCalled();
+    expect(createDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -1448,7 +1480,7 @@ describe("useCreate Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(createMock).toBeCalledWith(
+    expect(createMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1505,12 +1537,12 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createFooMock).toBeCalledWith(
+      expect(createFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(createDefaultMock).not.toBeCalled();
+      expect(createDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -1548,7 +1580,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -1601,7 +1633,7 @@ describe("useCreate Hook [with props]", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalledWith(
+      expect(createMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -1646,8 +1678,8 @@ describe("useCreate Hook [with props]", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(createMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(createMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -1796,7 +1828,6 @@ describe("useCreate Hook should work with params and props", () => {
       resource: options.params.resource,
       variables: options.params.values,
       meta: options.params.meta,
-      metaData: options.params.meta,
     });
     expect(openNotificationMock).toHaveBeenCalledWith({
       description: "Successfully created post",

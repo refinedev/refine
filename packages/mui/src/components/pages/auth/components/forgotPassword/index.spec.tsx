@@ -31,10 +31,10 @@ describe("Auth Page Forgot Password", () => {
     fireEvent.click(getByText(/send reset instructions/i));
 
     await waitFor(() => {
-      expect(onSubmit).toBeCalledTimes(1);
+      expect(onSubmit).toHaveBeenCalledTimes(1);
     });
 
-    expect(onSubmit).toBeCalledWith({
+    expect(onSubmit).toHaveBeenCalledWith({
       email: "demo@refine.dev",
     });
   });

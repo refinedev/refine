@@ -1,14 +1,8 @@
 import React from "react";
 
-import { act } from "react-dom/test-utils";
+import { act } from "react";
 
-import {
-  mockLegacyRouterProvider,
-  mockRouterProvider,
-  render,
-  TestWrapper,
-  waitFor,
-} from "@test";
+import { mockRouterProvider, render, TestWrapper, waitFor } from "@test";
 
 import * as UseCanHook from "../../hooks/accessControl/useCan";
 import { CanAccess } from ".";
@@ -351,54 +345,6 @@ describe("CanAccess Component", () => {
           });
         });
       });
-
-      describe("when legacy router", () => {
-        it("should deny access", async () => {
-          const useCanSpy = jest.spyOn(UseCanHook, "useCan");
-
-          const { container, queryByText, findByText } = render(
-            <CanAccess fallback={<p>Access Denied</p>}>
-              <p>Accessible</p>
-            </CanAccess>,
-            {
-              wrapper: TestWrapper({
-                legacyRouterProvider: {
-                  ...mockLegacyRouterProvider(),
-                  useParams: () =>
-                    ({
-                      resource: "posts",
-                      id: undefined,
-                      action: "list",
-                    }) as any,
-                },
-                accessControlProvider: {
-                  can: async () => {
-                    return { can: false };
-                  },
-                },
-              }),
-            },
-          );
-
-          expect(container).toBeTruthy();
-
-          expect(useCanSpy).toHaveBeenCalledWith({
-            resource: "posts",
-            action: "list",
-            params: expect.objectContaining({
-              id: undefined,
-              resource: expect.objectContaining({
-                name: "posts",
-              }),
-            }),
-            queryOptions: undefined,
-          });
-
-          expect(queryByText("Accessible")).not.toBeInTheDocument();
-
-          await findByText("Access Denied");
-        });
-      });
     });
   });
 
@@ -409,7 +355,7 @@ describe("CanAccess Component", () => {
       <CanAccess
         action="list"
         resource="posts"
-        queryOptions={{ cacheTime: 10000 }}
+        queryOptions={{ gcTime: 10000 }}
         onUnauthorized={(args) => onUnauthorized(args)}
       >
         Accessible
@@ -436,7 +382,7 @@ describe("CanAccess Component", () => {
       expect(useCanSpy).toHaveBeenCalledWith(
         expect.objectContaining({
           queryOptions: expect.objectContaining({
-            cacheTime: 10000,
+            gcTime: 10000,
           }),
         }),
       );

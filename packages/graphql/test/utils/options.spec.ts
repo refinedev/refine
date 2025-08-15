@@ -552,10 +552,10 @@ describe("defaultOptions.getList", () => {
       expect(result.sorting).toEqual(expectedSorters);
     });
 
-    it("should handle empty sort array correctly", () => {
+    it("should handle empty sorters array correctly", () => {
       const params: GetListParams = {
         resource: "blogPosts",
-        sort: [],
+        sorters: [],
       };
 
       const expectedSorters: CrudSort[] = [];

@@ -140,22 +140,22 @@ describe("asyncDebounce", () => {
     // wait for function to be triggered
     await waitFor(() => expect(fn).toHaveBeenCalledTimes(1));
     // but not resolved yet
-    await waitFor(() => expect(resolvedMock).not.toBeCalled());
+    await waitFor(() => expect(resolvedMock).not.toHaveBeenCalled());
 
     // call the debounced again
     debounced(4).then(nextResolver).catch(catcher);
 
     // next call should not interrupt the previous call and successfully resolve with `resolver`
-    await waitFor(() => expect(resolver).toBeCalledTimes(1), options);
-    await waitFor(() => expect(resolvedMock).toBeCalledWith(3));
+    await waitFor(() => expect(resolver).toHaveBeenCalledTimes(1), options);
+    await waitFor(() => expect(resolvedMock).toHaveBeenCalledWith(3));
     // next call should not be resolved
-    await waitFor(() => expect(nextResolver).not.toBeCalled());
+    await waitFor(() => expect(nextResolver).not.toHaveBeenCalled());
 
     // wait for second call to be made
     await waitFor(() => expect(fn).toHaveBeenCalledTimes(2), options);
     // wait for it to be resolved
-    await waitFor(() => expect(nextResolver).toBeCalledTimes(1), options);
-    await waitFor(() => expect(resolvedMock).toBeCalledWith(4));
+    await waitFor(() => expect(nextResolver).toHaveBeenCalledTimes(1), options);
+    await waitFor(() => expect(resolvedMock).toHaveBeenCalledWith(4));
     // fourth call should not reject the third because it's already resolved
     await waitFor(() => expect(catcher).toHaveBeenCalledTimes(2));
     // third call should not be resolved again

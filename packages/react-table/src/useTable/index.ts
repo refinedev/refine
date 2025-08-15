@@ -2,12 +2,9 @@ import { useEffect, useRef } from "react";
 import isEqual from "lodash/isEqual";
 import {
   type BaseRecord,
-  ConditionalFilter,
   type CrudFilter,
-  CrudOperators,
   type CrudSorting,
   type HttpError,
-  LogicalFilter,
   useTable as useTableCore,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableReturnTypeCore,
@@ -17,7 +14,6 @@ import {
   type TableOptions,
   type Table,
   getCoreRowModel,
-  ColumnFilter,
   getSortedRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
@@ -54,7 +50,7 @@ export function useTable<
   TError extends HttpError = HttpError,
   TData extends BaseRecord = TQueryFnData,
 >({
-  refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
+  refineCoreProps = {},
   initialState: reactTableInitialState = {},
   ...rest
 }: UseTableProps<TQueryFnData, TError, TData>): UseTableReturnType<
@@ -63,18 +59,16 @@ export function useTable<
 > {
   const isFirstRender = useIsFirstRender();
 
-  const useTableResult = useTableCore<TQueryFnData, TError, TData>({
-    ...refineCoreProps,
-    hasPagination,
-  });
+  const useTableResult = useTableCore<TQueryFnData, TError, TData>(
+    refineCoreProps,
+  );
 
   const isServerSideFilteringEnabled =
     (refineCoreProps.filters?.mode || "server") === "server";
   const isServerSideSortingEnabled =
     (refineCoreProps.sorters?.mode || "server") === "server";
-  const hasPaginationString = hasPagination === false ? "off" : "server";
-  const isPaginationEnabled =
-    (refineCoreProps.pagination?.mode ?? hasPaginationString) !== "off";
+
+  const isPaginationEnabled = refineCoreProps.pagination?.mode !== "off";
 
   const {
     tableQuery: { data },

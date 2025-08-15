@@ -153,9 +153,6 @@ const RefineAntdDemo: React.FC<
         notificationProvider={RefineAntd.useNotificationProvider}
         options={{
           disableTelemetry: true,
-          reactQuery: {
-            devtoolConfig: false,
-          },
         }}
         {...rest}
       />

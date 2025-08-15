@@ -218,7 +218,7 @@ describe("useDrawerForm Hook", () => {
 
     await waitFor(() => expect(result.current.drawerProps.open).toBe(false));
 
-    expect(updateMock).toBeCalledTimes(1);
+    expect(updateMock).toHaveBeenCalledTimes(1);
     expect(result.current.drawerProps.open).toBe(false);
   });
 
@@ -286,8 +286,8 @@ describe("useDrawerForm Hook", () => {
     await waitFor(() => expect(result.current.drawerProps.open).toBe(true));
 
     await waitFor(() => {
-      expect(mockGetOne).toBeCalledTimes(1);
-      expect(mockGetOne).toBeCalledWith(
+      expect(mockGetOne).toHaveBeenCalledTimes(1);
+      expect(mockGetOne).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             "drawer-posts-edit": undefined,

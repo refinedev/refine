@@ -1,11 +1,15 @@
 import type { QueryFunctionContext, QueryKey } from "@tanstack/react-query";
 
+type Context =
+  | QueryFunctionContext<QueryKey, any>
+  | QueryFunctionContext<QueryKey, never>;
+
 export const prepareQueryContext = (
-  context: QueryFunctionContext<QueryKey, any>,
-): Omit<QueryFunctionContext<QueryKey, any>, "meta"> => {
-  const queryContext = {
+  context: Context,
+): Pick<Context, "queryKey" | "signal"> => {
+  const queryContext: Pick<Context, "queryKey" | "signal"> = {
     queryKey: context.queryKey,
-    pageParam: context.pageParam,
+    signal: undefined as any,
   };
 
   Object.defineProperty(queryContext, "signal", {

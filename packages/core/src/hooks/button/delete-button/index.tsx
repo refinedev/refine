@@ -38,7 +38,7 @@ export type DeleteButtonValues = {
 
 export function useDeleteButton(props: DeleteButtonProps): DeleteButtonValues {
   const translate = useTranslate();
-  const { mutate, isLoading, variables } = useDelete();
+  const { mutate, isPending, variables } = useDelete();
   const { setWarnWhen } = useWarnAboutChange();
   const { mutationMode } = useMutationMode(props.mutationMode);
 
@@ -62,7 +62,7 @@ export function useDeleteButton(props: DeleteButtonProps): DeleteButtonValues {
 
   const cancelLabel = translate("buttons.cancel", "Cancel");
 
-  const loading = id === variables?.id && isLoading;
+  const loading = id === variables?.id && isPending;
 
   const onConfirm = () => {
     if (id && identifier) {
@@ -75,7 +75,6 @@ export function useDeleteButton(props: DeleteButtonProps): DeleteButtonValues {
           successNotification: props.successNotification,
           errorNotification: props.errorNotification,
           meta: props.meta,
-          metaData: props.meta,
           dataProviderName: props.dataProviderName,
           invalidates: props.invalidates,
         },

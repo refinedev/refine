@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type InfiniteData,
@@ -11,9 +12,7 @@ import {
   getPreviousPageParam,
   handlePaginationParams,
   pickDataProvider,
-  pickNotDeprecated,
   prepareQueryContext,
-  useActiveAuthProvider,
 } from "@definitions/helpers";
 import {
   useDataProvider,
@@ -47,7 +46,6 @@ import {
 export interface UseInfiniteListConfig {
   pagination?: Pagination;
   hasPagination?: boolean;
-  sort?: CrudSort[];
   filters?: CrudFilter[];
 }
 
@@ -57,25 +55,9 @@ type BaseInfiniteListProps = {
    */
   meta?: MetaQuery;
   /**
-   *  Metadata query for `dataProvider`
-   *  @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-   */
-  metaData?: MetaQuery;
-  /**
-   * Configuration for pagination, sorting and filtering
-   * @type [`useInfiniteListConfig`](/docs/api-reference/core/hooks/data/useInfiniteList/#config-parameters)
-   * @deprecated `config` property is deprecated. Use `pagination`, `hasPagination`, `sorters` and `filters` instead.
-   */
-  config?: UseInfiniteListConfig;
-  /**
    * Pagination properties
    */
   pagination?: Pagination;
-  /**
-   * Whether to use server-side pagination or not
-   * @deprecated `hasPagination` property is deprecated. Use `pagination.mode` instead.
-   */
-  hasPagination?: boolean;
   /**
    * Sorter parameters
    */
@@ -90,6 +72,33 @@ type BaseInfiniteListProps = {
   dataProviderName?: string;
 };
 
+// Custom type to extend UseInfiniteQueryOptions
+export type UseInfiniteListQueryOptions<TQueryFnData, TError, TData> = Omit<
+  UseInfiniteQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >,
+  "queryKey" | "queryFn" | "initialPageParam"
+> & {
+  // Make queryKey, queryFn, and initialPageParam optional
+  queryKey?: UseInfiniteQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >["queryKey"];
+  queryFn?: UseInfiniteQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >["queryFn"];
+  initialPageParam?: UseInfiniteQueryOptions<
+    GetListResponse<TQueryFnData>,
+    TError,
+    GetListResponse<TData>
+  >["initialPageParam"];
+};
+
 export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
@@ -98,11 +107,19 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
   /**
    * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options
    */
-  queryOptions?: UseInfiniteQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
-  >;
+  queryOptions?: Omit<
+    UseInfiniteListQueryOptions<TQueryFnData, TError, TData>,
+    "getNextPageParam"
+  > & {
+    /**
+     * Make `getNextPageParam` optional to allow custom pagination logic
+     */
+    getNextPageParam?: UseInfiniteListQueryOptions<
+      TQueryFnData,
+      TError,
+      TData
+    >["getNextPageParam"];
+  };
 } & BaseInfiniteListProps &
   SuccessErrorNotification<
     InfiniteData<GetListResponse<TData>>,
@@ -110,7 +127,10 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
     Prettify<BaseInfiniteListProps>
   > &
   LiveModeProps &
-  UseLoadingOvertimeOptionsProps;
+  UseLoadingOvertimeOptionsProps & {
+    onSuccess?: (data: InfiniteData<GetListResponse<TData>>) => void;
+    onError?: (error: TError) => void;
+  };
 
 /**
  * `useInfiniteList` is a modified version of `react-query`'s {@link https://tanstack.com/query/latest/docs/react/guides/infinite-queries `useInfiniteQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
@@ -131,21 +151,20 @@ export const useInfiniteList = <
   TData extends BaseRecord = TQueryFnData,
 >({
   resource: resourceFromProp,
-  config,
   filters,
-  hasPagination,
   pagination,
   sorters,
   queryOptions,
   successNotification,
   errorNotification,
   meta,
-  metaData,
   liveMode,
   onLiveEvent,
   liveParams,
   dataProviderName,
   overtimeOptions,
+  onSuccess,
+  onError,
 }: UseInfiniteListProps<
   TQueryFnData,
   TError,
@@ -156,43 +175,29 @@ export const useInfiniteList = <
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: checkError } = useOnError({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: checkError } = useOnError();
   const handleNotification = useHandleNotification();
   const getMeta = useMeta();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const pickedDataProvider = pickDataProvider(
     identifier,
     dataProviderName,
     resources,
   );
-  const preferredMeta = pickNotDeprecated(meta, metaData);
-  const prefferedFilters = pickNotDeprecated(filters, config?.filters);
-  const prefferedSorters = pickNotDeprecated(sorters, config?.sort);
-  const prefferedHasPagination = pickNotDeprecated(
-    hasPagination,
-    config?.hasPagination,
-  );
+  const preferredMeta = meta;
+  const prefferedFilters = filters;
+  const prefferedSorters = sorters;
   const prefferedPagination = handlePaginationParams({
     pagination,
-    configPagination: config?.pagination,
-    hasPagination: prefferedHasPagination,
   });
   const isServerPagination = prefferedPagination.mode === "server";
   const notificationValues = {
     meta: preferredMeta,
-    metaData: preferredMeta,
     filters: prefferedFilters,
     hasPagination: isServerPagination,
     pagination: prefferedPagination,
     sorters: prefferedSorters,
-    config: {
-      ...config,
-      sort: prefferedSorters,
-    },
   };
 
   const isEnabled =
@@ -207,7 +212,6 @@ export const useInfiniteList = <
     types: ["*"],
     params: {
       meta: combinedMeta,
-      metaData: combinedMeta,
       pagination: prefferedPagination,
       hasPagination: isServerPagination,
       sort: prefferedSorters,
@@ -220,10 +224,9 @@ export const useInfiniteList = <
     enabled: isEnabled,
     liveMode,
     onLiveEvent,
-    dataProviderName: pickedDataProvider,
     meta: {
       ...combinedMeta,
-      dataProviderName,
+      dataProviderName: pickedDataProvider,
     },
   });
 
@@ -246,11 +249,8 @@ export const useInfiniteList = <
         ...(sorters && {
           sorters,
         }),
-        ...(config?.sort && {
-          sort: config?.sort,
-        }),
       })
-      .get(preferLegacyKeys),
+      .get(),
     queryFn: (context) => {
       const paginationProperties = {
         ...prefferedPagination,
@@ -259,18 +259,15 @@ export const useInfiniteList = <
 
       const meta = {
         ...combinedMeta,
-        queryContext: prepareQueryContext(context),
+        ...prepareQueryContext(context),
       };
 
       return getList<TQueryFnData>({
         resource: resource.name,
-        pagination: paginationProperties,
-        hasPagination: isServerPagination,
+        pagination: paginationProperties as any,
         filters: prefferedFilters,
-        sort: prefferedSorters,
         sorters: prefferedSorters,
         meta,
-        metaData: meta,
       }).then(({ data, total, ...rest }) => {
         return {
           data,
@@ -280,49 +277,81 @@ export const useInfiniteList = <
         };
       });
     },
+    initialPageParam:
+      queryOptions?.initialPageParam ?? prefferedPagination.current,
     getNextPageParam: (lastPage) => getNextPageParam(lastPage),
     getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
     ...queryOptions,
-    onSuccess: (data) => {
-      queryOptions?.onSuccess?.(data);
+    meta: {
+      ...(queryOptions?.meta ?? {}),
+      ...getXRay("useInfiniteList", resource?.name),
+    },
+  });
 
+  // Handle success
+  useEffect(() => {
+    if (queryResponse.isSuccess && queryResponse.data) {
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(data, notificationValues, identifier)
+          ? successNotification(
+              queryResponse.data as unknown as InfiniteData<
+                GetListResponse<TData>
+              >,
+              notificationValues,
+              identifier,
+            )
           : successNotification;
 
       handleNotification(notificationConfig);
-    },
-    onError: (err: TError) => {
-      checkError(err);
-      queryOptions?.onError?.(err);
+
+      onSuccess?.(
+        queryResponse.data as unknown as InfiniteData<GetListResponse<TData>>,
+      );
+    }
+  }, [
+    queryResponse.isSuccess,
+    queryResponse.data,
+    successNotification,
+    onSuccess,
+  ]);
+
+  // Handle error
+  useEffect(() => {
+    if (queryResponse.isError && queryResponse.error) {
+      checkError(queryResponse.error);
 
       const notificationConfig =
         typeof errorNotification === "function"
-          ? errorNotification(err, notificationValues, identifier)
+          ? errorNotification(
+              queryResponse.error,
+              notificationValues,
+              identifier,
+            )
           : errorNotification;
 
       handleNotification(notificationConfig, {
         key: `${identifier}-useInfiniteList-notification`,
         message: translate(
           "notifications.error",
-          { statusCode: err.statusCode },
-          `Error (status code: ${err.statusCode})`,
+          { statusCode: queryResponse.error.statusCode },
+          `Error (status code: ${queryResponse.error.statusCode})`,
         ),
-        description: err.message,
+        description: queryResponse.error.message,
         type: "error",
       });
-    },
-    meta: {
-      ...queryOptions?.meta,
-      ...getXRay("useInfiniteList", preferLegacyKeys, resource?.name),
-    },
-  });
+
+      onError?.(queryResponse.error);
+    }
+  }, [queryResponse.isError, queryResponse.error, errorNotification, onError]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
     isLoading: queryResponse.isFetching,
   });
 
-  return { ...queryResponse, overtime: { elapsedTime } };
+  return {
+    ...queryResponse,
+    overtime: { elapsedTime },
+  } as InfiniteQueryObserverResult<GetListResponse<TData>, TError> &
+    UseLoadingOvertimeReturnType;
 };

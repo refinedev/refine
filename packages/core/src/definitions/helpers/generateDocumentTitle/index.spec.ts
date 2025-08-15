@@ -31,24 +31,10 @@ describe("generateDocumentTitle", () => {
     expect(
       generateDefaultDocumentTitle(
         translateMock,
-        { name: "posts", label: "Posts Label" },
+        { name: "posts", meta: { label: "Posts Label" } },
         "list",
       ),
     ).toBe("Posts Label | Refine");
-  });
-
-  it("should return the meta.label of the resource when it is provided", () => {
-    expect(
-      generateDefaultDocumentTitle(
-        translateMock,
-        {
-          name: "posts",
-          label: undefined,
-          meta: { label: "Meta Label" },
-        },
-        "list",
-      ),
-    ).toBe("Meta Label | Refine");
   });
 
   it("should return `Create new resource name` when action is `create`", () => {

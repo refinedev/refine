@@ -9,7 +9,7 @@ import {
 } from "@refinedev/core";
 
 import { MockJSONServer, mockRouterBindings } from "./dataMocks";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/react";
 
 interface ITestWrapperProps {
   dataProvider?: DataProvider;

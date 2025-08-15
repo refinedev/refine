@@ -25,10 +25,6 @@ export type UseShowReturnType<
   TError extends HttpError = HttpError,
 > = {
   query: QueryObserverResult<GetOneResponse<TData>, TError>;
-  /**
-   * @deprecated Use `query` instead.
-   */
-  queryResult: QueryObserverResult<GetOneResponse<TData>, TError>;
   showId?: BaseKey;
   setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 } & UseLoadingOvertimeReturnType;
@@ -62,9 +58,6 @@ export type UseShowProps<
   meta?: MetaQuery;
   /**
    * Additional meta data to pass to the data provider's `getOne`
-   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-   */
-  metaData?: MetaQuery;
   /**
    * Target data provider name for API call to be made
    * @default `"default"`
@@ -77,20 +70,3 @@ export type UseShowProps<
     Prettify<{ id?: BaseKey } & MetaQuery>
   > &
   UseLoadingOvertimeOptionsProps;
-
-/**
- * @deprecated use `UseShowReturnType` instead
- */
-export type useShowReturnType<
-  TData extends BaseRecord = BaseRecord,
-  TError extends HttpError = HttpError,
-> = UseShowReturnType<TData, TError>;
-
-/**
- * @deprecated use `UseShowProps` instead
- */
-export type useShowProps<
-  TQueryFnData extends BaseRecord = BaseRecord,
-  TError extends HttpError = HttpError,
-  TData extends BaseRecord = TQueryFnData,
-> = UseShowProps<TQueryFnData, TError, TData>;

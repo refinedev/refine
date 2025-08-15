@@ -112,7 +112,13 @@ describe("useCan Hook", () => {
           resource: "posts",
           params: {
             id: 1,
-            resource: { icon: "test", name: "posts" } as any,
+            resource: {
+              name: "posts",
+              meta: {
+                icon: "test",
+                label: "Posts",
+              },
+            },
           },
         }),
       {
@@ -124,11 +130,11 @@ describe("useCan Hook", () => {
       },
     );
 
-    expect(mockFn).toBeCalledWith({
+    expect(mockFn).toHaveBeenCalledWith({
       action: "list",
       params: {
         id: 1,
-        resource: { name: "posts" },
+        resource: { name: "posts", meta: { label: "Posts" } },
       },
       resource: "posts",
     });
@@ -155,7 +161,7 @@ describe("useCan Hook", () => {
       },
     );
 
-    expect(mockFn).not.toBeCalled();
+    expect(mockFn).not.toHaveBeenCalled();
   });
 
   it("should not throw error when accessControlProvider is undefined", async () => {
@@ -242,8 +248,8 @@ describe("useCan Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(canMock).not.toBeCalled();
-    expect(queryFnMock).toBeCalled();
+    expect(canMock).not.toHaveBeenCalled();
+    expect(queryFnMock).toHaveBeenCalled();
   });
 
   it("should use global queryOptions from AccessControlContext", async () => {
@@ -268,7 +274,7 @@ describe("useCan Hook", () => {
       expect(result.current.isFetched).toBeFalsy();
     });
 
-    expect(mockFn).not.toBeCalled();
+    expect(mockFn).not.toHaveBeenCalled();
   });
 });
 
@@ -289,7 +295,7 @@ describe("useCanWithoutCache", () => {
       resource: "posts",
     });
 
-    expect(canMock).toBeCalledWith({
+    expect(canMock).toHaveBeenCalledWith({
       action: "list",
       resource: "posts",
     });
@@ -312,22 +318,19 @@ describe("useCanWithoutCache", () => {
         id: 1,
         resource: {
           name: "posts",
-          meta: { icon: "test" },
-          options: { icon: "test" },
-          icon: "test",
-        } as any,
+          meta: { icon: "test", label: "Posts" },
+        },
       },
     });
 
-    expect(canMock).toBeCalledWith({
+    expect(canMock).toHaveBeenCalledWith({
       action: "list",
       resource: "posts",
       params: {
         id: 1,
         resource: {
           name: "posts",
-          meta: {},
-          options: {},
+          meta: { label: "Posts" },
         },
       },
     });

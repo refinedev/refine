@@ -500,7 +500,7 @@
 
   ## Complemetary Components
 
-  - `RefineRoutes` - A component that renders the routes for the resources when the actions are defined as components. This can be used to achieve the legacy behavior of `routerProvider` prop. `RefineRoutes` component accepts a render function as a child and passes `JSX.Element` if there's a match for the given path, `undefined` is passed otherwise. You can use this in `[[...refine]]` route to render the matching action component for a resource. We're encouraging our users to use file based routing instead of `[[...refine]]` route which provides more flexibility and a better development experience with its performance benefits.
+  - `RefineRoutes` - A component that renders the routes for the resources when the actions are defined as components. This can be used to achieve the legacy behavior of `routerProvider` prop. `RefineRoutes` component accepts a render function as a child and passes `React.JSX.Element` if there's a match for the given path, `undefined` is passed otherwise. You can use this in `[[...refine]]` route to render the matching action component for a resource. We're encouraging our users to use file based routing instead of `[[...refine]]` route which provides more flexibility and a better development experience with its performance benefits.
 
   - `NavigateToResource` - A component that navigates to the first `list` action of the `resources` array of `<Refine>`. Optionally, you can pass a `resource` prop to navigate to `list` action of the resource. This can be placed at the `index` route of your app to redirect to the first resource.
 

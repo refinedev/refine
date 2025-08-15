@@ -17,12 +17,17 @@ describe("useLogList Hook", () => {
           resource: "posts",
           action: "list",
           meta: { id: 1 },
-          metaData: { fields: ["id", "action", "data"] },
         }),
       {
         wrapper: TestWrapper({
           auditLogProvider: {
-            get: auditLogProviderGetMock,
+            get: auditLogProviderGetMock.mockResolvedValue([
+              {
+                id: 1,
+                action: "create",
+                data: { id: 1, title: "title" },
+              },
+            ]),
           },
         }),
       },
@@ -32,36 +37,10 @@ describe("useLogList Hook", () => {
       expect(result.current.isFetched).toBeTruthy();
     });
 
-    expect(auditLogProviderGetMock).toBeCalledWith({
+    expect(auditLogProviderGetMock).toHaveBeenCalledWith({
       resource: "posts",
       action: "list",
       meta: { id: 1 },
-      metaData: { fields: ["id", "action", "data"] },
-    });
-  });
-
-  it("useLogList should return data with 'posts' resource", async () => {
-    const { result } = renderHook(() => useLogList({ resource: "posts" }), {
-      wrapper: TestWrapper({
-        auditLogProvider: {
-          get: ({ resource }) => {
-            if (resource === "posts") {
-              return Promise.resolve([
-                {
-                  id: 1,
-                  action: "create",
-                  data: { id: 1, title: "title" },
-                },
-              ]);
-            }
-            return Promise.resolve([]);
-          },
-        },
-      }),
-    });
-
-    await waitFor(() => {
-      expect(result.current.isFetched).toBeTruthy();
     });
 
     expect(result.current?.data).toStrictEqual([
@@ -88,7 +67,6 @@ describe("useLogList Hook", () => {
           resource: "posts",
           action: "list",
           meta: { id: 1 },
-          metaData: { fields: ["id", "action", "data"] },
           queryOptions: {
             queryKey: ["foo", "bar"],
           },
@@ -135,7 +113,6 @@ describe("useLogList Hook", () => {
           resource: "posts",
           action: "list",
           meta: { id: 1 },
-          metaData: { fields: ["id", "action", "data"] },
           queryOptions: {
             queryFn: queryFnMock,
           },
@@ -153,7 +130,7 @@ describe("useLogList Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(getMock).not.toBeCalled();
-    expect(queryFnMock).toBeCalled();
+    expect(getMock).not.toHaveBeenCalled();
+    expect(queryFnMock).toHaveBeenCalled();
   });
 });
