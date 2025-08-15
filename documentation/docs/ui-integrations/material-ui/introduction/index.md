@@ -92,7 +92,7 @@ import Box from "@mui/material/Box";
 export const ProductCreate: FC = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -305,8 +305,8 @@ import { Show, TextField, NumberField } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow<IProduct>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IProduct>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (

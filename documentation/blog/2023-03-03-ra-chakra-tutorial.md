@@ -499,13 +499,13 @@ Check that the URL is routed to /posts and that posts are present.
 
 #### Handling Relationships
 
-When retrieving recorda, relations are not populated. Hence, We will use the `metaData` option to populate the Strapi v4 API with relational data (category data in our case).
+When retrieving recorda, relations are not populated. Hence, We will use the `meta` option to populate the Strapi v4 API with relational data (category data in our case).
 
 [Refer to docs for handling relations with strapi](https://refine.dev/docs/packages/documentation/data-providers/strapi-v4/#relations-population)
 
 We will populate records with a `category id` field from the `/posts` endpoint with their respective titles. To automatically get `category titles` from the `/categories `endpoint for each record and display them on our table, we must use Strapi v4's populate feature.
 
-We'll use the populate parameter to specify which fields should be filled in. we will assign an array to the populate parameter which will contain the map the values from the `/categories` endpoint to the records with a `category id` on the `/posts` endpoint. The `populate` parameter will be a property of the `metaData` property which is subsequently a property of the `refineCoreProps` object.
+We'll use the populate parameter to specify which fields should be filled in. we will assign an array to the populate parameter which will contain the map the values from the `/categories` endpoint to the records with a `category id` on the `/posts` endpoint. The `populate` parameter will be a property of the `meta` property which is subsequently a property of the `refineCoreProps` object.
 
 ```tsx title="src/pages/posts/list.tsx"
 const { getHeaderGroups, getRowModel, setOptions } = useTable({
@@ -686,12 +686,12 @@ import { Show, NumberField, TextField, DateField } from "@refinedev/chakra-ui";
 import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
-  const { queryResult } = useShow({
-    metaData: {
+  const { query } = useShow({
+    meta: {
       populate: ["category"],
     },
   });
-  const { data, isLoading } = queryResult;
+  const { data, isLoading } = query;
 
   const record = data?.data;
 
@@ -820,14 +820,14 @@ import { useForm } from "@refinedev/react-hook-form";
 
 export const PostCreate = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     resetField,
     formState: { errors },
   } = useForm();
 
-  const postsData = queryResult?.data?.data;
+  const postsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",
@@ -974,7 +974,7 @@ import { useSelect } from "@refinedev/core";
 
 export const PostEdit = () => {
   const {
-    refineCore: { formLoading, queryResult },
+    refineCore: { formLoading, query },
     saveButtonProps,
     register,
     resetField,
@@ -987,7 +987,7 @@ export const PostEdit = () => {
     },
   });
 
-  const postsData = queryResult?.data?.data;
+  const postsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",

@@ -132,7 +132,7 @@ const ProductShow = () => {
   const result = useShow();
 
   const {
-    queryResult: { data, isLoading },
+    query: { data, isLoading },
   } = result;
 
   const go = useGo();

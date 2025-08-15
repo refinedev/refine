@@ -54,7 +54,7 @@ const PostEdit: React.FC = () => {
     // highlight-next-line
     saveButtonProps,
     getInputProps,
-    refineCore: { queryResult },
+    refineCore: { query },
   } = useForm<IPost>({
     initialValues: {
       title: "",
@@ -72,7 +72,7 @@ const PostEdit: React.FC = () => {
     },
   });
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: postData?.category.id,

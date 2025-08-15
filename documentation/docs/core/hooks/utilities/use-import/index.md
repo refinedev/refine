@@ -134,10 +134,6 @@ useImport({
 });
 ```
 
-### ~~resourceName~~ <PropTag deprecated />
-
-Use `resource` instead.
-
 ## Return Values
 
 ### inputProps
@@ -187,7 +183,7 @@ return (
 
 `isLoading` is a boolean that indicates whether the import is in progress or not.
 
-### mutationResult
+### mutation
 
 Returns the result of either the [`useCreate`](/docs/data/hooks/use-create) or the [`useCreateMany`](/docs/data/hooks/use-create) hook.
 
@@ -246,12 +242,12 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Return Values
 
-| Property       | Description                                                            | Type                                                                                                                                                                                                                                   |
-| -------------- | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| inputProps     | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                   |
-| handleChange   | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                             |
-| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                              |
-| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]},TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
+| Property     | Description                                                            | Type                                                                                                                                                                                                                                   |
+| ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| inputProps   | Props to that you can pass `<input />` element props.                  | [`UseImportInputPropsType`][useimportinputpropstype]                                                                                                                                                                                   |
+| handleChange | Props to handle `<input type="file">` element `onChange`               | `function`                                                                                                                                                                                                                             |
+| isLoading    | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                              |
+| mutation     | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]},TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
 
 ### Type Parameters
 

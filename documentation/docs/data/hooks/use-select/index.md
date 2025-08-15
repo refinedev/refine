@@ -420,19 +420,11 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~sort~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
-### ~~hasPagination~~ <PropTag deprecated />
-
-Use `pagination.mode` instead.
-
 ## FAQ
 
 ### How to get all the data without pagination?
 
-You may want to get all the data without pagination. In this case you should use the [`hasPagination`](/docs/data/hooks/use-select#haspagination) prop. The data provider must have the appropriate implementation in order to use this feature.
+You may want to get all the data without pagination. In this case you should use the [`pagination.mode`](/docs/data/hooks/use-select#mode) prop set to `"off"`. The data provider must have the appropriate implementation in order to use this feature.
 
 ### How to add search to options (Autocomplete)?
 

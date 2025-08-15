@@ -801,13 +801,13 @@ import { useSelect, useShow } from "@refinedev/core";
 import { IPost } from "../../interfaces/post";
 
 export const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data } = queryResult;
+  const { query } = useShow<IPost>();
+  const { data } = query;
   const record = data?.data;
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.[0],
+    defaultValue: query?.data?.data?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
   });
@@ -896,7 +896,7 @@ We also used the `useSelect()` hook to map the category fields on the record to 
 ```ts
 const { options } = useSelect({
   resource: "category",
-  defaultValue: queryResult?.data?.data?.category?.[0],
+  defaultValue: query?.data?.data?.category?.[0],
   optionLabel: "name",
   optionValue: "id",
 });
@@ -974,7 +974,7 @@ import React from "react";
 
 export const PostCreate: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -982,7 +982,7 @@ export const PostCreate: React.FC = () => {
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.[0],
+    defaultValue: query?.data?.data?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
   });
@@ -1159,7 +1159,7 @@ import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     resetField,
@@ -1168,7 +1168,7 @@ export const PostEdit: React.FC = () => {
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
     optionLabel: "name",
     optionValue: "id",
   });

@@ -1110,14 +1110,6 @@ Loading state of a modal. It's `true` when `useForm` is currently being submitte
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
-### ~~mutationResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
-
-### ~~queryResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
-
 ## FAQ
 
 ### How can Invalidate other resources?

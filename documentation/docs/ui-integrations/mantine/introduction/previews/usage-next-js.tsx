@@ -360,8 +360,8 @@ import { Title } from "@mantine/core";
 import authProvider from "../../src/auth-provider";
 
 export default function ProductShow() {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (
@@ -417,7 +417,7 @@ export default function ProductEdit() {
       saveButtonProps,
       getInputProps,
       errors,
-      refineCore: { queryResult, autoSaveProps },
+      refineCore: { query, autoSaveProps },
   } = useForm({
         initialValues: {
           name: "",

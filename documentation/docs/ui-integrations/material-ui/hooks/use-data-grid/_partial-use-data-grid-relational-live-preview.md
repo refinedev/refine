@@ -39,10 +39,12 @@ const PostsList: React.FC = () => {
   // highlight-start
   const {
     options,
-    queryResult: { isLoading },
+    query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
-    hasPagination: false,
+    pagination: {
+      mode: "off",
+    },
   });
   // highlight-end
 

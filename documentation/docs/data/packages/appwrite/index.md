@@ -256,8 +256,8 @@ const PostEdit: React.FC = () => {
 };
 
 const PostShow: React.FC = () => {
-  const { queryResult } = RefineCoreUseShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = RefineCoreUseShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } =
@@ -1017,9 +1017,9 @@ import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
 export const PostsEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+  const { formProps, saveButtonProps, query } = useForm<IPost>();
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "61bc4afa9ee2c",
     defaultValue: postData?.categoryId,

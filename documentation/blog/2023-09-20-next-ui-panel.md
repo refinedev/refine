@@ -2233,8 +2233,8 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<IProduct>();
-  const product = queryResult?.data?.data;
+  const { query } = useShow<IProduct>();
+  const product = query?.data?.data;
 
   const { data: categoryData } = useOne<ICategory>({
     resource: "categories",
@@ -2879,9 +2879,9 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
+  const { query } = useShow<ICategory>();
 
-  const category = queryResult?.data?.data;
+  const category = query?.data?.data;
 
   return (
     <div className="my-3">

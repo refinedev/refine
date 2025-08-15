@@ -1064,8 +1064,8 @@ import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 const { Title, Text } = Typography;
 
 export const TaskShow: React.FC = () => {
-  const { queryResult } = useShow<ITask>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<ITask>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: assigned } = useOne<IAuthUser>({

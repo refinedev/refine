@@ -363,8 +363,8 @@ import {
 import { Title } from "@mantine/core";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (

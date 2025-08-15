@@ -2581,14 +2581,14 @@ export const ProductEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query },
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm();
 
-  const productsData = queryResult?.data?.data;
+  const productsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",
@@ -2616,7 +2616,7 @@ export const ProductEdit = () => {
         <div>
           <button
             className="btn btn-sm btn-primary btn-outline flex items-center justify-center font-normal normal-case"
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
             Refresh
@@ -2727,7 +2727,7 @@ import { IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const { edit, list } = useNavigation();
   const {
-    queryResult: { data },
+    query: { data },
   } = useShow<IProduct>();
 
   const record = data?.data;
@@ -2782,7 +2782,7 @@ export const ProductShow = () => {
 
 </details>
 
-In the code above, we are using the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook and grabbing product details from the `queryResult` object to display the details in the JSX.
+In the code above, we are using the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook and grabbing product details from the `query` object to display the details in the JSX.
 
 We are also invoking the familiar `useNavigation()` hook to access the `edit()` and `list()` methods and call them from `Edit` and back buttons respectively.
 
@@ -3285,7 +3285,7 @@ export const CategoryEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -3308,7 +3308,7 @@ export const CategoryEdit = () => {
         <div>
           <button
             className="btn btn-sm btn-primary btn-outline flex items-center justify-center font-normal normal-case"
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
             Refresh
@@ -3361,7 +3361,7 @@ import { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const { edit, list } = useNavigation();
   const {
-    queryResult: { data },
+    query: { data },
   } = useShow<ICategory>();
 
   const record = data?.data;

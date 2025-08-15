@@ -581,38 +581,6 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~initialCurrent~~ <PropTag deprecated />
-
-Use `pagination.current` instead.
-
-### ~~initialPageSize~~ <PropTag deprecated />
-
-Use `pagination.pageSize` instead.
-
-### ~~hasPagination~~ <PropTag deprecated />
-
-Use `pagination.mode` instead.
-
-### ~~initialSorter~~ <PropTag deprecated />
-
-Use `sorters.initial` instead.
-
-### ~~permanentSorter~~ <PropTag deprecated />
-
-Use `sorters.permanent` instead.
-
-### ~~initialFilter~~ <PropTag deprecated />
-
-Use `filters.initial` instead.
-
-### ~~permanentFilter~~ <PropTag deprecated />
-
-Use `filters.permanent` instead.
-
-### ~~defaultSetFilterBehavior~~ <PropTag deprecated />
-
-Use `filters.defaultBehavior` instead.
-
 ## Return Values
 
 ### tableProps
@@ -778,18 +746,6 @@ const { overtime } = useTable();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
-
-### ~~sorter~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
-### ~~setSorter~~ <PropTag deprecated />
-
-Use `setSorters` instead.
-
-### ~~tableQueryResult~~ <PropTag deprecated />
-
-Use [`tableQuery`](#tablequery) instead.
 
 ## FAQ
 

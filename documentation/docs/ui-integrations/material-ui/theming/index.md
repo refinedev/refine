@@ -1103,8 +1103,8 @@ const SampleList = () => {
 };
 
 const SampleShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
 
   const record = data?.data;
 
@@ -1147,13 +1147,13 @@ const SampleShow = () => {
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     register,
     control,
     formState: { errors },
   } = useForm();
 
-  const samplesData = queryResult?.data?.data;
+  const samplesData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",

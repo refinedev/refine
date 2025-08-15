@@ -253,10 +253,6 @@ const { selectProps } = useCheckboxGroup({
 
 The listing will start from page 3, showing 8 records per page.
 
-### ~~sort~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
 ## API Reference
 
 ### Properties

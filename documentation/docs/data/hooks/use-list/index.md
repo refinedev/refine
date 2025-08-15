@@ -324,14 +324,6 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~config~~ <PropTag deprecated />
-
-Use `pagination`, `sorters`, and `filters` instead.
-
-### ~~hasPagination~~ <PropTag deprecated />
-
-Use `pagination.mode` instead.
-
 ## Return Values
 
 Returns an object with TanStack Query's `useQuery` return values.

@@ -194,8 +194,8 @@ const PostEdit: React.FC = () => {
 };
 
 const PostShow: React.FC = () => {
-  const { queryResult } = RefineCoreUseShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = RefineCoreUseShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } =

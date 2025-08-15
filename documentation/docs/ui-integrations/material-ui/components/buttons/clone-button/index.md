@@ -257,10 +257,6 @@ export const MyCloneComponent = () => {
 };
 ```
 
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use `resource` prop instead.
-
 ## API Reference
 
 <PropsTable module="@refinedev/mui/CloneButton" />

@@ -104,7 +104,7 @@ export const EditPage: React.FC = () => {
     });
     const product = productQuery?.data?.data;
 
-    const { selectProps, queryResult: categoriesQueryResult } =
+    const { selectProps, query: categoriesQuery } =
         useSelect<ICategory>({
             resource: "categories",
             defaultValue: product?.category.id,

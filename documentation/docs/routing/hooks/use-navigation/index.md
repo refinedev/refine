@@ -102,48 +102,6 @@ clone("posts", "1"); // It navigates to the `/posts/clone/1` page
 
 You can also give a `type` property as a third parameter to the `clone` method.
 
-### push
-
-This method pushes a new entry onto the history stack. It uses the `push` method of the `useHistory` from the [`routerProvider`][routerprovider].
-
-```tsx
-import { useNavigation } from "@refinedev/core";
-
-const { push } = useNavigation();
-
-push("custom-page"); // It navigates to the `/custom-page` page
-```
-
-`push` method parameters are dependent on your router provider.
-
-### replace
-
-This method replaces the current entry on the history stack. It uses the `replace` method of the `useHistory` from the [`routerProvider`][routerprovider].
-
-```tsx
-import { useNavigation } from "@refinedev/core";
-
-const { replace } = useNavigation();
-
-replace("custom-page"); // It navigates to the `/custom-page` page
-```
-
-`replace` method parameters are dependent on your router provider.
-
-### goBack
-
-This method navigates to the previous page. It uses the `goBack` method of the `useHistory` from the [`routerProvider`][routerprovider].
-
-```tsx
-import { useNavigation } from "@refinedev/core";
-
-const { goBack } = useNavigation();
-
-goBack(); // It navigates to the previous page
-```
-
-`goBack` method parameters are dependent on your router provider.
-
 ### listUrl
 
 This method returns the list page URL of the given resource.

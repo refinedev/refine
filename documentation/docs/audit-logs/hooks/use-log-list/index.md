@@ -18,14 +18,13 @@ const postAuditLogResults = useLogList({
 
 ### Properties
 
-| Property                      | Type                                                         | Default                         |
-| ----------------------------- | ------------------------------------------------------------ | ------------------------------- |
-| resource <PropTag asterisk /> | `string`                                                     | Action that it reads from route |
-| action                        | `string`                                                     |                                 |
-| author                        | `Record<string, any>`                                        |                                 |
-| meta                          | `Record<string, any>`                                        |                                 |
-| metaData                      | [`MetaDataQuery`](/docs/core/interface-references#metaquery) |                                 |
-| queryOptions                  | `UseQueryOptions<TQueryFnData, TError, TData>`               |                                 |
+| Property                      | Type                                           | Default                         |
+| ----------------------------- | ---------------------------------------------- | ------------------------------- |
+| resource <PropTag asterisk /> | `string`                                       | Action that it reads from route |
+| action                        | `string`                                       |                                 |
+| author                        | `Record<string, any>`                          |                                 |
+| meta                          | `Record<string, any>`                          |                                 |
+| queryOptions                  | `UseQueryOptions<TQueryFnData, TError, TData>` |                                 |
 
 ### Type Parameters
 

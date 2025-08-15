@@ -281,8 +281,8 @@ import Stack from "@mui/material/Stack";
 import authProvider from "../../src/auth-provider";
 
 export default function ProductShow() {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
 
   const record = data?.data;
 
@@ -351,7 +351,7 @@ import authProvider from "../../../src/auth-provider";
 export default function ProductEdit() {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -457,7 +457,7 @@ import authProvider from "../../src/auth-provider";
 export default function ProductCreate() {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },

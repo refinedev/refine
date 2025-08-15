@@ -113,8 +113,8 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
       resource,
       ...restConfig,
       hasPagination,
-      metaData: {
-        ...metaData,
+      meta: {
+        ...meta,
         queryContext: {
           queryKey,
           pageParam,
@@ -130,7 +130,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(data, { metaData, config }, resource)
+          ? successNotification(data, { meta, config }, resource)
           : successNotification;
 
       handleNotification(notificationConfig);
@@ -141,7 +141,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 
       const notificationConfig =
         typeof errorNotification === "function"
-          ? errorNotification(err, { metaData, config }, resource)
+          ? errorNotification(err, { meta, config }, resource)
           : errorNotification;
 
       handleNotification(notificationConfig, {

@@ -223,10 +223,6 @@ You can use this command to add integration to your existing projects.
   React Router - Setup routing with React Router
 ```
 
-### create-resource <PropTag deprecated />
-
-Use [add](#add) command instead.
-
 ### update
 
 Interactively update your outdated Refine packages. To skip interactive mode, use the `--all` flag to update all outdated Refine packages to selected tag.

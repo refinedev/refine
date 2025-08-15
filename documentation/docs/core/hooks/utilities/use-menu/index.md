@@ -142,7 +142,7 @@ const App: React.FC = () => {
 render(App);
 ```
 
-We created `<Layout>` with a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the `useMenu` hook to get the menu items from the `<Refine/>` and the `useRouterContext` hook to get the `<Link/>` component from the router provider. The [`useNavigation`][use-navigation] hook can be used for navigating between routes as well.
+We created `<Layout />` with a header with a logo and a list of links to all menu items (resources). The links are clickable and will navigate to the corresponding resource. To do this, we used the `useMenu` hook to get the menu items from the `<Refine />` and the `useLink` hook to get the `<Link />` component from the router provider. The [`useNavigation`][use-navigation] hook can be used for navigating between routes as well.
 
 `children` is the content of the layout. In our case, it is the content of the **Page** components.
 

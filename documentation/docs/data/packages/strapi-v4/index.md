@@ -1103,7 +1103,7 @@ import { IPost } from "../interfaces";
 
 export const PostEdit: React.FC = () => {
   const { formProps, saveButtonProps } = useForm<IPost>({
-    metaData: { populate: ["cover"] },
+    meta: { populate: ["cover"] },
   });
 
   return (

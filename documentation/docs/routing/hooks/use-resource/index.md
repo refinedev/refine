@@ -42,18 +42,6 @@ The `resource` object.
 
 Resource name of the `resource` object.
 
-### ~~id~~ <PropTag deprecated />
-
-> Use [`useResourceParams`](/docs/routing/hooks/use-resource-params) instead.
-
-`id` parameter of the current route.
-
-### ~~action~~ <PropTag deprecated />
-
-> Use [`useResourceParams`](/docs/routing/hooks/use-resource-params) instead.
-
-`action` from the current route if there is a match.
-
 ### select
 
 The function allows you to retrieve a `resource` object and matched `identifier` by providing either a resource `name` or `identifier`. By default, if there is no match for the given `name` or `identifier`, the function will return the `resource` object and `identifier` associated with the provided value.

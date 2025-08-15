@@ -30,8 +30,8 @@ import { Typography } from "antd";
 const { Title, Text } = Typography;
 
 const SampleShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow<IPost>();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (

@@ -553,8 +553,8 @@ export const PostEdit: React.FC = () => {
 
     const { autocompleteProps } = useAutocomplete<ICategory>({
         resource: "categories",
-        defaultValue: queryResult?.data?.data.category.id,
-        queryOptions: { enabled: !!queryResult?.data?.data.category.id },
+        defaultValue: query?.data?.data.category.id,
+        queryOptions: { enabled: !!query?.data?.data.category.id },
     });
 
     return (

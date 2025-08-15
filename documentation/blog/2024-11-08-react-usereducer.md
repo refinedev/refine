@@ -605,7 +605,7 @@ In `<Posts />` component, we are going to add a form for creating a post. The fo
 
 <details>
 
-<summary>Show `CreatePostForm />` component code</summary>
+<summary>Show `<CreatePostForm />` component code</summary>
 
 ```js
 import { useState } from "react";

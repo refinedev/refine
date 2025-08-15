@@ -186,30 +186,6 @@ useExport({
 });
 ```
 
-### ~~exportOptions~~ <PropTag deprecated />
-
-Use [`unparseConfig`](#unparseconfig) prop instead.
-
-You can pass additional options to the `export-to-csv` package by using the `exportOptions` property.
-
-> For more information, refer to the [`ExportToCsv` options &#8594](https://github.com/alexcaza/export-to-csv#api)
-
-```ts
-useExport({
-  exportOptions: {
-    filename: "posts",
-  },
-});
-```
-
-### ~~resourceName~~ <PropTag deprecated />
-
-Use `resource` instead.
-
-### ~~sorter~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
 ## Return Values
 
 ### triggerExport
