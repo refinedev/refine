@@ -31,8 +31,8 @@
     "@refinedev/react-table": "^5.6.13",
     "@refinedev/supabase": "^5.9.4",
     "@tanstack/react-table": "^8.2.6",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",
     "react-router": "^7.0.2",
     "react95": "^4.0.0",
@@ -40,8 +40,8 @@
   },
   "devDependencies": {
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "5.48.0",
     "@typescript-eslint/parser": "5.48.0",
@@ -49,7 +49,7 @@
     "eslint": "^8.24.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15"
   }
 }

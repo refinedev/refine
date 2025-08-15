@@ -12,7 +12,7 @@ export const Login: React.FC = () => {
     v3LegacyAuthProviderCompatible: true,
   });
 
-  const GoogleButton = (): JSX.Element => {
+  const GoogleButton = (): React.JSX.Element => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
