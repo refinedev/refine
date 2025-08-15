@@ -59,9 +59,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>list page</div>;
-            },
+            list: "/posts",
           },
         ],
         "/:resource/:action",
@@ -72,7 +70,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -86,9 +84,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>list page</div>;
-            },
+            list: "/posts",
           },
         ],
         "/:resource",
@@ -99,7 +95,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -113,9 +109,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>create page</div>;
-            },
+            list: "/posts",
           },
         ],
         "/:resource/:action",
@@ -129,7 +123,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Create",
@@ -146,9 +140,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            create: function name() {
-              return <div>create page</div>;
-            },
+            create: "/posts/create",
           },
         ],
         "/:resource",
@@ -159,7 +151,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Create",
@@ -173,9 +165,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            create: function name() {
-              return <div>create page</div>;
-            },
+            create: "/posts/create",
           },
         ],
         "/:resource",
@@ -189,7 +179,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Create",
@@ -203,9 +193,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            create: function name() {
-              return <div>create page</div>;
-            },
+            create: "/posts/create",
           },
         ],
         "/:resource/:action",
@@ -216,7 +204,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Create",
@@ -230,9 +218,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            create: function name() {
-              return <div>create page</div>;
-            },
+            create: "/posts/create",
           },
         ],
         "/:resource",
@@ -246,7 +232,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Create",
@@ -263,9 +249,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
+            edit: "/posts/edit/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -276,7 +260,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Edit",
@@ -290,10 +274,8 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
-            canDelete: true,
+            edit: "/posts/edit/:id",
+            meta: { canDelete: true },
           },
         ],
         "/:resource/:action/:id",
@@ -304,7 +286,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Delete",
@@ -318,9 +300,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
+            edit: "/posts/edit/:id",
           },
         ],
         "/:resource/:action",
@@ -331,7 +311,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Edit",
@@ -345,9 +325,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
+            edit: "/posts/edit/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -358,7 +336,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Edit",
@@ -372,10 +350,8 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
-            canDelete: false,
+            edit: "/posts/edit/:id",
+            meta: { canDelete: false },
           },
         ],
         "/:resource/:action/:id",
@@ -386,7 +362,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Delete",
@@ -400,10 +376,8 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
-            canDelete: true,
+            edit: "/posts/edit/:id",
+            meta: { canDelete: true },
           },
         ],
         "/:resource/:action/:id",
@@ -419,7 +393,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Delete",
@@ -433,9 +407,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>list page</div>;
-            },
+            list: "/posts",
           },
         ],
         "/:resource",
@@ -446,7 +418,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Edit",
@@ -460,9 +432,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            edit: function name() {
-              return <div>edit page</div>;
-            },
+            edit: "/posts/edit/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -481,7 +451,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Edit",
@@ -498,9 +468,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            show: function name() {
-              return <div>show page</div>;
-            },
+            show: "/posts/show/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -511,7 +479,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Show",
@@ -525,9 +493,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            show: function name() {
-              return <div>show page</div>;
-            },
+            show: "/posts/show/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -546,7 +512,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Show",
@@ -560,9 +526,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            show: function name() {
-              return <div>show page</div>;
-            },
+            show: "/posts/show/:id",
           },
         ],
         "/:resource/:action",
@@ -573,7 +537,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Show",
@@ -587,9 +551,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            show: function name() {
-              return <div>show page</div>;
-            },
+            show: "/posts/show/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -600,7 +562,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Show",
@@ -614,9 +576,7 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            show: function name() {
-              return <div>show page</div>;
-            },
+            show: "/posts/show/:id",
           },
         ],
         "/:resource/:action/:id",
@@ -635,7 +595,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "Show",
@@ -652,15 +612,11 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>posts list page</div>;
-            },
+            list: "/posts",
           },
           {
             name: "categories",
-            list: function name() {
-              return <div>categories list page</div>;
-            },
+            list: "/categories",
           },
         ],
         "/:resource",
@@ -671,7 +627,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -685,15 +641,11 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>posts list page</div>;
-            },
+            list: "/posts",
           },
           {
             name: "categories",
-            list: function name() {
-              return <div>categories list page</div>;
-            },
+            list: "/categories",
           },
         ],
         "/:resource",
@@ -704,7 +656,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -718,21 +670,15 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>posts list page</div>;
-            },
+            list: "/posts",
           },
           {
             name: "categories",
-            list: function name() {
-              return <div>categories list page</div>;
-            },
+            list: "/categories",
           },
           {
             name: "users",
-            list: function name() {
-              return <div>users list page</div>;
-            },
+            list: "/users",
           },
         ],
         "/:resource",
@@ -743,7 +689,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -751,7 +697,7 @@ describe("useRefineKbar Hook", () => {
           }),
         ]),
       );
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -760,7 +706,7 @@ describe("useRefineKbar Hook", () => {
         ]),
       );
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -774,15 +720,11 @@ describe("useRefineKbar Hook", () => {
         [
           {
             name: "posts",
-            list: function name() {
-              return <div>posts list page</div>;
-            },
+            list: "/posts",
           },
           {
             name: "categories",
-            list: function name() {
-              return <div>categories list page</div>;
-            },
+            list: "/categories",
           },
         ],
         "/:resource",
@@ -793,7 +735,7 @@ describe("useRefineKbar Hook", () => {
         jest.advanceTimersToNextTimer(1);
       });
 
-      expect(mockFn).not.lastCalledWith(
+      expect(mockFn).not.toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",
@@ -802,7 +744,7 @@ describe("useRefineKbar Hook", () => {
         ]),
       );
 
-      expect(mockFn).lastCalledWith(
+      expect(mockFn).toHaveBeenLastCalledWith(
         expect.arrayContaining([
           expect.objectContaining({
             name: "List",

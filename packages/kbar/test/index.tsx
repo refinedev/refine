@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router";
 
-import { type AuthProvider, Refine } from "@refinedev/core";
+import { type AuthProvider, type Action, Refine } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 import type {
@@ -14,6 +14,21 @@ import type {
 } from "@refinedev/core";
 
 import { RefineKbarProvider } from "../src/index";
+
+const mockResources = [
+  {
+    name: "posts",
+    list: "/list",
+    create: "/create",
+    show: "/show/:id",
+    edit: "/edit/:id",
+    meta: {
+      canEdit: true,
+      canShow: true,
+      canDelete: true,
+    },
+  },
+];
 
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
@@ -51,6 +66,36 @@ export const TestWrapper: (
   }
 
   return ({ children }): React.ReactElement => {
+    let action: Action | undefined = undefined;
+    let id = undefined;
+    let resource = undefined;
+
+    if (routerInitialEntries) {
+      // find action, id and resource from routerInitialEntries:  /posts/show/1, /posts/create, /posts/edit/11
+      const [
+        resourcePath = undefined,
+        actionPath = undefined,
+        idParam = undefined,
+      ] = routerInitialEntries[0].split("/").slice(1);
+      resource = resourcePath;
+      action = actionPath as Action | undefined;
+      id = idParam;
+    }
+
+    const finalRouterProvider =
+      routerProvider ??
+      MockRouterProvider({
+        pathname: routerInitialEntries?.[0],
+        params: {
+          id: id || undefined,
+        },
+        resource:
+          (resources ?? mockResources).find((item) => item.name === resource) ??
+          undefined,
+        action: action,
+        id: id,
+      });
+
     return (
       <RefineKbarProvider>
         <BrowserRouter>
@@ -59,7 +104,7 @@ export const TestWrapper: (
             i18nProvider={i18nProvider}
             authProvider={authProvider}
             notificationProvider={notificationProvider}
-            routerProvider={routerProvider ?? MockRouterProvider()}
+            routerProvider={finalRouterProvider}
             resources={resources ?? [{ name: "posts", list: "/list" }]}
             accessControlProvider={accessControlProvider}
             options={{ disableTelemetry: true }}
