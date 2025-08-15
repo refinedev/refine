@@ -57,14 +57,12 @@ export const liveProvider = (
         return filters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
+              return `${filter.field}=${mapOperator(filter.operator)}.${filter.value}`;
             }
             return;
           })
           .filter(Boolean)
-          .join(",");
+          .join("&"); // changed from comma to & for clarity with multiple filters
       };
 
       const events = types
@@ -85,7 +83,7 @@ export const liveProvider = (
               supabaseClient?.rest?.schemaName ||
               "public",
             table: resource,
-            filter: filter,
+            filter: filter, // now handles multiple filters via mapFilter
           },
           listener,
         );
