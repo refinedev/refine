@@ -2621,4 +2621,41 @@ describe("useUpdate Hook should work with params and props", () => {
       expect(onErrorFn).toHaveBeenCalledWith("onErrorProp");
     });
   });
+
+  it("should not override audit meta.id with route params", async () => {
+    const auditCreateMock = jest.fn();
+
+    const { result } = renderHook(() => useUpdate(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        auditLogProvider: {
+          create: auditCreateMock,
+          get: jest.fn(),
+          update: jest.fn(),
+        },
+        routerProvider: mockRouterProvider({
+          params: { id: "6" },
+        }),
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        resource: "posts",
+        id: "1",
+        values: { title: "updated" },
+      });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
+
+    expect(auditCreateMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "update",
+        resource: "posts",
+        meta: expect.objectContaining({ id: "1" }),
+      }),
+    );
+  });
 });

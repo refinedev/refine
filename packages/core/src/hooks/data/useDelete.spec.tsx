@@ -864,4 +864,40 @@ describe("useDelete Hook", () => {
       }),
     ).toHaveLength(1);
   });
+
+  it("should not override audit meta.id with route params", async () => {
+    const auditCreateMock = jest.fn();
+
+    const { result } = renderHook(() => useDelete(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        auditLogProvider: {
+          create: auditCreateMock,
+          get: jest.fn(),
+          update: jest.fn(),
+        },
+        routerProvider: mockRouterProvider({
+          params: { id: "6" },
+        }),
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        resource: "posts",
+        id: "1",
+      });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
+
+    expect(auditCreateMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "delete",
+        resource: "posts",
+        meta: expect.objectContaining({ id: "1" }),
+      }),
+    );
+  });
 });

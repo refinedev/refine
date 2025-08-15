@@ -611,9 +611,9 @@ export const useUpdateMany = <
         data: values,
         previousData,
         meta: {
-          ids,
-          dataProviderName,
           ...rest,
+          dataProviderName,
+          ids,
         },
       });
 
