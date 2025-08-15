@@ -222,44 +222,46 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             </Button>
           </Box>
         )}
-        {loginLink ?? (
-          <Box
-            display="flex"
-            justifyContent="flex-end"
-            alignItems="center"
-            sx={{
-              mt: "24px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="body2" component="span" fontSize="12px">
-              {translate(
-                "pages.register.buttons.haveAccount",
-                translate(
-                  "pages.login.buttons.haveAccount",
-                  "Have an account?",
-                ),
-              )}
-            </Typography>
-            <MuiLink
-              ml="4px"
-              variant="body2"
-              color="primary"
-              component={Link as any}
-              underline="none"
-              to="/login"
-              fontSize="12px"
-              fontWeight="bold"
+        <>
+          {loginLink ?? (
+            <Box
+              display="flex"
+              justifyContent="flex-end"
+              alignItems="center"
+              sx={{
+                mt: "24px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
-              {translate(
-                "pages.register.signin",
-                translate("pages.login.signin", "Sign in"),
-              )}
-            </MuiLink>
-          </Box>
-        )}
+              <Typography variant="body2" component="span" fontSize="12px">
+                {translate(
+                  "pages.register.buttons.haveAccount",
+                  translate(
+                    "pages.login.buttons.haveAccount",
+                    "Have an account?",
+                  ),
+                )}
+              </Typography>
+              <MuiLink
+                ml="4px"
+                variant="body2"
+                color="primary"
+                component={Link as any}
+                underline="none"
+                to="/login"
+                fontSize="12px"
+                fontWeight="bold"
+              >
+                {translate(
+                  "pages.register.signin",
+                  translate("pages.login.signin", "Sign in"),
+                )}
+              </MuiLink>
+            </Box>
+          )}
+        </>
       </CardContent>
     </Card>
   );
@@ -288,14 +290,16 @@ export const RegisterPage: React.FC<RegisterProps> = ({
             paddingTop: hideForm ? "15dvh" : 0,
           }}
         >
-          {renderContent ? (
-            renderContent(Content, PageTitle)
-          ) : (
-            <>
-              {PageTitle}
-              {Content}
-            </>
-          )}
+          <>
+            {renderContent ? (
+              renderContent(Content, PageTitle)
+            ) : (
+              <>
+                {PageTitle}
+                {Content}
+              </>
+            )}
+          </>
         </Box>
       </Container>
     </Box>

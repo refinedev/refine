@@ -34,7 +34,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
         }}
       >
         <SvgIcon height="24px" width="24px" color="primary">
-          {icon}
+          <>{icon}</>
         </SvgIcon>
         {!collapsed && (
           <Typography
@@ -45,7 +45,7 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
             textOverflow="ellipsis"
             overflow="hidden"
           >
-            {text}
+            <>{text}</>
           </Typography>
         )}
       </MuiLink>

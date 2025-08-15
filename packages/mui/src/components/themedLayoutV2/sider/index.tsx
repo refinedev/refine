@@ -133,7 +133,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                       color: "currentColor",
                     }}
                   >
-                    {icon ?? <ListOutlined />}
+                    <>{icon ?? <ListOutlined />}</>
                   </ListItemIcon>
                   <ListItemText
                     primary={label}
@@ -213,7 +213,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
                   color: "currentColor",
                 }}
               >
-                {icon ?? <ListOutlined />}
+                <>{icon ?? <ListOutlined />}</>
               </ListItemIcon>
               <ListItemText
                 primary={label}
@@ -359,7 +359,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         paddingTop: "16px",
       }}
     >
-      {renderSider()}
+      <>{renderSider()}</>
     </List>
   );
 
