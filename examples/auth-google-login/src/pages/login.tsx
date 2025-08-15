@@ -11,7 +11,7 @@ const GOOGLE_CLIENT_ID =
 export const Login: React.FC = () => {
   const { mutate: login } = useLogin<CredentialResponse>();
 
-  const GoogleButton = (): JSX.Element => {
+  const GoogleButton = (): React.JSX.Element => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
