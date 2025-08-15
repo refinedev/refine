@@ -73,36 +73,42 @@ export const List: React.FC<ListProps> = ({
           },
         }}
         title={
-          title ?? (
-            <Typography
-              variant="h5"
-              className={RefinePageHeaderClassNames.Title}
-            >
-              {translate(
-                `${identifier}.titles.list`,
-                getUserFriendlyName(
-                  resource?.meta?.label ?? identifier,
-                  "plural",
-                ),
-              )}
-            </Typography>
-          )
+          <>
+            {title ?? (
+              <Typography
+                variant="h5"
+                className={RefinePageHeaderClassNames.Title}
+              >
+                {translate(
+                  `${identifier}.titles.list`,
+                  getUserFriendlyName(
+                    resource?.meta?.label ?? identifier,
+                    "plural",
+                  ),
+                )}
+              </Typography>
+            )}
+          </>
         }
         action={
           <Box display="flex" gap="16px" {...headerButtonProps}>
-            {headerButtons
-              ? typeof headerButtons === "function"
-                ? headerButtons({
-                    defaultButtons: defaultHeaderButtons,
-                    createButtonProps,
-                  })
-                : headerButtons
-              : defaultHeaderButtons}
+            <>
+              {headerButtons
+                ? typeof headerButtons === "function"
+                  ? headerButtons({
+                      defaultButtons: defaultHeaderButtons,
+                      createButtonProps,
+                    })
+                  : headerButtons
+                : defaultHeaderButtons}
+            </>
           </Box>
         }
         {...(headerProps ?? {})}
       />
-      <CardContent {...(contentProps ?? {})}>{children}</CardContent>
+      <CardContent {...(contentProps ?? {})}>
+        <>{children}</>
+      </CardContent>
     </Card>
   );
 };

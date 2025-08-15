@@ -131,33 +131,37 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
               m: 0,
             }}
           />
-          {loginLink ?? (
-            <Box textAlign="right" sx={{ mt: "24px" }}>
-              <Typography variant="body2" component="span" fontSize="12px">
-                {translate(
-                  "pages.forgotPassword.buttons.haveAccount",
-                  translate(
-                    "pages.register.buttons.haveAccount",
-                    "Have an account? ",
-                  ),
-                )}
-              </Typography>{" "}
-              <MuiLink
-                variant="body2"
-                component={Link as any}
-                underline="none"
-                to="/login"
-                fontWeight="bold"
-                fontSize="12px"
-                color="primary.light"
-              >
-                {translate(
-                  "pages.forgotPassword.signin",
-                  translate("pages.login.signin", "Sign in"),
-                )}
-              </MuiLink>
-            </Box>
-          )}
+          {
+            <>
+              {loginLink ?? (
+                <Box textAlign="right" sx={{ mt: "24px" }}>
+                  <Typography variant="body2" component="span" fontSize="12px">
+                    {translate(
+                      "pages.forgotPassword.buttons.haveAccount",
+                      translate(
+                        "pages.register.buttons.haveAccount",
+                        "Have an account? ",
+                      ),
+                    )}
+                  </Typography>{" "}
+                  <MuiLink
+                    variant="body2"
+                    component={Link as any}
+                    underline="none"
+                    to="/login"
+                    fontWeight="bold"
+                    fontSize="12px"
+                    color="primary.light"
+                  >
+                    {translate(
+                      "pages.forgotPassword.signin",
+                      translate("pages.login.signin", "Sign in"),
+                    )}
+                  </MuiLink>
+                </Box>
+              )}
+            </>
+          }
           <Button
             type="submit"
             fullWidth
@@ -191,14 +195,16 @@ export const ForgotPasswordPage: React.FC<ForgotPasswordProps> = ({
             maxWidth: "400px",
           }}
         >
-          {renderContent ? (
-            renderContent(Content, PageTitle)
-          ) : (
-            <>
-              {PageTitle}
-              {Content}
-            </>
-          )}
+          <>
+            {renderContent ? (
+              renderContent(Content, PageTitle)
+            ) : (
+              <>
+                {PageTitle}
+                {Content}
+              </>
+            )}
+          </>
         </Container>
       </Box>
     </>

@@ -197,14 +197,16 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
             maxWidth: "400px",
           }}
         >
-          {renderContent ? (
-            renderContent(Content, PageTitle)
-          ) : (
-            <>
-              {PageTitle}
-              {Content}
-            </>
-          )}
+          <>
+            {renderContent ? (
+              renderContent(Content, PageTitle)
+            ) : (
+              <>
+                {PageTitle}
+                {Content}
+              </>
+            )}
+          </>
         </Container>
       </Box>
     </>
