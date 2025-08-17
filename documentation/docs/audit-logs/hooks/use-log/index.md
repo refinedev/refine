@@ -1,5 +1,5 @@
 ---
-title: useLog
+title: Useage Logs
 ---
 
 If you need to create or update an audit log, you can use Refine's `useLog` hook. This hook will return two mutations called `log` and `rename`
