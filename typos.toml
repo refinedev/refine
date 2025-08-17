@@ -9,6 +9,8 @@ extend-ignore-re = [
     "run refine",
     "refineCore",
     "refine-",
+    "refine-\\d+",
+    "refine\\d+",
     "-refine-",
     "_refine",
     "/refine",
