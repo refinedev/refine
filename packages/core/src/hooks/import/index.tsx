@@ -3,11 +3,7 @@ import { useEffect, useState } from "react";
 import chunk from "lodash/chunk";
 import papaparse from "papaparse";
 
-import {
-  importCSVMapper,
-  pickNotDeprecated,
-  sequentialPromises,
-} from "@definitions";
+import { importCSVMapper, sequentialPromises } from "@definitions";
 import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
 
 import type {
@@ -49,12 +45,6 @@ export type ImportOptions<
   /**
    * Resource name for API data interactions.
    * @default Resource name that it reads from route
-   * @deprecated `resourceName` is deprecated. Use `resource` instead.
-   */
-  resourceName?: string;
-  /**
-   * Resource name for API data interactions.
-   * @default Resource name that it reads from route
    */
   resource?: string;
   /**
@@ -80,9 +70,6 @@ export type ImportOptions<
   meta?: MetaQuery;
   /**
    *  Metadata query for `dataProvider`
-   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-   */
-  metaData?: MetaQuery;
   /**
    *  A callback function that returns a current state of uploading process.
    *
@@ -139,14 +126,12 @@ export const useImport = <
   TError extends HttpError = HttpError,
   TVariables = any,
 >({
-  resourceName,
   resource: resourceFromProps,
   mapData = (item) => item as unknown as TVariables,
   paparseOptions,
   batchSize = Number.MAX_SAFE_INTEGER,
   onFinish,
   meta,
-  metaData,
   onProgress,
   dataProviderName,
 }: ImportOptions<TItem, TVariables, TData> = {}): UseImportReturnType<
@@ -158,9 +143,7 @@ export const useImport = <
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { resource, identifier } = useResource(
-    resourceFromProps ?? resourceName,
-  );
+  const { resource, identifier } = useResource(resourceFromProps);
 
   const getMeta = useMeta();
 
@@ -169,7 +152,7 @@ export const useImport = <
 
   const combinedMeta = getMeta({
     resource,
-    meta: pickNotDeprecated(meta, metaData),
+    meta: meta,
   });
 
   let mutationResult:
@@ -229,7 +212,6 @@ export const useImport = <
                   errorNotification: false,
                   dataProviderName,
                   meta: combinedMeta,
-                  metaData: combinedMeta,
                 });
 
                 return { response, value };
@@ -273,7 +255,6 @@ export const useImport = <
                   errorNotification: false,
                   dataProviderName,
                   meta: combinedMeta,
-                  metaData: combinedMeta,
                 });
 
                 return {

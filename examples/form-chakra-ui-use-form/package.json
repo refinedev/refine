@@ -12,23 +12,23 @@
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
     "@refinedev/chakra-ui": "^2.37.1",
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@refinedev/react-hook-form": "^4.10.2",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/react-table": "^5.6.17",
-    "@refinedev/simple-rest": "^5.0.10",
+    "@refinedev/simple-rest": "^5.0.11",
     "@tabler/icons-react": "^3.1.0",
     "@tanstack/react-table": "^8.2.6",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-router": "^7.0.2"
   },
   "devDependencies": {
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15"
   }
 }

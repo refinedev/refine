@@ -16,7 +16,6 @@ import {
   useTable as useTableCore,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableCoreReturnType,
-  pickNotDeprecated,
   useSyncWithLocation,
 } from "@refinedev/core";
 
@@ -62,15 +61,7 @@ export const useTable = <
   TData extends BaseRecord = TQueryFnData,
 >({
   onSearch,
-  initialCurrent,
-  initialPageSize,
-  hasPagination = true,
-  pagination,
-  initialSorter,
-  permanentSorter,
-  initialFilter,
-  permanentFilter,
-  defaultSetFilterBehavior,
+  pagination: paginationFromProp,
   filters: filtersFromProp,
   sorters: sortersFromProp,
   syncWithLocation,
@@ -82,7 +73,6 @@ export const useTable = <
   onLiveEvent,
   liveParams,
   meta,
-  metaData,
   dataProviderName,
 }: useTableProps<
   TQueryFnData,
@@ -91,7 +81,6 @@ export const useTable = <
   TData
 > = {}): useTableReturnType<TData, TError, TSearchVariables> => {
   const {
-    tableQueryResult,
     tableQuery,
     current,
     setCurrent,
@@ -101,33 +90,22 @@ export const useTable = <
     setFilters,
     sorters,
     setSorters,
-    sorter,
-    setSorter,
     createLinkForSyncWithLocation,
     pageCount,
     overtime,
   } = useTableCore<TQueryFnData, TError, TData>({
-    permanentSorter,
-    permanentFilter,
-    initialCurrent,
-    initialPageSize,
-    pagination,
-    hasPagination,
+    pagination: paginationFromProp,
     filters: filtersFromProp,
     sorters: sortersFromProp,
-    initialSorter,
-    initialFilter,
     syncWithLocation,
     resource,
-    defaultSetFilterBehavior,
     successNotification,
     errorNotification,
     queryOptions,
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
-    meta: pickNotDeprecated(meta, metaData),
-    metaData: pickNotDeprecated(meta, metaData),
+    meta,
     dataProviderName,
   });
   const { syncWithLocation: defaultSyncWithLocation } = useSyncWithLocation();
@@ -139,16 +117,11 @@ export const useTable = <
   });
   const liveMode = useLiveMode(liveModeFromProp);
 
-  const hasPaginationString = hasPagination === false ? "off" : "server";
-  const isPaginationEnabled =
-    (pagination?.mode ?? hasPaginationString) !== "off";
+  const isPaginationEnabled = paginationFromProp?.mode !== "off";
 
-  const preferredInitialFilters = pickNotDeprecated(
-    filtersFromProp?.initial,
-    initialFilter,
-  );
+  const preferredInitialFilters = filtersFromProp?.initial;
 
-  const { data, isFetched, isLoading } = tableQueryResult;
+  const { data, isFetched, isLoading } = tableQuery;
 
   React.useEffect(() => {
     if (shouldSyncWithLocation) {
@@ -242,7 +215,7 @@ export const useTable = <
           }
 
           if (type === "jump-next" || type === "jump-prev") {
-            const elementChildren = (element as React.ReactElement)?.props
+            const elementChildren = (element as React.ReactElement<any>)?.props
               ?.children;
 
             return createElement(PaginationLink, {
@@ -279,13 +252,10 @@ export const useTable = <
       pagination: antdPagination(),
       scroll: { x: true },
     },
-    tableQueryResult,
     tableQuery,
     sorters,
-    sorter,
     filters,
     setSorters,
-    setSorter,
     setFilters,
     current,
     setCurrent,

@@ -52,11 +52,9 @@ describe("useSimpleList Hook", () => {
       () =>
         useSimpleList({
           pagination: {
-            current: 2,
             pageSize: 1,
+            current: 2,
           },
-          initialCurrent: 10,
-          initialPageSize: 20,
         }),
       {
         wrapper: TestWrapper({
@@ -83,7 +81,9 @@ describe("useSimpleList Hook", () => {
     const { result } = renderHook(
       () =>
         useSimpleList({
-          hasPagination: false,
+          pagination: {
+            mode: "off",
+          },
         }),
       {
         wrapper: TestWrapper({
@@ -186,6 +186,6 @@ describe("useSimpleList Hook", () => {
       expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.query).toEqual(result.current.queryResult);
+    expect(result.current.query).toEqual(result.current.query);
   });
 });

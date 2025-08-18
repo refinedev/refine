@@ -7,7 +7,7 @@ import { Button, Form, Input, Select, Steps } from "antd";
 import { useStepsForm } from "..";
 import { useSelect } from "../..";
 import { MockJSONServer, TestWrapper, fireEvent, render, waitFor } from "@test";
-import { mockRouterBindings } from "@test/dataMocks";
+import { MockRouterProvider } from "@test/dataMocks";
 import { SaveButton } from "@components/buttons";
 import { act } from "react-dom/test-utils";
 
@@ -145,7 +145,7 @@ const renderForm = ({
     {
       wrapper: TestWrapper({
         options: refineOptions,
-        routerProvider: mockRouterBindings(),
+        routerProvider: MockRouterProvider(),
         dataProvider: {
           ...MockJSONServer,
           getList: async () => {

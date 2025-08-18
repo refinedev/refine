@@ -22,29 +22,29 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.46.2",
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/antd": "^5.46.3",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
-    "@refinedev/simple-rest": "^5.0.10",
+    "@refinedev/simple-rest": "^5.0.11",
     "@uiw/react-md-editor": "^3.19.5",
-    "antd": "^5.17.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "antd": "^5.23.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-router": "^7.0.2",
     "web3": "^1.6.1",
     "web3modal": "^1.9.4"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.1.1",
-    "@testing-library/user-event": "^14.1.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.2.4",
     "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15"
   }
 }

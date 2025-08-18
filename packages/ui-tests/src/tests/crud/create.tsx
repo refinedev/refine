@@ -5,7 +5,12 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { type ITestWrapperProps, render, TestWrapper } from "@test";
+import {
+  type ITestWrapperProps,
+  mockRouterBindings,
+  render,
+  TestWrapper,
+} from "@test";
 
 const renderCreate = (
   create: React.ReactNode,
@@ -18,9 +23,34 @@ const renderCreate = (
     {
       wrapper: TestWrapper(
         wrapperProps
-          ? wrapperProps
+          ? {
+              routerInitialEntries: ["/posts/create"],
+              routerProvider: {
+                ...mockRouterBindings(),
+                parse() {
+                  return () => ({
+                    params: {},
+                    resource: { name: "posts", create: "/posts/create" },
+                    pathname: "/posts/create",
+                    action: "create",
+                  });
+                },
+              },
+              ...wrapperProps,
+            }
           : {
               routerInitialEntries: ["/posts/create"],
+              routerProvider: {
+                ...mockRouterBindings(),
+                parse() {
+                  return () => ({
+                    params: {},
+                    resource: { name: "posts", create: "/posts/create" },
+                    pathname: "/posts/create",
+                    action: "create",
+                  });
+                },
+              },
             },
       ),
     },
@@ -76,9 +106,25 @@ export const crudCreateTests = (
         resources: [
           {
             name: "posts",
-            meta: { route: "posts", label: "test label" },
+            create: "/posts/create",
+            meta: { label: "test label" },
           },
         ],
+        routerProvider: {
+          ...mockRouterBindings(),
+          parse() {
+            return () => ({
+              params: {},
+              resource: {
+                name: "posts",
+                create: "/posts/create",
+                meta: { label: "test label" },
+              },
+              pathname: "/posts/create",
+              action: "create",
+            });
+          },
+        },
         routerInitialEntries: ["/posts/create"],
       });
 
@@ -97,21 +143,6 @@ export const crudCreateTests = (
       });
 
       queryByText("Create Post");
-    });
-
-    it("should render tags", async () => {
-      const { getByText } = render(
-        <Routes>
-          <Route path="/:resource/:action/:id" element={<Create />} />
-        </Routes>,
-        {
-          wrapper: TestWrapper({
-            routerInitialEntries: ["/posts/clone/1"],
-          }),
-        },
-      );
-
-      getByText("Create Post");
     });
   });
 };

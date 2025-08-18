@@ -11,7 +11,7 @@ describe("MuiListInferencer", () => {
       resources: [
         {
           name: "posts",
-          list: ListInferencer,
+          list: "/posts",
         },
         {
           name: "categories",

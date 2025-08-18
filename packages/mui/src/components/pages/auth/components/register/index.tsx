@@ -24,8 +24,6 @@ import {
   type BaseRecord,
   type HttpError,
   useTranslate,
-  useRouterContext,
-  useRouterType,
   useLink,
   useRegister,
 } from "@refinedev/core";
@@ -64,16 +62,10 @@ export const RegisterPage: React.FC<RegisterProps> = ({
     ...useFormProps,
   });
 
-  const authProvider = useActiveAuthProvider();
-  const { mutate: registerMutate, isLoading } = useRegister<RegisterFormTypes>({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: registerMutate, isPending } =
+    useRegister<RegisterFormTypes>();
   const translate = useTranslate();
-  const routerType = useRouterType();
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   const PageTitle =
     title === false ? null : (
@@ -221,7 +213,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               type="submit"
               fullWidth
               variant="contained"
-              disabled={isLoading}
+              disabled={isPending}
               sx={{
                 mt: "24px",
               }}
@@ -255,7 +247,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
               ml="4px"
               variant="body2"
               color="primary"
-              component={ActiveLink}
+              component={Link as any}
               underline="none"
               to="/login"
               fontSize="12px"

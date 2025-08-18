@@ -1,5 +1,15 @@
 # @refinedev/kbar
 
+## 1.3.17
+
+### Patch Changes
+
+- [#6923](https://github.com/refinedev/refine/pull/6923) [`e597ca67ef2ce48f65f39492787ba10747d52225`](https://github.com/refinedev/refine/commit/e597ca67ef2ce48f65f39492787ba10747d52225) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - fix: failed to resolve entry for package "kbar" #6902
+
+  Fixed Vite build error in new refine projects by updating kbar dependency version.
+
+  [Resolves #6902](https://github.com/refinedev/refine/issues/6902)
+
 ## 1.3.16
 
 ### Patch Changes

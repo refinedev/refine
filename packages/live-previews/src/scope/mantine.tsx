@@ -151,9 +151,6 @@ const RefineMantineDemo: React.FC<
           notificationProvider={RefineMantine.useNotificationProvider}
           options={{
             disableTelemetry: true,
-            reactQuery: {
-              devtoolConfig: false,
-            },
           }}
           {...rest}
         >

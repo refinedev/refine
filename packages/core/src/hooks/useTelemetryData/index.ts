@@ -6,7 +6,7 @@ import { DataContext } from "@contexts/data";
 import { I18nContext } from "@contexts/i18n";
 import { LiveContext } from "@contexts/live";
 import { NotificationContext } from "@contexts/notification";
-import { LegacyRouterContext } from "@contexts/router/legacy";
+import { RouterContext } from "@contexts/router";
 import { useResource } from "@hooks/resource";
 
 import { useIsExistAuthentication, useRefineContext } from "..";
@@ -19,7 +19,7 @@ export const useTelemetryData = (): ITelemetryData => {
   const auth = useIsExistAuthentication();
   const auditLogContext = useContext(AuditLogContext);
   const { liveProvider } = useContext(LiveContext);
-  const routerContext = useContext(LegacyRouterContext);
+  const routerContext = useContext(RouterContext);
   const dataContext = useContext(DataContext);
   const { i18nProvider } = useContext(I18nContext);
   const notificationContext = useContext(NotificationContext);
@@ -38,11 +38,10 @@ export const useTelemetryData = (): ITelemetryData => {
     !!liveProvider?.unsubscribe;
 
   const router =
-    !!routerContext.useHistory ||
     !!routerContext.Link ||
-    !!routerContext.Prompt ||
-    !!routerContext.useLocation ||
-    !!routerContext.useParams;
+    !!routerContext.go ||
+    !!routerContext.back ||
+    !!routerContext.parse;
 
   const data = !!dataContext;
 

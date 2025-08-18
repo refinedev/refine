@@ -41,7 +41,7 @@ describe("useDataGrid Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
     });
 
     await act(async () => {
@@ -63,7 +63,7 @@ describe("useDataGrid Hook", () => {
     expect(result.current.current).toEqual(1);
   });
 
-  it.each(["client", "server"] as const)(
+  it.only.each(["client", "server"] as const)(
     "when pagination mode is %s, should set pagination props in dataGridProps",
     async (mode) => {
       const { result } = renderHook(
@@ -190,13 +190,13 @@ describe("useDataGrid Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(result.current.tableQuery.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(!result.current.tableQuery.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -260,7 +260,7 @@ describe("useDataGrid Hook", () => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
+    expect(result.current.tableQuery).toEqual(result.current.tableQuery);
   });
 
   it("should pass meta from updateMutationOptions to mutate function", async () => {

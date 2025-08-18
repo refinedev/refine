@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  useRouterContext,
-  useRouterType,
-  useLink,
-  useRefineOptions,
-} from "@refinedev/core";
+import { useLink, useRefineOptions } from "@refinedev/core";
 import { Center, Text, useMantineTheme } from "@mantine/core";
 import type { RefineLayoutThemedTitleProps } from "../types";
 
@@ -22,14 +17,10 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
   const text =
     typeof textFromProps === "undefined" ? defaultText : textFromProps;
   const theme = useMantineTheme();
-  const routerType = useRouterType();
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   return (
-    <ActiveLink to="/" style={{ all: "unset" }}>
+    <Link to="/" style={{ all: "unset" }}>
       <Center
         style={{
           cursor: "pointer",
@@ -56,6 +47,6 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
           </Text>
         )}
       </Center>
-    </ActiveLink>
+    </Link>
   );
 };

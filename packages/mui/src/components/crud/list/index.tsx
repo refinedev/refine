@@ -3,8 +3,6 @@ import React from "react";
 import {
   useTranslate,
   useUserFriendlyName,
-  useRefineContext,
-  useRouterType,
   useResource,
 } from "@refinedev/core";
 
@@ -39,34 +37,21 @@ export const List: React.FC<ListProps> = ({
   headerButtons,
 }) => {
   const translate = useTranslate();
-  const {
-    options: { breadcrumb: globalBreadcrumb } = {},
-  } = useRefineContext();
   const getUserFriendlyName = useUserFriendlyName();
-
-  const routerType = useRouterType();
 
   const { resource, identifier } = useResource(resourceFromProps);
 
   const isCreateButtonVisible =
-    canCreate ??
-    ((resource?.canCreate ?? !!resource?.create) || createButtonPropsFromProps);
+    canCreate ?? (!!resource?.create || createButtonPropsFromProps);
 
-  const breadcrumb =
-    typeof breadcrumbFromProps === "undefined"
-      ? globalBreadcrumb
-      : breadcrumbFromProps;
+  const breadcrumb = breadcrumbFromProps;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const createButtonProps: CreateButtonProps | undefined = isCreateButtonVisible
     ? {
-        resource: routerType === "legacy" ? resource?.route : identifier,
+        resource: identifier,
         ...createButtonPropsFromProps,
       }
     : undefined;
@@ -96,10 +81,7 @@ export const List: React.FC<ListProps> = ({
               {translate(
                 `${identifier}.titles.list`,
                 getUserFriendlyName(
-                  resource?.meta?.label ??
-                    resource?.options?.label ??
-                    resource?.label ??
-                    identifier,
+                  resource?.meta?.label ?? identifier,
                   "plural",
                 ),
               )}

@@ -9,7 +9,6 @@ import {
   ConfigProvider,
 } from "antd";
 import {
-  DashboardOutlined,
   LogoutOutlined,
   UnorderedListOutlined,
   BarsOutlined,
@@ -17,19 +16,13 @@ import {
   RightOutlined,
 } from "@ant-design/icons";
 import {
+  type TreeMenuItem,
   useTranslate,
   useLogout,
-  useTitle,
   CanAccess,
-  type ITreeMenu,
   useIsExistAuthentication,
-  useRouterContext,
   useMenu,
-  useRefineContext,
   useLink,
-  useRouterType,
-  useActiveAuthProvider,
-  pickNotDeprecated,
   useWarnAboutChange,
 } from "@refinedev/core";
 
@@ -55,39 +48,25 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
 
   const isExistAuthentication = useIsExistAuthentication();
   const direction = useContext(ConfigProvider.ConfigContext)?.direction;
-  const routerType = useRouterType();
-  const NewLink = useLink();
+  const Link = useLink();
   const { warnWhen, setWarnWhen } = useWarnAboutChange();
-  const { Link: LegacyLink } = useRouterContext();
-  const Link = routerType === "legacy" ? LegacyLink : NewLink;
-  const TitleFromContext = useTitle();
   const translate = useTranslate();
   const { menuItems, selectedKey, defaultOpenKeys } = useMenu({ meta });
   const breakpoint = Grid.useBreakpoint();
-  const { hasDashboard } = useRefineContext();
-  const authProvider = useActiveAuthProvider();
-  const { mutate: mutateLogout } = useLogout({
-    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-  });
+  const { mutate: mutateLogout } = useLogout();
 
   const isMobile =
     typeof breakpoint.lg === "undefined" ? false : !breakpoint.lg;
 
-  const RenderToTitle = TitleFromProps ?? TitleFromContext ?? ThemedTitleV2;
+  const RenderToTitle = TitleFromProps ?? ThemedTitleV2;
 
-  const renderTreeView = (tree: ITreeMenu[], selectedKey?: string) => {
-    return tree.map((item: ITreeMenu) => {
-      const {
-        icon,
-        label,
-        route,
-        key,
-        name,
-        children,
-        parentName,
-        meta,
-        options,
-      } = item;
+  const renderTreeView = (tree: TreeMenuItem[], selectedKey?: string) => {
+    return tree.map((item: TreeMenuItem) => {
+      const { key, name, children, meta, list } = item;
+      const parentName = meta?.parent;
+      const label = item?.label ?? meta?.label ?? name;
+      const icon = meta?.icon;
+      const route = list;
 
       if (children.length > 0) {
         return (
@@ -110,10 +89,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
         );
       }
       const isSelected = key === selectedKey;
-      const isRoute = !(
-        pickNotDeprecated(meta?.parent, options?.parent, parentName) !==
-          undefined && children.length === 0
-      );
+      const isRoute = !(parentName !== undefined && children.length === 0);
 
       const linkStyle: React.CSSProperties =
         activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
@@ -172,33 +148,17 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     </Menu.Item>
   );
 
-  const dashboard = hasDashboard ? (
-    <Menu.Item key="dashboard" icon={<DashboardOutlined />}>
-      <Link to="/">{translate("dashboard.title", "Dashboard")}</Link>
-      {!siderCollapsed && selectedKey === "/" && (
-        <div className="ant-menu-tree-arrow" />
-      )}
-    </Menu.Item>
-  ) : null;
-
   const items = renderTreeView(menuItems, selectedKey);
 
   const renderSider = () => {
     if (render) {
       return render({
-        dashboard,
         items,
         logout,
         collapsed: siderCollapsed,
       });
     }
-    return (
-      <>
-        {dashboard}
-        {items}
-        {logout}
-      </>
-    );
+    return [...items, logout].filter(Boolean);
   };
 
   const renderMenu = () => {
@@ -231,8 +191,10 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
           placement={direction === "rtl" ? "right" : "left"}
           closable={false}
           width={200}
-          bodyStyle={{
-            padding: 0,
+          styles={{
+            body: {
+              padding: 0,
+            },
           }}
           maskClosable={true}
         >

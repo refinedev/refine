@@ -18,7 +18,9 @@ describe("useSubscribe Hook", () => {
         useSubscription({
           channel: "channel",
           onLiveEvent: onLiveEventMock,
-          dataProviderName: "test",
+          meta: {
+            dataProviderName: "test",
+          },
         }),
       {
         wrapper: TestWrapper({
@@ -31,13 +33,12 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
     expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       callback: subscriptionParams.onLiveEvent,
       params: undefined,
       types: ["*"],
-      dataProviderName: "test",
       meta: {
         dataProviderName: "test",
       },
@@ -65,7 +66,7 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).not.toBeCalled();
+    expect(onSubscribeMock).not.toHaveBeenCalled();
   });
 
   it("useSubscribe spesific type", async () => {
@@ -81,7 +82,9 @@ describe("useSubscribe Hook", () => {
           channel: "channel",
           onLiveEvent: onLiveEventMock,
           types: ["test", "test2"],
-          dataProviderName: "default",
+          meta: {
+            dataProviderName: "default",
+          },
         }),
       {
         wrapper: TestWrapper({
@@ -94,13 +97,12 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
     expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       callback: subscriptionParams.onLiveEvent,
       params: undefined,
       types: ["test", "test2"],
-      dataProviderName: "default",
       meta: {
         dataProviderName: "default",
       },
@@ -132,21 +134,20 @@ describe("useSubscribe Hook", () => {
       },
     );
 
-    expect(onSubscribeMock).toBeCalled();
+    expect(onSubscribeMock).toHaveBeenCalled();
     expect(onSubscribeMock).toHaveBeenCalledWith({
       channel: subscriptionParams.channel,
       callback: subscriptionParams.onLiveEvent,
       params: undefined,
       types: ["*"],
-      dataProviderName: "default",
       meta: {
         dataProviderName: "default",
       },
     });
 
     unmount();
-    expect(onUnsubscribeMock).toBeCalledWith(true);
-    expect(onUnsubscribeMock).toBeCalledTimes(1);
+    expect(onUnsubscribeMock).toHaveBeenCalledWith(true);
+    expect(onUnsubscribeMock).toHaveBeenCalledTimes(1);
   });
 
   it("should not throw error when liveProvider is undefined", async () => {

@@ -4,7 +4,14 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
+import {
+  act,
+  fireEvent,
+  render,
+  TestWrapper,
+  waitFor,
+  mockRouterBindings,
+} from "@test";
 import { Route, Routes } from "react-router";
 
 export const buttonListTests = (
@@ -80,6 +87,22 @@ export const buttonListTests = (
         {
           wrapper: TestWrapper({
             resources: [{ name: "posts", meta: { label: "test" } }],
+            routerProvider: {
+              ...mockRouterBindings,
+              parse() {
+                return () => ({
+                  params: {},
+                  pathname: "/posts",
+                  resource: {
+                    name: "posts",
+                    list: "/posts",
+                    meta: { label: "test" },
+                  },
+                  action: "list",
+                  id: undefined,
+                });
+              },
+            },
             routerInitialEntries: ["/posts"],
           }),
         },
@@ -392,7 +415,7 @@ export const buttonListTests = (
 
     it("should render called function successfully if click the button", async () => {
       const { getByText } = render(
-        <ListButton onClick={() => list()} resourceNameOrRouteName="posts" />,
+        <ListButton onClick={() => list()} resource="posts" />,
         {
           wrapper: TestWrapper({
             resources: [{ name: "posts" }],
@@ -405,37 +428,6 @@ export const buttonListTests = (
       });
 
       expect(list).toHaveBeenCalledTimes(1);
-    });
-
-    it("should redirect with custom route called function successfully if click the button", async () => {
-      const { getByText } = render(
-        <Routes>
-          <Route
-            path="/:resource"
-            element={
-              <ListButton resourceNameOrRouteName="custom-route-posts" />
-            }
-          />
-        </Routes>,
-        {
-          wrapper: TestWrapper({
-            resources: [
-              {
-                name: "posts",
-                options: { route: "custom-route-posts" },
-              },
-              { name: "posts" },
-            ],
-            routerInitialEntries: ["/posts"],
-          }),
-        },
-      );
-
-      await act(async () => {
-        fireEvent.click(getByText("Posts"));
-      });
-
-      expect(window.location.pathname).toBe("/custom-route-posts");
     });
   });
 };

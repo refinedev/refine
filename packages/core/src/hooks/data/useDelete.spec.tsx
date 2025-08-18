@@ -3,11 +3,11 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import {
   MockJSONServer,
   TestWrapper,
+  mockAuthProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
 
-import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   assertList,
   assertListLength,
@@ -129,34 +129,6 @@ describe("useDelete Hook", () => {
     await assertMutationSuccess(result);
   });
 
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const catchFn = jest.fn();
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const { result } = renderHook(() => useDelete(), {
-      wrapper: TestWrapper({}),
-    });
-
-    const resource = "posts";
-
-    result.current.mutate({
-      resource,
-      id: 1,
-      meta: {
-        foo: "bar",
-        gqlQuery: "gqlQuery" as any,
-        gqlMutation: "gqlMutation" as any,
-      },
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
-  });
-
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
     const deleteMock = jest.fn();
 
@@ -186,10 +158,10 @@ describe("useDelete Hook", () => {
     });
 
     await waitFor(() => {
-      expect(deleteMock).toBeCalled();
+      expect(deleteMock).toHaveBeenCalled();
     });
 
-    expect(deleteMock).toBeCalledWith(
+    expect(deleteMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -234,13 +206,13 @@ describe("useDelete Hook", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -274,7 +246,7 @@ describe("useDelete Hook", () => {
           expect(result.current.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -298,6 +270,14 @@ describe("useDelete Hook", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                name: "John Doe",
+                id: "1",
+              }),
+          },
           auditLogProvider: {
             create: createMock,
             get: jest.fn(),
@@ -316,10 +296,13 @@ describe("useDelete Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "delete",
-        author: {},
+        author: {
+          id: "1",
+          name: "John Doe",
+        },
         meta: {
           dataProviderName: "default",
           id: "1",
@@ -353,7 +336,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Success",
         key: "1-posts-notification",
         message: "Successfully deleted a post",
@@ -390,7 +373,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-notification",
         message: "Error (status code: undefined)",
@@ -426,7 +409,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -457,7 +440,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -494,7 +477,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -531,7 +514,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -546,8 +529,11 @@ describe("useDelete Hook", () => {
               deleteOne: deleteOneMock,
             },
           },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
+          authProvider: {
+            login: () => Promise.resolve({ success: true }),
+            logout: () => Promise.resolve({ success: true }),
+            check: () => Promise.resolve({ authenticated: true }),
+            onError: onErrorMock,
           },
           resources: [{ name: "posts" }],
         }),
@@ -562,7 +548,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -605,12 +591,12 @@ describe("useDelete Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(deleteOneFooMock).toBeCalledWith(
+    expect(deleteOneFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(deleteOneDefaultMock).not.toBeCalled();
+    expect(deleteOneDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -644,7 +630,7 @@ describe("useDelete Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(deleteOneMock).toBeCalledWith(
+    expect(deleteOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -694,12 +680,12 @@ describe("useDelete Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(deleteOneFooMock).toBeCalledWith(
+      expect(deleteOneFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(deleteOneDefaultMock).not.toBeCalled();
+      expect(deleteOneDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -735,7 +721,7 @@ describe("useDelete Hook", () => {
         expect(result.current.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -782,7 +768,7 @@ describe("useDelete Hook", () => {
       });
 
       await waitFor(() => {
-        expect(deleteOneMock).toBeCalledWith(
+        expect(deleteOneMock).toHaveBeenCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
               bar: "baz",
@@ -828,8 +814,8 @@ describe("useDelete Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(deleteOneMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(deleteOneMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {

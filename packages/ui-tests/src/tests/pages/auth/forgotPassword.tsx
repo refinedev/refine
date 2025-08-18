@@ -5,7 +5,6 @@ import {
   fireEvent,
   mockAuthProvider,
   mockRouterBindings,
-  MockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -192,59 +191,27 @@ export const pageForgotPasswordTests = (
       fireEvent.click(getByText(/send reset instructions/i));
 
       await waitFor(() => {
-        expect(forgotPasswordMock).toBeCalledTimes(1);
+        expect(forgotPasswordMock).toHaveBeenCalledTimes(1);
       });
 
-      expect(forgotPasswordMock).toBeCalledWith({
+      expect(forgotPasswordMock).toHaveBeenCalledWith({
         email: "demo@refine.dev",
       });
-    });
-
-    it("should work with legacy router provider Link", async () => {
-      jest.spyOn(console, "error").mockImplementation((message) => {
-        console.warn(message);
-      });
-      const LinkComponentMock = jest.fn();
-
-      render(<ForgotPasswordPage />, {
-        wrapper: TestWrapper({
-          legacyRouterProvider: {
-            ...MockRouterProvider,
-            Link: LinkComponentMock,
-          },
-        }),
-      });
-
-      expect(LinkComponentMock).toBeCalledWith(
-        expect.objectContaining({
-          to: "/login",
-        }),
-        {},
-      );
     });
 
     it("should work with new router provider Link", async () => {
       jest.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
-      const LinkComponentMock = jest.fn();
 
-      render(<ForgotPasswordPage />, {
-        wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
-            fns: {
-              Link: LinkComponentMock,
-            },
-          }),
-        }),
+      const { getByText } = render(<ForgotPasswordPage />, {
+        wrapper: TestWrapper({}),
       });
 
-      expect(LinkComponentMock).toBeCalledWith(
-        expect.objectContaining({
-          to: "/login",
-        }),
-        {},
-      );
+      const link = getByText(/sign in/i);
+
+      expect(link).toBeInTheDocument();
+      expect(link.getAttribute("href")).toBe("/login");
     });
 
     it("should should accept 'mutationVariables'", async () => {
