@@ -13,6 +13,7 @@ import { renameUseSelectQueryResult } from "./rename-query-and-mutation-result/u
 import { renameUseShowQueryResult } from "./rename-query-and-mutation-result/use-show-query-result";
 import { renameUseSimpleListQueryResult } from "./rename-query-and-mutation-result/use-simple-list-query-result";
 import { renameUseTableQueryResult } from "./rename-query-and-mutation-result/use-table-query-result";
+import { removeUseNewQueryKeysFromRefineOptions } from "./v5/remove-useNewQueryKeys-from-refine-options";
 import {
   CONFIG_FILE_NAME,
   CodemodConfig,
@@ -96,6 +97,7 @@ export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
   const source = j(file.source);
 
+  removeUseNewQueryKeysFromRefineOptions(j, source);
   fixV4Deprecations(j, source);
   removeV3LegacyAuthProviderCompatibleFromAuthHooks(j, source);
   metaDataToMeta(j, source);

@@ -686,7 +686,9 @@ const fixUseSelectHasPaginationToPaginationMode = (
 
     const hasMode = (
       paginationProperty as unknown as any
-    )?.value?.properties?.find((p) => p["name"] === "mode");
+    )?.value?.properties?.find(
+      (p) => p.key?.name === "mode" || p["name"] === "mode",
+    );
 
     if (hasPaginationProperty && !hasMode) {
       if (paginationProperty) {
@@ -831,7 +833,11 @@ const setSortertoSetSorters = (j: JSCodeshift, source: Collection) => {
         (p) => p.value.name === "sorter",
       );
 
-      if (sorterPropery) {
+      const sortersProperty = path.parentPath.node.id.properties.find(
+        (p) => p.key?.name === "sorters" || p.value.name === "sorter",
+      );
+
+      if (sorterPropery && !sortersProperty) {
         sorterPropery.value.name = "sorters: sorter";
       }
     });
