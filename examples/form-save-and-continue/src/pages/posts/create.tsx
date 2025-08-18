@@ -20,6 +20,10 @@ export const PostCreate: React.FC = () => {
 
   const { options } = useSelect({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const handleSubmit = async (redirectTo: "list" | "edit" | "create") => {

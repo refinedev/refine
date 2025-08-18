@@ -47,6 +47,7 @@ function App() {
               },
             ]}
             notificationProvider={useNotificationProvider}
+            options={{}}
           >
             <Routes>
               <Route

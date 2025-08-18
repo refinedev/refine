@@ -68,6 +68,7 @@ export const PostList: React.FC = () => {
     refineCore: { setCurrent, pageCount, current },
   } = useTable({
     columns,
+
     refineCoreProps: {
       meta: {
         populate: ["category"],

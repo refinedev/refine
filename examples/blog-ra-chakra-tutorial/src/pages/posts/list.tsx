@@ -88,6 +88,7 @@ export const PostList = () => {
     refineCore: { current, pageCount, setCurrent },
   } = useTable({
     columns,
+
     refineCoreProps: {
       meta: {
         populate: ["category"],

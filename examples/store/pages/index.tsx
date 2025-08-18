@@ -64,6 +64,7 @@ const Home = ({
     setFilters,
   } = useTable<Product>({
     resource: "products",
+
     filters: {
       permanent: [
         {
@@ -93,7 +94,9 @@ const Home = ({
           : []),
       ],
     },
+
     pagination: { mode: "off" },
+
     queryOptions: {
       initialData:
         searchQuery === initialQuery &&

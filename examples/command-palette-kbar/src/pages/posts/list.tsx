@@ -34,6 +34,10 @@ export const PostList = () => {
     optionLabel: "title",
     optionValue: "id",
     defaultValue: getDefaultFilter("category.id", filters, "in"),
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

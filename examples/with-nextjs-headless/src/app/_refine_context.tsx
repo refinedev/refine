@@ -45,7 +45,6 @@ export const RefineContext = ({ children }: PropsWithChildren) => {
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
-              useNewQueryKeys: true,
             }}
           >
             {children}

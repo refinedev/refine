@@ -23,6 +23,7 @@ export const RecentSales = () => {
     setFilters,
   } = useTable<IOrder>({
     resource: "orders",
+
     pagination: {
       pageSize: 5,
     },

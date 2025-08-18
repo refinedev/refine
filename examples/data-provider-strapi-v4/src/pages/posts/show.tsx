@@ -18,7 +18,7 @@ const { Title, Text } = Typography;
 
 export const PostShow = () => {
   const { query: queryResult } = useShow<IPost>({
-    metaData: { populate: ["category", "cover"] },
+    meta: { populate: ["category", "cover"] },
   });
 
   const { data, isLoading } = queryResult;

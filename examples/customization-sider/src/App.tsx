@@ -46,7 +46,17 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2 Sider={CustomSider}>
+                  <ThemedLayoutV2
+                    Sider={({ Title, meta, render }) => {
+                      return (
+                        <CustomSider
+                          Title={Title}
+                          meta={meta}
+                          render={render}
+                        />
+                      );
+                    }}
+                  >
                     <Outlet />
                   </ThemedLayoutV2>
                 }

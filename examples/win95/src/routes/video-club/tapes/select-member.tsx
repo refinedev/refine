@@ -48,6 +48,7 @@ export const VideoClubPageTapeSelectMember = (props: Props) => {
     setFilters,
   } = useTable<ExtendedMember>({
     resource: "members",
+
     meta: {
       select: "*, rentals(*)",
     },

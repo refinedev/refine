@@ -73,7 +73,6 @@ const App: React.FC = () => {
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
                 breadcrumb: false,
-                useNewQueryKeys: true,
               }}
               notificationProvider={useNotificationProvider}
               resources={[

@@ -104,7 +104,9 @@ export const PostList: React.FC = () => {
     nextPage,
     previousPage,
     setPageSize,
-  } = useTable<IPost>({ columns });
+  } = useTable<IPost>({
+    columns,
+  });
 
   const categoryIds = tableData?.data?.map((item) => item.category?.[0]) ?? [];
 

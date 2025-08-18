@@ -6,17 +6,17 @@ import type { IOrder } from "../../../interfaces";
 export const AllOrdersMap: React.FC = () => {
   const { data: orderData } = useList<IOrder>({
     resource: "orders",
-    config: {
-      filters: [
-        {
-          field: "status.text",
-          operator: "eq",
-          value: "On The Way",
-        },
-      ],
-      pagination: {
-        mode: "off",
+
+    filters: [
+      {
+        field: "status.text",
+        operator: "eq",
+        value: "On The Way",
       },
+    ],
+
+    pagination: {
+      mode: "off",
     },
   });
 

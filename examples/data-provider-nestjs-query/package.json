@@ -28,7 +28,7 @@
     "@refinedev/core": "^4.57.11",
     "@refinedev/nestjs-query": "^1.3.5",
     "@refinedev/react-router": "^1.0.1",
-    "@uiw/react-md-editor": "^3.19.5",
+    "@uiw/react-md-editor": "^4.0.8",
     "antd": "^5.23.0",
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.6",

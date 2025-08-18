@@ -30,7 +30,7 @@
     "@refinedev/inferencer": "^4.7.1",
     "@refinedev/react-router": "^0.1.0",
     "@refinedev/simple-rest": "^5.0.8",
-    "@uiw/react-md-editor": "^3.19.5",
+    "@uiw/react-md-editor": "^4.0.8",
     "antd": "^5.23.0",
     "cross-env": "^7.0.3",
     "immutability-helper": "^3.1.1",

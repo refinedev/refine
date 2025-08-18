@@ -38,6 +38,7 @@ export const VideoClubMemberPageList = () => {
     setFilters,
   } = useTable<ExtendedMember>({
     resource: "members",
+
     meta: {
       select: "*, rentals(*)",
     },

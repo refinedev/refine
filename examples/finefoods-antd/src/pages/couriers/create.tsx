@@ -130,12 +130,20 @@ const useFormList = (props: UseFormListProps) => {
 
   const { selectProps: storeSelectProps } = useSelect<IStore>({
     resource: "stores",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const { selectProps: vehicleSelectProps } = useSelect<IVehicle>({
     resource: "vehicles",
     optionLabel: "model",
     optionValue: "id",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const formList = useMemo(() => {

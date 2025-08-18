@@ -209,6 +209,10 @@ export const PostList: React.FC = () => {
   const { options } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: categoryIds,
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const renderRowSubComponent = useCallback(

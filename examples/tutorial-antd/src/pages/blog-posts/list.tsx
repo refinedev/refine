@@ -28,6 +28,10 @@ export const BlogPostList = () => {
 
   const { selectProps: categorySelectProps } = useSelect({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

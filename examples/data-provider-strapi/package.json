@@ -27,7 +27,7 @@
     "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/strapi": "^4.1.15",
-    "@uiw/react-md-editor": "^3.19.5",
+    "@uiw/react-md-editor": "^4.0.8",
     "antd": "^5.23.0",
     "axios": "^1.11.0",
     "react": "^19.1.0",

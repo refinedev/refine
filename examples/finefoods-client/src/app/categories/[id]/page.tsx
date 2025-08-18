@@ -28,13 +28,15 @@ export default async function CategoryShowPage({
         queryOptions: {
           initialData: products,
         },
-        permanentFilter: [
-          {
-            field: "category.id",
-            operator: "eq",
-            value: params.id,
-          },
-        ],
+        filters: {
+          permanent: [
+            {
+              field: "category.id",
+              operator: "eq",
+              value: params.id,
+            },
+          ],
+        },
       }}
     />
   );

@@ -8,12 +8,11 @@ function useData() {
   //using refine's useList hook
 
   const { data } = useList<IProduct>({
-    config: {
-      pagination: {
-        current: 2,
-      },
-    },
     resource: "products",
+
+    pagination: {
+      current: 2,
+    },
   });
 
   //modifying fecthed data and adding column property

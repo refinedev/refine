@@ -107,23 +107,33 @@ export const PostList: React.FC = () => {
     },
   } = useTable({
     columns,
+
     refineCoreProps: {
-      initialCurrent: 2,
-      initialPageSize: 10,
-      initialSorter: [
-        {
-          field: "title",
-          order: "asc",
-        },
-      ],
-      initialFilter: [
-        {
-          field: "status",
-          operator: "eq",
-          value: "draft",
-        },
-      ],
       syncWithLocation: true,
+
+      pagination: {
+        current: 2,
+        pageSize: 10,
+      },
+
+      filters: {
+        initial: [
+          {
+            field: "status",
+            operator: "eq",
+            value: "draft",
+          },
+        ],
+      },
+
+      sorters: {
+        initial: [
+          {
+            field: "title",
+            order: "asc",
+          },
+        ],
+      },
     },
   });
 

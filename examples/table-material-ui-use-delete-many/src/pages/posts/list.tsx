@@ -33,7 +33,9 @@ export const PostList: React.FC = () => {
   };
 
   const { dataGridProps } = useDataGrid<IPost>({
-    initialPageSize: 10,
+    pagination: {
+      pageSize: 10,
+    },
   });
 
   const {
@@ -41,7 +43,10 @@ export const PostList: React.FC = () => {
     query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
-    hasPagination: false,
+
+    pagination: {
+      mode: "off",
+    },
   });
 
   const columns = React.useMemo<GridColDef<IPost>[]>(

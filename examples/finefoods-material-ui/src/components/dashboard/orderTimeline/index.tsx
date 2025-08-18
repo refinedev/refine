@@ -22,14 +22,20 @@ export const OrderTimeline: React.FC = () => {
     pageCount,
   } = useTable<IOrder>({
     resource: "orders",
-    initialSorter: [
-      {
-        field: "createdAt",
-        order: "desc",
-      },
-    ],
-    initialPageSize: 7,
     syncWithLocation: false,
+
+    pagination: {
+      pageSize: 7,
+    },
+
+    sorters: {
+      initial: [
+        {
+          field: "createdAt",
+          order: "desc",
+        },
+      ],
+    },
   });
 
   const { data } = tableQueryResult;

@@ -68,7 +68,6 @@ export default function RootLayout({
                     options={{
                       syncWithLocation: true,
                       warnWhenUnsavedChanges: true,
-                      useNewQueryKeys: true,
                     }}
                   >
                     {children}

@@ -101,6 +101,7 @@ export const PostList = () => {
     },
   } = useTable<IPost>({
     columns,
+
     refineCoreProps: {
       meta: {
         select: "*, categories(*)",

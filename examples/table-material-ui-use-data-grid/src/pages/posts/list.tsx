@@ -8,23 +8,32 @@ import type { ICategory, IPost } from "../../interfaces";
 
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({
-    initialCurrent: 1,
-    initialPageSize: 10,
     editable: true,
-    initialSorter: [
-      {
-        field: "title",
-        order: "asc",
-      },
-    ],
-    initialFilter: [
-      {
-        field: "status",
-        operator: "eq",
-        value: "draft",
-      },
-    ],
     syncWithLocation: true,
+
+    pagination: {
+      current: 1,
+      pageSize: 10,
+    },
+
+    filters: {
+      initial: [
+        {
+          field: "status",
+          operator: "eq",
+          value: "draft",
+        },
+      ],
+    },
+
+    sorters: {
+      initial: [
+        {
+          field: "title",
+          order: "asc",
+        },
+      ],
+    },
   });
 
   const {
@@ -32,6 +41,10 @@ export const PostList: React.FC = () => {
     query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const columns = React.useMemo<GridColDef<IPost>[]>(
