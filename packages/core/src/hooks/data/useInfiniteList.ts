@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { getXRay } from "@refinedev/devtools-internal";
 import {
   type InfiniteData,
-  type InfiniteQueryObserverResult,
   type UseInfiniteQueryOptions,
+  type UseInfiniteQueryResult,
   useInfiniteQuery,
 } from "@tanstack/react-query";
 
@@ -37,6 +37,8 @@ import type {
 } from "../../contexts/data/types";
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { MakeOptional } from "../../definitions/types";
+
 import {
   type UseLoadingOvertimeOptionsProps,
   type UseLoadingOvertimeReturnType,
@@ -73,31 +75,15 @@ type BaseInfiniteListProps = {
 };
 
 // Custom type to extend UseInfiniteQueryOptions
-export type UseInfiniteListQueryOptions<TQueryFnData, TError, TData> = Omit<
-  UseInfiniteQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
-  >,
-  "queryKey" | "queryFn" | "initialPageParam"
-> & {
-  // Make queryKey, queryFn, and initialPageParam optional
-  queryKey?: UseInfiniteQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
-  >["queryKey"];
-  queryFn?: UseInfiniteQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
-  >["queryFn"];
-  initialPageParam?: UseInfiniteQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
-  >["initialPageParam"];
-};
+export type UseInfiniteListQueryOptions<TQueryFnData, TError, TData> =
+  MakeOptional<
+    UseInfiniteQueryOptions<
+      GetListResponse<TQueryFnData>,
+      TError,
+      InfiniteData<GetListResponse<TData>>
+    >,
+    "queryKey" | "queryFn" | "initialPageParam"
+  >;
 
 export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
   /**
@@ -165,11 +151,10 @@ export const useInfiniteList = <
   overtimeOptions,
   onSuccess,
   onError,
-}: UseInfiniteListProps<
-  TQueryFnData,
-  TError,
-  TData
->): InfiniteQueryObserverResult<GetListResponse<TData>, TError> &
+}: UseInfiniteListProps<TQueryFnData, TError, TData>): UseInfiniteQueryResult<
+  InfiniteData<GetListResponse<TData>>,
+  TError
+> &
   UseLoadingOvertimeReturnType => {
   const { resources, resource, identifier } = useResource(resourceFromProp);
 
@@ -233,7 +218,7 @@ export const useInfiniteList = <
   const queryResponse = useInfiniteQuery<
     GetListResponse<TQueryFnData>,
     TError,
-    GetListResponse<TData>
+    InfiniteData<GetListResponse<TData>>
   >({
     queryKey: keys()
       .data(pickedDataProvider)
@@ -264,7 +249,7 @@ export const useInfiniteList = <
 
       return getList<TQueryFnData>({
         resource: resource.name,
-        pagination: paginationProperties as any,
+        pagination: prefferedPagination,
         filters: prefferedFilters,
         sorters: prefferedSorters,
         meta,
@@ -349,9 +334,10 @@ export const useInfiniteList = <
     isLoading: queryResponse.isFetching,
   });
 
+  queryResponse.data?.pages;
+
   return {
     ...queryResponse,
     overtime: { elapsedTime },
-  } as InfiniteQueryObserverResult<GetListResponse<TData>, TError> &
-    UseLoadingOvertimeReturnType;
+  };
 };
