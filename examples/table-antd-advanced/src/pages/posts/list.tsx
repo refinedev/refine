@@ -42,6 +42,10 @@ export const PostList = () => {
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     defaultValue: categoryIds,
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const {

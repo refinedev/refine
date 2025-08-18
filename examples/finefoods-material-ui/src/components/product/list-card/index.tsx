@@ -28,7 +28,7 @@ export const ProductListCard = (props: Props) => {
   const { pathname } = useLocation();
   const { editUrl } = useNavigation();
   const t = useTranslate();
-  const products = props.tableQueryResult?.data?.data || [];
+  const products = props.tableQuery?.data?.data || [];
 
   const categoryFilters = useMemo(() => {
     const filter = props.filters.find((filter) => {

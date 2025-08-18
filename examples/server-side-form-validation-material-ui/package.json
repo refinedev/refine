@@ -33,7 +33,7 @@
     "@refinedev/react-hook-form": "^4.10.2",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.11",
-    "@uiw/react-md-editor": "^3.19.5",
+    "@uiw/react-md-editor": "^4.0.8",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0",

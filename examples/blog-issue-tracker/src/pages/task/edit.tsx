@@ -9,20 +9,36 @@ export const TaskEdit = () => {
 
   const { selectProps: labelSelectProps } = useSelect<ITask>({
     resource: "label",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const { selectProps: priorityProps } = useSelect<IPriority>({
     resource: "priority",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const { selectProps: assigneProps } = useSelect<IAuthUser>({
     resource: "users",
     optionValue: "id",
     optionLabel: "email",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const { selectProps: statusProps } = useSelect<IStatus>({
     resource: "status",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

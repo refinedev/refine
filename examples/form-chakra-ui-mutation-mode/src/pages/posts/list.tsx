@@ -135,12 +135,14 @@ export const PostList: React.FC = () => {
   } = useTable({
     columns,
     refineCoreProps: {
-      initialSorter: [
-        {
-          field: "id",
-          order: "asc",
-        },
-      ],
+      sorters: {
+        initial: [
+          {
+            field: "id",
+            order: "asc",
+          },
+        ],
+      },
     },
   });
 

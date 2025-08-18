@@ -21,11 +21,16 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
     pageSize,
   } = useTable<IProduct>({
     resource: "products",
+
     queryOptions: {
       initialData: products,
     },
-    initialPageSize: 9,
-    metaData: { populate: ["image"] },
+
+    meta: { populate: ["image"] },
+
+    pagination: {
+      pageSize: 9,
+    },
   });
 
   const totalPageCount = Math.ceil(
@@ -115,7 +120,7 @@ export default ProductList;
 export const getServerSideProps: GetServerSideProps = async () => {
   const data = await DataProvider(`${API_URL}/api`).getList<IProduct>({
     resource: "products",
-    metaData: { populate: ["image"] },
+    meta: { populate: ["image"] },
     pagination: { current: 1, pageSize: 9 },
   });
 

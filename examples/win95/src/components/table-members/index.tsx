@@ -37,6 +37,7 @@ export const TableMembers = ({ selectedMember, setSelectedMember }: Props) => {
     setFilters,
   } = useTable<ExtendedMember>({
     resource: "members",
+
     meta: {
       select: "*, rentals(*)",
     },

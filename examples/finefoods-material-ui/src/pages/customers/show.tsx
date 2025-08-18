@@ -42,6 +42,7 @@ export const CustomerShow = () => {
     IOrderFilterVariables
   >({
     resource: "orders",
+
     sorters: {
       initial: [
         {
@@ -50,6 +51,7 @@ export const CustomerShow = () => {
         },
       ],
     },
+
     filters: {
       permanent: [
         {
@@ -59,12 +61,15 @@ export const CustomerShow = () => {
         },
       ],
     },
+
     pagination: {
       mode: "off",
     },
+
     queryOptions: {
       enabled: user !== undefined,
     },
+
     syncWithLocation: false,
   });
 

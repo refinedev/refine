@@ -61,7 +61,6 @@ function App() {
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
-              useNewQueryKeys: true,
               projectId: "Itxz31-0B7d8Y-lL2E5w",
             }}
           >

@@ -35,7 +35,10 @@ export const PostList = () => {
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
     fetchSize: 20,
-    pagination: { current: page },
+    pagination: {
+      current: page,
+      mode: "server",
+    },
 
     queryOptions: {
       keepPreviousData: true,

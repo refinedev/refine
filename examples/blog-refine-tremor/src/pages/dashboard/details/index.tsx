@@ -138,12 +138,15 @@ export const Details = () => {
     setPageSize,
   } = useTable({
     columns,
+
     refineCoreProps: {
       dataProviderName: "metrics",
       resource: "orders",
+
       filters: {
         mode: "off",
       },
+
       queryOptions: {
         select(data) {
           const retrievedData = data.data;

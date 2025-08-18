@@ -49,30 +49,40 @@ function App() {
               {
                 name: "companies",
                 list: "/companies",
-                icon: <InfoCircleOutlined />,
+                meta: {
+                  icon: <InfoCircleOutlined />,
+                },
               },
               {
                 name: "clients",
                 list: "/clients",
-                icon: <TeamOutlined />,
+                meta: {
+                  icon: <TeamOutlined />,
+                },
               },
               {
                 name: "contacts",
                 list: "/contacts",
                 edit: "/contacts/:id/edit",
-                icon: <UserAddOutlined />,
+                meta: {
+                  icon: <UserAddOutlined />,
+                },
               },
               {
                 name: "missions",
                 list: "/missions",
-                icon: <SlidersOutlined />,
+                meta: {
+                  icon: <SlidersOutlined />,
+                },
               },
               {
                 name: "invoices",
                 list: "/invoices",
                 create: "/invoices/create",
                 edit: "invoices/:id/edit",
-                icon: <FileAddOutlined />,
+                meta: {
+                  icon: <FileAddOutlined />,
+                },
               },
             ]}
             authProvider={authProvider}

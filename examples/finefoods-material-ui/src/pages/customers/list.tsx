@@ -28,7 +28,9 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
     HttpError,
     IUserFilterVariables
   >({
-    initialPageSize: 10,
+    pagination: {
+      pageSize: 10,
+    },
   });
 
   const columns = useMemo<GridColDef<IUser>[]>(

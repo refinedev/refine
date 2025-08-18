@@ -13,10 +13,9 @@ import {
 const Home = () => {
   const { data, isLoading, isError } = useList({
     resource: "properties",
-    config: {
-      pagination: {
-        pageSize: 4,
-      },
+
+    pagination: {
+      pageSize: 4,
     },
   });
 

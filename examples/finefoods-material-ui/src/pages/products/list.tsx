@@ -22,7 +22,6 @@ export const ProductList = ({ children }: PropsWithChildren) => {
   });
 
   const go = useGo();
-  const { replace } = useNavigation();
   const { pathname } = useLocation();
   const { createUrl } = useNavigation();
   const t = useTranslate();
@@ -47,7 +46,16 @@ export const ProductList = ({ children }: PropsWithChildren) => {
     newView: View,
   ) => {
     // remove query params (pagination, filters, etc.) when changing view
-    replace("");
+    go({
+      to: pathname,
+      query: {
+        view: newView,
+      },
+      options: {
+        keepQuery: false,
+      },
+      type: "replace",
+    });
 
     setView(newView);
     localStorage.setItem("product-view", newView);

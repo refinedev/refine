@@ -162,7 +162,6 @@ const App = ({ children, defaultMode }: React.PropsWithChildren<AppProps>) => {
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
-              useNewQueryKeys: true,
             }}
           >
             {children}

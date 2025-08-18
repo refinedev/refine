@@ -25,13 +25,16 @@ export const CategoryList: React.FC = () => {
   // eslint-disable-next-line
   const { getHeaderGroups, getRowModel } = useTable<any>({
     columns,
+
     refineCoreProps: {
-      permanentSorter: [
-        {
-          field: "id",
-          order: "desc",
-        },
-      ],
+      sorters: {
+        permanent: [
+          {
+            field: "id",
+            order: "desc",
+          },
+        ],
+      },
     },
   });
   return (

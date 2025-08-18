@@ -35,6 +35,7 @@ export const VideoClubPageBrowseTitles = () => {
     setFilters,
   } = useTable<ExtendedVideoTitle>({
     resource: "titles",
+
     meta: {
       select: "*, tapes(*), rentals(*)",
     },

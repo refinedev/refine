@@ -19,13 +19,15 @@ import { Table, Space, Select } from "antd";
 import type { IPost, ICategory } from "../../interfaces";
 
 export const PostList = () => {
-  const { tableProps, sorter } = useTable<IPost>({
-    initialSorter: [
-      {
-        field: "id",
-        order: "desc",
-      },
-    ],
+  const { tableProps, sorters: sorter } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    },
   });
 
   const categoryIds =
@@ -40,6 +42,10 @@ export const PostList = () => {
 
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

@@ -12,6 +12,10 @@ export const ClientsPageCreate = () => {
     resource: "accounts",
     optionLabel: "company_name",
     optionValue: "id",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

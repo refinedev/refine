@@ -3,9 +3,7 @@ import { useGetIdentity, useOne } from "@refinedev/core";
 import { Profile } from "components";
 
 const MyProfile = () => {
-  const { data: user } = useGetIdentity({
-    v3LegacyAuthProviderCompatible: true,
-  });
+  const { data: user } = useGetIdentity();
   const { data, isLoading, isError } = useOne({
     resource: "users",
     id: user?.userid,

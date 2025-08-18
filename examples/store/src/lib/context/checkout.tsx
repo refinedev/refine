@@ -93,7 +93,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     queryOptions: {
       enabled: !!cartId,
     },
-    metaData: {
+    meta: {
       cart,
     },
   });

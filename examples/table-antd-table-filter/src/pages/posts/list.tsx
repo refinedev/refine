@@ -158,6 +158,10 @@ export const PostList = () => {
 const Filter: React.FC<{ formProps: FormProps }> = ({ formProps }) => {
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

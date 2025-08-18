@@ -33,6 +33,10 @@ export const PostList = () => {
     resource: "categories",
     optionLabel: "title",
     optionValue: "id",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const { data: canAccess } = useCan({

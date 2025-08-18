@@ -17,7 +17,10 @@ export function RecentSales() {
   const { dataGridProps, setCurrent, setFilters, filters } =
     useDataGrid<IOrder>({
       resource: "orders",
-      initialPageSize: 5,
+
+      pagination: {
+        pageSize: 5,
+      },
     });
 
   const currencyFormatter = new Intl.NumberFormat("en-US", {

@@ -97,13 +97,15 @@ export const RecentSales = () => {
     getHeaderGroups,
     getRowModel,
   } = useTable({
+    columns,
+
     refineCoreProps: {
       resource: "orders",
+
       pagination: {
         pageSize: 5,
       },
     },
-    columns,
   });
 
   const header = (

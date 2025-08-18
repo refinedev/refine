@@ -4,7 +4,7 @@ import { Heading } from "@chakra-ui/react";
 
 export const PostShow = () => {
   const { query: queryResult } = useShow({
-    metaData: {
+    meta: {
       populate: ["category"],
     },
   });
