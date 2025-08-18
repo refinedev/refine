@@ -19,6 +19,7 @@ import type {
 } from "../../contexts/data/types";
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
+import type { MakeOptional } from "../../definitions/types";
 
 export type UseShowReturnType<
   TData extends BaseRecord = BaseRecord,
@@ -47,10 +48,13 @@ export type UseShowProps<
   /**
    * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<
-    GetOneResponse<TQueryFnData>,
-    TError,
-    GetOneResponse<TData>
+  queryOptions?: MakeOptional<
+    UseQueryOptions<
+      GetOneResponse<TQueryFnData>,
+      TError,
+      GetOneResponse<TData>
+    >,
+    "queryKey" | "queryFn"
   >;
   /**
    * Additional meta data to pass to the data provider's `getOne`
