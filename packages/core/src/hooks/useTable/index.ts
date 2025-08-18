@@ -38,6 +38,7 @@ import type {
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { BaseListProps } from "../data/useList";
+import type { MakeOptional } from "../../definitions/types/index";
 import type {
   UseLoadingOvertimeOptionsProps,
   UseLoadingOvertimeReturnType,
@@ -106,10 +107,13 @@ export type useTableProps<TQueryFnData, TError, TData> = {
   /**
    * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
    */
-  queryOptions?: UseQueryOptions<
-    GetListResponse<TQueryFnData>,
-    TError,
-    GetListResponse<TData>
+  queryOptions?: MakeOptional<
+    UseQueryOptions<
+      GetListResponse<TQueryFnData>,
+      TError,
+      GetListResponse<TData>
+    >,
+    "queryKey" | "queryFn"
   >;
   /**
    * Metadata query for dataProvider

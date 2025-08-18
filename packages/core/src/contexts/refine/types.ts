@@ -22,9 +22,17 @@ export type LayoutProps = {
   Sider?: React.FC<{
     Title?: React.FC<TitleProps>;
     render?: (props: {
-      items: JSX.Element[];
+      /**
+       * menu items created depending on the `resources` defined in `<Refine>` component.
+       */
+      items: React.JSX.Element[];
+      /**
+       * logout button if you have `authProvider` defined and the current session is authenticated.
+       */
       logout: React.ReactNode;
-      dashboard: React.ReactNode;
+      /**
+       * Whether the sider is collapsed or not.
+       */
       collapsed: boolean;
     }) => React.ReactNode;
     meta?: Record<string, unknown>;
@@ -33,7 +41,6 @@ export type LayoutProps = {
   Title?: React.FC<TitleProps>;
   Footer?: React.FC;
   OffLayoutArea?: React.FC;
-  dashboard?: boolean;
   children?: ReactNode;
 };
 

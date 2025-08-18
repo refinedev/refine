@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Grid, Layout as AntdLayout } from "antd";
 
 import { ThemedSiderV2 as DefaultSider } from "./sider";
