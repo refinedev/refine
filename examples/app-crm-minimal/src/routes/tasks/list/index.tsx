@@ -1,11 +1,6 @@
 import React from "react";
 
-import {
-  type HttpError,
-  useList,
-  useNavigation,
-  useUpdate,
-} from "@refinedev/core";
+import { type HttpError, useGo, useList, useUpdate } from "@refinedev/core";
 import type { GetFieldsFromList } from "@refinedev/nestjs-query";
 
 import type { DragEndEvent } from "@dnd-kit/core";
@@ -28,7 +23,7 @@ type Task = GetFieldsFromList<TasksQuery>;
 type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
 
 export const TasksListPage = ({ children }: React.PropsWithChildren) => {
-  const { replace } = useNavigation();
+  const go = useGo();
 
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
     resource: "taskStages",
@@ -131,7 +126,7 @@ export const TasksListPage = ({ children }: React.PropsWithChildren) => {
         ? "/tasks/new"
         : `/tasks/new?stageId=${args.stageId}`;
 
-    replace(path);
+    go({ to: path, type: "replace" });
   };
 
   const isLoading = isLoadingTasks || isLoadingStages;

@@ -1,5 +1,6 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useMany } from "@refinedev/core";
+import { keepPreviousData } from "@tanstack/react-query";
 import {
   List,
   TextField,
@@ -32,48 +33,52 @@ export const PostList = () => {
     },
   });
 
-  const { selectProps: categorySelectProps } = useSelect<ICategory>({
-    resource: "categories",
-    fetchSize: 20,
-    pagination: {
-      current: page,
-      mode: "server",
-    },
-
-    queryOptions: {
-      keepPreviousData: true,
-      onSuccess(data) {
-        if (!data.data?.length) {
-          hasMore.current = false;
-        }
-
-        const normalizedData = data.data?.map((item) => ({
-          label: item.title,
-          value: item.id,
-        }));
-
-        if (!search?.length) {
-          setOptions((prev) => [...(prev || []), ...normalizedData]);
-        } else {
-          setOptions(normalizedData);
-        }
+  const { selectProps: categorySelectProps, query: categoriesQuery } =
+    useSelect<ICategory>({
+      resource: "categories",
+      pagination: {
+        current: page,
+        pageSize: 20,
+        mode: "server",
       },
-    },
 
-    onSearch: (value) => {
-      setPage(1);
-      hasMore.current = true;
-      setSearch(value);
+      queryOptions: {
+        placeholderData: keepPreviousData,
+      },
 
-      return [
-        {
-          field: "title",
-          operator: "contains",
-          value,
-        },
-      ];
-    },
-  });
+      onSearch: (value) => {
+        setPage(1);
+        hasMore.current = true;
+        setSearch(value);
+
+        return [
+          {
+            field: "title",
+            operator: "contains",
+            value,
+          },
+        ];
+      },
+    });
+
+  useEffect(() => {
+    const data = categoriesQuery?.data;
+    if (!data?.data?.length) {
+      hasMore.current = false;
+      return;
+    }
+
+    const normalizedData = data.data?.map((item: any) => ({
+      label: item.title,
+      value: item.id,
+    }));
+
+    if (!search?.length) {
+      setOptions((prev) => [...(prev || []), ...normalizedData]);
+    } else {
+      setOptions(normalizedData);
+    }
+  }, [categoriesQuery?.data, search]);
 
   return (
     <List>

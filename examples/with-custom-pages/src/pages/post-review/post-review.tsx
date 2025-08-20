@@ -36,7 +36,7 @@ export const PostReview: React.FC = () => {
 
   const mutationResult = useUpdate<IPost>();
 
-  const { mutate, isLoading: mutateIsLoading } = mutationResult;
+  const { mutate, isPending: mutateIsLoading } = mutationResult;
 
   const handleUpdate = (item: IPost, status: string) => {
     mutate({ resource: "posts", id: item.id, values: { ...item, status } });

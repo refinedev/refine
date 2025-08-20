@@ -27,9 +27,9 @@ const App: React.FC = () => {
         resources={[
           {
             name: "posts",
-            list: PostList,
-            create: PostCreate,
-            edit: PostEdit,
+            list: "/posts",
+            create: "/posts/create",
+            edit: "/posts/edit/:id",
           },
         ]}
         options={{

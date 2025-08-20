@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  Layout,
+  ThemedLayoutV2,
   ErrorComponent,
 } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
@@ -43,9 +43,9 @@ const App = () => {
         <Routes>
           <Route
             element={
-              <Layout>
+              <ThemedLayoutV2>
                 <Outlet />
-              </Layout>
+              </ThemedLayoutV2>
             }
           >
             <Route index element={<NavigateToResource resource="posts" />} />

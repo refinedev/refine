@@ -51,7 +51,7 @@ export const PostList = () => {
   const {
     mutate,
     isSuccess,
-    isLoading: deleteManyIsLoading,
+    isPending: deleteManyIsLoading,
   } = useDeleteMany<IPost>();
 
   const deleteSelectedItems = () => {
