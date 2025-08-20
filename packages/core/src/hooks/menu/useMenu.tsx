@@ -22,14 +22,15 @@ export type UseMenuProps = {
   hideOnMissingParameter?: boolean;
 };
 
-export type TreeMenuItem =
-  // Omitted because `label` and `route` are deprecated in `resource` but not in `menuItems`. These are populated in `prepareItem` for ease of use.
-  Omit<FlatTreeItem, "label" | "route" | "children"> & {
-    route?: string;
-    icon?: React.ReactNode;
-    label?: string;
-    children: TreeMenuItem[];
-  };
+export type TreeMenuItem = Omit<
+  FlatTreeItem,
+  "label" | "route" | "children"
+> & {
+  route?: string;
+  icon?: React.ReactNode;
+  label?: string;
+  children: TreeMenuItem[];
+};
 
 const getCleanPath = (pathname: string) => {
   return pathname
