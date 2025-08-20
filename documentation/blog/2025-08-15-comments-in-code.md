@@ -1,5 +1,5 @@
 ---
-title: 'Code Comments: The Good, The Bad, and The Hilarious'
+title: "Code Comments: The Good, The Bad, and The Hilarious"
 description: A guide to writing comments that help (and avoiding the ones that hurt), with a collection of the funniest gems from real codebases.
 slug: code-comments
 authors: ozgur
@@ -28,7 +28,6 @@ hide_table_of_contents: false
 
 ---
 
-
 # Code Comments: The Good, The Bad, and The Hilarious
 
 Every developer has been there. It’s 2 PM, you're deep into a feature, and you stumble upon a function named `handleData`. It takes three arguments: `x`, `y`, and `flag`. It returns `0` or `1`. There are no comments. You are now an unwilling digital archaeologist, and your afternoon is officially ruined.
@@ -46,6 +45,7 @@ Good comments don't explain **what** the code is doing; they explain **why**. If
 Here's where comments truly shine:
 
 #### 1. Explaining the "Why" (The Business and Product Logic)
+
 Code is excellent at showing the implementation, but it's terrible at capturing external context. This is the most valuable role a comment can play: bridging the gap between a business decision and a line of code.
 
 ```javascript
@@ -53,7 +53,7 @@ Code is excellent at showing the implementation, but it's terrible at capturing 
 // This is for the Q4 campaign and must be removed after Jan 31st.
 // See ticket JIRA-512 for the official request from Marketing.
 if (user.isPremium) {
-  price *= 0.90;
+  price *= 0.9;
 }
 ```
 
@@ -107,7 +107,7 @@ A good comment can act as a crucial warning sign about critical, non-obvious con
 API_TIMEOUT = 2.5
 ```
 
------
+---
 
 ## The Bad: When Comments Are a Liability
 
@@ -148,7 +148,7 @@ Developers sometimes write confusing, poorly named code and then use a comment a
 ```javascript
 // This function gets the items from the database (d) and filters them
 // based on the user's permissions (p).
-function getFltItems(d, p) { 
+function getFltItems(d, p) {
   // ...
 }
 ```
@@ -166,9 +166,10 @@ function filterItemsByUserPermissions(items, permissions) {
 In the age of version control systems like Git, there is no reason to leave huge blocks of commented-out code in the codebase. It’s digital hoarding. It confuses search tools, clutters the file, and makes other developers wonder if it's important, disabled, or just forgotten. **Just delete it.** If you ever need it back, your Git history is there for you.
 
 ### 5\. The Rise of the AI Commentator 🤖
+
 You've probably noticed that modern AI coding assistants (like Copilot or Cursor) love to add comments to almost everything they write. This isn't because they're trying to be helpful in a nuanced way; it's because they are trained on billions of lines of public code, where they've learned to associate a specific code block with a specific explanatory comment. The result is that they often produce perfectly redundant comments that explain what the code is doing, not why. The AI provides a verbose first draft, but it's still the developer's job to be the editor—to delete the noise and preserve only the comments that provide genuine insight.
 
------
+---
 
 ## The Hilarious: Dispatches from the Codebase Trenches
 
@@ -184,12 +185,12 @@ Every experienced developer has stumbled upon comments that are less about docum
 
 ```javascript
 // Dear maintainer:
-// 
+//
 // Once you are done trying to 'optimize' this routine,
 // and have realized what a terrible mistake that was,
 // please increment the following counter as a warning
 // to the next guy:
-// 
+//
 // total_hours_wasted_here = 42
 ```
 
@@ -239,21 +240,23 @@ It's bloated, confusing, and pretty awful by necessity(for the most part).
 */
 ```
 
-*** And of course, when you feel too guilty ***
+**_ And of course, when you feel too guilty _**
+
 ```javascript
 // I'm sorry.
 ```
 
 ### Linus Torvalds
 
-Before finishing this blog post, I just wanted to mention Linus Torvalds, the creator of both the Linux kernel and the version control system Git. I won’t dive deep into those, since that’s not the focus here, but their rants on both reviews, and comments to code are legendarily known among the community. 
+Before finishing this blog post, I just wanted to mention Linus Torvalds, the creator of both the Linux kernel and the version control system Git. I won’t dive deep into those, since that’s not the focus here, but their rants on both reviews, and comments to code are legendarily known among the community.
 
 ```javascript
 // Wirzenius wrote this portably, Torvalds fucked it up.
 ```
+
 If you don't know about them, I recommend googling them and their comments. Just for fun, if nothing else.
 
-### Conclusion 
+### Conclusion
 
 These gems serve as a crucial reminder: code is written by people. It can be a place of pristine logic and structure, but it's also one of chaos, humor, and shared struggle.
 
