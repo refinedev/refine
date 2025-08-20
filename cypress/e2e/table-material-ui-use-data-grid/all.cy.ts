@@ -7,6 +7,8 @@ describe("table-material-ui-use-data-grid", () => {
   });
 
   it("should work with sorter", () => {
+    cy.wait("@getPosts");
+
     // check the request for default sort order
     cy.wait("@getPosts").then((interception) => {
       const request = interception.request;
