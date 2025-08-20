@@ -1,6 +1,6 @@
 import type { DataProvider as IDataProvider, HttpError } from "@refinedev/core";
 import type { AxiosInstance } from "axios";
-import qs from "qs";
+import * as qs from "qs";
 import {
   axiosInstance,
   generateFilter,

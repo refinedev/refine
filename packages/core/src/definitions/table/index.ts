@@ -1,6 +1,7 @@
 import differenceWith from "lodash/differenceWith";
 import unionWith from "lodash/unionWith";
-import qs, { type IStringifyOptions } from "qs";
+import * as qs from "qs";
+import { type IStringifyOptions } from "qs";
 import warnOnce from "warn-once";
 
 import { pickNotDeprecated } from "@definitions/helpers";

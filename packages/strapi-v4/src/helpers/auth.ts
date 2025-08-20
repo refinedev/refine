@@ -1,6 +1,6 @@
 import { type MetaQuery, pickNotDeprecated } from "@refinedev/core";
 import axios from "axios";
-import qs from "qs";
+import * as qs from "qs";
 
 interface ILoginResponse {
   jwt: string;
