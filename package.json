@@ -13,7 +13,7 @@
     "changeset": "changeset",
     "coffee": "pnpm nuke && pnpm i && pnpm build:all",
     "cypress:open": "cypress open -C cypress/cypress.config.ts",
-    "cypress:run": "cypress run -C cypress/cypress.config.ts",
+    "cypress:run": "cypress run -C cypress/cypress.config.ts --browser chrome",
     "dev": "lerna run dev",
     "dev:docs": "concurrently \"cd documentation && pnpm dev\" \"pnpm dev --scope @refinedev/live-previews\" --names docs,live --prefix-colors blue,red",
     "lerna": "lerna",
