@@ -28,7 +28,7 @@ import type {
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { Action } from "../../contexts/router/types";
-import type { MakeOptional } from "@definitions/types";
+import type { MakeOptional } from "../../definitions/types";
 
 export type FormAction = Extract<Action, "create" | "edit" | "clone">;
 
