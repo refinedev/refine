@@ -32,6 +32,7 @@ import {
   ContactShow,
 } from "./pages/contacts";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 const API_URL = "https://api.crm.refine.dev/graphql";

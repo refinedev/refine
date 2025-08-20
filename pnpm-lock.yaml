@@ -115,6 +115,9 @@ importers:
 
   examples/access-control-casbin:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -234,6 +237,9 @@ importers:
 
   examples/access-control-permify:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -295,6 +301,9 @@ importers:
       '@ant-design/plots':
         specifier: ^1.2.5
         version: 1.2.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@dnd-kit/core':
         specifier: ^6.0.8
         version: 6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -468,6 +477,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -520,6 +532,9 @@ importers:
 
   examples/auth-auth0:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@auth0/auth0-react':
         specifier: ^1.5.0
         version: 1.12.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -636,6 +651,9 @@ importers:
 
   examples/auth-google-login:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -740,6 +758,9 @@ importers:
 
   examples/auth-keycloak:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-keycloak/web':
         specifier: ^3.4.0
         version: 3.4.0(keycloak-js@25.0.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
@@ -801,6 +822,9 @@ importers:
 
   examples/auth-kinde:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refine-auth/kinde-react':
         specifier: ^1.0.2
         version: 1.0.3(@refinedev/core@packages+core)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -993,6 +1017,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1045,6 +1072,9 @@ importers:
 
   examples/base-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1353,6 +1383,9 @@ importers:
 
   examples/calendar-app:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1405,6 +1438,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1632,6 +1668,9 @@ importers:
 
   examples/customization-footer:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1681,6 +1720,9 @@ importers:
 
   examples/customization-login:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@craco/craco':
         specifier: ^7.1.0
         version: 7.1.0(@types/node@18.19.31)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@19.1.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3))(type-fest@3.13.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.8.3)
@@ -1739,6 +1781,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1788,6 +1833,9 @@ importers:
 
   examples/customization-rtl:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1840,6 +1888,9 @@ importers:
 
   examples/customization-sider:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -1889,6 +1940,9 @@ importers:
 
   examples/customization-theme-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2136,6 +2190,9 @@ importers:
 
   examples/customization-top-menu-layout:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2185,6 +2242,9 @@ importers:
 
   examples/data-provider-airtable:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/airtable':
         specifier: ^4.4.13
         version: link:../../packages/airtable
@@ -2237,6 +2297,9 @@ importers:
 
   examples/data-provider-appwrite:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2289,6 +2352,9 @@ importers:
 
   examples/data-provider-appwrite-tutorial-docs:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2347,6 +2413,9 @@ importers:
 
   examples/data-provider-graphql:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2417,6 +2486,9 @@ importers:
 
   examples/data-provider-hasura:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2487,6 +2559,9 @@ importers:
 
   examples/data-provider-multiple:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2539,6 +2614,9 @@ importers:
 
   examples/data-provider-nestjs-query:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2612,6 +2690,9 @@ importers:
 
   examples/data-provider-nestjsx-crud:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2664,6 +2745,9 @@ importers:
 
   examples/data-provider-sanity:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2725,6 +2809,9 @@ importers:
 
   examples/data-provider-strapi:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2795,6 +2882,9 @@ importers:
 
   examples/data-provider-strapi-v4:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2856,6 +2946,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2908,6 +3001,9 @@ importers:
 
   examples/field-antd-use-checkbox-group:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -2960,6 +3056,9 @@ importers:
 
   examples/field-antd-use-radio-group:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3012,6 +3111,9 @@ importers:
 
   examples/field-antd-use-select-basic:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3064,6 +3166,9 @@ importers:
 
   examples/field-antd-use-select-infinite:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3195,6 +3300,9 @@ importers:
       '@ant-design/use-emotion-css':
         specifier: ^1.0.4
         version: 1.0.4(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@emotion/react':
         specifier: ^11.8.2
         version: 11.11.4(@types/react@19.1.8)(react@19.1.0)
@@ -3498,6 +3606,9 @@ importers:
 
   examples/form-antd-custom-validation:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3550,6 +3661,9 @@ importers:
 
   examples/form-antd-mutation-mode:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3602,6 +3716,9 @@ importers:
 
   examples/form-antd-use-drawer-form:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3651,6 +3768,9 @@ importers:
 
   examples/form-antd-use-form:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3703,6 +3823,9 @@ importers:
 
   examples/form-antd-use-modal-form:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -3752,6 +3875,9 @@ importers:
 
   examples/form-antd-use-steps-form:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -4996,6 +5122,9 @@ importers:
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(@babel/core@7.28.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5069,6 +5198,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5133,6 +5265,9 @@ importers:
 
   examples/import-export-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5319,6 +5454,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5498,6 +5636,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5859,6 +6000,9 @@ importers:
 
   examples/input-custom:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5911,6 +6055,9 @@ importers:
 
   examples/input-date-picker:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5963,6 +6110,9 @@ importers:
 
   examples/invoicer:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6033,6 +6183,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/ably':
         specifier: ^4.1.10
         version: link:../../packages/ably
@@ -6088,6 +6241,9 @@ importers:
 
   examples/loading-overtime:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6161,6 +6317,9 @@ importers:
 
   examples/multi-level-menu:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6216,6 +6375,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6271,6 +6433,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6435,6 +6600,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@react-pdf/renderer':
         specifier: ^3.1.8
         version: 3.4.4(encoding@0.1.13)(react@19.1.0)
@@ -6499,6 +6667,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6557,6 +6728,9 @@ importers:
 
   examples/server-side-form-validation-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6853,6 +7027,9 @@ importers:
 
   examples/table-antd-advanced:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6908,6 +7085,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -6963,6 +7143,9 @@ importers:
 
   examples/table-antd-use-delete-many:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -7015,6 +7198,9 @@ importers:
 
   examples/table-antd-use-editable-table:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -7064,6 +7250,9 @@ importers:
 
   examples/table-antd-use-table:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -7113,6 +7302,9 @@ importers:
 
   examples/table-antd-use-update-many:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -8417,6 +8609,9 @@ importers:
 
   examples/theme-antd-demo:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -8667,6 +8862,9 @@ importers:
       '@ant-design/icons':
         specifier: ^5.5.1
         version: 5.5.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9059,6 +9257,9 @@ importers:
 
   examples/upload-antd-base64:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9108,6 +9309,9 @@ importers:
 
   examples/upload-antd-multipart:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9614,6 +9818,9 @@ importers:
 
   examples/use-modal-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9663,6 +9870,9 @@ importers:
 
   examples/use-simple-list-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9803,6 +10013,9 @@ importers:
 
   examples/with-custom-pages:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9855,6 +10068,9 @@ importers:
 
   examples/with-javascript:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -9986,6 +10202,9 @@ importers:
 
   examples/with-meta-properties:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10038,6 +10257,9 @@ importers:
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(@babel/core@7.28.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10111,6 +10333,9 @@ importers:
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
         version: 1.0.0(@ant-design/cssinjs@1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(next@14.2.26(@babel/core@7.28.0)(babel-plugin-macros@3.1.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10300,6 +10525,9 @@ importers:
 
   examples/with-remix-antd:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10358,6 +10586,9 @@ importers:
 
   examples/with-remix-auth:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10644,6 +10875,9 @@ importers:
 
   examples/with-web3:
     dependencies:
+      '@ant-design/v5-patch-for-react-19':
+        specifier: ^1.0.3
+        version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10720,55 +10954,9 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
-      '@refinedev/core':
-        specifier: ^4.57.1
-        version: link:../core
-      '@types/jest':
-        specifier: ^29.2.4
-        version: 29.5.12
-      jest:
-        specifier: ^30.0.5
-        version: 30.0.5(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3))
-      jest-environment-jsdom:
-        specifier: ^30.0.5
-        version: 30.0.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
-      nock:
-        specifier: ^13.4.0
-        version: 13.5.4
-      ts-jest:
-        specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.17.19)(jest@30.0.5(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3)))(typescript@5.8.3)
-      tslib:
-        specifier: ^2.6.2
-        version: 2.6.2
-      tsup:
-        specifier: ^6.7.0
-        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3))(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-
-  packages/airtable:
-    dependencies:
-      '@qualifyze/airtable-formulator':
-        specifier: ^1.0.1
-        version: 1.3.1
-      airtable:
-        specifier: ^0.11.1
-        version: 0.11.6(encoding@0.1.13)
-      asyncairtable:
-        specifier: ^2.1.0
-        version: 2.3.1(encoding@0.1.13)
-      query-string:
-        specifier: ^7.1.1
-        version: 7.1.3
-    devDependencies:
-      '@esbuild-plugins/node-resolve':
-        specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
-        specifier: 4.57.11
+        specifier: ^4.57.1
         version: link:../core
       '@types/jest':
         specifier: ^29.2.4
@@ -10791,6 +10979,52 @@ importers:
       tsup:
         specifier: ^6.7.0
         version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
+  packages/airtable:
+    dependencies:
+      '@qualifyze/airtable-formulator':
+        specifier: ^1.0.1
+        version: 1.3.1
+      airtable:
+        specifier: ^0.11.1
+        version: 0.11.6(encoding@0.1.13)
+      asyncairtable:
+        specifier: ^2.1.0
+        version: 2.3.1(encoding@0.1.13)
+      query-string:
+        specifier: ^7.1.1
+        version: 7.1.3
+    devDependencies:
+      '@esbuild-plugins/node-resolve':
+        specifier: ^0.1.4
+        version: 0.1.4(esbuild@0.17.19)
+      '@refinedev/core':
+        specifier: 4.57.11
+        version: link:../core
+      '@types/jest':
+        specifier: ^29.2.4
+        version: 29.5.12
+      jest:
+        specifier: ^30.0.5
+        version: 30.0.5(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3))
+      jest-environment-jsdom:
+        specifier: ^30.0.5
+        version: 30.0.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      nock:
+        specifier: ^13.4.0
+        version: 13.5.4
+      ts-jest:
+        specifier: ^29.1.2
+        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.17.19)(jest@30.0.5(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3)))(typescript@5.8.3)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+      tsup:
+        specifier: ^6.7.0
+        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.8.3))(typescript@5.8.3)
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -13631,6 +13865,14 @@ packages:
       antd: '>=5.0.0'
       react: '>=17.0.0'
       react-dom: '>=17.0.0'
+
+  '@ant-design/v5-patch-for-react-19@1.0.3':
+    resolution: {integrity: sha512-iWfZuSUl5kuhqLUw7jJXUQFMMkM7XpW7apmKzQBQHU0cpifYW4A79xIBt9YVO5IBajKpPG5UKP87Ft7Yrw1p/w==}
+    engines: {node: '>=12.x'}
+    peerDependencies:
+      antd: '>=5.22.6'
+      react: '>=19.0.0'
+      react-dom: '>=19.0.0'
 
   '@antv/adjust@0.2.5':
     resolution: {integrity: sha512-MfWZOkD9CqXRES6MBGRNe27Q577a72EIwyMnE29wIlPliFvJfWwsrONddpGU7lilMpVKecS3WAzOoip3RfPTRQ==}
@@ -30878,6 +31120,12 @@ snapshots:
   '@ant-design/use-emotion-css@1.0.4(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
       '@emotion/css': 11.11.2
+      antd: 5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      react: 19.1.0
+      react-dom: 19.1.0(react@19.1.0)
+
+  '@ant-design/v5-patch-for-react-19@1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
       antd: 5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)

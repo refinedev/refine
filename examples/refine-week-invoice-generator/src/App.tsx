@@ -15,6 +15,7 @@ import {
   ThemedLayoutV2,
   ThemedTitleV2,
 } from "@refinedev/antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import * as Icons from "@ant-design/icons";

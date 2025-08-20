@@ -27,6 +27,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { App as AntdApp, ConfigProvider } from "antd";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostEdit, PostShow } from "../src/pages/posts";

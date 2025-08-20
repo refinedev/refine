@@ -6,6 +6,7 @@ import {
   useNotificationProvider,
   ThemedLayoutV2,
 } from "@refinedev/antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import dataProvider from "@refinedev/simple-rest";

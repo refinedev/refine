@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/airtable": "^4.4.13",
     "@refinedev/antd": "^5.46.3",
     "@refinedev/cli": "^2.16.47",

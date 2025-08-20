@@ -22,6 +22,7 @@ import { ConfigProvider, App as AntdApp } from "antd";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "../src/pages/posts";

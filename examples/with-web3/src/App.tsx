@@ -16,6 +16,7 @@ import dataProvider from "@refinedev/simple-rest";
 import { DashboardOutlined } from "@ant-design/icons";
 
 import { ConfigProvider, App as AntdApp } from "antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { authProvider } from "./authProvider";

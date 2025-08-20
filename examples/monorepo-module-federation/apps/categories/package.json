@@ -23,6 +23,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^5.9.0",
     "@refinedev/cli": "^2.5.3",
     "@refinedev/core": "^4.10.0",

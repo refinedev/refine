@@ -30,10 +30,8 @@ export const PostList = () => {
 
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
-    fetchSize: 20,
-
     pagination: {
-      mode: "server",
+      pageSize: 20,
     },
   });
 

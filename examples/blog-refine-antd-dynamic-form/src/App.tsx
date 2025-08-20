@@ -5,6 +5,7 @@ import {
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 import routerProvider, {
   NavigateToResource,
