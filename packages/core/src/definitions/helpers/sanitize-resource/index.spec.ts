@@ -5,11 +5,10 @@ describe("sanitizeResource", () => {
     expect(
       sanitizeResource({
         name: "posts",
-        meta: { icon: "icon" },
+        icon: "icon",
       }),
     ).toEqual({
       name: "posts",
-      meta: {},
     });
   });
 
