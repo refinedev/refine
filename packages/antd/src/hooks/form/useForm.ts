@@ -6,13 +6,11 @@ import {
   type ButtonProps,
 } from "antd";
 import { useForm as useFormSF, type UseFormConfig } from "sunflower-antd";
+
 import {
   type AutoSaveProps,
   flattenObjectKeys,
   propertyPathToArray,
-} from "@refinedev/core";
-
-import {
   type HttpError,
   type BaseRecord,
   useForm as useFormCore,
