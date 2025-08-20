@@ -491,10 +491,10 @@ export const renderer = ({
     return undefined;
   };
 
-  const { meta: resourceMeta } = resource ?? {};
+  const { meta: resourceMeta, edit, show } = resource ?? {};
 
-  const canEdit = resourceMeta?.canEdit;
-  const canShow = resourceMeta?.canShow;
+  const canEdit = edit || resourceMeta?.canEdit;
+  const canShow = show || resourceMeta?.canShow;
   const canDelete = resourceMeta?.canDelete;
 
   if (canEdit) {
