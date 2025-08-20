@@ -1,5 +1,5 @@
 import React from "react";
-import { useLogin, useNavigation } from "@refinedev/core";
+import { useGo, useLogin } from "@refinedev/core";
 
 import {
   Row,
@@ -25,7 +25,7 @@ export const Login: React.FC = () => {
   const [form] = Form.useForm<ILoginForm>();
 
   const { mutate: login } = useLogin<ILoginForm>();
-  const { push } = useNavigation();
+  const go = useGo();
 
   const CardTitle = (
     <Title level={3} className="title">
@@ -87,7 +87,7 @@ export const Login: React.FC = () => {
                       fontWeight: "bold",
                       marginLeft: 12,
                     }}
-                    onClick={() => push("signup")}
+                    onClick={() => go({ to: "signup", type: "push" })}
                   >
                     Sign up
                   </a>

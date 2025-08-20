@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import * as core from "@refinedev/core";
 import {
   useNotificationProvider,
   ErrorComponent,
@@ -23,10 +23,10 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      <core.GitHubBanner />
       <ConfigProvider theme={RefineThemes.Blue}>
         <AntdApp>
-          <Refine
+          <core.Refine
             dataProvider={dataProvider(API_URL)}
             routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
@@ -61,7 +61,7 @@ const App: React.FC = () => {
             </Routes>
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
-          </Refine>
+          </core.Refine>
         </AntdApp>
       </ConfigProvider>
     </BrowserRouter>

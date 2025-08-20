@@ -33,7 +33,7 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   const { data: user } = useGetIdentity<IUser>();
   const { mode, setMode } = useContext(ColorModeContext);
 
-  const languageMenuItems: MenuProps["items"] = [...(["en", "de"] || [])]
+  const languageMenuItems: MenuProps["items"] = ["en", "de"]
     .sort()
     .map((lang: string) => ({
       key: lang,

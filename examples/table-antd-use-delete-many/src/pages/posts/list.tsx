@@ -28,7 +28,7 @@ export const PostList = () => {
 
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
 
-  const { mutate, isLoading: deleteManyIsLoading } = useDeleteMany<IPost>();
+  const { mutate, isPending: deleteManyIsLoading } = useDeleteMany<IPost>();
 
   const deleteSelectedItems = () => {
     mutate(
