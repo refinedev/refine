@@ -260,7 +260,7 @@ export async function run(): Promise<void> {
       `${selectedTransformer}.js`,
     );
 
-    await require(transformerPath).postTransform(filesExpanded, cli.flags);
+    await require(transformerPath)?.postTransform?.(filesExpanded, cli.flags);
   }
 }
 
