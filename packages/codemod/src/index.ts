@@ -31,7 +31,6 @@ const transformsWithPostTransform = [
   "refine1-to-refine2",
   "refine2-to-refine3",
   "refine3-to-refine4",
-  "refine4-to-refine5",
 ];
 
 export function checkGitStatus(force) {
@@ -260,7 +259,7 @@ export async function run(): Promise<void> {
       `${selectedTransformer}.js`,
     );
 
-    await require(transformerPath)?.postTransform?.(filesExpanded, cli.flags);
+    await require(transformerPath).postTransform(filesExpanded, cli.flags);
   }
 }
 
