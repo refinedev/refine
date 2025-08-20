@@ -16,6 +16,7 @@
     "@ant-design/cssinjs": "^1.17.2",
     "@ant-design/icons": "^5.5.1",
     "@ant-design/plots": "^1.2.5",
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@dnd-kit/core": "^6.0.8",
     "@dnd-kit/modifiers": "^6.0.1",
     "@dnd-kit/sortable": "^7.0.2",

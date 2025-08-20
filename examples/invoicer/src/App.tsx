@@ -34,6 +34,7 @@ import {
 import { dataProvider } from "@/providers/data-provider";
 import { authProvider } from "@/providers/auth-provider";
 import { ConfigProvider } from "@/providers/config-provider";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 import "./styles/custom.css";
 

@@ -22,6 +22,7 @@
     ]
   },
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^5.46.3",
     "@refinedev/appwrite": "^7.0.1",
     "@refinedev/cli": "^2.16.47",

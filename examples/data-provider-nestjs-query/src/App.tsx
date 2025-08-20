@@ -17,6 +17,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { createClient } from "graphql-ws";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";

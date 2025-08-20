@@ -14,6 +14,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { ConfigProvider, App as AntdApp } from "antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { UserList, UserCreate, UserEdit, UserShow } from "./pages/users";

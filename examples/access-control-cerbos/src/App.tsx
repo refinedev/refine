@@ -16,6 +16,7 @@ import { ConfigProvider, App as AntdApp } from "antd";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { Header } from "./components/header";
