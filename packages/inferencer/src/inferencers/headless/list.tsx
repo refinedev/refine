@@ -628,9 +628,9 @@ export const renderer = ({
     return undefined;
   };
 
-  const canEdit = resource?.meta?.canEdit;
-  const canShow = resource?.meta?.canShow;
-  const canCreate = resource?.meta?.canCreate;
+  const canEdit = resource?.edit || resource?.meta?.canEdit;
+  const canShow = resource?.show || resource?.meta?.canShow;
+  const canCreate = resource?.create || resource?.meta?.canCreate;
 
   const actionColumnTitle = i18n ? `translate("table.actions")` : `"Actions"`;
 

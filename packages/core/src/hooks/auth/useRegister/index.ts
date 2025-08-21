@@ -68,8 +68,6 @@ export function useRegister<TVariables = {}>({
         if (successNotification) {
           open?.(buildSuccessNotification(successNotification));
         }
-
-        await invalidateAuthStore();
       }
 
       if (error || !success) {
@@ -78,6 +76,12 @@ export function useRegister<TVariables = {}>({
 
       if (redirectTo) {
         go({ to: redirectTo, type: "replace" });
+      }
+
+      if (success) {
+        setTimeout(() => {
+          invalidateAuthStore();
+        }, 32);
       }
     },
     onError: (error: any) => {

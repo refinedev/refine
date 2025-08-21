@@ -114,6 +114,10 @@ export function runTransform({ files, flags, transformer }) {
 
 const TRANSFORMER_INQUIRER_CHOICES = [
   {
+    name: "refine4-to-refine5: Transform from refine 4.x.x to at least 5.0.0",
+    value: "refine4-to-refine5",
+  },
+  {
     name: "Rename '@refinedev/react-router-v6' imports to '@refinedev/react-router'",
     value: "refine-react-router-v6-to-refine-react-router",
   },
