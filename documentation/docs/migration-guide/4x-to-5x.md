@@ -11,6 +11,16 @@ import CodeBlock from '@theme/CodeBlock';
 
 **Refine v5** removes deprecated APIs and legacy systems, upgrades to TanStack Query v5, and adds React 19 support. The result is a cleaner, faster codebase with better developer experience.
 
+:::simple Migrating Your Refine Project: 3.x.x → 4.x.x → 5.x.x
+
+Before upgrading to Refine 5, your project must first be migrated from Refine 3.x.x to 4.x.x. This is an essential step, as Refine 5 builds upon the changes introduced in version 4.
+
+[→ Please refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/docs/migration-guide/3x-to-4x.md)
+
+Once your project is on Refine 4.x.x, you can proceed with the upgrade to Refine 5.x.x using the steps below.
+
+:::
+
 <h2>Migration Steps </h2>
 
 - **Step 1**: [Upgrade dependencies](#1-upgrade-all-refine-dependencies-to-v5)
@@ -46,8 +56,8 @@ All Refine packages have been bumped to the next major version as a coordinated 
 <Tabs
 defaultValue="refine-cli"
 values={[
-{label: 'Refine CLI', value: 'refine-cli'},
-{label: 'Manual', value: 'manual'},
+{label: 'Update with Refine CLI', value: 'refine-cli'},
+{label: 'Manual Update', value: 'manual'},
 ]}>
 
 <TabItem value="refine-cli">
@@ -136,7 +146,17 @@ Once dependencies are updated, proceed with the following breaking changes:
 
 All deprecated APIs marked for removal in v4 have been completely removed in v5.
 
-### 🪄 Migrating your project automatically with refine-codemod ✨ (recommended)
+<Tabs
+wrapContent={false}
+defaultValue="codemod"
+values={[
+{label: '✨ Refine Codemod', value: 'codemod'},
+{label: 'Manual Update', value: 'manual'},
+]}>
+
+<TabItem value="codemod">
+
+<h4>🪄 Migrating your project automatically with refine-codemod ✨ (recommended) </h4>
 
 The [`@refinedev/codemod`][refine-codemod] package handles the breaking changes for your project and automatically migrates it from `4.x.x` to `5.x.x`.
 
@@ -146,15 +166,120 @@ Simply `cd` into the root folder of your project (where the `package.json` is lo
 npx @refinedev/codemod@latest refine4-to-refine5
 ```
 
-:::caution Important Notes
-The codemod **cannot automatically migrate** legacy router providers and auth providers. You'll need to manually update these:
+> 🚨 _The refine4-to-refine5 codemod only fixes APIs deprecated or removed in Refine@4. It does not handle items deprecated during the Refine@3→4 migration. For those, run the [refine3-to-refine4](/docs/migration-guide/3x-to-4x.md) codemod first._
 
-- **Legacy Router Provider**: If you're using `legacyRouterProvider`, follow the [Router Provider migration section](#3-refactor-legacy-router-provider-to-use-new-router-provider) below
-- **Legacy Auth Provider**: If you're using `legacyAuthProvider` and `v3LegacyAuthProviderCompatible`, follow the [Auth Provider Migration Guide](#4-refactor-legacy-auth-provider-to-use-new-auth-provider) below
+<h3>⚠️ Changes not handled by the codemod </h3>
 
-:::
+Unfortunately, the codemod cannot cover every case. While it automates most of the migration, some changes still require manual updates. Below is the list of removed or modified APIs that you’ll need to adjust yourself.
 
-### Manual Migration Guide
+<h3>useNavigation → useGo</h3>
+
+🚨 <strong>Affects:</strong> Navigation helpers (<code>push</code>, <code>replace</code>, <code>goBack</code>)
+
+The return values from <code>useNavigation</code> have been removed. You should now use <code>useGo</code> for navigation:
+
+```diff
+- import { useNavigation } from "@refinedev/core";
++ import { useGo } from "@refinedev/core";
+
+- const { replace, push } = useNavigation();
+- replace("/tasks/new");
++ const go = useGo();
++ go({ to: "/tasks/new", type: "replace" });
++ go({ to: "/tasks/new", type: "push" });
+```
+
+For backward navigation (<code>goBack</code>), use your router’s native API instead.
+
+```diff
+- import { useNavigation } from "@refinedev/core";
++ import { useNavigate } from "react-router";
+
+- const { goBack } = useNavigation();
++ const navigate = useNavigate();
+- goBack();
++ navigate(-1);
+```
+
+<h3>ITreeMenu → TreeMenuItem & list field changes</h3>
+
+🚨 <strong>Affects:</strong> <code>useMenu</code>, custom sider renderers
+
+- <code>ITreeMenu</code> has been removed → use <code>TreeMenuItem</code> instead (codemod updates this).
+- <code>list</code> is now always a string route.  
+  👉 <code>list.path</code> is gone and <code>list</code> is no longer a function.
+
+**Why:**  
+Previously, you could define a React component in the <code>&lt;Refine /&gt;</code> resource as <code>list</code>. This is no longer supported. Routes/components must be defined in your router. Because of this, <code>list</code> is now just a route string, not a function or object with <code>path</code>.
+
+```diff
+- const { menuItems, selectedKey } = useMenu();
+- menuItems.map((item: ITreeMenu) => {
+-   const { key, list } = item;
+-   const route =
+-     typeof list === "string"
+-       ? list
+-       : typeof list !== "function"
+-       ? list?.path
+-       : key;
+- });
++ const { menuItems, selectedKey } = useMenu();
++ menuItems.map((item: TreeMenuItem) => {
++   const { list } = item;
++   const route = list ?? key; // always a string route now
++ });
+
+```
+
+</TabItem>
+
+<TabItem value="manual">
+
+If you’d like to migrate manually, or if the codemod didn’t cover all of your cases, check the [full list of breaking changes](#list-of-all-breaking-changes) with before/after examples.
+
+</TabItem>
+
+</Tabs>
+
+## 3. Refactor Legacy Router Provider to use new Router Provider
+
+If your project is still using the `legacyRouterProvider` provider, you'll need to migrate to the new router system. The new router provider offers greater flexibility and better integration with modern routing patterns.
+
+Please refer these guides to refactor your project:
+
+- [Migrating Router Provider from 3.x.x to 4.x.x][router-provider-migration]
+- [React Router v6 to v7](/docs/routing/integrations/react-router/migration-guide-v6-to-v7)
+
+## 4. Refactor Legacy Auth Provider to use new Auth Provider
+
+If your project is still using the legacy auth provider `legacyAuthProvider` or auth hooks with `v3LegacyAuthProviderCompatible: true`, you **must** migrate to the modern auth provider structure because these are completely removed.
+
+For complete migration instructions, please refer to the [Auth Provider Migration Guide][auth-provider-migration].
+
+```diff
+useLogin({
+-    v3LegacyAuthProviderCompatible: true,
+});
+
+<Refine
+-    legacyAuthProvider={legacyAuthProvider}
++    authProvider={authProvider}
+/>
+```
+
+## 5. Upgrade TanStack Query to v5
+
+You'll need to upgrade TanStack Query from v4 to v5. Please refer to the [TanStack Query migration guide](https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5) for detailed instructions on this upgrade.
+
+## 6. Upgrade React to v19 (optional)
+
+Refine v5 supports both React 18 and React 19. If you want to take advantage of the latest React features, you can optionally upgrade to React 19. Please refer to the [React 19 release notes](https://react.dev/blog/2024/04/25/react-19) for more information about the new features and migration considerations.
+
+[refine-codemod]: https://github.com/refinedev/refine/tree/main/packages/codemod
+[router-provider-migration]: /docs/migration-guide/router-provider/
+[auth-provider-migration]: /docs/migration-guide/auth-provider/
+
+### List of All Breaking Changes
 
 If you prefer to migrate manually or the codemod didn't handle all your use cases, you can follow this comprehensive guide to update your codebase step by step. Each section below covers a specific breaking change with before/after examples.
 
@@ -581,40 +706,77 @@ useExport({
 + keys().data().resource("posts").action("list").get();
 ```
 
-## 3. Refactor Legacy Router Provider to use new Router Provider
+#### useNavigation → useGo
 
-If your project is still using the `legacyRouterProvider` provider, you'll need to migrate to the new router system. The new router provider offers greater flexibility and better integration with modern routing patterns.
+🚨 <strong>Affects:</strong> Navigation helpers (<code>push</code>, <code>replace</code>, <code>goBack</code>)
 
-Please refer these guides to refactor your project:
-
-- [Migrating Router Provider from 3.x.x to 4.x.x][router-provider-migration]
-- [React Router v6 to v7](/docs/routing/integrations/react-router/migration-guide-v6-to-v7)
-
-## 4. Refactor Legacy Auth Provider to use new Auth Provider
-
-If your project is still using the legacy auth provider `legacyAuthProvider` or auth hooks with `v3LegacyAuthProviderCompatible: true`, you **must** migrate to the modern auth provider structure because these are completely removed.
-
-For complete migration instructions, please refer to the [Auth Provider Migration Guide][auth-provider-migration].
+The return values from <code>useNavigation</code> have been removed. You should now use <code>useGo</code> for navigation:
 
 ```diff
-useLogin({
--    v3LegacyAuthProviderCompatible: true,
-});
+- import { useNavigation } from "@refinedev/core";
++ import { useGo } from "@refinedev/core";
 
-<Refine
--    legacyAuthProvider={legacyAuthProvider}
-+    authProvider={authProvider}
-/>
+- const { replace, push } = useNavigation();
+- replace("/tasks/new");
++ const go = useGo();
++ go({ to: "/tasks/new", type: "replace" });
++ go({ to: "/tasks/new", type: "push" });
 ```
 
-## 5. Upgrade TanStack Query to v5
+For backward navigation (<code>goBack</code>), use your router’s native API instead.
 
-You'll need to upgrade TanStack Query from v4 to v5. Please refer to the [TanStack Query migration guide](https://tanstack.com/query/latest/docs/react/guides/migrating-to-v5) for detailed instructions on this upgrade.
+```diff
+- import { useNavigation } from "@refinedev/core";
++ import { useNavigate } from "react-router";
 
-## 6. Upgrade React to v19
+- const { goBack } = useNavigation();
++ const navigate = useNavigate();
+- goBack();
++ navigate(-1);
+```
 
-Refine v5 supports both React 18 and React 19. If you want to take advantage of the latest React features, you can optionally upgrade to React 19. Please refer to the [React 19 release notes](https://react.dev/blog/2024/04/25/react-19) for more information about the new features and migration considerations.
+#### ITreeMenu → TreeMenuItem & list field changes
 
-[refine-codemod]: https://github.com/refinedev/refine/tree/main/packages/codemod
-[router-provider-migration]: /docs/migration-guide/router-provider/
-[auth-provider-migration]: /docs/migration-guide/auth-provider/
+🚨 <strong>Affects:</strong> <code>useMenu</code>, custom sider renderers
+
+- <code>ITreeMenu</code> has been removed → use <code>TreeMenuItem</code> instead (codemod updates this).
+- <code>list</code> is now always a string route.  
+  👉 <code>list.path</code> is gone and <code>list</code> is no longer a function.
+
+**Why:**  
+Previously, you could define a React component in the <code>&lt;Refine /&gt;</code> resource as <code>list</code>. This is no longer supported. Routes/components must be defined in your router. Because of this, <code>list</code> is now just a route string, not a function or object with <code>path</code>.
+
+```diff
+- const { menuItems, selectedKey } = useMenu();
+- menuItems.map((item: ITreeMenu) => {
+-   const { key, list } = item;
+-   const route =
+-     typeof list === "string"
+-       ? list
+-       : typeof list !== "function"
+-       ? list?.path
+-       : key;
+- });
++ const { menuItems, selectedKey } = useMenu();
++ menuItems.map((item: TreeMenuItem) => {
++   const { list } = item;
++   const route = list ?? key; // always a string route now
++ });
+
+```
+
+### ThemedTitle → ThemedTitleV2
+
+🚨 **Affects:** App titles (auth pages, layout headers)
+
+The `ThemedTitle` component has been replaced with `ThemedTitleV2` across all UI packages (`@refinedev/antd`, `@refinedev/mantine`, `@refinedev/chakra-ui`, ...).
+
+Most common props still work (e.g., `collapsed`, style props). Review styles after upgrading.
+
+```diff
+- import { ThemedTitle } from "@refinedev/antd"; // or @refinedev/mantine, @refinedev/chakra-ui
++ import { ThemedTitleV2 } from "@refinedev/antd"; // or @refinedev/mantine, @refinedev/chakra-ui
+
+- <ThemedTitle collapsed={false} />
++ <ThemedTitleV2 collapsed={false} />
+```
