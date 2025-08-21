@@ -30,8 +30,8 @@ describe("table-material-ui-advanced", () => {
       "include",
       "filters[0][field]=title&filters[0][value]=lorem&filters[0][operator]=contains",
     );
+    cy.wait(1000);
     // request should have filter
-    cy.wait("@getPosts");
     cy.wait("@getPosts").then((interception) => {
       const request = interception.request;
       const query = request.query;
@@ -75,7 +75,8 @@ describe("table-material-ui-advanced", () => {
     cy.get(".MuiDataGrid-columnHeaderTitle").contains("ID").click();
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
 
-    cy.wait("@getPosts");
+    cy.wait(1000);
+    // request should have filter
     cy.wait("@getPosts").then((interception) => {
       const request = interception.request;
       const query = request.query;
