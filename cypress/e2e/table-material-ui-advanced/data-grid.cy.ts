@@ -68,7 +68,6 @@ describe("data-grid", () => {
   it("should work with sorters", () => {
     // wait for loading
     cy.wait("@getPosts");
-    cy.wait("@getPosts");
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     // click the ID column header to sort ascending
