@@ -173,7 +173,7 @@ export function useDataGrid<
       ...pagination,
       pageSize: pagination?.pageSize ?? 25,
     },
-    filters: filtersFromProp,
+    filters: { ...filtersFromProp, defaultBehavior: "replace" },
     sorters: sortersFromProp,
     syncWithLocation: syncWithLocationProp,
     resource: resourceFromProp,
