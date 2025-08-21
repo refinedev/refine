@@ -66,6 +66,8 @@ describe("data-grid", () => {
   });
 
   it("should work with sorters", () => {
+    cy.wait("@getPosts");
+
     // wait for loading
     cy.wait("@getPosts");
     cy.getMaterialUILoadingCircular().should("not.exist");
