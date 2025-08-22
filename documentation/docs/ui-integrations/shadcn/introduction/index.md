@@ -1,4 +1,4 @@
----
+<!-- ---
 title: Introduction
 ---
 
@@ -195,3 +195,4 @@ If you're migrating from other UI libraries like Ant Design or Material UI, the 
 - Check out the complete [component registry](https://ui.refine.dev)
 - Learn about [customizing themes](https://ui.shadcn.com/docs/theming)
 - Read the [shadcn/ui documentation](https://ui.shadcn.com/docs) for component details
+ -->
