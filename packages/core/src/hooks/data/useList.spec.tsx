@@ -27,13 +27,13 @@ describe("useList Hook", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    const { data } = result.current;
+    const { result: listResult } = result.current;
 
-    expect(data?.data).toHaveLength(2);
-    expect(data?.total).toEqual(2);
+    expect(listResult.data).toHaveLength(2);
+    expect(listResult.total).toEqual(2);
   });
 
   fit.each(["server", undefined] as const)(
@@ -164,10 +164,10 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.data?.data).toHaveLength(1);
+    expect(result.current.result.data).toHaveLength(1);
   });
 
   it("user should be able to use queryOptions's select to transform data when pagination mode is client", async () => {
@@ -198,10 +198,13 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.data?.data).toStrictEqual([{ id: "1" }, { id: "2" }]);
+    expect(result.current.result.data).toStrictEqual([
+      { id: "1" },
+      { id: "2" },
+    ]);
   });
 
   it("when pagination mode is client and the user use queryOptions's select, useList should return the data from dataProvider", async () => {
@@ -237,10 +240,10 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.data?.foo).toBe("bar");
+    expect(result.current.query.data?.foo).toBe("bar");
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -304,7 +307,7 @@ describe("useList Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(onSubscribeMock).toHaveBeenCalled();
@@ -361,7 +364,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(onSubscribeMock).not.toHaveBeenCalled();
@@ -389,7 +392,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -421,7 +424,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -490,7 +493,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(notificationMock).toHaveBeenCalledWith({
@@ -527,7 +530,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -559,7 +562,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -597,7 +600,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -635,7 +638,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -670,7 +673,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -716,7 +719,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(successNotificationMock).toHaveBeenCalledWith(
@@ -776,7 +779,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(errorNotificationMock).toHaveBeenCalledWith(
@@ -825,7 +828,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListMock).toHaveBeenCalledWith(
@@ -874,7 +877,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListMock).not.toHaveBeenCalled();
@@ -913,7 +916,7 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListMock).toHaveBeenCalledWith(
@@ -970,7 +973,7 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListFooMock).toHaveBeenCalledWith(
@@ -1012,7 +1015,7 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListMock).toHaveBeenCalledWith(
@@ -1067,7 +1070,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListFooMock).toHaveBeenCalledWith(
@@ -1107,7 +1110,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListMock).toHaveBeenCalledWith(
@@ -1164,7 +1167,7 @@ describe("useList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListMock).toHaveBeenCalledWith(
@@ -1213,13 +1216,13 @@ describe("useList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -1256,7 +1259,7 @@ describe("useList Hook", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListMock).toHaveBeenCalledWith(

@@ -316,7 +316,8 @@ export const useSelect = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
+    isLoading:
+      queryResult.query.isFetching || defaultValueQueryResult.isFetching,
   });
 
   const combinedOptions = useMemo(
@@ -372,14 +373,14 @@ export const useSelect = <
 
   // query onSuccess
   useEffect(() => {
-    const data = queryResult.data;
-    if (data && queryResult.isSuccess) {
+    const data = queryResult.query.data;
+    if (data && queryResult.query.isSuccess) {
       defaultQueryOnSuccess(data);
     }
-  }, [queryResult.data, queryResult.isSuccess]);
+  }, [queryResult.result.data, queryResult.query.isSuccess]);
 
   return {
-    query: queryResult,
+    query: queryResult.query,
     defaultValueQuery: defaultValueQueryResult,
     options: combinedOptions,
     onSearch,

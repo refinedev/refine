@@ -93,6 +93,14 @@ export type UseListProps<TQueryFnData, TError, TData> = {
   LiveModeProps &
   UseLoadingOvertimeOptionsProps;
 
+export type UseListReturnType<TData, TError> = {
+  query: QueryObserverResult<GetListResponse<TData>, TError>;
+  result: {
+    data: TData[] | undefined;
+    total: number | undefined;
+  };
+} & UseLoadingOvertimeReturnType;
+
 /**
  * `useList` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
@@ -124,11 +132,10 @@ export const useList = <
   liveParams,
   dataProviderName,
   overtimeOptions,
-}: UseListProps<TQueryFnData, TError, TData> = {}): QueryObserverResult<
-  GetListResponse<TData>,
+}: UseListProps<TQueryFnData, TError, TData> = {}): UseListReturnType<
+  TData,
   TError
-> &
-  UseLoadingOvertimeReturnType => {
+> => {
   const { resources, resource, identifier } = useResource(resourceFromProp);
 
   const dataProvider = useDataProvider();
@@ -300,7 +307,11 @@ export const useList = <
   });
 
   return {
-    ...queryResponse,
+    query: queryResponse,
+    result: {
+      data: queryResponse?.data?.data,
+      total: queryResponse?.data?.total,
+    },
     overtime: { elapsedTime },
   };
 };
