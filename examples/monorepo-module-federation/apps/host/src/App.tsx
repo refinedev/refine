@@ -6,7 +6,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
 } from "@refinedev/antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
@@ -94,9 +94,9 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayout Header={Header}>
+                    <ThemedLayoutV2 Header={Header}>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >
@@ -184,9 +184,9 @@ function App() {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayout Header={Header}>
+                    <ThemedLayoutV2 Header={Header}>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >

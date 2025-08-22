@@ -3,7 +3,7 @@ import { KBarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -144,7 +144,7 @@ const App: React.FC = () => {
                       key="authenticated-routes"
                       fallback={<CatchAllNavigate to="/login" />}
                     >
-                      <ThemedLayout Header={Header} Title={Title}>
+                      <ThemedLayoutV2 Header={Header} Title={Title}>
                         <Box
                           sx={{
                             maxWidth: "1200px",
@@ -154,7 +154,7 @@ const App: React.FC = () => {
                         >
                           <Outlet />
                         </Box>
-                      </ThemedLayout>
+                      </ThemedLayoutV2>
                     </Authenticated>
                   }
                 >
@@ -268,9 +268,9 @@ const App: React.FC = () => {
                 <Route
                   element={
                     <Authenticated key="catch-all">
-                      <ThemedLayout Header={Header} Title={Title}>
+                      <ThemedLayoutV2 Header={Header} Title={Title}>
                         <Outlet />
-                      </ThemedLayout>
+                      </ThemedLayoutV2>
                     </Authenticated>
                   }
                 >

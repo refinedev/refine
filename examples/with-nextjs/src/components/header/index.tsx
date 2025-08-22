@@ -1,7 +1,7 @@
 "use client";
 
 import { ColorModeContext } from "@contexts/color-mode";
-import type { RefineThemedLayoutHeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity } from "@refinedev/core";
 import {
   Layout as AntdLayout,
@@ -22,7 +22,7 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   sticky = true,
 }) => {
   const { token } = useToken();

@@ -2,7 +2,7 @@ import {
   AuthPage,
   ErrorComponent,
   RefineThemes,
-  ThemedLayout,
+  ThemedLayoutV2,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
@@ -80,9 +80,9 @@ const App: React.FC = () => {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayout>
+                    <ThemedLayoutV2>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >
@@ -131,9 +131,9 @@ const App: React.FC = () => {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayout>
+                    <ThemedLayoutV2>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >

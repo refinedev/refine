@@ -13,7 +13,7 @@ import {
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
   HamburgerMenu,
-  type RefineThemedLayoutHeaderProps,
+  type RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/mantine";
 import { IconLanguage, IconMoonStars, IconSun } from "@tabler/icons-react";
 import i18n from "i18next";
@@ -25,7 +25,9 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({ sticky }) => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+  sticky,
+}) => {
   const { data: user } = useGetIdentity<IUser>();
 
   const changeLanguage = useSetLocale();

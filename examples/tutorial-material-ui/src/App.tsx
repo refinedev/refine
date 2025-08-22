@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
   RefineThemes,
   ErrorComponent,
 } from "@refinedev/mui";
@@ -51,7 +51,7 @@ function App() {
               warnWhenUnsavedChanges: true,
             }}
           >
-            <ThemedLayout>
+            <ThemedLayoutV2>
               <Routes>
                 <Route
                   index
@@ -76,7 +76,7 @@ function App() {
 
                 <Route path="*" element={<ErrorComponent />} />
               </Routes>
-            </ThemedLayout>
+            </ThemedLayoutV2>
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
           </Refine>

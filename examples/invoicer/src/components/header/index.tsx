@@ -1,5 +1,5 @@
 import React from "react";
-import type { RefineThemedLayoutHeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useNavigation, Link } from "@refinedev/core";
 import { Layout as AntdLayout, Button, theme, Flex, Tabs } from "antd";
 import {
@@ -15,7 +15,7 @@ import { User } from "@/components/header/user";
 import { Logo } from "@/components/logo";
 import { useStyles } from "./styled";
 
-export const Header: React.FC<RefineThemedLayoutHeaderProps> = () => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const { list } = useNavigation();
 
   const location = useLocation();

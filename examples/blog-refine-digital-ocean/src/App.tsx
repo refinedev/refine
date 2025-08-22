@@ -1,6 +1,6 @@
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { ThemedLayout, useNotificationProvider } from "@refinedev/antd";
+import { ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
 import dataProvider, {
   GraphQLClient,
   liveProvider,
@@ -105,9 +105,9 @@ function App() {
             <Routes>
               <Route
                 element={
-                  <ThemedLayout>
+                  <ThemedLayoutV2>
                     <Outlet />
-                  </ThemedLayout>
+                  </ThemedLayoutV2>
                 }
               >
                 <Route path="/">

@@ -1,5 +1,5 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayout, RefineThemes } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   NavigateToResource,
@@ -36,9 +36,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayout>
+                <ThemedLayoutV2>
                   <Outlet />
-                </ThemedLayout>
+                </ThemedLayoutV2>
               }
             >
               <Route index element={<NavigateToResource resource="events" />} />

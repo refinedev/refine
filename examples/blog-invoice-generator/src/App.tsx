@@ -1,7 +1,7 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
   ErrorComponent,
   AuthPage,
   RefineThemes,
@@ -100,9 +100,9 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayout>
+                    <ThemedLayoutV2>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >
@@ -154,9 +154,9 @@ function App() {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayout>
+                    <ThemedLayoutV2>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >

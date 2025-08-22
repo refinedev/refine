@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-  ThemedLayout,
+  ThemedLayoutV2,
   ErrorComponent,
   useNotificationProvider,
   AuthPage,
@@ -80,9 +80,9 @@ const App: React.FC = () => {
                       key="authenticated-routes"
                       fallback={<CatchAllNavigate to="/login" />}
                     >
-                      <ThemedLayout>
+                      <ThemedLayoutV2>
                         <Outlet />
-                      </ThemedLayout>
+                      </ThemedLayoutV2>
                     </Authenticated>
                   }
                 >
@@ -156,9 +156,9 @@ const App: React.FC = () => {
                 <Route
                   element={
                     <Authenticated key="catch-all">
-                      <ThemedLayout>
+                      <ThemedLayoutV2>
                         <Outlet />
-                      </ThemedLayout>
+                      </ThemedLayoutV2>
                     </Authenticated>
                   }
                 >

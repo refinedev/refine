@@ -1,7 +1,7 @@
 import { CanAccess, GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
@@ -106,11 +106,11 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayout Header={() => <Header role={role} />}>
+                  <ThemedLayoutV2 Header={() => <Header role={role} />}>
                     <CanAccess>
                       <Outlet />
                     </CanAccess>
-                  </ThemedLayout>
+                  </ThemedLayoutV2>
                 }
               >
                 <Route

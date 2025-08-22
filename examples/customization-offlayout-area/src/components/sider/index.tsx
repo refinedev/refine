@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, theme, Button } from "antd";
 import { Link } from "react-router";
-import { ThemedTitle } from "@refinedev/antd";
+import { ThemedTitleV2 } from "@refinedev/antd";
 
 const { useToken } = theme;
 
@@ -119,7 +119,7 @@ export const FixedSider: React.FC = () => {
           fontSize: "14px",
         }}
       >
-        <ThemedTitle collapsed={collapsed} />
+        <ThemedTitleV2 collapsed={collapsed} />
       </div>
       <Menu
         style={{

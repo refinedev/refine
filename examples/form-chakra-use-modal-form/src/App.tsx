@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayout,
+  ThemedLayoutV2,
   RefineThemes,
   useNotificationProvider,
 } from "@refinedev/chakra-ui";
@@ -40,9 +40,9 @@ const App: React.FC = () => (
         <Routes>
           <Route
             element={
-              <ThemedLayout>
+              <ThemedLayoutV2>
                 <Outlet />
-              </ThemedLayout>
+              </ThemedLayoutV2>
             }
           >
             <Route index element={<NavigateToResource resource="posts" />} />

@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import {
   HamburgerMenu,
-  type RefineThemedLayoutHeaderProps,
+  type RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/chakra-ui";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import { IconLanguage, IconMoon, IconSun } from "@tabler/icons-react";
@@ -28,7 +28,9 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({ sticky }) => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+  sticky,
+}) => {
   const { data: user } = useGetIdentity<IUser>();
 
   const { colorMode, toggleColorMode } = useColorMode();

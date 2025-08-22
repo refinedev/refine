@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
@@ -48,9 +48,9 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayout>
+                  <ThemedLayoutV2>
                     <Outlet />
-                  </ThemedLayout>
+                  </ThemedLayoutV2>
                 }
               >
                 <Route

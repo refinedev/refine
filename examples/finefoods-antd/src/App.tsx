@@ -3,7 +3,7 @@ import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbarProvider, RefineKbar } from "@refinedev/kbar";
 import {
   useNotificationProvider,
-  ThemedLayout,
+  ThemedLayoutV2,
   ErrorComponent,
 } from "@refinedev/antd";
 import routerProvider, {
@@ -152,7 +152,7 @@ const App: React.FC = () => {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayout Header={Header} Title={Title}>
+                    <ThemedLayoutV2 Header={Header} Title={Title}>
                       <div
                         style={{
                           maxWidth: "1200px",
@@ -162,7 +162,7 @@ const App: React.FC = () => {
                       >
                         <Outlet />
                       </div>
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >
@@ -269,9 +269,9 @@ const App: React.FC = () => {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayout Header={Header} Title={Title}>
+                    <ThemedLayoutV2 Header={Header} Title={Title}>
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >

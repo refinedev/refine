@@ -4,8 +4,8 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayout,
-  ThemedSider,
+  ThemedLayoutV2,
+  ThemedSiderV2,
 } from "@refinedev/antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
@@ -94,12 +94,12 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayout
+                    <ThemedLayoutV2
                       Header={() => <Header sticky />}
-                      Sider={() => <ThemedSider fixed />}
+                      Sider={() => <ThemedSiderV2 fixed />}
                     >
                       <Outlet />
-                    </ThemedLayout>
+                    </ThemedLayoutV2>
                   </Authenticated>
                 }
               >

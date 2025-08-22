@@ -6,8 +6,8 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayout,
-  ThemedTitle,
+  ThemedLayoutV2,
+  ThemedTitleV2,
 } from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -96,10 +96,10 @@ function App() {
                 <Routes>
                   <Route
                     element={
-                      <ThemedLayout
+                      <ThemedLayoutV2
                         Header={() => <Header sticky />}
                         Title={({ collapsed }) => (
-                          <ThemedTitle
+                          <ThemedTitleV2
                             collapsed={collapsed}
                             text="Fine-food Dashboard"
                             icon={<AppIcon />}
@@ -107,7 +107,7 @@ function App() {
                         )}
                       >
                         <Outlet />
-                      </ThemedLayout>
+                      </ThemedLayoutV2>
                     }
                   >
                     <Route

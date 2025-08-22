@@ -7,7 +7,7 @@ import {
   useSetLocale,
 } from "@refinedev/core";
 import {
-  type RefineThemedLayoutHeaderProps,
+  type RefineThemedLayoutV2HeaderProps,
   HamburgerMenu,
 } from "@refinedev/mui";
 import AppBar from "@mui/material/AppBar";
@@ -37,7 +37,7 @@ interface IOptions {
   category: string;
 }
 
-export const Header: React.FC<RefineThemedLayoutHeaderProps> = () => {
+export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const [value, setValue] = useState("");
   const [options, setOptions] = useState<IOptions[]>([]);
 
