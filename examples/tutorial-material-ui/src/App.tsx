@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   RefineThemes,
   ErrorComponent,
 } from "@refinedev/mui";

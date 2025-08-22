@@ -1,7 +1,7 @@
 import { GitHubBanner, type HttpError, Refine } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   RefineThemes,
   useNotificationProvider,
 } from "@refinedev/chakra-ui";

@@ -5,7 +5,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
 } from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";

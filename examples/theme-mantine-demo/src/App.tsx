@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   useNotificationProvider,
   AuthPage,

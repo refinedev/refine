@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { ThemedLayoutV2 } from "@refinedev/mui";
+import { ThemedLayout as ThemedLayoutV2 } from "@refinedev/mui";
 import { Box } from "@mui/material";
 import { Header } from "./header";
 import { Sider } from "./sider";

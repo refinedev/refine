@@ -7,7 +7,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";

@@ -1,7 +1,7 @@
 import { Authenticated, GitHubBanner, Refine } from "@refinedev/core";
 import {
   AuthPage,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   useNotificationProvider,
   RefineThemes,

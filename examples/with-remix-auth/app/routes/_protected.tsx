@@ -1,7 +1,7 @@
 import { redirect } from "@remix-run/node";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout as ThemedLayoutV2 } from "@refinedev/antd";
 import { authenticator } from "~/utils/auth.server";
 
 export default function AuthenticatedLayout() {

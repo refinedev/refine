@@ -8,7 +8,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import nestjsxCrudDataProvider from "@refinedev/nestjsx-crud";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";

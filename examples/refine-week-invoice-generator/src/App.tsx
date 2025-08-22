@@ -12,8 +12,8 @@ import {
   AuthPage,
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayoutV2,
-  ThemedTitleV2,
+  ThemedLayout as ThemedLayoutV2,
+  ThemedTitle as ThemedTitleV2,
 } from "@refinedev/antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";

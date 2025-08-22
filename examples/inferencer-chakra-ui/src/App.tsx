@@ -5,7 +5,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
 } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";

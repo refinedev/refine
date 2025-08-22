@@ -2,7 +2,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   RefineThemes,
 } from "@refinedev/antd";
 import { ConfigProvider, Layout as AntdLayout } from "antd";

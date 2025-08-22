@@ -4,7 +4,7 @@ import {
   useNotificationProvider,
   ErrorComponent,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   AuthPage,
 } from "@refinedev/antd";
 import { GoogleOutlined, GithubOutlined } from "@ant-design/icons";

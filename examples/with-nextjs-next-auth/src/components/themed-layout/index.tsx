@@ -1,7 +1,7 @@
 "use client";
 
 import { Header } from "@components/header";
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout as ThemedLayoutV2 } from "@refinedev/antd";
 import React from "react";
 
 export const ThemedLayout = ({ children }: React.PropsWithChildren) => {

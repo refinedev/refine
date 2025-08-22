@@ -5,7 +5,7 @@ import {
   Authenticated,
 } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
   useNotificationProvider,

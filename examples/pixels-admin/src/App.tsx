@@ -6,7 +6,7 @@ import {
 } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { ConfigProvider, App as AntdApp } from "antd";

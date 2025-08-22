@@ -3,7 +3,7 @@ import { KBarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
 import GlobalStyles from "@mui/material/GlobalStyles";

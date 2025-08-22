@@ -6,7 +6,7 @@ import {
 } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   AuthPage,
   RefineThemes,

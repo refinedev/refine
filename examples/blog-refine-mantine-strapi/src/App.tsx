@@ -3,7 +3,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   useNotificationProvider,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   AuthPage,
 } from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";

@@ -1,6 +1,9 @@
 import { Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import { ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import {
+  ThemedLayout as ThemedLayoutV2,
+  useNotificationProvider,
+} from "@refinedev/antd";
 import dataProvider, {
   GraphQLClient,
   liveProvider,

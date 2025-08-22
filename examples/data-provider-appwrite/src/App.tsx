@@ -2,7 +2,7 @@ import {
   AuthPage,
   ErrorComponent,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";

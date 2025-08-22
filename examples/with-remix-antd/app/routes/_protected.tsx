@@ -1,4 +1,4 @@
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout as ThemedLayoutV2 } from "@refinedev/antd";
 import { Outlet } from "@remix-run/react";
 import { type LoaderFunctionArgs, redirect } from "@remix-run/node";
 

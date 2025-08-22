@@ -1,6 +1,6 @@
 import { redirect } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
-import { ThemedLayoutV2 } from "@refinedev/mui";
+import { ThemedLayout as ThemedLayoutV2 } from "@refinedev/mui";
 
 import { authProvider } from "~/authProvider";
 import { Header } from "~/components/header";

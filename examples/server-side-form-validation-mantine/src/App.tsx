@@ -1,6 +1,6 @@
 import { GitHubBanner, type HttpError, Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   useNotificationProvider,
   RefineThemes,

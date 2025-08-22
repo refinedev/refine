@@ -4,7 +4,7 @@ import {
   RefineSnackbarProvider,
   RefineThemes,
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";

@@ -1,4 +1,4 @@
-import { ThemedSiderV2 as RefineSider } from "@refinedev/antd";
+import { ThemedSider as RefineSider } from "@refinedev/antd";
 import { Link } from "react-router";
 import { Menu } from "antd";
 import { CheckOutlined } from "@ant-design/icons";

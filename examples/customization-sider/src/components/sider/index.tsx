@@ -9,7 +9,10 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router";
-import { type ThemedSiderV2, ThemedTitleV2 } from "@refinedev/antd";
+import {
+  type ThemedSider as ThemedSiderV2,
+  ThemedTitle as ThemedTitleV2,
+} from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
 import {
   LogoutOutlined,

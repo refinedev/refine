@@ -6,7 +6,7 @@ import {
   RefineSnackbarProvider,
   AuthPage,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
 } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";

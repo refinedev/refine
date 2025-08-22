@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout as ThemedLayoutV2,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";

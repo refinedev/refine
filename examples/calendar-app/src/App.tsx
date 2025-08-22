@@ -1,5 +1,9 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import {
+  ErrorComponent,
+  ThemedLayout as ThemedLayoutV2,
+  RefineThemes,
+} from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, {
   NavigateToResource,
