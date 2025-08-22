@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 import { useGetIdentity } from "@refinedev/core";
 import {
   HamburgerMenu,
-  type RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/mui";
 import React, { useContext } from "react";
 import { ColorModeContext } from "~/contexts/ColorModeContext";

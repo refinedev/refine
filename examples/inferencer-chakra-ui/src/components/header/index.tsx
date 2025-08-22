@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import {
   HamburgerMenu,
-  type RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/chakra-ui";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import { IconLanguage, IconMoon, IconSun } from "@tabler/icons-react";

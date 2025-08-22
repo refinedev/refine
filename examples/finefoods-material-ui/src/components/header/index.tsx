@@ -7,7 +7,7 @@ import {
   useSetLocale,
 } from "@refinedev/core";
 import {
-  type RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps,
   HamburgerMenu,
 } from "@refinedev/mui";
 import AppBar from "@mui/material/AppBar";

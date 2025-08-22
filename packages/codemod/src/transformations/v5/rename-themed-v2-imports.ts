@@ -5,13 +5,19 @@ const SUPPORTED_PACKAGES = [
   "@refinedev/antd",
   "@refinedev/mantine",
   "@refinedev/chakra-ui",
+  "@refinedev/ui-types",
 ];
 
-const COMPONENT_MAPPINGS = {
+const V2_MAPPINGS = {
+  // Component mappings (all UI packages)
   ThemedLayoutV2: "ThemedLayout",
   ThemedTitleV2: "ThemedTitle",
   ThemedSiderV2: "ThemedSider",
   ThemedHeaderV2: "ThemedHeader",
+  // Type mappings (all UI packages + ui-types)
+  RefineThemedLayoutV2Props: "RefineThemedLayoutProps",
+  RefineThemedLayoutV2SiderProps: "RefineThemedLayoutSiderProps",
+  RefineThemedLayoutV2HeaderProps: "RefineThemedLayoutHeaderProps",
 };
 
 export const renameThemedV2Imports = (
@@ -19,8 +25,8 @@ export const renameThemedV2Imports = (
   root: Collection<any>,
 ) => {
   SUPPORTED_PACKAGES.forEach((packageName) => {
-    // Check if any of the new component names already exist in imports
-    const hasNewComponents = Object.values(COMPONENT_MAPPINGS).some(
+    // Check if any of the new names already exist in imports
+    const hasNewNames = Object.values(V2_MAPPINGS).some(
       (newName) =>
         root
           .find(j.ImportDeclaration, {
@@ -31,11 +37,11 @@ export const renameThemedV2Imports = (
           }).length > 0,
     );
 
-    if (hasNewComponents) {
+    if (hasNewNames) {
       return;
     }
 
-    // Find import declarations from the current package that have any V2 components
+    // Find import declarations from the current package that have any V2 items
     root
       .find(j.ImportDeclaration, {
         source: { value: packageName },
@@ -44,30 +50,30 @@ export const renameThemedV2Imports = (
         const importDecl = path.value;
         if (!importDecl.specifiers) return;
 
-        // Check if this import has any V2 components
-        const hasV2Components = importDecl.specifiers.some(
+        // Check if this import has any V2 items
+        const hasV2Items = importDecl.specifiers.some(
           (spec) =>
             spec.type === "ImportSpecifier" &&
-            Object.keys(COMPONENT_MAPPINGS).includes(spec.imported.name),
+            Object.keys(V2_MAPPINGS).includes(spec.imported.name),
         );
 
-        if (!hasV2Components) return;
+        if (!hasV2Items) return;
 
-        // Replace V2 component specifiers
+        // Replace V2 specifiers
         importDecl.specifiers = importDecl.specifiers.map((spec) => {
           if (
             spec.type === "ImportSpecifier" &&
-            Object.keys(COMPONENT_MAPPINGS).includes(spec.imported.name)
+            Object.keys(V2_MAPPINGS).includes(spec.imported.name)
           ) {
             const oldName = spec.imported.name;
-            const newName = COMPONENT_MAPPINGS[oldName];
+            const newName = V2_MAPPINGS[oldName];
 
             // Check if the import has a user-defined alias
             const hasUserAlias =
               spec.local && spec.local.name !== spec.imported.name;
-            const localName = hasUserAlias ? spec.local.name : oldName;
 
-            // Create new specifier with NewName as LocalName
+            // maintain backward compatibility with aliases for all imports
+            const localName = hasUserAlias ? spec.local.name : oldName;
             const newSpec = j.importSpecifier(
               j.identifier(newName),
               j.identifier(localName),

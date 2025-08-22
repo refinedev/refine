@@ -2,7 +2,7 @@
 
 import { DownOutlined } from "@ant-design/icons";
 import { ColorModeContext } from "@contexts/color-mode";
-import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity, useTranslation } from "@refinedev/core";
 import {
   Layout as AntdLayout,

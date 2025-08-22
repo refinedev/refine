@@ -1,4 +1,4 @@
-import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity } from "@refinedev/core";
 import {
   Avatar,

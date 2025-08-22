@@ -1,5 +1,5 @@
 import React from "react";
-import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useNavigation, Link } from "@refinedev/core";
 import { Layout as AntdLayout, Button, theme, Flex, Tabs } from "antd";
 import {

@@ -12,7 +12,7 @@ import Typography from "@mui/material/Typography";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
   HamburgerMenu,
-  type RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps,
 } from "@refinedev/mui";
 import i18n from "i18next";
 import React, { useContext } from "react";

@@ -1,5 +1,5 @@
 import { DownOutlined } from "@ant-design/icons";
-import type { RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
+import type { RefineThemedLayoutHeaderProps as RefineThemedLayoutV2HeaderProps } from "@refinedev/antd";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
   Layout as AntdLayout,
