@@ -48,7 +48,7 @@ import { Refine } from "@refinedev/core";
 import {
   ErrorComponent,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/mantine";
 import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
@@ -89,9 +89,9 @@ export default function App() {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route path="/my-products" element={<ProductList />} />

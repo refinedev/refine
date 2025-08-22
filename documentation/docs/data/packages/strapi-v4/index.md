@@ -168,7 +168,7 @@ When sending the request, we can specify which fields will come, so we send `fie
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -228,9 +228,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -293,7 +293,7 @@ In order to pull the `categories` related to the posts, we can now show the cate
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -391,9 +391,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -451,7 +451,7 @@ We can list the posts separately according to the `published` or `draft` informa
 ```tsx live url=http://localhost:5173 previewHeight=450px
 setInitialRoutes(["/posts"]);
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -584,9 +584,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -764,7 +764,7 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { DataProvider } from "@refinedev/strapi-v4";
 const API_URL = "https://api.strapi-v4.refine.dev";
 import { ConfigProvider, Layout } from "antd";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 
 // visible-block-start
 // src/pages/posts/list.tsx
@@ -895,9 +895,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">

@@ -12,8 +12,8 @@ import {
   AuthPage,
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayoutV2,
-  ThemedTitleV2,
+  ThemedLayout,
+  ThemedTitle,
 } from "@refinedev/antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
@@ -102,17 +102,17 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2
+                    <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }: any) => (
-                        <ThemedTitleV2
+                        <ThemedTitle
                           collapsed={collapsed}
                           text="Refine Invoicer"
                         />
                       )}
                     >
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -152,10 +152,7 @@ function App() {
                     <AuthPage
                       type="login"
                       title={
-                        <ThemedTitleV2
-                          collapsed={false}
-                          text="Refine Invoicer"
-                        />
+                        <ThemedTitle collapsed={false} text="Refine Invoicer" />
                       }
                       forgotPasswordLink={false}
                       registerLink={false}
@@ -172,17 +169,17 @@ function App() {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayoutV2
+                    <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }: any) => (
-                        <ThemedTitleV2
+                        <ThemedTitle
                           collapsed={collapsed}
                           text="Refine Invoicer"
                         />
                       )}
                     >
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >

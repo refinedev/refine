@@ -344,7 +344,7 @@ Here are a couple of examples of reported errors and their corresponding fix:
 
    - Solution: Run `npm i @refinedev/mantine@latest` to install the latest version of the `@refinedev/mantine` module.
 
-2. Error: "Module '@refinedev/antd' has no exported member 'ThemedLayoutV2'"
+2. Error: "Module '@refinedev/antd' has no exported member 'ThemedLayout'"
    - Solution: Execute `npm i @refinedev/antd@latest` to install the latest version of the `@refinedev/antd` module.
 
 By following these steps and updating to the latest module versions, you should be able to resolve the "not exported" error.

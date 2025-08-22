@@ -1,15 +1,15 @@
 import { redirect } from "@remix-run/node";
 import type { LoaderFunctionArgs } from "@remix-run/node";
 import { Outlet } from "@remix-run/react";
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
 import { authenticator } from "~/utils/auth.server";
 
 export default function AuthenticatedLayout() {
-  // `<ThemedLayoutV2>` is only applied if the user is authenticated
+  // `<ThemedLayout>` is only applied if the user is authenticated
   return (
-    <ThemedLayoutV2>
+    <ThemedLayout>
       <Outlet />
-    </ThemedLayoutV2>
+    </ThemedLayout>
   );
 }
 

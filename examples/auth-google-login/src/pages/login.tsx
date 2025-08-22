@@ -1,7 +1,7 @@
 import { useLogin } from "@refinedev/core";
 import { useEffect, useRef } from "react";
 
-import { ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedTitle } from "@refinedev/antd";
 import { Layout, Space, Typography } from "antd";
 
 // Todo: Update your Google Client ID here
@@ -51,7 +51,7 @@ export const Login: React.FC = () => {
       }}
     >
       <Space direction="vertical" align="center" size="large">
-        <ThemedTitleV2
+        <ThemedTitle
           collapsed={false}
           wrapperStyles={{
             fontSize: "22px",

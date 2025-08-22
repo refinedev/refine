@@ -151,7 +151,7 @@ const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
+import { ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -161,7 +161,7 @@ const App: React.FC = () => {
       <Refine
       /* ... */
       >
-        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        <ThemedLayout>{/* ... */}</ThemedLayout>
       </Refine>
     </ChakraProvider>
   );
@@ -170,7 +170,7 @@ const App: React.FC = () => {
 
 You can see how themes change the look of the application in [this example &#8594](/docs/examples/themes/refine-themes-chakra-ui/)
 
-If you want to use `<ThemedLayoutV2>` you have to wrap your application with the `<ChakraProvider>` component and should give `theme` prop to it.
+If you want to use `<ThemedLayout>` you have to wrap your application with the `<ChakraProvider>` component and should give `theme` prop to it.
 
 You can use `RefineThemes` provided by Refine or you can create your own theme object.
 
@@ -189,7 +189,7 @@ import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
   // highlight-next-line
   RefineThemes,
@@ -237,9 +237,9 @@ const App = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -278,7 +278,7 @@ import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
   // highlight-next-line
   RefineThemes,
@@ -359,9 +359,9 @@ const App = () => {
             <Route
               element={
                 // highlight-next-line
-                <ThemedLayoutV2 Header={Header}>
+                <ThemedLayout Header={Header}>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">

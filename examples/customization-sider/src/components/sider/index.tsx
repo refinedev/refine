@@ -9,7 +9,7 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router";
-import { type ThemedSiderV2, ThemedTitleV2 } from "@refinedev/antd";
+import { type ThemedSider, ThemedTitle } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
 import {
   LogoutOutlined,
@@ -21,7 +21,7 @@ import { antLayoutSider, antLayoutSiderMobile } from "./styles";
 
 const { useToken } = theme;
 
-export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
+export const CustomSider: typeof ThemedSider = ({ render }) => {
   const { token } = useToken();
   const [collapsed, setCollapsed] = useState<boolean>(false);
   const isExistAuthentication = useIsExistAuthentication();
@@ -183,7 +183,7 @@ export const CustomSider: typeof ThemedSiderV2 = ({ render }) => {
           fontSize: "14px",
         }}
       >
-        <ThemedTitleV2 collapsed={collapsed} />
+        <ThemedTitle collapsed={collapsed} />
       </div>
       <Menu
         defaultOpenKeys={defaultOpenKeys}

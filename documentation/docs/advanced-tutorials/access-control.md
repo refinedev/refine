@@ -282,7 +282,7 @@ The app will have three resources: **posts**, **users**, and **categories** with
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, ErrorComponent, RefineThemes } from "@refinedev/antd";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router";
 
@@ -330,9 +330,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -544,11 +544,11 @@ const App: React.FC = () => {
           <Route
             element={
               // highlight-start
-              <ThemedLayoutV2 Header={() => <Header role={role} />}>
+              <ThemedLayout Header={() => <Header role={role} />}>
                 <CanAccess>
                   <Outlet />
                 </CanAccess>
-              </ThemedLayoutV2>
+              </ThemedLayout>
               // highlight-end
             }
           >
@@ -615,7 +615,7 @@ values={[ {label: 'admin', value: 'admin'}, {label: 'editor', value: 'editor'} ]
 setInitialRoutes(["/posts"]);
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -670,11 +670,11 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2
+                <ThemedLayout
                 // Header={() => <Header role={role} />}
                 >
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -708,7 +708,7 @@ render(<App />);
 setInitialRoutes(["/posts"]);
 import { useState } from "react";
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -763,11 +763,11 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2
+                <ThemedLayout
                 // Header={() => <Header role={role} />}
                 >
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -1029,7 +1029,7 @@ values={[ {label: 'admin', value: 'admin'}, {label: 'editor', value: 'editor'} ]
 setInitialRoutes(["/posts"]);
 import { useState } from "react";
 import { Refine, useCan } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -1158,11 +1158,11 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2
+                <ThemedLayout
                 // Header={() => <Header role={role} />}
                 >
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -1196,7 +1196,7 @@ render(<App />);
 setInitialRoutes(["/posts"]);
 import { useState } from "react";
 import { Refine, useCan } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 import { ConfigProvider, Layout } from "antd";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -1316,11 +1316,11 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2
+                <ThemedLayout
                 // Header={() => <Header role={role} />}
                 >
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">

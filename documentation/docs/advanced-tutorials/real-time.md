@@ -45,7 +45,7 @@ Then pass `liveProvider` from [`@refinedev/ably`](https://github.com/refinedev/r
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
   ErrorComponent,
 } from "@refinedev/antd";
@@ -93,9 +93,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route index element={<NavigateToResource />} />
@@ -228,7 +228,7 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import { Link } from "react-router";
-import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { Sider, ThemedTitle } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button } from "antd";
 import {
   LogoutOutlined,
@@ -403,7 +403,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
           fontSize: "14px",
         }}
       >
-        <ThemedTitleV2 collapsed={collapsed} />
+        <ThemedTitle collapsed={collapsed} />
       </div>
       <Menu
         defaultOpenKeys={defaultOpenKeys}
@@ -449,7 +449,7 @@ import {
   useSubscription,
 } from "@refinedev/core";
 import { Link } from "react-router";
-import { Sider, ThemedTitleV2 } from "@refinedev/antd";
+import { Sider, ThemedTitle } from "@refinedev/antd";
 import { Layout as AntdLayout, Menu, Grid, theme, Button, Badge } from "antd";
 import {
   LogoutOutlined,
@@ -643,7 +643,7 @@ export const CustomSider: typeof Sider = ({ render }) => {
           fontSize: "14px",
         }}
       >
-        <ThemedTitleV2 collapsed={collapsed} />
+        <ThemedTitle collapsed={collapsed} />
       </div>
       <Menu
         defaultOpenKeys={defaultOpenKeys}

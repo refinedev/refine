@@ -20,7 +20,7 @@ import {
   useMantineTheme,
 } from "@mantine/core";
 
-import { ThemedTitleV2 } from "@components";
+import { ThemedTitle } from "@components";
 import { FormContext } from "@contexts/form-context";
 import {
   layoutStyles,
@@ -78,7 +78,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
   const PageTitle =
     title === false ? null : (
       <div style={pageTitleStyles}>
-        {title ?? <ThemedTitleV2 collapsed={false} />}
+        {title ?? <ThemedTitle collapsed={false} />}
       </div>
     );
 

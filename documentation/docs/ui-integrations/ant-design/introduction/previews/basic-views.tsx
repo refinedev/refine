@@ -46,7 +46,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
-import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import { ErrorComponent, RefineThemes, ThemedLayout, useNotificationProvider } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";
 
 import "@refinedev/antd/dist/reset.css";
@@ -79,9 +79,9 @@ export default function App() {
             <Routes>
                 <Route
                     element={
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                         <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                     }
                 >
                     <Route path="/products" element={<Outlet />}>

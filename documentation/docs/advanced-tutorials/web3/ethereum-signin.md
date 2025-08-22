@@ -153,7 +153,7 @@ We need to override the Refine login page. In this way, we will redirect it to t
 
 ```tsx title="/src/page/login.tsx"
 import { Layout, Button, Space, Typography } from "antd";
-import { ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedTitle } from "@refinedev/antd";
 // highlight-next-line
 import { useLogin } from "@refinedev/core";
 
@@ -170,7 +170,7 @@ export const Login: React.FC = () => {
       }}
     >
       <Space direction="vertical" align="center" size="large">
-        <ThemedTitleV2
+        <ThemedTitle
           collapsed={false}
           wrapperStyles={{
             fontSize: "22px",

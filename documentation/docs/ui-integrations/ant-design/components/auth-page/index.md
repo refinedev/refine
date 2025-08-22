@@ -134,7 +134,7 @@ setRefineProps({ Sider: () => null });
 // visible-block-start
 import { Refine, Authenticated } from "@refinedev/core";
 import dataProvider from "@refinedev/simple-rest";
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
@@ -160,9 +160,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -214,7 +214,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -237,9 +237,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -308,7 +308,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -331,9 +331,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -403,7 +403,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -425,9 +425,9 @@ const App = () => {
           <Route
             element={
               <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               </Authenticated>
             }
           >
@@ -500,7 +500,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -522,9 +522,9 @@ const App = () => {
           <Route
             element={
               <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               </Authenticated>
             }
           >
@@ -847,7 +847,7 @@ const MyLoginPage = () => {
     <AuthPage
       type="login"
       title={
-        <ThemedTitleV2
+        <ThemedTitle
           title="My Title"
           icon={<img src="https://refine.dev/img/logo.png" />}
         />
