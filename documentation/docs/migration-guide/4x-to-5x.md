@@ -765,18 +765,21 @@ Previously, you could define a React component in the <code>&lt;Refine /&gt;</co
 
 ```
 
-### ThemedTitle → ThemedTitleV2
+### ThemedLayoutV2 → ThemedLayout
 
-🚨 **Affects:** App titles (auth pages, layout headers)
+🚨 **Affects:** Layout components across all UI packages
 
-The `ThemedTitle` component has been replaced with `ThemedTitleV2` across all UI packages (`@refinedev/antd`, `@refinedev/mantine`, `@refinedev/chakra-ui`, ...).
+The V2 layout components have been renamed to remove the V2 suffix across all UI packages (`@refinedev/antd`, `@refinedev/mui`, `@refinedev/mantine`, `@refinedev/chakra-ui`).
 
-Most common props still work (e.g., `collapsed`, style props). Review styles after upgrading.
+**Components affected:**
+
+- `ThemedLayoutV2` → `ThemedLayout`
+- `ThemedTitleV2` → `ThemedTitle`
+- `ThemedSiderV2` → `ThemedSider`
+- `ThemedHeaderV2` → `ThemedHeader`
 
 ```diff
-- import { ThemedTitle } from "@refinedev/antd"; // or @refinedev/mantine, @refinedev/chakra-ui
-+ import { ThemedTitleV2 } from "@refinedev/antd"; // or @refinedev/mantine, @refinedev/chakra-ui
+- import { ThemedLayoutV2, ThemedTitleV2, ThemedSiderV2, ThemedHeaderV2 } from "@refinedev/antd";
++ import { ThemedLayout, ThemedTitle, ThemedSider, ThemedHeader } from "@refinedev/antd";
 
-- <ThemedTitle collapsed={false} />
-+ <ThemedTitleV2 collapsed={false} />
 ```
