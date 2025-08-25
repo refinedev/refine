@@ -44,12 +44,15 @@ describe("useTable Hook", () => {
       pageSize,
       current,
       pageCount,
+      result: tableResult,
     } = result.current;
 
     expect(data?.data).toHaveLength(2);
     expect(pageSize).toEqual(defaultPagination.pageSize);
     expect(current).toEqual(defaultPagination.current);
     expect(pageCount).toEqual(1);
+    expect(tableResult.data).toHaveLength(2);
+    expect(tableResult.total).toBe(2);
   });
 
   it("with initial pagination parameters", async () => {
@@ -102,9 +105,12 @@ describe("useTable Hook", () => {
 
     const {
       tableQuery: { data },
+      result: tableResult,
     } = result.current;
 
     expect(data?.data).toHaveLength(2);
+    expect(tableResult.data).toHaveLength(2);
+    expect(tableResult.total).toBe(2);
   });
 
   it("with syncWithLocation", async () => {
@@ -129,9 +135,12 @@ describe("useTable Hook", () => {
 
     const {
       tableQuery: { data },
+      result: tableResult,
     } = result.current;
 
     expect(data?.data).toHaveLength(2);
+    expect(tableResult.data).toHaveLength(2);
+    expect(tableResult.total).toBe(2);
   });
 
   it("should success data with resource", async () => {
@@ -152,6 +161,36 @@ describe("useTable Hook", () => {
     await waitFor(() => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
+  });
+
+  it("should return result property with data and total", async () => {
+    const { result } = renderHook(
+      () =>
+        useTable({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+          routerProvider,
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.tableQuery.isLoading).toBeTruthy();
+    });
+
+    const { result: tableResult } = result.current;
+
+    expect(tableResult).toBeDefined();
+    expect(tableResult.data).toBeDefined();
+    expect(tableResult.total).toBeDefined();
+    expect(Array.isArray(tableResult.data)).toBeTruthy();
+    expect(typeof tableResult.total).toBe("number");
+    expect(tableResult.data).toHaveLength(2);
+    expect(tableResult.total).toBe(2);
   });
 
   it("pagination should be prioritized over initialCurrent and initialPageSize", async () => {
