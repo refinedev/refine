@@ -199,9 +199,10 @@ export const PostList: React.FC = () => {
     resetRowSelection,
     refineCore: {
       tableQuery: { data: tableData },
-      setCurrent,
+
+      setCurrentPage: setCurrent,
       pageCount,
-      current,
+      currentPage: current,
     },
   } = useTable<IPost>({
     columns,

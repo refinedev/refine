@@ -145,4 +145,102 @@ describe("rename-current-to-currentPage", () => {
     `;
     expect(transform(source).trim()).toBe(expected.trim());
   });
+
+  it("should handle nested destructuring with refineCore", () => {
+    const source = `
+      import { useTable } from "@refinedev/react-table";
+      const {
+        refineCore: { setCurrent, current, pageCount }
+      } = useTable();
+    `;
+    const expected = `
+      import { useTable } from "@refinedev/react-table";
+      const {
+        refineCore: {
+          setCurrentPage: setCurrent,
+          currentPage: current,
+          pageCount,
+        }
+      } = useTable();
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should handle nested destructuring with only current", () => {
+    const source = `
+      import { useTable } from "@refinedev/core";
+      const {
+        refineCore: { current, pageCount }
+      } = useTable();
+    `;
+    const expected = `
+      import { useTable } from "@refinedev/core";
+      const {
+        refineCore: {
+          currentPage: current,
+          pageCount,
+        }
+      } = useTable();
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should handle nested destructuring with only setCurrent", () => {
+    const source = `
+      import { useTable } from "@refinedev/react-table";
+      const {
+        refineCore: { setCurrent, pageCount }
+      } = useTable();
+    `;
+    const expected = `
+      import { useTable } from "@refinedev/react-table";
+      const {
+        refineCore: {
+          setCurrentPage: setCurrent,
+          pageCount,
+        }
+      } = useTable();
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should handle mixed nested and flat destructuring", () => {
+    const source = `
+      import { useTable } from "@refinedev/react-table";
+      const {
+        getHeaderGroups,
+        getRowModel,
+        refineCore: { setCurrent, current, pageCount }
+      } = useTable();
+    `;
+    const expected = `
+      import { useTable } from "@refinedev/react-table";
+      const {
+        getHeaderGroups,
+        getRowModel,
+        refineCore: {
+          setCurrentPage: setCurrent,
+          currentPage: current,
+          pageCount,
+        }
+      } = useTable();
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should not transform nested destructuring from unsupported packages", () => {
+    const source = `
+      import { useTable } from "other-lib";
+      const {
+        refineCore: { setCurrent, current }
+      } = useTable();
+    `;
+    const expected = `
+      import { useTable } from "other-lib";
+      const {
+        refineCore: { setCurrent, current }
+      } = useTable();
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
 });

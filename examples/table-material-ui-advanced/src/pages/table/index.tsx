@@ -170,6 +170,7 @@ export const PostList: React.FC = () => {
   const {
     options: {
       state: { pagination, rowSelection },
+
       pageCount,
     },
     setOptions,

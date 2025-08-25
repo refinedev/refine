@@ -51,10 +51,10 @@ export const ProductList = () => {
   const {
     tableQuery: tableQueryResult,
     pageCount,
-    current,
+    currentPage: current,
     pageSize,
     filters,
-    setCurrent,
+    setCurrentPage: setCurrent,
     setPageSize,
     setSorters,
     setFilters,

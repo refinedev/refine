@@ -42,6 +42,53 @@ export const renameCurrentToCurrentPage = (
     });
   });
 
+  // Helper function to transform object properties recursively
+  const transformObjectProperties = (properties: any[]): any[] => {
+    return properties.map((prop: any) => {
+      if (
+        prop.type === "ObjectProperty" &&
+        prop.key?.type === "Identifier" &&
+        prop.value?.type === "Identifier"
+      ) {
+        const keyName = prop.key.name;
+        const valueName = prop.value.name;
+
+        if (keyName === "current") {
+          return j.objectProperty(
+            j.identifier("currentPage"),
+            j.identifier(valueName),
+          );
+        }
+
+        if (keyName === "setCurrent") {
+          return j.objectProperty(
+            j.identifier("setCurrentPage"),
+            j.identifier(valueName),
+          );
+        }
+      }
+
+      // Handle nested object patterns (like refineCore: { current, setCurrent })
+      if (
+        prop.type === "ObjectProperty" &&
+        prop.key?.type === "Identifier" &&
+        prop.value?.type === "ObjectPattern"
+      ) {
+        const nestedPattern = prop.value as any;
+        const transformedProperties = transformObjectProperties(
+          nestedPattern.properties,
+        );
+
+        return j.objectProperty(
+          prop.key,
+          j.objectPattern(transformedProperties),
+        );
+      }
+
+      return prop;
+    });
+  };
+
   // Second pass: find and transform destructuring assignments
   root
     .find(j.VariableDeclarator)
@@ -62,37 +109,10 @@ export const renameCurrentToCurrentPage = (
       // Only proceed if this hook is from a supported package
       if (!hookSources.has(hookName)) return;
 
-      let hasChanges = false;
-
       // Transform the properties in the destructuring
-      objectPattern.properties = objectPattern.properties.map((prop: any) => {
-        if (
-          prop.type === "ObjectProperty" &&
-          prop.key?.type === "Identifier" &&
-          prop.value?.type === "Identifier"
-        ) {
-          const keyName = prop.key.name;
-          const valueName = prop.value.name;
-
-          if (keyName === "current") {
-            hasChanges = true;
-            return j.objectProperty(
-              j.identifier("currentPage"),
-              j.identifier(valueName),
-            );
-          }
-
-          if (keyName === "setCurrent") {
-            hasChanges = true;
-            return j.objectProperty(
-              j.identifier("setCurrentPage"),
-              j.identifier(valueName),
-            );
-          }
-        }
-
-        return prop;
-      });
+      objectPattern.properties = transformObjectProperties(
+        objectPattern.properties,
+      );
     });
 
   return root;
