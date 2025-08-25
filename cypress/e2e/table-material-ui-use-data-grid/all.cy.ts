@@ -101,7 +101,7 @@ describe("table-material-ui-use-data-grid", () => {
 
     cy.get("[title='Go to next page']").click();
 
-    cy.url().should("include", "current=2");
+    cy.url().should("include", "currentPage=2");
 
     cy.wait("@getSecondPagePosts");
 

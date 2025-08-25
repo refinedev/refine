@@ -801,9 +801,9 @@ export const renderer = ({
             getRowModel,
             setOptions,
             refineCore: {
-                setCurrent,
+                setCurrentPage,
                 pageCount,
-                current,
+                currentPage,
                 tableQuery: { data: tableData },
             },
         } = useTable({
@@ -879,9 +879,9 @@ export const renderer = ({
                     </Table>
                 </TableContainer>
                 <Pagination
-                    current={current}
+                    current={currentPage}
                     pageCount={pageCount}
-                    setCurrent={setCurrent}
+                    setCurrent={setCurrentPage}
                 />
             </List>   
         );

@@ -106,7 +106,7 @@ describe("table-react-table-basic", () => {
 
     cy.get("#next-button").click();
 
-    cy.url().should("include", "current=2");
+    cy.url().should("include", "currentPage=2");
 
     cy.wait("@getSecondPagePosts");
 

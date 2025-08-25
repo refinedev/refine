@@ -312,7 +312,7 @@ describe("inferencer-material-ui", () => {
     ).as("getSecondPagePosts");
 
     cy.get("[title='Go to next page']").click();
-    cy.url().should("include", "current=2");
+    cy.url().should("include", "currentPage=2");
     cy.wait("@getSecondPagePosts");
 
     cy.get("[title='Go to previous page']").click();

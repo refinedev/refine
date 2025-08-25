@@ -301,7 +301,7 @@ describe("inferencer-chakra-ui", () => {
 
     cy.get("button").contains(2).click();
 
-    cy.url().should("include", "current=2");
+    cy.url().should("include", "currentPage=2");
 
     cy.wait("@getSecondPagePosts").then((interception) => {
       const { request } = interception;
