@@ -3,7 +3,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   useNotificationProvider,
   RefineThemes,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
   AuthPage,
 } from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -110,9 +110,9 @@ function App() {
                         key="authenticated-routes"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayoutV2 Header={() => <Header sticky />}>
+                        <ThemedLayout Header={() => <Header sticky />}>
                           <Outlet />
-                        </ThemedLayoutV2>
+                        </ThemedLayout>
                       </Authenticated>
                     }
                   >

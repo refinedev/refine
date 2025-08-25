@@ -5,7 +5,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -95,9 +95,9 @@ function App() {
                       key="authenticated-routes"
                       fallback={<CatchAllNavigate to="/login" />}
                     >
-                      <ThemedLayoutV2 Header={() => <Header sticky />}>
+                      <ThemedLayout Header={() => <Header sticky />}>
                         <Outlet />
-                      </ThemedLayoutV2>
+                      </ThemedLayout>
                     </Authenticated>
                   }
                 >

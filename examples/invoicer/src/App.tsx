@@ -1,7 +1,7 @@
 import { Authenticated, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   AuthPage,
 } from "@refinedev/antd";
@@ -82,7 +82,7 @@ const App: React.FC = () => {
                       key="authenticated-routes"
                       fallback={<CatchAllNavigate to="/login" />}
                     >
-                      <ThemedLayoutV2
+                      <ThemedLayout
                         Header={() => <Header />}
                         Sider={() => null}
                       >
@@ -95,7 +95,7 @@ const App: React.FC = () => {
                         >
                           <Outlet />
                         </div>
-                      </ThemedLayoutV2>
+                      </ThemedLayout>
                     </Authenticated>
                   }
                 >
@@ -178,12 +178,12 @@ const App: React.FC = () => {
                 <Route
                   element={
                     <Authenticated key="catch-all">
-                      <ThemedLayoutV2
+                      <ThemedLayout
                         Header={() => <Header />}
                         Sider={() => null}
                       >
                         <Outlet />
-                      </ThemedLayoutV2>
+                      </ThemedLayout>
                     </Authenticated>
                   }
                 >

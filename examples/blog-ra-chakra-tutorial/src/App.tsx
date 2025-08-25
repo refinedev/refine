@@ -6,7 +6,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineThemes,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
@@ -60,9 +60,9 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -105,9 +105,9 @@ function App() {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >

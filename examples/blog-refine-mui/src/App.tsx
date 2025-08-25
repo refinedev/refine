@@ -6,7 +6,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
   ThemedTitle as ThemedTitleV2,
 } from "@refinedev/mui";
 
@@ -96,7 +96,7 @@ function App() {
                 <Routes>
                   <Route
                     element={
-                      <ThemedLayoutV2
+                      <ThemedLayout
                         Header={() => <Header sticky />}
                         Title={({ collapsed }) => (
                           <ThemedTitleV2
@@ -107,7 +107,7 @@ function App() {
                         )}
                       >
                         <Outlet />
-                      </ThemedLayoutV2>
+                      </ThemedLayout>
                     }
                   >
                     <Route

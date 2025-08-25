@@ -6,11 +6,7 @@ import routerProvider, {
   DocumentTitleHandler,
 } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
-import {
-  ErrorComponent,
-  RefineThemes,
-  ThemedLayout as ThemedLayoutV2,
-} from "@refinedev/antd";
+import { ErrorComponent, RefineThemes, ThemedLayout } from "@refinedev/antd";
 
 import { ConfigProvider, App as AntdApp } from "antd";
 import "@ant-design/v5-patch-for-react-19";
@@ -46,9 +42,9 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

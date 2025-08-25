@@ -4,7 +4,7 @@ import {
   RefineSnackbarProvider,
   RefineThemes,
   ErrorComponent,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/mui";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -40,9 +40,9 @@ function App() {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

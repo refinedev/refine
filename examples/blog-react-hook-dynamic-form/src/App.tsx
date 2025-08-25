@@ -4,7 +4,7 @@ import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
   RefineSnackbarProvider,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   ErrorComponent,
 } from "@refinedev/mui";
@@ -53,9 +53,9 @@ function App() {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

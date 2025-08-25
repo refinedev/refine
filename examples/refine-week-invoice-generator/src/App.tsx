@@ -12,7 +12,7 @@ import {
   AuthPage,
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
   ThemedTitle as ThemedTitleV2,
 } from "@refinedev/antd";
 import "@ant-design/v5-patch-for-react-19";
@@ -102,7 +102,7 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2
+                    <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }: any) => (
                         <ThemedTitleV2
@@ -112,7 +112,7 @@ function App() {
                       )}
                     >
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -172,7 +172,7 @@ function App() {
               <Route
                 element={
                   <Authenticated key="catch-all">
-                    <ThemedLayoutV2
+                    <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }: any) => (
                         <ThemedTitleV2
@@ -182,7 +182,7 @@ function App() {
                       )}
                     >
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >

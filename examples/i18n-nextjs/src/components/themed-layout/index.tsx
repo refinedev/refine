@@ -1,11 +1,11 @@
 "use client";
 
 import { Header } from "@components/header";
-import { ThemedLayout as ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
 import React from "react";
 
 export const ThemedLayout = ({ children }: React.PropsWithChildren) => {
   return (
-    <ThemedLayoutV2 Header={() => <Header sticky />}>{children}</ThemedLayoutV2>
+    <ThemedLayout Header={() => <Header sticky />}>{children}</ThemedLayout>
   );
 };

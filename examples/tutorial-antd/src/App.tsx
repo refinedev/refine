@@ -7,7 +7,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import {
   useNotificationProvider,
-  ThemedLayout as ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
@@ -49,7 +49,7 @@ function App() {
               warnWhenUnsavedChanges: true,
             }}
           >
-            <ThemedLayoutV2>
+            <ThemedLayout>
               <Routes>
                 <Route
                   index
@@ -65,7 +65,7 @@ function App() {
 
                 <Route path="*" element={<ErrorComponent />} />
               </Routes>
-            </ThemedLayoutV2>
+            </ThemedLayout>
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
           </Refine>
