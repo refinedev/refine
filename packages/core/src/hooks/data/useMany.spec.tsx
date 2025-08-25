@@ -31,13 +31,39 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.isPending).toBeTruthy();
+      expect(!result.current.query.isPending).toBeTruthy();
     });
 
-    const { status, data } = result.current;
+    const { status, data } = result.current.query;
+    const { result: manyResult } = result.current;
 
     expect(status).toBe("success");
     expect(data?.data.length).toBe(2);
+    expect(manyResult.data).toBeDefined();
+    expect(manyResult.data?.length).toBe(2);
+  });
+
+  it("should return result property with data", async () => {
+    const { result } = renderHook(
+      () => useMany({ resource: "posts", ids: ["1", "2"] }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.query.isPending).toBeTruthy();
+    });
+
+    const { result: manyResult } = result.current;
+
+    expect(manyResult).toBeDefined();
+    expect(manyResult.data).toBeDefined();
+    expect(Array.isArray(manyResult.data)).toBeTruthy();
+    expect(manyResult.data?.length).toBe(2);
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -105,13 +131,13 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -146,7 +172,7 @@ describe("useMany Hook", () => {
         );
 
         await waitFor(() => {
-          expect(!result.current.isPending).toBeTruthy();
+          expect(!result.current.query.isPending).toBeTruthy();
         });
 
         expect(onSubscribeMock).toHaveBeenCalled();
@@ -191,7 +217,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isPending).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).not.toHaveBeenCalled();
@@ -224,7 +250,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isPending).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -315,7 +341,7 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
     });
 
     expect(getOneMock).toHaveBeenCalledTimes(2);
@@ -364,7 +390,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(notificationMock).toHaveBeenCalledWith({
@@ -402,7 +428,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -435,7 +461,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -474,7 +500,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -516,7 +542,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -552,7 +578,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -588,7 +614,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getManyMock).toHaveBeenCalledWith(
@@ -638,7 +664,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getManyMock).not.toHaveBeenCalled();
@@ -688,7 +714,7 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getManyFooMock).toHaveBeenCalledWith(
@@ -731,7 +757,7 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getManyMock).toHaveBeenCalledWith(
@@ -787,7 +813,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getManyFooMock).toHaveBeenCalledWith(
@@ -828,7 +854,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getManyMock).toHaveBeenCalledWith(
@@ -887,7 +913,7 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getManyMock).toHaveBeenCalledWith(
@@ -908,7 +934,7 @@ describe("useMany Hook", () => {
         data: [],
       });
 
-      const result = renderHook(
+      const { result } = renderHook(
         () =>
           useMany({
             resource: "posts",
@@ -927,8 +953,8 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(result.result.current.isPending).toBeTruthy();
-      expect(result.result.current.fetchStatus).toBe("idle");
+      expect(result.current.query.isPending).toBeTruthy();
+      expect(result.current.query.fetchStatus).toBe("idle");
       expect(getManyMock).not.toHaveBeenCalled();
       expect(warnMock).toHaveBeenCalledWith(
         expect.stringContaining('[useMany]: Missing "ids" prop.'),
@@ -944,7 +970,7 @@ describe("useMany Hook", () => {
         data: [],
       });
 
-      const result = renderHook(
+      const { result } = renderHook(
         () =>
           useMany({
             resource: undefined as unknown as string,
@@ -963,8 +989,8 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(result.result.current.isPending).toBeTruthy();
-      expect(result.result.current.fetchStatus).toBe("idle");
+      expect(result.current.query.isPending).toBeTruthy();
+      expect(result.current.query.fetchStatus).toBe("idle");
       expect(getManyMock).not.toHaveBeenCalled();
       expect(warnMock).toHaveBeenCalledWith(
         expect.stringContaining('[useMany]: Missing "resource" prop.'),
@@ -980,7 +1006,7 @@ describe("useMany Hook", () => {
         data: [],
       });
 
-      const result = renderHook(
+      const { result } = renderHook(
         () =>
           useMany({
             resource: undefined as unknown as string,
@@ -1002,8 +1028,8 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(result.result.current.isPending).toBeTruthy();
-      expect(result.result.current.fetchStatus).toBe("fetching");
+      expect(result.current.query.isPending).toBeTruthy();
+      expect(result.current.query.fetchStatus).toBe("fetching");
       expect(getManyMock).toHaveBeenCalled();
       expect(warnMock).not.toHaveBeenCalled();
     });

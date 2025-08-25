@@ -1,16 +1,7 @@
 import { useList, useMany, useOne } from "../src/hooks/data";
 import { TestWrapper, renderHook, waitFor } from "./";
 import { MockJSONServer } from "./dataMocks";
-
-const extractData = (
-  listResult:
-    | ReturnType<typeof renderUseList>
-    | ReturnType<typeof renderUseMany>,
-) => {
-  return "query" in listResult.current
-    ? listResult.current.result?.data
-    : listResult.current.data?.data;
-};
+import type { BaseRecord } from "../src/contexts/data/types";
 
 export const renderUseOne = () => {
   const { result: useOneResult } = renderHook(
@@ -69,13 +60,15 @@ export const assertList = async (
   valueInput: string | string[] | undefined,
 ) => {
   await waitFor(() => {
-    const data = extractData(listResult);
+    const data = listResult.current.result?.data;
     if (Array.isArray(valueInput)) {
       valueInput.forEach((value, index) => {
         expect(data?.[index][keyInput]).toEqual(value);
       });
     } else if (typeof valueInput === "string") {
-      expect(data?.map((d) => d[keyInput])).toContainEqual(valueInput);
+      expect(data?.map((d: BaseRecord) => d[keyInput])).toContainEqual(
+        valueInput,
+      );
     }
   });
 };
@@ -87,7 +80,7 @@ export const assertListLength = async (
   length: number,
 ) => {
   await waitFor(() => {
-    expect(extractData(listResult)).toHaveLength(length);
+    expect(listResult.current.result?.data).toHaveLength(length);
   });
 };
 
