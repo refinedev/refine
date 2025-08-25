@@ -61,7 +61,7 @@ export const ListProducts = () => {
     tableQuery: { data, isLoading },
   } = useTable({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
   // highlight-end
@@ -119,7 +119,7 @@ export const ListProducts = () => {
     tableQuery: { data, isLoading },
   } = useTable({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
@@ -254,8 +254,11 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
+      params.append(
+        "_start",
+        (pagination.currentPage - 1) * pagination.pageSize,
+      );
+      params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     if (sorters && sorters.length > 0) {
@@ -326,7 +329,7 @@ export const ListProducts = () => {
     // highlight-end
   } = useTable({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
@@ -441,7 +444,7 @@ export const ListProducts = () => {
     // highlight-end
   } = useTable({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 

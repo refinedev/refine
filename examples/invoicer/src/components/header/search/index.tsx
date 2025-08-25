@@ -26,7 +26,7 @@ export const Search = () => {
   const { data: dataAccount } = useList<Account>({
     resource: "accounts",
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 999,
     },
     filters: [
@@ -49,7 +49,7 @@ export const Search = () => {
   const { data: dataClient } = useList<Client>({
     resource: "clients",
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 999,
     },
     filters: [

@@ -53,7 +53,7 @@ describe("useSimpleList Hook", () => {
         useSimpleList({
           pagination: {
             pageSize: 1,
-            current: 2,
+            currentPage: 2,
           },
         }),
       {

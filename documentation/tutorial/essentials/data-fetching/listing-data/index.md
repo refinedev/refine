@@ -15,7 +15,7 @@ To list records using Refine's hooks, first we need to implement the [`getList`]
 The `getList` method accepts `resource`, `pagination`, `sorters`, `filters` and `meta` properties.
 
 - `resource` refers to the entity we're fetching.
-- `pagination` is an object containing the `current` and `pageSize` properties.
+- `pagination` is an object containing the `currentPage` and `pageSize` properties.
 - `sorters` is an array containing the sorters we're using.
 - `filters` is an array containing the filters we're using.
 - `meta` is an object containing any additional data passed to the hook.
@@ -148,8 +148,11 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
+      params.append(
+        "_start",
+        (pagination.currentPage - 1) * pagination.pageSize,
+      );
+      params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     const response = await fetch(`${API_URL}/${resource}?${params.toString()}`);
@@ -181,7 +184,7 @@ export const ListProducts = () => {
   const { data, isLoading } = useList({
     resource: "products",
     // highlight-next-line
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
   });
 
   if (isLoading) {
@@ -222,8 +225,11 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
+      params.append(
+        "_start",
+        (pagination.currentPage - 1) * pagination.pageSize,
+      );
+      params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     // highlight-start
@@ -260,7 +266,7 @@ import { useList } from "@refinedev/core";
 export const ListProducts = () => {
   const { data, isLoading } = useList({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     // highlight-next-line
     sorters: [{ field: "name", order: "asc" }],
   });
@@ -307,8 +313,11 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
+      params.append(
+        "_start",
+        (pagination.currentPage - 1) * pagination.pageSize,
+      );
+      params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     if (sorters && sorters.length > 0) {
@@ -354,7 +363,7 @@ import { useList } from "@refinedev/core";
 export const ListProducts = () => {
   const { data, isLoading } = useList({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: [{ field: "name", order: "asc" }],
     // highlight-next-line
     filters: [{ field: "material", operator: "eq", value: "Aluminum" }],

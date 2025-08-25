@@ -104,7 +104,7 @@ export type UseSelectProps<TQueryFnData, TError, TData> = {
   >;
   /**
    * Pagination option from [`useList()`](/docs/api-reference/core/hooks/data/useList/)
-   * @type {  current?: number; pageSize?: number;}
+   * @type {  currentPage?: number; pageSize?: number;}
    * @default `undefined`
    */
   pagination?: Prettify<
@@ -299,7 +299,7 @@ export const useSelect = <
     sorters,
     filters: filters.concat(search),
     pagination: {
-      current: pagination?.current,
+      currentPage: pagination?.currentPage,
       pageSize: pagination?.pageSize ?? 10,
       mode: pagination?.mode,
     },

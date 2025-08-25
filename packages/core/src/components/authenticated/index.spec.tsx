@@ -246,11 +246,11 @@ describe("Authenticated", () => {
     );
   });
 
-  it("should redirect to `/my-path?to=/dashboard?current=1&pageSize=2` if not authenticated (`redirectOnFail` with append query)", async () => {
+  it("should redirect to `/my-path?to=/dashboard?currentPage=1&pageSize=2` if not authenticated (`redirectOnFail` with append query)", async () => {
     const mockGo = jest.fn();
 
     const currentQuery = {
-      current: 1,
+      currentPage: 1,
       pageSize: 2,
     };
 
@@ -307,7 +307,7 @@ describe("Authenticated", () => {
         expect.objectContaining({
           to: "/my-path",
           query: {
-            to: "/dashboard?current=1&pageSize=2",
+            to: "/dashboard?currentPage=1&pageSize=2",
           },
           type: "replace",
         }),
@@ -315,11 +315,11 @@ describe("Authenticated", () => {
     );
   });
 
-  it("should redirect to `/my-path?to=/dashboard?current=1&pageSize=2` if not authenticated (authProvider's check with append query)", async () => {
+  it("should redirect to `/my-path?to=/dashboard?currentPage=1&pageSize=2` if not authenticated (authProvider's check with append query)", async () => {
     const mockGo = jest.fn();
 
     const currentQuery = {
-      current: 1,
+      currentPage: 1,
       pageSize: 2,
     };
 
@@ -375,7 +375,7 @@ describe("Authenticated", () => {
         expect.objectContaining({
           to: "/my-path",
           query: {
-            to: "/dashboard?current=1&pageSize=2",
+            to: "/dashboard?currentPage=1&pageSize=2",
           },
           type: "replace",
         }),

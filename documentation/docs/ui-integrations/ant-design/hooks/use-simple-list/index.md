@@ -137,7 +137,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 
 > For more information, refer to the [`identifier` of the `<Refine/>` component documentation &#8594](/docs/core/refine-component#identifier)
 
-### pagination.current
+### pagination.currentPage
 
 Sets the initial value of the page index. It is `1` by default.
 

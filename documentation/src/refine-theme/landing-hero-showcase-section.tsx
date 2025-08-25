@@ -487,7 +487,7 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
                         const { data } = useList({
                           resource: "polls",
                           filters: [{ field: "status", operator: "eq", value: "active" }],
-                          pagination: { current: 1, pageSize: 1 },
+                          pagination: { currentPage: 1, pageSize: 1 },
                           liveMode: "auto",
                         });
                                 `,
