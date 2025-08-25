@@ -7,9 +7,9 @@ import { authenticator } from "~/utils/auth.server";
 export default function AuthenticatedLayout() {
   // `<ThemedLayout>` is only applied if the user is authenticated
   return (
-    <ThemedLayout>
+    <BaseLayout>
       <Outlet />
-    </ThemedLayout>
+    </BaseLayout>
   );
 }
 
