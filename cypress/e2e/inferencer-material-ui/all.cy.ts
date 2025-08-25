@@ -317,7 +317,7 @@ describe("inferencer-material-ui", () => {
 
     cy.get("[title='Go to previous page']").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPagePosts");
   });

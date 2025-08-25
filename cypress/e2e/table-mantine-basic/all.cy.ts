@@ -103,7 +103,7 @@ describe("table-mantine-basic", () => {
 
     cy.get(".mantine-Pagination-item").contains("1").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getPosts").then((interception) => {
       const { request } = interception;
@@ -123,6 +123,6 @@ describe("table-mantine-basic", () => {
     cy.get("#title").type("lorem");
     cy.get(".tabler-icon-check").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
   });
 });

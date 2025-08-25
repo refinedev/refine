@@ -125,7 +125,7 @@ describe("table-react-table-basic", () => {
 
     cy.get("#previous-button").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPagePosts");
   });
@@ -137,6 +137,6 @@ describe("table-react-table-basic", () => {
 
     cy.get("#title").type("lorem");
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
   });
 });

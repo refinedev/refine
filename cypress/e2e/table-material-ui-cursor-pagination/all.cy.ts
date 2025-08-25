@@ -36,7 +36,7 @@ describe("table-material-ui-cursor-pagination", () => {
     cy.get("[title='Go to previous page']").should("not.be.disabled");
     cy.get("[title='Go to previous page']").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPageCommits");
   });

@@ -117,7 +117,7 @@ describe("table-antd-use-table", () => {
 
     cy.get(".ant-pagination-prev").first().click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPagePosts");
   });
@@ -135,6 +135,6 @@ describe("table-antd-use-table", () => {
 
     cy.get(".ant-btn-primary").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
   });
 });

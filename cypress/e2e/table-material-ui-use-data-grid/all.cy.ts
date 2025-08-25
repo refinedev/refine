@@ -120,7 +120,7 @@ describe("table-material-ui-use-data-grid", () => {
 
     cy.get("[title='Go to previous page']").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPagePosts");
   });
@@ -156,7 +156,7 @@ describe("table-material-ui-use-data-grid", () => {
 
     cy.get("[placeholder='Filter value']").type("lorem");
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
   });
 
   it("should update a cell", () => {

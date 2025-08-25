@@ -118,7 +118,7 @@ describe("table-chakra-ui-basic", () => {
 
     cy.get("#prev-page").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getPosts").then((interception) => {
       const { request } = interception;
@@ -138,6 +138,6 @@ describe("table-chakra-ui-basic", () => {
     cy.get("#title").type("lorem");
     cy.get(".tabler-icon-check").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
   });
 });

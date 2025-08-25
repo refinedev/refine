@@ -178,6 +178,6 @@ describe("inferencer-antd", () => {
 
     cy.get(".ant-pagination-prev").first().click();
     cy.wait("@getFirstPagePosts");
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
   });
 });

@@ -313,7 +313,7 @@ describe("inferencer-chakra-ui", () => {
 
     cy.get("button").contains(1).click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getBlogPosts").then((interception) => {
       const { request } = interception;
