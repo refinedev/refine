@@ -16,8 +16,8 @@ const AllProperties = () => {
 
   const {
     tableQuery: { data, isLoading, isError },
-    current,
-    setCurrent,
+    currentPage: current,
+    setCurrentPage: setCurrent,
     setPageSize,
     pageCount,
     sorters: sorter,

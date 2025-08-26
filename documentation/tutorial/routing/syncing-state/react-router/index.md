@@ -28,7 +28,7 @@ export const ListProducts = () => {
     sorters,
     setSorters,
   } = useTable({
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
     // highlight-next-line
     syncWithLocation: true,

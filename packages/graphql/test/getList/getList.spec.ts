@@ -51,7 +51,7 @@ describe("getList", () => {
           gqlQuery: gqlQuery,
         },
         pagination: {
-          current: 2,
+          currentPage: 2,
         },
       });
 

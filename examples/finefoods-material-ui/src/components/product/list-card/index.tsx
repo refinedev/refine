@@ -67,7 +67,7 @@ export const ProductListCard = (props: Props) => {
         value: newFilters,
       },
     ]);
-    props.setCurrent(1);
+    props.setCurrentPage(1);
   };
 
   return (
@@ -88,7 +88,7 @@ export const ProductListCard = (props: Props) => {
                 value: [],
               },
             ]);
-            props.setCurrent(1);
+            props.setCurrentPage(1);
           }}
         />
         {props.categories.map((category) => {
@@ -257,7 +257,7 @@ export const ProductListCard = (props: Props) => {
           props.setPageSize(+e.target.value);
         }}
         onPageChange={(_e, page) => {
-          props.setCurrent(page + 1);
+          props.setCurrentPage(page + 1);
         }}
       />
     </>

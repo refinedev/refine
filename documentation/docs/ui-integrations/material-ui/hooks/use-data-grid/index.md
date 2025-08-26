@@ -370,7 +370,7 @@ useDataGrid({
 });
 ```
 
-### pagination.current
+### pagination.currentPage
 
 Sets the initial value of the page index. Default value is `1`.
 

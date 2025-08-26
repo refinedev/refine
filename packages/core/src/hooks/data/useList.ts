@@ -229,12 +229,15 @@ export const useList = <
     select: (rawData) => {
       let data = rawData;
 
-      const { current, mode, pageSize } = prefferedPagination;
+      const { currentPage, mode, pageSize } = prefferedPagination;
 
       if (mode === "client") {
         data = {
           ...data,
-          data: data.data.slice((current - 1) * pageSize, current * pageSize),
+          data: data.data.slice(
+            (currentPage - 1) * pageSize,
+            currentPage * pageSize,
+          ),
           total: data.total,
         };
       }

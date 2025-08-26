@@ -147,7 +147,7 @@ describe("useInfiniteList Hook", () => {
               route: undefined,
             },
             pagination: {
-              current: 1,
+              currentPage: 1,
               pageSize: 10,
               mode: "server",
             },
@@ -674,7 +674,7 @@ describe("useInfiniteList Hook", () => {
           filters: [{ field: "id", operator: "eq", value: 1 }],
           pagination: {
             mode: "client",
-            current: 10,
+            currentPage: 10,
             pageSize: 5,
           },
           sorters: [{ field: "id", order: "asc" }],
@@ -701,7 +701,7 @@ describe("useInfiniteList Hook", () => {
         filters: [{ field: "id", operator: "eq", value: 1 }],
         pagination: {
           mode: "client",
-          current: 10,
+          currentPage: 10,
           pageSize: 5,
         },
         sorters: [{ field: "id", order: "asc" }],

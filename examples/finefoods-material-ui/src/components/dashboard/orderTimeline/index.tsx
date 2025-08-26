@@ -17,8 +17,8 @@ export const OrderTimeline: React.FC = () => {
 
   const {
     tableQuery: tableQueryResult,
-    current,
-    setCurrent,
+    currentPage: current,
+    setCurrentPage: setCurrent,
     pageCount,
   } = useTable<IOrder>({
     resource: "orders",

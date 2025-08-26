@@ -146,7 +146,7 @@ useTable({
 });
 ```
 
-### pagination.current
+### pagination.currentPage
 
 Sets the initial value of the page index. Default value is `1`.
 
@@ -154,7 +154,7 @@ Sets the initial value of the page index. Default value is `1`.
 useTable({
   refineCoreProps: {
     pagination: {
-      current: 2,
+      currentPage: 2,
     },
   },
 });

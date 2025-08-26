@@ -157,8 +157,8 @@ export function useDataGrid<
 
   const {
     tableQuery,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     filters,
@@ -211,7 +211,7 @@ export function useDataGrid<
 
   const handlePageChange = (page: number) => {
     if (isPaginationEnabled) {
-      setCurrent(page + 1);
+      setCurrentPage(page + 1);
     }
   };
   const handlePageSizeChange = (pageSize: number) => {
@@ -230,7 +230,7 @@ export function useDataGrid<
     setMuiCrudFilters(crudFilters);
     setFilters(crudFilters.filter((f) => f.value !== ""));
     if (isPaginationEnabled) {
-      setCurrent(1);
+      setCurrentPage(1);
     }
   };
 
@@ -240,7 +240,7 @@ export function useDataGrid<
       setMuiCrudFilters(searchFilters);
       setFilters(searchFilters.filter((f) => f.value !== ""));
       if (isPaginationEnabled) {
-        setCurrent(1);
+        setCurrentPage(1);
       }
     }
   };
@@ -254,7 +254,7 @@ export function useDataGrid<
       return {
         paginationMode: "server" as const,
         paginationModel: {
-          page: current - 1,
+          page: currentPage - 1,
           pageSize,
         },
         onPaginationModelChange: (model) => {
@@ -335,8 +335,8 @@ export function useDataGrid<
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
     },
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     pageCount,

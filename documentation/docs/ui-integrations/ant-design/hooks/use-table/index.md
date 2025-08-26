@@ -248,7 +248,7 @@ useTable({
 });
 ```
 
-### pagination.current
+### pagination.currentPage
 
 Sets the initial value of the page index. It is set to `1` by default.
 

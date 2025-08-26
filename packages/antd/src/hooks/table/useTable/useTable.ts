@@ -82,8 +82,8 @@ export const useTable = <
 > = {}): useTableReturnType<TData, TError, TSearchVariables> => {
   const {
     tableQuery,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     filters,
@@ -172,7 +172,7 @@ export const useTable = <
     }
 
     if (isPaginationEnabled) {
-      setCurrent?.(paginationState.current || 1);
+      setCurrentPage?.(paginationState.current || 1);
       setPageSize?.(paginationState.pageSize || 10);
     }
   };
@@ -183,7 +183,7 @@ export const useTable = <
       setFilters(searchFilters);
 
       if (isPaginationEnabled) {
-        setCurrent?.(1);
+        setCurrentPage?.(1);
       }
     }
   };
@@ -195,7 +195,7 @@ export const useTable = <
           const link = createLinkForSyncWithLocation({
             pagination: {
               pageSize,
-              current: page,
+              currentPage: page,
             },
             sorters,
             filters,
@@ -230,7 +230,7 @@ export const useTable = <
           return element;
         },
         pageSize,
-        current,
+        current: currentPage,
         simple: !breakpoint.sm,
         position: !breakpoint.sm ? ["bottomCenter"] : ["bottomRight"],
         total: data?.total,
@@ -257,8 +257,8 @@ export const useTable = <
     filters,
     setSorters,
     setFilters,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     pageCount,

@@ -49,7 +49,7 @@ describe("useList Hook", () => {
           useList({
             resource: "posts",
             pagination: {
-              current: 1,
+              currentPage: 1,
               pageSize: 10,
               mode,
             },
@@ -78,7 +78,7 @@ describe("useList Hook", () => {
               {
                 filters: undefined,
                 pagination: {
-                  current: 1,
+                  currentPage: 1,
                   mode: mode || "server",
                   pageSize: 10,
                 },
@@ -101,7 +101,7 @@ describe("useList Hook", () => {
           useList({
             resource: "posts",
             pagination: {
-              current: 1,
+              currentPage: 1,
               pageSize: 10,
               mode,
             },
@@ -123,7 +123,7 @@ describe("useList Hook", () => {
         expect.objectContaining({
           resource: "posts",
           pagination: {
-            current: 1,
+            currentPage: 1,
             pageSize: 10,
             mode,
           },
@@ -152,7 +152,7 @@ describe("useList Hook", () => {
           pagination: {
             mode: "client",
             pageSize: 1,
-            current: 1,
+            currentPage: 1,
           },
         }),
       {
@@ -319,7 +319,7 @@ describe("useList Hook", () => {
                 route: undefined,
               },
               pagination: {
-                current: 1,
+                currentPage: 1,
                 mode: "server",
                 pageSize: 10,
               },
@@ -728,7 +728,7 @@ describe("useList Hook", () => {
           filters: undefined,
           sorters: undefined,
           pagination: expect.objectContaining({
-            current: 1,
+            currentPage: 1,
             pageSize: 10,
             mode: "server",
           }),
@@ -785,7 +785,7 @@ describe("useList Hook", () => {
           filters: undefined,
           sorters: undefined,
           pagination: expect.objectContaining({
-            current: 1,
+            currentPage: 1,
             pageSize: 10,
             mode: "server",
           }),
@@ -894,7 +894,7 @@ describe("useList Hook", () => {
           filters: [{ field: "id", operator: "eq", value: 1 }],
           pagination: {
             mode: "client",
-            current: 10,
+            currentPage: 10,
             pageSize: 5,
           },
           sorters: [{ field: "id", order: "asc" }],
@@ -921,7 +921,7 @@ describe("useList Hook", () => {
         filters: [{ field: "id", operator: "eq", value: 1 }],
         pagination: {
           mode: "client",
-          current: 10,
+          currentPage: 10,
           pageSize: 5,
         },
         sorters: [{ field: "id", order: "asc" }],

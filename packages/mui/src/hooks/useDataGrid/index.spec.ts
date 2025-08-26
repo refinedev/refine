@@ -60,7 +60,7 @@ describe("useDataGrid Hook", () => {
         value: "draft",
       },
     ]);
-    expect(result.current.current).toEqual(1);
+    expect(result.current.currentPage).toEqual(1);
   });
 
   it.only.each(["client", "server"] as const)(

@@ -34,7 +34,7 @@ In basic usage, `useTable` returns the data as it comes from the endpoint. By de
 
 It also syncs the pagination state with the URL if you enable the [`syncWithLocation`](#syncwithlocation).
 
-By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `pagination.current` and `pagination.pageSize` props to the `useTable` hook.
+By default, the `current` is 1 and the `pageSize` is 10. You can change default values by passing the `pagination.currentPage` and `pagination.pageSize` props to the `useTable` hook.
 
 You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
@@ -147,7 +147,7 @@ useTable({
 });
 ```
 
-### pagination.current
+### pagination.currentPage
 
 Sets the initial value of the page index. Defaults to `1`.
 

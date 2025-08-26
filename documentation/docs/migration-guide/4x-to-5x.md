@@ -390,10 +390,35 @@ useList({
 useTable({
 -    initialCurrent: 1,
 -    initialPageSize: 20,
-+    pagination: { current: 1, pageSize: 20 },
 -    hasPagination: false,
-+    pagination: { mode: "off" },
++    pagination: { mode: "off", currentPage: 1, pageSize: 20 },
 })
+```
+
+#### pagination.current -> pagination.currentPage
+
+🚨 Affects: useTable, useDataGrid, useSimpleList, useSubscription, useList, useCheckboxGroup, useSelect
+
+```diff
+useTable({
+-   pagination: { current: 1 },
++   pagination: { currentPage: 1 },
+})
+```
+
+#### setCurrent -> setCurrentPage
+
+🚨 Affects: useTable, useDataGrid, useSimpleList
+
+The `setCurrent` function has been renamed to `setCurrentPage`:
+
+```diff
+const {
+-    setCurrent,
+-    current,
++    currentPage,
++    setCurrentPage,
+} = useTable();
 ```
 
 #### Resource options → meta
@@ -439,14 +464,14 @@ The config parameter has been flattened in data hooks:
 ```diff
 useList({
 -    config: {
--        pagination: { current: 1, pageSize: 10 },
+-        pagination: { currentPage: 1, pageSize: 10 },
 -        sorters: [{ field: "title", order: "asc" }],
 -        filters: [{ field: "status", operator: "eq", value: "published" }],
 -        hasPagination: false,
 -        sort: [{ field: "title", order: "asc" }],
 -        metaData: { foo: "bar" },
 -    },
-+    pagination: { current: 1, pageSize: 10, mode: "off" },
++    pagination: { currentPage: 1, pageSize: 10, mode: "off" },
 +    sorters: [{ field: "title", order: "asc" }],
 +    filters: [{ field: "status", operator: "eq", value: "published" }],
 +    meta: { foo: "bar" },
@@ -463,7 +488,10 @@ The `useTable` hook and its UI variants (`useDataGrid` from @refinedev/mui, `use
 useTable({
 -    initialCurrent: 1,
 -    initialPageSize: 10,
-+    pagination: { current: 1, pageSize: 10 },
+-    hasPagination: false,
++    pagination: { currentPage: 1, pageSize: 10 , mode: "off" },
+-    setCurrent,
++    setCurrentPage,
 
 -    initialSorter: [{ field: "title", order: "asc" }],
 -    permanentSorter: [{ field: "status", order: "asc" }],
@@ -481,8 +509,6 @@ useTable({
 +        defaultBehavior: "replace"
 +    },
 
--    hasPagination: false,
-+    pagination: { mode: "off" },
 })
 
 // Return values also changed
@@ -490,6 +516,8 @@ const {
 -    sorter,
 -    setSorter,
 -    tableQueryResult,
+-    current,
++    currentPage,
 +    sorters,
 +    setSorters,
 +    tableQuery,

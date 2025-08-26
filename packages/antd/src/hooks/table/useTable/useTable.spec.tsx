@@ -58,7 +58,7 @@ describe("useTable Hook", () => {
       () =>
         useTable({
           pagination: {
-            current: customPagination.current,
+            currentPage: customPagination.current,
             pageSize: customPagination.pageSize,
           },
         }),
