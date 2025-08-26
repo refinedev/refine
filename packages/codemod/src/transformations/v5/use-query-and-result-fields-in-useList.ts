@@ -67,11 +67,30 @@ export const useQueryAndResultFieldsInUseList = (
         // Collect query fields that need to be moved
         const queryFields: any[] = [];
         const queryFieldNames = [
-          "isLoading",
-          "isFetching",
-          "isError",
+          "dataUpdatedAt",
           "error",
+          "errorUpdateCount",
+          "errorUpdatedAt",
+          "failureCount",
+          "failureReason",
+          "fetchStatus",
+          "isError",
+          "isFetched",
+          "isFetchedAfterMount",
+          "isFetching",
+          "isInitialLoading",
+          "isLoading",
+          "isLoadingError",
+          "isPaused",
+          "isPlaceholderData",
+          "isPreviousData",
+          "isRefetchError",
+          "isRefetching",
+          "isStale",
+          "isSuccess",
           "refetch",
+          "remove",
+          "status",
         ];
 
         // Transform the properties in the destructuring

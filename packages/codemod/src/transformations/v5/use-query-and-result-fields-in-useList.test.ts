@@ -96,4 +96,113 @@ describe("use-query-and-result-fields-in-useList", () => {
 
     expect(transform(source).trim()).toBe(expected.trim());
   });
+
+  it("should handle multiple query fields", () => {
+    const source = `
+      import { useList } from "@refinedev/core";
+      const { data, isLoading, error, isFetching, isError } = useList()
+    `;
+
+    const expected = `
+      import { useList } from "@refinedev/core";
+      const {
+            result: data,
+
+            query: {
+                  isLoading,
+                  error,
+                  isFetching,
+                  isError,
+            },
+      } = useList()
+    `;
+
+    expect(transform(source.trim())).toBe(expected.trim());
+  });
+
+  it("should handle all supported query fields", () => {
+    const source = `
+      import { useList } from "@refinedev/core";
+      const {
+        data,
+        isLoading,
+        error,
+        refetch,
+        status,
+        isSuccess,
+        isStale,
+        fetchStatus,
+        failureCount
+      } = useList()
+    `;
+
+    const expected = `
+      import { useList } from "@refinedev/core";
+      const {
+        result: data,
+
+        query: {
+          isLoading,
+          error,
+          refetch,
+          status,
+          isSuccess,
+          isStale,
+          fetchStatus,
+          failureCount,
+        },
+      } = useList()
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should handle renamed query fields", () => {
+    const source = `
+      import { useList } from "@refinedev/core";
+      const { data: posts, isLoading: loading, error: err } = useList()
+    `;
+
+    const expected = `
+      import { useList } from "@refinedev/core";
+      const {
+            result: posts,
+
+            query: {
+                  isLoading: loading,
+                  error: err,
+            },
+      } = useList()
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should work with useMany and query fields", () => {
+    const source = `
+      import { useMany } from "@refinedev/core";
+      const { data, isLoading, error, isFetching } = useMany({
+        resource: "posts",
+        ids: [1, 2, 3]
+      });
+    `;
+
+    const expected = `
+      import { useMany } from "@refinedev/core";
+      const {
+        result: data,
+
+        query: {
+          isLoading,
+          error,
+          isFetching,
+        },
+      } = useMany({
+        resource: "posts",
+        ids: [1, 2, 3]
+      });
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
 });
