@@ -64,25 +64,65 @@ export const useQueryAndResultFieldsInUseList = (
         const { node } = path;
         const objectPattern = node.id as any;
 
+        // Collect query fields that need to be moved
+        const queryFields: any[] = [];
+        const queryFieldNames = [
+          "isLoading",
+          "isFetching",
+          "isError",
+          "error",
+          "refetch",
+        ];
+
         // Transform the properties in the destructuring
-        objectPattern.properties = objectPattern.properties.map((prop: any) => {
+        const newProperties = [];
+
+        for (const prop of objectPattern.properties) {
           if (
             (prop.type === "ObjectProperty" || prop.type === "Property") &&
-            prop.key?.type === "Identifier" &&
-            prop.key.name === "data"
+            prop.key?.type === "Identifier"
           ) {
-            // Handle cases like { data } -> { result: data }
-            if (prop.shorthand) {
-              return j.objectProperty(
-                j.identifier("result"),
-                j.identifier("data"),
-              );
+            // Handle data field transformation
+            if (prop.key.name === "data") {
+              // Handle cases like { data } -> { result: data }
+              if (prop.shorthand) {
+                newProperties.push(
+                  j.objectProperty(
+                    j.identifier("result"),
+                    j.identifier("data"),
+                  ),
+                );
+              } else {
+                // Handle cases like { data: variableName } -> { result: variableName }
+                newProperties.push(
+                  j.objectProperty(j.identifier("result"), prop.value),
+                );
+              }
             }
-            // Handle cases like { data: variableName } -> { result: variableName }
-            return j.objectProperty(j.identifier("result"), prop.value);
+            // Handle query fields
+            else if (queryFieldNames.includes(prop.key.name)) {
+              queryFields.push(prop);
+            }
+            // Keep other properties as-is
+            else {
+              newProperties.push(prop);
+            }
+          } else {
+            // Keep non-identifier properties as-is
+            newProperties.push(prop);
           }
-          return prop;
-        });
+        }
+
+        // Add query object if we have query fields
+        if (queryFields.length > 0) {
+          const queryObjectPattern = j.objectProperty(
+            j.identifier("query"),
+            j.objectPattern(queryFields),
+          );
+          newProperties.push(queryObjectPattern);
+        }
+
+        objectPattern.properties = newProperties;
       });
   });
 

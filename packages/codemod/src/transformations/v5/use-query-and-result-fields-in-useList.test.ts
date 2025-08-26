@@ -80,4 +80,20 @@ describe("use-query-and-result-fields-in-useList", () => {
     `;
     expect(transform(source).trim()).toBe(expected.trim());
   });
+
+  it("should use query field", () => {
+    const source = `
+      import { useList } from "@refinedev/core";
+      const { data, isLoading } = useList()
+    `;
+
+    const expected = `
+      import { useList } from "@refinedev/core";
+      const { result: data, query: {
+            isLoading,
+      } } = useList()
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
 });
