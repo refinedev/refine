@@ -182,7 +182,7 @@ export const useForm = <
 
   const mutationResult = isEdit ? updateMutation : createMutation;
   const isMutationLoading = mutationResult.isPending;
-  const formLoading = isMutationLoading || queryResult.isFetching;
+  const formLoading = isMutationLoading || queryResult.query.isFetching;
 
   const { elapsedTime } = useLoadingOvertime({
     ...props.overtimeOptions,
@@ -321,7 +321,7 @@ export const useForm = <
     onFinishAutoSave,
     formLoading,
     mutation: mutationResult,
-    query: queryResult,
+    query: queryResult.query,
     autoSaveProps,
     id,
     setId,

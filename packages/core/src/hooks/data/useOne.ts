@@ -84,6 +84,11 @@ export type UseOneProps<TQueryFnData, TError, TData> = {
   LiveModeProps &
   UseLoadingOvertimeOptionsProps;
 
+export type UseOneReturnType<TData, TError> = {
+  query: QueryObserverResult<GetOneResponse<TData>, TError>;
+  result: TData | undefined;
+} & UseLoadingOvertimeReturnType;
+
 /**
  * `useOne` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`} used for retrieving single items from a `resource`.
  *
@@ -113,11 +118,10 @@ export const useOne = <
   liveParams,
   dataProviderName,
   overtimeOptions,
-}: UseOneProps<TQueryFnData, TError, TData>): QueryObserverResult<
-  GetOneResponse<TData>,
+}: UseOneProps<TQueryFnData, TError, TData>): UseOneReturnType<
+  TData,
   TError
-> &
-  UseLoadingOvertimeReturnType => {
+> => {
   const { resources, resource, identifier } = useResource(resourceFromProp);
 
   const dataProvider = useDataProvider();
@@ -249,8 +253,8 @@ export const useOne = <
   });
 
   return {
-    ...queryResponse,
+    query: queryResponse,
+    result: queryResponse.data?.data,
     overtime: { elapsedTime },
-  } as QueryObserverResult<GetOneResponse<TData>, TError> &
-    UseLoadingOvertimeReturnType;
+  };
 };

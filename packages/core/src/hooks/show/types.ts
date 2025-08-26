@@ -26,6 +26,7 @@ export type UseShowReturnType<
   TError extends HttpError = HttpError,
 > = {
   query: QueryObserverResult<GetOneResponse<TData>, TError>;
+  result: TData | undefined;
   showId?: BaseKey;
   setShowId: React.Dispatch<React.SetStateAction<BaseKey | undefined>>;
 } & UseLoadingOvertimeReturnType;

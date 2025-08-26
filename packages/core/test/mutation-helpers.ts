@@ -48,7 +48,7 @@ export const assertOne = async (
   value: string | undefined,
 ) => {
   await waitFor(() => {
-    expect(useOneResult.current.data?.data[property]).toEqual(value);
+    expect(useOneResult.current.result?.[property]).toEqual(value);
   });
 };
 

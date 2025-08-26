@@ -71,7 +71,8 @@ export const useShow = <
   });
 
   return {
-    query: queryResult,
+    query: queryResult.query,
+    result: queryResult.result,
     showId,
     setShowId,
     overtime: queryResult.overtime,
