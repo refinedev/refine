@@ -9,12 +9,12 @@ export const handlePaginationParams = ({
 }: HandlePaginationParamsProps = {}): Required<Pagination> => {
   const mode = pagination?.mode ?? "server";
 
-  const current = pagination?.current ?? 1;
+  const currentPage = pagination?.currentPage ?? 1;
 
   const pageSize = pagination?.pageSize ?? 10;
 
   return {
-    current,
+    currentPage,
     pageSize,
     mode,
   };

@@ -1040,7 +1040,7 @@ export default async function ProductList() {
 async function getData() {
   const response = await dataProvider(API_URL).getList({
     resource: "posts",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
   });
 
   return {
@@ -1147,7 +1147,7 @@ type GetDataParams = {
 
 async function getData(
   params: GetDataParams = {
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     filters: [],
   },
 ) {

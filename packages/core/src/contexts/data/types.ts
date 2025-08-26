@@ -174,7 +174,7 @@ export interface Pagination {
    * Initial page index
    * @default 1
    */
-  current?: number;
+  currentPage?: number;
   /**
    * Initial number of items per page
    * @default 10

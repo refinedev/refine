@@ -690,7 +690,7 @@ describe("defaultOptions.getList", () => {
       const params: GetListParams = {
         resource: "blogPosts",
         pagination: {
-          current: 2,
+          currentPage: 2,
           pageSize: 10,
         },
       };
@@ -709,7 +709,7 @@ describe("defaultOptions.getList", () => {
       const params: GetListParams = {
         resource: "blogPosts",
         pagination: {
-          current: 1,
+          currentPage: 1,
           pageSize: 20,
         },
       };

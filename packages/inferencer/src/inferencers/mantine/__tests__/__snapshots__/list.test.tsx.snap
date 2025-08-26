@@ -6854,7 +6854,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            setCurrent
+                            setCurrentPage
               </span>
               <span
                 class="token punctuation"
@@ -6892,7 +6892,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                            current
+                            currentPage
               </span>
               <span
                 class="token punctuation"
@@ -10277,7 +10277,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token tag script language-javascript"
                 style="color: rgb(78, 201, 176);"
               >
-                current
+                currentPage
               </span>
               <span
                 class="token tag script language-javascript punctuation"
@@ -10322,7 +10322,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
                 class="token tag script language-javascript"
                 style="color: rgb(78, 201, 176);"
               >
-                setCurrent
+                setCurrentPage
               </span>
               <span
                 class="token tag script language-javascript punctuation"

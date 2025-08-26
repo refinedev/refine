@@ -37,7 +37,7 @@ export const PostList = () => {
     useSelect<ICategory>({
       resource: "categories",
       pagination: {
-        current: page,
+        currentPage: page,
         pageSize: 20,
         mode: "server",
       },

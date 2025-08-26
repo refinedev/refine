@@ -71,11 +71,11 @@ export const useSimpleList = <
   const {
     sorters,
     filters,
-    current,
+    currentPage,
     pageSize,
     pageCount,
     setFilters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     createLinkForSyncWithLocation,
@@ -109,7 +109,7 @@ export const useSimpleList = <
 
   const onChange = (page: number, pageSize?: number): void => {
     if (isPaginationEnabled) {
-      setCurrent(page);
+      setCurrentPage(page);
       setPageSize(pageSize || 10);
     }
   };
@@ -118,7 +118,7 @@ export const useSimpleList = <
     if (onSearch) {
       const searchFilters = await onSearch(values);
       if (isPaginationEnabled) {
-        setCurrent?.(1);
+        setCurrentPage?.(1);
       }
       return setFilters(searchFilters);
     }
@@ -131,7 +131,7 @@ export const useSimpleList = <
           const link = createLinkForSyncWithLocation({
             pagination: {
               pageSize,
-              current: page,
+              currentPage: page,
             },
             sorters,
             filters,
@@ -166,7 +166,7 @@ export const useSimpleList = <
           return element;
         },
         pageSize,
-        current,
+        current: currentPage,
         simple: !breakpoint.sm,
         total: data?.total,
         onChange,
@@ -191,8 +191,8 @@ export const useSimpleList = <
     setFilters,
     sorters,
     setSorters,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     pageCount,

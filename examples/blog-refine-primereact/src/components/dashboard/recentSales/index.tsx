@@ -13,11 +13,11 @@ export const RecentSales = () => {
   const {
     tableQuery: tableQueryResult,
     pageCount,
-    current,
+    currentPage: current,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage: setCurrent,
     setPageSize,
     setSorters,
     setFilters,

@@ -84,7 +84,7 @@ export const CategoryList = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { setCurrent, filters, setFilters },
+    refineCore: { setCurrentPage: setCurrent, filters, setFilters },
     getState,
     setPageIndex,
     getCanPreviousPage,

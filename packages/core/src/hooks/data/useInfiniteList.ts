@@ -239,7 +239,7 @@ export const useInfiniteList = <
     queryFn: (context) => {
       const paginationProperties = {
         ...prefferedPagination,
-        current: context.pageParam,
+        currentPage: context.pageParam,
       };
 
       const meta = {
@@ -263,7 +263,7 @@ export const useInfiniteList = <
       });
     },
     initialPageParam:
-      queryOptions?.initialPageParam ?? prefferedPagination.current,
+      queryOptions?.initialPageParam ?? prefferedPagination.currentPage,
     getNextPageParam: (lastPage) => getNextPageParam(lastPage),
     getPreviousPageParam: (lastPage) => getPreviousPageParam(lastPage),
     ...queryOptions,

@@ -134,7 +134,7 @@ export type useTableProps<TQueryFnData, TError, TData> = {
 type ReactSetState<T> = React.Dispatch<React.SetStateAction<T>>;
 
 type SyncWithLocationParams = {
-  pagination: { current?: number; pageSize?: number };
+  pagination: { currentPage?: number; pageSize?: number };
   sorters: CrudSort[];
   filters: CrudFilter[];
 };
@@ -150,8 +150,8 @@ export type useTableReturnType<
   setFilters: ((filters: CrudFilter[], behavior?: SetFilterBehavior) => void) &
     ((setter: (prevFilters: CrudFilter[]) => CrudFilter[]) => void);
   createLinkForSyncWithLocation: (params: SyncWithLocationParams) => string;
-  current: number;
-  setCurrent: ReactSetState<useTableReturnType["current"]>;
+  currentPage: number;
+  setCurrentPage: ReactSetState<useTableReturnType["currentPage"]>;
   pageSize: number;
   setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
   pageCount: number;
@@ -210,7 +210,7 @@ export function useTable<
   const isServerSideSortingEnabled =
     (sortersFromProp?.mode || "server") === "server";
   const isPaginationEnabled = pagination?.mode !== "off";
-  const prefferedCurrent = pagination?.current;
+  const prefferedCurrentPage = pagination?.currentPage;
   const prefferedPageSize = pagination?.pageSize;
   const preferredMeta = meta;
 
@@ -228,14 +228,17 @@ export function useTable<
 
   const prefferedFilterBehavior = filtersFromProp?.defaultBehavior ?? "merge";
 
-  let defaultCurrent: number;
+  let defaultCurrentPage: number;
   let defaultPageSize: number;
   let defaultSorter: CrudSort[] | undefined;
   let defaultFilter: CrudFilter[] | undefined;
 
   if (syncWithLocation) {
-    defaultCurrent =
-      parsedParams?.params?.current || parsedCurrent || prefferedCurrent || 1;
+    defaultCurrentPage =
+      parsedParams?.params?.current ||
+      parsedCurrent ||
+      prefferedCurrentPage ||
+      1;
     defaultPageSize =
       parsedParams?.params?.pageSize ||
       parsedPageSize ||
@@ -248,7 +251,7 @@ export function useTable<
       parsedParams?.params?.filters ||
       (parsedFilters.length ? parsedFilters : preferredInitialFilters);
   } else {
-    defaultCurrent = prefferedCurrent || 1;
+    defaultCurrentPage = prefferedCurrentPage || 1;
     defaultPageSize = prefferedPageSize || 10;
     defaultSorter = preferredInitialSorters;
     defaultFilter = preferredInitialFilters;
@@ -276,7 +279,7 @@ export function useTable<
   const [filters, setFilters] = useState<CrudFilter[]>(
     setInitialFilters(preferredPermanentFilters, defaultFilter ?? []),
   );
-  const [current, setCurrent] = useState<number>(defaultCurrent);
+  const [currentPage, setCurrentPage] = useState<number>(defaultCurrentPage);
   const [pageSize, setPageSize] = useState<number>(defaultPageSize);
 
   const getCurrentQueryParams = (): object => {
@@ -288,7 +291,7 @@ export function useTable<
   };
 
   const createLinkForSyncWithLocation = ({
-    pagination: { current, pageSize },
+    pagination: { currentPage, pageSize },
     sorters,
     filters,
   }: SyncWithLocationParams) => {
@@ -300,7 +303,7 @@ export function useTable<
           keepQuery: true,
         },
         query: {
-          ...(isPaginationEnabled ? { current, pageSize } : {}),
+          ...(isPaginationEnabled ? { currentPage, pageSize } : {}),
           sorters,
           filters,
           ...getCurrentQueryParams(),
@@ -311,7 +314,7 @@ export function useTable<
 
   useEffect(() => {
     if (parsedParams?.params?.search === "") {
-      setCurrent(defaultCurrent);
+      setCurrentPage(defaultCurrentPage);
       setPageSize(defaultPageSize);
       setSorters(
         setInitialSorters(preferredPermanentSorters, defaultSorter ?? []),
@@ -330,17 +333,17 @@ export function useTable<
           keepQuery: true,
         },
         query: {
-          ...(isPaginationEnabled ? { pageSize, current } : {}),
+          ...(isPaginationEnabled ? { pageSize, currentPage } : {}),
           sorters: differenceWith(sorters, preferredPermanentSorters, isEqual),
           filters: differenceWith(filters, preferredPermanentFilters, isEqual),
         },
       });
     }
-  }, [syncWithLocation, current, pageSize, sorters, filters]);
+  }, [syncWithLocation, currentPage, pageSize, sorters, filters]);
 
   const queryResult = useList<TQueryFnData, TError, TData>({
     resource: identifier,
-    pagination: { current, pageSize, mode: pagination?.mode },
+    pagination: { currentPage: currentPage, pageSize, mode: pagination?.mode },
     filters: isServerSideFilteringEnabled
       ? unionFilters(preferredPermanentFilters, filters)
       : undefined,
@@ -415,8 +418,8 @@ export function useTable<
     setSorters: setSortWithUnion,
     filters,
     setFilters: setFiltersFn,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     pageCount: pageSize

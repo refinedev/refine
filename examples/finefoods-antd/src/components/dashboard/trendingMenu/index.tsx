@@ -14,7 +14,7 @@ export const TrendingMenu: React.FC = () => {
   const //`useSimpleList` does not accept all of Ant Design's `List` component props anymore. You can directly use `List` component instead.,
     { listProps } = useSimpleList<ITrendingProducts>({
       resource: "trendingProducts",
-      pagination: { pageSize: 5, current: 1 },
+      pagination: { pageSize: 5, currentPage: 1 },
       syncWithLocation: false,
     });
 

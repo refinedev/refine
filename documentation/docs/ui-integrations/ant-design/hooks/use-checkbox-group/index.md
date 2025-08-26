@@ -247,7 +247,7 @@ For example, lets say that we have 1000 post records:
 const { selectProps } = useCheckboxGroup({
   resource: "categories",
   // highlight-next-line
-  pagination: { current: 3, pageSize: 8 },
+  pagination: { currentPage: 3, pageSize: 8 },
 });
 ```
 

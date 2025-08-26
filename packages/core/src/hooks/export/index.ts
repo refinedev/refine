@@ -153,7 +153,7 @@ export const useExport = <
 
     let rawData: BaseRecord[] = [];
 
-    let current = 1;
+    let currentPage = 1;
     let preparingData = true;
     while (preparingData) {
       try {
@@ -162,14 +162,14 @@ export const useExport = <
           filters,
           sorters: sorters ?? [],
           pagination: {
-            current,
+            currentPage,
             pageSize,
             mode: "server",
           },
           meta: combinedMeta,
         });
 
-        current++;
+        currentPage++;
 
         rawData.push(...data);
 
