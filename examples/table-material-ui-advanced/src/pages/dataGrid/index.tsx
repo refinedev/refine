@@ -31,8 +31,7 @@ export const BasicDataGrid: React.FC = () => {
         field: "id",
         headerName: "ID",
         type: "number",
-        minWidth: 50,
-        maxWidth: 70,
+        width: 70,
       },
       { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
       {
