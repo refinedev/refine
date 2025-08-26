@@ -198,5 +198,9 @@ export const useSimpleList = <
     pageCount,
     createLinkForSyncWithLocation,
     overtime,
+    result: {
+      data: tableQuery.data?.data,
+      total: tableQuery.data?.total || 0,
+    },
   };
 };

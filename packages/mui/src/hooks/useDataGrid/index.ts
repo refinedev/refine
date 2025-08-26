@@ -347,5 +347,9 @@ export function useDataGrid<
     search,
     createLinkForSyncWithLocation,
     overtime,
+    result: {
+      data: tableQuery.data?.data,
+      total: tableQuery.data?.total,
+    },
   };
 }

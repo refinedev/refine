@@ -51,11 +51,11 @@ export const useSelect = <
     selectProps: {
       options,
       onSearch,
-      loading: defaultValueQuery.isFetching,
+      loading: defaultValueQuery.query.isFetching,
       showSearch: true,
       filterOption: false,
     },
     query,
-    defaultValueQuery,
+    defaultValueQuery: defaultValueQuery.query,
   };
 };
