@@ -1,15 +1,15 @@
-import useQueryAndResultFieldsInUseListTransform from "./use-query-and-result-fields-in-useList";
+import useQueryAndResultFieldsInListHooksTransform from "./use-query-and-result-fields-in-list-hooks";
 import jscodeshift, { type JSCodeshift } from "jscodeshift";
 
 const transform = (source: string) => {
   const j: JSCodeshift = jscodeshift.withParser("tsx");
   const root = j(source);
 
-  return useQueryAndResultFieldsInUseListTransform(j, root);
+  return useQueryAndResultFieldsInListHooksTransform(j, root);
 };
 
-describe("use-query-and-result-fields-in-useList", () => {
-  it("should rename pagination.current to pagination.currentPage in useList", () => {
+describe("use-query-and-result-fields-in-list-hooks", () => {
+  it("should rename data to result in useList", () => {
     const source = `
       import { useList } from "@refinedev/core";
       const { data } = useList({

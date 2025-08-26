@@ -1,18 +1,14 @@
 import type { Collection, JSCodeshift } from "jscodeshift";
-import { renamePaginationCurrentToCurrentPage } from "./rename-pagination-current-to-currentPage";
 
 const HOOK_PACKAGE_MAPPINGS = {
   useList: ["@refinedev/core"],
   useMany: ["@refinedev/core"],
 };
 
-export const useQueryAndResultFieldsInUseList = (
+export const useQueryAndResultFieldsInListHooks = (
   j: JSCodeshift,
   root: Collection<any>,
 ) => {
-  // First, apply the pagination transformation
-  renamePaginationCurrentToCurrentPage(j, root);
-
   // Track which hooks are imported from which packages
   const hookSources = new Map<string, string[]>();
 
@@ -212,7 +208,7 @@ export default function transformer(
   j: JSCodeshift,
   root: Collection<any>,
 ): string {
-  useQueryAndResultFieldsInUseList(j, root);
+  useQueryAndResultFieldsInListHooks(j, root);
 
   return root.toSource({
     quote: "double",
