@@ -8,6 +8,7 @@ import { renameITreeMenuToTreeMenuItem } from "./v5/rename-itreemenu-to-treemenu
 import { renameCurrentToCurrentPage } from "./v5/rename-current-to-currentPage";
 import { renamePaginationCurrentToCurrentPage } from "./v5/rename-pagination-current-to-currentPage";
 import { useQueryAndResultFieldsInListHooks } from "./v5/use-query-and-result-fields-in-list-hooks";
+import { useQueryAndResultFieldsInUseOneHook } from "./v5/use-query-and-result-fields-in-useOne-hook";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -21,6 +22,7 @@ export default function transformer(file: FileInfo, api: API): string {
   renameCurrentToCurrentPage(j, source);
   renamePaginationCurrentToCurrentPage(j, source);
   useQueryAndResultFieldsInListHooks(j, source);
+  useQueryAndResultFieldsInUseOneHook(j, source);
 
   return source.toSource();
 }
