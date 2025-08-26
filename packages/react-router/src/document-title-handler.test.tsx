@@ -2,7 +2,7 @@ import React, { type ReactNode } from "react";
 
 import { DocumentTitleHandler } from "./document-title-handler";
 import { render, TestWrapper, type ITestWrapperProps } from "./test/index";
-import { mockRouterBindings } from "./test/dataMocks";
+import { mockRouterProvider } from "./test/dataMocks";
 
 const renderDocumentTitleHandler = (
   children: ReactNode,
@@ -18,7 +18,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts", list: "/posts" }],
       routerInitialEntries: ["/posts"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "list",
         resource: { name: "posts", list: "/posts" },
       }),
@@ -31,7 +31,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts", create: "/posts/create" }],
       routerInitialEntries: ["/posts/create"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "create",
         resource: { name: "posts", create: "/posts/create" },
       }),
@@ -44,7 +44,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts", edit: "/posts/edit/:id" }],
       routerInitialEntries: ["/posts/edit/1"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "edit",
         resource: { name: "posts", edit: "/posts/edit/1" },
         id: "1",
@@ -58,7 +58,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts", show: "/posts/show/:id" }],
       routerInitialEntries: ["/posts/show/1"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "show",
         resource: { name: "posts", show: "/posts/show/1" },
         id: "1",
@@ -72,7 +72,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts", clone: "/posts/clone/:id" }],
       routerInitialEntries: ["/posts/clone/1"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "clone",
         resource: { name: "posts", clone: "/posts/clone/1" },
         id: "1",
@@ -86,7 +86,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts" }],
       routerInitialEntries: ["/unknown"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "list",
         resource: undefined,
       }),
@@ -99,7 +99,7 @@ describe("<DocumentTitleHandler />", () => {
     renderDocumentTitleHandler(<DocumentTitleHandler />, {
       resources: [{ name: "posts" }],
       routerInitialEntries: ["/posts/unknown"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: undefined,
         resource: {
           name: "posts",
@@ -116,7 +116,7 @@ describe("<DocumentTitleHandler />", () => {
         { name: "posts", list: "/posts", identifier: "Awesome Posts" },
       ],
       routerInitialEntries: ["/posts"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "list",
         resource: {
           name: "posts",
@@ -139,7 +139,7 @@ describe("<DocumentTitleHandler />", () => {
       {
         resources: [{ name: "posts", list: "/posts" }],
         routerInitialEntries: ["/posts"],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "list",
           resource: { name: "posts", list: "/posts" },
         }),
@@ -163,7 +163,7 @@ describe("<DocumentTitleHandler />", () => {
       {
         resources: [{ name: "posts", list: "/posts" }],
         routerInitialEntries: ["/posts"],
-        routerProvider: mockRouterBindings({
+        routerProvider: mockRouterProvider({
           action: "list",
           resource: { name: "posts", list: "/posts" },
         }),
@@ -177,7 +177,7 @@ describe("<DocumentTitleHandler />", () => {
         { name: "posts", list: "/posts", meta: { label: "Labeled Posts" } },
       ],
       routerInitialEntries: ["/posts"],
-      routerProvider: mockRouterBindings({
+      routerProvider: mockRouterProvider({
         action: "list",
         resource: {
           name: "posts",

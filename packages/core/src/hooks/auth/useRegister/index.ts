@@ -5,7 +5,7 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useGo, useKeys, useNavigation, useNotification } from "@hooks";
 
 import type {
@@ -49,7 +49,7 @@ export function useRegister<TVariables = {}>({
   const invalidateAuthStore = useInvalidateAuthStore();
   const go = useGo();
   const { close, open } = useNotification();
-  const { register: registerFromContext } = useAuthBindingsContext();
+  const { register: registerFromContext } = useAuthProviderContext();
   const { keys } = useKeys();
 
   const mutation = useMutation<

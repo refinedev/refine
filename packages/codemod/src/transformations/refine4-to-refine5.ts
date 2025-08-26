@@ -5,6 +5,8 @@ import { renameUseFormQueryResultAndMutationResult } from "./rename-query-and-mu
 import { renameUseTableQueryResult } from "./rename-query-and-mutation-result/use-table-query-result";
 import { removeUseNewQueryKeysFromRefineOptions } from "./v5/remove-useNewQueryKeys-from-refine-options";
 import { renameITreeMenuToTreeMenuItem } from "./v5/rename-itreemenu-to-treemenuitem";
+import { routerBindingsTypeToProvider } from "./v5/router-bindings-type-to-provider";
+import { authBindingsTypeToProvider } from "./v5/auth-bindings-type-to-provider";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -15,6 +17,8 @@ export default function transformer(file: FileInfo, api: API): string {
   renameUseTableQueryResult(j, source);
   renameUseFormQueryResultAndMutationResult(j, source);
   renameITreeMenuToTreeMenuItem(j, source);
+  routerBindingsTypeToProvider(j, source);
+  authBindingsTypeToProvider(j, source);
 
   return source.toSource();
 }

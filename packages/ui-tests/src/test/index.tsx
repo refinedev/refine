@@ -10,10 +10,10 @@ import type {
   DataProvider,
   NotificationProvider,
   IResourceItem,
-  RouterBindings,
+  RouterProvider,
   IRefineOptions,
 } from "@refinedev/core";
-import { mockRouterBindings } from "./dataMocks";
+import { mockRouterProvider } from "./dataMocks";
 
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
@@ -22,7 +22,7 @@ export interface ITestWrapperProps {
   notificationProvider?: NotificationProvider;
   accessControlProvider?: AccessControlProvider;
   i18nProvider?: I18nProvider;
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   routerInitialEntries?: string[];
   options?: IRefineOptions;
 }
@@ -60,7 +60,7 @@ export const TestWrapper: (props: ITestWrapperProps) => React.FC = ({
           }}
           dataProvider={dataProvider ?? MockJSONServer}
           i18nProvider={i18nProvider}
-          routerProvider={routerProvider ?? mockRouterBindings()}
+          routerProvider={routerProvider ?? mockRouterProvider()}
           authProvider={authProvider}
           notificationProvider={notificationProvider}
           resources={resources ?? [{ name: "posts", list: "/list" }]}
@@ -76,7 +76,7 @@ export {
   MockJSONServer,
   MockAccessControlProvider,
   MockLiveProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   mockAuthProvider,
 } from "./dataMocks";
 

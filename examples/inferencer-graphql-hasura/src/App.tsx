@@ -15,7 +15,7 @@ import dataProvider, {
   graphqlWS,
   liveProvider,
 } from "@refinedev/hasura";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -59,7 +59,7 @@ function App() {
             dataProvider={dataProvider(client)}
             liveProvider={liveProvider(webSocketClient)}
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             resources={[
               {
                 name: "blog_posts",

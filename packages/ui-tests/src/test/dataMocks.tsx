@@ -3,7 +3,7 @@ import type {
   ParsedParams,
   IResourceItem,
   Action,
-  RouterBindings,
+  RouterProvider,
   AuthProvider,
 } from "@refinedev/core";
 
@@ -71,7 +71,7 @@ export const mockAuthProvider: AuthProvider = {
   register: jest.fn().mockResolvedValue({ success: true }),
 };
 
-export const mockRouterBindings = ({
+export const mockRouterProvider = ({
   pathname,
   params,
   resource,
@@ -84,9 +84,9 @@ export const mockRouterBindings = ({
   resource?: IResourceItem;
   action?: Action;
   id?: string;
-  fns?: Partial<RouterBindings>;
-} = {}): RouterBindings => {
-  const bindings: RouterBindings = {
+  fns?: Partial<RouterProvider>;
+} = {}): RouterProvider => {
+  const bindings: RouterProvider = {
     go: () => {
       return ({ type, to }) => {
         if (type === "path") return to || "";

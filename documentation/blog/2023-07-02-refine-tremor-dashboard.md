@@ -433,7 +433,7 @@ function App() {
           }}
           //highlight-end
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             ...
             {
@@ -516,7 +516,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           ...
         >
           <Routes>

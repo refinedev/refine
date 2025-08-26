@@ -1,6 +1,6 @@
 import {
   type GoConfig,
-  type RouterBindings,
+  type RouterProvider,
   ResourceContext,
   matchResourceFromRoute,
   type ParseResponse,
@@ -20,7 +20,7 @@ export const stringifyConfig = {
   encodeValuesOnly: true,
 };
 
-export const routerBindings: RouterBindings = {
+export const routerProvider: RouterProvider = {
   go: () => {
     const { push, replace, asPath: pathname } = useRouter();
 

@@ -10,7 +10,7 @@ import {
 } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
@@ -34,7 +34,7 @@ function App() {
             authProvider={authProvider}
             dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,

@@ -10,7 +10,7 @@ import {
   render,
   TestWrapper,
   waitFor,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 
@@ -88,7 +88,7 @@ export const buttonListTests = (
           wrapper: TestWrapper({
             resources: [{ name: "posts", meta: { label: "test" } }],
             routerProvider: {
-              ...mockRouterBindings,
+              ...mockRouterProvider,
               parse() {
                 return () => ({
                   params: {},

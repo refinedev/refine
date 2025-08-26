@@ -170,7 +170,7 @@ npx @refinedev/codemod@latest refine4-to-refine5
 
 <h3>⚠️ Changes not handled by the codemod </h3>
 
-Unfortunately, the codemod cannot cover every case. While it automates most of the migration, some changes still require manual updates. Below is the list of removed or modified APIs that you’ll need to adjust yourself.
+Unfortunately, the codemod cannot cover every case. While it automates most of the migration, some changes still require manual updates. Below is the list of removed or modified APIs that you'll need to adjust yourself.
 
 <h3>useNavigation → useGo</h3>
 
@@ -304,6 +304,31 @@ useCreate({
 -    metaData: { endpoint: "custom" },
 +    meta: { endpoint: "custom" },
 })
+```
+
+#### AuthBindings → AuthProvider (Type Imports)
+
+🚨 Affects: Type imports from @refinedev/core
+
+Type interfaces have been renamed in @refinedev/core. When importing these types, you'll need to update the import names while preserving usage with aliases:
+
+```diff
+// AuthBindings → AuthProvider
+- import { type AuthBindings } from "@refinedev/core";
++ import { type AuthProvider  } from "@refinedev/core";
+
+```
+
+#### RouterBindings → RouterProvider (Type Imports)
+
+🚨 Affects: Type imports from @refinedev/core
+
+Type interfaces have been renamed in @refinedev/core. When importing these types, you'll need to update the import names while preserving usage with aliases:
+
+```diff
+
+- import type { RouterBindings } from "@refinedev/core";
++ import type { RouterProvider  } from "@refinedev/core";
 ```
 
 #### sorter/sort → sorters

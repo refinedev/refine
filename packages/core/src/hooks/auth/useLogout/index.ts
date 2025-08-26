@@ -5,7 +5,7 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useGo, useKeys, useNotification } from "@hooks";
 
 import type {
@@ -51,7 +51,7 @@ export function useLogout<TVariables = {}>({
   const invalidateAuthStore = useInvalidateAuthStore();
   const go = useGo();
   const { open, close } = useNotification();
-  const { logout: logoutFromContext } = useAuthBindingsContext();
+  const { logout: logoutFromContext } = useAuthProviderContext();
   const { keys } = useKeys();
 
   const mutation = useMutation<

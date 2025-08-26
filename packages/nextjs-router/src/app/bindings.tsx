@@ -1,6 +1,6 @@
 import {
   type GoConfig,
-  type RouterBindings,
+  type RouterProvider,
   ResourceContext,
   matchResourceFromRoute,
   type ParseResponse,
@@ -20,7 +20,7 @@ export const stringifyConfig = {
   encodeValuesOnly: true,
 };
 
-export const routerBindings: RouterBindings = {
+export const routerProvider: RouterProvider = {
   go: () => {
     const { push, replace } = useRouter();
     const pathname = usePathname();
@@ -144,7 +144,7 @@ export const routerBindings: RouterBindings = {
   },
   Link: React.forwardRef<
     HTMLAnchorElement,
-    ComponentProps<NonNullable<RouterBindings["Link"]>>
+    ComponentProps<NonNullable<RouterProvider["Link"]>>
   >(function RefineLink({ to, ...props }, ref) {
     return <NextLink href={to} {...props} ref={ref} />;
   }),

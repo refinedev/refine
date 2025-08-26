@@ -5,7 +5,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useKeys } from "@hooks";
 import type { MakeOptional } from "../../../definitions/types";
 
@@ -26,7 +26,7 @@ export type UseGetIdentityReturnType<TData> = UseQueryResult<TData>;
 export function useGetIdentity<TData = any>({
   queryOptions,
 }: UseGetIdentityProps<TData> = {}): UseGetIdentityReturnType<TData> {
-  const { getIdentity } = useAuthBindingsContext();
+  const { getIdentity } = useAuthProviderContext();
   const { keys } = useKeys();
 
   const queryResponse = useQuery<TData>({

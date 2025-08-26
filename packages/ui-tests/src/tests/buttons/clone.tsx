@@ -10,7 +10,7 @@ import {
   render,
   TestWrapper,
   waitFor,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 
@@ -394,7 +394,7 @@ export const buttonCloneTests = (
           wrapper: TestWrapper({
             routerInitialEntries: ["/posts"],
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   pathname: "/posts",
@@ -435,7 +435,7 @@ export const buttonCloneTests = (
               { name: "posts", list: "/posts", clone: "/posts/clone/:id" },
             ],
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   params: { id: "1" },

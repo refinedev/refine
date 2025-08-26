@@ -10,7 +10,7 @@ import type {
   DataProvider,
   NotificationProvider,
   IResourceItem,
-  RouterBindings,
+  RouterProvider,
 } from "@refinedev/core";
 
 import { RefineKbarProvider } from "../src/index";
@@ -34,7 +34,7 @@ export interface ITestWrapperProps {
   dataProvider?: DataProvider;
   authProvider?: AuthProvider;
   resources?: IResourceItem[];
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   notificationProvider?: NotificationProvider;
   accessControlProvider?: AccessControlProvider;
   i18nProvider?: I18nProvider;
