@@ -3,6 +3,7 @@ import { renamePaginationCurrentToCurrentPage } from "./rename-pagination-curren
 
 const HOOK_PACKAGE_MAPPINGS = {
   useList: ["@refinedev/core"],
+  useMany: ["@refinedev/core"],
 };
 
 export const useQueryAndResultFieldsInUseList = (
@@ -44,45 +45,46 @@ export const useQueryAndResultFieldsInUseList = (
     });
   });
 
-  // Second pass: find and transform destructuring assignments for useList
-  root
-    .find(j.VariableDeclarator)
-    .filter((path) => {
-      const { node } = path;
-      return (
-        node.id?.type === "ObjectPattern" &&
-        node.init?.type === "CallExpression" &&
-        node.init.callee?.type === "Identifier" &&
-        node.init.callee.name === "useList" &&
-        hookSources.has("useList")
-      );
-    })
-    .forEach((path) => {
-      const { node } = path;
-      const objectPattern = node.id as any;
+  // Second pass: find and transform destructuring assignments for useList and useMany
+  ["useList", "useMany"].forEach((hookName) => {
+    if (!hookSources.has(hookName)) return;
 
-      // Transform the properties in the destructuring
-      objectPattern.properties = objectPattern.properties.map((prop: any) => {
-        if (
-          (prop.type === "ObjectProperty" || prop.type === "Property") &&
-          prop.key?.type === "Identifier" &&
-          prop.key.name === "data"
-        ) {
-          // Handle cases like { data } -> { result: data }
-          if (prop.shorthand) {
-            return j.objectProperty(
-              j.identifier("result"),
-              j.identifier("data"),
-            );
-          }
-          // Handle cases like { data: variableName } -> { result: variableName }
-          else {
+    root
+      .find(j.VariableDeclarator)
+      .filter((path) => {
+        const { node } = path;
+        return (
+          node.id?.type === "ObjectPattern" &&
+          node.init?.type === "CallExpression" &&
+          node.init.callee?.type === "Identifier" &&
+          node.init.callee.name === hookName
+        );
+      })
+      .forEach((path) => {
+        const { node } = path;
+        const objectPattern = node.id as any;
+
+        // Transform the properties in the destructuring
+        objectPattern.properties = objectPattern.properties.map((prop: any) => {
+          if (
+            (prop.type === "ObjectProperty" || prop.type === "Property") &&
+            prop.key?.type === "Identifier" &&
+            prop.key.name === "data"
+          ) {
+            // Handle cases like { data } -> { result: data }
+            if (prop.shorthand) {
+              return j.objectProperty(
+                j.identifier("result"),
+                j.identifier("data"),
+              );
+            }
+            // Handle cases like { data: variableName } -> { result: variableName }
             return j.objectProperty(j.identifier("result"), prop.value);
           }
-        }
-        return prop;
+          return prop;
+        });
       });
-    });
+  });
 
   return root;
 };

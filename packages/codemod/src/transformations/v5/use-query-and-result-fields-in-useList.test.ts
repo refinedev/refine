@@ -44,4 +44,40 @@ describe("use-query-and-result-fields-in-useList", () => {
     `;
     expect(transform(source).trim()).toBe(expected.trim());
   });
+
+  it("should rename data to result in useMany destructuring", () => {
+    const source = `
+      import { useMany } from "@refinedev/core";
+      const { data } = useMany({
+        resource: "posts",
+        ids: [1, 2, 3]
+      });
+    `;
+    const expected = `
+      import { useMany } from "@refinedev/core";
+      const { result: data } = useMany({
+        resource: "posts",
+        ids: [1, 2, 3]
+      });
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should rename renamed data from useMany", () => {
+    const source = `
+      import { useMany } from "@refinedev/core";
+      const { data: posts } = useMany<Post>({
+        resource: "posts",
+        ids: [1, 2, 3]
+      });
+    `;
+    const expected = `
+      import { useMany } from "@refinedev/core";
+      const { result: posts } = useMany<Post>({
+        resource: "posts",
+        ids: [1, 2, 3]
+      });
+    `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
 });
