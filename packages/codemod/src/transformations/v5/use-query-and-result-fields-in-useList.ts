@@ -143,6 +143,66 @@ export const useQueryAndResultFieldsInUseList = (
 
         objectPattern.properties = newProperties;
       });
+
+    // Third pass: find and transform variable assignments (non-destructuring) for useList and useMany
+    root
+      .find(j.VariableDeclarator)
+      .filter((path) => {
+        const { node } = path;
+        return (
+          node.id?.type === "Identifier" &&
+          node.init?.type === "CallExpression" &&
+          node.init.callee?.type === "Identifier" &&
+          node.init.callee.name === hookName
+        );
+      })
+      .forEach((path) => {
+        const { node } = path;
+        const originalVariableName = (node.id as any).name;
+        const migratedVariableName = `migrated${
+          originalVariableName.charAt(0).toUpperCase() +
+          originalVariableName.slice(1)
+        }`;
+
+        // Change the original variable to use the migrated name
+        (node.id as any).name = migratedVariableName;
+
+        // Create the spread assignment after this declaration
+        const parentDeclaration = path.parent;
+        if (parentDeclaration?.value?.type === "VariableDeclaration") {
+          const newDeclaration = j.variableDeclaration("const", [
+            j.variableDeclarator(
+              j.identifier(originalVariableName),
+              j.objectExpression([
+                j.spreadElement(
+                  j.memberExpression(
+                    j.identifier(migratedVariableName),
+                    j.identifier("result"),
+                  ),
+                ),
+                j.spreadElement(
+                  j.memberExpression(
+                    j.identifier(migratedVariableName),
+                    j.identifier("query"),
+                  ),
+                ),
+                j.spreadElement(j.identifier(migratedVariableName)),
+              ]),
+            ),
+          ]);
+
+          // Insert the new declaration after the current one
+          const parentStatement = path.parent.parent;
+          if (
+            parentStatement?.value?.type === "Program" ||
+            parentStatement?.value?.type === "BlockStatement"
+          ) {
+            const statements = parentStatement.value.body;
+            const currentIndex = statements.indexOf(parentDeclaration.value);
+            statements.splice(currentIndex + 1, 0, newDeclaration);
+          }
+        }
+      });
   });
 
   return root;

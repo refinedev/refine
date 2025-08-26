@@ -205,4 +205,44 @@ describe("use-query-and-result-fields-in-useList", () => {
 
     expect(transform(source).trim()).toBe(expected.trim());
   });
+
+  it("should work if hook is assigned to a variable", () => {
+    const source = `
+      import { useList } from "@refinedev/core";
+      const list = useList();
+      `;
+
+    const expected = `
+      import { useList } from "@refinedev/core";
+      const migratedList = useList();
+
+      const list = {
+            ...migratedList.result,
+            ...migratedList.query,
+            ...migratedList,
+      };
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should work if hook is assigned to a variable", () => {
+    const source = `
+      import { useList } from "@refinedev/core";
+      const useListResponse = useList();
+      `;
+
+    const expected = `
+      import { useList } from "@refinedev/core";
+      const migratedUseListResponse = useList();
+
+      const useListResponse = {
+            ...migratedUseListResponse.result,
+            ...migratedUseListResponse.query,
+            ...migratedUseListResponse,
+      };
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
 });
