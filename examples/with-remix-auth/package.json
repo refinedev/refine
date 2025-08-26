@@ -36,9 +36,10 @@
     "@types/js-cookie": "^3.0.2",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "@types/node": "^20"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
   }
 }

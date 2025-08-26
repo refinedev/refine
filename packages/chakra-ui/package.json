@@ -57,6 +57,8 @@
     "@types/jest": "^29.2.4",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
+    "@types/node": "^20",
+    "@types/testing-library__jest-dom": "^5.14.3",
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-plugin-inline-image": "^0.0.8",
     "identity-obj-proxy": "^3.0.0",
@@ -75,6 +77,9 @@
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "react-hook-form": "^7.57.0"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

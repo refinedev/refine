@@ -55,6 +55,7 @@
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "@types/qs": "^6.9.7",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
@@ -75,7 +76,7 @@
     "remix": "*"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

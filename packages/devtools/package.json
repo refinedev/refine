@@ -51,7 +51,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react-reconciler": "^0.28.8",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
@@ -71,7 +71,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

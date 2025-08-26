@@ -44,7 +44,7 @@
     "swiper": "^11.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/react-modal": "^3.16.3",
@@ -52,5 +52,8 @@
     "typescript": "^5.8.3",
     "vite": "^5.4.15",
     "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

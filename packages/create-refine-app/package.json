@@ -34,6 +34,7 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "@types/prompts": "2.0.1",
     "@types/rimraf": "3.0.0",
     "@types/tar": "^6.1.11",
@@ -42,6 +43,9 @@
     "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

@@ -28,11 +28,14 @@
     "react-icons": "^4.3.1"
   },
   "devDependencies": {
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@typescript-eslint/parser": "5.48.0",
     "rimraf": "3.0.2",
     "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

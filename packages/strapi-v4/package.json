@@ -48,6 +48,7 @@
     "@refinedev/cli": "^2.16.47",
     "@refinedev/core": "^4.57.11",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "@types/qs": "^6.9.7",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
@@ -65,7 +66,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

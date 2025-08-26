@@ -44,7 +44,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@typescript-eslint/eslint-plugin": "5.48.0",
@@ -58,5 +58,8 @@
     "tailwindcss": "^3.0.11",
     "typescript": "^5.8.3",
     "vite": "^5.4.15"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
