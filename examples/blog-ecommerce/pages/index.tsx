@@ -16,8 +16,8 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
   const {
     tableQuery: tableQueryResult,
     setFilters,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
   } = useTable<IProduct>({
     resource: "products",
@@ -97,14 +97,14 @@ export const ProductList: React.FC<ItemProps> = ({ products, stores }) => {
 
       <Flex justify={"flex-end"} mt={4} mb={4} gap={2}>
         {Array.from(Array(totalPageCount), (e, i) => {
-          if (current > totalPageCount) {
-            setCurrent(i);
+          if (currentPage > totalPageCount) {
+            setCurrentPage(i);
           }
           return (
             <Button
               key={i}
               colorScheme={"teal"}
-              onClick={() => setCurrent(i + 1)}
+              onClick={() => setCurrentPage(i + 1)}
             >
               {i + 1}
             </Button>
@@ -121,7 +121,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const data = await DataProvider(`${API_URL}/api`).getList<IProduct>({
     resource: "products",
     meta: { populate: ["image"] },
-    pagination: { current: 1, pageSize: 9 },
+    pagination: { currentPage: 1, pageSize: 9 },
   });
 
   const { data: storesData } =

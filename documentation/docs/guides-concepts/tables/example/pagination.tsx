@@ -47,7 +47,7 @@ import React from "react";
 import { useTable } from "@refinedev/core";
 
 export const ProductTable: React.FC = () => {
-  const { tableQuery, pageCount, pageSize, current, setCurrent } = useTable<IProduct>({
+  const { tableQuery, pageCount, pageSize, currentPage, setCurrentPage } = useTable<IProduct>({
     resource: "products",
     pagination: {
         current: 1, 
@@ -83,21 +83,21 @@ export const ProductTable: React.FC = () => {
         </tbody>
       </table>
       <hr />
-      <p>Current Page: {current}</p>
+      <p>Current Page: {currentPage}</p>
       <p>Page Size: {pageSize}</p>
       <button
         onClick={() => {
-          setCurrent(current - 1);
+          setCurrentPage(currentPage - 1);
         }}
-        disabled={current < 2}
+        disabled={currentPage < 2}
       >
         Previous Page
       </button>
       <button
         onClick={() => {
-          setCurrent(current + 1);
+          setCurrentPage(currentPage + 1);
         }}
-        disabled={current === pageCount}
+        disabled={currentPage === pageCount}
       >
         Next Page
       </button>

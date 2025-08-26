@@ -99,9 +99,10 @@ export const BlogPostList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage: setCurrent,
       pageCount,
-      current,
+      currentPage: current,
+
       tableQuery: { data: tableData },
     },
   } = useTable({

@@ -42,8 +42,8 @@ export const VideoClubPageTapeSelectMember = (props: Props) => {
   const {
     tableQuery: membersQueryResult,
     pageCount,
-    current,
-    setCurrent,
+    currentPage: current,
+    setCurrentPage: setCurrent,
     filters,
     setFilters,
   } = useTable<ExtendedMember>({

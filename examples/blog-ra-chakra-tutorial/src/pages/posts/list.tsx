@@ -85,7 +85,7 @@ export const PostList = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: { current, pageCount, setCurrent },
+    refineCore: { currentPage: current, pageCount, setCurrentPage: setCurrent },
   } = useTable({
     columns,
 

@@ -100,9 +100,10 @@ export const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage: setCurrent,
       pageCount,
-      current,
+      currentPage: current,
+
       tableQuery: { data: tableData },
     },
   } = useTable({
@@ -112,7 +113,7 @@ export const PostList: React.FC = () => {
       syncWithLocation: true,
 
       pagination: {
-        current: 2,
+        currentPage: 2,
         pageSize: 10,
       },
 

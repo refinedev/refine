@@ -641,7 +641,7 @@ export const PostList = () => {
     getRowModel,
     setOptions,
     // highlight-next-line
-    refineCore: { current, pageCount, setCurrent },
+    refineCore: { currentPage: current, pageCount, setCurrentPage: setCurrent },
   } = useTable({
     columns,
     refineCoreProps: {

@@ -11,7 +11,7 @@ function useData() {
     resource: "products",
 
     pagination: {
-      current: 2,
+      currentPage: 2,
     },
   });
 

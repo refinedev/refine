@@ -66,7 +66,7 @@ describe("useTable Hook", () => {
           refineCoreProps: {
             resource: "posts",
             pagination: {
-              current: 2,
+              currentPage: 2,
               pageSize: 1,
             },
           },
@@ -84,11 +84,11 @@ describe("useTable Hook", () => {
 
     const {
       options: { state, pageCount },
-      refineCore: { pageSize: corePageSize, current },
+      refineCore: { pageSize: corePageSize, currentPage },
     } = result.current;
 
     expect(corePageSize).toBe(1);
-    expect(current).toBe(2);
+    expect(currentPage).toBe(2);
     expect(state.pagination?.pageIndex).toBe(1);
     expect(state.pagination?.pageSize).toBe(1);
     expect(pageCount).toBe(3);

@@ -14,14 +14,18 @@ import { getDefaultFilter } from "@refinedev/core";
 import type { IOrder, IOrderStatus } from "../../interfaces";
 
 export function RecentSales() {
-  const { dataGridProps, setCurrent, setFilters, filters } =
-    useDataGrid<IOrder>({
-      resource: "orders",
+  const {
+    dataGridProps,
+    setCurrentPage: setCurrent,
+    setFilters,
+    filters,
+  } = useDataGrid<IOrder>({
+    resource: "orders",
 
-      pagination: {
-        pageSize: 5,
-      },
-    });
+    pagination: {
+      pageSize: 5,
+    },
+  });
 
   const currencyFormatter = new Intl.NumberFormat("en-US", {
     style: "currency",

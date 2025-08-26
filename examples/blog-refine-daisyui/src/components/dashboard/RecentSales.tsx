@@ -93,7 +93,7 @@ export const RecentSales = () => {
   );
 
   const {
-    refineCore: { filters, setCurrent, setFilters },
+    refineCore: { filters, setCurrentPage: setCurrent, setFilters },
     getHeaderGroups,
     getRowModel,
   } = useTable({

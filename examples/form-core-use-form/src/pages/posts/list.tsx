@@ -13,7 +13,7 @@ export const PostList: React.FC = () => {
     resource: "posts",
 
     pagination: {
-      current: page,
+      currentPage: page,
       pageSize: PAGE_SIZE,
     },
   });

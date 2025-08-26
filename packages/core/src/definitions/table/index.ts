@@ -11,12 +11,12 @@ import type {
 } from "../../contexts/data/types";
 
 export const parseTableParams = (url: string) => {
-  const { current, pageSize, sorters, sorter, filters } = qs.parse(
+  const { currentPage, pageSize, sorters, sorter, filters } = qs.parse(
     url.substring(1), // remove first ? character
   );
 
   return {
-    parsedCurrent: current && Number(current),
+    parsedCurrent: currentPage && Number(currentPage),
     parsedPageSize: pageSize && Number(pageSize),
     parsedSorter: (sorters as CrudSort[]) || (sorter as CrudSort[]) || [],
     parsedFilters: (filters as CrudFilter[]) ?? [],
@@ -24,10 +24,10 @@ export const parseTableParams = (url: string) => {
 };
 
 export const parseTableParamsFromQuery = (params: any) => {
-  const { current, pageSize, sorters, sorter, filters } = params;
+  const { currentPage, pageSize, sorters, sorter, filters } = params;
 
   return {
-    parsedCurrent: current && Number(current),
+    parsedCurrent: currentPage && Number(currentPage),
     parsedPageSize: pageSize && Number(pageSize),
     parsedSorter: (sorters as CrudSort[]) || (sorter as CrudSort[]) || [],
     parsedFilters: (filters as CrudFilter[]) ?? [],
@@ -38,7 +38,7 @@ export const parseTableParamsFromQuery = (params: any) => {
  * @internal This function is used to stringify table params from the useTable hook.
  */
 export const stringifyTableParams = (params: {
-  pagination?: { current?: number; pageSize?: number };
+  pagination?: { currentPage?: number; pageSize?: number };
   sorters: CrudSort[];
   sorter?: CrudSort[];
   filters: CrudFilter[];

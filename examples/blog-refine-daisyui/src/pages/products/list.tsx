@@ -94,7 +94,7 @@ export const ProductList = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { filters, setCurrent, setFilters },
+    refineCore: { filters, setCurrentPage: setCurrent, setFilters },
     getState,
     setPageIndex,
     getCanPreviousPage,

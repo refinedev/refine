@@ -159,7 +159,7 @@ export const ListProducts = () => {
   } = useTable({
     // highlight-next-line
     resource: "protected-products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 

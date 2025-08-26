@@ -80,8 +80,8 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-        params.append("_start", (pagination.current - 1) * pagination.pageSize);
-        params.append("_end", pagination.current * pagination.pageSize);
+        params.append("_start", (pagination.currentPage - 1) * pagination.pageSize);
+        params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     const response = await fetch(\`\${API_URL}/\${resource}?\${params.toString()}\`);
@@ -135,8 +135,8 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
+      params.append("_start", (pagination.currentPage - 1) * pagination.pageSize);
+      params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     if (sorters && sorters.length > 0) {
@@ -195,8 +195,8 @@ export const dataProvider: DataProvider = {
     const params = new URLSearchParams();
 
     if (pagination) {
-      params.append("_start", (pagination.current - 1) * pagination.pageSize);
-      params.append("_end", pagination.current * pagination.pageSize);
+      params.append("_start", (pagination.currentPage - 1) * pagination.pageSize);
+      params.append("_end", pagination.currentPage * pagination.pageSize);
     }
 
     if (sorters && sorters.length > 0) {
@@ -301,7 +301,7 @@ import { useList } from "@refinedev/core";
 export const ListProducts = () => {
   const { data, isLoading } = useList({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
   });
 
   if (isLoading) {
@@ -335,7 +335,7 @@ import { useList } from "@refinedev/core";
 export const ListProducts = () => {
   const { data, isLoading } = useList({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: [{ field: "name", order: "asc" }],
   });
 
@@ -370,7 +370,7 @@ import { useList } from "@refinedev/core";
 export const ListProducts = () => {
   const { data, isLoading } = useList({
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: [{ field: "name", order: "asc" }],
     filters: [{ field: "material", operator: "eq", value: "Aluminum" }],
   });

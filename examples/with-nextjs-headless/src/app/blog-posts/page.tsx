@@ -12,10 +12,15 @@ import type { Category, BlogPost } from "@types";
 
 export default function BlogPostList() {
   const { translate: t } = useTranslation();
-  const { tableQuery, current, pageSize, setPageSize, setCurrent } =
-    useTable<BlogPost>({
-      syncWithLocation: true,
-    });
+  const {
+    tableQuery,
+    currentPage: current,
+    pageSize,
+    setPageSize,
+    setCurrentPage: setCurrent,
+  } = useTable<BlogPost>({
+    syncWithLocation: true,
+  });
 
   const { data, isLoading } = tableQuery;
   const records = data?.data ?? [];

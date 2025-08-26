@@ -42,7 +42,7 @@ export const OrderTimeline = ({ height = "432px" }: Props) => {
         },
       ],
       pagination: {
-        current: 1,
+        currentPage: 1,
         pageSize: 8,
       },
     });

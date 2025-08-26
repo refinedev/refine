@@ -3,7 +3,7 @@ import { handlePaginationParams } from ".";
 describe("handlePaginationParams", () => {
   it("should return default pagination", () => {
     expect(handlePaginationParams()).toEqual({
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
       mode: "server",
     });
@@ -12,10 +12,10 @@ describe("handlePaginationParams", () => {
   it("should return pagination from `pagination` prop", () => {
     expect(
       handlePaginationParams({
-        pagination: { current: 2, pageSize: 20, mode: "client" },
+        pagination: { currentPage: 2, pageSize: 20, mode: "client" },
       }),
     ).toEqual({
-      current: 2,
+      currentPage: 2,
       pageSize: 20,
       mode: "client",
     });
@@ -24,10 +24,10 @@ describe("handlePaginationParams", () => {
   it("should return pagination from `config` prop", () => {
     expect(
       handlePaginationParams({
-        pagination: { current: 3, pageSize: 30 },
+        pagination: { currentPage: 3, pageSize: 30 },
       }),
     ).toEqual({
-      current: 3,
+      currentPage: 3,
       pageSize: 30,
       mode: "server",
     });
@@ -36,10 +36,10 @@ describe("handlePaginationParams", () => {
   it("should return pagination from `pagination` prop if config is defined", () => {
     expect(
       handlePaginationParams({
-        pagination: { current: 2, pageSize: 20, mode: "client" },
+        pagination: { currentPage: 2, pageSize: 20, mode: "client" },
       }),
     ).toEqual({
-      current: 2,
+      currentPage: 2,
       pageSize: 20,
       mode: "client",
     });
@@ -51,7 +51,7 @@ describe("handlePaginationParams", () => {
         pagination: { mode: "client" },
       }),
     ).toEqual({
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
       mode: "client",
     });
