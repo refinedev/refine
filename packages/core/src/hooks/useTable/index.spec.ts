@@ -9,12 +9,12 @@ import { defaultRefineOptions } from "@contexts/refine";
 
 const defaultPagination = {
   pageSize: 10,
-  current: 1,
+  currentPage: 1,
 };
 
 const customPagination = {
-  current: 2,
-  defaultCurrent: 2,
+  currentPage: 2,
+  defaultCurrentPage: 2,
   defaultPageSize: 1,
   pageSize: 1,
 };
@@ -42,14 +42,14 @@ describe("useTable Hook", () => {
     const {
       tableQuery: { data },
       pageSize,
-      current,
+      currentPage,
       pageCount,
       result: tableResult,
     } = result.current;
 
     expect(data?.data).toHaveLength(2);
     expect(pageSize).toEqual(defaultPagination.pageSize);
-    expect(current).toEqual(defaultPagination.current);
+    expect(currentPage).toEqual(defaultPagination.currentPage);
     expect(pageCount).toEqual(1);
     expect(tableResult.data).toHaveLength(2);
     expect(tableResult.total).toBe(2);
@@ -60,7 +60,7 @@ describe("useTable Hook", () => {
       () =>
         useTable({
           pagination: {
-            current: customPagination.defaultCurrent,
+            currentPage: customPagination.defaultCurrentPage,
             pageSize: customPagination.defaultPageSize,
           },
         }),
@@ -77,10 +77,10 @@ describe("useTable Hook", () => {
       expect(!result.current.tableQuery.isLoading).toBeTruthy();
     });
 
-    const { pageSize, current, pageCount } = result.current;
+    const { pageSize, currentPage, pageCount } = result.current;
 
     expect(pageSize).toEqual(customPagination.pageSize);
-    expect(current).toEqual(customPagination.current);
+    expect(currentPage).toEqual(customPagination.currentPage);
     expect(pageCount).toEqual(2);
   });
 
@@ -198,7 +198,7 @@ describe("useTable Hook", () => {
       () =>
         useTable({
           pagination: {
-            current: 1,
+            currentPage: 1,
             pageSize: 10,
           },
         }),
@@ -211,7 +211,7 @@ describe("useTable Hook", () => {
     );
 
     expect(result.current.pageSize).toBe(10);
-    expect(result.current.current).toBe(1);
+    expect(result.current.currentPage).toBe(1);
   });
 
   it("when deprecated setSorter is called, it should update sorter and sorters", async () => {
@@ -391,7 +391,7 @@ describe("useTable Hook", () => {
       () =>
         useTable({
           pagination: {
-            current: 1,
+            currentPage: 1,
             pageSize: 10,
           },
         }),
@@ -404,7 +404,7 @@ describe("useTable Hook", () => {
     );
 
     expect(result.current.pageSize).toBe(10);
-    expect(result.current.current).toBe(1);
+    expect(result.current.currentPage).toBe(1);
   });
 
   it("when deprecated setSorter is called, it should update sorter and sorters", async () => {

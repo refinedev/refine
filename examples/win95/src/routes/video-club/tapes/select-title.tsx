@@ -50,8 +50,8 @@ export const VideoClubPageTapeSelectTitle = ({
   const {
     tableQuery: titlesQueryResult,
     pageCount,
-    current,
-    setCurrent,
+    currentPage: current,
+    setCurrentPage: setCurrent,
     filters,
     setFilters,
   } = useTable<ExtendedVideoTitle>({

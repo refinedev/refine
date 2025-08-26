@@ -39,7 +39,7 @@ export const ProductListCard = () => {
       setFilters,
     } = useSimpleList<IProduct, HttpError>({
       pagination: {
-        current: 1,
+        currentPage: 1,
         pageSize: 12,
       },
       filters: {

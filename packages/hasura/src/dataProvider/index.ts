@@ -151,13 +151,13 @@ const dataProvider = (
         : camelcase(`${operation}_aggregate`);
 
       const {
-        current = 1,
+        currentPage = 1,
         pageSize: limit = 10,
         mode = "server",
       } = pagination ?? {};
 
       const hasuraPagination =
-        mode === "server" ? { limit, offset: (current - 1) * limit } : {};
+        mode === "server" ? { limit, offset: (currentPage - 1) * limit } : {};
 
       const hasuraSorting = defaultNamingConvention
         ? generateSorting(sorters)

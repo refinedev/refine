@@ -72,8 +72,8 @@ export function useTable<
 
   const {
     tableQuery: { data },
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize: pageSizeCore,
     setPageSize: setPageSizeCore,
     sorters,
@@ -94,7 +94,7 @@ export function useTable<
       : getFilteredRowModel(),
     initialState: {
       pagination: {
-        pageIndex: current - 1,
+        pageIndex: currentPage - 1,
         pageSize: pageSizeCore,
       },
       sorting: sorters.map((sorting) => ({
@@ -121,7 +121,7 @@ export function useTable<
 
   useEffect(() => {
     if (pageIndex !== undefined) {
-      setCurrent(pageIndex + 1);
+      setCurrentPage(pageIndex + 1);
     }
   }, [pageIndex]);
 
@@ -143,7 +143,7 @@ export function useTable<
       }
 
       if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
-        setCurrent(1);
+        setCurrentPage(1);
       }
     }
   }, [sorting]);
@@ -170,7 +170,7 @@ export function useTable<
     }
 
     if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
-      setCurrent(1);
+      setCurrentPage(1);
     }
   }, [columnFilters, columns]);
 

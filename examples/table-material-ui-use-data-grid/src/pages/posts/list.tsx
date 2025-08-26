@@ -12,7 +12,7 @@ export const PostList: React.FC = () => {
     syncWithLocation: true,
 
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
     },
 

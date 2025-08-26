@@ -580,7 +580,7 @@ describe("useSelect Hook", () => {
           resource: "posts",
           defaultValue: ["1", "2"],
           pagination: {
-            current: 1,
+            currentPage: 1,
             pageSize: 20,
           },
         }),
@@ -613,7 +613,7 @@ describe("useSelect Hook", () => {
           ]),
         }),
         pagination: {
-          current: 1,
+          currentPage: 1,
           mode: "server",
           pageSize: 20,
         },
@@ -686,7 +686,7 @@ describe("useSelect Hook", () => {
           ]),
         }),
         pagination: {
-          current: 1,
+          currentPage: 1,
           mode: "server",
           pageSize: 10,
         },
@@ -717,7 +717,7 @@ describe("useSelect Hook", () => {
           ]),
         }),
         pagination: {
-          current: 1,
+          currentPage: 1,
           mode: "server",
           pageSize: 10,
         },
@@ -821,7 +821,7 @@ describe("useSelect Hook", () => {
           resource: "posts",
           defaultValue: ["1", "2", "3"],
           pagination: {
-            current: 2,
+            currentPage: 2,
             pageSize: 1,
           },
         }),
@@ -841,7 +841,7 @@ describe("useSelect Hook", () => {
       expect.objectContaining({
         filters: [],
         pagination: {
-          current: 2,
+          currentPage: 2,
           mode: "server",
           pageSize: 1,
         },
