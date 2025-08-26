@@ -51,9 +51,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   const t = useTranslate();
 
   const {
-    refetch: refetchOrders,
-    data: ordersData,
-    isSuccess: ordersIsSuccess,
+    result: ordersData,
+
+    query: { refetch: refetchOrders, isSuccess: ordersIsSuccess },
   } = useList<IOrder>({
     resource: "orders",
 
@@ -91,9 +91,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   }, [ordersData, ordersIsSuccess, t]);
 
   const {
-    refetch: refetchStores,
-    data: storesData,
-    isSuccess: storesIsSuccess,
+    result: storesData,
+
+    query: { refetch: refetchStores, isSuccess: storesIsSuccess },
   } = useList<IStore>({
     resource: "stores",
 
@@ -119,9 +119,9 @@ export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = () => {
   }, [storesData, storesIsSuccess, t]);
 
   const {
-    refetch: refetchCouriers,
-    data: couriersData,
-    isSuccess: couriersIsSuccess,
+    result: couriersData,
+
+    query: { refetch: refetchCouriers, isSuccess: couriersIsSuccess },
   } = useList<ICourier>({
     resource: "couriers",
 

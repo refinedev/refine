@@ -17,7 +17,10 @@ export const PostList: React.FC = () => {
 
   const categoryIds =
     tableQueryResult?.data?.data.map((item) => item.category.id) ?? [];
-  const { data, isLoading } = useMany<ICategory>({
+  const {
+    result: data,
+    query: { isLoading },
+  } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {

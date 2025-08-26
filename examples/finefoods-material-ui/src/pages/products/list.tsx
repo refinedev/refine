@@ -33,7 +33,7 @@ export const ProductList = ({ children }: PropsWithChildren) => {
     },
   });
 
-  const { data: categoriesData } = useList<ICategory>({
+  const { result: categoriesData } = useList<ICategory>({
     resource: "categories",
     pagination: {
       mode: "off",

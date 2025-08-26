@@ -54,7 +54,10 @@ export const PostList = () => {
 
   const categoryIds =
     tableProps.dataSource?.map((p) => p.category.id.toString()) || [];
-  const { data, isFetching } = useMany<ICategory>({
+  const {
+    result: data,
+    query: { isFetching },
+  } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {

@@ -12,7 +12,7 @@ export const useEnrichedLineItems = (
   lineItems?: LineItem[],
   cartId?: string,
 ) => {
-  const { data: cartData } = useOne<{ cart: Cart }>({
+  const { result: cartData } = useOne<{ cart: Cart }>({
     // eslint-disable-next-line
     id: cartId!,
     resource: "carts",
@@ -20,7 +20,7 @@ export const useEnrichedLineItems = (
       enabled: !!cartId,
     },
   });
-  const cart = cartData?.data.cart;
+  const cart = cartData?.cart;
 
   const filters = useMemo<CrudFilters>(() => {
     if (lineItems) {
@@ -52,7 +52,7 @@ export const useEnrichedLineItems = (
     ];
   }, [lineItems, cart?.items, cart?.id, cartId]);
 
-  const { data: productData } = useList<Product>({
+  const { result: productData } = useList<Product>({
     resource: "products",
 
     queryOptions: {

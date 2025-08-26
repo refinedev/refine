@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 export const useGetEmployeeTimeOffUsage = ({
   employeeId,
 }: { employeeId?: number }) => {
-  const query = useList<TimeOff>({
+  const migratedQuery = useList<TimeOff>({
     resource: "time-offs",
     pagination: { pageSize: 999 },
     filters: [
@@ -25,6 +25,13 @@ export const useGetEmployeeTimeOffUsage = ({
       enabled: !!employeeId,
     },
   });
+
+  const query = {
+    ...migratedQuery.result,
+    ...migratedQuery.query,
+    ...migratedQuery,
+  };
+
   const data = query?.data?.data;
 
   const { sick, casual, annual, sickCount, casualCount, annualCount } =

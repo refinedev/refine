@@ -14,7 +14,10 @@ export const BlogPostShow = () => {
 
   const record = data?.data;
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useOne({
     resource: "categories",
     id: record?.category?.id || "",
     queryOptions: {
@@ -53,11 +56,7 @@ export const BlogPostShow = () => {
         <div style={{ marginTop: "6px" }}>
           <h5>Category</h5>
           <div>
-            {categoryIsLoading ? (
-              <>Loading...</>
-            ) : (
-              <>{categoryData?.data?.title}</>
-            )}
+            {categoryIsLoading ? <>Loading...</> : <>{categoryData?.title}</>}
           </div>
         </div>
         <div style={{ marginTop: "6px" }}>

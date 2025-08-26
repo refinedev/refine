@@ -72,11 +72,11 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
   const { cart, countryCode, cartId, resetCart } = useCartContext();
 
   //TODO: Is customer data ok?
-  const { data: customerData } = useOne<{ customer: Customer }>({
+  const { result: customerData } = useOne<{ customer: Customer }>({
     resource: "customers/me",
     id: "",
   });
-  const customer = customerData?.data.customer;
+  const customer = customerData?.customer;
 
   const methods = useForm<CheckoutFormValues>({
     defaultValues: mapFormValues(customer, cart, countryCode),
@@ -84,7 +84,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
     mode: "onChange",
   });
 
-  const { data: shippingOptionsData } = useOne<{
+  const { result: shippingOptionsData } = useOne<{
     shipping_options: ShippingOption[];
   }>({
     resource: "shipping-options",
@@ -97,7 +97,7 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
       cart,
     },
   });
-  const shipping_options = shippingOptionsData?.data.shipping_options;
+  const shipping_options = shippingOptionsData?.shipping_options;
 
   const editAddresses = useToggleState();
   const sameAsBilling = useToggleState(

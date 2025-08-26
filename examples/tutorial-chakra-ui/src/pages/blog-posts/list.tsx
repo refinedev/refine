@@ -124,7 +124,7 @@ export const BlogPostList = () => {
     columns,
   });
 
-  const { data: categoryData } = useMany({
+  const { result: categoryData } = useMany({
     resource: "categories",
     ids: tableData?.data?.map((item) => item?.category?.id) ?? [],
     queryOptions: {

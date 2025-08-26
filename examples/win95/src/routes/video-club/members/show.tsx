@@ -22,14 +22,18 @@ export const VideoClubMemberPageShow: React.FC = () => {
   const { id } = useParams();
   const { list } = useNavigation();
 
-  const { data, isLoading, refetch } = useOne<ExtendedMember>({
+  const {
+    result,
+    refetch,
+    query: { isLoading },
+  } = useOne<ExtendedMember>({
     resource: "members",
     id,
     meta: {
       select: "*, rentals(*, titles(*))",
     },
   });
-  const member = data?.data;
+  const member = result;
 
   useSubscription({
     channel: "rentals",
