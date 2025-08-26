@@ -86,6 +86,31 @@ export const useQueryAndResultFieldsInUseOneHook = (
         const finalDataName =
           dataPropertyValue.name === "data" ? "result" : dataVariableName;
 
+        // Transform data?.data.property to result?.property
+        root
+          .find(j.MemberExpression)
+          .filter((memberPath) => {
+            const expr = memberPath.value;
+            // Look for patterns like data?.data.property
+            return (
+              j.OptionalMemberExpression.check(expr.object) &&
+              j.Identifier.check(expr.object.object) &&
+              expr.object.object.name === dataVariableName &&
+              j.Identifier.check(expr.object.property) &&
+              expr.object.property.name === "data"
+            );
+          })
+          .replaceWith((memberPath) => {
+            const expr = memberPath.value;
+            // Create result?.property
+            return j.optionalMemberExpression(
+              j.identifier(finalDataName),
+              expr.property,
+              expr.computed,
+            );
+          });
+
+        // Transform simple data?.data to result
         root
           .find(j.OptionalMemberExpression)
           .filter((memberPath) => {
