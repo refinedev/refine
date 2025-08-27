@@ -72,7 +72,9 @@ describe("table-material-ui-advanced", () => {
     cy.getMaterialUILoadingCircular().should("not.exist");
 
     // click the ID column header to sort ascending
-    cy.get(".MuiDataGrid-columnHeaderTitle").contains("ID").click();
+    cy.get(".MuiDataGrid-columnHeaderTitle")
+      .contains("ID")
+      .click({ force: true });
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=asc");
 
     cy.wait(1000);
@@ -84,7 +86,9 @@ describe("table-material-ui-advanced", () => {
       expect(query._order).to.eq("asc");
     });
     // click the ID column header to sort descending
-    cy.get(".MuiDataGrid-columnHeaderTitle").contains("ID").click();
+    cy.get(".MuiDataGrid-columnHeaderTitle")
+      .contains("ID")
+      .click({ force: true });
     cy.url().should("include", "sorters[0][field]=id&sorters[0][order]=desc");
     cy.wait("@getPosts").then((interception) => {
       const request = interception.request;
@@ -93,7 +97,9 @@ describe("table-material-ui-advanced", () => {
       expect(query._order).to.eq("desc");
     });
     // click to remove
-    cy.get(".MuiDataGrid-columnHeaderTitle").contains("ID").click();
+    cy.get(".MuiDataGrid-columnHeaderTitle")
+      .contains("ID")
+      .click({ force: true });
     cy.url().should("not.include", "sorters[0][field]=id");
     cy.wait("@getPosts").then((interception) => {
       const request = interception.request;
