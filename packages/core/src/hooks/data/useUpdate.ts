@@ -617,11 +617,11 @@ export const useUpdate = <
     },
   });
 
-  const { mutate, mutateAsync, ...mutation } = mutationResult;
+  const { mutate, mutateAsync } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isPending,
+    isLoading: mutationResult.isPending,
   });
 
   // this function is used to make the `variables` parameter optional
@@ -651,7 +651,7 @@ export const useUpdate = <
   };
 
   return {
-    ...mutation,
+    mutation: mutationResult,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },

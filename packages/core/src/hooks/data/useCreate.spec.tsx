@@ -23,10 +23,10 @@ describe("useCreate Hook [with params]", () => {
     result.current.mutate({ resource: "posts", values: { id: 1 } });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    const { status, data } = result.current;
+    const { status, data } = result.current.mutation;
 
     expect(status).toBe("success");
     expect(data?.data.slug).toBe("ut-ad-et");
@@ -104,13 +104,13 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -140,7 +140,7 @@ describe("useCreate Hook [with params]", () => {
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
         expect(onPublishMock).toHaveBeenCalled();
@@ -184,7 +184,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(onPublishMock).toHaveBeenCalledWith({
@@ -225,7 +225,7 @@ describe("useCreate Hook [with params]", () => {
       result.current.mutate({ resource: "posts", values: { id: 1 } });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createMock).toHaveBeenCalled();
@@ -272,7 +272,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -312,7 +312,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -351,7 +351,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -385,7 +385,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -425,7 +425,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -465,7 +465,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -502,7 +502,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -547,7 +547,7 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createFooMock).toHaveBeenCalledWith(
@@ -588,7 +588,7 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createMock).toHaveBeenCalledWith(
@@ -640,7 +640,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createFooMock).toHaveBeenCalledWith(
@@ -688,7 +688,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(invalidateStore).toHaveBeenCalledWith(
@@ -736,7 +736,7 @@ describe("useCreate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createMock).toHaveBeenCalledWith(
@@ -781,7 +781,7 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createMock).not.toHaveBeenCalled();
@@ -810,7 +810,7 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(
@@ -835,8 +835,8 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error(
           "[useCreate]: `resource` is not defined or not matched but is required",
         ),
@@ -859,8 +859,8 @@ describe("useCreate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error("[useCreate]: `values` is not provided but is required"),
       );
     });
@@ -882,10 +882,10 @@ describe("useCreate Hook [with props]", () => {
     result.current.mutate();
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    const { status, data } = result.current;
+    const { status, data } = result.current.mutation;
 
     expect(status).toBe("success");
     expect(data?.data.slug).toBe("ut-ad-et");
@@ -962,13 +962,13 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -999,7 +999,7 @@ describe("useCreate Hook [with props]", () => {
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
         expect(onPublishMock).toHaveBeenCalled();
@@ -1048,7 +1048,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(onPublishMock).toHaveBeenCalledWith({
@@ -1090,7 +1090,7 @@ describe("useCreate Hook [with props]", () => {
       result.current.mutate({ values: { id: 1 } });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createMock).toHaveBeenCalled();
@@ -1142,7 +1142,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -1181,7 +1181,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -1225,7 +1225,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -1261,7 +1261,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -1306,7 +1306,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -1351,7 +1351,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -1387,7 +1387,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -1431,7 +1431,7 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createFooMock).toHaveBeenCalledWith(
@@ -1477,7 +1477,7 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createMock).toHaveBeenCalledWith(
@@ -1534,7 +1534,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createFooMock).toHaveBeenCalledWith(
@@ -1577,7 +1577,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(invalidateStore).toHaveBeenCalledWith(
@@ -1630,7 +1630,7 @@ describe("useCreate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createMock).toHaveBeenCalledWith(
@@ -1675,7 +1675,7 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createMock).not.toHaveBeenCalled();
@@ -1704,7 +1704,7 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(
@@ -1733,8 +1733,8 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error(
           "[useCreate]: `resource` is not defined or not matched but is required",
         ),
@@ -1761,8 +1761,8 @@ describe("useCreate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error("[useCreate]: `values` is not provided but is required"),
       );
     });
@@ -1821,7 +1821,7 @@ describe("useCreate Hook should work with params and props", () => {
     result.current.mutate(options.params);
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(createMock).toHaveBeenCalledWith({

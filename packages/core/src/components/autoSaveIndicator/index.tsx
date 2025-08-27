@@ -14,15 +14,15 @@ export type AutoSaveIndicatorProps<
   /**
    * The data returned by the update request.
    */
-  data?: UseUpdateReturnType<TData, TError, TVariables>["data"];
+  data?: UseUpdateReturnType<TData, TError, TVariables>["mutation"]["data"];
   /**
    * The error returned by the update request.
    */
-  error?: UseUpdateReturnType<TData, TError, TVariables>["error"];
+  error?: UseUpdateReturnType<TData, TError, TVariables>["mutation"]["error"];
   /**
    * The status of the update request.
    */
-  status: UseUpdateReturnType<TData, TError, TVariables>["status"];
+  status: UseUpdateReturnType<TData, TError, TVariables>["mutation"]["status"];
 
   /**
    * The elements to display for each status.

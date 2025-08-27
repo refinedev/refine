@@ -87,7 +87,7 @@ export const assertListLength = async (
 export const assertMutationSuccess = async (mutationResult: any) => {
   await waitFor(
     () => {
-      expect(mutationResult.current.isSuccess).toBeTruthy();
+      expect(mutationResult.current.mutation.isSuccess).toBeTruthy();
     },
     { timeout: 2000 },
   );

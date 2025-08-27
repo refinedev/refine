@@ -55,12 +55,14 @@ export type UseCustomMutationReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
   TVariables = {},
-> = UseMutationResult<
-  CreateResponse<TData>,
-  TError,
-  useCustomMutationParams<TData, TError, TVariables>,
-  unknown
->;
+> = {
+  mutation: UseMutationResult<
+    CreateResponse<TData>,
+    TError,
+    useCustomMutationParams<TData, TError, TVariables>,
+    unknown
+  >;
+} & UseLoadingOvertimeReturnType;
 
 export type UseCustomMutationOptions<
   TData extends BaseRecord = BaseRecord,
@@ -114,7 +116,7 @@ export const useCustomMutation = <
   const getMeta = useMeta();
   const { keys } = useKeys();
 
-  const mutation = useMutation<
+  const mutationResult = useMutation<
     CreateResponse<TData>,
     TError,
     useCustomMutationParams<TData, TError, TVariables>,
@@ -206,11 +208,11 @@ export const useCustomMutation = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isPending,
+    isLoading: mutationResult.isPending,
   });
 
   return {
-    ...mutation,
+    mutation: mutationResult,
     overtime: { elapsedTime },
   } as UseCustomMutationReturnType<TData, TError, TVariables> &
     UseLoadingOvertimeReturnType;

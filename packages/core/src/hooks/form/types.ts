@@ -52,7 +52,7 @@ export type AutoSaveReturnType<
   TVariables = {},
 > = {
   autoSaveProps: Pick<
-    UseUpdateReturnType<TData, TError, TVariables>,
+    UseUpdateReturnType<TData, TError, TVariables>["mutation"],
     "data" | "error" | "status"
   >;
   onFinishAutoSave: (
@@ -223,8 +223,8 @@ export type UseFormReturnType<
   query?: QueryObserverResult<GetOneResponse<TData>, TError>;
 
   mutation:
-    | UseUpdateReturnType<TResponse, TResponseError, TVariables>
-    | UseCreateReturnType<TResponse, TResponseError, TVariables>;
+    | UseUpdateReturnType<TResponse, TResponseError, TVariables>["mutation"]
+    | UseCreateReturnType<TResponse, TResponseError, TVariables>["mutation"];
   formLoading: boolean;
   onFinish: (
     values: TVariables,

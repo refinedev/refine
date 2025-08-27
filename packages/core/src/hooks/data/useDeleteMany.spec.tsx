@@ -27,16 +27,16 @@ describe("useDeleteMany Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: ["1"],
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    const { isSuccess } = result.current;
+    const { isSuccess } = result.current.mutation;
 
     expect(isSuccess).toBeTruthy();
   });
@@ -65,7 +65,7 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 2);
 
     act(() => {
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         mutationMode: "optimistic",
         ids: ["1", "2"],
@@ -77,7 +77,7 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 0);
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
+      expect(result.current.mutation.isError).toBeTruthy();
     });
 
     await assertListLength(useListResult, 2);
@@ -102,7 +102,7 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 2);
 
     act(() => {
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         mutationMode: "undoable",
         undoableTimeout: 1000,
@@ -135,7 +135,7 @@ describe("useDeleteMany Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: ["1"],
       meta: {
@@ -188,19 +188,19 @@ describe("useDeleteMany Hook", () => {
       },
     );
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: [1, 2],
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -223,14 +223,14 @@ describe("useDeleteMany Hook", () => {
           }),
         });
 
-        result.current.mutate({
+        result.current.mutation.mutate({
           resource: "posts",
           ids: ["1", "2"],
           dataProviderName,
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
         expect(onPublishMock).toHaveBeenCalled();
@@ -273,13 +273,13 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(createMock).toHaveBeenCalled();
@@ -314,7 +314,7 @@ describe("useDeleteMany Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: ["1", "2"],
     });
@@ -355,13 +355,13 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -392,13 +392,13 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(notificationMock).toHaveBeenCalledWith({
@@ -423,7 +423,7 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         successNotification: () => ({
@@ -434,7 +434,7 @@ describe("useDeleteMany Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -458,14 +458,14 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         successNotification: () => false,
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -491,7 +491,7 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         errorNotification: () => ({
@@ -502,7 +502,7 @@ describe("useDeleteMany Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -533,13 +533,13 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1"],
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -575,13 +575,13 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(deleteManyFooMock).toHaveBeenCalledWith(
@@ -614,13 +614,13 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(deleteManyMock).toHaveBeenCalledWith(
@@ -664,13 +664,13 @@ describe("useDeleteMany Hook", () => {
           }),
         });
 
-        result.current.mutate({
+        result.current.mutation.mutate({
           resource: "featured-posts",
           ids: ["1", "2"],
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
         expect(deleteManyFooMock).toHaveBeenCalledWith(
@@ -705,13 +705,13 @@ describe("useDeleteMany Hook", () => {
           }),
         });
 
-        result.current.mutate({
+        result.current.mutation.mutate({
           resource: "featured-posts",
           ids: ["1", "2"],
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
         expect(invalidateStore).toHaveBeenCalledWith(
@@ -751,13 +751,13 @@ describe("useDeleteMany Hook", () => {
           }),
         });
 
-        result.current.mutate({
+        result.current.mutation.mutate({
           resource: "featured-posts",
           ids: ["1", "2"],
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
         expect(deleteManyMock).toHaveBeenCalledWith(
@@ -796,14 +796,14 @@ describe("useDeleteMany Hook", () => {
         },
       );
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         values: {},
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(useDeleteManyMock).not.toHaveBeenCalled();
@@ -826,14 +826,14 @@ describe("useDeleteMany Hook", () => {
         },
       );
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         values: {},
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(

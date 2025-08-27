@@ -88,13 +88,14 @@ export type UseDeleteReturnType<
   TData extends BaseRecord = BaseRecord,
   TError = HttpError,
   TVariables = {},
-> = UseMutationResult<
-  DeleteOneResponse<TData>,
-  TError,
-  DeleteParams<TData, TError, TVariables>,
-  DeleteContext<TData>
-> &
-  UseLoadingOvertimeReturnType;
+> = {
+  mutation: UseMutationResult<
+    DeleteOneResponse<TData>,
+    TError,
+    DeleteParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >;
+} & UseLoadingOvertimeReturnType;
 
 export type UseDeleteProps<
   TData extends BaseRecord = BaseRecord,
@@ -481,5 +482,5 @@ export const useDelete = <
     isLoading: mutation.isPending,
   });
 
-  return { ...mutation, overtime: { elapsedTime } };
+  return { mutation, overtime: { elapsedTime } };
 };

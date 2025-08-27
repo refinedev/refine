@@ -28,7 +28,7 @@ describe("useCustomMutation Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       method: "post",
       url: "/posts",
       values: {},
@@ -62,17 +62,17 @@ describe("useCustomMutation Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       method: "post",
       url: "/posts",
       values: {},
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
+      expect(result.current.mutation.isError).toBeTruthy();
     });
 
-    expect(result.current.error).toEqual(
+    expect(result.current.mutation.error).toEqual(
       new Error("Not implemented custom on data provider."),
     );
   });
@@ -98,14 +98,14 @@ describe("useCustomMutation Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         method: "post",
         url: "/posts",
         values: {},
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(notificationMock).toHaveBeenCalledWith({
@@ -130,7 +130,7 @@ describe("useCustomMutation Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         method: "post",
         url: "/posts",
         values: {},
@@ -142,7 +142,7 @@ describe("useCustomMutation Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -166,7 +166,7 @@ describe("useCustomMutation Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         method: "post",
         url: "/posts",
         values: {},
@@ -174,7 +174,7 @@ describe("useCustomMutation Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -200,7 +200,7 @@ describe("useCustomMutation Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         method: "post",
         url: "/posts",
         values: {},
@@ -212,7 +212,7 @@ describe("useCustomMutation Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -243,14 +243,14 @@ describe("useCustomMutation Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         method: "post",
         url: "/posts",
         values: {},
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -278,14 +278,14 @@ describe("useCustomMutation Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         method: "post",
         url: "/posts",
         values: {},
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -307,7 +307,7 @@ describe("useCustomMutation Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       method: "post",
       url: "/posts",
       values: {},
@@ -319,7 +319,7 @@ describe("useCustomMutation Hook", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(customMock).toHaveBeenCalledWith(
@@ -358,20 +358,20 @@ describe("useCustomMutation Hook", () => {
       },
     );
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       method: "post",
       url: "/posts",
       values: {},
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
