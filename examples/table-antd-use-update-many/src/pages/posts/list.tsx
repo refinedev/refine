@@ -31,7 +31,10 @@ export const PostList = () => {
 
   const [selectedRowKeys, setSelectedRowKeys] = React.useState<React.Key[]>([]);
 
-  const { mutate, isPending: updateManyIsLoading } = useUpdateMany<IPost>({
+  const {
+    mutate,
+    mutation: { isPending: updateManyIsLoading },
+  } = useUpdateMany<IPost>({
     resource: "posts",
   });
 

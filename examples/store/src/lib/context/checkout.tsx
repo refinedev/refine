@@ -65,9 +65,12 @@ export const CheckoutProvider: React.FC<CheckoutProviderProps> = ({
   const {
     mutate: createMutate,
     mutateAsync: createMutateAsync,
-    isLoading: createIsLoading,
+    mutation: { isLoading: createIsLoading },
   } = useCreate();
-  const { mutate: updateMutate, isLoading: updateIsLoading } = useUpdate();
+  const {
+    mutate: updateMutate,
+    mutation: { isLoading: updateIsLoading },
+  } = useUpdate();
 
   const { cart, countryCode, cartId, resetCart } = useCartContext();
 
