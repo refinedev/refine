@@ -154,15 +154,15 @@
     },
     {
       "from": "/docs/core/hooks/resource/useResource/",
-      "to": "/docs/routing/hooks/use-resource"
-    },
-    {
-      "from": "/docs/routing/hooks/use-resource",
       "to": "/docs/routing/hooks/use-resource-params"
     },
     {
       "from": "/docs/core/hooks/resource/useResourceWithRoute/",
-      "to": "/docs/routing/hooks/use-resource"
+      "to": "/docs/routing/hooks/use-resource-params"
+    },
+    {
+      "from": "/docs/routing/hooks/use-resource",
+      "to": "/docs/routing/hooks/use-resource-params"
     },
     {
       "from": "/docs/core/hooks/show/useShow/",
