@@ -130,6 +130,10 @@ const TRANSFORMER_INQUIRER_CHOICES = [
     value: "rename-query-and-mutation-result",
   },
   {
+    name: "Transform mutation hook return types from spreading to mutation property",
+    value: "v5/mutation-result-to-mutation-property",
+  },
+  {
     name: "refine3-to-refine4: Transform from refine 3.x.x to at least 4.0.0",
     value: "refine3-to-refine4",
   },

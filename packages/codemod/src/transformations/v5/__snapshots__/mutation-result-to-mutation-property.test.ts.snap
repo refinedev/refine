@@ -1,0 +1,210 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`mutation-result-to-mutation-property should handle all affected mutation hooks 1`] = `
+"
+      import { 
+        useCreate, 
+        useUpdate, 
+        useDelete, 
+        useCreateMany, 
+        useUpdateMany, 
+        useDeleteMany, 
+        useCustomMutation 
+      } from "@refinedev/core";
+      
+      const { mutation: {
+        isPending: createPending
+      } } = useCreate();
+      const { mutation: {
+        isPending: updatePending
+      } } = useUpdate();
+      const { mutation: {
+        isPending: deletePending
+      } } = useDelete();
+      const { mutation: {
+        isPending: createManyPending
+      } } = useCreateMany();
+      const { mutation: {
+        isPending: updateManyPending
+      } } = useUpdateMany();
+      const { mutation: {
+        isPending: deleteManyPending
+      } } = useDeleteMany();
+      const { mutation: {
+        isPending: customPending
+      } } = useCustomMutation();
+      
+      const isAnyPending = createPending || updatePending || deletePending || 
+                           createManyPending || updateManyPending || deleteManyPending || customPending;
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle complex component example 1`] = `
+"
+      import { useUpdate, useDelete } from "@refinedev/core";
+
+      export const ProductEdit = () => {
+        const {
+          mutate: updateMutate,
+
+          mutation: {
+            isPending: updatePending,
+            error: updateError
+          }
+        } = useUpdate();
+        const { mutate: deleteMutate, mutation: {
+          isPending: deletePending
+        } } = useDelete();
+        
+        const deleteProduct = useDelete();
+
+        if (updatePending || deletePending) {
+          return <div>Processing...</div>;
+        }
+
+        if (updateError) {
+          return <div>Update failed: {updateError.message}</div>;
+        }
+
+        if (deleteProduct.mutation.isPending) {
+          return <div>Deleting...</div>;
+        }
+
+        return (
+          <div>
+            <button onClick={() => updateMutate({ id: 1, values: { name: "Updated" } })}>
+              Update Product
+            </button>
+            <button onClick={() => deleteMutate({ id: 1 })}>
+              Delete Product
+            </button>
+          </div>
+        );
+      };
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle destructuring mutation properties from useUpdate 1`] = `
+"
+      import { useUpdate } from "@refinedev/core";
+      
+      const {
+        mutate,
+
+        mutation: {
+          isPending,
+          isError,
+          data
+        }
+      } = useUpdate();
+      
+      if (isPending) {
+        return <div>Loading...</div>;
+      }
+      
+      if (isError) {
+        return <div>Error occurred</div>;
+      }
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle destructuring with renamed variables from useCreate 1`] = `
+"
+      import { useCreate } from "@refinedev/core";
+      
+      const {
+        mutate,
+
+        mutation: {
+          isPending: isCreating,
+          error: createError
+        }
+      } = useCreate();
+      
+      if (isCreating) {
+        return <div>Creating...</div>;
+      }
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle direct variable assignment and property access 1`] = `
+"
+      import { useCustomMutation } from "@refinedev/core";
+      
+      const mutation = useCustomMutation();
+      
+      if (mutation.mutation.isPending) {
+        return <div>Loading...</div>;
+      }
+      
+      const error = mutation.mutation.error;
+      const data = mutation.mutation.data;
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle mixed properties (top-level and mutation) 1`] = `
+"
+      import { useCreateMany } from "@refinedev/core";
+      
+      const {
+        mutate,
+        mutateAsync,
+        overtime,
+
+        mutation: {
+          isPending,
+          error
+        }
+      } = useCreateMany();
+      
+      if (isPending) {
+        return <div>Creating records...</div>;
+      }
+      
+      if (error) {
+        console.error(error);
+      }
+      
+      const handleCreate = () => {
+        mutate({ values: [{ name: "Item 1" }, { name: "Item 2" }] });
+      };
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle multiple mutation hooks 1`] = `
+"
+      import { useUpdate, useDelete } from "@refinedev/core";
+      
+      const { mutate: updateMutate, mutation: {
+        isPending: updatePending
+      } } = useUpdate();
+      const { mutate: deleteMutate, mutation: {
+        isPending: deletePending
+      } } = useDelete();
+      
+      if (updatePending || deletePending) {
+        return <div>Loading...</div>;
+      }
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should handle optional chaining 1`] = `
+"
+      import { useUpdate } from "@refinedev/core";
+      
+      const updateMutation = useUpdate();
+      
+      const isPending = updateMutation.mutation.isPending;
+      const errorMessage = updateMutation.mutation.error?.message;
+    "
+`;
+
+exports[`mutation-result-to-mutation-property should not affect properties that remain at the top level 1`] = `
+"
+      import { useUpdate } from "@refinedev/core";
+      
+      const { mutate, mutateAsync, overtime } = useUpdate();
+      
+      mutate({ id: 1, values: { name: "Test" } });
+    "
+`;

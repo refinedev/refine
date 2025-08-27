@@ -9,6 +9,7 @@ import { renameCurrentToCurrentPage } from "./v5/rename-current-to-currentPage";
 import { renamePaginationCurrentToCurrentPage } from "./v5/rename-pagination-current-to-currentPage";
 import { useQueryAndResultFieldsInListHooks } from "./v5/use-query-and-result-fields-in-list-hooks";
 import { useQueryAndResultFieldsInUseOneHook } from "./v5/use-query-and-result-fields-in-useOne-hook";
+import { mutationResultToMutationProperty } from "./v5/mutation-result-to-mutation-property";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -23,6 +24,7 @@ export default function transformer(file: FileInfo, api: API): string {
   renamePaginationCurrentToCurrentPage(j, source);
   useQueryAndResultFieldsInListHooks(j, source);
   useQueryAndResultFieldsInUseOneHook(j, source);
+  mutationResultToMutationProperty(j, source);
 
   return source.toSource();
 }
