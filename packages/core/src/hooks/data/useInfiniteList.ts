@@ -20,7 +20,7 @@ import {
   useKeys,
   useMeta,
   useOnError,
-  useResource,
+  useResourceParams,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
@@ -156,7 +156,9 @@ export const useInfiniteList = <
   TError
 > &
   UseLoadingOvertimeReturnType => {
-  const { resources, resource, identifier } = useResource(resourceFromProp);
+  const { resources, resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();
@@ -205,7 +207,7 @@ export const useInfiniteList = <
       subscriptionType: "useList",
       ...liveParams,
     },
-    channel: `resources/${resource.name}`,
+    channel: `resources/${resource?.name}`,
     enabled: isEnabled,
     liveMode,
     onLiveEvent,
@@ -248,7 +250,7 @@ export const useInfiniteList = <
       };
 
       return getList<TQueryFnData>({
-        resource: resource.name,
+        resource: resource?.name || "",
         pagination: prefferedPagination,
         filters: prefferedFilters,
         sorters: prefferedSorters,

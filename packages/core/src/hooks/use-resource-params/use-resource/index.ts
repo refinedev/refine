@@ -7,14 +7,13 @@ import { pickResource } from "../../../definitions/helpers/pick-resource";
 import { useParsed } from "../../router/use-parsed";
 
 /**
- * @internal
  * Matches the resource by identifier.
  * If not provided, the resource from the route will be returned.
  * If your resource does not explicitly define an identifier, the resource name will be used.
  */
 export type UseResourceParam = string | undefined;
 
-type SelectReturnType<T extends boolean> = T extends true
+export type SelectReturnType<T extends boolean> = T extends true
   ? { resource: IResourceItem; identifier: string }
   : { resource: IResourceItem; identifier: string } | undefined;
 
@@ -33,13 +32,22 @@ type UseResourceReturnTypeWithResource = UseResourceReturnType & {
   identifier: string;
 };
 
+/**
+ * @internal
+ */
 export function useResource(): UseResourceReturnType;
+/**
+ * @internal
+ */
 export function useResource<TIdentifier = UseResourceParam>(
   identifier: TIdentifier,
 ): TIdentifier extends NonNullable<UseResourceParam>
   ? UseResourceReturnTypeWithResource
   : UseResourceReturnType;
 /**
+ *
+ * @internal
+ *
  * `useResource` is used to get `resources` that are defined as property of the `<Refine>` component.
  *
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/resource/useResource} for more details.

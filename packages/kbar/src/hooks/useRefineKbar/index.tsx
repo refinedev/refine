@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react";
 import {
   useDelete,
   useTranslate,
-  useResource,
   type IResourceItem,
   useCanWithoutCache,
   useUserFriendlyName,
@@ -30,8 +29,12 @@ enum RefineKbarActionType {
 
 export const useRefineKbar = (): void => {
   const t = useTranslate();
-  const { resource: resourceFromParams, resources } = useResource();
-  const { id: idFromParams, action: actionFromParams } = useResourceParams();
+  const {
+    id: idFromParams,
+    action: actionFromParams,
+    resource: resourceFromParams,
+    resources,
+  } = useResourceParams();
   const getToPath = useGetToPath();
   const go = useGo();
   const { mutate } = useDelete();

@@ -1,8 +1,7 @@
 import { pickResource } from "@definitions/helpers/pick-resource";
 import { getActionRoutesFromResource } from "@definitions/helpers/router";
 import { composeRoute } from "@definitions/helpers/router/compose-route";
-import { useResource } from "@hooks";
-import { useBack } from "@hooks/router/use-back";
+import { useResourceParams } from "@hooks";
 import { useGo } from "@hooks/router/use-go";
 import { useParsed } from "@hooks/router/use-parsed";
 
@@ -21,7 +20,7 @@ export type HistoryType = "push" | "replace";
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation} for more details.
  */
 export const useNavigation = () => {
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
   const parsed = useParsed();
   const go = useGo();
 

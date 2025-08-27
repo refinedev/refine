@@ -26,7 +26,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
             class="MuiBox-root css-10egq61"
           >
             <a
-              href=""
+              href="/posts/create"
               style="text-decoration: none;"
             >
               <button
@@ -61,10 +61,10 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
       >
         <div
           class="MuiDataGrid-root MuiDataGrid-autoHeight MuiDataGrid-root--densityStandard MuiDataGrid-root--noToolbar MuiDataGrid-withBorderColor css-1nnh8nx-MuiDataGrid-root"
-          style="--DataGrid-width: 0px; --DataGrid-hasScrollX: 1; --DataGrid-hasScrollY: 0; --DataGrid-scrollbarSize: 0px; --DataGrid-rowWidth: 100px; --DataGrid-columnsTotalWidth: 100px; --DataGrid-leftPinnedWidth: 0px; --DataGrid-rightPinnedWidth: 0px; --DataGrid-headerHeight: 56px; --DataGrid-headersTotalHeight: 56px; --DataGrid-topContainerHeight: 56px; --DataGrid-bottomContainerHeight: 0px; --height: 52px;"
+          style="--DataGrid-width: 0px; --DataGrid-hasScrollX: 1; --DataGrid-hasScrollY: 0; --DataGrid-scrollbarSize: 0px; --DataGrid-rowWidth: 200px; --DataGrid-columnsTotalWidth: 200px; --DataGrid-leftPinnedWidth: 0px; --DataGrid-rightPinnedWidth: 0px; --DataGrid-headerHeight: 56px; --DataGrid-headersTotalHeight: 56px; --DataGrid-topContainerHeight: 56px; --DataGrid-bottomContainerHeight: 0px; --height: 52px;"
         >
           <div
-            aria-colcount="13"
+            aria-colcount="14"
             aria-multiselectable="false"
             aria-rowcount="3"
             class="MuiDataGrid-main css-1bgckiu-MuiDataGrid-main"
@@ -1301,7 +1301,7 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     <div
                       aria-colindex="13"
                       aria-sort="none"
-                      class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--alignRight MuiDataGrid-columnHeader--sortable MuiDataGrid-columnHeader--numeric MuiDataGrid-withBorderColor MuiDataGrid-columnHeader--lastUnpinned MuiDataGrid-columnHeader--last"
+                      class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--alignRight MuiDataGrid-columnHeader--sortable MuiDataGrid-columnHeader--numeric MuiDataGrid-withBorderColor"
                       data-field="language"
                       role="columnheader"
                       style="height: 56px; width: 0px;"
@@ -1361,6 +1361,82 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-r363y4-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
                             id="«r2c»"
+                            tabindex="-1"
+                            type="button"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1ckov0h-MuiSvgIcon-root"
+                              data-testid="TripleDotsVerticalIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiDataGrid-columnSeparator MuiDataGrid-columnSeparator--resizable MuiDataGrid-columnSeparator--sideRight"
+                        style="min-height: 56px;"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiDataGrid-iconSeparator css-1umw9bq-MuiSvgIcon-root"
+                          data-testid="SeparatorIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <rect
+                            height="24"
+                            rx="0.5"
+                            width="1"
+                            x="11.5"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                    <div
+                      aria-colindex="14"
+                      aria-sort="none"
+                      class="MuiDataGrid-columnHeader MuiDataGrid-columnHeader--alignCenter MuiDataGrid-withBorderColor MuiDataGrid-columnHeader--lastUnpinned MuiDataGrid-columnHeader--last"
+                      data-field="actions"
+                      role="columnheader"
+                      style="height: 56px; width: 100px;"
+                      tabindex="-1"
+                    >
+                      <div
+                        class="MuiDataGrid-columnHeaderDraggableContainer"
+                        draggable="false"
+                        role="presentation"
+                      >
+                        <div
+                          class="MuiDataGrid-columnHeaderTitleContainer"
+                          role="presentation"
+                        >
+                          <div
+                            class="MuiDataGrid-columnHeaderTitleContainerContent"
+                          >
+                            <div
+                              class="MuiDataGrid-columnHeaderTitle css-1gqmilo-MuiDataGrid-columnHeaderTitle"
+                              data-mui-internal-clone-element="true"
+                            >
+                              Actions
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiDataGrid-menuIcon"
+                        >
+                          <button
+                            aria-expanded="false"
+                            aria-haspopup="menu"
+                            aria-label="Menu"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeSmall MuiDataGrid-menuIconButton css-r363y4-MuiButtonBase-root-MuiIconButton-root"
+                            data-mui-internal-clone-element="true"
+                            id="«r2i»"
                             tabindex="-1"
                             type="button"
                           >
@@ -1630,6 +1706,64 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                     >
                       2
                     </div>
+                    <div
+                      aria-colindex="14"
+                      aria-colspan="1"
+                      aria-rowspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textCenter"
+                      data-colindex="13"
+                      data-field="actions"
+                      role="gridcell"
+                      style="--width: 100px;"
+                      tabindex="-1"
+                    >
+                      <a
+                        href="/posts/edit/11"
+                        style="text-decoration: none;"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-edit-button css-957s89-MuiButtonBase-root-MuiButton-root"
+                          tabindex="0"
+                          title=""
+                          type="button"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+                            data-testid="EditOutlinedIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="m14.06 9.02.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"
+                            />
+                          </svg>
+                        </button>
+                      </a>
+                      <a
+                        href="/posts/show/11"
+                        style="text-decoration: none;"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-show-button css-957s89-MuiButtonBase-root-MuiButton-root"
+                          tabindex="0"
+                          title=""
+                          type="button"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+                            data-testid="VisibilityOutlinedIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4m0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7"
+                            />
+                          </svg>
+                        </button>
+                      </a>
+                    </div>
                   </div>
                   <div
                     aria-rowindex="3"
@@ -1850,6 +1984,64 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                       title="2"
                     >
                       2
+                    </div>
+                    <div
+                      aria-colindex="14"
+                      aria-colspan="1"
+                      aria-rowspan="1"
+                      class="MuiDataGrid-cell MuiDataGrid-cell--textCenter"
+                      data-colindex="13"
+                      data-field="actions"
+                      role="gridcell"
+                      style="--width: 100px;"
+                      tabindex="-1"
+                    >
+                      <a
+                        href="/posts/edit/21"
+                        style="text-decoration: none;"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-edit-button css-957s89-MuiButtonBase-root-MuiButton-root"
+                          tabindex="0"
+                          title=""
+                          type="button"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+                            data-testid="EditOutlinedIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="m14.06 9.02.92.92L5.92 19H5v-.92zM17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29m-3.6 3.19L3 17.25V21h3.75L17.81 9.94z"
+                            />
+                          </svg>
+                        </button>
+                      </a>
+                      <a
+                        href="/posts/show/21"
+                        style="text-decoration: none;"
+                      >
+                        <button
+                          class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary refine-show-button css-957s89-MuiButtonBase-root-MuiButton-root"
+                          tabindex="0"
+                          title=""
+                          type="button"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeSmall css-120dh41-MuiSvgIcon-root"
+                            data-testid="VisibilityOutlinedIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4m0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7"
+                            />
+                          </svg>
+                        </button>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -9201,6 +9393,676 @@ exports[`MuiListInferencer should match the snapshot 1`] = `
                 style="color: rgb(181, 206, 168);"
               >
                 200
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                field
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "actions"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                headerName
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "Actions"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                sortable
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token boolean"
+              >
+                false
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                
+              </span>
+              <span
+                class="token function-variable function"
+                style="color: rgb(220, 220, 170);"
+              >
+                renderCell
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                function
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token function"
+                style="color: rgb(220, 220, 170);"
+              >
+                render
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              >
+                 row 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                    
+              </span>
+              <span
+                class="token keyword"
+                style="color: rgb(86, 156, 214);"
+              >
+                return
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                (
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                        
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                EditButton
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                hideText
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                recordItemId
+              </span>
+              <span
+                class="token tag script language-javascript script-punctuation punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag script language-javascript punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token tag script language-javascript"
+                style="color: rgb(78, 201, 176);"
+              >
+                row
+              </span>
+              <span
+                class="token tag script language-javascript punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token tag script language-javascript property-access"
+                style="color: rgb(78, 201, 176);"
+              >
+                id
+              </span>
+              <span
+                class="token tag script language-javascript punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                                            
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;
+              </span>
+              <span
+                class="token tag class-name"
+                style="color: rgb(78, 201, 176);"
+              >
+                ShowButton
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                hideText
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag attr-name"
+                style="color: rgb(156, 220, 254);"
+              >
+                recordItemId
+              </span>
+              <span
+                class="token tag script language-javascript script-punctuation punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                =
+              </span>
+              <span
+                class="token tag script language-javascript punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token tag script language-javascript"
+                style="color: rgb(78, 201, 176);"
+              >
+                row
+              </span>
+              <span
+                class="token tag script language-javascript punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                .
+              </span>
+              <span
+                class="token tag script language-javascript property-access"
+                style="color: rgb(78, 201, 176);"
+              >
+                id
+              </span>
+              <span
+                class="token tag script language-javascript punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token tag"
+                style="color: rgb(78, 201, 176);"
+              >
+                 
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                /&gt;
+              </span>
+              <span
+                class="token plain-text"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain-text"
+              >
+                                        
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &lt;/
+              </span>
+              <span
+                class="token tag punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                &gt;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                    
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                )
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ;
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                align
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "center"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                headerAlign
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token string"
+                style="color: rgb(206, 145, 120);"
+              >
+                "center"
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                                minWidth
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token number"
+                style="color: rgb(181, 206, 168);"
+              >
+                80
               </span>
               <span
                 class="token punctuation"

@@ -45,7 +45,7 @@ export const renderer = ({
   const imports: Array<ImportElement> = [
     ["React", "react", true],
     ["useShow", "@refinedev/core"],
-    ["useResource", "@refinedev/core"],
+    ["useResourceParams", "@refinedev/core"],
     ["useNavigation", "@refinedev/core"],
   ];
 
@@ -642,7 +642,7 @@ export const renderer = ({
     export const ${COMPONENT_NAME} = () => {
         ${useTranslateHook}
         const { edit, list } = useNavigation();
-        ${isCustomPage ? "" : "const { id } = useResource();"}
+        ${isCustomPage ? "" : "const { id } = useResourceParams();"}
         const { query } = useShow(${
           isCustomPage
             ? `{ 

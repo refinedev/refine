@@ -1,7 +1,7 @@
 import React from "react";
 import {
   useDataProvider,
-  useResource,
+  useResourceParams,
   useParsed,
   type BaseKey,
 } from "@refinedev/core";
@@ -20,7 +20,9 @@ export const useInferFetch = (
   idFromProps?: string | number,
   meta?: InferencerComponentProps["meta"],
 ) => {
-  const { resource, resources } = useResource(resourceNameOrRouteName);
+  const { resource, resources } = useResourceParams({
+    resource: resourceNameOrRouteName,
+  });
 
   const { id: idFromURL } = useParsed();
 

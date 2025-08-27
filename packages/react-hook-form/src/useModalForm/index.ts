@@ -7,7 +7,6 @@ import {
   useGo,
   useModal,
   useParsed,
-  useResource,
   useUserFriendlyName,
   useTranslate,
   useWarnAboutChange,
@@ -124,7 +123,9 @@ export const useModalForm = <
 
   const { resource: resourceProp, action: actionProp } = refineCoreProps ?? {};
 
-  const { resource, identifier } = useResource(resourceProp);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceProp,
+  });
   const { action: actionFromParams } = useResourceParams({
     resource: resourceProp,
     action: actionProp,

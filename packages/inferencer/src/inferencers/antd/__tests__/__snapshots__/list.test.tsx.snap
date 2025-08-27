@@ -43,7 +43,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                 class="ant-space-item"
               >
                 <a
-                  href=""
+                  href="/posts/create"
                 >
                   <button
                     class="ant-btn css-dev-only-do-not-override-1vjf2v5 ant-btn-primary ant-btn-color-primary ant-btn-variant-solid refine-create-button"
@@ -466,7 +466,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                     class="ant-space-item"
                                   >
                                     <a
-                                      href=""
+                                      href="/posts/edit/11"
                                     >
                                       <button
                                         class="ant-btn css-dev-only-do-not-override-1vjf2v5 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-edit-button"
@@ -503,7 +503,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                     class="ant-space-item"
                                   >
                                     <a
-                                      href=""
+                                      href="/posts/show/11"
                                     >
                                       <button
                                         class="ant-btn css-dev-only-do-not-override-1vjf2v5 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-show-button"
@@ -707,7 +707,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                     class="ant-space-item"
                                   >
                                     <a
-                                      href=""
+                                      href="/posts/edit/21"
                                     >
                                       <button
                                         class="ant-btn css-dev-only-do-not-override-1vjf2v5 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-edit-button"
@@ -744,7 +744,7 @@ exports[`AntdListInferencer should match the snapshot 1`] = `
                                     class="ant-space-item"
                                   >
                                     <a
-                                      href=""
+                                      href="/posts/show/21"
                                     >
                                       <button
                                         class="ant-btn css-dev-only-do-not-override-1vjf2v5 ant-btn-default ant-btn-color-default ant-btn-variant-outlined ant-btn-sm ant-btn-icon-only refine-show-button"
