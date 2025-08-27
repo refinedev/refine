@@ -244,7 +244,6 @@ module.exports = {
           label: "Hooks",
           items: [
             "routing/hooks/use-resource-params/index",
-            "routing/hooks/use-resource/index",
             "routing/hooks/use-go/index",
             "routing/hooks/use-back/index",
             "routing/hooks/use-parsed/index",

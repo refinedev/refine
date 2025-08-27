@@ -416,7 +416,7 @@ Resource `options` have been renamed to `meta`:
 
 #### resourceName/resourceNameOrRouteName → resource
 
-🚨 Affects: useImport, useExport, useResource, All Button components
+🚨 Affects: useImport, useExport, All Button components
 
 ```diff
 useImport({
