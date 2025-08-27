@@ -34,7 +34,9 @@ export const useRefineKbar = (): void => {
   const { id: idFromParams, action: actionFromParams } = useResourceParams();
   const getToPath = useGetToPath();
   const go = useGo();
-  const { mutate } = useDelete();
+  const {
+    mutation: { mutate },
+  } = useDelete();
 
   const getUserFriendlyName = useUserFriendlyName();
 
