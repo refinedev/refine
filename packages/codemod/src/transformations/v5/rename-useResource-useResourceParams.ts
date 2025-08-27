@@ -181,13 +181,13 @@ export const renameUseResourceToUseResourceParams = (
           if (originalLocalName === "useResource") {
             // No alias needed - just import useResourceParams normally
             return j.importSpecifier(j.identifier("useResourceParams"));
-          } else {
-            // Keep the alias if it was originally aliased
-            return j.importSpecifier(
-              j.identifier("useResourceParams"),
-              j.identifier(originalLocalName),
-            );
           }
+
+          // Keep the alias if it was originally aliased
+          return j.importSpecifier(
+            j.identifier("useResourceParams"),
+            j.identifier(originalLocalName),
+          );
         }
         return spec;
       });
