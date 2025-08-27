@@ -54,7 +54,11 @@ type ResourceParams = {
 export function useResourceParams(props?: Props): ResourceParams {
   const { resources } = useContext(ResourceContext);
 
-  const { select, identifier: inferredIdentifier } = useResource();
+  const {
+    select,
+    identifier: inferredIdentifier,
+    resource: inferredResource,
+  } = useResource();
   const resourceToCheck = props?.resource ?? inferredIdentifier;
   const { identifier = undefined, resource = undefined } = resourceToCheck
     ? select(resourceToCheck, true)
@@ -89,7 +93,7 @@ export function useResourceParams(props?: Props): ResourceParams {
   return {
     id,
     setId,
-    resource,
+    resource: resource || inferredResource,
     resources,
     action,
     identifier,
