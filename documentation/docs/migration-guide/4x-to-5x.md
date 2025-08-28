@@ -558,7 +558,7 @@ const {
 For mutation hooks, the loading state property has been updated:
 
 ```diff
-const { mutate, isPending } = useCreate();
+const { mutate, mutation: { isPending } } = useCreate();
 
 - if (isLoading) return <Spinner />;
 + if (isPending) return <Spinner />;

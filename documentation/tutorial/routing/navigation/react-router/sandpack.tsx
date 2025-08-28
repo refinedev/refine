@@ -29,7 +29,7 @@ import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
 import { Link } from "react-router";
 
 export const Header = () => {
-  const { mutate, isLoading } = useLogout();
+  const { mutate, mutation: { isLoading } } = useLogout();
   const { data: identity } = useGetIdentity();
 
   // You can also use methods like list or create to trigger navigation.

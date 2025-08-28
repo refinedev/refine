@@ -14,17 +14,22 @@ It is better to implement the `deleteMany` method in the data provider.
 
 ## Usage
 
-The `useDeleteMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `resource` and `ids` as parameters. These parameters will be passed to the `deleteMany` method from the `dataProvider` as parameters.
+The `useDeleteMany` hook returns many useful properties and methods. One of them is the `mutate` method which expects `resource` and `ids` as parameters. These parameters will be passed to the `deleteMany` method from the `dataProvider` as parameters. Additionally, the `mutation` object contains all the TanStack Query's `useMutation` return values.
 
 ```tsx
 import { useDeleteMany } from "@refinedev/core";
 
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   resource: "products",
   ids: [1, 2, 3],
 });
+
+// You can access mutation state through the mutation object:
+console.log(mutation.isLoading); // mutation loading state
+console.log(mutation.data); // mutation response data
+console.log(mutation.error); // mutation error
 ```
 
 ## Realtime Updates
@@ -58,7 +63,7 @@ useDeleteMany({
 `mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate(
   {
@@ -109,7 +114,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 This parameter will be passed to the `deleteMany` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `deleteMany` method.
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   resource: "categories",
@@ -127,7 +132,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 This parameter will be passed to the `deleteMany` method from the `dataProvider` as a parameter. It is used to determine which records to deleted.
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   ids: [1, 2, 3],
@@ -142,7 +147,7 @@ Each mode corresponds to a different type of user experience.
 > For more information, refer to the [mutation mode documentation &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   mutationMode: "undoable",
@@ -154,7 +159,7 @@ mutate({
 When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine the duration to wait before executing the mutation. The default value is `5000` milliseconds.
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   mutationMode: "undoable",
@@ -173,7 +178,7 @@ import { useRef } from "react";
 import { useDeleteMany } from "@refinedev/core";
 
 const MyComponent = () => {
-  const { mutate } = useDeleteMany();
+  const { mutate, mutation } = useDeleteMany();
   const cancelRef = useRef<(() => void) | null>(null);
 
   const deleteItems = () => {
@@ -206,7 +211,7 @@ const MyComponent = () => {
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useDeleteMany` calls `open` function from `NotificationProvider`:
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   successNotification: (data, ids, resource) => {
@@ -226,7 +231,7 @@ mutate({
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useDeleteMany` calls `open` function from `NotificationProvider`:
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   errorNotification: (data, ids, resource) => {
@@ -249,7 +254,7 @@ mutate({
 In the following example, we pass the `headers` property in the `meta` object to the `deleteMany` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   // highlight-start
@@ -293,7 +298,7 @@ const myDataProvider = {
 This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   dataProviderName: "second-data-provider",
@@ -307,7 +312,7 @@ mutate({
 By default, it invalidates the following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed.
 
 ```tsx
-const { mutate } = useDeleteMany();
+const { mutate, mutation } = useDeleteMany();
 
 mutate({
   invalidates: ["list", "many", "detail"],
@@ -365,7 +370,9 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                                   |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; ids: BaseKey[]; }, DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
-| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                             |
+| Property    | Description                                | Type                                                                                                                                                                   |
+| ----------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; ids: BaseKey[]; }, DeleteContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| mutate      | Mutation function                          | `(params?: { resource?: string, ids?: BaseKey[], ... }) => void`                                                                                                       |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, ids?: BaseKey[], ... }) => Promise<{ data: TData }>`                                                                                   |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                             |

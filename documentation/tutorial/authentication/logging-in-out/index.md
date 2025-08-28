@@ -118,7 +118,10 @@ import { useLogin } from "@refinedev/core";
 
 export const Login = () => {
   // highlight-next-line
-  const { mutate, isLoading } = useLogin();
+  const {
+    mutate,
+    mutation: { isLoading },
+  } = useLogin();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -272,7 +275,10 @@ import { useLogout } from "@refinedev/core";
 
 export const Header = () => {
   // highlight-next-line
-  const { mutate, isLoading } = useLogout();
+  const {
+    mutate,
+    mutation: { isLoading },
+  } = useLogout();
 
   return (
     <>
