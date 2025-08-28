@@ -84,7 +84,7 @@ import { useOne, useUpdate } from "@refinedev/core";
 
 export const EditProduct = () => {
   const { result, query: { isLoading } } = useOne({ resource: "products", id: 123 });
-  const { mutate, mutation: { isLoading: isUpdating } } = useUpdate();
+  const { mutate, mutation: { isPending: isUpdating } } = useUpdate();
 
   if (isLoading) {
     return <div>Loading...</div>;

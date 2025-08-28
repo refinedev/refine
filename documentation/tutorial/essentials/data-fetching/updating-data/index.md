@@ -88,7 +88,7 @@ export const EditProduct = () => {
   // highlight-next-line
   const {
     mutate,
-    mutation: { isLoading: isUpdating },
+    mutation: { isPending: isUpdating },
   } = useUpdate();
 
   if (isLoading) {
