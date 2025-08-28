@@ -28,8 +28,8 @@ import { useTable, useMany } from "@refinedev/core";
 export const ListProducts = () => {
   const {
     tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageCount,
     sorters,
     setSorters,

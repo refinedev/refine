@@ -6,7 +6,7 @@ import { Sandpack, AddLocationSyncToListProducts } from "./sandpack.tsx";
 
 <Sandpack>
 
-As the final step of this unit, we'll be learning how to sync the state of our tables with the location. This will allow us to share the current state of the table with others. For example, we can share the URL of the table with our colleagues and they will see the same table with the same filters, sorting, and pagination.
+As the final step of this unit, we'll be learning how to sync the state of our tables with the location. This will allow us to share the currentPage state of the table with others. For example, we can share the URL of the table with our colleagues and they will see the same table with the same filters, sorting, and pagination.
 
 Refine's `useTable` hook offers a `syncWithLocation` option that allows us to sync the state of the table with the location with a single line of code.
 
@@ -22,8 +22,8 @@ import { useTable, useMany, useNavigation } from "@refinedev/core";
 export const ListProducts = () => {
   const {
     tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageCount,
     sorters,
     setSorters,
