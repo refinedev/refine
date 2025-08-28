@@ -170,18 +170,18 @@ const ShowTsxCode = `
 import { useShow, BaseKey } from "@refinedev/core";
 
 export const Show: React.FC = () => {
-    const { result, query: { data, isLoading, isError } } = useShow<IProduct>({
+    const { result, query: { isLoading } } = useShow<IProduct>({
     });
 
-    if (query.isLoading) {
+    if (isLoading) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
-            <h1>{result?.data?.name}</h1>
-            <p>Material: {result?.data?.material}</p>
-            <small>ID: {result?.data?.id}</small>
+            <h1>{result?.name}</h1>
+            <p>Material: {result?.material}</p>
+            <small>ID: {result?.id}</small>
         </div>
     );
 };

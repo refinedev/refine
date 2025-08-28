@@ -1103,10 +1103,8 @@ const SampleList = () => {
 };
 
 const SampleShow = () => {
-  const { query } = useShow();
+  const { result: record, query } = useShow();
   const { data, isLoading } = query;
-
-  const record = data?.data;
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
     resource: "categories",

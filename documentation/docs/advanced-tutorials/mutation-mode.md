@@ -209,36 +209,37 @@ const PostEdit: React.FC = () => {
 };
 
 const PostShow: React.FC = () => {
-  const { query } = RefineCoreUseShow<IPost>();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const {
+    result: post,
+    query: { data, isLoading },
+  } = RefineCoreUseShow<IPost>();
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
+  const { data: category, isLoading: categoryIsLoading } =
     RefineCoreUseOne<ICategory>({
       resource: "categories",
-      id: record?.category?.id || "",
+      id: post?.category?.id || "",
       queryOptions: {
-        enabled: !!record,
+        enabled: !!post,
       },
     });
 
   return (
     <RefineAntdShow isLoading={isLoading}>
       <AntdTypography.Title level={5}>Id</AntdTypography.Title>
-      <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.id}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>
         AntdTypography.Title
       </AntdTypography.Title>
-      <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.title}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Category</AntdTypography.Title>
       <AntdTypography.Text>
-        {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+        {categoryIsLoading ? "Loading..." : category?.title}
       </AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Content</AntdTypography.Title>
-      <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.content}</AntdTypography.Text>
     </RefineAntdShow>
   );
 };

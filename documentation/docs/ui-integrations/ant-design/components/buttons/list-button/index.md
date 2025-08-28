@@ -30,18 +30,17 @@ import { Typography } from "antd";
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-  const { query } = useShow<IPost>();
+  const { result, query } = useShow<IPost>();
   const { data, isLoading } = query;
-  const record = data?.data;
 
   return (
     // highlight-next-line
     <Show headerButtons={<ListButton />} isLoading={isLoading}>
       <Title level={5}>Id</Title>
-      <Text>{record?.id}</Text>
+      <Text>{result?.id}</Text>
 
       <Title level={5}>Title</Title>
-      <Text>{record?.title}</Text>
+      <Text>{result?.title}</Text>
     </Show>
   );
 };

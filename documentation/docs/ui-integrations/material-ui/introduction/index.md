@@ -305,9 +305,8 @@ import { Show, TextField, NumberField } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
 
 export const ProductShow = () => {
-  const { query } = useShow<IProduct>();
+  const { result: product } = useShow<IProduct>();
   const { data, isLoading } = query;
-  const record = data?.data;
 
   return (
     <Show isLoading={isLoading}>
@@ -315,20 +314,20 @@ export const ProductShow = () => {
         Id
       </Typography>
       {/* highlight-next-line */}
-      <TextField value={record?.id} />
+      <TextField value={product?.id} />
 
       <Typography variant="body1" fontWeight="bold">
         Title
       </Typography>
       {/* highlight-next-line */}
-      <TextField value={record?.title} />
+      <TextField value={product?.title} />
 
       <Typography variant="body1" fontWeight="bold">
         Title
       </Typography>
       {/* highlight-next-line */}
       <NumberField
-        value={record?.price}
+        value={product?.price}
         options={{ style: "currency", currency: "USD" }}
       />
     </Show>

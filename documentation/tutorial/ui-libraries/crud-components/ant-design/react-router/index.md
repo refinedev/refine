@@ -198,14 +198,14 @@ import { TextField, NumberField, MarkdownField, Show } from "@refinedev/antd";
 import { Typography } from "antd";
 
 export const ShowProduct = () => {
-    const { result, query: { isLoading } } = useShow();
+    const { result: product, query: { isLoading } } = useShow();
 
     const { data: category, query: { isLoading: categoryIsLoading } } =
     useOne({
         resource: "categories",
-        id: result?.category.id || "",
+        id: product?.category.id || "",
         queryOptions: {
-            enabled: !!result,
+            enabled: !!product,
         },
     });
 
@@ -213,16 +213,16 @@ export const ShowProduct = () => {
         {/* highlight-next-line */}
       <Show isLoading={isLoading}>
         <Typography.Title level={5}>Id</Typography.Title>
-        <TextField value={result?.id} />
+        <TextField value={product?.id} />
 
         <Typography.Title level={5}>Name</Typography.Title>
-        <TextField value={result?.name} />
+        <TextField value={product?.name} />
 
         <Typography.Title level={5}>Description</Typography.Title>
-        <MarkdownField value={result?.description} />
+        <MarkdownField value={product?.description} />
 
         <Typography.Title level={5}>Material</Typography.Title>
-        <TextField value={result?.material} />
+        <TextField value={product?.material} />
 
         <Typography.Title level={5}>Category</Typography.Title>
         <TextField
@@ -230,7 +230,7 @@ export const ShowProduct = () => {
         />
 
         <Typography.Title level={5}>Price</Typography.Title>
-        <NumberField value={result?.price} />
+        <NumberField value={product?.price} />
         {/* highlight-next-line */}
       </Show>
     );

@@ -31,16 +31,17 @@ import { useShow, useOne } from "@refinedev/core";
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-  const { query } = useShow<IPost>();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const {
+    result: post,
+    query: { isLoading },
+  } = useShow<IPost>();
 
   const { data: categoryData, isLoading: categoryIsLoading } =
     useOne<ICategory>({
       resource: "categories",
-      id: record?.category.id || "",
+      id: post?.category.id || "",
       queryOptions: {
-        enabled: !!record,
+        enabled: !!post,
       },
     });
 

@@ -24,18 +24,17 @@ import { Show, MarkdownField } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-  const { query } = useShow<IPost>();
+  const { result: post, query } = useShow<IPost>();
   const { data, isLoading } = query;
-  const record = data?.data;
 
   return (
     <Show isLoading={isLoading}>
       <Title order={5}>Id</Title>
-      <Text mt="sm">{record?.id}</Text>
+      <Text mt="sm">{post?.id}</Text>
       <Title mt="sm" order={5}>
         Content
       </Title>
-      <MarkdownField value={record?.content} />
+      <MarkdownField value={post?.content} />
     </Show>
   );
 };

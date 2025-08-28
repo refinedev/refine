@@ -348,36 +348,34 @@ import { Show, TextField, NumberField, MarkdownField } from "@refinedev/chakra-u
 import { Heading } from "@chakra-ui/react";
 
 export const ProductShow = () => {
-    const { query } = useShow();
-    const { data, isLoading } = query;
-    const record = data?.data;
+    const { result: product, query: { isLoading } } = useShow();
 
     return (
         <Show isLoading={isLoading}>
             <Heading as="h5" size="sm">
                 Id
             </Heading>
-            <TextField value={record?.id} />
+            <TextField value={product?.id} />
 
             <Heading as="h5" size="sm" mt={4}>
                 Name
             </Heading>
-            <TextField value={record?.name} />
+            <TextField value={product?.name} />
 
             <Heading as="h5" size="sm" mt={4}>
                 Material
             </Heading>
-            <TextField value={record?.material} />
+            <TextField value={product?.material} />
 
             <Heading as="h5" size="sm" mt={4}>
                 Description
             </Heading>
-            <MarkdownField value={record?.description} />
+            <MarkdownField value={product?.description} />
 
             <Heading as="h5" size="sm" mt={4}>
                 Price
             </Heading>
-            <NumberField value={record?.price}  options={{ style: "currency", currency: "USD" }} />
+            <NumberField value={product?.price}  options={{ style: "currency", currency: "USD" }} />
         </Show>
     );
 };

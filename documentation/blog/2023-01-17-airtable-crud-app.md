@@ -16,6 +16,7 @@ Before the existence of **Refine**, building CRUD applications and data-intensiv
 
 Steps we'll cover:
 
+- [Introduction](#introduction)
 - [Why Use Refine?](#why-use-refine)
 - [What is Airtable?](#what-is-airtable)
   - [Setup Airtable](#setup-airtable)
@@ -29,6 +30,8 @@ Steps we'll cover:
   - [Editing post record](#editing-post-record)
   - [Deleting post record](#deleting-post-record)
   - [Adding Pagination](#adding-pagination)
+- [Conclusion](#conclusion)
+- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## Why Use Refine?
 
@@ -801,13 +804,11 @@ import { useSelect, useShow } from "@refinedev/core";
 import { IPost } from "../../interfaces/post";
 
 export const PostShow: React.FC = () => {
-  const { query } = useShow<IPost>();
-  const { data } = query;
-  const record = data?.data;
+  const { result } = useShow<IPost>();
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: query?.data?.data?.category?.[0],
+    defaultValue: result?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
   });

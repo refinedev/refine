@@ -23,16 +23,16 @@ import {
 import { Stack, Typography } from "@mui/material";
 
 const ShowPage = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
-
-  const record = data?.data;
+  const {
+    result: product,
+    query: { isLoading },
+  } = useShow();
 
   const { data: categoryData, isLoading: categoryIsLoading } = useOne({
     resource: "categories",
-    id: record?.category?.id || "",
+    id: product?.category?.id || "",
     queryOptions: {
-      enabled: !!record,
+      enabled: !!product,
     },
   });
 
@@ -42,15 +42,15 @@ const ShowPage = () => {
         <Typography variant="body1" fontWeight="bold">
           Id
         </Typography>
-        <NumberField value={record?.id ?? ""} />
+        <NumberField value={product?.id ?? ""} />
         <Typography variant="body1" fontWeight="bold">
           Title
         </Typography>
-        <TextField value={record?.title} />
+        <TextField value={product?.title} />
         <Typography variant="body1" fontWeight="bold">
           Content
         </Typography>
-        <MarkdownField value={record?.content} />
+        <MarkdownField value={product?.content} />
         <Typography variant="body1" fontWeight="bold">
           Category
         </Typography>
@@ -58,7 +58,7 @@ const ShowPage = () => {
         <Typography variant="body1" fontWeight="bold">
           Created At
         </Typography>
-        <DateField value={record?.createdAt} />
+        <DateField value={product?.createdAt} />
       </Stack>
     </Show>
   );
