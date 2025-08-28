@@ -1,12 +1,9 @@
-import type {
-  FileInfo,
-  API,
-  Options,
-  Collection,
-  JSCodeshift,
-} from "jscodeshift";
+import type { Collection, JSCodeshift } from "jscodeshift";
 
-const transformer = (j: JSCodeshift, root: Collection<any>) => {
+export const useQueryAndResultFieldsInUseInfiniteListHook = (
+  j: JSCodeshift,
+  root: Collection<any>,
+) => {
   // Properties that should be accessed from query
   const queryProperties = new Set([
     "isLoading",
@@ -116,6 +113,6 @@ const transformer = (j: JSCodeshift, root: Collection<any>) => {
   });
 };
 
-transformer.parser = "tsx";
+useQueryAndResultFieldsInUseInfiniteListHook.parser = "tsx";
 
-export default transformer;
+export default useQueryAndResultFieldsInUseInfiniteListHook;
