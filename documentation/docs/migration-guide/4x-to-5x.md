@@ -293,7 +293,7 @@ This change:
 
 The following sections show hook-specific breaking changes with before/after usage examples.
 
-#### useList
+### useList
 
 ```diff
 const {
@@ -314,7 +314,7 @@ const {
 + const total = result.total;
 ```
 
-#### useOne, useMany, useShow
+### useOne, useMany, useShow
 
 All three hooks follow the same `query` and `result` pattern.
 
@@ -341,11 +341,13 @@ const {
 + const user = result;
 ```
 
-#### useTable & useDataGrid & useSimpleList
+### useTable from @refinedev/react-table
 
-✅ There are no breaking changes in `useTable`, however, the return values have been restructured for clarity and consistency.
+// TODO
 
-This same pattern applies to `useDataGrid` and `useSimpleList`.
+### useTable from @refinedev/core
+
+✅ There are no breaking changes in `useTable`. However, we introduced a new result property to make data access easier and keep consistency across all hooks.
 
 ```diff
 const {
@@ -363,7 +365,19 @@ const {
 + const total = result.total;
 ```
 
-#### useInfiniteList
+### useTable from @refinedev/antd
+
+// TODO
+
+### useDataGrid
+
+// TODO
+
+### useSimpleList
+
+// TODO
+
+### useInfiniteList
 
 ```diff
 const {
@@ -386,7 +400,7 @@ const {
 + const posts = result.data;
 ```
 
-#### Authentication Hooks
+### Authentication Hooks
 
 🚨 **Affects:** All authentication hooks (`useLogin`, `useLogout`, `useRegister`, `useForgotPassword`, `useUpdatePassword`)
 
@@ -405,7 +419,7 @@ const {
 } = useLogin();
 ```
 
-#### Mutation Hooks
+### Mutation Hooks
 
 🚨 **Affects:** All other mutation hooks (`useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany`, `useDeleteMany`, `useCustomMutation`)
 
@@ -428,7 +442,7 @@ const {
 
 ## List of All Breaking Changes
 
-#### metaData → meta
+### metaData → meta
 
 🚨 Affects: All data hooks, useForm, useTable, useDataGrid, useSelect, etc.
 
@@ -451,7 +465,7 @@ useCreate({
 })
 ```
 
-#### sorter/sort → sorters
+### sorter/sort → sorters
 
 🚨 Affects: useList, useInfiniteList, useTable, useDataGrid, useSelect
 
@@ -471,7 +485,7 @@ useTable({
 })
 ```
 
-#### filters Updates
+### filters Updates
 
 🚨 Affects: useList, useTable, useDataGrid, useSelect
 
@@ -495,7 +509,7 @@ useTable({
 })
 ```
 
-#### pagination Updates
+### pagination Updates
 
 🚨 Affects: useList, useTable, useDataGrid, useSelect
 
@@ -515,7 +529,7 @@ useTable({
 })
 ```
 
-#### pagination.current -> pagination.currentPage
+### pagination.current -> pagination.currentPage
 
 🚨 Affects: useTable, useDataGrid, useSimpleList, useSubscription, useList, useCheckboxGroup, useSelect
 
@@ -526,7 +540,7 @@ useTable({
 })
 ```
 
-#### setCurrent -> setCurrentPage
+### setCurrent -> setCurrentPage
 
 🚨 Affects: useTable, useDataGrid, useSimpleList
 
@@ -541,7 +555,7 @@ const {
 } = useTable();
 ```
 
-#### Resource options → meta
+### Resource options → meta
 
 🚨 Affects: Resource definitions in `<Refine>` component
 
@@ -559,7 +573,7 @@ Resource `options` have been renamed to `meta`:
 />
 ```
 
-#### resourceName/resourceNameOrRouteName → resource
+### resourceName/resourceNameOrRouteName → resource
 
 🚨 Affects: useImport, useExport, useResource, All Button components
 
@@ -575,7 +589,7 @@ useImport({
 />
 ```
 
-#### config Object Removal
+### config Object Removal
 
 🚨 Affects: useList, useInfiniteList
 
@@ -598,7 +612,7 @@ useList({
 })
 ```
 
-#### useTable Hook Restructuring
+### useTable Hook Restructuring
 
 🚨 Affects: useTable, useSimpleList, useDataGrid
 
@@ -644,7 +658,7 @@ const {
 } = useTable();
 ```
 
-#### queryResult → query
+### queryResult → query
 
 🚨 Affects: useForm, useSelect, useShow, useSimpleList, useMany
 
@@ -661,7 +675,7 @@ const {
 
 ```
 
-#### defaultValueQueryResult → defaultValueQuery
+### defaultValueQueryResult → defaultValueQuery
 
 🚨 Affects: useSelect
 
@@ -672,7 +686,7 @@ const {
 } = useSelect();
 ```
 
-#### tableQueryResult → tableQuery
+### tableQueryResult → tableQuery
 
 🚨 Affects: useTable, useDataGrid
 
@@ -683,7 +697,7 @@ const {
 } = useTable();
 ```
 
-#### mutationResult → mutation
+### mutationResult → mutation
 
 🚨 Affects: useCreate, useUpdate, useDelete, useCreateMany, useUpdateMany, useDeleteMany, useCustomMutation
 
@@ -696,7 +710,7 @@ const {
 
 ```
 
-#### isLoading → isPending
+### isLoading → isPending
 
 🚨 Affects: useCreate, useUpdate, useDelete, useCreateMany, useUpdateMany, useDeleteMany, useCustomMutation
 
@@ -709,7 +723,7 @@ const { mutate, mutation: { isPending } } = useCreate();
 + if (isPending) return <Spinner />;
 ```
 
-#### useNavigation → useGo, useBack
+### useNavigation → useGo, useBack
 
 The `useNavigation` hook has been replaced with individual hooks:
 
@@ -733,7 +747,7 @@ const MyComponent = () => {
 };
 ```
 
-#### useResource → useResourceParams (Recommended)
+### useResource → useResourceParams (Recommended)
 
 ```diff
 // useResource parameter simplification
@@ -753,7 +767,7 @@ const { resource, action, id } = useResourceParams();
 
 :::
 
-#### ignoreAccessControlProvider → accessControl
+### ignoreAccessControlProvider → accessControl
 
 ```diff
 <CreateButton
@@ -764,7 +778,7 @@ const { resource, action, id } = useResourceParams();
 />
 ```
 
-##### Resource options → meta
+### Resource options → meta
 
 The `options` prop has been moved to `meta`:
 
@@ -798,7 +812,7 @@ The `options` prop has been moved to `meta`:
 />
 ```
 
-#### DataProvider getList and custom Method Updates
+### DataProvider getList and custom Method Updates
 
 ```diff
 export const dataProvider = {
@@ -827,7 +841,7 @@ export const dataProvider = {
 };
 ```
 
-#### useImport and useExport Hook Updates
+### useImport and useExport Hook Updates
 
 The `useImport` and `useExport` hooks have additional parameter updates:
 
@@ -865,7 +879,7 @@ useExport({
 })
 ```
 
-#### queryKeys -> keys
+### queryKeys -> keys
 
 🚨 Affects: Custom implementations using Refine helpers
 
@@ -879,7 +893,7 @@ useExport({
 + keys().data().resource("posts").action("list").get();
 ```
 
-#### useNavigation → useGo
+### useNavigation → useGo
 
 🚨 <strong>Affects:</strong> Navigation helpers (<code>push</code>, <code>replace</code>, <code>goBack</code>)
 
@@ -908,7 +922,7 @@ For backward navigation (<code>goBack</code>), use your router’s native API in
 + navigate(-1);
 ```
 
-#### ITreeMenu → TreeMenuItem & list field changes
+### ITreeMenu → TreeMenuItem & list field changes
 
 🚨 <strong>Affects:</strong> <code>useMenu</code>, custom sider renderers
 
@@ -938,7 +952,7 @@ Previously, you could define a React component in the <code>&lt;Refine /&gt;</co
 
 ```
 
-#### ThemedTitle → ThemedTitleV2
+### ThemedTitle → ThemedTitleV2
 
 🚨 **Affects:** App titles (auth pages, layout headers)
 
