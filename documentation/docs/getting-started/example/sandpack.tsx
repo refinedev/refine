@@ -849,7 +849,7 @@ export const ProductList = () => {
 
   const translate = useTranslate();
 
-  const { data: categoryData, isLoading: categoryLoading } = useList({
+  const { result: { data: categories }, query: { isLoading: categoryLoading } } = useList({
     resource: "categories",
     pagination: {
       mode: "off",
@@ -878,7 +878,7 @@ export const ProductList = () => {
           return categoryLoading ? (
             <>{translate("loading")}</>
           ) : (
-            categoryData?.data?.find((item) => item.id === value?.id)?.title ??
+            categories?.data?.find((item) => item.id === value?.id)?.title ??
               null
           );
         },
@@ -919,7 +919,7 @@ export const ProductList = () => {
         minWidth: 80,
       },
     ],
-    [categoryLoading, categoryData, locale, translate],
+    [categoryLoading, categories, locale, translate],
   );
 
   return (
@@ -953,7 +953,7 @@ export const ProductShow: React.FC = () => {
   const product = productResult?.data;
 
   const {
-    data: categoryData,
+    data: categories,
     isLoading: categoryLoading,
     isError: categoryError,
   } = useOne({
@@ -1013,7 +1013,7 @@ export const ProductShow: React.FC = () => {
         {categoryError ? null : categoryLoading ? (
           <Skeleton height="20px" width="200px" />
         ) : (
-          <TextField value={categoryData?.data?.title} />
+          <TextField value={categories?.data?.title} />
         )}
       </Stack>
     </Show>

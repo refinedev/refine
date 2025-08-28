@@ -571,10 +571,12 @@ import { Table } from "react-daisyui";
 const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
 
 export const Countries = () => {
-  const { data: countries } = useList({
+  const { result } = useList({
     resource: "countries",
     pagination: { mode: "off" },
   });
+  const countries = result?.data;
+
   return (
     <div className="overflow-x-auto">
       <Table color="primary" className="w-full">

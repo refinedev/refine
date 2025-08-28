@@ -114,18 +114,19 @@ const HomePageTsxCode = `
 import { useList } from "@refinedev/core";
 
 export const HomePage = () => {
-    const { data: products } = useList({
+    const { result } = useList({
         resource: "products",
         pagination: { current: 1, pageSize: 5 },
         sorters: [{ field: "id", order: "DESC" }],
         filters: [{ field: "material", operator: "eq", value: "Wooden" }],
     });
+    const products = result?.data;
 
     return (
         <div>
             <h2>Wooden Products</h2>
             <ul>
-                {products?.data?.map((product) => (
+                {products?.map((product) => (
                     <li key={product.id}>
                        <p>
                             {product.id}

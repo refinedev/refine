@@ -108,9 +108,10 @@ import React from "react";
 import { useList } from "@refinedev/core";
 
 export default function ProductsList() {
-  const { data, isLoading } = useList();
+  const { result, query } = useList();
+  const products = result?.data;
 
-  if (isLoading) {
+  if (query.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -118,7 +119,7 @@ export default function ProductsList() {
     <div>
       <h1>Products</h1>
       <ul>
-        {data?.data.map((record) => (
+        {products.map((record) => (
           <li key={record.id}>{record.name}</li>
         ))}
       </ul>

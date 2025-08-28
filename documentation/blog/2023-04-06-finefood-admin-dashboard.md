@@ -1753,7 +1753,7 @@ import { Map, MapMarker } from "components/map";
 import { IOrder } from "interfaces";
 
 export const DeliveryMap: React.FC = () => {
-  const { data: orderData } = useList<IOrder>({
+  const { result } = useList<IOrder>({
     resource: "orders",
     config: {
       filters: [
@@ -1781,7 +1781,7 @@ export const DeliveryMap: React.FC = () => {
 
   return (
     <Map {...defaultProps}>
-      {orderData?.data.map((order) => {
+      {result?.data.map((order) => {
         return (
           <MapMarker
             key={order.id}
@@ -1796,7 +1796,7 @@ export const DeliveryMap: React.FC = () => {
           />
         );
       })}
-      {orderData?.data.map((order) => {
+      {result?.data.map((order) => {
         return (
           <MapMarker
             key={order.id}

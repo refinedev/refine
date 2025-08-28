@@ -33,7 +33,9 @@ const App = () => {
 ```tsx title=my-page.tsx
 import { useList } from "@refinedev/core";
 
-const { data } = useList({
+const {
+  result: { data },
+} = useList({
   resource: "products",
   // Can be configured per-hook basis.
   liveMode: "auto", // manual or off

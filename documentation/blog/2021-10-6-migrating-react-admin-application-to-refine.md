@@ -130,7 +130,10 @@ export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
     onChange: handleSelectChange,
   };
 
-  const { mutate, isLoading } = useDeleteMany<ICampaign>();
+  const {
+    mutate,
+    mutation: { isLoading },
+  } = useDeleteMany<ICampaign>();
 
   const deleteSelectedItems = () => {
     mutate(

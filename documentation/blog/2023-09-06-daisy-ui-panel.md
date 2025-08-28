@@ -712,17 +712,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1162,17 +1168,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1516,17 +1528,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });

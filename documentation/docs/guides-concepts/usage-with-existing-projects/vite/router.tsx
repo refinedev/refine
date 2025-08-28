@@ -126,13 +126,14 @@ const ListTsxCode = `
 import { useList } from "@refinedev/core";
 
 export const ProductList = () => {
-  const { data: products } = useList();
+  const { result } = useList();
+  const products = result?.data;
 
   return (
     <div>
       <h1>Refine Products Page</h1>
       <ul>
-        {products?.data?.map((record) => (
+        {products?.map((record) => (
           <li key={record.id}>{record.name}</li>
         ))}
       </ul>

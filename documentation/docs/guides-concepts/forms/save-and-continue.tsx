@@ -104,7 +104,7 @@ import { useList, BaseKey } from "@refinedev/core";
 import { Link } from "react-router";
 
 export const List: React.FC = () => {
-    const { data, isLoading, isError } = useList<IProduct>({
+    const { result, query } = useList<IProduct>({
         resource: "products",
         filters: [
             {
@@ -115,7 +115,7 @@ export const List: React.FC = () => {
         ]
     });
 
-    if (isLoading) {
+    if (query.isLoading) {
         return <div>Loading...</div>;
     }
 
@@ -124,7 +124,7 @@ export const List: React.FC = () => {
                 <h1>Products</h1>
                 <Link to="/products/create">Create Product</Link>
             <ul>
-                {data?.data?.map((product) => (
+                {result?.data?.map((product) => (
                     <li key={product.id}>
                         {product.name}
                     </li>

@@ -916,7 +916,7 @@ Then, it's the core `useTable()` hook that is leveraging `useList()` data hook i
 <p>
 
 ```tsx title="node_modules/@refinedev/core/src/hooks/useTable/index.ts"
-const query = useList<TData, TError>({
+const { result, query } = useList<TData, TError>({
   resource: resourceInUse,
   hasPagination,
   pagination: { current, pageSize, mode: pagination?.mode },
@@ -983,7 +983,7 @@ Inside the core version, `useList()` is key to fetching data from the backend AP
 <p>
 
 ```tsx title="node_modules/@refinedev/core/src/hooks/useSelect/index.ts"
-const query = useList<TData, TError>({
+const { result, query } = useList<TData, TError>({
   resource,
   sorters: pickNotDeprecated(sorters, sort),
   filters: filters.concat(search),
@@ -1034,7 +1034,10 @@ return {
 The `<DeleteButton />` implements `useDelete` directly. In `@refinedev/antd` `v5.1.2`, it is invoked like so:
 
 ```tsx title="node_modules/@refinedev/antd/src/components/buttons/delete/index.tsx"
-const { mutate, isLoading, variables } = useDelete();
+const {
+  mutate,
+  mutation: { isLoading, variables },
+} = useDelete();
 ```
 
 And the returned JSX has a `<Popconfirm />` component with an `onConfirm` prop. The delete `mutate` function is passed to `onConfirm` prop, which basically means to invoke `dataProvider.delete` upon confirmation of a delete pop up:
