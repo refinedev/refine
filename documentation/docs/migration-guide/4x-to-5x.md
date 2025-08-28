@@ -793,7 +793,7 @@ Previously, you could define a React component in the <code>&lt;Refine /&gt;</co
 
 ```
 
-### ThemedTitle → ThemedTitleV2
+#### ThemedTitle → ThemedTitleV2
 
 🚨 **Affects:** App titles (auth pages, layout headers)
 
