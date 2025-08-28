@@ -1,9 +1,12 @@
-import type { FileInfo, API, Options } from "jscodeshift";
+import type {
+  FileInfo,
+  API,
+  Options,
+  Collection,
+  JSCodeshift,
+} from "jscodeshift";
 
-const transformer = (fileInfo: FileInfo, api: API, options: Options) => {
-  const j = api.jscodeshift;
-  const source = j(fileInfo.source);
-
+const transformer = (j: JSCodeshift, root: Collection<any>) => {
   // Properties that should be accessed from query
   const queryProperties = new Set([
     "isLoading",
@@ -25,7 +28,7 @@ const transformer = (fileInfo: FileInfo, api: API, options: Options) => {
   const resultProperties = new Set(["data", "hasNextPage", "hasPreviousPage"]);
 
   // Find all variable declarators that use useInfiniteList
-  source.find(j.VariableDeclarator).forEach((path) => {
+  root.find(j.VariableDeclarator).forEach((path) => {
     const { node } = path;
 
     // Check if this is a useInfiniteList call (with or without generics)
@@ -108,7 +111,7 @@ const transformer = (fileInfo: FileInfo, api: API, options: Options) => {
     }
   });
 
-  return source.toSource({
+  return root.toSource({
     quote: "double",
   });
 };
