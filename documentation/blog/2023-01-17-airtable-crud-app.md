@@ -686,14 +686,12 @@ export const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
-      tableQuery: { data: tableData },
-    },
+    refineCore: { result },
   } = useTable<IPost>({ columns });
 
-  const categoryIds = tableData?.data?.map((item) => item.category?.[0]) ?? [];
+  const categoryIds = result?.data?.map((item) => item.category?.[0]) ?? [];
 
-  const { data: categoriesData } = useMany<ICategory>({
+  const { result: categoriesData } = useMany<ICategory>({
     resource: "category",
     ids: categoryIds,
     queryOptions: {
