@@ -3,10 +3,10 @@ import type { Collection, JSCodeshift } from "jscodeshift";
 // List of mutation hooks affected by this change
 const MUTATION_HOOKS = [
   "useCreate",
-  "useUpdate",
-  "useDelete",
   "useCreateMany",
+  "useUpdate",
   "useUpdateMany",
+  "useDelete",
   "useDeleteMany",
   "useCustomMutation",
 ];
