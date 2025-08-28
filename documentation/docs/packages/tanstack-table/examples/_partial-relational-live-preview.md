@@ -78,17 +78,14 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
-      result,
-      tableQuery: { data: tableData },
-    },
+    refineCore: { result },
   } = useTable<IPost, HttpError>({
     columns,
   });
 
   // highlight-start
   // Fetches the category of each post. It uses the useMany hook to fetch the category data from the API.
-  const { data: categoryData } = useMany<ICategory, HttpError>({
+  const { result: categoryData } = useMany<ICategory, HttpError>({
     resource: "categories",
     // Creates the array of ids. This will filter and fetch the category data for the relevant posts.
     ids: result?.data?.map((item) => item?.category?.id) ?? [],

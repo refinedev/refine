@@ -20,12 +20,13 @@ interface IProduct {
 const ProductList: React.FC = () => {
   const [id, setId] = useState(1);
 
-  const { data, isLoading, isError } = useOne<IProduct, HttpError>({
+  const {
+    result: product,
+    query: { isLoading, isError },
+  } = useOne<IProduct, HttpError>({
     resource: "products",
     id,
   });
-
-  const product = data?.data;
 
   if (isLoading) {
     return <div>Loading...</div>;

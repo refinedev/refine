@@ -28,7 +28,10 @@ const ShowPage = () => {
     query: { isLoading },
   } = useShow();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = useOne({
     resource: "categories",
     id: product?.category?.id || "",
     queryOptions: {
@@ -54,7 +57,7 @@ const ShowPage = () => {
         <Typography variant="body1" fontWeight="bold">
           Category
         </Typography>
-        {categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>}
+        {categoryIsLoading ? <>Loading...</> : <>{category?.title}</>}
         <Typography variant="body1" fontWeight="bold">
           Created At
         </Typography>
@@ -1184,14 +1187,16 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
   const { dataGridProps } = RefineMui.useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    RefineCore.useMany({
-      resource: "categories",
-      ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-      queryOptions: {
-        enabled: !!dataGridProps?.rows,
-      },
-    });
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = RefineCore.useMany({
+    resource: "categories",
+    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
 
   const columns = React.useMemo<GridColDef<any>[]>(
     () => [

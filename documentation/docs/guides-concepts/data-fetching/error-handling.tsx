@@ -89,7 +89,7 @@ import React from "react";
 import { useOne, BaseKey } from "@refinedev/core";
 
 export const Product: React.FC = () => {
-    const { result: product, error, isError, isLoading } = useOne<IProduct>({
+    const { result: product, query: { error, isError, isLoading } } = useOne<IProduct>({
         resource: "products",
         id: "non-existing-id",
         queryOptions: {

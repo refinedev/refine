@@ -111,13 +111,16 @@ You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetc
 import { useOne } from "@refinedev/core";
 
 export const MyPage = () => {
-  const { data, isLoading } = useOne({ resource: "products", id: 1 });
+  const {
+    result,
+    query: { isLoading },
+  } = useOne({ resource: "products", id: 1 });
 
   if (isLoading) {
     return <>Loading...</>;
   }
 
-  return <>{data.name}</>;
+  return <>{result?.name}</>;
 };
 ```
 

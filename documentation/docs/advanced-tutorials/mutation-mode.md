@@ -59,7 +59,10 @@ const PostList: React.FC = () => {
 
   const categoryIds =
     tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-  const { data, isLoading } = CoreUseMany<ICategory>({
+  const {
+    result,
+    query: { isLoading },
+  } = CoreUseMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {
@@ -82,7 +85,7 @@ const PostList: React.FC = () => {
 
             return (
               <RefineAntdTextField
-                value={data?.data.find((item) => item.id === value)?.title}
+                value={result?.data.find((item) => item.id === value)?.title}
               />
             );
           }}
@@ -214,14 +217,16 @@ const PostShow: React.FC = () => {
     query: { data, isLoading },
   } = RefineCoreUseShow<IPost>();
 
-  const { data: category, isLoading: categoryIsLoading } =
-    RefineCoreUseOne<ICategory>({
-      resource: "categories",
-      id: post?.category?.id || "",
-      queryOptions: {
-        enabled: !!post,
-      },
-    });
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = RefineCoreUseOne<ICategory>({
+    resource: "categories",
+    id: post?.category?.id || "",
+    queryOptions: {
+      enabled: !!post,
+    },
+  });
 
   return (
     <RefineAntdShow isLoading={isLoading}>

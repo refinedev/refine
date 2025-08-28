@@ -137,7 +137,7 @@ const PostList: React.FC = () => {
   });
 
   const categoryIds = result?.data?.map((item) => item.category.id) ?? [];
-  const { data: categoriesData } = useMany<ICategory>({
+  const { result: categoriesData } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {
