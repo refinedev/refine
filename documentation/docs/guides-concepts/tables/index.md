@@ -92,7 +92,7 @@ The usage of the `useTable` hooks may slightly differ between UI libraries, howe
   - When `client` is selected, the pagination will be handled on the client side. No request will be sent to the server.
   - When `off` is selected, the pagination will be disabled. All data will be fetched from the server.
 
-You can also change the `current` and `pageSize` values by using the `setCurrent` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
+You can also change the `currentPage` and `pageSize` values by using the `setCurrentPage` and `setPageSize` functions that are returned by the `useTable` hook. Every change will trigger a new fetch.
 
 <Pagination />
 

@@ -105,7 +105,7 @@ export const ProductTable: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
+        refineCore: { setCurrentPage, pageCount, currentPage },
     } = useTable({
         refineCoreProps: {
             resource: "products",
@@ -171,8 +171,8 @@ export const ProductTable: React.FC = () => {
             <Pagination
                 position="right"
                 total={pageCount}
-                page={current}
-                onChange={setCurrent}
+                page={currentPage}
+                onChange={setCurrentPage}
             />
         </div>
     );

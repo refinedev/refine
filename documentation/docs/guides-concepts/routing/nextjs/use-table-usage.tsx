@@ -69,7 +69,7 @@ export const getServerSideProps = async (context) => {
   } = parseTableParams(context.resolvedUrl?.split("?")[1] ?? "");
 
   const pagination = {
-    current: queryPagination.current ?? 1,
+    currentPage: queryPagination.currentPage ?? 1,
     pageSize: queryPagination.pageSize ?? 2,
   };
 
@@ -124,8 +124,8 @@ export const ProductList: React.FC = ({ tableProps }) => {
   const {
     tableQuery,
     isLoading,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     pageCount,
     filters,
@@ -196,21 +196,21 @@ export const ProductList: React.FC = ({ tableProps }) => {
         Toggle Filter
       </button>
       <hr />
-      <p>Current Page: {current}</p>
+      <p>Current Page: {currentPage}</p>
       <p>Page Size: {pageSize}</p>
       <button
         onClick={() => {
-          setCurrent(+current - 1);
+          setCurrentPage(+currentPage - 1);
         }}
-        disabled={+current < 2}
+        disabled={+currentPage < 2}
       >
         Previous Page
       </button>
       <button
         onClick={() => {
-          setCurrent(+current + 1);
+          setCurrentPage(+currentPage + 1);
         }}
-        disabled={current === pageCount}
+        disabled={currentPage === pageCount}
       >
         Next Page
       </button>

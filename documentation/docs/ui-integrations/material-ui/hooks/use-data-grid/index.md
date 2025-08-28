@@ -377,7 +377,7 @@ Sets the initial value of the page index. Default value is `1`.
 ```tsx
 useDataGrid({
   pagination: {
-    current: 2,
+    currentPage: 2,
   },
 });
 ```
@@ -400,7 +400,7 @@ It can be `"off"`, `"server"` or `"client"`. It is `"server"` by default.
 
 - **"off":** Pagination is disabled. All records will be fetched.
 - **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
-- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `currentPage` and `pageSize` values.
 
 ```tsx
 useDataGrid({
@@ -787,7 +787,7 @@ Indicates whether the data is being fetched.
 
 #### pagination
 
-Returns pagination configuration values(pageSize, current, setCurrent, etc.).
+Returns pagination configuration values(pageSize, currentPage, setCurrentPage, etc.).
 
 ### tableQuery
 
@@ -817,11 +817,11 @@ Current [filters state][crudfilters].
 
 A function to set current [filters state][crudfilters].
 
-### current
+### currentPage
 
 Current page index state. If pagination is disabled, it will be `undefined`.
 
-### setCurrent
+### setCurrentPage
 
 ```tsx
 React.Dispatch<React.SetStateAction<number>> | undefined;
@@ -917,9 +917,9 @@ useDataGrid({
 | dataGridProps                 | MUI X [`<DataGrid>`][data-grid] props                                                              | `DataGridPropsType`\*                                                                |
 | tableQuery                    | Result of the `react-query`'s `useQuery`                                                           | [` QueryObserverResult<{`` data: TData[];`` total: number; },`` TError> `][usequery] |
 | search                        | It sends the parameters it receives to its `onSearch` function                                     | `(value: TSearchVariables) => Promise<void>`                                         |
-| current                       | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
+| currentPage                   | Current page index state (returns `undefined` if pagination is disabled)                           | `number` \| `undefined`                                                              |
 | totalPage                     | Total page count (returns `undefined` if pagination is disabled)                                   | `number` \| `undefined`                                                              |
-| setCurrent                    | A function that changes the current (returns `undefined` if pagination is disabled)                | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
+| setCurrentPage                | A function that changes the current (returns `undefined` if pagination is disabled)                | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
 | pageSize                      | Current pageSize state (returns `undefined` if pagination is disabled)                             | `number` \| `undefined`                                                              |
 | setPageSize                   | A function that changes the pageSize (returns `undefined` if pagination is disabled)               | `React.Dispatch<React.SetStateAction<number>>` \| `undefined`                        |
 | hideFooterPagination          | Whether to hide the footer pagination accordingly your `pagination.mode` and `hasPagination` props | `boolean`                                                                            |

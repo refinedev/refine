@@ -24,21 +24,21 @@ const PostList: React.FC = () => {
   const {
     tableQuery,
     // highlight-start
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     pageCount,
     // highlight-end
   } = useTable<IPost, HttpError>();
 
-  // Fetches the posts for the current page
+  // Fetches the posts for the currentPage page
   const posts = tableQuery?.data?.data ?? [];
   // highlight-start
   // Checks if there is a next page available
-  const hasNext = current < pageCount;
+  const hasNext = currentPage < pageCount;
   // Checks if there is a previous page available
-  const hasPrev = current > 1;
+  const hasPrev = currentPage > 1;
   // highlight-end
 
   return (
@@ -73,39 +73,39 @@ const PostList: React.FC = () => {
         }}
       >
         <div>
-          <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
+          <button onClick={() => setCurrentPage(1)} disabled={!hasPrev}>
             First
           </button>
           <button
-            onClick={() => setCurrent((prev) => prev - 1)}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
             disabled={!hasPrev}
           >
             Previous
           </button>
           <button
-            onClick={() => setCurrent((prev) => prev + 1)}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
             disabled={!hasNext}
           >
             Next
           </button>
-          <button onClick={() => setCurrent(pageCount)} disabled={!hasNext}>
+          <button onClick={() => setCurrentPage(pageCount)} disabled={!hasNext}>
             Last
           </button>
         </div>
         <span>
           Page{" "}
           <strong>
-            {current} of {pageCount}
+            {currentPage} of {pageCount}
           </strong>
         </span>
         <span>
           Go to page:
           <input
             type="number"
-            defaultValue={current + 1}
+            defaultValue={currentPage + 1}
             onChange={(e) => {
               const value = e.target.value ? Number(e.target.value) : 1;
-              setCurrent(value);
+              setCurrentPage(value);
             }}
           />
         </span>

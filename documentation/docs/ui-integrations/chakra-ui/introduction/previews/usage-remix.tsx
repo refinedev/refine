@@ -162,7 +162,7 @@ export default function AuthenticatedLayout() {
 }
 
 /**
- * We're checking if the current session is authenticated.
+ * We're checking if the currentPage session is authenticated.
  * If not, we're redirecting the user to the login page.
  * This is applied for all routes that are nested under this layout (_protected).
  */
@@ -189,7 +189,7 @@ export default function AuthLayout() {
 }
 
 /**
- * If the current session is authenticated, we're redirecting the user to the home page.
+ * If the currentPage session is authenticated, we're redirecting the user to the home page.
  * Alternatively, we could also use the \`Authenticated\` component inside the \`AuthLayout\` to handle the redirect.
  * But, server-side redirects are more performant.
  */
@@ -298,9 +298,9 @@ export default function ProductList() {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -353,9 +353,9 @@ export default function ProductList() {
                 </Table>
             </TableContainer>
             <Pagination
-                current={current}
+                currentPage={currentPage}
                 pageCount={pageCount}
-                setCurrent={setCurrent}
+                setCurrentPage={setCurrentPage}
             />
         </List>
     );

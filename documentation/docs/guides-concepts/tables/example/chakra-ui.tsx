@@ -116,7 +116,7 @@ export const ProductTable: React.FC = () => {
     const {
         getHeaderGroups,
         getRowModel,
-        refineCore: { setCurrent, pageCount, current },
+        refineCore: { setCurrentPage, pageCount, currentPage },
     } = useTable({
         refineCoreProps: {
             resource: "products",
@@ -175,9 +175,9 @@ export const ProductTable: React.FC = () => {
                 </Table>
             </TableContainer>
             <Pagination
-                current={current}
+                currentPage={currentPage}
                 pageCount={pageCount}
-                setCurrent={setCurrent}
+                setCurrentPage={setCurrentPage}
             />
         </div>
     );
@@ -196,12 +196,12 @@ import { HStack, Button, Box } from "@chakra-ui/react";
 import { usePagination } from "@refinedev/chakra-ui";
 
 export const Pagination: FC<PaginationProps> = ({
-    current,
+    currentPage,
     pageCount,
-    setCurrent,
+    setCurrentPage,
 }) => {
     const pagination = usePagination({
-        current,
+        currentPage,
         pageCount,
     });
 
@@ -211,7 +211,7 @@ export const Pagination: FC<PaginationProps> = ({
                 {pagination?.prev && (
                     <Button
                         aria-label="previous page"
-                        onClick={() => setCurrent(current - 1)}
+                        onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={!pagination?.prev}
                         variant="outline"
                     >
@@ -226,8 +226,8 @@ export const Pagination: FC<PaginationProps> = ({
                     return (
                         <Button
                             key={page}
-                            onClick={() => setCurrent(page)}
-                            variant={page === current ? "solid" : "outline"}
+                            onClick={() => setCurrentPage(page)}
+                            variant={page === currentPage ? "solid" : "outline"}
                         >
                             {page}
                         </Button>
@@ -236,7 +236,7 @@ export const Pagination: FC<PaginationProps> = ({
                 {pagination?.next && (
                     <Button
                         aria-label="next page"
-                        onClick={() => setCurrent(current + 1)}
+                        onClick={() => setCurrentPage(currentPage + 1)}
                         variant="outline"
                     >
                         Next
@@ -248,9 +248,9 @@ export const Pagination: FC<PaginationProps> = ({
 };
 
 type PaginationProps = {
-    current: number;
+    currentPage: number;
     pageCount: number;
-    setCurrent: (page: number) => void;
+    setCurrentPage: (page: number) => void;
 };
 `.trim();
 

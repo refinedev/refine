@@ -20,7 +20,7 @@ interface IProduct {
 
 const ProductList: React.FC = () => {
   //highlight-start
-  const [current, setCurrent] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
   //highlight-end
 
@@ -28,7 +28,7 @@ const ProductList: React.FC = () => {
     resource: "products",
     //highlight-start
     pagination: {
-      current,
+      currentPage,
       pageSize,
     },
     //highlight-end
@@ -47,9 +47,9 @@ const ProductList: React.FC = () => {
   return (
     <div>
       {/* highlight-start */}
-      <button onClick={() => setCurrent((prev) => prev - 1)}>{"<"}</button>
+      <button onClick={() => setCurrentPage((prev) => prev - 1)}>{"<"}</button>
       <span> page: {current} </span>
-      <button onClick={() => setCurrent((prev) => prev + 1)}>{">"}</button>
+      <button onClick={() => setCurrentPage((prev) => prev + 1)}>{">"}</button>
       <span> per page: </span>
       <select
         value={pageSize}
