@@ -118,6 +118,15 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
     onError?: (error: TError) => void;
   };
 
+export type UseInfiniteListReturnType<TData, TError> = {
+  query: UseInfiniteQueryResult<InfiniteData<GetListResponse<TData>>, TError>;
+  result: {
+    data: InfiniteData<GetListResponse<TData>> | undefined;
+    hasNextPage: boolean | undefined;
+    hasPreviousPage: boolean | undefined;
+  };
+} & UseLoadingOvertimeReturnType;
+
 /**
  * `useInfiniteList` is a modified version of `react-query`'s {@link https://tanstack.com/query/latest/docs/react/guides/infinite-queries `useInfiniteQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
@@ -151,11 +160,11 @@ export const useInfiniteList = <
   overtimeOptions,
   onSuccess,
   onError,
-}: UseInfiniteListProps<TQueryFnData, TError, TData>): UseInfiniteQueryResult<
-  InfiniteData<GetListResponse<TData>>,
-  TError
-> &
-  UseLoadingOvertimeReturnType => {
+}: UseInfiniteListProps<
+  TQueryFnData,
+  TError,
+  TData
+>): UseInfiniteListReturnType<TData, TError> => {
   const { resources, resource, identifier } = useResource(resourceFromProp);
 
   const dataProvider = useDataProvider();
@@ -337,7 +346,12 @@ export const useInfiniteList = <
   queryResponse.data?.pages;
 
   return {
-    ...queryResponse,
+    query: queryResponse,
+    result: {
+      data: queryResponse.data,
+      hasNextPage: queryResponse.hasNextPage,
+      hasPreviousPage: queryResponse.hasPreviousPage,
+    },
     overtime: { elapsedTime },
   };
 };
