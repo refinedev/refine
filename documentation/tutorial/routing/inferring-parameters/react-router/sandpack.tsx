@@ -29,7 +29,8 @@ import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     currentPage,
     setCurrentPage,
     pageCount,
@@ -42,9 +43,9 @@ export const ListProducts = () => {
 
   const { showUrl, editUrl } = useNavigation();
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -114,7 +115,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -162,14 +163,15 @@ import { useShow } from "@refinedev/core";
 
 export const ShowProduct = () => {
   const {
-    query: { data, isLoading },
+    result,
+    query: { isLoading },
   } = useShow();
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  return <div>Product name: {data?.data.name}</div>;
+  return <div>Product name: { result?.name }</div>;
 };
 `.trim();
 

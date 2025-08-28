@@ -36,7 +36,10 @@ export const ListProducts = () => {
   });
   // highlight-end
 
-  const { data: categories, isLoading } = useMany({
+  const {
+    result: categories,
+    query: { isLoading },
+  } = useMany({
     resource: "categories",
     ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
   });
@@ -125,7 +128,10 @@ export const ListProducts = () => {
     syncWithLocation: true,
   });
 
-  const { data: categories, isLoading } = useMany({
+  const {
+    result: categories,
+    query: { isLoading },
+  } = useMany({
     resource: "categories",
     ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
   });
@@ -210,7 +216,7 @@ import { Table, Space, Input, Select } from "antd";
 
 export const ListProducts = () => {
   // highlight-next-line
-  const { tableProps, sorters, filters } = useTable({
+  const { result, tableProps, sorters, filters } = useTable({
     sorters: { initial: [{ field: "id", order: "asc" }] },
     // highlight-start
     // We're adding default values for our filters
@@ -221,9 +227,12 @@ export const ListProducts = () => {
     syncWithLocation: true,
   });
 
-  const { data: categories, isLoading } = useMany({
+  const {
+    result: categories,
+    query: { isLoading },
+  } = useMany({
     resource: "categories",
-    ids: tableProps?.dataSource?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   // highlight-start
@@ -332,7 +341,7 @@ export const EditProduct = () => {
 
   const { selectProps } = useSelect({
     resource: "categories",
-    defaultValue: query?.data?.data?.category?.id,
+    defaultValue: query?.product.category?.id,
   });
 
   return (
@@ -444,18 +453,22 @@ import { Typography } from "antd";
 
 export const ShowProduct = () => {
   const {
-    query: { data, isLoading },
+    result: product,
+    query: { isLoading },
   } = useShow();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+  const {
+    data: category,
+    query: { isLoading: categoryIsLoading },
+  } = useOne({
     resource: "categories",
-    id: data?.data?.category.id || "",
+    id: product?.category.id || "",
     queryOptions: {
-      enabled: !!data?.data,
+      enabled: !!product,
     },
   });
 
-  if (isLoading) {
+  if (isLoading || !product) {
     return <div>Loading...</div>;
   }
 
@@ -463,34 +476,34 @@ export const ShowProduct = () => {
     <div>
       {/* highlight-start */}
       <Typography.Title level={5}>Id</Typography.Title>
-      <TextField value={data?.data?.id} />
+      <TextField value={product.id} />
       {/* highlight-end */}
 
       {/* highlight-start */}
       <Typography.Title level={5}>Name</Typography.Title>
-      <TextField value={data?.data?.name} />
+      <TextField value={product.name} />
       {/* highlight-end */}
 
       {/* highlight-start */}
       <Typography.Title level={5}>Description</Typography.Title>
-      <MarkdownField value={data?.data?.description} />
+      <MarkdownField value={product.description} />
       {/* highlight-end */}
 
       {/* highlight-start */}
       <Typography.Title level={5}>Material</Typography.Title>
-      <TextField value={data?.data?.material} />
+      <TextField value={product.material} />
       {/* highlight-end */}
 
       {/* highlight-start */}
       <Typography.Title level={5}>Category</Typography.Title>
       <TextField
-        value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
+        value={categoryIsLoading ? "Loading..." : categoryproduct.title}
       />
       {/* highlight-end */}
 
       {/* highlight-start */}
       <Typography.Title level={5}>Price</Typography.Title>
-      <NumberField value={data?.data?.price} />
+      <NumberField value={product.price} />
       {/* highlight-end */}
     </div>
   );

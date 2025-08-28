@@ -75,7 +75,8 @@ import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     currentPage,
     setCurrentPage,
     pageCount,
@@ -119,7 +120,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>

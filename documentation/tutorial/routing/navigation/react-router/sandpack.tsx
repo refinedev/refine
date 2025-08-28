@@ -59,7 +59,8 @@ import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     currentPage,
     setCurrentPage,
     pageCount,
@@ -75,9 +76,9 @@ export const ListProducts = () => {
   // We're using url methods to provide more semantically correct html.
   const { showUrl, editUrl } = useNavigation();
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -147,7 +148,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>

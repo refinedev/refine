@@ -81,7 +81,10 @@ Update your `src/pages/products/edit.tsx` file by adding the following lines:
 import { useOne, useUpdate } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { data, isLoading } = useOne({ resource: "products", id: 123 });
+  const {
+    result,
+    query: { isLoading },
+  } = useOne({ resource: "products", id: 123 });
   // highlight-next-line
   const {
     mutate,
@@ -106,8 +109,8 @@ export const EditProduct = () => {
 
   return (
     <div>
-      <div>Product name: {data?.data.name}</div>
-      <div>Product price: ${data?.data.price}</div>
+      <div>Product name: {result?.name}</div>
+      <div>Product price: ${result?.price}</div>
       <button onClick={updatePrice}>Update Price</button>
     </div>
   );

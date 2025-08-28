@@ -116,7 +116,7 @@ const ListProductsWithUseTableTsxCode = /* tsx */ `
 import { useTable } from "@refinedev/core";
 
 export const ListProducts = () => {
-  const { tableQuery: { data, isLoading } } = useTable({
+  const { result, tableQuery: { isLoading } } = useTable({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
@@ -140,7 +140,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -161,16 +161,17 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
   } = useTable({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -191,7 +192,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -422,7 +423,8 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     currentPage,
     setCurrentPage,
     pageCount,
@@ -432,9 +434,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -471,7 +473,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -511,7 +513,8 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     currentPage,
     setCurrentPage,
     pageCount,
@@ -523,9 +526,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -594,7 +597,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>

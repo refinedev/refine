@@ -64,7 +64,7 @@ const BaseEditProductTsxCode = /* tsx */ `
 import { useOne } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { data, isLoading } = useOne({ resource: "products", id: 123 });
+  const { result, query: { isLoading } } = useOne({ resource: "products", id: 123 });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -72,8 +72,8 @@ export const EditProduct = () => {
 
   return (
     <div>
-      <div>Product name: {data?.data.name}</div>
-      <div>Product price: \${data?.data.price}</div>
+      <div>Product name: {result?.name}</div>
+      <div>Product price: \${result?.price}</div>
     </div>
   );
 };
@@ -83,7 +83,7 @@ const EditProductWithUseUpdateTsxCode = /* tsx */ `
 import { useOne, useUpdate } from "@refinedev/core";
 
 export const EditProduct = () => {
-  const { data, isLoading } = useOne({ resource: "products", id: 123 });
+  const { result, query: { isLoading } } = useOne({ resource: "products", id: 123 });
   const { mutate, mutation: { isLoading: isUpdating } } = useUpdate();
 
   if (isLoading) {
@@ -102,8 +102,8 @@ export const EditProduct = () => {
 
   return (
     <div>
-      <div>Product name: {data?.data.name}</div>
-      <div>Product price: \${data?.data.price}</div>
+      <div>Product name: {result?.name}</div>
+      <div>Product price: \${result?.price}</div>
       <button onClick={updatePrice}>Update Price</button>
     </div>
   );

@@ -150,7 +150,8 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     currentPage,
     setCurrentPage,
     pageCount,
@@ -163,9 +164,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categoriesResult } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {

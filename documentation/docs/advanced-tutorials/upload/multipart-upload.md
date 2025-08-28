@@ -43,11 +43,11 @@ import {
 } from "antd";
 
 const PostList: React.FC = () => {
-    const { tableProps, sorter } = RefineAntdUseTable<IPost>();
+    const { result, tableProps, sorter } = RefineAntdUseTable<IPost>();
 
-    const categoryIds =
-        tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-    const { data, isLoading } = CoreUseMany<ICategory>({
+    const categoryIds = result?.data?.map((item) => item.category.id) ?? [];
+
+    const { result: categoryResult, query: { isLoading } } = CoreUseMany<ICategory>({
         resource: "categories",
         ids: categoryIds,
         queryOptions: {
@@ -74,7 +74,7 @@ const PostList: React.FC = () => {
                         return (
                             <RefineAntdTextField
                                 value={
-                                    data?.data.find((item) => item.id === value)
+                                    result?.data.find((item) => item.id === value)
                                         ?.title
                                 }
                             />
@@ -207,10 +207,9 @@ const PostEdit: React.FC = () => {
 
 const PostShow: React.FC = () => {
     const { query } = RefineCoreUseShow<IPost>();
-    const { data, isLoading } = query;
-    const record = data?.data;
+    const { isLoading } = query;
 
-    const { data: categoryData, isLoading: categoryIsLoading } =
+    const { result: record, isLoading: categoryIsLoading } =
         RefineCoreUseOne<ICategory>({
             resource: "categories",
             id: record?.category?.id || "",
