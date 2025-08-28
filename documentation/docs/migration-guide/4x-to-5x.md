@@ -166,11 +166,11 @@ Simply `cd` into the root folder of your project (where the `package.json` is lo
 npx @refinedev/codemod@latest refine4-to-refine5
 ```
 
-> 🚨 _The refine4-to-refine5 codemod only fixes APIs deprecated or removed in Refine@4. It does not handle items deprecated during the Refine@3→4 migration. For those, run the [refine3-to-refine4](/docs/migration-guide/3x-to-4x.md) codemod first._
+> 👉 **Hook Return Type Changes**: The codemod updates most standard cases, but may miss complex destructuring, conditional logic, or custom wrappers. Please review [Data & Mutation Hooks: Return Type Breaking Changes](#data--mutation-hooks-return-type-breaking-changes) if you use these patterns.
 
 <h3>⚠️ Changes not handled by the codemod </h3>
 
-Unfortunately, the codemod cannot cover every case. While it automates most of the migration, some changes still require manual updates. Below is the list of removed or modified APIs that you’ll need to adjust yourself.
+Unfortunately, the codemod cannot cover every case. While it automates most of the migration, some changes still require manual updates. Below is the list of removed or modified APIs that you'll need to adjust yourself.
 
 <h3>useNavigation → useGo</h3>
 
@@ -279,9 +279,154 @@ Refine v5 supports both React 18 and React 19. If you want to take advantage of 
 [router-provider-migration]: /docs/migration-guide/router-provider/
 [auth-provider-migration]: /docs/migration-guide/auth-provider/
 
-### List of All Breaking Changes
+## Data & Mutation Hooks: Return Type Breaking Changes
 
-If you prefer to migrate manually or the codemod didn't handle all your use cases, you can follow this comprehensive guide to update your codebase step by step. Each section below covers a specific breaking change with before/after examples.
+🚨 **Affects:** All data and mutation hooks (`useList`, `useTable`, `useInfiniteList`, `useOne`, `useMany`, `useForm`, `useCreate`, `useUpdate`, etc.)
+
+Return types of data and mutation hooks were refactored for clarity and consistency. Query state (`isLoading`, `isError`, `error`, etc.) and mutation state (`isPending`, `isError`, `error`, etc.) are now grouped under `query` and `mutation` objects respectively, while normalized values (`data`, `total`, etc.) are returned under a `result` object.
+This change:
+
+- Unifies the shape of return types across all hooks.
+- Eliminates nested property access (e.g., `data?.data`).
+- Improves type safety and developer experience.
+- Groups all TanStack Query APIs (`isLoading`, `isError`, `refetch`, etc.) under the `query` object, making them easier to discover and use consistently.
+
+The following sections show hook-specific breaking changes with before/after usage examples.
+
+#### useList
+
+```diff
+const {
+-   data,
+-   isLoading,
+-   isError,
+} = useList();
+
+- const posts = data.data
+- const total = data.total
+
+const {
++   result,
++   query: { isLoading, isError },
+} = useList();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+#### useOne, useMany, useShow
+
+All three hooks follow the same `query` and `result` pattern.
+
+```diff
+const {
+-   data,
+-   isLoading,
+-   isError,
+} = useOne({
+    resource: "users",
+    id: 1,
+});
+
+- const user = data.data;
+
+const {
++   result,
++   query: { isLoading, isError },
+} = useOne({
+    resource: "users",
+    id: 1,
+});
+
++ const user = result;
+```
+
+#### useTable & useDataGrid & useSimpleList
+
+✅ There are no breaking changes in `useTable`, however, the return values have been restructured for clarity and consistency.
+
+This same pattern applies to `useDataGrid` and `useSimpleList`.
+
+```diff
+const {
+-   tableQuery: { data }
+} = useTable();
+
+- const posts = tableQuery.data?.data;
+- const total = tableQuery.data?.total;
+
+const {
++   result,
+} = useTable();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+#### useInfiniteList
+
+```diff
+const {
+-  data,
+-  isLoading,
+-  isError,
+-  fetchNextPage,
+-  hasNextPage,
+} = useInfiniteList({
+  resource: "posts",
+});
+
+- const posts = data?.data;
+
+const {
++  result,
++  query: { isLoading, isError, fetchNextPage, hasNextPage },
+} = useInfiniteList({ resource: "posts" });
+
++ const posts = result.data;
+```
+
+#### Authentication Hooks
+
+🚨 **Affects:** All authentication hooks (`useLogin`, `useLogout`, `useRegister`, `useForgotPassword`, `useUpdatePassword`)
+
+Authentication hooks now follow the same mutation pattern as other mutation hooks:
+
+```diff
+const {
+-  isPending,
+-  isError,
+   mutate,
+} = useLogin();
+
+const {
++  mutation: { isPending, isError },
+   mutate,
+} = useLogin();
+```
+
+#### Mutation Hooks
+
+🚨 **Affects:** All other mutation hooks (`useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany`, `useDeleteMany`, `useCustomMutation`)
+
+All remaining mutation hooks follow the same pattern as `useUpdate`.
+
+```diff
+const {
+-  isPending,
+-  isError,
+   mutate,
+   mutateAsync,
+} = useUpdate({ resource: "posts" });
+
+const {
++  mutation: { isPending, isError },
+   mutate,
+   mutateAsync,
+} = useUpdate({ resource: "posts" });
+```
+
+## List of All Breaking Changes
 
 #### metaData → meta
 
