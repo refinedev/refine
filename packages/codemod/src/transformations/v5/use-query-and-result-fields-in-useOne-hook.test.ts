@@ -1,11 +1,11 @@
-import useQueryAndResultFieldsInUseOneTransform from "./use-query-and-result-fields-in-useOne-hook";
+import transformFunction from "./use-query-and-result-fields-in-useOne-hook";
 import jscodeshift, { type JSCodeshift } from "jscodeshift";
 
 const transform = (source: string) => {
   const j: JSCodeshift = jscodeshift.withParser("tsx");
   const root = j(source);
 
-  return useQueryAndResultFieldsInUseOneTransform(j, root);
+  return transformFunction(j, root);
 };
 
 describe("use-query-and-result-fields-in-useOne-hook", () => {
@@ -18,7 +18,17 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
 
       const post = data?.data ?? {};
     `;
-    expect(transform(source)).toMatchSnapshot();
+
+    const expected = `
+      import { useOne } from "@refinedev/core";
+      const { result } = useOne({
+        id: 123
+      });
+
+      const post = result ?? {};
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
   });
 
   it("should handle renamed result in useOne", () => {
@@ -30,11 +40,21 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
 
       const post = postData?.data ?? {};
     `;
-    expect(transform(source)).toMatchSnapshot();
+
+    const expected = `
+      import { useOne } from "@refinedev/core";
+      const { result: postData } = useOne({
+        id: 123
+      });
+
+      const post = postData ?? {};
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
   });
 
   it("should handle result with isLoading in useOne", () => {
-    const source = /* tsx */ `
+    const source = `
       import { useOne } from "@refinedev/core";
 
       export const EditProduct = () => {
@@ -53,6 +73,27 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
       };
     `;
 
-    expect(transform(source)).toMatchSnapshot();
+    const expected = `
+      import { useOne } from "@refinedev/core";
+
+      export const EditProduct = () => {
+        const { result, query: {
+          isLoading
+        } } = useOne({ id: 123 });
+
+        if (isLoading) {
+          return <div>Loading...</div>;
+        }
+
+        return (
+          <div>
+            <div>Product name: {result?.name}</div>
+            <div>Product price: \${result?.price}</div>
+          </div>
+        );
+      };
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
   });
 });
