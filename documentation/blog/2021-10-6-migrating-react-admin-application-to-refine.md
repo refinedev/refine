@@ -132,7 +132,7 @@ export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
 
   const {
     mutate,
-    mutation: { isLoading },
+    mutation: { isPending },
   } = useDeleteMany<ICampaign>();
 
   const deleteSelectedItems = () => {
@@ -159,7 +159,7 @@ export const CampaignsList: React.FC<IResourceComponentsProps> = () => {
           <Button
             type="text"
             onClick={() => deleteSelectedItems()}
-            loading={isLoading}
+            loading={isPending}
             icon={<Icons.DeleteOutlined style={{ color: "green" }} />}
           >
             Delete

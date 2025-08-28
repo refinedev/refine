@@ -100,7 +100,7 @@ export const Product: React.FC = () => {
         id: 124,
     });
 
-    const { mutate, mutation: { isLoading: isUpdating } } = useUpdate();
+    const { mutate, mutation: { isPending: isUpdating } } = useUpdate();
 
     if (isError) {
         return (

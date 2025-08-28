@@ -120,7 +120,7 @@ export const Login = () => {
   // highlight-next-line
   const {
     mutate,
-    mutation: { isLoading },
+    mutation: { isPending },
   } = useLogin();
 
   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -154,8 +154,8 @@ export const Login = () => {
           defaultValue="demodemo"
         />
 
-        {isLoading && <span>loading...</span>}
-        <button type="submit" disabled={isLoading}>
+        {isPending && <span>loading...</span>}
+        <button type="submit" disabled={isPending}>
           Submit
         </button>
       </form>
@@ -277,7 +277,7 @@ export const Header = () => {
   // highlight-next-line
   const {
     mutate,
-    mutation: { isLoading },
+    mutation: { isPending },
   } = useLogout();
 
   return (
@@ -285,7 +285,7 @@ export const Header = () => {
       <h2>Welcome!</h2>
       <button
         type="button"
-        disabled={isLoading}
+        disabled={isPending}
         // highlight-next-line
         onClick={mutate}
       >

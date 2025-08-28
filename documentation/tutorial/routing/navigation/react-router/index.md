@@ -33,7 +33,7 @@ import { Link } from "react-router";
 export const Header = () => {
   const {
     mutate,
-    mutation: { isLoading },
+    mutation: { isPending },
   } = useLogout();
   const { data: identity } = useGetIdentity();
 
@@ -52,7 +52,7 @@ export const Header = () => {
       <Link to={listUrl("protected-products")}>List Products</Link>
       <Link to={createUrl("protected-products")}>Create Product</Link>
       {/* highlight-end */}
-      <button type="button" disabled={isLoading} onClick={mutate}>
+      <button type="button" disabled={isPending} onClick={mutate}>
         Logout
       </button>
     </>
