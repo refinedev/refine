@@ -30,9 +30,9 @@ describe("useInfiniteList Hook", () => {
 
     const { data } = result.current.result;
 
-    expect(data).toHaveLength(1);
-    expect(data?.[0].data).toHaveLength(2);
-    expect(data?.[0].total).toEqual(2);
+    expect(data?.pages).toHaveLength(1);
+    expect(data?.pages[0].data).toHaveLength(2);
+    expect(data?.pages[0].total).toEqual(2);
   });
 
   it("hasNextPage is truthy", async () => {

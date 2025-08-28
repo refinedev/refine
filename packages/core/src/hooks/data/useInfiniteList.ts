@@ -121,7 +121,7 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
 export type UseInfiniteListReturnType<TData, TError> = {
   query: UseInfiniteQueryResult<InfiniteData<GetListResponse<TData>>, TError>;
   result: {
-    data: GetListResponse<TData>[] | undefined;
+    data: InfiniteData<GetListResponse<TData>> | undefined;
     hasNextPage: boolean | undefined;
     hasPreviousPage: boolean | undefined;
   };
@@ -348,7 +348,7 @@ export const useInfiniteList = <
   return {
     query: queryResponse,
     result: {
-      data: queryResponse.data?.pages,
+      data: queryResponse.data,
       hasNextPage: queryResponse.hasNextPage,
       hasPreviousPage: queryResponse.hasPreviousPage,
     },
