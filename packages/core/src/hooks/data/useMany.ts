@@ -54,7 +54,7 @@ export type UseManyReturnType<
 > = {
   query: QueryObserverResult<GetManyResponse<TData>, TError>;
   result: {
-    data: TData[] | undefined;
+    data: TData[];
   };
 } & UseLoadingOvertimeReturnType;
 
@@ -253,7 +253,7 @@ export const useMany = <
   return {
     query: queryResponse,
     result: {
-      data: queryResponse?.data?.data,
+      data: queryResponse?.data?.data || [],
     },
     overtime: { elapsedTime },
   };

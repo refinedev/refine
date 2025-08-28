@@ -96,7 +96,7 @@ export type UseListProps<TQueryFnData, TError, TData> = {
 export type UseListReturnType<TData, TError> = {
   query: QueryObserverResult<GetListResponse<TData>, TError>;
   result: {
-    data: TData[] | undefined;
+    data: TData[];
     total: number | undefined;
   };
 } & UseLoadingOvertimeReturnType;
@@ -312,7 +312,7 @@ export const useList = <
   return {
     query: queryResponse,
     result: {
-      data: queryResponse?.data?.data,
+      data: queryResponse?.data?.data || [],
       total: queryResponse?.data?.total,
     },
     overtime: { elapsedTime },
