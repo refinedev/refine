@@ -107,6 +107,13 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
  *
  */
 
+export type UseCustomReturnType<TData, TError> = {
+  query: QueryObserverResult<CustomResponse<TData>, TError>;
+  result: {
+    data: CustomResponse<TData>["data"] | undefined;
+  };
+} & UseLoadingOvertimeReturnType;
+
 export const useCustom = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
@@ -129,8 +136,7 @@ export const useCustom = <
   TQuery,
   TPayload,
   TData
->): QueryObserverResult<CustomResponse<TData>, TError> &
-  UseLoadingOvertimeReturnType => {
+>): UseCustomReturnType<TData, TError> => {
   const dataProvider = useDataProvider();
   const translate = useTranslate();
   const { mutate: checkError } = useOnError();
@@ -223,10 +229,12 @@ export const useCustom = <
     });
 
     return {
-      ...queryResponse,
+      query: queryResponse,
+      result: {
+        data: queryResponse.data?.data,
+      },
       overtime: { elapsedTime },
-    } as QueryObserverResult<CustomResponse<TData>, TError> &
-      UseLoadingOvertimeReturnType;
+    };
   }
   throw Error("Not implemented custom on data provider.");
 };
