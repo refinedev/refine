@@ -1,6 +1,9 @@
 import type { JSCodeshift, Collection } from "jscodeshift";
 
-const transformer = (j: JSCodeshift, root: Collection<any>) => {
+export const useQueryAndResultFieldsInUseCustomHook = (
+  j: JSCodeshift,
+  root: Collection<any>,
+) => {
   // Properties that should be accessed from query
   const queryProperties = new Set([
     "isLoading",
@@ -48,11 +51,13 @@ const transformer = (j: JSCodeshift, root: Collection<any>) => {
         const objectPattern = node.id;
         const properties = objectPattern.properties;
 
+        // Categorize and transform properties
+        const newProperties: any[] = [];
         const queryProps: any[] = [];
         const resultProps: any[] = [];
         const otherProps: any[] = [];
+        let hasTransformations = false;
 
-        // Categorize properties
         properties.forEach((prop: any) => {
           if (
             (prop.type === "Property" || prop.type === "ObjectProperty") &&
@@ -62,8 +67,10 @@ const transformer = (j: JSCodeshift, root: Collection<any>) => {
 
             if (queryProperties.has(propName)) {
               queryProps.push(prop);
+              hasTransformations = true;
             } else if (resultProperties.has(propName)) {
               resultProps.push(prop);
+              hasTransformations = true;
             } else {
               otherProps.push(prop);
             }
@@ -72,10 +79,8 @@ const transformer = (j: JSCodeshift, root: Collection<any>) => {
           }
         });
 
-        // Only transform if we have query or result properties
-        if (queryProps.length > 0 || resultProps.length > 0) {
-          const newProperties: any[] = [];
-
+        // Only apply transformation if we made changes
+        if (hasTransformations) {
           // Add query object if we have query properties
           if (queryProps.length > 0) {
             newProperties.push(
@@ -87,32 +92,39 @@ const transformer = (j: JSCodeshift, root: Collection<any>) => {
             );
           }
 
-          // Add result object if we have result properties
+          // Add result properties as simple renaming
           if (resultProps.length > 0) {
-            newProperties.push(
-              j.property(
-                "init",
-                j.identifier("result"),
-                j.objectPattern(resultProps),
-              ),
-            );
+            resultProps.forEach((prop: any) => {
+              const alias =
+                prop.value?.type === "Identifier"
+                  ? prop.value.name
+                  : prop.key.name;
+              newProperties.push(
+                j.property("init", j.identifier("result"), j.identifier(alias)),
+              );
+            });
           }
 
-          // Add other properties at the top level
+          // Add other properties at the end
           newProperties.push(...otherProps);
 
-          // Replace the object pattern
           objectPattern.properties = newProperties;
         }
       }
     }
   });
 
-  return root.toSource({
+  const result = root.toSource({
     quote: "double",
+    objectCurlySpacing: false,
   });
+
+  // Fix formatting for simple cases with single properties
+  return result
+    .replace(/const {\s+(\w+:\s*\w+)\s+}/g, "const { $1 }")
+    .replace(/{\s+(\w+:\s*{\s*[\w\s:,\n]+\s*})\s+}/g, "{ $1 }");
 };
 
-transformer.parser = "tsx";
+useQueryAndResultFieldsInUseCustomHook.parser = "tsx";
 
-export default transformer;
+export default useQueryAndResultFieldsInUseCustomHook;
