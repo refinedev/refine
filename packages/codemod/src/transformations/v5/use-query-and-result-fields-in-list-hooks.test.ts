@@ -14,7 +14,7 @@ describe("use-query-and-result-fields-in-list-hooks", () => {
       import { useList } from "@refinedev/core";
       const { data } = useList({
         resource: "posts",
-        pagination: { current: 2, pageSize: 5 }
+        pagination: { currentPage: 2, pageSize: 5 }
       });
     `;
     const expected = `
@@ -32,7 +32,7 @@ describe("use-query-and-result-fields-in-list-hooks", () => {
       import { useList } from "@refinedev/core";
       const { data: stages } = useList<TaskStages>({
         resource: "taskStages",
-        pagination: { current: 1, pageSize: 10 }
+        pagination: { currentPage: 1, pageSize: 10 }
       });
     `;
     const expected = `
