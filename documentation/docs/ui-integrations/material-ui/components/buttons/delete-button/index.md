@@ -231,9 +231,9 @@ import {
 } from "@mui/x-data-grid";
 
 export const PostList: React.FC = () => {
-  const { tableQuery } = useTable<IPost>();
+  const { result, tableQuery } = useTable<IPost>();
 
-  const { data } = tableQuery;
+  const { data } = result;
 
   return (
     <List>

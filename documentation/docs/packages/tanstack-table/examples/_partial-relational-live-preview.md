@@ -79,6 +79,7 @@ const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
+      result,
       tableQuery: { data: tableData },
     },
   } = useTable<IPost, HttpError>({
@@ -90,10 +91,10 @@ const PostList: React.FC = () => {
   const { data: categoryData } = useMany<ICategory, HttpError>({
     resource: "categories",
     // Creates the array of ids. This will filter and fetch the category data for the relevant posts.
-    ids: tableData?.data?.map((item) => item?.category?.id) ?? [],
+    ids: result?.data?.map((item) => item?.category?.id) ?? [],
     queryOptions: {
       // Set to true only if the posts array is not empty.
-      enabled: !!tableData?.data,
+      enabled: !!result?.data,
     },
   });
   // highlight-end

@@ -131,17 +131,12 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
-      setCurrentPage,
-      pageCount,
-      currentPage,
-      tableQuery: { data: tableData },
-    },
+    refineCore: { setCurrentPage, pageCount, currentPage, result },
   } = useTable({
     columns,
   });
 
-  const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
+  const categoryIds = result?.data?.map((item) => item.category.id) ?? [];
   const { data: categoriesData } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,

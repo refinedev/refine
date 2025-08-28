@@ -107,10 +107,11 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
   } = useTable<IPost>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -174,10 +175,11 @@ export default function CategoryList() {
   // `categories` resource will be inferred from the route.
   // Because we've defined `/categories` as the `list` action of the `categories` resource.
   const {
+    result,
     tableQuery: { data, isLoading },
   } = useTable<ICategory>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -320,10 +322,11 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
+    result,
     tableQuery: { data, isLoading },
   } = useTable<IPost>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -383,10 +386,11 @@ export default function CategoryList() {
   // `categories` resource will be inferred from the route.
   // Because we've defined `/categories` as the `list` action of the `categories` resource.
   const {
+    result,
     tableQuery: { data, isLoading },
   } = useTable<ICategory>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>

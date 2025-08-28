@@ -586,7 +586,7 @@ First, you need to set `filters.mode: "off"`
 
 ```tsx
 import { useTable } from "@refinedev/core";
-const { tableQuery, filters, setFilters } = useTable({
+const { result, tableQuery, filters, setFilters } = useTable({
   filters: {
     mode: "off",
   },
@@ -599,13 +599,13 @@ Then, you can use the `filters` state to filter your data.
 // ...
 
 const List = () => {
-  const { tableQuery, filters } = useTable();
+  const { result, tableQuery, filters } = useTable();
 
   // ...
 
   const filteredData = useMemo(() => {
     if (filters.length === 0) {
-      return tableQuery.data;
+      return result;
     }
 
     // Filters can be a LogicalFilter or a ConditionalFilter. ConditionalFilter not have field property. So we need to filter them.
@@ -621,7 +621,7 @@ const List = () => {
         }
       });
     });
-  }, [tableQuery.data, filters]);
+  }, [result, filters]);
 };
 
 return (
@@ -644,7 +644,7 @@ First, you need to set `sorters.mode: "off"`
 
 ```tsx
 import { useTable } from "@refinedev/core";
-const { tableQuery, sorters, setSorters } = useTable({
+const { result, tableQuery, sorters, setSorters } = useTable({
   sorters: {
     mode: "off",
   },
@@ -657,16 +657,16 @@ Then, you can use the `sorters` state to sort your data.
 // ...
 import { useTable } from "@refinedev/core";
 const List = () => {
-  const { tableQuery, sorters } = useTable();
+  const { result, tableQuery, sorters } = useTable();
 
   // ...
 
   const sortedData = useMemo(() => {
     if (sorters.length === 0) {
-      return tableQuery.data;
+      return result;
     }
 
-    return tableQuery.data.sort((a, b) => {
+    return result.sort((a, b) => {
       const sorter = sorters[0];
 
       if (sorter.order === "asc") {
@@ -675,7 +675,7 @@ const List = () => {
         return a[sorter.field] < b[sorter.field] ? 1 : -1;
       }
     });
-  }, [tableQuery.data, sorters]);
+  }, [result, sorters]);
 
   return (
     <div>

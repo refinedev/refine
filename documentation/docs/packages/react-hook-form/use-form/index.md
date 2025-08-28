@@ -29,17 +29,23 @@ const Layout: React.FC = ({ children }) => {
 };
 
 const PostList: React.FC = () => {
-  const { tableQuery, currentPage, setCurrentPage, pageSize, pageCount } =
-    useTable<IPost>({
-      sorters: {
-        initial: [
-          {
-            field: "id",
-            order: "desc",
-          },
-        ],
-      },
-    });
+  const {
+    result,
+    tableQuery,
+    currentPage,
+    setCurrentPage,
+    pageSize,
+    pageCount,
+  } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    },
+  });
   const { edit, create, clone } = useNavigation();
 
   const hasNext = currentPage < pageCount;
@@ -55,7 +61,7 @@ const PostList: React.FC = () => {
           <td>Actions</td>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result?.data?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
