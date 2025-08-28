@@ -868,8 +868,8 @@ Endowed a due patience, we can see this in action among many others in the `@ref
 ```tsx title="node_modules/@refinedev/antd/src/hooks/table/useTable/useTable.ts"
 const {
   tableQuery,
-  current,
-  setCurrent,
+  currentPage,
+  setCurrentPage,
   pageSize,
   setPageSize,
   filters,
@@ -919,7 +919,7 @@ Then, it's the core `useTable()` hook that is leveraging `useList()` data hook i
 const { result, query } = useList<TData, TError>({
   resource: resourceInUse,
   hasPagination,
-  pagination: { current, pageSize, mode: pagination?.mode },
+  pagination: { currentPage, pageSize, mode: pagination?.mode },
   filters: unionFilters(preferredPermanentFilters, filters),
   sorters: unionSorters(preferredPermanentSorters, sorters),
   queryOptions,
@@ -988,7 +988,7 @@ const { result, query } = useList<TData, TError>({
   sorters: pickNotDeprecated(sorters, sort),
   filters: filters.concat(search),
   pagination: {
-    current: pagination?.current,
+    currentPage: pagination?.currentPage,
     pageSize: pagination?.pageSize ?? fetchSize,
     mode: pagination?.mode,
   },
