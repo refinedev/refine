@@ -266,4 +266,122 @@ describe("use-table-return-type-update", () => {
 
     expect(transform(source).trim()).toBe(expected.trim());
   });
+
+  it("should not transform already transformed code (idempotent)", () => {
+    const source = `
+      import { useTable } from "@refinedev/react-table";
+
+      const MyComponent = () => {
+        const {
+          reactTable: {
+            getHeaderGroups,
+            getRowModel
+          },
+          refineCore
+        } = useTable({
+          columns,
+        });
+
+        return <div>Content</div>;
+      };
+    `;
+
+    const expected = `
+      import { useTable } from "@refinedev/react-table";
+
+      const MyComponent = () => {
+        const {
+          reactTable: {
+            getHeaderGroups,
+            getRowModel
+          },
+          refineCore
+        } = useTable({
+          columns,
+        });
+
+        return <div>Content</div>;
+      };
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should not transform already transformed code with spread (idempotent)", () => {
+    const source = `
+      import { useTable } from "@refinedev/react-table";
+
+      const MyComponent = () => {
+        const {
+          reactTable: {
+            ...reactTableResult
+          },
+          refineCore
+        } = useTable({
+          columns,
+        });
+
+        return <div>Content</div>;
+      };
+    `;
+
+    const expected = `
+      import { useTable } from "@refinedev/react-table";
+
+      const MyComponent = () => {
+        const {
+          reactTable: {
+            ...reactTableResult
+          },
+          refineCore
+        } = useTable({
+          columns,
+        });
+
+        return <div>Content</div>;
+      };
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should not transform already transformed code with mixed properties (idempotent)", () => {
+    const source = `
+      import { useTable } from "@refinedev/react-table";
+
+      const MyComponent = () => {
+        const {
+          reactTable: {
+            getHeaderGroups,
+            ...rest
+          },
+          refineCore: coreResult
+        } = useTable({
+          columns,
+        });
+
+        return <div>Content</div>;
+      };
+    `;
+
+    const expected = `
+      import { useTable } from "@refinedev/react-table";
+
+      const MyComponent = () => {
+        const {
+          reactTable: {
+            getHeaderGroups,
+            ...rest
+          },
+          refineCore: coreResult
+        } = useTable({
+          columns,
+        });
+
+        return <div>Content</div>;
+      };
+    `;
+
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
 });

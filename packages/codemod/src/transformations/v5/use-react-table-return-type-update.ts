@@ -50,6 +50,18 @@ export const useTableReturnTypeUpdate = (
         const objectPattern = node.id;
         const properties = objectPattern.properties;
 
+        // Check if already transformed (has reactTable property)
+        const hasReactTableProperty = properties.some(
+          (prop: any) =>
+            (prop.type === "Property" || prop.type === "ObjectProperty") &&
+            prop.key?.type === "Identifier" &&
+            prop.key.name === "reactTable",
+        );
+
+        if (hasReactTableProperty) {
+          return; // Skip if already transformed
+        }
+
         const reactTableProps: any[] = [];
         const refineCoreProps: any[] = [];
         let spreadElement: any = null;
