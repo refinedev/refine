@@ -271,7 +271,7 @@ export const renderer = ({
                         const ${getVariableName(
                           field.key,
                           "",
-                        )} = meta.${variableName}?.find(
+                        )} = meta.${variableName}?.data?.find(
                             (item) => item.id == getValue<any>(),
                         );
 
