@@ -800,9 +800,11 @@ export const renderer = ({
         ], [${i18n ? "translate" : ""}]);
 
         const {
-            getHeaderGroups,
-            getRowModel,
-            setOptions,
+            reactTable: {
+                getHeaderGroups,
+                getRowModel,
+                setOptions
+            },
             refineCore: {
                 setCurrentPage,
                 pageCount,
