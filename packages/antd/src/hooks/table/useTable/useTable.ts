@@ -93,6 +93,7 @@ export const useTable = <
     createLinkForSyncWithLocation,
     pageCount,
     overtime,
+    result,
   } = useTableCore<TQueryFnData, TError, TData>({
     pagination: paginationFromProp,
     filters: filtersFromProp,
@@ -264,9 +265,6 @@ export const useTable = <
     pageCount,
     createLinkForSyncWithLocation,
     overtime,
-    result: {
-      data: tableQuery.data?.data,
-      total: tableQuery.data?.total,
-    },
+    result,
   };
 };

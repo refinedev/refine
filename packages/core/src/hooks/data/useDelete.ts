@@ -95,6 +95,18 @@ export type UseDeleteReturnType<
     DeleteParams<TData, TError, TVariables>,
     DeleteContext<TData>
   >;
+  mutate: UseMutationResult<
+    DeleteOneResponse<TData>,
+    TError,
+    DeleteParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >["mutate"];
+  mutateAsync: UseMutationResult<
+    DeleteOneResponse<TData>,
+    TError,
+    DeleteParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >["mutateAsync"];
 } & UseLoadingOvertimeReturnType;
 
 export type UseDeleteProps<
@@ -482,5 +494,10 @@ export const useDelete = <
     isLoading: mutation.isPending,
   });
 
-  return { mutation, overtime: { elapsedTime } };
+  return {
+    mutation,
+    mutate: mutation.mutate,
+    mutateAsync: mutation.mutateAsync,
+    overtime: { elapsedTime },
+  };
 };

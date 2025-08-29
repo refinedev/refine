@@ -62,6 +62,18 @@ export type UseCustomMutationReturnType<
     useCustomMutationParams<TData, TError, TVariables>,
     unknown
   >;
+  mutate: UseMutationResult<
+    CreateResponse<TData>,
+    TError,
+    useCustomMutationParams<TData, TError, TVariables>,
+    unknown
+  >["mutate"];
+  mutateAsync: UseMutationResult<
+    CreateResponse<TData>,
+    TError,
+    useCustomMutationParams<TData, TError, TVariables>,
+    unknown
+  >["mutateAsync"];
 } & UseLoadingOvertimeReturnType;
 
 export type UseCustomMutationOptions<
@@ -213,7 +225,8 @@ export const useCustomMutation = <
 
   return {
     mutation: mutationResult,
+    mutate: mutationResult.mutate,
+    mutateAsync: mutationResult.mutateAsync,
     overtime: { elapsedTime },
-  } as UseCustomMutationReturnType<TData, TError, TVariables> &
-    UseLoadingOvertimeReturnType;
+  };
 };

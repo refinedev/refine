@@ -95,6 +95,18 @@ export type UseDeleteManyReturnType<
     DeleteManyParams<TData, TError, TVariables>,
     unknown
   >;
+  mutate: UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    DeleteManyParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >["mutate"];
+  mutateAsync: UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    DeleteManyParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >["mutateAsync"];
 } & UseLoadingOvertimeReturnType;
 
 export type UseDeleteManyProps<
@@ -513,6 +525,8 @@ export const useDeleteMany = <
 
   return {
     mutation,
+    mutate: mutation.mutate,
+    mutateAsync: mutation.mutateAsync,
     overtime: { elapsedTime },
   };
 };

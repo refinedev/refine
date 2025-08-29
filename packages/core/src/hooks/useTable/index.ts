@@ -156,7 +156,7 @@ export type useTableReturnType<
   setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
   pageCount: number;
   result: {
-    data: TData[] | undefined;
+    data: TData[];
     total: number | undefined;
   };
 } & UseLoadingOvertimeReturnType;
@@ -432,7 +432,7 @@ export function useTable<
     createLinkForSyncWithLocation,
     overtime: queryResult.overtime,
     result: {
-      data: queryResult.result?.data,
+      data: queryResult.result?.data || [],
       total: queryResult.result?.total,
     },
   };

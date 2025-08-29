@@ -110,7 +110,7 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
 export type UseCustomReturnType<TData, TError> = {
   query: QueryObserverResult<CustomResponse<TData>, TError>;
   result: {
-    data: CustomResponse<TData>["data"] | undefined;
+    data: CustomResponse<TData>["data"];
   };
 } & UseLoadingOvertimeReturnType;
 
@@ -231,7 +231,7 @@ export const useCustom = <
     return {
       query: queryResponse,
       result: {
-        data: queryResponse.data?.data,
+        data: queryResponse.data?.data || ({} as TData),
       },
       overtime: { elapsedTime },
     };

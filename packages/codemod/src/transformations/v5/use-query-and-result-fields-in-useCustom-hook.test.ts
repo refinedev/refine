@@ -19,11 +19,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
     `;
     const expected = `
       import { useCustom } from "@refinedev/core";
-      const {
-        result: {
-          data
-        }
-      } = useCustom({
+      const { result: data } = useCustom({
         url: "remoteUrl",
         method: "get",
       });
@@ -41,11 +37,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
     `;
     const expected = `
       import { useCustom } from "@refinedev/core";
-      const {
-        result: {
-          data: customData
-        }
-      } = useCustom({
+      const { result: customData } = useCustom({
         url: "remoteUrl",
         method: "get",
       });
@@ -69,9 +61,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
           isLoading
         },
 
-        result: {
-          data
-        }
+        result: data
       } = useCustom({
         url: "remoteUrl",
         method: "get",
@@ -100,9 +90,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
           isError
         },
 
-        result: {
-          data
-        }
+        result: data
       } = useCustom({
         url: "remoteUrl",
         method: "get",
@@ -144,10 +132,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
           fetchStatus
         },
 
-        result: {
-          data
-        },
-
+        result: data,
         failureCount
       } = useCustom({
         url: "remoteUrl",
@@ -175,9 +160,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
           error: err
         },
 
-        result: {
-          data: customData
-        }
+        result: customData
       } = useCustom({
         url: "remoteUrl",
         method: "get",
@@ -207,10 +190,7 @@ describe("use-query-and-result-fields-in-useCustom-hook", () => {
           isLoading
         },
 
-        result: {
-          data
-        },
-
+        result: data,
         overtime
       } = useCustom({
         url: "remoteUrl",

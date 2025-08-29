@@ -81,6 +81,7 @@ export const useSimpleList = <
     createLinkForSyncWithLocation,
     tableQuery,
     overtime,
+    result,
   } = useTableCore({
     resource,
     pagination: paginationFromProp,
@@ -198,9 +199,6 @@ export const useSimpleList = <
     pageCount,
     createLinkForSyncWithLocation,
     overtime,
-    result: {
-      data: tableQuery.data?.data,
-      total: tableQuery.data?.total || 0,
-    },
+    result,
   };
 };

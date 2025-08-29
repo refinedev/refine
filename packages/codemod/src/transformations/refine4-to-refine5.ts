@@ -10,6 +10,8 @@ import { renamePaginationCurrentToCurrentPage } from "./v5/rename-pagination-cur
 import { useQueryAndResultFieldsInListHooks } from "./v5/use-query-and-result-fields-in-list-hooks";
 import { useQueryAndResultFieldsInUseOneHook } from "./v5/use-query-and-result-fields-in-useOne-hook";
 import { mutationResultToMutationProperty } from "./v5/mutation-result-to-mutation-property";
+import useQueryAndResultFieldsInUseInfiniteListHook from "./v5/use-query-and-result-fields-in-useInfiniteList-hook";
+import { useQueryAndResultFieldsInUseCustomHook } from "./v5/use-query-and-result-fields-in-useCustom-hook";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -24,6 +26,8 @@ export default function transformer(file: FileInfo, api: API): string {
   renamePaginationCurrentToCurrentPage(j, source);
   useQueryAndResultFieldsInListHooks(j, source);
   useQueryAndResultFieldsInUseOneHook(j, source);
+  useQueryAndResultFieldsInUseInfiniteListHook(j, source);
+  useQueryAndResultFieldsInUseCustomHook(j, source);
   mutationResultToMutationProperty(j, source);
 
   return source.toSource();
