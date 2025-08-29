@@ -15,6 +15,7 @@ import { useQueryAndResultFieldsInUseOneHook } from "./v5/use-query-and-result-f
 import { mutationResultToMutationProperty } from "./v5/mutation-result-to-mutation-property";
 import useQueryAndResultFieldsInUseInfiniteListHook from "./v5/use-query-and-result-fields-in-useInfiniteList-hook";
 import { useQueryAndResultFieldsInUseCustomHook } from "./v5/use-query-and-result-fields-in-useCustom-hook";
+import { useTableReturnTypeUpdate } from "./v5/use-react-table-return-type-update";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -34,6 +35,7 @@ export default function transformer(file: FileInfo, api: API): string {
   useQueryAndResultFieldsInUseOneHook(j, source);
   useQueryAndResultFieldsInUseInfiniteListHook(j, source);
   useQueryAndResultFieldsInUseCustomHook(j, source);
+  useTableReturnTypeUpdate(j, source);
   mutationResultToMutationProperty(j, source);
 
   return source.toSource();

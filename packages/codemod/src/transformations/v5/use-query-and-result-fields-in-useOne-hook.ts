@@ -137,6 +137,6 @@ export default function transformer(
 
   return root.toSource({
     quote: "double",
-    trailingComma: true,
+    trailingComma: false,
   });
 }
