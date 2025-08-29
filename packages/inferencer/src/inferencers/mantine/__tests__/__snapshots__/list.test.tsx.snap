@@ -7993,7 +7993,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 data
+                 result
               </span>
               <span
                 class="token operator"
@@ -8419,7 +8419,7 @@ exports[`MantineListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 data
+                 result
               </span>
               <span
                 class="token operator"

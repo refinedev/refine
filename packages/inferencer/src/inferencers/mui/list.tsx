@@ -106,10 +106,10 @@ export const renderer = ({
         }
 
         return `
-                const { data: ${getVariableName(
-                  field.key,
-                  "Data",
-                )}, isLoading: ${getVariableName(field.key, "IsLoading")} } =
+                const {
+                  result: ${getVariableName(field.key, "Data")},
+                  query: { isLoading: ${getVariableName(field.key, "IsLoading")} },
+                } =
                 useMany({
                     resource: "${field.resource.name}",
                     ids: ${idsString},

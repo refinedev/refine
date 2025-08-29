@@ -2,509 +2,61 @@
 
 exports[`ChakraListInferencer should match the snapshot 1`] = `
 <DocumentFragment>
-  <div>
+  <div />
+  <div
+    class="css-gmuwbf"
+    style="min-height: 300px;"
+  >
     <div
-      class="css-1kekcgk"
+      class="chakra-alert css-y0lf9d"
+      data-status="error"
+      role="alert"
     >
-      <div
-        class="css-15izviv"
+      <span
+        class="chakra-alert__icon css-nx3xxu"
+        data-status="error"
       >
-        <div
-          class="css-gqssyb"
+        <svg
+          class="chakra-icon css-qk6lof"
+          focusable="false"
+          viewBox="0 0 24 24"
         >
-          <h3
-            class="chakra-heading refine-pageHeader-title css-0"
-          >
-            Posts
-          </h3>
-        </div>
-        <div
-          class="css-i08qke"
-        >
-          <a
-            href="/posts/create"
-          >
-            <button
-              class="chakra-button refine-create-button css-4xx2wk"
-              title=""
-              type="button"
-            >
-              <span
-                class="chakra-button__icon css-1wh2kri"
-              >
-                <svg
-                  aria-hidden="true"
-                  class="tabler-icon tabler-icon-square-plus "
-                  fill="none"
-                  focusable="false"
-                  height="20"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  width="20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9 12h6"
-                  />
-                  <path
-                    d="M12 9v6"
-                  />
-                  <path
-                    d="M3 5a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v14a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-14z"
-                  />
-                </svg>
-              </span>
-              Create
-            </button>
-          </a>
-        </div>
-      </div>
+          <path
+            d="M11.983,0a12.206,12.206,0,0,0-8.51,3.653A11.8,11.8,0,0,0,0,12.207,11.779,11.779,0,0,0,11.8,24h.214A12.111,12.111,0,0,0,24,11.791h0A11.766,11.766,0,0,0,11.983,0ZM10.5,16.542a1.476,1.476,0,0,1,1.449-1.53h.027a1.527,1.527,0,0,1,1.523,1.47,1.475,1.475,0,0,1-1.449,1.53h-.027A1.529,1.529,0,0,1,10.5,16.542ZM11,12.5v-6a1,1,0,0,1,2,0v6a1,1,0,1,1-2,0Z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
       <div
-        class="css-0"
+        class="chakra-alert__desc css-17qkylu"
+        data-status="error"
       >
-        <div
-          class="chakra-table__container css-1rcznqn"
-        >
-          <table
-            class="chakra-table css-0"
-          >
-            <thead
-              class="css-0"
+        <div>
+          <p>
+            An error occured while rendering the generated component.You can check the generated code from the below "Show Code" button and fix the error manually.
+          </p>
+          
+                                    
+          <p>
+            If you think this is a bug, please report the issue at 
+            <a
+              href="https://github.com/refinedev/refine/issues"
+              rel="noopener noreferrer"
+              target="_blank"
             >
-              <tr
-                class="css-0"
-              >
-                <th
-                  class="css-0"
-                >
-                  Id
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Title
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Slug
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Content
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Hit
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Category
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Status
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Status Color
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Created At
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Published At
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Image
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Tags
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Language
-                </th>
-                <th
-                  class="css-0"
-                >
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody
-              class="css-0"
-            >
-              <tr
-                class="css-0"
-              >
-                <td
-                  class="css-0"
-                >
-                  11
-                </td>
-                <td
-                  class="css-0"
-                >
-                  Nobis exercitationem officia quia est.
-                </td>
-                <td
-                  class="css-0"
-                >
-                  provident-culpa-facere
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <p>
-                    Non velit blanditiis optio quo quaerat nam aperiam. Odit tempore consequatur vol...
-                  </p>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  920557
-                </td>
-                <td
-                  class="css-0"
-                >
-                  Numquam Saepe Illo
-                </td>
-                <td
-                  class="css-0"
-                >
-                  draft
-                </td>
-                <td
-                  class="css-0"
-                >
-                  orange
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <p
-                    class="chakra-text css-0"
-                  >
-                    04/02/2022
-                  </p>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <p
-                    class="chakra-text css-0"
-                  >
-                    08/10/2021
-                  </p>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <div
-                    class="chakra-stack css-1igwmid"
-                  >
-                    <img
-                      class="chakra-image css-1cooswl"
-                      src="http://loremflickr.com/640/480/abstract"
-                    />
-                  </div>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <div
-                    class="chakra-stack css-1igwmid"
-                  >
-                    <span
-                      class="css-1qm7lvz"
-                    >
-                      Nobis Et Ut
-                    </span>
-                  </div>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  2
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <div
-                    class="chakra-stack css-1igwmid"
-                  >
-                    <a
-                      href="/posts/show/11"
-                    >
-                      <button
-                        aria-label="Show"
-                        class="chakra-button refine-show-button css-p7mkev"
-                        title=""
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="tabler-icon tabler-icon-eye "
-                          fill="none"
-                          focusable="false"
-                          height="20"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"
-                          />
-                          <path
-                            d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
-                          />
-                        </svg>
-                      </button>
-                    </a>
-                    <a
-                      href="/posts/edit/11"
-                    >
-                      <button
-                        aria-label="Edit"
-                        class="chakra-button refine-edit-button css-p7mkev"
-                        title=""
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="tabler-icon tabler-icon-pencil "
-                          fill="none"
-                          focusable="false"
-                          height="20"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"
-                          />
-                          <path
-                            d="M13.5 6.5l4 4"
-                          />
-                        </svg>
-                      </button>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-              <tr
-                class="css-0"
-              >
-                <td
-                  class="css-0"
-                >
-                  21
-                </td>
-                <td
-                  class="css-0"
-                >
-                  Eaque in nesciunt.
-                </td>
-                <td
-                  class="css-0"
-                >
-                  quod-quos-commodi
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <p>
-                    Ut velit quo. Sed beatae et sit ea. Perferendis pariatur doloremque deleniti sap...
-                  </p>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  175149
-                </td>
-                <td
-                  class="css-0"
-                >
-                  Sit Natus Voluptatibus
-                </td>
-                <td
-                  class="css-0"
-                >
-                  published
-                </td>
-                <td
-                  class="css-0"
-                >
-                  lime
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <p
-                    class="chakra-text css-0"
-                  >
-                    09/24/2022
-                  </p>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <p
-                    class="chakra-text css-0"
-                  >
-                    09/01/2021
-                  </p>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <div
-                    class="chakra-stack css-1igwmid"
-                  >
-                    <img
-                      class="chakra-image css-1cooswl"
-                      src="http://loremflickr.com/640/480/abstract"
-                    />
-                  </div>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <div
-                    class="chakra-stack css-1igwmid"
-                  >
-                    <span
-                      class="css-1qm7lvz"
-                    >
-                      Error Eos Et
-                    </span>
-                    <span
-                      class="css-1qm7lvz"
-                    >
-                      Nobis Et Ut
-                    </span>
-                  </div>
-                </td>
-                <td
-                  class="css-0"
-                >
-                  2
-                </td>
-                <td
-                  class="css-0"
-                >
-                  <div
-                    class="chakra-stack css-1igwmid"
-                  >
-                    <a
-                      href="/posts/show/21"
-                    >
-                      <button
-                        aria-label="Show"
-                        class="chakra-button refine-show-button css-p7mkev"
-                        title=""
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="tabler-icon tabler-icon-eye "
-                          fill="none"
-                          focusable="false"
-                          height="20"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"
-                          />
-                          <path
-                            d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
-                          />
-                        </svg>
-                      </button>
-                    </a>
-                    <a
-                      href="/posts/edit/21"
-                    >
-                      <button
-                        aria-label="Edit"
-                        class="chakra-button refine-edit-button css-p7mkev"
-                        title=""
-                        type="button"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="tabler-icon tabler-icon-pencil "
-                          fill="none"
-                          focusable="false"
-                          height="20"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2"
-                          viewBox="0 0 24 24"
-                          width="20"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4"
-                          />
-                          <path
-                            d="M13.5 6.5l4 4"
-                          />
-                        </svg>
-                      </button>
-                    </a>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div
-          class="css-1bvc4cc"
-        >
-          <div
-            class="chakra-stack css-cfcsvg"
-          >
-            <button
-              class="chakra-button css-4xx2wk"
-              type="button"
-            >
-              1
-            </button>
-          </div>
+              https://github.com/refinedev/refine/issues
+            </a>
+          </p>
+          
+                                    
+          <p>
+            Exception:
+          </p>
+          
+                                    
+          <code>
+            TypeError: Cannot read properties of undefined (reading 'call')
+          </code>
         </div>
       </div>
     </div>
@@ -3394,17 +2946,6 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
                 class="token property-access"
               >
                 categoryData
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ?.
-              </span>
-              <span
-                class="token plain"
-              >
-                data
               </span>
               <span
                 class="token operator"
@@ -8220,7 +7761,7 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 data
+                 result
               </span>
               <span
                 class="token operator"
@@ -8646,7 +8187,7 @@ exports[`ChakraListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                 data
+                 result
               </span>
               <span
                 class="token operator"

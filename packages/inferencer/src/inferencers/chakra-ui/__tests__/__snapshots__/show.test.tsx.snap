@@ -291,20 +291,16 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
         >
           Tags
         </h5>
-        <div
-          class="chakra-stack css-qlxuh7"
+        <span
+          class="css-1qm7lvz"
         >
-          <span
-            class="css-1qm7lvz"
-          >
-            Error Eos Et
-          </span>
-          <span
-            class="css-1qm7lvz"
-          >
-            Nobis Et Ut
-          </span>
-        </div>
+          Error Eos Et
+        </span>
+        <span
+          class="css-1qm7lvz"
+        >
+          Nobis Et Ut
+        </span>
         <h5
           class="chakra-heading css-1fhgjcy"
         >
@@ -983,8 +979,93 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 query 
+                        result
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 record
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                        query
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              >
+                 isLoading 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                    
               </span>
               <span
                 class="token punctuation"
@@ -1042,144 +1123,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
             >
               <span
                 class="token plain"
-              >
-                    
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                const
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token plain"
-              >
-                 data
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              >
-                 isLoading 
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain"
-              >
-                 
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token plain"
-              >
-                 query
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-                style="display: inline-block;"
-              >
-                
-
-              </span>
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                    
-              </span>
-              <span
-                class="token keyword"
-                style="color: rgb(86, 156, 214);"
-              >
-                const
-              </span>
-              <span
-                class="token plain"
-              >
-                 record 
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token plain"
-              >
-                 data
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ?.
-              </span>
-              <span
-                class="token plain"
-              >
-                data
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
                 style="display: inline-block;"
               >
                 
@@ -1214,8 +1157,16 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 data
+                        result
               </span>
               <span
                 class="token operator"
@@ -1236,6 +1187,36 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                        query
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
               >
                  isLoading
               </span>
@@ -1249,6 +1230,31 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                 class="token plain"
               >
                  categoryIsLoading 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                    
               </span>
               <span
                 class="token punctuation"
@@ -1572,8 +1578,16 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
               >
-                 data
+                        result
               </span>
               <span
                 class="token operator"
@@ -1594,6 +1608,36 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                        query
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
               >
                  isLoading
               </span>
@@ -1607,6 +1651,31 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                 class="token plain"
               >
                  tagsIsLoading 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                    
               </span>
               <span
                 class="token punctuation"
@@ -3617,25 +3686,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                  
               </span>
               <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
-              </span>
-              <span
                 class="token tag punctuation"
                 style="color: rgb(212, 212, 212);"
               >
@@ -3666,25 +3716,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                            
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token plain"
               >
                  
               </span>
@@ -3698,25 +3729,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                 class="token plain"
               >
                  
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                (
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                                
               </span>
               <span
                 class="token tag punctuation"
@@ -3750,17 +3762,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                data
-              </span>
-              <span
-                class="token operator"
-                style="color: rgb(212, 212, 212);"
-              >
-                ?.
-              </span>
-              <span
-                class="token plain"
-              >
                 title
               </span>
               <span
@@ -3780,25 +3781,6 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 &gt;
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                            
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
               </span>
               <span
                 class="token punctuation"
@@ -6182,85 +6164,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                        
-              </span>
-              <span
-                class="token tag punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                &lt;
-              </span>
-              <span
-                class="token tag class-name"
-                style="color: rgb(78, 201, 176);"
-              >
-                HStack
-              </span>
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
-              >
-                 
-              </span>
-              <span
-                class="token tag attr-name"
-                style="color: rgb(156, 220, 254);"
-              >
-                spacing
-              </span>
-              <span
-                class="token tag attr-value punctuation attr-equals"
-                style="color: rgb(212, 212, 212);"
-              >
-                =
-              </span>
-              <span
-                class="token tag attr-value punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                "
-              </span>
-              <span
-                class="token tag attr-value"
-                style="color: rgb(206, 145, 120);"
-              >
-                12px
-              </span>
-              <span
-                class="token tag attr-value punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                "
-              </span>
-              <span
-                class="token tag punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                &gt;
-              </span>
-              <span
-                class="token plain-text"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain-text"
-              >
-                                            
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                {
-              </span>
-              <span
-                class="token plain"
-              >
-                tagsData
+                                        tagsData
               </span>
               <span
                 class="token operator"
@@ -6358,7 +6262,7 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                                
+                                            
               </span>
               <span
                 class="token tag punctuation"
@@ -6375,17 +6279,8 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
               >
-                                                    
+                 
               </span>
               <span
                 class="token tag attr-name"
@@ -6432,17 +6327,8 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
               >
-                                                    
+                 
               </span>
               <span
                 class="token tag attr-name"
@@ -6489,17 +6375,8 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token tag"
                 style="color: rgb(78, 201, 176);"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token tag"
-                style="color: rgb(78, 201, 176);"
               >
-                                                
+                 
               </span>
               <span
                 class="token tag punctuation"
@@ -6518,56 +6395,19 @@ exports[`ChakraShowInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                                            
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                )
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                }
-              </span>
-              <span
-                class="token plain-text"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain-text"
-              >
                                         
               </span>
               <span
-                class="token tag punctuation"
+                class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                &lt;/
+                )
               </span>
               <span
-                class="token tag class-name"
-                style="color: rgb(78, 201, 176);"
-              >
-                HStack
-              </span>
-              <span
-                class="token tag punctuation"
+                class="token punctuation"
                 style="color: rgb(212, 212, 212);"
               >
-                &gt;
+                )
               </span>
               <span
                 class="token plain"
