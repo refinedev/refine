@@ -1,7 +1,7 @@
 import { Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
   NavigateToResource,
@@ -33,7 +33,7 @@ function App() {
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             resources={[
               {
                 name: "posts",

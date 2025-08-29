@@ -2,7 +2,7 @@ import type {
   Action,
   IResourceItem,
   ParsedParams,
-  RouterBindings,
+  RouterProvider,
 } from "@refinedev/core";
 
 export const posts = [
@@ -72,9 +72,9 @@ export const MockRouterProvider = ({
   resource?: IResourceItem;
   action?: Action;
   id?: string;
-  fns?: Partial<RouterBindings>;
-} = {}): RouterBindings => {
-  const bindings: RouterBindings = {
+  fns?: Partial<RouterProvider>;
+} = {}): RouterProvider => {
+  const bindings: RouterProvider = {
     go: () => {
       return ({ type }) => {
         if (type === "path") return "";

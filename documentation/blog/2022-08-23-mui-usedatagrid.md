@@ -272,7 +272,7 @@ import {
   useNotificationProvider,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -299,7 +299,7 @@ function App() {
                 "https://my-json-server.typicode.com/Mich45/employee-data",
               )}
               notificationProvider={useNotificationProvider}
-              routerProvider={routerBindings}
+              routerProvider={routerProvider}
               resources={[
                 {
                   name: "employees",

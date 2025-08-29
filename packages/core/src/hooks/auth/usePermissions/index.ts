@@ -5,7 +5,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useKeys } from "@hooks/useKeys";
 import type { PermissionResponse } from "../../../contexts/auth/types";
 
@@ -34,7 +34,7 @@ export function usePermissions<
   options,
   params,
 }: UsePermissionsProps<TData, TParams>): UsePermissionsReturnType<TData> {
-  const { getPermissions } = useAuthBindingsContext();
+  const { getPermissions } = useAuthProviderContext();
   const { keys } = useKeys();
 
   const queryResponse = useQuery<TData>({

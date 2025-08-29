@@ -8,7 +8,7 @@ import type { AccessControlProvider } from "@refinedev/core";
 
 import {
   type ITestWrapperProps,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
 } from "@test";
@@ -27,7 +27,7 @@ const renderShow = (
         routerInitialEntries: ["/posts/show/1"],
         accessControlProvider,
         routerProvider: {
-          ...mockRouterBindings(),
+          ...mockRouterProvider(),
           parse: () => () => ({
             params: {},
             id: 1,

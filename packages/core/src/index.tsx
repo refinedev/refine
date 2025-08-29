@@ -185,7 +185,6 @@ export {
   ParsedParams,
   ParseFunction,
   RouterProvider,
-  RouterProvider as RouterBindings,
 } from "./contexts/router/types.js";
 
 export {

@@ -10,7 +10,7 @@ import {
   render,
   TestWrapper,
   waitFor,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 import "@refinedev/core";

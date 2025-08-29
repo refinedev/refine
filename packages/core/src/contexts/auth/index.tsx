@@ -2,16 +2,16 @@ import React, { type PropsWithChildren } from "react";
 
 import type { IAuthContext } from "./types";
 
-export const AuthBindingsContext = React.createContext<Partial<IAuthContext>>(
+export const AuthProviderContext = React.createContext<Partial<IAuthContext>>(
   {},
 );
 
-export const AuthBindingsContextProvider: React.FC<
+export const AuthProviderContextProvider: React.FC<
   PropsWithChildren<IAuthContext>
-> = ({ children, isProvided, ...authBindings }) => {
+> = ({ children, isProvided, ...authProvider }) => {
   const handleLogin = async (params: unknown) => {
     try {
-      const result = await authBindings.login?.(params);
+      const result = await authProvider.login?.(params);
 
       return result;
     } catch (error) {
@@ -25,7 +25,7 @@ export const AuthBindingsContextProvider: React.FC<
 
   const handleRegister = async (params: unknown) => {
     try {
-      const result = await authBindings.register?.(params);
+      const result = await authProvider.register?.(params);
 
       return result;
     } catch (error) {
@@ -39,7 +39,7 @@ export const AuthBindingsContextProvider: React.FC<
 
   const handleLogout = async (params: unknown) => {
     try {
-      const result = await authBindings.logout?.(params);
+      const result = await authProvider.logout?.(params);
 
       return result;
     } catch (error) {
@@ -53,7 +53,7 @@ export const AuthBindingsContextProvider: React.FC<
 
   const handleCheck = async (params: unknown) => {
     try {
-      const result = await authBindings.check?.(params);
+      const result = await authProvider.check?.(params);
 
       return Promise.resolve(result);
     } catch (error) {
@@ -67,7 +67,7 @@ export const AuthBindingsContextProvider: React.FC<
 
   const handleForgotPassword = async (params: unknown) => {
     try {
-      const result = await authBindings.forgotPassword?.(params);
+      const result = await authProvider.forgotPassword?.(params);
 
       return Promise.resolve(result);
     } catch (error) {
@@ -81,7 +81,7 @@ export const AuthBindingsContextProvider: React.FC<
 
   const handleUpdatePassword = async (params: unknown) => {
     try {
-      const result = await authBindings.updatePassword?.(params);
+      const result = await authProvider.updatePassword?.(params);
       return Promise.resolve(result);
     } catch (error) {
       console.warn(
@@ -93,9 +93,9 @@ export const AuthBindingsContextProvider: React.FC<
   };
 
   return (
-    <AuthBindingsContext.Provider
+    <AuthProviderContext.Provider
       value={{
-        ...authBindings,
+        ...authProvider,
         login: handleLogin as IAuthContext["login"],
         logout: handleLogout as IAuthContext["logout"],
         check: handleCheck as IAuthContext["check"],
@@ -106,12 +106,12 @@ export const AuthBindingsContextProvider: React.FC<
       }}
     >
       {children}
-    </AuthBindingsContext.Provider>
+    </AuthProviderContext.Provider>
   );
 };
 
-export const useAuthBindingsContext = () => {
-  const context = React.useContext(AuthBindingsContext);
+export const useAuthProviderContext = () => {
+  const context = React.useContext(AuthProviderContext);
 
   return context;
 };

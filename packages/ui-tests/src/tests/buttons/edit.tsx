@@ -4,14 +4,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import {
-  act,
-  fireEvent,
-  render,
-  TestWrapper,
-  waitFor,
-  mockRouterBindings,
-} from "@test";
+import { act, fireEvent, render, TestWrapper, waitFor } from "@test";
 import { Route, Routes } from "react-router";
 
 export const buttonEditTests = (

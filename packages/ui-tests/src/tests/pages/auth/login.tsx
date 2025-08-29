@@ -3,7 +3,7 @@ import React, { type FC } from "react";
 import {
   fireEvent,
   mockAuthProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -287,7 +287,7 @@ export const pageLoginTests = (
 
       const { getByText } = render(<LoginPage />, {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({}),
+          routerProvider: mockRouterProvider({}),
         }),
       });
 

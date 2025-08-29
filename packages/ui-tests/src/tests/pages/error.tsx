@@ -3,7 +3,7 @@ import type { RefineErrorPageProps } from "@refinedev/ui-types";
 
 import {
   fireEvent,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -26,7 +26,7 @@ export const pageErrorTests = (
 
       const { getByText } = render(<ErrorPage />, {
         wrapper: TestWrapper({
-          routerProvider: mockRouterBindings({
+          routerProvider: mockRouterProvider({
             fns: {
               go: () => goMock,
             },

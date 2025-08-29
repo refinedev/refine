@@ -7,7 +7,7 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useGo, useKeys, useNotification, useParsed } from "@hooks";
 
 import type {
@@ -54,7 +54,7 @@ export function useLogin<TVariables = {}>({
   const parsed = useParsed();
 
   const { close, open } = useNotification();
-  const { login: loginFromContext } = useAuthBindingsContext();
+  const { login: loginFromContext } = useAuthProviderContext();
   const { keys } = useKeys();
 
   const to = parsed.params?.to;

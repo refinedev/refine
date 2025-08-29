@@ -1,7 +1,7 @@
 import { getXRay } from "@refinedev/devtools-internal";
 import { type UseMutationResult, useMutation } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useGo, useLogout } from "@hooks";
 import { useKeys } from "@hooks/useKeys";
 
@@ -23,7 +23,7 @@ export type UseOnErrorReturnType = UseMutationResult<
 export function useOnError(): UseOnErrorReturnType {
   const go = useGo();
 
-  const { onError: onErrorFromContext } = useAuthBindingsContext();
+  const { onError: onErrorFromContext } = useAuthProviderContext();
 
   const { keys } = useKeys();
 

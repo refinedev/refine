@@ -10,7 +10,7 @@ import {
   TestWrapper,
   fireEvent,
   waitFor,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 
@@ -443,7 +443,7 @@ export const buttonCreateTests = (
               { name: "posts", list: "/posts", create: "/posts/create" },
             ],
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   params: {},

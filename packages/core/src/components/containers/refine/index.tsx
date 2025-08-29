@@ -14,7 +14,7 @@ import { useDeepMemo } from "@hooks/deepMemo";
 
 import { AccessControlContextProvider } from "../../../contexts/accessControl";
 import { AuditLogContextProvider } from "../../../contexts/auditLog";
-import { AuthBindingsContextProvider } from "../../../contexts/auth";
+import { AuthProviderContextProvider } from "../../../contexts/auth";
 import { DataContextProvider } from "../../../contexts/data";
 import { I18nContextProvider } from "../../../contexts/i18n";
 import { LiveContextProvider } from "../../../contexts/live";
@@ -94,7 +94,7 @@ export const Refine: React.FC<RefineProps> = ({
   return (
     <QueryClientProvider client={queryClient}>
       <NotificationContextProvider {...notificationProviderContextValues}>
-        <AuthBindingsContextProvider
+        <AuthProviderContextProvider
           {...(authProvider ?? {})}
           isProvided={Boolean(authProvider)}
         >
@@ -139,7 +139,7 @@ export const Refine: React.FC<RefineProps> = ({
               </RouterContextProvider>
             </LiveContextProvider>
           </DataContextProvider>
-        </AuthBindingsContextProvider>
+        </AuthProviderContextProvider>
       </NotificationContextProvider>
     </QueryClientProvider>
   );

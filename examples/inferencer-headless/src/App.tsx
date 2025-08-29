@@ -6,7 +6,7 @@ import {
 } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
@@ -49,7 +49,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           authProvider={authProvider}
           i18nProvider={i18nProvider}
           resources={[
