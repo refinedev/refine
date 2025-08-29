@@ -3,7 +3,7 @@ import {
   useTranslate,
   useUserFriendlyName,
   useRefineContext,
-  useResource,
+  useResourceParams,
 } from "@refinedev/core";
 
 import { Box, Heading } from "@chakra-ui/react";
@@ -33,7 +33,9 @@ export const List: React.FC<ListProps> = (props) => {
 
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const isCreateButtonVisible =
     canCreate ?? (!!resource?.create || createButtonPropsFromProps);

@@ -105,7 +105,6 @@ describe("useMenu Hook", () => {
             name: "posts",
             meta: {
               parent: "CMS",
-              route: "asdasd",
             },
           },
         }),
@@ -115,22 +114,22 @@ describe("useMenu Hook", () => {
           },
           {
             name: "posts",
+            list: "/posts",
             meta: {
               parent: "CMS",
-              route: "asdasd",
             },
           },
           {
             name: "categories",
+            list: "categories",
             meta: { parent: "CMS" },
           },
           {
             name: "posts",
+            identifier: "categories-posts",
             meta: {
               parent: "categories",
-              label: "else-new",
-              route: "else-new",
-              canDelete: true,
+              label: "Posts by category",
             },
           },
         ],
@@ -146,16 +145,12 @@ describe("useMenu Hook", () => {
     const { result } = renderHook(() => useMenu(), {
       wrapper: TestWrapper({
         routerProvider: mockRouterProvider({
-          pathname: "/CMS/categories/else-new",
+          pathname: "/CMS/categories/posts",
           resource: {
-            name: "posts",
+            name: "categories-posts",
             meta: {
-              parent: "categories",
-              label: "else-new",
-              route: "else-new",
-              canDelete: true,
+              parent: "CMS",
             },
-            list: "/posts",
           },
         }),
         resources: [
@@ -164,24 +159,24 @@ describe("useMenu Hook", () => {
           },
           {
             name: "posts",
+            list: "/posts",
             meta: {
               parent: "CMS",
-              route: "asdasd",
             },
           },
           {
             name: "categories",
+            list: "categories",
             meta: { parent: "CMS" },
           },
           {
-            name: "posts",
+            name: "categories-posts",
+            list: "/posts",
+            identifier: "posts",
             meta: {
               parent: "categories",
-              label: "else-new",
-              route: "else-new",
-              canDelete: true,
+              label: "Posts by category",
             },
-            list: "/posts",
           },
         ],
       }),

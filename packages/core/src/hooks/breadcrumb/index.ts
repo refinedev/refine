@@ -5,12 +5,7 @@ import warnOnce from "warn-once";
 import { I18nContext } from "@contexts/i18n";
 import { getActionRoutesFromResource } from "@definitions/helpers/router";
 import { composeRoute } from "@definitions/helpers/router/compose-route";
-import {
-  useRefineContext,
-  useResource,
-  useResourceParams,
-  useTranslate,
-} from "@hooks";
+import { useRefineContext, useResourceParams, useTranslate } from "@hooks";
 import { useParsed } from "@hooks/router/use-parsed";
 
 import type { IResourceItem } from "../../contexts/resource/types";
@@ -39,8 +34,7 @@ export const useBreadcrumb = ({
   const { i18nProvider } = useContext(I18nContext);
   const parsed = useParsed();
   const translate = useTranslate();
-  const { resources } = useResource();
-  const { action, resource } = useResourceParams();
+  const { action, resource, resources } = useResourceParams();
   const {
     options: { textTransformers },
   } = useRefineContext();

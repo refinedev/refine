@@ -13,7 +13,7 @@ import {
   useKeys,
   useMeta,
   useOnError,
-  useResource,
+  useResourceParams,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
@@ -118,7 +118,9 @@ export const useOne = <
   TError
 > &
   UseLoadingOvertimeReturnType => {
-  const { resources, resource, identifier } = useResource(resourceFromProp);
+  const { resources, resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();

@@ -4,7 +4,7 @@ import chunk from "lodash/chunk";
 import papaparse from "papaparse";
 
 import { importCSVMapper, sequentialPromises } from "@definitions";
-import { useCreate, useCreateMany, useMeta, useResource } from "@hooks";
+import { useCreate, useCreateMany, useMeta, useResourceParams } from "@hooks";
 
 import type {
   BaseRecord,
@@ -143,7 +143,9 @@ export const useImport = <
   const [totalAmount, setTotalAmount] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const getMeta = useMeta();
 

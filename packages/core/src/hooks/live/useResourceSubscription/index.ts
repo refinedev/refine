@@ -3,7 +3,7 @@ import { useContext, useEffect } from "react";
 import { LiveContext } from "@contexts/live";
 import { RefineContext } from "@contexts/refine";
 import { useInvalidate } from "@hooks/invalidate";
-import { useResource } from "@hooks/resource";
+import { useResourceParams } from "@hooks";
 
 import type {
   BaseKey,
@@ -43,7 +43,9 @@ export const useResourceSubscription = ({
   onLiveEvent,
   meta,
 }: UseResourceSubscriptionProps): void => {
-  const { resource, identifier } = useResource(resourceFromProp);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
 
   const { liveProvider } = useContext(LiveContext);
   const {

@@ -19,7 +19,7 @@ import {
   useOnError,
   usePublish,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useTranslate,
 } from "@hooks";
 
@@ -149,7 +149,7 @@ export const useDeleteMany = <
   const handleNotification = useHandleNotification();
   const invalidateStore = useInvalidate();
   const { log } = useLog();
-  const { resources, select } = useResource();
+  const { resources, select } = useResourceParams();
   const queryClient = useQueryClient();
   const getMeta = useMeta();
   const {

@@ -7,7 +7,7 @@ import {
   useGo,
   useModal,
   useParsed,
-  useResource,
+  useResourceParams,
   useUserFriendlyName,
   useTranslate,
   useWarnAboutChange,
@@ -127,7 +127,9 @@ export const useModalForm = <
     autoResetFormWhenClose = true,
   } = modalProps ?? {};
 
-  const { resource, identifier } = useResource(resourceProp);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceProp,
+  });
 
   const parsed = useParsed();
   const go = useGo();

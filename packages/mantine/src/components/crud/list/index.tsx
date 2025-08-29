@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Card, Group, Stack, Title } from "@mantine/core";
 import {
   useRefineContext,
-  useResource,
+  useResourceParams,
   useUserFriendlyName,
   useTranslate,
 } from "@refinedev/core";
@@ -32,7 +32,9 @@ export const List: React.FC<ListProps> = (props) => {
 
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const isCreateButtonVisible =
     canCreate ?? (!!resource?.create || createButtonPropsFromProps);

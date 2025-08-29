@@ -12,6 +12,9 @@ describe("MuiListInferencer", () => {
         {
           name: "posts",
           list: "/posts",
+          create: "/posts/create",
+          edit: "/posts/edit/:id",
+          show: "/posts/show/:id",
         },
         {
           name: "categories",

@@ -4,7 +4,7 @@ import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
-import { useResource } from "./";
+import { useResource } from ".";
 
 describe("useResource Hook", () => {
   it("returns context value", async () => {

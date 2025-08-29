@@ -416,7 +416,7 @@ Resource `options` have been renamed to `meta`:
 
 #### resourceName/resourceNameOrRouteName → resource
 
-🚨 Affects: useImport, useExport, useResource, All Button components
+🚨 Affects: useImport, useExport, All Button components
 
 ```diff
 useImport({
@@ -588,25 +588,18 @@ const MyComponent = () => {
 };
 ```
 
-#### useResource → useResourceParams (Recommended)
+#### useResource → useResourceParams
+
+The `useResource` hook has been removed in favor of `useResourceParams`. The new `useResourceParams` hook offers the same functionality as `useResource`, while introducing additional features and a more streamlined API. To reduce confusion and improve consistency, all resource-related logic should now use `useResourceParams` exclusively.
 
 ```diff
-// useResource parameter simplification
-- useResource({ resourceNameOrRouteName: "posts" });
-+ useResource("posts");
+- import { useResource } from "@refinedev/core";
++ import { useResourceParams } from "@refinedev/core";
+
+
+- useResource("posts");
++ useResourceParams({ resource: "posts" });
 ```
-
-:::tip Recommendation
-While `useResource` continues to work for backward compatibility, we now recommend using [`useResourceParams`](https://refine.dev/docs/routing/hooks/use-resource-params/) for new projects. It provides a more stable, granular, and precise solution for resource management.
-
-```typescript
-// Recommended approach
-import { useResourceParams } from "@refinedev/core";
-
-const { resource, action, id } = useResourceParams();
-```
-
-:::
 
 #### ignoreAccessControlProvider → accessControl
 

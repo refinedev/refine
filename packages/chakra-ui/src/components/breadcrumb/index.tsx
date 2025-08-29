@@ -3,7 +3,7 @@ import {
   matchResourceFromRoute,
   useBreadcrumb,
   useLink,
-  useResource,
+  useResourceParams,
 } from "@refinedev/core";
 import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import {
@@ -28,7 +28,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
 
   if (breadcrumbs.length < minItems) return null;
 
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
 

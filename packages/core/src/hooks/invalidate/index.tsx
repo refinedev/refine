@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-query";
 
 import { pickDataProvider } from "@definitions";
-import { useKeys, useResource } from "@hooks";
+import { useKeys, useResourceParams } from "@hooks";
 
 import type { BaseKey, IQueryKeys } from "../../contexts/data/types";
 
@@ -23,7 +23,7 @@ export type UseInvalidateProp = {
 export const useInvalidate = (): ((
   props: UseInvalidateProp,
 ) => Promise<void>) => {
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
   const queryClient = useQueryClient();
   const { keys } = useKeys();
 

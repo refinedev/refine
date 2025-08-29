@@ -3,11 +3,11 @@ import React, { useContext } from "react";
 import { ResourceContext } from "@contexts/resource";
 import { useId } from "./use-id";
 import { useAction } from "./use-action";
-import { useResource } from "../resource";
 import type { BaseKey } from "../../contexts/data/types";
 import type { IResourceItem } from "../../contexts/resource/types";
 import type { Action } from "../../contexts/router/types";
 import type { FormAction } from "../form/types";
+import { type SelectReturnType, useResource } from "./use-resource";
 
 type Props = {
   id?: BaseKey;
@@ -23,6 +23,10 @@ type ResourceParams = {
   action?: Action;
   identifier?: string;
   formAction: FormAction;
+  select: <T extends boolean = true>(
+    resourceName: string,
+    force?: T,
+  ) => SelectReturnType<T>;
 };
 
 /**
@@ -50,7 +54,11 @@ type ResourceParams = {
 export function useResourceParams(props?: Props): ResourceParams {
   const { resources } = useContext(ResourceContext);
 
-  const { select, identifier: inferredIdentifier } = useResource();
+  const {
+    select,
+    identifier: inferredIdentifier,
+    resource: inferredResource,
+  } = useResource();
   const resourceToCheck = props?.resource ?? inferredIdentifier;
   const { identifier = undefined, resource = undefined } = resourceToCheck
     ? select(resourceToCheck, true)
@@ -85,10 +93,11 @@ export function useResourceParams(props?: Props): ResourceParams {
   return {
     id,
     setId,
-    resource,
+    resource: resource || inferredResource,
     resources,
     action,
     identifier,
     formAction,
+    select,
   };
 }

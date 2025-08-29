@@ -26,7 +26,7 @@ import type {
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { BaseListProps } from "../data/useList";
-import { useResource } from "../resource/useResource/index";
+import { useResourceParams } from "../use-resource-params";
 import {
   type UseLoadingOvertimeOptionsProps,
   type UseLoadingOvertimeReturnType,
@@ -234,7 +234,9 @@ export const useSelect = <
     [optionValue],
   );
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const getMeta = useMeta();
 
@@ -281,7 +283,7 @@ export const useSelect = <
   );
 
   const defaultValueQueryResult = useMany<TQueryFnData, TError, TData>({
-    resource: identifier,
+    resource: identifier ?? resource?.name ?? "",
     ids: defaultValues,
     queryOptions: {
       ...defaultValueQueryOptions,

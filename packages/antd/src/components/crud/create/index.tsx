@@ -4,7 +4,7 @@ import {
   useTranslate,
   useUserFriendlyName,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useBack,
 } from "@refinedev/core";
 
@@ -46,7 +46,9 @@ export const Create: React.FC<CreateProps> = ({
   const back = useBack();
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const breadcrumb =
     typeof breadcrumbFromProps === "undefined"
