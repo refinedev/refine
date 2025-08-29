@@ -7801,7 +7801,29 @@ exports[`MantineInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        getHeaderGroups
+                        reactTable
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              >
+                 getHeaderGroups
               </span>
               <span
                 class="token punctuation"
@@ -7811,16 +7833,8 @@ exports[`MantineInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                        getRowModel
+                 getRowModel
               </span>
               <span
                 class="token punctuation"
@@ -7830,16 +7844,14 @@ exports[`MantineInferencer should match the snapshot 1`] = `
               </span>
               <span
                 class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
               >
-                        setOptions
+                 setOptions 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
               </span>
               <span
                 class="token punctuation"

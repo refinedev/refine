@@ -739,21 +739,23 @@ export const renderer = ({
         }
 
         const {
-            getHeaderGroups,
-            getRowModel,
-            setOptions,
+            reactTable: {
+                getHeaderGroups,
+                getRowModel,
+                setOptions,
+                getState,
+                setPageIndex,
+                getCanPreviousPage,
+                getPageCount,
+                getCanNextPage,
+                nextPage,
+                previousPage,
+                setPageSize,
+                getColumn,
+            },
             refineCore: {
                 tableQuery: { data: tableData },
             },
-            getState,
-            setPageIndex,
-            getCanPreviousPage,
-            getPageCount,
-            getCanNextPage,
-            nextPage,
-            previousPage,
-            setPageSize,
-            getColumn,
         } = useTable({
             columns,
             ${

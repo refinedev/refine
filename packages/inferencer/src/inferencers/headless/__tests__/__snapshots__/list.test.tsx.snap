@@ -6215,7 +6215,37 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        getHeaderGroups
+                        reactTable
+              </span>
+              <span
+                class="token operator"
+                style="color: rgb(212, 212, 212);"
+              >
+                :
+              </span>
+              <span
+                class="token plain"
+              >
+                 
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                {
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            getHeaderGroups
               </span>
               <span
                 class="token punctuation"
@@ -6234,7 +6264,7 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        getRowModel
+                            getRowModel
               </span>
               <span
                 class="token punctuation"
@@ -6253,7 +6283,203 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
               <span
                 class="token plain"
               >
-                        setOptions
+                            setOptions
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            getState
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            setPageIndex
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            getCanPreviousPage
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            getPageCount
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            getCanNextPage
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            nextPage
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            previousPage
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            setPageSize
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                            getColumn
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                ,
+              </span>
+              <span
+                class="token plain"
+              />
+            </div>
+            <div
+              class="token-line"
+              style="color: rgb(156, 220, 254);"
+            >
+              <span
+                class="token plain"
+              >
+                        
+              </span>
+              <span
+                class="token punctuation"
+                style="color: rgb(212, 212, 212);"
+              >
+                }
               </span>
               <span
                 class="token punctuation"
@@ -6367,177 +6593,6 @@ exports[`HeadlessListInferencer should match the snapshot 1`] = `
                 style="color: rgb(212, 212, 212);"
               >
                 }
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        getState
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        setPageIndex
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        getCanPreviousPage
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        getPageCount
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        getCanNextPage
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        nextPage
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        previousPage
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        setPageSize
-              </span>
-              <span
-                class="token punctuation"
-                style="color: rgb(212, 212, 212);"
-              >
-                ,
-              </span>
-              <span
-                class="token plain"
-              />
-            </div>
-            <div
-              class="token-line"
-              style="color: rgb(156, 220, 254);"
-            >
-              <span
-                class="token plain"
-              >
-                        getColumn
               </span>
               <span
                 class="token punctuation"
