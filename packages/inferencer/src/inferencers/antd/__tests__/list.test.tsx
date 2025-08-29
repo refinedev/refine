@@ -12,9 +12,10 @@ describe("AntdListInferencer", () => {
         {
           name: "posts",
           list: "/posts",
+          create: "/posts/create",
+          edit: "/posts/edit/:id",
+          show: "/posts/show/:id",
           meta: {
-            canEdit: true,
-            canShow: true,
             canDelete: true,
           },
         },

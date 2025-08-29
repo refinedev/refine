@@ -5,7 +5,7 @@ title: Multipart Upload
 
 ```tsx live shared
 import { Refine } from "@refinedev/core";
-import { AuthPage, RefineThemes, ThemedLayoutV2, ErrorComponent, useNotificationProvider } from "@refinedev/antd";
+import { AuthPage, RefineThemes, ThemedLayout, ErrorComponent, useNotificationProvider } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { ConfigProvider } from "antd";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -362,9 +362,9 @@ const App = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route index element={<NavigateToResource />} />
@@ -543,9 +543,9 @@ const App = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route index element={<NavigateToResource />} />

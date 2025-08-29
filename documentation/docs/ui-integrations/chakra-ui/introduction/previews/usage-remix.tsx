@@ -146,18 +146,18 @@ export default function App() {
 `.trim();
 
 const ProtectedTsxCode = /* jsx */ `
-import { ThemedLayoutV2 } from "@refinedev/chakra-ui";
+import { ThemedLayout } from "@refinedev/chakra-ui";
 import { Outlet } from "@remix-run/react";
 import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 
 import authProvider from "../auth-provider";
 
 export default function AuthenticatedLayout() {
-    // \`<ThemedLayoutV2>\` is only applied to the authenticated users
+    // \`<ThemedLayout>\` is only applied to the authenticated users
     return (
-        <ThemedLayoutV2>
+        <ThemedLayout>
             <Outlet />
-        </ThemedLayoutV2>
+        </ThemedLayout>
     );
 }
 

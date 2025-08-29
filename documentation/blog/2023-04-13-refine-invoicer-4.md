@@ -189,7 +189,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                        <ThemedTitle collapsed={collapsed} text="Invoicer" />
                       )}
                     >
                       <Outlet />
@@ -232,7 +232,7 @@ function App() {
                   element={
                     <AuthPage
                       type="login"
-                      title={<ThemedTitleV2 collapsed text="Invoicer" />}
+                      title={<ThemedTitle collapsed text="Invoicer" />}
                       formProps={{
                         initialValues: {
                           email: "demo@refine.dev",
@@ -249,7 +249,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                        <ThemedTitle collapsed={collapsed} text="Invoicer" />
                       )}
                     >
                       <Outlet />

@@ -19,7 +19,7 @@ import {
   useOnError,
   usePublish,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useTranslate,
 } from "@hooks";
 
@@ -152,7 +152,7 @@ export const useDelete = <
   const { mutate: checkError } = useOnError();
   const dataProvider = useDataProvider();
 
-  const { resources, select } = useResource();
+  const { resources, select } = useResourceParams();
   const queryClient = useQueryClient();
 
   const {

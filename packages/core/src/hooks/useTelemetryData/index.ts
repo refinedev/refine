@@ -7,7 +7,7 @@ import { I18nContext } from "@contexts/i18n";
 import { LiveContext } from "@contexts/live";
 import { NotificationContext } from "@contexts/notification";
 import { RouterContext } from "@contexts/router";
-import { useResource } from "@hooks/resource";
+import { useResourceParams } from "@hooks/use-resource-params";
 
 import { useIsExistAuthentication, useRefineContext } from "..";
 import type { ITelemetryData } from "../../components/telemetry/types";
@@ -24,7 +24,7 @@ export const useTelemetryData = (): ITelemetryData => {
   const { i18nProvider } = useContext(I18nContext);
   const notificationContext = useContext(NotificationContext);
   const accessControlContext = useContext(AccessControlContext);
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
   const refineOptions = useRefineContext();
 
   const auditLog =

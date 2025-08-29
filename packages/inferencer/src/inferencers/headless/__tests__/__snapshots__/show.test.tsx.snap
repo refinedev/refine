@@ -401,7 +401,7 @@ exports[`HeadlessShowInferencer should match the snapshot 1`] = `
               <span
                 class="token imports"
               >
-                    useResource
+                    useResourceParams
               </span>
               <span
                 class="token imports punctuation"
@@ -765,7 +765,7 @@ exports[`HeadlessShowInferencer should match the snapshot 1`] = `
                 class="token function"
                 style="color: rgb(220, 220, 170);"
               >
-                useResource
+                useResourceParams
               </span>
               <span
                 class="token punctuation"

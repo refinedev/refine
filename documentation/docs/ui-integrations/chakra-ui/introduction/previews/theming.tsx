@@ -191,7 +191,7 @@ import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   notificationProvider,
   AuthPage,
@@ -233,9 +233,9 @@ export default function App() {
                   <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
                     <Route
                         element={
-                            <ThemedLayoutV2>
+                            <ThemedLayout>
                                 <Outlet />
-                            </ThemedLayoutV2>
+                            </ThemedLayout>
                         }
                     >
                         <Route index element={<NavigateToResource resource="products" />} />

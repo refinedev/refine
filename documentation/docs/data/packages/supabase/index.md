@@ -1066,7 +1066,7 @@ Let's check out the `Authentication` property:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
-import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/antd";
 import routerProvider, {
   NavigateToResource,
   CatchAllNavigate,
@@ -1091,9 +1091,9 @@ function App() {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >

@@ -4,7 +4,6 @@ import {
   useTranslate,
   useUserFriendlyName,
   useRefineContext,
-  useResource,
   useResourceParams,
   useToPath,
   useBack,

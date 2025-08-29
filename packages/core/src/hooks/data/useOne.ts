@@ -13,7 +13,7 @@ import {
   useKeys,
   useMeta,
   useOnError,
-  useResource,
+  useResourceParams,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
@@ -118,11 +118,11 @@ export const useOne = <
   liveParams,
   dataProviderName,
   overtimeOptions,
-}: UseOneProps<TQueryFnData, TError, TData>): UseOneReturnType<
-  TData,
-  TError
-> => {
-  const { resources, resource, identifier } = useResource(resourceFromProp);
+}: UseOneProps<TQueryFnData, TError, TData>): UseOneReturnType<TData, TError> &
+  UseLoadingOvertimeReturnType => {
+  const { resources, resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();

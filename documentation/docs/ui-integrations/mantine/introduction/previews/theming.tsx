@@ -126,7 +126,7 @@ const AppTsxCode = /* jsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import {
     ErrorComponent,
-    ThemedLayoutV2,
+    ThemedLayout,
     useNotificationProvider,
     AuthPage
 } from "@refinedev/mantine";
@@ -170,9 +170,9 @@ const App: React.FC = () => {
                         <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
                         <Route
                             element={
-                                <ThemedLayoutV2>
+                                <ThemedLayout>
                                     <Outlet />
-                                </ThemedLayoutV2>
+                                </ThemedLayout>
                             }
                         >
                             <Route index element={<NavigateToResource resource="products" />} />

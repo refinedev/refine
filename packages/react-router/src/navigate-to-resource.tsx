@@ -1,4 +1,4 @@
-import { useResource, useGetToPath } from "@refinedev/core";
+import { useResourceParams, useGetToPath } from "@refinedev/core";
 import React, { type PropsWithChildren } from "react";
 import { Navigate } from "react-router";
 
@@ -12,7 +12,9 @@ export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
   meta,
 }) => {
   const getToPath = useGetToPath();
-  const { resource, resources } = useResource(resourceProp);
+  const { resource, resources } = useResourceParams({
+    resource: resourceProp,
+  });
 
   const toResource = resource || resources.find((r) => r.list);
 

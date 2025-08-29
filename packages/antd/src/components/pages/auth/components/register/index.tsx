@@ -28,7 +28,7 @@ import {
   headStyles,
   bodyStyles,
 } from "../styles";
-import { ThemedTitleV2 } from "@components";
+import { ThemedTitle } from "@components";
 
 type RegisterProps = RegisterPageProps<LayoutProps, CardProps, FormProps>;
 /**
@@ -64,7 +64,7 @@ export const RegisterPage: React.FC<RegisterProps> = ({
           fontSize: "20px",
         }}
       >
-        {title ?? <ThemedTitleV2 collapsed={false} />}
+        {title ?? <ThemedTitle collapsed={false} />}
       </div>
     );
 

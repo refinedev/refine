@@ -21,7 +21,7 @@ import {
   useLiveMode,
   useMeta,
   useParsed,
-  useResource,
+  useResourceParams,
   useSyncWithLocation,
 } from "@hooks";
 
@@ -263,7 +263,9 @@ export function useTable<
 
   const go = useGo();
 
-  const { resource, identifier } = useResource(resourceFromProp);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
 
   const combinedMeta = getMeta({
     resource,

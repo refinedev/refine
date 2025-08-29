@@ -605,9 +605,9 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/actions-2.png",
           codePosition: "left",
           code: `
-                    import { useResource, useUpdate } from "@refinedev/core";
+                    import { useResourceParams, useUpdate } from "@refinedev/core";
 
-                    const { id }  = useResource();
+                    const { id }  = useResourceParams();
                     const { mutate } = useUpdate();
 
                     const onReject = () => mutate({
@@ -706,9 +706,9 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/actions.png",
           codePosition: "left",
           code: `
-                        import { useDelete, useResource } from "@refinedev/core";
+                        import { useDelete, useResourceParams } from "@refinedev/core";
 
-                        const { id } = useResource();
+                        const { id } = useResourceParams();
                         const { mutate } = useDelete();
 
                         const onDelete = () => {

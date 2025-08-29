@@ -41,7 +41,7 @@ import {
     AuthPage,
     ErrorComponent,
     RefineThemes,
-    ThemedLayoutV2,
+    ThemedLayout,
 } from "@refinedev/mantine";
 import routerProvider, {
     CatchAllNavigate,
@@ -102,9 +102,9 @@ export default function App() {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayoutV2>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </ThemedLayoutV2>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -193,9 +193,9 @@ export default function App() {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayoutV2>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </ThemedLayoutV2>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >

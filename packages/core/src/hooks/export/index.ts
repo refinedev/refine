@@ -8,7 +8,7 @@ import {
   pickDataProvider,
   useUserFriendlyName,
 } from "@definitions";
-import { useDataProvider, useMeta, useResource } from "@hooks";
+import { useDataProvider, useMeta, useResourceParams } from "@hooks";
 
 import type {
   BaseRecord,
@@ -129,7 +129,9 @@ export const useExport = <
 
   const dataProvider = useDataProvider();
   const getMeta = useMeta();
-  const { resource, resources, identifier } = useResource(resourceFromProps);
+  const { resource, resources, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
   const getFriendlyName = useUserFriendlyName();
 
   const defaultFilename = `${getFriendlyName(
