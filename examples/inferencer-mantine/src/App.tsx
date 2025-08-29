@@ -5,7 +5,7 @@ import {
   ErrorComponent,
   useNotificationProvider,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/mantine";
 
 import {
@@ -119,9 +119,9 @@ function App() {
                         key="authenticated-routes"
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayoutV2 Header={() => <Header sticky />}>
+                        <ThemedLayout Header={() => <Header sticky />}>
                           <Outlet />
-                        </ThemedLayoutV2>
+                        </ThemedLayout>
                       </Authenticated>
                     }
                   >

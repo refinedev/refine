@@ -94,7 +94,7 @@ export interface IRefineOptions {
    */
   projectId?: string;
   /**
-   * Icon and name for the app title. These values are used as default values in the <ThemedLayoutV2 /> and <AuthPage /> components.
+   * Icon and name for the app title. These values are used as default values in the <ThemedLayout /> and <AuthPage /> components.
    * By default, `icon` is the Refine logo and `text` is "Refine Project".
    */
   title?: {

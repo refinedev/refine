@@ -183,7 +183,7 @@ import {
 } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
@@ -251,11 +251,11 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2 Title={Title}>
+                  <ThemedLayout Title={Title}>
                     <CanAccess>
                       <Outlet />
                     </CanAccess>
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -287,9 +287,9 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -528,7 +528,7 @@ After adding resources we need to create routes for them. For the routes, we'll 
 // ...
 
 import { Authenticated, CanAccess, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2 } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayout } from "@refinedev/antd";
 import routerBindings, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
@@ -547,11 +547,11 @@ function App() {
           <Route
             element={
               <Authenticated>
-                <ThemedLayoutV2 Title={Title}>
+                <ThemedLayout Title={Title}>
                   <CanAccess>
                     <Outlet />
                   </CanAccess>
-                </ThemedLayoutV2>
+                </ThemedLayout>
               </Authenticated>
             }
           >
@@ -583,9 +583,9 @@ function App() {
           <Route
             element={
               <Authenticated>
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               </Authenticated>
             }
           >
@@ -620,7 +620,7 @@ import {
 } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
@@ -688,11 +688,11 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2 Title={Title}>
+                  <ThemedLayout Title={Title}>
                     <CanAccess>
                       <Outlet />
                     </CanAccess>
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -724,9 +724,9 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >

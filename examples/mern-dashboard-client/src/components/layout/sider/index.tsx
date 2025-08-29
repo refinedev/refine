@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { ThemedSiderV2 } from "@refinedev/mui";
+import type { ThemedSider as ThemedSiderV2 } from "@refinedev/mui";
 
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";

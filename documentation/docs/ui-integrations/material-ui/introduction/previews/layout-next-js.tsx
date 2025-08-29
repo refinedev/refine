@@ -45,7 +45,7 @@ import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
-import { RefineThemes, ThemedLayoutV2, notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
+import { RefineThemes, ThemedLayout, notificationProvider, RefineSnackbarProvider } from "@refinedev/mui";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import { ThemeProvider } from "@mui/material/styles";
@@ -69,9 +69,9 @@ function App({ Component, pageProps }: AppProps) {
                         },
                     ]}
                 >
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Component {...pageProps} />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Refine>
             </RefineSnackbarProvider>
         </ThemeProvider>

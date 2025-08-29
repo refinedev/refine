@@ -653,13 +653,13 @@ const App = () => (
 );
 ```
 
-If you wish to use separate values for your `<AuthPage />` and `<ThemedLayoutV2 />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitleV2 />` component from the respective package).
+If you wish to use separate values for your `<AuthPage />` and `<ThemedLayout />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitle />` component from the respective package).
 
 ```tsx
 import { Refine } from "@refinedev/core";
-// ThemedTitleV2 accepts `text` and `icon` props with same types as `options.title`
-// This component is used in both AuthPage and ThemedLayoutV2 components.
-import { ThemedLayoutV2, AuthPage, ThemedTitleV2 } from "@refinedev/antd";
+// ThemedTitle accepts `text` and `icon` props with same types as `options.title`
+// This component is used in both AuthPage and ThemedLayout components.
+import { ThemedLayout, AuthPage, ThemedTitle } from "@refinedev/antd";
 
 const App = () => {
   return (
@@ -674,10 +674,10 @@ const App = () => {
       }}
     >
       {/* ... */}
-      <ThemedLayoutV2
+      <ThemedLayout
         // highlight-start
         Title={(props) => (
-          <ThemedTitleV2
+          <ThemedTitle
             // These values will override the global title values
             text="A Different Value"
             icon={<IconB />}
@@ -687,13 +687,13 @@ const App = () => {
         // highlight-end
       >
         {/* ... */}
-      </ThemedLayoutV2>
+      </ThemedLayout>
       {/* ... */}
       <AuthPage
         type="login"
         // highlight-start
         title={
-          <ThemedTitleV2
+          <ThemedTitle
             collapsed={false}
             // These values will override the global title values
             text="A Different Value"

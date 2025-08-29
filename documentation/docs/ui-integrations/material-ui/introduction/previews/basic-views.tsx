@@ -64,7 +64,7 @@ import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
   notificationProvider,
@@ -110,9 +110,9 @@ export default function App() {
                 <Routes>
                     <Route
                         element={
-                            <ThemedLayoutV2>
+                            <ThemedLayout>
                                 <Outlet />
-                            </ThemedLayoutV2>
+                            </ThemedLayout>
                         }
                     >
                         <Route index element={<NavigateToResource resource="products" />} />

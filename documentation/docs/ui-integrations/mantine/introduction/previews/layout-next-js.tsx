@@ -41,7 +41,7 @@ import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
 import {
-    ThemedLayoutV2,
+    ThemedLayout,
     RefineThemes,
     useNotificationProvider,
 } from "@refinedev/mantine";
@@ -68,9 +68,9 @@ function App({ Component, pageProps }: AppProps) {
                         },
                     ]}
                 >
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                         <Component {...pageProps} />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                 </Refine>
             </NotificationsProvider>
         </MantineProvider>

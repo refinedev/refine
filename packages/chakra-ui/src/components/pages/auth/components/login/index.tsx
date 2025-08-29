@@ -29,7 +29,7 @@ import { FormProvider } from "react-hook-form";
 
 import { layoutProps, cardProps } from "../styles";
 import type { FormPropsType } from "../..";
-import { ThemedTitleV2 } from "@components";
+import { ThemedTitle } from "@components";
 
 type LoginProps = LoginPageProps<
   BoxProps,
@@ -106,7 +106,7 @@ export const LoginPage: React.FC<LoginProps> = ({
           fontSize: "20px",
         }}
       >
-        {title ?? <ThemedTitleV2 collapsed={false} />}
+        {title ?? <ThemedTitle collapsed={false} />}
       </div>
     );
 

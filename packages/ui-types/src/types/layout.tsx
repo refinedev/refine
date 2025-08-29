@@ -29,28 +29,6 @@ export type RefineLayoutTitleProps = TitleProps;
 
 export type RefineLayoutLayoutProps = LayoutProps;
 
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export type RefineThemedLayoutProps = RefineLayoutLayoutProps;
-
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
-  isSiderOpen?: boolean;
-  onToggleSiderClick?: (isOpen?: boolean) => void;
-};
-
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
-  isSiderOpen?: boolean;
-  onToggleSiderClick?: (isOpen?: boolean) => void;
-  toggleSiderIcon?: (open: boolean) => React.ReactNode;
-};
-
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
   /**
    *
@@ -70,7 +48,7 @@ export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
   wrapperStyles?: React.CSSProperties;
 };
 
-export type RefineThemedLayoutV2Props = {
+export type RefineThemedLayoutProps = {
   /**
    * Whether the sider is collapsed or not by default.
    */
@@ -81,9 +59,9 @@ export type RefineThemedLayoutV2Props = {
    */
   onSiderCollapsed?: (collapsed: boolean) => void;
 } & RefineLayoutLayoutProps;
-export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
+export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
 };
-export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
+export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
   sticky?: boolean;
 };

@@ -35,7 +35,7 @@ import {
     AuthPage,
     ErrorComponent,
     RefineThemes,
-    ThemedLayoutV2,
+    ThemedLayout,
 } from "@refinedev/antd";
 import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
@@ -92,9 +92,9 @@ export default function App() {
                                             <CatchAllNavigate to="/login" />
                                         }
                                     >
-                                        <ThemedLayoutV2>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </ThemedLayoutV2>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >
@@ -163,9 +163,9 @@ export default function App() {
                             <Route
                                 element={
                                     <Authenticated>
-                                        <ThemedLayoutV2>
+                                        <ThemedLayout>
                                             <Outlet />
-                                        </ThemedLayoutV2>
+                                        </ThemedLayout>
                                     </Authenticated>
                                 }
                             >

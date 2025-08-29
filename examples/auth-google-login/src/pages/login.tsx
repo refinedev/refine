@@ -1,7 +1,7 @@
 import { useLogin } from "@refinedev/core";
 import { useEffect, useRef } from "react";
 
-import { ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedTitle as ThemedTitleV2 } from "@refinedev/antd";
 import { Layout, Space, Typography } from "antd";
 
 // Todo: Update your Google Client ID here

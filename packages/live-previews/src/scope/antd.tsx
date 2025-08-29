@@ -20,7 +20,7 @@ import Icon, {
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
-const ThemedTitleV2 = ({
+const ThemedTitle = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
@@ -78,7 +78,7 @@ const ThemedTitleV2 = ({
   }, []);
 
   return (
-    <RefineAntd.ThemedTitleV2
+    <RefineAntd.ThemedTitle
       collapsed={collapsed}
       wrapperStyles={wrapperStyles}
       text={title || textFromProps}
@@ -164,7 +164,7 @@ const AntdScope = {
   RefineAntdDemo,
   RefineAntd: {
     ...RefineAntd,
-    ThemedTitleV2,
+    ThemedTitle,
   },
   AntdCore: {
     ...AntdCore,

@@ -287,7 +287,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   useNotificationProvider,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout,
   AuthPage,
 } from "@refinedev/mantine";
 import { DataProvider } from "@refinedev/strapi-v4";
@@ -361,9 +361,9 @@ function App() {
                       <Authenticated
                         fallback={<CatchAllNavigate to="/login" />}
                       >
-                        <ThemedLayoutV2 Header={() => <Header sticky />}>
+                        <ThemedLayout Header={() => <Header sticky />}>
                           <Outlet />
-                        </ThemedLayoutV2>
+                        </ThemedLayout>
                       </Authenticated>
                     }
                   >
@@ -414,7 +414,7 @@ We'll use [React Router v6](https://refine.dev/docs/packages/documentation/route
 
 We used to `<Route />` components to define the routes for rendering the CRUD pages and authentication pages. For protected routes, we used the [`<Authenticated />`](https://refine.dev/docs/api-reference/core/components/auth/authenticated) component. The `<Authenticated />` component will redirect the user to the login page if they are not logged in.
 
-Finally, we used the [`<ThemedLayoutV2 />`](https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/) component to wrap protected routes.
+Finally, we used the [`<ThemedLayout />`](https://refine.dev/docs/api-reference/mantine/components/mantine-themed-layout/) component to wrap protected routes.
 
 After modifying your code, let's update the `src/constants.ts` to use the fake Strapi API. You can copy and paste the code below into it.
 
