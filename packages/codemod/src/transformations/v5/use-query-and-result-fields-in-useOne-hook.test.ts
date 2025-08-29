@@ -86,10 +86,10 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
         }
 
         return (
-          (<div>
+          <div>
             <div>Product name: {result?.name}</div>
             <div>Product price: \${result?.price}</div>
-          </div>)
+          </div>
         );
       };
     `;
