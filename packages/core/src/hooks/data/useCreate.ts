@@ -16,7 +16,7 @@ import {
   useOnError,
   usePublish,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useTranslate,
 } from "@hooks";
 
@@ -124,7 +124,7 @@ export const useCreate = <
   const { mutate: checkError } = useOnError();
   const dataProvider = useDataProvider();
   const invalidateStore = useInvalidate();
-  const { resources, select } = useResource();
+  const { resources, select } = useResourceParams();
   const translate = useTranslate();
   const publish = usePublish();
   const { log } = useLog();

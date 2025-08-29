@@ -1,5 +1,5 @@
 import { Layout, Button, Space, Typography } from "antd";
-import { ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedTitle as ThemedTitleV2 } from "@refinedev/antd";
 import { useLogin } from "@refinedev/core";
 
 export const Login: React.FC = () => {

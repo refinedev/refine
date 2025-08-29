@@ -5,6 +5,7 @@ import { renameUseFormQueryResultAndMutationResult } from "./rename-query-and-mu
 import { renameUseTableQueryResult } from "./rename-query-and-mutation-result/use-table-query-result";
 import { removeUseNewQueryKeysFromRefineOptions } from "./v5/remove-useNewQueryKeys-from-refine-options";
 import { renameITreeMenuToTreeMenuItem } from "./v5/rename-itreemenu-to-treemenuitem";
+import { renameThemedV2Imports } from "./v5/rename-themed-v2-imports";
 import { renameCurrentToCurrentPage } from "./v5/rename-current-to-currentPage";
 import { renamePaginationCurrentToCurrentPage } from "./v5/rename-pagination-current-to-currentPage";
 import { useQueryAndResultFieldsInListHooks } from "./v5/use-query-and-result-fields-in-list-hooks";
@@ -22,6 +23,7 @@ export default function transformer(file: FileInfo, api: API): string {
   renameUseTableQueryResult(j, source);
   renameUseFormQueryResultAndMutationResult(j, source);
   renameITreeMenuToTreeMenuItem(j, source);
+  renameThemedV2Imports(j, source);
   renameCurrentToCurrentPage(j, source);
   renamePaginationCurrentToCurrentPage(j, source);
   useQueryAndResultFieldsInListHooks(j, source);

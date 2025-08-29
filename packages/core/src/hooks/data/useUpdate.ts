@@ -19,7 +19,7 @@ import {
   useOnError,
   usePublish,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useTranslate,
 } from "@hooks";
 
@@ -190,7 +190,9 @@ export const useUpdate = <
   TError,
   TVariables
 > => {
-  const { resources, select } = useResource();
+  const { resources, select } = useResourceParams({
+    resource: resourceFromProps,
+  });
   const queryClient = useQueryClient();
   const dataProvider = useDataProvider();
 

@@ -7,7 +7,7 @@ import {
 } from "antd";
 import {
   useTranslate,
-  useResource,
+  useResourceParams,
   type BaseRecord,
   type HttpError,
   useImport as useImportCore,
@@ -49,7 +49,7 @@ export const useImport = <
 } => {
   const t = useTranslate();
 
-  const { resource } = useResource(resourceFromProp);
+  const { resource } = useResourceParams({ resource: resourceFromProp });
 
   const { mutationResult, isLoading, handleChange } = useImportCore<
     TItem,

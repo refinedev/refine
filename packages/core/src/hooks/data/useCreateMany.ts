@@ -15,7 +15,7 @@ import {
   useMeta,
   usePublish,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useTranslate,
 } from "@hooks";
 
@@ -102,7 +102,7 @@ export const useCreateMany = <
 > &
   UseLoadingOvertimeReturnType => {
   const dataProvider = useDataProvider();
-  const { resources, select } = useResource();
+  const { resources, select } = useResourceParams();
   const translate = useTranslate();
   const publish = usePublish();
   const handleNotification = useHandleNotification();

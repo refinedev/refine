@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { useTranslate, useResource, useGo, useResourceParams } from "@hooks";
+import { useTranslate, useGo, useResourceParams } from "@hooks";
 
 /**
  * When the app is navigated to a non-existent route, refine shows a default error page.
@@ -13,8 +13,7 @@ export const ErrorComponent: React.FC = () => {
   const translate = useTranslate();
   const go = useGo();
 
-  const { resource } = useResource();
-  const { action } = useResourceParams();
+  const { action, resource } = useResourceParams();
 
   useEffect(() => {
     if (resource && action) {

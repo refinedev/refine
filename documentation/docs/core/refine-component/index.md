@@ -96,7 +96,7 @@ const App = () => (
 
 :::simple Accessing the Resource
 
-You can use [useResource](/docs/routing/hooks/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResourceParams](/docs/routing/hooks/use-resource-params) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResourceParams` hook to get the resource object.
 
 :::
 
@@ -212,7 +212,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 ### meta
 
-`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/routing/hooks/use-resource). Listed below are the properties that are used by Refine or its libraries.
+`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResourceParams](/docs/routing/hooks/use-resource-params). Listed below are the properties that are used by Refine or its libraries.
 
 #### label
 
@@ -653,13 +653,13 @@ const App = () => (
 );
 ```
 
-If you wish to use separate values for your `<AuthPage />` and `<ThemedLayoutV2 />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitleV2 />` component from the respective package).
+If you wish to use separate values for your `<AuthPage />` and `<ThemedLayout />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitle />` component from the respective package).
 
 ```tsx
 import { Refine } from "@refinedev/core";
-// ThemedTitleV2 accepts `text` and `icon` props with same types as `options.title`
-// This component is used in both AuthPage and ThemedLayoutV2 components.
-import { ThemedLayoutV2, AuthPage, ThemedTitleV2 } from "@refinedev/antd";
+// ThemedTitle accepts `text` and `icon` props with same types as `options.title`
+// This component is used in both AuthPage and ThemedLayout components.
+import { ThemedLayout, AuthPage, ThemedTitle } from "@refinedev/antd";
 
 const App = () => {
   return (
@@ -674,10 +674,10 @@ const App = () => {
       }}
     >
       {/* ... */}
-      <ThemedLayoutV2
+      <ThemedLayout
         // highlight-start
         Title={(props) => (
-          <ThemedTitleV2
+          <ThemedTitle
             // These values will override the global title values
             text="A Different Value"
             icon={<IconB />}
@@ -687,13 +687,13 @@ const App = () => {
         // highlight-end
       >
         {/* ... */}
-      </ThemedLayoutV2>
+      </ThemedLayout>
       {/* ... */}
       <AuthPage
         type="login"
         // highlight-start
         title={
-          <ThemedTitleV2
+          <ThemedTitle
             collapsed={false}
             // These values will override the global title values
             text="A Different Value"

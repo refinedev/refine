@@ -40516,7 +40516,7 @@ exports[`ChakraUIInferencer should match the snapshot 4`] = `
               <span
                 class="token imports"
               >
-                    useResource
+                    useResourceParams
               </span>
               <span
                 class="token imports punctuation"

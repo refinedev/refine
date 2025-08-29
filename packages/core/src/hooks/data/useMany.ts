@@ -17,7 +17,7 @@ import {
   useKeys,
   useMeta,
   useOnError,
-  useResource,
+  useResourceParams,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
@@ -117,8 +117,11 @@ export const useMany = <
 }: UseManyProps<TQueryFnData, TError, TData>): UseManyReturnType<
   TData,
   TError
-> => {
-  const { resources, resource, identifier } = useResource(resourceFromProp);
+> &
+  UseLoadingOvertimeReturnType => {
+  const { resources, resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
   const dataProvider = useDataProvider();
   const translate = useTranslate();
   const { mutate: checkError } = useOnError();
@@ -143,7 +146,10 @@ export const useMany = <
   const hasResource = Boolean(resource?.name);
   const manuallyEnabled = queryOptions?.enabled === true;
 
-  warnOnce(!hasIds && !manuallyEnabled, idsWarningMessage(ids, resource?.name));
+  warnOnce(
+    !hasIds && !manuallyEnabled,
+    idsWarningMessage(ids, resource?.name || resource?.identifier || ""),
+  );
   warnOnce(!hasResource && !manuallyEnabled, resourceWarningMessage());
 
   useResourceSubscription({
@@ -187,7 +193,7 @@ export const useMany = <
 
       if (getMany) {
         return getMany({
-          resource: resource?.name,
+          resource: resource?.name || "",
           ids,
           meta,
         });
@@ -195,7 +201,7 @@ export const useMany = <
       return handleMultiple(
         ids.map((id) =>
           getOne<TQueryFnData>({
-            resource: resource?.name,
+            resource: resource?.name || "",
             id,
             meta,
           }),

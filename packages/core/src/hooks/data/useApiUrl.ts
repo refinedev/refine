@@ -1,8 +1,8 @@
-import { useDataProvider, useResource } from "@hooks";
+import { useDataProvider, useResourceParams } from "@hooks";
 
 export const useApiUrl = (dataProviderName?: string): string => {
   const dataProvider = useDataProvider();
-  const { resource } = useResource();
+  const { resource } = useResourceParams();
 
   const { getApiUrl } = dataProvider(
     dataProviderName ?? resource?.meta?.dataProviderName,

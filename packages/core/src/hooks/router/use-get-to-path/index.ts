@@ -4,7 +4,7 @@ import type { IResourceItem } from "../../../contexts/resource/types";
 import type { Action } from "../../../contexts/router/types";
 import { getActionRoutesFromResource } from "../../../definitions/helpers/router";
 import { composeRoute } from "../../../definitions/helpers/router/compose-route";
-import { useResource } from "../../resource";
+import { useResourceParams } from "../../use-resource-params";
 import { useParsed } from "../use-parsed";
 
 type UseToPathParams = {
@@ -23,7 +23,7 @@ type GetToPathFn = (params: UseToPathParams) => string | undefined;
  * `meta` can be provided to compose the routes with parameters. (Can be used for nested routes.)
  */
 export const useGetToPath = (): GetToPathFn => {
-  const { resource: resourceFromRoute, resources } = useResource();
+  const { resource: resourceFromRoute, resources } = useResourceParams();
   const parsed = useParsed();
 
   const fn = React.useCallback(

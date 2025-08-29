@@ -43,7 +43,7 @@ import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import {
   ErrorComponent,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/chakra-ui";
 import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/react-router";
@@ -79,9 +79,9 @@ export default function App() {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="/my-products" element={<ProductList />} />

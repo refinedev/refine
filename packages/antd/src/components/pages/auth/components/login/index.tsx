@@ -29,7 +29,7 @@ import {
   layoutStyles,
   titleStyles,
 } from "../styles";
-import { ThemedTitleV2 } from "@components";
+import { ThemedTitle } from "@components";
 
 type LoginProps = LoginPageProps<LayoutProps, CardProps, FormProps>;
 /**
@@ -67,7 +67,7 @@ export const LoginPage: React.FC<LoginProps> = ({
           fontSize: "20px",
         }}
       >
-        {title ?? <ThemedTitleV2 collapsed={false} />}
+        {title ?? <ThemedTitle collapsed={false} />}
       </div>
     );
 

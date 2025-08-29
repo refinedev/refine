@@ -18,7 +18,7 @@ import {
   useKeys,
   useMeta,
   useOnError,
-  useResource,
+  useResourceParams,
   useResourceSubscription,
   useTranslate,
 } from "@hooks";
@@ -135,8 +135,11 @@ export const useList = <
 }: UseListProps<TQueryFnData, TError, TData> = {}): UseListReturnType<
   TData,
   TError
-> => {
-  const { resources, resource, identifier } = useResource(resourceFromProp);
+> &
+  UseLoadingOvertimeReturnType => {
+  const { resources, resource, identifier } = useResourceParams({
+    resource: resourceFromProp,
+  });
 
   const dataProvider = useDataProvider();
   const translate = useTranslate();
