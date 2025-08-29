@@ -441,7 +441,7 @@ Resource `options` have been renamed to `meta`:
 
 #### resourceName/resourceNameOrRouteName → resource
 
-🚨 Affects: useImport, useExport, useResource, All Button components
+🚨 Affects: useImport, useExport, All Button components
 
 ```diff
 useImport({
@@ -613,25 +613,18 @@ const MyComponent = () => {
 };
 ```
 
-#### useResource → useResourceParams (Recommended)
+#### useResource → useResourceParams
+
+The `useResource` hook has been removed in favor of `useResourceParams`. The new `useResourceParams` hook offers the same functionality as `useResource`, while introducing additional features and a more streamlined API. To reduce confusion and improve consistency, all resource-related logic should now use `useResourceParams` exclusively.
 
 ```diff
-// useResource parameter simplification
-- useResource({ resourceNameOrRouteName: "posts" });
-+ useResource("posts");
+- import { useResource } from "@refinedev/core";
++ import { useResourceParams } from "@refinedev/core";
+
+
+- useResource("posts");
++ useResourceParams({ resource: "posts" });
 ```
-
-:::tip Recommendation
-While `useResource` continues to work for backward compatibility, we now recommend using [`useResourceParams`](https://refine.dev/docs/routing/hooks/use-resource-params/) for new projects. It provides a more stable, granular, and precise solution for resource management.
-
-```typescript
-// Recommended approach
-import { useResourceParams } from "@refinedev/core";
-
-const { resource, action, id } = useResourceParams();
-```
-
-:::
 
 #### ignoreAccessControlProvider → accessControl
 
@@ -818,18 +811,21 @@ Previously, you could define a React component in the <code>&lt;Refine /&gt;</co
 
 ```
 
-### ThemedTitle → ThemedTitleV2
+### ThemedLayoutV2 → ThemedLayout
 
-🚨 **Affects:** App titles (auth pages, layout headers)
+🚨 **Affects:** Layout components across all UI packages
 
-The `ThemedTitle` component has been replaced with `ThemedTitleV2` across all UI packages (`@refinedev/antd`, `@refinedev/mantine`, `@refinedev/chakra-ui`, ...).
+The V2 layout components have been renamed to remove the V2 suffix across all UI packages (`@refinedev/antd`, `@refinedev/mui`, `@refinedev/mantine`, `@refinedev/chakra-ui`).
 
-Most common props still work (e.g., `collapsed`, style props). Review styles after upgrading.
+**Components affected:**
+
+- `ThemedLayoutV2` → `ThemedLayout`
+- `ThemedTitleV2` → `ThemedTitle`
+- `ThemedSiderV2` → `ThemedSider`
+- `ThemedHeaderV2` → `ThemedHeader`
 
 ```diff
-- import { ThemedTitle } from "@refinedev/antd"; // or @refinedev/mantine, @refinedev/chakra-ui
-+ import { ThemedTitleV2 } from "@refinedev/antd"; // or @refinedev/mantine, @refinedev/chakra-ui
+- import { ThemedLayoutV2, ThemedTitleV2, ThemedSiderV2, ThemedHeaderV2 } from "@refinedev/antd";
++ import { ThemedLayout, ThemedTitle, ThemedSider, ThemedHeader } from "@refinedev/antd";
 
-- <ThemedTitle collapsed={false} />
-+ <ThemedTitleV2 collapsed={false} />
 ```

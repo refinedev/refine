@@ -3,7 +3,7 @@ import React from "react";
 import { useUserFriendlyName } from "@definitions";
 import { getParentResource } from "@definitions/helpers/router";
 
-import { useParsed, useResource, useTranslate } from "..";
+import { useParsed, useResourceParams, useTranslate } from "..";
 import { createResourceKey } from "../../definitions/helpers/menu/create-resource-key";
 import {
   type FlatTreeItem,
@@ -55,7 +55,7 @@ export const useMenu = (
   const translate = useTranslate();
 
   const getToPath = useGetToPath();
-  const { resource, resources } = useResource();
+  const { resource, resources } = useResourceParams();
   const { pathname } = useParsed();
   const getFriendlyName = useUserFriendlyName();
 

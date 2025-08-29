@@ -33,7 +33,7 @@ import {
 import { layoutStyles, titleStyles } from "../styles";
 
 import type { FormPropsType } from "../../index";
-import { ThemedTitleV2 } from "@components";
+import { ThemedTitle } from "@components";
 
 type LoginProps = LoginPageProps<BoxProps, CardContentProps, FormPropsType>;
 
@@ -79,7 +79,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         }}
       >
         {title ?? (
-          <ThemedTitleV2
+          <ThemedTitle
             collapsed={false}
             wrapperStyles={{
               gap: "8px",

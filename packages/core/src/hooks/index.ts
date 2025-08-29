@@ -1,7 +1,6 @@
 export * from "./auth";
 export * from "./data";
 export * from "./live";
-export * from "./resource";
 export * from "./notification";
 export * from "./i18n";
 export * from "./refine";

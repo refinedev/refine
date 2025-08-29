@@ -26,7 +26,7 @@ import {
   headStyles,
   bodyStyles,
 } from "../styles";
-import { ThemedTitleV2 } from "@components";
+import { ThemedTitle } from "@components";
 
 type UpdatePasswordProps = UpdatePasswordPageProps<
   LayoutProps,
@@ -63,7 +63,7 @@ export const UpdatePasswordPage: React.FC<UpdatePasswordProps> = ({
           fontSize: "20px",
         }}
       >
-        {title ?? <ThemedTitleV2 collapsed={false} />}
+        {title ?? <ThemedTitle collapsed={false} />}
       </div>
     );
 

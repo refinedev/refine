@@ -4,8 +4,8 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayoutV2,
-  ThemedSiderV2,
+  ThemedLayout,
+  ThemedSider as ThemedSiderV2,
 } from "@refinedev/antd";
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
@@ -90,12 +90,12 @@ function App() {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2
+                  <ThemedLayout
                     Header={() => <Header sticky />}
                     Sider={() => <ThemedSiderV2 fixed />}
                   >
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

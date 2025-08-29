@@ -17,7 +17,7 @@ const { Blue, Purple, Magenta, Red, Orange, Yellow } = RefineThemes;
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/antd";
+import { ThemedLayout, RefineThemes } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -27,7 +27,7 @@ const App: React.FC = () => {
       <Refine
       /* ... */
       >
-        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        <ThemedLayout>{/* ... */}</ThemedLayout>
       </Refine>
     </ConfigProvider>
   );
@@ -46,7 +46,7 @@ You can not only override or extend the default themes, but also create your own
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
 
 import { ConfigProvider } from "antd";
 
@@ -74,7 +74,7 @@ const App: React.FC = () => {
       <Refine
       /* ... */
       >
-        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        <ThemedLayout>{/* ... */}</ThemedLayout>
       </Refine>
       // highlight-next-line
     </ConfigProvider>
@@ -126,7 +126,7 @@ Then, we can use the `theme` property of the `ConfigProvider` component to switc
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2 } from "@refinedev/antd";
+import { ThemedLayout } from "@refinedev/antd";
 import { ConfigProvider, theme } from "antd";
 
 import { Header } from "./Header";
@@ -149,7 +149,7 @@ const App: React.FC = () => {
       <Refine
       /* ... */
       >
-        <ThemedLayoutV2 Header={Header}>{/* ... */}</ThemedLayoutV2>
+        <ThemedLayout Header={Header}>{/* ... */}</ThemedLayout>
       </Refine>
     </ConfigProvider>
   );
@@ -162,7 +162,7 @@ The `notificationProvider` export has been deprecated because it cannot consume 
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, useNotificationProvider } from "@refinedev/antd";
+import { ThemedLayout, useNotificationProvider } from "@refinedev/antd";
 
 import { ConfigProvider, App as AntdApp } from "antd";
 
@@ -178,7 +178,7 @@ const App: React.FC = () => {
                     {/* highlight-next-line */}
                     notificationProvider={useNotificationProvider}
                 >
-                    <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+                    <ThemedLayout>{/* ... */}</ThemedLayout>
                 </Refine>
                 {/* highlight-next-line */}
             </AntdApp>

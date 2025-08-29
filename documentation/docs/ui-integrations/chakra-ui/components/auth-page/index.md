@@ -135,7 +135,7 @@ setInitialRoutes(["/login"]);
 setRefineProps({ Sider: () => null });
 
 // visible-block-start
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 import { Authenticated, Refine } from "@refinedev/core";
 import routerProvider, {
   CatchAllNavigate,
@@ -163,9 +163,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -220,7 +220,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -243,9 +243,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -317,7 +317,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -340,9 +340,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -415,7 +415,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -438,9 +438,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -517,7 +517,7 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/chakra-ui";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/chakra-ui";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -540,9 +540,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -830,7 +830,7 @@ const MyLoginPage = () => {
     <AuthPage
       type="login"
       title={
-        <ThemedTitleV2
+        <ThemedTitle
           title="My Title"
           icon={<img src="https://refine.dev/img/logo.png" />}
         />

@@ -12,7 +12,7 @@ import {
 } from "@ant-design/icons";
 import { Layout as AntdLayout, Menu, theme, Button } from "antd";
 import { Link } from "react-router";
-import { ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedTitle as ThemedTitleV2 } from "@refinedev/antd";
 
 const { useToken } = theme;
 

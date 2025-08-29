@@ -1,5 +1,5 @@
 import React from "react";
-import type { RefineThemedLayoutV2SiderProps } from "@refinedev/ui-types";
+import type { RefineThemedLayoutSiderProps } from "@refinedev/ui-types";
 
 import {
   act,
@@ -35,7 +35,7 @@ const testWrapper = (wrapperProps?: ITestWrapperProps) => {
 };
 
 export const layoutSiderTests = (
-  SiderElement: React.ComponentType<RefineThemedLayoutV2SiderProps>,
+  SiderElement: React.ComponentType<RefineThemedLayoutSiderProps>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
     beforeEach(() => {

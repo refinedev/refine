@@ -3,7 +3,7 @@ import React from "react";
 import {
   useTranslate,
   useUserFriendlyName,
-  useResource,
+  useResourceParams,
 } from "@refinedev/core";
 
 import Card from "@mui/material/Card";
@@ -39,7 +39,9 @@ export const List: React.FC<ListProps> = ({
   const translate = useTranslate();
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const isCreateButtonVisible =
     canCreate ?? (!!resource?.create || createButtonPropsFromProps);
