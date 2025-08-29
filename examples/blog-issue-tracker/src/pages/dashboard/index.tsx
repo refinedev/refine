@@ -6,9 +6,16 @@ import { TaskChart } from "components/task/pie";
 import { groupBy } from "helper";
 
 export const Dashboard = () => {
-  const migratedMigratedMigratedMigratedMigratedTaskList = useList<ITask>({
-    resource: "tasks",
-  });
+  const migratedMigratedMigratedMigratedMigratedMigratedTaskList =
+    useList<ITask>({
+      resource: "tasks",
+    });
+
+  const migratedMigratedMigratedMigratedMigratedTaskList = {
+    ...migratedMigratedMigratedMigratedMigratedMigratedTaskList.result,
+    ...migratedMigratedMigratedMigratedMigratedMigratedTaskList.query,
+    ...migratedMigratedMigratedMigratedMigratedMigratedTaskList,
+  };
 
   const migratedMigratedMigratedMigratedTaskList = {
     ...migratedMigratedMigratedMigratedMigratedTaskList.result,

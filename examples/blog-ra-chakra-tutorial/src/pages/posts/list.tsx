@@ -82,9 +82,8 @@ export const PostList = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
+
     refineCore: { currentPage: current, pageCount, setCurrentPage: setCurrent },
   } = useTable({
     columns,

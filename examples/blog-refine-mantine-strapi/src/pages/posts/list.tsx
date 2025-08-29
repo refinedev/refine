@@ -63,8 +63,8 @@ export const PostList: React.FC = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
+
     refineCore: { setCurrentPage: setCurrent, pageCount, currentPage: current },
   } = useTable({
     columns,

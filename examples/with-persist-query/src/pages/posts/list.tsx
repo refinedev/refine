@@ -50,17 +50,20 @@ export const PostList: React.FC = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    getState,
-    setPageIndex,
-    getCanPreviousPage,
-    getPageCount,
-    getCanNextPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    getColumn,
+    reactTable: {
+      getHeaderGroups,
+      getRowModel,
+      getState,
+      setPageIndex,
+      getCanPreviousPage,
+      getPageCount,
+      getCanNextPage,
+      nextPage,
+      previousPage,
+      setPageSize,
+      getColumn,
+    },
+
     refineCore: { tableQuery: tableQueryResult },
   } = useTable<IPost>({
     columns,

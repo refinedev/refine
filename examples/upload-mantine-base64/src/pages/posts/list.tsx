@@ -104,9 +104,8 @@ export const PostList: React.FC = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
+
     refineCore: {
       setCurrentPage: setCurrent,
       pageCount,
