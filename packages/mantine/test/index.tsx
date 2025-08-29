@@ -9,14 +9,14 @@ import {
   type NotificationProvider,
   type ResourceProps,
   type AuthProvider,
-  type RouterBindings,
+  type RouterProvider,
   type RefineProps,
 } from "@refinedev/core";
 
 import { MockRouterProvider, MockJSONServer } from "@test";
 
 export interface ITestWrapperProps {
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   dataProvider?: DataProvider;
   authProvider?: AuthProvider;
   resources?: ResourceProps[];

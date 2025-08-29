@@ -9,15 +9,15 @@ import {
   type I18nProvider,
   type DataProvider,
   type IResourceItem,
-  type RouterBindings,
+  type RouterProvider,
   type IRefineOptions,
 } from "@refinedev/core";
 
-import { MockJSONServer, mockRouterBindings } from "./dataMocks";
+import { MockJSONServer, mockRouterProvider } from "./dataMocks";
 
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   authProvider?: AuthProvider;
   resources?: IResourceItem[];
   notificationProvider?: NotificationProvider;
@@ -58,7 +58,7 @@ export const TestWrapper: (
         {(Refine as any)({
           dataProvider: dataProvider ?? MockJSONServer,
           i18nProvider,
-          routerProvider: routerProvider ?? mockRouterBindings(),
+          routerProvider: routerProvider ?? mockRouterProvider(),
           authProvider,
           notificationProvider,
           resources: resources ?? [{ name: "posts", list: "/posts" }],

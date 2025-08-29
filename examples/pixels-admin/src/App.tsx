@@ -11,7 +11,7 @@ import {
 } from "@refinedev/antd";
 import { ConfigProvider, App as AntdApp } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -55,7 +55,7 @@ function App() {
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
             accessControlProvider={accessControlProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
             resources={[
               {

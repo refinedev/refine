@@ -4,7 +4,7 @@ import type { ForgotPasswordPageProps } from "@refinedev/core";
 import {
   fireEvent,
   mockAuthProvider,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,

@@ -9,7 +9,7 @@ import {
   type I18nProvider,
   type DataProvider,
   type IResourceItem,
-  type RouterBindings,
+  type RouterProvider,
   type IRefineOptions,
 } from "@refinedev/core";
 
@@ -17,7 +17,7 @@ import { MockRouterProvider, MockJSONServer } from "@test";
 
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   authProvider?: AuthProvider;
   resources?: IResourceItem[];
   notificationProvider?: NotificationProvider;

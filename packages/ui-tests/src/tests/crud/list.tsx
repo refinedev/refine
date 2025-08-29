@@ -7,9 +7,8 @@ import {
 } from "@refinedev/ui-types";
 
 import {
-  act,
   type ITestWrapperProps,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -85,7 +84,7 @@ export const crudListTests = (
           },
         ],
         routerProvider: {
-          ...mockRouterBindings(),
+          ...mockRouterProvider(),
           parse() {
             return () => ({
               params: {},
@@ -120,7 +119,7 @@ export const crudListTests = (
           ],
           routerInitialEntries: ["/posts"],
           routerProvider: {
-            ...mockRouterBindings(),
+            ...mockRouterProvider(),
             parse() {
               return () => ({
                 params: {},
@@ -173,7 +172,7 @@ export const crudListTests = (
         {
           routerInitialEntries: ["/posts"],
           routerProvider: {
-            ...mockRouterBindings(),
+            ...mockRouterProvider(),
             parse() {
               return () => ({
                 params: {},

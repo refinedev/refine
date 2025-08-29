@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { AccessControlContextProvider } from "@contexts/accessControl";
 import { AuditLogContextProvider } from "@contexts/auditLog";
-import { AuthBindingsContextProvider } from "@contexts/auth";
+import { AuthProviderContextProvider } from "@contexts/auth";
 import { DataContextProvider } from "@contexts/data";
 import { I18nContextProvider } from "@contexts/i18n";
 import { LiveContextProvider } from "@contexts/live";
@@ -145,12 +145,12 @@ export const TestWrapper: (
     );
 
     const withAuth = authProvider ? (
-      <AuthBindingsContextProvider
+      <AuthProviderContextProvider
         {...authProvider}
         isProvided={Boolean(authProvider)}
       >
         {withNotification}
-      </AuthBindingsContextProvider>
+      </AuthProviderContextProvider>
     ) : (
       withNotification
     );

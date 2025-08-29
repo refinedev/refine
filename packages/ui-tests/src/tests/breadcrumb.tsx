@@ -7,7 +7,7 @@ import {
   type ITestWrapperProps,
   render,
   TestWrapper,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 
 const renderBreadcrumb = (
@@ -21,7 +21,7 @@ const renderBreadcrumb = (
     {
       wrapper: TestWrapper({
         routerProvider: {
-          ...mockRouterBindings(),
+          ...mockRouterProvider(),
           parse() {
             return () => ({
               pathname: "/posts",

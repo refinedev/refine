@@ -241,7 +241,7 @@ import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import dataProvider from "@refinedev/airtable";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -258,7 +258,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
@@ -379,7 +379,7 @@ You can simply copy and paste the code below into the `App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine, ErrorComponent } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -401,7 +401,7 @@ function App() {
     <BrowserRouter>
       <Refine
         dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
         resources={[
           {
             name: "posts",

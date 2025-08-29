@@ -11,7 +11,7 @@ import {
   render,
   TestWrapper,
   waitFor,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 
@@ -504,7 +504,7 @@ export const buttonDeleteTests = (
               deleteOne: deleteOneMock,
             },
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   params: {},
@@ -565,7 +565,7 @@ export const buttonDeleteTests = (
               deleteOne: deleteOneMock,
             },
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   params: {},

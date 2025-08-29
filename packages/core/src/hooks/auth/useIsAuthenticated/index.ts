@@ -5,7 +5,7 @@ import {
   useQuery,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useKeys } from "@hooks";
 
 import type { CheckResponse } from "../../../contexts/auth/types";
@@ -28,7 +28,7 @@ export function useIsAuthenticated({
   queryOptions,
   params,
 }: UseIsAuthenticatedProps = {}): UseIsAuthenticatedReturnType {
-  const { check } = useAuthBindingsContext();
+  const { check } = useAuthProviderContext();
   const { keys } = useKeys();
 
   const queryResponse = useQuery<CheckResponse>({

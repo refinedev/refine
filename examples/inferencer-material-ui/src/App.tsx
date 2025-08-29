@@ -10,7 +10,7 @@ import {
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
@@ -58,7 +58,7 @@ function App() {
             <Refine
               dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
               notificationProvider={useNotificationProvider}
-              routerProvider={routerBindings}
+              routerProvider={routerProvider}
               authProvider={authProvider}
               i18nProvider={i18nProvider}
               resources={[

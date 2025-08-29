@@ -10,7 +10,7 @@ import {
   render,
   TestWrapper,
   waitFor,
-  mockRouterBindings,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 
@@ -387,7 +387,7 @@ export const buttonShowTests = (
             ],
             routerInitialEntries: ["/posts"],
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   params: undefined,
@@ -424,7 +424,7 @@ export const buttonShowTests = (
               { name: "posts", list: "/posts", show: "/posts/show/:id" },
             ],
             routerProvider: {
-              ...mockRouterBindings(),
+              ...mockRouterProvider(),
               parse() {
                 return () => ({
                   params: { id: "1" },

@@ -501,7 +501,7 @@ setInitialRoutes(["/"]);
 
 import { useNotificationProvider, WelcomePage } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router";
 
@@ -511,7 +511,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Refine
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         notificationProvider={useNotificationProvider}
       >

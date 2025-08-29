@@ -7,7 +7,7 @@ import {
 
 import {
   type ITestWrapperProps,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
 } from "@test";
@@ -26,7 +26,7 @@ const renderCreate = (
           ? {
               routerInitialEntries: ["/posts/create"],
               routerProvider: {
-                ...mockRouterBindings(),
+                ...mockRouterProvider(),
                 parse() {
                   return () => ({
                     params: {},
@@ -41,7 +41,7 @@ const renderCreate = (
           : {
               routerInitialEntries: ["/posts/create"],
               routerProvider: {
-                ...mockRouterBindings(),
+                ...mockRouterProvider(),
                 parse() {
                   return () => ({
                     params: {},
@@ -111,7 +111,7 @@ export const crudCreateTests = (
           },
         ],
         routerProvider: {
-          ...mockRouterBindings(),
+          ...mockRouterProvider(),
           parse() {
             return () => ({
               params: {},
