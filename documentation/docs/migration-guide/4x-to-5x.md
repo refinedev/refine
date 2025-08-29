@@ -343,7 +343,35 @@ const {
 
 ### useTable from @refinedev/react-table
 
-// TODO
+🚨 **Affects:** TanStack Table properties grouping
+
+TanStack Table properties are now grouped under a `reactTable` object for better organization.
+
+```diff
+const {
+-   getHeaderGroups,
+-   getRowModel,
+-   setOptions,
+-   getState,
+-   setPageIndex,
+    refineCore: { filters, setCurrentPage, setFilters },
+} = useTable({
+    columns,
+});
+
+const {
++   reactTable: {
++       getHeaderGroups,
++       getRowModel,
++       setOptions,
++       getState,
++       setPageIndex,
++   },
+    refineCore: { filters, setCurrentPage, setFilters },
+} = useTable({
+    columns,
+});
+```
 
 ### useTable from @refinedev/core
 
@@ -351,14 +379,11 @@ const {
 
 ```diff
 const {
--   tableQuery: { data }
-} = useTable();
-
-- const posts = tableQuery.data?.data;
-- const total = tableQuery.data?.total;
-
-const {
-+   result,
+    tableQuery,
++   result: {
++       data,
++       total,
++   },
 } = useTable();
 
 + const posts = result.data;
@@ -367,15 +392,56 @@ const {
 
 ### useTable from @refinedev/antd
 
-// TODO
+✅ There are no breaking changes in `useTable`. However, we introduced a new `result` property to make data access easier and keep consistency across all hooks.
 
-### useDataGrid
+```diff
+const {
+    tableProps,
++   result: {
++       data,
++       total,
++   },
+} = useTable();
 
-// TODO
++ const posts = result.data;
++ const total = result.total;
+```
 
-### useSimpleList
+### useDataGrid from @refinedev/mui
 
-// TODO
+✅ There are no breaking changes in `useDataGrid`. However, we introduced a new `result` property to make data access easier and keep consistency across all hooks.
+
+```diff
+const {
+    tableQuery,
+    dataGridProps,
++   result: {
++       data,
++       total,
++   },
+} = useDataGrid();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+### useSimpleList from @refinedev/antd
+
+✅ There are no breaking changes in `useSimpleList`. However, we introduced a new `result` property to make data access easier and keep consistency across all hooks.
+
+**Migration:**
+
+```diff
+const {
+    listProps,
+    queryResult,
++   query,
++   result: {
++       data,
++       total,
++   },
+} = useSimpleList();
+```
 
 ### useInfiniteList
 
