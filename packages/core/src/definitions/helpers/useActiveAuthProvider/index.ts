@@ -1,11 +1,11 @@
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 
 /**
  * @returns authProvider if provided, otherwise null
  * @internal
  */
 export const useActiveAuthProvider = () => {
-  const authProvider = useAuthBindingsContext();
+  const authProvider = useAuthProviderContext();
 
   if (authProvider.isProvided) {
     return authProvider;

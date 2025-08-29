@@ -84,7 +84,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -104,7 +104,7 @@ function App() {
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
             options={{
               syncWithLocation: true,
@@ -188,7 +188,7 @@ import {
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -230,7 +230,7 @@ function App() {
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
           accessControlProvider={accessControlProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           notificationProvider={useNotificationProvider}
           resources={[
             {
@@ -528,8 +528,8 @@ After adding resources we need to create routes for them. For the routes, we'll 
 // ...
 
 import { Authenticated, CanAccess, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayout } from "@refinedev/antd";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import { ErrorComponent, ThemedLayoutV2 } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { CanvasList, UserList } from "./pages";
@@ -541,7 +541,7 @@ function App() {
       {/* ... */}
       <Refine
         // ...
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
       >
         <Routes>
           <Route
@@ -625,7 +625,7 @@ import {
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -667,7 +667,7 @@ function App() {
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
           accessControlProvider={accessControlProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           notificationProvider={useNotificationProvider}
           resources={[
             {

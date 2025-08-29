@@ -9,7 +9,7 @@ import {
   type NotificationProvider,
   type IResourceItem,
   type AuthProvider,
-  type RouterBindings,
+  type RouterProvider,
   type Action,
 } from "@refinedev/core";
 
@@ -69,7 +69,7 @@ const mockResources = [
 export interface ITestWrapperProps {
   dataProvider?: DataProvider;
   authProvider?: AuthProvider;
-  routerProvider?: RouterBindings;
+  routerProvider?: RouterProvider;
   resources?: IResourceItem[];
   notificationProvider?: NotificationProvider;
   accessControlProvider?: AccessControlProvider;

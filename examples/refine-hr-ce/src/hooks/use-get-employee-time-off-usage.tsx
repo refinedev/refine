@@ -6,25 +6,32 @@ import dayjs from "dayjs";
 export const useGetEmployeeTimeOffUsage = ({
   employeeId,
 }: { employeeId?: number }) => {
-  const migratedMigratedMigratedMigratedMigratedQuery = useList<TimeOff>({
-    resource: "time-offs",
-    pagination: { pageSize: 999 },
-    filters: [
-      {
-        field: "status",
-        operator: "eq",
-        value: TimeOffStatus.APPROVED,
+  const migratedMigratedMigratedMigratedMigratedMigratedQuery =
+    useList<TimeOff>({
+      resource: "time-offs",
+      pagination: { pageSize: 999 },
+      filters: [
+        {
+          field: "status",
+          operator: "eq",
+          value: TimeOffStatus.APPROVED,
+        },
+        {
+          field: "employeeId",
+          operator: "eq",
+          value: employeeId,
+        },
+      ],
+      queryOptions: {
+        enabled: !!employeeId,
       },
-      {
-        field: "employeeId",
-        operator: "eq",
-        value: employeeId,
-      },
-    ],
-    queryOptions: {
-      enabled: !!employeeId,
-    },
-  });
+    });
+
+  const migratedMigratedMigratedMigratedMigratedQuery = {
+    ...migratedMigratedMigratedMigratedMigratedMigratedQuery.result,
+    ...migratedMigratedMigratedMigratedMigratedMigratedQuery.query,
+    ...migratedMigratedMigratedMigratedMigratedMigratedQuery,
+  };
 
   const migratedMigratedMigratedMigratedQuery = {
     ...migratedMigratedMigratedMigratedMigratedQuery.result,

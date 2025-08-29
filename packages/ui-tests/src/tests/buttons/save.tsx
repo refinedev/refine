@@ -4,7 +4,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, fireEvent, render, TestWrapper, mockRouterBindings } from "@test";
+import { act, fireEvent, render, TestWrapper } from "@test";
 
 export const buttonSaveTests = (
   SaveButton: React.ComponentType<RefineSaveButtonProps<any, any>>,

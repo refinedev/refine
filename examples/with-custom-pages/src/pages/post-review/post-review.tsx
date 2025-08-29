@@ -26,7 +26,7 @@ export const PostReview: React.FC = () => {
     pagination: { pageSize: 1 },
   });
 
-  const record = data?.data[0];
+  const record = data?.data?.[0];
 
   const {
     result: categoryData,
@@ -39,9 +39,9 @@ export const PostReview: React.FC = () => {
     },
   });
 
-  const mutationResult = useUpdate<IPost>();
+  const { mutation, mutate } = useUpdate<IPost>();
 
-  const { mutate, isPending: mutateIsLoading } = mutationResult;
+  const { isPending: mutateIsLoading } = mutation;
 
   const handleUpdate = (item: IPost, status: string) => {
     mutate({ resource: "posts", id: item.id, values: { ...item, status } });

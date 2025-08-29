@@ -5,7 +5,7 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 
-import { useAuthBindingsContext } from "@contexts/auth";
+import { useAuthProviderContext } from "@contexts/auth";
 import { useGo, useKeys, useNotification } from "@hooks";
 
 import type {
@@ -49,7 +49,7 @@ export function useForgotPassword<TVariables = {}>({
   const go = useGo();
   const { open, close } = useNotification();
   const { forgotPassword: forgotPasswordFromContext } =
-    useAuthBindingsContext();
+    useAuthProviderContext();
   const { keys } = useKeys();
 
   const mutation = useMutation<

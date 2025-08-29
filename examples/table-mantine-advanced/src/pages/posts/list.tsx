@@ -192,11 +192,14 @@ export const PostList: React.FC = () => {
   );
 
   const {
-    setOptions,
-    getAllColumns,
-    getHeaderGroups,
-    getRowModel,
-    resetRowSelection,
+    reactTable: {
+      setOptions,
+      getAllColumns,
+      getHeaderGroups,
+      getRowModel,
+      resetRowSelection,
+    },
+
     refineCore: {
       tableQuery: { data: tableData },
 

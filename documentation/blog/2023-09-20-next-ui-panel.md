@@ -99,7 +99,7 @@ Finally, copy and paste the code below into the `src/App.tsx` file.
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -132,7 +132,7 @@ function App() {
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "categories",
@@ -649,7 +649,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             //highlight-start
             {
@@ -1614,7 +1614,7 @@ We need to add the `products` resource to the `<Refine />` component. Therefore,
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -1649,7 +1649,7 @@ function App() {
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",

@@ -465,7 +465,32 @@ useCreate({
 })
 ```
 
-### sorter/sort → sorters
+#### AuthBindings → AuthProvider (Type Imports)
+
+🚨 Affects: Type imports from @refinedev/core
+
+Type interfaces have been renamed in @refinedev/core. When importing these types, you'll need to update the import names while preserving usage with aliases:
+
+```diff
+// AuthBindings → AuthProvider
+- import { type AuthBindings } from "@refinedev/core";
++ import { type AuthProvider  } from "@refinedev/core";
+
+```
+
+#### RouterBindings → RouterProvider (Type Imports)
+
+🚨 Affects: Type imports from @refinedev/core
+
+Type interfaces have been renamed in @refinedev/core. When importing these types, you'll need to update the import names while preserving usage with aliases:
+
+```diff
+
+- import type { RouterBindings } from "@refinedev/core";
++ import type { RouterProvider  } from "@refinedev/core";
+```
+
+#### sorter/sort → sorters
 
 🚨 Affects: useList, useInfiniteList, useTable, useDataGrid, useSelect
 

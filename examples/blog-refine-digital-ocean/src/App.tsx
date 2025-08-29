@@ -7,7 +7,7 @@ import dataProvider, {
 } from "@refinedev/nestjs-query";
 import { createClient } from "graphql-ws";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-import routerBindings, {
+import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router";
@@ -64,7 +64,7 @@ function App() {
             dataProvider={dataProvider(gqlClient)}
             liveProvider={liveProvider(wsClient)}
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             resources={[
               {
                 name: "dashboard",

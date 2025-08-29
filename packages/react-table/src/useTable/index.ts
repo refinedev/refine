@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import isEqual from "lodash/isEqual";
 import {
   type BaseRecord,
@@ -28,7 +28,8 @@ import {
 export type UseTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-> = Table<TData> & {
+> = {
+  reactTable: Table<TData>;
   refineCore: useTableReturnTypeCore<TData, TError>;
 };
 
@@ -175,7 +176,7 @@ export function useTable<
   }, [columnFilters, columns]);
 
   return {
-    ...reactTableResult,
+    reactTable: reactTableResult,
     refineCore: useTableResult,
   };
 }

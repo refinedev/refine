@@ -4,7 +4,7 @@ import type { RefineThemedLayoutSiderProps } from "@refinedev/ui-types";
 import {
   act,
   type ITestWrapperProps,
-  mockRouterBindings,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -29,7 +29,7 @@ const testWrapper = (wrapperProps?: ITestWrapperProps) => {
       },
     ],
     routerInitialEntries: ["/"],
-    routerProvider: mockRouterBindings(),
+    routerProvider: mockRouterProvider(),
     ...wrapperProps,
   });
 };
@@ -158,7 +158,7 @@ export const layoutSiderTests = (
         {
           wrapper: testWrapper({
             routerInitialEntries: ["/posts"],
-            routerProvider: mockRouterBindings({
+            routerProvider: mockRouterProvider({
               pathname: "/posts",
               action: "list",
               resource: {

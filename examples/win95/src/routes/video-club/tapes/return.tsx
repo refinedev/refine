@@ -41,8 +41,7 @@ export const VideoClubPageTapeReturn = () => {
 
   const {
     result: dataMember,
-    refetch,
-    query: { isLoading },
+    query: { isLoading, refetch },
   } = useOne<ExtendedMember>({
     resource: "members",
     id: memberId,

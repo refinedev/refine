@@ -24,8 +24,7 @@ export const VideoClubMemberPageShow: React.FC = () => {
 
   const {
     result,
-    refetch,
-    query: { isLoading },
+    query: { isLoading, refetch },
   } = useOne<ExtendedMember>({
     resource: "members",
     id,

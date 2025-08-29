@@ -12,7 +12,7 @@ import {
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -61,7 +61,7 @@ function App() {
                 dataProvider={dataProvider("https://api.finefoods.refine.dev")}
                 notificationProvider={useNotificationProvider}
                 i18nProvider={i18nProvider}
-                routerProvider={routerBindings}
+                routerProvider={routerProvider}
                 resources={[
                   {
                     name: "dashboard",

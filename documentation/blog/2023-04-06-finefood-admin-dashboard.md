@@ -89,7 +89,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
@@ -104,7 +104,7 @@ function App() {
         <ColorModeContextProvider>
           <Refine
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             options={{
               syncWithLocation: true,
@@ -352,7 +352,7 @@ import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { WelcomePage, useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import routerBindings, {
+import routerProvider, {
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
 import jsonServerDataProvider from "@refinedev/simple-rest";
@@ -372,7 +372,7 @@ function App() {
         <ColorModeContextProvider>
           <Refine
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider}
             options={{
@@ -1983,7 +1983,7 @@ import {
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider, Layout } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -2008,7 +2008,7 @@ function App() {
         <ColorModeContextProvider>
           <Refine
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             dataProvider={dataProvider}
             options={{

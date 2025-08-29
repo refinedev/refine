@@ -151,7 +151,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
     ```tsx title="src/App.tsx"
     import { ErrorComponent, Refine } from "@refinedev/core";
     import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-    import routerBindings, {
+    import routerProvider, {
       DocumentTitleHandler,
       UnsavedChangesNotifier,
     } from "@refinedev/react-router";
@@ -166,7 +166,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
           <RefineKbarProvider>
             <Refine
               dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-              routerProvider={routerBindings}
+              routerProvider={routerProvider}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
@@ -237,7 +237,7 @@ Now that we have the `<Dashboard />` component, let's import it in `src/App.tsx`
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
     DocumentTitleHandler,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -262,7 +262,7 @@ function App() {
                     dataProvider={dataProvider(
                         "https://api.finefoods.refine.dev",
                     )}
-                    routerProvider={routerBindings}
+                    routerProvider={routerProvider}
                     {/*highlight-start*/}
                     resources={[
                         {
@@ -1018,7 +1018,7 @@ Now that we have the dashboard, let's create the product CRUD pages. Before that
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -1040,7 +1040,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -1331,7 +1331,7 @@ Next, import the `<ProductList />` component in `src/App.tsx` and add a route fo
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -1357,7 +1357,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -2049,7 +2049,7 @@ Let's start by defining the "category" resource in `src/App.tsx` file as follows
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -2078,7 +2078,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -2574,7 +2574,7 @@ Next, import the category CRUD pages in `src/App.tsx` and add routes for renderi
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -2611,7 +2611,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -2698,7 +2698,7 @@ Additionally, we'll add `meta` property to the resources to render icons in the 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -2737,7 +2737,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",

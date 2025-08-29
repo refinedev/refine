@@ -10,7 +10,7 @@ import {
 import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
@@ -57,12 +57,12 @@ function App() {
           <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             i18nProvider={i18nProvider}
             resources={[
               {
-                name: "blog_posts",
+                name: "posts",
                 list: "/blog-posts",
                 create: "/blog-posts/create",
                 edit: "/blog-posts/edit/:id",

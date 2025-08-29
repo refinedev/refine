@@ -85,7 +85,7 @@ describe("useIsAuthenticated Hook", () => {
   });
 
   it("should resolve {} if no authProvider is provided", async () => {
-    jest.spyOn(authContext, "useAuthBindingsContext").mockReturnValue({
+    jest.spyOn(authContext, "useAuthProviderContext").mockReturnValue({
       ...jest.requireActual("../../../contexts/auth"),
       check: undefined,
     });

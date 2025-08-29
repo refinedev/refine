@@ -4,7 +4,7 @@ import {
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
 
-import { act, render, TestWrapper, mockRouterBindings } from "@test";
+import { act, render, TestWrapper } from "@test";
 
 export const buttonImportTests = (
   ImportButton: React.ComponentType<RefineImportButtonProps<any, any>>,

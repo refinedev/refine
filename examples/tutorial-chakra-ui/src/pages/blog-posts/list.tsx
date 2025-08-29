@@ -110,9 +110,8 @@ export const BlogPostList = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
+
     refineCore: {
       setCurrentPage: setCurrent,
       pageCount,

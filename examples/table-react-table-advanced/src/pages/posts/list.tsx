@@ -178,20 +178,23 @@ export const PostList: React.FC = () => {
   }
 
   const {
-    setOptions,
-    getColumn,
-    getAllColumns,
-    getHeaderGroups,
-    getRowModel,
-    setPageIndex,
-    setPageSize,
-    getState,
-    getCanPreviousPage,
-    getPageCount,
-    getCanNextPage,
-    nextPage,
-    previousPage,
-    resetRowSelection,
+    reactTable: {
+      setOptions,
+      getColumn,
+      getAllColumns,
+      getHeaderGroups,
+      getRowModel,
+      setPageIndex,
+      setPageSize,
+      getState,
+      getCanPreviousPage,
+      getPageCount,
+      getCanNextPage,
+      nextPage,
+      previousPage,
+      resetRowSelection,
+    },
+
     refineCore: {
       tableQuery: { data: tableData },
     },

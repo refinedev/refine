@@ -56,7 +56,7 @@ A **Refine** app is centered mainly around the `<Refine />` component, which is 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 
 <Refine
   dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}

@@ -77,7 +77,7 @@ import {
   RefineThemes,
 } from "@refinedev/mantine";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router";
+import RouterProvider from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
@@ -95,7 +95,7 @@ export default function App() {
         <Global styles={{ body: { WebkitFontSmoothing: "auto" } }} />{" "}
         <NotificationsProvider position="top-right">
           <Refine
-            routerProvider={routerBindings}
+            routerProvider={RouterProvider}
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             notificationProvider={useNotificationProvider}
             resources={[
