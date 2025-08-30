@@ -17,6 +17,30 @@ When you need to fetch data according to sort, filter, pagination, etc. from a `
 
 - It uses a query key to cache the data. The **query key** is generated from the provided properties. You can see the query key by using the TanStack Query devtools.
 
+## API Reference
+
+### Properties
+
+<PropsTable module="@refinedev/core/useList"
+successNotification-default='`false`'
+errorNotification-default='"Error (status code: `statusCode`)"'
+/>
+
+### Type Parameters
+
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
+
+### Return Values
+
+| Description                               | Type                                                                                                                            |
+| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                                                      |
+
 ## Usage
 
 Here is a basic example of how to use the `useList` hook.
@@ -349,30 +373,6 @@ const { overtime } = useList();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
-
-## API Reference
-
-### Properties
-
-<PropsTable module="@refinedev/core/useList"
-successNotification-default='`false`'
-errorNotification-default='"Error (status code: `statusCode`)"'
-/>
-
-### Type Parameters
-
-| Property     | Description                                                                                                                                                         | Type                       | Default                    |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
-| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
-
-### Return Values
-
-| Description                               | Type                                                                                                                            |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; total: number; }, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-| overtime                                  | `{ elapsedTime?: number }`                                                                                                      |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror

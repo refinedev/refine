@@ -14,6 +14,30 @@ import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
 It is useful when you want to fetch a single record from the API. It will return the data and some functions to control the query.
 
+## API Reference
+
+### Properties
+
+<PropsTable module="@refinedev/core/useOne"
+successNotification-default='`false`'
+errorNotification-default='"Error (status code: `statusCode`)"'
+/>
+
+### Type Parameters
+
+| Property     | Description                                                                                                                                                         | Type                       | Default                    |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
+| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
+| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
+| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
+
+### Return values
+
+| Description                               | Type                                                                                                                  |
+| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData; error: TError; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                                            |
+
 ## Usage
 
 The `useOne` hook expects a `resource` and `id` property, which will be passed to the `getOne` method from the `dataProvider` as a parameter.
@@ -239,30 +263,6 @@ const { overtime } = useOne();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
-
-## API Reference
-
-### Properties
-
-<PropsTable module="@refinedev/core/useOne"
-successNotification-default='`false`'
-errorNotification-default='"Error (status code: `statusCode`)"'
-/>
-
-### Type Parameters
-
-| Property     | Description                                                                                                                                                         | Type                       | Default                    |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- | -------------------------- |
-| TQueryFnData | Result data returned by the query function. Extends [`BaseRecord`][baserecord]                                                                                      | [`BaseRecord`][baserecord] | [`BaseRecord`][baserecord] |
-| TError       | Custom error object that extends [`HttpError`][httperror]                                                                                                           | [`HttpError`][httperror]   | [`HttpError`][httperror]   |
-| TData        | Result data returned by the `select` function. Extends [`BaseRecord`][baserecord]. If not specified, the value of `TQueryFnData` will be used as the default value. | [`BaseRecord`][baserecord] | `TQueryFnData`             |
-
-### Return values
-
-| Description                               | Type                                                                                                                  |
-| ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData; error: TError; }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-| overtime                                  | `{ elapsedTime?: number }`                                                                                            |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
