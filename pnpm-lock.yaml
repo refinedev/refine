@@ -3336,7 +3336,7 @@ importers:
         version: 0.9.1
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        version: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -4995,7 +4995,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -5028,13 +5028,13 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        version: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       next-compose-plugins:
         specifier: ^2.2.1
         version: 2.2.1
       next-intl:
         specifier: ^3.25.3
-        version: 3.25.3(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0)
+        version: 3.25.3(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -10089,7 +10089,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10122,7 +10122,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        version: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       nookies:
         specifier: ^2.5.2
         version: 2.5.2
@@ -10162,7 +10162,7 @@ importers:
         version: 5.5.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@ant-design/nextjs-registry':
         specifier: ^1.0.0
-        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       '@refinedev/antd':
         specifier: ^5.46.3
         version: link:../../packages/antd
@@ -10198,10 +10198,10 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        version: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       next-auth:
         specifier: ^4.24.5
-        version: 4.24.7(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 4.24.7(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       react:
         specifier: ^18.0.0
         version: 18.3.0
@@ -11563,7 +11563,7 @@ importers:
         version: 18.3.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@18.3.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -11594,7 +11594,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@19.0.0(react@18.3.0))(react@18.3.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
@@ -11615,7 +11615,7 @@ importers:
         version: link:../devtools-shared
       '@tanstack/react-query':
         specifier: ^4.10.1
-        version: 4.36.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 4.36.1(react-dom@18.3.0(react@19.0.0))(react@19.0.0)
       '@types/react':
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0
@@ -11627,10 +11627,10 @@ importers:
         version: 2.1.4
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 18.3.0(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -11655,7 +11655,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@18.3.0(react@19.0.0))(react@19.0.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
@@ -11824,7 +11824,7 @@ importers:
     dependencies:
       '@tanstack/react-query':
         specifier: ^4.10.1
-        version: 4.36.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 4.36.1(react-dom@18.3.0(react@19.0.0))(react@19.0.0)
       '@types/react':
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0
@@ -11836,10 +11836,10 @@ importers:
         version: 2.1.4
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 18.3.0(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -11861,7 +11861,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@18.3.0(react@19.0.0))(react@19.0.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
@@ -11879,10 +11879,10 @@ importers:
     dependencies:
       '@fireworks-js/react':
         specifier: ^2.10.7
-        version: 2.10.7(@types/react@18.3.0)(react@18.3.0)
+        version: 2.10.7(@types/react@18.3.0)(react@19.0.0)
       '@headlessui/react':
         specifier: ^1.7.17
-        version: 1.7.19(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 1.7.19(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@ory/client':
         specifier: ^1.5.2
         version: 1.9.0
@@ -11891,7 +11891,7 @@ importers:
         version: link:../devtools-shared
       '@tanstack/react-table':
         specifier: ^8.2.6
-        version: 8.16.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 8.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/react':
         specifier: ^17.0.0 || ^18.0.0
         version: 18.3.0
@@ -11912,25 +11912,25 @@ importers:
         version: 4.17.21
       prism-react-renderer:
         specifier: ^1.3.5
-        version: 1.3.5(react@18.3.0)
+        version: 1.3.5(react@19.0.0)
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
       react-gravatar:
         specifier: ^2.6.3
-        version: 2.6.3(react@18.3.0)
+        version: 2.6.3(react@19.0.0)
       react-hook-form:
         specifier: ^7.57.0
-        version: 7.57.0(react@18.3.0)
+        version: 7.57.0(react@19.0.0)
       react-json-view-lite:
         specifier: ^1.3.0
-        version: 1.4.0(react@18.3.0)
+        version: 1.4.0(react@19.0.0)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       semver-diff:
         specifier: ^3.1.1
         version: 3.1.1
@@ -11949,7 +11949,7 @@ importers:
         version: 5.17.0
       '@testing-library/react':
         specifier: ^13.1.1
-        version: 13.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 13.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@testing-library/user-event':
         specifier: ^14.1.1
         version: 14.5.2(@testing-library/dom@8.20.1)
@@ -12309,13 +12309,13 @@ importers:
     dependencies:
       kbar:
         specifier: 0.1.0-beta.40
-        version: 0.1.0-beta.40(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 0.1.0-beta.40(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -12328,7 +12328,7 @@ importers:
         version: 5.17.0
       '@testing-library/react':
         specifier: ^13.1.1
-        version: 13.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 13.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
@@ -12346,7 +12346,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
@@ -12511,7 +12511,7 @@ importers:
         version: 1.5.0
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        version: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       qs:
         specifier: ^6.10.1
         version: 6.12.1
@@ -12994,10 +12994,10 @@ importers:
         version: 6.12.1
       react:
         specifier: ^18.0.0 || ^19.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^18.0.0 || ^19.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
       warn-once:
         specifier: ^0.1.0
         version: 0.1.1
@@ -13019,7 +13019,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+        version: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.75.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
@@ -13049,13 +13049,13 @@ importers:
         version: 4.17.21
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
       react-hook-form:
         specifier: ^7.57.0
-        version: 7.57.0(react@18.3.0)
+        version: 7.57.0(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -13068,7 +13068,7 @@ importers:
         version: 5.17.0
       '@testing-library/react':
         specifier: ^13.1.1
-        version: 13.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 13.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@testing-library/user-event':
         specifier: ^14.1.1
         version: 14.5.2(@testing-library/dom@8.20.1)
@@ -13092,7 +13092,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@18.19.31)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5)))(typescript@5.4.5)
@@ -13119,13 +13119,13 @@ importers:
         version: 6.13.0
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -13171,13 +13171,13 @@ importers:
         version: 6.13.0
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
       react-router-dom:
         specifier: ^6.8.1
-        version: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 6.23.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -13214,7 +13214,7 @@ importers:
     dependencies:
       '@tanstack/react-table':
         specifier: ^8.2.6
-        version: 8.16.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 8.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       lodash:
         specifier: ^4.17.21
         version: 4.17.21
@@ -13223,10 +13223,10 @@ importers:
         version: 4.17.21
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -13248,7 +13248,7 @@ importers:
         version: 29.7.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       react-router:
         specifier: ^7.0.2
-        version: 7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+        version: 7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       ts-jest:
         specifier: ^29.1.2
         version: 29.1.2(@babel/core@7.24.4)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.24.4))(esbuild@0.21.5)(jest@29.7.0(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.4.5)))(typescript@5.4.5)
@@ -13275,10 +13275,10 @@ importers:
         version: 6.12.1
       react:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0
+        version: 19.0.0
       react-dom:
         specifier: ^17.0.0 || ^18.0.0
-        version: 18.3.0(react@18.3.0)
+        version: 19.0.0(react@19.0.0)
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -13291,7 +13291,7 @@ importers:
         version: 2.9.1(typescript@5.4.5)
       '@remix-run/react':
         specifier: ^2.4.0
-        version: 2.9.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(typescript@5.4.5)
+        version: 2.9.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.4.5)
       '@types/jest':
         specifier: ^29.2.4
         version: 29.5.12
@@ -17240,59 +17240,59 @@ packages:
     resolution: {integrity: sha512-jV/P7o8+v1XaEGb7wvFfkF1fSLggAxjg7WYoBPkD3R93bsI6xmCDKBcUJ/6g7lqECRXt4dGKApSFtGk/pUmAHw==}
     engines: {node: '>=18.0.0'}
 
-  '@next/env@14.2.26':
-    resolution: {integrity: sha512-vO//GJ/YBco+H7xdQhzJxF7ub3SUwft76jwaeOyVVQFHCi5DCnkP16WHB+JBylo4vOKPoZBlR94Z8xBxNBdNJA==}
+  '@next/env@14.2.32':
+    resolution: {integrity: sha512-n9mQdigI6iZ/DF6pCTwMKeWgF2e8lg7qgt5M7HXMLtyhZYMnf/u905M18sSpPmHL9MKp9JHo56C6jrD2EvWxng==}
 
-  '@next/swc-darwin-arm64@14.2.26':
-    resolution: {integrity: sha512-zDJY8gsKEseGAxG+C2hTMT0w9Nk9N1Sk1qV7vXYz9MEiyRoF5ogQX2+vplyUMIfygnjn9/A04I6yrUTRTuRiyQ==}
+  '@next/swc-darwin-arm64@14.2.32':
+    resolution: {integrity: sha512-osHXveM70zC+ilfuFa/2W6a1XQxJTvEhzEycnjUaVE8kpUS09lDpiDDX2YLdyFCzoUbvbo5r0X1Kp4MllIOShw==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@14.2.26':
-    resolution: {integrity: sha512-U0adH5ryLfmTDkahLwG9sUQG2L0a9rYux8crQeC92rPhi3jGQEY47nByQHrVrt3prZigadwj/2HZ1LUUimuSbg==}
+  '@next/swc-darwin-x64@14.2.32':
+    resolution: {integrity: sha512-P9NpCAJuOiaHHpqtrCNncjqtSBi1f6QUdHK/+dNabBIXB2RUFWL19TY1Hkhu74OvyNQEYEzzMJCMQk5agjw1Qg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-linux-arm64-gnu@14.2.26':
-    resolution: {integrity: sha512-SINMl1I7UhfHGM7SoRiw0AbwnLEMUnJ/3XXVmhyptzriHbWvPPbbm0OEVG24uUKhuS1t0nvN/DBvm5kz6ZIqpg==}
+  '@next/swc-linux-arm64-gnu@14.2.32':
+    resolution: {integrity: sha512-v7JaO0oXXt6d+cFjrrKqYnR2ubrD+JYP7nQVRZgeo5uNE5hkCpWnHmXm9vy3g6foMO8SPwL0P3MPw1c+BjbAzA==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@14.2.26':
-    resolution: {integrity: sha512-s6JaezoyJK2DxrwHWxLWtJKlqKqTdi/zaYigDXUJ/gmx/72CrzdVZfMvUc6VqnZ7YEvRijvYo+0o4Z9DencduA==}
+  '@next/swc-linux-arm64-musl@14.2.32':
+    resolution: {integrity: sha512-tA6sIKShXtSJBTH88i0DRd6I9n3ZTirmwpwAqH5zdJoQF7/wlJXR8DkPmKwYl5mFWhEKr5IIa3LfpMW9RRwKmQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-x64-gnu@14.2.26':
-    resolution: {integrity: sha512-FEXeUQi8/pLr/XI0hKbe0tgbLmHFRhgXOUiPScz2hk0hSmbGiU8aUqVslj/6C6KA38RzXnWoJXo4FMo6aBxjzg==}
+  '@next/swc-linux-x64-gnu@14.2.32':
+    resolution: {integrity: sha512-7S1GY4TdnlGVIdeXXKQdDkfDysoIVFMD0lJuVVMeb3eoVjrknQ0JNN7wFlhCvea0hEk0Sd4D1hedVChDKfV2jw==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@14.2.26':
-    resolution: {integrity: sha512-BUsomaO4d2DuXhXhgQCVt2jjX4B4/Thts8nDoIruEJkhE5ifeQFtvW5c9JkdOtYvE5p2G0hcwQ0UbRaQmQwaVg==}
+  '@next/swc-linux-x64-musl@14.2.32':
+    resolution: {integrity: sha512-OHHC81P4tirVa6Awk6eCQ6RBfWl8HpFsZtfEkMpJ5GjPsJ3nhPe6wKAJUZ/piC8sszUkAgv3fLflgzPStIwfWg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-win32-arm64-msvc@14.2.26':
-    resolution: {integrity: sha512-5auwsMVzT7wbB2CZXQxDctpWbdEnEW/e66DyXO1DcgHxIyhP06awu+rHKshZE+lPLIGiwtjo7bsyeuubewwxMw==}
+  '@next/swc-win32-arm64-msvc@14.2.32':
+    resolution: {integrity: sha512-rORQjXsAFeX6TLYJrCG5yoIDj+NKq31Rqwn8Wpn/bkPNy5rTHvOXkW8mLFonItS7QC6M+1JIIcLe+vOCTOYpvg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-ia32-msvc@14.2.26':
-    resolution: {integrity: sha512-GQWg/Vbz9zUGi9X80lOeGsz1rMH/MtFO/XqigDznhhhTfDlDoynCM6982mPCbSlxJ/aveZcKtTlwfAjwhyxDpg==}
+  '@next/swc-win32-ia32-msvc@14.2.32':
+    resolution: {integrity: sha512-jHUeDPVHrgFltqoAqDB6g6OStNnFxnc7Aks3p0KE0FbwAvRg6qWKYF5mSTdCTxA3axoSAUwxYdILzXJfUwlHhA==}
     engines: {node: '>= 10'}
     cpu: [ia32]
     os: [win32]
 
-  '@next/swc-win32-x64-msvc@14.2.26':
-    resolution: {integrity: sha512-2rdB3T1/Gp7bv1eQTTm9d1Y1sv9UuJ2LAwOE0Pe2prHKe32UNscj7YS13fRB37d0GAiGNR+Y7ZcW8YjDI8Ns0w==}
+  '@next/swc-win32-x64-msvc@14.2.32':
+    resolution: {integrity: sha512-2N0lSoU4GjfLSO50wvKpMQgKd4HdI2UHEhQPPPnlgfBJlOgJxkjpkYBqzk08f1gItBB6xF/n+ykso2hgxuydsA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -18469,8 +18469,8 @@ packages:
   '@swc/helpers@0.4.14':
     resolution: {integrity: sha512-4C7nX/dvpzB7za4Ql9K81xK3HPxCpHMgwTZVyf+9JQ6VUbn9jjZVN7/Nkdz/Ugzs2CSjqnL/UPXroiVBVHUWUw==}
 
-  '@swc/helpers@0.4.36':
-    resolution: {integrity: sha512-5lxnyLEYFskErRPenYItLRSge5DjrJngYKdVjRSrWfza9G6KkgHEXi0vUZiyUeMU5JfXH1YnvXZzSp8ul88o2Q==}
+  '@swc/helpers@0.4.37':
+    resolution: {integrity: sha512-O4U8DmGtYvuWDrqmkAqhmA+sV8D3eJzvKSUgg5L5eaCCPdywZBLc97UgJT/fQaCkQ5onJzJWNojgErJk1bThaw==}
 
   '@swc/helpers@0.5.5':
     resolution: {integrity: sha512-KGYxvIOXcceOAbEk4bi/dVLEK9z8sZ0uBB3Il5b1rhfClSpcX0yfRO0KmTkqR2cnQDymwLB+25ZyMzICg/cm/A==}
@@ -18870,6 +18870,9 @@ packages:
 
   '@types/node@14.18.63':
     resolution: {integrity: sha512-fAtCfv4jJg+ExtXhvCkCqUKZ+4ok/JQk01qDKhL5BDDoS3AxKXhV5/MAVUZyQnSEd2GT92fkgZl0pz0Q0AzcIQ==}
+
+  '@types/node@18.19.123':
+    resolution: {integrity: sha512-K7DIaHnh0mzVxreCR9qwgNxp3MH9dltPNIEddW9MYUlcKAzm+3grKNSTe2vCJHI1FaLpvpL5JGJrz1UZDKYvDg==}
 
   '@types/node@18.19.31':
     resolution: {integrity: sha512-ArgCD39YpyyrtFKIqMDvjz79jto5fcI/SVUs2HwB+f0dAzq68yqOdyaSivLiLugSziTpNXLQrVb7RZFmdZzbhA==}
@@ -19968,6 +19971,10 @@ packages:
     resolution: {integrity: sha512-b8um+L1RzM3WDSzvhm6gIz1yfTbBt6YTlcEKAvsmqCZZFw46z626lVj9j1yEPW33H5H+lBQpZMP1k8l+78Ha0A==}
     engines: {node: '>=8'}
 
+  braces@3.0.3:
+    resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
+    engines: {node: '>=8'}
+
   breakword@1.0.6:
     resolution: {integrity: sha512-yjxDAYyK/pBvws9H4xKYpLDpYKEH6CzrBPAuXq3x18I+c/2MkVtT3qAr7Oloi6Dss9qNhPVueAAVU1CSeNDIXw==}
 
@@ -20150,6 +20157,9 @@ packages:
 
   caniuse-lite@1.0.30001612:
     resolution: {integrity: sha512-lFgnZ07UhaCcsSZgWW0K5j4e69dK1u/ltrL9lTUiFOwNHs12S3UMIEYgBV0Z6C6hRDev7iRnMzzYmKabYdXF9g==}
+
+  caniuse-lite@1.0.30001739:
+    resolution: {integrity: sha512-y+j60d6ulelrNSwpPyrHdl+9mJnQzHBr08xm48Qno0nSk4h3Qojh+ziv2qE6rXf4k3tadF4o1J/1tAbVm1NtnA==}
 
   capital-case@1.0.4:
     resolution: {integrity: sha512-ds37W8CytHgwnhGGTi88pcPyR15qoNkOpYwmMMfnWqqWgESapLqvDx6huFjQ5vqWSn2Z06173XNA7LtMOeUh1A==}
@@ -22161,6 +22171,10 @@ packages:
     resolution: {integrity: sha512-qOo9F+dMUmC2Lcb4BbVvnKJxTPjCm+RRpe4gDuGrzkL7mEVl/djYSu2OdQ2Pa302N4oqkSg9ir6jaLWJ2USVpQ==}
     engines: {node: '>=8'}
 
+  fill-range@7.1.1:
+    resolution: {integrity: sha512-YsGpe3WHLK8ZYi4tWDg2Jy3ebRz2rXowDxnld4bkQB00cc/1Zw9AWnC0i9ztDJitivtQvaI9KaLyKrc+hBW0yg==}
+    engines: {node: '>=8'}
+
   filter-obj@1.1.0:
     resolution: {integrity: sha512-8rXg1ZnX7xzy2NGDVkBVaAy+lSlPNwad13BtgSlLuxfIslyt5Vg64U7tFcCt4WS1R0hvtnQybT/IyCkGZ3DpXQ==}
     engines: {node: '>=0.10.0'}
@@ -22870,6 +22884,9 @@ packages:
   html-entities@2.5.2:
     resolution: {integrity: sha512-K//PSRMQk4FZ78Kyau+mZurHn3FH0Vwr+H36eE0rPbeYkRRi9YxceYPhuN60UwWorxyKHhqoAJl2OFKa4BVtaA==}
 
+  html-entities@2.6.0:
+    resolution: {integrity: sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==}
+
   html-escaper@2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
 
@@ -23073,8 +23090,8 @@ packages:
     resolution: {integrity: sha512-AizQPcaofEtO11RZhPPHBOJRdo/20MKQF9mBLnVkBoyHi1/zXK8fzVdnEpSV9gxqtnh6Qomfp3F0xT5qP/vThw==}
     engines: {node: '>=0.8.0'}
 
-  immutable@4.3.5:
-    resolution: {integrity: sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==}
+  immutable@4.3.7:
+    resolution: {integrity: sha512-1hqclzwYwjRDFLjcFxOM5AYkkG0rpFPpr1RLPMEuGczoS7YA8gLhy8SWXYRAA/XwfEHpfo3cw5JGioS32fnMRw==}
 
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -24783,6 +24800,10 @@ packages:
     resolution: {integrity: sha512-DMy+ERcEW2q8Z2Po+WNXuw3c5YaUSFjAO5GsJqfEl7UjvtIuFKO6ZrKvcItdy98dwFI2N1tg3zNIdKaQT+aNdA==}
     engines: {node: '>=8.6'}
 
+  micromatch@4.0.8:
+    resolution: {integrity: sha512-PXwfBhYu0hBCPw8Dn0E+WDYb7af3dSLVWKi3HGv84IdF4TyFoC0ysxFd0Goxw7nSv4T/PzEJQxsYsEiFCKo2BA==}
+    engines: {node: '>=8.6'}
+
   mime-db@1.52.0:
     resolution: {integrity: sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg==}
     engines: {node: '>= 0.6'}
@@ -25134,8 +25155,8 @@ packages:
   next-tick@1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
 
-  next@14.2.26:
-    resolution: {integrity: sha512-b81XSLihMwCfwiUVRRja3LphLo4uBBMZEzBBWMaISbKTwOmq3wPknIETy/8000tr7Gq4WmbuFYPS7jOYIf+ZJw==}
+  next@14.2.32:
+    resolution: {integrity: sha512-fg5g0GZ7/nFc09X8wLe6pNSU8cLWbLRG3TZzPJ1BJvi2s9m7eF991se67wliM9kR5yLHRkyGKU49MMx58s3LJg==}
     engines: {node: '>=18.17.0'}
     hasBin: true
     peerDependencies:
@@ -25166,9 +25187,8 @@ packages:
   node-addon-api@2.0.2:
     resolution: {integrity: sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==}
 
-  node-addon-api@7.1.0:
-    resolution: {integrity: sha512-mNcltoe1R8o7STTegSOHdnJNN7s5EUvhoS7ShnTHDyOSd+8H+UdWODq6qSv67PjC8Zc5JRT8+oLAMCr0SIXw7g==}
-    engines: {node: ^16 || ^18 || >= 20}
+  node-addon-api@7.1.1:
+    resolution: {integrity: sha512-5m3bsyrjFWE1xf7nz7YXdN4udnVtXK6/Yfgn5qnahL6bCkf2yKt4k3nuTKAtT4r3IG8JNR2ncsIMdZuAzJjHQQ==}
 
   node-dir@0.1.17:
     resolution: {integrity: sha512-tmPX422rYgofd4epzrNoOXiE8XFZYOcCq1vD7MAXCDO+O+zndlA2ztdKKMa+EeuBG5tHETpr4ml4RGgpqDCCAg==}
@@ -28279,6 +28299,10 @@ packages:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
 
+  source-map@0.7.6:
+    resolution: {integrity: sha512-i5uvt8C3ikiWeNZSVZNWcfZPItFQOsYTUAOkcUPGd8DqDy1uOUikjt5dG+uRlwyvR108Fb9DOd4GvXfT0N2/uQ==}
+    engines: {node: '>= 12'}
+
   source-map@0.8.0-beta.0:
     resolution: {integrity: sha512-2ymg6oRBpebeZi9UUNsgQ89bhx01TcTkmNTGnNO88imTmbSgy4nfujrgVEFKWpMTEGA11EDkTt7mqObTPdigIA==}
     engines: {node: '>= 8'}
@@ -29018,6 +29042,9 @@ packages:
 
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
+
+  tslib@2.8.1:
+    resolution: {integrity: sha512-oJFu94HQb+KVduSUQL7wnpmqnfmLsOA/nAh6b6EH0wCEoK0/mPeXU6c3wKDV83MkOuHPRHtSXKKU99IBazS/2w==}
 
   tsup@6.7.0:
     resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}
@@ -30284,11 +30311,11 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@ant-design/nextjs-registry@1.0.0(@ant-design/cssinjs@1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(antd@5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0))(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@ant-design/cssinjs': 1.21.1(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
       antd: 5.21.6(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      next: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      next: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
@@ -33892,11 +33919,11 @@ snapshots:
       '@ethersproject/properties': 5.7.0
       '@ethersproject/strings': 5.7.0
 
-  '@fireworks-js/react@2.10.7(@types/react@18.3.0)(react@18.3.0)':
+  '@fireworks-js/react@2.10.7(@types/react@18.3.0)(react@19.0.0)':
     dependencies:
       '@types/react': 18.3.0
       fireworks-js: 2.10.7
-      react: 18.3.0
+      react: 19.0.0
 
   '@floating-ui/core@1.6.0':
     dependencies:
@@ -33933,26 +33960,26 @@ snapshots:
     dependencies:
       '@formatjs/fast-memoize': 2.2.3
       '@formatjs/intl-localematcher': 0.5.8
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/fast-memoize@2.2.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/fast-memoize@2.2.3':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/icu-messageformat-parser@2.9.4':
     dependencies:
       '@formatjs/ecma402-abstract': 2.2.4
       '@formatjs/icu-skeleton-parser': 1.8.8
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/icu-skeleton-parser@1.8.8':
     dependencies:
       '@formatjs/ecma402-abstract': 2.2.4
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@formatjs/intl-localematcher@0.5.4':
     dependencies:
@@ -33960,7 +33987,7 @@ snapshots:
 
   '@formatjs/intl-localematcher@0.5.8':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@googlemaps/js-api-loader@1.16.6':
     dependencies:
@@ -35001,12 +35028,12 @@ snapshots:
     dependencies:
       '@hapi/hoek': 9.3.0
 
-  '@headlessui/react@1.7.19(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@headlessui/react@1.7.19(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
-      '@tanstack/react-virtual': 3.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@tanstack/react-virtual': 3.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       client-only: 0.0.1
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@hookform/error-message@2.0.1(react-dom@18.3.0(react@18.3.0))(react-hook-form@7.57.0(react@18.3.0))(react@18.3.0)':
     dependencies:
@@ -36125,33 +36152,33 @@ snapshots:
 
   '@netlify/plugin-nextjs@5.2.2': {}
 
-  '@next/env@14.2.26': {}
+  '@next/env@14.2.32': {}
 
-  '@next/swc-darwin-arm64@14.2.26':
+  '@next/swc-darwin-arm64@14.2.32':
     optional: true
 
-  '@next/swc-darwin-x64@14.2.26':
+  '@next/swc-darwin-x64@14.2.32':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@14.2.26':
+  '@next/swc-linux-arm64-gnu@14.2.32':
     optional: true
 
-  '@next/swc-linux-arm64-musl@14.2.26':
+  '@next/swc-linux-arm64-musl@14.2.32':
     optional: true
 
-  '@next/swc-linux-x64-gnu@14.2.26':
+  '@next/swc-linux-x64-gnu@14.2.32':
     optional: true
 
-  '@next/swc-linux-x64-musl@14.2.26':
+  '@next/swc-linux-x64-musl@14.2.32':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@14.2.26':
+  '@next/swc-win32-arm64-msvc@14.2.32':
     optional: true
 
-  '@next/swc-win32-ia32-msvc@14.2.26':
+  '@next/swc-win32-ia32-msvc@14.2.32':
     optional: true
 
-  '@next/swc-win32-x64-msvc@14.2.26':
+  '@next/swc-win32-x64-msvc@14.2.32':
     optional: true
 
   '@nicolo-ribaudo/eslint-scope-5-internals@5.1.1-v1':
@@ -36466,8 +36493,8 @@ snapshots:
     dependencies:
       detect-libc: 1.0.3
       is-glob: 4.0.3
-      micromatch: 4.0.5
-      node-addon-api: 7.1.0
+      micromatch: 4.0.8
+      node-addon-api: 7.1.1
     optionalDependencies:
       '@parcel/watcher-android-arm64': 2.4.1
       '@parcel/watcher-darwin-arm64': 2.4.1
@@ -36555,10 +36582,10 @@ snapshots:
       '@babel/runtime': 7.26.0
       react: 18.3.0
 
-  '@radix-ui/react-compose-refs@1.0.1(@types/react@18.3.0)(react@18.3.0)':
+  '@radix-ui/react-compose-refs@1.0.1(@types/react@18.3.0)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      react: 18.3.0
+      react: 19.0.0
     optionalDependencies:
       '@types/react': 18.3.0
 
@@ -36572,12 +36599,12 @@ snapshots:
       '@babel/runtime': 7.26.0
       react: 18.3.0
 
-  '@radix-ui/react-portal@1.0.4(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@radix-ui/react-portal@1.0.4(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      '@radix-ui/react-primitive': 1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
     optionalDependencies:
       '@types/react': 18.3.0
       '@types/react-dom': 18.3.0
@@ -36597,12 +36624,12 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@radix-ui/react-primitive@1.0.3(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@radix-ui/react-slot': 1.0.2(@types/react@18.3.0)(react@18.3.0)
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.3.0)(react@19.0.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
     optionalDependencies:
       '@types/react': 18.3.0
       '@types/react-dom': 18.3.0
@@ -36628,11 +36655,11 @@ snapshots:
       '@radix-ui/react-compose-refs': 1.0.0(react@18.3.0)
       react: 18.3.0
 
-  '@radix-ui/react-slot@1.0.2(@types/react@18.3.0)(react@18.3.0)':
+  '@radix-ui/react-slot@1.0.2(@types/react@18.3.0)(react@19.0.0)':
     dependencies:
       '@babel/runtime': 7.26.0
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.0)(react@18.3.0)
-      react: 18.3.0
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.3.0)(react@19.0.0)
+      react: 19.0.0
     optionalDependencies:
       '@types/react': 18.3.0
 
@@ -36990,6 +37017,18 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       react-router: 6.23.0(react@18.3.0)
       react-router-dom: 6.23.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      turbo-stream: 2.0.0
+    optionalDependencies:
+      typescript: 5.4.5
+
+  '@remix-run/react@2.9.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(typescript@5.4.5)':
+    dependencies:
+      '@remix-run/router': 1.16.0
+      '@remix-run/server-runtime': 2.9.1(typescript@5.4.5)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      react-router: 6.23.0(react@19.0.0)
+      react-router-dom: 6.23.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       turbo-stream: 2.0.0
     optionalDependencies:
       typescript: 5.4.5
@@ -37689,17 +37728,17 @@ snapshots:
 
   '@swc/helpers@0.4.14':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
-  '@swc/helpers@0.4.36':
+  '@swc/helpers@0.4.37':
     dependencies:
-      legacy-swc-helpers: '@swc/helpers@0.4.14'
-      tslib: 2.6.2
+      '@swc/legacy-helpers': '@swc/helpers@0.4.14'
+      tslib: 2.8.1
 
   '@swc/helpers@0.5.5':
     dependencies:
       '@swc/counter': 0.1.3
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   '@szmarczak/http-timer@1.1.2':
     dependencies:
@@ -37756,17 +37795,31 @@ snapshots:
     optionalDependencies:
       react-dom: 18.3.0(react@18.3.0)
 
+  '@tanstack/react-query@4.36.1(react-dom@18.3.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@tanstack/query-core': 4.36.1
+      react: 19.0.0
+      use-sync-external-store: 1.2.1(react@19.0.0)
+    optionalDependencies:
+      react-dom: 18.3.0(react@19.0.0)
+
   '@tanstack/react-table@8.16.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
     dependencies:
       '@tanstack/table-core': 8.16.0
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  '@tanstack/react-virtual@3.4.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)':
+  '@tanstack/react-table@8.16.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@tanstack/table-core': 8.16.0
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+
+  '@tanstack/react-virtual@3.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
     dependencies:
       '@tanstack/virtual-core': 3.4.0
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@tanstack/table-core@8.16.0': {}
 
@@ -37812,6 +37865,14 @@ snapshots:
       '@types/react-dom': 18.3.0
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
+
+  '@testing-library/react@13.4.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0)':
+    dependencies:
+      '@babel/runtime': 7.24.4
+      '@testing-library/dom': 8.20.1
+      '@types/react-dom': 18.3.0
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
 
   '@testing-library/user-event@14.5.2(@testing-library/dom@8.20.1)':
     dependencies:
@@ -38108,6 +38169,11 @@ snapshots:
 
   '@types/node@14.18.63': {}
 
+  '@types/node@18.19.123':
+    dependencies:
+      undici-types: 5.26.5
+    optional: true
+
   '@types/node@18.19.31':
     dependencies:
       undici-types: 5.26.5
@@ -38296,14 +38362,14 @@ snapshots:
 
   '@types/webpack-sources@3.2.3':
     dependencies:
-      '@types/node': 18.19.31
+      '@types/node': 18.19.123
       '@types/source-list-map': 0.1.6
-      source-map: 0.7.4
+      source-map: 0.7.6
     optional: true
 
   '@types/webpack@4.41.38':
     dependencies:
-      '@types/node': 18.19.31
+      '@types/node': 18.19.123
       '@types/tapable': 1.0.12
       '@types/uglify-js': 3.17.5
       '@types/webpack-sources': 3.2.3
@@ -38551,7 +38617,7 @@ snapshots:
       '@babel/plugin-syntax-typescript': 7.24.1(@babel/core@7.24.4)
       '@vanilla-extract/babel-plugin-debug-ids': 1.0.5
       '@vanilla-extract/css': 1.14.2
-      esbuild: 0.17.19
+      esbuild: 0.17.6
       eval: 0.1.8
       find-up: 5.0.0
       javascript-stringify: 2.1.0
@@ -39634,6 +39700,11 @@ snapshots:
     dependencies:
       fill-range: 7.0.1
 
+  braces@3.0.3:
+    dependencies:
+      fill-range: 7.1.1
+    optional: true
+
   breakword@1.0.6:
     dependencies:
       wcwidth: 1.0.1
@@ -39819,7 +39890,7 @@ snapshots:
   camel-case@4.1.2:
     dependencies:
       pascal-case: 3.1.2
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   camelcase-css@2.0.1: {}
 
@@ -39842,11 +39913,13 @@ snapshots:
   caniuse-api@3.0.0:
     dependencies:
       browserslist: 4.23.0
-      caniuse-lite: 1.0.30001612
+      caniuse-lite: 1.0.30001739
       lodash.memoize: 4.1.2
       lodash.uniq: 4.5.0
 
   caniuse-lite@1.0.30001612: {}
+
+  caniuse-lite@1.0.30001739: {}
 
   capital-case@1.0.4:
     dependencies:
@@ -41247,7 +41320,7 @@ snapshots:
   dot-case@3.0.4:
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   dot-prop@5.3.0:
     dependencies:
@@ -42310,6 +42383,11 @@ snapshots:
     dependencies:
       to-regex-range: 5.0.1
 
+  fill-range@7.1.1:
+    dependencies:
+      to-regex-range: 5.0.1
+    optional: true
+
   filter-obj@1.1.0: {}
 
   finalhandler@1.3.1:
@@ -42385,7 +42463,7 @@ snapshots:
 
   focus-lock@1.3.5:
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   follow-redirects@1.15.6(debug@4.3.4):
     optionalDependencies:
@@ -42393,7 +42471,7 @@ snapshots:
 
   fontkit@2.0.2:
     dependencies:
-      '@swc/helpers': 0.4.36
+      '@swc/helpers': 0.4.37
       brotli: 1.3.3
       clone: 2.1.2
       dfa: 1.2.0
@@ -43274,6 +43352,9 @@ snapshots:
 
   html-entities@2.5.2: {}
 
+  html-entities@2.6.0:
+    optional: true
+
   html-escaper@2.0.2: {}
 
   html-minifier-terser@6.1.0:
@@ -43519,7 +43600,7 @@ snapshots:
 
   immutable@3.7.6: {}
 
-  immutable@4.3.5:
+  immutable@4.3.7:
     optional: true
 
   import-fresh@3.3.0:
@@ -43609,7 +43690,7 @@ snapshots:
       '@formatjs/ecma402-abstract': 2.2.4
       '@formatjs/fast-memoize': 2.2.3
       '@formatjs/icu-messageformat-parser': 2.9.4
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   into-stream@6.0.0:
     dependencies:
@@ -45261,14 +45342,14 @@ snapshots:
 
   kareem@2.5.1: {}
 
-  kbar@0.1.0-beta.40(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  kbar@0.1.0-beta.40(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
     dependencies:
-      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)
+      '@radix-ui/react-portal': 1.0.4(@types/react-dom@18.3.0)(@types/react@18.3.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       command-score: 0.1.2
       fast-equals: 2.0.4
-      react: 18.3.0
-      react-dom: 18.3.0(react@18.3.0)
-      react-virtual: 2.10.4(react@18.3.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      react-virtual: 2.10.4(react@19.0.0)
       tiny-invariant: 1.3.3
     transitivePeerDependencies:
       - '@types/react'
@@ -46406,6 +46487,12 @@ snapshots:
       braces: 3.0.2
       picomatch: 2.3.1
 
+  micromatch@4.0.8:
+    dependencies:
+      braces: 3.0.3
+      picomatch: 2.3.1
+    optional: true
+
   mime-db@1.52.0: {}
 
   mime-types@2.1.35:
@@ -46740,13 +46827,13 @@ snapshots:
 
   netstats@0.0.6: {}
 
-  next-auth@4.24.7(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
+  next-auth@4.24.7(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
       '@babel/runtime': 7.24.4
       '@panva/hkdf': 1.1.1
       cookie: 0.5.0
       jose: 4.15.5
-      next: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      next: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       oauth: 0.9.15
       openid-client: 5.6.5
       preact: 10.20.2
@@ -46757,37 +46844,63 @@ snapshots:
 
   next-compose-plugins@2.2.1: {}
 
-  next-intl@3.25.3(next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0):
+  next-intl@3.25.3(next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0))(react@18.3.0):
     dependencies:
       '@formatjs/intl-localematcher': 0.5.4
       negotiator: 1.0.0
-      next: 14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
+      next: 14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0)
       react: 18.3.0
       use-intl: 3.25.3(react@18.3.0)
 
   next-tick@1.1.0: {}
 
-  next@14.2.26(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0):
+  next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(sass@1.75.0):
     dependencies:
-      '@next/env': 14.2.26
+      '@next/env': 14.2.32
       '@swc/helpers': 0.5.5
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001612
+      caniuse-lite: 1.0.30001739
       graceful-fs: 4.2.11
       postcss: 8.4.31
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
       styled-jsx: 5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@18.3.0)
     optionalDependencies:
-      '@next/swc-darwin-arm64': 14.2.26
-      '@next/swc-darwin-x64': 14.2.26
-      '@next/swc-linux-arm64-gnu': 14.2.26
-      '@next/swc-linux-arm64-musl': 14.2.26
-      '@next/swc-linux-x64-gnu': 14.2.26
-      '@next/swc-linux-x64-musl': 14.2.26
-      '@next/swc-win32-arm64-msvc': 14.2.26
-      '@next/swc-win32-ia32-msvc': 14.2.26
-      '@next/swc-win32-x64-msvc': 14.2.26
+      '@next/swc-darwin-arm64': 14.2.32
+      '@next/swc-darwin-x64': 14.2.32
+      '@next/swc-linux-arm64-gnu': 14.2.32
+      '@next/swc-linux-arm64-musl': 14.2.32
+      '@next/swc-linux-x64-gnu': 14.2.32
+      '@next/swc-linux-x64-musl': 14.2.32
+      '@next/swc-win32-arm64-msvc': 14.2.32
+      '@next/swc-win32-ia32-msvc': 14.2.32
+      '@next/swc-win32-x64-msvc': 14.2.32
+      sass: 1.75.0
+    transitivePeerDependencies:
+      - '@babel/core'
+      - babel-plugin-macros
+
+  next@14.2.32(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)(sass@1.75.0):
+    dependencies:
+      '@next/env': 14.2.32
+      '@swc/helpers': 0.5.5
+      busboy: 1.6.0
+      caniuse-lite: 1.0.30001739
+      graceful-fs: 4.2.11
+      postcss: 8.4.31
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      styled-jsx: 5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@19.0.0)
+    optionalDependencies:
+      '@next/swc-darwin-arm64': 14.2.32
+      '@next/swc-darwin-x64': 14.2.32
+      '@next/swc-linux-arm64-gnu': 14.2.32
+      '@next/swc-linux-arm64-musl': 14.2.32
+      '@next/swc-linux-x64-gnu': 14.2.32
+      '@next/swc-linux-x64-musl': 14.2.32
+      '@next/swc-win32-arm64-msvc': 14.2.32
+      '@next/swc-win32-ia32-msvc': 14.2.32
+      '@next/swc-win32-x64-msvc': 14.2.32
       sass: 1.75.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -46814,7 +46927,7 @@ snapshots:
 
   node-addon-api@2.0.2: {}
 
-  node-addon-api@7.1.0:
+  node-addon-api@7.1.1:
     optional: true
 
   node-dir@0.1.17:
@@ -47430,7 +47543,7 @@ snapshots:
   param-case@3.0.4:
     dependencies:
       dot-case: 3.0.4
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   parchment@1.1.4: {}
 
@@ -47513,7 +47626,7 @@ snapshots:
   pascal-case@3.1.2:
     dependencies:
       no-case: 3.0.4
-      tslib: 2.6.2
+      tslib: 2.8.1
 
   path-case@3.0.4:
     dependencies:
@@ -48233,6 +48346,10 @@ snapshots:
   prism-react-renderer@1.3.5(react@18.3.0):
     dependencies:
       react: 18.3.0
+
+  prism-react-renderer@1.3.5(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   probe.gl@3.6.0:
     dependencies:
@@ -49136,11 +49253,21 @@ snapshots:
       react: 18.3.0
       scheduler: 0.23.1
 
+  react-dom@18.3.0(react@19.0.0):
+    dependencies:
+      loose-envify: 1.4.0
+      react: 19.0.0
+      scheduler: 0.23.1
+
+  react-dom@19.0.0(react@18.3.0):
+    dependencies:
+      react: 18.3.0
+      scheduler: 0.25.0
+
   react-dom@19.0.0(react@19.0.0):
     dependencies:
       react: 19.0.0
       scheduler: 0.25.0
-    optional: true
 
   react-dropzone@14.2.3(react@18.3.0):
     dependencies:
@@ -49170,16 +49297,20 @@ snapshots:
     optionalDependencies:
       '@types/react': 18.3.0
 
-  react-gravatar@2.6.3(react@18.3.0):
+  react-gravatar@2.6.3(react@19.0.0):
     dependencies:
       is-retina: 1.0.3
       md5: 2.3.0
       query-string: 4.3.4
-      react: 18.3.0
+      react: 19.0.0
 
   react-hook-form@7.57.0(react@18.3.0):
     dependencies:
       react: 18.3.0
+
+  react-hook-form@7.57.0(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   react-hot-toast@2.4.1(csstype@3.1.3)(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
@@ -49218,9 +49349,9 @@ snapshots:
 
   react-is@18.3.1: {}
 
-  react-json-view-lite@1.4.0(react@18.3.0):
+  react-json-view-lite@1.4.0(react@19.0.0):
     dependencies:
-      react: 18.3.0
+      react: 19.0.0
 
   react-lifecycles-compat@3.0.4: {}
 
@@ -49330,10 +49461,22 @@ snapshots:
       react-dom: 18.3.0(react@18.3.0)
       react-router: 6.23.0(react@18.3.0)
 
+  react-router-dom@6.23.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      '@remix-run/router': 1.16.0
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+      react-router: 6.23.0(react@19.0.0)
+
   react-router@6.23.0(react@18.3.0):
     dependencies:
       '@remix-run/router': 1.16.0
       react: 18.3.0
+
+  react-router@6.23.0(react@19.0.0):
+    dependencies:
+      '@remix-run/router': 1.16.0
+      react: 19.0.0
 
   react-router@7.0.2(react-dom@18.3.0(react@18.3.0))(react@18.3.0):
     dependencies:
@@ -49344,6 +49487,36 @@ snapshots:
       turbo-stream: 2.4.0
     optionalDependencies:
       react-dom: 18.3.0(react@18.3.0)
+
+  react-router@7.0.2(react-dom@18.3.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      '@types/cookie': 0.6.0
+      cookie: 1.0.2
+      react: 19.0.0
+      set-cookie-parser: 2.6.0
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      react-dom: 18.3.0(react@19.0.0)
+
+  react-router@7.0.2(react-dom@19.0.0(react@18.3.0))(react@18.3.0):
+    dependencies:
+      '@types/cookie': 0.6.0
+      cookie: 1.0.2
+      react: 18.3.0
+      set-cookie-parser: 2.6.0
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      react-dom: 19.0.0(react@18.3.0)
+
+  react-router@7.0.2(react-dom@19.0.0(react@19.0.0))(react@19.0.0):
+    dependencies:
+      '@types/cookie': 0.6.0
+      cookie: 1.0.2
+      react: 19.0.0
+      set-cookie-parser: 2.6.0
+      turbo-stream: 2.4.0
+    optionalDependencies:
+      react-dom: 19.0.0(react@19.0.0)
 
   react-scripts@5.0.1(@babel/plugin-syntax-flow@7.24.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@18.3.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(type-fest@3.13.1)(typescript@5.4.5)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1):
     dependencies:
@@ -49495,10 +49668,10 @@ snapshots:
       react: 18.3.0
       react-dom: 18.3.0(react@18.3.0)
 
-  react-virtual@2.10.4(react@18.3.0):
+  react-virtual@2.10.4(react@19.0.0):
     dependencies:
       '@reach/observe-rect': 1.2.0
-      react: 18.3.0
+      react: 19.0.0
 
   react95@4.0.0(react-dom@18.3.0(react@18.3.0))(react@18.3.0)(styled-components@6.1.8(react-dom@18.3.0(react@18.3.0))(react@18.3.0)):
     dependencies:
@@ -49521,8 +49694,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  react@19.0.0:
-    optional: true
+  react@19.0.0: {}
 
   read-cache@1.0.0:
     dependencies:
@@ -50219,7 +50391,7 @@ snapshots:
   sass@1.75.0:
     dependencies:
       chokidar: 3.6.0
-      immutable: 4.3.5
+      immutable: 4.3.7
       source-map-js: 1.2.1
     optional: true
 
@@ -50252,8 +50424,7 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  scheduler@0.25.0:
-    optional: true
+  scheduler@0.25.0: {}
 
   schema-utils@2.7.0:
     dependencies:
@@ -50625,6 +50796,9 @@ snapshots:
 
   source-map@0.7.4: {}
 
+  source-map@0.7.6:
+    optional: true
+
   source-map@0.8.0-beta.0:
     dependencies:
       whatwg-url: 7.1.0
@@ -50963,6 +51137,14 @@ snapshots:
     dependencies:
       client-only: 0.0.1
       react: 18.3.0
+    optionalDependencies:
+      '@babel/core': 7.24.4
+      babel-plugin-macros: 3.1.0
+
+  styled-jsx@5.1.1(@babel/core@7.24.4)(babel-plugin-macros@3.1.0)(react@19.0.0):
+    dependencies:
+      client-only: 0.0.1
+      react: 19.0.0
     optionalDependencies:
       '@babel/core': 7.24.4
       babel-plugin-macros: 3.1.0
@@ -51606,6 +51788,8 @@ snapshots:
 
   tslib@2.6.2: {}
 
+  tslib@2.8.1: {}
+
   tsup@6.7.0(postcss@8.4.38)(ts-node@10.9.2(@types/node@18.19.31)(typescript@5.4.5))(typescript@5.4.5):
     dependencies:
       bundle-require: 4.0.3(esbuild@0.17.19)
@@ -52145,6 +52329,10 @@ snapshots:
   use-sync-external-store@1.2.1(react@18.3.0):
     dependencies:
       react: 18.3.0
+
+  use-sync-external-store@1.2.1(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   usehooks-ts@2.16.0(react@18.3.0):
     dependencies:
@@ -52715,7 +52903,7 @@ snapshots:
   webpack-hot-middleware@2.26.1:
     dependencies:
       ansi-html-community: 0.0.8
-      html-entities: 2.5.2
+      html-entities: 2.6.0
       strip-ansi: 6.0.1
     optional: true
 
