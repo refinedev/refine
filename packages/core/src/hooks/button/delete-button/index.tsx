@@ -38,7 +38,9 @@ export type DeleteButtonValues = {
 
 export function useDeleteButton(props: DeleteButtonProps): DeleteButtonValues {
   const translate = useTranslate();
-  const { mutate, isPending, variables } = useDelete();
+  const {
+    mutation: { mutate, isPending, variables },
+  } = useDelete();
   const { setWarnWhen } = useWarnAboutChange();
   const { mutationMode } = useMutationMode(props.mutationMode);
 

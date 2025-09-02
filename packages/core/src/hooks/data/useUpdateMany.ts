@@ -688,7 +688,7 @@ export const useUpdateMany = <
   };
 
   return {
-    ...mutation,
+    mutation: mutationResult,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },

@@ -25,7 +25,10 @@ type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
 export const TasksListPage = ({ children }: React.PropsWithChildren) => {
   const go = useGo();
 
-  const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
+  const {
+    result: stages,
+    query: { isLoading: isLoadingStages },
+  } = useList<TaskStage>({
     resource: "taskStages",
     filters: [
       {
@@ -45,9 +48,10 @@ export const TasksListPage = ({ children }: React.PropsWithChildren) => {
     },
   });
 
-  const { data: tasks, isLoading: isLoadingTasks } = useList<
-    GetFieldsFromList<TasksQuery>
-  >({
+  const {
+    result: tasks,
+    query: { isLoading: isLoadingTasks },
+  } = useList<GetFieldsFromList<TasksQuery>>({
     resource: "tasks",
     sorters: [
       {

@@ -98,9 +98,9 @@ export const ProductList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
+      currentPage,
       tableQuery: { data: tableData },
     },
   } = useTable<IProduct>({ columns });
@@ -139,8 +139,8 @@ export const ProductList = () => {
         <Pagination
           position="right"
           total={pageCount}
-          page={current}
-          onChange={setCurrent}
+          page={currentPage}
+          onChange={setCurrentPage}
         />
       </List>
     </ScrollArea>
@@ -363,9 +363,8 @@ import {
 import { Title } from "@mantine/core";
 
 export const ProductShow = () => {
-  const { query } = useShow();
+  const { result: product } = useShow();
   const { data, isLoading } = query;
-  const record = data?.data;
 
   return (
     <Show isLoading={isLoading}>
@@ -373,20 +372,20 @@ export const ProductShow = () => {
         Name
       </Title>
       {/* highlight-next-line */}
-      <TextField value={record?.name} />
+      <TextField value={product?.name} />
 
       <Title mt="xs" order={5}>
         Description
       </Title>
       {/* highlight-next-line */}
-      <MarkdownField value={record?.description} />
+      <MarkdownField value={product?.description} />
 
       <Title mt="xs" order={5}>
         Price
       </Title>
       {/* highlight-next-line */}
       <NumberField
-        value={record?.price}
+        value={product?.price}
         options={{ style: "currency", currency: "USD" }}
       />
     </Show>

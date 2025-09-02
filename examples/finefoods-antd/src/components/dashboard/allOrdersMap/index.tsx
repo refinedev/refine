@@ -4,7 +4,7 @@ import { Map, MapMarker } from "../..";
 import type { IOrder } from "../../../interfaces";
 
 export const AllOrdersMap: React.FC = () => {
-  const { data: orderData } = useList<IOrder>({
+  const { result: orderData } = useList<IOrder>({
     resource: "orders",
 
     filters: [

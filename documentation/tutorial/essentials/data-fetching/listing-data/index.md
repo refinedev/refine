@@ -68,10 +68,10 @@ import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
   // highlight-start
-  const { data, isLoading } = useList({ resource: "products" });
+  const { result, query } = useList({ resource: "products" });
   // highlight-end
 
-  if (isLoading) {
+  if (query.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -80,7 +80,7 @@ export const ListProducts = () => {
       <h1>Products</h1>
       <ul>
         {/* highlight-next-line */}
-        {data?.data?.map((product) => (
+        {result.data?.map((product) => (
           <li key={product.id}>
             <p>
               {product.name}
@@ -181,13 +181,13 @@ Update your `src/pages/products/list.tsx` file by adding the following lines:
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
-  const { data, isLoading } = useList({
+  const { result, query } = useList({
     resource: "products",
     // highlight-next-line
     pagination: { currentPage: 1, pageSize: 10 },
   });
 
-  if (isLoading) {
+  if (query.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -264,14 +264,14 @@ Update your `src/pages/products/list.tsx` file by adding the following lines:
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
-  const { data, isLoading } = useList({
+  const { result, query } = useList({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
     // highlight-next-line
     sorters: [{ field: "name", order: "asc" }],
   });
 
-  if (isLoading) {
+  if (query.isLoading) {
     return <div>Loading...</div>;
   }
 
@@ -361,7 +361,7 @@ Update your `src/pages/products/list.tsx` file by adding the following lines:
 import { useList } from "@refinedev/core";
 
 export const ListProducts = () => {
-  const { data, isLoading } = useList({
+  const { result, query } = useList({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
     sorters: [{ field: "name", order: "asc" }],
@@ -369,7 +369,7 @@ export const ListProducts = () => {
     filters: [{ field: "material", operator: "eq", value: "Aluminum" }],
   });
 
-  if (isLoading) {
+  if (query.isLoading) {
     return <div>Loading...</div>;
   }
 

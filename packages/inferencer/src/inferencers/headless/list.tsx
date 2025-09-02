@@ -100,7 +100,7 @@ export const renderer = ({
         }
 
         return `
-                const { data: ${getVariableName(field.key, "Data")} } =
+                const { result: ${getVariableName(field.key, "Data")} } =
                 useMany({
                     resource: "${field.resource.name}",
                     ids: ${idsString},
@@ -739,21 +739,23 @@ export const renderer = ({
         }
 
         const {
-            getHeaderGroups,
-            getRowModel,
-            setOptions,
+            reactTable: {
+                getHeaderGroups,
+                getRowModel,
+                setOptions,
+                getState,
+                setPageIndex,
+                getCanPreviousPage,
+                getPageCount,
+                getCanNextPage,
+                nextPage,
+                previousPage,
+                setPageSize,
+                getColumn,
+            },
             refineCore: {
                 tableQuery: { data: tableData },
             },
-            getState,
-            setPageIndex,
-            getCanPreviousPage,
-            getPageCount,
-            getCanNextPage,
-            nextPage,
-            previousPage,
-            setPageSize,
-            getColumn,
         } = useTable({
             columns,
             ${

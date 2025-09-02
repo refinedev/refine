@@ -155,6 +155,10 @@ export type useTableReturnType<
   pageSize: number;
   setPageSize: ReactSetState<useTableReturnType["pageSize"]>;
   pageCount: number;
+  result: {
+    data: TData[];
+    total: number | undefined;
+  };
 } & UseLoadingOvertimeReturnType;
 
 /**
@@ -415,7 +419,7 @@ export function useTable<
   );
 
   return {
-    tableQuery: queryResult,
+    tableQuery: queryResult.query,
     sorters,
     setSorters: setSortWithUnion,
     filters,
@@ -425,9 +429,13 @@ export function useTable<
     pageSize,
     setPageSize,
     pageCount: pageSize
-      ? Math.ceil((queryResult.data?.total ?? 0) / pageSize)
+      ? Math.ceil((queryResult.result?.total ?? 0) / pageSize)
       : 1,
     createLinkForSyncWithLocation,
     overtime: queryResult.overtime,
+    result: {
+      data: queryResult.result?.data || [],
+      total: queryResult.result?.total,
+    },
   };
 }

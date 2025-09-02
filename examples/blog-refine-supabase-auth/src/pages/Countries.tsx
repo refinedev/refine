@@ -4,7 +4,7 @@ import { Table } from "react-daisyui";
 const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
 
 export const Countries = () => {
-  const { data: countries } = useList({
+  const { result: countries } = useList({
     resource: "countries",
 
     pagination: {

@@ -25,14 +25,16 @@ export default function BlogPostList() {
   const { data, isLoading } = tableQuery;
   const records = data?.data ?? [];
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    useMany<Category>({
-      resource: "categories",
-      ids: records?.map((item) => item?.category?.id).filter(Boolean) ?? [],
-      queryOptions: {
-        enabled: !!records,
-      },
-    });
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany<Category>({
+    resource: "categories",
+    ids: records?.map((item) => item?.category?.id).filter(Boolean) ?? [],
+    queryOptions: {
+      enabled: !!records,
+    },
+  });
 
   const { mutate: deleteBlogPost } = useDelete();
 

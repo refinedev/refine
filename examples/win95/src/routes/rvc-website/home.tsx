@@ -91,7 +91,7 @@ const NewTitles = (props: {
     null,
   );
 
-  const { data } = useList<VideoTitle>({
+  const { result: data } = useList<VideoTitle>({
     resource: "titles",
     sorters: [{ field: "created_at", order: "desc" }],
     pagination: { currentPage: 1, pageSize: 10 },

@@ -166,7 +166,7 @@ Simply `cd` into the root folder of your project (where the `package.json` is lo
 npx @refinedev/codemod@latest refine4-to-refine5
 ```
 
-> 🚨 _The refine4-to-refine5 codemod only fixes APIs deprecated or removed in Refine@4. It does not handle items deprecated during the Refine@3→4 migration. For those, run the [refine3-to-refine4](/docs/migration-guide/3x-to-4x.md) codemod first._
+> 👉 **Hook Return Type Changes**: The codemod updates most standard cases, but may miss complex destructuring, conditional logic, or custom wrappers. Please review [Data & Mutation Hooks: Return Type Breaking Changes](#data--mutation-hooks-return-type-breaking-changes) if you use these patterns.
 
 <h3>⚠️ Changes not handled by the codemod </h3>
 
@@ -279,11 +279,236 @@ Refine v5 supports both React 18 and React 19. If you want to take advantage of 
 [router-provider-migration]: /docs/migration-guide/router-provider/
 [auth-provider-migration]: /docs/migration-guide/auth-provider/
 
-### List of All Breaking Changes
+## Data & Mutation Hooks: Return Type Breaking Changes
 
-If you prefer to migrate manually or the codemod didn't handle all your use cases, you can follow this comprehensive guide to update your codebase step by step. Each section below covers a specific breaking change with before/after examples.
+🚨 **Affects:** All data and mutation hooks (`useList`, `useTable`, `useInfiniteList`, `useOne`, `useMany`, `useForm`, `useCreate`, `useUpdate`, etc.)
 
-#### metaData → meta
+Return types of data and mutation hooks were refactored for clarity and consistency. Query state (`isLoading`, `isError`, `error`, etc.) and mutation state (`isPending`, `isError`, `error`, etc.) are now grouped under `query` and `mutation` objects respectively, while normalized values (`data`, `total`, etc.) are returned under a `result` object.
+This change:
+
+- Unifies the shape of return types across all hooks.
+- Eliminates nested property access (e.g., `data?.data`).
+- Improves type safety and developer experience.
+- Groups all TanStack Query APIs (`isLoading`, `isError`, `refetch`, etc.) under the `query` object, making them easier to discover and use consistently.
+
+The following sections show hook-specific breaking changes with before/after usage examples.
+
+### useList
+
+```diff
+const {
+-   data,
+-   isLoading,
+-   isError,
+} = useList();
+
+- const posts = data.data
+- const total = data.total
+
+const {
++   result,
++   query: { isLoading, isError },
+} = useList();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+### useOne, useMany, useShow
+
+All three hooks follow the same `query` and `result` pattern.
+
+```diff
+const {
+-   data,
+-   isLoading,
+-   isError,
+} = useOne({
+    resource: "users",
+    id: 1,
+});
+
+- const user = data.data;
+
+const {
++   result,
++   query: { isLoading, isError },
+} = useOne({
+    resource: "users",
+    id: 1,
+});
+
++ const user = result;
+```
+
+### useTable from @refinedev/react-table
+
+🚨 **Affects:** TanStack Table properties grouping
+
+TanStack Table properties are now grouped under a `reactTable` object for better organization.
+
+```diff
+const {
+-   getHeaderGroups,
+-   getRowModel,
+-   setOptions,
+-   getState,
+-   setPageIndex,
+    refineCore: { filters, setCurrentPage, setFilters },
+} = useTable({
+    columns,
+});
+
+const {
++   reactTable: {
++       getHeaderGroups,
++       getRowModel,
++       setOptions,
++       getState,
++       setPageIndex,
++   },
+    refineCore: { filters, setCurrentPage, setFilters },
+} = useTable({
+    columns,
+});
+```
+
+### useTable from @refinedev/core
+
+✅ There are no breaking changes in `useTable`. However, we introduced a new result property to make data access easier and keep consistency across all hooks.
+
+```diff
+const {
+    tableQuery,
++   result: {
++       data,
++       total,
++   },
+} = useTable();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+### useTable from @refinedev/antd
+
+✅ There are no breaking changes in `useTable`. However, we introduced a new `result` property to make data access easier and keep consistency across all hooks.
+
+```diff
+const {
+    tableProps,
++   result: {
++       data,
++       total,
++   },
+} = useTable();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+### useDataGrid from @refinedev/mui
+
+✅ There are no breaking changes in `useDataGrid`. However, we introduced a new `result` property to make data access easier and keep consistency across all hooks.
+
+```diff
+const {
+    tableQuery,
+    dataGridProps,
++   result: {
++       data,
++       total,
++   },
+} = useDataGrid();
+
++ const posts = result.data;
++ const total = result.total;
+```
+
+### useSimpleList from @refinedev/antd
+
+✅ There are no breaking changes in `useSimpleList`. However, we introduced a new `result` property to make data access easier and keep consistency across all hooks.
+
+**Migration:**
+
+```diff
+const {
+    listProps,
+    queryResult,
++   query,
++   result: {
++       data,
++       total,
++   },
+} = useSimpleList();
+```
+
+### useInfiniteList
+
+```diff
+const {
+-  data,
+-  isLoading,
+-  isError,
+-  fetchNextPage,
+-  hasNextPage,
+} = useInfiniteList({
+  resource: "posts",
+});
+
+- const posts = data?.data;
+
+const {
++  result,
++  query: { isLoading, isError, fetchNextPage, hasNextPage },
+} = useInfiniteList({ resource: "posts" });
+
++ const posts = result.data;
+```
+
+### Authentication Hooks
+
+🚨 **Affects:** All authentication hooks (`useLogin`, `useLogout`, `useRegister`, `useForgotPassword`, `useUpdatePassword`)
+
+Authentication hooks now follow the same mutation pattern as other mutation hooks:
+
+```diff
+const {
+-  isPending,
+-  isError,
+   mutate,
+} = useLogin();
+
+const {
++  mutation: { isPending, isError },
+   mutate,
+} = useLogin();
+```
+
+### Mutation Hooks
+
+🚨 **Affects:** All other mutation hooks (`useUpdate`, `useDelete`, `useCreateMany`, `useUpdateMany`, `useDeleteMany`, `useCustomMutation`)
+
+All remaining mutation hooks follow the same pattern as `useUpdate`.
+
+```diff
+const {
+-  isPending,
+-  isError,
+   mutate,
+   mutateAsync,
+} = useUpdate({ resource: "posts" });
+
+const {
++  mutation: { isPending, isError },
+   mutate,
+   mutateAsync,
+} = useUpdate({ resource: "posts" });
+```
+
+## List of All Breaking Changes
+
+### metaData → meta
 
 🚨 Affects: All data hooks, useForm, useTable, useDataGrid, useSelect, etc.
 
@@ -351,7 +576,7 @@ useTable({
 })
 ```
 
-#### filters Updates
+### filters Updates
 
 🚨 Affects: useList, useTable, useDataGrid, useSelect
 
@@ -375,7 +600,7 @@ useTable({
 })
 ```
 
-#### pagination Updates
+### pagination Updates
 
 🚨 Affects: useList, useTable, useDataGrid, useSelect
 
@@ -395,7 +620,7 @@ useTable({
 })
 ```
 
-#### pagination.current -> pagination.currentPage
+### pagination.current -> pagination.currentPage
 
 🚨 Affects: useTable, useDataGrid, useSimpleList, useSubscription, useList, useCheckboxGroup, useSelect
 
@@ -406,7 +631,7 @@ useTable({
 })
 ```
 
-#### setCurrent -> setCurrentPage
+### setCurrent -> setCurrentPage
 
 🚨 Affects: useTable, useDataGrid, useSimpleList
 
@@ -421,7 +646,7 @@ const {
 } = useTable();
 ```
 
-#### Resource options → meta
+### Resource options → meta
 
 🚨 Affects: Resource definitions in `<Refine>` component
 
@@ -439,7 +664,7 @@ Resource `options` have been renamed to `meta`:
 />
 ```
 
-#### resourceName/resourceNameOrRouteName → resource
+### resourceName/resourceNameOrRouteName → resource
 
 🚨 Affects: useImport, useExport, All Button components
 
@@ -455,7 +680,7 @@ useImport({
 />
 ```
 
-#### config Object Removal
+### config Object Removal
 
 🚨 Affects: useList, useInfiniteList
 
@@ -478,7 +703,7 @@ useList({
 })
 ```
 
-#### useTable Hook Restructuring
+### useTable Hook Restructuring
 
 🚨 Affects: useTable, useSimpleList, useDataGrid
 
@@ -524,7 +749,7 @@ const {
 } = useTable();
 ```
 
-#### queryResult → query
+### queryResult → query
 
 🚨 Affects: useForm, useSelect, useShow, useSimpleList, useMany
 
@@ -541,7 +766,7 @@ const {
 
 ```
 
-#### defaultValueQueryResult → defaultValueQuery
+### defaultValueQueryResult → defaultValueQuery
 
 🚨 Affects: useSelect
 
@@ -552,7 +777,7 @@ const {
 } = useSelect();
 ```
 
-#### tableQueryResult → tableQuery
+### tableQueryResult → tableQuery
 
 🚨 Affects: useTable, useDataGrid
 
@@ -563,7 +788,7 @@ const {
 } = useTable();
 ```
 
-#### mutationResult → mutation
+### mutationResult → mutation
 
 🚨 Affects: useCreate, useUpdate, useDelete, useCreateMany, useUpdateMany, useDeleteMany, useCustomMutation
 
@@ -576,20 +801,20 @@ const {
 
 ```
 
-#### isLoading → isPending
+### isLoading → isPending
 
 🚨 Affects: useCreate, useUpdate, useDelete, useCreateMany, useUpdateMany, useDeleteMany, useCustomMutation
 
 For mutation hooks, the loading state property has been updated:
 
 ```diff
-const { mutate, isPending } = useCreate();
+const { mutate, mutation: { isPending } } = useCreate();
 
 - if (isLoading) return <Spinner />;
 + if (isPending) return <Spinner />;
 ```
 
-#### useNavigation → useGo, useBack
+### useNavigation → useGo, useBack
 
 The `useNavigation` hook has been replaced with individual hooks:
 
@@ -637,7 +862,7 @@ The `useResource` hook has been removed in favor of `useResourceParams`. The new
 />
 ```
 
-##### Resource options → meta
+### Resource options → meta
 
 The `options` prop has been moved to `meta`:
 
@@ -671,7 +896,7 @@ The `options` prop has been moved to `meta`:
 />
 ```
 
-#### DataProvider getList and custom Method Updates
+### DataProvider getList and custom Method Updates
 
 ```diff
 export const dataProvider = {
@@ -700,7 +925,7 @@ export const dataProvider = {
 };
 ```
 
-#### useImport and useExport Hook Updates
+### useImport and useExport Hook Updates
 
 The `useImport` and `useExport` hooks have additional parameter updates:
 
@@ -738,7 +963,7 @@ useExport({
 })
 ```
 
-#### queryKeys -> keys
+### queryKeys -> keys
 
 🚨 Affects: Custom implementations using Refine helpers
 
@@ -752,7 +977,7 @@ useExport({
 + keys().data().resource("posts").action("list").get();
 ```
 
-#### useNavigation → useGo
+### useNavigation → useGo
 
 🚨 <strong>Affects:</strong> Navigation helpers (<code>push</code>, <code>replace</code>, <code>goBack</code>)
 
@@ -781,7 +1006,7 @@ For backward navigation (<code>goBack</code>), use your router’s native API in
 + navigate(-1);
 ```
 
-#### ITreeMenu → TreeMenuItem & list field changes
+### ITreeMenu → TreeMenuItem & list field changes
 
 🚨 <strong>Affects:</strong> <code>useMenu</code>, custom sider renderers
 

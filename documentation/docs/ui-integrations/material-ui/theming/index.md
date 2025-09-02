@@ -1027,7 +1027,10 @@ const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 const SampleList = () => {
   const { dataGridProps } = useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useMany({
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany({
     resource: "categories",
     ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
     queryOptions: {
@@ -1103,12 +1106,13 @@ const SampleList = () => {
 };
 
 const SampleShow = () => {
-  const { query } = useShow();
-  const { data, isLoading } = query;
+  const { result: record, query } = useShow();
+  const { isLoading } = query;
 
-  const record = data?.data;
-
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = useOne({
     resource: "categories",
     id: record?.category?.id || "",
     queryOptions: {
@@ -1134,7 +1138,7 @@ const SampleShow = () => {
         <Typography variant="body1" fontWeight="bold">
           Category
         </Typography>
-        {categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>}
+        {categoryIsLoading ? <>Loading...</> : <>{category?.title}</>}
         <Typography variant="body1" fontWeight="bold">
           Created At
         </Typography>

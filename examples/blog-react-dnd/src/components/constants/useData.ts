@@ -7,7 +7,7 @@ function useData() {
   //Fetching data from the products endpoint
   //using refine's useList hook
 
-  const { data } = useList<IProduct>({
+  const { result: data } = useList<IProduct>({
     resource: "products",
 
     pagination: {

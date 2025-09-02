@@ -131,18 +131,13 @@ const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
-      setCurrent,
-      pageCount,
-      current,
-      tableQuery: { data: tableData },
-    },
+    refineCore: { setCurrentPage, pageCount, currentPage, result },
   } = useTable({
     columns,
   });
 
-  const categoryIds = tableData?.data?.map((item) => item.category.id) ?? [];
-  const { data: categoriesData } = useMany<ICategory>({
+  const categoryIds = result?.data?.map((item) => item.category.id) ?? [];
+  const { result: categoriesData } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {
@@ -207,8 +202,8 @@ const PostList: React.FC = () => {
         <MantinePagination
           position="right"
           total={pageCount}
-          page={current}
-          onChange={setCurrent}
+          page={currentPage}
+          onChange={setCurrentPage}
         />
       </MantineList>
     </MantineScrollArea>

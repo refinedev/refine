@@ -259,9 +259,9 @@ export const ProductList = () => {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -314,8 +314,8 @@ export const ProductList = () => {
                 <Pagination
                     position="right"
                     total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
+                    page={currentPage}
+                    onChange={setCurrentPage}
                 />
             </List>
         </ScrollArea>
@@ -330,26 +330,25 @@ import { Show, TextField, NumberField, MarkdownField } from "@refinedev/mantine"
 import { Title } from "@mantine/core";
 
 export const ProductShow = () => {
-    const { query } = useShow();
+    const { result: product, query } = useShow();
     const { data, isLoading } = query;
-    const record = data?.data;
 
     return (
         <Show isLoading={isLoading}>
             <Title order={5}>Id</Title>
-            <TextField value={record?.id} />
+            <TextField value={product?.id} />
 
             <Title mt="xs" order={5}>Name</Title>
-            <TextField value={record?.name} />
+            <TextField value={product?.name} />
 
             <Title mt="xs" order={5}>Material</Title>
-            <TextField value={record?.material} />
+            <TextField value={product?.material} />
 
             <Title mt="xs" order={5}>Description</Title>
-            <MarkdownField value={record?.description} />
+            <MarkdownField value={product?.description} />
 
             <Title mt="xs" order={5}>Price</Title>
-            <NumberField value={record?.price}  options={{ style: "currency", currency: "USD" }} />
+            <NumberField value={product?.price}  options={{ style: "currency", currency: "USD" }} />
         </Show>
     );
 };

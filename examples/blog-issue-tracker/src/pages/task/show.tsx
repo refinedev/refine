@@ -10,55 +10,48 @@ export const TaskShow: React.FC = () => {
   const { data, isLoading } = queryResult;
   const record = data?.data;
 
-  const { data: assigned } = useOne<IAuthUser>({
+  const { result: assigned } = useOne<IAuthUser>({
     resource: "users",
     id: record?.users || "",
   });
 
-  const { data: label } = useOne<ILabel>({
+  const { result: label } = useOne<ILabel>({
     resource: "label",
     id: record?.label || "",
   });
 
-  const { data: priority } = useOne<IPriority>({
+  const { result: priority } = useOne<IPriority>({
     resource: "priority",
     id: record?.priority || "",
   });
 
-  const { data: status } = useOne<IStatus>({
+  const { result: status } = useOne<IStatus>({
     resource: "status",
     id: record?.status || "",
   });
 
-  console.log(status?.data);
+  console.log(status);
 
   return (
     <Show isLoading={isLoading}>
       <Title level={5}>Task:</Title>
       <Text>{record?.title || "-"}</Text>
-
       <Title level={5}>Task Desciption:</Title>
       <Text>{record?.description}</Text>
-
       <Title level={5}>Assigned To:</Title>
       <Text>
-        <Tag>{assigned?.data?.email ?? "-"}</Tag>
+        <Tag>{assigned?.email ?? "-"}</Tag>
       </Text>
-
       <Title level={5}>Label:</Title>
       <Text>
-        <Tag>{label?.data?.title ?? "-"}</Tag>
+        <Tag>{label?.title ?? "-"}</Tag>
       </Text>
-
       <Title level={5}>Priority:</Title>
-      <Text>{priority?.data?.title ?? "-"}</Text>
-
+      <Text>{priority?.title ?? "-"}</Text>
       <Title level={5}>Status:</Title>
-      <Text>{status?.data?.title ?? "-"}</Text>
-
+      <Text>{status?.title ?? "-"}</Text>
       <Title level={5}>Start Date:</Title>
       <DateField format="DD/MM/YYYY" value={record?.start_time ?? "-"} />
-
       <Title level={5}>Due Date:</Title>
       <DateField format="DD/MM/YYYY" value={record?.end_time ?? "-"} />
     </Show>

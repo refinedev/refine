@@ -93,9 +93,9 @@ export const RecentSales = () => {
   );
 
   const {
+    reactTable: { getHeaderGroups, getRowModel },
+
     refineCore: { filters, setCurrentPage: setCurrent, setFilters },
-    getHeaderGroups,
-    getRowModel,
   } = useTable({
     columns,
 

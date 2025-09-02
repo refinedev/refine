@@ -120,7 +120,7 @@ The underlying architecture involves any presentational component passed to `<Re
 An example hook usage looks like this:
 
 ```tsx title="Inside a UI component"
-const { data } = useList<Canvas>({
+const { result } = useList<Canvas>({
   resource: "canvases",
   pagination: {
     mode: "off",

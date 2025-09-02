@@ -31,7 +31,10 @@ export const Header: React.FC = () => {
   const [value, setValue] = useState<string>("");
   const [options, setOptions] = useState<IOptions[]>([]);
 
-  const { refetch: refetchPosts, data: postsData } = useList<IPost>({
+  const {
+    result: postsData,
+    query: { refetch: refetchPosts },
+  } = useList<IPost>({
     resource: "posts",
 
     queryOptions: {
@@ -41,16 +44,18 @@ export const Header: React.FC = () => {
     filters: [{ field: "title", operator: "contains", value }],
   });
 
-  const { refetch: refetchCategories, data: categoriesData } =
-    useList<ICategory>({
-      resource: "categories",
+  const {
+    result: categoriesData,
+    query: { refetch: refetchCategories },
+  } = useList<ICategory>({
+    resource: "categories",
 
-      queryOptions: {
-        enabled: false,
-      },
+    queryOptions: {
+      enabled: false,
+    },
 
-      filters: [{ field: "title", operator: "contains", value }],
-    });
+    filters: [{ field: "title", operator: "contains", value }],
+  });
 
   useEffect(() => {
     if (postsData) {

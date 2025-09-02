@@ -9,7 +9,7 @@ export const PostList: React.FC = () => {
   const [page, setPage] = useState(1);
   const { edit, create, show, clone } = useNavigation();
 
-  const { data } = useList<IPost>({
+  const { result: data } = useList<IPost>({
     resource: "posts",
 
     pagination: {

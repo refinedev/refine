@@ -259,10 +259,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 export const ProductShow = () => {
-  const { query } = useShow();
+  const { result: product, query } = useShow();
   const { data, isLoading } = query;
-
-  const record = data?.data;
 
   return (
     <Show isLoading={isLoading}>
@@ -270,23 +268,23 @@ export const ProductShow = () => {
         <Typography variant="body1" fontWeight="bold">
             Id
         </Typography>
-        <NumberField value={record?.id ?? ""} />
+        <NumberField value={product?.id ?? ""} />
         <Typography variant="body1" fontWeight="bold">
             Name
         </Typography>
-        <TextField value={record?.name} />
+        <TextField value={product?.name} />
         <Typography variant="body1" fontWeight="bold">
             Material
         </Typography>
-        <TextField value={record?.material} />
+        <TextField value={product?.material} />
         <Typography variant="body1" fontWeight="bold">
             Description
         </Typography>
-        <MarkdownField value={record?.description} />
+        <MarkdownField value={product?.description} />
         <Typography variant="body1" fontWeight="bold">
             Price
         </Typography>
-        <NumberField value={record?.price}  options={{ style: "currency", currency: "USD" }} />
+        <NumberField value={product?.price}  options={{ style: "currency", currency: "USD" }} />
       </Stack>
     </Show>
   );

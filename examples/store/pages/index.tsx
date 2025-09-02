@@ -44,7 +44,7 @@ const Home = ({
   const { params } = useParsed();
   const { cartId } = useCartContext();
 
-  const { data: categories } = useList<ProductCollection>({
+  const { result: categories } = useList<ProductCollection>({
     resource: "collections",
     queryOptions: {
       initialData: initialCategories,

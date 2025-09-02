@@ -10,7 +10,7 @@ import type { IEvent } from "../../interfaces";
 import "./index.css";
 
 export const CalendarPage = () => {
-  const { data } = useList<IEvent>({
+  const { result: data } = useList<IEvent>({
     resource: "events",
 
     pagination: {

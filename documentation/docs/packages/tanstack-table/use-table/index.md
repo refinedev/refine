@@ -180,7 +180,7 @@ It can be `"off"`, `"server"` or `"client"`. Default value is `"server"`.
 
 - **"off":** Pagination is disabled. All records will be fetched.
 - **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
-- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `currentPage` and `pageSize` values.
 
 ```tsx
 useTable({
@@ -521,11 +521,11 @@ Current [filters state][crudfilters].
 
 A function to set current [filters state][crudfilters].
 
-#### current
+#### currentPage
 
 Current page index state. If pagination is disabled, it will be `undefined`.
 
-#### setCurrent
+#### setCurrentPage
 
 ```tsx
 React.Dispatch<React.SetStateAction<number>> | undefined;

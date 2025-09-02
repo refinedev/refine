@@ -224,7 +224,7 @@ import { useList } from "@refinedev/core";
 
 export const List: React.FC = () => {
   const {
-    data: { data, total },
+    result: { data, total },
     isLoading,
   } = useList();
 

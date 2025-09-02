@@ -53,10 +53,10 @@ export const ProductListCard = () => {
       },
     });
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useList<
-    ICategory,
-    HttpError
-  >({
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useList<ICategory, HttpError>({
     resource: "categories",
     pagination: {
       mode: "off",

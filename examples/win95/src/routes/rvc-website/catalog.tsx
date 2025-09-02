@@ -16,7 +16,10 @@ export const RVCWebsiteCatalogPage = ({ withBrowser = true }: Props) => {
   const navigate = useNavigate();
   const { catalogLetter } = useParams();
 
-  const { data, isFetching } = useList<VideoTitle>({
+  const {
+    result: data,
+    query: { isFetching },
+  } = useList<VideoTitle>({
     resource: "titles",
     pagination: { mode: "off" },
     filters: [{ field: "title", operator: "startswith", value: catalogLetter }],

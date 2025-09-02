@@ -101,22 +101,22 @@ export const TaskList = () => {
   const assignedIds = tableProps?.dataSource?.map((item) => item.users) ?? [];
   const statusIds = tableProps?.dataSource?.map((item) => item.status) ?? [];
 
-  const { data: labels } = useMany<ILabel>({
+  const { result: labels } = useMany<ILabel>({
     resource: "label",
     ids: labelIds,
   });
 
-  const { data: priority } = useMany<IPriority>({
+  const { result: priority } = useMany<IPriority>({
     resource: "priority",
     ids: priorityIds,
   });
 
-  const { data: assigned } = useMany<IAuthUser>({
+  const { result: assigned } = useMany<IAuthUser>({
     resource: "users",
     ids: assignedIds,
   });
 
-  const { data: status } = useMany<IStatus>({
+  const { result: status } = useMany<IStatus>({
     resource: "status",
     ids: statusIds,
   });

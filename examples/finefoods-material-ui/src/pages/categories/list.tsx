@@ -22,10 +22,10 @@ export const CategoryList = () => {
     },
   });
 
-  const { data: productsData, isLoading: productsIsLoading } = useList<
-    IProduct,
-    HttpError
-  >({
+  const {
+    result: productsData,
+    query: { isLoading: productsIsLoading },
+  } = useList<IProduct, HttpError>({
     resource: "products",
     pagination: {
       mode: "off",

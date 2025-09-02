@@ -40,9 +40,8 @@ export const VideoClubPageTapeReturn = () => {
   const { memberId } = useParams();
 
   const {
-    data: dataMember,
-    isLoading,
-    refetch,
+    result: dataMember,
+    query: { isLoading, refetch },
   } = useOne<ExtendedMember>({
     resource: "members",
     id: memberId,
@@ -53,7 +52,7 @@ export const VideoClubPageTapeReturn = () => {
       select: "*, rentals(*, titles(*))",
     },
   });
-  const member = dataMember?.data || null;
+  const member = dataMember || null;
   const notReturnedRentals =
     member?.rentals.filter((rental) => !rental.returned_at) || [];
 

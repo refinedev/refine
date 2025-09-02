@@ -9,6 +9,7 @@ import get from "lodash/get";
 import uniqBy from "lodash/uniqBy";
 
 import { useList, useMany, useMeta } from "@hooks";
+import type { UseManyReturnType } from "../data/useMany";
 
 import type {
   BaseKey,
@@ -157,7 +158,7 @@ export type UseSelectReturnType<
   TOption extends BaseOption = BaseOption,
 > = {
   query: QueryObserverResult<GetListResponse<TData>, TError>;
-  defaultValueQuery: QueryObserverResult<GetManyResponse<TData>, TError>;
+  defaultValueQuery: UseManyReturnType<TData, TError>;
   onSearch: (value: string) => void;
   options: TOption[];
 } & UseLoadingOvertimeReturnType;
@@ -318,7 +319,8 @@ export const useSelect = <
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: queryResult.isFetching || defaultValueQueryResult.isFetching,
+    isLoading:
+      queryResult.query.isFetching || defaultValueQueryResult.query.isFetching,
   });
 
   const combinedOptions = useMemo(
@@ -366,22 +368,25 @@ export const useSelect = <
 
   // default value query onSuccess
   useEffect(() => {
-    const data = defaultValueQueryResult.data;
-    if (data && defaultValueQueryResult.isSuccess) {
+    const data = defaultValueQueryResult.query.data;
+    if (data && defaultValueQueryResult.query.isSuccess) {
       defaultValueQueryOnSuccess(data);
     }
-  }, [defaultValueQueryResult.data, defaultValueQueryResult.isSuccess]);
+  }, [
+    defaultValueQueryResult.query.data,
+    defaultValueQueryResult.query.isSuccess,
+  ]);
 
   // query onSuccess
   useEffect(() => {
-    const data = queryResult.data;
-    if (data && queryResult.isSuccess) {
+    const data = queryResult.query.data;
+    if (data && queryResult.query.isSuccess) {
       defaultQueryOnSuccess(data);
     }
-  }, [queryResult.data, queryResult.isSuccess]);
+  }, [queryResult.result.data, queryResult.query.isSuccess]);
 
   return {
-    query: queryResult,
+    query: queryResult.query,
     defaultValueQuery: defaultValueQueryResult,
     options: combinedOptions,
     onSearch,

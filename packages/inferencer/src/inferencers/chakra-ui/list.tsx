@@ -139,7 +139,7 @@ export const renderer = ({
         }
 
         return `
-                const { data: ${getVariableName(field.key, "Data")} } =
+                const { result: ${getVariableName(field.key, "Data")} } =
                 useMany({
                     resource: "${field.resource.name}",
                     ids: ${idsString},
@@ -169,7 +169,7 @@ export const renderer = ({
 
   const renderRelationFields = (field: InferField) => {
     if (field.relation && field.resource) {
-      const variableName = `${getVariableName(field.key, "Data")}?.data`;
+      const variableName = `${getVariableName(field.key, "Data")}`;
 
       if (Array.isArray(field.accessor)) {
         // not handled - not possible case
@@ -225,7 +225,10 @@ export const renderer = ({
                     };
 
                     const ${getVariableName(field.key, "")} = getValue<any[]>()?.map((item) => {
-                        return meta.${getVariableName(field.key, "Data")}?.data?.find(
+                                return meta.${getVariableName(
+                                  field.key,
+                                  "Data",
+                                )}?.data?.find(
                             (resourceItems) => resourceItems.id === ${accessor(
                               "item",
                               undefined,
@@ -268,7 +271,7 @@ export const renderer = ({
                         const ${getVariableName(
                           field.key,
                           "",
-                        )} = meta.${variableName}?.find(
+                        )} = meta.${variableName}?.data?.find(
                             (item) => item.id == getValue<any>(),
                         );
 
@@ -797,9 +800,11 @@ export const renderer = ({
         ], [${i18n ? "translate" : ""}]);
 
         const {
-            getHeaderGroups,
-            getRowModel,
-            setOptions,
+            reactTable: {
+                getHeaderGroups,
+                getRowModel,
+                setOptions
+            },
             refineCore: {
                 setCurrentPage,
                 pageCount,

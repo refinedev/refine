@@ -20,12 +20,15 @@ interface IProduct {
 const ProductList: React.FC = () => {
   const [ids, setIds] = useState([1, 2, 3]);
 
-  const { data, isLoading, isError } = useMany<IProduct, HttpError>({
+  const {
+    result,
+    query: { isLoading, isError },
+  } = useMany<IProduct, HttpError>({
     resource: "products",
     ids,
   });
 
-  const products = data?.data ?? [];
+  const products = result?.data ?? [];
 
   if (isLoading) {
     return <div>Loading...</div>;

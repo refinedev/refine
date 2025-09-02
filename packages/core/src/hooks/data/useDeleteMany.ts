@@ -88,13 +88,26 @@ export type UseDeleteManyReturnType<
   TData extends BaseRecord = BaseRecord,
   TError = HttpError,
   TVariables = {},
-> = UseMutationResult<
-  DeleteManyResponse<TData>,
-  TError,
-  DeleteManyParams<TData, TError, TVariables>,
-  unknown
-> &
-  UseLoadingOvertimeReturnType;
+> = {
+  mutation: UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    DeleteManyParams<TData, TError, TVariables>,
+    unknown
+  >;
+  mutate: UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    DeleteManyParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >["mutate"];
+  mutateAsync: UseMutationResult<
+    DeleteManyResponse<TData>,
+    TError,
+    DeleteManyParams<TData, TError, TVariables>,
+    DeleteContext<TData>
+  >["mutateAsync"];
+} & UseLoadingOvertimeReturnType;
 
 export type UseDeleteManyProps<
   TData extends BaseRecord = BaseRecord,
@@ -511,7 +524,9 @@ export const useDeleteMany = <
   });
 
   return {
-    ...mutation,
+    mutation,
+    mutate: mutation.mutate,
+    mutateAsync: mutation.mutateAsync,
     overtime: { elapsedTime },
   };
 };

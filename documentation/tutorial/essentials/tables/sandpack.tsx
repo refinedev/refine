@@ -83,7 +83,7 @@ table tr:nth-child(even) {
   cursor: pointer;
 }
 
-.pagination .current {
+.pagination .currentPage {
   font-weight: bold;
   cursor: default;
 }
@@ -116,7 +116,7 @@ const ListProductsWithUseTableTsxCode = /* tsx */ `
 import { useTable } from "@refinedev/core";
 
 export const ListProducts = () => {
-  const { tableQuery: { data, isLoading } } = useTable({
+  const { result, tableQuery: { isLoading } } = useTable({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
@@ -140,7 +140,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -161,16 +161,17 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
   } = useTable({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -191,7 +192,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -422,9 +423,10 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    result,
+    tableQuery: { isLoading },
+    currentPage,
+    setCurrentPage,
     pageCount,
   } = useTable({
     resource: "products",
@@ -432,9 +434,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -442,19 +444,19 @@ export const ListProducts = () => {
   }
 
   const onPrevious = () => {
-    if (current > 1) {
-      setCurrent(current - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
 
   const onNext = () => {
-    if (current < pageCount) {
-      setCurrent(current + 1);
+    if (currentPage < pageCount) {
+      setCurrentPage(currentPage + 1);
     }
   };
 
   const onPage = (page: number) => {
-    setCurrent(page);
+    setCurrentPage(page);
   };
 
   return (
@@ -471,7 +473,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -493,9 +495,9 @@ export const ListProducts = () => {
           {"<"}
         </button>
         <div>
-          {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
-          <span className="current">{current}</span>
-          {current + 1 <= pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+          {currentPage - 1 > 0 && <span onClick={() => onPage(currentPage - 1)}>{currentPage - 1}</span>}
+          <span className="currentPage">{currentPage}</span>
+          {currentPage + 1 <= pageCount && <span onClick={() => onPage(currentPage + 1)}>{currentPage + 1}</span>}
         </div>
         <button type="button" onClick={onNext}>
           {">"}
@@ -511,9 +513,10 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    result,
+    tableQuery: { isLoading },
+    currentPage,
+    setCurrentPage,
     pageCount,
     sorters,
     setSorters,
@@ -523,9 +526,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -533,19 +536,19 @@ export const ListProducts = () => {
   }
 
   const onPrevious = () => {
-    if (current > 1) {
-      setCurrent(current - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
 
   const onNext = () => {
-    if (current < pageCount) {
-      setCurrent(current + 1);
+    if (currentPage < pageCount) {
+      setCurrentPage(currentPage + 1);
     }
   };
 
   const onPage = (page: number) => {
-    setCurrent(page);
+    setCurrentPage(page);
   };
 
   const getSorter = (field: string) => {
@@ -594,7 +597,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -616,9 +619,9 @@ export const ListProducts = () => {
           {"<"}
         </button>
         <div>
-          {current - 1 > 0 && <span onClick={() => onPage(current - 1)}>{current - 1}</span>}
-          <span className="current">{current}</span>
-          {current + 1 <= pageCount && <span onClick={() => onPage(current + 1)}>{current + 1}</span>}
+          {currentPage - 1 > 0 && <span onClick={() => onPage(currentPage - 1)}>{currentPage - 1}</span>}
+          <span className="currentPage">{currentPage}</span>
+          {currentPage + 1 <= pageCount && <span onClick={() => onPage(currentPage + 1)}>{currentPage + 1}</span>}
         </div>
         <button type="button" onClick={onNext}>
           {">"}

@@ -64,6 +64,6 @@ export const useSelect = <
       clearable: true,
     },
     query,
-    defaultValueQuery,
+    defaultValueQuery: defaultValueQuery.query,
   };
 };

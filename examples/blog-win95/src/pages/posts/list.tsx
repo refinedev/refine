@@ -90,12 +90,17 @@ export const PostList = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    options: { pageCount },
-    getState,
-    setPageIndex,
-    setPageSize,
+    reactTable: {
+      getHeaderGroups,
+      getRowModel,
+
+      options: { pageCount },
+
+      getState,
+      setPageIndex,
+      setPageSize,
+    },
+
     refineCore: {
       tableQuery: { isLoading },
     },

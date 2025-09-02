@@ -29,13 +29,16 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.isPending).toBeTruthy();
+      expect(!result.current.query.isPending).toBeTruthy();
     });
 
-    const { status, data } = result.current;
+    const {
+      result: data,
+      query: { status },
+    } = result.current;
 
     expect(status).toBe("success");
-    expect(data?.data.slug).toBe("ut-ad-et");
+    expect(data?.slug).toBe("ut-ad-et");
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -103,7 +106,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(!result.current.isPending).toBeTruthy();
+          expect(!result.current.query.isPending).toBeTruthy();
         });
 
         expect(onSubscribeMock).toHaveBeenCalled();
@@ -149,7 +152,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isPending).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).not.toHaveBeenCalled();
@@ -177,7 +180,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isPending).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -206,7 +209,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isPending).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -276,7 +279,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
         expect(notificationMock).toHaveBeenCalledWith({
@@ -314,7 +317,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(openNotificationMock).toHaveBeenCalledWith({
@@ -347,7 +350,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -386,7 +389,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
         expect(openNotificationMock).toHaveBeenCalledWith({
@@ -428,7 +431,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
         expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -464,7 +467,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
         expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -500,7 +503,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(getOneMock).toHaveBeenCalledWith(
@@ -549,7 +552,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(getOneMock).not.toHaveBeenCalled();
@@ -599,7 +602,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getOneFooMock).toHaveBeenCalledWith(
@@ -642,7 +645,7 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getOneMock).toHaveBeenCalledWith(
@@ -698,7 +701,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(getOneFooMock).toHaveBeenCalledWith(
@@ -739,7 +742,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(getOneMock).toHaveBeenCalledWith(
@@ -798,7 +801,7 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(getOneMock).toHaveBeenCalledWith(
@@ -842,13 +845,13 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

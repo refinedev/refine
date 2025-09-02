@@ -84,7 +84,7 @@ import {
 } from "antd";
 
 const PostList: React.FC = () => {
-  const { tableProps, sorter } = RefineAntdUseTable<IPost>({
+  const { result, tableProps, sorter } = RefineAntdUseTable<IPost>({
     sorters: {
       initial: [
         {
@@ -95,9 +95,11 @@ const PostList: React.FC = () => {
     },
   });
 
-  const categoryIds =
-    tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-  const { data, isLoading } = CoreUseMany<ICategory>({
+  const categoryIds = result?.data?.map((item) => item.categoryId) ?? [];
+  const {
+    result,
+    query: { isLoading },
+  } = CoreUseMany<ICategory>({
     resource: "61c43adc284ac",
     ids: categoryIds,
     queryOptions: {
@@ -125,7 +127,7 @@ const PostList: React.FC = () => {
 
             return (
               <RefineAntdTextField
-                value={data?.data.find((item) => item.id === value)?.title}
+                value={result?.data.find((item) => item.id === value)?.title}
               />
             );
           }}
@@ -256,36 +258,37 @@ const PostEdit: React.FC = () => {
 };
 
 const PostShow: React.FC = () => {
-  const { query } = RefineCoreUseShow<IPost>();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const { query, result: post } = RefineCoreUseShow<IPost>();
+  const { isLoading } = query;
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    RefineCoreUseOne<ICategory>({
-      resource: "categories",
-      id: record?.category?.id || "",
-      queryOptions: {
-        enabled: !!record,
-      },
-    });
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = RefineCoreUseOne<ICategory>({
+    resource: "categories",
+    id: post?.category?.id || "",
+    queryOptions: {
+      enabled: !!post,
+    },
+  });
 
   return (
     <RefineAntdShow isLoading={isLoading}>
       <AntdTypography.Title level={5}>Id</AntdTypography.Title>
-      <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.id}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>
         AntdTypography.Title
       </AntdTypography.Title>
-      <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.title}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Category</AntdTypography.Title>
       <AntdTypography.Text>
-        {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+        {categoryIsLoading ? "Loading..." : category?.title}
       </AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Content</AntdTypography.Title>
-      <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.content}</AntdTypography.Text>
     </RefineAntdShow>
   );
 };
@@ -554,7 +557,7 @@ import { Table, Space } from "antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC = () => {
-  const { tableProps, sorter } = useTable<IPost>({
+  const { result, sorter } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -565,9 +568,11 @@ export const PostsList: React.FC = () => {
     },
   });
 
-  const categoryIds =
-    tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-  const { data, isLoading } = useMany<ICategory>({
+  const categoryIds = result?.data?.map((item) => item.categoryId) ?? [];
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany<ICategory>({
     resource: "61bc4afa9ee2c",
     ids: categoryIds,
     queryOptions: {

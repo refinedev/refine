@@ -25,10 +25,10 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    const { data } = result.current;
+    const { data } = result.current.result;
 
     expect(data?.pages).toHaveLength(1);
     expect(data?.pages[0].data).toHaveLength(2);
@@ -53,10 +53,10 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    const { hasNextPage } = result.current;
+    const { hasNextPage } = result.current.result;
     expect(hasNextPage).toBeTruthy();
   });
 
@@ -97,10 +97,10 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeFalsy();
+      expect(result.current.query.isSuccess).toBeFalsy();
     });
 
-    const { hasNextPage } = result.current;
+    const { hasNextPage } = result.current.result;
     expect(hasNextPage).toBe(false);
   });
 
@@ -133,7 +133,7 @@ describe("useInfiniteList Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
         expect(onSubscribeMock).toHaveBeenCalled();
@@ -190,7 +190,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(onSubscribeMock).not.toHaveBeenCalled();
@@ -218,7 +218,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -250,7 +250,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(onSubscribeMock).toHaveBeenCalled();
@@ -319,7 +319,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(notificationMock).toHaveBeenCalledWith({
@@ -356,7 +356,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -388,7 +388,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledTimes(0);
@@ -426,7 +426,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(openNotificationMock).toHaveBeenCalledWith({
@@ -467,7 +467,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -502,7 +502,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
@@ -538,7 +538,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       // onSuccess callbacks are deprecated in TanStack Query v5
@@ -571,7 +571,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
       // onError callbacks are deprecated in TanStack Query v5
@@ -605,7 +605,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getInfiniteListMock).toHaveBeenCalledWith(
@@ -654,7 +654,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getInfiniteListMock).not.toHaveBeenCalled();
@@ -693,7 +693,7 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListMock).toHaveBeenCalledWith(
@@ -750,7 +750,7 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListFooMock).toHaveBeenCalledWith(
@@ -792,7 +792,7 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
     expect(getListMock).toHaveBeenCalledWith(
@@ -847,7 +847,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListFooMock).toHaveBeenCalledWith(
@@ -887,7 +887,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListMock).toHaveBeenCalledWith(
@@ -944,7 +944,7 @@ describe("useInfiniteList Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
       expect(getListMock).toHaveBeenCalledWith(
@@ -993,13 +993,13 @@ describe("useInfiniteList Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
       expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isPending).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

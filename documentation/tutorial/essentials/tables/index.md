@@ -58,7 +58,8 @@ import { useTable } from "@refinedev/core";
 export const ListProducts = () => {
   // highlight-start
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
   } = useTable({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
@@ -85,7 +86,7 @@ export const ListProducts = () => {
         </thead>
         <tbody>
           {/* highlight-start */}
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -116,7 +117,8 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
   } = useTable({
     resource: "products",
     pagination: { currentPage: 1, pageSize: 10 },
@@ -124,9 +126,9 @@ export const ListProducts = () => {
   });
 
   // highlight-start
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
   // highlight-end
 
@@ -148,7 +150,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -312,7 +314,7 @@ export const dataProvider: DataProvider = {
 
 Now we're ready to add pagination to our table. By using the `total`, Refine's `useTable` will calculate the `pageCount` values for us.
 
-We'll use the `current`, `setCurrent` and `pageCount` values from the `useTable`'s response to implement the pagination.
+We'll use the `currentPage`, `setCurrentPage` and `pageCount` values from the `useTable`'s response to implement the pagination.
 
 Let's update our `<ListProducts />` component to display a simple pagination under the table:
 
@@ -321,10 +323,11 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
     // highlight-start
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageCount,
     // highlight-end
   } = useTable({
@@ -333,9 +336,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -344,23 +347,23 @@ export const ListProducts = () => {
 
   // highlight-start
   const onPrevious = () => {
-    if (current > 1) {
-      setCurrent(current - 1);
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
     }
   };
   // highlight-end
 
   // highlight-start
   const onNext = () => {
-    if (current < pageCount) {
-      setCurrent(current + 1);
+    if (currentPage < pageCount) {
+      setCurrentPage(currentPage + 1);
     }
   };
   // highlight-end
 
   // highlight-start
   const onPage = (page: number) => {
-    setCurrent(page);
+    setCurrentPage(page);
   };
   // highlight-end
 
@@ -378,7 +381,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>
@@ -401,12 +404,16 @@ export const ListProducts = () => {
           {"<"}
         </button>
         <div>
-          {current - 1 > 0 && (
-            <span onClick={() => onPage(current - 1)}>{current - 1}</span>
+          {currentPage - 1 > 0 && (
+            <span onClick={() => onPage(currentPage - 1)}>
+              {currentPage - 1}
+            </span>
           )}
-          <span className="current">{current}</span>
-          {current + 1 <= pageCount && (
-            <span onClick={() => onPage(current + 1)}>{current + 1}</span>
+          <span className="currentPage">{currentPage}</span>
+          {currentPage + 1 <= pageCount && (
+            <span onClick={() => onPage(currentPage + 1)}>
+              {currentPage + 1}
+            </span>
           )}
         </div>
         <button type="button" onClick={onNext}>
@@ -434,9 +441,10 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    result,
+    tableQuery: { isLoading },
+    currentPage,
+    setCurrentPage,
     pageCount,
     // highlight-start
     sorters,
@@ -448,9 +456,9 @@ export const ListProducts = () => {
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
-  const { data: categories } = useMany({
+  const { result: categories } = useMany({
     resource: "categories",
-    ids: data?.data?.map((product) => product.category?.id) ?? [],
+    ids: result?.data?.map((product) => product.category?.id) ?? [],
   });
 
   if (isLoading) {
@@ -464,7 +472,7 @@ export const ListProducts = () => {
   const onPage = (page: number) => { /* ... */ };
 
   // highlight-start
-  // We'll use this function to get the current sorter for a field.
+  // We'll use this function to get the currentPage sorter for a field.
   const getSorter = (field: string) => {
     const sorter = sorters?.find((sorter) => sorter.field === field);
 

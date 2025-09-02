@@ -1001,13 +1001,13 @@ const getChipColor = (status: number) => {
 
 export const RecentSalesTable = () => {
   const {
-    tableQuery,
+    result,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -1023,7 +1023,7 @@ export const RecentSalesTable = () => {
     direction: "ascending",
   });
 
-  const orders = tableQuery?.data?.data ?? [];
+  const orders = result?.data ?? [];
 
   const getCellContents = useCallback((columnKey: string, item: IOrder) => {
     if (columnKey === "id") return item.id;
@@ -1083,17 +1083,17 @@ export const RecentSalesTable = () => {
             startContent={<MagnifyingGlassIcon width={12} />}
             value={getDefaultFilter("q", filters)}
             onClear={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
             }}
             onValueChange={(value) => {
               if (!value.trim()) {
-                setCurrent(1);
+                setCurrentPage(1);
                 setFilters([], "replace");
                 return;
               }
 
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([
                 {
                   field: "q",
@@ -1112,9 +1112,9 @@ export const RecentSalesTable = () => {
             showControls
             showShadow
             color="primary"
-            page={current}
+            page={currentPage}
             total={pageCount}
-            onChange={(page) => setCurrent(page)}
+            onChange={(page) => setCurrentPage(page)}
           />
           <Dropdown>
             <DropdownTrigger>
@@ -1339,12 +1339,12 @@ const columns = [
 
 export const ProductList = () => {
   const {
-    tableQuery,
+    result,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -1358,9 +1358,9 @@ export const ProductList = () => {
     direction: "ascending",
   });
 
-  const products = tableQuery?.data?.data ?? [];
+  const products = result?.data ?? [];
 
-  const { data: categoryData } = useMany<ICategory>({
+  const { result: categoryData } = useMany<ICategory>({
     resource: "categories",
     ids: products?.map((item) => item?.category?.id) ?? [],
     queryOptions: {
@@ -1477,17 +1477,17 @@ export const ProductList = () => {
                 startContent={<MagnifyingGlassIcon width={12} />}
                 value={getDefaultFilter("q", filters)}
                 onClear={() => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([], "replace");
                 }}
                 onValueChange={(value) => {
                   if (!value.trim()) {
-                    setCurrent(1);
+                    setCurrentPage(1);
                     setFilters([], "replace");
                     return;
                   }
 
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -1507,9 +1507,9 @@ export const ProductList = () => {
               showControls
               showShadow
               color="primary"
-              page={current}
+              page={currentPage}
               total={pageCount}
-              onChange={(page) => setCurrent(page)}
+              onChange={(page) => setCurrentPage(page)}
             />
             <Dropdown>
               <DropdownTrigger>
@@ -2233,8 +2233,7 @@ const currencyFormatter = Intl.NumberFormat("en-US", {
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { query } = useShow<IProduct>();
-  const product = query?.data?.data;
+  const { result: product } = useShow<IProduct>();
 
   const { data: categoryData } = useOne<ICategory>({
     resource: "categories",
@@ -2414,12 +2413,12 @@ const columns = [
 
 export const CategoryList = () => {
   const {
-    tableQuery,
+    result,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -2437,7 +2436,7 @@ export const CategoryList = () => {
     direction: "ascending",
   });
 
-  const categories = tableQuery?.data?.data ?? [];
+  const categories = result?.data ?? [];
 
   const renderCell = useCallback((columnKey: string, item: IProduct) => {
     if (columnKey === "actions") {
@@ -2530,17 +2529,17 @@ export const CategoryList = () => {
                 startContent={<MagnifyingGlassIcon width={12} />}
                 value={getDefaultFilter("q", filters)}
                 onClear={() => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([], "replace");
                 }}
                 onValueChange={(value) => {
                   if (!value.trim()) {
-                    setCurrent(1);
+                    setCurrentPage(1);
                     setFilters([], "replace");
                     return;
                   }
 
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -2560,9 +2559,9 @@ export const CategoryList = () => {
               showControls
               showShadow
               color="primary"
-              page={current}
+              page={currentPage}
               total={pageCount}
-              onChange={(page) => setCurrent(page)}
+              onChange={(page) => setCurrentPage(page)}
             />
             <Dropdown>
               <DropdownTrigger>
@@ -2879,9 +2878,7 @@ import { ArrowLongLeftIcon } from "@heroicons/react/24/outline";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { query } = useShow<ICategory>();
-
-  const category = query?.data?.data;
+  const { result: category } = useShow<ICategory>();
 
   return (
     <div className="my-3">

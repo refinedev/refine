@@ -117,7 +117,7 @@ export const renderer = ({
         }
 
         return `
-                const { data: ${getVariableName(field.key, "Data")} } =
+                const { result: ${getVariableName(field.key, "Data")} } =
                 useMany({
                     resource: "${field.resource.name}",
                     ids: ${idsString},
@@ -773,9 +773,11 @@ export const renderer = ({
         ], [${i18n ? "translate" : ""}]);
 
         const {
-            getHeaderGroups,
-            getRowModel,
-            setOptions,
+            reactTable: {
+                getHeaderGroups,
+                getRowModel,
+                setOptions,
+            },
             refineCore: {
                 setCurrentPage,
                 pageCount,

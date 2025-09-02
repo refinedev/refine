@@ -181,8 +181,8 @@ export const useForm = <
   });
 
   const mutationResult = isEdit ? updateMutation : createMutation;
-  const isMutationLoading = mutationResult.isPending;
-  const formLoading = isMutationLoading || queryResult.isFetching;
+  const isMutationLoading = mutationResult.mutation.isPending;
+  const formLoading = isMutationLoading || queryResult.query.isFetching;
 
   const { elapsedTime } = useLoadingOvertime({
     ...props.overtimeOptions,
@@ -311,17 +311,17 @@ export const useForm = <
   };
 
   const autoSaveProps = {
-    status: updateMutation.status,
-    data: updateMutation.data,
-    error: updateMutation.error,
+    status: updateMutation.mutation.status,
+    data: updateMutation.mutation.data,
+    error: updateMutation.mutation.error,
   };
 
   return {
     onFinish,
     onFinishAutoSave,
     formLoading,
-    mutation: mutationResult,
-    query: queryResult,
+    mutation: mutationResult.mutation,
+    query: queryResult.query,
     autoSaveProps,
     id,
     setId,

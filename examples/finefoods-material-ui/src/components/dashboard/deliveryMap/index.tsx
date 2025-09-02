@@ -4,7 +4,7 @@ import { GoogleMap, MapMarker } from "../../../components";
 import type { IOrder } from "../../../interfaces";
 
 export const DeliveryMap: React.FC = () => {
-  const { data: orderData } = useList<IOrder>({
+  const { result: orderData } = useList<IOrder>({
     resource: "orders",
 
     filters: [

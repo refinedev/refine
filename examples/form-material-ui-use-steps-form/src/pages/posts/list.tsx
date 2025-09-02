@@ -10,14 +10,16 @@ export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>();
 
   const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-  const { data: categories, isLoading: isLoadingCategories } =
-    useMany<ICategory>({
-      resource: "categories",
-      ids: categoryIds,
-      queryOptions: {
-        enabled: categoryIds.length > 0,
-      },
-    });
+  const {
+    result: categories,
+    query: { isLoading: isLoadingCategories },
+  } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
   const categoriesData = categories?.data || [];
 
   const columns = React.useMemo<GridColDef<IPost>[]>(

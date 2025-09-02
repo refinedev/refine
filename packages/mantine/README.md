@@ -9,11 +9,11 @@
 <div align="center">
     <a href="https://refine.dev">Home Page</a> |
     <a href="https://discord.gg/refine">Discord</a> |
-    <a href="https://refine.dev/examples/">Examples</a> | 
-    <a href="https://refine.dev/blog/">Blog</a> | 
+    <a href="https://refine.dev/examples/">Examples</a> |
+    <a href="https://refine.dev/blog/">Blog</a> |
     <a href="https://refine.dev/docs/">Documentation</a>
 
-<br/>   
+<br/>
 <br/>
 
 [![Discord](https://img.shields.io/discord/837692625737613362.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/refine)
@@ -181,10 +181,11 @@ export const ProductList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
-      tableQuery: { data: tableData, isLoading: tableIsLoading },
+      currentPage,
+      result,
+      tableQuery: { isLoading: tableIsLoading },
     },
   } = useTable({
     columns,
@@ -204,15 +205,17 @@ export const ProductList = () => {
     },
   });
 
-  const categoryIds = tableData?.data?.map((item) => item.category?.id) ?? [];
-  const { data: categoriesData, isLoading: categoriesIsLoading } =
-    useMany<ICategory>({
-      resource: "categories",
-      ids: categoryIds,
-      queryOptions: {
-        enabled: categoryIds.length > 0,
-      },
-    });
+  const categoryIds = result?.data?.map((item) => item.category?.id) ?? [];
+  const {
+    result: categoriesData,
+    query: { isLoading: categoriesIsLoading },
+  } = useMany<ICategory>({
+    resource: "categories",
+    ids: categoryIds,
+    queryOptions: {
+      enabled: categoryIds.length > 0,
+    },
+  });
 
   const loading = tableIsLoading || categoriesIsLoading;
 
@@ -274,8 +277,8 @@ export const ProductList = () => {
         <Pagination
           position="right"
           total={pageCount}
-          page={current}
-          onChange={setCurrent}
+          page={currentPage}
+          onChange={setCurrentPage}
         />
       </List>
     </ScrollArea>

@@ -1054,9 +1054,7 @@ export const PostList = () => {
     getState,
     setPageIndex,
     setPageSize,
-    refineCore: {
-      tableQuery: { isLoading },
-    },
+    refineCore: { result },
   } = useTable<IPost>({
     columns,
     refineCoreProps: {

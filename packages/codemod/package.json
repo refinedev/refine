@@ -32,7 +32,7 @@
     "globby": "^11.1.0",
     "inquirer": "^8.2.5",
     "is-git-clean": "1.1.0",
-    "jscodeshift": "0.15.2",
+    "jscodeshift": "^17.3.0",
     "meow": "7.0.1",
     "semver": "7.5.2"
   },
@@ -40,7 +40,7 @@
     "@types/eslint": "^7.28.2",
     "@types/inquirer": "^8.2.5",
     "@types/jest": "^29.2.4",
-    "@types/jscodeshift": "^0.11.11",
+    "@types/jscodeshift": "^17.3.0",
     "@types/node": "^20",
     "@types/npmcli__package-json": "^4.0.4",
     "jest": "^30.0.5",

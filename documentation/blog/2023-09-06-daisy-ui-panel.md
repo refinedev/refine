@@ -712,17 +712,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1162,17 +1168,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1371,7 +1383,7 @@ export const RecentSales = () => {
   );
 
   const {
-    refineCore: { filters, setCurrent, setFilters },
+    refineCore: { filters, setCurrentPage, setFilters },
     getHeaderGroups,
     getRowModel,
   } = useTable({
@@ -1394,7 +1406,7 @@ export const RecentSales = () => {
           <button
             className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
               filterForm?.current?.reset();
             }}
@@ -1409,7 +1421,7 @@ export const RecentSales = () => {
                 type="search"
                 value={getDefaultFilter("q", filters)}
                 onChange={(e) => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -1516,17 +1528,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -2127,7 +2145,7 @@ export const ProductList = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { filters, setCurrent, setFilters },
+    refineCore: { filters, setCurrentPage, setFilters },
     getState,
     setPageIndex,
     getCanPreviousPage,
@@ -2157,7 +2175,7 @@ export const ProductList = () => {
           <button
             className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
               filterForm?.current?.reset();
             }}
@@ -2172,7 +2190,7 @@ export const ProductList = () => {
                 type="search"
                 value={getDefaultFilter("q", filters)}
                 onChange={(e) => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -2310,7 +2328,7 @@ const {
   getHeaderGroups,
   getRowModel,
   setOptions,
-  refineCore: { filters, setCurrent, setFilters },
+  refineCore: { filters, setCurrentPage, setFilters },
   getState,
   setPageIndex,
   getCanPreviousPage,
@@ -2328,7 +2346,7 @@ Notice that we are passing **React Table** column definitions, the `columns` obj
 
 We are making use of pagination props such as `setPageIndex`, `getPageCount`, and `previousPage` returned by `useReactTable()` to build the client side pagination strip.
 
-Filtering utilities such as `filters`, `setCurrent`, `setFilters` are accessed from the `refineCore` object returned from the query. Inside the JSX, we are using them to build the filter by keywords feature.
+Filtering utilities such as `filters`, `setCurrentPage`, `setFilters` are accessed from the `refineCore` object returned from the query. Inside the JSX, we are using them to build the filter by keywords feature.
 
 Notice, we **don't** need to specify the `resource` argument to `useTable()`. It is already inferred from the current URL thanks to the resource and routes definitions in `App.tsx`.
 
@@ -3027,7 +3045,7 @@ export const CategoryList = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { setCurrent, filters, setFilters },
+    refineCore: { setCurrentPage, filters, setFilters },
     getState,
     setPageIndex,
     getCanPreviousPage,
@@ -3057,7 +3075,7 @@ export const CategoryList = () => {
           <button
             className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
               filterForm?.current?.reset();
             }}
@@ -3072,7 +3090,7 @@ export const CategoryList = () => {
                 type="search"
                 value={getDefaultFilter("q", filters)}
                 onChange={(e) => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",

@@ -40,7 +40,7 @@ export const ProductList = () => {
 
   const products = tableQueryResult?.data?.data;
 
-  const { data: categoryData } = useMany<ICategory>({
+  const { result: categoryData } = useMany<ICategory>({
     resource: "categories",
     ids: products?.map((item) => item?.category?.id) ?? [],
     queryOptions: {

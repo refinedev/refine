@@ -48,6 +48,16 @@ export type UseManyQueryOptions<TQueryFnData, TError, TData> = MakeOptional<
   "queryKey" | "queryFn"
 >;
 
+export type UseManyReturnType<
+  TData extends BaseRecord = BaseRecord,
+  TError extends HttpError = HttpError,
+> = {
+  query: QueryObserverResult<GetManyResponse<TData>, TError>;
+  result: {
+    data: TData[];
+  };
+} & UseLoadingOvertimeReturnType;
+
 export type UseManyProps<TQueryFnData, TError, TData> = {
   /**
    * Resource name for API data interactions
@@ -104,8 +114,8 @@ export const useMany = <
   liveParams,
   dataProviderName,
   overtimeOptions,
-}: UseManyProps<TQueryFnData, TError, TData>): QueryObserverResult<
-  GetManyResponse<TData>,
+}: UseManyProps<TQueryFnData, TError, TData>): UseManyReturnType<
+  TData,
   TError
 > &
   UseLoadingOvertimeReturnType => {
@@ -247,10 +257,12 @@ export const useMany = <
   });
 
   return {
-    ...queryResponse,
+    query: queryResponse,
+    result: {
+      data: queryResponse?.data?.data || [],
+    },
     overtime: { elapsedTime },
-  } as QueryObserverResult<GetManyResponse<TData>, TError> &
-    UseLoadingOvertimeReturnType;
+  };
 };
 
 const idsWarningMessage = (

@@ -26,7 +26,7 @@ const ProductShow: React.FC<Props> = ({ initialData, handle }) => {
   const { openSidebar, setSidebarView } = useUI();
 
   const {
-    data: {
+    result: {
       data: [record] = [],
     } = {},
   } = useList<Product>({

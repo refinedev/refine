@@ -88,9 +88,9 @@ export const Header: React.FC = () => {
   const [options, setOptions] = useState<IOptions[]>([]);
 
   const {
-    refetch: refetchOrders,
-    data: ordersData,
-    isSuccess: ordersIsSuccess,
+    result: ordersData,
+
+    query: { refetch: refetchOrders, isSuccess: ordersIsSuccess },
   } = useList<IOrder>({
     resource: "orders",
 
@@ -123,9 +123,9 @@ export const Header: React.FC = () => {
   }, [ordersData, ordersIsSuccess, t, renderTitle, renderItem]);
 
   const {
-    refetch: refetchStores,
-    data: storesData,
-    isSuccess: storesIsSuccess,
+    result: storesData,
+
+    query: { refetch: refetchStores, isSuccess: storesIsSuccess },
   } = useList<IStore>({
     resource: "stores",
 
@@ -154,9 +154,9 @@ export const Header: React.FC = () => {
   }, [storesData, storesIsSuccess, t, renderTitle, renderItem]);
 
   const {
-    refetch: refetchCouriers,
-    data: couriersData,
-    isSuccess: couriersIsSuccess,
+    result: couriersData,
+
+    query: { refetch: refetchCouriers, isSuccess: couriersIsSuccess },
   } = useList<ICourier>({
     resource: "couriers",
 
