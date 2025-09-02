@@ -111,13 +111,16 @@ You can use `useList`, `useOne`, `useCreate`, `useEdit`, `useShow` hooks to fetc
 import { useOne } from "@refinedev/core";
 
 export const MyPage = () => {
-  const { data, isLoading } = useOne({ resource: "products", id: 1 });
+  const {
+    result,
+    query: { isLoading },
+  } = useOne({ resource: "products", id: 1 });
 
   if (isLoading) {
     return <>Loading...</>;
   }
 
-  return <>{data.name}</>;
+  return <>{result?.name}</>;
 };
 ```
 
@@ -484,17 +487,18 @@ For example, `useShow` hook can infer `resource` and `id` parameters from the cu
 import { useShow } from "@refinedev/core";
 
 export const ShowPage = () => {
-  // const { query } = useShow({ resource: "products", id: 1 });
-  // We don't need to pass "resource" and "id" parameters manually.
-  const { query } = useShow();
-
-  const { data, isLoading } = query;
+  const {
+    result: product,
+    query: { isLoading },
+    // useShow({ resource: "products", id: 1 });
+    // We don't need to pass "resource" and "id" parameters manually.
+  } = useShow();
 
   if (isLoading) {
     return <>Loading...</>;
   }
 
-  return <>{data?.data.name}</>;
+  return <>{product?.name}</>;
 };
 ```
 

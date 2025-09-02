@@ -105,15 +105,16 @@ import React from "react";
 import { useGo, useList } from "@refinedev/core";
 
 export const ProductList: React.FC = () => {
-  const { data, isLoading } = useList();
+  const { result, query } = useList();
+  const products = result?.data;
 
   const go = useGo();
 
-  if (isLoading) return <div>Loading...</div>;
+  if (query.isLoading) return <div>Loading...</div>;
 
   return (
     <ul>
-      {data?.data?.map((product) => (
+      {products?.map((product) => (
         <li key={product.id}>
           <span>{product.name}</span>
           <button

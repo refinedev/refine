@@ -207,7 +207,7 @@ import { GetFields, GetFieldsFromList } from "@refinedev/nestjs-query";
 import { PostsListQuery, PostEditMutation } from "src/graphql/types";
 import { POSTS_LIST_QUERY, POST_EDIT_MUTATION } from "./queries";
 
-const { data, isLoading } = useList<GetFieldsFromList<PostsListQuery>>({
+const { result, query } = useList<GetFieldsFromList<PostsListQuery>>({
   meta: { gqlQuery: POSTS_LIST_QUERY },
 });
 

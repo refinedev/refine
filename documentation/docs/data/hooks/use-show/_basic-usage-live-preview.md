@@ -17,10 +17,10 @@ interface IProduct {
 }
 
 const ProductShow: React.FC = () => {
-  const { query } = useShow<IProduct>();
-
-  const { data, isFetching, isError, refetch } = query;
-  const product = data?.data;
+  const {
+    result: product,
+    query: { isFetching, isError, refetch },
+  } = useShow<IProduct>();
 
   if (isFetching) {
     return <div>Loading...</div>;

@@ -21,7 +21,7 @@ interface IPost {
 }
 
 const PostList: React.FC = () => {
-  const { tableQuery, sorter, setSorter } = useTable<IPost, HttpError>({
+  const { result, tableQuery, sorter, setSorter } = useTable<IPost, HttpError>({
     // highlight-start
     sorters: {
       initial: [
@@ -35,7 +35,7 @@ const PostList: React.FC = () => {
   });
 
   // Fetches the posts for the current page
-  const posts = tableQuery?.data?.data ?? [];
+  const posts = result.data;
 
   // Gets the current sort order for the fields
   // highlight-start
@@ -95,7 +95,7 @@ const PostList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result.data?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

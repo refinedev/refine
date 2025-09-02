@@ -77,7 +77,7 @@ const PostList: React.FC = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { setCurrent, pageCount, current },
+    refineCore: { setCurrentPage, pageCount, currentPage },
   } = useTable({
     columns,
   });
@@ -117,8 +117,8 @@ const PostList: React.FC = () => {
       <Pagination
         position="right"
         total={pageCount}
-        page={current}
-        onChange={setCurrent}
+        page={currentPage}
+        onChange={setCurrentPage}
       />
     </List>
   );

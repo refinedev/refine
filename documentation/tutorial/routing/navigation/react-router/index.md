@@ -31,7 +31,10 @@ import { useLogout, useGetIdentity, useNavigation } from "@refinedev/core";
 import { Link } from "react-router";
 
 export const Header = () => {
-  const { mutate, isLoading } = useLogout();
+  const {
+    mutate,
+    mutation: { isPending },
+  } = useLogout();
   const { data: identity } = useGetIdentity();
 
   // You can also use methods like list or create to trigger navigation.
@@ -49,7 +52,7 @@ export const Header = () => {
       <Link to={listUrl("protected-products")}>List Products</Link>
       <Link to={createUrl("protected-products")}>Create Product</Link>
       {/* highlight-end */}
-      <button type="button" disabled={isLoading} onClick={mutate}>
+      <button type="button" disabled={isPending} onClick={mutate}>
         Logout
       </button>
     </>
@@ -72,9 +75,10 @@ import { Link } from "react-router";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    result,
+    tableQuery: { isLoading },
+    currentPage,
+    setCurrentPage,
     pageCount,
     sorters,
     setSorters,
@@ -116,7 +120,7 @@ export const ListProducts = () => {
           </tr>
         </thead>
         <tbody>
-          {data?.data?.map((product) => (
+          {result?.data?.map((product) => (
             <tr key={product.id}>
               <td>{product.id}</td>
               <td>{product.name}</td>

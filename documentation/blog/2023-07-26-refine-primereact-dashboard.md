@@ -798,11 +798,11 @@ export const RecentSales = () => {
   const {
     tableQuery,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -873,7 +873,7 @@ export const RecentSales = () => {
         label="Clear"
         outlined
         onClick={() => {
-          setCurrent(1);
+          setCurrentPage(1);
           setFilters([], "replace");
         }}
       />
@@ -882,7 +882,7 @@ export const RecentSales = () => {
         <InputText
           value={getDefaultFilter("q", filters)}
           onChange={(e) => {
-            setCurrent(1);
+            setCurrentPage(1);
             setFilters([
               {
                 field: "q",
@@ -906,10 +906,10 @@ export const RecentSales = () => {
         paginator
         rows={pageSize}
         rowsPerPageOptions={[5, 10, 25, 50]}
-        first={current * pageSize - pageSize}
+        first={currentPage * pageSize - pageSize}
         totalRecords={pageCount * pageSize}
         onPage={(event) => {
-          setCurrent((event.page ?? 0) + 1);
+          setCurrentPage((event.page ?? 0) + 1);
           setPageSize(event.rows);
         }}
         onSort={(event) => {
@@ -1125,13 +1125,13 @@ const formatCurrency = (value: number) => {
 
 export const ProductList = () => {
   const {
-    tableQuery,
+    result,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -1139,9 +1139,9 @@ export const ProductList = () => {
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const products = tableQuery?.data?.data;
+  const products = result?.data;
 
-  const { data: categoryData } = useMany<ICategory>({
+  const { result: categoryData } = useMany<ICategory>({
     resource: "categories",
     ids: products?.map((item) => item?.category?.id) ?? [],
     queryOptions: {
@@ -1212,7 +1212,7 @@ export const ProductList = () => {
         label="Clear"
         outlined
         onClick={() => {
-          setCurrent(1);
+          setCurrentPage(1);
           setFilters([], "replace");
         }}
       />
@@ -1221,7 +1221,7 @@ export const ProductList = () => {
         <InputText
           value={getDefaultFilter("q", filters)}
           onChange={(e) => {
-            setCurrent(1);
+            setCurrentPage(1);
             setFilters([
               {
                 field: "q",
@@ -1258,10 +1258,10 @@ export const ProductList = () => {
         paginator
         rows={pageSize}
         rowsPerPageOptions={[5, 10, 25, 50]}
-        first={current * pageSize - pageSize}
+        first={currentPage * pageSize - pageSize}
         totalRecords={pageCount * pageSize}
         onPage={(event) => {
-          setCurrent((event.page ?? 0) + 1);
+          setCurrentPage((event.page ?? 0) + 1);
           setPageSize(event.rows);
         }}
         onSort={(event) => {
@@ -1925,10 +1925,9 @@ import { ICategory, IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { query } = useShow<IProduct>();
-  const product = query?.data?.data;
+  const { result: product } = useShow<IProduct>();
 
-  const { data: categoryData } = useOne<ICategory>({
+  const { result: categoryData } = useOne<ICategory>({
     resource: "categories",
     id: product?.category.id,
     queryOptions: {
@@ -2165,11 +2164,11 @@ export const CategoryList = () => {
   const {
     tableQuery,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -2234,7 +2233,7 @@ export const CategoryList = () => {
         label="Clear"
         outlined
         onClick={() => {
-          setCurrent(1);
+          setCurrentPage(1);
           setFilters([], "replace");
         }}
       />
@@ -2243,7 +2242,7 @@ export const CategoryList = () => {
         <InputText
           value={getDefaultFilter("q", filters)}
           onChange={(e) => {
-            setCurrent(1);
+            setCurrentPage(1);
             setFilters([
               {
                 field: "q",
@@ -2280,10 +2279,10 @@ export const CategoryList = () => {
         paginator
         rows={pageSize}
         rowsPerPageOptions={[5, 10, 25, 50]}
-        first={current * pageSize - pageSize}
+        first={currentPage * pageSize - pageSize}
         totalRecords={pageCount * pageSize}
         onPage={(event) => {
-          setCurrent((event.page ?? 0) + 1);
+          setCurrentPage((event.page ?? 0) + 1);
           setPageSize(event.rows);
         }}
         onSort={(event) => {
@@ -2528,8 +2527,7 @@ import { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { query } = useShow<ICategory>();
-  const category = query?.data?.data;
+  const { result: category } = useShow<ICategory>();
 
   return (
     <Card

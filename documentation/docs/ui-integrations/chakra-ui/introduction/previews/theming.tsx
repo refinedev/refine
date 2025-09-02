@@ -106,18 +106,18 @@ import { usePagination } from "@refinedev/chakra-ui";
 import { IconButton } from "@chakra-ui/react";
 
 type PaginationProps = {
-    current: number;
+    currentPage: number;
     pageCount: number;
-    setCurrent: (page: number) => void;
+    setCurrentPage: (page: number) => void;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({
-    current,
+    currentPage,
     pageCount,
-    setCurrent,
+    setCurrentPage,
 }) => {
     const pagination = usePagination({
-        current,
+        currentPage,
         pageCount,
     });
 
@@ -127,7 +127,7 @@ export const Pagination: React.FC<PaginationProps> = ({
                 {pagination?.prev && (
                     <IconButton
                         aria-label="previous page"
-                        onClick={() => setCurrent(current - 1)}
+                        onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={!pagination?.prev}
                         variant="outline"
                     >
@@ -142,8 +142,8 @@ export const Pagination: React.FC<PaginationProps> = ({
                     return (
                         <Button
                             key={page}
-                            onClick={() => setCurrent(page)}
-                            variant={page === current ? "solid" : "outline"}
+                            onClick={() => setCurrentPage(page)}
+                            variant={page === currentPage ? "solid" : "outline"}
                         >
                             {page}
                         </Button>
@@ -152,7 +152,7 @@ export const Pagination: React.FC<PaginationProps> = ({
                 {pagination?.next && (
                     <IconButton
                         aria-label="next page"
-                        onClick={() => setCurrent(current + 1)}
+                        onClick={() => setCurrentPage(currentPage + 1)}
                         variant="outline"
                     >
                         <IconChevronRight size="18" />
@@ -361,9 +361,9 @@ export const ProductList = () => {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -416,9 +416,9 @@ export const ProductList = () => {
                 </Table>
             </TableContainer>
             <Pagination
-                current={current}
+                currentPage={currentPage}
                 pageCount={pageCount}
-                setCurrent={setCurrent}
+                setCurrentPage={setCurrentPage}
             />
         </List>
     );

@@ -27,9 +27,9 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    tableQuery: { isLoading },
+    currentPage,
+    setCurrentPage,
     pageCount,
     sorters,
     setSorters,
@@ -60,7 +60,7 @@ import { useShow } from "@refinedev/core";
 
 export const ShowProduct = () => {
   // removed-line
-  const { data, isLoading } = useOne({ resource: "products", id: 123 });
+  const { isLoading } = useOne({ resource: "products", id: 123 });
   // added-line
   const { query } = useShow();
 

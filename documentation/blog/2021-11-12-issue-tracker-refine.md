@@ -585,7 +585,7 @@ import {
 import { Filter } from "../task";
 
 export const TaskList = () => {
-  const { tableProps, searchFormProps } = useTable<
+  const { result, searchFormProps } = useTable<
     ITask,
     HttpError,
     ITaskFilterVariables
@@ -654,28 +654,27 @@ export const TaskList = () => {
     },
   });
 
-  const labelIds = tableProps?.dataSource?.map((item) => item.label) ?? [];
-  const priorityIds =
-    tableProps?.dataSource?.map((item) => item.priority) ?? [];
-  const assignedIds = tableProps?.dataSource?.map((item) => item.users) ?? [];
-  const statusIds = tableProps?.dataSource?.map((item) => item.status) ?? [];
+  const labelIds = result?.data?.map((item) => item.label) ?? [];
+  const priorityIds = result?.data?.map((item) => item.priority) ?? [];
+  const assignedIds = result?.data?.map((item) => item.users) ?? [];
+  const statusIds = result?.data?.map((item) => item.status) ?? [];
 
-  const { data: labels } = useMany<ILabel>({
+  const { result: labels } = useMany<ILabel>({
     resource: "label",
     ids: labelIds,
   });
 
-  const { data: priority } = useMany<IPriority>({
+  const { result: priority } = useMany<IPriority>({
     resource: "priority",
     ids: priorityIds,
   });
 
-  const { data: assigned } = useMany<IAuthUser>({
+  const { result: assigned } = useMany<IAuthUser>({
     resource: "users",
     ids: assignedIds,
   });
 
-  const { data: status } = useMany<IStatus>({
+  const { result: status } = useMany<IStatus>({
     resource: "status",
     ids: statusIds,
   });
@@ -1064,31 +1063,30 @@ import { ITask, ILabel, IPriority, IStatus, IAuthUser } from "interfaces";
 const { Title, Text } = Typography;
 
 export const TaskShow: React.FC = () => {
-  const { query } = useShow<ITask>();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const { result: record, query } = useShow<ITask>();
+  const { isLoading } = query;
 
-  const { data: assigned } = useOne<IAuthUser>({
+  const { result: assigned } = useOne<IAuthUser>({
     resource: "users",
     id: record?.users || "",
   });
 
-  const { data: label } = useOne<ILabel>({
+  const { result: label } = useOne<ILabel>({
     resource: "label",
     id: record?.label || "",
   });
 
-  const { data: priority } = useOne<IPriority>({
+  const { result: priority } = useOne<IPriority>({
     resource: "priority",
     id: record?.priority || "",
   });
 
-  const { data: status } = useOne<IStatus>({
+  const { result: status } = useOne<IStatus>({
     resource: "status",
     id: record?.status || "",
   });
 
-  console.log(status?.data);
+  console.log(status);
 
   return (
     <Show isLoading={isLoading}>
@@ -1100,19 +1098,19 @@ export const TaskShow: React.FC = () => {
 
       <Title level={5}>Assigned To:</Title>
       <Text>
-        <Tag>{assigned?.data?.email ?? "-"}</Tag>
+        <Tag>{assigned?.email ?? "-"}</Tag>
       </Text>
 
       <Title level={5}>Label:</Title>
       <Text>
-        <Tag>{label?.data?.title ?? "-"}</Tag>
+        <Tag>{label?.title ?? "-"}</Tag>
       </Text>
 
       <Title level={5}>Priority:</Title>
-      <Text>{priority?.data?.title ?? "-"}</Text>
+      <Text>{priority?.title ?? "-"}</Text>
 
       <Title level={5}>Status:</Title>
-      <Text>{status?.data?.title ?? "-"}</Text>
+      <Text>{status?.title ?? "-"}</Text>
 
       <Title level={5}>Start Date:</Title>
       <DateField format="DD/MM/YYYY" value={record?.start_time ?? "-"} />
@@ -1181,27 +1179,27 @@ export const Dashboard = () => {
     resource: "tasks",
   });
 
-  const labelIds = taskList.data?.data.map((item) => item.label) ?? [];
-  const priorityIds = taskList.data?.data.map((item) => item.priority) ?? [];
-  const assignedIds = taskList.data?.data.map((item) => item.users) ?? [];
-  const statusIds = taskList.data?.data.map((item) => item.status) ?? [];
+  const labelIds = taskList.result?.data.map((item) => item.label) ?? [];
+  const priorityIds = taskList.result?.data.map((item) => item.priority) ?? [];
+  const assignedIds = taskList.result?.data.map((item) => item.users) ?? [];
+  const statusIds = taskList.result?.data.map((item) => item.status) ?? [];
 
-  const { data: labels } = useMany<ILabel>({
+  const { result: labels } = useMany<ILabel>({
     resource: "label",
     ids: labelIds || [],
   });
 
-  const { data: priority } = useMany<IPriority>({
+  const { result: priority } = useMany<IPriority>({
     resource: "priority",
     ids: priorityIds || [],
   });
 
-  const { data: assigned } = useMany<IAuthUser>({
+  const { result: assigned } = useMany<IAuthUser>({
     resource: "users",
     ids: assignedIds || [],
   });
 
-  const { data: status } = useMany<IStatus>({
+  const { result: status } = useMany<IStatus>({
     resource: "status",
     ids: statusIds || [],
   });

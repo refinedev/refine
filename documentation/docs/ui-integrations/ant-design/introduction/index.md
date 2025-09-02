@@ -293,24 +293,25 @@ import { Show, TextField, NumberField } from "@refinedev/antd";
 import { Typography } from "antd";
 
 export const ProductShow = () => {
-  const { query } = useShow<IProduct>();
-  const { data, isLoading } = query;
-  const record = data?.data;
+  const {
+    result: product,
+    query: { data, isLoading },
+  } = useShow<IProduct>();
 
   return (
     <Show isLoading={isLoading}>
       <Typography.Title level={5}>Id</Typography.Title>
       {/* highlight-next-line */}
-      <TextField value={record?.id} />
+      <TextField value={product?.id} />
 
       <Typography.Title level={5}>Title</Typography.Title>
       {/* highlight-next-line */}
-      <TextField value={record?.title} />
+      <TextField value={product?.title} />
 
       <Typography.Title level={5}>Price</Typography.Title>
       {/* highlight-next-line */}
       <NumberField
-        value={record?.price}
+        value={product?.price}
         options={{ style: "currency", currency: "USD" }}
       />
     </Show>

@@ -196,9 +196,9 @@ export const ProductList = () => {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
