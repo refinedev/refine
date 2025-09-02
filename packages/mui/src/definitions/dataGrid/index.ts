@@ -86,9 +86,7 @@ export const transformFilterModelToCrudFilters = ({
   const filters = items.map(({ field, value, operator }) => {
     const filter: LogicalFilter = {
       field: field,
-      value: ["isEmpty", "isNotEmpty"].includes(operator)
-        ? true
-        : (value ?? ""),
+      value: ["isEmpty", "isNotEmpty"].includes(operator) ? true : value ?? "",
       operator: transformMuiOperatorToCrudOperator(operator),
     };
 
