@@ -1,5 +1,11 @@
 # create-refine-app
 
+## 1.12.10
+
+### Patch Changes
+
+- [#6956](https://github.com/refinedev/refine/pull/6956) [`09c165410d1d5d4e04c110be364f0f3468f1e614`](https://github.com/refinedev/refine/commit/09c165410d1d5d4e04c110be364f0f3468f1e614) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: upgrade superplate-cli to 1.20.1
+
 ## 1.12.9
 
 ### Patch Changes

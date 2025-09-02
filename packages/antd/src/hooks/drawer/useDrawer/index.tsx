@@ -6,9 +6,17 @@ export type useDrawerReturnType = {
 } & Omit<useModalReturnType, "visible">;
 
 export type useDrawerProps = {
+  /**
+   * Default props for Ant Design {@link https://ant.design/components/drawer/ `<Drawer>`} component.
+   */
   drawerProps?: DrawerProps;
 };
 
+/**
+ * By using `useDrawer` you get props for your records from API in accordance with Ant Design {@link https://ant.design/components/drawer/ `<Drawer>`} component.
+ *
+ * @see {@link https://refine.dev/docs/ui-integrations/ant-design/hooks/use-drawer} for more details.
+ */
 export const useDrawer = ({
   drawerProps = {},
 }: useDrawerProps = {}): useDrawerReturnType => {
