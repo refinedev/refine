@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "@handsontable/react": "^12.1.2",
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@refinedev/react-router": "^1.0.1",
-    "@refinedev/simple-rest": "^5.0.10",
+    "@refinedev/simple-rest": "^5.0.11",
     "handsontable": "^12.1.2",
     "lodash": "^4.17.21",
     "react": "^18.0.0",

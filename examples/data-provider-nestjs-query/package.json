@@ -23,9 +23,9 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.46.2",
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/antd": "^5.46.3",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@refinedev/nestjs-query": "^1.3.5",
     "@refinedev/react-router": "^1.0.1",
     "@uiw/react-md-editor": "^3.19.5",
