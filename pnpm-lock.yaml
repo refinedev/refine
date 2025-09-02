@@ -6428,58 +6428,6 @@ importers:
         specifier: ^5.4.15
         version: 5.4.15(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
 
-  examples/new-routing-example:
-    dependencies:
-      '@refinedev/antd':
-        specifier: ^5.46.3
-        version: link:../../packages/antd
-      '@refinedev/cli':
-        specifier: ^2.16.47
-        version: link:../../packages/cli
-      '@refinedev/core':
-        specifier: ^4.57.11
-        version: link:../../packages/core
-      '@refinedev/react-router':
-        specifier: ^1.0.1
-        version: link:../../packages/react-router
-      '@refinedev/simple-rest':
-        specifier: ^5.0.11
-        version: link:../../packages/simple-rest
-      '@uiw/react-md-editor':
-        specifier: ^4.0.8
-        version: 4.0.8(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      antd:
-        specifier: ^5.23.0
-        version: 5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      react:
-        specifier: ^19.1.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.1.0
-        version: 19.1.0(react@19.1.0)
-      react-router:
-        specifier: ^7.0.2
-        version: 7.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-    devDependencies:
-      '@types/node':
-        specifier: ^20
-        version: 20.5.1
-      '@types/react':
-        specifier: ^19.1.0
-        version: 19.1.8
-      '@types/react-dom':
-        specifier: ^19.1.0
-        version: 19.1.6(@types/react@19.1.8)
-      '@vitejs/plugin-react':
-        specifier: ^4.2.1
-        version: 4.2.1(vite@5.4.15(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4))
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-      vite:
-        specifier: ^5.4.15
-        version: 5.4.15(@types/node@20.5.1)(sass@1.75.0)(terser@5.30.4)
-
   examples/pixels:
     dependencies:
       '@ant-design/icons':
@@ -11286,9 +11234,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.0
         version: 19.1.6(@types/react@19.1.8)
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       esbuild-copy-static-files:
         specifier: ^0.1.0
         version: 0.1.0
@@ -11447,9 +11392,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.0
         version: 19.1.6(@types/react@19.1.8)
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       esbuild-copy-static-files:
         specifier: ^0.1.0
         version: 0.1.0
@@ -12020,9 +11962,6 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.5.1
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       jest:
         specifier: ^30.0.5
         version: 30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))
@@ -13046,9 +12985,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.0
         version: 19.1.6(@types/react@19.1.8)
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       esbuild-copy-static-files:
         specifier: ^0.1.0
         version: 0.1.0
@@ -13225,9 +13161,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.0
         version: 19.1.6(@types/react@19.1.8)
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       esbuild-copy-static-files:
         specifier: ^0.1.0
         version: 0.1.0
@@ -13484,9 +13417,6 @@ importers:
       '@types/node':
         specifier: ^20
         version: 20.5.1
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       jest:
         specifier: ^30.0.5
         version: 30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))
@@ -13939,9 +13869,6 @@ importers:
       '@types/react-dom':
         specifier: ^19.1.0
         version: 19.1.6(@types/react@19.1.8)
-      '@types/testing-library__jest-dom':
-        specifier: ^5.14.3
-        version: 5.14.9
       jest:
         specifier: ^30.0.5
         version: 30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))
@@ -19615,9 +19542,6 @@ packages:
 
   '@types/temp@0.9.4':
     resolution: {integrity: sha512-+VfWIwrlept2VBTj7Y2wQnI/Xfscy1u8Pyj/puYwss6V1IblXn1x7S0S9eFh6KyBolgLCm+rUFzhFAbdkR691g==}
-
-  '@types/testing-library__jest-dom@5.14.9':
-    resolution: {integrity: sha512-FSYhIjFlfOpGSRyVoMBMuS3ws5ehFQODymf3vlI7U1K8c7PHwWwFY7VREfmsuzHSOnoKs/9/Y983ayOs7eRzqw==}
 
   '@types/through@0.0.33':
     resolution: {integrity: sha512-HsJ+z3QuETzP3cswwtzt2vEIiHBk/dCcHGhbmG5X3ecnwFD/lPrMpliGXxSCg03L9AhrdwA4Oz/qfspkDW+xGQ==}
@@ -40110,10 +40034,6 @@ snapshots:
   '@types/temp@0.9.4':
     dependencies:
       '@types/node': 20.5.1
-
-  '@types/testing-library__jest-dom@5.14.9':
-    dependencies:
-      '@types/jest': 29.5.12
 
   '@types/through@0.0.33':
     dependencies:

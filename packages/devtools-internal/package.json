@@ -51,7 +51,6 @@
     "@types/node": "^20",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
-    "@types/testing-library__jest-dom": "^5.14.3",
     "react-router": "^7.0.2",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
