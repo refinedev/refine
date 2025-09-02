@@ -22,9 +22,9 @@
     ]
   },
   "dependencies": {
-    "@refinedev/antd": "^5.46.3",
+    "@refinedev/antd": "^5.47.0",
     "@refinedev/cli": "^2.16.47",
-    "@refinedev/core": "^4.57.11",
+    "@refinedev/core": "^4.58.0",
     "@refinedev/devtools": "^1.2.17",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/strapi-v4": "^6.0.12",

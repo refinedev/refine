@@ -1,5 +1,22 @@
 # @refinedev/antd
 
+## 5.47.0
+
+### Minor Changes
+
+- [#6880](https://github.com/refinedev/refine/pull/6880) [`2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2`](https://github.com/refinedev/refine/commit/2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2) Thanks [@arndom](https://github.com/arndom)! - - Add `siderItemsAreCollapsed` prop to all `Sider` components to set default expanded/collapsed nested sider items.
+
+  - UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6721](https://github.com/refinedev/refine/issues/6721)
+
+### Patch Changes
+
+- [#6958](https://github.com/refinedev/refine/pull/6958) [`b447eb36f4e18da63493a1cbd7ad0792eea792e3`](https://github.com/refinedev/refine/commit/b447eb36f4e18da63493a1cbd7ad0792eea792e3) Thanks [@arndom](https://github.com/arndom)! - - Export `useDrawer`out of antd package.
+
+  [Resolves #6944](https://github.com/refinedev/refine/issues/6944)
+
 ## 5.46.3
 
 ### Patch Changes
