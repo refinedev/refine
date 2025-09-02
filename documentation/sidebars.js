@@ -547,6 +547,7 @@ module.exports = {
                 "ui-integrations/ant-design/hooks/use-radio-group/index",
                 "ui-integrations/ant-design/hooks/use-import/index",
                 "ui-integrations/ant-design/hooks/use-modal/index",
+                "ui-integrations/ant-design/hooks/use-drawer/index",
               ],
             },
             {

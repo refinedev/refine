@@ -243,9 +243,9 @@ export const useCreate = <
         resource: resource.name,
         data: values,
         meta: {
+          ...rest,
           dataProviderName,
           id: data?.data?.id ?? undefined,
-          ...rest,
         },
       });
 

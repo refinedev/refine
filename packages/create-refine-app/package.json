@@ -1,6 +1,6 @@
 {
   "name": "create-refine-app",
-  "version": "1.12.9",
+  "version": "1.12.10",
   "private": false,
   "description": "Create Refine App, a scaffold tool for rapidly starting Refine applications.",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "ora": "^5.4.1",
     "prompts": "2.1.0",
     "rimraf": "3.0.2",
-    "superplate-cli": "^1.20.0",
+    "superplate-cli": "^1.20.1",
     "tar": "^6.2.0",
     "tslib": "^2.6.2",
     "which-pm-runs": "^1.1.0"

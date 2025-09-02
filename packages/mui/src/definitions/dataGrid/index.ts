@@ -46,9 +46,12 @@ export const transformMuiOperatorToCrudOperator = (
       return "eq";
     case "!=":
     case "not":
+    case "doesNotEqual":
       return "ne";
     case "contains":
       return "contains";
+    case "doesNotContain":
+      return "ncontains";
     case "isAnyOf":
       return "in";
     case ">":
@@ -137,8 +140,12 @@ export const transformCrudOperatorToMuiOperator = (
       switch (operator) {
         case "eq":
           return "equals";
+        case "ne":
+          return "doesNotEqual";
         case "contains":
           return "contains";
+        case "ncontains":
+          return "doesNotContain";
         case "null":
           return "isEmpty";
         case "nnull":

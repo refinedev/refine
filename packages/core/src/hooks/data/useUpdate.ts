@@ -553,9 +553,9 @@ export const useUpdate = <
         data: values,
         previousData,
         meta: {
-          id,
-          dataProviderName,
           ...rest,
+          dataProviderName,
+          id,
         },
       });
 

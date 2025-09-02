@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React, { useCallback, type CSSProperties } from "react";
 import {
   CanAccess,
   useIsExistAuthentication,
@@ -39,6 +39,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
   meta,
   Title: TitleFromProps,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const theme = useMantineTheme();
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
@@ -88,6 +89,18 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     offset: 4,
   };
 
+  const getDefaultExpandMenuItemsCB = (key?: string) => {
+    const defaultOpened = defaultOpenKeys.includes(key || "");
+
+    if (siderItemsAreCollapsed) return defaultOpened;
+
+    return true;
+  };
+  const getDefaultExpandMenuItems = useCallback(
+    getDefaultExpandMenuItemsCB,
+    [],
+  );
+
   const renderTreeView = (tree: any[], selectedKey?: string) => {
     return tree.map((item) => {
       const { icon, label, route, name, children } = item;
@@ -101,6 +114,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
 
       const disablePointerStyle: CSSProperties =
         activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
+
+      const defaultExpandMenuItems = getDefaultExpandMenuItems(item.key);
 
       return (
         <CanAccess
@@ -118,7 +133,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
               icon={icon ?? defaultNavIcon}
               active={isSelected}
               childrenOffset={siderCollapsed && !mobileSiderOpen ? 0 : 12}
-              defaultOpened={defaultOpenKeys.includes(item.key || "")}
+              defaultOpened={defaultExpandMenuItems}
               pl={siderCollapsed || mobileSiderOpen ? "12px" : "18px"}
               styles={commonNavLinkStyles}
               style={disablePointerStyle}

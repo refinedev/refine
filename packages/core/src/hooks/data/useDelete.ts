@@ -431,9 +431,9 @@ export const useDelete = <
         action: "delete",
         resource: resource.name,
         meta: {
-          id,
-          dataProviderName,
           ...rest,
+          dataProviderName,
+          id,
         },
       });
 

@@ -1,4 +1,4 @@
-import React, { type CSSProperties } from "react";
+import React, { useCallback, type CSSProperties } from "react";
 import {
   CanAccess,
   type TreeMenuItem,
@@ -36,6 +36,7 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
   render,
   meta,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const { siderCollapsed, mobileSiderOpen, setMobileSiderOpen } =
     useThemedLayoutContext();
@@ -60,6 +61,20 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
     isDisabled: !siderCollapsed || mobileSiderOpen,
   };
 
+  const getDefaultExpandMenuItemsCB = (key?: string) => {
+    const defaultExpandedIndex = defaultOpenKeys.includes(key || "")
+      ? [0]
+      : [-1];
+
+    if (siderItemsAreCollapsed) return defaultExpandedIndex;
+
+    return menuItems.map((_, ind) => ind);
+  };
+  const getDefaultExpandMenuItems = useCallback(
+    getDefaultExpandMenuItemsCB,
+    [],
+  );
+
   const renderTreeView = (tree: TreeMenuItem[]) => {
     return tree.map((item) => {
       const { label, route, name, icon, children } = item;
@@ -77,6 +92,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
       const linkStyle: CSSProperties =
         activeItemDisabled && isSelected ? { pointerEvents: "none" } : {};
 
+      const defaultExpandMenuItems = getDefaultExpandMenuItems(item.key);
+
       return (
         <CanAccess
           key={item.key}
@@ -87,7 +104,8 @@ export const ThemedSider: React.FC<RefineThemedLayoutSiderProps> = ({
           }}
         >
           <Accordion
-            defaultIndex={defaultOpenKeys.includes(item.key || "") ? 0 : -1}
+            defaultIndex={defaultExpandMenuItems}
+            allowMultiple
             width="full"
             mb={2}
             allowToggle

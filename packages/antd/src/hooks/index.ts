@@ -7,3 +7,4 @@ export * from "./useFileUploadState";
 export * from "./modal";
 export * from "./useSiderVisible";
 export * from "./useThemedLayoutContext";
+export * from "./drawer";

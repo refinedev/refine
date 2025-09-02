@@ -2786,4 +2786,41 @@ describe("useUpdateMany Hook should work with params and props", () => {
       expect(onErrorFn).toHaveBeenCalledWith("onErrorProp");
     });
   });
+
+  it("should not override audit meta.ids with route params", async () => {
+    const auditCreateMock = jest.fn();
+
+    const { result } = renderHook(() => useUpdateMany(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        auditLogProvider: {
+          create: auditCreateMock,
+          get: jest.fn(),
+          update: jest.fn(),
+        },
+        routerProvider: mockRouterProvider({
+          params: { id: "6" },
+        }),
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        resource: "posts",
+        ids: ["1", "2"],
+        values: { title: "bulk" },
+      });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
+
+    expect(auditCreateMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "updateMany",
+        resource: "posts",
+        meta: expect.objectContaining({ ids: ["1", "2"] }),
+      }),
+    );
+  });
 });

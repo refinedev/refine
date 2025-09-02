@@ -61,6 +61,7 @@ export type RefineThemedLayoutProps = {
 } & RefineLayoutLayoutProps;
 export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
+  siderItemsAreCollapsed?: boolean;
 };
 export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
   sticky?: boolean;
