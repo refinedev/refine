@@ -35,7 +35,11 @@
     "react-router": "^7.0.2"
   },
   "devDependencies": {
+    "@types/node": "^20",
     "@vitejs/plugin-react": "^4.2.1",
     "vite": "^5.4.15"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

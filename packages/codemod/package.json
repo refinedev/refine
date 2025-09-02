@@ -41,6 +41,7 @@
     "@types/inquirer": "^8.2.5",
     "@types/jest": "^29.2.4",
     "@types/jscodeshift": "^0.11.11",
+    "@types/node": "^20",
     "@types/npmcli__package-json": "^4.0.4",
     "jest": "^30.0.5",
     "ts-jest": "^29.1.2",
@@ -48,7 +49,7 @@
     "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

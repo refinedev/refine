@@ -61,6 +61,7 @@
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "esbuild-copy-static-files": "^0.1.0",
@@ -86,6 +87,9 @@
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0",
     "react-hook-form": "^7.57.0"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

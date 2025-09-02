@@ -52,6 +52,7 @@
     "@types/react-dom": "^19.1.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
+    "@types/node": "^20",
     "react-router": "^7.0.2",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
@@ -64,7 +65,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

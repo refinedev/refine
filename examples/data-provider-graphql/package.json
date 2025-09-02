@@ -42,11 +42,14 @@
     "@graphql-codegen/import-types-preset": "^3.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
     "@graphql-codegen/typescript-operations": "^4.0.1",
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.8.3",
     "vite": "^5.4.15"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

@@ -51,12 +51,15 @@
     "@types/google.maps": "^3.50.4",
     "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/react-input-mask": "^3.0.1",
     "@vitejs/plugin-react": "^4.2.1",
     "typescript": "^5.8.3",
     "vite": "^5.4.15"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

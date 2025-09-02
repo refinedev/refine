@@ -73,7 +73,7 @@
   "devDependencies": {
     "@netlify/plugin-nextjs": "5.2.2",
     "@types/jest": "^29.2.4",
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/uuid": "^9.0.6",
@@ -83,5 +83,8 @@
     "rimraf": "3.0.2",
     "ts-jest": "^29.1.2",
     "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
