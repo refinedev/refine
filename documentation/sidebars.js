@@ -35,8 +35,8 @@ module.exports = {
     // Devtools
     {
       type: "link",
-      href: "https://ai.refine.dev",
-      label: "Refine AI",
+      href: "/docs/migration-guide/4x-to-5x/",
+      label: "Refine v5 is here! 🎉",
       className: "enterprise-badge",
     },
     // Guides & Concepts
