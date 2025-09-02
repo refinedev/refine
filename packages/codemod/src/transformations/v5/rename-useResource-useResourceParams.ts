@@ -1,4 +1,5 @@
 import type { Collection, JSCodeshift } from "jscodeshift";
+import { getNameAsString } from "../../helpers";
 
 export const renameUseResourceToUseResourceParams = (
   j: JSCodeshift,
@@ -78,7 +79,9 @@ export const renameUseResourceToUseResourceParams = (
           spec.type === "ImportSpecifier" &&
           spec.imported.name === "useResource"
         ) {
-          useResourceAliases.add(spec.local?.name || "useResource");
+          useResourceAliases.add(
+            getNameAsString(spec.local?.name) || "useResource",
+          );
         }
       });
     });
@@ -177,7 +180,8 @@ export const renameUseResourceToUseResourceParams = (
           spec.imported.name === "useResource"
         ) {
           // Only create alias if the original local name was different from 'useResource'
-          const originalLocalName = spec.local?.name || "useResource";
+          const originalLocalName =
+            getNameAsString(spec.local?.name) || "useResource";
           if (originalLocalName === "useResource") {
             // No alias needed - just import useResourceParams normally
             return j.importSpecifier(j.identifier("useResourceParams"));
