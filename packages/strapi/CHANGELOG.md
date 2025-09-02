@@ -1,5 +1,13 @@
 # @refinedev/strapi
 
+## 4.1.15
+
+### Patch Changes
+
+- [#6894](https://github.com/refinedev/refine/pull/6894) [`783a103d4212a3a7ad70477ae96f2fb79a692dd3`](https://github.com/refinedev/refine/commit/783a103d4212a3a7ad70477ae96f2fb79a692dd3) Thanks [@arndom](https://github.com/arndom)! - - Bump `axios` dependency to `^1.11.0` to fix critical vulnerability of `form-data@v4.0.0`
+
+  [Resolves #6888](https://github.com/refinedev/refine/issues/6888)
+
 ## 4.1.14
 
 ### Patch Changes

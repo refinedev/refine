@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/simple-rest",
-  "version": "5.0.10",
+  "version": "5.0.11",
   "private": false,
   "description": "Simple REST Data Provider for Refine, enabling seamless REST API interactions.",
   "repository": {
@@ -40,13 +40,13 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "axios": "^1.6.2",
+    "axios": "^1.11.0",
     "query-string": "^7.1.1"
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.42",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/cli": "^2.16.47",
+    "@refinedev/core": "^4.57.11",
     "@types/jest": "^29.2.4",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.3.1",
