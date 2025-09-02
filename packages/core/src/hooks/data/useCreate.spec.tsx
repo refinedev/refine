@@ -1889,4 +1889,43 @@ describe("useCreate Hook should work with params and props", () => {
       expect(onErrorFn).toHaveBeenCalledWith("onErrorProp");
     });
   });
+
+  it("should not override audit meta.id with route params", async () => {
+    const auditCreateMock = jest.fn();
+    const createMock = jest.fn().mockResolvedValue({ data: { id: "123" } });
+
+    const { result } = renderHook(() => useCreate(), {
+      wrapper: TestWrapper({
+        dataProvider: {
+          default: { ...MockJSONServer.default, create: createMock },
+        },
+        resources: [{ name: "posts" }],
+        auditLogProvider: {
+          create: auditCreateMock,
+          get: jest.fn(),
+          update: jest.fn(),
+        },
+        routerProvider: mockRouterProvider({
+          params: { id: "6" },
+        }),
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        resource: "posts",
+        values: { title: "new post" },
+      });
+    });
+
+    await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
+
+    expect(auditCreateMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "create",
+        resource: "posts",
+        meta: expect.objectContaining({ id: "123" }),
+      }),
+    );
+  });
 });
