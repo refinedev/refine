@@ -876,7 +876,7 @@ describe("useDelete Hook", () => {
       });
     });
 
-    await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
+    await waitFor(() => expect(result.current.mutation.isSuccess).toBeTruthy());
 
     expect(auditCreateMock).toHaveBeenCalledWith(
       expect.objectContaining({

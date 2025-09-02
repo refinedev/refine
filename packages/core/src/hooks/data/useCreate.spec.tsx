@@ -1949,7 +1949,7 @@ describe("useCreate Hook should work with params and props", () => {
       });
     });
 
-    await waitFor(() => expect(result.current.isSuccess).toBeTruthy());
+    await waitFor(() => expect(result.current.mutation.isSuccess).toBeTruthy());
 
     expect(auditCreateMock).toHaveBeenCalledWith(
       expect.objectContaining({
