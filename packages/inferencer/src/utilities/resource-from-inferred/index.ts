@@ -1,4 +1,4 @@
-import pluralize from "pluralize";
+import * as pluralize from "pluralize";
 import type { IResourceItem } from "@refinedev/core";
 
 import type { InferField } from "../../types";
