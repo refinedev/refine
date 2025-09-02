@@ -1,4 +1,5 @@
 import type { Collection, JSCodeshift } from "jscodeshift";
+import { getNameAsString } from "../../helpers";
 
 export const routerBindingsTypeToProvider = (
   j: JSCodeshift,
@@ -23,8 +24,8 @@ export const routerBindingsTypeToProvider = (
           ((specifier as any).importKind === "type" || // Individual: { type RouterBindings }
             path.value.importKind === "type") // Inline: import type { RouterBindings }
         ) {
-          const localName = specifier.local?.name;
-          const importedName = specifier.imported.name;
+          const localName = getNameAsString(specifier.local?.name);
+          const importedName = getNameAsString(specifier.imported.name);
 
           // Create a new import specifier with proper alias
           const newSpecifier = j.importSpecifier(

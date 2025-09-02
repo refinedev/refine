@@ -1,4 +1,5 @@
 import type { Collection, JSCodeshift } from "jscodeshift";
+import { getNameAsString } from "../../helpers";
 
 const SUPPORTED_PACKAGES = [
   "@refinedev/mui",
@@ -54,7 +55,9 @@ export const renameThemedV2Imports = (
         const hasV2Items = importDecl.specifiers.some(
           (spec) =>
             spec.type === "ImportSpecifier" &&
-            Object.keys(V2_MAPPINGS).includes(spec.imported.name),
+            Object.keys(V2_MAPPINGS).includes(
+              getNameAsString(spec.imported.name),
+            ),
         );
 
         if (!hasV2Items) return;
@@ -63,17 +66,21 @@ export const renameThemedV2Imports = (
         importDecl.specifiers = importDecl.specifiers.map((spec) => {
           if (
             spec.type === "ImportSpecifier" &&
-            Object.keys(V2_MAPPINGS).includes(spec.imported.name)
+            Object.keys(V2_MAPPINGS).includes(
+              getNameAsString(spec.imported.name),
+            )
           ) {
-            const oldName = spec.imported.name;
+            const oldName = getNameAsString(spec.imported.name);
             const newName = V2_MAPPINGS[oldName];
 
             // Check if the import has a user-defined alias
             const hasUserAlias =
-              spec.local && spec.local.name !== spec.imported.name;
+              spec.local && getNameAsString(spec.local.name) !== oldName;
 
             // maintain backward compatibility with aliases for all imports
-            const localName = hasUserAlias ? spec.local.name : oldName;
+            const localName = hasUserAlias
+              ? getNameAsString(spec.local.name)
+              : oldName;
             const newSpec = j.importSpecifier(
               j.identifier(newName),
               j.identifier(localName),
