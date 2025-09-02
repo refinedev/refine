@@ -44,6 +44,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
   meta,
   fixed,
   activeItemDisabled = false,
+  siderItemsAreCollapsed = true,
 }) => {
   const { token } = theme.useToken();
   const {
@@ -181,6 +182,12 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     </Menu.Item>
   ) : null;
 
+  const defaultExpandMenuItems = (() => {
+    if (siderItemsAreCollapsed) return [];
+
+    return menuItems.map(({ key }) => key);
+  })();
+
   const items = renderTreeView(menuItems, selectedKey);
 
   const renderSider = () => {
@@ -205,7 +212,7 @@ export const ThemedSiderV2: React.FC<RefineThemedLayoutV2SiderProps> = ({
     return (
       <Menu
         selectedKeys={selectedKey ? [selectedKey] : []}
-        defaultOpenKeys={defaultOpenKeys}
+        defaultOpenKeys={[...defaultOpenKeys, ...defaultExpandMenuItems]}
         mode="inline"
         style={{
           paddingTop: "8px",
