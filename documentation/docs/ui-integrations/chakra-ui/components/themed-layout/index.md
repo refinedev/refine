@@ -2,7 +2,7 @@
 title: <ThemedLayout />
 description: <ThemedLayout> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
-source: packages/chakra-ui/src/components/themedLayoutV2/index.tsx
+source: packages/chakra-ui/src/components/themedLayout/index.tsx
 ---
 
 ```tsx live shared
@@ -891,9 +891,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayout/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayout/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/main/packages/chakra-ui/src/components/themedLayout/title/index.tsx
 [use-menu]: /docs/core/hooks/utilities/use-menu
 [refine-component]: /docs/core/refine-component
 [chakra-ui-drawer]: https://chakra-ui.com/docs/components/drawer

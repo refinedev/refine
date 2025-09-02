@@ -2,7 +2,7 @@
 title: <ThemedLayout />
 description: <ThemedLayout> component from Refine, defines the overall structure and layout of a web page.
 swizzle: true
-source: packages/mui/src/components/themedLayoutV2/index.tsx
+source: packages/mui/src/components/themedLayout/index.tsx
 ---
 
 ```tsx live shared
@@ -942,9 +942,9 @@ export default function BaseLayout() {
 </Tabs>
 ```
 
-[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/sider/index.tsx
-[themed-header]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/header/index.tsx
-[themed-title]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayoutV2/title/index.tsx
+[themed-sider]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/sider/index.tsx
+[themed-header]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayout/header/index.tsx
+[themed-title]: https://github.com/refinedev/refine/blob/main/packages/mui/src/components/themedLayout/title/index.tsx
 [use-menu]: /docs/core/hooks/utilities/use-menu
 [refine-component]: /docs/core/refine-component
 [mui-drawer]: https://mui.com/material-ui/react-drawer/

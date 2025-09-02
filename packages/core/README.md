@@ -87,7 +87,7 @@ Here's Refine in action, the below code is an example of a simple CRUD applicati
 ```tsx
 import React from "react";
 import { Refine, useMany } from "@refinedev/core";
-import { ThemedLayoutV2 } from "@refinedev/mui";
+import { ThemedLayout } from "@refinedev/mui";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
@@ -111,9 +111,9 @@ export default function App() {
         <Routes>
           <Route
             element={
-              <ThemedLayoutV2>
+              <ThemedLayout>
                 <Outlet />
-              </ThemedLayoutV2>
+              </ThemedLayout>
             }
           >
             <Route path="/products">

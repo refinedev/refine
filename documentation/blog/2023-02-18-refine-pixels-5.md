@@ -528,7 +528,7 @@ After adding resources we need to create routes for them. For the routes, we'll 
 // ...
 
 import { Authenticated, CanAccess, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2 } from "@refinedev/antd";
+import { ErrorComponent, ThemedLayout } from "@refinedev/antd";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
