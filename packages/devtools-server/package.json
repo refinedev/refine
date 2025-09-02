@@ -81,7 +81,7 @@
     "@types/jscodeshift": "^17.3.0",
     "@types/lodash": "^4.14.171",
     "@types/marked": "^5.0.1",
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/node-fetch": "^2.6.11",
     "@types/sanitize-html": "^2.9.0",
     "@types/ws": "^8.5.5",
@@ -103,7 +103,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

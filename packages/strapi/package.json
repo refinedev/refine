@@ -46,6 +46,7 @@
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/core": "^4.57.11",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
     "nock": "^13.4.0",
@@ -62,7 +63,7 @@
     "react-dom": "^18.0.0 || ^19.0.0"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

@@ -39,7 +39,7 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/styled-components": "^5.1.26",
@@ -51,5 +51,8 @@
     "eslint-plugin-react-refresh": "^0.3.4",
     "typescript": "^5.8.3",
     "vite": "^5.4.15"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
