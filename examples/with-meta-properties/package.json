@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@ant-design/v5-patch-for-react-19": "^1.0.3",
-    "@refinedev/antd": "^5.46.3",
+    "@refinedev/antd": "^5.47.0",
     "@refinedev/cli": "^2.16.47",
-    "@refinedev/core": "^4.57.11",
+    "@refinedev/core": "^4.58.0",
     "@refinedev/react-router": "^1.0.1",
     "@refinedev/simple-rest": "^5.0.11",
     "antd": "^5.23.0",
