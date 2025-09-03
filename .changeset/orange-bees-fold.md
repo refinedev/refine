@@ -12,7 +12,7 @@
 "@refinedev/strapi": patch
 "@refinedev/strapi-v4": patch
 "@refinedev/supabase": patch
-"@refinedev/create-refine-app": patch
+"create-refine-app": patch
 "@refinedev/cli": patch
 ---
 
