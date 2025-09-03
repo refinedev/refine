@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/ui-tests",
-  "version": "1.15.1",
+  "version": "2.0.0",
   "private": false,
   "description": "UI test utilities for Refine, ensuring quality and reliability.",
   "license": "MIT",
@@ -30,8 +30,8 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@refinedev/core": "^4.57.1",
-    "@refinedev/ui-types": "^1.23.1",
+    "@refinedev/core": "^5.0.0",
+    "@refinedev/ui-types": "^2.0.0",
     "tslib": "^2.6.2"
   },
   "devDependencies": {
@@ -54,7 +54,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^5.0.0",
     "react": "^18.0.0 || ^19.0.0",
     "react-dom": "^18.0.0 || ^19.0.0"
   },

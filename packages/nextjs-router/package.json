@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/nextjs-router",
-  "version": "6.2.3",
+  "version": "7.0.0",
   "private": false,
   "description": "React Router v6 support for Refine, with full routing capabilities.",
   "repository": {
@@ -91,7 +91,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/core": "^5.0.0",
     "@types/node": "^20",
     "@types/qs": "^6.9.7",
     "jest": "^30.0.5",
@@ -103,7 +103,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^5.0.0",
     "@types/react": "^18.0.0 || ^19.0.0",
     "@types/react-dom": "^18.0.0 || ^19.0.0",
     "next": "*",

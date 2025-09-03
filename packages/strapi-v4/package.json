@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/strapi-v4",
-  "version": "6.0.12",
+  "version": "7.0.0",
   "private": false,
   "description": "Strapi v4 Data Provider for Refine, supporting content management with Strapi.",
   "repository": {
@@ -45,8 +45,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.47",
-    "@refinedev/core": "^4.57.11",
+    "@refinedev/cli": "^2.16.48",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "@types/qs": "^6.9.7",
@@ -59,7 +59,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^5.0.0",
     "@types/react": "^18.0.0 || ^19.0.0",
     "@types/react-dom": "^18.0.0 || ^19.0.0",
     "react": "^18.0.0 || ^19.0.0",

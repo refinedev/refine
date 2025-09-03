@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/simple-rest",
-  "version": "5.0.11",
+  "version": "6.0.0",
   "private": false,
   "description": "Simple REST Data Provider for Refine, enabling seamless REST API interactions.",
   "repository": {
@@ -45,8 +45,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.47",
-    "@refinedev/core": "^4.57.11",
+    "@refinedev/cli": "^2.16.48",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "jest": "^30.0.5",
@@ -59,7 +59,7 @@
     "warn-once": "^0.1.0"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1"
+    "@refinedev/core": "^5.0.0"
   },
   "engines": {
     "node": ">=20"

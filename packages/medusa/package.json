@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/medusa",
-  "version": "3.0.7",
+  "version": "4.0.0",
   "private": false,
   "description": "refine medusa data provider. refine is a React-based framework for building internal tools, rapidly.",
   "repository": {
@@ -45,8 +45,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.47",
-    "@refinedev/core": "^4.57.11",
+    "@refinedev/cli": "^2.16.48",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "jest": "^30.0.5",
@@ -58,7 +58,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1"
+    "@refinedev/core": "^5.0.0"
   },
   "engines": {
     "node": ">=20"

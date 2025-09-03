@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/cli",
-  "version": "2.16.47",
+  "version": "2.16.48",
   "private": false,
   "description": "Refine CLI tool, streamlining the development of Refine applications.",
   "license": "MIT",
@@ -34,7 +34,7 @@
   },
   "dependencies": {
     "@npmcli/package-json": "^5.2.0",
-    "@refinedev/devtools-server": "1.1.42",
+    "@refinedev/devtools-server": "2.0.0",
     "boxen": "^5.1.2",
     "camelcase": "^6.2.0",
     "cardinal": "^2.1.1",

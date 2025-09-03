@@ -1,6 +1,6 @@
 {
   "name": "create-refine-app",
-  "version": "1.12.10",
+  "version": "1.12.11",
   "private": false,
   "description": "Create Refine App, a scaffold tool for rapidly starting Refine applications.",
   "license": "MIT",

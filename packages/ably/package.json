@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/ably",
-  "version": "4.1.10",
+  "version": "5.0.0",
   "private": false,
   "description": "Ably Live Provider for Refine, enabling real-time updates to your Refine applications effortlessly.",
   "repository": {
@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "jest": "^30.0.5",
@@ -55,7 +55,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1"
+    "@refinedev/core": "^5.0.0"
   },
   "engines": {
     "node": ">=20"

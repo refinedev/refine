@@ -1,5 +1,28 @@
 # @refinedev/core
 
+## 5.0.0
+
+### Major Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: upgrade to Refine 5.0 with React 19 and TanStack Query v5
+
+  - Modern React 19 and TanStack Query v5 support with improved performance and developer experience.
+  - Removed all deprecated APIs and legacy systems for a cleaner, more maintainable codebase.
+
+  > 🚨 Breaking changes require migration - check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
+### Patch Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Throw an error in `useGetLocale` if it is called without an i18n Provider.
+
+  - This ensures the hook's return type matches that of `i18nProvider.getLocale`.
+  - `useTranslation().getLocale` which is from `useGetLocale` now returns a string.
+
+  [Resolves #6812](https://github.com/refinedev/refine/issues/6812)
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/devtools-internal@2.0.0
+
 ## 4.58.0
 
 ### Minor Changes

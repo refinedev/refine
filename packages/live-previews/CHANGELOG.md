@@ -1,5 +1,29 @@
 # @refinedev/live-previews
 
+## 0.3.11
+
+### Patch Changes
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/chakra-ui@3.0.0
+  - @refinedev/react-hook-form@5.0.0
+  - @refinedev/core@5.0.0
+  - @refinedev/mui@7.0.0
+  - @refinedev/mantine@3.0.0
+  - @refinedev/inferencer@6.0.0
+  - @refinedev/kbar@2.0.0
+  - @refinedev/airtable@5.0.0
+  - @refinedev/appwrite@8.0.0
+  - @refinedev/hasura@7.0.0
+  - @refinedev/nestjs-query@2.0.0
+  - @refinedev/nestjsx-crud@6.0.0
+  - @refinedev/simple-rest@6.0.0
+  - @refinedev/strapi-v4@7.0.0
+  - @refinedev/supabase@6.0.0
+  - @refinedev/react-router@2.0.0
+  - @refinedev/react-table@6.0.0
+  - @refinedev/antd@6.0.0
+
 ## 0.3.10
 
 ### Patch Changes

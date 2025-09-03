@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/appwrite",
-  "version": "7.0.1",
+  "version": "8.0.0",
   "private": false,
   "repository": {
     "type": "git",
@@ -43,8 +43,8 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/cli": "^2.16.38",
-    "@refinedev/core": "^4.54.1",
+    "@refinedev/cli": "^2.16.48",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "jest": "^30.0.5",
@@ -56,7 +56,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1"
+    "@refinedev/core": "^5.0.0"
   },
   "engines": {
     "node": ">=20"
