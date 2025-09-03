@@ -29,7 +29,7 @@ describe("useImport hook", () => {
     const { result } = renderHook(
       () =>
         useImport({
-          resourceName: "tests",
+          resource: "tests",
         }),
       {
         wrapper: TestWrapper({
@@ -52,7 +52,7 @@ describe("useImport hook", () => {
       () =>
         useImport({
           batchSize: 1,
-          resourceName: "posts",
+          resource: "posts",
         }),
       {
         wrapper: TestWrapper({
@@ -70,8 +70,8 @@ describe("useImport hook", () => {
     });
 
     await waitFor(() => {
-      expect(notificationOpenSpy).toBeCalled();
-      expect(notificationCloseSpy).toBeCalled();
+      expect(notificationOpenSpy).toHaveBeenCalled();
+      expect(notificationCloseSpy).toHaveBeenCalled();
     });
   });
 });

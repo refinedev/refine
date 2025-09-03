@@ -3,11 +3,11 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 import {
   MockJSONServer,
   TestWrapper,
+  mockAuthProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
 
-import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   assertListLength,
   assertMutationSuccess,
@@ -27,16 +27,16 @@ describe("useDeleteMany Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: ["1"],
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    const { isSuccess } = result.current;
+    const { isSuccess } = result.current.mutation;
 
     expect(isSuccess).toBeTruthy();
   });
@@ -65,7 +65,7 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 2);
 
     act(() => {
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         mutationMode: "optimistic",
         ids: ["1", "2"],
@@ -77,7 +77,7 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 0);
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
+      expect(result.current.mutation.isError).toBeTruthy();
     });
 
     await assertListLength(useListResult, 2);
@@ -102,7 +102,7 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 2);
 
     act(() => {
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         mutationMode: "undoable",
         undoableTimeout: 1000,
@@ -115,34 +115,6 @@ describe("useDeleteMany Hook", () => {
     await assertListLength(useManyResult, 0);
 
     await assertMutationSuccess(result);
-  });
-
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const catchFn = jest.fn();
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const { result } = renderHook(() => useDeleteMany(), {
-      wrapper: TestWrapper({}),
-    });
-
-    const resource = "posts";
-
-    result.current.mutate({
-      resource,
-      ids: [1],
-      meta: {
-        foo: "bar",
-        gqlQuery: "gqlQuery" as any,
-        gqlMutation: "gqlMutation" as any,
-      },
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -163,7 +135,7 @@ describe("useDeleteMany Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: ["1"],
       meta: {
@@ -174,10 +146,10 @@ describe("useDeleteMany Hook", () => {
     });
 
     await waitFor(() => {
-      expect(deleteManyMock).toBeCalled();
+      expect(deleteManyMock).toHaveBeenCalled();
     });
 
-    expect(deleteManyMock).toBeCalledWith(
+    expect(deleteManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -216,19 +188,19 @@ describe("useDeleteMany Hook", () => {
       },
     );
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: [1, 2],
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -251,17 +223,17 @@ describe("useDeleteMany Hook", () => {
           }),
         });
 
-        result.current.mutate({
+        result.current.mutation.mutate({
           resource: "posts",
           ids: ["1", "2"],
           dataProviderName,
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -285,6 +257,14 @@ describe("useDeleteMany Hook", () => {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           resources: [{ name: "posts" }],
+          authProvider: {
+            ...mockAuthProvider,
+            getIdentity: () =>
+              Promise.resolve({
+                name: "John Doe",
+                id: "1",
+              }),
+          },
           auditLogProvider: {
             create: createMock,
             get: jest.fn(),
@@ -293,19 +273,22 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(createMock).toBeCalled();
+      expect(createMock).toHaveBeenCalled();
       expect(createMock).toHaveBeenCalledWith({
         action: "deleteMany",
-        author: {},
+        author: {
+          id: "1",
+          name: "John Doe",
+        },
         meta: {
           dataProviderName: "default",
           ids: ["1", "2"],
@@ -331,16 +314,16 @@ describe("useDeleteMany Hook", () => {
       }),
     });
 
-    result.current.mutate({
+    result.current.mutation.mutate({
       resource: "posts",
       ids: ["1", "2"],
     });
 
     await waitFor(() => {
-      expect(deleteOneMock).toBeCalled();
+      expect(deleteOneMock).toHaveBeenCalled();
     });
 
-    expect(deleteOneMock).toBeCalledTimes(2);
+    expect(deleteOneMock).toHaveBeenCalledTimes(2);
     expect(deleteOneMock).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
@@ -372,16 +355,16 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Success",
         key: "1,2-posts-notification",
         message: "Successfully deleted posts",
@@ -409,16 +392,16 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1,2-posts-notification",
         message: "Error (status code: undefined)",
@@ -440,7 +423,7 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         successNotification: () => ({
@@ -451,10 +434,10 @@ describe("useDeleteMany Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -475,17 +458,17 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         successNotification: () => false,
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -508,7 +491,7 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1", "2"],
         errorNotification: () => ({
@@ -519,10 +502,10 @@ describe("useDeleteMany Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -550,138 +533,18 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
+      result.current.mutation.mutate({
         resource: "posts",
         ids: ["1"],
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
-    it("should call `checkError` from the legacy auth provider on error", async () => {
-      const deleteManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
-
-      const { result } = renderHook(() => useDeleteMany(), {
-        wrapper: TestWrapper({
-          dataProvider: {
-            default: {
-              ...MockJSONServer.default,
-              deleteMany: deleteManyMock,
-            },
-          },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
-          },
-          resources: [{ name: "posts" }],
-        }),
-      });
-
-      result.current.mutate({
-        resource: "posts",
-        ids: ["1"],
-      });
-
-      await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
-      });
-
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
-    });
-  });
-
-  it("should select correct dataProviderName", async () => {
-    const deleteManyDefaultMock = jest.fn();
-    const deleteManyFooMock = jest.fn();
-
-    const { result } = renderHook(() => useDeleteMany(), {
-      wrapper: TestWrapper({
-        dataProvider: {
-          default: {
-            ...MockJSONServer.default,
-            deleteMany: deleteManyDefaultMock,
-          },
-          foo: {
-            ...MockJSONServer.default,
-            deleteMany: deleteManyFooMock,
-          },
-        },
-        resources: [
-          {
-            name: "categories",
-          },
-          {
-            name: "posts",
-            meta: {
-              dataProviderName: "foo",
-            },
-          },
-        ],
-      }),
-    });
-
-    result.current.mutate({
-      resource: "posts",
-      ids: ["1", "2"],
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(deleteManyFooMock).toBeCalledWith(
-      expect.objectContaining({
-        resource: "posts",
-      }),
-    );
-    expect(deleteManyDefaultMock).not.toBeCalled();
-  });
-
-  it("should get correct `meta` of related resource", async () => {
-    const deleteManyMock = jest.fn();
-
-    const { result } = renderHook(() => useDeleteMany(), {
-      wrapper: TestWrapper({
-        dataProvider: {
-          default: {
-            ...MockJSONServer.default,
-            deleteMany: deleteManyMock,
-          },
-        },
-        resources: [
-          {
-            name: "posts",
-            meta: {
-              foo: "bar",
-            },
-          },
-        ],
-      }),
-    });
-
-    result.current.mutate({
-      resource: "posts",
-      ids: ["1", "2"],
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(deleteManyMock).toBeCalledWith(
-      expect.objectContaining({
-        meta: expect.objectContaining({
-          foo: "bar",
-        }),
-      }),
-    );
-  });
-
-  describe("when passing `identifier` instead of `name`", () => {
     it("should select correct dataProviderName", async () => {
       const deleteManyDefaultMock = jest.fn();
       const deleteManyFooMock = jest.fn();
@@ -700,11 +563,10 @@ describe("useDeleteMany Hook", () => {
           },
           resources: [
             {
-              name: "posts",
+              name: "categories",
             },
             {
               name: "posts",
-              identifier: "featured-posts",
               meta: {
                 dataProviderName: "foo",
               },
@@ -713,61 +575,21 @@ describe("useDeleteMany Hook", () => {
         }),
       });
 
-      result.current.mutate({
-        resource: "featured-posts",
+      result.current.mutation.mutate({
+        resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(deleteManyFooMock).toBeCalledWith(
+      expect(deleteManyFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(deleteManyDefaultMock).not.toBeCalled();
-    });
-
-    it("should invalidate query store with `identifier`", async () => {
-      const invalidateStore = jest.fn();
-      jest
-        .spyOn(UseInvalidate, "useInvalidate")
-        .mockReturnValue(invalidateStore);
-      const deleteManyMock = jest.fn();
-
-      const { result } = renderHook(() => useDeleteMany(), {
-        wrapper: TestWrapper({
-          dataProvider: {
-            default: {
-              ...MockJSONServer.default,
-              deleteMany: deleteManyMock,
-            },
-          },
-          resources: [
-            {
-              name: "posts",
-              identifier: "featured-posts",
-            },
-          ],
-        }),
-      });
-
-      result.current.mutate({
-        resource: "featured-posts",
-        ids: ["1", "2"],
-      });
-
-      await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
-      });
-
-      expect(invalidateStore).toBeCalledWith(
-        expect.objectContaining({
-          resource: "featured-posts",
-        }),
-      );
+      expect(deleteManyDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should get correct `meta` of related resource", async () => {
@@ -784,111 +606,241 @@ describe("useDeleteMany Hook", () => {
           resources: [
             {
               name: "posts",
-              identifier: "all-posts",
               meta: {
                 foo: "bar",
-              },
-            },
-            {
-              name: "posts",
-              identifier: "featured-posts",
-              meta: {
-                bar: "baz",
               },
             },
           ],
         }),
       });
 
-      result.current.mutate({
-        resource: "featured-posts",
+      result.current.mutation.mutate({
+        resource: "posts",
         ids: ["1", "2"],
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(deleteManyMock).toBeCalledWith(
+      expect(deleteManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
-            bar: "baz",
+            foo: "bar",
           }),
         }),
       );
     });
-  });
 
-  it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
-    const useDeleteManyMock = jest.fn().mockResolvedValue({ data: {} });
-    const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+    describe("when passing `identifier` instead of `name`", () => {
+      it("should select correct dataProviderName", async () => {
+        const deleteManyDefaultMock = jest.fn();
+        const deleteManyFooMock = jest.fn();
 
-    const { result } = renderHook(
-      () =>
-        useDeleteMany({
-          mutationOptions: {
-            // mutationFn is omitted in types. So we need to use @ts-ignore test it.
-            // @ts-ignore
-            mutationFn: mutationFnMock,
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: {
-            default: {
-              ...MockJSONServer.default,
-              update: useDeleteManyMock,
+        const { result } = renderHook(() => useDeleteMany(), {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                deleteMany: deleteManyDefaultMock,
+              },
+              foo: {
+                ...MockJSONServer.default,
+                deleteMany: deleteManyFooMock,
+              },
             },
-          },
-          resources: [{ name: "posts" }],
+            resources: [
+              {
+                name: "posts",
+              },
+              {
+                name: "posts",
+                identifier: "featured-posts",
+                meta: {
+                  dataProviderName: "foo",
+                },
+              },
+            ],
+          }),
+        });
+
+        result.current.mutation.mutate({
+          resource: "featured-posts",
+          ids: ["1", "2"],
+        });
+
+        await waitFor(() => {
+          expect(result.current.mutation.isSuccess).toBeTruthy();
+        });
+
+        expect(deleteManyFooMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            resource: "posts",
+          }),
+        );
+        expect(deleteManyDefaultMock).not.toHaveBeenCalled();
+      });
+
+      it("should invalidate query store with `identifier`", async () => {
+        const invalidateStore = jest.fn();
+        jest
+          .spyOn(UseInvalidate, "useInvalidate")
+          .mockReturnValue(invalidateStore);
+        const deleteManyMock = jest.fn();
+
+        const { result } = renderHook(() => useDeleteMany(), {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                deleteMany: deleteManyMock,
+              },
+            },
+            resources: [
+              {
+                name: "posts",
+                identifier: "featured-posts",
+              },
+            ],
+          }),
+        });
+
+        result.current.mutation.mutate({
+          resource: "featured-posts",
+          ids: ["1", "2"],
+        });
+
+        await waitFor(() => {
+          expect(result.current.mutation.isSuccess).toBeTruthy();
+        });
+
+        expect(invalidateStore).toHaveBeenCalledWith(
+          expect.objectContaining({
+            resource: "featured-posts",
+          }),
+        );
+      });
+
+      it("should get correct `meta` of related resource", async () => {
+        const deleteManyMock = jest.fn();
+
+        const { result } = renderHook(() => useDeleteMany(), {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                deleteMany: deleteManyMock,
+              },
+            },
+            resources: [
+              {
+                name: "posts",
+                identifier: "all-posts",
+                meta: {
+                  foo: "bar",
+                },
+              },
+              {
+                name: "posts",
+                identifier: "featured-posts",
+                meta: {
+                  bar: "baz",
+                },
+              },
+            ],
+          }),
+        });
+
+        result.current.mutation.mutate({
+          resource: "featured-posts",
+          ids: ["1", "2"],
+        });
+
+        await waitFor(() => {
+          expect(result.current.mutation.isSuccess).toBeTruthy();
+        });
+
+        expect(deleteManyMock).toHaveBeenCalledWith(
+          expect.objectContaining({
+            meta: expect.objectContaining({
+              bar: "baz",
+            }),
+          }),
+        );
+      });
+    });
+
+    it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
+      const useDeleteManyMock = jest.fn().mockResolvedValue({ data: {} });
+      const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+
+      const { result } = renderHook(
+        () =>
+          useDeleteMany({
+            mutationOptions: {
+              // mutationFn is omitted in types. So we need to use @ts-ignore test it.
+              // @ts-ignore
+              mutationFn: mutationFnMock,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                update: useDeleteManyMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      result.current.mutation.mutate({
+        resource: "posts",
+        ids: ["1", "2"],
+        values: {},
+      });
+
+      await waitFor(() => {
+        expect(result.current.mutation.isSuccess).toBeTruthy();
+      });
+
+      expect(useDeleteManyMock).not.toHaveBeenCalled();
+      expect(mutationFnMock).toHaveBeenCalled();
+    });
+
+    it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
+      const { result } = renderHook(
+        () =>
+          useDeleteMany({
+            mutationOptions: {
+              mutationKey: ["foo", "bar"],
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      result.current.mutation.mutate({
+        resource: "posts",
+        ids: ["1", "2"],
+        values: {},
+      });
+
+      await waitFor(() => {
+        expect(result.current.mutation.isSuccess).toBeTruthy();
+      });
+
+      expect(
+        queryClient.getMutationCache().findAll({
+          mutationKey: ["foo", "bar"],
         }),
-      },
-    );
-
-    result.current.mutate({
-      resource: "posts",
-      ids: ["1", "2"],
-      values: {},
+      ).toHaveLength(1);
     });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(useDeleteManyMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
-  });
-
-  it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
-    const { result } = renderHook(
-      () =>
-        useDeleteMany({
-          mutationOptions: {
-            mutationKey: ["foo", "bar"],
-          },
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    result.current.mutate({
-      resource: "posts",
-      ids: ["1", "2"],
-      values: {},
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(
-      queryClient.getMutationCache().findAll({
-        mutationKey: ["foo", "bar"],
-      }),
-    ).toHaveLength(1);
   });
 });

@@ -10,6 +10,7 @@
     "start": "refine start"
   },
   "dependencies": {
+    "@ant-design/v5-patch-for-react-19": "^1.0.3",
     "@refinedev/antd": "^5.47.0",
     "@refinedev/cli": "^2.16.47",
     "@refinedev/core": "^4.58.0",
@@ -18,20 +19,21 @@
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@remix-run/serve": "^2.4.0",
-    "antd": "^5.17.0",
+    "antd": "^5.23.0",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.3.1",
     "@types/js-cookie": "^3.0.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.4.2"
+    "@types/node": "^20",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
   }
 }

@@ -145,10 +145,6 @@ useCustom({
 });
 ```
 
-### ~~`config.sort`~~ <PropTag deprecated />
-
-Use `config.sorters` instead.
-
 ### queryOptions
 
 `queryOptions` is used to pass additional options to the `useQuery` hook. It is useful when you want to pass additional options to the `useQuery` hook.

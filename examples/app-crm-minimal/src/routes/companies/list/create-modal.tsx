@@ -51,10 +51,16 @@ export const CompanyCreateModal = () => {
     GetFieldsFromList<UsersSelectQuery>
   >({
     resource: "users",
+
     meta: {
       gqlQuery: USERS_SELECT_QUERY,
     },
+
     optionLabel: "name",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

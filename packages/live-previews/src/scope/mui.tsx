@@ -58,9 +58,6 @@ const RefineMuiDemo: React.FC<
           notificationProvider={RefineMui.useNotificationProvider}
           options={{
             disableTelemetry: true,
-            reactQuery: {
-              devtoolConfig: false,
-            },
           }}
           {...rest}
         />
@@ -69,7 +66,7 @@ const RefineMuiDemo: React.FC<
   );
 };
 
-const ThemedTitleV2 = ({
+const ThemedTitle = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
@@ -127,7 +124,7 @@ const ThemedTitleV2 = ({
   }, []);
 
   return (
-    <RefineMui.ThemedTitleV2
+    <RefineMui.ThemedTitle
       collapsed={collapsed}
       wrapperStyles={wrapperStyles}
       text={title || textFromProps}
@@ -198,7 +195,7 @@ const MuiScope = {
   RefineMuiDemo,
   RefineMui: {
     ...RefineMui,
-    ThemedTitleV2,
+    ThemedTitle,
   },
   EmotionReact,
   EmotionStyled,

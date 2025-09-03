@@ -1,13 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import isEqual from "lodash/isEqual";
 import {
   type BaseRecord,
-  ConditionalFilter,
   type CrudFilter,
-  CrudOperators,
   type CrudSorting,
   type HttpError,
-  LogicalFilter,
   useTable as useTableCore,
   type useTableProps as useTablePropsCore,
   type useTableReturnType as useTableReturnTypeCore,
@@ -17,7 +14,6 @@ import {
   type TableOptions,
   type Table,
   getCoreRowModel,
-  ColumnFilter,
   getSortedRowModel,
   getFilteredRowModel,
 } from "@tanstack/react-table";
@@ -32,7 +28,8 @@ import {
 export type UseTableReturnType<
   TData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-> = Table<TData> & {
+> = {
+  reactTable: Table<TData>;
   refineCore: useTableReturnTypeCore<TData, TError>;
 };
 
@@ -54,7 +51,7 @@ export function useTable<
   TError extends HttpError = HttpError,
   TData extends BaseRecord = TQueryFnData,
 >({
-  refineCoreProps: { hasPagination = true, ...refineCoreProps } = {},
+  refineCoreProps = {},
   initialState: reactTableInitialState = {},
   ...rest
 }: UseTableProps<TQueryFnData, TError, TData>): UseTableReturnType<
@@ -63,23 +60,21 @@ export function useTable<
 > {
   const isFirstRender = useIsFirstRender();
 
-  const useTableResult = useTableCore<TQueryFnData, TError, TData>({
-    ...refineCoreProps,
-    hasPagination,
-  });
+  const useTableResult = useTableCore<TQueryFnData, TError, TData>(
+    refineCoreProps,
+  );
 
   const isServerSideFilteringEnabled =
     (refineCoreProps.filters?.mode || "server") === "server";
   const isServerSideSortingEnabled =
     (refineCoreProps.sorters?.mode || "server") === "server";
-  const hasPaginationString = hasPagination === false ? "off" : "server";
-  const isPaginationEnabled =
-    (refineCoreProps.pagination?.mode ?? hasPaginationString) !== "off";
+
+  const isPaginationEnabled = refineCoreProps.pagination?.mode !== "off";
 
   const {
     tableQuery: { data },
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize: pageSizeCore,
     setPageSize: setPageSizeCore,
     sorters,
@@ -100,7 +95,7 @@ export function useTable<
       : getFilteredRowModel(),
     initialState: {
       pagination: {
-        pageIndex: current - 1,
+        pageIndex: currentPage - 1,
         pageSize: pageSizeCore,
       },
       sorting: sorters.map((sorting) => ({
@@ -127,7 +122,7 @@ export function useTable<
 
   useEffect(() => {
     if (pageIndex !== undefined) {
-      setCurrent(pageIndex + 1);
+      setCurrentPage(pageIndex + 1);
     }
   }, [pageIndex]);
 
@@ -149,7 +144,7 @@ export function useTable<
       }
 
       if (sorting.length > 0 && isPaginationEnabled && !isFirstRender) {
-        setCurrent(1);
+        setCurrentPage(1);
       }
     }
   }, [sorting]);
@@ -176,12 +171,12 @@ export function useTable<
     }
 
     if (crudFilters.length > 0 && isPaginationEnabled && !isFirstRender) {
-      setCurrent(1);
+      setCurrentPage(1);
     }
   }, [columnFilters, columns]);
 
   return {
-    ...reactTableResult,
+    reactTable: reactTableResult,
     refineCore: useTableResult,
   };
 }

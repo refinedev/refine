@@ -8,9 +8,12 @@ importers:
 
   .:
     dependencies:
+      '@codesandbox/sandpack-client':
+        specifier: 2.13.8
+        version: 2.13.8
       '@codesandbox/sandpack-react':
-        specifier: ^2.13.8
-        version: 2.13.10(@lezer/common@1.2.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
+        specifier: 2.13.8
+        version: 2.13.8(@lezer/common@1.2.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)
       '@codesandbox/sandpack-themes':
         specifier: ^2.0.21
         version: 2.0.21
@@ -1019,8 +1022,8 @@ packages:
   '@codesandbox/sandpack-client@2.13.8':
     resolution: {integrity: sha512-IjVlqfVK0fascNyUVH9hs5UZBx4KhKtyZyDrxdiDyQBtLmgESNaFWelAf4a/PX4gJp+H+WW6/iC6KzR7XtK//w==}
 
-  '@codesandbox/sandpack-react@2.13.10':
-    resolution: {integrity: sha512-0ipH4gbMqS/o4tyv7pApXehklTqEJi4qNNtKuL6UJd7Tc05fHLqlbEqG8VQ0AkrJ+e+CEL4R26B0k7WqLMLiIg==}
+  '@codesandbox/sandpack-react@2.13.8':
+    resolution: {integrity: sha512-+/OnUyrNidSzDDiek7drf8UUTJJl4Cd05dCG3BK51OBKoBCieRmsaUlIM3CU2nFDVAgvcSp9Cmu2CXQmwuJ58w==}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18
       react-dom: ^16.8.0 || ^17 || ^18
@@ -7911,7 +7914,7 @@ snapshots:
       outvariant: 1.4.0
       static-browser-server: 1.0.3
 
-  '@codesandbox/sandpack-react@2.13.10(@lezer/common@1.2.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)':
+  '@codesandbox/sandpack-react@2.13.8(@lezer/common@1.2.1)(react-dom@17.0.2(react@17.0.2))(react@17.0.2)':
     dependencies:
       '@codemirror/autocomplete': 6.16.0(@codemirror/language@6.10.1)(@codemirror/state@6.4.1)(@codemirror/view@6.26.3)(@lezer/common@1.2.1)
       '@codemirror/commands': 6.5.0

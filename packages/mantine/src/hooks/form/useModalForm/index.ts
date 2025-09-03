@@ -7,7 +7,7 @@ import {
   useGo,
   useModal,
   useParsed,
-  useResource,
+  useResourceParams,
   useUserFriendlyName,
   useTranslate,
   useWarnAboutChange,
@@ -127,17 +127,15 @@ export const useModalForm = <
     autoResetFormWhenClose = true,
   } = modalProps ?? {};
 
-  const {
-    resource,
-    action: actionFromParams,
-    identifier,
-  } = useResource(resourceProp);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceProp,
+  });
 
   const parsed = useParsed();
   const go = useGo();
   const getUserFriendlyName = useUserFriendlyName();
 
-  const action = actionProp ?? actionFromParams ?? "";
+  const action = actionProp ?? "";
 
   const syncingId = !(
     typeof syncWithLocation === "object" && syncWithLocation?.syncId === false
@@ -302,13 +300,8 @@ export const useModalForm = <
   const title = translate(
     `${identifier}.titles.${actionProp}`,
     undefined,
-    `${getUserFriendlyName(
-      `${actionProp} ${
-        resource?.meta?.label ??
-        resource?.options?.label ??
-        resource?.label ??
-        identifier
-      }`,
+    `${actionProp} ${getUserFriendlyName(
+      resource?.meta?.label ?? identifier,
       "singular",
     )}`,
   );

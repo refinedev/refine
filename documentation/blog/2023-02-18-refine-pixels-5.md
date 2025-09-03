@@ -84,7 +84,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -104,7 +104,7 @@ function App() {
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
             options={{
               syncWithLocation: true,
@@ -183,12 +183,12 @@ import {
 } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -230,7 +230,7 @@ function App() {
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
           accessControlProvider={accessControlProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           notificationProvider={useNotificationProvider}
           resources={[
             {
@@ -251,11 +251,11 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2 Title={Title}>
+                  <ThemedLayout Title={Title}>
                     <CanAccess>
                       <Outlet />
                     </CanAccess>
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -287,9 +287,9 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -528,8 +528,8 @@ After adding resources we need to create routes for them. For the routes, we'll 
 // ...
 
 import { Authenticated, CanAccess, Refine } from "@refinedev/core";
-import { ErrorComponent, ThemedLayoutV2 } from "@refinedev/antd";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import { ErrorComponent, ThemedLayout } from "@refinedev/antd";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { CanvasList, UserList } from "./pages";
@@ -541,17 +541,17 @@ function App() {
       {/* ... */}
       <Refine
         // ...
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
       >
         <Routes>
           <Route
             element={
               <Authenticated>
-                <ThemedLayoutV2 Title={Title}>
+                <ThemedLayout Title={Title}>
                   <CanAccess>
                     <Outlet />
                   </CanAccess>
-                </ThemedLayoutV2>
+                </ThemedLayout>
               </Authenticated>
             }
           >
@@ -583,9 +583,9 @@ function App() {
           <Route
             element={
               <Authenticated>
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               </Authenticated>
             }
           >
@@ -620,12 +620,12 @@ import {
 } from "@refinedev/core";
 import {
   ErrorComponent,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
 } from "@refinedev/antd";
 import { ConfigProvider } from "antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -667,7 +667,7 @@ function App() {
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
           accessControlProvider={accessControlProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           notificationProvider={useNotificationProvider}
           resources={[
             {
@@ -688,11 +688,11 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2 Title={Title}>
+                  <ThemedLayout Title={Title}>
                     <CanAccess>
                       <Outlet />
                     </CanAccess>
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -724,9 +724,9 @@ function App() {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -1084,7 +1084,7 @@ We also grouped content inside a cell, with `<Button />` and `<DeleteButton />` 
             values: {
               is_featured: !record.is_featured,
             },
-            metaData: {
+            meta: {
               canvas: record,
             },
           })

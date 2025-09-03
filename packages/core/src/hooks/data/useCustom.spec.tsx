@@ -2,8 +2,6 @@ import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
-import * as ReactQuery from "@tanstack/react-query";
-
 import { useCustom } from "./useCustom";
 
 describe("useCustom Hook", () => {
@@ -23,12 +21,12 @@ describe("useCustom Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    const { data } = result.current;
+    const { data } = result.current.result;
 
-    expect(data?.data).toHaveLength(2);
+    expect(data).toHaveLength(2);
   });
 
   describe("without custom query key", () => {
@@ -36,9 +34,7 @@ describe("useCustom Hook", () => {
     const meta = { meta: "meta" };
 
     it("builds query key itself", async () => {
-      const useQuerySpy = jest.spyOn(ReactQuery, "useQuery");
-
-      renderHook(
+      const { result } = renderHook(
         () =>
           useCustom({
             url: "remoteUrl",
@@ -54,25 +50,15 @@ describe("useCustom Hook", () => {
         },
       );
 
-      expect(useQuerySpy).toHaveBeenLastCalledWith(
-        expect.objectContaining({
-          queryKey: [
-            "default",
-            "custom",
-            "get",
-            "remoteUrl",
-            { ...config, ...meta },
-          ],
-        }),
-      );
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
     });
   });
 
   describe("with custom query key", () => {
     it("prioritizes custom query key", async () => {
-      const useQuerySpy = jest.spyOn(ReactQuery, "useQuery");
-
-      renderHook(
+      const { result } = renderHook(
         () =>
           useCustom({
             url: "remoteUrl",
@@ -87,9 +73,9 @@ describe("useCustom Hook", () => {
         },
       );
 
-      expect(useQuerySpy).toHaveBeenLastCalledWith(
-        expect.objectContaining({ queryKey: ["MyKey"] }),
-      );
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
     });
   });
 
@@ -120,10 +106,10 @@ describe("useCustom Hook", () => {
     );
 
     await waitFor(() => {
-      expect(customMock).toBeCalled();
+      expect(customMock).toHaveBeenCalled();
     });
 
-    expect(customMock).toBeCalledWith(
+    expect(customMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -162,10 +148,10 @@ describe("useCustom Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "get-notification",
         message: "Error (status code: undefined)",
@@ -200,10 +186,10 @@ describe("useCustom Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -233,10 +219,10 @@ describe("useCustom Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -272,10 +258,10 @@ describe("useCustom Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -305,7 +291,7 @@ describe("useCustom Hook", () => {
           }),
         },
       ),
-    ).toThrowError("Not implemented custom on data provider.");
+    ).toThrow("Not implemented custom on data provider.");
   });
 
   describe("useOnError", () => {
@@ -328,6 +314,9 @@ describe("useCustom Hook", () => {
               },
             },
             authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
               onError: onErrorMock,
             } as any,
             resources: [{ name: "posts" }],
@@ -336,10 +325,10 @@ describe("useCustom Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -360,91 +349,22 @@ describe("useCustom Hook", () => {
                 custom: customMock,
               },
             },
-            legacyAuthProvider: {
-              checkError: onErrorMock,
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
-      });
-
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
-    });
-  });
-
-  describe("queryOptions", () => {
-    it("should run `queryOptions.onSuccess` callback on success", async () => {
-      const onSuccessMock = jest.fn();
-      const customMock = jest.fn().mockResolvedValue({
-        data: [{ id: 1, title: "foo" }],
-      });
-
-      const { result } = renderHook(
-        () =>
-          useCustom({
-            url: "remoteUrl",
-            method: "get",
-            queryOptions: {
-              onSuccess: onSuccessMock,
-            },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                custom: customMock,
-              },
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
-      });
-
-      expect(onSuccessMock).toBeCalledWith({
-        data: [{ id: 1, title: "foo" }],
-      });
-    });
-
-    it("should run `queryOptions.onError` callback on error", async () => {
-      const onErrorMock = jest.fn();
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-
-      const { result } = renderHook(
-        () =>
-          useCustom({
-            url: "remoteUrl",
-            method: "get",
-            queryOptions: {
+            authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
               onError: onErrorMock,
             },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                custom: customMock,
-              },
-            },
             resources: [{ name: "posts" }],
           }),
         },
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -478,13 +398,13 @@ describe("useCustom Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

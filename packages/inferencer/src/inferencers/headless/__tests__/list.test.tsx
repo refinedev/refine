@@ -11,7 +11,7 @@ describe("HeadlessListInferencer", () => {
       resources: [
         {
           name: "posts",
-          list: ListInferencer,
+          list: "/posts",
         },
         {
           name: "categories",

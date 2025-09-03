@@ -30,18 +30,17 @@ import { Typography } from "antd";
 const { Title, Text } = Typography;
 
 const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { result, query } = useShow<IPost>();
+  const { data, isLoading } = query;
 
   return (
     // highlight-next-line
     <Show headerButtons={<ListButton />} isLoading={isLoading}>
       <Title level={5}>Id</Title>
-      <Text>{record?.id}</Text>
+      <Text>{result?.id}</Text>
 
       <Title level={5}>Title</Title>
-      <Text>{record?.title}</Text>
+      <Text>{result?.title}</Text>
     </Show>
   );
 };
@@ -224,10 +223,6 @@ export const MyListComponent = () => {
   );
 };
 ```
-
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use `resource` prop instead.
 
 ## API Reference
 

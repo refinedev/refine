@@ -112,9 +112,9 @@ const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
+      currentPage,
       tableQuery: { data: tableData },
     },
   } = useTable({
@@ -203,8 +203,8 @@ const PostList: React.FC = () => {
           <Pagination
             position="right"
             total={pageCount}
-            page={current}
-            onChange={setCurrent}
+            page={currentPage}
+            onChange={setCurrentPage}
           />
         </List>
       </ScrollArea>
@@ -358,9 +358,9 @@ const PostList: React.FC = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
+      currentPage,
       tableQuery: { data: tableData },
     },
   } = useTable({
@@ -448,8 +448,8 @@ const PostList: React.FC = () => {
           <Pagination
             position="right"
             total={pageCount}
-            page={current}
-            onChange={setCurrent}
+            page={currentPage}
+            onChange={setCurrentPage}
           />
         </List>
       </ScrollArea>

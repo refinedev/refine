@@ -1,6 +1,5 @@
 import warnOnce from "warn-once";
 import { useMeta, useOne, useResourceParams } from "@hooks";
-import { pickNotDeprecated } from "@definitions/helpers";
 
 import type { UseShowProps, UseShowReturnType } from "./types";
 import type { BaseKey, BaseRecord, HttpError } from "../../contexts/data/types";
@@ -8,8 +7,6 @@ import type { BaseKey, BaseRecord, HttpError } from "../../contexts/data/types";
 export type {
   UseShowProps,
   UseShowReturnType,
-  useShowProps,
-  useShowReturnType,
 } from "./types";
 
 /**
@@ -32,7 +29,6 @@ export const useShow = <
   resource: resourceFromProp,
   id,
   meta,
-  metaData,
   queryOptions,
   overtimeOptions,
   ...useOneProps
@@ -54,7 +50,7 @@ export const useShow = <
 
   const combinedMeta = getMeta({
     resource,
-    meta: pickNotDeprecated(meta, metaData),
+    meta: meta,
   });
 
   warnOnce(
@@ -70,14 +66,13 @@ export const useShow = <
       ...queryOptions,
     },
     meta: combinedMeta,
-    metaData: combinedMeta,
     overtimeOptions,
     ...useOneProps,
   });
 
   return {
-    queryResult,
-    query: queryResult,
+    query: queryResult.query,
+    result: queryResult.result,
     showId,
     setShowId,
     overtime: queryResult.overtime,

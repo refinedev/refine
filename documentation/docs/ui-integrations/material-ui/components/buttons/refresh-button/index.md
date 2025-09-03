@@ -23,9 +23,8 @@ import { Show, RefreshButton } from "@refinedev/mui";
 import { Typography, Stack } from "@mui/material";
 
 const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { result: post, query } = useShow<IPost>();
+  const { data, isLoading } = query;
 
   return (
     <Show
@@ -37,9 +36,9 @@ const PostShow: React.FC = () => {
       }
     >
       <Typography fontWeight="bold">Id</Typography>
-      <Typography>{record?.id}</Typography>
+      <Typography>{post?.id}</Typography>
       <Typography fontWeight="bold">Title</Typography>
-      <Typography>{record?.title}</Typography>
+      <Typography>{post?.title}</Typography>
     </Show>
   );
 };
@@ -236,10 +235,6 @@ render(
   </ReactRouter.BrowserRouter>,
 );
 ```
-
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use the `resource` prop instead.
 
 ## API Reference
 

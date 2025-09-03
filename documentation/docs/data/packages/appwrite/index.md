@@ -84,7 +84,7 @@ import {
 } from "antd";
 
 const PostList: React.FC = () => {
-  const { tableProps, sorter } = RefineAntdUseTable<IPost>({
+  const { result, tableProps, sorter } = RefineAntdUseTable<IPost>({
     sorters: {
       initial: [
         {
@@ -95,9 +95,11 @@ const PostList: React.FC = () => {
     },
   });
 
-  const categoryIds =
-    tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-  const { data, isLoading } = CoreUseMany<ICategory>({
+  const categoryIds = result?.data?.map((item) => item.categoryId) ?? [];
+  const {
+    result,
+    query: { isLoading },
+  } = CoreUseMany<ICategory>({
     resource: "61c43adc284ac",
     ids: categoryIds,
     queryOptions: {
@@ -125,7 +127,7 @@ const PostList: React.FC = () => {
 
             return (
               <RefineAntdTextField
-                value={data?.data.find((item) => item.id === value)?.title}
+                value={result?.data.find((item) => item.id === value)?.title}
               />
             );
           }}
@@ -256,36 +258,37 @@ const PostEdit: React.FC = () => {
 };
 
 const PostShow: React.FC = () => {
-  const { queryResult } = RefineCoreUseShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { query, result: post } = RefineCoreUseShow<IPost>();
+  const { isLoading } = query;
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    RefineCoreUseOne<ICategory>({
-      resource: "categories",
-      id: record?.category?.id || "",
-      queryOptions: {
-        enabled: !!record,
-      },
-    });
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = RefineCoreUseOne<ICategory>({
+    resource: "categories",
+    id: post?.category?.id || "",
+    queryOptions: {
+      enabled: !!post,
+    },
+  });
 
   return (
     <RefineAntdShow isLoading={isLoading}>
       <AntdTypography.Title level={5}>Id</AntdTypography.Title>
-      <AntdTypography.Text>{record?.id}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.id}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>
         AntdTypography.Title
       </AntdTypography.Title>
-      <AntdTypography.Text>{record?.title}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.title}</AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Category</AntdTypography.Title>
       <AntdTypography.Text>
-        {categoryIsLoading ? "Loading..." : categoryData?.data.title}
+        {categoryIsLoading ? "Loading..." : category?.title}
       </AntdTypography.Text>
 
       <AntdTypography.Title level={5}>Content</AntdTypography.Title>
-      <AntdTypography.Text>{record?.content}</AntdTypography.Text>
+      <AntdTypography.Text>{post?.content}</AntdTypography.Text>
     </RefineAntdShow>
   );
 };
@@ -390,7 +393,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   useNotificationProvider,
   List,
@@ -438,9 +441,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -484,9 +487,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -554,7 +557,7 @@ import { Table, Space } from "antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC = () => {
-  const { tableProps, sorter } = useTable<IPost>({
+  const { result, sorter } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -565,9 +568,11 @@ export const PostsList: React.FC = () => {
     },
   });
 
-  const categoryIds =
-    tableProps?.dataSource?.map((item) => item.categoryId) ?? [];
-  const { data, isLoading } = useMany<ICategory>({
+  const categoryIds = result?.data?.map((item) => item.categoryId) ?? [];
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany<ICategory>({
     resource: "61bc4afa9ee2c",
     ids: categoryIds,
     queryOptions: {
@@ -630,7 +635,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   useNotificationProvider,
   List,
@@ -683,9 +688,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -728,9 +733,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -865,7 +870,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   useNotificationProvider,
   List,
@@ -918,9 +923,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -963,9 +968,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -1017,9 +1022,9 @@ import { IPost, ICategory } from "interfaces";
 import { storage, normalizeFile } from "utility";
 
 export const PostsEdit: React.FC = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IPost>();
+  const { formProps, saveButtonProps, query } = useForm<IPost>();
 
-  const postData = queryResult?.data?.data;
+  const postData = query?.data?.data;
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "61bc4afa9ee2c",
     defaultValue: postData?.categoryId,
@@ -1118,7 +1123,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { dataProvider, liveProvider } from "@refinedev/appwrite";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   useNotificationProvider,
   List,
@@ -1171,9 +1176,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -1216,9 +1221,9 @@ const App: React.FC = () => {
             <Route
               element={
                 <Authenticated>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >

@@ -3,7 +3,13 @@ import { Route, Routes } from "react-router";
 import { RefineButtonTestIds } from "@refinedev/ui-types";
 import type { AccessControlProvider } from "@refinedev/core";
 
-import { render, TestWrapper, waitFor } from "@test";
+import {
+  type ITestWrapperProps,
+  MockRouterProvider,
+  render,
+  TestWrapper,
+  waitFor,
+} from "@test";
 
 import { Show } from "./index";
 import { crudShowTests } from "@refinedev/ui-tests";
@@ -17,6 +23,7 @@ import {
 const renderShow = (
   show: ReactNode,
   accessControlProvider?: AccessControlProvider,
+  wrapperProps?: ITestWrapperProps,
 ) => {
   return render(
     <Routes>
@@ -26,6 +33,22 @@ const renderShow = (
       wrapper: TestWrapper({
         routerInitialEntries: ["/posts/show/1"],
         accessControlProvider,
+        routerProvider: {
+          ...MockRouterProvider(),
+          parse: () => () => ({
+            params: { id: "1" },
+            action: "show",
+            resource: {
+              name: "posts",
+              list: "/posts",
+              show: "/posts/show/1",
+              edit: "/posts/edit/1",
+              meta: { canDelete: true },
+            },
+            pathname: "/posts/show/1",
+          }),
+        },
+        ...wrapperProps,
       }),
     },
   );
@@ -107,8 +130,23 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", edit: () => null }],
+            resources: [{ name: "posts", edit: "/posts/edit/1" }],
             routerInitialEntries: ["/posts/show/1"],
+            routerProvider: {
+              ...MockRouterProvider(),
+              parse: () => () => ({
+                params: { id: "1" },
+                action: "show",
+                resource: {
+                  name: "posts",
+                  list: "/posts",
+                  show: "/posts/show/1",
+                  edit: "/posts/edit/1",
+                  meta: { canDelete: true },
+                },
+                pathname: "/posts/show/1",
+              }),
+            },
           }),
         },
       );
@@ -137,6 +175,21 @@ describe("Show", () => {
           wrapper: TestWrapper({
             resources: [{ name: "posts" }],
             routerInitialEntries: ["/posts/show/1"],
+            routerProvider: {
+              ...MockRouterProvider(),
+              parse: () => () => ({
+                params: { id: "1" },
+                action: "show",
+                resource: {
+                  name: "posts",
+                  list: "/posts",
+                  show: "/posts/show/1",
+                  edit: "/posts/edit/1",
+                  meta: { canDelete: true, canEdit: false },
+                },
+                pathname: "/posts/show/1",
+              }),
+            },
           }),
         },
       );
@@ -164,7 +217,7 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", edit: () => null }],
+            resources: [{ name: "posts", edit: "/posts/edit/1" }],
             routerInitialEntries: ["/posts/show/1"],
           }),
         },
@@ -218,8 +271,23 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", edit: () => null }],
+            resources: [{ name: "posts", edit: "/posts/edit/1" }],
             routerInitialEntries: ["/posts/show/1"],
+            routerProvider: {
+              ...MockRouterProvider(),
+              parse: () => () => ({
+                params: { id: "1" },
+                action: "show",
+                resource: {
+                  name: "posts",
+                  list: "/posts",
+                  show: "/posts/show/1",
+                  edit: "/posts/edit/1",
+                  meta: { canDelete: true },
+                },
+                pathname: "/posts/show/1",
+              }),
+            },
           }),
         },
       );
@@ -248,8 +316,23 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", canDelete: true }],
+            resources: [{ name: "posts", meta: { canDelete: true } }],
             routerInitialEntries: ["/posts/show/1"],
+            routerProvider: {
+              ...MockRouterProvider(),
+              parse: () => () => ({
+                params: { id: "1" },
+                action: "show",
+                resource: {
+                  name: "posts",
+                  list: "/posts",
+                  show: "/posts/show/1",
+                  edit: "/posts/edit/1",
+                  meta: { canDelete: true },
+                },
+                pathname: "/posts/show/1",
+              }),
+            },
           }),
         },
       );
@@ -275,7 +358,7 @@ describe("Show", () => {
 
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", canDelete: false }],
+            resources: [{ name: "posts", meta: { canDelete: true } }],
             routerInitialEntries: ["/posts/show/1"],
           }),
         },
@@ -303,7 +386,7 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", canDelete: true }],
+            resources: [{ name: "posts", meta: { canDelete: true } }],
             routerInitialEntries: ["/posts/show/1"],
           }),
         },
@@ -330,7 +413,7 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", canDelete: false }],
+            resources: [{ name: "posts", meta: { canDelete: true } }],
             routerInitialEntries: ["/posts/show/1"],
           }),
         },
@@ -357,7 +440,7 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", canDelete: false }],
+            resources: [{ name: "posts", meta: { canDelete: true } }],
             routerInitialEntries: ["/posts/show/1"],
           }),
         },
@@ -384,8 +467,23 @@ describe("Show", () => {
         </Routes>,
         {
           wrapper: TestWrapper({
-            resources: [{ name: "posts", canDelete: true }],
+            resources: [{ name: "posts", meta: { canDelete: true } }],
             routerInitialEntries: ["/posts/show/1"],
+            routerProvider: {
+              ...MockRouterProvider(),
+              parse: () => () => ({
+                params: { id: "1" },
+                action: "show",
+                resource: {
+                  name: "posts",
+                  list: "/posts",
+                  show: "/posts/show/1",
+                  edit: "/posts/edit/1",
+                  meta: { canDelete: true },
+                },
+                pathname: "/posts/show/1",
+              }),
+            },
           }),
         },
       );

@@ -58,7 +58,7 @@ Queries of related resources **will be invalidated** and **re-fetched** as new e
 For example, `posts` data of `useList` hook will be re-fetched when a new event is published for `posts` resource.
 
 ```tsx
-const { data } = useList({ resource: "posts", liveMode: "auto" });
+const { result } = useList({ resource: "posts", liveMode: "auto" });
 ```
 
 ### manual
@@ -68,7 +68,7 @@ In `manual` mode, queries of the related resources **won't be invalidated**. Ins
 `manual` mode can be used to prevent those
 
 ```tsx
-const { data } = useList({
+const { result } = useList({
   liveMode: "manual",
   onLiveEvent: (event) => {
     console.log(event); // { channel: "resources/posts", type: "created", payload: { ids: ["1"] }, date: new Date() }
@@ -85,7 +85,7 @@ Disables live mode entirely.
 `onLiveEvent` is called when the new event(s) are published from the subscriptions.
 
 ```tsx
-const { data } = useList({
+const { result } = useList({
   resource: "products",
   liveMode: "manual",
   // Called when new event(s) are published for `products` resource.

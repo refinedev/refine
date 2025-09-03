@@ -130,7 +130,7 @@ import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   notificationProvider,
   AuthPage,
@@ -172,9 +172,9 @@ export default function App() {
                   <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
                     <Route
                         element={
-                            <ThemedLayoutV2>
+                            <ThemedLayout>
                                 <Outlet />
-                            </ThemedLayoutV2>
+                            </ThemedLayout>
                         }
                     >
                         <Route index element={<NavigateToResource resource="products" />} />
@@ -281,34 +281,32 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { result: product, query } = useShow();
+  const { data, isLoading } = query;
 
-  const record = data?.data;
-
-  return (
+    return (
     <Show isLoading={isLoading}>
       <Stack gap={1}>
         <Typography variant="body1" fontWeight="bold">
             Id
         </Typography>
-        <NumberField value={record?.id ?? ""} />
+        <NumberField value={product?.id ?? ""} />
         <Typography variant="body1" fontWeight="bold">
             Name
         </Typography>
-        <TextField value={record?.name} />
+        <TextField value={product?.name} />
         <Typography variant="body1" fontWeight="bold">
             Material
         </Typography>
-        <TextField value={record?.material} />
+        <TextField value={product?.material} />
         <Typography variant="body1" fontWeight="bold">
             Description
         </Typography>
-        <MarkdownField value={record?.description} />
+        <MarkdownField value={product?.description} />
         <Typography variant="body1" fontWeight="bold">
             Price
         </Typography>
-        <TextField value={record?.price} />
+        <TextField value={product?.price} />
       </Stack>
     </Show>
   );
@@ -328,7 +326,7 @@ import { Controller } from "react-hook-form";
 export const ProductEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -411,7 +409,7 @@ import { Controller } from "react-hook-form";
 export const ProductCreate = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },

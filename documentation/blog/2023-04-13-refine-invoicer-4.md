@@ -119,7 +119,7 @@ const {
   FileAddOutlined,
 } = Icons;
 
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -176,7 +176,7 @@ function App() {
             authProvider={authProvider}
             dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             options={{
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
@@ -189,7 +189,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                        <ThemedTitle collapsed={collapsed} text="Invoicer" />
                       )}
                     >
                       <Outlet />
@@ -232,7 +232,7 @@ function App() {
                   element={
                     <AuthPage
                       type="login"
-                      title={<ThemedTitleV2 collapsed text="Invoicer" />}
+                      title={<ThemedTitle collapsed text="Invoicer" />}
                       formProps={{
                         initialValues: {
                           email: "demo@refine.dev",
@@ -249,7 +249,7 @@ function App() {
                     <ThemedLayout
                       Header={Header}
                       Title={({ collapsed }) => (
-                        <ThemedTitleV2 collapsed={collapsed} text="Invoicer" />
+                        <ThemedTitle collapsed={collapsed} text="Invoicer" />
                       )}
                     >
                       <Outlet />
@@ -742,11 +742,11 @@ import { Form, Input, Select } from "antd";
 import { IInvoice } from "interfaces";
 
 export const EditInvoice = () => {
-  const { formProps, saveButtonProps, queryResult } = useForm<IInvoice>({
+  const { formProps, saveButtonProps, query } = useForm<IInvoice>({
     meta: { populate: ["company", "contact", "missions"] },
   });
 
-  const defaultValue = queryResult?.data?.data;
+  const defaultValue = query?.data?.data;
 
   const { selectProps: companySelectProps } = useSelect({
     resource: "companies",
@@ -868,8 +868,8 @@ Endowed a due patience, we can see this in action among many others in the `@ref
 ```tsx title="node_modules/@refinedev/antd/src/hooks/table/useTable/useTable.ts"
 const {
   tableQuery,
-  current,
-  setCurrent,
+  currentPage,
+  setCurrentPage,
   pageSize,
   setPageSize,
   filters,
@@ -901,7 +901,7 @@ const {
   onLiveEvent,
   liveParams,
   meta: pickNotDeprecated(meta, metaData),
-  metaData: pickNotDeprecated(meta, metaData),
+  meta: pickNotDeprecated(meta, metaData),
   dataProviderName,
 });
 ```
@@ -916,17 +916,17 @@ Then, it's the core `useTable()` hook that is leveraging `useList()` data hook i
 <p>
 
 ```tsx title="node_modules/@refinedev/core/src/hooks/useTable/index.ts"
-const queryResult = useList<TData, TError>({
+const { result, query } = useList<TData, TError>({
   resource: resourceInUse,
   hasPagination,
-  pagination: { current, pageSize, mode: pagination?.mode },
+  pagination: { currentPage, pageSize, mode: pagination?.mode },
   filters: unionFilters(preferredPermanentFilters, filters),
   sorters: unionSorters(preferredPermanentSorters, sorters),
   queryOptions,
   successNotification,
   errorNotification,
   meta: preferredMeta,
-  metaData: preferredMeta,
+  meta: preferredMeta,
   liveMode,
   liveParams,
   onLiveEvent,
@@ -960,7 +960,7 @@ The `useList()` hook is also being utilized **for** the `useSelect()` **refine-A
 The source code of `useSelect()` inside `@refinedev/antd` package uses `useSelectCore()` in the following snippet:
 
 ```tsx title="node_modules/@refinedev/antd/src/hooks/field/useSelect/index.ts"
-const { queryResult, defaultValueQueryResult, onSearch, options } =
+const { query, defaultValueQueryResult, onSearch, options } =
   useSelectCore(props);
 
 return {
@@ -971,7 +971,7 @@ return {
     showSearch: true,
     filterOption: false,
   },
-  queryResult,
+  query,
   defaultValueQueryResult,
 };
 ```
@@ -983,12 +983,12 @@ Inside the core version, `useList()` is key to fetching data from the backend AP
 <p>
 
 ```tsx title="node_modules/@refinedev/core/src/hooks/useSelect/index.ts"
-const queryResult = useList<TData, TError>({
+const { result, query } = useList<TData, TError>({
   resource,
   sorters: pickNotDeprecated(sorters, sort),
   filters: filters.concat(search),
   pagination: {
-    current: pagination?.current,
+    currentPage: pagination?.currentPage,
     pageSize: pagination?.pageSize ?? fetchSize,
     mode: pagination?.mode,
   },
@@ -1003,7 +1003,6 @@ const queryResult = useList<TData, TError>({
   successNotification,
   errorNotification,
   meta: pickNotDeprecated(meta, metaData),
-  metaData: pickNotDeprecated(meta, metaData),
   liveMode,
   liveParams,
   onLiveEvent,
@@ -1025,7 +1024,7 @@ return {
     showSearch: true,
     filterOption: false,
   },
-  queryResult,
+  query,
   defaultValueQueryResult,
 };
 ```
@@ -1035,7 +1034,10 @@ return {
 The `<DeleteButton />` implements `useDelete` directly. In `@refinedev/antd` `v5.1.2`, it is invoked like so:
 
 ```tsx title="node_modules/@refinedev/antd/src/components/buttons/delete/index.tsx"
-const { mutate, isLoading, variables } = useDelete();
+const {
+  mutate,
+  mutation: { isLoading, variables },
+} = useDelete();
 ```
 
 And the returned JSX has a `<Popconfirm />` component with an `onConfirm` prop. The delete `mutate` function is passed to `onConfirm` prop, which basically means to invoke `dataProvider.delete` upon confirmation of a delete pop up:
@@ -1054,7 +1056,6 @@ return (
                         successNotification,
                         errorNotification,
                         meta: pickNotDeprecated(meta, metaData),
-                        metaData: pickNotDeprecated(meta, metaData),
                         dataProviderName,
                         invalidates,
                     },

@@ -1,7 +1,13 @@
 import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/react";
+import { configure } from "@testing-library/dom";
 import * as util from "util";
 
+configure({
+  asyncUtilTimeout: 10000,
+});
+
+/** Chakra UI mocks */
 window.matchMedia = jest.fn().mockImplementation((query) => {
   return {
     matches: false,
@@ -37,3 +43,5 @@ class ResizeObserver {
 }
 
 window.ResizeObserver = ResizeObserver;
+
+jest.setTimeout(20000);

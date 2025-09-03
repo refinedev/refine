@@ -43,7 +43,6 @@ type ActivityPayload =
       hookName: string;
       resourcePath: string | null;
       resourceName?: string;
-      legacyKey: boolean;
     }
   | {
       type: "query";
@@ -55,7 +54,6 @@ type ActivityPayload =
       hookName: string;
       resourcePath: string | null;
       resourceName?: string;
-      legacyKey: boolean;
     };
 
 export type DevtoolsEventPayloads = {

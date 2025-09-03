@@ -96,7 +96,7 @@ Open http://localhost:5173 in your browser to view the project.
 <summary><code>providers/auth.ts</code></summary>
 
 ```typescript
-import { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
 import { API_URL, dataProvider } from "./data";
 
@@ -106,7 +106,7 @@ export const authCredentials = {
   password: "demodemo",
 };
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ email }) => {
     try {
       // call the login mutation

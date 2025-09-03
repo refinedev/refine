@@ -30,18 +30,19 @@
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
     "nookies": "^2.5.2",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.3.1",
     "@types/js-cookie": "^3.0.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.4.2"
+    "@types/node": "^20",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
   }
 }

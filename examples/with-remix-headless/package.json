@@ -22,16 +22,17 @@
     "@tanstack/react-table": "^8.2.6",
     "cookie": "^0.5.0",
     "js-cookie": "^3.0.1",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^2.3.1",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
-    "typescript": "^5.4.2"
+    "@types/node": "^20",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
   }
 }

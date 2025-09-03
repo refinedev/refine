@@ -50,7 +50,7 @@ describe("useRefreshButton", () => {
     result.current.onClick();
 
     await waitFor(() => {
-      expect(invalidateMock).toBeCalled();
+      expect(invalidateMock).toHaveBeenCalled();
     });
 
     mock.mockRestore();
@@ -90,9 +90,7 @@ describe("useRefreshButton", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.one.data).toEqual({
-        data: expect.objectContaining({ id: 1, title: "Post 1" }),
-      });
+      expect(result.current.one.result).toEqual({ id: 1, title: "Post 1" });
     });
 
     result.current.refresh.onClick();
@@ -106,8 +104,9 @@ describe("useRefreshButton", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.one.data).toEqual({
-        data: expect.objectContaining({ id: 1, title: "Post 1 updated" }),
+      expect(result.current.one.result).toEqual({
+        id: 1,
+        title: "Post 1 updated",
       });
     });
   });

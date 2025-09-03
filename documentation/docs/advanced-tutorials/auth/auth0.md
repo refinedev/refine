@@ -56,7 +56,7 @@ First, we need to override the **Refine** login page. In this way, we will redir
 
 ```tsx title="/pages/login.tsx"
 import { Layout, Button, Space, Typography } from "antd";
-import { ThemedTitleV2 } from "@refinedev/antd";
+import { ThemedTitle } from "@refinedev/antd";
 // highlight-next-line
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -73,7 +73,7 @@ export const Login: React.FC = () => {
       }}
     >
       <Space direction="vertical" align="center" size="large">
-        <ThemedTitleV2
+        <ThemedTitle
           collapsed={false}
           wrapperStyles={{
             fontSize: "22px",
@@ -110,7 +110,7 @@ In Refine, authentication and authorization processes are performed with the aut
 ```tsx title="App.tsx"
 import { Refine, AuthProvider, Authenticated } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ReadyPage,
   useNotificationProvider,
   ErrorComponent,
@@ -227,9 +227,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >

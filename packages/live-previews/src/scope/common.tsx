@@ -62,7 +62,7 @@ const NavigationHandler = () => {
 
 const Refine = (
   props: React.ComponentProps<typeof RefineCore.Refine>,
-): JSX.Element => {
+): React.JSX.Element => {
   const { options: hiddenRefineOptions, ...hiddenRefineProps } =
     window.refineProps ?? {};
   return (
@@ -73,7 +73,6 @@ const Refine = (
         ...(props?.options || {}),
         ...(hiddenRefineOptions || {}),
         reactQuery: {
-          devtoolConfig: false,
           ...(props?.options?.reactQuery || {}),
           ...(hiddenRefineOptions?.reactQuery || {}),
         },
@@ -104,7 +103,7 @@ const setRefineProps = (
 
 const DemoMemoryRouter = (
   props: React.ComponentProps<typeof ReactRouter.MemoryRouter>,
-): JSX.Element => {
+): React.JSX.Element => {
   return (
     <ReactRouter.MemoryRouter
       {...props}
@@ -129,9 +128,6 @@ const RefineHeadlessDemo: React.FC<
         dataProvider={RefineSimpleRest.default(SIMPLE_REST_API_URL)}
         options={{
           disableTelemetry: true,
-          reactQuery: {
-            devtoolConfig: false,
-          },
         }}
         {...rest}
       />

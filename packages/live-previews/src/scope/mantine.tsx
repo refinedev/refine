@@ -12,7 +12,7 @@ import axios from "axios";
 
 const SIMPLE_REST_API_URL = "https://api.fake-rest.refine.dev";
 
-const ThemedTitleV2 = ({
+const ThemedTitle = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
@@ -70,7 +70,7 @@ const ThemedTitleV2 = ({
   }, []);
 
   return (
-    <RefineMantine.ThemedTitleV2
+    <RefineMantine.ThemedTitle
       collapsed={collapsed}
       wrapperStyles={wrapperStyles}
       text={title || textFromProps}
@@ -151,9 +151,6 @@ const RefineMantineDemo: React.FC<
           notificationProvider={RefineMantine.useNotificationProvider}
           options={{
             disableTelemetry: true,
-            reactQuery: {
-              devtoolConfig: false,
-            },
           }}
           {...rest}
         >
@@ -167,7 +164,7 @@ const RefineMantineDemo: React.FC<
 const MantineScope = {
   RefineMantine: {
     ...RefineMantine,
-    ThemedTitleV2,
+    ThemedTitle,
   },
   RefineMantineDemo,
   MantineCore: {

@@ -501,7 +501,7 @@ setInitialRoutes(["/"]);
 
 import { useNotificationProvider, WelcomePage } from "@refinedev/antd";
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router";
 
@@ -511,7 +511,7 @@ const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Refine
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
         notificationProvider={useNotificationProvider}
       >
@@ -1066,7 +1066,7 @@ Let's check out the `Authentication` property:
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
 //highlight-start
-import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/antd";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/antd";
 import routerProvider, {
   NavigateToResource,
   CatchAllNavigate,
@@ -1091,9 +1091,9 @@ function App() {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -1245,7 +1245,10 @@ const PostList: React.FC = () => {
 
   const categoryIds =
     tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-  const { data, isLoading } = useMany<ICategory>({
+  const {
+    result,
+    query: { isLoading },
+  } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {
@@ -1268,7 +1271,7 @@ const PostList: React.FC = () => {
 
             return (
               <TextField
-                value={data?.data.find((item) => item.id === value)?.title}
+                value={result?.data.find((item) => item.id === value)?.title}
               />
             );
           }}

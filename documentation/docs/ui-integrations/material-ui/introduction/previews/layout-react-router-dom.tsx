@@ -48,7 +48,7 @@ import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
   notificationProvider,
@@ -85,9 +85,9 @@ export default function App() {
                 <Route
                   // The layout will wrap all the pages inside this route
                   element={
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   }
                 >
                     <Route path="/products" element={<ProductList />} />

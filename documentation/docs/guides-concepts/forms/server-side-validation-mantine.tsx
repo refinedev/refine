@@ -68,7 +68,7 @@ const AppTsxCode = /* jsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import {
     ErrorComponent,
-    ThemedLayoutV2,
+    ThemedLayout,
     RefineThemes,
     useNotificationProvider,
     AuthPage
@@ -109,9 +109,9 @@ const App: React.FC = () => {
                         <Routes>
                             <Route
                                 element={
-                                    <ThemedLayoutV2>
+                                    <ThemedLayout>
                                         <Outlet />
-                                    </ThemedLayoutV2>
+                                    </ThemedLayout>
                                 }
                             >
                                 <Route path="/products" element={<Outlet />}>
