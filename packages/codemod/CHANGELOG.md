@@ -1,5 +1,17 @@
 # @refinedev/codemod
 
+## 4.4.0
+
+### Minor Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: add Refine 4→5 migration utilities
+
+  - New codemod transformations for automated Refine v5 migration including UI library updates.
+
+  Run with: `npx @refinedev/codemod@latest refine4-to-refine5`
+
+  > 🚀 Check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
 ## 4.3.1
 
 ### Patch Changes

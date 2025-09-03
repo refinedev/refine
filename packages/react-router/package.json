@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-router",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": false,
   "description": "React Router support for Refine, with full routing capabilities.",
   "repository": {
@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.10",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "@types/qs": "^6.9.7",
@@ -64,7 +64,7 @@
     "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^5.0.0",
     "@types/react": "^18.0.0 || ^19.0.0",
     "@types/react-dom": "^18.0.0 || ^19.0.0",
     "react": "^18.0.0 || ^19.0.0",
