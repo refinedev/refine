@@ -1,5 +1,11 @@
 # @refinedev/antd
 
+## 6.0.1
+
+### Patch Changes
+
+- [#6972](https://github.com/refinedev/refine/pull/6972) [`535707a5653045352ca2fcfa78fb45ebbb852b6a`](https://github.com/refinedev/refine/commit/535707a5653045352ca2fcfa78fb45ebbb852b6a) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - chore: dummy update
+
 ## 6.0.0
 
 ### Major Changes

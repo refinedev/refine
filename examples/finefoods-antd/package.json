@@ -23,7 +23,7 @@
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@googlemaps/react-wrapper": "^1.1.35",
-    "@refinedev/antd": "^6.0.0",
+    "@refinedev/antd": "^6.0.1",
     "@refinedev/cli": "^2.16.48",
     "@refinedev/core": "^5.0.0",
     "@refinedev/kbar": "2.0.0",

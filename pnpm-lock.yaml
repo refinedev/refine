@@ -119,7 +119,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -189,7 +189,7 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -244,7 +244,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -317,7 +317,7 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -487,7 +487,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -545,7 +545,7 @@ importers:
         specifier: ^1.5.0
         version: 1.12.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -664,7 +664,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -777,7 +777,7 @@ importers:
         specifier: ^3.4.0
         version: 3.4.0(keycloak-js@25.0.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -841,7 +841,7 @@ importers:
         specifier: ^1.0.2
         version: 1.0.3(@refinedev/core@packages+core)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1036,7 +1036,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1091,7 +1091,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1408,7 +1408,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1463,7 +1463,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1693,7 +1693,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1748,7 +1748,7 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(@types/node@20.5.1)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@8.57.0)(react@19.1.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(type-fest@3.13.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.8.3)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1806,7 +1806,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1858,7 +1858,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1913,7 +1913,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -1965,7 +1965,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2221,7 +2221,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2276,7 +2276,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/airtable
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2328,7 +2328,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/appwrite':
         specifier: ^8.0.0
@@ -2383,7 +2383,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/appwrite':
         specifier: ^8.0.0
@@ -2444,7 +2444,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2517,7 +2517,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2590,7 +2590,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2645,7 +2645,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2721,7 +2721,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2776,7 +2776,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2840,7 +2840,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2913,7 +2913,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -2977,7 +2977,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3032,7 +3032,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3087,7 +3087,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3142,7 +3142,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3197,7 +3197,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3340,7 +3340,7 @@ importers:
         specifier: ^1.1.35
         version: 1.1.35(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3637,7 +3637,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3692,7 +3692,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3747,7 +3747,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3799,7 +3799,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3854,7 +3854,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -3906,7 +3906,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -5180,7 +5180,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -5256,7 +5256,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -5323,7 +5323,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -5515,7 +5515,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -5697,7 +5697,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6061,7 +6061,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6116,7 +6116,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6171,7 +6171,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6247,7 +6247,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/ably
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6302,7 +6302,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6382,7 +6382,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6440,7 +6440,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6498,7 +6498,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6668,7 +6668,7 @@ importers:
         specifier: ^3.1.8
         version: 3.4.4(encoding@0.1.13)(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6732,7 +6732,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -6793,7 +6793,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -7101,7 +7101,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -7159,7 +7159,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -7217,7 +7217,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -7272,7 +7272,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -7324,7 +7324,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -7376,7 +7376,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -8327,7 +8327,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -8701,7 +8701,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -8960,7 +8960,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -9355,7 +9355,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -9407,7 +9407,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -9928,7 +9928,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -9980,7 +9980,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10123,7 +10123,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10178,7 +10178,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10315,7 +10315,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10373,7 +10373,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10449,7 +10449,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10641,7 +10641,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -10705,7 +10705,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
@@ -11006,7 +11006,7 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@2.30.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/antd
       '@refinedev/cli':
         specifier: ^2.16.48
