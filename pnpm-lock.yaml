@@ -326,7 +326,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
         specifier: ^2.0.0
@@ -1100,7 +1100,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/react-router':
         specifier: ^2.0.0
@@ -1353,7 +1353,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -2785,7 +2785,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/react-router':
         specifier: ^2.0.0
@@ -5189,7 +5189,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -6180,7 +6180,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/react-router':
         specifier: ^2.0.0
@@ -6595,7 +6595,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -10038,7 +10038,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
@@ -10245,7 +10245,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -10382,7 +10382,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -10458,7 +10458,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/inferencer':
         specifier: ^6.0.0
