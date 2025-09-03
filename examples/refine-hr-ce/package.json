@@ -32,7 +32,7 @@
     "@mui/x-date-pickers-pro": "^7.23.3",
     "@refinedev/cli": "^2.16.48",
     "@refinedev/core": "^5.0.0",
-    "@refinedev/devtools": "^2.0.0",
+    "@refinedev/devtools": "^2.0.1",
     "@refinedev/mui": "^7.0.0",
     "@refinedev/nestjsx-crud": "^6.0.0",
     "@refinedev/react-hook-form": "^5.0.0",

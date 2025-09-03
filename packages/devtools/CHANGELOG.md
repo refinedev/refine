@@ -1,5 +1,11 @@
 # @refinedev/devtools
 
+## 2.0.1
+
+### Patch Changes
+
+- [#6970](https://github.com/refinedev/refine/pull/6970) [`19e3ff328ac0f44e77532ff5a95a99421c0e1387`](https://github.com/refinedev/refine/commit/19e3ff328ac0f44e77532ff5a95a99421c0e1387) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: dummy release
+
 ## 2.0.0
 
 ### Major Changes
