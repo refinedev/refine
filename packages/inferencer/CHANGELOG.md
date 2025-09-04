@@ -1,5 +1,15 @@
 # @refinedev/mantine
 
+## 6.0.1
+
+### Patch Changes
+
+- [#6974](https://github.com/refinedev/refine/pull/6974) [`3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f`](https://github.com/refinedev/refine/commit/3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f) Thanks [@aliemir](https://github.com/aliemir)! - chore: replace `@aliemir/react-live` with `react-live@4`
+
+  After Refine 5, outdated `react-live` package was unable to resolve components properly and caused rendering errors.
+
+  This update fixes the rendering errors.
+
 ## 6.0.0
 
 ### Major Changes
