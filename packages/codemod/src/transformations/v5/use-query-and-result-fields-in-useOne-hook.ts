@@ -24,10 +24,23 @@ export const useQueryAndResultFieldsInUseOneHook = (
       const { node } = path;
       const objectPattern = node.id as any;
 
+      // Define query fields that should be moved to query object
+      const queryFieldNames = [
+        "isLoading",
+        "refetch",
+        "error",
+        "status",
+        "isSuccess",
+        "isStale",
+        "fetchStatus",
+        "failureCount",
+      ];
+
       // Collect query fields that need to be moved
       const queryFields: any[] = [];
       const newProperties = [];
       let dataPropertyValue = null;
+      let hasQueryFields = false;
 
       for (const prop of objectPattern.properties) {
         if (
@@ -55,9 +68,10 @@ export const useQueryAndResultFieldsInUseOneHook = (
               );
             }
           }
-          // Handle isLoading
-          else if (prop.key.name === "isLoading") {
+          // Handle query fields
+          else if (queryFieldNames.includes(prop.key.name)) {
             queryFields.push(prop);
+            hasQueryFields = true;
           }
           // Keep other properties as-is
           else {
@@ -70,7 +84,7 @@ export const useQueryAndResultFieldsInUseOneHook = (
       }
 
       // Add query object if we have query fields
-      if (queryFields.length > 0) {
+      if (hasQueryFields) {
         const queryObjectPattern = j.objectProperty(
           j.identifier("query"),
           j.objectPattern(queryFields),

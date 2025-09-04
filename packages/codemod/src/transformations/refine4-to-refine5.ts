@@ -16,6 +16,7 @@ import { mutationResultToMutationProperty } from "./v5/mutation-result-to-mutati
 import useQueryAndResultFieldsInUseInfiniteListHook from "./v5/use-query-and-result-fields-in-useInfiniteList-hook";
 import { useQueryAndResultFieldsInUseCustomHook } from "./v5/use-query-and-result-fields-in-useCustom-hook";
 import { useTableReturnTypeUpdate } from "./v5/use-react-table-return-type-update";
+import { renameUseResourceToUseResourceParams } from "./v5/rename-useResource-useResourceParams";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -27,10 +28,11 @@ export default function transformer(file: FileInfo, api: API): string {
   renameUseFormQueryResultAndMutationResult(j, source);
   renameITreeMenuToTreeMenuItem(j, source);
   routerBindingsTypeToProvider(j, source);
-  authBindingsTypeToProvider(j, source);
+  renameUseResourceToUseResourceParams(j, source);
   renameThemedV2Imports(j, source);
   renameCurrentToCurrentPage(j, source);
   renamePaginationCurrentToCurrentPage(j, source);
+  authBindingsTypeToProvider(j, source);
   useQueryAndResultFieldsInListHooks(j, source);
   useQueryAndResultFieldsInUseOneHook(j, source);
   useQueryAndResultFieldsInUseInfiniteListHook(j, source);

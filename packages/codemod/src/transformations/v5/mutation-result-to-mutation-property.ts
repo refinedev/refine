@@ -15,7 +15,9 @@ export const mutationResultToMutationProperty = (
   j: JSCodeshift,
   root: Collection<any>,
 ) => {
-  // Find all destructuring assignments from mutation hooks
+  // Step 1: Find all destructuring assignments from mutation hooks and track variable mappings
+  const variableMappings = new Map<string, string>(); // old name -> new name
+
   root
     .find(j.VariableDeclarator)
     .filter((path) => {
@@ -64,7 +66,31 @@ export const mutationResultToMutationProperty = (
               "reset",
             ].includes(propertyName)
           ) {
-            mutationProperties.push(prop);
+            // Map isLoading to isPending
+            if (propertyName === "isLoading") {
+              // If it's a simple property (isLoading destructured as isLoading)
+              if (prop.key.name === prop.value?.name) {
+                // Create shorthand property: isPending
+                const newProp = j.objectProperty.from({
+                  key: j.identifier("isPending"),
+                  value: j.identifier("isPending"),
+                  shorthand: true,
+                });
+                mutationProperties.push(newProp);
+                // Track mapping for variable renaming
+                variableMappings.set("isLoading", "isPending");
+              } else {
+                // If it's renamed (isLoading: customName), keep the custom name but use isPending key
+                const newProp = j.objectProperty(
+                  j.identifier("isPending"),
+                  prop.value,
+                );
+                mutationProperties.push(newProp);
+                // No variable mapping needed as user provided custom name
+              }
+            } else {
+              mutationProperties.push(prop);
+            }
             hasDirectMutationAccess = true;
           } else {
             // Keep other properties (mutate, mutateAsync, overtime)
@@ -88,7 +114,24 @@ export const mutationResultToMutationProperty = (
       objectPattern.properties = newProperties;
     });
 
-  // Transform direct property access on mutation variables
+  // Step 2: Update variable usages based on mappings
+  variableMappings.forEach((newName, oldName) => {
+    root
+      .find(j.Identifier)
+      .filter((path) => {
+        // Only rename identifiers that are actually references to the old variable
+        // Skip object keys and property names
+        return (
+          path.value.name === oldName &&
+          path.parentPath.value.type !== "ObjectProperty" &&
+          path.parentPath.value.type !== "Property" &&
+          path.parentPath.value.key !== path.value
+        );
+      })
+      .replaceWith(j.identifier(newName));
+  });
+
+  // Step 3: Transform direct property access on mutation variables
   // Find variable declarations that extract mutation hooks
   const mutationVariableNames = new Set<string>();
 
@@ -111,7 +154,7 @@ export const mutationResultToMutationProperty = (
 
   // Transform property access patterns
   mutationVariableNames.forEach((varName) => {
-    // Transform direct property access like `mutationResult.isPending` to `mutationResult.mutation.isPending`
+    // Transform direct property access like `mutationResult.isLoading` to `mutationResult.mutation.isPending`
     root
       .find(j.MemberExpression)
       .filter((path) => {
@@ -141,13 +184,23 @@ export const mutationResultToMutationProperty = (
       })
       .replaceWith((path) => {
         const expr = path.value;
+        // Map isLoading to isPending in property access
+        const currentPropertyName = j.Identifier.check(expr.property)
+          ? expr.property.name
+          : expr.property;
+        const propertyName =
+          currentPropertyName === "isLoading"
+            ? "isPending"
+            : currentPropertyName;
         return j.memberExpression(
           j.memberExpression(expr.object, j.identifier("mutation")),
-          expr.property,
+          typeof propertyName === "string"
+            ? j.identifier(propertyName)
+            : propertyName,
         );
       });
 
-    // Transform optional chaining like `mutationResult?.isPending` to `mutationResult?.mutation?.isPending`
+    // Transform optional chaining like `mutationResult?.isLoading` to `mutationResult.mutation.isPending`
     root
       .find(j.OptionalMemberExpression)
       .filter((path) => {
@@ -177,9 +230,19 @@ export const mutationResultToMutationProperty = (
       })
       .replaceWith((path) => {
         const expr = path.value;
+        // Map isLoading to isPending in optional chaining
+        const currentPropertyName = j.Identifier.check(expr.property)
+          ? expr.property.name
+          : expr.property;
+        const propertyName =
+          currentPropertyName === "isLoading"
+            ? "isPending"
+            : currentPropertyName;
         return j.optionalMemberExpression(
           j.optionalMemberExpression(expr.object, j.identifier("mutation")),
-          expr.property,
+          typeof propertyName === "string"
+            ? j.identifier(propertyName)
+            : propertyName,
         );
       });
   });
