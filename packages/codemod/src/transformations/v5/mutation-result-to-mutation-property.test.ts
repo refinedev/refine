@@ -12,9 +12,9 @@ describe("mutation-result-to-mutation-property", () => {
     const source = `
       import { useUpdate } from "@refinedev/core";
       
-      const { mutate, isPending, isError, data } = useUpdate();
+      const { mutate, isLoading, isError, data } = useUpdate();
       
-      if (isPending) {
+      if (isLoading) {
         return <div>Loading...</div>;
       }
       
@@ -52,7 +52,7 @@ describe("mutation-result-to-mutation-property", () => {
     const source = `
       import { useCreate } from "@refinedev/core";
       
-      const { mutate, isPending: isCreating, error: createError } = useCreate();
+      const { mutate, isLoading: isCreating, error: createError } = useCreate();
       
       if (isCreating) {
         return <div>Creating...</div>;
@@ -83,8 +83,8 @@ describe("mutation-result-to-mutation-property", () => {
     const source = `
       import { useUpdate, useDelete } from "@refinedev/core";
       
-      const { mutate: updateMutate, isPending: updatePending } = useUpdate();
-      const { mutate: deleteMutate, isPending: deletePending } = useDelete();
+      const { mutate: updateMutate, isLoading: updatePending } = useUpdate();
+      const { mutate: deleteMutate, isLoading: deletePending } = useDelete();
       
       if (updatePending || deletePending) {
         return <div>Loading...</div>;
@@ -115,7 +115,7 @@ describe("mutation-result-to-mutation-property", () => {
       
       const mutation = useCustomMutation();
       
-      if (mutation.isPending) {
+      if (mutation.isLoading) {
         return <div>Loading...</div>;
       }
       
@@ -145,7 +145,7 @@ describe("mutation-result-to-mutation-property", () => {
       
       const updateMutation = useUpdate();
       
-      const isPending = updateMutation?.isPending;
+      const isPending = updateMutation?.isLoading;
       const errorMessage = updateMutation?.error?.message;
     `;
 
@@ -185,9 +185,9 @@ describe("mutation-result-to-mutation-property", () => {
     const source = `
       import { useCreateMany } from "@refinedev/core";
       
-      const { mutate, mutateAsync, isPending, error, overtime } = useCreateMany();
+      const { mutate, mutateAsync, isLoading, error, overtime } = useCreateMany();
       
-      if (isPending) {
+      if (isLoading) {
         return <div>Creating records...</div>;
       }
       
@@ -242,13 +242,13 @@ describe("mutation-result-to-mutation-property", () => {
         useCustomMutation 
       } from "@refinedev/core";
       
-      const { isPending: createPending } = useCreate();
-      const { isPending: updatePending } = useUpdate();
-      const { isPending: deletePending } = useDelete();
-      const { isPending: createManyPending } = useCreateMany();
-      const { isPending: updateManyPending } = useUpdateMany();
-      const { isPending: deleteManyPending } = useDeleteMany();
-      const { isPending: customPending } = useCustomMutation();
+      const { isLoading: createPending } = useCreate();
+      const { isLoading: updatePending } = useUpdate();
+      const { isLoading: deletePending } = useDelete();
+      const { isLoading: createManyPending } = useCreateMany();
+      const { isLoading: updateManyPending } = useUpdateMany();
+      const { isLoading: deleteManyPending } = useDeleteMany();
+      const { isLoading: customPending } = useCustomMutation();
       
       const isAnyPending = createPending || updatePending || deletePending || 
                            createManyPending || updateManyPending || deleteManyPending || customPending;
@@ -299,8 +299,8 @@ describe("mutation-result-to-mutation-property", () => {
       import { useUpdate, useDelete } from "@refinedev/core";
 
       export const ProductEdit = () => {
-        const { mutate: updateMutate, isPending: updatePending, error: updateError } = useUpdate();
-        const { mutate: deleteMutate, isPending: deletePending } = useDelete();
+        const { mutate: updateMutate, isLoading: updatePending, error: updateError } = useUpdate();
+        const { mutate: deleteMutate, isLoading: deletePending } = useDelete();
         
         const deleteProduct = useDelete();
 
@@ -312,7 +312,7 @@ describe("mutation-result-to-mutation-property", () => {
           return <div>Update failed: {updateError.message}</div>;
         }
 
-        if (deleteProduct.isPending) {
+        if (deleteProduct.isLoading) {
           return <div>Deleting...</div>;
         }
 
