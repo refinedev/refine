@@ -5524,7 +5524,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -5609,7 +5609,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -5709,7 +5709,7 @@ importers:
         specifier: ^7.0.0
         version: link:../../packages/hasura
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -5779,7 +5779,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -5876,7 +5876,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -5979,7 +5979,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -6677,7 +6677,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -8969,7 +8969,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/react-router':
         specifier: ^2.0.0
@@ -9039,7 +9039,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
@@ -9112,7 +9112,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
@@ -9197,7 +9197,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/mantine':
         specifier: ^3.0.0
@@ -9288,7 +9288,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -10461,7 +10461,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/devtools
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -10714,7 +10714,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/remix-router':
         specifier: ^4.0.0
@@ -10872,7 +10872,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/core
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -11081,7 +11081,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^5.0.0
         version: link:../core
@@ -11102,7 +11102,7 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.21.5)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.17.19)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -11130,7 +11130,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
         specifier: 5.0.0
         version: link:../core
@@ -11151,7 +11151,7 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.17.19)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.21.5)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -12753,7 +12753,7 @@ importers:
         specifier: ^7.0.0
         version: link:../hasura
       '@refinedev/inferencer':
-        specifier: ^6.0.0
+        specifier: ^6.0.1
         version: link:../inferencer
       '@refinedev/kbar':
         specifier: ^2.0.0
