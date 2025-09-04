@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/codemod",
-  "version": "4.4.0",
+  "version": "4.4.1",
   "private": false,
   "description": "Codemod scripts for Refine, automating code transformations and migrations.",
   "repository": {
