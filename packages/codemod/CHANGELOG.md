@@ -1,5 +1,17 @@
 # @refinedev/codemod
 
+## 4.4.1
+
+### Patch Changes
+
+- [#6976](https://github.com/refinedev/refine/pull/6976) [`f8a232aa8ef42d22ee7021e9ae3a9b112c88a941`](https://github.com/refinedev/refine/commit/f8a232aa8ef42d22ee7021e9ae3a9b112c88a941) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - fix(codemod): correctly rename isLoading to isPending in mutation hooks
+
+  Codemod previously was expecting mutation hooks to have isPending. Since isPending is introduced with react-query@5 it wasn't correct.
+
+- [#6976](https://github.com/refinedev/refine/pull/6976) [`f8a232aa8ef42d22ee7021e9ae3a9b112c88a941`](https://github.com/refinedev/refine/commit/f8a232aa8ef42d22ee7021e9ae3a9b112c88a941) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - fix: Fix useOne hook transformation in codemod to correctly handle query fields
+
+  Fixed the `use-query-and-result-fields-in-useOne-hook` transformation to properly move all query-related fields (`isLoading`, `refetch`, `error`, `status`, `isSuccess`, `isStale`, `fetchStatus`, `failureCount`) into the `query` object when transforming from v4 to v5 format.
+
 ## 4.4.0
 
 ### Minor Changes
