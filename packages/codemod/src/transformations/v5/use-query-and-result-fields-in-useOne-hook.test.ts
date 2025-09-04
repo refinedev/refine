@@ -58,7 +58,17 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
       import { useOne } from "@refinedev/core";
 
       export const EditProduct = () => {
-        const { data, isLoading } = useOne({ id: 123 });
+        const { 
+          data, 
+          isLoading,
+          refetch,
+          error,
+          status,
+          isSuccess,
+          isStale,
+          fetchStatus,
+          failureCount
+        } = useOne({ id: 123 });
 
         if (isLoading) {
           return <div>Loading...</div>;
@@ -67,7 +77,7 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
         return (
           <div>
             <div>Product name: {data?.data.name}</div>
-            <div>Product price: \${data?.data.price}</div>
+            <div>Product price: {data?.data.price}</div>
           </div>
         );
       };
@@ -77,9 +87,20 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
       import { useOne } from "@refinedev/core";
 
       export const EditProduct = () => {
-        const { result, query: {
-          isLoading
-        } } = useOne({ id: 123 });
+        const {
+          result,
+
+          query: {
+            isLoading,
+            refetch,
+            error,
+            status,
+            isSuccess,
+            isStale,
+            fetchStatus,
+            failureCount
+          }
+        } = useOne({ id: 123 });
 
         if (isLoading) {
           return <div>Loading...</div>;
@@ -88,7 +109,7 @@ describe("use-query-and-result-fields-in-useOne-hook", () => {
         return (
           <div>
             <div>Product name: {result?.name}</div>
-            <div>Product price: \${result?.price}</div>
+            <div>Product price: {result?.price}</div>
           </div>
         );
       };
