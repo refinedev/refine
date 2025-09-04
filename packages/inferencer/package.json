@@ -108,7 +108,6 @@
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
-    "@aliemir/react-live": "^4.0.0",
     "@refinedev/core": "^5.0.0",
     "@tabler/icons-react": "^3.1.0",
     "dayjs": "^1.10.7",
@@ -149,6 +148,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.0.5",
     "jest-environment-jsdom": "^30.0.5",
+    "react-live": "^4.1.8",
     "react-router": "^7.0.2",
     "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.1.2",
