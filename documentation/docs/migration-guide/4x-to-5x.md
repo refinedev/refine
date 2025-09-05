@@ -65,7 +65,7 @@ npm run refine update
 ```
 
 :::caution
-React Query v5 is required for Refine v5. Make sure to install it alongside Refine when upgrading.
+**React Query v5 is required for Refine v5**. Make sure to install it when updating:
 
 ```bash
 npm i @tanstack/react-query@5
