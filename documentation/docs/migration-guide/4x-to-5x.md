@@ -11,24 +11,20 @@ import CodeBlock from '@theme/CodeBlock';
 
 **Refine v5** removes deprecated APIs and legacy systems, upgrades to TanStack Query v5, and adds React 19 support. The result is a cleaner, faster codebase with better developer experience.
 
-:::simple Migrating Your Refine Project: 3.x.x → 4.x.x → 5.x.x
+:::caution
+Before upgrading to Refine 5, make sure that you are using Refine 4.x.x.
 
-Before upgrading to Refine 5, your project must first be migrated from Refine 3.x.x to 4.x.x. This is an essential step, as Refine 5 builds upon the changes introduced in version 4.
-
-[→ Please refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/docs/migration-guide/3x-to-4x.md)
-
-Once your project is on Refine 4.x.x, you can proceed with the upgrade to Refine 5.x.x using the steps below.
-
+If you are using Refine 3.x.x, [refer to the migration guide for details on upgrading from 3.x.x to 4.x.x ](/docs/migration-guide/3x-to-4x.md)
 :::
 
 <h2>Migration Steps </h2>
 
-- **Step 1**: [Upgrade dependencies](#1-upgrade-all-refine-dependencies-to-v5)
-- **Step 2**: [Remove deprecated APIs](#2-remove-all-deprecated-apis-from-refine-v4)
-- **Step 3**: [Update router provider][router-provider-migration]
-- **Step 4**: [Update auth provider][auth-provider-migration]
+- **Step 1**: [Upgrade the dependencies](#1-upgrade-all-refine-dependencies-to-v5)
+- **Step 2**: [Remove the deprecated APIs](#2-remove-all-deprecated-apis-from-refine-v4)
+- **Step 3**: [Update the router provider][router-provider-migration]
+- **Step 4**: [Update the auth provider][auth-provider-migration]
 - **Step 5**: [Upgrade TanStack Query](#5-upgrade-tanstack-query-to-v5)
-- **Step 6**: [Optional: Upgrade React](#6-optionally-upgrade-react-to-v19)
+- **(Optional) Step 6**: [Optional: Upgrade React](#6-optionally-upgrade-react-to-v19)
 
 ## 1. Upgrade All Refine Dependencies to v5
 
@@ -36,22 +32,22 @@ Once your project is on Refine 4.x.x, you can proceed with the upgrade to Refine
 
 All Refine packages have been bumped to the next major version as a coordinated release. This ensures maximum stability and compatibility when using packages together - all Refine v5 packages are tested as a complete ecosystem.
 
-| Package                      | v4 Version | v5 Version |
-| ---------------------------- | ---------- | ---------- |
-| `@refinedev/core`            | 4.x.x      | 5.x.x      |
-| `react`                      | 17 or 18   | 18 or 19   |
-| `TanStack React Query`       | 4.x.x      | 5.x.x      |
-| `@refinedev/antd`            | 5.x.x      | 6.x.x      |
-| `@refinedev/mui`             | 6.x.x      | 7.x.x      |
-| `@refinedev/mantine`         | 2.x.x      | 3.x.x      |
-| `@refinedev/chakra-ui`       | 2.x.x      | 3.x.x      |
-| `@refinedev/react-hook-form` | 4.x.x      | 5.x.x      |
-| `@refinedev/react-table`     | 5.x.x      | 6.x.x      |
-| `@refinedev/react-router`    | 1.x.x      | 2.x.x      |
-| `@refinedev/nextjs-router`   | 6.x.x      | 7.x.x      |
-| `@refinedev/remix-router`    | 3.x.x      | 4.x.x      |
-| `@refinedev/inferencer`      | 5.x.x      | 6.x.x      |
-| `@refinedev/devtools`        | 1.x.x      | 2.x.x      |
+| Package                      | Upgrade Path  |
+| ---------------------------- | ------------- |
+| `@refinedev/core`            | 4.x.x → 5.x.x |
+| `react`                      | 17/18 → 18/19 |
+| `TanStack React Query`       | 4.x.x → 5.x.x |
+| `@refinedev/antd`            | 5.x.x → 6.x.x |
+| `@refinedev/mui`             | 6.x.x → 7.x.x |
+| `@refinedev/mantine`         | 2.x.x → 3.x.x |
+| `@refinedev/chakra-ui`       | 2.x.x → 3.x.x |
+| `@refinedev/react-hook-form` | 4.x.x → 5.x.x |
+| `@refinedev/react-table`     | 5.x.x → 6.x.x |
+| `@refinedev/react-router`    | 1.x.x → 2.x.x |
+| `@refinedev/nextjs-router`   | 6.x.x → 7.x.x |
+| `@refinedev/remix-router`    | 3.x.x → 4.x.x |
+| `@refinedev/inferencer`      | 5.x.x → 6.x.x |
+| `@refinedev/devtools`        | 1.x.x → 2.x.x |
 
 <Tabs
 defaultValue="refine-cli"
@@ -68,7 +64,16 @@ values={[
 npm run refine update
 ```
 
-> [How to add Refine CLI to an existing project?](/docs/packages/cli/#how-to-add-to-an-existing-project)
+:::caution
+React Query v5 is required for Refine v5. Make sure to install it alongside Refine when upgrading.
+
+```bash
+npm i @tanstack/react-query@5
+```
+
+:::
+
+> [Want to add Refine CLI to an existing project?](/docs/packages/cli/#how-to-add-to-an-existing-project)
 
 </TabItem>
 
@@ -150,7 +155,7 @@ All deprecated APIs marked for removal in v4 have been completely removed in v5.
 wrapContent={false}
 defaultValue="codemod"
 values={[
-{label: '✨ Refine Codemod', value: 'codemod'},
+{label: '✨ Refine Codemod (Recommended)', value: 'codemod'},
 {label: 'Manual Update', value: 'manual'},
 ]}>
 
@@ -207,7 +212,7 @@ For backward navigation (<code>goBack</code>), use your router’s native API in
 
 - <code>ITreeMenu</code> has been removed → use <code>TreeMenuItem</code> instead (codemod updates this).
 - <code>list</code> is now always a string route.  
-  👉 <code>list.path</code> is gone and <code>list</code> is no longer a function.
+   <code>list.path</code> is gone and <code>list</code> is no longer a function.
 
 **Why:**  
 Previously, you could define a React component in the <code>&lt;Refine /&gt;</code> resource as <code>list</code>. This is no longer supported. Routes/components must be defined in your router. Because of this, <code>list</code> is now just a route string, not a function or object with <code>path</code>.
@@ -1012,7 +1017,7 @@ For backward navigation (<code>goBack</code>), use your router’s native API in
 
 - <code>ITreeMenu</code> has been removed → use <code>TreeMenuItem</code> instead (codemod updates this).
 - <code>list</code> is now always a string route.  
-  👉 <code>list.path</code> is gone and <code>list</code> is no longer a function.
+  <code>list.path</code> is gone and <code>list</code> is no longer a function.
 
 **Why:**  
 Previously, you could define a React component in the <code>&lt;Refine /&gt;</code> resource as <code>list</code>. This is no longer supported. Routes/components must be defined in your router. Because of this, <code>list</code> is now just a route string, not a function or object with <code>path</code>.
