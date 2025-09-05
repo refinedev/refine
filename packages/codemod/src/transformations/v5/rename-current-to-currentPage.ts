@@ -1,9 +1,9 @@
 import type { API, FileInfo, Collection, JSCodeshift } from "jscodeshift";
 
 const HOOK_PACKAGE_MAPPINGS = {
-  useTable: ["@refinedev/core", "@refinedev/react-table"],
+  useTable: ["@refinedev/core", "@refinedev/react-table", "@refinedev/antd"],
   useDataGrid: ["@refinedev/mui"],
-  useSimpleList: ["@refinedev/simple-list"],
+  useSimpleList: ["@refinedev/antd"],
 };
 
 export const renameCurrentToCurrentPage = (
