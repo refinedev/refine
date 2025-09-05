@@ -68,6 +68,15 @@ values={[
 npm run refine update
 ```
 
+:::caution
+**React Query v5 is required for Refine v5**. Make sure to install it when updating:
+
+```bash
+npm i @tanstack/react-query@5
+```
+
+:::
+
 > [How to add Refine CLI to an existing project?](/docs/packages/cli/#how-to-add-to-an-existing-project)
 
 </TabItem>
