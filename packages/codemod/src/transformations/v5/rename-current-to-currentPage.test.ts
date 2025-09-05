@@ -112,11 +112,11 @@ describe("rename-current-to-currentPage", () => {
 
   it("should work with useSimpleList from @refinedev/antd", () => {
     const source = `
-      import { useSimpleList } from "@refinedev/simple-list";
+      import { useSimpleList } from "@refinedev/antd";
       const { current, setCurrent } = useSimpleList();
     `;
     const expected = `
-      import { useSimpleList } from "@refinedev/simple-list";
+      import { useSimpleList } from "@refinedev/antd";
       const { currentPage: current, setCurrentPage: setCurrent } = useSimpleList();
     `;
     expect(transform(source).trim()).toBe(expected.trim());
@@ -241,6 +241,50 @@ describe("rename-current-to-currentPage", () => {
         refineCore: { setCurrent, current }
       } = useTable();
     `;
+    expect(transform(source).trim()).toBe(expected.trim());
+  });
+
+  it("should work with antd useTable", () => {
+    const source = `
+      import { useTable } from "@refinedev/antd";
+
+      const {
+        tableProps,
+        tableQuery: tableQueryResult,
+        searchFormProps,
+        filters,
+        sorters,
+        setCurrent,
+        setPageSize,
+        setFilters,
+      } = useTable<
+        GetFieldsFromList<CompaniesTableQuery>,
+        HttpError,
+        { name: string }
+      >({
+        resource: "companies"
+      });`;
+
+    const expected = `
+      import { useTable } from "@refinedev/antd";
+
+      const {
+        tableProps,
+        tableQuery: tableQueryResult,
+        searchFormProps,
+        filters,
+        sorters,
+        setCurrentPage: setCurrent,
+        setPageSize,
+        setFilters,
+      } = useTable<
+        GetFieldsFromList<CompaniesTableQuery>,
+        HttpError,
+        { name: string }
+      >({
+        resource: "companies"
+      });`;
+
     expect(transform(source).trim()).toBe(expected.trim());
   });
 });
