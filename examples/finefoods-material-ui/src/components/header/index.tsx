@@ -156,6 +156,8 @@ export const Header: React.FC<RefineThemedLayoutHeaderProps> = () => {
   }, [couriersData, couriersIsSuccess, t]);
 
   useEffect(() => {
+    if (value?.trim() === "") return;
+
     setOptions([]);
     refetchOrders();
     refetchCouriers();
