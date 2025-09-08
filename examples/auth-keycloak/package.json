@@ -26,7 +26,7 @@
     "@react-keycloak/web": "^3.4.0",
     "@refinedev/antd": "^6.0.1",
     "@refinedev/cli": "^2.16.48",
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/core": "^5.0.1",
     "@refinedev/react-router": "^2.0.0",
     "@refinedev/simple-rest": "^6.0.0",
     "@uiw/react-md-editor": "^4.0.8",
