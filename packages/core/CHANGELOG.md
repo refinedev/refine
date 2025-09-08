@@ -1,5 +1,15 @@
 # @refinedev/core
 
+## 5.0.1
+
+### Patch Changes
+
+- [#6990](https://github.com/refinedev/refine/pull/6990) [`90f3f7a43f71747c8d35e69b9a84a5dee6df9354`](https://github.com/refinedev/refine/commit/90f3f7a43f71747c8d35e69b9a84a5dee6df9354) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(core): error notification infinite render issue
+
+  useEffect hook in data query hooks that handles the error notification had whole error object in dependency array, which changes with every request, thus causing infinite re-renders. Changed the dependency to just error message string.
+
+  [Resolves #6983](https://github.com/refinedev/refine/issues/6983)
+
 ## 5.0.0
 
 ### Major Changes

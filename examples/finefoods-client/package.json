@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@refinedev/cli": "^2.16.48",
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/core": "^5.0.1",
     "@refinedev/nextjs-router": "^7.0.0",
     "@refinedev/react-table": "^6.0.0",
     "@refinedev/simple-rest": "^6.0.0",
