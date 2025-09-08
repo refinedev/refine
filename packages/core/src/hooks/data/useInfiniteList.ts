@@ -338,7 +338,7 @@ export const useInfiniteList = <
 
       onError?.(queryResponse.error);
     }
-  }, [queryResponse.isError, queryResponse.error, errorNotification, onError]);
+  }, [queryResponse.isError, queryResponse.error?.message]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,

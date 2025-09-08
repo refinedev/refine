@@ -249,7 +249,7 @@ export const useMany = <
         type: "error",
       });
     }
-  }, [queryResponse.isError, queryResponse.error, errorNotification]);
+  }, [queryResponse.isError, queryResponse.error?.message]);
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
