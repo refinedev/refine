@@ -32,22 +32,22 @@ If you are using Refine 3.x.x, [refer to the migration guide for details on upgr
 
 All Refine packages have been bumped to the next major version as a coordinated release. This ensures maximum stability and compatibility when using packages together - all Refine v5 packages are tested as a complete ecosystem.
 
-| Package                      | Upgrade Path  |
-| ---------------------------- | ------------- |
-| `@refinedev/core`            | 4.x.x → 5.x.x |
-| `react`                      | 17/18 → 18/19 |
-| `TanStack React Query`       | 4.x.x → 5.x.x |
-| `@refinedev/antd`            | 5.x.x → 6.x.x |
-| `@refinedev/mui`             | 6.x.x → 7.x.x |
-| `@refinedev/mantine`         | 2.x.x → 3.x.x |
-| `@refinedev/chakra-ui`       | 2.x.x → 3.x.x |
-| `@refinedev/react-hook-form` | 4.x.x → 5.x.x |
-| `@refinedev/react-table`     | 5.x.x → 6.x.x |
-| `@refinedev/react-router`    | 1.x.x → 2.x.x |
-| `@refinedev/nextjs-router`   | 6.x.x → 7.x.x |
-| `@refinedev/remix-router`    | 3.x.x → 4.x.x |
-| `@refinedev/inferencer`      | 5.x.x → 6.x.x |
-| `@refinedev/devtools`        | 1.x.x → 2.x.x |
+| Package                      | v4 Version | v5 Version |
+| ---------------------------- | ---------- | ---------- |
+| `@refinedev/core`            | 4.x.x      | 5.x.x      |
+| `react`                      | 17 or 18   | 18 or 19   |
+| `@tanstack/react-query`      | 4.x.x      | 5.x.x      |
+| `@refinedev/antd`            | 5.x.x      | 6.x.x      |
+| `@refinedev/mui`             | 6.x.x      | 7.x.x      |
+| `@refinedev/mantine`         | 2.x.x      | 3.x.x      |
+| `@refinedev/chakra-ui`       | 2.x.x      | 3.x.x      |
+| `@refinedev/react-hook-form` | 4.x.x      | 5.x.x      |
+| `@refinedev/react-table`     | 5.x.x      | 6.x.x      |
+| `@refinedev/react-router`    | 1.x.x      | 2.x.x      |
+| `@refinedev/nextjs-router`   | 6.x.x      | 7.x.x      |
+| `@refinedev/remix-router`    | 3.x.x      | 4.x.x      |
+| `@refinedev/inferencer`      | 5.x.x      | 6.x.x      |
+| `@refinedev/devtools`        | 1.x.x      | 2.x.x      |
 
 <Tabs
 defaultValue="refine-cli"
