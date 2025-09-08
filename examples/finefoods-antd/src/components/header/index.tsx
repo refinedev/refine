@@ -189,6 +189,8 @@ export const Header: React.FC = () => {
   }, [couriersData, couriersIsSuccess, t, renderTitle, renderItem]);
 
   useEffect(() => {
+    if (value?.trim() === "") return;
+
     setOptions([]);
     refetchOrders();
     refetchCouriers();
