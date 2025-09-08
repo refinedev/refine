@@ -1,5 +1,11 @@
 # @refinedev/codemod
 
+## 4.4.2
+
+### Patch Changes
+
+- [#6980](https://github.com/refinedev/refine/pull/6980) [`f13d22834da01a8eb32306d19257fecaa70cb1ee`](https://github.com/refinedev/refine/commit/f13d22834da01a8eb32306d19257fecaa70cb1ee) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(codemod): use correct library name for @refinedev/antd useSimpleList and add useTable from @refinedev/antd.
+
 ## 4.4.1
 
 ### Patch Changes
