@@ -120,7 +120,7 @@ After implementing the authentication process, we need to inform data provider a
 
 Under the hood, Refine utilizes the [`useOnError`][use-on-error] hook for all data hooks. This means that when a promise is rejected from the `dataProvider` or when you get an error response from the API, Refine automatically calls `authProvider.onError` by using the `useOnError` hook.
 
-Let's say wan't to get product from the API with [`useOne`][use-one] hook. If the user is not authenticated, the API will return an error response. You can handle this error by implementing `authProvider.onError` method and Refine will automatically call this method when the error occurs.
+Let's say we want to get product from the API with [`useOne`][use-one] hook. If the user is not authenticated, the API will return an error response. You can handle this error by implementing `authProvider.onError` method and Refine will automatically call this method when the error occurs.
 
 <OnError />
 
