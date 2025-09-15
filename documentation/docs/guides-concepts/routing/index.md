@@ -383,10 +383,10 @@ const { ... } = useTable(
 And you will see a list of products, already **filtered**, **sorted** and **paginated** automatically based on the query parameters of the **current route**.
 
 ```ts
-const { tableQuery, current, pageSize, filters, sorters } = useTable();
+const { result, currentPage, pageSize, filters, sorters } = useTable();
 
-console.log(tableQuery.data.data); // [{...}, {...}]
-console.log(tableQuery.data.total); // 32 - total number of unpaginated records
+console.log(result.data); // [{...}, {...}]
+console.log(result.total); // 32 - total number of unpaginated records
 console.log(current); // 1 - current page
 console.log(pageSize); // 2 - page size
 console.log(filters); // [{ field: "category.id", operator: "eq", value: "1" }]
@@ -449,14 +449,14 @@ import { ReactRouterUseModalFormUsage } from "./react-router/use-modal-form-usag
 import { useOne } from "@refinedev/core";
 
 // removed-line
-const { data: productResponse } = useOne({ resource: "products", id: "1" });
+const { result } = useOne({ resource: "products", id: "1" });
 
-console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
+console.log(result); // { id: "1", title: "Product 1", ... }
 
 // added-line
-const { data: productResponse } = useOne();
+const { result } = useOne();
 
-console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
+console.log(result); // { id: "1", title: "Product 1", ... }
 ```
 
 ### useShow
@@ -466,19 +466,19 @@ console.log(productResponse.data); // { id: "1", title: "Product 1", ... }
 ```tsx title=components/products/show.tsx
 import { useShow } from "@refinedev/core";
 
-const { queryResult: showResponse } = useShow({
+const { result } = useShow({
   // removed-start
   resource: "products",
   id: "1",
   // removed-end
 });
 
-console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
+console.log(result); // { id: "1", title: "Product 1", ... }
 
 // added-line
-const { queryResult: showResponse } = useShow();
+const { result } = useShow();
 
-console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
+console.log(result); // { id: "1", title: "Product 1", ... }
 ```
 
 ### useList
@@ -489,16 +489,16 @@ console.log(showResponse.data.data); // { id: "1", title: "Product 1", ... }
 import { useList } from "@refinedev/core";
 
 // removed-line
-const { data: listResponse } = useList({ resource: "products" });
+const { result } = useList({ resource: "products" });
 
-console.log(listResponse.data); // [{ id: "1", title: "Product 1", ... }, { id: "2", title: "Product 2", ... }]
-console.log(listResponse.total); // 32 - total number of unpaginated records
+console.log(result.data); // [{ id: "1", title: "Product 1", ... }, { id: "2", title: "Product 2", ... }]
+console.log(result.total); // 32 - total number of unpaginated records
 
 // added-line
-const { data: listResponse } = useList();
+const { result } = useList();
 
-console.log(listResponse.data); // [{ id: "1", title: "Product 1", ... }, { id: "2", title: "Product 2", ... }]
-console.log(listResponse.total); // 32 - total number of unpaginated records
+console.log(result.data); // [{ id: "1", title: "Product 1", ... }, { id: "2", title: "Product 2", ... }]
+console.log(result.total); // 32 - total number of unpaginated records
 ```
 
 :::caution

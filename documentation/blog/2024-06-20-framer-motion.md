@@ -8,6 +8,8 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2024-06-20-framer-mot
 hide_table_of_contents: false
 ---
 
+**Update (September 2025): This article has been updated to include new features introduced in Framer Motion v11, as well as improvements to scroll-based and velocity-driven animations.**
+
 ## Introduction
 
 Modern web development relies heavily on animations to create a dynamic and interesting user experience. Creating animations in React applications can be done using traditional CSS or JavaScript however, it can become very cumbersome. Various libraries like GSAP, React Spring, anime.js, etc were created to combat the ambiguity in creating animations but one worthy to note is Framer Motion. Framer Motion is a famous React animation library that makes constructing complicated animations easier by providing utility animation components as well as hooks. In this article, we will walk you through the features and functionalities of Framer Motion.
@@ -798,6 +800,18 @@ In case the need arises for more refined and controlled fine-tuning of your anim
 #### Choreographed Animations
 
 For choreographed or synchronized animations, Framer Motion includes tools such as variants and keyframes to make their management super easy.
+
+## What’s New in Framer Motion (v11)
+
+Framer Motion released **v11** in 2025, introducing several improvements that make animations smoother and more flexible. Key highlights include:
+
+- **Improved Layout Animations**: More reliable handling of complex layout transitions, especially in React 19 projects with concurrent rendering.
+- **Performance Enhancements**: Better rendering pipelines for large numbers of animated elements.
+- **Refined Variants API**: Easier ways to choreograph animations across multiple components.
+
+Alongside v11, existing hooks like `useScroll` and `useVelocity` have also been refined. Scroll-linked animations now offer smoother updates and better performance in long, content-heavy pages, while velocity tracking provides more stable values for responsive, physics-based effects.
+
+If you’re starting a new project today, upgrading to v11 ensures better compatibility with modern React features and gives you access to these new performance improvements.
 
 ## Conclusion
 

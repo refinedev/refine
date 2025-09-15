@@ -193,7 +193,7 @@ You can simply copy and paste the code below into the `App.tsx` file:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent } from "@refinedev/antd";
+import { ThemedLayout, ErrorComponent } from "@refinedev/antd";
 import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -224,9 +224,9 @@ function App() {
         <Routes>
           <Route
             element={
-              <ThemedLayoutV2>
+              <ThemedLayout>
                 <Outlet />
-              </ThemedLayoutV2>
+              </ThemedLayout>
             }
           >
             <Route index element={<NavigateToResource resource="users" />} />
@@ -255,7 +255,7 @@ export default App;
 import { Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
@@ -295,9 +295,9 @@ function App() {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route index element={<NavigateToResource resource="users" />} />

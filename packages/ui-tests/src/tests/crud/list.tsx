@@ -7,8 +7,8 @@ import {
 } from "@refinedev/ui-types";
 
 import {
-  act,
   type ITestWrapperProps,
+  mockRouterProvider,
   render,
   TestWrapper,
   waitFor,
@@ -80,9 +80,21 @@ export const crudListTests = (
         resources: [
           {
             name: "posts",
-            meta: { route: "posts", label: "test" },
+            meta: { label: "test" },
           },
         ],
+        routerProvider: {
+          ...mockRouterProvider(),
+          parse() {
+            return () => ({
+              params: {},
+              pathname: "/posts",
+              resource: { name: "posts", meta: { label: "test" } },
+              action: "list",
+              id: undefined,
+            });
+          },
+        },
         routerInitialEntries: ["/posts"],
       });
 
@@ -102,10 +114,22 @@ export const crudListTests = (
           resources: [
             {
               name: "posts",
-              create: () => null,
+              create: "/posts/create",
             },
           ],
           routerInitialEntries: ["/posts"],
+          routerProvider: {
+            ...mockRouterProvider(),
+            parse() {
+              return () => ({
+                params: {},
+                pathname: "/posts",
+                resource: { name: "posts", create: "/posts/create" },
+                action: "list",
+                id: undefined,
+              });
+            },
+          },
         },
       );
 
@@ -125,7 +149,7 @@ export const crudListTests = (
           resources: [
             {
               name: "posts",
-              canCreate: false,
+              meta: { canCreate: false },
             },
           ],
           routerInitialEntries: ["/posts"],
@@ -145,7 +169,21 @@ export const crudListTests = (
           }}
         />,
         undefined,
-        { routerInitialEntries: ["/posts"] },
+        {
+          routerInitialEntries: ["/posts"],
+          routerProvider: {
+            ...mockRouterProvider(),
+            parse() {
+              return () => ({
+                params: {},
+                pathname: "/posts",
+                resource: { name: "posts", meta: { canCreate: false } },
+                action: "list",
+                id: undefined,
+              });
+            },
+          },
+        },
       );
 
       expect(queryByTestId(RefineButtonTestIds.CreateButton)).not.toBeNull();
@@ -167,7 +205,7 @@ export const crudListTests = (
           resources: [
             {
               name: "posts",
-              create: () => null,
+              create: "/posts/create",
             },
           ],
           routerInitialEntries: ["/posts"],

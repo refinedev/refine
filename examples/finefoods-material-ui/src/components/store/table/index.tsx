@@ -18,7 +18,9 @@ export const StoreTable = () => {
   const { edit } = useNavigation();
 
   const { dataGridProps } = useDataGrid<IStore>({
-    initialPageSize: 10,
+    pagination: {
+      pageSize: 10,
+    },
   });
 
   const columns = useMemo<GridColDef<IStore>[]>(

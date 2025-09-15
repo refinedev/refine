@@ -478,7 +478,7 @@ Sorting is done by providing the `sorters` property to the list hooks. It accept
 import { useList } from "@refinedev/core";
 
 const MyComponent = () => {
-  const { data } = useList({
+  const { result } = useList({
     resource: "posts",
     sorters: [
       {
@@ -500,7 +500,7 @@ Filtering is done by providing the `filters` property to the list hooks. It acce
 import { useList } from "@refinedev/core";
 
 const MyComponent = () => {
-  const { data } = useList({
+  const { result } = useList({
     resource: "posts",
     filters: [
       {
@@ -628,7 +628,7 @@ Let's have a look at how you can use the `useList` hook with GraphQL:
 import { useList } from "@refinedev/core";
 
 const MyComponent = () => {
-  const { data, isLoading } = useList<IPost>({
+  const { result, query } = useList<IPost>({
     resource: "posts",
     meta: {
       fields: [
@@ -649,7 +649,7 @@ If you need sorting and filtering, you will be able to use them just like the ot
 import { useList } from "@refinedev/core";
 
 const MyComponent = () => {
-  const { data, isLoading } = useList<IPost>({
+  const { result, query } = useList<IPost>({
     resource: "posts",
     sorters: [
       {

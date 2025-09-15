@@ -558,7 +558,7 @@ type ItemProp = {
 
 const ProductList: React.FC<ItemProp> = ({ products }) => {
   //highlight-start
-  const { tableQuery } = useTable<IProduct>({
+  const { result } = useTable<IProduct>({
     resource: "products",
     queryOptions: {
       initialData: products,
@@ -569,7 +569,7 @@ const ProductList: React.FC<ItemProp> = ({ products }) => {
   return (
     //highlight-start
     <div className="my-8 grid grid-cols-4 gap-6 px-24">
-      {tableQuery.data?.data.map((product) => {
+      {result?.data.map((product) => {
         return (
           <ProductCards
             key={product.id}
@@ -604,13 +604,13 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
 `useTable` is a Refine hook that uses helper hooks to simplify the process of fetching, interacting, and rendering data. To put things into perspective, we’ll use the `useTable` hook to process our response data from the `getServerSideProps` function.
 
-In the code above, we’re using `tableQuery` to map through the query results and passing them as props to the `ProductCards` component. Then we wrapped the component with the LayoutWrapper component.
+In the code above, we’re using `result` to map through the query results and passing them as props to the `ProductCards` component. Then we wrapped the component with the LayoutWrapper component.
 
 What we’re doing here is similar to what we did earlier with the resources prop, we specify which source (endpoint) to be fetched from the API by passing the resource option a string value. In this case, `products`.
 
-The only difference is that we added a `queryOptions` option and passed the products prop as its initial data. Then we destructed the `tableQuery` object from the `useTable` hook. This is what we’ll use to get the result of our query.
+The only difference is that we added a `queryOptions` option and passed the products prop as its initial data. Then we destructed the `result` object from the `useTable` hook. This is what we’ll use to get the result of our query.
 
-Also we created a `ProductCard` component and use it to render the query results using the `tableQuery` object.
+Also we created a `ProductCard` component and use it to render the query results using the `result` object.
 
 If you save your progress and go back to the browser, you should see a nicely rendered grid of product cards.
 

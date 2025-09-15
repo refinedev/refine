@@ -178,6 +178,7 @@ describe("transformMuiOperatorToCrudOperators", () => {
     expect(transformMuiOperatorToCrudOperator("=")).toEqual("eq");
     expect(transformMuiOperatorToCrudOperator("!=")).toEqual("ne");
     expect(transformMuiOperatorToCrudOperator("not")).toEqual("ne");
+    expect(transformMuiOperatorToCrudOperator("doesNotEqual")).toEqual("ne");
     expect(transformMuiOperatorToCrudOperator("isAnyOf")).toEqual("in");
     expect(transformMuiOperatorToCrudOperator("<")).toEqual("lt");
     expect(transformMuiOperatorToCrudOperator("before")).toEqual("lt");
@@ -194,6 +195,9 @@ describe("transformMuiOperatorToCrudOperators", () => {
     expect(transformMuiOperatorToCrudOperator("isEmpty")).toEqual("null");
     expect(transformMuiOperatorToCrudOperator("isNotEmpty")).toEqual("nnull");
     expect(transformMuiOperatorToCrudOperator("contains")).toEqual("contains");
+    expect(transformMuiOperatorToCrudOperator("doesNotContain")).toEqual(
+      "ncontains",
+    );
     expect(transformMuiOperatorToCrudOperator("something")).toEqual(
       "something",
     );
@@ -230,8 +234,14 @@ describe("transformCrudOperatorToMuiOperator", () => {
     expect(transformCrudOperatorToMuiOperator("contains", "string")).toEqual(
       "contains",
     );
+    expect(transformCrudOperatorToMuiOperator("ncontains", "string")).toEqual(
+      "doesNotContain",
+    );
     expect(transformCrudOperatorToMuiOperator("eq", "string")).toEqual(
       "equals",
+    );
+    expect(transformCrudOperatorToMuiOperator("ne", "string")).toEqual(
+      "doesNotEqual",
     );
 
     expect(transformCrudOperatorToMuiOperator("null", "string")).toEqual(

@@ -16,6 +16,10 @@ export default function BlogPostCreate() {
 
   const { options } = useSelect<Category>({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   return (

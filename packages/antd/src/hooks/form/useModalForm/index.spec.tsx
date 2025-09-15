@@ -222,7 +222,7 @@ describe("useModalForm Hook", () => {
 
     await waitFor(() => expect(result.current.modalProps.open).toBe(false));
 
-    expect(updateMock).toBeCalledTimes(1);
+    expect(updateMock).toHaveBeenCalledTimes(1);
     expect(result.current.modalProps.open).toBe(false);
   });
 
@@ -288,8 +288,8 @@ describe("useModalForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(mockGetOne).toBeCalledTimes(1);
-      expect(mockGetOne).toBeCalledWith(
+      expect(mockGetOne).toHaveBeenCalledTimes(1);
+      expect(mockGetOne).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             "modal-posts-edit": undefined,

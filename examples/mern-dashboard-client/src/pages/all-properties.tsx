@@ -16,12 +16,12 @@ const AllProperties = () => {
 
   const {
     tableQuery: { data, isLoading, isError },
-    current,
-    setCurrent,
+    currentPage: current,
+    setCurrentPage: setCurrent,
     setPageSize,
     pageCount,
-    sorter,
-    setSorter,
+    sorters: sorter,
+    setSorters: setSorter,
     filters,
     setFilters,
   } = useTable();

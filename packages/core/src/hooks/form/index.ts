@@ -19,7 +19,6 @@ import {
   redirectPage,
   asyncDebounce,
   deferExecution,
-  pickNotDeprecated,
 } from "@definitions/helpers";
 
 import type { UpdateParams } from "../data/useUpdate";
@@ -42,7 +41,6 @@ export type {
   AutoSaveReturnType,
   FormAction,
   RedirectAction,
-  RedirectionTypes,
   FormWithSyncWithLocationParams,
 } from "./types";
 
@@ -91,7 +89,7 @@ export const useForm = <
   const { setWarnWhen } = useWarnAboutChange();
   const handleSubmitWithRedirect = useRedirectionAfterSubmission();
 
-  const pickedMeta = pickNotDeprecated(props.meta, props.metaData);
+  const pickedMeta = props.meta;
   const mutationMode = props.mutationMode ?? defaultMutationMode;
 
   const {
@@ -183,8 +181,8 @@ export const useForm = <
   });
 
   const mutationResult = isEdit ? updateMutation : createMutation;
-  const isMutationLoading = mutationResult.isLoading;
-  const formLoading = isMutationLoading || queryResult.isFetching;
+  const isMutationLoading = mutationResult.mutation.isPending;
+  const formLoading = isMutationLoading || queryResult.query.isFetching;
 
   const { elapsedTime } = useLoadingOvertime({
     ...props.overtimeOptions,
@@ -254,7 +252,6 @@ export const useForm = <
         values,
         resource: identifier ?? resource.name,
         meta: { ...combinedMeta, ...props.mutationMeta },
-        metaData: { ...combinedMeta, ...props.mutationMeta },
         dataProviderName: props.dataProviderName,
         invalidates: isAutosave ? [] : props.invalidates,
         successNotification: isAutosave ? false : props.successNotification,
@@ -314,19 +311,17 @@ export const useForm = <
   };
 
   const autoSaveProps = {
-    status: updateMutation.status,
-    data: updateMutation.data,
-    error: updateMutation.error,
+    status: updateMutation.mutation.status,
+    data: updateMutation.mutation.data,
+    error: updateMutation.mutation.error,
   };
 
   return {
     onFinish,
     onFinishAutoSave,
     formLoading,
-    mutationResult,
-    mutation: mutationResult,
-    queryResult,
-    query: queryResult,
+    mutation: mutationResult.mutation,
+    query: queryResult.query,
     autoSaveProps,
     id,
     setId,

@@ -15,9 +15,11 @@ export const CourierTableReviews = (props: Props) => {
 
   const { dataGridProps } = useDataGrid({
     resource: "reviews",
+
     pagination: {
       pageSize: 10,
     },
+
     filters: {
       permanent: [
         {
@@ -27,9 +29,11 @@ export const CourierTableReviews = (props: Props) => {
         },
       ],
     },
+
     queryOptions: {
       enabled: !!props.courier?.id,
     },
+
     syncWithLocation: false,
   });
 

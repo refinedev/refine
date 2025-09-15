@@ -1,5 +1,42 @@
 # @refinedev/live-previews
 
+## 0.3.12
+
+### Patch Changes
+
+- [#6974](https://github.com/refinedev/refine/pull/6974) [`3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f`](https://github.com/refinedev/refine/commit/3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f) Thanks [@aliemir](https://github.com/aliemir)! - chore: replace `@aliemir/react-live` with `react-live@4`
+
+  After Refine 5, outdated `react-live` package was unable to resolve components properly and caused rendering errors.
+
+  This update fixes the rendering errors.
+
+- Updated dependencies [[`3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f`](https://github.com/refinedev/refine/commit/3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f)]:
+  - @refinedev/inferencer@6.0.1
+
+## 0.3.11
+
+### Patch Changes
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/chakra-ui@3.0.0
+  - @refinedev/react-hook-form@5.0.0
+  - @refinedev/core@5.0.0
+  - @refinedev/mui@7.0.0
+  - @refinedev/mantine@3.0.0
+  - @refinedev/inferencer@6.0.0
+  - @refinedev/kbar@2.0.0
+  - @refinedev/airtable@5.0.0
+  - @refinedev/appwrite@8.0.0
+  - @refinedev/hasura@7.0.0
+  - @refinedev/nestjs-query@2.0.0
+  - @refinedev/nestjsx-crud@6.0.0
+  - @refinedev/simple-rest@6.0.0
+  - @refinedev/strapi-v4@7.0.0
+  - @refinedev/supabase@6.0.0
+  - @refinedev/react-router@2.0.0
+  - @refinedev/react-table@6.0.0
+  - @refinedev/antd@6.0.0
+
 ## 0.3.10
 
 ### Patch Changes

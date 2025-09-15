@@ -12,7 +12,6 @@ import type { IRefineContextProvider } from "../../contexts/refine/types";
 import { useOne } from "./useOne";
 
 const mockRefineProvider: IRefineContextProvider = {
-  hasDashboard: false,
   ...defaultRefineOptions,
   options: defaultRefineOptions,
 };
@@ -30,13 +29,16 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.isLoading).toBeTruthy();
+      expect(!result.current.query.isPending).toBeTruthy();
     });
 
-    const { status, data } = result.current;
+    const {
+      result: data,
+      query: { status },
+    } = result.current;
 
     expect(status).toBe("success");
-    expect(data?.data.slug).toBe("ut-ad-et");
+    expect(data?.slug).toBe("ut-ad-et");
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -61,10 +63,10 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -104,10 +106,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(!result.current.isLoading).toBeTruthy();
+          expect(!result.current.query.isPending).toBeTruthy();
         });
 
-        expect(onSubscribeMock).toBeCalled();
+        expect(onSubscribeMock).toHaveBeenCalled();
         expect(onSubscribeMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           callback: expect.any(Function),
@@ -116,9 +118,11 @@ describe("useOne Hook", () => {
             id: "1",
             resource: "posts",
             subscriptionType: "useOne",
+            meta: {
+              route: undefined,
+            },
           }),
           types: ["*"],
-          dataProviderName,
           meta: {
             dataProviderName,
           },
@@ -148,10 +152,10 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
-      expect(onSubscribeMock).not.toBeCalled();
+      expect(onSubscribeMock).not.toHaveBeenCalled();
     });
 
     it("liveMode = Off and liveMode hook param auto", async () => {
@@ -176,10 +180,10 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
-      expect(onSubscribeMock).toBeCalled();
+      expect(onSubscribeMock).toHaveBeenCalled();
     });
 
     it("unsubscribe call on unmount", async () => {
@@ -205,14 +209,14 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
-      expect(onSubscribeMock).toBeCalled();
+      expect(onSubscribeMock).toHaveBeenCalled();
 
       unmount();
-      expect(onUnsubscribeMock).toBeCalledWith(true);
-      expect(onUnsubscribeMock).toBeCalledTimes(1);
+      expect(onUnsubscribeMock).toHaveBeenCalledWith(true);
+      expect(onUnsubscribeMock).toHaveBeenCalledTimes(1);
     });
 
     it("should not subscribe if `queryOptions.enabled` is false", async () => {
@@ -243,7 +247,7 @@ describe("useOne Hook", () => {
         },
       );
 
-      expect(onSubscribeMock).not.toBeCalled();
+      expect(onSubscribeMock).not.toHaveBeenCalled();
     });
 
     describe("useNotification", () => {
@@ -275,10 +279,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
-        expect(notificationMock).toBeCalledWith({
+        expect(notificationMock).toHaveBeenCalledWith({
           description: "Error",
           key: "1-posts-getOne-notification",
           message: "Error (status code: undefined)",
@@ -313,10 +317,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(openNotificationMock).toBeCalledWith({
+        expect(openNotificationMock).toHaveBeenCalledWith({
           description: "Successfully created post",
           message: "Success",
           type: "success",
@@ -346,10 +350,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(openNotificationMock).toBeCalledTimes(0);
+        expect(openNotificationMock).toHaveBeenCalledTimes(0);
       });
 
       it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -385,10 +389,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
-        expect(openNotificationMock).toBeCalledWith({
+        expect(openNotificationMock).toHaveBeenCalledWith({
           description: "There was an error creating post",
           message: "Error",
           type: "error",
@@ -416,6 +420,9 @@ describe("useOne Hook", () => {
                 },
               },
               authProvider: {
+                login: () => Promise.resolve({ success: true }),
+                logout: () => Promise.resolve({ success: true }),
+                check: () => Promise.resolve({ authenticated: true }),
                 onError: onErrorMock,
               } as any,
               resources: [{ name: "posts" }],
@@ -424,10 +431,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
-        expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
       });
 
       it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -448,8 +455,11 @@ describe("useOne Hook", () => {
                   getOne: getOneMock,
                 },
               },
-              legacyAuthProvider: {
-                checkError: onErrorMock,
+              authProvider: {
+                login: () => Promise.resolve({ success: true }),
+                logout: () => Promise.resolve({ success: true }),
+                check: () => Promise.resolve({ authenticated: true }),
+                onError: onErrorMock,
               },
               resources: [{ name: "posts" }],
             }),
@@ -457,84 +467,14 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
+          expect(result.current.query.isError).toBeTruthy();
         });
 
-        expect(onErrorMock).toBeCalledWith(new Error("Error"));
+        expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
       });
     });
 
     describe("queryOptions", () => {
-      it("should run `queryOptions.onSuccess` callback on success", async () => {
-        const onSuccessMock = jest.fn();
-        const getOneMock = jest.fn().mockResolvedValue({
-          data: [{ id: 1, title: "foo" }],
-        });
-
-        const { result } = renderHook(
-          () =>
-            useOne({
-              resource: "posts",
-              id: "1",
-              queryOptions: {
-                onSuccess: onSuccessMock,
-              },
-            }),
-          {
-            wrapper: TestWrapper({
-              dataProvider: {
-                default: {
-                  ...MockJSONServer.default,
-                  getOne: getOneMock,
-                },
-              },
-              resources: [{ name: "posts" }],
-            }),
-          },
-        );
-
-        await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
-        });
-
-        expect(onSuccessMock).toBeCalledWith({
-          data: [{ id: 1, title: "foo" }],
-        });
-      });
-
-      it("should run `queryOptions.onError` callback on error", async () => {
-        const onErrorMock = jest.fn();
-        const getOneMcok = jest.fn().mockRejectedValue(new Error("Error"));
-
-        const { result } = renderHook(
-          () =>
-            useOne({
-              resource: "posts",
-              id: "1",
-              queryOptions: {
-                onError: onErrorMock,
-              },
-            }),
-          {
-            wrapper: TestWrapper({
-              dataProvider: {
-                default: {
-                  ...MockJSONServer.default,
-                  getOne: getOneMcok,
-                },
-              },
-              resources: [{ name: "posts" }],
-            }),
-          },
-        );
-
-        await waitFor(() => {
-          expect(result.current.isError).toBeTruthy();
-        });
-
-        expect(onErrorMock).toBeCalledWith(new Error("Error"));
-      });
-
       it("should override `queryKey` with `queryOptions.queryKey`", async () => {
         const getOneMock = jest.fn().mockResolvedValue({
           data: { id: 1, title: "foo" },
@@ -563,15 +503,13 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(getOneMock).toBeCalledWith(
+        expect(getOneMock).toHaveBeenCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
-              queryContext: expect.objectContaining({
-                queryKey: ["foo", "bar"],
-              }),
+              queryKey: ["foo", "bar"],
             }),
           }),
         );
@@ -614,11 +552,11 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(getOneMock).not.toBeCalled();
-        expect(queryFnMock).toBeCalled();
+        expect(getOneMock).not.toHaveBeenCalled();
+        expect(queryFnMock).toHaveBeenCalled();
       });
     });
 
@@ -664,15 +602,15 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getOneFooMock).toBeCalledWith(
+      expect(getOneFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(getOneDefaultMock).not.toBeCalled();
+      expect(getOneDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should get correct `meta` of related resource", async () => {
@@ -707,10 +645,10 @@ describe("useOne Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getOneMock).toBeCalledWith(
+      expect(getOneMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             foo: "bar",
@@ -763,15 +701,15 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(getOneFooMock).toBeCalledWith(
+        expect(getOneFooMock).toHaveBeenCalledWith(
           expect.objectContaining({
             resource: "posts",
           }),
         );
-        expect(getOneDefaultMock).not.toBeCalled();
+        expect(getOneDefaultMock).not.toHaveBeenCalled();
       });
 
       it("should create queryKey with `identifier`", async () => {
@@ -804,21 +742,20 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(getOneMock).toBeCalledWith(
+        expect(getOneMock).toHaveBeenCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
-              queryContext: expect.objectContaining({
-                queryKey: [
-                  "default",
-                  "featured-posts",
-                  "detail",
-                  "1",
-                  expect.any(Object),
-                ],
-              }),
+              queryKey: [
+                "data",
+                "default",
+                "featured-posts",
+                "one",
+                "1",
+                expect.any(Object),
+              ],
             }),
           }),
         );
@@ -864,10 +801,10 @@ describe("useOne Hook", () => {
         );
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.query.isSuccess).toBeTruthy();
         });
 
-        expect(getOneMock).toBeCalledWith(
+        expect(getOneMock).toHaveBeenCalledWith(
           expect.objectContaining({
             meta: expect.objectContaining({
               bar: "baz",
@@ -908,13 +845,13 @@ describe("useOne Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });

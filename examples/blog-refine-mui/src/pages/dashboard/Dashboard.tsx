@@ -41,7 +41,7 @@ const formatCurrency = Intl.NumberFormat("en", {
 export function Dashboard() {
   const API_URL = useApiUrl();
 
-  const { data: revenue } = useCustom<IChart>({
+  const { result: revenue } = useCustom<IChart>({
     url: `${API_URL}/dailyRevenue`,
     method: "get",
     config: {
@@ -49,7 +49,7 @@ export function Dashboard() {
     },
   });
 
-  const { data: orders } = useCustom<IChart>({
+  const { result: orders } = useCustom<IChart>({
     url: `${API_URL}/dailyOrders`,
     method: "get",
     config: {
@@ -57,7 +57,7 @@ export function Dashboard() {
     },
   });
 
-  const { data: customers } = useCustom<IChart>({
+  const { result: customers } = useCustom<IChart>({
     url: `${API_URL}/newCustomers`,
     method: "get",
     config: {

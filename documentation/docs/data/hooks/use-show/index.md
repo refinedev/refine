@@ -281,10 +281,6 @@ const { overtime } = useShow();
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 ```
 
-### ~~queryResult~~ <PropTag deprecated />
-
-Use [`query`](#query) instead.
-
 ## API Reference
 
 ### Props

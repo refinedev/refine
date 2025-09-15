@@ -14,7 +14,10 @@ import React from "react";
 export const BlogPostList = () => {
   const { dataGridProps } = useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useMany({
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany({
     resource: "categories",
     ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
     queryOptions: {

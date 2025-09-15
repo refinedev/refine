@@ -1472,8 +1472,8 @@ It also accepts all props of Ant Design [Form](https://ant.design/components/for
 
 | Property            | Description                                                                                                            |
 | ------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `queryResult`       | If the `queryResult` prop is given, it will be returned. Otherwise, it will return `undefined`.                        |
-| `mutationResult`    | Mutation result from `react-query`. [Check here →](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
+| `query`             | If the `query` prop is given, it will be returned. Otherwise, it will return `undefined`.                              |
+| `mutation`          | Mutation result from `react-query`. [Check here →](https://tanstack.com/query/latest/docs/react/reference/useMutation) |
 | `saveButtonProps`   | Props for a save button.                                                                                               |
 | `cancelButtonProps` | Props for a cancel button.                                                                                             |
 | `deleteButtonProps` | Props for a delete button.                                                                                             |

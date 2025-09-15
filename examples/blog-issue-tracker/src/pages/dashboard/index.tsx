@@ -6,9 +6,46 @@ import { TaskChart } from "components/task/pie";
 import { groupBy } from "helper";
 
 export const Dashboard = () => {
-  const taskList = useList<ITask>({
-    resource: "tasks",
-  });
+  const migratedMigratedMigratedMigratedMigratedMigratedTaskList =
+    useList<ITask>({
+      resource: "tasks",
+    });
+
+  const migratedMigratedMigratedMigratedMigratedTaskList = {
+    ...migratedMigratedMigratedMigratedMigratedMigratedTaskList.result,
+    ...migratedMigratedMigratedMigratedMigratedMigratedTaskList.query,
+    ...migratedMigratedMigratedMigratedMigratedMigratedTaskList,
+  };
+
+  const migratedMigratedMigratedMigratedTaskList = {
+    ...migratedMigratedMigratedMigratedMigratedTaskList.result,
+    ...migratedMigratedMigratedMigratedMigratedTaskList.query,
+    ...migratedMigratedMigratedMigratedMigratedTaskList,
+  };
+
+  const migratedMigratedMigratedTaskList = {
+    ...migratedMigratedMigratedMigratedTaskList.result,
+    ...migratedMigratedMigratedMigratedTaskList.query,
+    ...migratedMigratedMigratedMigratedTaskList,
+  };
+
+  const migratedMigratedTaskList = {
+    ...migratedMigratedMigratedTaskList.result,
+    ...migratedMigratedMigratedTaskList.query,
+    ...migratedMigratedMigratedTaskList,
+  };
+
+  const migratedTaskList = {
+    ...migratedMigratedTaskList.result,
+    ...migratedMigratedTaskList.query,
+    ...migratedMigratedTaskList,
+  };
+
+  const taskList = {
+    ...migratedTaskList.result,
+    ...migratedTaskList.query,
+    ...migratedTaskList,
+  };
 
   const labelIds =
     taskList.data?.data.map((item) => item.label).filter(Boolean) ?? [];
@@ -19,22 +56,22 @@ export const Dashboard = () => {
   const statusIds =
     taskList.data?.data.map((item) => item.status).filter(Boolean) ?? [];
 
-  const { data: labels } = useMany<ILabel>({
+  const { result: labels } = useMany<ILabel>({
     resource: "label",
     ids: labelIds || [],
   });
 
-  const { data: priority } = useMany<IPriority>({
+  const { result: priority } = useMany<IPriority>({
     resource: "priority",
     ids: priorityIds || [],
   });
 
-  const { data: assigned } = useMany<IAuthUser>({
+  const { result: assigned } = useMany<IAuthUser>({
     resource: "users",
     ids: assignedIds || [],
   });
 
-  const { data: status } = useMany<IStatus>({
+  const { result: status } = useMany<IStatus>({
     resource: "status",
     ids: statusIds || [],
   });

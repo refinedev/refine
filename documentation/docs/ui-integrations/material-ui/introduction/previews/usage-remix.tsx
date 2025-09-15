@@ -157,18 +157,18 @@ export default function App() {
 `.trim();
 
 const ProtectedTsxCode = /* jsx */ `
-import { ThemedLayoutV2 } from "@refinedev/mui";
+import { ThemedLayout } from "@refinedev/mui";
 import { Outlet } from "@remix-run/react";
 import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 
 import authProvider from "../auth-provider";
 
 export default function AuthenticatedLayout() {
-    // \`<ThemedLayoutV2>\` is only applied to the authenticated users
+    // \`<ThemedLayout>\` is only applied to the authenticated users
     return (
-        <ThemedLayoutV2>
+        <ThemedLayout>
             <Outlet />
-        </ThemedLayoutV2>
+        </ThemedLayout>
     );
 }
 
@@ -283,10 +283,8 @@ import Typography from "@mui/material/Typography";
 import Stack from "@mui/material/Stack";
 
 export default function ProductShow() {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
-
-  const record = data?.data;
+  const { result: product, query } = useShow();
+  const { data, isLoading } = query;
 
   return (
     <Show isLoading={isLoading}>
@@ -294,23 +292,23 @@ export default function ProductShow() {
         <Typography variant="body1" fontWeight="bold">
             Id
         </Typography>
-        <NumberField value={record?.id ?? ""} />
+        <NumberField value={product?.id ?? ""} />
         <Typography variant="body1" fontWeight="bold">
             Name
         </Typography>
-        <TextField value={record?.name} />
+        <TextField value={product?.name} />
         <Typography variant="body1" fontWeight="bold">
             Material
         </Typography>
-        <TextField value={record?.material} />
+        <TextField value={product?.material} />
         <Typography variant="body1" fontWeight="bold">
             Description
         </Typography>
-        <MarkdownField value={record?.description} />
+        <MarkdownField value={product?.description} />
         <Typography variant="body1" fontWeight="bold">
             Price
         </Typography>
-        <TextField value={record?.price} />
+        <TextField value={product?.price} />
       </Stack>
     </Show>
   );
@@ -330,7 +328,7 @@ import { Controller } from "react-hook-form";
 export default function ProductEdit() {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -413,7 +411,7 @@ import { Controller } from "react-hook-form";
 export default function ProductCreate() {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },

@@ -148,7 +148,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
   AuthPage,
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -180,9 +180,9 @@ const App = () => {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -236,7 +236,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
   AuthPage,
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -269,9 +269,9 @@ const App = () => {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -342,7 +342,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
   AuthPage,
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -376,9 +376,9 @@ const App = () => {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -453,7 +453,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
   AuthPage,
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -486,9 +486,9 @@ const App = () => {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -567,7 +567,7 @@ import dataProvider from "@refinedev/simple-rest";
 
 import {
   AuthPage,
-  ThemedLayoutV2,
+  ThemedLayout,
   RefineThemes,
   RefineSnackbarProvider,
 } from "@refinedev/mui";
@@ -600,9 +600,9 @@ const App = () => {
               <Route
                 element={
                   <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -920,7 +920,7 @@ const MyLoginPage = () => {
     <AuthPage
       type="login"
       title={
-        <ThemedTitleV2
+        <ThemedTitle
           title="My Title"
           icon={<img src="https://refine.dev/img/logo.png" />}
         />

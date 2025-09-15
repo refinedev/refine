@@ -10,15 +10,16 @@ export default function BlogPostShow() {
   const { data, isLoading } = query;
   const record = data?.data;
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne<Category>(
-    {
-      resource: "categories",
-      id: record?.category?.id || "",
-      queryOptions: {
-        enabled: !!record,
-      },
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useOne<Category>({
+    resource: "categories",
+    id: record?.category?.id || "",
+    queryOptions: {
+      enabled: !!record,
     },
-  );
+  });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -31,34 +32,26 @@ export default function BlogPostShow() {
         ← Go to list
       </Link>
       <br />
-
       <div>
         <h5>{t("ID")}</h5>
         <div>{record?.id}</div>
       </div>
-
       <div>
         <h5>{t("blog_posts.fields.title")}</h5>
         <div>{record?.title}</div>
       </div>
-
       <div>
         <h5>{t("blog_posts.fields.content")}</h5>
         <div>{record?.content}</div>
       </div>
-
       <div>
         <h5>{t("blog_posts.fields.category")}</h5>
-        <div>
-          {categoryIsLoading ? "Loading..." : categoryData?.data?.title}
-        </div>
+        <div>{categoryIsLoading ? "Loading..." : categoryData?.title}</div>
       </div>
-
       <div>
         <h5>{t("blog_posts.fields.status.title")}</h5>
         <div>{record?.status}</div>
       </div>
-
       <div>
         <h5>{t("blog_posts.fields.createdAt")}</h5>
         <div>

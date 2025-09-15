@@ -48,7 +48,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { Refine } from "@refinedev/core";
-import { ErrorComponent, RefineThemes, ThemedLayoutV2 } from "@refinedev/mui";
+import { ErrorComponent, RefineThemes, ThemedLayout } from "@refinedev/mui";
 import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
 
@@ -84,9 +84,9 @@ export default function App() {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="/my-products" element={<ProductList />} />

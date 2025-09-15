@@ -3,7 +3,14 @@ import { MockJSONServer, TestWrapper, waitFor, renderHook, act } from "@test";
 
 describe("useModalForm hook", () => {
   it("should `meta[syncWithLocationKey]` overrided by default", async () => {
-    const mockGetOne = jest.fn();
+    const mockGetOne = jest.fn().mockResolvedValue({
+      data: {
+        id: "5",
+        title: "Test Post",
+        content: "Test content",
+        status: "active",
+      },
+    });
     const mockUpdate = jest.fn();
 
     const { result } = renderHook(
@@ -34,8 +41,8 @@ describe("useModalForm hook", () => {
     await waitFor(() => expect(result.current.modal.visible).toBe(true));
 
     await waitFor(() => {
-      expect(mockGetOne).toBeCalledTimes(1);
-      expect(mockGetOne).toBeCalledWith(
+      expect(mockGetOne).toHaveBeenCalledTimes(1);
+      expect(mockGetOne).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             "modal-posts-edit": undefined,

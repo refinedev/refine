@@ -42,7 +42,7 @@ import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
-import { RefineThemes, ThemedLayoutV2, notificationProvider } from "@refinedev/chakra-ui";
+import { RefineThemes, ThemedLayout, notificationProvider } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 function App({ Component, pageProps }: AppProps) {
@@ -59,9 +59,9 @@ function App({ Component, pageProps }: AppProps) {
                   },
               ]}
           >
-            <ThemedLayoutV2>
+            <ThemedLayout>
               <Component {...pageProps} />
-            </ThemedLayoutV2>
+            </ThemedLayout>
           </Refine>
         </ChakraProvider>
     );
@@ -124,9 +124,9 @@ export default function ProductList() {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -179,9 +179,9 @@ export default function ProductList() {
                 </Table>
             </TableContainer>
             <Pagination
-                current={current}
+                currentPage={currentPage}
                 pageCount={pageCount}
-                setCurrent={setCurrent}
+                setCurrentPage={setCurrentPage}
             />
         </List>
     );

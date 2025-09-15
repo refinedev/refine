@@ -133,7 +133,7 @@ const ListTsxCode = `
 import { useList, BaseKey } from "@refinedev/core";
 
 export const List: React.FC = () => {
-    const { data, isLoading, isError } = useList<IProduct>({
+    const { result, query } = useList<IProduct>({
         resource: "products",
         filters: [
             {
@@ -144,13 +144,13 @@ export const List: React.FC = () => {
         ]
     });
 
-    if (isLoading) {
+    if (query.isLoading) {
         return <div>Loading...</div>;
     }
 
     return (
         <ul>
-            {data?.data?.map((product) => (
+            {result?.data?.map((product) => (
                 <li key={product.id}>
                     {product.name}
                 </li>
@@ -170,7 +170,7 @@ const ShowTsxCode = `
 import { useShow, BaseKey } from "@refinedev/core";
 
 export const Show: React.FC = () => {
-    const { query: { data, isLoading, isError } } = useShow<IProduct>({
+    const { result, query: { isLoading } } = useShow<IProduct>({
     });
 
     if (isLoading) {
@@ -179,9 +179,9 @@ export const Show: React.FC = () => {
 
     return (
         <div>
-            <h1>{data?.data?.name}</h1>
-            <p>Material: {data?.data?.material}</p>
-            <small>ID: {data?.data?.id}</small>
+            <h1>{result?.name}</h1>
+            <p>Material: {result?.material}</p>
+            <small>ID: {result?.id}</small>
         </div>
     );
 };

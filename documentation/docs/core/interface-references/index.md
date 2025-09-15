@@ -391,7 +391,7 @@ type ResourceAuditLogPermissions = "create" | "update" | "delete" | string;
 
 ```tsx
 type SyncWithLocationParams = {
-  pagination: { current?: number; pageSize?: number };
+  pagination: { currentPage?: number; pageSize?: number };
   sorters: CrudSorting;
   filters: CrudFilters;
 };

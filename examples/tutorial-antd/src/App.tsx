@@ -7,13 +7,14 @@ import routerProvider, {
 } from "@refinedev/react-router";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import { ConfigProvider, App as AntdApp } from "antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { BlogPostList } from "./pages/blog-posts/list";
@@ -48,7 +49,7 @@ function App() {
               warnWhenUnsavedChanges: true,
             }}
           >
-            <ThemedLayoutV2>
+            <ThemedLayout>
               <Routes>
                 <Route
                   index
@@ -64,7 +65,7 @@ function App() {
 
                 <Route path="*" element={<ErrorComponent />} />
               </Routes>
-            </ThemedLayoutV2>
+            </ThemedLayout>
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
           </Refine>

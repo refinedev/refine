@@ -1,5 +1,55 @@
 # @refinedev/antd
 
+## 6.0.1
+
+### Patch Changes
+
+- [#6972](https://github.com/refinedev/refine/pull/6972) [`535707a5653045352ca2fcfa78fb45ebbb852b6a`](https://github.com/refinedev/refine/commit/535707a5653045352ca2fcfa78fb45ebbb852b6a) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - chore: dummy update
+
+## 6.0.0
+
+### Major Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: upgrade Ant Design integration for Refine 5.0
+
+  - Updated to latest Ant Design version with deprecated API cleanup and modernized components.
+  - Removed legacy components and restructured hooks and componetns for better developer experience.
+
+  > 🚨 Breaking changes require migration - check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
+### Patch Changes
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/ui-types@2.0.0
+  - @refinedev/core@5.0.0
+
+## 5.47.0
+
+### Minor Changes
+
+- [#6880](https://github.com/refinedev/refine/pull/6880) [`2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2`](https://github.com/refinedev/refine/commit/2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2) Thanks [@arndom](https://github.com/arndom)! - - Add `siderItemsAreCollapsed` prop to all `Sider` components to set default expanded/collapsed nested sider items.
+
+  - UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6721](https://github.com/refinedev/refine/issues/6721)
+
+### Patch Changes
+
+- [#6958](https://github.com/refinedev/refine/pull/6958) [`b447eb36f4e18da63493a1cbd7ad0792eea792e3`](https://github.com/refinedev/refine/commit/b447eb36f4e18da63493a1cbd7ad0792eea792e3) Thanks [@arndom](https://github.com/arndom)! - - Export `useDrawer`out of antd package.
+
+  [Resolves #6944](https://github.com/refinedev/refine/issues/6944)
+
+## 5.46.3
+
+### Patch Changes
+
+- [#6892](https://github.com/refinedev/refine/pull/6892) [`5c77cf157afdfa4406bb5832474a9d1637d5f033`](https://github.com/refinedev/refine/commit/5c77cf157afdfa4406bb5832474a9d1637d5f033) Thanks [@arndom](https://github.com/arndom)! - - Add `useDrawer` hook.
+
+  - Refactor `useDrawerForm` to use `useDrawer`.
+
+  [Resolves #6770](https://github.com/refinedev/refine/issues/6770)
+
 ## 5.46.2
 
 ### Patch Changes

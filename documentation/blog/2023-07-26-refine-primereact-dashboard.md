@@ -151,7 +151,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
     ```tsx title="src/App.tsx"
     import { ErrorComponent, Refine } from "@refinedev/core";
     import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-    import routerBindings, {
+    import routerProvider, {
       DocumentTitleHandler,
       UnsavedChangesNotifier,
     } from "@refinedev/react-router";
@@ -166,7 +166,7 @@ Previously, we mentioned that the scaffolded project includes auto-generated CRU
           <RefineKbarProvider>
             <Refine
               dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-              routerProvider={routerBindings}
+              routerProvider={routerProvider}
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
@@ -237,7 +237,7 @@ Now that we have the `<Dashboard />` component, let's import it in `src/App.tsx`
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
     DocumentTitleHandler,
     UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -262,7 +262,7 @@ function App() {
                     dataProvider={dataProvider(
                         "https://api.finefoods.refine.dev",
                     )}
-                    routerProvider={routerBindings}
+                    routerProvider={routerProvider}
                     {/*highlight-start*/}
                     resources={[
                         {
@@ -798,11 +798,11 @@ export const RecentSales = () => {
   const {
     tableQuery,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -873,7 +873,7 @@ export const RecentSales = () => {
         label="Clear"
         outlined
         onClick={() => {
-          setCurrent(1);
+          setCurrentPage(1);
           setFilters([], "replace");
         }}
       />
@@ -882,7 +882,7 @@ export const RecentSales = () => {
         <InputText
           value={getDefaultFilter("q", filters)}
           onChange={(e) => {
-            setCurrent(1);
+            setCurrentPage(1);
             setFilters([
               {
                 field: "q",
@@ -906,10 +906,10 @@ export const RecentSales = () => {
         paginator
         rows={pageSize}
         rowsPerPageOptions={[5, 10, 25, 50]}
-        first={current * pageSize - pageSize}
+        first={currentPage * pageSize - pageSize}
         totalRecords={pageCount * pageSize}
         onPage={(event) => {
-          setCurrent((event.page ?? 0) + 1);
+          setCurrentPage((event.page ?? 0) + 1);
           setPageSize(event.rows);
         }}
         onSort={(event) => {
@@ -1018,7 +1018,7 @@ Now that we have the dashboard, let's create the product CRUD pages. Before that
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -1040,7 +1040,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -1125,13 +1125,13 @@ const formatCurrency = (value: number) => {
 
 export const ProductList = () => {
   const {
-    tableQuery,
+    result,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -1139,9 +1139,9 @@ export const ProductList = () => {
   const { edit, show, create } = useNavigation();
   const { mutate: deleteProduct } = useDelete();
 
-  const products = tableQuery?.data?.data;
+  const products = result?.data;
 
-  const { data: categoryData } = useMany<ICategory>({
+  const { result: categoryData } = useMany<ICategory>({
     resource: "categories",
     ids: products?.map((item) => item?.category?.id) ?? [],
     queryOptions: {
@@ -1212,7 +1212,7 @@ export const ProductList = () => {
         label="Clear"
         outlined
         onClick={() => {
-          setCurrent(1);
+          setCurrentPage(1);
           setFilters([], "replace");
         }}
       />
@@ -1221,7 +1221,7 @@ export const ProductList = () => {
         <InputText
           value={getDefaultFilter("q", filters)}
           onChange={(e) => {
-            setCurrent(1);
+            setCurrentPage(1);
             setFilters([
               {
                 field: "q",
@@ -1258,10 +1258,10 @@ export const ProductList = () => {
         paginator
         rows={pageSize}
         rowsPerPageOptions={[5, 10, 25, 50]}
-        first={current * pageSize - pageSize}
+        first={currentPage * pageSize - pageSize}
         totalRecords={pageCount * pageSize}
         onPage={(event) => {
-          setCurrent((event.page ?? 0) + 1);
+          setCurrentPage((event.page ?? 0) + 1);
           setPageSize(event.rows);
         }}
         onSort={(event) => {
@@ -1331,7 +1331,7 @@ Next, import the `<ProductList />` component in `src/App.tsx` and add a route fo
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -1357,7 +1357,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -1685,7 +1685,7 @@ export const ProductEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     handleSubmit,
     control,
     formState: { errors },
@@ -1727,7 +1727,7 @@ export const ProductEdit = () => {
             label="Refresh"
             icon="pi pi-refresh"
             outlined
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           />
         </div>
       }
@@ -1925,10 +1925,9 @@ import { ICategory, IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<IProduct>();
-  const product = queryResult?.data?.data;
+  const { result: product } = useShow<IProduct>();
 
-  const { data: categoryData } = useOne<ICategory>({
+  const { result: categoryData } = useOne<ICategory>({
     resource: "categories",
     id: product?.category.id,
     queryOptions: {
@@ -2050,7 +2049,7 @@ Let's start by defining the "category" resource in `src/App.tsx` file as follows
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -2079,7 +2078,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -2165,11 +2164,11 @@ export const CategoryList = () => {
   const {
     tableQuery,
     pageCount,
-    current,
+    currentPage,
     pageSize,
     sorters,
     filters,
-    setCurrent,
+    setCurrentPage,
     setPageSize,
     setSorters,
     setFilters,
@@ -2234,7 +2233,7 @@ export const CategoryList = () => {
         label="Clear"
         outlined
         onClick={() => {
-          setCurrent(1);
+          setCurrentPage(1);
           setFilters([], "replace");
         }}
       />
@@ -2243,7 +2242,7 @@ export const CategoryList = () => {
         <InputText
           value={getDefaultFilter("q", filters)}
           onChange={(e) => {
-            setCurrent(1);
+            setCurrentPage(1);
             setFilters([
               {
                 field: "q",
@@ -2280,10 +2279,10 @@ export const CategoryList = () => {
         paginator
         rows={pageSize}
         rowsPerPageOptions={[5, 10, 25, 50]}
-        first={current * pageSize - pageSize}
+        first={currentPage * pageSize - pageSize}
         totalRecords={pageCount * pageSize}
         onPage={(event) => {
-          setCurrent((event.page ?? 0) + 1);
+          setCurrentPage((event.page ?? 0) + 1);
           setPageSize(event.rows);
         }}
         onSort={(event) => {
@@ -2436,7 +2435,7 @@ export const CategoryEdit = () => {
   const goBack = useBack();
 
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     handleSubmit,
     control,
     formState: { errors },
@@ -2473,7 +2472,7 @@ export const CategoryEdit = () => {
             label="Refresh"
             icon="pi pi-refresh"
             outlined
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           />
         </div>
       }
@@ -2528,8 +2527,7 @@ import { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const goBack = useBack();
 
-  const { queryResult } = useShow<ICategory>();
-  const category = queryResult?.data?.data;
+  const { result: category } = useShow<ICategory>();
 
   return (
     <Card
@@ -2576,7 +2574,7 @@ Next, import the category CRUD pages in `src/App.tsx` and add routes for renderi
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -2613,7 +2611,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -2700,7 +2698,7 @@ Additionally, we'll add `meta` property to the resources to render icons in the 
 ```tsx title="src/App.tsx"
 import { ErrorComponent, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -2739,7 +2737,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",

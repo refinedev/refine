@@ -128,7 +128,7 @@ const MenuItem = ({
 };
 
 const RequestMenuItem = (props: MenuItemProps) => {
-  const { data: timeOffsData } = useList({
+  const { result: timeOffsData } = useList({
     resource: "time-offs",
     pagination: {
       // we need only the count of pending time-offs to show in the badge

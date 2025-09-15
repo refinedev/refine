@@ -5,11 +5,7 @@ import {
   useMutation,
 } from "@tanstack/react-query";
 
-import {
-  handleMultiple,
-  pickDataProvider,
-  pickNotDeprecated,
-} from "@definitions";
+import { handleMultiple, pickDataProvider } from "@definitions";
 import {
   useDataProvider,
   useHandleNotification,
@@ -19,7 +15,7 @@ import {
   useMeta,
   usePublish,
   useRefineContext,
-  useResource,
+  useResourceParams,
   useTranslate,
 } from "@hooks";
 
@@ -42,7 +38,6 @@ export type UseCreateManyParams<TData, TError, TVariables> = {
   resource?: string;
   values?: TVariables[];
   meta?: MetaQuery;
-  metaData?: MetaQuery;
   dataProviderName?: string;
   invalidates?: Array<keyof IQueryKeys>;
 } & SuccessErrorNotification<CreateManyResponse<TData>, TError, TVariables[]>;
@@ -97,7 +92,6 @@ export const useCreateMany = <
   successNotification: successNotificationFromProps,
   errorNotification: errorNotificationFromProps,
   meta: metaFromProps,
-  metaData: metaDataFromProps,
   invalidates: invalidatesFromProps,
   mutationOptions,
   overtimeOptions,
@@ -108,7 +102,7 @@ export const useCreateMany = <
 > &
   UseLoadingOvertimeReturnType => {
   const dataProvider = useDataProvider();
-  const { resources, select } = useResource();
+  const { resources, select } = useResourceParams();
   const translate = useTranslate();
   const publish = usePublish();
   const handleNotification = useHandleNotification();
@@ -118,7 +112,7 @@ export const useCreateMany = <
   const {
     options: { textTransformers },
   } = useRefineContext();
-  const { keys, preferLegacyKeys } = useKeys();
+  const { keys } = useKeys();
 
   const mutationResult = useMutation<
     CreateManyResponse<TData>,
@@ -129,7 +123,6 @@ export const useCreateMany = <
       resource: resourceName = resourceFromProps,
       values = valuesFromProps,
       meta = metaFromProps,
-      metaData = metaDataFromProps,
       dataProviderName = dataProviderNameFromProps,
     }: UseCreateManyParams<TData, TError, TVariables>) => {
       if (!values) throw missingValuesError;
@@ -139,7 +132,7 @@ export const useCreateMany = <
 
       const combinedMeta = getMeta({
         resource,
-        meta: pickNotDeprecated(meta, metaData),
+        meta,
       });
 
       const selectedDataProvider = dataProvider(
@@ -151,7 +144,6 @@ export const useCreateMany = <
           resource: resource.name,
           variables: values,
           meta: combinedMeta,
-          metaData: combinedMeta,
         });
       }
       return handleMultiple(
@@ -160,7 +152,6 @@ export const useCreateMany = <
             resource: resource.name,
             variables: val,
             meta: combinedMeta,
-            metaData: combinedMeta,
           }),
         ),
       );
@@ -173,7 +164,6 @@ export const useCreateMany = <
         invalidates = invalidatesFromProps ?? ["list", "many"],
         values = valuesFromProps,
         meta = metaFromProps,
-        metaData = metaDataFromProps,
       } = variables;
       if (!values) throw missingValuesError;
       if (!resourceName) throw missingResourceError;
@@ -189,7 +179,7 @@ export const useCreateMany = <
 
       const combinedMeta = getMeta({
         resource,
-        meta: pickNotDeprecated(meta, metaData),
+        meta,
       });
 
       const notificationConfig =
@@ -283,18 +273,18 @@ export const useCreateMany = <
 
       mutationOptions?.onError?.(err, variables, context);
     },
-    mutationKey: keys().data().mutation("createMany").get(preferLegacyKeys),
+    mutationKey: keys().data().mutation("createMany").get(),
     ...mutationOptions,
     meta: {
       ...mutationOptions?.meta,
-      ...getXRay("useCreateMany", preferLegacyKeys),
+      ...getXRay("useCreateMany"),
     },
   });
-  const { mutate, mutateAsync, ...mutation } = mutationResult;
+  const { mutate, mutateAsync } = mutationResult;
 
   const { elapsedTime } = useLoadingOvertime({
     ...overtimeOptions,
-    isLoading: mutation.isLoading,
+    isLoading: mutationResult.isPending,
   });
 
   // this function is used to make the `variables` parameter optional
@@ -324,7 +314,7 @@ export const useCreateMany = <
   };
 
   return {
-    ...mutation,
+    mutation: mutationResult,
     mutate: handleMutation,
     mutateAsync: handleMutateAsync,
     overtime: { elapsedTime },

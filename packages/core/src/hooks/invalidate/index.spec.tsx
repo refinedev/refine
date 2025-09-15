@@ -1,4 +1,12 @@
-import * as ReactQuery from "@tanstack/react-query";
+// Mock the useQueryClient hook before imports
+const mockInvalidateQueries = jest.fn();
+jest.mock("@tanstack/react-query", () => ({
+  ...jest.requireActual("@tanstack/react-query"),
+  useQueryClient: () => ({
+    invalidateQueries: mockInvalidateQueries,
+  }),
+}));
+
 import { renderHook } from "@testing-library/react";
 
 import { TestWrapper } from "@test";
@@ -7,17 +15,11 @@ import { useInvalidate } from ".";
 import type { IQueryKeys } from "../../contexts/data/types";
 
 describe("useInvalidate", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   it("with empty invalidations array", async () => {
-    const dispatch = jest.fn();
-    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-    useReducerSpy.mockImplementation(
-      () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
-    );
-
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
     });
@@ -29,20 +31,10 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(dispatch).not.toBeCalled();
+    expect(mockInvalidateQueries).not.toHaveBeenCalled();
   });
 
   it("with false invalidation", async () => {
-    const dispatch = jest.fn();
-    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-    useReducerSpy.mockImplementation(
-      () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
-    );
-
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
     });
@@ -54,20 +46,10 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(dispatch).not.toBeCalled();
+    expect(mockInvalidateQueries).not.toHaveBeenCalled();
   });
 
   it("with list invalidation", async () => {
-    const dispatch = jest.fn();
-    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-    useReducerSpy.mockImplementation(
-      () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
-    );
-
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
     });
@@ -78,24 +60,14 @@ describe("useInvalidate", () => {
       dataProviderName: "rest",
     });
 
-    expect(dispatch).toBeCalledWith(
-      ["rest", "posts", "list"],
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "list"],
+      }),
     );
   });
 
   it("with detail invalidation", async () => {
-    const dispatch = jest.fn();
-    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-    useReducerSpy.mockImplementation(
-      () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
-    );
-
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
     });
@@ -107,30 +79,20 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(dispatch).toHaveBeenCalledWith(
-      expect.arrayContaining(["rest", "posts", "list"]),
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "list"],
+      }),
     );
 
-    expect(dispatch).toHaveBeenCalledWith(
-      expect.arrayContaining(["rest", "posts", "detail", "1"]),
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "one", "1"],
+      }),
     );
   });
 
   it("with 'all' invalidation", async () => {
-    const dispatch = jest.fn();
-    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-    useReducerSpy.mockImplementation(
-      () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
-    );
-
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
     });
@@ -142,44 +104,29 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(dispatch).toBeCalledWith(
-      expect.arrayContaining(["rest", "posts", "detail", "1"]),
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "one", "1"],
+      }),
     );
-    expect(dispatch).toBeCalledWith(
-      expect.arrayContaining(["rest"]),
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest"],
+      }),
     );
-    expect(dispatch).toBeCalledWith(
-      expect.arrayContaining(["rest", "posts"]),
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "list"],
+      }),
     );
-    expect(dispatch).toBeCalledWith(
-      expect.arrayContaining(["rest", "posts", "list"]),
-      expect.anything(),
-      expect.anything(),
-    );
-    expect(dispatch).toBeCalledWith(
-      expect.arrayContaining(["rest", "posts", "getMany"]),
-      expect.anything(),
-      expect.anything(),
+    expect(mockInvalidateQueries).toHaveBeenCalledWith(
+      expect.objectContaining({
+        queryKey: ["data", "rest", "posts", "many"],
+      }),
     );
   });
 
   it("with 'wrong invalidate key' ", async () => {
-    const dispatch = jest.fn();
-    const useReducerSpy = jest.spyOn(ReactQuery, "useQueryClient");
-
-    useReducerSpy.mockImplementation(
-      () =>
-        ({
-          invalidateQueries: dispatch,
-        }) as any,
-    );
-
     const { result } = renderHook(() => useInvalidate(), {
       wrapper: TestWrapper({}),
     });
@@ -191,6 +138,6 @@ describe("useInvalidate", () => {
       id: "1",
     });
 
-    expect(dispatch).not.toBeCalled();
+    expect(mockInvalidateQueries).not.toHaveBeenCalled();
   });
 });

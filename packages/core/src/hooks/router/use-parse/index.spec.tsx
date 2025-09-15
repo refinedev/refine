@@ -24,7 +24,7 @@ describe("useParse Hook", () => {
 
     result.current();
 
-    expect(mockParse).toBeCalledTimes(1);
+    expect(mockParse).toHaveBeenCalledTimes(1);
   });
 
   it("if routerProvider parse function is not defined, should return empty object", () => {

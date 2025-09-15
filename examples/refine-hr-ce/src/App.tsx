@@ -92,7 +92,6 @@ const App: React.FC = () => {
               },
               syncWithLocation: true,
               warnWhenUnsavedChanges: true,
-              useNewQueryKeys: true,
             }}
           >
             <Routes>

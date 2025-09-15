@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import "@testing-library/jest-dom/extend-expect";
+import "@testing-library/react";
 import * as util from "util";
 
 jest.setTimeout(30000);

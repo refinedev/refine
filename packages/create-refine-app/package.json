@@ -1,6 +1,6 @@
 {
   "name": "create-refine-app",
-  "version": "1.12.9",
+  "version": "1.12.11",
   "private": false,
   "description": "Create Refine App, a scaffold tool for rapidly starting Refine applications.",
   "license": "MIT",
@@ -26,7 +26,7 @@
     "ora": "^5.4.1",
     "prompts": "2.1.0",
     "rimraf": "3.0.2",
-    "superplate-cli": "^1.20.0",
+    "superplate-cli": "^1.20.1",
     "tar": "^6.2.0",
     "tslib": "^2.6.2",
     "which-pm-runs": "^1.1.0"
@@ -34,14 +34,18 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "@types/prompts": "2.0.1",
     "@types/rimraf": "3.0.0",
     "@types/tar": "^6.1.11",
     "@types/which-pm-runs": "^1.0.0",
-    "jest": "^29.3.1",
+    "jest": "^30.0.5",
     "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

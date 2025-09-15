@@ -2,7 +2,7 @@ import React from "react";
 import "./index.css";
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
@@ -25,7 +25,7 @@ function App() {
       <GitHubBanner />
       <Refine
         dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
         resources={[
           {
             name: "posts",

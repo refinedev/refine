@@ -45,8 +45,8 @@ describe("Cancel Notification", () => {
       },
     );
 
-    expect(openMock).toBeCalledTimes(1);
-    expect(openMock).toBeCalledWith({
+    expect(openMock).toHaveBeenCalledTimes(1);
+    expect(openMock).toHaveBeenCalledWith({
       cancelMutation: cancelMutation,
       key: "1-posts-notification",
       message: "You have 5 seconds to undo",
@@ -56,8 +56,8 @@ describe("Cancel Notification", () => {
 
     jest.runAllTimers();
 
-    expect(notificationDispatch).toBeCalledTimes(1);
-    expect(notificationDispatch).toBeCalledWith({
+    expect(notificationDispatch).toHaveBeenCalledTimes(1);
+    expect(notificationDispatch).toHaveBeenCalledWith({
       payload: {
         id: "1",
         resource: "posts",
@@ -74,6 +74,6 @@ describe("Cancel Notification", () => {
     mockNotification.seconds = 0;
     render(<UndoableQueue notification={mockNotification} />);
 
-    expect(doMutation).toBeCalledTimes(1);
+    expect(doMutation).toHaveBeenCalledTimes(1);
   });
 });

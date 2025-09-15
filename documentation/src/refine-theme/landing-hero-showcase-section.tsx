@@ -313,7 +313,7 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
           code: `
                                 import { useList } from "@refinedev/core";
 
-                                const { data: { total } } = useList({
+                                const { result: { total } } = useList({
                                     resource: "companies"
                                 });
                                 `,
@@ -351,7 +351,7 @@ const ShowcaseCRM = ({ className }: { className?: string }) => {
           code: `
                     import { useList } from "@refinedev/core";
 
-                    const { data } = useList({
+                    const { result: { data } } = useList({
                         resource: "events",
                         sorters: [
                             { field: "start_date", order: "asc" },
@@ -429,7 +429,7 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
           code: `
                                 import { useList } from "@refinedev/core";
 
-                                const { data } = useList({
+                                const { result: { data } } = useList({
                                     resource: "notifications",
                                     liveMode: "auto",
                                     filters: [
@@ -484,10 +484,10 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
           code: `
                         import { useList } from "@refinedev/core";
 
-                        const { data } = useList({
+                        const { result: { data } } = useList({
                           resource: "polls",
                           filters: [{ field: "status", operator: "eq", value: "active" }],
-                          pagination: { current: 1, pageSize: 1 },
+                          pagination: { currentPage: 1, pageSize: 1 },
                           liveMode: "auto",
                         });
                                 `,
@@ -522,7 +522,7 @@ const ShowcaseHR = ({ className }: { className?: string }) => {
                   
                     const { data: { employeeId } } = useGetIdentity();
                   
-                    const { data } = useList({
+                    const { result: { data } } = useList({
                       resource: "time-offs", 
                       pagination: { current: 1, pageSize: 1 },
                       filters: [
@@ -605,9 +605,9 @@ const ShowcaseECommerce = ({ className }: { className?: string }) => {
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/finefoods/actions-2.png",
           codePosition: "left",
           code: `
-                    import { useResource, useUpdate } from "@refinedev/core";
+                    import { useResourceParams, useUpdate } from "@refinedev/core";
 
-                    const { id }  = useResource();
+                    const { id }  = useResourceParams();
                     const { mutate } = useUpdate();
 
                     const onReject = () => mutate({
@@ -706,9 +706,9 @@ const ShowcaseDevOps = ({ className }: { className?: string }) => {
             "https://refine.ams3.cdn.digitaloceanspaces.com/website/static/showcase-images/devops/actions.png",
           codePosition: "left",
           code: `
-                        import { useDelete, useResource } from "@refinedev/core";
+                        import { useDelete, useResourceParams } from "@refinedev/core";
 
-                        const { id } = useResource();
+                        const { id } = useResourceParams();
                         const { mutate } = useDelete();
 
                         const onDelete = () => {

@@ -72,7 +72,7 @@ import React from "react";
 import { Refine, useMany } from "@refinedev/core";
 import { ThemedLayoutV2 } from "@refinedev/mui";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import CssBaseline from "@mui/material/CssBaseline";
@@ -83,7 +83,7 @@ export default function App() {
       <CssBaseline />
       <Refine
         dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
         resources={[
           {
             name: "products",

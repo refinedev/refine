@@ -77,7 +77,7 @@ import {
   useNotificationProvider,
 } from "@refinedev/chakra-ui";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
 
 import { ProductList } from "./pages/products/list";
@@ -87,7 +87,7 @@ export default function App() {
     <BrowserRouter>
       <ChakraProvider theme={RefineThemes.Blue}>
         <Refine
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           notificationProvider={useNotificationProvider()}
           resources={[

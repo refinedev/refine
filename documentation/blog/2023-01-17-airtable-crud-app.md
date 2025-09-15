@@ -16,6 +16,7 @@ Before the existence of **Refine**, building CRUD applications and data-intensiv
 
 Steps we'll cover:
 
+- [Introduction](#introduction)
 - [Why Use Refine?](#why-use-refine)
 - [What is Airtable?](#what-is-airtable)
   - [Setup Airtable](#setup-airtable)
@@ -29,6 +30,8 @@ Steps we'll cover:
   - [Editing post record](#editing-post-record)
   - [Deleting post record](#deleting-post-record)
   - [Adding Pagination](#adding-pagination)
+- [Conclusion](#conclusion)
+- [Live CodeSandbox Example](#live-codesandbox-example)
 
 ## Why Use Refine?
 
@@ -241,7 +244,7 @@ import { GitHubBanner, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 import dataProvider from "@refinedev/airtable";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -258,7 +261,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
@@ -379,7 +382,7 @@ You can simply copy and paste the code below into the `App.tsx` file:
 ```tsx title="src/App.tsx"
 import { Refine, ErrorComponent } from "@refinedev/core";
 import dataProvider from "@refinedev/airtable";
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -401,7 +404,7 @@ function App() {
     <BrowserRouter>
       <Refine
         dataProvider={dataProvider(API_TOKEN, BASE_ID)}
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
         resources={[
           {
             name: "posts",
@@ -683,14 +686,12 @@ export const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
-      tableQuery: { data: tableData },
-    },
+    refineCore: { result },
   } = useTable<IPost>({ columns });
 
-  const categoryIds = tableData?.data?.map((item) => item.category?.[0]) ?? [];
+  const categoryIds = result?.data?.map((item) => item.category?.[0]) ?? [];
 
-  const { data: categoriesData } = useMany<ICategory>({
+  const { result: categoriesData } = useMany<ICategory>({
     resource: "category",
     ids: categoryIds,
     queryOptions: {
@@ -801,13 +802,11 @@ import { useSelect, useShow } from "@refinedev/core";
 import { IPost } from "../../interfaces/post";
 
 export const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data } = queryResult;
-  const record = data?.data;
+  const { result } = useShow<IPost>();
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.[0],
+    defaultValue: result?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
   });
@@ -896,7 +895,7 @@ We also used the `useSelect()` hook to map the category fields on the record to 
 ```ts
 const { options } = useSelect({
   resource: "category",
-  defaultValue: queryResult?.data?.data?.category?.[0],
+  defaultValue: query?.data?.data?.category?.[0],
   optionLabel: "name",
   optionValue: "id",
 });
@@ -974,7 +973,7 @@ import React from "react";
 
 export const PostCreate: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -982,7 +981,7 @@ export const PostCreate: React.FC = () => {
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.[0],
+    defaultValue: query?.data?.data?.category?.[0],
     optionLabel: "name",
     optionValue: "id",
   });
@@ -1159,7 +1158,7 @@ import React, { useEffect } from "react";
 
 export const PostEdit: React.FC = () => {
   const {
-    refineCore: { onFinish, formLoading, queryResult },
+    refineCore: { onFinish, formLoading, query },
     register,
     handleSubmit,
     resetField,
@@ -1168,7 +1167,7 @@ export const PostEdit: React.FC = () => {
 
   const { options } = useSelect({
     resource: "category",
-    defaultValue: queryResult?.data?.data?.category?.id,
+    defaultValue: query?.data?.data?.category?.id,
     optionLabel: "name",
     optionValue: "id",
   });
@@ -1525,9 +1524,7 @@ export const PostList: React.FC = () => {
     getHeaderGroups,
     getRowModel,
     setOptions,
-    refineCore: {
-      tableQuery: { data: tableData },
-    },
+    refineCore: { result },
     getState,
     setPageIndex,
     getCanPreviousPage,
@@ -1539,9 +1536,9 @@ export const PostList: React.FC = () => {
   } = useTable<IPost>({ columns });
   // highlight-end
 
-  const categoryIds = tableData?.data?.map((item) => item.category?.[0]) ?? [];
+  const categoryIds = result?.data?.map((item) => item.category?.[0]) ?? [];
 
-  const { data: categoriesData } = useMany<ICategory>({
+  const { result: categoriesData } = useMany<ICategory>({
     resource: "category",
     ids: categoryIds,
     queryOptions: {

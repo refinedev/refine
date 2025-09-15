@@ -4,16 +4,11 @@ export type SiderRenderProps = {
   /**
    * menu items created depending on the `resources` defined in `<Refine>` component.
    */
-  items: JSX.Element[];
+  items: React.JSX.Element[];
   /**
    * logout button if you have `authProvider` defined and the current session is authenticated.
    */
   logout: React.ReactNode;
-  /**
-   * Dashboard menu item, if you have `DashboardPage` defined in `<Refine>` component.
-   * @deprecated This only works with legacy router providers. Please use `resources` array instead.
-   */
-  dashboard: React.ReactNode;
   /**
    * Whether the sider is collapsed or not.
    */
@@ -34,28 +29,6 @@ export type RefineLayoutTitleProps = TitleProps;
 
 export type RefineLayoutLayoutProps = LayoutProps;
 
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export type RefineThemedLayoutProps = RefineLayoutLayoutProps;
-
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
-  isSiderOpen?: boolean;
-  onToggleSiderClick?: (isOpen?: boolean) => void;
-};
-
-/**
- * @deprecated It is recommended to use the improved `ThemedLayoutV2`. Review migration guidelines. https://refine.dev/docs/api-reference/mui/components/mui-themed-layout/#migrate-themedlayout-to-themedlayoutv2
- */
-export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
-  isSiderOpen?: boolean;
-  onToggleSiderClick?: (isOpen?: boolean) => void;
-  toggleSiderIcon?: (open: boolean) => React.ReactNode;
-};
-
 export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
   /**
    *
@@ -75,7 +48,7 @@ export type RefineLayoutThemedTitleProps = RefineLayoutTitleProps & {
   wrapperStyles?: React.CSSProperties;
 };
 
-export type RefineThemedLayoutV2Props = {
+export type RefineThemedLayoutProps = {
   /**
    * Whether the sider is collapsed or not by default.
    */
@@ -86,14 +59,10 @@ export type RefineThemedLayoutV2Props = {
    */
   onSiderCollapsed?: (collapsed: boolean) => void;
 } & RefineLayoutLayoutProps;
-export type RefineThemedLayoutV2SiderProps = RefineLayoutSiderProps & {
+export type RefineThemedLayoutSiderProps = RefineLayoutSiderProps & {
   activeItemDisabled?: boolean;
+  siderItemsAreCollapsed?: boolean;
 };
-export type RefineThemedLayoutV2HeaderProps = RefineLayoutHeaderProps & {
-  /**
-   * Whether the header is sticky or not.
-   * @deprecated `isSticky` is deprecated. Please use `sticky` instead.
-   */
-  isSticky?: boolean;
+export type RefineThemedLayoutHeaderProps = RefineLayoutHeaderProps & {
   sticky?: boolean;
 };

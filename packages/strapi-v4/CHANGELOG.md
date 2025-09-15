@@ -1,5 +1,25 @@
 # @refinedev/strapi-v4
 
+## 7.0.0
+
+### Patch Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix(test): update Jest assertions and configuration for v30 compatibility
+
+  - Updated test infrastructure with modern Jest API usage and improved configuration.
+  - Internal development dependency updates and tooling modernization - no public API changes.
+
+- Updated dependencies [[`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/core@5.0.0
+
+## 6.0.12
+
+### Patch Changes
+
+- [#6894](https://github.com/refinedev/refine/pull/6894) [`783a103d4212a3a7ad70477ae96f2fb79a692dd3`](https://github.com/refinedev/refine/commit/783a103d4212a3a7ad70477ae96f2fb79a692dd3) Thanks [@arndom](https://github.com/arndom)! - - Bump `axios` dependency to `^1.11.0` to fix critical vulnerability of `form-data@v4.0.0`
+
+  [Resolves #6888](https://github.com/refinedev/refine/issues/6888)
+
 ## 6.0.11
 
 ### Patch Changes

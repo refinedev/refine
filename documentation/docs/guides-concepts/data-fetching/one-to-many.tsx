@@ -109,13 +109,12 @@ import React from "react";
 import { useOne, useList, BaseKey } from "@refinedev/core";
 
 export const Product: React.FC = () => {
-    const { data: productData, isLoading: productLoading } = useOne<IProduct>({
+    const { result: product, query: { isLoading: productLoading } } = useOne<IProduct>({
         resource: "products",
         id: 123,
     });
-    const product = productData?.data;
 
-    const { data: reviewsData, isLoading: reviewsLoading } =
+    const { result: reviewResult, query: { isLoading: reviewsLoading } } =
         useList<IProductReview>({
             resource: "product-reviews",
             filters: [{ field: "product.id", operator: "eq", value: product?.id }],
@@ -123,7 +122,7 @@ export const Product: React.FC = () => {
                 enabled: !!product,
             },
         });
-    const rewiews = reviewsData?.data;
+    const reviews = reviewResult?.data;
 
     const loading = productLoading || reviewsLoading;
 

@@ -62,17 +62,17 @@ describe("useNavigationButton", () => {
         {
           wrapper: TestWrapper({
             resources: [resource],
-            routerProvider: {
-              ...mockRouterProvider({
-                resource: resource,
-              }),
-              go: () => goMock,
-            },
+            routerProvider: mockRouterProvider({
+              resource: resource,
+              fns: {
+                go: () => goMock,
+              },
+            }),
           }),
         },
       );
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: resource[action].replace(":id", "123"),
         type: "path",
       });
@@ -140,7 +140,7 @@ describe("useNavigationButton", () => {
           },
         );
 
-        expect(goMock).not.toBeCalled();
+        expect(goMock).not.toHaveBeenCalled();
       });
     }
   });

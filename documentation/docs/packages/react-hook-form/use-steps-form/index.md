@@ -35,7 +35,7 @@ interface IPost {
 const stepTitlesShared = ["Title", "Status", "Category and content"];
 
 const PostList: React.FC = () => {
-  const { tableQuery } = useTable<IPost>({
+  const { result, tableQuery } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -47,9 +47,9 @@ const PostList: React.FC = () => {
   });
   const { edit, create } = useNavigation();
 
-  const categoryIds =
-    tableQuery?.data?.data.map((item) => item.category.id) ?? [];
-  const { data, isLoading } = useMany<ICategory>({
+  const categoryIds = result?.data.map((item) => item.category.id) ?? [];
+
+  const { result: categoryResult, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {
@@ -71,15 +71,16 @@ const PostList: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
               <td>
                 {isLoading
                   ? "Loading"
-                  : data?.data.find((item) => item.id == post.category.id)
-                      ?.title}
+                  : categoryResult?.data?.find(
+                      (item) => item.id == post.category.id,
+                    )?.title}
               </td>
               <td>{post.status}</td>
               <td>

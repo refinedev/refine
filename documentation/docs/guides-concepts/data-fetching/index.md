@@ -351,11 +351,15 @@ In this case, we can use the `useMany` hook to fetch the categories of a product
 ```tsx
 import { DataProvider, useMany } from "@refinedev/core";
 
-const { data: productCategories } = useList({
+const {
+  result: { data: productCategories },
+} = useList({
   resource: "productCategories",
 });
 
-const { data: products } = useMany({
+const {
+  result: { data: products },
+} = useMany({
   resource: "products",
   ids: productCategories.map((productCategory) => productCategory.productId),
   queryOptions: {
@@ -363,7 +367,9 @@ const { data: products } = useMany({
   },
 });
 
-const { data: categories } = useMany({
+const {
+  result: { data: categories },
+} = useMany({
   resource: "categories",
   ids: productCategories.map((productCategory) => productCategory.categoryId),
   queryOptions: {
