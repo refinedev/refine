@@ -170,7 +170,7 @@ describe("inferencer-headless", () => {
 
     cy.get("button").contains(">").click();
 
-    cy.url().should("include", "current=2");
+    cy.url().should("include", "currentPage=2");
 
     cy.wait("@getSecondPagePosts");
 
@@ -189,7 +189,7 @@ describe("inferencer-headless", () => {
 
     cy.get("button").contains("<").click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPagePosts");
   });

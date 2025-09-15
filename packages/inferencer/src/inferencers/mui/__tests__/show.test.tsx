@@ -11,8 +11,8 @@ describe("MuiShowInferencer", () => {
       resources: [
         {
           name: "posts",
-          list: () => <div>list</div>,
-          show: ShowInferencer,
+          list: "/posts",
+          show: "/posts/show/:id",
         },
         {
           name: "categories",

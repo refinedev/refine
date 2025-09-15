@@ -110,9 +110,9 @@ export const ProductList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
+      currentPage,
       tableQuery: { data: tableData },
     },
   } = useTable<IProduct>({
@@ -161,9 +161,9 @@ export const ProductList = () => {
         </Table>
       </TableContainer>
       <Pagination
-        current={current}
+        currentPage={currentPage}
         pageCount={pageCount}
-        setCurrent={setCurrent}
+        setCurrentPage={setCurrentPage}
       />
     </List>
   );
@@ -191,18 +191,18 @@ import { usePagination } from "@refinedev/chakra-ui";
 import { IconButton } from "@chakra-ui/react";
 
 type PaginationProps = {
-  current: number;
+  currentPage: number;
   pageCount: number;
-  setCurrent: (page: number) => void;
+  setCurrentPage: (page: number) => void;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({
-  current,
+  currentPage,
   pageCount,
-  setCurrent,
+  setCurrentPage,
 }) => {
   const pagination = usePagination({
-    current,
+    currentPage,
     pageCount,
   });
 
@@ -212,7 +212,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         {pagination?.prev && (
           <IconButton
             aria-label="previous page"
-            onClick={() => setCurrent(current - 1)}
+            onClick={() => setCurrentPage(currentPage - 1)}
             disabled={!pagination?.prev}
             variant="outline"
           >
@@ -226,8 +226,8 @@ export const Pagination: React.FC<PaginationProps> = ({
           return (
             <Button
               key={page}
-              onClick={() => setCurrent(page)}
-              variant={page === current ? "solid" : "outline"}
+              onClick={() => setCurrentPage(page)}
+              variant={page === currentPage ? "solid" : "outline"}
             >
               {page}
             </Button>
@@ -236,7 +236,7 @@ export const Pagination: React.FC<PaginationProps> = ({
         {pagination?.next && (
           <IconButton
             aria-label="next page"
-            onClick={() => setCurrent(current + 1)}
+            onClick={() => setCurrentPage(currentPage + 1)}
             variant="outline"
           >
             <IconChevronRight size="18" />
@@ -379,7 +379,7 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/ui-integrations/chakra-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayout />`](/docs/ui-integrations/chakra-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/chakra-ui/components/breadcrumb) component that uses the Chakra UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Chakra UI package automatically.
 
@@ -489,8 +489,8 @@ import {
 import { Heading } from "@chakra-ui/react";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (
@@ -565,7 +565,7 @@ const NotFoundPage = () => {
 
 ## Theming
 
-Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Chakra UI. All components and providers exported from the `@refinedev/chakra-ui` package will use the current theme of Chakra UI without any additional configuration.
+Since Refine offers application level components such as layout, sidebar and header and page level components for each action, it is important to have it working with the styling of Chakra UI. All components and providers exported from the `@refinedev/chakra-ui` package will use the currentPage theme of Chakra UI without any additional configuration.
 
 Additionally, Refine also provides a set of carefully crafted themes for Chakra UI which outputs a nice UI with Refine's components with light and dark theme support. These themes are exported as `RefineThemes` object from the `@refinedev/chakra-ui` package and can be used in [`<ChakraProvider />`](https://chakra-ui.com/getting-started) component of Chakra UI.
 

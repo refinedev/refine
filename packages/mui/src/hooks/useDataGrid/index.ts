@@ -1,7 +1,6 @@
 import {
   useUpdate,
   useLiveMode,
-  pickNotDeprecated,
   useTable as useTableCore,
   type BaseRecord,
   type CrudFilters,
@@ -128,15 +127,7 @@ export function useDataGrid<
   TData extends BaseRecord = TQueryFnData,
 >({
   onSearch: onSearchProp,
-  initialCurrent,
-  initialPageSize = 25,
-  pagination,
-  hasPagination = true,
-  initialSorter,
-  permanentSorter,
-  defaultSetFilterBehavior = "replace",
-  initialFilter,
-  permanentFilter,
+  pagination = { pageSize: 25 },
   filters: filtersFromProp,
   sorters: sortersFromProp,
   syncWithLocation: syncWithLocationProp,
@@ -148,7 +139,6 @@ export function useDataGrid<
   onLiveEvent,
   liveParams,
   meta,
-  metaData,
   dataProviderName,
   overtimeOptions,
   editable = false,
@@ -161,39 +151,32 @@ export function useDataGrid<
 > = {}): UseDataGridReturnType<TData, TError, TSearchVariables> {
   const liveMode = useLiveMode(liveModeFromProp);
 
-  const columnsTypes = useRef<Record<string, string>>();
+  const columnsTypes = useRef<Record<string, string>>({});
 
   const { identifier } = useResourceParams({ resource: resourceFromProp });
 
   const {
-    tableQueryResult,
     tableQuery,
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     filters,
     setFilters,
     sorters,
     setSorters,
-    sorter,
-    setSorter,
     pageCount,
     createLinkForSyncWithLocation,
     overtime,
+    result,
   } = useTableCore<TQueryFnData, TError, TData>({
-    permanentSorter,
-    permanentFilter,
-    initialCurrent,
-    initialPageSize,
-    pagination,
-    hasPagination,
-    initialSorter,
-    initialFilter,
-    filters: filtersFromProp,
+    pagination: {
+      ...pagination,
+      pageSize: pagination?.pageSize ?? 25,
+    },
+    filters: { ...filtersFromProp, defaultBehavior: "replace" },
     sorters: sortersFromProp,
     syncWithLocation: syncWithLocationProp,
-    defaultSetFilterBehavior,
     resource: resourceFromProp,
     successNotification,
     errorNotification,
@@ -201,15 +184,14 @@ export function useDataGrid<
     liveMode: liveModeFromProp,
     onLiveEvent,
     liveParams,
-    meta: pickNotDeprecated(meta, metaData),
-    metaData: pickNotDeprecated(meta, metaData),
+    meta,
     dataProviderName,
     overtimeOptions,
   });
 
   const [muiCrudFilters, setMuiCrudFilters] = useState<CrudFilters>(filters);
 
-  const { data, isFetched, isLoading } = tableQueryResult;
+  const { data, isFetched, isLoading } = tableQuery;
 
   const rowCountRef = useRef(data?.total || 0);
   const rowCount = useMemo(() => {
@@ -223,18 +205,14 @@ export function useDataGrid<
     (filtersFromProp?.mode || "server") === "server";
   const isServerSideSortingEnabled =
     (sortersFromProp?.mode || "server") === "server";
-  const hasPaginationString = hasPagination === false ? "off" : "server";
-  const isPaginationEnabled =
-    (pagination?.mode ?? hasPaginationString) !== "off";
+  const isPaginationEnabled = (pagination?.mode ?? "server") !== "off";
 
-  const preferredPermanentSorters =
-    pickNotDeprecated(sortersFromProp?.permanent, permanentSorter) ?? [];
-  const preferredPermanentFilters =
-    pickNotDeprecated(filtersFromProp?.permanent, permanentFilter) ?? [];
+  const preferredPermanentSorters = sortersFromProp?.permanent ?? [];
+  const preferredPermanentFilters = filtersFromProp?.permanent ?? [];
 
   const handlePageChange = (page: number) => {
     if (isPaginationEnabled) {
-      setCurrent(page + 1);
+      setCurrentPage(page + 1);
     }
   };
   const handlePageSizeChange = (pageSize: number) => {
@@ -253,7 +231,7 @@ export function useDataGrid<
     setMuiCrudFilters(crudFilters);
     setFilters(crudFilters.filter((f) => f.value !== ""));
     if (isPaginationEnabled) {
-      setCurrent(1);
+      setCurrentPage(1);
     }
   };
 
@@ -263,7 +241,7 @@ export function useDataGrid<
       setMuiCrudFilters(searchFilters);
       setFilters(searchFilters.filter((f) => f.value !== ""));
       if (isPaginationEnabled) {
-        setCurrent(1);
+        setCurrentPage(1);
       }
     }
   };
@@ -277,7 +255,7 @@ export function useDataGrid<
       return {
         paginationMode: "server" as const,
         paginationModel: {
-          page: current - 1,
+          page: currentPage - 1,
           pageSize,
         },
         onPaginationModelChange: (model) => {
@@ -317,7 +295,7 @@ export function useDataGrid<
           onError: (error) => {
             reject(error);
           },
-          onSuccess: (data) => {
+          onSuccess: () => {
             resolve(newRow);
           },
         },
@@ -326,7 +304,6 @@ export function useDataGrid<
   };
 
   return {
-    tableQueryResult,
     tableQuery,
     dataGridProps: {
       disableRowSelectionOnClick: true,
@@ -359,19 +336,18 @@ export function useDataGrid<
       },
       processRowUpdate: editable ? processRowUpdate : undefined,
     },
-    current,
-    setCurrent,
+    currentPage,
+    setCurrentPage,
     pageSize,
     setPageSize,
     pageCount,
     sorters,
     setSorters,
-    sorter,
-    setSorter,
     filters,
     setFilters,
     search,
     createLinkForSyncWithLocation,
     overtime,
+    result,
   };
 }

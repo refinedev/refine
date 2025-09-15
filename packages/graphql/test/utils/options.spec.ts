@@ -552,10 +552,10 @@ describe("defaultOptions.getList", () => {
       expect(result.sorting).toEqual(expectedSorters);
     });
 
-    it("should handle empty sort array correctly", () => {
+    it("should handle empty sorters array correctly", () => {
       const params: GetListParams = {
         resource: "blogPosts",
-        sort: [],
+        sorters: [],
       };
 
       const expectedSorters: CrudSort[] = [];
@@ -690,7 +690,7 @@ describe("defaultOptions.getList", () => {
       const params: GetListParams = {
         resource: "blogPosts",
         pagination: {
-          current: 2,
+          currentPage: 2,
           pageSize: 10,
         },
       };
@@ -709,7 +709,7 @@ describe("defaultOptions.getList", () => {
       const params: GetListParams = {
         resource: "blogPosts",
         pagination: {
-          current: 1,
+          currentPage: 1,
           pageSize: 20,
         },
       };

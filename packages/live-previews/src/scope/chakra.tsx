@@ -75,9 +75,6 @@ const RefineChakraDemo: React.FC<
         notificationProvider={RefineChakra.notificationProvider}
         options={{
           disableTelemetry: true,
-          reactQuery: {
-            devtoolConfig: false,
-          },
         }}
         {...rest}
       />
@@ -85,7 +82,7 @@ const RefineChakraDemo: React.FC<
   );
 };
 
-const ThemedTitleV2 = ({
+const ThemedTitle = ({
   collapsed,
   wrapperStyles,
   text: textFromProps,
@@ -143,7 +140,7 @@ const ThemedTitleV2 = ({
   }, []);
 
   return (
-    <RefineChakra.ThemedTitleV2
+    <RefineChakra.ThemedTitle
       collapsed={collapsed}
       wrapperStyles={wrapperStyles}
       text={title || textFromProps}
@@ -162,7 +159,7 @@ const AntdScope = {
   // RefineMantineDemo,
   RefineChakra: {
     ...RefineChakra,
-    ThemedTitleV2,
+    ThemedTitle,
   },
   RefineChakraDemo,
   ChakraUI: {

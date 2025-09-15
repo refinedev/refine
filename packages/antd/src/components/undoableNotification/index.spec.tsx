@@ -31,7 +31,7 @@ describe("Cancel Notification", () => {
     expect(button).toBeDefined();
     if (button) {
       fireEvent.click(button);
-      expect(cancelMutation).toBeCalledTimes(1);
+      expect(cancelMutation).toHaveBeenCalledTimes(1);
     }
   });
 

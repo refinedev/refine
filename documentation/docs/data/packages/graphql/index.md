@@ -257,11 +257,13 @@ import { useList } from "@refinedev/core";
 import { POSTS_LIST_QUERY } from "./queries";
 
 export const PostListPage () => {
-  const { data } = useList({
+  const { result } = useList({
     resource: "posts",
     // highlight-next-line
     meta: { gqlQuery: POSTS_LIST_QUERY },
   });
+
+  const data = result.data;
 
   return (
     <div>

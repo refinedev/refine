@@ -14,7 +14,6 @@ import type { BaseKey } from "@contexts/data/types";
 import * as warnOnce from "warn-once";
 
 const mockRefineProvider: IRefineContextProvider = {
-  hasDashboard: false,
   ...defaultRefineOptions,
   options: defaultRefineOptions,
 };
@@ -32,13 +31,39 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.isLoading).toBeTruthy();
+      expect(!result.current.query.isPending).toBeTruthy();
     });
 
-    const { status, data } = result.current;
+    const { status, data } = result.current.query;
+    const { result: manyResult } = result.current;
 
     expect(status).toBe("success");
     expect(data?.data.length).toBe(2);
+    expect(manyResult.data).toBeDefined();
+    expect(manyResult.data?.length).toBe(2);
+  });
+
+  it("should return result property with data", async () => {
+    const { result } = renderHook(
+      () => useMany({ resource: "posts", ids: ["1", "2"] }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: MockJSONServer,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(!result.current.query.isPending).toBeTruthy();
+    });
+
+    const { result: manyResult } = result.current;
+
+    expect(manyResult).toBeDefined();
+    expect(manyResult.data).toBeDefined();
+    expect(Array.isArray(manyResult.data)).toBeTruthy();
+    expect(manyResult.data?.length).toBe(2);
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
@@ -63,10 +88,10 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(getManyMock).toBeCalled();
+      expect(getManyMock).toHaveBeenCalled();
     });
 
-    expect(getManyMock).toBeCalledWith(
+    expect(getManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -106,13 +131,13 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.query.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -147,20 +172,22 @@ describe("useMany Hook", () => {
         );
 
         await waitFor(() => {
-          expect(!result.current.isLoading).toBeTruthy();
+          expect(!result.current.query.isPending).toBeTruthy();
         });
 
-        expect(onSubscribeMock).toBeCalled();
+        expect(onSubscribeMock).toHaveBeenCalled();
         expect(onSubscribeMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           callback: expect.any(Function),
           params: expect.objectContaining({
             ids: ["1", "2"],
+            meta: {
+              route: undefined,
+            },
             resource: "posts",
             subscriptionType: "useMany",
           }),
           types: ["*"],
-          dataProviderName,
           meta: {
             dataProviderName,
           },
@@ -190,10 +217,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
-      expect(onSubscribeMock).not.toBeCalled();
+      expect(onSubscribeMock).not.toHaveBeenCalled();
     });
 
     it("liveMode = Off and liveMode hook param auto", async () => {
@@ -223,10 +250,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(!result.current.isLoading).toBeTruthy();
+        expect(!result.current.query.isPending).toBeTruthy();
       });
 
-      expect(onSubscribeMock).toBeCalled();
+      expect(onSubscribeMock).toHaveBeenCalled();
     });
 
     it("unsubscribe call on unmount", async () => {
@@ -251,11 +278,11 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(onSubscribeMock).toBeCalled();
+      expect(onSubscribeMock).toHaveBeenCalled();
 
       unmount();
-      expect(onUnsubscribeMock).toBeCalledWith(true);
-      expect(onUnsubscribeMock).toBeCalledTimes(1);
+      expect(onUnsubscribeMock).toHaveBeenCalledWith(true);
+      expect(onUnsubscribeMock).toHaveBeenCalledTimes(1);
     });
 
     it("should not subscribe if `queryOptions.enabled` is false", async () => {
@@ -286,7 +313,7 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(onSubscribeMock).not.toBeCalled();
+      expect(onSubscribeMock).not.toHaveBeenCalled();
     });
   });
 
@@ -314,10 +341,10 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.query.isPending).toBeFalsy();
     });
 
-    expect(getOneMock).toBeCalledTimes(2);
+    expect(getOneMock).toHaveBeenCalledTimes(2);
     expect(getOneMock).toHaveBeenNthCalledWith(
       1,
       expect.objectContaining({
@@ -363,10 +390,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-getMany-notification",
         message: "Error (status code: undefined)",
@@ -401,10 +428,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -434,10 +461,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -473,10 +500,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -504,6 +531,9 @@ describe("useMany Hook", () => {
               },
             },
             authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
               onError: onErrorMock,
             } as any,
             resources: [{ name: "posts" }],
@@ -512,10 +542,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
@@ -536,8 +566,11 @@ describe("useMany Hook", () => {
                 getMany: getManyMock,
               },
             },
-            legacyAuthProvider: {
-              checkError: onErrorMock,
+            authProvider: {
+              login: () => Promise.resolve({ success: true }),
+              logout: () => Promise.resolve({ success: true }),
+              check: () => Promise.resolve({ authenticated: true }),
+              onError: onErrorMock,
             },
             resources: [{ name: "posts" }],
           }),
@@ -545,84 +578,14 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.query.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
   describe("queryOptions", () => {
-    it("should run `queryOptions.onSuccess` callback on success", async () => {
-      const onSuccessMock = jest.fn();
-      const getManyMock = jest.fn().mockResolvedValue({
-        data: [{ id: 1, title: "foo" }],
-      });
-
-      const { result } = renderHook(
-        () =>
-          useMany({
-            resource: "posts",
-            ids: ["1", "2"],
-            queryOptions: {
-              onSuccess: onSuccessMock,
-            },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                getMany: getManyMock,
-              },
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
-      });
-
-      expect(onSuccessMock).toBeCalledWith({
-        data: [{ id: 1, title: "foo" }],
-      });
-    });
-
-    it("should run `queryOptions.onError` callback on error", async () => {
-      const onErrorMock = jest.fn();
-      const getManyMcok = jest.fn().mockRejectedValue(new Error("Error"));
-
-      const { result } = renderHook(
-        () =>
-          useMany({
-            resource: "posts",
-            ids: ["1", "2"],
-            queryOptions: {
-              onError: onErrorMock,
-            },
-          }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                getMany: getManyMcok,
-              },
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
-      });
-
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
-    });
-
     it("should override `queryKey` with `queryOptions.queryKey`", async () => {
       const getManyMock = jest.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
@@ -651,15 +614,13 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getManyMock).toBeCalledWith(
+      expect(getManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
-            queryContext: expect.objectContaining({
-              queryKey: ["foo", "bar"],
-            }),
+            queryKey: ["foo", "bar"],
           }),
         }),
       );
@@ -703,11 +664,11 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getManyMock).not.toBeCalled();
-      expect(queryFnMock).toBeCalled();
+      expect(getManyMock).not.toHaveBeenCalled();
+      expect(queryFnMock).toHaveBeenCalled();
     });
   });
 
@@ -753,15 +714,15 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(getManyFooMock).toBeCalledWith(
+    expect(getManyFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(getManyDefaultMock).not.toBeCalled();
+    expect(getManyDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -796,10 +757,10 @@ describe("useMany Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.query.isSuccess).toBeTruthy();
     });
 
-    expect(getManyMock).toBeCalledWith(
+    expect(getManyMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -852,15 +813,15 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getManyFooMock).toBeCalledWith(
+      expect(getManyFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(getManyDefaultMock).not.toBeCalled();
+      expect(getManyDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should create queryKey with `identifier`", async () => {
@@ -893,21 +854,20 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getManyMock).toBeCalledWith(
+      expect(getManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
-            queryContext: expect.objectContaining({
-              queryKey: [
-                "default",
-                "featured-posts",
-                "getMany",
-                ["1", "2"],
-                expect.any(Object),
-              ],
-            }),
+            queryKey: [
+              "data",
+              "default",
+              "featured-posts",
+              "many",
+              ["1", "2"],
+              expect.any(Object),
+            ],
           }),
         }),
       );
@@ -953,10 +913,10 @@ describe("useMany Hook", () => {
       );
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.query.isSuccess).toBeTruthy();
       });
 
-      expect(getManyMock).toBeCalledWith(
+      expect(getManyMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -974,7 +934,7 @@ describe("useMany Hook", () => {
         data: [],
       });
 
-      const result = renderHook(
+      const { result } = renderHook(
         () =>
           useMany({
             resource: "posts",
@@ -993,8 +953,8 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(result.result.current.isLoading).toBeTruthy();
-      expect(result.result.current.fetchStatus).toBe("idle");
+      expect(result.current.query.isPending).toBeTruthy();
+      expect(result.current.query.fetchStatus).toBe("idle");
       expect(getManyMock).not.toHaveBeenCalled();
       expect(warnMock).toHaveBeenCalledWith(
         expect.stringContaining('[useMany]: Missing "ids" prop.'),
@@ -1010,7 +970,7 @@ describe("useMany Hook", () => {
         data: [],
       });
 
-      const result = renderHook(
+      const { result } = renderHook(
         () =>
           useMany({
             resource: undefined as unknown as string,
@@ -1029,8 +989,8 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(result.result.current.isLoading).toBeTruthy();
-      expect(result.result.current.fetchStatus).toBe("idle");
+      expect(result.current.query.isPending).toBeTruthy();
+      expect(result.current.query.fetchStatus).toBe("idle");
       expect(getManyMock).not.toHaveBeenCalled();
       expect(warnMock).toHaveBeenCalledWith(
         expect.stringContaining('[useMany]: Missing "resource" prop.'),
@@ -1046,7 +1006,7 @@ describe("useMany Hook", () => {
         data: [],
       });
 
-      const result = renderHook(
+      const { result } = renderHook(
         () =>
           useMany({
             resource: undefined as unknown as string,
@@ -1068,8 +1028,8 @@ describe("useMany Hook", () => {
         },
       );
 
-      expect(result.result.current.isLoading).toBeTruthy();
-      expect(result.result.current.fetchStatus).toBe("fetching");
+      expect(result.current.query.isPending).toBeTruthy();
+      expect(result.current.query.fetchStatus).toBe("fetching");
       expect(getManyMock).toHaveBeenCalled();
       expect(warnMock).not.toHaveBeenCalled();
     });

@@ -28,17 +28,13 @@ import type {
 import type { LiveModeProps } from "../../contexts/live/types";
 import type { SuccessErrorNotification } from "../../contexts/notification/types";
 import type { Action } from "../../contexts/router/types";
+import type { MakeOptional } from "../../definitions/types";
 
 export type FormAction = Extract<Action, "create" | "edit" | "clone">;
 
 export type RedirectAction =
   | Extract<Action, "create" | "edit" | "list" | "show">
   | false;
-
-/**
- * @deprecated use RedirectAction type instead
- */
-export type RedirectionTypes = RedirectAction;
 
 export type AutoSaveProps<TVariables> = {
   autoSave?: {
@@ -56,7 +52,7 @@ export type AutoSaveReturnType<
   TVariables = {},
 > = {
   autoSaveProps: Pick<
-    UseUpdateReturnType<TData, TError, TVariables>,
+    UseUpdateReturnType<TData, TError, TVariables>["mutation"],
     "data" | "error" | "status"
   >;
   onFinishAutoSave: (
@@ -104,11 +100,6 @@ type ActionFormProps<
    * Metadata query for dataProvider
    */
   meta?: MetaQuery;
-  /**
-   * Metadata query for dataProvider
-   * @deprecated `metaData` is deprecated with refine@4, refine will pass `meta` instead, however, we still support `metaData` for backward compatibility.
-   */
-  metaData?: MetaQuery;
   /**
    * Metadata to pass for the `useOne` query
    */
@@ -158,10 +149,13 @@ type ActionFormProps<
   /**
    * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options of useOne hook used while in edit mode.
    */
-  queryOptions?: UseQueryOptions<
-    GetOneResponse<TQueryFnData>,
-    TError,
-    GetOneResponse<TData>
+  queryOptions?: MakeOptional<
+    UseQueryOptions<
+      GetOneResponse<TQueryFnData>,
+      TError,
+      GetOneResponse<TData>
+    >,
+    "queryFn" | "queryKey"
   >;
   /**
    * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
@@ -227,19 +221,10 @@ export type UseFormReturnType<
   id?: BaseKey;
   setId: Dispatch<SetStateAction<BaseKey | undefined>>;
   query?: QueryObserverResult<GetOneResponse<TData>, TError>;
-  /**
-   * @deprecated use `query` instead
-   */
-  queryResult?: QueryObserverResult<GetOneResponse<TData>, TError>;
+
   mutation:
-    | UseUpdateReturnType<TResponse, TResponseError, TVariables>
-    | UseCreateReturnType<TResponse, TResponseError, TVariables>;
-  /**
-   * @deprecated use `mutation` instead
-   */
-  mutationResult:
-    | UseUpdateReturnType<TResponse, TResponseError, TVariables>
-    | UseCreateReturnType<TResponse, TResponseError, TVariables>;
+    | UseUpdateReturnType<TResponse, TResponseError, TVariables>["mutation"]
+    | UseCreateReturnType<TResponse, TResponseError, TVariables>["mutation"];
   formLoading: boolean;
   onFinish: (
     values: TVariables,

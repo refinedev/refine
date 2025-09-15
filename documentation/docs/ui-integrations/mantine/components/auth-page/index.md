@@ -141,7 +141,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, ThemedLayoutV2, RefineThemes } from "@refinedev/mantine";
+import { AuthPage, ThemedLayout, RefineThemes } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -166,9 +166,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -223,7 +223,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -249,9 +249,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -323,7 +323,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -349,9 +349,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -424,7 +424,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -450,9 +450,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -529,7 +529,7 @@ import routerProvider, {
   NavigateToResource,
 } from "@refinedev/react-router";
 
-import { AuthPage, RefineThemes, ThemedLayoutV2 } from "@refinedev/mantine";
+import { AuthPage, RefineThemes, ThemedLayout } from "@refinedev/mantine";
 import { MantineProvider, Global } from "@mantine/core";
 
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
@@ -555,9 +555,9 @@ const App = () => {
             <Route
               element={
                 <Authenticated fallback={<CatchAllNavigate to="/login" />}>
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 </Authenticated>
               }
             >
@@ -866,7 +866,7 @@ const MyLoginPage = () => {
     <AuthPage
       type="login"
       title={
-        <ThemedTitleV2
+        <ThemedTitle
           title="My Title"
           icon={<img src="https://refine.dev/img/logo.png" />}
         />

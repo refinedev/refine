@@ -56,7 +56,7 @@ A **Refine** app is centered mainly around the `<Refine />` component, which is 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
 import { DataProvider } from "@refinedev/strapi-v4";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 
 <Refine
   dataProvider={DataProvider(API_URL + `/api`, axiosInstance)}
@@ -113,8 +113,8 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
       resource,
       ...restConfig,
       hasPagination,
-      metaData: {
-        ...metaData,
+      meta: {
+        ...meta,
         queryContext: {
           queryKey,
           pageParam,
@@ -130,7 +130,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(data, { metaData, config }, resource)
+          ? successNotification(data, { meta, config }, resource)
           : successNotification;
 
       handleNotification(notificationConfig);
@@ -141,7 +141,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 
       const notificationConfig =
         typeof errorNotification === "function"
-          ? errorNotification(err, { metaData, config }, resource)
+          ? errorNotification(err, { meta, config }, resource)
           : errorNotification;
 
       handleNotification(notificationConfig, {

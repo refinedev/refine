@@ -412,14 +412,6 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 }
 ```
 
-### ~~sort~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
-### ~~hasPagination~~ <PropTag deprecated />
-
-Use `pagination.mode` instead.
-
 ## FAQ
 
 ### How to ensure `defaultValue` is included in the options?

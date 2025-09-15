@@ -1,5 +1,20 @@
 # create-refine-app
 
+## 1.12.11
+
+### Patch Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix(test): update Jest assertions and configuration for v30 compatibility
+
+  - Updated test infrastructure with modern Jest API usage and improved configuration.
+  - Internal development dependency updates and tooling modernization - no public API changes.
+
+## 1.12.10
+
+### Patch Changes
+
+- [#6956](https://github.com/refinedev/refine/pull/6956) [`09c165410d1d5d4e04c110be364f0f3468f1e614`](https://github.com/refinedev/refine/commit/09c165410d1d5d4e04c110be364f0f3468f1e614) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: upgrade superplate-cli to 1.20.1
+
 ## 1.12.9
 
 ### Patch Changes

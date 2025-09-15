@@ -30,8 +30,8 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import {
   RefineThemes,
-  ThemedLayoutV2,
-  ThemedTitleV2,
+  ThemedLayout,
+  ThemedTitle,
   // highlight-start
   RefineSnackbarProvider,
   useNotificationProvider,

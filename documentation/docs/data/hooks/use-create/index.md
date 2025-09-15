@@ -9,12 +9,12 @@ It uses the `create` method as the **mutation function** from the [`dataProvider
 
 ## Usage
 
-The `useCreate` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
+The `useCreate` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters). Additionally, the `mutation` object contains all the TanStack Query's `useMutation` return values.
 
 ```tsx
 import { useCreate } from "@refinedev/core";
 
-const { mutate } = useCreate({
+const { mutate, mutation } = useCreate({
   resource: "products",
 });
 
@@ -24,6 +24,11 @@ mutate({
     material: "Wood",
   },
 });
+
+// You can access mutation state through the mutation object:
+console.log(mutation.isLoading); // mutation loading state
+console.log(mutation.data); // mutation response data
+console.log(mutation.error); // mutation error
 ```
 
 ## Realtime Updates
@@ -51,7 +56,7 @@ When the `useCreate` mutation runs successfully, it will call the `log` method f
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
 ```tsx
-const { mutate } = useCreate({
+const { mutate, mutation } = useCreate({
   resource: "products",
   mutationOptions: {
     retry: 3,
@@ -70,6 +75,15 @@ mutate({
     material: "Wood",
   },
 });
+
+// You can access mutation status through the mutation object
+if (mutation.isLoading) {
+  console.log("Creating product...");
+}
+
+if (mutation.isSuccess) {
+  console.log("Product created:", mutation.data);
+}
 ```
 
 [Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
@@ -82,7 +96,7 @@ If you want loading overtime for the request, you can pass the `overtimeOptions`
 Return `overtime` object from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate({
+const { overtime, mutation } = useCreate({
   //...
   overtimeOptions: {
     interval: 1000,
@@ -96,7 +110,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 // You can use it like this:
 {
-  elapsedTime >= 4000 && <div>this takes a bit longer than expected</div>;
+  overtime.elapsedTime >= 4000 && (
+    <div>this takes a bit longer than expected</div>
+  );
 }
 ```
 
@@ -107,13 +123,23 @@ Mutation parameters are passed to the `mutate` function and can also be provided
 ```tsx
 import { useCreate } from "@refinedev/core";
 
-const { mutate } = useCreate({
+const { mutate, mutation } = useCreate({
   /* parameters */
 });
 
 mutate({
   /* this will override the parameters given to the useCreate hook */
 });
+
+// Access mutation state
+if (mutation.isLoading) {
+  // Handle loading state
+}
+
+if (mutation.isError) {
+  // Handle error state
+  console.error(mutation.error);
+}
 ```
 
 > 🚨 Parameters marked as required can be provided either as props to the `useCreate` hook or as parameters to the `mutate` function.
@@ -123,7 +149,7 @@ mutate({
 This parameter will be passed to the `create` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `create` method.
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   resource: "categories",
@@ -141,7 +167,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 This prop will be passed to the `create` method from the `dataProvider` as a parameter. It is usually used as the data to be created and contains the data that will be sent to the server.
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   values: {
@@ -158,7 +184,7 @@ mutate({
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreate` calls the `open` function from `NotificationProvider`:
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   successNotification: (data, values, resource) => {
@@ -178,7 +204,7 @@ mutate({
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreate` calls the `open` function from `NotificationProvider`
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   errorNotification: (data, values, resource) => {
@@ -201,7 +227,7 @@ mutate({
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. You can pass any properties to specifically handle the data provider methods with similar logic.
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   // highlight-start
@@ -244,7 +270,7 @@ const myDataProvider = {
 This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   dataProviderName: "second-data-provider",
@@ -258,7 +284,7 @@ mutate({
 By default, it invalidates the following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed.
 
 ```tsx
-const { mutate } = useCreate();
+const { mutate, mutation } = useCreate();
 
 mutate({
   invalidates: ["list", "many"],
@@ -278,9 +304,12 @@ Returns an object with TanStack Query's `useMutation` return values.
 `overtime` object is returned from this hook. `elapsedTime` is the elapsed time in milliseconds. It becomes `undefined` when the request is completed.
 
 ```tsx
-const { overtime } = useCreate();
+const { overtime, mutation } = useCreate();
 
 console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
+
+// Also access mutation state
+console.log(mutation.isLoading); // true/false
 ```
 
 ## API Reference
@@ -307,7 +336,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                               |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
-| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                         |
+| Property    | Description                                | Type                                                                                                                                                               |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| mutate      | Mutation function                          | `(params?: { resource?: string, values?: TVariables, ... }) => void`                                                                                               |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, values?: TVariables, ... }) => Promise<{ data: TData }>`                                                                           |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                         |

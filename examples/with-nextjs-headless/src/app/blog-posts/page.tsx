@@ -12,22 +12,29 @@ import type { Category, BlogPost } from "@types";
 
 export default function BlogPostList() {
   const { translate: t } = useTranslation();
-  const { tableQuery, current, pageSize, setPageSize, setCurrent } =
-    useTable<BlogPost>({
-      syncWithLocation: true,
-    });
+  const {
+    tableQuery,
+    currentPage: current,
+    pageSize,
+    setPageSize,
+    setCurrentPage: setCurrent,
+  } = useTable<BlogPost>({
+    syncWithLocation: true,
+  });
 
   const { data, isLoading } = tableQuery;
   const records = data?.data ?? [];
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    useMany<Category>({
-      resource: "categories",
-      ids: records?.map((item) => item?.category?.id).filter(Boolean) ?? [],
-      queryOptions: {
-        enabled: !!records,
-      },
-    });
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany<Category>({
+    resource: "categories",
+    ids: records?.map((item) => item?.category?.id).filter(Boolean) ?? [],
+    queryOptions: {
+      enabled: !!records,
+    },
+  });
 
   const { mutate: deleteBlogPost } = useDelete();
 

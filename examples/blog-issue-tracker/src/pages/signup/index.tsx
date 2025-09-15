@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigation } from "@refinedev/core";
+import { useGo } from "@refinedev/core";
 import {
   Row,
   Col,
@@ -22,7 +22,7 @@ export interface ISignup {
 
 export const Signup: React.FC = () => {
   const [form] = Form.useForm<ISignup>();
-  const { push } = useNavigation();
+  const go = useGo();
 
   const CardTitle = (
     <Title level={3} className="title">
@@ -61,7 +61,7 @@ export const Signup: React.FC = () => {
                 form={form}
                 onFinish={(values) => {
                   signup(values.email, values.password);
-                  push("login");
+                  go({ to: "login", type: "push" });
                 }}
               >
                 <Form.Item
@@ -98,7 +98,7 @@ export const Signup: React.FC = () => {
                       fontWeight: "bold",
                       marginLeft: 12,
                     }}
-                    onClick={() => push("login")}
+                    onClick={() => go({ to: "login", type: "push" })}
                   >
                     Sign in
                   </a>

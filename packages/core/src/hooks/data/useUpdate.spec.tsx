@@ -1,6 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
-import * as queryKeys from "@definitions/helpers/queryKeys";
 import {
   MockJSONServer,
   TestWrapper,
@@ -38,10 +37,10 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    const { isSuccess } = result.current;
+    const { isSuccess } = result.current.mutation;
 
     expect(isSuccess).toBeTruthy();
   });
@@ -94,7 +93,7 @@ describe("useUpdate Hook [with params]", () => {
     await assertList(useManyResult, "title", updatedTitle);
 
     await waitFor(() => {
-      expect(result.current.isError).toEqual(true);
+      expect(result.current.mutation.isError).toEqual(true);
     });
 
     await assertOne(useOneResult, "title", initialTitle);
@@ -146,35 +145,6 @@ describe("useUpdate Hook [with params]", () => {
     await assertMutationSuccess(result);
   });
 
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const catchFn = jest.fn();
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const { result } = renderHook(() => useUpdate(), {
-      wrapper: TestWrapper({}),
-    });
-
-    const resource = "posts";
-
-    result.current.mutate({
-      resource,
-      id: 1,
-      values: {},
-      meta: {
-        foo: "bar",
-        gqlQuery: "gqlQuery" as any,
-        gqlMutation: "gqlMutation" as any,
-      },
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
-  });
-
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
     const updateMock = jest.fn();
 
@@ -205,10 +175,10 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(updateMock).toBeCalled();
+      expect(updateMock).toHaveBeenCalled();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -256,13 +226,13 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -295,10 +265,10 @@ describe("useUpdate Hook [with params]", () => {
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -340,7 +310,7 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(onPublishMock).toHaveBeenCalledWith({
@@ -377,10 +347,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successful",
         key: "1-posts-notification",
         message: "Successfully updated post",
@@ -415,10 +385,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-notification",
         message: "Error when updating post (status code: undefined)",
@@ -452,10 +422,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -484,10 +454,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -522,10 +492,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -560,42 +530,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
-    });
-
-    it("should call `checkError` from the legacy auth provider on error", async () => {
-      const updateMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
-
-      const { result } = renderHook(() => useUpdate(), {
-        wrapper: TestWrapper({
-          dataProvider: {
-            default: {
-              ...MockJSONServer.default,
-              update: updateMock,
-            },
-          },
-          legacyAuthProvider: {
-            checkError: onErrorMock,
-          },
-          resources: [{ name: "posts" }],
-        }),
-      });
-
-      result.current.mutate({
-        resource: "posts",
-        id: "1",
-        values: {},
-      });
-
-      await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
-      });
-
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -638,15 +576,15 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    expect(updateFooMock).toBeCalledWith(
+    expect(updateFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(updateDefaultMock).not.toBeCalled();
+    expect(updateDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -680,10 +618,10 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -733,15 +671,15 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(updateFooMock).toBeCalledWith(
+      expect(updateFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(updateDefaultMock).not.toBeCalled();
+      expect(updateDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -777,10 +715,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -826,10 +764,10 @@ describe("useUpdate Hook [with params]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -1050,11 +988,11 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updateMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -1080,7 +1018,7 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(
@@ -1106,8 +1044,8 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error(
           "[useUpdate]: `resource` is not defined or not matched but is required",
         ),
@@ -1131,8 +1069,8 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error("[useUpdate]: `values` is not provided but is required"),
       );
     });
@@ -1154,8 +1092,8 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error(
           "[useUpdate]: `id` is not defined but is required in edit and clone actions",
         ),
@@ -1187,7 +1125,7 @@ describe("useUpdate Hook [with params]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeFalsy();
+      expect(result.current.mutation.isError).toBeFalsy();
       expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({ id: "", resource: "posts", variables: {} }),
       );
@@ -1226,7 +1164,7 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(updateMock).toHaveBeenCalledWith(
@@ -1287,7 +1225,7 @@ describe("useUpdate Hook [with props]", () => {
     await assertList(useManyResult, "title", updatedTitle);
 
     await waitFor(() => {
-      expect(result.current.isError).toEqual(true);
+      expect(result.current.mutation.isError).toEqual(true);
     });
 
     await assertOne(useOneResult, "title", initialTitle);
@@ -1344,40 +1282,6 @@ describe("useUpdate Hook [with props]", () => {
     await assertMutationSuccess(result);
   });
 
-  it("should exclude gqlQuery and qqlMutation from query keys", async () => {
-    const catchFn = jest.fn();
-
-    jest
-      .spyOn(queryKeys, "queryKeysReplacement")
-      .mockImplementationOnce(() => catchFn);
-
-    const resource = "posts";
-
-    const { result } = renderHook(
-      () =>
-        useUpdate({
-          resource,
-          id: 1,
-          meta: {
-            foo: "bar",
-            gqlQuery: "gqlQuery" as any,
-            gqlMutation: "gqlMutation" as any,
-          },
-        }),
-      {
-        wrapper: TestWrapper({}),
-      },
-    );
-
-    result.current.mutate({
-      values: {},
-    });
-
-    await waitFor(() => {
-      expect(catchFn).toBeCalledWith(resource, "default", { foo: "bar" });
-    });
-  });
-
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
     const updateMock = jest.fn();
 
@@ -1413,10 +1317,10 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(updateMock).toBeCalled();
+      expect(updateMock).toHaveBeenCalled();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1464,13 +1368,13 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeTruthy();
+      expect(result.current.mutation.isPending).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
+      expect(result.current.mutation.isPending).toBeFalsy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -1508,10 +1412,10 @@ describe("useUpdate Hook [with props]", () => {
         });
 
         await waitFor(() => {
-          expect(result.current.isSuccess).toBeTruthy();
+          expect(result.current.mutation.isSuccess).toBeTruthy();
         });
 
-        expect(onPublishMock).toBeCalled();
+        expect(onPublishMock).toHaveBeenCalled();
         expect(onPublishMock).toHaveBeenCalledWith({
           channel: "resources/posts",
           date: expect.any(Date),
@@ -1554,7 +1458,7 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
       expect(onPublishMock).toHaveBeenCalledWith({
@@ -1592,10 +1496,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successful",
         key: "1-posts-notification",
         message: "Successfully updated post",
@@ -1631,10 +1535,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(notificationMock).toBeCalledWith({
+      expect(notificationMock).toHaveBeenCalledWith({
         description: "Error",
         key: "1-posts-notification",
         message: "Error when updating post (status code: undefined)",
@@ -1673,10 +1577,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "Successfully created post",
         message: "Success",
         type: "success",
@@ -1710,10 +1614,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledTimes(0);
+      expect(openNotificationMock).toHaveBeenCalledTimes(0);
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
@@ -1753,10 +1657,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         description: "There was an error creating post",
         message: "Error",
         type: "error",
@@ -1792,43 +1696,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
+        expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
-    });
-
-    it("should call `checkError` from the legacy auth provider on error", async () => {
-      const updateMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
-
-      const { result } = renderHook(
-        () => useUpdate({ resource: "posts", id: "1" }),
-        {
-          wrapper: TestWrapper({
-            dataProvider: {
-              default: {
-                ...MockJSONServer.default,
-                update: updateMock,
-              },
-            },
-            legacyAuthProvider: {
-              checkError: onErrorMock,
-            },
-            resources: [{ name: "posts" }],
-          }),
-        },
-      );
-
-      result.current.mutate({
-        values: {},
-      });
-
-      await waitFor(() => {
-        expect(result.current.isError).toBeTruthy();
-      });
-
-      expect(onErrorMock).toBeCalledWith(new Error("Error"));
+      expect(onErrorMock).toHaveBeenCalledWith(new Error("Error"));
     });
   });
 
@@ -1872,15 +1743,15 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    expect(updateFooMock).toBeCalledWith(
+    expect(updateFooMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
       }),
     );
-    expect(updateDefaultMock).not.toBeCalled();
+    expect(updateDefaultMock).not.toHaveBeenCalled();
   });
 
   it("should get correct `meta` of related resource", async () => {
@@ -1915,10 +1786,10 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).toBeCalledWith(
+    expect(updateMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -1969,15 +1840,15 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(updateFooMock).toBeCalledWith(
+      expect(updateFooMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
         }),
       );
-      expect(updateDefaultMock).not.toBeCalled();
+      expect(updateDefaultMock).not.toHaveBeenCalled();
     });
 
     it("should invalidate query store with `identifier`", async () => {
@@ -2014,10 +1885,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(invalidateStore).toBeCalledWith(
+      expect(invalidateStore).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "featured-posts",
         }),
@@ -2064,10 +1935,10 @@ describe("useUpdate Hook [with props]", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.isSuccess).toBeTruthy();
+        expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           meta: expect.objectContaining({
             bar: "baz",
@@ -2303,11 +2174,11 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
-    expect(updateMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(updateMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -2333,7 +2204,7 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(
@@ -2363,8 +2234,8 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error(
           "[useUpdate]: `resource` is not defined or not matched but is required",
         ),
@@ -2392,8 +2263,8 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error("[useUpdate]: `values` is not provided but is required"),
       );
     });
@@ -2419,8 +2290,8 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-      expect(result.current.error).toEqual(
+      expect(result.current.mutation.isError).toBeTruthy();
+      expect(result.current.mutation.error).toEqual(
         new Error(
           "[useUpdate]: `id` is not defined but is required in edit and clone actions",
         ),
@@ -2456,7 +2327,7 @@ describe("useUpdate Hook [with props]", () => {
     });
 
     await waitFor(() => {
-      expect(result.current.isError).toBeFalsy();
+      expect(result.current.mutation.isError).toBeFalsy();
       expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({ id: "", resource: "posts", variables: {} }),
       );
@@ -2518,7 +2389,7 @@ describe("useUpdate Hook should work with params and props", () => {
     result.current.mutate(options.params);
 
     await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
+      expect(result.current.mutation.isSuccess).toBeTruthy();
     });
 
     expect(updateMock).toHaveBeenCalledWith({
@@ -2526,7 +2397,6 @@ describe("useUpdate Hook should work with params and props", () => {
       resource: options.params.resource,
       variables: options.params.values,
       meta: options.params.meta,
-      metaData: options.params.meta,
     });
     expect(openNotificationMock).toHaveBeenCalledWith({
       description: "Successfully created post",
@@ -2620,5 +2490,42 @@ describe("useUpdate Hook should work with params and props", () => {
       expect(onErrorProp).toHaveBeenCalledWith("onErrorProp");
       expect(onErrorFn).toHaveBeenCalledWith("onErrorProp");
     });
+  });
+
+  it("should not override audit meta.id with route params", async () => {
+    const auditCreateMock = jest.fn();
+
+    const { result } = renderHook(() => useUpdate(), {
+      wrapper: TestWrapper({
+        dataProvider: MockJSONServer,
+        resources: [{ name: "posts" }],
+        auditLogProvider: {
+          create: auditCreateMock,
+          get: jest.fn(),
+          update: jest.fn(),
+        },
+        routerProvider: mockRouterProvider({
+          params: { id: "6" },
+        }),
+      }),
+    });
+
+    act(() => {
+      result.current.mutate({
+        resource: "posts",
+        id: "1",
+        values: { title: "updated" },
+      });
+    });
+
+    await waitFor(() => expect(result.current.mutation.isSuccess).toBeTruthy());
+
+    expect(auditCreateMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        action: "update",
+        resource: "posts",
+        meta: expect.objectContaining({ id: "1" }),
+      }),
+    );
   });
 });

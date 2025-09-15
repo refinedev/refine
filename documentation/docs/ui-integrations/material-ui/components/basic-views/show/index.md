@@ -23,16 +23,19 @@ import {
 import { Stack, Typography } from "@mui/material";
 
 const ShowPage = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const {
+    result: product,
+    query: { isLoading },
+  } = useShow();
 
-  const record = data?.data;
-
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = useOne({
     resource: "categories",
-    id: record?.category?.id || "",
+    id: product?.category?.id || "",
     queryOptions: {
-      enabled: !!record,
+      enabled: !!product,
     },
   });
 
@@ -42,23 +45,23 @@ const ShowPage = () => {
         <Typography variant="body1" fontWeight="bold">
           Id
         </Typography>
-        <NumberField value={record?.id ?? ""} />
+        <NumberField value={product?.id ?? ""} />
         <Typography variant="body1" fontWeight="bold">
           Title
         </Typography>
-        <TextField value={record?.title} />
+        <TextField value={product?.title} />
         <Typography variant="body1" fontWeight="bold">
           Content
         </Typography>
-        <MarkdownField value={record?.content} />
+        <MarkdownField value={product?.content} />
         <Typography variant="body1" fontWeight="bold">
           Category
         </Typography>
-        {categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>}
+        {categoryIsLoading ? <>Loading...</> : <>{category?.title}</>}
         <Typography variant="body1" fontWeight="bold">
           Created At
         </Typography>
-        <DateField value={record?.createdAt} />
+        <DateField value={product?.createdAt} />
       </Stack>
     </Show>
   );
@@ -1184,14 +1187,16 @@ goBack-type="`ReactNode`"
 const SampleList = () => {
   const { dataGridProps } = RefineMui.useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    RefineCore.useMany({
-      resource: "categories",
-      ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
-      queryOptions: {
-        enabled: !!dataGridProps?.rows,
-      },
-    });
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = RefineCore.useMany({
+    resource: "categories",
+    ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
+    queryOptions: {
+      enabled: !!dataGridProps?.rows,
+    },
+  });
 
   const columns = React.useMemo<GridColDef<any>[]>(
     () => [

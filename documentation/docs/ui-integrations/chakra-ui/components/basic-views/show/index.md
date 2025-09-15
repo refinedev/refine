@@ -16,15 +16,16 @@ import { Show, MarkdownField } from "@refinedev/chakra-ui";
 import { Heading, Text } from "@chakra-ui/react";
 
 const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const {
+    result: product,
+    query: { isLoading },
+  } = useShow<IPost>();
 
-  const { data: categoryData } = useOne<ICategory>({
+  const { result: category } = useOne<ICategory>({
     resource: "categories",
-    id: record?.category?.id || "",
+    id: product?.category?.id || "",
     queryOptions: {
-      enabled: !!record?.category?.id,
+      enabled: !!product?.category?.id,
     },
   });
 
@@ -33,22 +34,22 @@ const PostShow: React.FC = () => {
       <Heading as="h5" size="sm">
         Id
       </Heading>
-      <Text mt={2}>{record?.id}</Text>
+      <Text mt={2}>{product?.id}</Text>
 
       <Heading as="h5" size="sm" mt={4}>
         Title
       </Heading>
-      <Text mt={2}>{record?.title}</Text>
+      <Text mt={2}>{product?.title}</Text>
 
       <Heading as="h5" size="sm" mt={4}>
         Category
       </Heading>
-      <Text mt={2}>{categoryData?.data?.title}</Text>
+      <Text mt={2}>{category?.data?.title}</Text>
 
       <Heading as="h5" size="sm" mt={4}>
         Content
       </Heading>
-      <MarkdownField value={record?.content} />
+      <MarkdownField value={product?.content} />
     </Show>
   );
 };

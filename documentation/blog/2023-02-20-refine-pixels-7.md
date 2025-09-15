@@ -73,7 +73,7 @@ For our case, we are focused on logging the `pixels` `create` actions on a canva
 
 Notice, the `meta.id` property on the log `params` object above. It represents the `id` of the **resource item** on which the event was created.
 
-It is possible to append useful data to the `meta` field by passing the data to the `meta` object when the mutation is invoked from a hook. For example, we can add the `canvas` property to the `metaData` object inside the argument passed to the `mutate` function of the `useCreate()` hook:
+It is possible to append useful data to the `meta` field by passing the data to the `meta` object when the mutation is invoked from a hook. For example, we can add the `canvas` property to the `meta` object inside the argument passed to the `mutate` function of the `useCreate()` hook:
 
 ```tsx
 const { mutate } = useCreate();
@@ -152,7 +152,7 @@ const auditLogProvider = {
     action?: string;
     meta?: Record<string, any>;
     author?: Record<string, any>;
-    metaData?: MetaDataQuery;
+    meta?: MetaDataQuery;
   }) => Promise<any>;
   update: (params: {
     id: BaseKey;
@@ -287,7 +287,7 @@ export const CanvasShow: React.FC = () => {
   const { data: { authenticated } = {} } = useIsAuthenticated();
 
   const {
-    queryResult: { data: { data: canvas } = {} },
+    query: { data: { data: canvas } = {} },
   } = useShow<Canvas>();
   const { mutate } = useCreate();
   const { list, push } = useNavigation();
@@ -402,7 +402,7 @@ export const CanvasShow: React.FC = () => {
 
 The `mutate()` function being invoked inside `onSubmit()` handler is destrcutured from the `useCreate()` hook. We know that audit logging has been activated for the `useCreate()` hooks, so a successful `pixels` creation sends the `params` object to `auditLogProvider.create` method.
 
-Notice that we are passing the `currentCanvas` as `metaData.canvas`, which we expect to be populated inside the `meta` property of the log `params` object. As we'll see below, we are going to use it to filter our `GET` request to the `logs` table using `useLogList()` hook.
+Notice that we are passing the `currentCanvas` as `meta.canvas`, which we expect to be populated inside the `meta` property of the log `params` object. As we'll see below, we are going to use it to filter our `GET` request to the `logs` table using `useLogList()` hook.
 
 ### Audit Log List with **Refine**
 

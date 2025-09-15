@@ -408,10 +408,23 @@ const { formLoading } = useForm({ ... });
 
 ### mutation
 
-Result of the mutation triggered by calling `onFinish`. Depending on the action, it will be the result of `useCreate` or `useUpdate` hooks.
+Result of the mutation triggered by calling `onFinish`. Depending on the action, it will be the result of `useCreate` or `useUpdate` hooks. The mutation state can be accessed through `mutation.isLoading`, `mutation.data`, `mutation.error`, etc.
 
 ```tsx
-const { mutation: { data, error, isLoading } } = useForm({ ... });
+const { mutation } = useForm({ ... });
+
+// Access mutation state
+if (mutation.isLoading) {
+  // Handle loading state
+}
+
+if (mutation.isError) {
+  console.error(mutation.error);
+}
+
+if (mutation.isSuccess) {
+  console.log("Form submitted successfully:", mutation.data);
+}
 ```
 
 ### query
@@ -460,14 +473,6 @@ An object with `data`, `error` and `status` values that can be used for the auto
 const { autoSaveProps: { data, error, status } } = useForm({ ... });
 ```
 
-### ~~mutationResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
-
-### ~~queryResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
-
 ## API Reference
 
 ### Properties
@@ -497,7 +502,7 @@ These props have default values in `RefineContext` and can also be set on [`<Ref
 | ------------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | onFinish      | Triggers the mutation                                  | `(values: TVariables) => Promise<CreateResponse<TData>` \| `UpdateResponse<TData>` \| `void`>                                                                |
 | query         | Result of the query of a record                        | [`QueryObserverResult<TData, TError>`](https://react-query.tanstack.com/reference/useQuery)                                                                  |
-| mutation      | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://react-query.tanstack.com/reference/useMutation)                                                                             |
+| mutation      | Result of the mutation triggered by calling `onFinish` | [`UseMutationResult<T>`](https://tanstack.com/query/latest/docs/framework/react/reference/useMutation)                                                       |
 | formLoading   | Loading state of form request                          | `boolean`                                                                                                                                                    |
 | id            | Record id for `clone` and `create` action              | [`BaseKey`](/docs/core/interface-references#basekey)                                                                                                         |
 | setId         | `id` setter                                            | `Dispatch<SetStateAction<` `string` \| `number` \| `undefined>>`                                                                                             |

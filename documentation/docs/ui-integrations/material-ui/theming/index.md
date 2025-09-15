@@ -21,7 +21,7 @@ const { BlueDark, PurpleDark, MagentaDark, RedDark, OrangeDark, YellowDark } =
 
 ```tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, RefineThemes } from "@refinedev/mui";
+import { ThemedLayout, RefineThemes } from "@refinedev/mui";
 
 import { ThemeProvider } from "@mui/material/styles";
 
@@ -31,7 +31,7 @@ const App: React.FC = () => {
       <Refine
       /* ... */
       >
-        <ThemedLayoutV2>{/* ... */}</ThemedLayoutV2>
+        <ThemedLayout>{/* ... */}</ThemedLayout>
       </Refine>
     </ThemeProvider>
   );
@@ -46,7 +46,7 @@ The [`ThemeProvider`](https://mui.com/material-ui/customization/theming/#theme-p
 
 ```tsx title="src/App.tsx
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
+import { ThemedLayout, ErrorComponent } from "@refinedev/mui";
 // highlight-next-line
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 
@@ -79,9 +79,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="posts">
@@ -112,7 +112,7 @@ If you don't wrap your app with [`ThemeProvider`](https://mui.com/material-ui/cu
 
 ```tsx live previewOnly disableScroll
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
+import { ThemedLayout, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
@@ -143,9 +143,9 @@ const App: React.FC = () => {
             <Route index element={<NavigateToResource />} />
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="samples">
@@ -174,7 +174,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   // highlight-next-line
   RefineThemes,
@@ -210,9 +210,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="samples">
@@ -267,7 +267,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   // highlight-next-line
   RefineThemes,
@@ -315,9 +315,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="samples">
@@ -401,7 +401,7 @@ For more information, you can review [`responsiveFontSizes()`](https://mui.com/m
 setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent } from "@refinedev/mui";
+import { ThemedLayout, ErrorComponent } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { createTheme, responsiveFontSizes } from "@mui/material";
@@ -449,9 +449,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="samples">
@@ -514,7 +514,7 @@ For example:
 
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
-import { ThemedLayoutV2, ErrorComponent, RefineThemes } from "@refinedev/mui";
+import { ThemedLayout, ErrorComponent, RefineThemes } from "@refinedev/mui";
 import { CssBaseline, GlobalStyles, ThemeProvider } from "@mui/material";
 // highlight-next-line
 import { useMediaQuery } from "@mui/material";
@@ -557,9 +557,9 @@ const App: React.FC = () => {
           <Routes>
             <Route
               element={
-                <ThemedLayoutV2>
+                <ThemedLayout>
                   <Outlet />
-                </ThemedLayoutV2>
+                </ThemedLayout>
               }
             >
               <Route path="samples">
@@ -665,7 +665,7 @@ export const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 ```tsx title="src/App.tsx"
 import { Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineSnackbarProvider,
   useNotificationProvider,
@@ -729,9 +729,9 @@ const App: React.FC = () => {
               <Route
                 element={
                   // highlight-next-line
-                  <ThemedLayoutV2 Header={Header}>
+                  <ThemedLayout Header={Header}>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route path="samples">
@@ -765,7 +765,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineSnackbarProvider,
   useNotificationProvider,
@@ -829,9 +829,9 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2 Header={Header}>
+                  <ThemedLayout Header={Header}>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route path="samples">
@@ -865,7 +865,7 @@ setInitialRoutes(["/samples"]);
 // visible-block-start
 import { Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
   // highlight-start
@@ -910,9 +910,9 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route path="samples">
@@ -1027,7 +1027,10 @@ const ColorModeContextProvider: React.FC<PropsWithChildren> = ({
 const SampleList = () => {
   const { dataGridProps } = useDataGrid();
 
-  const { data: categoryData, isLoading: categoryIsLoading } = useMany({
+  const {
+    result: categoryData,
+    query: { isLoading: categoryIsLoading },
+  } = useMany({
     resource: "categories",
     ids: dataGridProps?.rows?.map((item: any) => item?.category?.id) ?? [],
     queryOptions: {
@@ -1103,12 +1106,13 @@ const SampleList = () => {
 };
 
 const SampleShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { result: record, query } = useShow();
+  const { isLoading } = query;
 
-  const record = data?.data;
-
-  const { data: categoryData, isLoading: categoryIsLoading } = useOne({
+  const {
+    result: category,
+    query: { isLoading: categoryIsLoading },
+  } = useOne({
     resource: "categories",
     id: record?.category?.id || "",
     queryOptions: {
@@ -1134,7 +1138,7 @@ const SampleShow = () => {
         <Typography variant="body1" fontWeight="bold">
           Category
         </Typography>
-        {categoryIsLoading ? <>Loading...</> : <>{categoryData?.data?.title}</>}
+        {categoryIsLoading ? <>Loading...</> : <>{category?.title}</>}
         <Typography variant="body1" fontWeight="bold">
           Created At
         </Typography>
@@ -1147,13 +1151,13 @@ const SampleShow = () => {
 const SampleEdit = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult },
+    refineCore: { query },
     register,
     control,
     formState: { errors },
   } = useForm();
 
-  const samplesData = queryResult?.data?.data;
+  const samplesData = query?.data?.data;
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
     resource: "categories",

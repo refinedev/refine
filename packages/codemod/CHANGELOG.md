@@ -1,5 +1,35 @@
 # @refinedev/codemod
 
+## 4.4.2
+
+### Patch Changes
+
+- [#6980](https://github.com/refinedev/refine/pull/6980) [`f13d22834da01a8eb32306d19257fecaa70cb1ee`](https://github.com/refinedev/refine/commit/f13d22834da01a8eb32306d19257fecaa70cb1ee) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(codemod): use correct library name for @refinedev/antd useSimpleList and add useTable from @refinedev/antd.
+
+## 4.4.1
+
+### Patch Changes
+
+- [#6976](https://github.com/refinedev/refine/pull/6976) [`f8a232aa8ef42d22ee7021e9ae3a9b112c88a941`](https://github.com/refinedev/refine/commit/f8a232aa8ef42d22ee7021e9ae3a9b112c88a941) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - fix(codemod): correctly rename isLoading to isPending in mutation hooks
+
+  Codemod previously was expecting mutation hooks to have isPending. Since isPending is introduced with react-query@5 it wasn't correct.
+
+- [#6976](https://github.com/refinedev/refine/pull/6976) [`f8a232aa8ef42d22ee7021e9ae3a9b112c88a941`](https://github.com/refinedev/refine/commit/f8a232aa8ef42d22ee7021e9ae3a9b112c88a941) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - fix: Fix useOne hook transformation in codemod to correctly handle query fields
+
+  Fixed the `use-query-and-result-fields-in-useOne-hook` transformation to properly move all query-related fields (`isLoading`, `refetch`, `error`, `status`, `isSuccess`, `isStale`, `fetchStatus`, `failureCount`) into the `query` object when transforming from v4 to v5 format.
+
+## 4.4.0
+
+### Minor Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: add Refine 4→5 migration utilities
+
+  - New codemod transformations for automated Refine v5 migration including UI library updates.
+
+  Run with: `npx @refinedev/codemod@latest refine4-to-refine5`
+
+  > 🚀 Check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
 ## 4.3.1
 
 ### Patch Changes

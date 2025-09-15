@@ -46,7 +46,7 @@ import { BrowserRouter, Route, Routes, Outlet } from "react-router";
 
 import {
     ErrorComponent,
-    ThemedLayoutV2,
+    ThemedLayout,
     RefineThemes,
     useNotificationProvider,
     AuthPage
@@ -81,9 +81,9 @@ export default function App() {
                         <Route
                             // The layout will wrap all the pages inside this route
                             element={
-                            <ThemedLayoutV2>
+                            <ThemedLayout>
                                 <Outlet />
-                            </ThemedLayoutV2>
+                            </ThemedLayout>
                             }
                         >
                             <Route path="/products" element={<ProductList />} />
@@ -141,9 +141,9 @@ export const ProductList = () => {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -196,8 +196,8 @@ export const ProductList = () => {
                 <Pagination
                     position="right"
                     total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
+                    page={currentPage}
+                    onChange={setCurrentPage}
                 />
             </List>
         </ScrollArea>

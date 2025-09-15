@@ -153,10 +153,6 @@ useImport({
 });
 ```
 
-### ~~resourceName~~ <PropTag deprecated />
-
-Use `resource` instead.
-
 ## Return Values
 
 ### buttonProps
@@ -217,7 +213,7 @@ By default, `".csv"` is set to accept only CSV files.
 
 It is a boolean value that indicates whether the import is in progress.
 
-### mutationResult
+### mutation
 
 Result of the [`useCreate`](/docs/data/hooks/use-create) or [`useCreateMany`](/docs/data/hooks/use-create) method of your data provider.
 
@@ -276,12 +272,12 @@ With this code, the parsed data will be mapped to conform to the API requirement
 
 ### Return Values
 
-| Property       | Description                                                            | Type                                                                                                                                                                                                                                    |
-| -------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| buttonProps    | Properties that are compatible with Ant Design `<Button>` component    | [`ButtonProps`](#buttonprops)                                                                                                                                                                                                           |
-| uploadProps    | Properties that are compatible with Ant Design `<Upload>` component    | [`UploadProps`](#uploadprops)                                                                                                                                                                                                           |
-| isLoading      | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                               |
-| mutationResult | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
+| Property    | Description                                                            | Type                                                                                                                                                                                                                                    |
+| ----------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| buttonProps | Properties that are compatible with Ant Design `<Button>` component    | [`ButtonProps`](#buttonprops)                                                                                                                                                                                                           |
+| uploadProps | Properties that are compatible with Ant Design `<Upload>` component    | [`UploadProps`](#uploadprops)                                                                                                                                                                                                           |
+| isLoading   | It can be used to handle the `loading` status for the Import operation | `boolean`                                                                                                                                                                                                                               |
+| mutation    | Result of the mutation/mutations of creating imported resources        | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`][usemutation]) \| [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`][usemutation]) |
 
 ### Type Parameters
 
@@ -295,6 +291,6 @@ With this code, the parsed data will be mapped to conform to the API requirement
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
 [papaparse]: https://www.papaparse.com/docs
-[usemutation]: https://react-query.tanstack.com/reference/useMutation
+[usemutation]: https://tanstack.com/query/v4/docs/framework/react/reference/useMutation
 [number.max_safe_integer]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER
 [use-import-core]: /docs/core/hooks/utilities/use-import

@@ -37,7 +37,6 @@ export const PostList: React.FC = () => {
     HttpError,
     Nullable<IPostFilterVariables>
   >({
-    initialPageSize: 10,
     onSearch: (params) => {
       const filters: CrudFilters = [];
       const { q, category, status } = params;
@@ -62,10 +61,17 @@ export const PostList: React.FC = () => {
 
       return filters;
     },
+
+    pagination: {
+      pageSize: 10,
+    },
   });
 
   const categoryIds = dataGridProps.rows.map((item) => item.category.id);
-  const { data: categoriesData, isLoading } = useMany<ICategory>({
+  const {
+    result: categoriesData,
+    query: { isLoading },
+  } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {

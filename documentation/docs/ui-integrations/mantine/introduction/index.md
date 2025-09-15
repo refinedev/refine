@@ -98,9 +98,9 @@ export const ProductList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
+      currentPage,
       tableQuery: { data: tableData },
     },
   } = useTable<IProduct>({ columns });
@@ -139,8 +139,8 @@ export const ProductList = () => {
         <Pagination
           position="right"
           total={pageCount}
-          page={current}
-          onChange={setCurrent}
+          page={currentPage}
+          onChange={setCurrentPage}
         />
       </List>
     </ScrollArea>
@@ -257,7 +257,7 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/ui-integrations/mantine/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayout />`](/docs/ui-integrations/mantine/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/mantine/components/breadcrumb) component that uses the Mantine's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Mantine package automatically.
 
@@ -363,9 +363,8 @@ import {
 import { Title } from "@mantine/core";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { result: product } = useShow();
+  const { data, isLoading } = query;
 
   return (
     <Show isLoading={isLoading}>
@@ -373,20 +372,20 @@ export const ProductShow = () => {
         Name
       </Title>
       {/* highlight-next-line */}
-      <TextField value={record?.name} />
+      <TextField value={product?.name} />
 
       <Title mt="xs" order={5}>
         Description
       </Title>
       {/* highlight-next-line */}
-      <MarkdownField value={record?.description} />
+      <MarkdownField value={product?.description} />
 
       <Title mt="xs" order={5}>
         Price
       </Title>
       {/* highlight-next-line */}
       <NumberField
-        value={record?.price}
+        value={product?.price}
         options={{ style: "currency", currency: "USD" }}
       />
     </Show>

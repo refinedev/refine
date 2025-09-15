@@ -19,6 +19,10 @@ export default function BlogPostEdit() {
   const { options: categoryOptions } = useSelect<Category>({
     resource: "categories",
     defaultValue: query?.data?.data?.category?.id,
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   if (isLoading) {

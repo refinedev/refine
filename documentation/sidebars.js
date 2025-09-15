@@ -35,8 +35,8 @@ module.exports = {
     // Devtools
     {
       type: "link",
-      href: "https://ai.refine.dev",
-      label: "Refine AI",
+      href: "/docs/migration-guide/4x-to-5x/",
+      label: "Refine v5 is here! 🎉",
       className: "enterprise-badge",
     },
     // Guides & Concepts
@@ -244,7 +244,6 @@ module.exports = {
           label: "Hooks",
           items: [
             "routing/hooks/use-resource-params/index",
-            "routing/hooks/use-resource/index",
             "routing/hooks/use-go/index",
             "routing/hooks/use-back/index",
             "routing/hooks/use-parsed/index",
@@ -548,6 +547,7 @@ module.exports = {
                 "ui-integrations/ant-design/hooks/use-radio-group/index",
                 "ui-integrations/ant-design/hooks/use-import/index",
                 "ui-integrations/ant-design/hooks/use-modal/index",
+                "ui-integrations/ant-design/hooks/use-drawer/index",
               ],
             },
             {
@@ -930,6 +930,7 @@ module.exports = {
       label: "Migration Guide 🚀",
       className: "category-as-header",
       items: [
+        "migration-guide/4x-to-5x",
         "migration-guide/3x-to-4x",
         "migration-guide/auth-provider",
         "migration-guide/router-provider",

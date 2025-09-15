@@ -22,18 +22,18 @@
     ]
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.46",
-    "@refinedev/core": "^4.57.10",
-    "@refinedev/devtools": "^1.2.16",
-    "@refinedev/react-hook-form": "^4.10.2",
-    "@refinedev/react-router": "^1.0.1",
-    "@refinedev/react-table": "^5.6.17",
-    "@refinedev/supabase": "^5.9.8",
+    "@refinedev/cli": "^2.16.48",
+    "@refinedev/core": "^5.0.1",
+    "@refinedev/devtools": "^2.0.1",
+    "@refinedev/react-hook-form": "^5.0.0",
+    "@refinedev/react-router": "^2.0.0",
+    "@refinedev/react-table": "^6.0.0",
+    "@refinedev/supabase": "^6.0.0",
     "@tanstack/react-table": "^8.2.6",
     "dayjs": "^1.10.7",
     "ditherjs": "^0.10.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "react-hot-toast": "^2.4.1",
     "react-modal": "^3.16.1",
     "react-player": "^2.16.0",
@@ -44,13 +44,16 @@
     "swiper": "^11.1.0"
   },
   "devDependencies": {
-    "@types/node": "^18.16.2",
-    "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/node": "^20",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
     "@types/react-modal": "^3.16.3",
     "@vitejs/plugin-react": "^4.2.1",
-    "typescript": "^5.4.2",
+    "typescript": "^5.8.3",
     "vite": "^5.4.15",
     "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

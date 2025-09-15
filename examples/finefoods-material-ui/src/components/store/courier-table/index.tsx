@@ -18,6 +18,7 @@ export const StoreCourierTable = (props: Props) => {
 
   const { dataGridProps } = useDataGrid<ICourier>({
     resource: "couriers",
+
     filters: {
       permanent: [
         {
@@ -27,9 +28,11 @@ export const StoreCourierTable = (props: Props) => {
         },
       ],
     },
+
     pagination: {
       mode: "off",
     },
+
     queryOptions: {
       enabled: !!props.store?.id,
     },

@@ -140,7 +140,7 @@ With our dependencies now in place, let's proceed by adding a layout into our ap
 
 ## Adding a Layout
 
-Refine provides a [`<ThemedLayoutV2 />`](/docs/ui-integrations/material-ui/components/themed-layout) component has out of the box features, which we'll delve into in the next step. Now to see it in action, let's wrap our authenticated routes with it.
+Refine provides a [`<ThemedLayout />`](/docs/ui-integrations/material-ui/components/themed-layout) component has out of the box features, which we'll delve into in the next step. Now to see it in action, let's wrap our authenticated routes with it.
 
 Update your `src/App.tsx` file by adding the following lines:
 
@@ -151,7 +151,7 @@ import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 // highlight-next-line
-import { RefineThemes, ThemedLayoutV2 } from "@refinedev/mui";
+import { RefineThemes, ThemedLayout } from "@refinedev/mui";
 
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
@@ -196,9 +196,9 @@ export default function App(): JSX.Element {
                   redirectOnFail="/login"
                 >
                   {/* highlight-start */}
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                   {/* highlight-end */}
                 </Authenticated>
               }

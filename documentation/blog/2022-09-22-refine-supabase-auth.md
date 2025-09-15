@@ -323,7 +323,7 @@ import { Authenticated, Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
 // highlight-start
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   UnsavedChangesNotifier,
@@ -354,7 +354,7 @@ function App() {
           dataProvider={dataProvider(supabaseClient)}
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
@@ -571,10 +571,12 @@ import { Table } from "react-daisyui";
 const columns = ["ID", "Name", "ISO Code", "Local Name", "Continent"];
 
 export const Countries = () => {
-  const { data: countries } = useList({
+  const { result } = useList({
     resource: "countries",
-    hasPagination: false,
+    pagination: { mode: "off" },
   });
+  const countries = result?.data;
+
   return (
     <div className="overflow-x-auto">
       <Table color="primary" className="w-full">
@@ -648,7 +650,7 @@ Import the `<Countries />` and the `<Layout />` component in the `App.tsx` file 
 import { Authenticated, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   // highlight-next-line
@@ -677,7 +679,7 @@ function App() {
           dataProvider={dataProvider(supabaseClient)}
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,

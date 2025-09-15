@@ -117,7 +117,7 @@ We'll replace the **Fake REST** API with **Fine Foods** URL in the `dataProvider
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -135,7 +135,7 @@ function App() {
         <Refine
           //highlight-next-line
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
@@ -460,7 +460,7 @@ Update the `App.tsx` as below:
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -486,7 +486,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           //highlight-start
           resources={[
             {
@@ -712,17 +712,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1162,17 +1168,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1371,7 +1383,7 @@ export const RecentSales = () => {
   );
 
   const {
-    refineCore: { filters, setCurrent, setFilters },
+    refineCore: { filters, setCurrentPage, setFilters },
     getHeaderGroups,
     getRowModel,
   } = useTable({
@@ -1394,7 +1406,7 @@ export const RecentSales = () => {
           <button
             className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
               filterForm?.current?.reset();
             }}
@@ -1409,7 +1421,7 @@ export const RecentSales = () => {
                 type="search"
                 value={getDefaultFilter("q", filters)}
                 onChange={(e) => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -1516,17 +1528,23 @@ const filters: CrudFilter[] = [
 ];
 
 export const Dashboard: React.FC = () => {
-  const { data: dailyRevenue } = useList<IChartDatum>({
+  const {
+    result: { data: dailyRevenue },
+  } = useList<IChartDatum>({
     resource: "dailyRevenue",
     filters,
   });
 
-  const { data: dailyOrders } = useList<IChartDatum>({
+  const {
+    result: { data: dailyOrders },
+  } = useList<IChartDatum>({
     resource: "dailyOrders",
     filters,
   });
 
-  const { data: newCustomers } = useList<IChartDatum>({
+  const {
+    result: { data: newCustomers },
+  } = useList<IChartDatum>({
     resource: "newCustomers",
     filters,
   });
@@ -1666,7 +1684,7 @@ We have to **manually** add the route definitions for each action individually t
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -1697,7 +1715,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -2127,7 +2145,7 @@ export const ProductList = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { filters, setCurrent, setFilters },
+    refineCore: { filters, setCurrentPage, setFilters },
     getState,
     setPageIndex,
     getCanPreviousPage,
@@ -2157,7 +2175,7 @@ export const ProductList = () => {
           <button
             className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
               filterForm?.current?.reset();
             }}
@@ -2172,7 +2190,7 @@ export const ProductList = () => {
                 type="search"
                 value={getDefaultFilter("q", filters)}
                 onChange={(e) => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -2310,7 +2328,7 @@ const {
   getHeaderGroups,
   getRowModel,
   setOptions,
-  refineCore: { filters, setCurrent, setFilters },
+  refineCore: { filters, setCurrentPage, setFilters },
   getState,
   setPageIndex,
   getCanPreviousPage,
@@ -2328,7 +2346,7 @@ Notice that we are passing **React Table** column definitions, the `columns` obj
 
 We are making use of pagination props such as `setPageIndex`, `getPageCount`, and `previousPage` returned by `useReactTable()` to build the client side pagination strip.
 
-Filtering utilities such as `filters`, `setCurrent`, `setFilters` are accessed from the `refineCore` object returned from the query. Inside the JSX, we are using them to build the filter by keywords feature.
+Filtering utilities such as `filters`, `setCurrentPage`, `setFilters` are accessed from the `refineCore` object returned from the query. Inside the JSX, we are using them to build the filter by keywords feature.
 
 Notice, we **don't** need to specify the `resource` argument to `useTable()`. It is already inferred from the current URL thanks to the resource and routes definitions in `App.tsx`.
 
@@ -2581,14 +2599,14 @@ export const ProductEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query },
     register,
     handleSubmit,
     setValue,
     formState: { errors },
   } = useForm();
 
-  const productsData = queryResult?.data?.data;
+  const productsData = query?.data?.data;
 
   const { options: categoryOptions } = useSelect({
     resource: "categories",
@@ -2616,7 +2634,7 @@ export const ProductEdit = () => {
         <div>
           <button
             className="btn btn-sm btn-primary btn-outline flex items-center justify-center font-normal normal-case"
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
             Refresh
@@ -2727,7 +2745,7 @@ import { IProduct } from "../../interfaces";
 export const ProductShow = () => {
   const { edit, list } = useNavigation();
   const {
-    queryResult: { data },
+    query: { data },
   } = useShow<IProduct>();
 
   const record = data?.data;
@@ -2782,7 +2800,7 @@ export const ProductShow = () => {
 
 </details>
 
-In the code above, we are using the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook and grabbing product details from the `queryResult` object to display the details in the JSX.
+In the code above, we are using the [`useShow()`](https://refine.dev/docs/api-reference/core/hooks/show/useShow/) hook and grabbing product details from the `query` object to display the details in the JSX.
 
 We are also invoking the familiar `useNavigation()` hook to access the `edit()` and `list()` methods and call them from `Edit` and back buttons respectively.
 
@@ -2818,7 +2836,7 @@ Eventually you'll need to update the `resources` and routes in `App.tsx` to this
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   NavigateToResource,
   UnsavedChangesNotifier,
@@ -2855,7 +2873,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",
@@ -3027,7 +3045,7 @@ export const CategoryList = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: { setCurrent, filters, setFilters },
+    refineCore: { setCurrentPage, filters, setFilters },
     getState,
     setPageIndex,
     getCanPreviousPage,
@@ -3057,7 +3075,7 @@ export const CategoryList = () => {
           <button
             className="btn btn-outline btn-primary btn-sm font-light normal-case"
             onClick={() => {
-              setCurrent(1);
+              setCurrentPage(1);
               setFilters([], "replace");
               filterForm?.current?.reset();
             }}
@@ -3072,7 +3090,7 @@ export const CategoryList = () => {
                 type="search"
                 value={getDefaultFilter("q", filters)}
                 onChange={(e) => {
-                  setCurrent(1);
+                  setCurrentPage(1);
                   setFilters([
                     {
                       field: "q",
@@ -3285,7 +3303,7 @@ export const CategoryEdit = () => {
   const { list } = useNavigation();
 
   const {
-    refineCore: { onFinish, queryResult },
+    refineCore: { onFinish, query },
     register,
     handleSubmit,
     formState: { errors },
@@ -3308,7 +3326,7 @@ export const CategoryEdit = () => {
         <div>
           <button
             className="btn btn-sm btn-primary btn-outline flex items-center justify-center font-normal normal-case"
-            onClick={() => queryResult?.refetch()}
+            onClick={() => query?.refetch()}
           >
             <ArrowPathIcon className="h-5 w-5" />
             Refresh
@@ -3361,7 +3379,7 @@ import { ICategory } from "../../interfaces";
 export const CategoryShow = () => {
   const { edit, list } = useNavigation();
   const {
-    queryResult: { data },
+    query: { data },
   } = useShow<ICategory>();
 
   const record = data?.data;
@@ -3471,7 +3489,7 @@ Notice it renders the `<Menu />` and `<Breadcrumb />` components. We'll update t
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -3508,7 +3526,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.finefoods.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "dashboard",

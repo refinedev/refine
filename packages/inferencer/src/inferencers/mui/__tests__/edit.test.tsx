@@ -11,8 +11,8 @@ describe("MuiEditInferencer", () => {
       resources: [
         {
           name: "posts",
-          list: () => <div>list</div>,
-          edit: EditInferencer,
+          list: "/posts",
+          edit: "/posts/edit/:id",
         },
         {
           name: "categories",

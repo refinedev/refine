@@ -491,7 +491,7 @@ Now that we have implemented the logic and added some styles, let's add the `<Po
 import { Refine, ErrorComponent } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import dataProvider from "@refinedev/simple-rest";
-import routerBindings, {
+import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router";
@@ -507,7 +507,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[{ name: "posts", list: "/" }]}
           options={{
             syncWithLocation: true,

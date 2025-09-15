@@ -8,7 +8,7 @@ description: useLogin data hook from refine is a modified version of react-query
 `useLogin` calls `login` method from [`authProvider`](/api-reference/core/providers/auth-provider.md) under the hood.  
 It authenticates the app if `login` method from `authProvider` resolves and if it rejects shows an error notification. After successful authentication it redirects the app to root.
 
-It returns the result of `react-query`'s [useMutation](https://react-query.tanstack.com/reference/useMutation).
+It returns the result of `react-query`'s [useMutation](https://tanstack.com/query/v4/docs/framework/react/reference/useMutation).
 
 Data that is resolved from `login` will be returned as the `data` in the query result.
 
@@ -22,18 +22,18 @@ import { useLogin } from "@pankod/refine-core";
 import { Form } from "@pankod/refine-antd";
 
 type LoginVariables = {
-    username: string;
-    password: string;
+  username: string;
+  password: string;
 };
 
 export const LoginPage = () => {
-    const { mutate: login } = useLogin<LoginVariables>();
+  const { mutate: login } = useLogin<LoginVariables>();
 
-    const onSubmit = (values: LoginVariables) => {
-        login(values);
-    };
+  const onSubmit = (values: LoginVariables) => {
+    login(values);
+  };
 
-    return <Form onFinish={onSubmit}>// rest of the login form</Form>;
+  return <Form onFinish={onSubmit}>// rest of the login form</Form>;
 };
 ```
 
@@ -51,9 +51,9 @@ const { mutate: login } = useLogin<{ username: string; password: string }>();
 
 We have 3 options for redirecting the app after login successfully .
 
--   If promise returned from `login` is resolved with nothing, app will be redirected to the `/` route by default.
+- If promise returned from `login` is resolved with nothing, app will be redirected to the `/` route by default.
 
--   A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
+- A custom url can be resolved from the promise returned from the `login` method of the [authProvider](/api-reference/core/providers/auth-provider.md).
 
 ```tsx
 const authProvider: AuthProvider = {
@@ -89,7 +89,7 @@ const authProvider: AuthProvider = {
 
 ```
 
--   If promise returned from the `login` method of the `authProvider` gets resolved with `false` no redirection will occur.
+- If promise returned from the `login` method of the `authProvider` gets resolved with `false` no redirection will occur.
 
 ```tsx
 const authProvider: AuthProvider = {

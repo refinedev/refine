@@ -72,7 +72,7 @@ import {
   AuthPage,
   ErrorComponent,
   RefineSnackbarProvider,
-  ThemedLayoutV2,
+  ThemedLayout,
   useNotificationProvider,
 } from "@refinedev/mui";
 
@@ -143,9 +143,9 @@ function App() {
                     key="authenticated-inner"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2 Header={() => <Header sticky />}>
+                    <ThemedLayout Header={() => <Header sticky />}>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >
@@ -216,11 +216,11 @@ export default App;
 `;
 
 const AuthProviderCode = `
-import type { AuthBindings } from "@refinedev/core";
+import type { AuthProvider } from "@refinedev/core";
 
 export const TOKEN_KEY = "refine-auth";
 
-export const authProvider: AuthBindings = {
+export const authProvider: AuthProvider = {
   login: async ({ username, email, password }) => {
     if ((username || email) && password) {
       localStorage.setItem(TOKEN_KEY, username);
@@ -394,7 +394,7 @@ import Typography from "@mui/material/Typography";
 import { useGetIdentity, useGetLocale, useSetLocale } from "@refinedev/core";
 import {
   HamburgerMenu,
-  type RefineThemedLayoutV2HeaderProps,
+  type RefineThemedLayoutHeaderProps,
 } from "@refinedev/mui";
 import i18n from "i18next";
 import type React from "react";
@@ -407,7 +407,7 @@ type IUser = {
   avatar: string;
 };
 
-export const Header: React.FC<RefineThemedLayoutV2HeaderProps> = ({
+export const Header: React.FC<RefineThemedLayoutHeaderProps> = ({
   sticky = true,
 }) => {
   const { mode, setMode } = useContext(ColorModeContext);
@@ -849,7 +849,7 @@ export const ProductList = () => {
 
   const translate = useTranslate();
 
-  const { data: categoryData, isLoading: categoryLoading } = useList({
+  const { result: { data: categories }, query: { isLoading: categoryLoading } } = useList({
     resource: "categories",
     pagination: {
       mode: "off",
@@ -878,7 +878,7 @@ export const ProductList = () => {
           return categoryLoading ? (
             <>{translate("loading")}</>
           ) : (
-            categoryData?.data?.find((item) => item.id === value?.id)?.title ??
+            categories?.data?.find((item) => item.id === value?.id)?.title ??
               null
           );
         },
@@ -919,7 +919,7 @@ export const ProductList = () => {
         minWidth: 80,
       },
     ],
-    [categoryLoading, categoryData, locale, translate],
+    [categoryLoading, categories, locale, translate],
   );
 
   return (
@@ -947,13 +947,12 @@ import type { Product } from "./types";
 export const ProductShow: React.FC = () => {
   const translate = useTranslate();
   const {
-    query: { data: productResult, isLoading },
+    result: product,
+    query: { isLoading },
   } = useShow<Product>();
 
-  const product = productResult?.data;
-
   const {
-    data: categoryData,
+    data: categories,
     isLoading: categoryLoading,
     isError: categoryError,
   } = useOne({
@@ -1013,7 +1012,7 @@ export const ProductShow: React.FC = () => {
         {categoryError ? null : categoryLoading ? (
           <Skeleton height="20px" width="200px" />
         ) : (
-          <TextField value={categoryData?.data?.title} />
+          <TextField value={categories?.data?.title} />
         )}
       </Stack>
     </Show>
@@ -1220,10 +1219,9 @@ import type { Category } from "./types";
 export const CategoryShow = () => {
   const translate = useTranslate();
   const {
-    query: { data: categoryResult, isLoading },
+    result: category,
+    query: { isLoading },
   } = useShow<Category>();
-
-  const category = categoryResult?.data;
 
   return (
     <Show isLoading={isLoading}>

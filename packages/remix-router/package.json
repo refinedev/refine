@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/remix-router",
-  "version": "3.0.8",
+  "version": "4.0.0",
   "private": false,
   "description": "Remix router integration package for Refine.",
   "repository": {
@@ -21,16 +21,6 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
-    },
-    "./legacy": {
-      "import": {
-        "types": "./dist/legacy/index.d.mts",
-        "default": "./dist/legacy.mjs"
-      },
-      "require": {
-        "types": "./dist/legacy/index.d.cts",
-        "default": "./dist/legacy.cjs"
-      }
     }
   },
   "main": "dist/index.cjs",
@@ -39,9 +29,6 @@
     "*": {
       ".": [
         "dist/index.d.ts"
-      ],
-      "legacy": [
-        "dist/legacy/index.d.ts"
       ]
     }
   },
@@ -64,31 +51,32 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^5.0.0",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "@types/qs": "^6.9.7",
-    "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "remix": "^2.4.0",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
+    "@refinedev/core": "^5.0.0",
     "@remix-run/node": "*",
     "@remix-run/react": "*",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
     "remix": "*"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

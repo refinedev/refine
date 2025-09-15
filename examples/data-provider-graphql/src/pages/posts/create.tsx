@@ -20,8 +20,13 @@ export const PostCreate = () => {
     GetFieldsFromList<CategoriesSelectQuery>
   >({
     resource: "categories",
-    metaData: {
+
+    meta: {
       gqlQuery: CATEGORIES_SELECT_QUERY,
+    },
+
+    pagination: {
+      mode: "server",
     },
   });
 

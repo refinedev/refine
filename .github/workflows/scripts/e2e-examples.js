@@ -214,6 +214,7 @@ const runTests = async () => {
           `--record --group ${path}`,
           `--spec cypress/e2e/${path}`,
           `--config baseUrl=http://localhost:${port}`,
+          "--browser chrome",
         ];
 
         const runCommand = `pnpm cypress:run ${additionalParams.join(" ")} `;

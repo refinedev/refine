@@ -433,7 +433,7 @@ function App() {
           }}
           //highlight-end
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             ...
             {
@@ -516,7 +516,7 @@ function App() {
       <RefineKbarProvider>
         <Refine
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           ...
         >
           <Routes>
@@ -1245,9 +1245,7 @@ export const Details = () => {
   const {
     getHeaderGroups,
     getRowModel,
-    refineCore: {
-      tableQuery: { data: tableData },
-    },
+    refineCore: { result },
     getState,
     setPageIndex,
     getCanPreviousPage,

@@ -39,3 +39,5 @@ examples/**/package-lock.json
 
 # cursor
 .cursorrules
+# claude
+.claude/

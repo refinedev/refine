@@ -33,7 +33,9 @@ export const OrderList = () => {
     HttpError,
     IOrderFilterVariables
   >({
-    initialPageSize: 10,
+    pagination: {
+      pageSize: 10,
+    },
   });
 
   const columns = useMemo<GridColDef<IOrder>[]>(

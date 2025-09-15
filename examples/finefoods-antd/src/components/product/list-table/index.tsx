@@ -68,6 +68,10 @@ export const ProductListTable = () => {
       optionLabel: "title",
       optionValue: "id",
       defaultValue: getDefaultFilter("category.id", filters, "in"),
+
+      pagination: {
+        mode: "server",
+      },
     });
 
   const categories = queryResult?.data?.data || [];

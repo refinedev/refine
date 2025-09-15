@@ -1,7 +1,7 @@
 import { CanAccess, GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
@@ -16,6 +16,7 @@ import { ConfigProvider, App as AntdApp } from "antd";
 
 import { HTTP as Cerbos } from "@cerbos/http";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { Header } from "./components/header";
@@ -109,11 +110,11 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2 Header={() => <Header role={role} />}>
+                  <ThemedLayout Header={() => <Header role={role} />}>
                     <CanAccess>
                       <Outlet />
                     </CanAccess>
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

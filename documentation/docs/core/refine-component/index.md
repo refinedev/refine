@@ -96,7 +96,7 @@ const App = () => (
 
 :::simple Accessing the Resource
 
-You can use [useResource](/docs/routing/hooks/use-resource) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResource` hook to get the resource object.
+You can use [useResourceParams](/docs/routing/hooks/use-resource-params) hook to get the current active resource by the route or you can pass the `name` or the `identifier` of a resource to the `useResourceParams` hook to get the resource object.
 
 :::
 
@@ -212,7 +212,7 @@ There's also a third option, which is to pass an object with the `component` and
 
 ### meta
 
-`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResource](/docs/routing/hooks/use-resource). Listed below are the properties that are used by Refine or its libraries.
+`meta` can have any kind of property. It is used to store additional information about the resource. This property you pass can be received from the [useResourceParams](/docs/routing/hooks/use-resource-params). Listed below are the properties that are used by Refine or its libraries.
 
 #### label
 
@@ -314,10 +314,6 @@ Can be used to hide a `resource` in `Sider`. This resource is also filtered in t
   ]}
 />
 ```
-
-#### ~~route~~ <PropTag deprecated />
-
-Custom route name for the resource.
 
 ## authProvider
 
@@ -555,12 +551,6 @@ const App = () => (
 
 > For more information, refer to the [QueryClient documentation &#8594](https://react-query.tanstack.com/reference/QueryClient#queryclient)
 
-#### ~~devtoolConfig~~ <PropTag deprecated />
-
-React Query Devtools are removed from the `@refinedev/core` and this prop is no longer supported for the configuration of the devtools. You can use the `@tanstack/react-query-devtools` in your app directly to use the devtools. For more information, please check out [FAQ - How to use React Query Devtools with Refine?](/docs/guides-concepts/faq/#how-to-use-react-query-devtools-with-refine)
-
-> For more information, refer to the [Devtools documentation &#8594](https://react-query.tanstack.com/devtools#options)
-
 ### textTransformers
 
 The `textTransformers` option in Refine is used to transform the resource name displayed on the user interface (UI). By default, if you define a resource named `posts`, Refine will display it as `Posts`. Similarly, when you delete a record, notification messages will be shown as `Post deleted successfully.`.
@@ -663,13 +653,13 @@ const App = () => (
 );
 ```
 
-If you wish to use separate values for your `<AuthPage />` and `<ThemedLayoutV2 />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitleV2 />` component from the respective package).
+If you wish to use separate values for your `<AuthPage />` and `<ThemedLayout />` components, you can `Title` prop to override the default title component (which is the `<ThemedTitle />` component from the respective package).
 
 ```tsx
 import { Refine } from "@refinedev/core";
-// ThemedTitleV2 accepts `text` and `icon` props with same types as `options.title`
-// This component is used in both AuthPage and ThemedLayoutV2 components.
-import { ThemedLayoutV2, AuthPage, ThemedTitleV2 } from "@refinedev/antd";
+// ThemedTitle accepts `text` and `icon` props with same types as `options.title`
+// This component is used in both AuthPage and ThemedLayout components.
+import { ThemedLayout, AuthPage, ThemedTitle } from "@refinedev/antd";
 
 const App = () => {
   return (
@@ -684,10 +674,10 @@ const App = () => {
       }}
     >
       {/* ... */}
-      <ThemedLayoutV2
+      <ThemedLayout
         // highlight-start
         Title={(props) => (
-          <ThemedTitleV2
+          <ThemedTitle
             // These values will override the global title values
             text="A Different Value"
             icon={<IconB />}
@@ -697,13 +687,13 @@ const App = () => {
         // highlight-end
       >
         {/* ... */}
-      </ThemedLayoutV2>
+      </ThemedLayout>
       {/* ... */}
       <AuthPage
         type="login"
         // highlight-start
         title={
-          <ThemedTitleV2
+          <ThemedTitle
             collapsed={false}
             // These values will override the global title values
             text="A Different Value"
@@ -722,209 +712,6 @@ const App = () => {
 Callback to handle all live events.
 
 > For more information, refer to the [live provider documentation &#8594](/docs/realtime/live-provider#Refine)
-
-## ~~catchAll~~ <PropTag deprecated />
-
-| 🚨 Use the `<CustomErrorPage />` component in your routes instead.
-
-When the app is navigated to a non-existent route, Refine shows a default error page. A custom error component can be used for this error page by passing the customized component to the `catchAll` property:
-
-```tsx title="App.tsx"
-// highlight-next-line
-const CustomErrorPage = <div>Page not found</div>;
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    catchAll={CustomErrorPage}
-  />
-);
-```
-
-## ~~LoginPage~~ <PropTag deprecated />
-
-| 🚨 Use the `<AuthPage />` component in your routes instead.
-
-Refine has a default login page form which is served on the `/login` route when the `authProvider` configuration is provided.
-
-Custom login component can be passed to the `LoginPage` property.
-
-```tsx title="App.tsx"
-// highlight-next-line
-const CustomLoginPage = () => <div> Custom Login Page </div>;
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    LoginPage={CustomLoginPage}
-  />
-);
-```
-
-## ~~DashboardPage~~ <PropTag deprecated />
-
-| 🚨 Use the `<CustomDashboardPage />` component in your routes instead.
-
-A custom dashboard page can be passed to the `DashboardPage` prop which is accessible on the root route.
-
-The dashboard item will appear at the top of the sider menu. If `DashboardPage` is not given, the first resource of `resources` will be shown.
-
-```tsx title="App.tsx"
-// highlight-next-line
-const CustomDashboardPage = () => <div> Custom Dashboard Page </div>;
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    DashboardPage={CustomDashboardPage}
-  />
-);
-```
-
-## ~~ReadyPage~~ <PropTag deprecated />
-
-Refine shows a default ready page on the root route when no `resources` is passed to the `<Refine>`.
-
-Custom ready page component can be set by passing to the `ReadyPage` property?.
-
-```tsx title="App.tsx"
-// highlight-next-line
-const CustomReadyPage = () => <div> Custom Ready Page </div>;
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    ReadyPage={CustomReadyPage}
-  />
-);
-```
-
-## ~~Sider~~ <PropTag deprecated />
-
-| 🚨 Use `Sider` prop of `<ThemedLayoutV2 />` component instead.
-
-The default sidebar can be customized by using Refine hooks and passing custom components to the `Sider` property.
-
-> For more information, refer to the [`useMenu` hook documentation &#8594](/docs/core/hooks/utilities/use-menu)
-
-## ~~Footer~~ <PropTag deprecated />
-
-| 🚨 Use `Footer` prop of `<ThemedLayoutV2 />` component instead.
-
-The default app footer can be customized by passing the `Footer` property.
-
-```tsx title="App.tsx"
-// highlight-next-line
-const CustomFooter = () => <div>Custom Footer</div>;
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    Footer={CustomFooter}
-  />
-);
-```
-
-## ~~Header~~ <PropTag deprecated />
-
-| 🚨 Use `Header` prop of `<ThemedLayoutV2 />` component instead.
-
-```tsx title="App.tsx"
-// highlight-next-line
-const CustomHeader = () => <div>Custom Header</div>;
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    Header={CustomHeader}
-  />
-);
-```
-
-## ~~Layout~~ <PropTag deprecated />
-
-| 🚨 Use `<ThemedLayoutV2 />` as children of `<Refine />` instead.
-
-The default layout can be customized by passing the `Layout` property.
-
-Layout property will receive individual layout components as property.
-
-```tsx title="App.tsx"
-const App = () => (
-  <Refine
-    // highlight-start
-    Layout={({ children, Sider, Footer, Header, OffLayoutArea }) => (
-      <AntdLayout style={{ minHeight: "100vh", flexDirection: "row" }}>
-        {Sider && <Sider />}
-        <AntdLayout>
-          {Header && <Header />}
-          <AntdLayout.Content>
-            <div style={{ padding: 24, minHeight: 360 }}>{children}</div>
-          </AntdLayout.Content>
-          {Footer && <Footer />}
-        </AntdLayout>
-        {OffLayoutArea && <OffLayoutArea />}
-      </AntdLayout>
-    )}
-    // highlight-end
-  />
-);
-```
-
-A completely custom layout can also be implemented instead of the Refine's default:
-
-```tsx title="App.tsx"
-const App = () => (
-  <Refine
-    // highlight-start
-    Layout={({ children }) => (
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div>Custom Layout</div>
-        <div>{children}</div>
-      </div>
-    )}
-    // highlight-end
-  />
-);
-```
-
-## ~~OffLayoutArea~~ <PropTag deprecated />
-
-| 🚨 Use `OffLayoutArea` prop of `<ThemedLayoutV2 />` component instead.
-
-The component wanted to be placed out of the app layout structure can be set by passing to the `OffLayoutArea` prop.
-
-```tsx title="App.tsx"
-import { Refine } from "@refinedev/core";
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    OffLayoutArea={() => <div>Some elements to place outside the layout</div>}
-  />
-);
-```
-
-## ~~Title~~ <PropTag deprecated />
-
-| 🚨 Use `Title` prop of `<ThemedLayoutV2 />` component instead.
-
-The app title can be set by passing the `Title` property.
-
-```tsx title="App.tsx"
-// highlight-start
-const CustomTitle = ({ collapsed }) => (
-  <div>{collapsed ? "Collapsed Title" : "Full Title"}</div>
-);
-// highlight-end
-
-const App = () => (
-  <Refine
-    // highlight-next-line
-    Title={CustomTitle}
-  />
-);
-```
 
 ## API Reference
 

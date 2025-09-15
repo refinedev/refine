@@ -2,13 +2,7 @@ import React from "react";
 
 import { renderHook, waitFor } from "@testing-library/react";
 
-import {
-  MockJSONServer,
-  TestWrapper,
-  act,
-  mockLegacyRouterProvider,
-  mockRouterProvider,
-} from "@test";
+import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
 import { posts } from "@test/dataMocks";
 import {
   assertList,
@@ -108,10 +102,10 @@ describe("useForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         resource: "posts",
         meta: expect.objectContaining({
@@ -288,10 +282,10 @@ describe("useForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           foo: "bar",
@@ -339,10 +333,10 @@ describe("useForm Hook", () => {
     });
 
     await waitFor(() => {
-      expect(getOneMock).toBeCalled();
+      expect(getOneMock).toHaveBeenCalled();
     });
 
-    expect(getOneMock).toBeCalledWith(
+    expect(getOneMock).toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           startDate: "2021-01-01",
@@ -350,82 +344,11 @@ describe("useForm Hook", () => {
       }),
     );
 
-    expect(getOneMock).not.toBeCalledWith(
+    expect(getOneMock).not.toHaveBeenCalledWith(
       expect.objectContaining({
         meta: expect.objectContaining({
           likes: 100,
         }),
-      }),
-    );
-  });
-
-  it("if id is not provided while using legacy router provider, it should infer id from route when resources are matched", async () => {
-    const legacyRouterProvider = {
-      ...mockLegacyRouterProvider(),
-      useParams: () => ({
-        resource: "posts",
-        action: "edit",
-        id: "1",
-      }),
-    } as any;
-
-    const { result } = renderHook(
-      () =>
-        useForm({
-          resource: "posts",
-        }),
-      {
-        wrapper: TestWrapper({
-          dataProvider: MockJSONServer,
-          legacyRouterProvider: legacyRouterProvider,
-          resources: [{ name: "posts" }],
-        }),
-      },
-    );
-
-    expect(result.current.id).toEqual("1");
-  });
-
-  it("legacy router provider should infer resource, action and id from route", async () => {
-    const updateMock = jest.fn();
-    const legacyRouterProvider = {
-      ...mockLegacyRouterProvider(),
-      useParams: () => ({
-        resource: "posts",
-        action: "edit",
-        id: "1",
-      }),
-    } as any;
-
-    const { result } = renderHook(() => useForm({}), {
-      wrapper: TestWrapper({
-        dataProvider: {
-          default: {
-            ...MockJSONServer.default,
-            update: updateMock,
-          },
-        },
-        legacyRouterProvider: legacyRouterProvider,
-        resources: [
-          {
-            name: "posts",
-          },
-        ],
-      }),
-    });
-
-    await act(async () => {
-      await result.current.onFinish({});
-    });
-
-    await waitFor(() => {
-      expect(updateMock).toBeCalled();
-    });
-
-    expect(updateMock).toBeCalledWith(
-      expect.objectContaining({
-        resource: "posts",
-        id: "1",
       }),
     );
   });
@@ -466,7 +389,7 @@ describe("useForm Hook", () => {
 
     result.current.redirect("edit", 1);
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/edit/1",
       type: "push",
     });
@@ -509,7 +432,7 @@ describe("useForm Hook", () => {
 
     result.current.redirect("edit");
 
-    expect(goMock).toBeCalledWith({
+    expect(goMock).toHaveBeenCalledWith({
       to: "/posts/edit/123",
       type: "push",
     });
@@ -555,7 +478,7 @@ describe("useForm Hook", () => {
     await waitFor(() => {
       expect(result.current.query?.isFetching).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
@@ -602,10 +525,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(createMock).toBeCalled();
+        expect(createMock).toHaveBeenCalled();
       });
 
-      expect(createMock).toBeCalledWith(
+      expect(createMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           variables: {
@@ -645,10 +568,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(createMock).toBeCalled();
+        expect(createMock).toHaveBeenCalled();
       });
 
-      expect(createMock).toBeCalledWith(
+      expect(createMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           meta: expect.objectContaining({
@@ -685,7 +608,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(createMock).not.toBeCalled();
+        expect(createMock).not.toHaveBeenCalled();
       });
     });
 
@@ -715,7 +638,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(onMutationSuccessMock).toBeCalledWith(
+      expect(onMutationSuccessMock).toHaveBeenCalledWith(
         { data: posts[0] },
         {
           title: "foo",
@@ -757,7 +680,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onMutationErrorMock).toBeCalledWith(
+      expect(onMutationErrorMock).toHaveBeenCalledWith(
         new Error("Error"),
         {
           title: "foo",
@@ -808,15 +731,15 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutation?.isLoading).toBeTruthy();
+        expect(result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
-        expect(onInterval).toBeCalled();
+        expect(onInterval).toHaveBeenCalled();
       });
 
       await promise;
 
       await waitFor(() => {
-        expect(!result.current.mutation?.isLoading).toBeTruthy();
+        expect(!result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBeUndefined();
       });
     });
@@ -849,10 +772,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(updateMock).toBeCalled();
+        expect(updateMock).toHaveBeenCalled();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           variables: {
@@ -894,10 +817,10 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(updateMock).toBeCalled();
+        expect(updateMock).toHaveBeenCalled();
       });
 
-      expect(updateMock).toBeCalledWith(
+      expect(updateMock).toHaveBeenCalledWith(
         expect.objectContaining({
           resource: "posts",
           meta: expect.objectContaining({
@@ -934,7 +857,7 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(updateMock).not.toBeCalled();
+        expect(updateMock).not.toHaveBeenCalled();
       });
     });
 
@@ -965,7 +888,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isSuccess).toBeTruthy();
       });
 
-      expect(onMutationSuccessMock).toBeCalledWith(
+      expect(onMutationSuccessMock).toHaveBeenCalledWith(
         { data: posts[0] },
         {
           title: "foo",
@@ -1008,7 +931,7 @@ describe("useForm Hook", () => {
         expect(result.current.mutation.isError).toBeTruthy();
       });
 
-      expect(onMutationErrorMock).toBeCalledWith(
+      expect(onMutationErrorMock).toHaveBeenCalledWith(
         new Error("Error"),
         {
           title: "foo",
@@ -1060,15 +983,15 @@ describe("useForm Hook", () => {
       });
 
       await waitFor(() => {
-        expect(result.current.mutation?.isLoading).toBeTruthy();
+        expect(result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBe(900);
-        expect(onInterval).toBeCalled();
+        expect(onInterval).toHaveBeenCalled();
       });
 
       await promise;
 
       await waitFor(() => {
-        expect(!result.current.mutation?.isLoading).toBeTruthy();
+        expect(!result.current.mutation?.isPending).toBeTruthy();
         expect(result.current.overtime.elapsedTime).toBeUndefined();
       });
     });
@@ -1160,7 +1083,7 @@ describe("useForm Hook", () => {
       );
 
       await waitFor(() => {
-        expect(warnMock).toBeCalled();
+        expect(warnMock).toHaveBeenCalled();
       });
     });
 
@@ -1183,7 +1106,7 @@ describe("useForm Hook", () => {
       );
 
       await waitFor(() => {
-        expect(warnMock).not.toBeCalled();
+        expect(warnMock).not.toHaveBeenCalled();
       });
     });
   });

@@ -354,7 +354,7 @@ export const DisplayCanvas: React.FC<DisplayCanvasProps> = ({
   canvas: { id },
   children,
 }) => {
-  const { data } = useList<Pixel>({
+  const { result } = useList<Pixel>({
     resource: "pixels",
     liveMode: "auto",
     meta: {

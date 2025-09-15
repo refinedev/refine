@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/react-router",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "private": false,
   "description": "React Router support for Refine, with full routing capabilities.",
   "repository": {
@@ -52,26 +52,27 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^4.57.1",
+    "@refinedev/core": "^5.0.0",
     "@types/jest": "^29.2.4",
+    "@types/node": "^20",
     "@types/qs": "^6.9.7",
-    "jest": "^29.3.1",
-    "jest-environment-jsdom": "^29.3.1",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "peerDependencies": {
-    "@refinedev/core": "^4.46.1",
-    "@types/react": "^17.0.0 || ^18.0.0",
-    "@types/react-dom": "^17.0.0 || ^18.0.0",
-    "react": "^17.0.0 || ^18.0.0",
-    "react-dom": "^17.0.0 || ^18.0.0",
+    "@refinedev/core": "^5.0.0",
+    "@types/react": "^18.0.0 || ^19.0.0",
+    "@types/react-dom": "^18.0.0 || ^19.0.0",
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0",
     "react-router": "^7.0.2"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=20"
   },
   "publishConfig": {
     "access": "public"

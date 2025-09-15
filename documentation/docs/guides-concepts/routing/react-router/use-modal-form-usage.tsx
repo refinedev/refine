@@ -159,7 +159,8 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "../../components/modal.tsx";
 
 export const ProductList: React.FC = () => {
-  const { data, isLoading } = useList();
+  const { result, query } = useList();
+  const products = result?.data;
 
   const {
     modal: { visible, close, show },
@@ -172,7 +173,7 @@ export const ProductList: React.FC = () => {
     syncWithLocation: true,
   });
 
-  if (isLoading) return <div>Loading...</div>;
+  if (query.isLoading) return <div>Loading...</div>;
 
   return (
     <>
@@ -188,7 +189,7 @@ export const ProductList: React.FC = () => {
         </form>
       </Modal>
       <ul>
-        {data?.data?.map((product) => (
+        {products?.map((product) => (
           <li key={product.id}>
             <span>{product.name}</span>
             <button

@@ -118,7 +118,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-  const { tableQuery } = useTable<IPost>({
+  const { result, tableQuery } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -186,7 +186,7 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result?.data?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
@@ -238,7 +238,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-  const { tableQuery } = useTable<IPost>({
+  const { result, tableQuery } = useTable<IPost>({
     sorters: {
       initial: [
         {
@@ -306,7 +306,7 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
@@ -381,7 +381,7 @@ import { useModalForm } from "@refinedev/react-hook-form";
 import { Modal } from "@components";
 
 const PostList = () => {
-  const { tableQuery } = useTable<IPost>({
+  const { result, tableQuery } = useTable<IPost>({
     initialSorter: [
       {
         field: "id",
@@ -447,7 +447,7 @@ const PostList = () => {
           </tr>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result?.data.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>

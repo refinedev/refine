@@ -10,7 +10,7 @@ import {
   type LiveModeProps,
   type BaseKey,
   useUserFriendlyName,
-  useResource,
+  useResourceParams,
   type FormWithSyncWithLocationParams,
   useParsed,
   useGo,
@@ -32,8 +32,6 @@ export type useModalFormFromSFReturnType<TResponse, TVariables> = {
   initialValues: {};
   formResult: undefined;
   submit: (values?: TVariables) => Promise<TResponse>;
-  /** @deprecated Please use `open` instead. */
-  visible: boolean;
 };
 
 type useModalFormConfig = {
@@ -140,7 +138,7 @@ export const useModalForm = <
     resource,
     action: actionFromParams,
     identifier,
-  } = useResource(rest.resource);
+  } = useResourceParams({ resource: rest.resource });
 
   const parsed = useParsed();
   const go = useGo();
@@ -204,7 +202,6 @@ export const useModalForm = <
       close,
       open: modalProps.open || false,
       show,
-      visible,
     };
 
   React.useEffect(() => {
@@ -346,12 +343,7 @@ export const useModalForm = <
       title: translate(
         `${identifier}.titles.${rest.action}`,
         `${getUserFriendlyName(
-          `${rest.action} ${
-            resource?.meta?.label ??
-            resource?.options?.label ??
-            resource?.label ??
-            identifier
-          }`,
+          `${rest.action} ${resource?.meta?.label ?? identifier}`,
           "singular",
         )}`,
       ),

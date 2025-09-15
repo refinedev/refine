@@ -2,10 +2,7 @@ import React from "react";
 import {
   useBreadcrumb,
   useLink,
-  useRefineContext,
-  useRouterContext,
-  useRouterType,
-  useResource,
+  useResourceParams,
   matchResourceFromRoute,
 } from "@refinedev/core";
 import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
@@ -25,19 +22,14 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   meta,
   minItems = 2,
 }) => {
-  const routerType = useRouterType();
   const { breadcrumbs } = useBreadcrumb({
     meta,
   });
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const { hasDashboard } = useRefineContext();
 
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   if (breadcrumbs.length < minItems) return null;
 
@@ -53,24 +45,20 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
         }}
       >
         {!hideIcons && icon}
-        {href ? (
-          <ActiveLink to={href}>{label}</ActiveLink>
-        ) : (
-          <span>{label}</span>
-        )}
+        {href ? <Link to={href}>{label}</Link> : <span>{label}</span>}
       </div>
     ),
   }));
 
   const getBreadcrumbItems = () => {
-    if (showHome && (hasDashboard || rootRouteResource.found)) {
+    if (showHome && rootRouteResource.found) {
       return [
         {
           key: "breadcrumb-item-home",
           title: (
-            <ActiveLink to="/">
+            <Link to="/">
               {rootRouteResource?.resource?.meta?.icon ?? <HomeOutlined />}
-            </ActiveLink>
+            </Link>
           ),
         },
         ...breadCrumbItems,

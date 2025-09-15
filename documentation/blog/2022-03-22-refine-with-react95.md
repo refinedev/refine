@@ -352,7 +352,7 @@ Before we start, let's take a look at the `App.tsx` file. This is the root compo
 import { Refine, WelcomePage } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, {
+import routerProvider, {
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router-v6";
@@ -371,7 +371,7 @@ function App() {
           dataProvider={dataProvider(supabaseClient)}
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           options={{
             syncWithLocation: true,
             warnWhenUnsavedChanges: true,
@@ -1054,9 +1054,7 @@ export const PostList = () => {
     getState,
     setPageIndex,
     setPageSize,
-    refineCore: {
-      tableQuery: { isLoading },
-    },
+    refineCore: { result },
   } = useTable<IPost>({
     columns,
     refineCoreProps: {

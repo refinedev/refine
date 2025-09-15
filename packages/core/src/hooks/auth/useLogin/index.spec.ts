@@ -4,7 +4,6 @@ import {
   TestWrapper,
   act,
   mockAuthProvider,
-  mockLegacyRouterProvider,
   mockRouterProvider,
   queryClient,
 } from "@test";
@@ -18,319 +17,6 @@ const routerProvider = mockRouterProvider({
   fns: {
     go: () => mockGo,
   },
-});
-
-const legacyRouterProvider = {
-  ...mockLegacyRouterProvider(),
-  useHistory: () => ({
-    goBack: jest.fn(),
-    push: jest.fn(),
-    replace: mockReplace,
-  }),
-};
-
-// NOTE : Will be removed in v5
-describe("v3LegacyAuthProviderCompatible useLogin Hook", () => {
-  beforeEach(() => {
-    mockGo.mockReset();
-    jest.spyOn(console, "error").mockImplementation((message) => {
-      if (message?.message === "Wrong email") return;
-      if (typeof message === "undefined") return;
-      console.warn(message);
-    });
-  });
-
-  it("succeed login", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: ({ email }) => {
-              if (email === "test") {
-                return Promise.resolve();
-              }
-
-              return Promise.reject(new Error("Wrong email"));
-            },
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-          routerProvider,
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
-  });
-
-  it("should successfully login with no redirect", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: ({ email }) => {
-              if (email === "test") {
-                return Promise.resolve(false);
-              }
-
-              return Promise.reject(new Error("Wrong email"));
-            },
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(mockGo).not.toBeCalled();
-  });
-
-  it("login and redirect to custom path", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: ({ email, redirectPath }) => {
-              if (email === "test") {
-                return Promise.resolve(redirectPath);
-              }
-
-              return Promise.reject(new Error("Wrong email"));
-            },
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-          routerProvider,
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test", redirectPath: "/custom-path" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(mockGo).toBeCalledWith({ to: "/custom-path", type: "replace" });
-  });
-
-  it("login and redirect to custom path with legacyRouterProvider", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: ({ email, redirectPath }) => {
-              if (email === "test") {
-                return Promise.resolve(redirectPath);
-              }
-
-              return Promise.reject(new Error("Wrong email"));
-            },
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-          legacyRouterProvider,
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test", redirectPath: "/custom-path" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(mockReplace).toBeCalledWith("/custom-path");
-  });
-
-  it("login and redirect to `/` with legacyRouterProvider", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: ({ email, redirectPath }) => {
-              if (email === "test") {
-                return Promise.resolve(redirectPath);
-              }
-
-              return Promise.reject(new Error("Wrong email"));
-            },
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-          legacyRouterProvider,
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(mockReplace).toBeCalledWith("/");
-  });
-
-  it("If URL has 'to' params the app will redirect to 'to' values", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: ({ email, redirectPath }) => {
-              if (email === "test") {
-                return Promise.resolve(redirectPath);
-              }
-
-              return Promise.reject(new Error("Wrong email"));
-            },
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-          routerProvider: mockRouterProvider({
-            fns: {
-              go: () => mockGo,
-            },
-            params: {
-              to: "/show/posts/5",
-            },
-          }),
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test", redirectPath: "/custom-path" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isSuccess).toBeTruthy();
-    });
-
-    expect(mockGo).toBeCalledWith({ to: "/show/posts/5", type: "replace" });
-  });
-
-  it("fail login", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: () => Promise.reject(new Error("Wrong email")),
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "demo" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-    });
-
-    const { error } = result.current ?? { error: undefined };
-
-    expect(error).toEqual(new Error("Wrong email"));
-  });
-
-  it("login rejected with undefined error", async () => {
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: () => Promise.reject(),
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            getPermissions: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-            getUserIdentity: () => Promise.resolve({ id: 1 }),
-          },
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "demo" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.isError).toBeTruthy();
-    });
-
-    const { error } = result.current ?? { error: undefined };
-
-    expect(error).not.toBeDefined();
-  });
 });
 
 describe("useLogin Hook", () => {
@@ -379,7 +65,7 @@ describe("useLogin Hook", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "/", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({ to: "/", type: "replace" });
   });
 
   it("should successfully login with no redirect", async () => {
@@ -399,6 +85,7 @@ describe("useLogin Hook", () => {
           check: () => Promise.resolve({ authenticated: true }),
           onError: () => Promise.resolve({}),
           logout: () => Promise.resolve({ success: true }),
+          getIdentity: () => Promise.resolve({ id: 1 }),
         },
         routerProvider,
       }),
@@ -414,7 +101,7 @@ describe("useLogin Hook", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).not.toBeCalled();
+    expect(mockGo).not.toHaveBeenCalled();
   });
 
   it("login and redirect to custom path", async () => {
@@ -452,7 +139,10 @@ describe("useLogin Hook", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "/custom-path", type: "replace" });
+    expect(mockGo).toHaveBeenCalledWith({
+      to: "/custom-path",
+      type: "replace",
+    });
   });
 
   it("fail login", async () => {
@@ -493,7 +183,7 @@ describe("useLogin Hook", () => {
       });
     });
 
-    expect(mockGo).not.toBeCalled();
+    expect(mockGo).not.toHaveBeenCalled();
   });
 
   it("login rejected with undefined error", async () => {
@@ -556,7 +246,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-error",
         type: "error",
         message: "Error",
@@ -593,7 +283,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-error",
         type: "error",
         message: "Login Error",
@@ -629,7 +319,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-error",
         type: "error",
         message: "Error",
@@ -667,8 +357,8 @@ describe("useLogin Hook", () => {
       expect(result.current.isSuccess).toBeTruthy();
     });
 
-    expect(loginMock).not.toBeCalled();
-    expect(mutationFnMock).toBeCalled();
+    expect(loginMock).not.toHaveBeenCalled();
+    expect(mutationFnMock).toHaveBeenCalled();
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
@@ -736,7 +426,7 @@ describe("useLogin Hook", () => {
     });
 
     await waitFor(() => {
-      expect(openNotificationMock).toBeCalledWith({
+      expect(openNotificationMock).toHaveBeenCalledWith({
         key: "login-success",
         type: "success",
         message: "Login successful",
@@ -746,133 +436,7 @@ describe("useLogin Hook", () => {
   });
 });
 
-// NOTE : Will be removed in v5
-describe("useLogin Hook authProvider selection", () => {
-  it("selects new authProvider", async () => {
-    const legacyLoginMock = jest.fn(() => Promise.resolve());
-    const loginMock = jest.fn(() =>
-      Promise.resolve({
-        success: true,
-      }),
-    );
-
-    const { result } = renderHook(() => useLogin(), {
-      wrapper: TestWrapper({
-        legacyAuthProvider: {
-          login: () => legacyLoginMock(),
-          checkAuth: () => Promise.resolve(),
-          checkError: () => Promise.resolve(),
-        },
-        authProvider: {
-          login: () => loginMock(),
-          check: () => Promise.resolve({ authenticated: true }),
-          onError: () => Promise.resolve({}),
-          logout: () => Promise.resolve({ success: true }),
-        },
-      }),
-    });
-
-    const { mutate: login } = result.current;
-
-    await act(async () => {
-      login({});
-    });
-
-    await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
-    });
-
-    expect(legacyLoginMock).not.toHaveBeenCalled();
-    expect(loginMock).toHaveBeenCalled();
-  });
-
-  it("selects v3LegacyAuthProviderCompatible authProvider", async () => {
-    const legacyLoginMock = jest.fn(() => Promise.resolve());
-    const loginMock = jest.fn(() => Promise.resolve({ success: true }));
-
-    const { result } = renderHook(
-      () => useLogin({ v3LegacyAuthProviderCompatible: true }),
-      {
-        wrapper: TestWrapper({
-          legacyAuthProvider: {
-            login: () => legacyLoginMock(),
-            checkAuth: () => Promise.resolve(),
-            checkError: () => Promise.resolve(),
-            logout: () => Promise.resolve(),
-          },
-          authProvider: {
-            login: () => loginMock(),
-            check: () => Promise.resolve({ authenticated: true }),
-            onError: () => Promise.resolve({}),
-            logout: () => Promise.resolve({ success: true }),
-          },
-        }),
-      },
-    );
-
-    const { mutate: login } = result.current;
-
-    await act(async () => {
-      login({});
-    });
-
-    await waitFor(() => {
-      expect(result.current.isLoading).toBeFalsy();
-    });
-
-    expect(legacyLoginMock).toHaveBeenCalled();
-    expect(loginMock).not.toHaveBeenCalled();
-  });
-});
-
 describe("useLogin Hook redirect support", () => {
-  // This test does nothing. It was only passing because previous mocks wasn't reset
-  // ...mockLegacyProvider is a function. It wasn't invoking it.
-  // Actually this whole test suite does nothing. Uses the same exact mock.
-  // You can play around, change stuff, even remove whole renderHook. It will still pass.
-  xit("should be redirect 'to' queryString on legacyRouterProvider ", async () => {
-    const { result } = renderHook(() => useLogin(), {
-      wrapper: TestWrapper({
-        authProvider: {
-          login: ({ email }: any) => {
-            if (email === "test") {
-              return Promise.resolve({
-                success: true,
-              });
-            }
-
-            return Promise.resolve({
-              success: false,
-              error: new Error("Wrong email"),
-            });
-          },
-          check: () => Promise.resolve({ authenticated: true }),
-          onError: () => Promise.resolve({}),
-          logout: () => Promise.resolve({ success: true }),
-        },
-        legacyRouterProvider: {
-          ...mockLegacyRouterProvider(),
-          useLocation: () => ({
-            pathname: "",
-            search: "to=redirectTo",
-          }),
-        },
-      }),
-    });
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.data?.success).toBeTruthy();
-    });
-
-    expect(mockReplace).toBeCalledWith("redirectTo");
-  });
-
   it("should be redirect 'to' queryString on routerProvider ", async () => {
     const { result } = renderHook(() => useLogin(), {
       wrapper: TestWrapper({
@@ -916,45 +480,7 @@ describe("useLogin Hook redirect support", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "/redirectTo", type: "replace" });
-  });
-
-  it("should be redirect 'redirectTo' param on legacyRouterProvider ", async () => {
-    const { result } = renderHook(() => useLogin(), {
-      wrapper: TestWrapper({
-        authProvider: {
-          login: ({ email }: any) => {
-            if (email === "test") {
-              return Promise.resolve({
-                success: true,
-                redirectTo: "redirectTo",
-              });
-            }
-
-            return Promise.resolve({
-              success: false,
-              error: new Error("Wrong email"),
-            });
-          },
-          check: () => Promise.resolve({ authenticated: true }),
-          onError: () => Promise.resolve({}),
-          logout: () => Promise.resolve({ success: true }),
-        },
-        legacyRouterProvider,
-      }),
-    });
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.data?.success).toBeTruthy();
-    });
-
-    expect(mockReplace).toBeCalledWith("redirectTo");
+    expect(mockGo).toHaveBeenCalledWith({ to: "/redirectTo", type: "replace" });
   });
 
   it("should be redirect `redirectTo` param on routerProvider ", async () => {
@@ -992,43 +518,6 @@ describe("useLogin Hook redirect support", () => {
       expect(result.current.data?.success).toBeTruthy();
     });
 
-    expect(mockGo).toBeCalledWith({ to: "redirectTo", type: "replace" });
-  });
-
-  it("should be redirect `/` on legacyRouterProvider ", async () => {
-    const { result } = renderHook(() => useLogin(), {
-      wrapper: TestWrapper({
-        authProvider: {
-          login: ({ email }: any) => {
-            if (email === "test") {
-              return Promise.resolve({
-                success: true,
-              });
-            }
-
-            return Promise.resolve({
-              success: false,
-              error: new Error("Wrong email"),
-            });
-          },
-          check: () => Promise.resolve({ authenticated: true }),
-          onError: () => Promise.resolve({}),
-          logout: () => Promise.resolve({ success: true }),
-        },
-        legacyRouterProvider,
-      }),
-    });
-
-    const { mutate: login } = result.current ?? { mutate: () => 0 };
-
-    await act(async () => {
-      login({ email: "test" });
-    });
-
-    await waitFor(() => {
-      expect(result.current.data?.success).toBeTruthy();
-    });
-
-    expect(mockReplace).toBeCalledWith("/");
+    expect(mockGo).toHaveBeenCalledWith({ to: "redirectTo", type: "replace" });
   });
 });

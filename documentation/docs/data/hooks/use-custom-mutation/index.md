@@ -19,7 +19,7 @@ If you need to custom query request, use the [useCustom](/docs/data/hooks/use-cu
 
 ## Basic Usage
 
-The `useCustomMutation` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `method`, and `url` as parameters. These parameters will be passed to the `custom` method from the `dataProvider` as parameters.
+The `useCustomMutation` hook returns many useful properties and methods. One of them is the `mutate` method which expects `values`, `method`, and `url` as parameters. These parameters will be passed to the `custom` method from the `dataProvider` as parameters. Additionally, the `mutation` object contains all the TanStack Query's `useMutation` return values.
 
 ```tsx
 import { useCustomMutation, useApiUrl } from "@refinedev/core";
@@ -31,7 +31,7 @@ interface ICategory {
 
 const apiUrl = useApiUrl();
 
-const { mutate } = useCustomMutation<ICategory>();
+const { mutate, mutation } = useCustomMutation<ICategory>();
 
 mutate({
   url: `${API_URL}/categories`,
@@ -40,6 +40,11 @@ mutate({
     title: "New Category",
   },
 });
+
+// You can access mutation state through the mutation object:
+console.log(mutation.isLoading); // mutation loading state
+console.log(mutation.data); // mutation response data
+console.log(mutation.error); // mutation error
 ```
 
 ## Properties
@@ -61,7 +66,7 @@ useCustomMutation({
 `mutationOptions` does not support `onSuccess` and `onError` props because they override the default `onSuccess` and `onError` functions. If you want to use these props, you can pass them to mutate functions like this:
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate(
   {
@@ -89,7 +94,7 @@ mutate(
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the endpoint of the request.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   url: "www.example.com/api/update-products",
@@ -101,7 +106,7 @@ mutate({
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It is usually used to specify the HTTP method of the request.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   method: "post",
@@ -113,7 +118,7 @@ mutate({
 It will be passed to the `custom` method from the `dataProvider` as a parameter. The parameter is usually used as the data to be sent with the request.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   values: {
@@ -128,7 +133,7 @@ mutate({
 It will be passed to the `custom` method from the `dataProvider` as a parameter. It can be used to specify the headers of the request.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   config: {
@@ -146,7 +151,7 @@ mutate({
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCustomMutation` calls the `open` function from `NotificationProvider`:
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   successNotification: (data, values) => {
@@ -166,7 +171,7 @@ mutate({
 After data fetching is failed, `useCustomMutation` will call `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   errorNotification: (data, values) => {
@@ -189,7 +194,7 @@ mutate({
 In the following example, `meta` is passed to the `custom` method from the `dataProvider` as a parameter.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   meta: {
@@ -226,7 +231,7 @@ const myDataProvider = {
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
 ```tsx
-const { mutate } = useCustomMutation();
+const { mutate, mutation } = useCustomMutation();
 
 mutate({
   dataProviderName: "second-data-provider",
@@ -303,7 +308,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                               |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
-| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                         |
+| Property    | Description                                | Type                                                                                                                                                               |
+| ----------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource: string; values: TVariables; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| mutate      | Mutation function                          | `(params?: { url?: string, method?: string, values?: TVariables, ... }) => void`                                                                                   |
+| mutateAsync | Async mutation function                    | `(params?: { url?: string, method?: string, values?: TVariables, ... }) => Promise<{ data: TData }>`                                                               |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                         |

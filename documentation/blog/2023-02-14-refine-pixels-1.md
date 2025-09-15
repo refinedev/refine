@@ -94,19 +94,19 @@ For example, a `dataProvider` object has the following signature to which any de
 
 ```tsx title="dataProvider.ts"
 const dataProvider = {
-  create: ({ resource, variables, metaData }) => Promise,
-  createMany: ({ resource, variables, metaData }) => Promise,
-  deleteOne: ({ resource, id, variables, metaData }) => Promise,
-  deleteMany: ({ resource, ids, variables, metaData }) => Promise,
+  create: ({ resource, variables, meta }) => Promise,
+  createMany: ({ resource, variables, meta }) => Promise,
+  deleteOne: ({ resource, id, variables, meta }) => Promise,
+  deleteMany: ({ resource, ids, variables, meta }) => Promise,
   //highlight-start
   getList: ({ resource, pagination, pagination, sort, filters, meta }) =>
     Promise,
   //highlight-end
-  getMany: ({ resource, ids, metaData }) => Promise,
-  getOne: ({ resource, id, metaData }) => Promise,
-  update: ({ resource, id, variables, metaData }) => Promise,
-  updateMany: ({ resource, ids, variables, metaData }) => Promise,
-  custom: ({ url, method, sort, filters, payload, query, headers, metaData }) =>
+  getMany: ({ resource, ids, meta }) => Promise,
+  getOne: ({ resource, id, meta }) => Promise,
+  update: ({ resource, id, variables, meta }) => Promise,
+  updateMany: ({ resource, ids, variables, meta }) => Promise,
+  custom: ({ url, method, sort, filters, payload, query, headers, meta }) =>
     Promise,
   getApiUrl: () => "",
 };
@@ -120,7 +120,7 @@ The underlying architecture involves any presentational component passed to `<Re
 An example hook usage looks like this:
 
 ```tsx title="Inside a UI component"
-const { data } = useList<Canvas>({
+const { result } = useList<Canvas>({
   resource: "canvases",
   pagination: {
     mode: "off",
@@ -168,7 +168,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 
       const notificationConfig =
         typeof successNotification === "function"
-          ? successNotification(data, { metaData, config }, resource)
+          ? successNotification(data, { meta, config }, resource)
           : successNotification;
 
       handleNotification(notificationConfig);
@@ -179,7 +179,7 @@ const queryResponse = useQuery<GetListResponse<TData>, TError>(
 
       const notificationConfig =
         typeof errorNotification === "function"
-          ? errorNotification(err, { metaData, config }, resource)
+          ? errorNotification(err, { meta, config }, resource)
           : errorNotification;
 
       handleNotification(notificationConfig, {

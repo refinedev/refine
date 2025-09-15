@@ -146,7 +146,7 @@ useTable({
 });
 ```
 
-### pagination.current
+### pagination.currentPage
 
 Sets the initial value of the page index. Default value is `1`.
 
@@ -154,7 +154,7 @@ Sets the initial value of the page index. Default value is `1`.
 useTable({
   refineCoreProps: {
     pagination: {
-      current: 2,
+      currentPage: 2,
     },
   },
 });
@@ -180,7 +180,7 @@ It can be `"off"`, `"server"` or `"client"`. Default value is `"server"`.
 
 - **"off":** Pagination is disabled. All records will be fetched.
 - **"client":** Pagination is done on the client side. All records will be fetched and then the records will be paginated on the client side.
-- **"server":**: Pagination is done on the server side. Records will be fetched by using the `current` and `pageSize` values.
+- **"server":**: Pagination is done on the server side. Records will be fetched by using the `currentPage` and `pageSize` values.
 
 ```tsx
 useTable({
@@ -374,7 +374,7 @@ In the following example, we pass the `headers` property in the `meta` object to
 ```tsx
 useTable({
   refineCoreProps: {
-    metaData: {
+    meta: {
       headers: { "x-meta-data": "true" },
     },
   },
@@ -388,10 +388,10 @@ const myDataProvider = {
     sorters,
     filters,
     // highlight-next-line
-    metaData,
+    meta,
   }) => {
     // highlight-next-line
-    const headers = metaData?.headers ?? {};
+    const headers = meta?.headers ?? {};
     const url = `${apiUrl}/${resource}`;
 
     //...
@@ -485,38 +485,6 @@ useTable({
 
 Params to pass to liveProvider's [subscribe](/docs/realtime/live-provider#subscribe) method.
 
-### ~~initialCurrent~~ <PropTag deprecated />
-
-Use `pagination.current` instead.
-
-### ~~initialPageSize~~ <PropTag deprecated />
-
-Use `pagination.pageSize` instead.
-
-### ~~hasPagination~~ <PropTag deprecated />
-
-Use `pagination.mode` instead.
-
-### ~~initialSorter~~ <PropTag deprecated />
-
-Use `sorters.initial` instead.
-
-### ~~permanentSorter~~ <PropTag deprecated />
-
-Use `sorters.permanent` instead.
-
-### ~~initialFilter~~ <PropTag deprecated />
-
-Use `filters.initial` instead.
-
-### ~~permanentFilter~~ <PropTag deprecated />
-
-Use `filters.permanent` instead.
-
-### ~~defaultSetFilterBehavior~~ <PropTag deprecated />
-
-Use `filters.defaultBehavior` instead.
-
 ## Return Values
 
 It also have all return values of [TanStack Table](https://tanstack.com/table/v8/docs/api/core/table#options).
@@ -553,11 +521,11 @@ Current [filters state][crudfilters].
 
 A function to set current [filters state][crudfilters].
 
-#### current
+#### currentPage
 
 Current page index state. If pagination is disabled, it will be `undefined`.
 
-#### setCurrent
+#### setCurrentPage
 
 ```tsx
 React.Dispatch<React.SetStateAction<number>> | undefined;
@@ -588,16 +556,6 @@ Total page count state. If pagination is disabled, it will be `undefined`.
 ```
 
 A function creates accessible links for `syncWithLocation`. It takes [SyncWithLocationParams][syncwithlocationparams] as parameters.
-
-### ~~sorter~~ <PropTag deprecated />
-
-Use `sorters` instead.
-
-Current [sorters state][crudsorting].
-
-### ~~setSorter~~ <PropTag deprecated />
-
-Use `setSorters` instead.
 
 ## FAQ
 

@@ -52,6 +52,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         },
       ],
     },
+
     sorters: {
       initial: [
         {
@@ -60,6 +61,7 @@ export const CustomerList = ({ children }: PropsWithChildren) => {
         },
       ],
     },
+
     syncWithLocation: true,
   });
 

@@ -48,7 +48,7 @@ import { Refine } from "@refinedev/core";
 import {
   ErrorComponent,
   RefineThemes,
-  ThemedLayoutV2,
+  ThemedLayout,
 } from "@refinedev/mantine";
 import routerProvider from "@refinedev/react-router";
 import dataProvider from "@refinedev/simple-rest";
@@ -89,9 +89,9 @@ export default function App() {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route path="/my-products" element={<ProductList />} />
@@ -149,10 +149,11 @@ export const ProductList = () => {
     getRowModel,
     setOptions,
     refineCore: {
-      setCurrent,
+      setCurrentPage,
       pageCount,
-      current,
+      currentPage,
       tableQuery: { data: tableData },
+      result
     },
   } = useTable({
     columns,
@@ -203,8 +204,8 @@ export const ProductList = () => {
       <Pagination
         position="right"
         total={pageCount}
-        page={current}
-        onChange={setCurrent}
+        page={currentPage}
+        onChange={setCurrentPage}
       />
     </List>
   );
@@ -222,33 +223,31 @@ import {
 } from "@refinedev/mantine";
 
 export const ProductShow = () => {
-  const { query } = useShow();
+  const { query, result: product } = useShow();
   const { data, isLoading } = query;
-
-  const record = data?.data;
 
   return (
     <Show isLoading={isLoading}>
       <Title my="xs" order={5}>
         Id
       </Title>
-      <NumberField value={record?.id ?? ""} />
+      <NumberField value={product?.id ?? ""} />
       <Title my="xs" order={5}>
         Name
       </Title>
-      <TextField value={record?.name} />
+      <TextField value={product?.name} />
       <Title my="xs" order={5}>
         Material
       </Title>
-      <TextField value={record?.material} />
+      <TextField value={product?.material} />
       <Title mt="xs" order={5}>
         Description
       </Title>
-      <MarkdownField value={record?.description} />
+      <MarkdownField value={product?.description} />
       <Title my="xs" order={5}>
         Price
       </Title>
-      <NumberField value={record?.price ?? ""} />
+      <NumberField value={product?.price ?? ""} />
     </Show>
   );
 };

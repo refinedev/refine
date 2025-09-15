@@ -1,9 +1,9 @@
-export { ThemedLayoutV2 } from "./themedLayoutV2";
-export { ThemedSiderV2 } from "./themedLayoutV2/sider";
-export { ThemedTitleV2 } from "./themedLayoutV2/title";
-export { ThemedHeaderV2 } from "./themedLayoutV2/header";
-export { HamburgerMenu } from "./themedLayoutV2/hamburgerMenu";
-export * from "./themedLayoutV2/types";
+export { ThemedLayout } from "./themedLayout";
+export { ThemedSider } from "./themedLayout/sider";
+export { ThemedTitle } from "./themedLayout/title";
+export { ThemedHeader } from "./themedLayout/header";
+export { HamburgerMenu } from "./themedLayout/hamburgerMenu";
+export * from "./themedLayout/types";
 
 // Pages
 export * from "./pages";
