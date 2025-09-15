@@ -13639,23 +13639,23 @@ importers:
         specifier: ^1.2.4
         version: 1.2.8(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/core':
-        specifier: ^4.57.9
-        version: 4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.1
+        version: link:../core
       '@refinedev/react-hook-form':
-        specifier: ^4.9.3
-        version: 4.10.2(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
+        specifier: ^5.0.0
+        version: link:../react-hook-form
       '@refinedev/react-router':
-        specifier: ^1.0.1
-        version: 1.0.1(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-router@7.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
+        specifier: ^2.0.0
+        version: link:../react-router
       '@refinedev/react-table':
-        specifier: ^5.6.15
-        version: 5.6.17(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/react-table@8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^6.0.0
+        version: link:../react-table
       '@refinedev/simple-rest':
-        specifier: ^5.0.10
-        version: 5.0.11(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))
+        specifier: ^6.0.0
+        version: link:../simple-rest
       '@refinedev/ui-types':
-        specifier: ^1.24.2
-        version: 1.24.2(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^2.0.0
+        version: link:../ui-types
       '@tanstack/react-table':
         specifier: ^8.2.6
         version: 8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -19622,70 +19622,6 @@ packages:
     peerDependencies:
       '@refinedev/core': ^4.28.2
 
-  '@refinedev/core@4.58.0':
-    resolution: {integrity: sha512-54sNbU8jgGL9mUNB2DTq3CUBwjFxMXLcTE89m53Q+sp0eMgm+ocZJMTcXuatDM2iYZi+d94kmi4fmg/ruJzsTw==}
-    peerDependencies:
-      '@tanstack/react-query': ^4.10.1
-      '@types/react': ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
-  '@refinedev/devtools-internal@1.1.16':
-    resolution: {integrity: sha512-k9Zw0VxCRJnTuy3DA7c7E2m43Q/PThE643kb/ClO6Bmwp+uT1HuCzupRmeYkWamcPv7iPVmEGEvqvaRGRj+56w==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
-  '@refinedev/devtools-shared@1.1.14':
-    resolution: {integrity: sha512-G/jDzRMdNMtwf5dHesVPtALaordei6PnHzgd6WnAzbdcaBlxdOhKPdoRlZi/lCr9iqR/+ed1uQ0d8vzzod3jNQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@types/react': ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
-  '@refinedev/react-hook-form@4.10.2':
-    resolution: {integrity: sha512-5Jos0YaogSbz00MYMD4zy9QgYeo+zDQ0yPIKZRNYm95mYaeKGsv3DgUs82GEKek28YjvMsZOn101CDqLyLXvQg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@refinedev/core': ^4.46.1
-      '@types/react': ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-      react-hook-form: ^7.57.0
-
-  '@refinedev/react-router@1.0.1':
-    resolution: {integrity: sha512-C5KZjJeeGBwCE6qOUtDx50f4t6c/ZC776IQBiBb30i6Nbq/P72oWS530oGG/Z4/6Zl9F55X6Djk6ylO0IK9iEg==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@refinedev/core': ^4.46.1
-      '@types/react': ^17.0.0 || ^18.0.0
-      '@types/react-dom': ^17.0.0 || ^18.0.0
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-      react-router: ^7.0.2
-
-  '@refinedev/react-table@5.6.17':
-    resolution: {integrity: sha512-K30i5EqwaaxGOmT0hshNMNgyxbXsDZ9E7sGQnw4prNqCEgpWFrC/SBbDhQPvWoJaHakROLeVMmU6AFp9UHM4BA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@refinedev/core': ^4.46.1
-      '@tanstack/react-table': ^8.2.6
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
-
-  '@refinedev/simple-rest@5.0.11':
-    resolution: {integrity: sha512-dusMMCv2nSBnlgHLu9rqM9F++QuPenbi4209oFxPhbFNSHBjvBqDYZzY06YgGPt6kXwVNBZNJKm3ROa+nlU0VQ==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@refinedev/core': ^4.46.1
-
   '@refinedev/strapi-graphql@6.0.5':
     resolution: {integrity: sha512-ugNv7xbTKxmw59yC6phRH3qGPJGRIPwfeqXLPREtjUb9/tjBfJt0Qs/301fjnX28ghiJScMF9twjQHAekFGa/Q==}
     engines: {node: '>=10'}
@@ -19694,13 +19630,6 @@ packages:
       '@refinedev/core': ^4.46.1
       gql-query-builder: ^3.5.5
       graphql-request: ^5.2.0
-
-  '@refinedev/ui-types@1.24.2':
-    resolution: {integrity: sha512-VWhTpqSzv2AzH+SaF3xZzZFlr19874yM9Hfhnfrl0zWmpnppzYxAXbkv8tYl3l7S1YYK6zTwZO7G+pdB/LvCtQ==}
-    peerDependencies:
-      '@refinedev/core': ^4.46.1
-      react: ^17.0.0 || ^18.0.0
-      react-dom: ^17.0.0 || ^18.0.0
 
   '@remix-run/dev@2.9.1':
     resolution: {integrity: sha512-/YhegnnRrarsqU+11+HdGwjcIT1KgkS9L7kWCM0+ivDvyiBYAuI6xbPG/q/FY6LqLAPYeOxsJmUNl+aj+yMltA==}
@@ -20424,9 +20353,6 @@ packages:
   '@tanstack/query-core@4.36.1':
     resolution: {integrity: sha512-DJSilV5+ytBP1FbFcEJovv4rnnm/CokuVvrBEtW/Va9DvuJ3HksbXUJEpI0aV1KtuL4ZoO9AVE6PyNLzF7tLeA==}
 
-  '@tanstack/query-core@4.41.0':
-    resolution: {integrity: sha512-193R4Jp9hjvlij6LryxrB5Mpbffd2L9PeWh3KlIy/hJV4SkBOfiQZ+jc5qAZLDCrdbkA5FjGj+UoDYw6TcNnyA==}
-
   '@tanstack/query-core@5.81.5':
     resolution: {integrity: sha512-ZJOgCy/z2qpZXWaj/oxvodDx07XcQa9BF92c0oINjHkoqUPsmm3uG08HpTaviviZ/N9eP1f9CM7mKSEkIo7O1Q==}
 
@@ -20440,18 +20366,6 @@ packages:
     resolution: {integrity: sha512-32I5b9aAu4NCiXZ7Te/KEQLfHbYeTNriVPrKYcvEThnZ9tlW01vLcSoxpUIsMYRsembvJUUAkzYBAiZHLOd6pQ==}
     peerDependencies:
       '@tanstack/react-query': ^4.36.1
-
-  '@tanstack/react-query@4.41.0':
-    resolution: {integrity: sha512-4/euCZAv8zeaB5P/nQiySzB0JHM3tiraU9KjSvSlJAX7oIE9uPDZlHCkDg/bHYNXewzvsg0FtOMq0VUq8XMMOQ==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-native: '*'
-    peerDependenciesMeta:
-      react-dom:
-        optional: true
-      react-native:
-        optional: true
 
   '@tanstack/react-query@5.81.5':
     resolution: {integrity: sha512-lOf2KqRRiYWpQT86eeeftAGnjuTR35myTP8MXyvHa81VlomoAWNEd8x5vkcAfQefu0qtYCvyqLropFZqgI2EQw==}
@@ -42050,85 +41964,6 @@ snapshots:
       - react
       - react-dom
 
-  '@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/devtools-internal': 1.1.16(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@tanstack/react-query': 5.81.5(react@19.1.0)
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      papaparse: 5.4.1
-      pluralize: 8.0.0
-      qs: 6.13.0
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      tslib: 2.6.2
-      warn-once: 0.1.1
-    transitivePeerDependencies:
-      - react-native
-
-  '@refinedev/devtools-internal@1.1.16(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/devtools-shared': 1.1.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@tanstack/react-query': 4.41.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
-      error-stack-parser: 2.1.4
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@refinedev/devtools-shared@1.1.14(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@tanstack/react-query': 4.41.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
-      error-stack-parser: 2.1.4
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-    transitivePeerDependencies:
-      - react-native
-
-  '@refinedev/react-hook-form@4.10.2(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/core': 4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      react-hook-form: 7.57.0(react@19.1.0)
-
-  '@refinedev/react-router@1.0.1(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react-router@7.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/core': 4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@types/react': 19.1.8
-      '@types/react-dom': 19.1.6(@types/react@19.1.8)
-      qs: 6.13.0
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      react-router: 7.0.2(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-
-  '@refinedev/react-table@5.6.17(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@tanstack/react-table@8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/core': 4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      '@tanstack/react-table': 8.16.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      lodash: 4.17.21
-      lodash-es: 4.17.21
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-
-  '@refinedev/simple-rest@5.0.11(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))':
-    dependencies:
-      '@refinedev/core': 4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      axios: 1.11.0
-      query-string: 7.1.3
-    transitivePeerDependencies:
-      - debug
-
   '@refinedev/strapi-graphql@6.0.5(@refinedev/core@packages+core)(gql-query-builder@3.8.0)(graphql-request@6.1.0(encoding@0.1.13)(graphql@16.9.0))':
     dependencies:
       '@refinedev/core': link:packages/core
@@ -42138,14 +41973,6 @@ snapshots:
       graphql-request: 6.1.0(encoding@0.1.13)(graphql@16.9.0)
       pluralize: 8.0.0
       query-string: 7.1.3
-
-  '@refinedev/ui-types@1.24.2(@refinedev/core@4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@refinedev/core': 4.58.0(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react-dom@19.1.6(@types/react@19.1.8))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      dayjs: 1.11.13
-      react: 19.1.0
-      react-dom: 19.1.0(react@19.1.0)
-      tslib: 2.6.2
 
   '@remix-run/dev@2.9.1(@remix-run/react@2.9.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3))(@remix-run/serve@2.9.1(typescript@5.8.3))(@types/node@20.5.1)(bufferutil@4.0.8)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)(utf-8-validate@5.0.10)(vite@5.4.15(@types/node@20.5.1)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4))':
     dependencies:
@@ -43080,8 +42907,6 @@ snapshots:
 
   '@tanstack/query-core@4.36.1': {}
 
-  '@tanstack/query-core@4.41.0': {}
-
   '@tanstack/query-core@5.81.5': {}
 
   '@tanstack/query-persist-client-core@4.36.1':
@@ -43096,14 +42921,6 @@ snapshots:
     dependencies:
       '@tanstack/query-persist-client-core': 4.36.1
       '@tanstack/react-query': 5.81.5(react@19.1.0)
-
-  '@tanstack/react-query@4.41.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
-    dependencies:
-      '@tanstack/query-core': 4.41.0
-      react: 19.1.0
-      use-sync-external-store: 1.2.1(react@19.1.0)
-    optionalDependencies:
-      react-dom: 19.1.0(react@19.1.0)
 
   '@tanstack/react-query@5.81.5(react@19.1.0)':
     dependencies:
