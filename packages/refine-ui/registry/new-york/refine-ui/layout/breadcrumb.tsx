@@ -6,7 +6,7 @@ import {
   matchResourceFromRoute,
   useBreadcrumb,
   useLink,
-  useResource,
+  useResourceParams,
 } from "@refinedev/core";
 import {
   BreadcrumbSeparator as ShadcnBreadcrumbSeparator,
@@ -19,7 +19,7 @@ import {
 export function Breadcrumb() {
   const Link = useLink();
   const { breadcrumbs } = useBreadcrumb();
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
   const rootRouteResource = matchResourceFromRoute("/", resources);
 
   const breadCrumbItems = useMemo(() => {

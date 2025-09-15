@@ -6,14 +6,8 @@ import { ListButton } from "@/registry/new-york/refine-ui/buttons/list";
 import { RefreshButton } from "@/registry/new-york/refine-ui/buttons/refresh";
 import { ShowButton } from "@/registry/new-york/refine-ui/buttons/show";
 import { Separator } from "@/registry/new-york/ui/separator";
-import { useOne } from "@refinedev/core";
 
 export const HomePage = () => {
-  const { data } = useOne({
-    resource: "posts",
-    id: "123",
-  });
-
   return (
     <div className="flex flex-col items-start justify-start gap-6">
       <div className="flex flex-col items-start justify-start gap-2">

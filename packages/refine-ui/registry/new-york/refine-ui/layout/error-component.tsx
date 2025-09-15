@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useGo, useResource, useRouterType } from "@refinedev/core";
-import type { RefineErrorPageProps } from "@refinedev/ui-types";
-import { useNavigation, useTranslate } from "@refinedev/core";
+import { useGo, useResourceParams } from "@refinedev/core";
+import { useTranslate } from "@refinedev/core";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   Tooltip,
@@ -24,7 +23,7 @@ export function ErrorComponent() {
   const translate = useTranslate();
   const go = useGo();
 
-  const { resource, action } = useResource();
+  const { resource, action } = useResourceParams();
 
   useEffect(() => {
     if (resource && action) {

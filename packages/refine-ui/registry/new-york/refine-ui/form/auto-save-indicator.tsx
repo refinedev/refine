@@ -29,7 +29,7 @@ export function AutoSaveIndicator({
   }, [status]);
 
   const elements = {
-    loading: elementsFromProps?.loading ?? (
+    pending: elementsFromProps?.loading ?? (
       <div
         className={cn(
           "flex",

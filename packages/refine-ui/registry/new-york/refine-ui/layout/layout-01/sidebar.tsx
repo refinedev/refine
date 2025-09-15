@@ -5,7 +5,7 @@ import {
   useMenu,
   useLink,
   useRefineOptions,
-  type ITreeMenu,
+  type TreeMenuItem,
 } from "@refinedev/core";
 import {
   SidebarRail as ShadcnSidebarRail,
@@ -55,7 +55,7 @@ export function Sidebar() {
           },
         )}
       >
-        {menuItems.map((item: ITreeMenu) => (
+        {menuItems.map((item: TreeMenuItem) => (
           <SidebarItem
             key={item.key || item.name}
             item={item}
@@ -68,7 +68,7 @@ export function Sidebar() {
 }
 
 type MenuItemProps = {
-  item: ITreeMenu;
+  item: TreeMenuItem;
   selectedKey?: string;
 };
 
@@ -119,7 +119,7 @@ function SidebarItemGroup({ item, selectedKey }: MenuItemProps) {
       </span>
       {children && children.length > 0 && (
         <div className={cn("flex", "flex-col")}>
-          {children.map((child: ITreeMenu) => (
+          {children.map((child: TreeMenuItem) => (
             <SidebarItem
               key={child.key || child.name}
               item={child}
@@ -155,7 +155,7 @@ function SidebarItemCollapsible({ item, selectedKey }: MenuItemProps) {
         <SidebarButton item={item} rightIcon={chevronIcon} />
       </CollapsibleTrigger>
       <CollapsibleContent className={cn("ml-6", "flex", "flex-col", "gap-2")}>
-        {children?.map((child: ITreeMenu) => (
+        {children?.map((child: TreeMenuItem) => (
           <SidebarItem
             key={child.key || child.name}
             item={child}
@@ -177,7 +177,7 @@ function SidebarItemDropdown({ item, selectedKey }: MenuItemProps) {
         <SidebarButton item={item} />
       </DropdownMenuTrigger>
       <DropdownMenuContent side="right" align="start">
-        {children?.map((child: ITreeMenu) => {
+        {children?.map((child: TreeMenuItem) => {
           const { key: childKey } = child;
           const isSelected = childKey === selectedKey;
 
@@ -272,7 +272,7 @@ function SidebarHeader() {
   );
 }
 
-function getDisplayName(item: ITreeMenu) {
+function getDisplayName(item: TreeMenuItem) {
   return item.meta?.label ?? item.label ?? item.name;
 }
 
@@ -295,7 +295,7 @@ function ItemIcon({ icon, isSelected }: IconProps) {
 }
 
 type SidebarButtonProps = React.ComponentProps<typeof Button> & {
-  item: ITreeMenu;
+  item: TreeMenuItem;
   isSelected?: boolean;
   rightIcon?: React.ReactNode;
   asLink?: boolean;

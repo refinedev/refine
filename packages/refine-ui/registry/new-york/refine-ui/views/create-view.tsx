@@ -1,7 +1,11 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useBack, useResource, useUserFriendlyName } from "@refinedev/core";
+import {
+  useBack,
+  useResourceParams,
+  useUserFriendlyName,
+} from "@refinedev/core";
 import type { PropsWithChildren } from "react";
 import { Breadcrumb } from "@/registry/new-york/refine-ui/layout/breadcrumb";
 import { Separator } from "@/registry/new-york/ui/separator";
@@ -35,15 +39,14 @@ export const CreateViewHeader = ({
 
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
 
   const title =
     titleFromProps ??
     getUserFriendlyName(
-      resource?.meta?.label ??
-        resource?.options?.label ??
-        resource?.label ??
-        identifier,
+      resource?.meta?.label ?? identifier ?? resource?.name,
       "plural",
     );
 

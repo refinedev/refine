@@ -3,7 +3,6 @@
 import { cn } from "@/lib/utils";
 import {
   useBack,
-  useResource,
   useResourceParams,
   useUserFriendlyName,
 } from "@refinedev/core";
@@ -43,7 +42,9 @@ export const EditViewHeader = ({
 
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
   const { id: recordItemId } = useResourceParams();
 
   const resourceName = resource?.name ?? identifier;
@@ -51,10 +52,7 @@ export const EditViewHeader = ({
   const title =
     titleFromProps ??
     getUserFriendlyName(
-      resource?.meta?.label ??
-        resource?.options?.label ??
-        resource?.label ??
-        identifier,
+      resource?.meta?.label ?? identifier ?? resource?.name,
       "plural",
     );
 

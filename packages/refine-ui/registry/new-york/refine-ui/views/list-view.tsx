@@ -2,7 +2,7 @@
 
 import type { PropsWithChildren } from "react";
 
-import { useResource, useUserFriendlyName } from "@refinedev/core";
+import { useResourceParams, useUserFriendlyName } from "@refinedev/core";
 import { Breadcrumb } from "@/registry/new-york/refine-ui/layout/breadcrumb";
 import { Separator } from "@/registry/new-york/ui/separator";
 import { CreateButton } from "@/registry/new-york/refine-ui/buttons/create";
@@ -35,7 +35,9 @@ export const ListViewHeader = ({
 }: ListHeaderProps) => {
   const getUserFriendlyName = useUserFriendlyName();
 
-  const { resource, identifier } = useResource(resourceFromProps);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceFromProps,
+  });
   const resourceName = identifier ?? resource?.name;
 
   const isCreateButtonVisible = canCreate ?? !!resource?.create;
@@ -43,10 +45,7 @@ export const ListViewHeader = ({
   const title =
     titleFromProps ??
     getUserFriendlyName(
-      resource?.meta?.label ??
-        resource?.options?.label ??
-        resource?.label ??
-        identifier,
+      resource?.meta?.label ?? identifier ?? resource?.name,
       "plural",
     );
 
