@@ -1,3 +1,8 @@
+---
+title: DataTable
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/data-table/data-table.tsx
+---
+
 # DataTable
 
 When you're building admin dashboards, you'll frequently need to display lists of data - whether it's posts, users, products, or any other resource. The `DataTable` component handles all the common table functionality you need: sorting columns, filtering data, pagination, and action buttons.

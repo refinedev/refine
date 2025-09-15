@@ -1,3 +1,8 @@
+---
+title: ForgotPasswordForm
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/forgot-password-form.tsx
+---
+
 # Forgot Password Form
 
 Users occasionally forget their passwords, especially in admin systems where they might not log in daily. The `ForgotPasswordForm` provides a simple interface for users to request a password reset link via email.

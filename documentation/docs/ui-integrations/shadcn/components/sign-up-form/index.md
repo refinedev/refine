@@ -1,3 +1,8 @@
+---
+title: SignUpForm
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/sign-up-form.tsx
+---
+
 # Sign Up Form
 
 When building admin dashboards, you often need to allow new team members to register for accounts. The `SignUpForm` provides a complete registration interface with email/password fields, password confirmation, and proper validation.

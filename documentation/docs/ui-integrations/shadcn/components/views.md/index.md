@@ -1,3 +1,8 @@
+---
+title: View Components
+source: https://github.com/refinedev/refine/tree/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/views
+---
+
 # Refine View Components
 
 The `views` registry item provides a set of components designed to structure standard CRUD pages (List, Create, Edit, Show) in Refine applications. Each view component (`ListView`, `CreateView`, `EditView`, `ShowView`) comes with a corresponding header component (`ListViewHeader`, `CreateViewHeader`, `EditViewHeader`, `ShowViewHeader`) to provide a consistent layout including breadcrumbs, titles, and relevant action buttons.

@@ -1,5 +1,6 @@
-<!-- ---
+---
 title: Introduction
+source: https://github.com/refinedev/refine/tree/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui
 ---
 
 Refine provides an integration with [shadcn/ui](https://ui.shadcn.com/) components through a registry system. This integration offers a collection of pre-built components that seamlessly work with Refine's features while maintaining shadcn/ui's design principles and accessibility standards.
@@ -195,4 +196,4 @@ If you're migrating from other UI libraries like Ant Design or Material UI, the 
 - Check out the complete [component registry](https://ui.refine.dev)
 - Learn about [customizing themes](https://ui.shadcn.com/docs/theming)
 - Read the [shadcn/ui documentation](https://ui.shadcn.com/docs) for component details
- -->
+  -->

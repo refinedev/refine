@@ -48,6 +48,12 @@ function App() {
 
 ## API Reference
 
-### ErrorComponent
+##---
+title: ErrorComponent
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/layout/error-component.tsx
+
+---
+
+# ErrorComponent
 
 The component requires no props and automatically integrates with Refine's navigation system to provide a "Go Home" button that returns users to your app's main page.

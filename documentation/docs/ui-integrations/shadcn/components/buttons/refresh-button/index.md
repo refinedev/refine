@@ -1,5 +1,6 @@
 ---
 title: Refresh
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/buttons/refresh.tsx
 ---
 
 `<RefreshButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `invalidate` method from [`useInvalidate`](/docs/data/hooks/use-invalidate) under the hood.

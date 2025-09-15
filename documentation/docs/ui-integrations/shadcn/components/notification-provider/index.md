@@ -1,3 +1,8 @@
+---
+title: NotificationProvider
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/notification/use-notification-provider.tsx
+---
+
 # Notification Provider
 
 Admin dashboards need to show feedback when users perform actions - whether it's successfully saving data, handling errors, or allowing users to undo operations. The notification provider gives you a complete toast notification system that integrates seamlessly with Refine's data operations.

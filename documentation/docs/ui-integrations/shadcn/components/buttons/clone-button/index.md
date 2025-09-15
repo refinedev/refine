@@ -1,5 +1,6 @@
 ---
 title: Clone
+source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/buttons/clone.tsx
 ---
 
 `<CloneButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `clone` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood.

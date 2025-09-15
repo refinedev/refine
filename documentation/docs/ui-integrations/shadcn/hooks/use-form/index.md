@@ -1,3 +1,8 @@
+---
+title: useForm
+source: https://github.com/refinedev/refine/tree/main/packages/react-hook-form
+---
+
 # Forms with useForm
 
 Creating and editing data is at the heart of any admin dashboard. The `useForm` hook from `@refinedev/react-hook-form` makes it easy to build forms that integrate with your Refine data providers while leveraging shadcn/ui components for a polished interface.
