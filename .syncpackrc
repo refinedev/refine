@@ -24,7 +24,7 @@
     {
       "dependencies": ["nock"],
       "dependencyTypes": ["dev"],
-      "packages": ["@refinedev/appwrite", "@refinedev/graphql"],
+      "packages": ["@refinedev/appwrite", "@refinedev/graphql", "@refinedev/rest"],
       "isIgnored": true
     },
     {

@@ -13616,6 +13616,46 @@ importers:
         specifier: ^5.8.3
         version: 5.8.3
 
+  packages/rest:
+    dependencies:
+      '@refinedev/core':
+        specifier: ^5.0.0
+        version: link:../core
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
+      qs:
+        specifier: ^6.10.1
+        version: 6.13.0
+      wretch:
+        specifier: ^2.11.0
+        version: 2.11.0
+    devDependencies:
+      '@esbuild-plugins/node-resolve':
+        specifier: ^0.1.4
+        version: 0.1.4(esbuild@0.21.5)
+      '@types/jest':
+        specifier: ^29.2.4
+        version: 29.5.12
+      '@types/node':
+        specifier: ^20
+        version: 20.5.1
+      jest:
+        specifier: ^30.0.5
+        version: 30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))
+      nock:
+        specifier: ^14.0.5
+        version: 14.0.10
+      ts-jest:
+        specifier: ^29.1.2
+        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.21.5)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
+      tsup:
+        specifier: ^6.7.0
+        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+
   packages/simple-rest:
     dependencies:
       axios:
@@ -17528,6 +17568,10 @@ packages:
 
   '@mswjs/interceptors@0.35.9':
     resolution: {integrity: sha512-SSnyl/4ni/2ViHKkiZb8eajA/eN1DNFaHjhGiLUdZvDz6PKF4COSf/17xqSz64nOo2Ia29SA6B2KNCsyCbVmaQ==}
+    engines: {node: '>=18'}
+
+  '@mswjs/interceptors@0.39.6':
+    resolution: {integrity: sha512-bndDP83naYYkfayr/qhBHMhk0YGwS1iv6vaEGcr0SQbO0IZtbOPqjKjds/WcG+bJA+1T5vCx6kprKOzn5Bg+Vw==}
     engines: {node: '>=18'}
 
   '@mui/base@5.0.0-beta.61':
@@ -26081,6 +26125,10 @@ packages:
     resolution: {integrity: sha512-nbUIuqYkixyazl4hWBQ+EJzb5F0/NJabIQFEEIQwBHPaG+RxvVSs4uSCasHMnCrNuCmOndxgUBqS860g6/OwJw==}
     engines: {node: '>= 18'}
 
+  nock@14.0.10:
+    resolution: {integrity: sha512-Q7HjkpyPeLa0ZVZC5qpxBt5EyLczFJ91MEewQiIi9taWuA0KB/MDJlUWtON+7dGouVdADTQsf9RA7TZk6D8VMw==}
+    engines: {node: '>=18.20.0 <20 || >=20.12.1'}
+
   node-addon-api@2.0.2:
     resolution: {integrity: sha512-Ntyt4AIXyaLIuMHF6IOoTakB3K+RWxwtsHNRxllEoA6vPwP9o4866g6YWDLUdnucilZhmkxiHwHr11gAENw+QA==}
 
@@ -31009,6 +31057,10 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
+
+  wretch@2.11.0:
+    resolution: {integrity: sha512-zbFW4PnPSS5RFQabHRkCAcMQjmFGrEQLcJwYe4YGXL9KWXneu03Dtaz2JUeqEkOwNDMjdfHEHPL+AIZJwE+y1g==}
+    engines: {node: '>=14'}
 
   write-file-atomic@2.4.3:
     resolution: {integrity: sha512-GaETH5wwsX+GcnzhPgKcKjJ6M2Cq3/iZp1WyY/X1CSqrW+jVNM9Y7D8EC2sM4ZG/V8wZlSniJnCKWPmBYAucRQ==}
@@ -37754,6 +37806,15 @@ snapshots:
       tslib: 2.6.2
 
   '@mswjs/interceptors@0.35.9':
+    dependencies:
+      '@open-draft/deferred-promise': 2.2.0
+      '@open-draft/logger': 0.3.0
+      '@open-draft/until': 2.1.0
+      is-node-process: 1.2.0
+      outvariant: 1.4.3
+      strict-event-emitter: 0.5.1
+
+  '@mswjs/interceptors@0.39.6':
     dependencies:
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/logger': 0.3.0
@@ -48966,6 +49027,12 @@ snapshots:
       json-stringify-safe: 5.0.1
       propagate: 2.0.1
 
+  nock@14.0.10:
+    dependencies:
+      '@mswjs/interceptors': 0.39.6
+      json-stringify-safe: 5.0.1
+      propagate: 2.0.1
+
   node-addon-api@2.0.2: {}
 
   node-addon-api@7.1.0:
@@ -55080,6 +55147,8 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
+
+  wretch@2.11.0: {}
 
   write-file-atomic@2.4.3:
     dependencies:
