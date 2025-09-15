@@ -5,7 +5,7 @@ import { Route, Routes } from "react-router";
 import { ErrorComponent } from ".";
 import { render, fireEvent, TestWrapper, act, MockRouterProvider } from "@test";
 
-describe.skip("ErrorComponent", () => {
+describe("ErrorComponent", () => {
   pageErrorTests.bind(this)(ErrorComponent);
   it("renders subtitle successfully", async () => {
     const { getByText } = render(<ErrorComponent />, {

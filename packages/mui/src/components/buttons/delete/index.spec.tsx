@@ -1,6 +1,6 @@
 import { buttonDeleteTests } from "@refinedev/ui-tests";
 import { DeleteButton } from "./";
 
-describe.skip("Delete Button", () => {
+describe("Delete Button", () => {
   buttonDeleteTests.bind(this)(DeleteButton);
 });
