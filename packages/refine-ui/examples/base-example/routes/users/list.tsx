@@ -18,8 +18,14 @@ import type { User } from "@/examples/base-example/types/resources";
 import { cn } from "@/lib/utils";
 
 export function UsersListPage() {
-  const { tableQuery, current, pageCount, setCurrent, pageSize, setPageSize } =
-    useTable<User>({ resource: "users" });
+  const {
+    tableQuery,
+    currentPage,
+    pageCount,
+    setCurrentPage,
+    pageSize,
+    setPageSize,
+  } = useTable<User>({ resource: "users" });
   const users = tableQuery.data?.data ?? [];
   const isLoading = tableQuery.isLoading;
   const total = tableQuery.data?.total;
@@ -100,9 +106,9 @@ export function UsersListPage() {
       </div>
       <div className={cn("mt-4")}>
         <DataTablePagination
-          current={current}
+          currentPage={currentPage}
           pageCount={pageCount}
-          setCurrent={setCurrent}
+          setCurrentPage={setCurrentPage}
           pageSize={pageSize}
           setPageSize={setPageSize}
           total={total}

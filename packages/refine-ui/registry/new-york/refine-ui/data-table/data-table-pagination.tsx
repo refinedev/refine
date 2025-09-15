@@ -19,18 +19,18 @@ import { Button } from "@/registry/new-york/ui/button";
 import { cn } from "@/lib/utils";
 
 type DataTablePaginationProps = {
-  current: number;
+  currentPage: number;
   pageCount: number;
-  setCurrent: (page: number) => void;
+  setCurrentPage: (page: number) => void;
   pageSize: number;
   setPageSize: (size: number) => void;
   total?: number;
 };
 
 export function DataTablePagination({
-  current,
+  currentPage,
   pageCount,
-  setCurrent,
+  setCurrentPage,
   pageSize,
   setPageSize,
   total,
@@ -97,14 +97,14 @@ export function DataTablePagination({
               "font-medium",
             )}
           >
-            Page {current} of {pageCount}
+            Page {currentPage} of {pageCount}
           </div>
           <div className={cn("flex", "items-center", "gap-2")}>
             <Button
               variant="outline"
               className={cn("hidden", "h-8", "w-8", "p-0", "lg:flex")}
-              onClick={() => setCurrent(1)}
-              disabled={current === 1}
+              onClick={() => setCurrentPage(1)}
+              disabled={currentPage === 1}
               aria-label="Go to first page"
             >
               <ChevronsLeft />
@@ -112,8 +112,8 @@ export function DataTablePagination({
             <Button
               variant="outline"
               className={cn("h-8", "w-8", "p-0")}
-              onClick={() => setCurrent(current - 1)}
-              disabled={current === 1}
+              onClick={() => setCurrentPage(currentPage - 1)}
+              disabled={currentPage === 1}
               aria-label="Go to previous page"
             >
               <ChevronLeft />
@@ -121,8 +121,8 @@ export function DataTablePagination({
             <Button
               variant="outline"
               className={cn("h-8", "w-8", "p-0")}
-              onClick={() => setCurrent(current + 1)}
-              disabled={current === pageCount}
+              onClick={() => setCurrentPage(currentPage + 1)}
+              disabled={currentPage === pageCount}
               aria-label="Go to next page"
             >
               <ChevronRight />
@@ -130,8 +130,8 @@ export function DataTablePagination({
             <Button
               variant="outline"
               className={cn("hidden", "h-8", "w-8", "p-0", "lg:flex")}
-              onClick={() => setCurrent(pageCount)}
-              disabled={current === pageCount}
+              onClick={() => setCurrentPage(pageCount)}
+              disabled={currentPage === pageCount}
               aria-label="Go to last page"
             >
               <ChevronsRight />

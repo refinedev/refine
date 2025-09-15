@@ -48,9 +48,9 @@ export function BaseExample() {
           {
             name: "home",
             list: "/",
-            icon: <HomeIcon />,
             meta: {
               label: "Home",
+              icon: <HomeIcon />,
             },
           },
           {
@@ -60,21 +60,23 @@ export function BaseExample() {
             edit: "/posts/edit/:id",
             show: "/posts/show/:id",
             clone: "/posts/clone/:id",
-            icon: <FileIcon />,
+            meta: {
+              icon: <FileIcon />,
+            },
           },
           {
             name: "users",
             list: "/users",
-            icon: <UserIcon />,
+            meta: { icon: <UserIcon /> },
           },
           {
             name: "settings",
-            icon: <SettingsIcon />,
+            meta: { icon: <SettingsIcon /> },
           },
           {
             name: "Directory",
             list: "/directory",
-            icon: <FolderIcon />,
+            meta: { icon: <FolderIcon /> },
           },
           {
             name: "profile",
@@ -87,8 +89,8 @@ export function BaseExample() {
             name: "notifications",
             list: "/settings/notifications",
             edit: "/settings/notifications/:id/edit",
-            icon: <BellIcon />,
             meta: {
+              icon: <BellIcon />,
               parent: "settings",
             },
           },
@@ -101,16 +103,16 @@ export function BaseExample() {
           {
             name: "expenses",
             list: "/expenses",
-            icon: <CreditCardIcon />,
             meta: {
+              icon: <CreditCardIcon />,
               parent: "finance",
             },
           },
           {
             name: "income",
             list: "/income",
-            icon: <DollarSignIcon />,
             meta: {
+              icon: <DollarSignIcon />,
               parent: "finance",
             },
           },

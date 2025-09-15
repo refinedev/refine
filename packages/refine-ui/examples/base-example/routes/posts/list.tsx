@@ -31,14 +31,14 @@ import { Badge } from "@/registry/new-york/ui/badge";
 
 export function PostsListPage() {
   // fetch all categories to use in the combobox filter
-  const { data: categoriesData } = useList<Category>({
+  const { result } = useList<Category>({
     resource: "categories",
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 999,
     },
   });
-  const categories = categoriesData?.data ?? [];
+  const categories = result?.data ?? [];
 
   const columns = useMemo<ColumnDef<Post>[]>(
     () => [
@@ -324,7 +324,10 @@ export function PostsListPage() {
   }, [tableData]);
 
   // fetch all tags available in the table data
-  const { data: tagsData, isLoading: tagsIsLoading } = useMany<Tag>({
+  const {
+    result: { data: tagsData },
+    query: { isLoading: tagsIsLoading },
+  } = useMany<Tag>({
     resource: "tags",
     ids: tagIds,
     queryOptions: {
@@ -334,7 +337,7 @@ export function PostsListPage() {
 
   // set the tags data to the table meta to handle relations
   useEffect(() => {
-    table.setOptions((prev) => ({
+    table.reactTable.setOptions((prev) => ({
       ...prev,
       meta: { ...prev.meta, tagsData: tagsData, tagsIsLoading: tagsIsLoading },
     }));

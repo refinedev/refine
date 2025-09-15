@@ -26,21 +26,19 @@ export function DataTable<TData extends BaseRecord>({
   table,
 }: DataTableProps<TData>) {
   const {
-    getHeaderGroups,
-    getRowModel,
-    getAllColumns,
+    reactTable: { getHeaderGroups, getRowModel, getAllColumns },
     refineCore: {
       tableQuery,
-      current,
+      currentPage,
+      setCurrentPage,
       pageCount,
-      setCurrent,
       pageSize,
       setPageSize,
     },
   } = table;
 
   const columns = getAllColumns();
-  const leafColumns = table.getAllLeafColumns();
+  const leafColumns = table.reactTable.getAllLeafColumns();
   const isLoading = tableQuery.isLoading;
 
   const tableContainerRef = useRef<HTMLDivElement>(null);
@@ -202,9 +200,9 @@ export function DataTable<TData extends BaseRecord>({
       </div>
       {!isLoading && getRowModel().rows?.length > 0 && (
         <DataTablePagination
-          current={current}
+          currentPage={currentPage}
           pageCount={pageCount}
-          setCurrent={setCurrent}
+          setCurrentPage={setCurrentPage}
           pageSize={pageSize}
           setPageSize={setPageSize}
           total={tableQuery.data?.total}
