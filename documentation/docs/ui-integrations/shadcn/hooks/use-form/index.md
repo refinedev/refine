@@ -23,7 +23,7 @@ You'll also need the shadcn/ui form components:
 npx shadcn@latest add form input button select textarea
 ```
 
-## Basic Usage
+## Usage
 
 Here's a comprehensive example of creating a form for a new blog post:
 

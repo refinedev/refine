@@ -3,7 +3,7 @@ title: Edit
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/views/edit-view.tsx
 ---
 
-`<EditView>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
+`<EditView />` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 The `EditView` component is designed for building record editing pages with automatic navigation, resource integration, breadcrumb navigation, and refresh functionality.
 

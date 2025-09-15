@@ -111,33 +111,25 @@ Refine provides a growing collection of components through the shadcn/ui registr
 
 ## Key Features
 
-### 🎨 **Full Customization**
+- **🎨 Full Source Code Access**: [shadcn/ui components](https://ui.shadcn.com/docs) are copied directly into your project, giving you complete control over styling, behavior, and structure without package dependencies.
 
-Components are added to your source code, allowing complete control over styling, behavior, and structure.
+- **♿ Accessibility First**: Built on [Radix UI primitives](https://www.radix-ui.com/primitives) with [WAI-ARIA](https://www.w3.org/WAI/ARIA/) standards, ensuring robust accessibility support including keyboard navigation and screen reader compatibility.
 
-### ♿ **Accessibility First**
+- **🔧 Deep Refine Integration**: Seamlessly works with [Refine's data hooks](https://refine.dev/docs/data/hooks/use-list/), authentication, routing, and form handling - less boilerplate, more productivity.
 
-Built on Radix UI primitives, ensuring robust accessibility support out of the box.
+- **📱 Responsive Design**: Built with [Tailwind CSS](https://ui.shadcn.com/docs/components) and mobile-first principles, components automatically adapt to any screen size.
 
-### 🔧 **Refine Integration**
+- **🌙 Advanced Theming**: Full light/dark theme support using [CSS custom properties](https://ui.shadcn.com/docs/theming) with flexible customization options.
 
-Seamlessly integrates with Refine's data hooks, auth system, and routing.
-
-### 📱 **Responsive Design**
-
-All components are built with mobile-first responsive design principles.
-
-### 🌙 **Dark Mode Support**
-
-Full support for light and dark themes using CSS variables.
-
-### 🌍 **Internationalization**
-
-Built-in support for Refine's translation system.
+- **🌍 Internationalization**: Built-in support for Refine's [i18n system](https://refine.dev/docs/i18n/i18n-provider/) with RTL languages, localization, and proper formatting.
 
 ## Styling and Theming
 
-Since components are added to your source code, you have complete control over styling. The components use CSS variables for theming, making it easy to customize:
+Since components are added to your source code, you have complete control over styling. The components use [shadcn/ui's theming system](https://ui.shadcn.com/docs/theming) based on CSS variables, making it easy to customize colors, spacing, and appearance.
+
+### CSS Variables
+
+The theme system uses HSL color values defined as CSS custom properties. These variables are automatically generated during the `shadcn init` process and can be found in your `globals.css` file:
 
 ```css
 :root {
@@ -145,7 +137,14 @@ Since components are added to your source code, you have complete control over s
   --foreground: 222.2 84% 4.9%;
   --primary: 222.2 47.4% 11.2%;
   --primary-foreground: 210 40% 98%;
-  /* ... more variables */
+  --secondary: 210 40% 96%;
+  --muted: 210 40% 96%;
+  --accent: 210 40% 96%;
+  --destructive: 0 84.2% 60.2%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 47.4% 11.2%;
+  --radius: 0.5rem;
 }
 
 .dark {
@@ -153,47 +152,40 @@ Since components are added to your source code, you have complete control over s
   --foreground: 210 40% 98%;
   --primary: 210 40% 98%;
   --primary-foreground: 222.2 47.4% 11.2%;
-  /* ... more variables */
+  --secondary: 217.2 32.6% 17.5%;
+  --muted: 217.2 32.6% 17.5%;
+  --accent: 217.2 32.6% 17.5%;
+  --destructive: 0 62.8% 30.6%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
 }
 ```
 
-## TypeScript Support
+### Theme Customization
 
-All components are built with TypeScript and provide full type safety when working with your data models:
+You can customize your theme in several ways:
 
-```tsx
-interface Product {
-  id: string;
-  name: string;
-  price: number;
-  category: string;
+1. **Manual Editing**: Modify the CSS variables in your `globals.css` file directly
+2. **Theme Generator**: Use the [shadcn/ui theme editor](https://ui.shadcn.com/themes) to generate custom themes
+3. **Interactive Editor**: Try the [TweakCN Theme Editor](https://tweakcn.com/editor/theme) for a visual approach to theme creation
+
+### Adding Custom Themes
+
+To add additional themes beyond light and dark:
+
+```css
+[data-theme="blue"] {
+  --primary: 221.2 83.2% 53.3%;
+  --primary-foreground: 210 40% 98%;
+  /* ... other variables */
 }
 
-export function ProductForm() {
-  const {
-    register,
-    formState: { errors },
-  } = useForm<Product>();
-
-  // Full type safety for your data model
-  return (
-    <form>
-      <Input {...register("name")} />
-      <Input {...register("price", { valueAsNumber: true })} />
-      {/* TypeScript will catch any invalid field names */}
-    </form>
-  );
+[data-theme="green"] {
+  --primary: 142.1 76.2% 36.3%;
+  --primary-foreground: 355.7 100% 97.3%;
+  /* ... other variables */
 }
 ```
 
-## Migration from Other UI Libraries
-
-If you're migrating from other UI libraries like Ant Design or Material UI, the component patterns remain similar. The main difference is that you'll be installing components individually and they'll be part of your source code rather than node_modules.
-
-## Next Steps
-
-- Explore the [AutoSaveIndicator](/docs/ui-integrations/shadcn/components/auto-save-indicator) component
-- Check out the complete [component registry](https://ui.refine.dev)
-- Learn about [customizing themes](https://ui.shadcn.com/docs/theming)
-- Read the [shadcn/ui documentation](https://ui.shadcn.com/docs) for component details
-  -->
+For more detailed theming options, refer to the [shadcn/ui theming documentation](https://ui.shadcn.com/docs/theming).

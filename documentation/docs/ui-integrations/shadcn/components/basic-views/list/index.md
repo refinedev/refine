@@ -3,7 +3,7 @@ title: List
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/views/list-view.tsx
 ---
 
-`<ListView>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
+`<ListView />` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 The `ListView` component is designed for displaying a list of records with automatic resource detection, breadcrumb navigation, and an optional create button.
 

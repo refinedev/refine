@@ -1,9 +1,8 @@
 ---
-title: ThemedLayout
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/layout/layout-01/layout.tsx
 ---
 
-# ThemedLayout
+# `<ThemedLayout />`
 
 Modern admin dashboards should support both light and dark themes. Users often prefer dark mode for late-night work, while others prefer light mode during the day. This theme system provides everything you need to add theme switching to your Refine app.
 

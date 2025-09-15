@@ -3,7 +3,7 @@ title: Show
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/views/show-view.tsx
 ---
 
-`<ShowView>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
+`<ShowView />` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 The `ShowView` component is designed for displaying detailed information about a single record with automatic navigation, resource integration, breadcrumb navigation, and action buttons.
 

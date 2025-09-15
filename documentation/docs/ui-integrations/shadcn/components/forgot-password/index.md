@@ -1,9 +1,8 @@
 ---
-title: ForgotPasswordForm
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/forgot-password-form.tsx
 ---
 
-# Forgot Password Form
+# `<ForgotPasswordForm />`
 
 Users occasionally forget their passwords, especially in admin systems where they might not log in daily. The `ForgotPasswordForm` provides a simple interface for users to request a password reset link via email.
 
@@ -65,9 +64,3 @@ const authProvider: AuthProvider = {
   // ... other auth methods
 };
 ```
-
-## API Reference
-
-### ForgotPasswordForm
-
-The component requires no props and integrates automatically with Refine's `useForgotPassword` hook. It handles email validation and submission internally.

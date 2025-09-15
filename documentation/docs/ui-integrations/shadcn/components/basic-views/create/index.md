@@ -3,7 +3,7 @@ title: Create
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/views/create-view.tsx
 ---
 
-`<CreateView>` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
+`<CreateView />` provides us a layout to display the page. It does not contain any logic but adds extra functionalities like action buttons and giving titles to the page.
 
 The `CreateView` component is designed for building record creation pages with automatic navigation, resource integration, and breadcrumb navigation.
 

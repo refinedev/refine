@@ -1,9 +1,8 @@
 ---
-title: SignUpForm
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/sign-up-form.tsx
 ---
 
-# Sign Up Form
+# `<SignUpForm />`
 
 When building admin dashboards, you often need to allow new team members to register for accounts. The `SignUpForm` provides a complete registration interface with email/password fields, password confirmation, and proper validation.
 
@@ -62,12 +61,6 @@ const authProvider: AuthProvider = {
       error: { message: "Registration failed" },
     };
   },
-  // ... other auth methods
+  // Other authProvider methods...
 };
 ```
-
-## API Reference
-
-### SignUpForm
-
-The component accepts no props and integrates automatically with Refine's authentication system. It handles form validation, submission, and error display internally.

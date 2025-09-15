@@ -1,45 +1,20 @@
 ---
-title: SignInForm
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/sign-in-form.tsx
 ---
 
-# Sign In Form Component
+# `<SignInForm />`
 
 The `SignInForm` component provides a ready-to-use sign-in interface for Refine applications. It handles user authentication through email/password and can be extended for social logins.
 
 ## Installation
 
-Install the `sign-in-form` component via shadcn/ui registry:
+Add the sign-in form to your project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/sign-in-form.json
 ```
 
-This command will install the `SignInForm` component along with its dependencies:
-
-- **Dependencies** (npm packages):
-  - `@refinedev/core`
-- **Registry Dependencies** (other shadcn/ui or Refine UI components):
-  - `button`
-  - `input`
-  - `label`
-  - `card`
-  - `checkbox`
-  - `separator`
-
-It will also install the shared `input-password.tsx` component if not already present.
-
-**Note:** The CLI will automatically install required npm dependencies and attempt to install registry dependencies.
-
-After installation, you will have the following files in your project:
-
-```
-src/components/refine-ui/
-├── form/
-│   ├── sign-in-form.tsx     # Main SignInForm component
-│   └── input-password.tsx   # Shared password input component
-└── ... (other registry components)
-```
+This installs the complete sign-in form with email and password input components.
 
 ## Usage
 
@@ -64,4 +39,31 @@ export default function LoginPage() {
     </div>
   );
 }
+```
+
+The form automatically handles user authentication through your `authProvider`. It includes email and password fields, along with client-side validation.
+
+## Requirements
+
+To use the sign-in form, you need to configure an `authProvider` with a `login` method:
+
+```tsx
+import { AuthProvider } from "@refinedev/core";
+const authProvider: AuthProvider = {
+  login: async ({ email, password }) => {
+    // Your authentication logic here
+    const response = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    if (response.ok) {
+      return { success: true };
+    }
+
+    return { success: false, error: new Error("Invalid credentials") };
+  },
+  // Other authProvider methods...
+};
 ```

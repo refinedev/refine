@@ -1,6 +1,6 @@
 ---
 title: <AutoSaveIndicator />
-description: <AutoSaveIndicator> component shows `autoSave` status on edit actions.
+description: <AutoSaveIndicator /> component shows `autoSave` status on edit actions.
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/auto-save-indicator.tsx
 ---
 
@@ -47,7 +47,7 @@ export default function EditPost() {
   });
 
   return (
-    <EditView>
+    <EditView />
       <EditViewHeader
         title="Edit Post"
         actionsSlot={<AutoSaveIndicator {...autoSaveProps} />}

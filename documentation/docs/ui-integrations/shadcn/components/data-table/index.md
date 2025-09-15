@@ -1,9 +1,8 @@
 ---
-title: DataTable
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/data-table/data-table.tsx
 ---
 
-# DataTable
+# `<DataTable />`
 
 When you're building admin dashboards, you'll frequently need to display lists of data - whether it's posts, users, products, or any other resource. The `DataTable` component handles all the common table functionality you need: sorting columns, filtering data, pagination, and action buttons.
 
@@ -19,7 +18,68 @@ npx shadcn@latest add https://ui.refine.dev/r/data-table.json
 
 This installs the main `DataTable` component plus all the filtering, sorting, and pagination components you'll need. The CLI will automatically install the required dependencies like `@tanstack/react-table` and `react-day-picker`.
 
-## Usage
+## Basic Usage
+
+Create a list view with a data table:
+
+```tsx
+import { useMemo } from "react";
+import { useTable } from "@refinedev/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
+import { DataTable } from "@/components/refine-ui/data-table/data-table";
+import {
+  ListView,
+  ListViewHeader,
+} from "@/components/refine-ui/views/list-view";
+
+type Post = {
+  id: number;
+  title: string;
+  status: string;
+};
+
+export default function PostList() {
+  const columns = useMemo<ColumnDef<Post>[]>(
+    () => [
+      {
+        // Column for ID field
+        id: "id",
+        accessorKey: "id", // Maps to the 'id' field in your data
+        header: "ID",
+      },
+      {
+        // Column for title field
+        id: "title",
+        accessorKey: "title", // Maps to the 'title' field in your data
+        header: "Title",
+      },
+      {
+        // Column for status field
+        id: "status",
+        accessorKey: "status", // Maps to the 'status' field in your data
+        header: "Status",
+      },
+    ],
+    [],
+  );
+
+  const table = useTable<Post>({
+    columns,
+    refineCoreProps: {
+      resource: "posts", // Your API resource name
+    },
+  });
+
+  return (
+    <ListView>
+      <ListViewHeader title="Posts" />
+      <DataTable table={table} />
+    </ListView>
+  );
+}
+```
+
+## Advanced Example
 
 Here's a comprehensive example showing how to create a data table with filtering, sorting, and pagination:
 
@@ -62,6 +122,7 @@ type Post = {
 };
 
 export default function PostList() {
+  // Fetch categories for the dropdown filter
   const { data: categories } = useList({
     resource: "categories",
   });
@@ -69,6 +130,7 @@ export default function PostList() {
   const columns = useMemo<ColumnDef<Post>[]>(
     () => [
       {
+        // ID column with sorting capability
         id: "id",
         accessorKey: "id",
         size: 80,
@@ -78,6 +140,7 @@ export default function PostList() {
         cell: ({ getValue }) => getValue(),
       },
       {
+        // Title column with sorting and text filtering
         id: "title",
         accessorKey: "title",
         size: 300,
@@ -89,6 +152,7 @@ export default function PostList() {
         ),
       },
       {
+        // Status column with dropdown filter for specific values
         id: "status",
         accessorKey: "status",
         size: 120,
@@ -107,10 +171,11 @@ export default function PostList() {
         ),
       },
       {
+        // Actions column with edit/delete/show buttons
         id: "actions",
         size: 100,
-        enableSorting: false,
-        enableColumnFilter: false,
+        enableSorting: false, // Disable sorting for action buttons
+        enableColumnFilter: false, // Disable filtering for action buttons
         header: "Actions",
         cell: ({ row }) => (
           <DropdownMenu>
@@ -128,7 +193,7 @@ export default function PostList() {
         ),
       },
     ],
-    [categories],
+    [categories], // Re-create columns when categories data changes
   );
 
   const table = useTable<Post>({
@@ -305,117 +370,3 @@ header: ({ column }) => (
 | Prop   | Type            | Description                    |
 | ------ | --------------- | ------------------------------ |
 | column | `Column<TData>` | TanStack Table column instance |
-
-## Examples
-
-### Basic Data Table
-
-The most common use case - displaying a list of resources with basic sorting and filtering:
-
-```tsx
-export default function UserList() {
-  const columns = useMemo<ColumnDef<User>[]>(
-    () => [
-      {
-        id: "name",
-        accessorKey: "name",
-        header: ({ column }) => (
-          <div className="flex items-center gap-1">
-            <DataTableSorter column={column}>Name</DataTableSorter>
-            <DataTableFilterDropdownText column={column} />
-          </div>
-        ),
-      },
-      {
-        id: "email",
-        accessorKey: "email",
-        header: ({ column }) => (
-          <div className="flex items-center gap-1">
-            <DataTableSorter column={column}>Email</DataTableSorter>
-            <DataTableFilterDropdownText column={column} />
-          </div>
-        ),
-      },
-    ],
-    [],
-  );
-
-  const table = useTable<User>({ columns });
-
-  return (
-    <ListView>
-      <ListViewHeader title="Users" />
-      <DataTable table={table} />
-    </ListView>
-  );
-}
-```
-
-### Advanced Filtering Example
-
-Using multiple filter types and relational data:
-
-```tsx
-export default function ProductList() {
-  const { data: categories } = useList({ resource: "categories" });
-
-  const columns = useMemo<ColumnDef<Product>[]>(
-    () => [
-      {
-        id: "name",
-        accessorKey: "name",
-        header: ({ column }) => (
-          <div className="flex items-center gap-1">
-            <DataTableSorter column={column}>Product</DataTableSorter>
-            <DataTableFilterDropdownText column={column} />
-          </div>
-        ),
-      },
-      {
-        id: "price",
-        accessorKey: "price",
-        header: ({ column }) => (
-          <div className="flex items-center gap-1">
-            <DataTableSorter column={column}>Price</DataTableSorter>
-            <DataTableFilterDropdownNumeric column={column} />
-          </div>
-        ),
-        cell: ({ getValue }) => `$${getValue()}`,
-      },
-      {
-        id: "category",
-        accessorKey: "category.id",
-        header: ({ column }) => (
-          <div className="flex items-center gap-1">
-            <span>Category</span>
-            <DataTableFilterCombobox
-              column={column}
-              options={
-                categories?.map((cat) => ({
-                  label: cat.name,
-                  value: cat.id.toString(),
-                })) || []
-              }
-            />
-          </div>
-        ),
-        cell: ({ row }) => {
-          const categoryId = row.original.category?.id;
-          const category = categories?.find((c) => c.id === categoryId);
-          return category?.name || "-";
-        },
-      },
-    ],
-    [categories],
-  );
-
-  const table = useTable<Product>({ columns });
-
-  return (
-    <ListView>
-      <ListViewHeader title="Products" />
-      <DataTable table={table} />
-    </ListView>
-  );
-}
-```

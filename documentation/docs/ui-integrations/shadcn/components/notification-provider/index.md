@@ -1,5 +1,5 @@
 ---
-title: NotificationProvider
+title: Notification Provider
 source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/notification/use-notification-provider.tsx
 ---
 
@@ -7,7 +7,7 @@ source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refin
 
 Admin dashboards need to show feedback when users perform actions - whether it's successfully saving data, handling errors, or allowing users to undo operations. The notification provider gives you a complete toast notification system that integrates seamlessly with Refine's data operations.
 
-Built on Sonner, it automatically handles notifications for CRUD operations and supports undoable actions where users can reverse operations like deletions.
+Built on [Sonner](https://ui.shadcn.com/docs/components/sonner), it automatically handles notifications for CRUD operations and supports undoable actions where users can reverse operations like deletions.
 
 ## Installation
 
