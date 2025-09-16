@@ -12,7 +12,7 @@ Unlike traditional package installations, shadcn/ui components are added to your
 The easiest way to get started is by using Refine's CLI to scaffold a new project with shadcn/ui:
 
 ```bash
-npm create refine-app@latest my-app -- --preset shadcn
+npm create refine-app@latest my-app -- --preset vite-shadcn
 ```
 
 ### Manual Setup
