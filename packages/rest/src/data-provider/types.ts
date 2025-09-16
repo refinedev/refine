@@ -54,6 +54,8 @@ export type CreateDataProviderOptions = {
 
     buildQueryParams?: BuildQueryParams<CreateManyParams<any>>;
 
+    buildBodyParams?: BuildBodyParams<CreateManyParams<any>>;
+
     mapResponse?: MapResponse<CreateManyParams<any>, AnyObject[]>;
   };
   getOne?: {
@@ -90,6 +92,8 @@ export type CreateDataProviderOptions = {
 
     buildQueryParams?: BuildQueryParams<UpdateManyParams<any>>;
 
+    buildBodyParams?: BuildBodyParams<UpdateManyParams<any>>;
+
     mapResponse?: MapResponse<UpdateManyParams<any>, AnyObject[]>;
   };
   deleteOne?: {
@@ -98,7 +102,7 @@ export type CreateDataProviderOptions = {
 
     buildQueryParams?: BuildQueryParams<DeleteOneParams<any>>;
 
-    mapResponse?: MapResponse<DeleteOneParams<any>, AnyObject>;
+    mapResponse?: MapResponse<DeleteOneParams<any>, AnyObject | undefined>;
   };
   deleteMany?: {
     getEndpoint?: GetEndpoint<DeleteManyParams<any>>;
