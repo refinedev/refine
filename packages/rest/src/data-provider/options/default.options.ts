@@ -10,8 +10,8 @@ import type {
   UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
-import { KyResponse } from "ky";
-import { AnyObject } from "../types";
+import type { KyResponse } from "ky";
+import type { AnyObject } from "../types";
 
 export const defaultCreateDataProviderOptions = {
   getList: {
