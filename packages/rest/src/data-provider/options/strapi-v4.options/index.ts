@@ -10,9 +10,8 @@ import type {
   UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
-import { KyResponse } from "ky";
-import { AnyObject } from "src/data-provider/types";
-import type { WretchResponse } from "wretch/types";
+import type { KyResponse } from "ky";
+import type { AnyObject } from "src/data-provider/types";
 import { generateFilter } from "./utils/generateFilter";
 import { normalizeData } from "./utils/normalizeData";
 import { transformHttpError } from "./utils/transformHttpError";
@@ -61,12 +60,12 @@ export const strapiV4DataProviderOptions = {
 
       const sort = _sorters.length ? _sorters.join(",") : undefined;
 
-      return sort;
+      return { sort };
     },
     async buildQueryParams(params: GetListParams) {
       const filters = await this.buildFilters(params);
 
-      const sorters = await this.buildSorters(params);
+      const { sort } = await this.buildSorters(params);
 
       const pagination = await this.buildPagination(params);
 
@@ -83,7 +82,7 @@ export const strapiV4DataProviderOptions = {
         publicationState,
         fields,
         populate,
-        sort: sorters,
+        sort,
         filters,
       };
 

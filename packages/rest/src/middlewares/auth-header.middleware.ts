@@ -1,6 +1,4 @@
-import { type Hooks } from "ky";
-import type { FetchLike, WretchOptions } from "wretch/types";
-import type { GlobalMiddleware } from "../data-provider/types";
+import type { Hooks } from "ky";
 
 type AuthHeaderMiddlewareOptions = {
   ACCESS_TOKEN_KEY: string;

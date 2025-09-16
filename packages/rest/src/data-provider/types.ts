@@ -10,17 +10,7 @@ import type {
   UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
-import { KyResponse } from "ky";
-import type { QueryStringAddon } from "wretch/addons/queryString";
-import type {
-  ConfiguredMiddleware,
-  Wretch,
-  WretchResponse,
-} from "wretch/types";
-
-export type GlobalMiddleware = (
-  client: QueryStringAddon & Wretch<QueryStringAddon, unknown, undefined>,
-) => ConfiguredMiddleware;
+import type { KyResponse } from "ky";
 
 export type AnyObject = Record<string, any>;
 
