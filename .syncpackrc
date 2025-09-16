@@ -24,11 +24,22 @@
     {
       "dependencies": ["nock"],
       "dependencyTypes": ["dev"],
-      "packages": ["@refinedev/appwrite", "@refinedev/graphql", "@refinedev/rest"],
+      "packages": [
+        "@refinedev/appwrite",
+        "@refinedev/graphql",
+        "@refinedev/rest",
+        "@refinedev/nestjsx-crud"
+      ],
       "isIgnored": true
     },
     {
-      "dependencies": ["next", "react", "react-dom", "@types/react", "@types/react-dom"],
+      "dependencies": [
+        "next",
+        "react",
+        "react-dom",
+        "@types/react",
+        "@types/react-dom"
+      ],
       "packages": ["with-nextjs-headless"],
       "isIgnored": true
     }

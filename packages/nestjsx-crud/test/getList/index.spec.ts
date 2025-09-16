@@ -1,14 +1,15 @@
 import axios from "axios";
+import { createDataProvider } from "@refinedev/rest";
 
-import JsonServer from "../../src/index";
+import JsonServer, { NestjsxCrudDataProviderOptions } from "../../src/index";
 import "./index.mock";
+import { nestjsxTestDataProvider } from "../setup-data-provider";
 
 describe("getList", () => {
   it("correct response", async () => {
-    const { data, total } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).getList({ resource: "posts" });
+    const { data, total } = await nestjsxTestDataProvider.getList({
+      resource: "posts",
+    });
 
     expect(data[0]["id"]).toBe("1b175cdc-4407-49d9-82cd-35e9f31afec2");
     expect(data[0]["title"]).toBe("User-friendly New Mexico Bedfordshire");
@@ -16,10 +17,7 @@ describe("getList", () => {
   });
 
   it("correct sorting response", async () => {
-    const { data, total } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).getList({
+    const { data, total } = await nestjsxTestDataProvider.getList({
       resource: "posts",
       sorters: [
         {
@@ -35,10 +33,7 @@ describe("getList", () => {
   });
 
   it("correct filter response", async () => {
-    const { data, total } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).getList({
+    const { data, total } = await nestjsxTestDataProvider.getList({
       resource: "posts",
       filters: [
         {
@@ -54,10 +49,7 @@ describe("getList", () => {
   });
 
   it("correct filter and sort response", async () => {
-    const { data, total } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).getList({
+    const { data, total } = await nestjsxTestDataProvider.getList({
       resource: "posts",
       filters: [
         {
@@ -79,10 +71,7 @@ describe("getList", () => {
   });
 
   it("or/and correct filter response", async () => {
-    const { data, total } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).getList({
+    const { data, total } = await nestjsxTestDataProvider.getList({
       resource: "posts",
       filters: [
         {
@@ -132,10 +121,7 @@ describe("getList", () => {
   });
 
   it("correct response without pagination", async () => {
-    const { data, total } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).getList({
+    const { data, total } = await nestjsxTestDataProvider.getList({
       resource: "posts",
       pagination: {
         mode: "off",

@@ -1,14 +1,9 @@
-import axios from "axios";
-
-import JsonServer from "../../src/index";
 import "./index.mock";
+import { nestjsxTestDataProvider } from "../setup-data-provider";
 
 describe("updateMany", () => {
   it("correct response", async () => {
-    const { data } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).updateMany!({
+    const { data } = await nestjsxTestDataProvider.updateMany!({
       resource: "posts",
       ids: ["f1d6e030-4d70-44d4-98dd-8786f197c640"],
       variables: {

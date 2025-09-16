@@ -1,14 +1,9 @@
-import axios from "axios";
-
-import JsonServer from "../../src/index";
 import "./index.mock";
+import { nestjsxTestDataProvider } from "../setup-data-provider";
 
 describe("create", () => {
   it("correct response", async () => {
-    const { data } = await JsonServer(
-      "https://api.nestjsx-crud.refine.dev",
-      axios,
-    ).create({
+    const { data } = await nestjsxTestDataProvider.create({
       resource: "posts",
       variables: {
         title: "foo",

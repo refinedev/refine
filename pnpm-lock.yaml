@@ -13298,24 +13298,18 @@ importers:
       '@refinedev/core':
         specifier: ^5.0.0
         version: link:../core
-      '@types/jest':
-        specifier: ^29.2.4
-        version: 29.5.12
+      '@refinedev/rest':
+        specifier: ^1.0.0
+        version: link:../rest
       '@types/node':
         specifier: ^20
         version: 20.5.1
-      jest:
-        specifier: ^30.0.5
-        version: 30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))
-      jest-environment-jsdom:
-        specifier: ^30.0.5
-        version: 30.0.5(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      '@vitest/ui':
+        specifier: ^2.1.0
+        version: 2.1.9(vitest@2.1.9)
       nock:
-        specifier: ^13.4.0
-        version: 13.5.4
-      ts-jest:
-        specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.21.5)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
+        specifier: ^14.0.5
+        version: 14.0.10
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13325,6 +13319,9 @@ importers:
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
+      vitest:
+        specifier: ^2.1.0
+        version: 2.1.9(@types/node@20.5.1)(@vitest/ui@2.1.9)(jsdom@26.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))(sass@1.75.0)(terser@5.30.4)
 
   packages/nextjs-router:
     dependencies:
