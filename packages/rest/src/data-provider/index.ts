@@ -33,16 +33,6 @@ export const createDataProvider = (
     throwHttpErrors: false,
   });
 
-  // let client = wretch(apiURL)
-  //   .addon(queryStringAddon)
-  //   .headers(options.defaultHeaders);
-
-  // if (options.middlewares?.global) {
-  //   client = client.middlewares(
-  //     options.middlewares.global.map((middleware) => middleware(client)),
-  //   );
-  // }
-
   return {
     getList: async (params) => {
       const endpoint = options.getList.getEndpoint(params);

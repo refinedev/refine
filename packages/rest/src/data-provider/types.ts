@@ -127,8 +127,4 @@ export type CreateDataProviderOptions = {
 
     mapResponse?: MapResponse<CustomParams<any>, AnyObject>;
   };
-  // middlewares?: {
-  //   global?: GlobalMiddleware[];
-  // };
-  // defaultHeaders?: Record<string, string>;
 };

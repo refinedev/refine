@@ -270,8 +270,4 @@ export const defaultCreateDataProviderOptions = {
       return await response.json();
     },
   },
-  defaultHeaders: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
 };
