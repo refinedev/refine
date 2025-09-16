@@ -44,23 +44,14 @@ export const createDataProvider = (
         searchParams: qs.stringify(query, { encodeValuesOnly: true }),
       });
 
-      if (response.ok) {
-        const data = await options.getList.mapResponse(
-          response.clone(),
-          params,
-        );
+      const data = await options.getList.mapResponse(response.clone(), params);
 
-        const total = await options.getList.getTotalCount(
-          response.clone(),
-          params,
-        );
+      const total = await options.getList.getTotalCount(
+        response.clone(),
+        params,
+      );
 
-        return { data, total };
-      }
-
-      const { error } = await response.json<{ error: AnyObject }>();
-
-      throw error;
+      return { data, total };
     },
     getOne: async (params): Promise<GetOneResponse<any>> => {
       const endpoint = options.getOne.getEndpoint(params);
