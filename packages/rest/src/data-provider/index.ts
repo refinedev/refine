@@ -101,9 +101,15 @@ export const createDataProvider = (
         body: JSON.stringify(body),
       });
 
-      const data = await options.create.mapResponse(response, params);
+      if (response.ok) {
+        const data = await options.create.mapResponse(response, params);
 
-      return { data };
+        return { data };
+      }
+
+      const error = await options.create.transformError(response, params);
+
+      throw error;
     },
     async createMany(params) {
       const endpoint = options.createMany.getEndpoint(params);
@@ -144,9 +150,15 @@ export const createDataProvider = (
         body: JSON.stringify(body),
       });
 
-      const data = await options.update.mapResponse(response, params);
+      if (response.ok) {
+        const data = await options.update.mapResponse(response, params);
 
-      return { data };
+        return { data };
+      }
+
+      const error = await options.update.transformError(response, params);
+
+      throw error;
     },
     async updateMany(params) {
       if (options.updateMany.each === true) {

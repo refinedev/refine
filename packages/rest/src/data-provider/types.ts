@@ -7,6 +7,7 @@ import type {
   GetListParams,
   GetManyParams,
   GetOneParams,
+  HttpError,
   UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
@@ -24,6 +25,11 @@ type MapResponse<P, R> = (
   response: KyResponse<unknown>,
   params: P,
 ) => Promise<R>;
+
+type TransformError<P> = (
+  response: KyResponse<unknown>,
+  params: P,
+) => Promise<HttpError>;
 
 export type CreateDataProviderOptions = {
   getList?: {
@@ -47,6 +53,7 @@ export type CreateDataProviderOptions = {
     buildBodyParams?: BuildBodyParams<CreateParams<any>>;
 
     mapResponse?: MapResponse<CreateParams<any>, AnyObject>;
+    transformError?: TransformError<CreateParams<any>>;
   };
   createMany?: {
     getEndpoint?: GetEndpoint<CreateManyParams<any>>;
@@ -84,6 +91,7 @@ export type CreateDataProviderOptions = {
     buildBodyParams?: BuildBodyParams<UpdateParams<any>>;
 
     mapResponse?: MapResponse<UpdateParams<any>, AnyObject>;
+    transformError?: TransformError<UpdateParams<any>>;
   };
   updateMany?: {
     /**

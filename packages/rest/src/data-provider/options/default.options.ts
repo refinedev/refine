@@ -2,13 +2,12 @@ import type {
   CreateManyParams,
   CreateParams,
   CustomParams,
-  DeleteManyParams,
   DeleteOneParams,
   GetListParams,
   GetManyParams,
   GetOneParams,
-  UpdateManyParams,
   UpdateParams,
+  HttpError,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
 import type { AnyObject } from "../types";
@@ -144,6 +143,17 @@ export const defaultCreateDataProviderOptions = {
     ): Promise<Record<string, any>> {
       return await response.json();
     },
+    async transformError(
+      response: KyResponse<AnyObject>,
+      params: CreateParams<any>,
+    ): Promise<HttpError> {
+      const body = await response.json();
+
+      return {
+        message: JSON.stringify({ ...body, variables: params.variables }),
+        statusCode: response.status,
+      };
+    },
   },
   createMany: {
     getEndpoint(params: CreateManyParams<any>) {
@@ -186,6 +196,22 @@ export const defaultCreateDataProviderOptions = {
       _params: UpdateParams<any>,
     ) {
       return await response.json();
+    },
+
+    async transformError(
+      response: KyResponse<AnyObject>,
+      params: UpdateParams<any>,
+    ): Promise<HttpError> {
+      const body = await response.json();
+
+      return {
+        message: JSON.stringify({
+          ...body,
+          id: params.id,
+          variables: params.variables,
+        }),
+        statusCode: response.status,
+      };
     },
   },
   updateMany: {
