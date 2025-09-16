@@ -19,22 +19,19 @@ npm create refine-app@latest my-app -- --preset vite-shadcn
 
 If you want to add shadcn/ui to an existing Refine project:
 
-1. **Initialize shadcn/ui in your project:**
+1. **Install shadcn/ui in your project**
 
-```bash
-npx shadcn@latest init
-```
+   Follow the shadcn/ui installation guide based on the React framework you're using with Refine:
 
-2. **Install Refine core packages:**
+   - [Vite](https://ui.shadcn.com/docs/installation/vite)
+   - [Next.js](https://ui.shadcn.com/docs/installation/next)
 
-```bash
-npm install @refinedev/core @refinedev/react-hook-form
-```
-
-3. **Add Refine components from the registry:**
+2. **Add Refine-specific components from the registry:**
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/auto-save-indicator.json
+npx shadcn@latest add https://ui.refine.dev/r/create-view.json
+npx shadcn@latest add https://ui.refine.dev/r/edit-view.json
 ```
 
 ## Usage
@@ -80,34 +77,50 @@ export function EditProduct() {
 }
 ```
 
-## Component Registry
+## Refine Component Registry
 
 Refine provides a growing collection of components through the shadcn/ui registry system. Each component can be installed individually:
 
 ### Form Components
 
-- `AutoSaveIndicator` - Visual feedback for auto-save operations
+- **[Forms](/docs/ui-integrations/shadcn/components/forms/)** - Complete form building guide with validation
+- **[Auto Save Indicator](/docs/ui-integrations/shadcn/components/auto-save-indicator/)** - Visual feedback for auto-save operations
+
+### Data Components
+
+- **[Data Table](/docs/ui-integrations/shadcn/components/data-table/)** - Advanced data table with sorting, filtering, and pagination
+
+### Authentication Components
+
+- **[Sign In Form](/docs/ui-integrations/shadcn/components/sign-in-form/)** - Ready-to-use sign-in form with validation
+- **[Sign Up Form](/docs/ui-integrations/shadcn/components/sign-up-form/)** - Ready-to-use sign-up form with validation
+- **[Forgot Password](/docs/ui-integrations/shadcn/components/forgot-password/)** - Password reset form component
+
+### Layout Components
+
+- **[Themed Layout](/docs/ui-integrations/shadcn/components/themed-layout/)** - Complete layout wrapper with sidebar navigation, dark/light theme and responsive design.
 
 ### View Components
 
-- `EditView` - Layout wrapper for edit pages
-- `CreateView` - Layout wrapper for create pages
-- `ListView` - Layout wrapper for list pages
-- `ShowView` - Layout wrapper for show pages
-
-### Field Components
-
-- `TextField` - Display text data with proper formatting
-- `NumberField` - Display numeric data with formatting options
-- `DateField` - Display dates with localization
-- `BooleanField` - Display boolean values with appropriate indicators
+- **[Create View](/docs/ui-integrations/shadcn/components/basic-views/create/)** - Create page layout with navigation and breadcrumb
+- **[Edit View](/docs/ui-integrations/shadcn/components/basic-views/edit/)** - Edit page layout with navigation and breadcrumb
+- **[List View](/docs/ui-integrations/shadcn/components/basic-views/list/)** - List page layout with navigation and breadcrumb
+- **[Show View](/docs/ui-integrations/shadcn/components/basic-views/show/)** - Detail page layout with navigation and breadcrumb
 
 ### Button Components
 
-- `DeleteButton` - Button with delete confirmation dialog
-- `EditButton` - Navigation button to edit pages
-- `CreateButton` - Navigation button to create pages
-- `SaveButton` - Form submission button with loading states
+- **[Create Button](/docs/ui-integrations/shadcn/components/buttons/create-button/)** - Navigation button to create pages
+- **[Edit Button](/docs/ui-integrations/shadcn/components/buttons/edit-button/)** - Navigation button to edit pages
+- **[Delete Button](/docs/ui-integrations/shadcn/components/buttons/delete-button/)** - Button with delete confirmation dialog
+- **[Show Button](/docs/ui-integrations/shadcn/components/buttons/show-button/)** - Navigation button to show pages
+- **[List Button](/docs/ui-integrations/shadcn/components/buttons/list-button/)** - Navigation button to list pages
+- **[Clone Button](/docs/ui-integrations/shadcn/components/buttons/clone-button/)** - Button to clone/duplicate records
+- **[Refresh Button](/docs/ui-integrations/shadcn/components/buttons/refresh-button/)** - Button to refresh data
+
+### Utility Components
+
+- **[Error Component](/docs/ui-integrations/shadcn/components/error-component/)** - Error boundary and error display component
+- **[Notification Provider](/docs/ui-integrations/shadcn/components/notification-provider/)** - Toast notification system
 
 ## Key Features
 

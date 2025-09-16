@@ -863,21 +863,12 @@ module.exports = {
           type: "category",
           label: "shadcn/ui",
           collapsed: false,
-          // className: "category-as-header",
           items: [
             "ui-integrations/shadcn/introduction/index",
             {
               type: "category",
               label: "Components",
               items: [
-                "ui-integrations/shadcn/components/themed-layout/index",
-                "ui-integrations/shadcn/components/sign-in-form/index",
-                "ui-integrations/shadcn/components/sign-up-form/index",
-                "ui-integrations/shadcn/components/forgot-password/index",
-                "ui-integrations/shadcn/components/error-component/index",
-                "ui-integrations/shadcn/components/notification-provider/index",
-                "ui-integrations/shadcn/components/auto-save-indicator/index",
-                "ui-integrations/shadcn/components/data-table/index",
                 {
                   type: "category",
                   label: "Basic Views",
@@ -886,6 +877,15 @@ module.exports = {
                     "ui-integrations/shadcn/components/basic-views/edit/index",
                     "ui-integrations/shadcn/components/basic-views/list/index",
                     "ui-integrations/shadcn/components/basic-views/show/index",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Auth Forms",
+                  items: [
+                    "ui-integrations/shadcn/components/sign-in-form/index",
+                    "ui-integrations/shadcn/components/sign-up-form/index",
+                    "ui-integrations/shadcn/components/forgot-password/index",
                   ],
                 },
                 {
@@ -901,12 +901,13 @@ module.exports = {
                     "ui-integrations/shadcn/components/buttons/show-button/index",
                   ],
                 },
+                "ui-integrations/shadcn/components/forms/index",
+                "ui-integrations/shadcn/components/data-table/index",
+                "ui-integrations/shadcn/components/themed-layout/index",
+                "ui-integrations/shadcn/components/error-component/index",
+                "ui-integrations/shadcn/components/auto-save-indicator/index",
+                "ui-integrations/shadcn/components/notification-provider/index",
               ],
-            },
-            {
-              type: "category",
-              label: "Hooks",
-              items: ["ui-integrations/shadcn/hooks/use-form/index"],
             },
           ],
         },
