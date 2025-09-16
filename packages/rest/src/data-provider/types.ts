@@ -1,27 +1,28 @@
 import type {
-  CreateParams,
   CreateManyParams,
-  GetOneParams,
+  CreateParams,
+  CustomParams,
+  DeleteManyParams,
+  DeleteOneParams,
   GetListParams,
   GetManyParams,
-  UpdateParams,
+  GetOneParams,
   UpdateManyParams,
-  DeleteOneParams,
-  DeleteManyParams,
-  CustomParams,
+  UpdateParams,
 } from "@refinedev/core";
+import { KyResponse } from "ky";
 import type { QueryStringAddon } from "wretch/addons/queryString";
 import type {
-  WretchResponse,
   ConfiguredMiddleware,
   Wretch,
+  WretchResponse,
 } from "wretch/types";
 
 export type GlobalMiddleware = (
   client: QueryStringAddon & Wretch<QueryStringAddon, unknown, undefined>,
 ) => ConfiguredMiddleware;
 
-type AnyObject = Record<string, any>;
+export type AnyObject = Record<string, any>;
 
 type GetEndpoint<P> = (params: P) => string;
 
@@ -29,7 +30,10 @@ type BuildQueryParams<P> = (params: P) => Promise<AnyObject>;
 type BuildBodyParams<P> = (params: P) => Promise<AnyObject>;
 type BuildHeaders<P> = (params: P) => Promise<AnyObject>;
 
-type MapResponse<P, R> = (response: WretchResponse, params: P) => Promise<R>;
+type MapResponse<P, R> = (
+  response: KyResponse<unknown>,
+  params: P,
+) => Promise<R>;
 
 export type CreateDataProviderOptions = {
   getList?: {
@@ -123,8 +127,8 @@ export type CreateDataProviderOptions = {
 
     mapResponse?: MapResponse<CustomParams<any>, AnyObject>;
   };
-  middlewares?: {
-    global?: GlobalMiddleware[];
-  };
-  defaultHeaders?: Record<string, string>;
+  // middlewares?: {
+  //   global?: GlobalMiddleware[];
+  // };
+  // defaultHeaders?: Record<string, string>;
 };

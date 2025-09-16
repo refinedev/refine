@@ -1,3 +1,4 @@
+import { type Hooks } from "ky";
 import type { FetchLike, WretchOptions } from "wretch/types";
 import type { GlobalMiddleware } from "../data-provider/types";
 
@@ -6,15 +7,13 @@ type AuthHeaderMiddlewareOptions = {
 };
 
 export const authHeaderMiddleware =
-  (options: AuthHeaderMiddlewareOptions): GlobalMiddleware =>
-  (_wretch) =>
-  (next: FetchLike) =>
-  async (url: string, opts: WretchOptions) => {
+  (
+    options: AuthHeaderMiddlewareOptions,
+  ): NonNullable<Hooks["beforeRequest"]>[number] =>
+  async (req) => {
     const token = localStorage.getItem(options.ACCESS_TOKEN_KEY);
 
-    opts.headers = {
-      ...opts.headers,
-      Authorization: `Bearer ${token}`,
-    };
-    return next(url, opts);
+    if (token) {
+      req.headers.set("Authorization", `Bearer ${token}`);
+    }
   };

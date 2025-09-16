@@ -7,28 +7,36 @@ import type {
   UpdateResponse,
 } from "@refinedev/core";
 import dm from "deepmerge";
+import kyBase, { type Options as KyOptions } from "ky";
+import qs from "qs";
 import wretch from "wretch";
 import queryStringAddon from "wretch/addons/queryString";
-import qs from "qs";
 
-import type { CreateDataProviderOptions } from "./types";
 import { defaultCreateDataProviderOptions } from "./options/default.options";
+import type { AnyObject, CreateDataProviderOptions } from "./types";
 
 export const createDataProvider = (
   apiURL: string,
   baseOptions: CreateDataProviderOptions = defaultCreateDataProviderOptions,
+  kyOptions: KyOptions,
 ): DataProvider => {
   const options = dm(defaultCreateDataProviderOptions, baseOptions);
 
-  let client = wretch(apiURL)
-    .addon(queryStringAddon)
-    .headers(options.defaultHeaders);
+  const ky = kyBase.create({
+    prefixUrl: apiURL,
+    ...kyOptions,
+    throwHttpErrors: false,
+  });
 
-  if (options.middlewares?.global) {
-    client = client.middlewares(
-      options.middlewares.global.map((middleware) => middleware(client)),
-    );
-  }
+  // let client = wretch(apiURL)
+  //   .addon(queryStringAddon)
+  //   .headers(options.defaultHeaders);
+
+  // if (options.middlewares?.global) {
+  //   client = client.middlewares(
+  //     options.middlewares.global.map((middleware) => middleware(client)),
+  //   );
+  // }
 
   return {
     getList: async (params) => {
@@ -38,22 +46,22 @@ export const createDataProvider = (
 
       const query = await options.getList.buildQueryParams(params);
 
-      const response = await client
-        .errorType("json")
-        .headers(headers)
-        .query(qs.stringify(query, { encodeValuesOnly: true }))
-        .get(endpoint)
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, {
+        headers,
+        searchParams: query,
+      });
 
-      const data = await options.getList.mapResponse(response.clone(), params);
+      if (response.ok) {
+        const data = await options.getList.mapResponse(response, params);
 
-      const total = await options.getList.getTotalCount(
-        response.clone(),
-        params,
-      );
+        const total = await options.getList.getTotalCount(response, params);
 
-      return { data, total };
+        return { data, total };
+      }
+
+      const { error } = await response.json<{ error: AnyObject }>();
+
+      throw error;
     },
     getOne: async (params): Promise<GetOneResponse<any>> => {
       const endpoint = options.getOne.getEndpoint(params);
@@ -62,13 +70,7 @@ export const createDataProvider = (
 
       const query = await options.getOne.buildQueryParams(params);
 
-      const response = await client
-        .errorType("json")
-        .headers(headers)
-        .query(qs.stringify(query))
-        .get(endpoint)
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, { headers, searchParams: query });
 
       const data = await options.getOne.mapResponse(response, params);
 
@@ -81,13 +83,7 @@ export const createDataProvider = (
 
       const query = await options.getMany.buildQueryParams(params);
 
-      const response = await client
-        .headers(headers)
-        .errorType("json")
-        .query(qs.stringify(query))
-        .get(endpoint)
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, { headers, searchParams: query });
 
       const data = await options.getMany.mapResponse(response, params);
 
@@ -102,14 +98,11 @@ export const createDataProvider = (
 
       const body = await options.create.buildBodyParams(params);
 
-      const response = await client
-        .url(endpoint)
-        .errorType("json")
-        .headers(headers)
-        .query(qs.stringify(query))
-        .post(body)
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, {
+        headers,
+        searchParams: query,
+        body,
+      });
 
       const data = await options.create.mapResponse(response, params);
 
@@ -124,18 +117,15 @@ export const createDataProvider = (
 
       const body = await options.createMany.buildBodyParams(params);
 
-      const response = await client
-        .errorType("json")
-        .url(endpoint)
-        .headers(headers)
-        .query(qs.stringify(query))
-        .post(body)
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, {
+        headers,
+        searchParams: query,
+        body: JSON.stringify(body),
+      });
 
       const data = await options.createMany.mapResponse(response, params);
 
-      return { data };
+      return { data } as any;
     },
     update: async (params): Promise<UpdateResponse<any>> => {
       const endpoint = options.update.getEndpoint(params);
@@ -149,16 +139,12 @@ export const createDataProvider = (
 
       const body = await options.update.buildBodyParams(params);
 
-      const response = await client
-        .errorType("json")
-        .url(endpoint)
-        .headers(headers)
-        .query(qs.stringify(query))
-        .body(JSON.stringify(body))
-        .options({ method })
-        .fetch()
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, {
+        method,
+        headers,
+        searchParams: query,
+        body,
+      });
 
       const data = await options.update.mapResponse(response, params);
 
@@ -175,20 +161,16 @@ export const createDataProvider = (
 
       const body = await options.updateMany.buildBodyParams(params);
 
-      const response = await client
-        .errorType("json")
-        .url(endpoint)
-        .headers(headers)
-        .query(qs.stringify(query))
-        .body(JSON.stringify(body))
-        .options({ method })
-        .fetch()
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, {
+        method,
+        headers,
+        searchParams: query,
+        body,
+      });
 
       const data = await options.updateMany.mapResponse(response, params);
 
-      return { data };
+      return { data } as any;
     },
     deleteOne: async (params): Promise<DeleteOneResponse<any>> => {
       const endpoint = options.deleteOne.getEndpoint(params);
@@ -197,14 +179,7 @@ export const createDataProvider = (
 
       const query = await options.deleteOne.buildQueryParams(params);
 
-      const response = await client
-        .errorType("json")
-        .url(endpoint)
-        .headers(headers)
-        .query(qs.stringify(query))
-        .delete()
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, { headers, searchParams: query });
 
       const data = await options.deleteOne.mapResponse(response, params);
 
@@ -217,47 +192,39 @@ export const createDataProvider = (
 
       const query = await options.deleteMany.buildQueryParams(params);
 
-      const response = await client
-        .errorType("json")
-        .url(endpoint)
-        .headers(headers)
-        .query(qs.stringify(query))
-        .delete()
-        .res()
-        .catch((response) => response.json.error);
+      const response = await ky(endpoint, { headers, searchParams: query });
 
       const data = await options.deleteMany.mapResponse(response, params);
 
-      return { data };
+      return { data } as any;
     },
     custom: async (params): Promise<CustomResponse<any>> => {
       const { method, url } = params;
 
-      const client = wretch(url)
-        .errorType("json")
-        .addon(queryStringAddon)
-        .headers(options.defaultHeaders);
+      const client = kyBase.create({
+        method,
+        ...kyOptions,
+      });
 
       const headers = await options.custom.buildHeaders(params);
-
-      const query = await options.custom.buildQueryParams(params);
-
-      let body;
-
-      if (["post", "put", "patch"].includes(method)) {
-        body = await options.custom.buildBodyParams(params);
+      if (headers) {
+        client.extend({ headers });
       }
 
-      const request = client
-        .headers(headers)
-        .query(qs.stringify(query))
-        .body(JSON.stringify(body));
+      const query = await options.custom.buildQueryParams(params);
+      if (query) {
+        client.extend({ searchParams: query });
+      }
 
-      const response = await request
-        .options({ method: method.toUpperCase() })
-        .fetch()
-        .res()
-        .catch((response) => response.json.error);
+      if (["post", "put", "patch"].includes(method)) {
+        const body = await options.custom.buildBodyParams(params);
+
+        if (body) {
+          client.extend({ body: JSON.stringify(body) });
+        }
+      }
+
+      const response = await client<AnyObject>(url);
 
       const data = await options.custom.mapResponse(response, params);
 

@@ -8,9 +8,11 @@ const HEADER_NAME = "Authorization";
 const TOKEN = "my-test-token";
 
 describe("auth", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    middlewares: { global: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })] },
-  });
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    { hooks: { beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })] } },
+  );
 
   it("should add Authorization header", async () => {
     localStorage.setItem(ACCESS_TOKEN_KEY, TOKEN);

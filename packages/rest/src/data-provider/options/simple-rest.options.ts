@@ -1,15 +1,18 @@
 import type {
-  GetListParams,
-  GetOneParams,
   CreateParams,
-  UpdateParams,
-  DeleteOneParams,
   CrudOperators,
   CustomParams,
-  UpdateManyParams,
   DeleteManyParams,
+  DeleteOneParams,
+  GetListParams,
+  GetManyParams,
+  GetOneParams,
+  UpdateManyParams,
+  UpdateParams,
 } from "@refinedev/core";
+import { KyResponse } from "ky";
 import type { WretchResponse } from "wretch/types";
+import { AnyObject } from "../types";
 
 const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {
@@ -90,13 +93,13 @@ export const simpleRestDataProviderOptions = {
       return { ...filters, ...sorters, ...pagination };
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetListParams,
     ): Promise<any[]> {
       return await response.json();
     },
     async getTotalCount(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetListParams,
     ): Promise<number> {
       const totalCount = response.headers.get("x-total-count") ?? 0;
@@ -112,7 +115,7 @@ export const simpleRestDataProviderOptions = {
       return {};
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetOneParams,
     ): Promise<Record<string, any>> {
       return await response.json();
@@ -122,10 +125,10 @@ export const simpleRestDataProviderOptions = {
     getEndpoint(params: GetListParams) {
       return `/${params.resource}`;
     },
-    async buildQueryParams(params: GetListParams) {
-      return {};
+    async buildQueryParams(params: GetManyParams) {
+      return { ids: params.ids };
     },
-    async mapResponse(response: WretchResponse, params: GetListParams) {
+    async mapResponse(response: KyResponse<AnyObject>, params: GetListParams) {
       return await response.json();
     },
   },
@@ -140,7 +143,7 @@ export const simpleRestDataProviderOptions = {
       return params.variables;
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: CreateParams<any>,
     ): Promise<Record<string, any>> {
       return await response.json();
@@ -153,7 +156,10 @@ export const simpleRestDataProviderOptions = {
     async buildQueryParams(params: CreateParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: CreateParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: CreateParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -167,7 +173,10 @@ export const simpleRestDataProviderOptions = {
     async buildBodyParams(params: UpdateParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: UpdateParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: UpdateParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -178,7 +187,10 @@ export const simpleRestDataProviderOptions = {
     async buildQueryParams(params: UpdateManyParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: UpdateManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: UpdateManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -189,7 +201,10 @@ export const simpleRestDataProviderOptions = {
     async buildQueryParams(params: DeleteOneParams<any>) {
       return {};
     },
-    async mapResponse(response: WretchResponse, params: DeleteOneParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: DeleteOneParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -200,7 +215,10 @@ export const simpleRestDataProviderOptions = {
     async buildQueryParams(params: DeleteManyParams<any>) {
       return {};
     },
-    async mapResponse(response: WretchResponse, params: DeleteManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: DeleteManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -214,7 +232,10 @@ export const simpleRestDataProviderOptions = {
     async buildHeaders(params: CustomParams<any>) {
       return params.headers ?? {};
     },
-    async mapResponse(response: WretchResponse, params: CustomParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: CustomParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -233,7 +254,7 @@ export const simpleRestDataProviderOptions = {
       localStorage.setItem("token", mapResponseResult.token);
       localStorage.setItem("refreshToken", mapResponseResult.refreshToken);
     },
-    async mapResponse(response: WretchResponse) {
+    async mapResponse(response: KyResponse<AnyObject>) {
       return await response.json();
     },
   },

@@ -1,15 +1,17 @@
 import type {
-  GetListParams,
-  GetOneParams,
-  CreateParams,
-  UpdateParams,
-  DeleteOneParams,
-  CustomParams,
-  UpdateManyParams,
-  DeleteManyParams,
-  GetManyParams,
   CreateManyParams,
+  CreateParams,
+  CustomParams,
+  DeleteManyParams,
+  DeleteOneParams,
+  GetListParams,
+  GetManyParams,
+  GetOneParams,
+  UpdateManyParams,
+  UpdateParams,
 } from "@refinedev/core";
+import { KyResponse } from "ky";
+import { AnyObject } from "src/data-provider/types";
 import type { WretchResponse } from "wretch/types";
 import { generateFilter } from "./utils/generateFilter";
 import { normalizeData } from "./utils/normalizeData";
@@ -49,6 +51,7 @@ export const strapiV4DataProviderOptions = {
       const _sorters: string[] = [];
 
       if (sorters) {
+        // strapi.com/categories?sort=id:asc
         sorters.map((item) => {
           if (item.order) {
             _sorters.push(`${item.field}:${item.order}`);
@@ -87,7 +90,7 @@ export const strapiV4DataProviderOptions = {
       return queryParams;
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetListParams,
     ): Promise<any[]> {
       const body = await response.json();
@@ -95,7 +98,7 @@ export const strapiV4DataProviderOptions = {
       return normalizeData(body);
     },
     async getTotalCount(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetListParams,
     ): Promise<number> {
       const body = await response.json();
@@ -128,7 +131,7 @@ export const strapiV4DataProviderOptions = {
       return queryParams;
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetOneParams,
     ): Promise<Record<string, any>> {
       const body = await response.json();
@@ -165,7 +168,7 @@ export const strapiV4DataProviderOptions = {
 
       return query;
     },
-    async mapResponse(response: WretchResponse, params: GetManyParams) {
+    async mapResponse(response: KyResponse<AnyObject>, params: GetManyParams) {
       const body = await response.json();
 
       return body.records;
@@ -187,7 +190,7 @@ export const strapiV4DataProviderOptions = {
       return bodyParams;
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       _params: CreateParams<any>,
     ): Promise<Record<string, any>> {
       if (response.status >= 400) {
@@ -214,7 +217,10 @@ export const strapiV4DataProviderOptions = {
     async buildBodyParams(params: CreateManyParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: CreateManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: CreateManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -234,7 +240,10 @@ export const strapiV4DataProviderOptions = {
     async buildBodyParams(params: UpdateParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: UpdateParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: UpdateParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -258,7 +267,10 @@ export const strapiV4DataProviderOptions = {
     async buildBodyParams(params: UpdateManyParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: UpdateManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: UpdateManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -272,7 +284,10 @@ export const strapiV4DataProviderOptions = {
     async buildQueryParams(params: DeleteOneParams<any>) {
       return params.meta?.query ?? {};
     },
-    async mapResponse(response: WretchResponse, params: DeleteOneParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: DeleteOneParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -290,7 +305,10 @@ export const strapiV4DataProviderOptions = {
 
       return params.meta?.query ?? queryParams;
     },
-    async mapResponse(response: WretchResponse, params: DeleteManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: DeleteManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -304,7 +322,10 @@ export const strapiV4DataProviderOptions = {
     async buildBodyParams(params: CustomParams<any>) {
       return params.payload ?? {};
     },
-    async mapResponse(response: WretchResponse, params: CustomParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: CustomParams<any>,
+    ) {
       return await response.json();
     },
   },

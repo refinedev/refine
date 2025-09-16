@@ -1,16 +1,17 @@
 import type {
-  GetListParams,
-  GetOneParams,
-  CreateParams,
-  UpdateParams,
-  DeleteOneParams,
-  CustomParams,
-  UpdateManyParams,
-  DeleteManyParams,
-  GetManyParams,
   CreateManyParams,
+  CreateParams,
+  CustomParams,
+  DeleteManyParams,
+  DeleteOneParams,
+  GetListParams,
+  GetManyParams,
+  GetOneParams,
+  UpdateManyParams,
+  UpdateParams,
 } from "@refinedev/core";
-import type { WretchResponse } from "wretch/types";
+import { KyResponse } from "ky";
+import { AnyObject } from "../types";
 
 export const defaultCreateDataProviderOptions = {
   getList: {
@@ -71,7 +72,7 @@ export const defaultCreateDataProviderOptions = {
       return queryParams;
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetListParams,
     ): Promise<any[]> {
       const body = await response.json();
@@ -79,7 +80,7 @@ export const defaultCreateDataProviderOptions = {
       return body.records;
     },
     async getTotalCount(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetListParams,
     ): Promise<number> {
       const body = await response.json();
@@ -98,7 +99,7 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.query ?? {};
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: GetOneParams,
     ): Promise<Record<string, any>> {
       return await response.json();
@@ -118,7 +119,7 @@ export const defaultCreateDataProviderOptions = {
 
       return params.meta?.query ?? queryParams;
     },
-    async mapResponse(response: WretchResponse, params: GetManyParams) {
+    async mapResponse(response: KyResponse<AnyObject>, params: GetManyParams) {
       const body = await response.json();
 
       return body.records;
@@ -138,7 +139,7 @@ export const defaultCreateDataProviderOptions = {
       return params.variables;
     },
     async mapResponse(
-      response: WretchResponse,
+      response: KyResponse<AnyObject>,
       params: CreateParams<any>,
     ): Promise<Record<string, any>> {
       return await response.json();
@@ -157,7 +158,10 @@ export const defaultCreateDataProviderOptions = {
     async buildBodyParams(params: CreateManyParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: CreateManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject[]>,
+      params: CreateManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -177,7 +181,10 @@ export const defaultCreateDataProviderOptions = {
     async buildBodyParams(params: UpdateParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: UpdateParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: UpdateParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -201,7 +208,10 @@ export const defaultCreateDataProviderOptions = {
     async buildBodyParams(params: UpdateManyParams<any>) {
       return params.variables;
     },
-    async mapResponse(response: WretchResponse, params: UpdateManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject[]>,
+      params: UpdateManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -215,7 +225,10 @@ export const defaultCreateDataProviderOptions = {
     async buildQueryParams(params: DeleteOneParams<any>) {
       return params.meta?.query ?? {};
     },
-    async mapResponse(response: WretchResponse, params: DeleteOneParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject>,
+      params: DeleteOneParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -233,7 +246,10 @@ export const defaultCreateDataProviderOptions = {
 
       return params.meta?.query ?? queryParams;
     },
-    async mapResponse(response: WretchResponse, params: DeleteManyParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject[]>,
+      params: DeleteManyParams<any>,
+    ) {
       return await response.json();
     },
   },
@@ -247,11 +263,15 @@ export const defaultCreateDataProviderOptions = {
     async buildBodyParams(params: CustomParams<any>) {
       return params.payload ?? {};
     },
-    async mapResponse(response: WretchResponse, params: CustomParams<any>) {
+    async mapResponse(
+      response: KyResponse<AnyObject | AnyObject[]>,
+      params: CustomParams<any>,
+    ) {
       return await response.json();
     },
   },
   defaultHeaders: {
     "Content-Type": "application/json",
+    Accept: "application/json",
   },
 };
