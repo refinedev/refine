@@ -65,7 +65,12 @@ export const NestjsxCrudDataProviderOptions: CreateDataProviderOptions = {
     buildBodyParams: ({ variables }) => variables,
     mapResponse: async (response) => await response.json(),
   },
-  updateMany: {},
+  updateMany: {
+    each: true,
+    getEndpoint: ({ resource }) => resource,
+    buildBodyParams: async ({ variables }) => variables,
+    mapResponse: async (response, _params) => await response.json(),
+  },
   createMany: {
     getEndpoint: ({ resource }) => `${resource}/bulk`,
     buildBodyParams: async ({ variables }) => ({
@@ -86,6 +91,11 @@ export const NestjsxCrudDataProviderOptions: CreateDataProviderOptions = {
   },
   deleteOne: {
     getEndpoint: ({ resource, id }) => `${resource}/${id}`,
+    mapResponse: async (response, _params) => undefined,
+  },
+  deleteMany: {
+    each: true,
+    getEndpoint: ({ resource }) => resource,
     mapResponse: async (response, _params) => undefined,
   },
 };

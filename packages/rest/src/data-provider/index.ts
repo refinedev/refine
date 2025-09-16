@@ -159,6 +159,28 @@ export const createDataProvider = (
 
       const body = await options.updateMany.buildBodyParams(params);
 
+      if (options.updateMany.each) {
+        const data = [];
+
+        for (const id of params.ids) {
+          const response = await ky(`${endpoint}/${id}`, {
+            method,
+            headers,
+            searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+            body: JSON.stringify(body),
+          });
+
+          const itemData = await options.updateMany.mapResponse(
+            response,
+            params,
+          );
+
+          data.push(itemData);
+        }
+
+        return { data };
+      }
+
       const response = await ky(endpoint, {
         method,
         headers,
@@ -193,6 +215,29 @@ export const createDataProvider = (
       const headers = await options.deleteMany.buildHeaders(params);
 
       const query = await options.deleteMany.buildQueryParams(params);
+
+      if (options.deleteMany.each) {
+        const data = [];
+
+        for (const id of params.ids) {
+          const response = await ky(`${endpoint}/${id}`, {
+            method: "delete",
+            headers,
+            searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+          });
+
+          const itemData = await options.deleteMany.mapResponse(
+            response,
+            params,
+          );
+
+          if (itemData) {
+            data.push(itemData);
+          }
+        }
+
+        return { data };
+      }
 
       const response = await ky(endpoint, {
         method: "delete",

@@ -10,6 +10,6 @@ describe("deleteMany", () => {
 
     const { data } = response;
 
-    expect(data).toEqual([""]);
+    expect(data).toEqual([]);
   });
 });

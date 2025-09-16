@@ -81,7 +81,7 @@ export const defaultCreateDataProviderOptions = {
     },
     async getTotalCount(
       response: KyResponse<AnyObject>,
-      params: GetListParams,
+      _params: GetListParams,
     ): Promise<number> {
       const body = await response.json();
 
@@ -100,7 +100,7 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
-      params: GetOneParams,
+      _params: GetOneParams,
     ): Promise<Record<string, any>> {
       return await response.json();
     },
@@ -140,7 +140,7 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
-      params: CreateParams<any>,
+      _params: CreateParams<any>,
     ): Promise<Record<string, any>> {
       return await response.json();
     },
@@ -160,7 +160,7 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject[]>,
-      params: CreateManyParams<any>,
+      _params: CreateManyParams<any>,
     ) {
       return await response.json();
     },
@@ -183,7 +183,7 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
-      params: UpdateParams<any>,
+      _params: UpdateParams<any>,
     ) {
       return await response.json();
     },
@@ -199,21 +199,18 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.headers ?? {};
     },
     async buildQueryParams(params: UpdateManyParams<any>) {
-      const queryParams = {
-        ids: params.ids.join(","),
-      };
-
-      return params.meta?.query ?? queryParams;
+      return params.meta?.query ?? {};
     },
     async buildBodyParams(params: UpdateManyParams<any>) {
       return params.variables;
     },
     async mapResponse(
       response: KyResponse<AnyObject[]>,
-      params: UpdateManyParams<any>,
+      _params: UpdateManyParams<any>,
     ) {
       return await response.json();
     },
+    each: false,
   },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
@@ -226,10 +223,10 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.query ?? {};
     },
     async mapResponse(
-      response: KyResponse<AnyObject>,
-      params: DeleteOneParams<any>,
+      _response: KyResponse<AnyObject>,
+      _params: DeleteOneParams<any>,
     ) {
-      return await response.json();
+      return undefined;
     },
   },
   deleteMany: {
@@ -240,18 +237,15 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.headers ?? {};
     },
     async buildQueryParams(params: DeleteManyParams<any>) {
-      const queryParams = {
-        ids: params.ids.join(","),
-      };
-
-      return params.meta?.query ?? queryParams;
+      return params.meta?.query ?? {};
     },
     async mapResponse(
       response: KyResponse<AnyObject[]>,
-      params: DeleteManyParams<any>,
+      _params: DeleteManyParams<any>,
     ) {
       return await response.json();
     },
+    each: false,
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {
