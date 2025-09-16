@@ -85,7 +85,7 @@ const postSchema = z.object({
 type PostFormData = z.infer<typeof postSchema>;
 ```
 
-## Step 4: Create a Basic Form
+## Step 4: Create a Form
 
 Here's a complete example of a create form using [shadcn/ui form components](https://ui.shadcn.com/docs/components/form):
 
@@ -233,11 +233,13 @@ export default function CreatePost() {
 
 ## Step 5: Creating Edit Forms
 
-For editing existing records, change the `action` and add an `ID`:
+For editing existing records, change the `action` and add an `ID`. Other than that, the form structure remains the same.
 
 ```tsx
 import React from "react";
-import { useParams } from "react-router-dom";
+// highlight-start
+import { useParams } from "react-router";
+// highlight-end
 import { useForm } from "@refinedev/react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -274,7 +276,9 @@ const postSchema = z.object({
 type PostFormData = z.infer<typeof postSchema>;
 
 export default function EditPost() {
+  // highlight-start
   const { id } = useParams();
+  // highlight-end
 
   const {
     refineCore: { onFinish, formLoading, query },
@@ -283,8 +287,10 @@ export default function EditPost() {
     resolver: zodResolver(postSchema),
     refineCoreProps: {
       resource: "posts",
+      // highlight-start
       action: "edit",
-      id, // Pass the record ID
+      id,
+      // highlight-end
     },
   });
 
@@ -301,7 +307,6 @@ export default function EditPost() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="space-y-6 p-4"
           >
-            {/* Same form fields as create form */}
             <FormField
               control={form.control}
               name="title"
@@ -318,11 +323,32 @@ export default function EditPost() {
 
             <FormField
               control={form.control}
+              name="content"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Content</FormLabel>
+                  <FormControl>
+                    <Textarea
+                      placeholder="Write your post content..."
+                      className="resize-none"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
               name="status"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Status</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a status" />
@@ -344,7 +370,7 @@ export default function EditPost() {
                 Cancel
               </Button>
               <Button type="submit" disabled={formLoading}>
-                {formLoading ? "Saving..." : "Save Changes"}
+                {formLoading ? "Updating..." : "Update Post"}
               </Button>
             </div>
           </form>
@@ -363,11 +389,26 @@ export default function EditPost() {
 
 ## Step 6: Working with Relationships
 
+When your forms need to handle relationships with other resources (like selecting a category for a post), you can use the [`useSelect`](/docs/data/hooks/use-select/) hook alongside your form. This approach works identically for both create and edit forms, but adds the ability to fetch and select related data from other resources.
+
+Here's how to extend your form with relationship handling using shadcn/ui's Combobox pattern:
+
 ```tsx
+// highlight-start
 import { useForm, useSelect } from "@refinedev/react-hook-form";
+// highlight-end
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Check, ChevronsUpDown } from "lucide-react";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Button } from "@/components/ui/button";
 import {
   Popover,
   PopoverContent,
@@ -388,9 +429,11 @@ const postWithCategorySchema = z.object({
   title: z.string().min(2, "Title must be at least 2 characters"),
   content: z.string().min(10, "Content must be at least 10 characters"),
   status: z.enum(["draft", "published", "rejected"]),
+  // highlight-start
   category: z.object({
     id: z.number({ required_error: "Please select a category" }),
   }),
+  // highlight-end
 });
 
 type PostWithCategoryData = z.infer<typeof postWithCategorySchema>;
@@ -408,17 +451,20 @@ export default function PostFormWithCategory() {
   });
 
   // Fetch categories for selection
+  // highlight-start
   const { options: categoryOptions } = useSelect({
     resource: "categories",
     optionValue: "id",
     optionLabel: "title",
   });
+  // highlight-end
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onFinish)} className="space-y-6">
         {/* Other fields... */}
 
+        {/* highlight-start */}
         <FormField
           control={form.control}
           name="category.id"
@@ -483,6 +529,7 @@ export default function PostFormWithCategory() {
             </FormItem>
           )}
         />
+        {/* highlight-end */}
       </form>
     </Form>
   );
