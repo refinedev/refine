@@ -9,8 +9,6 @@ import type {
 import dm from "deepmerge";
 import kyBase, { type Options as KyOptions } from "ky";
 import qs from "qs";
-import wretch from "wretch";
-import queryStringAddon from "wretch/addons/queryString";
 
 import { defaultCreateDataProviderOptions } from "./options/default.options";
 import type { AnyObject, CreateDataProviderOptions } from "./types";

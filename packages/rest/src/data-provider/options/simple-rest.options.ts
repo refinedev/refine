@@ -10,9 +10,8 @@ import type {
   UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
-import { KyResponse } from "ky";
-import type { WretchResponse } from "wretch/types";
-import { AnyObject } from "../types";
+import type { KyResponse } from "ky";
+import type { AnyObject } from "../types";
 
 const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {

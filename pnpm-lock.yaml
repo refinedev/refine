@@ -2924,6 +2924,9 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.0
         version: link:../../packages/react-router
+      '@refinedev/rest':
+        specifier: ^1.0.0
+        version: link:../../packages/rest
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
         version: link:../../packages/strapi-v4
@@ -2936,6 +2939,9 @@ importers:
       axios:
         specifier: ^1.11.0
         version: 1.11.0
+      ky:
+        specifier: ^1.10.0
+        version: 1.10.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -11081,7 +11087,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: ^5.0.0
         version: link:../core
@@ -11102,7 +11108,7 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.21.5)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.17.19)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -11130,7 +11136,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
         specifier: 5.0.1
         version: link:../core
@@ -11151,7 +11157,7 @@ importers:
         version: 13.5.4
       ts-jest:
         specifier: ^29.1.2
-        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.17.19)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
+        version: 29.1.2(@babel/core@7.28.0)(@jest/types@29.6.3)(babel-jest@29.7.0(@babel/core@7.28.0))(esbuild@0.21.5)(jest@30.0.5(@types/node@20.5.1)(babel-plugin-macros@3.1.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3)))(typescript@5.8.3)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13630,9 +13636,6 @@ importers:
       qs:
         specifier: ^6.10.1
         version: 6.13.0
-      wretch:
-        specifier: ^2.11.0
-        version: 2.11.0
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
@@ -31227,10 +31230,6 @@ packages:
 
   wrappy@1.0.2:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
-
-  wretch@2.11.0:
-    resolution: {integrity: sha512-zbFW4PnPSS5RFQabHRkCAcMQjmFGrEQLcJwYe4YGXL9KWXneu03Dtaz2JUeqEkOwNDMjdfHEHPL+AIZJwE+y1g==}
-    engines: {node: '>=14'}
 
   write-file-atomic@2.4.3:
     resolution: {integrity: sha512-GaETH5wwsX+GcnzhPgKcKjJ6M2Cq3/iZp1WyY/X1CSqrW+jVNM9Y7D8EC2sM4ZG/V8wZlSniJnCKWPmBYAucRQ==}
@@ -55474,8 +55473,6 @@ snapshots:
       strip-ansi: 7.1.0
 
   wrappy@1.0.2: {}
-
-  wretch@2.11.0: {}
 
   write-file-atomic@2.4.3:
     dependencies:

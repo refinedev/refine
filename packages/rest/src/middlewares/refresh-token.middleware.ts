@@ -1,6 +1,4 @@
 import ky, { type Hooks } from "ky";
-import type { FetchLike, WretchOptions } from "wretch/types";
-import type { GlobalMiddleware } from "../data-provider/types";
 
 type RefreshTokenMiddlewareOptions = {
   ACCESS_TOKEN_KEY: string;
