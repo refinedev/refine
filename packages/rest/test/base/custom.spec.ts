@@ -1,12 +1,17 @@
 import nock from "nock";
+import qs from "qs";
 import { API_URL, createDataProvider } from ".";
 
 const CUSTOM_API_URL = "https://custom.com";
 
 describe("custom", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    defaultHeaders: { "x-custom-header-default": "default" },
-  });
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    {
+      headers: { "x-custom-header-default": "default" },
+    },
+  );
 
   describe("queryParams", () => {
     const response = { customResult: { id: 1 } };
@@ -15,6 +20,7 @@ describe("custom", () => {
 
     nock(CUSTOM_API_URL)
       .get("/custom-query-params")
+      .matchHeader("x-custom-header-default", "default")
       .query(queryParams)
       .reply(200, response);
 

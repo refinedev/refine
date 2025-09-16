@@ -18,13 +18,18 @@ import type { AnyObject, CreateDataProviderOptions } from "./types";
 export const createDataProvider = (
   apiURL: string,
   baseOptions: CreateDataProviderOptions = defaultCreateDataProviderOptions,
-  kyOptions: KyOptions,
+  kyOptions: KyOptions = {},
 ): DataProvider => {
   const options = dm(defaultCreateDataProviderOptions, baseOptions);
 
   const ky = kyBase.create({
     prefixUrl: apiURL,
     ...kyOptions,
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      ...kyOptions.headers,
+    },
     throwHttpErrors: false,
   });
 
@@ -48,13 +53,19 @@ export const createDataProvider = (
 
       const response = await ky(endpoint, {
         headers,
-        searchParams: query,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
       });
 
       if (response.ok) {
-        const data = await options.getList.mapResponse(response, params);
+        const data = await options.getList.mapResponse(
+          response.clone(),
+          params,
+        );
 
-        const total = await options.getList.getTotalCount(response, params);
+        const total = await options.getList.getTotalCount(
+          response.clone(),
+          params,
+        );
 
         return { data, total };
       }
@@ -70,7 +81,10 @@ export const createDataProvider = (
 
       const query = await options.getOne.buildQueryParams(params);
 
-      const response = await ky(endpoint, { headers, searchParams: query });
+      const response = await ky(endpoint, {
+        headers,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+      });
 
       const data = await options.getOne.mapResponse(response, params);
 
@@ -83,7 +97,10 @@ export const createDataProvider = (
 
       const query = await options.getMany.buildQueryParams(params);
 
-      const response = await ky(endpoint, { headers, searchParams: query });
+      const response = await ky(endpoint, {
+        headers,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+      });
 
       const data = await options.getMany.mapResponse(response, params);
 
@@ -99,9 +116,10 @@ export const createDataProvider = (
       const body = await options.create.buildBodyParams(params);
 
       const response = await ky(endpoint, {
+        method: "post",
         headers,
-        searchParams: query,
-        body,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+        body: JSON.stringify(body),
       });
 
       const data = await options.create.mapResponse(response, params);
@@ -118,8 +136,9 @@ export const createDataProvider = (
       const body = await options.createMany.buildBodyParams(params);
 
       const response = await ky(endpoint, {
+        method: "post",
         headers,
-        searchParams: query,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
         body: JSON.stringify(body),
       });
 
@@ -142,8 +161,8 @@ export const createDataProvider = (
       const response = await ky(endpoint, {
         method,
         headers,
-        searchParams: query,
-        body,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+        body: JSON.stringify(body),
       });
 
       const data = await options.update.mapResponse(response, params);
@@ -164,8 +183,8 @@ export const createDataProvider = (
       const response = await ky(endpoint, {
         method,
         headers,
-        searchParams: query,
-        body,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+        body: JSON.stringify(body),
       });
 
       const data = await options.updateMany.mapResponse(response, params);
@@ -179,7 +198,11 @@ export const createDataProvider = (
 
       const query = await options.deleteOne.buildQueryParams(params);
 
-      const response = await ky(endpoint, { headers, searchParams: query });
+      const response = await ky(endpoint, {
+        method: "delete",
+        headers,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+      });
 
       const data = await options.deleteOne.mapResponse(response, params);
 
@@ -192,7 +215,11 @@ export const createDataProvider = (
 
       const query = await options.deleteMany.buildQueryParams(params);
 
-      const response = await ky(endpoint, { headers, searchParams: query });
+      const response = await ky(endpoint, {
+        method: "delete",
+        headers,
+        searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+      });
 
       const data = await options.deleteMany.mapResponse(response, params);
 
@@ -201,26 +228,28 @@ export const createDataProvider = (
     custom: async (params): Promise<CustomResponse<any>> => {
       const { method, url } = params;
 
-      const client = kyBase.create({
+      let client = kyBase.create({
         method,
         ...kyOptions,
       });
 
       const headers = await options.custom.buildHeaders(params);
       if (headers) {
-        client.extend({ headers });
+        client = client.extend({ headers });
       }
 
       const query = await options.custom.buildQueryParams(params);
       if (query) {
-        client.extend({ searchParams: query });
+        client = client.extend({
+          searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+        });
       }
 
       if (["post", "put", "patch"].includes(method)) {
         const body = await options.custom.buildBodyParams(params);
 
         if (body) {
-          client.extend({ body: JSON.stringify(body) });
+          client = client.extend({ body: JSON.stringify(body) });
         }
       }
 

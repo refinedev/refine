@@ -18,9 +18,13 @@ nock(API_URL)
   .reply(201, response);
 
 describe("create", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    defaultHeaders: { "x-default-header": "create" },
-  });
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    {
+      headers: { "x-default-header": "create" },
+    },
+  );
 
   it("should return the data", async () => {
     const result = await dataProvider.create({

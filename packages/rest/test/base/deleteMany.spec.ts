@@ -13,9 +13,13 @@ nock(API_URL)
   .reply(200, response);
 
 describe("deleteMany", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    defaultHeaders: { "x-default-header": "deleteMany" },
-  });
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    {
+      headers: { "x-default-header": "deleteMany" },
+    },
+  );
 
   it("should return the data", async () => {
     const result = await dataProvider.deleteMany!({

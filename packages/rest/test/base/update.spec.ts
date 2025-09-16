@@ -13,9 +13,11 @@ const response = {
 const queryParams = { queryParams: variables };
 
 describe("update", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    defaultHeaders: { "x-default-header": "update" },
-  });
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    { headers: { "x-default-header": "update" } },
+  );
 
   describe("patch", () => {
     nock(API_URL)

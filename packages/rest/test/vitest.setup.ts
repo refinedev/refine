@@ -1,21 +1,22 @@
 import nock from "nock";
+import { afterEach, afterAll, vi } from "vitest";
 
 // nock.recorder.rec({ use_separator: false });
 
 let storage: Record<string, any> = {};
 
 global.localStorage = {
-  getItem: jest.fn((key: string) => storage[key]),
-  setItem: jest.fn((key: string, value: string) => {
+  getItem: vi.fn((key: string) => storage[key]),
+  setItem: vi.fn((key: string, value: string) => {
     storage[key] = value;
   }),
-  removeItem: jest.fn((key: string) => {
+  removeItem: vi.fn((key: string) => {
     delete storage[key];
   }),
-  clear: jest.fn(() => {
+  clear: vi.fn(() => {
     storage = {};
   }),
-  key: jest.fn(),
+  key: vi.fn(),
   length: Object.keys(storage).length,
 };
 

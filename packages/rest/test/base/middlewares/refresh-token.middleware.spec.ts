@@ -12,15 +12,25 @@ const CURRENT_REFRESH_TOKEN = "current-refresh-token";
 const NEW_TOKEN = "new-token";
 const NEW_REFRESH_TOKEN = "new-refresh-token";
 
+const REFRESH_TOKEN_URL = `${API_URL}/refresh-token`;
+
 describe("auth", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    middlewares: {
-      global: [
-        authHeaderMiddleware({ ACCESS_TOKEN_KEY }),
-        refreshTokenMiddleware({ ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY }),
-      ],
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    {
+      hooks: {
+        beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })],
+        afterResponse: [
+          refreshTokenMiddleware({
+            ACCESS_TOKEN_KEY,
+            REFRESH_TOKEN_KEY,
+            REFRESH_TOKEN_URL,
+          }),
+        ],
+      },
     },
-  });
+  );
 
   it("should add Authorization header", async () => {
     localStorage.setItem(ACCESS_TOKEN_KEY, CURRENT_TOKEN);

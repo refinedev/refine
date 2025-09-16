@@ -21,9 +21,13 @@ nock(API_URL)
   .reply(201, response);
 
 describe("createMany", () => {
-  const dataProvider = createDataProvider(API_URL, {
-    defaultHeaders: { "x-default-header": "createMany" },
-  });
+  const dataProvider = createDataProvider(
+    API_URL,
+    {},
+    {
+      headers: { "x-default-header": "createMany" },
+    },
+  );
 
   it("should return the data", async () => {
     const result = await dataProvider.createMany!({

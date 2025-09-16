@@ -16,7 +16,7 @@ import { AnyObject } from "../types";
 export const defaultCreateDataProviderOptions = {
   getList: {
     getEndpoint(params: GetListParams): string {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildHeaders(params: GetListParams) {
       return params.meta?.headers ?? {};
@@ -90,7 +90,7 @@ export const defaultCreateDataProviderOptions = {
   },
   getOne: {
     getEndpoint(params: GetOneParams) {
-      return `/${params.resource}/${params.id}`;
+      return `${params.resource}/${params.id}`;
     },
     async buildHeaders(params: GetOneParams) {
       return params.meta?.headers ?? {};
@@ -107,7 +107,7 @@ export const defaultCreateDataProviderOptions = {
   },
   getMany: {
     getEndpoint(params: GetManyParams) {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildHeaders(params: GetManyParams) {
       return params.meta?.headers ?? {};
@@ -127,7 +127,7 @@ export const defaultCreateDataProviderOptions = {
   },
   create: {
     getEndpoint(params: CreateParams<any>): string {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildHeaders(params: CreateParams<any>) {
       return params.meta?.headers ?? {};
@@ -147,7 +147,7 @@ export const defaultCreateDataProviderOptions = {
   },
   createMany: {
     getEndpoint(params: CreateManyParams<any>) {
-      return `/${params.resource}/bulk`;
+      return `${params.resource}/bulk`;
     },
     async buildHeaders(params: CreateManyParams<any>) {
       return params.meta?.headers ?? {};
@@ -167,7 +167,7 @@ export const defaultCreateDataProviderOptions = {
   },
   update: {
     getEndpoint(params: UpdateParams<any>): string {
-      return `/${params.resource}/${params.id}`;
+      return `${params.resource}/${params.id}`;
     },
     getRequestMethod(params: UpdateParams<any>) {
       return params.meta?.method ?? "PATCH";
@@ -190,7 +190,7 @@ export const defaultCreateDataProviderOptions = {
   },
   updateMany: {
     getEndpoint(params: UpdateManyParams<any>) {
-      return `/${params.resource}/bulk`;
+      return `${params.resource}/bulk`;
     },
     getRequestMethod(params: UpdateManyParams<any>) {
       return params.meta?.method ?? "PATCH";
@@ -217,7 +217,7 @@ export const defaultCreateDataProviderOptions = {
   },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
-      return `/${params.resource}/${params.id}`;
+      return `${params.resource}/${params.id}`;
     },
     async buildHeaders(params: DeleteOneParams<any>) {
       return params.meta?.headers ?? {};
@@ -234,7 +234,7 @@ export const defaultCreateDataProviderOptions = {
   },
   deleteMany: {
     getEndpoint(params: DeleteManyParams<any>) {
-      return `/${params.resource}/bulk`;
+      return `${params.resource}/bulk`;
     },
     async buildHeaders(params: DeleteManyParams<any>) {
       return params.meta?.headers ?? {};
@@ -255,7 +255,7 @@ export const defaultCreateDataProviderOptions = {
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {
-      return params.query;
+      return params.query ?? {};
     },
     async buildHeaders(params: CustomParams<any>) {
       return params.headers ?? {};

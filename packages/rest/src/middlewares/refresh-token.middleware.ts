@@ -23,6 +23,7 @@ export const refreshTokenMiddleware =
           refineOptions.REFRESH_TOKEN_URL,
           {
             method: "post",
+            body: JSON.stringify({ refreshToken: currentRefreshToken }),
           },
         ).json();
 

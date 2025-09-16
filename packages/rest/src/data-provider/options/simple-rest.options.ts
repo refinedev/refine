@@ -30,7 +30,7 @@ const mapOperator = (operator: CrudOperators): string => {
 export const simpleRestDataProviderOptions = {
   getList: {
     getEndpoint(params: GetListParams): string {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildFilters(params: GetListParams) {
       const { filters = [] } = params;
@@ -93,7 +93,7 @@ export const simpleRestDataProviderOptions = {
       return { ...filters, ...sorters, ...pagination };
     },
     async mapResponse(
-      response: KyResponse<AnyObject>,
+      response: KyResponse<AnyObject[]>,
       params: GetListParams,
     ): Promise<any[]> {
       return await response.json();
@@ -109,7 +109,7 @@ export const simpleRestDataProviderOptions = {
   },
   getOne: {
     getEndpoint(params: GetOneParams) {
-      return `/${params.resource}/${params.id}`;
+      return `${params.resource}/${params.id}`;
     },
     async buildQueryParams(params: GetOneParams) {
       return {};
@@ -123,18 +123,21 @@ export const simpleRestDataProviderOptions = {
   },
   getMany: {
     getEndpoint(params: GetListParams) {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildQueryParams(params: GetManyParams) {
       return { ids: params.ids };
     },
-    async mapResponse(response: KyResponse<AnyObject>, params: GetListParams) {
+    async mapResponse(
+      response: KyResponse<AnyObject[]>,
+      params: GetListParams,
+    ) {
       return await response.json();
     },
   },
   create: {
     getEndpoint(params: CreateParams<any>): string {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildQueryParams(params: CreateParams<any>) {
       return {};
@@ -151,13 +154,13 @@ export const simpleRestDataProviderOptions = {
   },
   createMany: {
     getEndpoint(params: CreateParams<any>) {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildQueryParams(params: CreateParams<any>) {
       return params.variables;
     },
     async mapResponse(
-      response: KyResponse<AnyObject>,
+      response: KyResponse<AnyObject[]>,
       params: CreateParams<any>,
     ) {
       return await response.json();
@@ -165,7 +168,7 @@ export const simpleRestDataProviderOptions = {
   },
   update: {
     getEndpoint(params: UpdateParams<any>): string {
-      return `/${params.resource}/${params.id}`;
+      return `${params.resource}/${params.id}`;
     },
     async buildQueryParams(params: UpdateParams<any>) {
       return {};
@@ -182,13 +185,13 @@ export const simpleRestDataProviderOptions = {
   },
   updateMany: {
     getEndpoint(params: UpdateManyParams<any>) {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildQueryParams(params: UpdateManyParams<any>) {
       return params.variables;
     },
     async mapResponse(
-      response: KyResponse<AnyObject>,
+      response: KyResponse<AnyObject[]>,
       params: UpdateManyParams<any>,
     ) {
       return await response.json();
@@ -196,7 +199,7 @@ export const simpleRestDataProviderOptions = {
   },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
-      return `/${params.resource}/${params.id}`;
+      return `${params.resource}/${params.id}`;
     },
     async buildQueryParams(params: DeleteOneParams<any>) {
       return {};
@@ -210,13 +213,13 @@ export const simpleRestDataProviderOptions = {
   },
   deleteMany: {
     getEndpoint(params: DeleteManyParams<any>) {
-      return `/${params.resource}`;
+      return `${params.resource}`;
     },
     async buildQueryParams(params: DeleteManyParams<any>) {
       return {};
     },
     async mapResponse(
-      response: KyResponse<AnyObject>,
+      response: KyResponse<AnyObject[]>,
       params: DeleteManyParams<any>,
     ) {
       return await response.json();
