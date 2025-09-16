@@ -86,23 +86,20 @@ export type CreateDataProviderOptions = {
     mapResponse?: MapResponse<UpdateParams<any>, AnyObject>;
   };
   updateMany?: {
+    /**
+     * If `each` is true, it will send a request for each id in the `ids` array using `update` options.
+     * @default true
+     */
+    each: boolean;
     getEndpoint?: GetEndpoint<UpdateManyParams<any>>;
     getRequestMethod?: (params: UpdateManyParams<any>) => "put" | "patch";
-    buildHeaders?: BuildHeaders<UpdateManyParams>;
+    buildHeaders?: BuildHeaders<UpdateManyParams<any>>;
 
     buildQueryParams?: BuildQueryParams<UpdateManyParams<any>>;
 
     buildBodyParams?: BuildBodyParams<UpdateManyParams<any>>;
 
     mapResponse?: MapResponse<UpdateManyParams<any>, AnyObject | AnyObject[]>;
-
-    /**
-     * If `each` is true, it will send a request for each id in the `ids` array.
-     * Also, it will call `getRequestMethod`, `buildHeaders`, `buildQueryParams` and `buildBodyParams` for each id.
-     * Request URL will be built by calling `getEndpoint` function and appending `/{id}` to it.
-     * @default false
-     */
-    each?: boolean;
   };
   deleteOne?: {
     getEndpoint?: GetEndpoint<DeleteOneParams<any>>;
@@ -113,6 +110,11 @@ export type CreateDataProviderOptions = {
     mapResponse?: MapResponse<DeleteOneParams<any>, AnyObject | undefined>;
   };
   deleteMany?: {
+    /**
+     * If `each` is true, it will send a request for each id in the `ids` array using `deleteOne` options.
+     * @default true
+     */
+    each: boolean;
     getEndpoint?: GetEndpoint<DeleteManyParams<any>>;
     buildHeaders?: BuildHeaders<DeleteManyParams<any>>;
 
@@ -122,14 +124,6 @@ export type CreateDataProviderOptions = {
       DeleteManyParams<any>,
       AnyObject | AnyObject[] | undefined
     >;
-
-    /**
-     * If `each` is true, it will send a request for each id in the `ids` array.
-     * Also, it will call `buildHeaders`, `buildQueryParams` for each id.
-     * Request URL will be built by calling `getEndpoint` function and appending `/{id}` to it.
-     * @default false
-     */
-    each?: boolean;
   };
   custom?: {
     buildHeaders?: BuildHeaders<CustomParams<any>>;

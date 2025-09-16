@@ -3,13 +3,16 @@ import { API_URL, createDataProvider } from ".";
 
 const response: [] = [];
 
-const queryParams = { ids: "1,2" };
+nock(API_URL)
+  .matchHeader("x-default-header", "deleteMany")
+  .matchHeader("x-custom-header", "deleteMany")
+  .delete("/deleteMany/1")
+  .reply(200, response);
 
 nock(API_URL)
   .matchHeader("x-default-header", "deleteMany")
   .matchHeader("x-custom-header", "deleteMany")
-  .delete("/deleteMany/bulk")
-  .query(queryParams)
+  .delete("/deleteMany/2")
   .reply(200, response);
 
 describe("deleteMany", () => {

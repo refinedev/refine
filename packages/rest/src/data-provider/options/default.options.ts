@@ -189,28 +189,7 @@ export const defaultCreateDataProviderOptions = {
     },
   },
   updateMany: {
-    getEndpoint(params: UpdateManyParams<any>) {
-      return `${params.resource}/bulk`;
-    },
-    getRequestMethod(params: UpdateManyParams<any>) {
-      return params.meta?.method ?? "PATCH";
-    },
-    async buildHeaders(params: UpdateManyParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: UpdateManyParams<any>) {
-      return params.meta?.query ?? {};
-    },
-    async buildBodyParams(params: UpdateManyParams<any>) {
-      return params.variables;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject[]>,
-      _params: UpdateManyParams<any>,
-    ) {
-      return await response.json();
-    },
-    each: false,
+    each: true,
   },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
@@ -230,22 +209,7 @@ export const defaultCreateDataProviderOptions = {
     },
   },
   deleteMany: {
-    getEndpoint(params: DeleteManyParams<any>) {
-      return `${params.resource}/bulk`;
-    },
-    async buildHeaders(params: DeleteManyParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: DeleteManyParams<any>) {
-      return params.meta?.query ?? {};
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject[]>,
-      _params: DeleteManyParams<any>,
-    ) {
-      return await response.json();
-    },
-    each: false,
+    each: true,
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {

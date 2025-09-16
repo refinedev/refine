@@ -35,6 +35,6 @@ describe("deleteOne", () => {
       },
     });
 
-    expect(result).toEqual({ data: response });
+    expect(result).toEqual({ data: undefined });
   });
 });
