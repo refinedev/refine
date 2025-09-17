@@ -7,6 +7,20 @@ Refine provides an integration with [shadcn/ui](https://ui.shadcn.com/) componen
 
 Unlike traditional package installations, shadcn/ui components are added to your project's source code, giving you full control over styling and customization.
 
+## Key Features
+
+- **🎨 Full Source Code Access**: [shadcn/ui components](https://ui.shadcn.com/docs) are copied directly into your project, giving you complete control over styling, behavior, and structure without package dependencies.
+
+- **♿ Accessibility First**: Built on [Radix UI primitives](https://www.radix-ui.com/primitives) with [WAI-ARIA](https://www.w3.org/WAI/ARIA/) standards, ensuring robust accessibility support including keyboard navigation and screen reader compatibility.
+
+- **🔧 Deep Refine Integration**: Seamlessly works with [Refine's data hooks](https://refine.dev/docs/data/hooks/use-list/), authentication, routing, and form handling - less boilerplate, more productivity.
+
+- **📱 Responsive Design**: Built with [Tailwind CSS](https://ui.shadcn.com/docs/components) and mobile-first principles, components automatically adapt to any screen size.
+
+- **🌙 Advanced Theming**: Full light/dark theme support using [CSS custom properties](https://ui.shadcn.com/docs/theming) with flexible customization options.
+
+- **🌍 Internationalization**: Built-in support for Refine's [i18n system](https://refine.dev/docs/i18n/i18n-provider/) with RTL languages, localization, and proper formatting.
+
 ## Installation
 
 The easiest way to get started is by using Refine's CLI to scaffold a new project with shadcn/ui:
@@ -38,41 +52,71 @@ npx shadcn@latest add https://ui.refine.dev/r/edit-view.json
 
 Refine's shadcn/ui components are designed to work seamlessly with Refine's data hooks and provide common UI patterns needed in admin panels and data-heavy applications.
 
-```tsx
-import { useForm } from "@refinedev/react-hook-form";
-import { AutoSaveIndicator } from "@/components/refine-ui/form/auto-save-indicator";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+Here's a simple example showing how to create a data table with sorting, filtering, and pagination using the `DataTable` component:
 
-export function EditProduct() {
-  const {
-    register,
-    refineCore: { autoSaveProps },
-  } = useForm({
+```tsx
+import { useMemo } from "react";
+import { useTable } from "@refinedev/react-table";
+import type { ColumnDef } from "@tanstack/react-table";
+import { DataTable } from "@/components/refine-ui/data-table/data-table";
+import { DataTableSorter } from "@/components/refine-ui/data-table/data-table-sorter";
+import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
+import {
+  ListView,
+  ListViewHeader,
+} from "@/components/refine-ui/views/list-view";
+
+type Post = {
+  id: number;
+  title: string;
+};
+
+export default function PostList() {
+  const columns = useMemo<ColumnDef<Post>[]>(
+    () => [
+      {
+        id: "id",
+        accessorKey: "id",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <span>ID</span>
+            <DataTableSorter column={column} />
+          </div>
+        ),
+      },
+      {
+        id: "title",
+        accessorKey: "title",
+        header: ({ column, table }) => (
+          <div className="flex items-center gap-1">
+            <span>Title</span>
+            <div>
+              <DataTableFilterDropdownText
+                defaultOperator="contains"
+                column={column}
+                table={table}
+                placeholder="Filter by title"
+              />
+            </div>
+          </div>
+        ),
+      },
+    ],
+    [],
+  );
+
+  const table = useTable<Post>({
+    columns,
     refineCoreProps: {
-      autoSave: { enabled: true, debounce: 1000 },
+      resource: "posts",
     },
   });
 
   return (
-    <Card>
-      <CardHeader className="flex flex-row items-center justify-between">
-        <h2>Edit Product</h2>
-        <AutoSaveIndicator {...autoSaveProps} />
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <div>
-          <label htmlFor="name">Product Name</label>
-          <Input id="name" {...register("name")} />
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <Input id="price" type="number" {...register("price")} />
-        </div>
-        <Button type="submit">Save Product</Button>
-      </CardContent>
-    </Card>
+    <ListView>
+      <ListViewHeader title="Posts" />
+      <DataTable table={table} />
+    </ListView>
   );
 }
 ```
@@ -121,20 +165,6 @@ Refine provides a growing collection of components through the shadcn/ui registr
 
 - **[Error Component](/docs/ui-integrations/shadcn/components/error-component/)** - Error boundary and error display component
 - **[Notification Provider](/docs/ui-integrations/shadcn/components/notification-provider/)** - Toast notification system
-
-## Key Features
-
-- **🎨 Full Source Code Access**: [shadcn/ui components](https://ui.shadcn.com/docs) are copied directly into your project, giving you complete control over styling, behavior, and structure without package dependencies.
-
-- **♿ Accessibility First**: Built on [Radix UI primitives](https://www.radix-ui.com/primitives) with [WAI-ARIA](https://www.w3.org/WAI/ARIA/) standards, ensuring robust accessibility support including keyboard navigation and screen reader compatibility.
-
-- **🔧 Deep Refine Integration**: Seamlessly works with [Refine's data hooks](https://refine.dev/docs/data/hooks/use-list/), authentication, routing, and form handling - less boilerplate, more productivity.
-
-- **📱 Responsive Design**: Built with [Tailwind CSS](https://ui.shadcn.com/docs/components) and mobile-first principles, components automatically adapt to any screen size.
-
-- **🌙 Advanced Theming**: Full light/dark theme support using [CSS custom properties](https://ui.shadcn.com/docs/theming) with flexible customization options.
-
-- **🌍 Internationalization**: Built-in support for Refine's [i18n system](https://refine.dev/docs/i18n/i18n-provider/) with RTL languages, localization, and proper formatting.
 
 ## Styling and Theming
 

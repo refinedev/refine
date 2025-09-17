@@ -27,6 +27,8 @@ import { useMemo } from "react";
 import { useTable } from "@refinedev/react-table";
 import type { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/refine-ui/data-table/data-table";
+import { DataTableSorter } from "@/components/refine-ui/data-table/data-table-sorter";
+import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
 import {
   ListView,
   ListViewHeader,
@@ -45,13 +47,30 @@ export default function PostList() {
         // Column for ID field
         id: "id",
         accessorKey: "id", // Maps to the 'id' field in your data
-        header: "ID",
+        header: ({ column }) => (
+          <div className="flex items-center gap-1">
+            <span>ID</span>
+            <DataTableSorter column={column} />
+          </div>
+        ),
       },
       {
         // Column for title field
         id: "title",
         accessorKey: "title", // Maps to the 'title' field in your data
-        header: "Title",
+        header: ({ column, table }) => (
+          <div className="flex items-center gap-1">
+            <span>Title</span>
+            <div>
+              <DataTableFilterDropdownText
+                defaultOperator="contains"
+                column={column}
+                table={table}
+                placeholder="Filter by title"
+              />
+            </div>
+          </div>
+        ),
       },
       {
         // Column for status field
@@ -134,8 +153,19 @@ export default function PostList() {
         id: "id",
         accessorKey: "id",
         size: 80,
-        header: ({ column }) => (
-          <DataTableSorter column={column}>ID</DataTableSorter>
+        header: ({ column, table }) => (
+          <div className="flex items-center gap-1">
+            <span>ID</span>
+            <div>
+              <DataTableSorter column={column} />
+              <DataTableFilterDropdownNumeric
+                defaultOperator="eq"
+                column={column}
+                table={table}
+                placeholder="Filter by ID"
+              />
+            </div>
+          </div>
         ),
         cell: ({ getValue }) => getValue(),
       },
@@ -144,10 +174,17 @@ export default function PostList() {
         id: "title",
         accessorKey: "title",
         size: 300,
-        header: ({ column }) => (
+        header: ({ column, table }) => (
           <div className="flex items-center gap-1">
-            <DataTableSorter column={column}>Title</DataTableSorter>
-            <DataTableFilterDropdownText column={column} />
+            <span>Title</span>
+            <div>
+              <DataTableFilterDropdownText
+                defaultOperator="contains"
+                column={column}
+                table={table}
+                placeholder="Filter by title"
+              />
+            </div>
           </div>
         ),
       },
@@ -161,6 +198,8 @@ export default function PostList() {
             <span>Status</span>
             <DataTableFilterCombobox
               column={column}
+              defaultOperator="in"
+              multiple={true}
               options={[
                 { label: "Published", value: "published" },
                 { label: "Draft", value: "draft" },
@@ -260,10 +299,17 @@ You can add different types of filters to your columns. Here are the most common
 import { DataTableFilterDropdownText } from "@/components/refine-ui/data-table/data-table-filter";
 
 // In your column definition:
-header: ({ column }) => (
+header: ({ column, table }) => (
   <div className="flex items-center gap-1">
-    <DataTableSorter column={column}>Title</DataTableSorter>
-    <DataTableFilterDropdownText column={column} />
+    <span>Title</span>
+    <div>
+      <DataTableFilterDropdownText
+        defaultOperator="contains"
+        column={column}
+        table={table}
+        placeholder="Filter by title"
+      />
+    </div>
   </div>
 ),
 ```
@@ -279,6 +325,8 @@ header: ({ column }) => (
     <span>Status</span>
     <DataTableFilterCombobox
       column={column}
+      defaultOperator="in"
+      multiple={true}
       options={[
         { label: "Published", value: "published" },
         { label: "Draft", value: "draft" },
@@ -294,10 +342,18 @@ header: ({ column }) => (
 import { DataTableFilterDropdownNumeric } from "@/components/refine-ui/data-table/data-table-filter";
 
 // In your column definition:
-header: ({ column }) => (
+header: ({ column, table }) => (
   <div className="flex items-center gap-1">
-    <DataTableSorter column={column}>Price</DataTableSorter>
-    <DataTableFilterDropdownNumeric column={column} />
+    <span>Price</span>
+    <div>
+      <DataTableSorter column={column} />
+      <DataTableFilterDropdownNumeric
+        defaultOperator="eq"
+        column={column}
+        table={table}
+        placeholder="Filter by price"
+      />
+    </div>
   </div>
 ),
 ```
@@ -325,6 +381,27 @@ header: ({ column }) => (
 ),
 ```
 
+### Date Single Picker Filter
+
+```tsx
+import { DataTableFilterDropdownDateSinglePicker } from "@/components/refine-ui/data-table/data-table-filter";
+
+// In your column definition:
+header: ({ column }) => (
+  <div className="flex items-center gap-1">
+    <span>Updated At</span>
+    <DataTableFilterDropdownDateSinglePicker
+      column={column}
+      defaultOperator="eq"
+      formatDate={(date) => {
+        if (!date) return undefined;
+        return date.toISOString().split("T")[0];
+      }}
+    />
+  </div>
+),
+```
+
 ### Column Sorting
 
 ```tsx
@@ -332,7 +409,10 @@ import { DataTableSorter } from "@/components/refine-ui/data-table/data-table-so
 
 // In your column definition:
 header: ({ column }) => (
-  <DataTableSorter column={column}>Column Name</DataTableSorter>
+  <div className="flex items-center gap-1">
+    <span>Column Name</span>
+    <DataTableSorter column={column} />
+  </div>
 ),
 ```
 
@@ -346,27 +426,55 @@ header: ({ column }) => (
 
 ### DataTableSorter
 
-| Prop     | Type              | Description                              |
-| -------- | ----------------- | ---------------------------------------- |
-| column   | `Column<TData>`   | TanStack Table column instance           |
-| children | `React.ReactNode` | Content to display (usually column name) |
+| Prop   | Type            | Description                    |
+| ------ | --------------- | ------------------------------ |
+| column | `Column<TData>` | TanStack Table column instance |
 
 ### DataTableFilterDropdownText
 
-| Prop   | Type            | Description                    |
-| ------ | --------------- | ------------------------------ |
-| column | `Column<TData>` | TanStack Table column instance |
+| Prop            | Type              | Description                    |
+| --------------- | ----------------- | ------------------------------ |
+| column          | `Column<TData>`   | TanStack Table column instance |
+| table           | `Table<TData>`    | TanStack Table instance        |
+| defaultOperator | `CrudOperators`   | Default filter operator        |
+| operators       | `CrudOperators[]` | Available filter operators     |
+| placeholder     | `string`          | Placeholder text for the input |
 
 ### DataTableFilterCombobox
 
-| Prop     | Type                                      | Description                    |
-| -------- | ----------------------------------------- | ------------------------------ |
-| column   | `Column<TData>`                           | TanStack Table column instance |
-| options  | `Array<{ label: string; value: string }>` | Dropdown options               |
-| multiple | `boolean`                                 | Allow multiple selections      |
+| Prop            | Type                                      | Description                        |
+| --------------- | ----------------------------------------- | ---------------------------------- |
+| column          | `Column<TData>`                           | TanStack Table column instance     |
+| table           | `Table<TData>`                            | TanStack Table instance (optional) |
+| options         | `Array<{ label: string; value: string }>` | Dropdown options                   |
+| defaultOperator | `CrudOperators`                           | Default filter operator            |
+| operators       | `CrudOperators[]`                         | Available filter operators         |
+| placeholder     | `string`                                  | Placeholder text                   |
+| noResultsText   | `string`                                  | Text when no results found         |
+| multiple        | `boolean`                                 | Allow multiple selections          |
 
 ### DataTableFilterDropdownNumeric
 
-| Prop   | Type            | Description                    |
-| ------ | --------------- | ------------------------------ |
-| column | `Column<TData>` | TanStack Table column instance |
+| Prop            | Type              | Description                    |
+| --------------- | ----------------- | ------------------------------ |
+| column          | `Column<TData>`   | TanStack Table column instance |
+| table           | `Table<TData>`    | TanStack Table instance        |
+| defaultOperator | `CrudOperators`   | Default filter operator        |
+| operators       | `CrudOperators[]` | Available filter operators     |
+| placeholder     | `string`          | Placeholder text for the input |
+
+### DataTableFilterDropdownDateRangePicker
+
+| Prop            | Type                                                                                  | Description                          |
+| --------------- | ------------------------------------------------------------------------------------- | ------------------------------------ |
+| column          | `Column<TData>`                                                                       | TanStack Table column instance       |
+| defaultOperator | `CrudOperators`                                                                       | Default filter operator              |
+| formatDateRange | `(dateRange: { from: Date; to: Date } \| undefined) => [string, string] \| undefined` | Function to format the selected date |
+
+### DataTableFilterDropdownDateSinglePicker
+
+| Prop            | Type                                               | Description                          |
+| --------------- | -------------------------------------------------- | ------------------------------------ |
+| column          | `Column<TData>`                                    | TanStack Table column instance       |
+| defaultOperator | `CrudOperators`                                    | Default filter operator              |
+| formatDate      | `(date: Date \| undefined) => string \| undefined` | Function to format the selected date |
