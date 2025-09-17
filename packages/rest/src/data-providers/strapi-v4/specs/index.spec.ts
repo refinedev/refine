@@ -1,5 +1,3 @@
-import axios from "axios";
-
 import { createStrapiV4DataProvider } from "../";
 import "./index.mock";
 import { authHeaderBeforeRequestHook } from "src/hooks/auth-header.before-request.hook";

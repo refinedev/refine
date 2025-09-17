@@ -289,7 +289,4 @@ export const strapiV4DataProviderOptions = {
       return await response.json();
     },
   },
-  defaultHeaders: {
-    "Content-Type": "application/json",
-  },
 };
