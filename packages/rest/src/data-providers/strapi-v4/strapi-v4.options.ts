@@ -48,7 +48,7 @@ export const strapiV4DataProviderOptions = {
 
       if (sorters) {
         // strapi.com/categories?sort=id:asc
-        sorters.map((item) => {
+        sorters.forEach((item) => {
           if (item.order) {
             _sorters.push(`${item.field}:${item.order}`);
           }
@@ -167,7 +167,7 @@ export const strapiV4DataProviderOptions = {
     async mapResponse(response: KyResponse<AnyObject>, params: GetManyParams) {
       const body = await response.json();
 
-      return body.records;
+      return normalizeData(body);
     },
   },
   create: {
@@ -205,7 +205,7 @@ export const strapiV4DataProviderOptions = {
       return `${params.resource}/${params.id}`;
     },
     getRequestMethod(params: UpdateParams<any>) {
-      return params.meta?.method ?? "PATCH";
+      return params.meta?.method ?? "put";
     },
     async buildHeaders(params: UpdateParams<any>) {
       return params.meta?.headers ?? {};
@@ -214,7 +214,14 @@ export const strapiV4DataProviderOptions = {
       return params.meta?.query ?? {};
     },
     async buildBodyParams(params: UpdateParams<any>) {
-      return params.variables;
+      const { resource, variables } = params;
+      let bodyParams = { data: variables };
+
+      if (resource === "users") {
+        bodyParams = variables;
+      }
+
+      return bodyParams;
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
@@ -242,7 +249,32 @@ export const strapiV4DataProviderOptions = {
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {
-      return params.query;
+      const queryParams = {};
+
+      if (params.sorters) {
+        const _sorters: string[] = [];
+
+        if (params.sorters) {
+          // strapi.com/categories?sort=id:asc
+          params.sorters.forEach((item) => {
+            if (item.order) {
+              _sorters.push(`${item.field}:${item.order}`);
+            }
+          });
+        }
+
+        const sort = _sorters.length ? _sorters.join(",") : undefined;
+
+        Object.assign(queryParams, { sort });
+      }
+
+      if (params.filters) {
+        const queryFilters = generateFilter(params.filters);
+
+        Object.assign(queryParams, { filters: queryFilters });
+      }
+
+      return queryParams;
     },
     async buildHeaders(params: CustomParams<any>) {
       return params.headers ?? {};
