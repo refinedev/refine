@@ -1,5 +1,4 @@
 import type {
-  CreateManyParams,
   CreateParams,
   CustomParams,
   DeleteOneParams,
@@ -7,65 +6,81 @@ import type {
   GetManyParams,
   GetOneParams,
   UpdateParams,
-  HttpError,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
-import type { AnyObject } from "../types";
+import type { AnyObject } from "src/types";
+import { generateFilter } from "./utils/generateFilter";
+import { normalizeData } from "./utils/normalizeData";
+import { transformHttpError } from "./utils/transformHttpError";
 
-export const defaultCreateDataProviderOptions = {
+export const strapiV4DataProviderOptions = {
   getList: {
     getEndpoint(params: GetListParams): string {
       return `${params.resource}`;
     },
-    async buildHeaders(params: GetListParams) {
-      return params.meta?.headers ?? {};
-    },
     async buildFilters(params: GetListParams) {
       const { filters = [] } = params;
 
-      return filters.reduce((acc, filter) => {
-        if ("field" in filter) {
-          return {
-            ...acc,
-            [filter.field]: { [filter.operator]: filter.value },
-          };
-        }
+      const queryFilters = generateFilter(filters);
 
-        return acc;
-      }, {});
+      return queryFilters;
     },
     async buildPagination(params: GetListParams) {
-      const { pagination } = params;
+      const {
+        currentPage = 1,
+        pageSize = 10,
+        mode = "server",
+      } = params.pagination ?? {};
 
-      return pagination ?? {};
+      if (mode === "server") {
+        return {
+          page: currentPage,
+          pageSize: pageSize,
+        };
+      }
+
+      return {};
     },
     async buildSorters(params: GetListParams) {
       const { sorters = [] } = params;
 
-      return sorters.reduce(
-        (acc, sorter) => {
-          return {
-            sort: {
-              ...acc.sort,
-              [sorter.field]: sorter.order,
-            },
-          };
-        },
-        { sort: {} },
-      );
+      const _sorters: string[] = [];
+
+      if (sorters) {
+        // strapi.com/categories?sort=id:asc
+        sorters.map((item) => {
+          if (item.order) {
+            _sorters.push(`${item.field}:${item.order}`);
+          }
+        });
+      }
+
+      const sort = _sorters.length ? _sorters.join(",") : undefined;
+
+      return { sort };
     },
     async buildQueryParams(params: GetListParams) {
       const filters = await this.buildFilters(params);
 
-      const sorters = await this.buildSorters(params);
+      const { sort } = await this.buildSorters(params);
 
       const pagination = await this.buildPagination(params);
 
+      const { meta } = params;
+
+      const locale = meta?.locale;
+      const fields = meta?.fields;
+      const populate = meta?.populate;
+      const publicationState = meta?.publicationState;
+
       const queryParams = {
-        ...filters,
-        ...sorters,
-        ...pagination,
-        ...params.meta?.query,
+        pagination,
+        locale,
+        publicationState,
+        fields,
+        populate,
+        sort,
+        filters,
       };
 
       return queryParams;
@@ -76,15 +91,15 @@ export const defaultCreateDataProviderOptions = {
     ): Promise<any[]> {
       const body = await response.json();
 
-      return body.records;
+      return normalizeData(body);
     },
     async getTotalCount(
       response: KyResponse<AnyObject>,
-      _params: GetListParams,
+      params: GetListParams,
     ): Promise<number> {
       const body = await response.json();
 
-      return body.totalCount;
+      return body.meta?.pagination?.total || normalizeData(body)?.length;
     },
   },
   getOne: {
@@ -95,13 +110,29 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.headers ?? {};
     },
     async buildQueryParams(params: GetOneParams) {
-      return params.meta?.query ?? {};
+      const { meta } = params ?? {};
+
+      const locale = meta?.locale;
+      const fields = meta?.fields;
+      const populate = meta?.populate;
+      const publicationState = meta?.publicationState;
+
+      const queryParams = {
+        locale,
+        fields,
+        populate,
+        publicationState,
+      };
+
+      return queryParams;
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
-      _params: GetOneParams,
+      params: GetOneParams,
     ): Promise<Record<string, any>> {
-      return await response.json();
+      const body = await response.json();
+
+      return normalizeData(body);
     },
   },
   getMany: {
@@ -112,11 +143,26 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.headers ?? {};
     },
     async buildQueryParams(params: GetManyParams) {
-      const queryParams = {
-        ids: params.ids.join(","),
+      const { ids, meta } = params ?? {};
+      const locale = meta?.locale;
+      const fields = meta?.fields;
+      const populate = meta?.populate;
+      const publicationState = meta?.publicationState;
+
+      const filters = generateFilter([
+        { field: "id", operator: "in", value: ids },
+      ]);
+
+      const query = {
+        locale,
+        fields,
+        populate,
+        publicationState,
+        filters,
+        pagination: { pageSize: ids.length },
       };
 
-      return params.meta?.query ?? queryParams;
+      return query;
     },
     async mapResponse(response: KyResponse<AnyObject>, params: GetManyParams) {
       const body = await response.json();
@@ -128,31 +174,30 @@ export const defaultCreateDataProviderOptions = {
     getEndpoint(params: CreateParams<any>): string {
       return `${params.resource}`;
     },
-    async buildHeaders(params: CreateParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: CreateParams<any>) {
-      return params.meta?.query ?? {};
-    },
+
     async buildBodyParams(params: CreateParams<any>) {
-      return params.variables;
+      const { resource, variables } = params;
+      let bodyParams = { data: variables };
+
+      if (resource === "users") {
+        bodyParams = variables;
+      }
+
+      return bodyParams;
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
       _params: CreateParams<any>,
     ): Promise<Record<string, any>> {
-      return await response.json();
-    },
-    async transformError(
-      response: KyResponse<AnyObject>,
-      params: CreateParams<any>,
-    ): Promise<HttpError> {
+      if (response.status >= 400) {
+        const httpError = transformHttpError(response);
+
+        throw httpError;
+      }
+
       const body = await response.json();
 
-      return {
-        message: JSON.stringify({ ...body, variables: params.variables }),
-        statusCode: response.status,
-      };
+      return body;
     },
   },
   update: {
@@ -173,25 +218,9 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
-      _params: UpdateParams<any>,
+      params: UpdateParams<any>,
     ) {
       return await response.json();
-    },
-
-    async transformError(
-      response: KyResponse<AnyObject>,
-      params: UpdateParams<any>,
-    ): Promise<HttpError> {
-      const body = await response.json();
-
-      return {
-        message: JSON.stringify({
-          ...body,
-          id: params.id,
-          variables: params.variables,
-        }),
-        statusCode: response.status,
-      };
     },
   },
   deleteOne: {
@@ -205,15 +234,15 @@ export const defaultCreateDataProviderOptions = {
       return params.meta?.query ?? {};
     },
     async mapResponse(
-      _response: KyResponse<AnyObject>,
-      _params: DeleteOneParams<any>,
+      response: KyResponse<AnyObject>,
+      params: DeleteOneParams<any>,
     ) {
-      return undefined;
+      return await response.json();
     },
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {
-      return params.query ?? {};
+      return params.query;
     },
     async buildHeaders(params: CustomParams<any>) {
       return params.headers ?? {};
@@ -222,10 +251,13 @@ export const defaultCreateDataProviderOptions = {
       return params.payload ?? {};
     },
     async mapResponse(
-      response: KyResponse<AnyObject | AnyObject[]>,
+      response: KyResponse<AnyObject>,
       params: CustomParams<any>,
     ) {
       return await response.json();
     },
+  },
+  defaultHeaders: {
+    "Content-Type": "application/json",
   },
 };

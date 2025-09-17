@@ -10,8 +10,8 @@ import dm from "deepmerge";
 import kyBase, { type Options as KyOptions } from "ky";
 import qs from "qs";
 
-import { defaultCreateDataProviderOptions } from "./options/default.options";
 import type { AnyObject, CreateDataProviderOptions } from "./types";
+import { defaultCreateDataProviderOptions } from "./default.options";
 
 export const createDataProvider = (
   apiURL: string,

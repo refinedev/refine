@@ -1,7 +1,9 @@
 import nock from "nock";
-import { API_URL, createDataProvider } from "..";
-import { authHeaderMiddleware } from "../../../src/middlewares/auth-header.middleware";
-import { refreshTokenMiddleware } from "../../../src/middlewares/refresh-token.middleware";
+import { createDataProvider } from "../create-data-provider";
+import { authHeaderMiddleware } from "./auth-header.middleware";
+import { refreshTokenMiddleware } from "./refresh-token.middleware";
+
+const API_URL = "https://example.com";
 
 const ACCESS_TOKEN_KEY = "accessToken";
 const REFRESH_TOKEN_KEY = "refreshToken";

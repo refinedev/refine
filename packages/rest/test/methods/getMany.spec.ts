@@ -1,5 +1,5 @@
 import nock from "nock";
-import { API_URL, createDataProvider } from ".";
+import { API_URL, createDataProvider } from "..";
 
 const response = {
   records: [{ id: 1 }, { id: 2 }],

@@ -1,6 +1,6 @@
 import nock from "nock";
 import qs from "qs";
-import { API_URL, createDataProvider } from ".";
+import { API_URL, createDataProvider } from "..";
 
 const CUSTOM_API_URL = "https://custom.com";
 

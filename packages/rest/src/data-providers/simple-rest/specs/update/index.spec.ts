@@ -1,6 +1,6 @@
-import { simpleRestDataProvider } from "..";
-import { createDataProvider } from "../../../src/index";
 import "./index.mock";
+
+import { simpleRestDataProvider } from "..";
 
 describe("update", () => {
   it("correct response", async () => {

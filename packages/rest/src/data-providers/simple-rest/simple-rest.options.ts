@@ -2,16 +2,14 @@ import type {
   CreateParams,
   CrudOperators,
   CustomParams,
-  DeleteManyParams,
   DeleteOneParams,
   GetListParams,
   GetManyParams,
   GetOneParams,
-  UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
-import type { AnyObject } from "../types";
+import type { AnyObject } from "../../types";
 
 const mapOperator = (operator: CrudOperators): string => {
   switch (operator) {
@@ -151,20 +149,6 @@ export const simpleRestDataProviderOptions = {
       return await response.json();
     },
   },
-  createMany: {
-    getEndpoint(params: CreateParams<any>) {
-      return `${params.resource}`;
-    },
-    async buildQueryParams(params: CreateParams<any>) {
-      return params.variables;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject[]>,
-      params: CreateParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
   update: {
     getEndpoint(params: UpdateParams<any>): string {
       return `${params.resource}/${params.id}`;
@@ -182,20 +166,6 @@ export const simpleRestDataProviderOptions = {
       return await response.json();
     },
   },
-  updateMany: {
-    getEndpoint(params: UpdateManyParams<any>) {
-      return `${params.resource}`;
-    },
-    async buildQueryParams(params: UpdateManyParams<any>) {
-      return params.variables;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject[]>,
-      params: UpdateManyParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
       return `${params.resource}/${params.id}`;
@@ -206,20 +176,6 @@ export const simpleRestDataProviderOptions = {
     async mapResponse(
       response: KyResponse<AnyObject>,
       params: DeleteOneParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
-  deleteMany: {
-    getEndpoint(params: DeleteManyParams<any>) {
-      return `${params.resource}`;
-    },
-    async buildQueryParams(params: DeleteManyParams<any>) {
-      return {};
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject[]>,
-      params: DeleteManyParams<any>,
     ) {
       return await response.json();
     },

@@ -1,7 +1,8 @@
 import nock from "nock";
-import { API_URL, createDataProvider } from "..";
-import { authHeaderMiddleware } from "../../../src/middlewares/auth-header.middleware";
+import { authHeaderMiddleware } from "./auth-header.middleware";
+import { createDataProvider } from "../create-data-provider";
 
+const API_URL = "https://example.com";
 const ACCESS_TOKEN_KEY = "accessToken";
 
 const HEADER_NAME = "Authorization";
