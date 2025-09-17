@@ -274,7 +274,10 @@ const generateDeclarations = async (packagePaths: [string, string][]) => {
       const sourcePath = path.join(packagePath, sourceDir);
 
       if (!(await fs.pathExists(sourcePath))) {
-        spinner.fail("Component path does not exist", sourcePath);
+        spinner.fail(
+          `Component path does not exist for package ${packageName}:`,
+          sourcePath,
+        );
         process.exit(1);
       }
 

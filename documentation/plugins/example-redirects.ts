@@ -1,5 +1,5 @@
-import fs from "fs-extra";
 import type { Plugin } from "@docusaurus/types";
+import fs from "fs-extra";
 
 export default function pluginExampleRedirectsPages(): Plugin<void> {
   return {
