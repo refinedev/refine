@@ -197,9 +197,6 @@ export const simpleRestDataProviderOptions = {
       return await response.json();
     },
   },
-  defaultHeaders: {
-    "Content-Type": "application/json",
-  },
   getAuthHeader: async () => {
     return {
       headerName: "Authorization",
