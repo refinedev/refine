@@ -20,16 +20,57 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
+    },
+    "./nestjsx-crud": {
+      "import": {
+        "types": "./dist/data-providers/nestjsx-crud/index.d.mts",
+        "default": "./dist/nestjsx-crud.mjs"
+      },
+      "require": {
+        "types": "./dist/data-providers/nestjsx-crud/index.d.cts",
+        "default": "./dist/nestjsx-crud.cjs"
+      }
+    },
+    "./simple-rest": {
+      "import": {
+        "types": "./dist/data-providers/simple-rest/index.d.mts",
+        "default": "./dist/simple-rest.mjs"
+      },
+      "require": {
+        "types": "./dist/data-providers/simple-rest/index.d.cts",
+        "default": "./dist/simple-rest.cjs"
+      }
+    },
+    "./strapi-v4": {
+      "import": {
+        "types": "./dist/data-providers/strapi-v4/index.d.mts",
+        "default": "./dist/strapi-v4.mjs"
+      },
+      "require": {
+        "types": "./dist/data-providers/strapi-v4/index.d.cts",
+        "default": "./dist/strapi-v4.cjs"
+      }
     }
   },
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/index.d.ts"
+      ],
+      "nestjsx-crud": [
+        "dist/data-providers/nestjsx-crud/index.d.ts"
+      ],
+      "simple-rest": [
+        "dist/data-providers/simple-rest/index.d.ts"
+      ],
+      "strapi-v4": [
+        "dist/data-providers/strapi-v4/index.d.ts"
+      ]
+    }
+  },
   "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src",
-    "./refine.config.js"
-  ],
   "scripts": {
     "attw": "attw --pack .",
     "build": "tsup && node ../shared/generate-declarations.js",
