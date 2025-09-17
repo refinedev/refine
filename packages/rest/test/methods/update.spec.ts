@@ -13,7 +13,7 @@ const response = {
 const queryParams = { queryParams: variables };
 
 describe("update", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     { headers: { "x-default-header": "update" } },
@@ -47,7 +47,7 @@ describe("update", () => {
       describe("from dataprovider config", () => {
         nock(API_URL).put("/update/1", variables).reply(200, response);
 
-        const dataProvider = createDataProvider(API_URL, {
+        const { dataProvider } = createDataProvider(API_URL, {
           update: {
             getRequestMethod(params) {
               return "put";

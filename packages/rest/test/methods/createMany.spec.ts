@@ -21,7 +21,7 @@ nock(API_URL)
   .reply(201, response);
 
 describe("createMany", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {
       createMany: {

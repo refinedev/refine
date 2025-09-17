@@ -4,7 +4,7 @@ import { API_URL, createDataProvider } from "..";
 const variables = { foo: "bar" };
 
 describe("create", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     {

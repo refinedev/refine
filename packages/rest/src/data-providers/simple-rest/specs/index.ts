@@ -1,5 +1,6 @@
 import { createSimpleRestDataProvider } from "..";
 
-export const simpleRestDataProvider = createSimpleRestDataProvider({
-  apiURL: "https://api.fake-rest.refine.dev",
-});
+export const { dataProvider: simpleRestDataProvider } =
+  createSimpleRestDataProvider({
+    apiURL: "https://api.fake-rest.refine.dev",
+  });

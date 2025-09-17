@@ -1,10 +1,9 @@
 import {
-  authHeaderMiddleware,
-  createDataProvider,
-  refreshTokenMiddleware,
+  authHeaderBeforeRequestHook,
+  refreshTokenAfterResponseHook,
 } from "@refinedev/rest";
+import { createNestjsxCrudDataProvider } from "@refinedev/rest/nestjsx-crud";
 
-import { NestjsxCrudDataProviderOptions } from "@refinedev/nestjsx-crud";
 import {
   ACCESS_TOKEN_KEY,
   BASE_URL,
@@ -12,14 +11,13 @@ import {
   REFRESH_TOKEN_URL,
 } from "@/utilities/constants";
 
-export const dataProvider = createDataProvider(
-  BASE_URL,
-  NestjsxCrudDataProviderOptions,
-  {
+export const { dataProvider, kyInstance } = createNestjsxCrudDataProvider({
+  apiURL: BASE_URL,
+  kyOptions: {
     hooks: {
-      beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })],
+      beforeRequest: [authHeaderBeforeRequestHook({ ACCESS_TOKEN_KEY })],
       afterResponse: [
-        refreshTokenMiddleware({
+        refreshTokenAfterResponseHook({
           ACCESS_TOKEN_KEY,
           REFRESH_TOKEN_KEY,
           REFRESH_TOKEN_URL,
@@ -27,4 +25,4 @@ export const dataProvider = createDataProvider(
       ],
     },
   },
-);
+});

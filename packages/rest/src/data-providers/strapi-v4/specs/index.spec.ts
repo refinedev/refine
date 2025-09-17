@@ -6,7 +6,7 @@ describe("dataProvider", () => {
   const API_URL = "http://localhost:1337/api";
   const ACCESS_TOKEN_KEY = "accessToken";
 
-  const dataProvider = createStrapiV4DataProvider({
+  const { dataProvider } = createStrapiV4DataProvider({
     apiURL: API_URL,
     kyOptions: {
       hooks: {

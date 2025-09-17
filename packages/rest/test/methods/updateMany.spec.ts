@@ -15,7 +15,7 @@ const response = [
 ];
 
 describe("updateMany", () => {
-  const dataProvider = createDataProvider(API_URL, {
+  const { dataProvider } = createDataProvider(API_URL, {
     updateMany: {
       getEndpoint: (params) => `${params.resource}/bulk`,
       getRequestMethod: (params) => params.meta?.method || "patch",
@@ -49,7 +49,7 @@ describe("updateMany", () => {
           .put("/updateMany/bulk?ids=1,2", variables)
           .reply(200, response);
 
-        const dataProvider = createDataProvider(API_URL, {
+        const { dataProvider } = createDataProvider(API_URL, {
           updateMany: {
             getEndpoint: (params) => `${params.resource}/bulk`,
             getRequestMethod: () => "put",

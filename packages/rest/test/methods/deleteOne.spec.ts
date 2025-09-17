@@ -17,7 +17,7 @@ nock(API_URL)
   .reply(200, response);
 
 describe("deleteOne", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     {

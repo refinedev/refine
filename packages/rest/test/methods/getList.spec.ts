@@ -20,7 +20,7 @@ nock(API_URL)
   .reply(200, response);
 
 describe("getList", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     {

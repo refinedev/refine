@@ -17,7 +17,7 @@ const NEW_REFRESH_TOKEN = "new-refresh-token";
 const REFRESH_TOKEN_URL = `${API_URL}/refresh-token`;
 
 describe("auth", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     {

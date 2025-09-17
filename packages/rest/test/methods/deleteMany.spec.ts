@@ -10,7 +10,7 @@ nock(API_URL)
   .reply(200, response);
 
 describe("deleteMany", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {
       deleteMany: {

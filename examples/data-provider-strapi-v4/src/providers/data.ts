@@ -1,16 +1,15 @@
-import {
-  authHeaderMiddleware,
-  createDataProvider,
-  strapiV4DataProviderOptions,
-} from "@refinedev/rest";
+import { authHeaderBeforeRequestHook } from "@refinedev/rest";
+import { createStrapiV4DataProvider } from "@refinedev/rest/strapi-v4";
+
 import { API_URL, TOKEN_KEY } from "../constants";
 
-export const dataProvider = createDataProvider(
-  `${API_URL}/api`,
-  strapiV4DataProviderOptions,
-  {
+export const { dataProvider } = createStrapiV4DataProvider({
+  apiURL: `${API_URL}/api`,
+  kyOptions: {
     hooks: {
-      beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY: TOKEN_KEY })],
+      beforeRequest: [
+        authHeaderBeforeRequestHook({ ACCESS_TOKEN_KEY: TOKEN_KEY }),
+      ],
     },
   },
-);
+});

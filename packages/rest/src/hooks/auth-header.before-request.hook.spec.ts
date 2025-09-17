@@ -9,7 +9,7 @@ const HEADER_NAME = "Authorization";
 const TOKEN = "my-test-token";
 
 describe("auth", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     {

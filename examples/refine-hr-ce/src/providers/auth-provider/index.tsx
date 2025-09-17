@@ -1,32 +1,16 @@
 import type { AuthProvider } from "@refinedev/core";
 import { Role, type Employee, type ResponseLogin } from "@/types";
-import {
-  ACCESS_TOKEN_KEY,
-  BASE_URL,
-  REFRESH_TOKEN_KEY,
-} from "@/utilities/constants";
-
-import kyBase from "ky";
-import { authHeaderMiddleware } from "@refinedev/rest";
-
-const ky = kyBase.create({
-  prefixUrl: BASE_URL,
-  headers: {
-    Accept: "application/json",
-    "Content-Type": "application/json",
-  },
-});
+import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "@/utilities/constants";
+import { kyInstance } from "../data";
 
 export const authProvider: AuthProvider = {
   login: async ({ email, redirectTo }) => {
     try {
-      const { accessToken, refreshToken, user } = await ky<ResponseLogin>(
-        "login",
-        {
+      const { accessToken, refreshToken, user } =
+        await kyInstance<ResponseLogin>("login", {
           method: "post",
           body: JSON.stringify({ email }),
-        },
-      ).json();
+        }).json();
 
       localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
       localStorage.setItem(REFRESH_TOKEN_KEY, refreshToken);
@@ -98,11 +82,7 @@ export const authProvider: AuthProvider = {
     };
   },
   getIdentity: async () => {
-    const identityKy = ky.extend({
-      hooks: { beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })] },
-    });
-
-    const user = await identityKy("me").json<Employee>();
+    const user = await kyInstance("me").json<Employee>();
 
     return user;
   },

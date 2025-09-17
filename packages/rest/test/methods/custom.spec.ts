@@ -5,7 +5,7 @@ import { API_URL, createDataProvider } from "..";
 const CUSTOM_API_URL = "https://custom.com";
 
 describe("custom", () => {
-  const dataProvider = createDataProvider(
+  const { dataProvider } = createDataProvider(
     API_URL,
     {},
     {
