@@ -37,6 +37,7 @@
     "semver": "7.5.2"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/eslint": "^7.28.2",
     "@types/inquirer": "^8.2.5",
     "@types/jest": "^29.2.4",

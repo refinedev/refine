@@ -11643,6 +11643,9 @@ importers:
         specifier: 7.5.2
         version: 7.5.2
     devDependencies:
+      '@esbuild-plugins/node-resolve':
+        specifier: ^0.1.4
+        version: 0.1.4(esbuild@0.21.5)
       '@types/eslint':
         specifier: ^7.28.2
         version: 7.29.0
@@ -12864,6 +12867,9 @@ importers:
         specifier: ^9.0.1
         version: 9.0.1
     devDependencies:
+      '@esbuild-plugins/node-resolve':
+        specifier: ^0.1.4
+        version: 0.1.4(esbuild@0.21.5)
       '@netlify/plugin-nextjs':
         specifier: 5.2.2
         version: 5.2.2
