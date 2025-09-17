@@ -13627,6 +13627,9 @@ importers:
 
   packages/rest:
     dependencies:
+      '@nestjsx/crud-request':
+        specifier: ^5.0.0-alpha.3
+        version: 5.0.0-alpha.3
       '@refinedev/core':
         specifier: ^5.0.0
         version: link:../core

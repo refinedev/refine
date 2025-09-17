@@ -56,7 +56,13 @@
     "vitest": "^2.1.0"
   },
   "peerDependencies": {
+    "@nestjsx/crud-request": "^5.0.0-alpha.3",
     "@refinedev/core": "^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@nestjsx/crud-request": {
+      "optional": true
+    }
   },
   "engines": {
     "node": ">=20"
