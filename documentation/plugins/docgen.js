@@ -139,8 +139,9 @@ const getPackageNamePathMap = async (directory) => {
         const packageJson = await _fsextra2.default.readJSON(packagePath);
 
         if (
-          includedPackages.length == 0 ||
-          includedPackages.some((p) => packageName.includes(p))
+          (includedPackages.length == 0 ||
+            includedPackages.some((p) => packageName.includes(p))) &&
+          packageJson.name !== "@refinedev/refine-ui"
         ) {
           packageNamePathMap[packageJson.name] = _path2.default.join(
             packagePath,
@@ -331,7 +332,9 @@ const generateDeclarations = async (packagePaths) => {
       const sourcePath = _path2.default.join(packagePath, sourceDir);
 
       if (!(await _fsextra2.default.pathExists(sourcePath))) {
-        spinner.fail("Component path does not exist", sourcePath);
+        spinner.fail(
+          `Component path does not exist for package ${packageName}: ${sourcePath}`,
+        );
         process.exit(1);
       }
 
