@@ -32,12 +32,18 @@ module.exports = {
         },
       ],
     },
-    // Devtools
+    // Announcement
     {
       type: "link",
       href: "/docs/migration-guide/4x-to-5x/",
       label: "Refine v5 is here! 🎉",
       className: "enterprise-badge",
+    },
+    {
+      type: "link",
+      href: "/docs/ui-integrations/shadcn/introduction/",
+      label: "shadcn/ui Integration 🚀",
+      className: "shadcn-badge",
     },
     // Guides & Concepts
     {

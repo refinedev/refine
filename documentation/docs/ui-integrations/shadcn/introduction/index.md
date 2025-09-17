@@ -1,6 +1,6 @@
 ---
-title: Introduction
-source: https://github.com/refinedev/refine/tree/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui
+title: Refine + shadcn/ui
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui
 ---
 
 Refine provides an integration with [shadcn/ui](https://ui.shadcn.com/) components through a registry system. This integration offers a collection of pre-built components that seamlessly work with Refine's features while maintaining shadcn/ui's design principles and accessibility standards.
