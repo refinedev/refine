@@ -1,9 +1,14 @@
+import axios from "axios";
+
+import JsonServer from "../../src/index";
 import "./index.mock";
-import { nestjsxTestDataProvider } from "../setup-data-provider";
 
 describe("getMany", () => {
   it("correct response", async () => {
-    const { data } = await nestjsxTestDataProvider.getMany!({
+    const { data } = await JsonServer(
+      "https://api.nestjsx-crud.refine.dev",
+      axios,
+    ).getMany!({
       resource: "posts",
       ids: [
         "6536e986-e500-4933-b154-b51d60d702c2",
