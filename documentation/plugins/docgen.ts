@@ -107,8 +107,9 @@ const getPackageNamePathMap = async (directory: string) => {
         const packageJson = await fs.readJSON(packagePath);
 
         if (
-          includedPackages.length == 0 ||
-          includedPackages.some((p) => packageName.includes(p))
+          (includedPackages.length == 0 ||
+            includedPackages.some((p) => packageName.includes(p))) &&
+          packageJson.name !== "@refinedev/refine-ui"
         ) {
           packageNamePathMap[packageJson.name] = path.join(packagePath, "..");
         }

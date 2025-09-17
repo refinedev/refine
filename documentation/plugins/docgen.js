@@ -139,8 +139,9 @@ const getPackageNamePathMap = async (directory) => {
         const packageJson = await _fsextra2.default.readJSON(packagePath);
 
         if (
-          includedPackages.length == 0 ||
-          includedPackages.some((p) => packageName.includes(p))
+          (includedPackages.length == 0 ||
+            includedPackages.some((p) => packageName.includes(p))) &&
+          packageJson.name !== "@refinedev/refine-ui"
         ) {
           packageNamePathMap[packageJson.name] = _path2.default.join(
             packagePath,
