@@ -456,8 +456,7 @@ The source code of this multitenancy app is open-source, allowing you to use or 
     edition: "Community",
     liveDemo:
       "https://codesandbox.io/p/sandbox/github/refinedev/refine/tree/main/examples/auth-antd",
-    github:
-      "https://github.com/refinedev/refine/tree/main/examples/auth-antd",
+    github: "https://github.com/refinedev/refine/tree/main/examples/auth-antd",
     tutorial: "https://refine.dev/tutorial",
     reactPlatform: "Vite",
     uiFramework: "Ant Design",

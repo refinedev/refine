@@ -71,6 +71,7 @@
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-resolve": "^0.1.4",
     "@netlify/plugin-nextjs": "5.2.2",
     "@types/jest": "^29.2.4",
     "@types/node": "^20",
