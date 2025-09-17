@@ -1,5 +1,5 @@
 ---
-source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/data-table/data-table.tsx
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/data-table/data-table.tsx
 ---
 
 # `<DataTable />`

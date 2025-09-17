@@ -1,7 +1,7 @@
 ---
 title: <AutoSaveIndicator />
 description: <AutoSaveIndicator /> component shows `autoSave` status on edit actions.
-source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/auto-save-indicator.tsx
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/form/auto-save-indicator.tsx
 ---
 
 When you're editing data in admin panels, users want to know if their changes are being saved. The `<AutoSaveIndicator />` component shows exactly that - it gives your users clear visual feedback about auto-save operations happening in the background.

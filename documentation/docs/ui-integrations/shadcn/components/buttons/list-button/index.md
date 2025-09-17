@@ -1,6 +1,6 @@
 ---
 title: List
-source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/buttons/list.tsx
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/list.tsx
 ---
 
 `<ListButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) component and the `list` method from [`useNavigation`](/docs/routing/hooks/use-navigation) under the hood.

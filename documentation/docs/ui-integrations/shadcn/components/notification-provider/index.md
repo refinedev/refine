@@ -1,6 +1,6 @@
 ---
 title: Notification Provider
-source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/notification/use-notification-provider.tsx
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/notification/use-notification-provider.tsx
 ---
 
 # Notification Provider

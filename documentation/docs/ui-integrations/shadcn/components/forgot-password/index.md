@@ -1,5 +1,5 @@
 ---
-source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/form/forgot-password-form.tsx
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/form/forgot-password-form.tsx
 ---
 
 # `<ForgotPasswordForm />`

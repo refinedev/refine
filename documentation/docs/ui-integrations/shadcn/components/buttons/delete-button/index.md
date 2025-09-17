@@ -1,6 +1,6 @@
 ---
 title: Delete
-source: https://github.com/refinedev/refine/blob/feat/init-shadcn/packages/refine-ui/registry/new-york/refine-ui/buttons/delete.tsx
+source: https://github.com/refinedev/refine/tree/main/packages/refine-ui/registry/new-york/refine-ui/buttons/delete.tsx
 ---
 
 `<DeleteButton>` uses shadcn/ui's [`<Button>`](https://ui.shadcn.com/docs/components/button) and [`<Popover>`](https://ui.shadcn.com/docs/components/popover) components.
