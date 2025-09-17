@@ -1,7 +1,7 @@
 import nock from "nock";
 import { createDataProvider } from "../create-data-provider";
-import { authHeaderMiddleware } from "./auth-header.middleware";
-import { refreshTokenMiddleware } from "./refresh-token.middleware";
+import { authHeaderBeforeRequestHook } from "./auth-header.before-request.hook";
+import { refreshTokenAfterResponseHook } from "./refresh-token.after-response.hook";
 
 const API_URL = "https://example.com";
 
@@ -22,9 +22,9 @@ describe("auth", () => {
     {},
     {
       hooks: {
-        beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })],
+        beforeRequest: [authHeaderBeforeRequestHook({ ACCESS_TOKEN_KEY })],
         afterResponse: [
-          refreshTokenMiddleware({
+          refreshTokenAfterResponseHook({
             ACCESS_TOKEN_KEY,
             REFRESH_TOKEN_KEY,
             REFRESH_TOKEN_URL,

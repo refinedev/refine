@@ -1,6 +1,6 @@
 import nock from "nock";
-import { authHeaderMiddleware } from "./auth-header.middleware";
 import { createDataProvider } from "../create-data-provider";
+import { authHeaderBeforeRequestHook } from "./auth-header.before-request.hook";
 
 const API_URL = "https://example.com";
 const ACCESS_TOKEN_KEY = "accessToken";
@@ -12,7 +12,11 @@ describe("auth", () => {
   const dataProvider = createDataProvider(
     API_URL,
     {},
-    { hooks: { beforeRequest: [authHeaderMiddleware({ ACCESS_TOKEN_KEY })] } },
+    {
+      hooks: {
+        beforeRequest: [authHeaderBeforeRequestHook({ ACCESS_TOKEN_KEY })],
+      },
+    },
   );
 
   it("should add Authorization header", async () => {
