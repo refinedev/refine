@@ -332,8 +332,7 @@ const generateDeclarations = async (packagePaths) => {
 
       if (!(await _fsextra2.default.pathExists(sourcePath))) {
         spinner.fail(
-          `Component path does not exist for package ${packageName}:`,
-          sourcePath,
+          `Component path does not exist for package ${packageName}: ${sourcePath}`,
         );
         process.exit(1);
       }

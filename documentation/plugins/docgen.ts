@@ -275,8 +275,7 @@ const generateDeclarations = async (packagePaths: [string, string][]) => {
 
       if (!(await fs.pathExists(sourcePath))) {
         spinner.fail(
-          `Component path does not exist for package ${packageName}:`,
-          sourcePath,
+          `Component path does not exist for package ${packageName}: ${sourcePath}`,
         );
         process.exit(1);
       }
@@ -330,7 +329,7 @@ export default function plugin(): Plugin<DocgenContent> {
 
       return {};
     },
-    configureWebpack(config) {
+    configureWebpack(config: any) {
       return {
         resolve: {
           alias: {
@@ -343,7 +342,7 @@ export default function plugin(): Plugin<DocgenContent> {
         },
       };
     },
-    async contentLoaded({ content, actions }): Promise<void> {
+    async contentLoaded({ content, actions }: any): Promise<void> {
       if (!process.env.DISABLE_DOCGEN) {
         ora("Creating Refine declaration files...").succeed();
 
@@ -352,7 +351,7 @@ export default function plugin(): Plugin<DocgenContent> {
         const data: Promise<string>[] = [];
 
         Object.entries(content).forEach(
-          ([packageName, packageDeclarations]) => {
+          ([packageName, packageDeclarations]: any) => {
             Object.entries(packageDeclarations).forEach(
               ([componentName, declaration]) => {
                 data.push(
