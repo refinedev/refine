@@ -155,26 +155,6 @@ export const defaultCreateDataProviderOptions = {
       };
     },
   },
-  createMany: {
-    getEndpoint(params: CreateManyParams<any>) {
-      return `${params.resource}/bulk`;
-    },
-    async buildHeaders(params: CreateManyParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: CreateManyParams<any>) {
-      return params.meta?.query ?? {};
-    },
-    async buildBodyParams(params: CreateManyParams<any>) {
-      return params.variables;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject[]>,
-      _params: CreateManyParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
   update: {
     getEndpoint(params: UpdateParams<any>): string {
       return `${params.resource}/${params.id}`;
@@ -214,9 +194,6 @@ export const defaultCreateDataProviderOptions = {
       };
     },
   },
-  updateMany: {
-    each: true,
-  },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
       return `${params.resource}/${params.id}`;
@@ -233,9 +210,6 @@ export const defaultCreateDataProviderOptions = {
     ) {
       return undefined;
     },
-  },
-  deleteMany: {
-    each: true,
   },
   custom: {
     async buildQueryParams(params: CustomParams<any>) {

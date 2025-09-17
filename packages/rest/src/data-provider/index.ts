@@ -114,9 +114,9 @@ export const createDataProvider = (
     async createMany(params) {
       const endpoint = options.createMany.getEndpoint(params);
 
-      const headers = await options.createMany.buildHeaders(params);
+      const headers = await options.createMany.buildHeaders?.(params);
 
-      const query = await options.createMany.buildQueryParams(params);
+      const query = await options.createMany.buildQueryParams?.(params);
 
       const body = await options.createMany.buildBodyParams(params);
 
@@ -161,37 +161,6 @@ export const createDataProvider = (
       throw error;
     },
     async updateMany(params) {
-      if (options.updateMany.each === true) {
-        const data = [];
-
-        for (const id of params.ids) {
-          const endpoint = options.update.getEndpoint({ id, ...params });
-          const method = options.update.getRequestMethod({ id, ...params });
-          const headers = await options.update.buildHeaders({ id, ...params });
-          const query = await options.update.buildQueryParams({
-            id,
-            ...params,
-          });
-          const body = await options.update.buildBodyParams({ id, ...params });
-
-          const response = await ky(endpoint, {
-            method,
-            headers,
-            searchParams: qs.stringify(query, { encodeValuesOnly: true }),
-            body: JSON.stringify(body),
-          });
-
-          const itemData = await options.update.mapResponse(response, {
-            id,
-            ...params,
-          });
-
-          data.push(itemData);
-        }
-
-        return { data };
-      }
-
       const method = options.updateMany.getRequestMethod?.(params);
 
       const headers = await options.updateMany.buildHeaders?.(params);
@@ -235,39 +204,6 @@ export const createDataProvider = (
       return { data };
     },
     async deleteMany(params) {
-      if (options.deleteMany.each) {
-        const data: any[] = [];
-
-        for (const id of params.ids) {
-          const endpoint = options.deleteOne.getEndpoint({ id, ...params });
-          const headers = await options.deleteOne.buildHeaders({
-            id,
-            ...params,
-          });
-          const query = await options.deleteOne.buildQueryParams({
-            id,
-            ...params,
-          });
-
-          const response = await ky(endpoint, {
-            method: "delete",
-            headers,
-            searchParams: qs.stringify(query, { encodeValuesOnly: true }),
-          });
-
-          const itemData = await options.deleteOne.mapResponse(response, {
-            id,
-            ...params,
-          });
-
-          if (itemData) {
-            data.push(itemData);
-          }
-        }
-
-        return { data };
-      }
-
       const endpoint = options.deleteMany.getEndpoint?.(params);
 
       const headers = await options.deleteMany.buildHeaders?.(params);

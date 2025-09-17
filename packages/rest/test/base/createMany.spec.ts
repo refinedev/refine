@@ -23,7 +23,14 @@ nock(API_URL)
 describe("createMany", () => {
   const dataProvider = createDataProvider(
     API_URL,
-    {},
+    {
+      createMany: {
+        getEndpoint: (params) => `${params.resource}/bulk`,
+        buildHeaders: async (params) => params.meta?.headers,
+        buildBodyParams: async (params) => params.variables,
+        mapResponse: async (response) => await response.json(),
+      },
+    },
     {
       headers: { "x-default-header": "createMany" },
     },

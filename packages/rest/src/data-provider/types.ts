@@ -56,14 +56,14 @@ export type CreateDataProviderOptions = {
     transformError?: TransformError<CreateParams<any>>;
   };
   createMany?: {
-    getEndpoint?: GetEndpoint<CreateManyParams<any>>;
+    getEndpoint: GetEndpoint<CreateManyParams<any>>;
     buildHeaders?: BuildHeaders<CreateManyParams<any>>;
 
     buildQueryParams?: BuildQueryParams<CreateManyParams<any>>;
 
-    buildBodyParams?: BuildBodyParams<CreateManyParams<any>>;
+    buildBodyParams: BuildBodyParams<CreateManyParams<any>>;
 
-    mapResponse?: MapResponse<CreateManyParams<any>, AnyObject[]>;
+    mapResponse: MapResponse<CreateManyParams<any>, AnyObject[]>;
   };
   getOne?: {
     getEndpoint?: GetEndpoint<GetOneParams>;
@@ -94,20 +94,15 @@ export type CreateDataProviderOptions = {
     transformError?: TransformError<UpdateParams<any>>;
   };
   updateMany?: {
-    /**
-     * If `each` is true, it will send a request for each id in the `ids` array using `update` options.
-     * @default true
-     */
-    each: boolean;
-    getEndpoint?: GetEndpoint<UpdateManyParams<any>>;
+    getEndpoint: GetEndpoint<UpdateManyParams<any>>;
     getRequestMethod?: (params: UpdateManyParams<any>) => "put" | "patch";
     buildHeaders?: BuildHeaders<UpdateManyParams<any>>;
 
     buildQueryParams?: BuildQueryParams<UpdateManyParams<any>>;
 
-    buildBodyParams?: BuildBodyParams<UpdateManyParams<any>>;
+    buildBodyParams: BuildBodyParams<UpdateManyParams<any>>;
 
-    mapResponse?: MapResponse<UpdateManyParams<any>, AnyObject | AnyObject[]>;
+    mapResponse: MapResponse<UpdateManyParams<any>, AnyObject | AnyObject[]>;
   };
   deleteOne?: {
     getEndpoint?: GetEndpoint<DeleteOneParams<any>>;
@@ -118,17 +113,12 @@ export type CreateDataProviderOptions = {
     mapResponse?: MapResponse<DeleteOneParams<any>, AnyObject | undefined>;
   };
   deleteMany?: {
-    /**
-     * If `each` is true, it will send a request for each id in the `ids` array using `deleteOne` options.
-     * @default true
-     */
-    each: boolean;
-    getEndpoint?: GetEndpoint<DeleteManyParams<any>>;
+    getEndpoint: GetEndpoint<DeleteManyParams<any>>;
     buildHeaders?: BuildHeaders<DeleteManyParams<any>>;
 
-    buildQueryParams?: BuildQueryParams<DeleteManyParams<any>>;
+    buildQueryParams: BuildQueryParams<DeleteManyParams<any>>;
 
-    mapResponse?: MapResponse<
+    mapResponse: MapResponse<
       DeleteManyParams<any>,
       AnyObject | AnyObject[] | undefined
     >;

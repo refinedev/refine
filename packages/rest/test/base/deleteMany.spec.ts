@@ -6,19 +6,22 @@ const response: [] = [];
 nock(API_URL)
   .matchHeader("x-default-header", "deleteMany")
   .matchHeader("x-custom-header", "deleteMany")
-  .delete("/deleteMany/1")
-  .reply(200, response);
-
-nock(API_URL)
-  .matchHeader("x-default-header", "deleteMany")
-  .matchHeader("x-custom-header", "deleteMany")
-  .delete("/deleteMany/2")
+  .delete("/deleteMany/bulk?ids=1,2")
   .reply(200, response);
 
 describe("deleteMany", () => {
   const dataProvider = createDataProvider(
     API_URL,
-    {},
+    {
+      deleteMany: {
+        getEndpoint: (params) => `${params.resource}/bulk`,
+        buildHeaders: async (params) => params.meta?.headers,
+        buildQueryParams: async (params) => ({
+          ids: params.ids.join(","),
+        }),
+        mapResponse: async (response) => await response.json(),
+      },
+    },
     {
       headers: { "x-default-header": "deleteMany" },
     },

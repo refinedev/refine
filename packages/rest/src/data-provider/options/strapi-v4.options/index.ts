@@ -1,13 +1,10 @@
 import type {
-  CreateManyParams,
   CreateParams,
   CustomParams,
-  DeleteManyParams,
   DeleteOneParams,
   GetListParams,
   GetManyParams,
   GetOneParams,
-  UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
@@ -203,26 +200,6 @@ export const strapiV4DataProviderOptions = {
       return body;
     },
   },
-  createMany: {
-    getEndpoint(params: CreateManyParams<any>) {
-      return `${params.resource}/bulk`;
-    },
-    async buildHeaders(params: CreateManyParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: CreateManyParams<any>) {
-      return params.meta?.query ?? {};
-    },
-    async buildBodyParams(params: CreateManyParams<any>) {
-      return params.variables;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject>,
-      params: CreateManyParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
   update: {
     getEndpoint(params: UpdateParams<any>): string {
       return `${params.resource}/${params.id}`;
@@ -246,33 +223,6 @@ export const strapiV4DataProviderOptions = {
       return await response.json();
     },
   },
-  updateMany: {
-    getEndpoint(params: UpdateManyParams<any>) {
-      return `${params.resource}/bulk`;
-    },
-    getRequestMethod(params: UpdateManyParams<any>) {
-      return params.meta?.method ?? "PATCH";
-    },
-    async buildHeaders(params: UpdateManyParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: UpdateManyParams<any>) {
-      const queryParams = {
-        ids: params.ids.join(","),
-      };
-
-      return params.meta?.query ?? queryParams;
-    },
-    async buildBodyParams(params: UpdateManyParams<any>) {
-      return params.variables;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject>,
-      params: UpdateManyParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
   deleteOne: {
     getEndpoint(params: DeleteOneParams<any>) {
       return `${params.resource}/${params.id}`;
@@ -286,27 +236,6 @@ export const strapiV4DataProviderOptions = {
     async mapResponse(
       response: KyResponse<AnyObject>,
       params: DeleteOneParams<any>,
-    ) {
-      return await response.json();
-    },
-  },
-  deleteMany: {
-    getEndpoint(params: DeleteManyParams<any>) {
-      return `${params.resource}/bulk`;
-    },
-    async buildHeaders(params: DeleteManyParams<any>) {
-      return params.meta?.headers ?? {};
-    },
-    async buildQueryParams(params: DeleteManyParams<any>) {
-      const queryParams = {
-        ids: params.ids.join(","),
-      };
-
-      return params.meta?.query ?? queryParams;
-    },
-    async mapResponse(
-      response: KyResponse<AnyObject>,
-      params: DeleteManyParams<any>,
     ) {
       return await response.json();
     },
