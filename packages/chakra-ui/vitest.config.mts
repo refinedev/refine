@@ -33,6 +33,6 @@ export default defineConfig({
   // Mock CSS and SVG files
   assetsInclude: ["**/*.svg"],
   esbuild: {
-    target: "node18",
+    target: "node22",
   },
 });

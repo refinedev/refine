@@ -38,6 +38,6 @@ export default defineConfig({
   },
   assetsInclude: ["**/*.svg"],
   esbuild: {
-    target: "node20",
+    target: "node22",
   },
 });

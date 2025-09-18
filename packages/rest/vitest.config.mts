@@ -10,8 +10,6 @@ export default defineConfig({
       reportsDirectory: "./coverage",
     },
     globals: true,
-    testTimeout: 15000,
-    fileParallelism: false,
   },
   resolve: {
     alias: {
@@ -20,6 +18,6 @@ export default defineConfig({
     },
   },
   esbuild: {
-    target: "node18",
+    target: "node22",
   },
 });

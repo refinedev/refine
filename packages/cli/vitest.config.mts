@@ -34,6 +34,6 @@ export default defineConfig({
     },
   },
   esbuild: {
-    target: "node20",
+    target: "node22",
   },
 });

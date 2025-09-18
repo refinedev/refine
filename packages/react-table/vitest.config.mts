@@ -16,6 +16,6 @@ export default defineConfig({
     global: "globalThis",
   },
   esbuild: {
-    target: "node18",
+    target: "node22",
   },
 });

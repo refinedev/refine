@@ -29,6 +29,6 @@ export default defineConfig({
   },
   assetsInclude: ["**/*.svg"],
   esbuild: {
-    target: "node18",
+    target: "node22",
   },
 });
