@@ -10,7 +10,8 @@ export default defineConfig({
       reportsDirectory: "./coverage",
     },
     globals: true,
-    testTimeout: 25000,
+    testTimeout: 15000,
+    fileParallelism: false,
   },
   resolve: {
     alias: {
