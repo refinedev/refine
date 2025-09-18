@@ -5,81 +5,76 @@ import type {
 } from "@definitions/package";
 import * as checkUpdates from "./index";
 import * as packageUtils from "@utils/package";
+import * as utils from "./utils";
 
 const { getOutdatedRefinePackages } = checkUpdates;
 
 test("Get outdated refine packages", async () => {
-  const testCases: {
+  const testCase: {
     input: NpmOutdatedResponse;
     output: RefinePackageInstalledVersionData[];
-  }[] = [
-    {
-      input: {
-        "@refinedev/core": {
-          current: "1.0.0",
-          wanted: "1.0.1",
-          latest: "2.0.0",
-          dependent: "",
-          location: "",
-        },
-        "@refinedev/cli": {
-          current: "1.1.1",
-          wanted: "1.1.1",
-          latest: "1.1.0",
-          dependent: "",
-          location: "",
-        },
-        "@pankod/canvas2video": {
-          current: "1.1.1",
-          wanted: "1.1.1",
-          latest: "1.1.1",
-          dependent: "",
-          location: "",
-        },
-        "@owner/package-name": {
-          current: "1.1.1",
-          wanted: "1.1.1",
-          latest: "1.1.0",
-          dependent: "",
-          location: "",
-        },
-        "@owner/package-name1": {
-          current: "N/A",
-          wanted: "undefined",
-          latest: "NaN",
-          dependent: "",
-          location: "",
-        },
-        "@owner/refine-react": {
-          current: "1.0.0",
-          wanted: "1.0.1",
-          latest: "2.0.0",
-          dependent: "",
-          location: "",
-        },
+  } = {
+    input: {
+      "@refinedev/core": {
+        current: "1.0.0",
+        wanted: "1.0.1",
+        latest: "2.0.0",
+        dependent: "",
+        location: "",
       },
-      output: [
-        {
-          name: "@refinedev/core",
-          current: "1.0.0",
-          wanted: "1.0.1",
-          latest: "2.0.0",
-          changelog: "https://c.refine.dev/core",
-          dependent: "",
-          location: "",
-        },
-      ],
+      "@refinedev/cli": {
+        current: "1.1.1",
+        wanted: "1.1.1",
+        latest: "1.1.0",
+        dependent: "",
+        location: "",
+      },
+      "@pankod/canvas2video": {
+        current: "1.1.1",
+        wanted: "1.1.1",
+        latest: "1.1.1",
+        dependent: "",
+        location: "",
+      },
+      "@owner/package-name": {
+        current: "1.1.1",
+        wanted: "1.1.1",
+        latest: "1.1.0",
+        dependent: "",
+        location: "",
+      },
+      "@owner/package-name1": {
+        current: "N/A",
+        wanted: "undefined",
+        latest: "NaN",
+        dependent: "",
+        location: "",
+      },
+      "@owner/refine-react": {
+        current: "1.0.0",
+        wanted: "1.0.1",
+        latest: "2.0.0",
+        dependent: "",
+        location: "",
+      },
     },
-  ];
+    output: [
+      {
+        name: "@refinedev/core",
+        current: "1.0.0",
+        wanted: "1.0.1",
+        latest: "2.0.0",
+        changelog: "https://c.refine.dev/core",
+        dependent: "",
+        location: "",
+      },
+    ],
+  };
 
-  for (const testCase of testCases) {
-    vi.spyOn(checkUpdates, "getOutdatedPackageList").mockResolvedValue(
-      testCase.input,
-    );
+  vi.spyOn(utils, "getOutdatedPackageList").mockResolvedValue(testCase.input);
 
-    const result = await getOutdatedRefinePackages();
-    expect(result).toEqual(testCase.output);
-  }
+  const result = await getOutdatedRefinePackages();
+  expect(result).toEqual(testCase.output);
 });
 
 describe("getWantedWithPreferredWildcard", () => {
