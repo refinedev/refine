@@ -64,7 +64,7 @@ describe("useDataGrid Hook", () => {
     expect(result.current.currentPage).toEqual(1);
   });
 
-  it.only.each(["client", "server"] as const)(
+  it.each(["client", "server"] as const)(
     "when pagination mode is %s, should set pagination props in dataGridProps",
     async (mode) => {
       const { result } = renderHook(
