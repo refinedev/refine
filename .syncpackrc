@@ -28,7 +28,8 @@
         "@refinedev/appwrite",
         "@refinedev/graphql",
         "@refinedev/nestjsx-crud",
-        "@refinedev/rest"
+        "@refinedev/rest",
+        "@refinedev/supabase"
       ],
       "isIgnored": true
     },
