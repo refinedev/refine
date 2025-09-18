@@ -2,6 +2,7 @@ import { vi } from "vitest";
 import { ProjectTypes } from "@definitions/projectTypes";
 import * as utilsProject from "../../../../utils/project/index";
 import * as testTargetModule from "@commands/add/sub-commands/resource/create-resources";
+import * as getCommandRootDir from "./get-command-root-dir";
 import { existsSync, readFileSync, rmdirSync } from "fs-extra";
 
 const srcDirPath = `${__dirname}/../../../..`;
@@ -9,22 +10,28 @@ const srcDirPath = `${__dirname}/../../../..`;
 describe("add", () => {
   beforeAll(() => {
     // useful for speed up the tests.
-    vi.spyOn(console, "log").mockImplementation();
+    vi.spyOn(console, "log").mockImplementation(() => {});
 
-    vi.spyOn(testTargetModule, "installInferencer").mockImplementation();
+    vi.spyOn(testTargetModule, "installInferencer").mockImplementation(
+      async () => {},
+    );
   });
 
-  it("should generate next js pages", () => {
+  it("should generate next js pages", async () => {
     vi.spyOn(utilsProject, "getProjectType").mockReturnValue(
       ProjectTypes.NEXTJS,
     );
 
     // if the execution path is left as it is, it will be "src\commands\add\sub-commands\resource",
     // so you will not be able to find the template directory unless you move it up.
-    vi.spyOn(testTargetModule, "getCommandRootDir").mockReturnValue(srcDirPath);
+    vi.spyOn(getCommandRootDir, "getCommandRootDir").mockReturnValue(
+      srcDirPath,
+    );
 
     const actions = testTargetModule.defaultActions;
-    testTargetModule.createResources({ actions: actions.join(",") }, ["tmps"]);
+    await testTargetModule.createResources({ actions: actions.join(",") }, [
+      "tmps",
+    ]);
 
     const nextComponentDirPath = `${srcDirPath}/components/tmps`;
     const nextPageRootDirPath = `${srcDirPath}/app`;
@@ -42,7 +49,9 @@ describe("add", () => {
       ProjectTypes.NEXTJS,
     );
 
-    vi.spyOn(testTargetModule, "getCommandRootDir").mockReturnValue(srcDirPath);
+    vi.spyOn(getCommandRootDir, "getCommandRootDir").mockReturnValue(
+      srcDirPath,
+    );
 
     const actions = testTargetModule.defaultActions;
     testTargetModule.createResources({ actions: actions.join(",") }, ["tmps"]);
@@ -61,15 +70,19 @@ describe("add", () => {
     rmdirSync(nextPageRootDirPath, { recursive: true });
   });
 
-  it("should not include use client in the component if don't use Next.js", () => {
+  it("should not include use client in the component if don't use Next.js", async () => {
     vi.spyOn(utilsProject, "getProjectType").mockReturnValue(
       ProjectTypes.REACT_SCRIPT,
     );
 
-    vi.spyOn(testTargetModule, "getCommandRootDir").mockReturnValue(srcDirPath);
+    vi.spyOn(getCommandRootDir, "getCommandRootDir").mockReturnValue(
+      srcDirPath,
+    );
 
     const actions = testTargetModule.defaultActions;
-    testTargetModule.createResources({ actions: actions.join(",") }, ["tmps"]);
+    await testTargetModule.createResources({ actions: actions.join(",") }, [
+      "tmps",
+    ]);
 
     const reactComponentRootDirPath = `${srcDirPath}/pages`;
 
@@ -126,17 +139,17 @@ describe("add", () => {
     },
   ])(
     "should generate components and folders for '$resourceName'",
-    (testCase) => {
+    async (testCase) => {
       vi.spyOn(utilsProject, "getProjectType").mockReturnValue(
         ProjectTypes.VITE,
       );
 
-      vi.spyOn(testTargetModule, "getCommandRootDir").mockReturnValue(
+      vi.spyOn(getCommandRootDir, "getCommandRootDir").mockReturnValue(
         srcDirPath,
       );
 
       const actions = ["list", "create", "show", "edit"] as const;
-      testTargetModule.createResources({ actions: actions.join(",") }, [
+      await testTargetModule.createResources({ actions: actions.join(",") }, [
         testCase.resourceName,
       ]);
 
