@@ -1,11 +1,12 @@
 import "@testing-library/jest-dom/vitest";
 import "@testing-library/react";
-import { TextEncoder, TextDecoder } from "util";
 import { vi } from "vitest";
 
-global.TextEncoder = TextEncoder;
-// @ts-ignore
-global.TextDecoder = TextDecoder;
+if (typeof global.TextEncoder === "undefined") {
+  const { TextEncoder, TextDecoder } = require("util");
+  global.TextEncoder = TextEncoder;
+  global.TextDecoder = TextDecoder;
+}
 
 window.matchMedia = vi.fn().mockImplementation((query) => {
   return {

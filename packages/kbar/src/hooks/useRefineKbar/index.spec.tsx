@@ -9,10 +9,13 @@ import { useRefineKbar } from ".";
 
 const mockFn = vi.fn();
 
-vi.mock("kbar", () => ({
-  ...(vi.requireActual("kbar") as typeof import("kbar")),
-  useRegisterActions: (actions: any) => mockFn(actions),
-}));
+vi.mock("kbar", async () => {
+  const actual = await import("kbar");
+  return {
+    ...actual,
+    useRegisterActions: (actions: any) => mockFn(actions),
+  };
+});
 
 describe("useRefineKbar Hook", () => {
   beforeAll(async () => {
