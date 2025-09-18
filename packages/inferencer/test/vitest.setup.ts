@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom/vitest";
 import "@testing-library/react";
-import * as util from "util";
+import { TextEncoder, TextDecoder } from "util";
+
 import { vi } from "vitest";
 
 /** Antd mocks */
@@ -17,14 +18,11 @@ window.matchMedia = vi.fn().mockImplementation((query) => {
 window.scroll = vi.fn();
 window.alert = vi.fn();
 
-Object.defineProperty(window, "TextEncoder", {
-  writable: true,
-  value: util.TextEncoder,
-});
-Object.defineProperty(window, "TextDecoder", {
-  writable: true,
-  value: util.TextDecoder,
-});
+// Improved TextEncoder/TextDecoder setup
+if (typeof global.TextEncoder === "undefined") {
+  global.TextEncoder = TextEncoder;
+  global.TextDecoder = TextDecoder;
+}
 
 class ResizeObserver {
   observe() {
