@@ -12,7 +12,6 @@ export default defineConfig({
       exclude: ["src/index.ts", "src/interfaces/**"],
     },
     globals: true,
-    testTimeout: 20000,
   },
   resolve: {
     alias: {

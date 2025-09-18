@@ -4,10 +4,6 @@ export default defineConfig({
   test: {
     environment: "jsdom",
     globals: true,
-    testTimeout: 20000,
-    retry: process.env.CI ? 3 : 0,
-    silent: true,
-    logLevel: "error",
   },
   resolve: {
     alias: {

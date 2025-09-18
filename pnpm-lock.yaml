@@ -11098,8 +11098,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -11147,8 +11147,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       node-fetch:
         specifier: ^2.6.7
         version: 2.7.0(encoding@0.1.13)
@@ -12379,8 +12379,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -12978,8 +12978,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13175,8 +13175,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13221,8 +13221,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13805,8 +13805,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13857,8 +13857,8 @@ importers:
         specifier: ^25.0.1
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13912,8 +13912,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13949,8 +13949,8 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
       nock:
-        specifier: 14.0.5
-        version: 14.0.5
+        specifier: ^13.4.0
+        version: 13.5.6
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -27897,6 +27897,10 @@ packages:
 
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
+
+  nock@13.5.6:
+    resolution: {integrity: sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==}
+    engines: {node: '>= 10.13'}
 
   nock@14.0.10:
     resolution: {integrity: sha512-Q7HjkpyPeLa0ZVZC5qpxBt5EyLczFJ91MEewQiIi9taWuA0KB/MDJlUWtON+7dGouVdADTQsf9RA7TZk6D8VMw==}
@@ -53439,6 +53443,14 @@ snapshots:
     dependencies:
       lower-case: 2.0.2
       tslib: 2.6.2
+
+  nock@13.5.6:
+    dependencies:
+      debug: 4.4.3(supports-color@8.1.1)
+      json-stringify-safe: 5.0.1
+      propagate: 2.0.1
+    transitivePeerDependencies:
+      - supports-color
 
   nock@14.0.10:
     dependencies:

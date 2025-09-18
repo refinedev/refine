@@ -12,8 +12,6 @@ export default defineConfig({
       exclude: ["src/index.ts"],
     },
     globals: true,
-    testTimeout: 20000,
-    retry: process.env.CI ? 3 : 0,
   },
   resolve: {
     alias: {

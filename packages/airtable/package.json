@@ -52,7 +52,7 @@
     "@types/node": "^20",
     "@types/node-fetch": "^2.6.11",
     "jsdom": "^25.0.1",
-    "nock": "14.0.5",
+    "nock": "^13.4.0",
     "node-fetch": "^2.6.7",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",

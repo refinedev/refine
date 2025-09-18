@@ -50,7 +50,7 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@types/node": "^20",
     "jsdom": "^25.0.1",
-    "nock": "14.0.5",
+    "nock": "^13.4.0",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",

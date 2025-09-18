@@ -57,7 +57,7 @@
     "@types/lodash": "^4.14.171",
     "@types/node": "^20",
     "@vitest/ui": "^2.1.8",
-    "nock": "14.0.5",
+    "nock": "^13.4.0",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",

@@ -6,10 +6,6 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./test/vitest.setup.ts"],
     globals: true,
-    testTimeout: 30000,
-    retry: process.env.CI ? 3 : 0,
-    silent: true,
-    logLevel: 'error',
     coverage: {
       exclude: ["src/index.ts"],
     },

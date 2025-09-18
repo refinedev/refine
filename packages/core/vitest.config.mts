@@ -12,11 +12,6 @@ export default defineConfig({
       exclude: ["src/index.ts"],
     },
     globals: true,
-    testTimeout: 20000,
-    retry: process.env.CI ? 3 : 0,
-    // Removed overly aggressive silent/error settings to help with debugging
-    // silent: true,
-    // logLevel: 'error',
   },
   resolve: {
     alias: {

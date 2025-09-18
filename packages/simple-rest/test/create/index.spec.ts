@@ -1,3 +1,4 @@
+import "./index.mock";
 import axios from "axios";
 
 import JsonServer from "../../src/index";
