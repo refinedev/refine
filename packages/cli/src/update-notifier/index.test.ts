@@ -1,16 +1,14 @@
 import { vi } from "vitest";
 import { ENV } from "@utils/env";
 import * as notifier from "./index";
+import * as utilz from "./utils";
 
-const {
-  store,
-  isPackagesCacheExpired,
-  isUpdateNotifierDisabled,
-  shouldUpdatePackagesCache,
-} = notifier;
+const { store, shouldUpdatePackagesCache } = notifier;
 
-test("Should update packages cache", async () => {
-  const testCases = [
+const { isPackagesCacheExpired, isUpdateNotifierDisabled } = utilz;
+
+describe("update notifier", () => {
+  test.each([
     {
       isExpired: true,
       isKeyValid: true,
@@ -41,22 +39,18 @@ test("Should update packages cache", async () => {
       isKeyValid: null,
       output: null,
     },
-  ];
-
-  for (const testCase of testCases) {
-    vi.spyOn(notifier, "isPackagesCacheExpired").mockReturnValueOnce(
+  ])("handle should update packages cache %s", async (testCase) => {
+    vi.spyOn(utilz, "isPackagesCacheExpired").mockReturnValueOnce(
       testCase.isExpired,
     );
 
-    vi.spyOn(notifier, "validateKey").mockResolvedValue(testCase.isKeyValid);
+    vi.spyOn(utilz, "validateKey").mockResolvedValue(testCase.isKeyValid);
 
     const shouldUpdate = await shouldUpdatePackagesCache();
     expect(shouldUpdate).toBe(testCase.output);
-  }
-});
+  });
 
-test("Package cache is expired", () => {
-  const testCases = [
+  test.each([
     {
       lastUpdated: 1,
       now: 2,
@@ -75,9 +69,7 @@ test("Package cache is expired", () => {
       cacheTTL: "1",
       output: true,
     },
-  ];
-
-  testCases.forEach((testCase) => {
+  ])("handle package cache is expired %s", (testCase) => {
     ENV.UPDATE_NOTIFIER_CACHE_TTL = testCase.cacheTTL;
     Date.now = vi.fn(() => testCase.now);
     store.get = vi.fn(() => testCase.lastUpdated);
@@ -85,29 +77,35 @@ test("Package cache is expired", () => {
     expect(isPackagesCacheExpired()).toBe(testCase.output);
   });
 
-  store.get = vi.fn(() => undefined);
-  expect(isPackagesCacheExpired()).toBe(true);
+  test("when store is undefined, should return true", () => {
+    store.get = vi.fn(() => undefined);
+    expect(isPackagesCacheExpired()).toBe(true);
+  });
 
-  store.get = vi.fn(() => null);
-  expect(isPackagesCacheExpired()).toBe(true);
+  test("when store is null, should return true", () => {
+    store.get = vi.fn(() => null);
+    expect(isPackagesCacheExpired()).toBe(true);
+  });
 
-  store.get = vi.fn(() => 0);
-  expect(isPackagesCacheExpired()).toBe(true);
-});
+  test("when store is 0, should return true", () => {
+    store.get = vi.fn(() => 0);
+    expect(isPackagesCacheExpired()).toBe(true);
+  });
 
-test("Update notifier should not run if env.UPDATE_NOTIFIER_IS_DISABLED is true", () => {
-  ENV.UPDATE_NOTIFIER_IS_DISABLED = "true";
-  expect(isUpdateNotifierDisabled()).toBe(true);
+  test("Update notifier should not run if env.UPDATE_NOTIFIER_IS_DISABLED is true", () => {
+    ENV.UPDATE_NOTIFIER_IS_DISABLED = "true";
+    expect(isUpdateNotifierDisabled()).toBe(true);
 
-  ENV.UPDATE_NOTIFIER_IS_DISABLED = "TRUE";
-  expect(isUpdateNotifierDisabled()).toBe(true);
+    ENV.UPDATE_NOTIFIER_IS_DISABLED = "TRUE";
+    expect(isUpdateNotifierDisabled()).toBe(true);
 
-  ENV.UPDATE_NOTIFIER_IS_DISABLED = "false";
-  expect(isUpdateNotifierDisabled()).toBe(false);
+    ENV.UPDATE_NOTIFIER_IS_DISABLED = "false";
+    expect(isUpdateNotifierDisabled()).toBe(false);
 
-  ENV.UPDATE_NOTIFIER_IS_DISABLED = "1";
-  expect(isUpdateNotifierDisabled()).toBe(false);
+    ENV.UPDATE_NOTIFIER_IS_DISABLED = "1";
+    expect(isUpdateNotifierDisabled()).toBe(false);
 
-  ENV.UPDATE_NOTIFIER_IS_DISABLED = "0";
-  expect(isUpdateNotifierDisabled()).toBe(false);
+    ENV.UPDATE_NOTIFIER_IS_DISABLED = "0";
+    expect(isUpdateNotifierDisabled()).toBe(false);
+  });
 });
