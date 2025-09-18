@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineDeleteButtonProps,
@@ -20,8 +21,8 @@ export const buttonDeleteTests = (
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
     beforeAll(() => {
-      jest.spyOn(console, "error").mockImplementation(jest.fn());
-      jest.clearAllTimers();
+      vi.spyOn(console, "error").mockImplementation(vi.fn());
+      vi.clearAllTimers();
     });
 
     it("should render button successfuly", async () => {
@@ -35,7 +36,7 @@ export const buttonDeleteTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <DeleteButton disabled onClick={mockOnClick} />,
@@ -391,7 +392,7 @@ export const buttonDeleteTests = (
     });
 
     it("should render called function successfully if click the button", async () => {
-      const deleteFunc = jest.fn();
+      const deleteFunc = vi.fn();
       const { getByTestId } = render(
         <DeleteButton onClick={() => deleteFunc()} />,
         {
@@ -424,7 +425,7 @@ export const buttonDeleteTests = (
     });
 
     it("should confirm Popconfirm successfuly", async () => {
-      const deleteOneMock = jest.fn();
+      const deleteOneMock = vi.fn();
       const { getByText, getAllByText, getByTestId } = render(
         <DeleteButton resource="posts" recordItemId="1" />,
         {
@@ -454,7 +455,7 @@ export const buttonDeleteTests = (
     });
 
     it("should confirm Popconfirm successfuly with recordItemId", async () => {
-      const deleteOneMock = jest.fn();
+      const deleteOneMock = vi.fn();
 
       const { getByText, getAllByText, getByTestId } = render(
         <DeleteButton recordItemId="record-id" resource="posts" />,
@@ -487,8 +488,8 @@ export const buttonDeleteTests = (
     });
 
     it("should confirm Popconfirm successfuly with onSuccess", async () => {
-      const deleteOneMock = jest.fn();
-      const onSuccessMock = jest.fn();
+      const deleteOneMock = vi.fn();
+      const onSuccessMock = vi.fn();
 
       const { getByText, getAllByText, getByTestId } = render(
         <Routes>
@@ -541,8 +542,8 @@ export const buttonDeleteTests = (
     });
 
     it("should confirm Popconfirm successfuly with onSuccess", async () => {
-      const deleteOneMock = jest.fn();
-      const onSuccessMock = jest.fn();
+      const deleteOneMock = vi.fn();
+      const onSuccessMock = vi.fn();
 
       const { getByText, getByTestId } = render(
         <Routes>

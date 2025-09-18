@@ -9,7 +9,7 @@
     "dev:prod": "PORT=3030 nodemon --watch ./node_modules --watch ./src --watch ./pages --ext ts,tsx,js,jsx --exec \"next build --no-lint && next start\"",
     "lint": "next lint",
     "start": "NODE_OPTIONS='--max-http-header-size=32767' next start",
-    "test": "jest --passWithNoTests"
+    "test": "vitest run --silent"
   },
   "dependencies": {
     "@ant-design/icons": "^5.5.1",
@@ -73,17 +73,18 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@netlify/plugin-nextjs": "5.2.2",
-    "@types/jest": "^29.2.4",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/node": "^20",
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/uuid": "^9.0.6",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "@vitest/ui": "^2.1.8",
     "nodemon": "^2.0.20",
     "rimraf": "3.0.2",
-    "ts-jest": "^29.1.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "engines": {
     "node": ">=20"

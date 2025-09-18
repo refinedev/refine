@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, act, mockRouterProvider } from "@test";
@@ -208,7 +209,7 @@ describe("useSelect Hook", () => {
   });
 
   it("onSearch debounce with default value (300ms)", async () => {
-    const getListMock = jest.fn(() => Promise.resolve({ data: [], total: 0 }));
+    const getListMock = vi.fn(() => Promise.resolve({ data: [], total: 0 }));
     const { result } = renderHook(
       () =>
         useSelect({
@@ -252,7 +253,7 @@ describe("useSelect Hook", () => {
   });
 
   it("onSearch disabled debounce (0ms)", async () => {
-    const getListMock = jest.fn(() => {
+    const getListMock = vi.fn(() => {
       return Promise.resolve({ data: [], total: 0 });
     });
     const { result } = renderHook(
@@ -312,7 +313,7 @@ describe("useSelect Hook", () => {
   });
 
   it("should onSearchFromProp work as expected", async () => {
-    const getListMock = jest.fn(() => Promise.resolve({ data: [], total: 0 }));
+    const getListMock = vi.fn(() => Promise.resolve({ data: [], total: 0 }));
 
     const { result, rerender } = renderHook(
       () =>
@@ -361,15 +362,15 @@ describe("useSelect Hook", () => {
   });
 
   it("should respond to onSearch prop changes without breaking the debounce interval", async () => {
-    const getListMock = jest.fn(() => Promise.resolve({ data: [], total: 0 }));
-    const initialOnSearch = jest.fn().mockImplementation((v) => [
+    const getListMock = vi.fn(() => Promise.resolve({ data: [], total: 0 }));
+    const initialOnSearch = vi.fn().mockImplementation((v) => [
       {
         field: "title",
         operator: "contains",
         value: v,
       },
     ]);
-    const secondOnSearch = jest.fn().mockImplementation((v) => [
+    const secondOnSearch = vi.fn().mockImplementation((v) => [
       {
         field: "title",
         operator: "contains",
@@ -502,8 +503,8 @@ describe("useSelect Hook", () => {
       const mockDataProvider = {
         default: {
           ...MockJSONServer.default,
-          getList: jest.fn(() => Promise.resolve({ data: [], total: 0 })),
-          getMany: jest.fn(() => Promise.resolve({ data: [] })),
+          getList: vi.fn(() => Promise.resolve({ data: [], total: 0 })),
+          getMany: vi.fn(() => Promise.resolve({ data: [] })),
         },
       } as DataProviders;
 
@@ -569,8 +570,8 @@ describe("useSelect Hook", () => {
     const mockDataProvider = {
       default: {
         ...MockJSONServer.default,
-        getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
-        getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+        getList: vi.fn(() => Promise.resolve({ data: posts, total: 2 })),
+        getMany: vi.fn(() => Promise.resolve({ data: [...posts] })),
       },
     } as DataProviders;
 
@@ -638,8 +639,8 @@ describe("useSelect Hook", () => {
     const mockDataProvider = {
       default: {
         ...MockJSONServer.default,
-        getList: jest.fn(() => Promise.resolve({ data: posts, total: 2 })),
-        getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+        getList: vi.fn(() => Promise.resolve({ data: posts, total: 2 })),
+        getMany: vi.fn(() => Promise.resolve({ data: [...posts] })),
       },
     } as DataProviders;
 
@@ -750,7 +751,7 @@ describe("useSelect Hook", () => {
     ];
 
     it.each(cases)("$name", async (params: any) => {
-      const getListMock = jest.fn(async () => ({ data: [], total: 0 }));
+      const getListMock = vi.fn(async () => ({ data: [], total: 0 }));
 
       const { result } = renderHook(
         () =>
@@ -810,8 +811,8 @@ describe("useSelect Hook", () => {
     const mockDataProvider = {
       default: {
         ...MockJSONServer.default,
-        getList: jest.fn(() => Promise.resolve({ data: posts, total: 3 })),
-        getMany: jest.fn(() => Promise.resolve({ data: [...posts] })),
+        getList: vi.fn(() => Promise.resolve({ data: posts, total: 3 })),
+        getMany: vi.fn(() => Promise.resolve({ data: [...posts] })),
       },
     } as DataProviders;
 
@@ -866,7 +867,7 @@ describe("useSelect Hook", () => {
   });
 
   it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
-    const getListMock = jest.fn();
+    const getListMock = vi.fn();
 
     renderHook(() => useSelect({ resource: "posts", meta: { foo: "bar" } }), {
       wrapper: TestWrapper({
@@ -900,7 +901,7 @@ describe("useSelect Hook", () => {
   });
 
   it("two resources with same name, should pass resource meta according to identifier", async () => {
-    const getListMock = jest.fn();
+    const getListMock = vi.fn();
 
     renderHook(() => useSelect({ resource: "recentPosts" }), {
       wrapper: TestWrapper({
@@ -954,7 +955,7 @@ describe("useSelect Hook", () => {
   });
 
   it("should use resourceFromProps", async () => {
-    jest.spyOn(pickResource, "pickResource").mockReturnValue(undefined);
+    vi.spyOn(pickResource, "pickResource").mockReturnValue(undefined);
 
     const { result } = renderHook(
       () =>
@@ -988,7 +989,7 @@ describe("useSelect Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useSelect({

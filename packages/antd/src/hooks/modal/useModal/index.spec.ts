@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test";
 
@@ -71,7 +72,7 @@ describe("useModal Hook", () => {
   });
 
   it("should call close on modal onCancel", async () => {
-    const mockedOnClose = jest.fn();
+    const mockedOnClose = vi.fn();
     const { result } = renderHook(
       () =>
         useModal({

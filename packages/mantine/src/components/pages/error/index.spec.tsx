@@ -1,6 +1,7 @@
 import React from "react";
 import { pageErrorTests } from "@refinedev/ui-tests";
 import { Route, Routes } from "react-router";
+import { vi } from "vitest";
 
 import { ErrorComponent } from ".";
 import {
@@ -39,7 +40,7 @@ describe("ErrorComponent", () => {
   });
 
   it("renders called function successfully if click the button", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { getByText } = render(<ErrorComponent />, {
       wrapper: TestWrapper({

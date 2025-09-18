@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper, mockAuthProvider } from "@test";
 
@@ -7,18 +8,21 @@ import type { LogParams } from "../../../contexts/auditLog/types";
 import type { ResourceProps } from "../../../contexts/resource/types";
 import * as hasPermission from "../../../definitions/helpers/hasPermission";
 
-const auditLogProviderCreateMock = jest.fn();
-const auditLogProviderUpdateMock = jest.fn();
-const auditLogProviderGetMock = jest.fn();
+const auditLogProviderCreateMock = vi.fn();
+const auditLogProviderUpdateMock = vi.fn();
+const auditLogProviderGetMock = vi.fn();
 
-const invalidateQueriesMock = jest.fn();
-jest.mock("@tanstack/react-query", () => ({
-  ...jest.requireActual("@tanstack/react-query"),
-  useQueryClient: () => ({
-    ...jest.requireActual("@tanstack/react-query").useQueryClient(),
-    invalidateQueries: invalidateQueriesMock,
-  }),
-}));
+const invalidateQueriesMock = vi.fn();
+vi.mock("@tanstack/react-query", async () => {
+  const actual = await vi.importActual("@tanstack/react-query");
+  return {
+    ...actual,
+    useQueryClient: () => ({
+      ...(actual as any).useQueryClient(),
+      invalidateQueries: invalidateQueriesMock,
+    }),
+  };
+});
 
 describe("useLog Hook", () => {
   beforeEach(() => {
@@ -140,7 +144,7 @@ describe("useLog Hook", () => {
     });
 
     it("should not invoke `useGetIdentity` if `auditLogProvider.create` is not defined", async () => {
-      const getUserIdentityMock = jest.fn();
+      const getUserIdentityMock = vi.fn();
       const { result } = renderHook(() => useLog(), {
         wrapper: TestWrapper({
           resources: [
@@ -178,7 +182,7 @@ describe("useLog Hook", () => {
     });
 
     it("should invoke `useGetIdentity` if `auditLogProvider.create` is defined", async () => {
-      const getUserIdentityMock = jest.fn();
+      const getUserIdentityMock = vi.fn();
       const { result } = renderHook(() => useLog(), {
         wrapper: TestWrapper({
           resources: [
@@ -263,7 +267,7 @@ describe("useLog Hook", () => {
 
   it.each(["meta.audit"])("should work with %s values", async (testCase) => {
     // jest spyon hasPermission
-    const hasPermissionSpy = jest.spyOn(hasPermission, "hasPermission");
+    const hasPermissionSpy = vi.spyOn(hasPermission, "hasPermission");
     hasPermissionSpy.mockReturnValue(false);
 
     let resourceAudit: ResourceProps["meta"] = {};

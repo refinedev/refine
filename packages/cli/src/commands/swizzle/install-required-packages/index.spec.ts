@@ -1,14 +1,15 @@
+import { vi } from "vitest";
 import inquirer from "inquirer";
 import { installPackages, getPreferedPM } from "@utils/package";
 
-jest.mock("inquirer");
-jest.mock("@utils/package");
+vi.mock("inquirer");
+vi.mock("@utils/package");
 
-const getPreferedPMMock = getPreferedPM as jest.MockedFunction<
+const getPreferedPMMock = getPreferedPM as vi.MockedFunction<
   typeof getPreferedPM
 >;
-const inquirerMock = inquirer as jest.Mocked<typeof inquirer>;
-const installPackagesMock = installPackages as jest.MockedFunction<
+const inquirerMock = inquirer as vi.Mocked<typeof inquirer>;
+const installPackagesMock = installPackages as vi.MockedFunction<
   typeof installPackages
 >;
 
@@ -16,8 +17,8 @@ import * as installRequiredPackages from "./index";
 
 describe("should prompt for package installation and install packages if confirmed", () => {
   afterEach(() => {
-    jest.resetAllMocks();
-    jest.restoreAllMocks();
+    vi.resetAllMocks();
+    vi.restoreAllMocks();
   });
 
   it("should install required packages", async () => {
@@ -27,15 +28,15 @@ describe("should prompt for package installation and install packages if confirm
 
     const requiredPackages = ["react", "react-dom"];
 
-    const installRequiredPackagesSpy = jest.spyOn(
+    const installRequiredPackagesSpy = vi.spyOn(
       installRequiredPackages,
       "installRequiredPackages",
     );
-    const promptForPackageInstallationSpy = jest.spyOn(
+    const promptForPackageInstallationSpy = vi.spyOn(
       installRequiredPackages,
       "promptForPackageInstallation",
     );
-    const displayManualInstallationCommandSpy = jest.spyOn(
+    const displayManualInstallationCommandSpy = vi.spyOn(
       installRequiredPackages,
       "displayManualInstallationCommand",
     );
@@ -67,19 +68,19 @@ describe("should prompt for package installation and install packages if confirm
 
     const requiredPackages = ["react", "react-dom"];
 
-    const installRequiredPackagesSpy = jest.spyOn(
+    const installRequiredPackagesSpy = vi.spyOn(
       installRequiredPackages,
       "installRequiredPackages",
     );
-    const promptForPackageInstallationSpy = jest.spyOn(
+    const promptForPackageInstallationSpy = vi.spyOn(
       installRequiredPackages,
       "promptForPackageInstallation",
     );
-    const displayManualInstallationCommandSpy = jest.spyOn(
+    const displayManualInstallationCommandSpy = vi.spyOn(
       installRequiredPackages,
       "displayManualInstallationCommand",
     );
-    const consoleSpy = jest.spyOn(console, "log").mockImplementation();
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation();
 
     await installRequiredPackages.installRequiredPackages(requiredPackages);
 

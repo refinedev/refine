@@ -4,8 +4,8 @@ import * as _transformErrorMessages from "../../src/utils/transformErrorMessages
 
 describe("transformHttpError", () => {
   it("should transform an error object", () => {
-    jest.mock("../../src/utils/transformErrorMessages", () => ({
-      transformErrorMessages: jest.fn().mockImplementationOnce(() => {
+    vi.mock("../../src/utils/transformErrorMessages", () => ({
+      transformErrorMessages: vi.fn().mockImplementationOnce(() => {
         return {
           email: ["Email is required"],
         };
@@ -44,8 +44,8 @@ describe("transformHttpError", () => {
   });
 
   it("should handle undefined values", () => {
-    jest.mock("../../src/utils/transformErrorMessages", () => ({
-      transformErrorMessages: jest.fn().mockImplementationOnce(() => {
+    vi.mock("../../src/utils/transformErrorMessages", () => ({
+      transformErrorMessages: vi.fn().mockImplementationOnce(() => {
         return {};
       }),
     }));

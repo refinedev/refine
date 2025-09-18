@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import type { RefineErrorPageProps } from "@refinedev/ui-types";
 
@@ -22,7 +23,7 @@ export const pageErrorTests = (
     });
 
     it("back home button should work with router provider", async () => {
-      const goMock = jest.fn();
+      const goMock = vi.fn();
 
       const { getByText } = render(<ErrorPage />, {
         wrapper: TestWrapper({

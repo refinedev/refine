@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 import * as checkRouterPropMisuse from "@definitions/helpers/check-router-prop-misuse";
@@ -7,12 +8,12 @@ import { useRouterMisuseWarning } from "./";
 
 describe("useRouterMisuseWarning Hook", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should return routerProvider parse function result", () => {
-    jest.spyOn(console, "warn").mockImplementation(jest.fn());
-    const checkRouterPropMisuseMock = jest.spyOn(
+    vi.spyOn(console, "warn").mockImplementation(vi.fn());
+    const checkRouterPropMisuseMock = vi.spyOn(
       checkRouterPropMisuse,
       "checkRouterPropMisuse",
     );

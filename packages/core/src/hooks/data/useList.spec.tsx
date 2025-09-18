@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
@@ -36,10 +37,10 @@ describe("useList Hook", () => {
     expect(listResult.total).toEqual(2);
   });
 
-  fit.each(["server", undefined] as const)(
+  it.each(["server", undefined] as const)(
     "should include pagination in queryKey when mode is %s",
     async (mode) => {
-      const getListMock = jest.fn().mockResolvedValue({
+      const getListMock = vi.fn().mockResolvedValue({
         data: [],
         total: 0,
       });
@@ -94,7 +95,7 @@ describe("useList Hook", () => {
   it.each(["client", "off"] as const)(
     "should not include pagination in queryKey",
     async (mode) => {
-      const getListMock = jest.fn();
+      const getListMock = vi.fn();
 
       renderHook(
         () =>
@@ -247,7 +248,7 @@ describe("useList Hook", () => {
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const getListMock = jest.fn();
+    const getListMock = vi.fn();
 
     renderHook(() => useList({ resource: "posts", meta: { foo: "bar" } }), {
       wrapper: TestWrapper({
@@ -282,7 +283,7 @@ describe("useList Hook", () => {
     it.each(["default", "categories"])(
       "useSubscription [dataProviderName: %s]",
       async (dataProviderName) => {
-        const onSubscribeMock = jest.fn();
+        const onSubscribeMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -295,7 +296,7 @@ describe("useList Hook", () => {
               dataProvider: MockJSONServer,
               resources: [{ name: "posts" }],
               liveProvider: {
-                unsubscribe: jest.fn(),
+                unsubscribe: vi.fn(),
                 subscribe: onSubscribeMock,
               },
               refineProvider: {
@@ -340,7 +341,7 @@ describe("useList Hook", () => {
     );
 
     it("liveMode = Off useSubscription", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -352,7 +353,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -371,7 +372,7 @@ describe("useList Hook", () => {
     });
 
     it("liveMode = Off and liveMode hook param auto", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       const { result } = renderHook(
         () => useList({ resource: "posts", liveMode: "auto" }),
@@ -380,7 +381,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -399,8 +400,8 @@ describe("useList Hook", () => {
     });
 
     it("unsubscribe call on unmount", async () => {
-      const onSubscribeMock = jest.fn(() => true);
-      const onUnsubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn(() => true);
+      const onUnsubscribeMock = vi.fn();
 
       const { result, unmount } = renderHook(
         () =>
@@ -435,7 +436,7 @@ describe("useList Hook", () => {
     });
 
     it("should not subscribe if `queryOptions.enabled` is false", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       renderHook(
         () =>
@@ -450,7 +451,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -467,8 +468,8 @@ describe("useList Hook", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on error", async () => {
-      const getListMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const getListMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -485,7 +486,7 @@ describe("useList Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -505,7 +506,7 @@ describe("useList Hook", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -522,7 +523,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -541,7 +542,7 @@ describe("useList Hook", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -554,7 +555,7 @@ describe("useList Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -569,8 +570,8 @@ describe("useList Hook", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const getListMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const getListMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -592,7 +593,7 @@ describe("useList Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -613,8 +614,8 @@ describe("useList Hook", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const getListMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const getListMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -645,8 +646,8 @@ describe("useList Hook", () => {
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
-      const getListMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const getListMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -682,12 +683,12 @@ describe("useList Hook", () => {
 
   describe("queryOptions", () => {
     it("should call successNotification on success", async () => {
-      const successNotificationMock = jest.fn().mockReturnValue({
+      const successNotificationMock = vi.fn().mockReturnValue({
         message: "Success",
         type: "success",
       });
-      const openNotificationMock = jest.fn();
-      const getListMock = jest.fn().mockResolvedValue({
+      const openNotificationMock = vi.fn();
+      const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
         total: 1,
       });
@@ -711,7 +712,7 @@ describe("useList Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -745,12 +746,12 @@ describe("useList Hook", () => {
     });
 
     it("should call errorNotification on error", async () => {
-      const errorNotificationMock = jest.fn().mockReturnValue({
+      const errorNotificationMock = vi.fn().mockReturnValue({
         message: "Custom Error",
         type: "error",
       });
-      const openNotificationMock = jest.fn();
-      const getListMock = jest.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
+      const getListMock = vi.fn().mockRejectedValue(new Error("Error"));
 
       const { result } = renderHook(
         () =>
@@ -771,7 +772,7 @@ describe("useList Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -802,7 +803,7 @@ describe("useList Hook", () => {
     });
 
     it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-      const getListMock = jest.fn().mockResolvedValue({
+      const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -847,11 +848,11 @@ describe("useList Hook", () => {
     });
 
     it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-      const getListMock = jest.fn().mockResolvedValue({
+      const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
-      const queryFnMock = jest.fn().mockResolvedValue({
+      const queryFnMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -886,7 +887,7 @@ describe("useList Hook", () => {
   });
 
   it("should support deprecated `config` property", async () => {
-    const getListMock = jest.fn().mockResolvedValue({
+    const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 
@@ -933,10 +934,10 @@ describe("useList Hook", () => {
   });
 
   it("should select correct dataProviderName", async () => {
-    const getListDefaultMock = jest.fn().mockResolvedValue({
+    const getListDefaultMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
-    const getListFooMock = jest.fn().mockResolvedValue({
+    const getListFooMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 
@@ -985,7 +986,7 @@ describe("useList Hook", () => {
   });
 
   it("should get correct `meta` of related resource", async () => {
-    const getListMock = jest.fn().mockResolvedValue({
+    const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 
@@ -1029,10 +1030,10 @@ describe("useList Hook", () => {
 
   describe("when passing `identifier` instead of `name`", () => {
     it("should select correct dataProviderName", async () => {
-      const getListDefaultMock = jest.fn().mockResolvedValue({
+      const getListDefaultMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
-      const getListFooMock = jest.fn().mockResolvedValue({
+      const getListFooMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -1082,7 +1083,7 @@ describe("useList Hook", () => {
     });
 
     it("should create queryKey with `identifier`", async () => {
-      const getListMock = jest.fn().mockResolvedValue({
+      const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -1129,7 +1130,7 @@ describe("useList Hook", () => {
     });
 
     it("should get correct `meta` of related resource", async () => {
-      const getListMock = jest.fn().mockResolvedValue({
+      const getListMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -1181,7 +1182,7 @@ describe("useList Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useList({
@@ -1228,7 +1229,7 @@ describe("useList Hook", () => {
   });
 
   it("should infer resource from the route", async () => {
-    const getListMock = jest.fn().mockResolvedValue({
+    const getListMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 

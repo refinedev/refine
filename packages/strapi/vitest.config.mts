@@ -1,0 +1,20 @@
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./test/vitest.setup.ts"],
+    globals: true,
+    testTimeout: 20000,
+    retry: process.env.CI ? 3 : 0,
+    silent: true,
+    logLevel: "error",
+  },
+  resolve: {
+    alias: {
+      // Force CommonJS build for http adapter to be available.
+      // via https://github.com/axios/axios/issues/5101#issuecomment-1276572468
+      "^axios$": "axios",
+    },
+  },
+});

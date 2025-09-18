@@ -1,10 +1,11 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { fireEvent, render } from "@test";
 
 import { UndoableNotification, type UndoableNotificationProps } from ".";
 
-const cancelMutation = jest.fn();
+const cancelMutation = vi.fn();
 
 const mockNotification: UndoableNotificationProps = {
   notificationKey: "notificationKey",

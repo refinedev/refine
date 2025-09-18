@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { renderHook } from "@testing-library/react";
 
@@ -152,7 +153,7 @@ describe("useBreadcrumb Hook", () => {
   });
 
   it("should work with i18nProvider", async () => {
-    jest.spyOn(console, "warn");
+    vi.spyOn(console, "warn");
 
     const { result } = renderHook(() => useBreadcrumb(), {
       wrapper: renderWrapper({

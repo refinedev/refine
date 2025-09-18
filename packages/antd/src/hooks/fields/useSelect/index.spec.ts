@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -196,7 +197,7 @@ describe("useSelect Hook", () => {
   });
 
   it("onSearch debounce with default value (300ms)", async () => {
-    const getListMock = jest.fn(() => Promise.resolve({ data: [], total: 0 }));
+    const getListMock = vi.fn(() => Promise.resolve({ data: [], total: 0 }));
     const { result } = renderHook(
       () =>
         useSelect({
@@ -233,7 +234,7 @@ describe("useSelect Hook", () => {
   });
 
   it("onSearch disabled debounce (0ms)", async () => {
-    const getListMock = jest.fn(() => {
+    const getListMock = vi.fn(() => {
       return Promise.resolve({ data: [], total: 0 });
     });
     const { result } = renderHook(

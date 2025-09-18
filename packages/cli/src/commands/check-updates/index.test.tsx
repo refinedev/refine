@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import type {
   NpmOutdatedResponse,
   RefinePackageInstalledVersionData,
@@ -72,9 +73,9 @@ test("Get outdated refine packages", async () => {
   ];
 
   for (const testCase of testCases) {
-    jest
-      .spyOn(checkUpdates, "getOutdatedPackageList")
-      .mockResolvedValue(testCase.input);
+    vi.spyOn(checkUpdates, "getOutdatedPackageList").mockResolvedValue(
+      testCase.input,
+    );
 
     const result = await getOutdatedRefinePackages();
     expect(result).toEqual(testCase.output);
@@ -83,7 +84,7 @@ test("Get outdated refine packages", async () => {
 
 describe("getWantedWithPreferredWildcard", () => {
   it("package not found in package.json", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({});
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({});
 
     const result = checkUpdates.getWantedWithPreferredWildcard(
       "@refinedev/core",
@@ -93,7 +94,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with carret", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "^1.0.0",
     });
 
@@ -105,7 +106,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with tilda", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "~1.0.0",
     });
 
@@ -117,7 +118,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("without caret and tilda", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "1.0.0",
     });
 
@@ -129,7 +130,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with `.x.x`", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "1.x.x",
     });
 
@@ -141,7 +142,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with `.x`", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "1.1.x",
     });
 
@@ -153,7 +154,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with `latest`", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "latest",
     });
 
@@ -165,7 +166,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with range", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": ">=1.0.0 <=1.1.9",
     });
 
@@ -177,7 +178,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("multiple sets", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "^2 <2.2 || > 2.3",
     });
 
@@ -189,7 +190,7 @@ describe("getWantedWithPreferredWildcard", () => {
   });
 
   it("with `*`", () => {
-    jest.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
+    vi.spyOn(packageUtils, "getDependenciesWithVersion").mockReturnValue({
       "@refinedev/core": "*",
     });
 
@@ -227,9 +228,9 @@ describe("getLatestMinorVersionOfPackage", () => {
       expected: "1.0.1",
     },
   ])("should return %p", async ({ versionList, currentVersion, expected }) => {
-    jest
-      .spyOn(packageUtils, "getAllVersionsOfPackage")
-      .mockResolvedValueOnce(versionList);
+    vi.spyOn(packageUtils, "getAllVersionsOfPackage").mockResolvedValueOnce(
+      versionList,
+    );
     const result = await checkUpdates.getLatestMinorVersionOfPackage(
       "@refinedev/core",
       currentVersion,

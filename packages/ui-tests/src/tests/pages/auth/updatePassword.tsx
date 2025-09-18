@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React, { type FC } from "react";
 
 import {
@@ -127,7 +128,7 @@ export const pageUpdatePasswordTests = (
     });
 
     it("should run updatePassword mutation when form is submitted", async () => {
-      const updatePasswordMock = jest.fn().mockResolvedValue({ success: true });
+      const updatePasswordMock = vi.fn().mockResolvedValue({ success: true });
       const { getAllByLabelText, getByLabelText, getAllByText } = render(
         <UpdatePasswordPage />,
         {
@@ -186,7 +187,7 @@ export const pageUpdatePasswordTests = (
     });
 
     it("should should accept 'mutationVariables'", async () => {
-      const updatePasswordMock = jest.fn().mockResolvedValue({ success: true });
+      const updatePasswordMock = vi.fn().mockResolvedValue({ success: true });
 
       const { getByRole, getByLabelText, getAllByLabelText } = render(
         <UpdatePasswordPage

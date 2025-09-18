@@ -1,10 +1,11 @@
 import { breadcrumbTests } from "@refinedev/ui-tests";
+import { vi } from "vitest";
 
 import { Breadcrumb } from "./";
 
 describe("Breadcrumb", () => {
   beforeAll(() => {
-    jest.spyOn(console, "warn").mockImplementation(jest.fn());
+    vi.spyOn(console, "warn").mockImplementation(vi.fn());
   });
 
   breadcrumbTests.bind(this)(Breadcrumb);

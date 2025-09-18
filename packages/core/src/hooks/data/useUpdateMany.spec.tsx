@@ -1,4 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import {
   MockJSONServer,
@@ -158,7 +159,7 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(() => useUpdateMany(), {
       wrapper: TestWrapper({
@@ -203,7 +204,7 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useUpdateMany({
@@ -253,15 +254,15 @@ describe("useUpdateMany Hook [with params]", () => {
     it.each(["default", "categories"])(
       "publish event on success [dataProviderName: %s]",
       async (dataProviderName) => {
-        const onPublishMock = jest.fn();
+        const onPublishMock = vi.fn();
 
         const { result } = renderHook(() => useUpdateMany(), {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
-              subscribe: jest.fn(),
+              unsubscribe: vi.fn(),
+              subscribe: vi.fn(),
               publish: onPublishMock,
             },
           }),
@@ -298,7 +299,7 @@ describe("useUpdateMany Hook [with params]", () => {
 
   describe("useLog", () => {
     it("publish log on success", async () => {
-      const updateManyMock = jest.fn();
+      const updateManyMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -314,8 +315,8 @@ describe("useUpdateMany Hook [with params]", () => {
           },
           auditLogProvider: {
             create: updateManyMock,
-            get: jest.fn(),
-            update: jest.fn(),
+            get: vi.fn(),
+            update: vi.fn(),
           },
         }),
       });
@@ -360,7 +361,7 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("should use `update` method if does not exist `updateMany` method in dataProvider", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(() => useUpdateMany(), {
       wrapper: TestWrapper({
@@ -406,14 +407,14 @@ describe("useUpdateMany Hook [with params]", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on success", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -438,8 +439,8 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should call `open` from the notification provider on error", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -451,7 +452,7 @@ describe("useUpdateMany Hook [with params]", () => {
           },
           notificationProvider: {
             open: notificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -476,14 +477,14 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -512,14 +513,14 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -540,8 +541,8 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -553,7 +554,7 @@ describe("useUpdateMany Hook [with params]", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -584,8 +585,8 @@ describe("useUpdateMany Hook [with params]", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -616,8 +617,8 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -652,8 +653,8 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("should select correct dataProviderName", async () => {
-    const updateManyDefaultMock = jest.fn();
-    const updateManyFooMock = jest.fn();
+    const updateManyDefaultMock = vi.fn();
+    const updateManyFooMock = vi.fn();
 
     const { result } = renderHook(() => useUpdateMany(), {
       wrapper: TestWrapper({
@@ -702,7 +703,7 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("should get correct `meta` of related resource", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(() => useUpdateMany(), {
       wrapper: TestWrapper({
@@ -746,8 +747,8 @@ describe("useUpdateMany Hook [with params]", () => {
 
   describe("when passing `identifier` instead of `name`", () => {
     it("should select correct dataProviderName", async () => {
-      const updateManyDefaultMock = jest.fn();
-      const updateManyFooMock = jest.fn();
+      const updateManyDefaultMock = vi.fn();
+      const updateManyFooMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -797,11 +798,9 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should invalidate query store with `identifier`", async () => {
-      const invalidateStore = jest.fn();
-      jest
-        .spyOn(UseInvalidate, "useInvalidate")
-        .mockReturnValue(invalidateStore);
-      const updateManyMock = jest.fn();
+      const invalidateStore = vi.fn();
+      vi.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
+      const updateManyMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -840,7 +839,7 @@ describe("useUpdateMany Hook [with params]", () => {
     });
 
     it("should get correct `meta` of related resource", async () => {
-      const updateManyMock = jest.fn();
+      const updateManyMock = vi.fn();
 
       const { result } = renderHook(() => useUpdateMany(), {
         wrapper: TestWrapper({
@@ -1085,8 +1084,8 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
-    const updateManyMock = jest.fn().mockResolvedValue({ data: {} });
-    const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+    const updateManyMock = vi.fn().mockResolvedValue({ data: {} });
+    const mutationFnMock = vi.fn().mockResolvedValue({ data: {} });
 
     const { result } = renderHook(
       () =>
@@ -1231,8 +1230,8 @@ describe("useUpdateMany Hook [with params]", () => {
   });
 
   it("should override default invalidate", async () => {
-    const invalidateStore = jest.fn();
-    jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
+    const invalidateStore = vi.fn();
+    vi.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
 
     const { result } = renderHook(() => useUpdateMany(), {
       wrapper: TestWrapper({
@@ -1264,7 +1263,7 @@ describe("useUpdateMany Hook [with params]", () => {
 
 describe("useUpdateMany Hook [with props]", () => {
   it("with rest json server", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -1425,7 +1424,7 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -1475,7 +1474,7 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useUpdateMany({
@@ -1526,7 +1525,7 @@ describe("useUpdateMany Hook [with props]", () => {
     it.each(["default", "categories"])(
       "publish event on success [dataProviderName: %s]",
       async (dataProviderName) => {
-        const onPublishMock = jest.fn();
+        const onPublishMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -1542,8 +1541,8 @@ describe("useUpdateMany Hook [with props]", () => {
               dataProvider: MockJSONServer,
               resources: [{ name: "posts" }],
               liveProvider: {
-                unsubscribe: jest.fn(),
-                subscribe: jest.fn(),
+                unsubscribe: vi.fn(),
+                subscribe: vi.fn(),
                 publish: onPublishMock,
               },
             }),
@@ -1576,7 +1575,7 @@ describe("useUpdateMany Hook [with props]", () => {
 
   describe("useLog", () => {
     it("publish log on success", async () => {
-      const updateManyMock = jest.fn();
+      const updateManyMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1600,8 +1599,8 @@ describe("useUpdateMany Hook [with props]", () => {
             },
             auditLogProvider: {
               create: updateManyMock,
-              get: jest.fn(),
-              update: jest.fn(),
+              get: vi.fn(),
+              update: vi.fn(),
             },
           }),
         },
@@ -1643,7 +1642,7 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("should use `update` method if does not exist `updateMany` method in dataProvider", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -1694,7 +1693,7 @@ describe("useUpdateMany Hook [with props]", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on success", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1707,7 +1706,7 @@ describe("useUpdateMany Hook [with props]", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -1731,8 +1730,8 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should call `open` from the notification provider on error", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1750,7 +1749,7 @@ describe("useUpdateMany Hook [with props]", () => {
             },
             notificationProvider: {
               open: notificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -1774,7 +1773,7 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1792,7 +1791,7 @@ describe("useUpdateMany Hook [with props]", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -1815,7 +1814,7 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1829,7 +1828,7 @@ describe("useUpdateMany Hook [with props]", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -1848,8 +1847,8 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1872,7 +1871,7 @@ describe("useUpdateMany Hook [with props]", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -1897,8 +1896,8 @@ describe("useUpdateMany Hook [with props]", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () => useUpdateMany({ resource: "posts", ids: ["1", "2"] }),
@@ -1930,8 +1929,8 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
-      const updateManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const updateManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -1971,8 +1970,8 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("should select correct dataProviderName", async () => {
-    const updateManyDefaultMock = jest.fn();
-    const updateManyFooMock = jest.fn();
+    const updateManyDefaultMock = vi.fn();
+    const updateManyFooMock = vi.fn();
 
     const { result } = renderHook(
       () => useUpdateMany({ resource: "posts", ids: ["1", "2"] }),
@@ -2022,7 +2021,7 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("should get correct `meta` of related resource", async () => {
-    const updateManyMock = jest.fn();
+    const updateManyMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -2071,8 +2070,8 @@ describe("useUpdateMany Hook [with props]", () => {
 
   describe("when passing `identifier` instead of `name`", () => {
     it("should select correct dataProviderName", async () => {
-      const updateManyDefaultMock = jest.fn();
-      const updateManyFooMock = jest.fn();
+      const updateManyDefaultMock = vi.fn();
+      const updateManyFooMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -2127,11 +2126,9 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should invalidate query store with `identifier`", async () => {
-      const invalidateStore = jest.fn();
-      jest
-        .spyOn(UseInvalidate, "useInvalidate")
-        .mockReturnValue(invalidateStore);
-      const updateManyMock = jest.fn();
+      const invalidateStore = vi.fn();
+      vi.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
+      const updateManyMock = vi.fn();
 
       const { result } = renderHook(
         () => useUpdateMany({ resource: "featured-posts", ids: ["1", "2"] }),
@@ -2171,7 +2168,7 @@ describe("useUpdateMany Hook [with props]", () => {
     });
 
     it("should get correct `meta` of related resource", async () => {
-      const updateManyMock = jest.fn();
+      const updateManyMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -2436,8 +2433,8 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
-    const updateManyMock = jest.fn().mockResolvedValue({ data: {} });
-    const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+    const updateManyMock = vi.fn().mockResolvedValue({ data: {} });
+    const mutationFnMock = vi.fn().mockResolvedValue({ data: {} });
 
     const { result } = renderHook(
       () =>
@@ -2594,8 +2591,8 @@ describe("useUpdateMany Hook [with props]", () => {
   });
 
   it("should override default invalidate", async () => {
-    const invalidateStore = jest.fn();
-    jest.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
+    const invalidateStore = vi.fn();
+    vi.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(invalidateStore);
 
     const { result } = renderHook(
       () =>
@@ -2662,14 +2659,14 @@ describe("useUpdateMany Hook should work with params and props", () => {
       },
     };
 
-    const updateMock = jest.fn();
-    const openNotificationMock = jest.fn();
+    const updateMock = vi.fn();
+    const openNotificationMock = vi.fn();
 
     const { result } = renderHook(() => useUpdateMany(options.props), {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
-          close: jest.fn(),
+          close: vi.fn(),
         },
         dataProvider: {
           default: MockJSONServer.default,
@@ -2701,10 +2698,10 @@ describe("useUpdateMany Hook should work with params and props", () => {
   });
 
   it("should life-cycle methods works", async () => {
-    const onSuccessProp = jest.fn();
-    const onSettledProp = jest.fn();
-    const onSuccessFn = jest.fn();
-    const onSettledFn = jest.fn();
+    const onSuccessProp = vi.fn();
+    const onSettledProp = vi.fn();
+    const onSuccessFn = vi.fn();
+    const onSettledFn = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -2743,8 +2740,8 @@ describe("useUpdateMany Hook should work with params and props", () => {
   });
 
   it("should onError methods works", async () => {
-    const onErrorProp = jest.fn();
-    const onErrorFn = jest.fn();
+    const onErrorProp = vi.fn();
+    const onErrorFn = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -2788,7 +2785,7 @@ describe("useUpdateMany Hook should work with params and props", () => {
   });
 
   it("should not override audit meta.ids with route params", async () => {
-    const auditCreateMock = jest.fn();
+    const auditCreateMock = vi.fn();
 
     const { result } = renderHook(() => useUpdateMany(), {
       wrapper: TestWrapper({
@@ -2796,8 +2793,8 @@ describe("useUpdateMany Hook should work with params and props", () => {
         resources: [{ name: "posts" }],
         auditLogProvider: {
           create: auditCreateMock,
-          get: jest.fn(),
-          update: jest.fn(),
+          get: vi.fn(),
+          update: vi.fn(),
         },
         routerProvider: mockRouterProvider({
           params: { id: "6" },

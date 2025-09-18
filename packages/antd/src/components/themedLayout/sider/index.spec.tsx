@@ -1,15 +1,16 @@
 import React from "react";
 import { render } from "@testing-library/react";
 import type * as Grid from "antd/lib/grid";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test/index";
 import { ThemedSider } from "./index";
 import { layoutSiderTests } from "@refinedev/ui-tests";
 import { ConfigProvider } from "antd";
 
-jest.mock("antd/lib/grid", () => {
+vi.mock("antd/lib/grid", () => {
   // Require the original module to not be mocked...
-  const originalModule = jest.requireActual<typeof Grid>("antd/lib/grid");
+  const originalModule = vi.importActual<typeof Grid>("antd/lib/grid");
 
   return {
     __esModule: true,
@@ -32,13 +33,13 @@ jest.mock("antd/lib/grid", () => {
 
 describe("Sider", () => {
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   layoutSiderTests.bind(this)(ThemedSider);
 
   it("if fixed is true, should render fixed sider with correct styles", () => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
 
     const { container } = render(<ThemedSider fixed />, {
       wrapper: TestWrapper({}),

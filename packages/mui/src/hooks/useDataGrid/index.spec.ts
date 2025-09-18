@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -164,7 +165,7 @@ describe("useDataGrid Hook", () => {
   );
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useDataGrid({
@@ -268,7 +269,7 @@ describe("useDataGrid Hook", () => {
 
     const mockDataProvider = {
       ...MockJSONServer,
-      update: jest.fn().mockImplementation((params) => {
+      update: vi.fn().mockImplementation((params) => {
         expect(params).toEqual(
           expect.objectContaining({
             meta: mockMeta,

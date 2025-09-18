@@ -1,11 +1,12 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useNavigation } from ".";
 
-const goMock = jest.fn();
-const backMock = jest.fn();
+const goMock = vi.fn();
+const backMock = vi.fn();
 
 const routerProvider = mockRouterProvider({
   fns: {

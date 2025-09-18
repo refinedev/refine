@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { ENV } from "@utils/env";
 import * as notifier from "./index";
 
@@ -43,11 +44,11 @@ test("Should update packages cache", async () => {
   ];
 
   for (const testCase of testCases) {
-    jest
-      .spyOn(notifier, "isPackagesCacheExpired")
-      .mockReturnValueOnce(testCase.isExpired);
+    vi.spyOn(notifier, "isPackagesCacheExpired").mockReturnValueOnce(
+      testCase.isExpired,
+    );
 
-    jest.spyOn(notifier, "validateKey").mockResolvedValue(testCase.isKeyValid);
+    vi.spyOn(notifier, "validateKey").mockResolvedValue(testCase.isKeyValid);
 
     const shouldUpdate = await shouldUpdatePackagesCache();
     expect(shouldUpdate).toBe(testCase.output);
@@ -78,19 +79,19 @@ test("Package cache is expired", () => {
 
   testCases.forEach((testCase) => {
     ENV.UPDATE_NOTIFIER_CACHE_TTL = testCase.cacheTTL;
-    Date.now = jest.fn(() => testCase.now);
-    store.get = jest.fn(() => testCase.lastUpdated);
+    Date.now = vi.fn(() => testCase.now);
+    store.get = vi.fn(() => testCase.lastUpdated);
 
     expect(isPackagesCacheExpired()).toBe(testCase.output);
   });
 
-  store.get = jest.fn(() => undefined);
+  store.get = vi.fn(() => undefined);
   expect(isPackagesCacheExpired()).toBe(true);
 
-  store.get = jest.fn(() => null);
+  store.get = vi.fn(() => null);
   expect(isPackagesCacheExpired()).toBe(true);
 
-  store.get = jest.fn(() => 0);
+  store.get = vi.fn(() => 0);
   expect(isPackagesCacheExpired()).toBe(true);
 });
 

@@ -1,13 +1,14 @@
 import { renderHook } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test";
 
 import { useSubscription } from "./";
 
-const onLiveEventMock = jest.fn();
+const onLiveEventMock = vi.fn();
 describe("useSubscribe Hook", () => {
   it("useSubscribe enabled and all types", async () => {
-    const onSubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -26,8 +27,8 @@ describe("useSubscribe Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
         }),
       },
@@ -46,7 +47,7 @@ describe("useSubscribe Hook", () => {
   });
 
   it("useSubscribe enabled false", async () => {
-    const onSubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn();
 
     renderHook(
       () =>
@@ -59,8 +60,8 @@ describe("useSubscribe Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
         }),
       },
@@ -70,7 +71,7 @@ describe("useSubscribe Hook", () => {
   });
 
   it("useSubscribe spesific type", async () => {
-    const onSubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -90,8 +91,8 @@ describe("useSubscribe Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
         }),
       },
@@ -110,8 +111,8 @@ describe("useSubscribe Hook", () => {
   });
 
   it("useSubscribe calls unsubscribe on unmount", async () => {
-    const onSubscribeMock = jest.fn(() => true);
-    const onUnsubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn(() => true);
+    const onUnsubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -128,7 +129,7 @@ describe("useSubscribe Hook", () => {
           liveProvider: {
             subscribe: onSubscribeMock,
             unsubscribe: onUnsubscribeMock,
-            publish: () => jest.fn(),
+            publish: () => vi.fn(),
           },
         }),
       },
