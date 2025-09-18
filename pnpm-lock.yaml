@@ -2918,9 +2918,6 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.0
         version: link:../../packages/react-router
-      '@refinedev/rest':
-        specifier: ^2.0.0
-        version: link:../../packages/rest
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
         version: link:../../packages/strapi-v4
@@ -2933,9 +2930,6 @@ importers:
       axios:
         specifier: ^1.11.0
         version: 1.11.0
-      ky:
-        specifier: ^1.10.0
-        version: 1.10.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -6609,18 +6603,12 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.0
         version: link:../../packages/react-router
-      '@refinedev/rest':
-        specifier: ^2.0.0
-        version: link:../../packages/rest
       '@tanstack/react-query':
         specifier: ^5.81.5
         version: 5.81.5(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
-      ky:
-        specifier: ^1.10.0
-        version: 1.10.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -13721,46 +13709,6 @@ importers:
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
-      tsup:
-        specifier: ^6.7.0
-        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)
-      typescript:
-        specifier: ^5.8.3
-        version: 5.8.3
-      vitest:
-        specifier: ^2.1.8
-        version: 2.1.9(@types/node@20.5.1)(@vitest/ui@2.1.9)(happy-dom@15.11.7)(jsdom@26.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))(lightningcss@1.30.1)(msw@2.11.2(@types/node@20.5.1)(typescript@5.8.3))(sass@1.75.0)(terser@5.30.4)
-
-  packages/rest:
-    dependencies:
-      '@nestjsx/crud-request':
-        specifier: ^5.0.0-alpha.3
-        version: 5.0.0-alpha.3
-      '@refinedev/core':
-        specifier: ^5.0.0
-        version: link:../core
-      deepmerge:
-        specifier: ^4.3.1
-        version: 4.3.1
-      ky:
-        specifier: ^1.10.0
-        version: 1.10.0
-      qs:
-        specifier: ^6.10.1
-        version: 6.13.0
-    devDependencies:
-      '@esbuild-plugins/node-resolve':
-        specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
-      '@types/node':
-        specifier: ^20
-        version: 20.5.1
-      '@vitest/ui':
-        specifier: ^2.1.8
-        version: 2.1.9(vitest@2.1.9)
-      nock:
-        specifier: ^14.0.5
-        version: 14.0.10
       tsup:
         specifier: ^6.7.0
         version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)
@@ -26305,10 +26253,6 @@ packages:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
 
-  ky@1.10.0:
-    resolution: {integrity: sha512-YRPCzHEWZffbfvmRrfwa+5nwBHwZuYiTrfDX0wuhGBPV0pA/zCqcOq93MDssON/baIkpYbvehIX5aLpMxrRhaA==}
-    engines: {node: '>=18'}
-
   language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
 
@@ -27576,10 +27520,6 @@ packages:
   nock@13.5.6:
     resolution: {integrity: sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==}
     engines: {node: '>= 10.13'}
-
-  nock@14.0.10:
-    resolution: {integrity: sha512-Q7HjkpyPeLa0ZVZC5qpxBt5EyLczFJ91MEewQiIi9taWuA0KB/MDJlUWtON+7dGouVdADTQsf9RA7TZk6D8VMw==}
-    engines: {node: '>=18.20.0 <20 || >=20.12.1'}
 
   nock@14.0.5:
     resolution: {integrity: sha512-R49fALR9caB6vxuSWUIaK2eBYeTloZQUFBZ4rHO+TbhMGQHtwnhdqKLYki+o+8qMgLvoBYWrp/2KzGPhxL4S6w==}
@@ -50533,8 +50473,6 @@ snapshots:
 
   klona@2.0.6: {}
 
-  ky@1.10.0: {}
-
   language-subtag-registry@0.3.22: {}
 
   language-tags@1.0.9:
@@ -52416,12 +52354,6 @@ snapshots:
       propagate: 2.0.1
     transitivePeerDependencies:
       - supports-color
-
-  nock@14.0.10:
-    dependencies:
-      '@mswjs/interceptors': 0.39.6
-      json-stringify-safe: 5.0.1
-      propagate: 2.0.1
 
   nock@14.0.5:
     dependencies:
