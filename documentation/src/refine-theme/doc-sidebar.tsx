@@ -279,6 +279,42 @@ const EnterpriseEditionItem = ({
   );
 };
 
+const ShadcnItem = ({
+  item,
+  onClick,
+}: {
+  item: SidebarLinkItem;
+  onClick?: () => void;
+}) => {
+  return (
+    <Link
+      href={item.href}
+      isNavLink
+      onClick={onClick}
+      className={clsx(
+        "flex-shrink-0",
+        "relative",
+        "min-h-[28px]",
+        "rounded-[18px]",
+        "bg-black dark:bg-black",
+        "text-white",
+        "dark:text-white",
+        "pl-6 pr-3 py-2",
+        "text-sm font-normal",
+        "flex items-start justify-start",
+        "group",
+        "transition-colors duration-200 ease-in-out",
+        "no-underline",
+        item.className,
+      )}
+    >
+      <div className={"flex items-center flex-1"}>
+        <span className="z-[1] flex-shrink-0">{item.label}</span>
+      </div>
+    </Link>
+  );
+};
+
 const ExternalIcon = (props: React.SVGProps<SVGSVGElement>) => {
   return (
     <svg
@@ -318,6 +354,7 @@ const SidebarLink = ({
   const isActive = isActiveSidebarItem(item, path);
   const isSame = isSamePath(item.href, path);
   const isEnterprise = item.className?.includes("enterprise-badge") || false;
+  const isShadcn = item.className?.includes("shadcn-badge") || false;
 
   React.useEffect(() => {
     if (isActive && !once.current) {
@@ -334,6 +371,10 @@ const SidebarLink = ({
 
   if (isEnterprise) {
     return <EnterpriseEditionItem item={item} onClick={onClick} />;
+  }
+
+  if (isShadcn) {
+    return <ShadcnItem item={item} onClick={onClick} />;
   }
 
   const isComponentLabel = componentRegexp.test(item.label);
