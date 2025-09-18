@@ -65,4 +65,4 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
       - name: Check TSDoc Links
-        run: npx tsdoc-link-check --patterns packages/**
+        run: npx tsdoc-link-check --patterns packages/**/*.ts packages/**/*.tsx
