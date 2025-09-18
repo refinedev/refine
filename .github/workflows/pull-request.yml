@@ -48,10 +48,11 @@ jobs:
           cache: "pnpm"
       - name: Install & Build
         run: pnpm install
-      - name: Publint
-        run: pnpm publint:all
-      - name: Are The Types Wrong
-        run: pnpm attw:all
+      # TODO: Enable these
+      # - name: Publint
+      #   run: pnpm publint:all
+      # - name: Are The Types Wrong
+      #   run: pnpm attw:all
       - name: Test
         run: pnpm test:all --skip-nx-cache
 

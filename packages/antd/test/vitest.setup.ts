@@ -3,23 +3,6 @@ import "@testing-library/react";
 import { configure } from "@testing-library/dom";
 import { vi } from "vitest";
 
-// Mock ReactDOM.render for React 19 compatibility with antd/rc-util
-vi.mock("react-dom", async () => {
-  const originalModule = await vi.importActual("react-dom");
-  return {
-    ...originalModule,
-    render: vi.fn((element: any, container: any) => {
-      // Use createRoot for React 19 compatibility
-      if (originalModule.createRoot && container) {
-        const root = originalModule.createRoot(container);
-        root.render(element);
-        return root;
-      }
-      return originalModule.render?.(element, container);
-    }),
-  };
-});
-
 // Mock CSS imports
 vi.mock("*.css", () => ({}));
 
