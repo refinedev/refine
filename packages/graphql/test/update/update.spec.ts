@@ -58,7 +58,7 @@ describe("update", () => {
 
   describe("without operation", () => {
     it("throws error", async () => {
-      expect(
+      await expect(
         dataProvider(client).update({
           resource: "blogPosts",
           id: 113,
