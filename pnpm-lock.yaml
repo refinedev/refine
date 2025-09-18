@@ -11087,7 +11087,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.17.19)
+        version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
         specifier: ^5.0.0
         version: link:../core
@@ -11130,7 +11130,7 @@ importers:
     devDependencies:
       '@esbuild-plugins/node-resolve':
         specifier: ^0.1.4
-        version: 0.1.4(esbuild@0.21.5)
+        version: 0.1.4(esbuild@0.17.19)
       '@refinedev/core':
         specifier: 5.0.1
         version: link:../core
@@ -13093,7 +13093,7 @@ importers:
         specifier: ^19.1.0
         version: 19.1.6(@types/react@19.1.8)
       '@vitest/ui':
-        specifier: ^2.0.0
+        specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
       esbuild-copy-static-files:
         specifier: ^0.1.0
