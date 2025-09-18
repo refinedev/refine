@@ -1,6 +1,7 @@
 import { vi } from "vitest";
 import inquirer from "inquirer";
 import { installPackages, getPreferedPM } from "@utils/package";
+import * as utils from "./utils";
 
 vi.mock("inquirer");
 vi.mock("@utils/package");
@@ -33,11 +34,11 @@ describe("should prompt for package installation and install packages if confirm
       "installRequiredPackages",
     );
     const promptForPackageInstallationSpy = vi.spyOn(
-      installRequiredPackages,
+      utils,
       "promptForPackageInstallation",
     );
     const displayManualInstallationCommandSpy = vi.spyOn(
-      installRequiredPackages,
+      utils,
       "displayManualInstallationCommand",
     );
 
@@ -73,14 +74,14 @@ describe("should prompt for package installation and install packages if confirm
       "installRequiredPackages",
     );
     const promptForPackageInstallationSpy = vi.spyOn(
-      installRequiredPackages,
+      utils,
       "promptForPackageInstallation",
     );
     const displayManualInstallationCommandSpy = vi.spyOn(
-      installRequiredPackages,
+      utils,
       "displayManualInstallationCommand",
     );
-    const consoleSpy = vi.spyOn(console, "log").mockImplementation();
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => {});
 
     await installRequiredPackages.installRequiredPackages(requiredPackages);
 
