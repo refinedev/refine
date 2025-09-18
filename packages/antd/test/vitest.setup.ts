@@ -20,19 +20,26 @@ configure({
 Object.defineProperty(window, "matchMedia", {
   writable: true,
   value: vi.fn().mockImplementation((query) => {
+    const matches = query.includes("min-width: 992px"); // lg breakpoint
     const mediaQuery = {
-      matches: false,
+      matches,
       media: query,
       onchange: null,
       addListener: vi.fn((listener) => {
         if (typeof listener === "function") {
-          listener({ matches: false, media: query });
+          listener({
+            matches,
+            media: query,
+          });
         }
       }),
       removeListener: vi.fn(),
       addEventListener: vi.fn((event, listener) => {
         if (event === "change" && typeof listener === "function") {
-          listener({ matches: false, media: query });
+          listener({
+            matches,
+            media: query,
+          });
         }
       }),
       removeEventListener: vi.fn(),
