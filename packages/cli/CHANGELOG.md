@@ -1,5 +1,11 @@
 # @refinedev/cli
 
+## 2.16.49
+
+### Patch Changes
+
+- [#7008](https://github.com/refinedev/refine/pull/7008) [`b07be7596fd72b1f83421a14098f0b44b6cdc8de`](https://github.com/refinedev/refine/commit/b07be7596fd72b1f83421a14098f0b44b6cdc8de) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor: small refactors on create-resource, check-updates, swizzle, commands. During Vitest migration, some refactors were needed to properly mock some functions.
+
 ## 2.16.48
 
 ### Patch Changes

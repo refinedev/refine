@@ -16,7 +16,7 @@
     "@mantine/form": "^5.10.4",
     "@mantine/hooks": "^5.10.4",
     "@mantine/notifications": "^5.10.4",
-    "@refinedev/cli": "^2.16.48",
+    "@refinedev/cli": "^2.16.49",
     "@refinedev/core": "^5.0.1",
     "@refinedev/mantine": "^3.0.0",
     "@refinedev/react-router": "^2.0.0",
