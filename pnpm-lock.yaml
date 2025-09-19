@@ -2925,7 +2925,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/react-router
       '@refinedev/rest':
-        specifier: ^1.0.0
+        specifier: ^2.0.0
         version: link:../../packages/rest
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
@@ -6616,7 +6616,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/react-router
       '@refinedev/rest':
-        specifier: ^1.0.0
+        specifier: ^2.0.0
         version: link:../../packages/rest
       '@tanstack/react-query':
         specifier: ^5.81.5
