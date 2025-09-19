@@ -1,5 +1,5 @@
 {
-  "include": ["src", "test/jest.setup.ts"],
+  "include": ["src", "test/vitest.setup.ts"],
   "extends": "../../tsconfig.build.json",
   "compilerOptions": {
     "rootDir": ".",

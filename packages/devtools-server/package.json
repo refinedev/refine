@@ -42,7 +42,7 @@
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
     "start:server": "node dist/cli.cjs",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "vitest run --passWithNoTests",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -77,7 +77,6 @@
     "@types/dedent": "^0.7.0",
     "@types/express": "^4.17.21",
     "@types/fs-extra": "^9.0.13",
-    "@types/jest": "^29.2.4",
     "@types/jscodeshift": "^17.3.0",
     "@types/lodash": "^4.14.171",
     "@types/marked": "^5.0.1",
@@ -86,15 +85,15 @@
     "@types/sanitize-html": "^2.9.0",
     "@types/ws": "^8.5.5",
     "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^2.1.8",
     "esbuild-copy-static-files": "^0.1.0",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "jsdom": "^25.0.1",
     "react-router": "^7.0.2",
-    "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",
-    "vite": "^5.4.15"
+    "vite": "^5.4.15",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "@types/react": "^18.0.0 || ^19.0.0",

@@ -2,6 +2,7 @@ import React from "react";
 import type { OpenNotificationParams } from "@refinedev/core";
 import { renderHook, waitFor } from "@testing-library/react";
 import { notification, App } from "antd";
+import { vi } from "vitest";
 import { UndoableNotification } from "@components/undoableNotification";
 import { act } from "@test";
 import { useNotificationProvider } from ".";
@@ -12,16 +13,16 @@ const mockNotification: OpenNotificationParams = {
   type: "success",
 };
 
-const cancelMutation = jest.fn();
+const cancelMutation = vi.fn();
 
 describe("Antd useNotificationProvider", () => {
   describe("using without Ant design's App component", () => {
     afterEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     });
 
-    const notificationOpenSpy = jest.spyOn(notification, "open");
-    const notificationCloseSpy = jest.spyOn(notification, "destroy");
+    const notificationOpenSpy = vi.spyOn(notification, "open");
+    const notificationCloseSpy = vi.spyOn(notification, "destroy");
 
     it("should render notification type succes notification", async () => {
       const { result } = renderHook(() => useNotificationProvider(), {});
@@ -107,11 +108,11 @@ describe("Antd useNotificationProvider", () => {
   });
 
   describe("using with Ant design's App component", () => {
-    const openFn = jest.fn();
-    const destroyFn = jest.fn();
+    const openFn = vi.fn();
+    const destroyFn = vi.fn();
 
     beforeAll(() => {
-      jest.spyOn(App, "useApp").mockReturnValue({
+      vi.spyOn(App, "useApp").mockReturnValue({
         notification: {
           open: openFn,
           destroy: destroyFn,
@@ -120,7 +121,7 @@ describe("Antd useNotificationProvider", () => {
     });
 
     afterEach(() => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     });
 
     it("should render notification type succes notification", async () => {

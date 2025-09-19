@@ -1,11 +1,16 @@
+import { vi } from "vitest";
+
 // Mock the useQueryClient hook before imports
-const mockInvalidateQueries = jest.fn();
-jest.mock("@tanstack/react-query", () => ({
-  ...jest.requireActual("@tanstack/react-query"),
-  useQueryClient: () => ({
-    invalidateQueries: mockInvalidateQueries,
-  }),
-}));
+const mockInvalidateQueries = vi.fn();
+vi.mock("@tanstack/react-query", async () => {
+  const actual = await vi.importActual("@tanstack/react-query");
+  return {
+    ...actual,
+    useQueryClient: () => ({
+      invalidateQueries: mockInvalidateQueries,
+    }),
+  };
+});
 
 import { renderHook } from "@testing-library/react";
 
@@ -16,7 +21,7 @@ import type { IQueryKeys } from "../../contexts/data/types";
 
 describe("useInvalidate", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("with empty invalidations array", async () => {

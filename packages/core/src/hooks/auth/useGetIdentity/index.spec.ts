@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import { TestWrapper, queryClient } from "@test";
@@ -30,7 +31,7 @@ describe("useGetIdentity Hook", () => {
   });
 
   it("return error useGetIdentity", async () => {
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (message?.message === "Not Authenticated") return;
       console.warn(message);
     });
@@ -69,7 +70,7 @@ describe("useGetIdentity Hook", () => {
   });
 
   it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-    const getIdentityMock = jest.fn().mockResolvedValue({
+    const getIdentityMock = vi.fn().mockResolvedValue({
       data: { id: 1, title: "foo" },
     });
 
@@ -102,10 +103,10 @@ describe("useGetIdentity Hook", () => {
   });
 
   it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-    const getIdentityMock = jest.fn().mockResolvedValue({
+    const getIdentityMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
-    const queryFnMock = jest.fn().mockResolvedValue({
+    const queryFnMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 

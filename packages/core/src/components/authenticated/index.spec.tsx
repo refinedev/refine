@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { act, waitFor } from "@testing-library/react";
 
@@ -20,7 +21,7 @@ const mockAuthProvider: AuthProvider = {
 
 describe("Authenticated", () => {
   beforeEach(() => {
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (typeof message !== "undefined") console.warn(message);
     });
   });
@@ -65,7 +66,7 @@ describe("Authenticated", () => {
   });
 
   it("not authenticated fallback component test", async () => {
-    mockAuthProvider.check = jest.fn().mockImplementation(() =>
+    mockAuthProvider.check = vi.fn().mockImplementation(() =>
       Promise.resolve({
         authenticated: false,
         error: new Error("Not authenticated"),
@@ -113,7 +114,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/my-path` if not authenticated (authProvider's check)", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { queryByText } = render(
       <Authenticated key="should-redirect-custom-provider-check">
@@ -153,7 +154,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/my-path` if not authenticated (`redirectOnFail` prop)", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { queryByText } = render(
       <Authenticated
@@ -196,7 +197,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/my-path` if not authenticated (navigate in fallback)", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const NavigateComp = ({ to }: { to: string }) => {
       React.useEffect(() => {
@@ -247,7 +248,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/my-path?to=/dashboard?currentPage=1&pageSize=2` if not authenticated (`redirectOnFail` with append query)", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const currentQuery = {
       currentPage: 1,
@@ -316,7 +317,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/my-path?to=/dashboard?currentPage=1&pageSize=2` if not authenticated (authProvider's check with append query)", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const currentQuery = {
       currentPage: 1,
@@ -384,7 +385,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/login` without `to` query if at root", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { queryByText } = render(
       <Authenticated key="should-redirect-custom-provider-check">
@@ -428,7 +429,7 @@ describe("Authenticated", () => {
   });
 
   it("should redirect to `/login?to=/dashboard` if at /dashboard route", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     // Mocking first return value to simulate that user's location is at /dashboard
     mockGo.mockReturnValueOnce("/dashboard");
@@ -477,7 +478,7 @@ describe("Authenticated", () => {
   });
 
   it("should not authenticate and redirect if params indicate failed authentication", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
     const mockParams = { allowAuth: false }; // Parameter that simulates failed authentication
 
     const { queryByText } = render(

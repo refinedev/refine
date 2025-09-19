@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import papaparse from "papaparse";
 
@@ -9,16 +10,19 @@ import * as pickDataProvider from "../../definitions/helpers/pickDataProvider";
 import { useExport } from "./";
 
 const testCsv = "col1,col2\r\ncell1,cell2";
-jest.mock("papaparse", () => ({
-  unparse: jest.fn(() => testCsv),
+vi.mock("papaparse", () => ({
+  default: {
+    unparse: vi.fn(() => testCsv),
+  },
+  unparse: vi.fn(() => testCsv),
 }));
 
-jest.mock("../../definitions/helpers/downloadInBrowser", () => ({
-  downloadInBrowser: jest.fn(),
+vi.mock("../../definitions/helpers/downloadInBrowser", () => ({
+  downloadInBrowser: vi.fn(),
 }));
 
 beforeEach(() => {
-  jest.clearAllMocks();
+  vi.clearAllMocks();
 });
 
 describe("useExport Hook", () => {
@@ -50,7 +54,7 @@ describe("useExport Hook", () => {
   it.each(["categories", "posts"])(
     "should call getList with '%s' resource",
     async (testCase) => {
-      const getListMock = jest.fn();
+      const getListMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -77,7 +81,7 @@ describe("useExport Hook", () => {
   );
 
   it("should call getList with resource from router provider", async () => {
-    const getListMock = jest.fn();
+    const getListMock = vi.fn();
 
     const { result } = renderHook(() => useExport(), {
       wrapper: TestWrapper({
@@ -178,7 +182,7 @@ describe("useExport Hook", () => {
   });
 
   it("should handle getList throwing error", async () => {
-    const onError = jest.fn();
+    const onError = vi.fn();
     const { result } = renderHook(
       () =>
         useExport({
@@ -214,7 +218,7 @@ describe("useExport Hook", () => {
     async (testCase) => {
       const isIdentifier = testCase === "identifier";
 
-      const pickDataProviderSpy = jest.spyOn(
+      const pickDataProviderSpy = vi.spyOn(
         pickDataProvider,
         "pickDataProvider",
       );
@@ -251,7 +255,7 @@ describe("useExport Hook", () => {
         );
       }
 
-      jest.clearAllMocks();
+      vi.clearAllMocks();
     },
   );
   describe("should work with new export configuration", () => {

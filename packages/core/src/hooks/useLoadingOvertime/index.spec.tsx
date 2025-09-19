@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 import { act } from "react";
 
@@ -7,7 +8,7 @@ import { TestWrapper, mockRouterProvider } from "@test";
 import { useLoadingOvertime } from "./";
 
 describe("useLoadingOvertime Hook", () => {
-  jest.useFakeTimers();
+  vi.useFakeTimers();
 
   it("should elapsedTime undefined when isLoading false", () => {
     const { result } = renderHook(
@@ -38,7 +39,7 @@ describe("useLoadingOvertime Hook", () => {
 
     act(() => {
       // default 1000
-      jest.advanceTimersByTime(999);
+      vi.advanceTimersByTime(999);
     });
 
     const { elapsedTime } = result.current;
@@ -59,7 +60,7 @@ describe("useLoadingOvertime Hook", () => {
 
     act(() => {
       // default 1000
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     const { elapsedTime } = result.current;
@@ -67,8 +68,8 @@ describe("useLoadingOvertime Hook", () => {
   });
 
   it("should override global interval and onInverval", () => {
-    const onInterval = jest.fn();
-    const onIntervalGlobal = jest.fn();
+    const onInterval = vi.fn();
+    const onIntervalGlobal = vi.fn();
     const { result } = renderHook(
       () =>
         useLoadingOvertime({
@@ -93,7 +94,7 @@ describe("useLoadingOvertime Hook", () => {
     );
 
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     const { elapsedTime } = result.current;
@@ -104,7 +105,7 @@ describe("useLoadingOvertime Hook", () => {
   });
 
   it("should run global interval and onInterval", () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useLoadingOvertime({
@@ -137,7 +138,7 @@ describe("useLoadingOvertime Hook", () => {
     );
 
     act(() => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
 
     const { elapsedTime } = result.current;
@@ -159,7 +160,7 @@ describe("useLoadingOvertime Hook", () => {
     );
 
     act(() => {
-      jest.advanceTimersByTime(2000);
+      vi.advanceTimersByTime(2000);
     });
 
     const { elapsedTime } = result.current;

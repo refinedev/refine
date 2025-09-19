@@ -105,7 +105,7 @@ export type useTableProps<TQueryFnData, TError, TData> = {
    */
   syncWithLocation?: boolean;
   /**
-   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+   * react-query's [useQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useQuery) options
    */
   queryOptions?: MakeOptional<
     UseQueryOptions<

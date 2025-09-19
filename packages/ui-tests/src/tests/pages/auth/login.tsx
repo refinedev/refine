@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React, { type FC } from "react";
 
 import {
@@ -247,7 +248,7 @@ export const pageLoginTests = (
     });
 
     it("should run login mutation when form is submitted", async () => {
-      const loginMock = jest.fn().mockResolvedValue({ success: true });
+      const loginMock = vi.fn().mockResolvedValue({ success: true });
       const { getByLabelText, getAllByText } = render(<LoginPage />, {
         wrapper: TestWrapper({
           authProvider: {
@@ -281,7 +282,7 @@ export const pageLoginTests = (
     });
 
     it("should work with new router provider Link", async () => {
-      jest.spyOn(console, "error").mockImplementation((message) => {
+      vi.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
 
@@ -301,7 +302,7 @@ export const pageLoginTests = (
     });
 
     it("should run login mutation when provider button is clicked", async () => {
-      const loginMock = jest.fn().mockResolvedValue({ success: true });
+      const loginMock = vi.fn().mockResolvedValue({ success: true });
       const { getByText } = render(
         <LoginPage
           providers={[
@@ -394,7 +395,7 @@ export const pageLoginTests = (
     });
 
     it("should should accept 'mutationVariables'", async () => {
-      const loginMock = jest.fn().mockResolvedValue({ success: true });
+      const loginMock = vi.fn().mockResolvedValue({ success: true });
 
       const { getByRole, getByLabelText } = render(
         <LoginPage

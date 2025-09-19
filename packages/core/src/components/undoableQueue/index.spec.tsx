@@ -1,17 +1,18 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { UndoableQueueContext } from "@contexts/undoableQueue";
 import { TestWrapper, render } from "@test";
 
 import { UndoableQueue } from ".";
 
-const doMutation = jest.fn();
-const cancelMutation = jest.fn();
+const doMutation = vi.fn();
+const cancelMutation = vi.fn();
 
-const openMock = jest.fn();
-const closeMock = jest.fn();
+const openMock = vi.fn();
+const closeMock = vi.fn();
 
-const notificationDispatch = jest.fn();
+const notificationDispatch = vi.fn();
 
 const mockNotification = {
   id: "1",
@@ -24,7 +25,7 @@ const mockNotification = {
 };
 describe("Cancel Notification", () => {
   it("should trigger notification open function", async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     render(
       <UndoableQueueContext.Provider
@@ -54,7 +55,7 @@ describe("Cancel Notification", () => {
       undoableTimeout: 5,
     });
 
-    jest.runAllTimers();
+    vi.runAllTimers();
 
     expect(notificationDispatch).toHaveBeenCalledTimes(1);
     expect(notificationDispatch).toHaveBeenCalledWith({
@@ -66,8 +67,8 @@ describe("Cancel Notification", () => {
       type: "DECREASE_NOTIFICATION_SECOND",
     });
 
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   it("should call doMutation on seconds zero", async () => {

@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { act, MockJSONServer, TestWrapper } from "@test";
 
@@ -191,7 +192,7 @@ describe("useModalForm Hook", () => {
   });
 
   it("when mutationMode is 'pessimistic', the form should be closed when the mutation is successful", async () => {
-    const updateMock = jest.fn(
+    const updateMock = vi.fn(
       () => new Promise((resolve) => setTimeout(resolve, 1000)),
     );
 
@@ -229,7 +230,7 @@ describe("useModalForm Hook", () => {
   it.each(["optimistic", "undoable"] as const)(
     "when mutationMode is '%s', the form should be closed when the mutation is successful",
     async (mutationMode) => {
-      const updateMock = jest.fn(
+      const updateMock = vi.fn(
         () => new Promise((resolve) => setTimeout(resolve, 1000)),
       );
 
@@ -261,8 +262,8 @@ describe("useModalForm Hook", () => {
   );
 
   it("should `meta[syncWithLocationKey]` overrided by default", async () => {
-    const mockGetOne = jest.fn();
-    const mockUpdate = jest.fn();
+    const mockGetOne = vi.fn();
+    const mockUpdate = vi.fn();
 
     const { result } = renderHook(
       () =>

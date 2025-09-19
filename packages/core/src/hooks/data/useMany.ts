@@ -69,7 +69,7 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
    */
   ids: BaseKey[];
   /**
-   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+   * react-query's [useQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useQuery) options
    */
   queryOptions?: UseManyQueryOptions<TQueryFnData, TError, TData>;
   /**
@@ -86,7 +86,7 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
   UseLoadingOvertimeOptionsProps;
 
 /**
- * `useMany` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
+ * `useMany` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
  *
  * It uses `getMany` method as query function from the `dataProvider` which is passed to `<Refine>`.
  *

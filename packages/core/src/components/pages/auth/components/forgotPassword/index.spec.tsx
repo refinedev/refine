@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
@@ -120,7 +121,7 @@ describe("Auth Page Forgot Password", () => {
   });
 
   it("should run forgotPassword mutation when form is submitted", async () => {
-    const forgotPasswordMock = jest.fn();
+    const forgotPasswordMock = vi.fn();
     const { getByLabelText, getByDisplayValue } = render(
       <ForgotPasswordPage />,
       {
@@ -149,7 +150,7 @@ describe("Auth Page Forgot Password", () => {
   });
 
   it("should should accept 'mutationVariables'", async () => {
-    const forgotPasswordMock = jest.fn().mockResolvedValue({ success: true });
+    const forgotPasswordMock = vi.fn().mockResolvedValue({ success: true });
 
     const { getByRole, getByLabelText } = render(
       <ForgotPasswordPage

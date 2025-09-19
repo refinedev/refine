@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React, { type FC } from "react";
 
 import {
@@ -199,7 +200,7 @@ export const pageRegisterTests = (
     });
 
     it("should run register mutation when form is submitted", async () => {
-      const registerMock = jest.fn().mockResolvedValue({ success: true });
+      const registerMock = vi.fn().mockResolvedValue({ success: true });
       const { getByLabelText, getAllByText } = render(<RegisterPage />, {
         wrapper: TestWrapper({
           authProvider: {
@@ -230,7 +231,7 @@ export const pageRegisterTests = (
     });
 
     it("should run register mutation when provider button is clicked", async () => {
-      const registerMock = jest.fn().mockResolvedValue({ success: true });
+      const registerMock = vi.fn().mockResolvedValue({ success: true });
       const { getByText } = render(
         <RegisterPage
           providers={[
@@ -264,7 +265,7 @@ export const pageRegisterTests = (
     });
 
     it("should work with new router provider Link", async () => {
-      jest.spyOn(console, "error").mockImplementation((message) => {
+      vi.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
 
@@ -330,7 +331,7 @@ export const pageRegisterTests = (
     });
 
     it("should should accept 'mutationVariables'", async () => {
-      const registerMock = jest.fn().mockResolvedValue({ success: true });
+      const registerMock = vi.fn().mockResolvedValue({ success: true });
 
       const { getByRole, getByLabelText } = render(
         <RegisterPage

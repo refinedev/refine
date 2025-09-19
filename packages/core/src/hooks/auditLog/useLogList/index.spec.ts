@@ -1,9 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
+
 import { TestWrapper, queryClient } from "@test";
 
 import { useLogList } from "./";
 
-const auditLogProviderGetMock = jest.fn();
+const auditLogProviderGetMock = vi.fn();
 
 describe("useLogList Hook", () => {
   beforeEach(() => {
@@ -53,7 +55,7 @@ describe("useLogList Hook", () => {
   });
 
   it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-    const getMock = jest.fn().mockResolvedValue([
+    const getMock = vi.fn().mockResolvedValue([
       {
         id: 1,
         action: "create",
@@ -92,14 +94,14 @@ describe("useLogList Hook", () => {
   });
 
   it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-    const getMock = jest.fn().mockResolvedValue([
+    const getMock = vi.fn().mockResolvedValue([
       {
         id: 1,
         action: "create",
         data: { id: 1, title: "title" },
       },
     ]);
-    const queryFnMock = jest.fn().mockResolvedValue([
+    const queryFnMock = vi.fn().mockResolvedValue([
       {
         id: 1,
         action: "create",

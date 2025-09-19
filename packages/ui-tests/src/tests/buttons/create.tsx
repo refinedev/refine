@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineCreateButtonProps,
@@ -18,10 +19,10 @@ export const buttonCreateTests = (
   CreateButton: React.ComponentType<RefineCreateButtonProps<any, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Create Button", () => {
-    const create = jest.fn();
+    const create = vi.fn();
 
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(jest.fn());
+      vi.spyOn(console, "warn").mockImplementation(vi.fn());
     });
 
     it("should render button successfuly", async () => {
@@ -35,7 +36,7 @@ export const buttonCreateTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <CreateButton disabled onClick={mockOnClick} />,
@@ -51,7 +52,7 @@ export const buttonCreateTests = (
     });
 
     it("should not trigger onClick when disabled prop is true", async () => {
-      const handleClick = jest.fn();
+      const handleClick = vi.fn();
       const { getByText } = render(
         <CreateButton disabled onClick={handleClick}>
           Create

@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test";
 
@@ -6,28 +7,31 @@ import { defaultRefineOptions } from "@contexts/refine";
 import type { IRefineContextProvider } from "../../../contexts/refine/types";
 import { useResourceSubscription } from "./";
 
-const invalidateQueriesMock = jest.fn();
-jest.mock("@tanstack/react-query", () => ({
-  ...jest.requireActual("@tanstack/react-query"),
-  useQueryClient: () => ({
-    ...jest.requireActual("@tanstack/react-query").useQueryClient(),
-    invalidateQueries: invalidateQueriesMock,
-  }),
-}));
+const invalidateQueriesMock = vi.fn();
+vi.mock("@tanstack/react-query", async () => {
+  const actual = await vi.importActual("@tanstack/react-query");
+  return {
+    ...actual,
+    useQueryClient: () => ({
+      ...(actual as any).useQueryClient(),
+      invalidateQueries: invalidateQueriesMock,
+    }),
+  };
+});
 
 const mockRefineProvider: IRefineContextProvider = {
   ...defaultRefineOptions,
   options: defaultRefineOptions,
 };
 
-const onLiveEventMock = jest.fn();
+const onLiveEventMock = vi.fn();
 describe("useResourceSubscription Hook", () => {
   beforeEach(() => {
     invalidateQueriesMock.mockReset();
   });
 
   it("useResourceSubscription enabled and all types", async () => {
-    const onSubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -53,8 +57,8 @@ describe("useResourceSubscription Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
           refineProvider: {
             ...mockRefineProvider,
@@ -83,7 +87,7 @@ describe("useResourceSubscription Hook", () => {
   });
 
   it("useResourceSubscription liveMode off", async () => {
-    const onSubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -101,8 +105,8 @@ describe("useResourceSubscription Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
           refineProvider: {
             ...mockRefineProvider,
@@ -116,10 +120,10 @@ describe("useResourceSubscription Hook", () => {
   });
 
   it("useResourceSubscription liveMode on context off, params auto", async () => {
-    const onLiveEventFromContextCallbackMock = jest.fn();
+    const onLiveEventFromContextCallbackMock = vi.fn();
 
     const mockCallbackEventPayload = { type: "mock" };
-    const onSubscribeMock = jest.fn(({ callback }) =>
+    const onSubscribeMock = vi.fn(({ callback }) =>
       callback(mockCallbackEventPayload),
     );
 
@@ -140,8 +144,8 @@ describe("useResourceSubscription Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
           refineProvider: {
             ...mockRefineProvider,
@@ -161,7 +165,7 @@ describe("useResourceSubscription Hook", () => {
   });
 
   it("useResourceSubscription subscribe undefined", async () => {
-    const onSubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -189,8 +193,8 @@ describe("useResourceSubscription Hook", () => {
   });
 
   it("useResourceSubscription calls unsubscribe on unmount", async () => {
-    const onSubscribeMock = jest.fn(() => true);
-    const onUnsubscribeMock = jest.fn();
+    const onSubscribeMock = vi.fn(() => true);
+    const onUnsubscribeMock = vi.fn();
 
     const subscriptionParams = {
       channel: "channel",
@@ -209,7 +213,7 @@ describe("useResourceSubscription Hook", () => {
           liveProvider: {
             subscribe: onSubscribeMock,
             unsubscribe: onUnsubscribeMock,
-            publish: () => jest.fn(),
+            publish: () => vi.fn(),
           },
           refineProvider: {
             ...mockRefineProvider,
@@ -228,7 +232,7 @@ describe("useResourceSubscription Hook", () => {
 
   it("should invalidate queries based on queryKey created with `identifier`", async () => {
     const mockCallbackEventPayload = { type: "mock" };
-    const onSubscribeMock = jest.fn(({ callback }) =>
+    const onSubscribeMock = vi.fn(({ callback }) =>
       callback(mockCallbackEventPayload),
     );
 
@@ -245,8 +249,8 @@ describe("useResourceSubscription Hook", () => {
         wrapper: TestWrapper({
           liveProvider: {
             subscribe: onSubscribeMock,
-            unsubscribe: () => jest.fn(),
-            publish: () => jest.fn(),
+            unsubscribe: () => vi.fn(),
+            publish: () => vi.fn(),
           },
           resources: [
             {

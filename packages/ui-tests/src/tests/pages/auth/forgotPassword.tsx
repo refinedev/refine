@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React, { type FC } from "react";
 import type { ForgotPasswordPageProps } from "@refinedev/core";
 
@@ -173,7 +174,7 @@ export const pageForgotPasswordTests = (
     });
 
     it("should run forgotPassword mutation when form is submitted", async () => {
-      const forgotPasswordMock = jest.fn().mockResolvedValue({ success: true });
+      const forgotPasswordMock = vi.fn().mockResolvedValue({ success: true });
 
       const { getByLabelText, getByText } = render(<ForgotPasswordPage />, {
         wrapper: TestWrapper({
@@ -200,7 +201,7 @@ export const pageForgotPasswordTests = (
     });
 
     it("should work with new router provider Link", async () => {
-      jest.spyOn(console, "error").mockImplementation((message) => {
+      vi.spyOn(console, "error").mockImplementation((message) => {
         console.warn(message);
       });
 
@@ -215,7 +216,7 @@ export const pageForgotPasswordTests = (
     });
 
     it("should should accept 'mutationVariables'", async () => {
-      const forgotPasswordMock = jest.fn().mockResolvedValue({ success: true });
+      const forgotPasswordMock = vi.fn().mockResolvedValue({ success: true });
 
       const { getByRole, getByLabelText } = render(
         <ForgotPasswordPage

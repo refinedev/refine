@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 import * as Snack from "notistack";
 
 import type { OpenNotificationParams } from "@refinedev/core";
@@ -9,7 +10,7 @@ import { useNotificationProvider } from ".";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 
-const cancelMutationMock = jest.fn();
+const cancelMutationMock = vi.fn();
 
 const mockNotification: OpenNotificationParams = {
   key: "test-notification",
@@ -28,14 +29,14 @@ const mockNotificationUndoable: OpenNotificationParams = {
 
 describe("Notistack notificationProvider", () => {
   afterEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  const enqueueSnackbarMock = jest.fn();
+  const enqueueSnackbarMock = vi.fn();
 
-  const closeSnackbarMock = jest.fn();
+  const closeSnackbarMock = vi.fn();
 
-  const useSnackbarEnqueueSnackbar = jest.spyOn(Snack, "useSnackbar");
+  const useSnackbarEnqueueSnackbar = vi.spyOn(Snack, "useSnackbar");
 
   useSnackbarEnqueueSnackbar.mockImplementation(
     () =>

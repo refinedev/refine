@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test";
 
@@ -31,7 +32,7 @@ describe("useIsAuthenticated Hook", () => {
   });
 
   it("returns authenticated false and called checkError", async () => {
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (message?.message === "Not Authenticated") return;
       console.warn(message);
     });
@@ -57,12 +58,12 @@ describe("useIsAuthenticated Hook", () => {
   });
 
   it("returns authenticated false and called checkError with custom redirect path", async () => {
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (message?.redirectPath === "/custom-url") return;
       console.warn(message);
     });
 
-    const checkErrorMock = jest.fn();
+    const checkErrorMock = vi.fn();
     const { result } = renderHook(() => useIsAuthenticated(), {
       wrapper: TestWrapper({
         authProvider: {
@@ -85,8 +86,9 @@ describe("useIsAuthenticated Hook", () => {
   });
 
   it("should resolve {} if no authProvider is provided", async () => {
-    jest.spyOn(authContext, "useAuthProviderContext").mockReturnValue({
-      ...jest.requireActual("../../../contexts/auth"),
+    const actual = await vi.importActual("../../../contexts/auth");
+    vi.spyOn(authContext, "useAuthProviderContext").mockReturnValue({
+      ...actual,
       check: undefined,
     });
 

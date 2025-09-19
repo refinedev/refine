@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { act, renderHook } from "@testing-library/react";
 
@@ -8,7 +9,7 @@ import { type Resource, handleResourceErrors, useGo } from "./";
 
 describe("useGo Hook", () => {
   it("should return routerProvider go function", () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { result } = renderHook(() => useGo(), {
       wrapper: TestWrapper({
@@ -63,7 +64,7 @@ describe("useGo Hook", () => {
   });
 
   it("if it is used outside of router provider, should return undefined", () => {
-    jest.spyOn(React, "useContext").mockReturnValueOnce(undefined);
+    vi.spyOn(React, "useContext").mockReturnValueOnce(undefined);
 
     const { result } = renderHook(() => useGo());
 
@@ -73,7 +74,7 @@ describe("useGo Hook", () => {
   });
 
   it("should return the correct URL for a resource", () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { result } = renderHook(() => useGo(), {
       wrapper: TestWrapper({
@@ -143,7 +144,7 @@ describe("useGo Hook", () => {
   });
 
   it("should return the correct URL for a resource identifier", () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { result } = renderHook(() => useGo(), {
       wrapper: TestWrapper({
@@ -250,7 +251,7 @@ describe("useGo Hook", () => {
   });
 
   it("should navigate with additional parameters if defined in resource.meta", async () => {
-    const mockGoFn = jest.fn();
+    const mockGoFn = vi.fn();
 
     const { result } = renderHook(() => useGo(), {
       wrapper: TestWrapper({
@@ -304,7 +305,7 @@ describe("useGo Hook", () => {
   });
 
   it("should return with additional parameters if defined in route params", async () => {
-    const mockGoFn = jest.fn();
+    const mockGoFn = vi.fn();
 
     const { result } = renderHook(() => useGo(), {
       wrapper: TestWrapper({
@@ -362,7 +363,7 @@ describe("useGo Hook", () => {
   });
 
   it("should return nested parameters if defined in to.meta", async () => {
-    const mockGoFn = jest.fn();
+    const mockGoFn = vi.fn();
 
     const { result } = renderHook(() => useGo(), {
       wrapper: TestWrapper({

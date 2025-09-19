@@ -43,7 +43,7 @@ jobs:
           version: 9
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: pnpm
       - name: Add key to allow access to repository
         env:

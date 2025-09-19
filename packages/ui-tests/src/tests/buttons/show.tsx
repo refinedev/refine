@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineShowButtonProps,
@@ -18,10 +19,10 @@ export const buttonShowTests = (
   ShowButton: React.ComponentType<RefineShowButtonProps<any, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Show Button", () => {
-    const show = jest.fn();
+    const show = vi.fn();
 
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(jest.fn());
+      vi.spyOn(console, "warn").mockImplementation(vi.fn());
     });
 
     it("should render button successfuly", async () => {
@@ -35,7 +36,7 @@ export const buttonShowTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <ShowButton disabled onClick={mockOnClick} />,

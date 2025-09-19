@@ -1,22 +1,23 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { TestWrapper, mockRouterProvider } from "@test";
 
 // Mock useCan hook for meta prop testing
-jest.mock("../../accessControl/useCan", () => ({
-  useCan: jest.fn(),
+vi.mock("../../accessControl/useCan", () => ({
+  useCan: vi.fn(),
 }));
 
 import { useButtonCanAccess } from ".";
 import { useCan } from "../../accessControl/useCan";
 
-const mockUseCan = useCan as jest.MockedFunction<typeof useCan>;
+const mockUseCan = useCan as vi.MockedFunction<typeof useCan>;
 
 const actions = ["list", "show", "create", "edit", "clone", "delete"] as const;
 
 describe("useButtonCanAccess - meta prop passing to useCan", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Default mock return value
     mockUseCan.mockReturnValue({
       data: { can: true },
@@ -182,7 +183,7 @@ describe("useButtonCanAccess - meta prop passing to useCan", () => {
     };
 
     actions.forEach((action) => {
-      jest.clearAllMocks();
+      vi.clearAllMocks();
 
       renderHook(
         () =>

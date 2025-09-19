@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper, queryClient } from "@test";
 
@@ -104,7 +105,7 @@ describe("useCan Hook", () => {
   });
 
   it("can should sanitize resource icon ", async () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     renderHook(
       () =>
         useCan({
@@ -141,7 +142,7 @@ describe("useCan Hook", () => {
   });
 
   it("should be disable by queryOptions", async () => {
-    const mockFn = jest.fn();
+    const mockFn = vi.fn();
     renderHook(
       () =>
         useCan({
@@ -182,7 +183,7 @@ describe("useCan Hook", () => {
   });
 
   it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-    const canMock = jest.fn().mockResolvedValue({
+    const canMock = vi.fn().mockResolvedValue({
       can: true,
       reason: "Access granted",
     });
@@ -217,11 +218,11 @@ describe("useCan Hook", () => {
   });
 
   it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-    const canMock = jest.fn().mockResolvedValue({
+    const canMock = vi.fn().mockResolvedValue({
       can: true,
       reason: "Access granted",
     });
-    const queryFnMock = jest.fn().mockResolvedValue({
+    const queryFnMock = vi.fn().mockResolvedValue({
       can: true,
       reason: "Access granted",
     });
@@ -253,7 +254,7 @@ describe("useCan Hook", () => {
   });
 
   it("should use global queryOptions from AccessControlContext", async () => {
-    const mockFn = jest
+    const mockFn = vi
       .fn()
       .mockResolvedValue({ can: true, reason: "Access granted" });
     const globalQueryOptions = { enabled: false };
@@ -280,7 +281,7 @@ describe("useCan Hook", () => {
 
 describe("useCanWithoutCache", () => {
   it("should return the can function from the AccessControlContext", () => {
-    const canMock = jest.fn();
+    const canMock = vi.fn();
 
     const { result } = renderHook(() => useCanWithoutCache(), {
       wrapper: TestWrapper({
@@ -301,7 +302,7 @@ describe("useCanWithoutCache", () => {
     });
   });
   it("should sanitize the `resource` if provided", () => {
-    const canMock = jest.fn();
+    const canMock = vi.fn();
 
     const { result } = renderHook(() => useCanWithoutCache(), {
       wrapper: TestWrapper({
