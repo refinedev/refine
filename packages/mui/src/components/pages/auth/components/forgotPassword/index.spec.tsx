@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 import { pageForgotPasswordTests } from "@refinedev/ui-tests";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
@@ -9,7 +10,7 @@ describe("Auth Page Forgot Password", () => {
   pageForgotPasswordTests.bind(this)(ForgotPasswordPage);
 
   it("should run 'onSubmit' callback if it is passed", async () => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
 
     const { getByText, getByLabelText } = render(
       <ForgotPasswordPage

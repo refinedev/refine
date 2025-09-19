@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import type { RefineThemedLayoutSiderProps } from "@refinedev/ui-types";
 
@@ -39,8 +40,8 @@ export const layoutSiderTests = (
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Sider Element", () => {
     beforeEach(() => {
-      jest.spyOn(console, "warn").mockImplementation(() => {});
-      jest.spyOn(console, "error").mockImplementation(() => {});
+      vi.spyOn(console, "warn").mockImplementation(() => {});
+      vi.spyOn(console, "error").mockImplementation(() => {});
     });
 
     it("should render successful", async () => {
@@ -79,7 +80,7 @@ export const layoutSiderTests = (
     it("should work logout menu item click", async () => {
       const logoutMockedAuthProvider = {
         ...mockAuthProvider,
-        logout: jest
+        logout: vi
           .fn()
           .mockImplementation(() => Promise.resolve({ success: true })),
       };

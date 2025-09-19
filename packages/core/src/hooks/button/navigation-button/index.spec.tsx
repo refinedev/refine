@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { TestWrapper, mockRouterProvider } from "@test";
@@ -6,11 +7,11 @@ import { useNavigationButton } from ".";
 import { useButtonCanAccess } from "../button-can-access";
 
 // Mock the useButtonCanAccess hook
-jest.mock("../button-can-access", () => ({
-  useButtonCanAccess: jest.fn(),
+vi.mock("../button-can-access", () => ({
+  useButtonCanAccess: vi.fn(),
 }));
 
-const mockUseButtonCanAccess = useButtonCanAccess as jest.MockedFunction<
+const mockUseButtonCanAccess = useButtonCanAccess as vi.MockedFunction<
   typeof useButtonCanAccess
 >;
 
@@ -18,7 +19,7 @@ const actions = ["list", "show", "create", "edit", "clone"] as const;
 
 describe("useNavigationButton", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Default mock return value
     mockUseButtonCanAccess.mockReturnValue({
       title: "",
@@ -55,7 +56,7 @@ describe("useNavigationButton", () => {
         clone: "/posts/:id/clone",
       };
 
-      const goMock = jest.fn();
+      const goMock = vi.fn();
 
       renderHook(
         () => useNavigationButton({ action, resource: "posts", id: 123 }),
@@ -123,7 +124,7 @@ describe("useNavigationButton", () => {
           },
         ];
 
-        const goMock = jest.fn();
+        const goMock = vi.fn();
 
         renderHook(
           () => useNavigationButton({ action, resource: "comments" }),
@@ -257,7 +258,7 @@ describe("useNavigationButton", () => {
       };
 
       actions.forEach((action) => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
 
         renderHook(
           () =>

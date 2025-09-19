@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { projectScripts } from "./projectScripts";
 import { ProjectTypes } from "@definitions/projectTypes";
 
@@ -168,7 +169,7 @@ describe("REMIX project type", () => {
 
   describe("getStart with empty args", () => {
     test("should return default", () => {
-      const logSpy = jest.spyOn(console, "warn");
+      const logSpy = vi.spyOn(console, "warn");
       expect(projectScripts[projectType].getStart([])).toEqual([
         "./build/index.js",
       ]);
@@ -221,7 +222,7 @@ describe("REMIX_VITE project type", () => {
 
   describe("getStart with empty args", () => {
     test("should return default", () => {
-      const logSpy = jest.spyOn(console, "warn");
+      const logSpy = vi.spyOn(console, "warn");
       expect(projectScripts[projectType].getStart([])).toEqual([
         "./build/server/index.js",
       ]);

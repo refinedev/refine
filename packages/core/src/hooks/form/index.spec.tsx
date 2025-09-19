@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { renderHook, waitFor } from "@testing-library/react";
 
@@ -72,7 +73,7 @@ describe("useForm Hook", () => {
   });
 
   it("uses the correct meta values when fetching data", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -260,7 +261,7 @@ describe("useForm Hook", () => {
   });
 
   it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     renderHook(() => useForm({ resource: "posts", meta: { foo: "bar" } }), {
       wrapper: TestWrapper({
@@ -297,7 +298,7 @@ describe("useForm Hook", () => {
   });
 
   it("two resources with same name, should pass resource meta according to identifier", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     renderHook(() => useForm({ resource: "recentPosts", id: "1" }), {
       wrapper: TestWrapper({
@@ -354,7 +355,7 @@ describe("useForm Hook", () => {
   });
 
   it("redirect method should redirect to correct path", () => {
-    const goMock = jest.fn();
+    const goMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -396,7 +397,7 @@ describe("useForm Hook", () => {
   });
 
   it("redirect method should redirect to correct path with id", () => {
-    const goMock = jest.fn();
+    const goMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -439,7 +440,7 @@ describe("useForm Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params for query", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useForm({
@@ -500,7 +501,7 @@ describe("useForm Hook", () => {
 
   describe("action 'create'", () => {
     it("onFinish should trigger create dataProvider method", async () => {
-      const createMock = jest.fn();
+      const createMock = vi.fn();
 
       const { result } = renderHook(
         () => useForm({ resource: "posts", action: "create" }),
@@ -539,7 +540,7 @@ describe("useForm Hook", () => {
     });
 
     it("should call the `create` method with correct meta values", async () => {
-      const createMock = jest.fn();
+      const createMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -584,7 +585,7 @@ describe("useForm Hook", () => {
     });
 
     it("onFinish should not trigger create dataProvider method if resource not found", async () => {
-      const createMock = jest.fn();
+      const createMock = vi.fn();
 
       const { result } = renderHook(() => useForm({ action: "create" }), {
         wrapper: TestWrapper({
@@ -613,7 +614,7 @@ describe("useForm Hook", () => {
     });
 
     it("should call `onMutationSuccess` with correct parameters", async () => {
-      const onMutationSuccessMock = jest.fn();
+      const onMutationSuccessMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -649,8 +650,8 @@ describe("useForm Hook", () => {
     });
 
     it("should call `onMutationError` with correct parameters", async () => {
-      const createMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onMutationErrorMock = jest.fn();
+      const createMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onMutationErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -691,7 +692,7 @@ describe("useForm Hook", () => {
     });
 
     it("works correctly with `interval` and `onInterval` params for create mutation", async () => {
-      const onInterval = jest.fn();
+      const onInterval = vi.fn();
       const { result } = renderHook(
         () =>
           useForm({
@@ -747,7 +748,7 @@ describe("useForm Hook", () => {
 
   describe("action 'edit'", () => {
     it("onFinish should trigger edit dataProvider method", async () => {
-      const updateMock = jest.fn();
+      const updateMock = vi.fn();
 
       const { result } = renderHook(
         () => useForm({ resource: "posts", action: "edit", id: "123" }),
@@ -786,7 +787,7 @@ describe("useForm Hook", () => {
     });
 
     it("should call edit dataProvider method with correct meta values", async () => {
-      const updateMock = jest.fn();
+      const updateMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -833,7 +834,7 @@ describe("useForm Hook", () => {
     });
 
     it("onFinish should not trigger edit dataProvider method if resource not found", async () => {
-      const updateMock = jest.fn();
+      const updateMock = vi.fn();
 
       const { result } = renderHook(() => useForm({ action: "edit" }), {
         wrapper: TestWrapper({
@@ -862,7 +863,7 @@ describe("useForm Hook", () => {
     });
 
     it("should call `onMutationSuccess` with correct parameters", async () => {
-      const onMutationSuccessMock = jest.fn();
+      const onMutationSuccessMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -899,8 +900,8 @@ describe("useForm Hook", () => {
     });
 
     it("should call `onMutationError` with correct parameters", async () => {
-      const updateMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onMutationErrorMock = jest.fn();
+      const updateMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onMutationErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -942,7 +943,7 @@ describe("useForm Hook", () => {
     });
 
     it("works correctly with `interval` and `onInterval` params for edit mutation", async () => {
-      const onInterval = jest.fn();
+      const onInterval = vi.fn();
       const { result, rerender } = renderHook(
         () =>
           useForm({
@@ -1058,10 +1059,10 @@ describe("useForm Hook", () => {
   });
 
   describe("warn messages", () => {
-    const warnMock = jest.fn();
+    const warnMock = vi.fn();
 
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(warnMock);
+      vi.spyOn(console, "warn").mockImplementation(warnMock);
     });
     beforeEach(() => {
       warnMock.mockClear();

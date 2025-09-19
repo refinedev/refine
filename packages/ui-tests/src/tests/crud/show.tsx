@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import { Route, Routes } from "react-router";
 import {
@@ -57,7 +58,7 @@ export const crudShowTests = (
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD Show", () => {
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(jest.fn());
+      vi.spyOn(console, "warn").mockImplementation(vi.fn());
     });
 
     it("should render children", async () => {

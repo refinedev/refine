@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`MuiInferencer should match the snapshot 1`] = `
+exports[`MuiInferencer > should match the snapshot 1`] = `
 <DocumentFragment>
   <div>
     <div
@@ -10868,7 +10868,7 @@ exports[`MuiInferencer should match the snapshot 1`] = `
 </DocumentFragment>
 `;
 
-exports[`MuiInferencer should match the snapshot 2`] = `
+exports[`MuiInferencer > should match the snapshot 2`] = `
 <DocumentFragment>
   <div>
     <div
@@ -26502,7 +26502,7 @@ exports[`MuiInferencer should match the snapshot 2`] = `
 </DocumentFragment>
 `;
 
-exports[`MuiInferencer should match the snapshot 3`] = `
+exports[`MuiInferencer > should match the snapshot 3`] = `
 <DocumentFragment>
   <div>
     <div
@@ -43316,7 +43316,7 @@ exports[`MuiInferencer should match the snapshot 3`] = `
 </DocumentFragment>
 `;
 
-exports[`MuiInferencer should match the snapshot 4`] = `
+exports[`MuiInferencer > should match the snapshot 4`] = `
 <DocumentFragment>
   <div>
     <div

@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import { defaultRefineOptions } from "@contexts/refine";
@@ -42,7 +43,7 @@ describe("useOne Hook", () => {
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     renderHook(
       () => useOne({ resource: "posts", meta: { foo: "bar" }, id: "" }),
@@ -80,7 +81,7 @@ describe("useOne Hook", () => {
     it.each(["default", "categories"])(
       "useSubscription [dataProviderName: %s]",
       async (dataProviderName) => {
-        const onSubscribeMock = jest.fn();
+        const onSubscribeMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -94,7 +95,7 @@ describe("useOne Hook", () => {
               dataProvider: MockJSONServer,
               resources: [{ name: "posts" }],
               liveProvider: {
-                unsubscribe: jest.fn(),
+                unsubscribe: vi.fn(),
                 subscribe: onSubscribeMock,
               },
               refineProvider: {
@@ -131,7 +132,7 @@ describe("useOne Hook", () => {
     );
 
     it("liveMode = Off useSubscription", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       const { result } = renderHook(
         () => useOne({ resource: "posts", id: "1" }),
@@ -140,7 +141,7 @@ describe("useOne Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -159,7 +160,7 @@ describe("useOne Hook", () => {
     });
 
     it("liveMode = Off and liveMode hook param auto", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       const { result } = renderHook(
         () => useOne({ resource: "posts", id: "1", liveMode: "auto" }),
@@ -168,7 +169,7 @@ describe("useOne Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -187,8 +188,8 @@ describe("useOne Hook", () => {
     });
 
     it("unsubscribe call on unmount", async () => {
-      const onSubscribeMock = jest.fn(() => true);
-      const onUnsubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn(() => true);
+      const onUnsubscribeMock = vi.fn();
 
       const { result, unmount } = renderHook(
         () => useOne({ resource: "posts", id: "1" }),
@@ -220,7 +221,7 @@ describe("useOne Hook", () => {
     });
 
     it("should not subscribe if `queryOptions.enabled` is false", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       renderHook(
         () =>
@@ -236,7 +237,7 @@ describe("useOne Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -252,8 +253,8 @@ describe("useOne Hook", () => {
 
     describe("useNotification", () => {
       it("should call `open` from the notification provider on error", async () => {
-        const getOneMock = jest.fn().mockRejectedValue(new Error("Error"));
-        const notificationMock = jest.fn();
+        const getOneMock = vi.fn().mockRejectedValue(new Error("Error"));
+        const notificationMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -271,7 +272,7 @@ describe("useOne Hook", () => {
               },
               notificationProvider: {
                 open: notificationMock,
-                close: jest.fn(),
+                close: vi.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -291,7 +292,7 @@ describe("useOne Hook", () => {
       });
 
       it("should call `open` from notification provider on success with custom notification params", async () => {
-        const openNotificationMock = jest.fn();
+        const openNotificationMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -309,7 +310,7 @@ describe("useOne Hook", () => {
               dataProvider: MockJSONServer,
               notificationProvider: {
                 open: openNotificationMock,
-                close: jest.fn(),
+                close: vi.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -328,7 +329,7 @@ describe("useOne Hook", () => {
       });
 
       it("should call `open` from notification provider on success with custom notification params", async () => {
-        const openNotificationMock = jest.fn();
+        const openNotificationMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -342,7 +343,7 @@ describe("useOne Hook", () => {
               dataProvider: MockJSONServer,
               notificationProvider: {
                 open: openNotificationMock,
-                close: jest.fn(),
+                close: vi.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -357,8 +358,8 @@ describe("useOne Hook", () => {
       });
 
       it("should call `open` from notification provider on error with custom notification params", async () => {
-        const getOneMock = jest.fn().mockRejectedValue(new Error("Error"));
-        const openNotificationMock = jest.fn();
+        const getOneMock = vi.fn().mockRejectedValue(new Error("Error"));
+        const openNotificationMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -381,7 +382,7 @@ describe("useOne Hook", () => {
               },
               notificationProvider: {
                 open: openNotificationMock,
-                close: jest.fn(),
+                close: vi.fn(),
               },
               resources: [{ name: "posts" }],
             }),
@@ -402,8 +403,8 @@ describe("useOne Hook", () => {
 
     describe("useOnError", () => {
       it("should call `onError` from the auth provider on error", async () => {
-        const getOneMock = jest.fn().mockRejectedValue(new Error("Error"));
-        const onErrorMock = jest.fn();
+        const getOneMock = vi.fn().mockRejectedValue(new Error("Error"));
+        const onErrorMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -438,8 +439,8 @@ describe("useOne Hook", () => {
       });
 
       it("should call `checkError` from the legacy auth provider on error", async () => {
-        const getOneMock = jest.fn().mockRejectedValue(new Error("Error"));
-        const onErrorMock = jest.fn();
+        const getOneMock = vi.fn().mockRejectedValue(new Error("Error"));
+        const onErrorMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -476,7 +477,7 @@ describe("useOne Hook", () => {
 
     describe("queryOptions", () => {
       it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-        const getOneMock = jest.fn().mockResolvedValue({
+        const getOneMock = vi.fn().mockResolvedValue({
           data: { id: 1, title: "foo" },
         });
 
@@ -522,10 +523,10 @@ describe("useOne Hook", () => {
       });
 
       it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-        const getOneMock = jest.fn().mockResolvedValue({
+        const getOneMock = vi.fn().mockResolvedValue({
           data: [{ id: 1, title: "foo" }],
         });
-        const queryFnMock = jest.fn().mockResolvedValue({
+        const queryFnMock = vi.fn().mockResolvedValue({
           data: [{ id: 1, title: "foo" }],
         });
 
@@ -561,10 +562,10 @@ describe("useOne Hook", () => {
     });
 
     it("should select correct dataProviderName", async () => {
-      const getOneDefaultMock = jest.fn().mockResolvedValue({
+      const getOneDefaultMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
-      const getOneFooMock = jest.fn().mockResolvedValue({
+      const getOneFooMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -614,7 +615,7 @@ describe("useOne Hook", () => {
     });
 
     it("should get correct `meta` of related resource", async () => {
-      const getOneMock = jest.fn().mockResolvedValue({
+      const getOneMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -659,10 +660,10 @@ describe("useOne Hook", () => {
 
     describe("when passing `identifier` instead of `name`", () => {
       it("should select correct dataProviderName", async () => {
-        const getOneDefaultMock = jest.fn().mockResolvedValue({
+        const getOneDefaultMock = vi.fn().mockResolvedValue({
           data: [{ id: 1, title: "foo" }],
         });
-        const getOneFooMock = jest.fn().mockResolvedValue({
+        const getOneFooMock = vi.fn().mockResolvedValue({
           data: [{ id: 1, title: "foo" }],
         });
 
@@ -713,7 +714,7 @@ describe("useOne Hook", () => {
       });
 
       it("should create queryKey with `identifier`", async () => {
-        const getOneMock = jest.fn().mockResolvedValue({
+        const getOneMock = vi.fn().mockResolvedValue({
           data: [{ id: 1, title: "foo" }],
         });
 
@@ -762,7 +763,7 @@ describe("useOne Hook", () => {
       });
 
       it("should get correct `meta` of related resource", async () => {
-        const getOneMock = jest.fn().mockResolvedValue({
+        const getOneMock = vi.fn().mockResolvedValue({
           data: [{ id: 1, title: "foo" }],
         });
 
@@ -816,7 +817,7 @@ describe("useOne Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useOne({

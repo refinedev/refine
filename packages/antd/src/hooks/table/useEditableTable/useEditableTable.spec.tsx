@@ -1,4 +1,5 @@
 import { renderHook, waitFor, act } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper, MockJSONServer } from "@test";
 import { posts } from "@test/dataMocks";
@@ -17,7 +18,7 @@ const routerProvider = {
 
 describe("useEditableTable Hook", () => {
   beforeAll(() => {
-    jest.spyOn(console, "error").mockImplementation(jest.fn());
+    vi.spyOn(console, "error").mockImplementation(vi.fn());
   });
 
   it("fetches table and form data", async () => {

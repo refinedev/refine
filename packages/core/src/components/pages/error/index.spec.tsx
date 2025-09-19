@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
@@ -41,7 +42,7 @@ describe("ErrorComponent", () => {
   });
 
   it("back home button should work with router provider", async () => {
-    const goMock = jest.fn();
+    const goMock = vi.fn();
 
     const { getByText } = render(<ErrorComponent />, {
       wrapper: TestWrapper({

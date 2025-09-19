@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineCloneButtonProps,
@@ -18,10 +19,10 @@ export const buttonCloneTests = (
   CloneButton: React.ComponentType<RefineCloneButtonProps<any, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Clone Button", () => {
-    const clone = jest.fn();
+    const clone = vi.fn();
 
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(jest.fn());
+      vi.spyOn(console, "warn").mockImplementation(vi.fn());
     });
 
     it("should render button successfuly", async () => {
@@ -35,7 +36,7 @@ export const buttonCloneTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <CloneButton disabled onClick={mockOnClick} />,

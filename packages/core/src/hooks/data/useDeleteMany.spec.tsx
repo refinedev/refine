@@ -1,4 +1,5 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import {
   MockJSONServer,
@@ -118,7 +119,7 @@ describe("useDeleteMany Hook", () => {
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const deleteManyMock = jest.fn();
+    const deleteManyMock = vi.fn();
 
     const { result } = renderHook(() => useDeleteMany(), {
       wrapper: TestWrapper({
@@ -162,7 +163,7 @@ describe("useDeleteMany Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useDeleteMany({
@@ -209,15 +210,15 @@ describe("useDeleteMany Hook", () => {
     it.each(["default", "categories"])(
       "publish event on success [dataProviderName: %s]",
       async (dataProviderName) => {
-        const onPublishMock = jest.fn();
+        const onPublishMock = vi.fn();
 
         const { result } = renderHook(() => useDeleteMany(), {
           wrapper: TestWrapper({
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
-              subscribe: jest.fn(),
+              unsubscribe: vi.fn(),
+              subscribe: vi.fn(),
               publish: onPublishMock,
             },
           }),
@@ -251,7 +252,7 @@ describe("useDeleteMany Hook", () => {
 
   describe("useLog", () => {
     it("publish log on success", async () => {
-      const createMock = jest.fn();
+      const createMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
@@ -267,8 +268,8 @@ describe("useDeleteMany Hook", () => {
           },
           auditLogProvider: {
             create: createMock,
-            get: jest.fn(),
-            update: jest.fn(),
+            get: vi.fn(),
+            update: vi.fn(),
           },
         }),
       });
@@ -299,7 +300,7 @@ describe("useDeleteMany Hook", () => {
   });
 
   it("should use `deleteOne` method if does not exist `deleteMany` method in dataProvider", async () => {
-    const deleteOneMock = jest.fn();
+    const deleteOneMock = vi.fn();
 
     const { result } = renderHook(() => useDeleteMany(), {
       wrapper: TestWrapper({
@@ -342,14 +343,14 @@ describe("useDeleteMany Hook", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on success", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -373,8 +374,8 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should call `open` from the notification provider on error", async () => {
-      const deleteManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const deleteManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
@@ -386,7 +387,7 @@ describe("useDeleteMany Hook", () => {
           },
           notificationProvider: {
             open: notificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -410,14 +411,14 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -445,14 +446,14 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -472,8 +473,8 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const deleteManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const deleteManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
@@ -485,7 +486,7 @@ describe("useDeleteMany Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -515,8 +516,8 @@ describe("useDeleteMany Hook", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const deleteManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const deleteManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
@@ -546,8 +547,8 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should select correct dataProviderName", async () => {
-      const deleteManyDefaultMock = jest.fn();
-      const deleteManyFooMock = jest.fn();
+      const deleteManyDefaultMock = vi.fn();
+      const deleteManyFooMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
@@ -593,7 +594,7 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should get correct `meta` of related resource", async () => {
-      const deleteManyMock = jest.fn();
+      const deleteManyMock = vi.fn();
 
       const { result } = renderHook(() => useDeleteMany(), {
         wrapper: TestWrapper({
@@ -634,8 +635,8 @@ describe("useDeleteMany Hook", () => {
 
     describe("when passing `identifier` instead of `name`", () => {
       it("should select correct dataProviderName", async () => {
-        const deleteManyDefaultMock = jest.fn();
-        const deleteManyFooMock = jest.fn();
+        const deleteManyDefaultMock = vi.fn();
+        const deleteManyFooMock = vi.fn();
 
         const { result } = renderHook(() => useDeleteMany(), {
           wrapper: TestWrapper({
@@ -682,11 +683,11 @@ describe("useDeleteMany Hook", () => {
       });
 
       it("should invalidate query store with `identifier`", async () => {
-        const invalidateStore = jest.fn();
-        jest
-          .spyOn(UseInvalidate, "useInvalidate")
-          .mockReturnValue(invalidateStore);
-        const deleteManyMock = jest.fn();
+        const invalidateStore = vi.fn();
+        vi.spyOn(UseInvalidate, "useInvalidate").mockReturnValue(
+          invalidateStore,
+        );
+        const deleteManyMock = vi.fn();
 
         const { result } = renderHook(() => useDeleteMany(), {
           wrapper: TestWrapper({
@@ -722,7 +723,7 @@ describe("useDeleteMany Hook", () => {
       });
 
       it("should get correct `meta` of related resource", async () => {
-        const deleteManyMock = jest.fn();
+        const deleteManyMock = vi.fn();
 
         const { result } = renderHook(() => useDeleteMany(), {
           wrapper: TestWrapper({
@@ -771,8 +772,8 @@ describe("useDeleteMany Hook", () => {
     });
 
     it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
-      const useDeleteManyMock = jest.fn().mockResolvedValue({ data: {} });
-      const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+      const useDeleteManyMock = vi.fn().mockResolvedValue({ data: {} });
+      const mutationFnMock = vi.fn().mockResolvedValue({ data: {} });
 
       const { result } = renderHook(
         () =>

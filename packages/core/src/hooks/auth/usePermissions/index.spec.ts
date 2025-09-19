@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -28,7 +29,7 @@ describe("usePermissions Hook", () => {
   });
 
   it("returns error for not authenticated", async () => {
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (!message.includes("Not Authenticated")) console.warn(message);
     });
 
@@ -69,7 +70,7 @@ describe("usePermissions Hook", () => {
   });
 
   it("should accept params", async () => {
-    const mockGetPermissions = jest.fn(() => Promise.resolve(["admin"]));
+    const mockGetPermissions = vi.fn(() => Promise.resolve(["admin"]));
     const { result } = renderHook((props) => usePermissions({ ...props }), {
       initialProps: {
         params: { currentRole: "admin" },

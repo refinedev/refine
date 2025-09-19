@@ -1,5 +1,6 @@
 import React, { type ReactNode } from "react";
 import { Route, Routes } from "react-router";
+import { vi } from "vitest";
 
 import {
   render,
@@ -44,7 +45,7 @@ const DummyDashboard = () => <div>Dashboard</div>;
 
 describe("Breadcrumb", () => {
   beforeAll(() => {
-    jest.spyOn(console, "warn").mockImplementation(jest.fn());
+    vi.spyOn(console, "warn").mockImplementation(vi.fn());
   });
 
   breadcrumbTests.bind(this)(Breadcrumb);

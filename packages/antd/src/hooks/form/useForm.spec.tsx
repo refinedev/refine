@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { Route, Routes } from "react-router";
 import type { IRefineOptions, HttpError } from "@refinedev/core";
@@ -164,7 +165,7 @@ describe("useForm hook", () => {
   it.each(["edit", "create"] as const)(
     "should set %s-form errors from data provider",
     async (action) => {
-      const onMutationErrorMock = jest.fn();
+      const onMutationErrorMock = vi.fn();
 
       const { getByText, getByTestId } = renderForm({
         formParams: {
@@ -220,7 +221,7 @@ describe("useForm hook", () => {
       disableFromHook: false,
     },
   ] as const)("should disable server-side validation", async (testCase) => {
-    const onMutationErrorMock = jest.fn();
+    const onMutationErrorMock = vi.fn();
 
     const { queryByText, getByTestId } = renderForm({
       refineOptions: {
@@ -302,7 +303,7 @@ describe("useForm hook", () => {
   });
 
   it("formLoading and defaultFormValuesLoading should work", async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     const { result } = renderHook(
       () => {
@@ -346,13 +347,13 @@ describe("useForm hook", () => {
     expect(result.current.formLoading).toBe(true);
     expect(result.current.defaultFormValuesLoading).toBe(true);
     await act(async () => {
-      jest.advanceTimersByTime(400);
+      vi.advanceTimersByTime(400);
     });
     expect(result.current.formLoading).toBe(true);
     expect(result.current.defaultFormValuesLoading).toBe(false);
 
     await act(async () => {
-      jest.advanceTimersByTime(1000);
+      vi.advanceTimersByTime(1000);
     });
     expect(result.current.formLoading).toBe(false);
     expect(result.current.defaultFormValuesLoading).toBe(false);

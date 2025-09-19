@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineListButtonProps,
@@ -18,7 +19,7 @@ export const buttonListTests = (
   ListButton: React.ComponentType<RefineListButtonProps<any, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / List Button", () => {
-    const list = jest.fn();
+    const list = vi.fn();
 
     it("should render button successfuly", async () => {
       const { container, getByText } = render(<ListButton>List</ListButton>, {
@@ -39,7 +40,7 @@ export const buttonListTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <ListButton disabled onClick={mockOnClick}>

@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
@@ -80,7 +81,7 @@ describe("useCustom Hook", () => {
   });
 
   it("should pass meta to dataProvider router and hook", async () => {
-    const customMock = jest.fn();
+    const customMock = vi.fn();
 
     renderHook(
       () =>
@@ -121,8 +122,8 @@ describe("useCustom Hook", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on error", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -140,7 +141,7 @@ describe("useCustom Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -160,7 +161,7 @@ describe("useCustom Hook", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -178,7 +179,7 @@ describe("useCustom Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -197,7 +198,7 @@ describe("useCustom Hook", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -211,7 +212,7 @@ describe("useCustom Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -226,8 +227,8 @@ describe("useCustom Hook", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -250,7 +251,7 @@ describe("useCustom Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -270,7 +271,7 @@ describe("useCustom Hook", () => {
   });
 
   it("should throw error if no `custom` method is provided", async () => {
-    jest.spyOn(console, "error").mockImplementation(() => null);
+    vi.spyOn(console, "error").mockImplementation(() => null);
 
     expect(() =>
       renderHook(
@@ -296,8 +297,8 @@ describe("useCustom Hook", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -332,8 +333,8 @@ describe("useCustom Hook", () => {
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -369,7 +370,7 @@ describe("useCustom Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useCustom({

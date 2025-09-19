@@ -13,7 +13,7 @@
     "build": "tsup && tsc --project tsconfig.declarations.json",
     "dev": "tsup --watch",
     "prepare": "pnpm build",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "vitest run --passWithNoTests",
     "types": "tsc --project tsconfig.declarations.json"
   },
   "dependencies": {
@@ -33,14 +33,11 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@types/jest": "^29.2.4",
     "@types/node": "^20",
     "@types/prompts": "2.0.1",
     "@types/rimraf": "3.0.0",
     "@types/tar": "^6.1.11",
     "@types/which-pm-runs": "^1.0.0",
-    "jest": "^30.0.5",
-    "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3"
   },

@@ -57,7 +57,7 @@ describe("getList", () => {
   });
 
   describe("Supabase order", () => {
-    const mockSupabaseOrder = jest.fn();
+    const mockSupabaseOrder = vi.fn();
     const mockSupabaseClient = {
       select: () => mockSupabaseClient,
       from: () => mockSupabaseClient,

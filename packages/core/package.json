@@ -32,8 +32,9 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand",
-    "test:dev": "jest --silent --noStackTrace",
+    "test": "vitest run",
+    "test:ui": "vitest --ui",
+    "test:watch": "vitest",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -54,7 +55,6 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
     "@types/node": "^20",
     "@types/papaparse": "^5.2.5",
@@ -63,13 +63,12 @@
     "@types/react": "^19.1.0",
     "@types/react-dom": "^19.1.0",
     "@types/react-router-dom": "^5.1.8",
+    "@vitest/ui": "^2.1.8",
     "graphql": "^15.6.1",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
-    "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.81.5",
