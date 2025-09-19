@@ -72,7 +72,7 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
    */
   config?: UseCustomConfig<TQuery, TPayload>;
   /**
-   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+   * react-query's [useQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useQuery) options
    */
   queryOptions?: UseCustomQueryOptions<TQueryFnData, TError, TData>;
   /**
@@ -93,7 +93,7 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
   UseLoadingOvertimeOptionsProps;
 
 /**
- * `useCustom` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`} used for custom requests.
+ * `useCustom` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`} used for custom requests.
  *
  * It uses the `custom` method from the `dataProvider` which is passed to `<Refine>`.
  *
