@@ -81,7 +81,7 @@ export type UseListProps<TQueryFnData, TError, TData> = {
   resource?: string;
 
   /**
-   * Tanstack Query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+   * Tanstack Query's [useQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useQuery) options
    */
   queryOptions?: UseListQueryOptions<TQueryFnData, TError, TData>;
 } & BaseListProps &
@@ -102,7 +102,7 @@ export type UseListReturnType<TData, TError> = {
 } & UseLoadingOvertimeReturnType;
 
 /**
- * `useList` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
+ * `useList` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
  * It uses the `getList` method as the query function from the `dataProvider` which is passed to `<Refine>`.
  *

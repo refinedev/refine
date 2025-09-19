@@ -26,7 +26,7 @@ export type UseCanProps = CanParams & {
 };
 
 /**
- * `useCan` uses the `can` as the query function for `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/guides/queries `useQuery`}. It takes the parameters that `can` takes. It can also be configured with `queryOptions` for `useQuery`. Returns the result of `useQuery`.
+ * `useCan` uses the `can` as the query function for `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`}. It takes the parameters that `can` takes. It can also be configured with `queryOptions` for `useQuery`. Returns the result of `useQuery`.
  * @see {@link https://refine.dev/docs/api-reference/core/hooks/accessControl/useCan} for more details.
  *
  * @typeParam CanParams {@link https://refine.dev/docs/core/interfaceReferences#canparams}
