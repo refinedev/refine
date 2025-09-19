@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-quer
 hide_table_of_contents: false
 ---
 
-**This article was last updated on September 16, 2025 to include new details on React Query v5.**
+**This article was last updated on September 19, 2025 to include new details on React Query v5.**
 
 ## Introduction
 
