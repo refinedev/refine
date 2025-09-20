@@ -1,9 +1,4 @@
-import {
-  GitHubBanner,
-  Refine,
-  type AuthProvider,
-  Authenticated,
-} from "@refinedev/core";
+import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import {
   useNotificationProvider,
   ThemedLayout,
@@ -11,14 +6,12 @@ import {
   AuthPage,
   RefineThemes,
 } from "@refinedev/antd";
-import { DataProvider, AuthHelper } from "@refinedev/strapi-v4";
 import routerProvider, {
   CatchAllNavigate,
   NavigateToResource,
   UnsavedChangesNotifier,
   DocumentTitleHandler,
 } from "@refinedev/react-router";
-import axios from "axios";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import "@ant-design/v5-patch-for-react-19";
@@ -32,105 +25,11 @@ import {
   CategoryEdit,
 } from "../src/pages/categories";
 
-import { TOKEN_KEY, API_URL } from "./constants";
 import { ConfigProvider, App as AntdApp } from "antd";
+import { authProvider } from "./providers/auth";
+import { dataProvider } from "./providers/data";
 
 const App: React.FC = () => {
-  const axiosInstance = axios.create();
-  const strapiAuthHelper = AuthHelper(`${API_URL}/api`);
-
-  const authProvider: AuthProvider = {
-    login: async ({ email, password }) => {
-      try {
-        const { data, status } = await strapiAuthHelper.login(email, password);
-        if (status === 200) {
-          localStorage.setItem(TOKEN_KEY, data.jwt);
-
-          // set header axios instance
-          axiosInstance.defaults.headers.common["Authorization"] =
-            `Bearer ${data.jwt}`;
-
-          return {
-            success: true,
-            redirectTo: "/",
-          };
-        }
-      } catch (error: any) {
-        const errorObj = error?.response?.data?.message?.[0]?.messages?.[0];
-        return {
-          success: false,
-          error: {
-            message: errorObj?.message || "Login failed",
-            name: errorObj?.id || "Invalid email or password",
-          },
-        };
-      }
-
-      return {
-        success: false,
-        error: {
-          message: "Login failed",
-          name: "Invalid email or password",
-        },
-      };
-    },
-    logout: async () => {
-      localStorage.removeItem(TOKEN_KEY);
-      return {
-        success: true,
-        redirectTo: "/login",
-      };
-    },
-    onError: async (error) => {
-      if (error.response?.status === 401) {
-        return {
-          logout: true,
-        };
-      }
-
-      return { error };
-    },
-    check: async () => {
-      const token = localStorage.getItem(TOKEN_KEY);
-      if (token) {
-        axiosInstance.defaults.headers.common["Authorization"] =
-          `Bearer ${token}`;
-        return {
-          authenticated: true,
-        };
-      }
-
-      return {
-        authenticated: false,
-        error: {
-          message: "Authentication failed",
-          name: "Token not found",
-        },
-        logout: true,
-        redirectTo: "/login",
-      };
-    },
-    getPermissions: async () => null,
-    getIdentity: async () => {
-      const token = localStorage.getItem(TOKEN_KEY);
-      if (!token) {
-        return null;
-      }
-
-      const { data, status } = await strapiAuthHelper.me(token);
-      if (status === 200) {
-        const { id, username, email } = data;
-        return {
-          id,
-          username,
-          email,
-        };
-      }
-
-      return null;
-    },
-  };
-
   return (
     <BrowserRouter>
       <GitHubBanner />
@@ -138,7 +37,7 @@ const App: React.FC = () => {
         <AntdApp>
           <Refine
             authProvider={authProvider}
-            dataProvider={DataProvider(`${API_URL}/api`, axiosInstance)}
+            dataProvider={dataProvider}
             routerProvider={routerProvider}
             resources={[
               {
