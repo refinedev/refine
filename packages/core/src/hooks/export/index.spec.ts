@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
-import papaparse from "papaparse";
+import * as papaparse from "papaparse";
 
 import { MockJSONServer, TestWrapper, act } from "@test";
 import { mockRouterProvider, posts } from "@test/dataMocks";
