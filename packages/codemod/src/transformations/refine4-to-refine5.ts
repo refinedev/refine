@@ -17,6 +17,7 @@ import useQueryAndResultFieldsInUseInfiniteListHook from "./v5/use-query-and-res
 import { useQueryAndResultFieldsInUseCustomHook } from "./v5/use-query-and-result-fields-in-useCustom-hook";
 import { useTableReturnTypeUpdate } from "./v5/use-react-table-return-type-update";
 import { renameUseResourceToUseResourceParams } from "./v5/rename-useResource-useResourceParams";
+import { welcomePageImportFromCore } from "./v5/welcome-page-import-from-core";
 
 export default function transformer(file: FileInfo, api: API): string {
   const j = api.jscodeshift;
@@ -39,6 +40,7 @@ export default function transformer(file: FileInfo, api: API): string {
   useQueryAndResultFieldsInUseCustomHook(j, source);
   useTableReturnTypeUpdate(j, source);
   mutationResultToMutationProperty(j, source);
+  welcomePageImportFromCore(j, source);
 
   return source.toSource();
 }
