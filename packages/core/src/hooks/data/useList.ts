@@ -312,10 +312,12 @@ export const useList = <
     isLoading: queryResponse.isFetching,
   });
 
+  const EMPTY_ARRAY: readonly [] = Object.freeze([]);
+
   return {
     query: queryResponse,
     result: {
-      data: queryResponse?.data?.data || [],
+      data: queryResponse?.data?.data || EMPTY_ARRAY,
       total: queryResponse?.data?.total,
     },
     overtime: { elapsedTime },
