@@ -97,7 +97,7 @@ function mapValue(selectedKeys: React.Key[], event: "onChange" | "value"): any;
 For example when using [`useSelect`](/docs/ui-integrations/ant-design/hooks/use-select/) for [`<Select />`](https://ant.design/components/select/) component, in which case, the values must be mapped to `number`s using `mapValue`.
 
 ```tsx
-import { getDefaultFilter } from "@refinedev/antd";
+import { getDefaultFilter } from "@refinedev/core";
 import { useTable, FilterDropdown, useSelect } from "@refinedev/antd";
 import { Table, Select } from "antd";
 
@@ -153,7 +153,7 @@ A more complex example is using a filter dropdown with a date picker.
 Imagine you need to filter data based on a date range where Refine's data provider expects dates in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format, but Ant Design's [`<DatePicker.RangePicker />`](https://ant.design/components/date-picker) uses Dayjs objects. To solve this, use the `mapValue` and [`rangePickerFilterMapper`](https://github.com/refinedev/refine/blob/main/packages/antd/src/definitions/filter-mappers/index.ts) utility function to convert `selectedKeys` to satisfy both the data provider and `<DatePicker.RangePicker />`.
 
 ```tsx
-import { getDefaultFilter } from "@refinedev/antd";
+import { getDefaultFilter } from "@refinedev/core";
 import {
   DateField,
   FilterDropdown,
