@@ -121,8 +121,8 @@ export const routerProvider: RouterProvider = {
         pathname,
         params: {
           ...combinedParams,
-          current: convertToNumberIfPossible(
-            combinedParams.current as string,
+          currentPage: convertToNumberIfPossible(
+            combinedParams.currentPage as string,
           ) as number | undefined,
           pageSize: convertToNumberIfPossible(
             combinedParams.pageSize as string,
