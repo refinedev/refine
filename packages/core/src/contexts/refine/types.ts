@@ -128,9 +128,6 @@ export interface IRefineContextOptions {
 export interface IRefineContext {
   __initialized?: boolean;
   mutationMode: MutationMode;
-  /**
-   * @deprecated Please use `UnsavedChangesNotifier` components from router packages instead.
-   */
   warnWhenUnsavedChanges: boolean;
   syncWithLocation: boolean;
   undoableTimeout: number;
