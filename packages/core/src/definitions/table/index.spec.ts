@@ -137,10 +137,10 @@ describe("definitions/table", () => {
     const url =
       "?currentPage=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&filters[0][operator]=in&filters[0][field]=categoryId&filters[0][value][0]=1&filters[0][value][1]=2";
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    const { parsedCurrentPage, parsedPageSize, parsedSorter, parsedFilters } =
       parseTableParams(url);
 
-    expect(parsedCurrent).toBe(1);
+    expect(parsedCurrentPage).toBe(1);
     expect(parsedPageSize).toBe(10);
     expect(parsedSorter).toStrictEqual([{ field: "id", order: "desc" }]);
     expect(parsedFilters).toStrictEqual([
@@ -196,10 +196,10 @@ describe("definitions/table", () => {
       ],
     };
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    const { parsedCurrentPage, parsedPageSize, parsedSorter, parsedFilters } =
       parseTableParamsFromQuery(query);
 
-    expect(parsedCurrent).toBe(1);
+    expect(parsedCurrentPage).toBe(1);
     expect(parsedPageSize).toBe(10);
     expect(parsedSorter).toStrictEqual([
       { field: "id", order: "asc" },
@@ -620,7 +620,7 @@ describe("definitions/table", () => {
 
   it("parseTableParams default sorter and filters", () => {
     expect(parseTableParams("?currentPage=1&pageSize=10")).toStrictEqual({
-      parsedCurrent: 1,
+      parsedCurrentPage: 1,
       parsedFilters: [],
       parsedPageSize: 10,
       parsedSorter: [],
