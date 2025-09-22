@@ -1,9 +1,9 @@
 ---
-"@refinedev/antd": minor
-"@refinedev/chakra-ui": minor
-"@refinedev/mantine": minor
+"@refinedev/antd": patch
+"@refinedev/chakra-ui": patch
+"@refinedev/mantine": patch
 "@refinedev/core": patch
-"@refinedev/codemod": minor
+"@refinedev/codemod": patch
 ---
 
 feat: comprehensive deprecated code cleanup for v5
