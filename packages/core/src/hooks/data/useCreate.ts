@@ -89,7 +89,7 @@ export type UseCreateProps<
   UseCreateParams<TData, TError, TVariables>;
 
 /**
- * `useCreate` is a modified version of `react-query`'s {@link https://tanstack.com/query/v4/docs/framework/react/reference/useMutation `useMutation`} for create mutations.
+ * `useCreate` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/reference/useMutation `useMutation`} for create mutations.
  *
  * It uses `create` method as mutation function from the `dataProvider` which is passed to `<Refine>`.
  *

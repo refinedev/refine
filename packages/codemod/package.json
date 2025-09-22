@@ -22,7 +22,7 @@
     "dev": "tsc -w -d -p tsconfig.json",
     "jscodeshift": "jscodeshift -d --transform=src/transformations/refine1-to-refine2.ts",
     "prepare": "pnpm build",
-    "test": "jest --passWithNoTests --runInBand"
+    "test": "vitest run --passWithNoTests"
   },
   "dependencies": {
     "@npmcli/package-json": "^5.2.0",
@@ -40,14 +40,12 @@
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@types/eslint": "^7.28.2",
     "@types/inquirer": "^8.2.5",
-    "@types/jest": "^29.2.4",
     "@types/jscodeshift": "^17.3.0",
     "@types/node": "^20",
     "@types/npmcli__package-json": "^4.0.4",
-    "jest": "^30.0.5",
-    "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "engines": {
     "node": ">=20"

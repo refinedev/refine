@@ -1,10 +1,11 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { TestWrapper, act, mockRouterProvider, queryClient } from "@test";
 
 import { useUpdatePassword } from "./";
 
-const mockFn = jest.fn();
+const mockFn = vi.fn();
 
 const mockAuthProvider = {
   login: () => Promise.resolve({ success: true }),
@@ -16,7 +17,7 @@ const mockAuthProvider = {
 describe("useUpdatePassword Hook", () => {
   beforeEach(() => {
     mockFn.mockReset();
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (message?.message === "Missing fields") return;
       if (typeof message === "undefined") return;
       console.warn(message);
@@ -56,7 +57,7 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("succeed update password", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
@@ -135,7 +136,7 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("success and redirect", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
@@ -186,7 +187,7 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("fail and redirect", async () => {
-    const mockGo = jest.fn();
+    const mockGo = vi.fn();
 
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
@@ -238,13 +239,13 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should open notification when has error is true", async () => {
-    const openNotificationMock = jest.fn();
+    const openNotificationMock = vi.fn();
 
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
-          close: jest.fn(),
+          close: vi.fn(),
         },
         authProvider: {
           login: () => Promise.resolve({ success: true }),
@@ -277,9 +278,9 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should open notification when has success is false, error is undefined", async () => {
-    const updatePasswordMock = jest.fn();
-    const openNotificationMock = jest.fn();
-    const closeNotificationMock = jest.fn();
+    const updatePasswordMock = vi.fn();
+    const openNotificationMock = vi.fn();
+    const closeNotificationMock = vi.fn();
 
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
@@ -329,13 +330,13 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should open notification when throw error", async () => {
-    const openNotificationMock = jest.fn();
+    const openNotificationMock = vi.fn();
 
     const { result } = renderHook(() => useUpdatePassword(), {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
-          close: jest.fn(),
+          close: vi.fn(),
         },
         authProvider: {
           login: () => Promise.resolve({ success: true }),
@@ -366,9 +367,9 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should work notificationProvider", async () => {
-    const onErrorMock = jest.fn();
-    const onSuccessMock = jest.fn();
-    const updatePasswordMock = jest.fn();
+    const onErrorMock = vi.fn();
+    const onSuccessMock = vi.fn();
+    const updatePasswordMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -423,8 +424,8 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should override `mutationFn` with mutationOptions.mutationFn", async () => {
-    const updatePasswordMock = jest.fn().mockResolvedValue({ data: {} });
-    const mutationFnMock = jest.fn().mockResolvedValue({ data: {} });
+    const updatePasswordMock = vi.fn().mockResolvedValue({ data: {} });
+    const mutationFnMock = vi.fn().mockResolvedValue({ data: {} });
 
     const { result } = renderHook(
       () =>
@@ -459,7 +460,7 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should override `mutationKey` with `mutationOptions.mutationKey`", async () => {
-    const updatePasswordMock = jest.fn().mockResolvedValue({ data: {} });
+    const updatePasswordMock = vi.fn().mockResolvedValue({ data: {} });
 
     const { result } = renderHook(
       () =>
@@ -495,7 +496,7 @@ describe("useUpdatePassword Hook", () => {
   });
 
   it("should open success notification when successNotification is passed", async () => {
-    const openNotificationMock = jest.fn();
+    const openNotificationMock = vi.fn();
 
     const successNotification = {
       message: "Success!",
@@ -506,7 +507,7 @@ describe("useUpdatePassword Hook", () => {
       wrapper: TestWrapper({
         notificationProvider: {
           open: openNotificationMock,
-          close: jest.fn(),
+          close: vi.fn(),
         },
         authProvider: {
           ...mockAuthProvider,

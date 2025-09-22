@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2023-07-04-react-quer
 hide_table_of_contents: false
 ---
 
-**This article was last updated on November 28, 2024 to add clear introduction to React query post.**
+**This article was last updated on September 19, 2025 to include new details on React Query v5.**
 
 ## Introduction
 
@@ -444,6 +444,12 @@ const { data, isLoading } = useQuery("posts", fetchPosts, {
   refetchOnWindowFocus: true,
 });
 ```
+
+## What’s New in React Query v5?
+
+Since the original publication of this article, React Query has evolved into **TanStack Query v5**. While the fundamentals—fetching, caching, synchronizing server state—remain the same, v5 introduces several refinements. The API is more consistent, with clearer usage of `queryKey` and `queryFn`, and the DevTools have been redesigned to give developers better visibility into queries and mutations.
+
+One of the biggest improvements is in TypeScript support, making it easier to work with strongly typed applications. Cache management has also been fine-tuned, which reduces surprises when queries are refetched in the background. If you are starting a new project today, it’s recommended to use v5 directly, since the learning curve is the same but the developer experience is smoother and future-proof.
 
 ## Conclusion
 

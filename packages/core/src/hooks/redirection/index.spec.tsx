@@ -1,10 +1,11 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
 import { useRedirectionAfterSubmission } from "../redirection";
 
-const goMock = jest.fn();
+const goMock = vi.fn();
 
 describe("redirectionAfterSubmission Hook", () => {
   beforeEach(() => {

@@ -37,7 +37,7 @@ describe("create", () => {
 
   describe("without operation", () => {
     it("throws error", async () => {
-      expect(
+      await expect(
         dataProvider(client).create({ resource: "blogPosts", variables: {} }),
       ).rejects.toEqual(new Error("[Code] Operation is required."));
     });

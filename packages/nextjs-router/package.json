@@ -82,7 +82,7 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "vitest run",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -92,15 +92,17 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/core": "^5.0.0",
+    "@testing-library/jest-dom": "^6.6.3",
     "@types/node": "^20",
     "@types/qs": "^6.9.7",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "@vitejs/plugin-react": "^4.2.1",
+    "@vitest/ui": "^2.1.8",
+    "happy-dom": "^15.7.4",
     "next": "^14.2.26",
-    "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "@refinedev/core": "^5.0.0",

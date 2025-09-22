@@ -4,49 +4,31 @@
   "semverGroups": [],
   "versionGroups": [
     {
-      "dependencies": [
-        "@types/**",
-        "@testing-library/**",
-        "typescript"
-      ],
-      "dependencyTypes": [
-        "prod"
-      ],
+      "dependencies": ["@types/**", "@testing-library/**", "typescript"],
+      "dependencyTypes": ["prod"],
       "isBanned": true,
       "label": "These packages should only be under devDependencies."
     },
     {
-      "dependencies": [
-        "@refinedev/**"
-      ],
-      "packages": [
-        "**"
-      ],
+      "dependencies": ["@refinedev/**"],
+      "packages": ["**"],
       "isIgnored": true,
       "label": "@refinedev dependencies are managed by changeset."
     },
     {
-      "dependencies": [
-        "**"
-      ],
-      "dependencyTypes": [
-        "peer"
-      ],
-      "packages": [
-        "**"
-      ],
+      "dependencies": ["**"],
+      "dependencyTypes": ["peer"],
+      "packages": ["**"],
       "isIgnored": true
     },
     {
-      "dependencies": [
-        "nock"
-      ],
-      "dependencyTypes": [
-        "dev"
-      ],
+      "dependencies": ["nock"],
+      "dependencyTypes": ["dev"],
       "packages": [
         "@refinedev/appwrite",
-        "@refinedev/graphql"
+        "@refinedev/graphql",
+        "@refinedev/nestjsx-crud",
+        "@refinedev/supabase"
       ],
       "isIgnored": true
     },
@@ -58,9 +40,7 @@
         "@types/react",
         "@types/react-dom"
       ],
-      "packages": [
-        "with-nextjs-headless"
-      ],
+      "packages": ["with-nextjs-headless"],
       "isIgnored": true
     },
     {
@@ -77,9 +57,7 @@
         "clsx",
         "@netlify/plugin-nextjs"
       ],
-      "packages": [
-        "@refinedev/refine-ui"
-      ],
+      "packages": ["@refinedev/refine-ui"],
       "isIgnored": true
     }
   ]

@@ -471,7 +471,7 @@ describe("Edit", () => {
     };
 
     it("check idle,loading,success statuses", async () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const { getByText, getByTestId } = render(
         <Routes>
@@ -530,14 +530,14 @@ describe("Edit", () => {
           target: { value: "test" },
         });
 
-        jest.advanceTimersByTime(1100);
+        vi.advanceTimersByTime(1100);
       });
 
       // check saving message
       expect(getByText("saving...")).toBeTruthy();
 
       await act(async () => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       // check saved message
@@ -545,7 +545,7 @@ describe("Edit", () => {
     });
 
     it("check error status", async () => {
-      jest.useFakeTimers();
+      vi.useFakeTimers();
 
       const { getByText, getByTestId } = render(
         <Routes>
@@ -595,14 +595,14 @@ describe("Edit", () => {
           target: { value: "test" },
         });
 
-        jest.advanceTimersByTime(1100);
+        vi.advanceTimersByTime(1100);
       });
 
       // check saving message
       expect(getByText("saving...")).toBeTruthy();
 
       await act(async () => {
-        jest.advanceTimersByTime(1000);
+        vi.advanceTimersByTime(1000);
       });
 
       // check saved message

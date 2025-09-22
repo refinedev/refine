@@ -7,12 +7,12 @@ const parseTableParams = (search: string) => {
   const tableReady = {
     ...parsed,
     pagination: {
-      current: parsed.current,
+      currentPage: parsed.currentPage,
       pageSize: parsed.pageSize,
     },
   };
 
-  delete tableReady.current;
+  delete tableReady.currentPage;
   delete tableReady.pageSize;
 
   return tableReady;

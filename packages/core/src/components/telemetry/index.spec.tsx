@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 import { render, TestWrapper } from "@test";
 import * as UseTelemetryData from "../../hooks/useTelemetryData";
 
@@ -8,17 +9,17 @@ describe("Telemetry", () => {
   const originalImage = global.Image;
   const originalFetch = global.fetch;
 
-  const imageMock = jest.fn();
+  const imageMock = vi.fn();
   global.Image = imageMock;
 
-  const fetchMock = jest.fn();
+  const fetchMock = vi.fn();
   global.fetch = fetchMock;
 
   beforeEach(() => {
     global.Image = imageMock;
     global.fetch = fetchMock;
 
-    jest.spyOn(UseTelemetryData, "useTelemetryData").mockReturnValue({
+    vi.spyOn(UseTelemetryData, "useTelemetryData").mockReturnValue({
       providers: {},
       version: "1",
       resourceCount: 1,

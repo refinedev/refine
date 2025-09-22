@@ -5,6 +5,7 @@ import { Route, Routes } from "react-router";
 import { CreateButton } from "@components/buttons";
 import { MockRouterProvider, render, TestWrapper } from "@test";
 import { List } from "./index";
+import { vi } from "vitest";
 
 const renderList = (list: ReactNode) => {
   return render(
@@ -23,7 +24,7 @@ const renderList = (list: ReactNode) => {
 describe("<List/>", () => {
   beforeEach(() => {
     // This is an issue on `mantine` side rather than `refine`. Ignoring for now but might need to be fixed.
-    jest.spyOn(console, "error").mockImplementation((message) => {
+    vi.spyOn(console, "error").mockImplementation((message) => {
       if (message?.includes?.("validateDOMNesting")) {
         return;
       }

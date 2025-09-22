@@ -61,10 +61,10 @@ jobs:
               args: [--ignore-scripts]
       - name: Fetch commits
         run: git fetch origin ${{ github.base_ref || 'main' }} --depth=1
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Split Into Chunks
@@ -79,7 +79,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     name: Build All Examples (Chunk 1)
 
@@ -94,10 +94,10 @@ jobs:
         with:
           version: 9
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Install Dependencies
@@ -123,7 +123,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     name: Build All Examples (Chunk 2)
 
@@ -138,10 +138,10 @@ jobs:
         with:
           version: 9
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Install Dependencies
@@ -167,7 +167,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     name: Build All Examples (Chunk 3)
 
@@ -182,10 +182,10 @@ jobs:
         with:
           version: 9
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Install Dependencies
@@ -211,7 +211,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     name: Build All Examples (Chunk 4)
 
@@ -226,10 +226,10 @@ jobs:
         with:
           version: 9
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Install Dependencies
@@ -255,7 +255,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     name: Build All Examples (Chunk 5)
 
@@ -270,10 +270,10 @@ jobs:
         with:
           version: 9
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Install Dependencies
@@ -299,7 +299,7 @@ jobs:
       cancel-in-progress: true
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [22.x]
 
     name: Build All Examples (Chunk 6)
 
@@ -314,10 +314,10 @@ jobs:
         with:
           version: 9
 
-      - name: Use Node.js 18
+      - name: Use Node.js 22
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "pnpm"
 
       - name: Install Dependencies

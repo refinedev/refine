@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/cli",
-  "version": "2.16.48",
+  "version": "2.16.49",
   "private": false,
   "description": "Refine CLI tool, streamlining the development of Refine applications.",
   "license": "MIT",
@@ -29,7 +29,8 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -80,7 +81,6 @@
     "@types/fs-extra": "^9.0.13",
     "@types/inquirer": "^8.2.5",
     "@types/inquirer-autocomplete-prompt": "^2.0.0",
-    "@types/jest": "^29.2.4",
     "@types/jscodeshift": "^17.3.0",
     "@types/marked": "^5.0.1",
     "@types/marked-terminal": "^3.1.5",
@@ -91,10 +91,10 @@
     "@types/prettier": "^2.7.3",
     "@types/semver": "^7.5.8",
     "@types/temp": "^0.9.1",
-    "jest": "^30.0.5",
-    "ts-jest": "^29.1.2",
+    "@vitest/ui": "^2.1.8",
     "tsup": "^6.7.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "engines": {
     "node": ">=20"

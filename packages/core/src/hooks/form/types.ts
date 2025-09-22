@@ -147,7 +147,7 @@ type ActionFormProps<
    */
   invalidates?: Array<keyof IQueryKeys>;
   /**
-   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options of useOne hook used while in edit mode.
+   * react-query's [useQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useQuery) options of useOne hook used while in edit mode.
    */
   queryOptions?: MakeOptional<
     UseQueryOptions<
@@ -158,7 +158,7 @@ type ActionFormProps<
     "queryFn" | "queryKey"
   >;
   /**
-   * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
+   * react-query's [useMutation](https://tanstack.com/query/v5/docs/framework/react/reference/useMutation) options of useCreate hook used while submitting in create and clone modes.
    */
   createMutationOptions?: UseCreateProps<
     TResponse,
@@ -166,7 +166,7 @@ type ActionFormProps<
     TVariables
   >["mutationOptions"];
   /**
-   * react-query's [useMutation](https://tanstack.com/query/v4/docs/reference/useMutation) options of useUpdate hook used while submitting in edit mode.
+   * react-query's [useMutation](https://tanstack.com/query/v5/docs/framework/react/reference/useMutation) options of useUpdate hook used while submitting in edit mode.
    */
   updateMutationOptions?: UseUpdateProps<
     TResponse,

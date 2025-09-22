@@ -34,7 +34,7 @@ describe("getMany", () => {
 
   describe("without operation", () => {
     it("throws error", async () => {
-      expect(
+      await expect(
         dataProvider(client).getMany({
           resource: "blogPosts",
           ids: [113, 369],

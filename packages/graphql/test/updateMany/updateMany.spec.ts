@@ -30,7 +30,7 @@ describe("updateMany", () => {
 
   describe("without operation", () => {
     it("throws error", async () => {
-      expect(
+      await expect(
         dataProvider(client).updateMany({
           resource: "blogPosts",
           ids: [1, 2],

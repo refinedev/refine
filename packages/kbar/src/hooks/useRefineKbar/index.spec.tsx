@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import type { AccessControlProvider, IResourceItem } from "@refinedev/core";
 import { Route, Routes } from "react-router";
@@ -6,21 +7,24 @@ import { act, TestWrapper, renderHook } from "@test";
 
 import { useRefineKbar } from ".";
 
-const mockFn = jest.fn();
+const mockFn = vi.fn();
 
-jest.mock("kbar", () => ({
-  ...(jest.requireActual("kbar") as typeof import("kbar")),
-  useRegisterActions: (actions: any) => mockFn(actions),
-}));
+vi.mock("kbar", async () => {
+  const actual = await import("kbar");
+  return {
+    ...actual,
+    useRegisterActions: (actions: any) => mockFn(actions),
+  };
+});
 
 describe("useRefineKbar Hook", () => {
   beforeAll(async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
   });
 
   afterAll(async () => {
-    jest.clearAllTimers();
-    jest.useRealTimers();
+    vi.clearAllTimers();
+    vi.useRealTimers();
   });
 
   const createRenderHook = async (
@@ -67,7 +71,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -92,7 +96,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -120,7 +124,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -148,7 +152,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -176,7 +180,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -201,7 +205,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -229,7 +233,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -257,7 +261,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -283,7 +287,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -308,7 +312,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -333,7 +337,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -359,7 +363,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -390,7 +394,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -415,7 +419,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -448,7 +452,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -476,7 +480,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -509,7 +513,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -534,7 +538,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -559,7 +563,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -592,7 +596,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(
@@ -624,7 +628,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -653,7 +657,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -686,7 +690,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).toHaveBeenLastCalledWith(
@@ -732,7 +736,7 @@ describe("useRefineKbar Hook", () => {
       );
 
       await act(async () => {
-        jest.advanceTimersToNextTimer(1);
+        vi.advanceTimersToNextTimer(1);
       });
 
       expect(mockFn).not.toHaveBeenLastCalledWith(

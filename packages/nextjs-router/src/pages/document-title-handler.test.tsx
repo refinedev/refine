@@ -1,10 +1,11 @@
 import React, { type ReactNode } from "react";
+import { vi } from "vitest";
 
 import { DocumentTitleHandler } from "./document-title-handler";
 import { render, TestWrapper, type ITestWrapperProps } from "../test/index";
 import { mockRouterProvider } from "../test/dataMocks";
 
-jest.mock("next/head", () => {
+vi.mock("next/head", () => {
   return {
     __esModule: true,
     default: ({ children }: { children: Array<React.ReactElement> }) => {

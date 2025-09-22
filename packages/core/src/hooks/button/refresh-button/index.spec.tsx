@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper, mockRouterProvider } from "@test";
 
@@ -35,9 +36,9 @@ describe("useRefreshButton", () => {
   });
 
   it("onClick should call invalidate fn", async () => {
-    const invalidateMock = jest.fn();
+    const invalidateMock = vi.fn();
 
-    const mock = jest
+    const mock = vi
       .spyOn(UseInvalidateScope, "useInvalidate")
       .mockImplementation(() => {
         return invalidateMock;

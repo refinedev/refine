@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { act } from "react";
 
@@ -9,11 +10,11 @@ import { CanAccess } from ".";
 
 describe("CanAccess Component", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   it("should render children", async () => {
-    const onUnauthorized = jest.fn();
+    const onUnauthorized = vi.fn();
 
     const { container, findByText } = render(
       <CanAccess
@@ -49,7 +50,7 @@ describe("CanAccess Component", () => {
   });
 
   it("should not render children and call onUnauthorized", async () => {
-    const onUnauthorized = jest.fn();
+    const onUnauthorized = vi.fn();
 
     const { container, queryByText } = render(
       <CanAccess
@@ -137,7 +138,7 @@ describe("CanAccess Component", () => {
 
   describe("when no prop is passed", () => {
     it("should work", async () => {
-      const useCanSpy = jest.spyOn(UseCanHook, "useCan");
+      const useCanSpy = vi.spyOn(UseCanHook, "useCan");
 
       const { container, queryByText, findByText } = render(
         <CanAccess fallback={<p>Access Denied</p>}>
@@ -204,7 +205,7 @@ describe("CanAccess Component", () => {
       describe("When new router", () => {
         describe("when resource is an object", () => {
           it("should deny access", async () => {
-            const useCanSpy = jest.spyOn(UseCanHook, "useCan");
+            const useCanSpy = vi.spyOn(UseCanHook, "useCan");
 
             const { container, queryByText, findByText } = render(
               <CanAccess fallback={<p>Access Denied</p>}>
@@ -252,7 +253,7 @@ describe("CanAccess Component", () => {
         describe("when resource is a string", () => {
           describe("when pick resource is object", () => {
             it("should deny access", async () => {
-              const useCanSpy = jest.spyOn(UseCanHook, "useCan");
+              const useCanSpy = vi.spyOn(UseCanHook, "useCan");
 
               const { container, queryByText, findByText } = render(
                 <CanAccess fallback={<p>Access Denied</p>}>
@@ -304,7 +305,7 @@ describe("CanAccess Component", () => {
 
           describe("when pick resource is undefined", () => {
             it("should work without resource", async () => {
-              const useCanSpy = jest.spyOn(UseCanHook, "useCan");
+              const useCanSpy = vi.spyOn(UseCanHook, "useCan");
 
               const { container, queryByText, findByText } = render(
                 <CanAccess fallback={<p>Access Denied</p>}>
@@ -349,7 +350,10 @@ describe("CanAccess Component", () => {
   });
 
   it("should respect queryOptions from component prop", async () => {
-    const onUnauthorized = jest.fn();
+    const onUnauthorized = vi.fn();
+
+    // Set up spy before component renders so it can capture the hook calls
+    const useCanSpy = vi.spyOn(UseCanHook, "useCan");
 
     const { container, queryByText } = render(
       <CanAccess
@@ -375,8 +379,6 @@ describe("CanAccess Component", () => {
     await waitFor(() => {
       expect(queryByText("Accessible")).toBeInTheDocument();
     });
-
-    const useCanSpy = jest.spyOn(UseCanHook, "useCan");
 
     await waitFor(() => {
       expect(useCanSpy).toHaveBeenCalledWith(

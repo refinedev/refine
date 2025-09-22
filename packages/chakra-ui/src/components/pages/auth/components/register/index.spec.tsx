@@ -1,6 +1,7 @@
 import React from "react";
 import { fireEvent, render, waitFor } from "@testing-library/react";
 import { pageRegisterTests } from "@refinedev/ui-tests";
+import { vi } from "vitest";
 
 import { RegisterPage } from ".";
 import { MockAuthProvider, TestWrapper } from "@test/index";
@@ -9,7 +10,7 @@ describe("Auth Page Register", () => {
   pageRegisterTests.bind(this)(RegisterPage);
 
   it("should run 'onSubmit' callback if it is passed", async () => {
-    const onSubmit = jest.fn();
+    const onSubmit = vi.fn();
 
     const { getAllByText, getByLabelText } = render(
       <RegisterPage

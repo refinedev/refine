@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import type { AccessControlProvider } from "@refinedev/core";
 import { Route, Routes } from "react-router";
@@ -41,7 +42,7 @@ export const crudListTests = (
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / CRUD List", () => {
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(jest.fn());
+      vi.spyOn(console, "warn").mockImplementation(vi.fn());
     });
 
     it("should render children", async () => {
