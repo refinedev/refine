@@ -132,7 +132,7 @@ const { tableProps, sorters, filters } = useTable({
 Refine provides the [`getDefaultFilter`](https://github.com/refinedev/refine/blob/716656d9ad3deb169c32685cdebbfd46bac44beb/packages/core/src/definitions/table/index.ts#L166) function, You can use this function to find the filter value for the specific field.
 
 ```tsx
-import { getDefaultFilter } from "@refinedev/core";
+import { getDefaultFilter } from "@refinedev/antd";
 import { useTable } from "@refinedev/antd";
 
 const MyComponent = () => {

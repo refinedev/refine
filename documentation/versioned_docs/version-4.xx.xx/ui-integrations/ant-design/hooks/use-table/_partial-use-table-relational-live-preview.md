@@ -9,7 +9,8 @@ body {
 setInitialRoutes(["/posts"]);
 
 // visible-block-start
-import { HttpError, useMany, getDefaultFilter } from "@refinedev/core";
+import { HttpError, useMany } from "@refinedev/core";
+import { getDefaultFilter } from "@refinedev/antd";
 
 import {
   List,
