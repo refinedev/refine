@@ -6,3 +6,5 @@
 ---
 
 fix: incorrect parseTableParams issue.
+
+Resolves (#7013)[https://github.com/refinedev/refine/issues/7013]
