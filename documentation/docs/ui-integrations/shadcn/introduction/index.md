@@ -44,8 +44,7 @@ If you want to add shadcn/ui to an existing Refine project:
 
 ```bash
 npx shadcn@latest add https://ui.refine.dev/r/auto-save-indicator.json
-npx shadcn@latest add https://ui.refine.dev/r/create-view.json
-npx shadcn@latest add https://ui.refine.dev/r/edit-view.json
+npx shadcn@latest add https://ui.refine.dev/r/views.json
 ```
 
 ## Usage
