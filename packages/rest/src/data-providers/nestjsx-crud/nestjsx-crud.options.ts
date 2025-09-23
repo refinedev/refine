@@ -77,13 +77,6 @@ export const nestjsxCrudDataProviderOptions: CreateDataProviderOptions = {
       return transformHttpError(error);
     },
   },
-  createMany: {
-    getEndpoint: ({ resource }) => `${resource}/bulk`,
-    buildBodyParams: async ({ variables }) => ({
-      bulk: variables,
-    }),
-    mapResponse: async (response) => await response.json(),
-  },
   getOne: {
     getEndpoint: ({ resource, id }) => `${resource}/${id}`,
     buildQueryParams: async ({ meta }) => {
