@@ -113,16 +113,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -183,16 +183,16 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -238,16 +238,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -311,22 +311,22 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2(@dnd-kit/core@6.1.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/nestjs-query':
         specifier: ^2.0.0
         version: link:../../packages/nestjs-query
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -426,16 +426,16 @@ importers:
   examples/audit-log-provider:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -481,16 +481,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -539,16 +539,16 @@ importers:
         specifier: ^1.5.0
         version: 1.12.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -597,19 +597,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -658,16 +658,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -713,16 +713,16 @@ importers:
   examples/auth-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -771,16 +771,16 @@ importers:
         specifier: ^3.4.0
         version: 3.4.0(keycloak-js@25.0.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -835,16 +835,16 @@ importers:
         specifier: ^1.0.2
         version: 1.0.3(@refinedev/core@packages+core)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -902,16 +902,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -975,10 +975,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -987,7 +987,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1030,16 +1030,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1085,19 +1085,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1143,19 +1143,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -1201,16 +1201,16 @@ importers:
   examples/base-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -1268,16 +1268,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -1341,13 +1341,13 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -1356,7 +1356,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1402,16 +1402,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1457,19 +1457,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: 2.0.0
         version: link:../../packages/kbar
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1512,13 +1512,13 @@ importers:
   examples/core-use-import:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1555,13 +1555,13 @@ importers:
   examples/core-use-menu:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1598,13 +1598,13 @@ importers:
   examples/core-use-modal:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1641,13 +1641,13 @@ importers:
   examples/core-use-select:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1687,16 +1687,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1742,16 +1742,16 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(@types/node@20.5.1)(postcss@8.4.38)(react-scripts@5.0.1(@babel/plugin-syntax-flow@7.27.1(@babel/core@7.24.4))(@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4))(@types/babel__core@7.20.5)(@types/webpack@4.41.38)(bufferutil@4.0.8)(eslint@9.35.0(jiti@2.5.1))(react@19.1.0)(sass@1.75.0)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(type-fest@4.41.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(webpack-hot-middleware@2.26.1))(typescript@5.8.3)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1800,16 +1800,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1852,16 +1852,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1907,16 +1907,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -1959,16 +1959,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -2014,19 +2014,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -2087,16 +2087,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -2160,10 +2160,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -2172,7 +2172,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -2215,16 +2215,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -2270,16 +2270,16 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/airtable
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2322,19 +2322,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/appwrite':
         specifier: ^8.0.0
         version: link:../../packages/appwrite
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2377,19 +2377,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/appwrite':
         specifier: ^8.0.0
         version: link:../../packages/appwrite
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2438,19 +2438,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/graphql':
         specifier: ^8.0.0
         version: link:../../packages/graphql
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2511,19 +2511,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/hasura':
         specifier: ^7.0.0
         version: link:../../packages/hasura
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2584,16 +2584,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -2639,19 +2639,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/nestjs-query':
         specifier: ^2.0.0
         version: link:../../packages/nestjs-query
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2715,19 +2715,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/nestjsx-crud':
         specifier: ^6.0.0
         version: link:../../packages/nestjsx-crud
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@uiw/react-md-editor':
         specifier: ^4.0.8
@@ -2770,19 +2770,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -2834,16 +2834,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/strapi':
         specifier: ^5.0.0
@@ -2907,16 +2907,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/rest':
         specifier: ^2.0.0
@@ -2977,16 +2977,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/supabase':
         specifier: ^6.0.0
@@ -3032,16 +3032,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3087,16 +3087,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3142,16 +3142,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3197,16 +3197,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3264,10 +3264,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -3276,7 +3276,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3340,19 +3340,19 @@ importers:
         specifier: ^1.1.35
         version: 1.1.35(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: 2.0.0
         version: link:../../packages/kbar
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3443,13 +3443,13 @@ importers:
   examples/finefoods-client:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/nextjs-router':
-        specifier: ^7.0.0
+        specifier: ^7.0.1
         version: link:../../packages/nextjs-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -3528,10 +3528,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/kbar':
         specifier: 2.0.0
@@ -3543,7 +3543,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -3637,16 +3637,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3692,16 +3692,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3747,16 +3747,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3799,16 +3799,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3854,16 +3854,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3906,16 +3906,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -3961,19 +3961,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4022,19 +4022,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4083,19 +4083,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4144,19 +4144,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4202,16 +4202,16 @@ importers:
   examples/form-core-use-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4272,16 +4272,16 @@ importers:
         specifier: ^5.4.1
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4345,16 +4345,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4421,16 +4421,16 @@ importers:
         specifier: ^5.4.1
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4494,16 +4494,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4570,16 +4570,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -4646,10 +4646,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -4658,7 +4658,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -4716,10 +4716,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -4728,7 +4728,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -4783,10 +4783,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -4795,7 +4795,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -4850,10 +4850,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -4862,7 +4862,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -4917,10 +4917,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -4929,7 +4929,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -4969,16 +4969,16 @@ importers:
   examples/form-react-hook-form-use-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5018,16 +5018,16 @@ importers:
   examples/form-react-hook-form-use-modal-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5067,16 +5067,16 @@ importers:
   examples/form-react-hook-form-use-steps-form:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5119,13 +5119,13 @@ importers:
   examples/form-save-and-continue:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5180,22 +5180,22 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^7.0.0
+        specifier: ^7.0.1
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5256,16 +5256,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5323,16 +5323,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5390,16 +5390,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -5460,10 +5460,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -5472,7 +5472,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5515,13 +5515,13 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -5530,7 +5530,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -5600,13 +5600,13 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -5618,7 +5618,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -5697,13 +5697,13 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/hasura':
         specifier: ^7.0.0
@@ -5715,7 +5715,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       antd:
         specifier: ^5.23.0
@@ -5773,10 +5773,10 @@ importers:
   examples/inferencer-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -5788,7 +5788,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -5870,10 +5870,10 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -5882,10 +5882,10 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -5973,10 +5973,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -5991,7 +5991,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6061,16 +6061,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6116,16 +6116,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6171,19 +6171,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
@@ -6247,16 +6247,16 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/ably
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6302,16 +6302,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6382,16 +6382,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6440,16 +6440,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/supabase':
         specifier: ^6.0.0
@@ -6498,16 +6498,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/supabase':
         specifier: ^6.0.0
@@ -6589,13 +6589,13 @@ importers:
         specifier: ^7.23.3
         version: 7.23.3(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(date-fns@4.1.0)(dayjs@1.11.10)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -6607,7 +6607,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/rest':
         specifier: ^2.0.0
@@ -6674,13 +6674,13 @@ importers:
         specifier: ^3.1.8
         version: 3.4.4(encoding@0.1.13)(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -6689,7 +6689,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
@@ -6738,16 +6738,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6799,16 +6799,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6854,19 +6854,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -6927,16 +6927,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -7000,10 +7000,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -7012,7 +7012,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7055,10 +7055,10 @@ importers:
   examples/starter-vite:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       react:
         specifier: ^19.1.0
@@ -7107,16 +7107,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7165,16 +7165,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7223,16 +7223,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7278,16 +7278,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7330,16 +7330,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7382,16 +7382,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7437,19 +7437,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -7498,19 +7498,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -7559,13 +7559,13 @@ importers:
         specifier: ^12.1.2
         version: 12.4.0(handsontable@12.4.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7626,16 +7626,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -7699,16 +7699,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -7769,10 +7769,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -7781,7 +7781,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -7845,16 +7845,16 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
         version: link:../../packages/mui
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       axios:
         specifier: ^1.11.0
@@ -7909,10 +7909,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -7921,7 +7921,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -7976,10 +7976,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -7988,7 +7988,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8043,10 +8043,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -8055,7 +8055,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8107,10 +8107,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -8119,7 +8119,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8171,10 +8171,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -8183,7 +8183,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8223,16 +8223,16 @@ importers:
         specifier: ^2.0.0
         version: 2.0.1(react-dom@19.1.0(react@19.1.0))(react-hook-form@7.57.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8281,13 +8281,13 @@ importers:
   examples/table-react-table-basic:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8333,16 +8333,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8397,19 +8397,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8470,16 +8470,16 @@ importers:
   examples/template-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8552,16 +8552,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8640,10 +8640,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -8652,7 +8652,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8707,16 +8707,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8762,19 +8762,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8835,16 +8835,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -8908,10 +8908,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -8920,7 +8920,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -8966,19 +8966,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9036,13 +9036,13 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -9051,7 +9051,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9112,10 +9112,10 @@ importers:
   examples/tutorial-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -9124,7 +9124,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9197,19 +9197,19 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9288,10 +9288,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -9303,7 +9303,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9361,16 +9361,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9413,16 +9413,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9468,19 +9468,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9532,19 +9532,19 @@ importers:
         specifier: ^2.5.1
         version: 2.8.2(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(framer-motion@7.10.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/chakra-ui':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/chakra-ui
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9611,16 +9611,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9687,16 +9687,16 @@ importers:
         specifier: ^5.10.4
         version: 5.10.5(@mantine/core@5.10.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mantine/hooks@5.10.5(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mantine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: link:../../packages/mantine
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9760,10 +9760,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -9772,7 +9772,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9827,10 +9827,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/mui':
         specifier: ^7.0.0
@@ -9839,7 +9839,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9879,16 +9879,16 @@ importers:
   examples/use-infinite-list:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -9934,16 +9934,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -9986,16 +9986,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10038,19 +10038,19 @@ importers:
   examples/win95:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -10129,16 +10129,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10184,16 +10184,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10245,13 +10245,13 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^2.0.0
@@ -10263,7 +10263,7 @@ importers:
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10321,16 +10321,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10379,22 +10379,22 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/kbar':
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^7.0.0
+        specifier: ^7.0.1
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10455,16 +10455,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/devtools':
-        specifier: ^2.0.1
+        specifier: ^2.0.2
         version: link:../../packages/devtools
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -10473,7 +10473,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^7.0.0
+        specifier: ^7.0.1
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10528,16 +10528,16 @@ importers:
   examples/with-persist-query:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -10589,16 +10589,16 @@ importers:
   examples/with-react-toastify:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
         version: link:../../packages/react-hook-form
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -10647,16 +10647,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/remix-router':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../../packages/remix-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10711,19 +10711,19 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
         version: link:../../packages/inferencer
       '@refinedev/remix-router':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../../packages/remix-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10790,10 +10790,10 @@ importers:
   examples/with-remix-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
@@ -10802,7 +10802,7 @@ importers:
         specifier: ^6.0.0
         version: link:../../packages/react-table
       '@refinedev/remix-router':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../../packages/remix-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10872,10 +10872,10 @@ importers:
         specifier: ^7.23.5
         version: 7.23.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@mui/material@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@mui/system@6.1.7(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@emotion/styled@11.11.5(@emotion/react@11.11.4(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/inferencer':
         specifier: ^6.0.1
@@ -10887,7 +10887,7 @@ importers:
         specifier: ^7.0.0
         version: link:../../packages/mui
       '@refinedev/remix-router':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../../packages/remix-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10942,10 +10942,10 @@ importers:
   examples/with-remix-vite-headless:
     dependencies:
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-hook-form':
         specifier: ^5.0.0
@@ -10954,7 +10954,7 @@ importers:
         specifier: ^6.0.0
         version: link:../../packages/react-table
       '@refinedev/remix-router':
-        specifier: ^4.0.0
+        specifier: ^4.0.1
         version: link:../../packages/remix-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -11012,16 +11012,16 @@ importers:
         specifier: ^1.0.3
         version: 1.0.3(antd@5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@refinedev/antd':
-        specifier: ^6.0.1
+        specifier: ^6.0.2
         version: link:../../packages/antd
       '@refinedev/cli':
-        specifier: ^2.16.48
+        specifier: ^2.16.49
         version: link:../../packages/cli
       '@refinedev/core':
-        specifier: ^5.0.1
+        specifier: ^5.0.2
         version: link:../../packages/core
       '@refinedev/react-router':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -11132,7 +11132,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
-        specifier: 5.0.1
+        specifier: 5.0.2
         version: link:../core
       '@testing-library/jest-dom':
         specifier: ^6.6.3
@@ -11211,7 +11211,7 @@ importers:
         specifier: ^2.16.48
         version: link:../cli
       '@refinedev/core':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../core
       '@refinedev/ui-tests':
         specifier: ^2.0.0
@@ -11360,7 +11360,7 @@ importers:
         specifier: ^2.16.48
         version: link:../cli
       '@refinedev/core':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../core
       '@refinedev/ui-tests':
         specifier: ^2.0.0
@@ -11823,7 +11823,7 @@ importers:
         specifier: ^0.4.0
         version: 0.4.1
       '@refinedev/cli':
-        specifier: 2.16.48
+        specifier: 2.16.49
         version: link:../cli
       '@refinedev/core':
         specifier: ^5.0.0
@@ -12890,7 +12890,7 @@ importers:
         specifier: ^2.16.48
         version: link:../cli
       '@refinedev/core':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../core
       '@refinedev/ui-tests':
         specifier: ^2.0.0
@@ -13252,7 +13252,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../core
       '@testing-library/jest-dom':
         specifier: ^6.6.3
@@ -13377,7 +13377,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../core
       '@types/node':
         specifier: ^20
@@ -13689,7 +13689,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/core':
-        specifier: ^5.0.0
+        specifier: ^5.0.2
         version: link:../core
       '@remix-run/node':
         specifier: ^2.4.0
@@ -33829,7 +33829,7 @@ snapshots:
       '@smithy/util-middleware': 2.2.0
       '@smithy/util-retry': 2.2.0
       '@smithy/util-utf8': 2.3.0
-      tslib: 2.6.2
+      tslib: 2.8.1
     transitivePeerDependencies:
       - aws-crt
     optional: true
@@ -34130,7 +34130,7 @@ snapshots:
 
   '@aws-sdk/util-locate-window@3.535.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@aws-sdk/util-user-agent-browser@3.535.0':
@@ -34151,7 +34151,7 @@ snapshots:
 
   '@aws-sdk/util-utf8-browser@3.259.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@babel/code-frame@7.24.2':
@@ -37366,7 +37366,7 @@ snapshots:
   '@emnapi/core@1.4.5':
     dependencies:
       '@emnapi/wasi-threads': 1.0.4
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@emnapi/runtime@1.4.5':
@@ -42033,7 +42033,7 @@ snapshots:
 
   '@smithy/is-array-buffer@2.2.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@smithy/middleware-content-length@2.2.0':
@@ -42252,7 +42252,7 @@ snapshots:
 
   '@smithy/util-uri-escape@2.2.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@smithy/util-utf8@2.3.0':
@@ -42623,7 +42623,7 @@ snapshots:
 
   '@tybys/wasm-util@0.10.0':
     dependencies:
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@types/acorn@4.0.6':
@@ -46825,7 +46825,7 @@ snapshots:
       '@typescript-eslint/parser': 5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3)
       eslint: 9.35.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.35.0(jiti@2.5.1))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.35.0(jiti@2.5.1))
       eslint-plugin-react: 7.37.5(eslint@9.35.0(jiti@2.5.1))
@@ -46876,7 +46876,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3(supports-color@8.1.1)
@@ -46891,14 +46891,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)):
+  eslint-module-utils@2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)):
     dependencies:
       debug: 3.2.7(supports-color@8.1.1)
     optionalDependencies:
       '@typescript-eslint/parser': 5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3)
       eslint: 9.35.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
     transitivePeerDependencies:
       - supports-color
 
@@ -46995,7 +46995,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.35.0(jiti@2.5.1)
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
+      eslint-module-utils: 2.12.1(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@5.48.0(eslint@9.35.0(jiti@2.5.1))(typescript@5.8.3))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1)))(eslint@9.35.0(jiti@2.5.1))
       hasown: 2.0.2
       is-core-module: 2.16.1
       is-glob: 4.0.3

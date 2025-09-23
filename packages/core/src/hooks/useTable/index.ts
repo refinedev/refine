@@ -219,7 +219,7 @@ export function useTable<
   const preferredMeta = meta;
 
   // Parse table params from URL if available
-  const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+  const { parsedCurrentPage, parsedPageSize, parsedSorter, parsedFilters } =
     parseTableParams(parsedParams.params?.search ?? "?");
 
   const preferredInitialFilters = filtersFromProp?.initial;
@@ -239,8 +239,8 @@ export function useTable<
 
   if (syncWithLocation) {
     defaultCurrentPage =
-      parsedParams?.params?.current ||
-      parsedCurrent ||
+      parsedParams?.params?.currentPage ||
+      parsedCurrentPage ||
       prefferedCurrentPage ||
       1;
     defaultPageSize =

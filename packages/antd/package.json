@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/antd",
-  "version": "6.0.1",
+  "version": "6.0.2",
   "private": false,
   "description": "Ant Design UI support for Refine, offering enterprise-level UI components.",
   "repository": {
@@ -58,7 +58,7 @@
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
     "@refinedev/cli": "^2.16.48",
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/core": "^5.0.2",
     "@refinedev/ui-tests": "^2.0.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
