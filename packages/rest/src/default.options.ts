@@ -1,15 +1,15 @@
 import type {
-  CreateManyParams,
   CreateParams,
   CustomParams,
   DeleteOneParams,
   GetListParams,
-  GetManyParams,
   GetOneParams,
   UpdateParams,
   HttpError,
+  GetManyParams,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
+
 import type { AnyObject } from "./types";
 
 export const defaultCreateDataProviderOptions = {
@@ -20,51 +20,13 @@ export const defaultCreateDataProviderOptions = {
     async buildHeaders(params: GetListParams) {
       return params.meta?.headers ?? {};
     },
-    async buildFilters(params: GetListParams) {
-      const { filters = [] } = params;
-
-      return filters.reduce((acc, filter) => {
-        if ("field" in filter) {
-          return {
-            ...acc,
-            [filter.field]: { [filter.operator]: filter.value },
-          };
-        }
-
-        return acc;
-      }, {});
-    },
-    async buildPagination(params: GetListParams) {
-      const { pagination } = params;
-
-      return pagination ?? {};
-    },
-    async buildSorters(params: GetListParams) {
-      const { sorters = [] } = params;
-
-      return sorters.reduce(
-        (acc, sorter) => {
-          return {
-            sort: {
-              ...acc.sort,
-              [sorter.field]: sorter.order,
-            },
-          };
-        },
-        { sort: {} },
-      );
-    },
     async buildQueryParams(params: GetListParams) {
-      const filters = await this.buildFilters(params);
-
-      const sorters = await this.buildSorters(params);
-
-      const pagination = await this.buildPagination(params);
+      const { filters, sorters, pagination } = params;
 
       const queryParams = {
-        ...filters,
-        ...sorters,
-        ...pagination,
+        filters,
+        sorters,
+        pagination,
         ...params.meta?.query,
       };
 
@@ -72,19 +34,15 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject>,
-      params: GetListParams,
+      _params: GetListParams,
     ): Promise<any[]> {
-      const body = await response.json();
-
-      return body.records;
+      return await response.json();
     },
     async getTotalCount(
-      response: KyResponse<AnyObject>,
+      _response: KyResponse<AnyObject>,
       _params: GetListParams,
     ): Promise<number> {
-      const body = await response.json();
-
-      return body.totalCount;
+      return -1;
     },
   },
   getOne: {
@@ -118,7 +76,7 @@ export const defaultCreateDataProviderOptions = {
 
       return params.meta?.query ?? queryParams;
     },
-    async mapResponse(response: KyResponse<AnyObject>, params: GetManyParams) {
+    async mapResponse(response: KyResponse<AnyObject>, _params: GetManyParams) {
       const body = await response.json();
 
       return body.records;
@@ -126,7 +84,7 @@ export const defaultCreateDataProviderOptions = {
   },
   create: {
     getEndpoint(params: CreateParams<any>): string {
-      return `${params.resource}`;
+      return params.resource;
     },
     async buildHeaders(params: CreateParams<any>) {
       return params.meta?.headers ?? {};
@@ -160,7 +118,7 @@ export const defaultCreateDataProviderOptions = {
       return `${params.resource}/${params.id}`;
     },
     getRequestMethod(params: UpdateParams<any>) {
-      return params.meta?.method ?? "PATCH";
+      return params.meta?.method ?? "patch";
     },
     async buildHeaders(params: UpdateParams<any>) {
       return params.meta?.headers ?? {};
@@ -223,7 +181,7 @@ export const defaultCreateDataProviderOptions = {
     },
     async mapResponse(
       response: KyResponse<AnyObject | AnyObject[]>,
-      params: CustomParams<any>,
+      _params: CustomParams<any>,
     ) {
       return await response.json();
     },

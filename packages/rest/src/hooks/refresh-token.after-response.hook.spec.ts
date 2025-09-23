@@ -50,7 +50,7 @@ describe("auth", () => {
     nock(API_URL)
       .matchHeader("Authorization", `Bearer ${NEW_TOKEN}`)
       .get("/posts")
-      .reply(200, { records: [{ id: 1 }], totalCount: 1 });
+      .reply(200, [{ id: 1 }]);
 
     const result = await dataProvider.getList({ resource: "posts" });
 
@@ -58,6 +58,6 @@ describe("auth", () => {
     expect(localStorage.getItem(REFRESH_TOKEN_KEY)).toEqual(NEW_REFRESH_TOKEN);
 
     expect(result.data).toEqual([{ id: 1 }]);
-    expect(result.total).toEqual(1);
+    expect(result.total).toEqual(-1);
   });
 });
