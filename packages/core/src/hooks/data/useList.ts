@@ -101,6 +101,8 @@ export type UseListReturnType<TData, TError> = {
   };
 } & UseLoadingOvertimeReturnType;
 
+const EMPTY_ARRAY: readonly [] = Object.freeze([]);
+
 /**
  * `useList` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`} used for retrieving items from a `resource` with pagination, sort, and filter configurations.
  *
@@ -311,8 +313,6 @@ export const useList = <
     ...overtimeOptions,
     isLoading: queryResponse.isFetching,
   });
-
-  const EMPTY_ARRAY: readonly [] = Object.freeze([]);
 
   return {
     query: queryResponse,

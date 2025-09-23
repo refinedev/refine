@@ -85,6 +85,8 @@ export type UseManyProps<TQueryFnData, TError, TData> = {
   LiveModeProps &
   UseLoadingOvertimeOptionsProps;
 
+const EMPTY_ARRAY: readonly [] = Object.freeze([]);
+
 /**
  * `useMany` is a modified version of `react-query`'s {@link https://tanstack.com/query/v5/docs/framework/react/guides/queries `useQuery`} used for retrieving multiple items from a `resource`.
  *
@@ -259,7 +261,7 @@ export const useMany = <
   return {
     query: queryResponse,
     result: {
-      data: queryResponse?.data?.data || [],
+      data: queryResponse?.data?.data || EMPTY_ARRAY,
     },
     overtime: { elapsedTime },
   };
