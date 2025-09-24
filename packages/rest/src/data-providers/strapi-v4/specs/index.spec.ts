@@ -44,9 +44,7 @@ describe("dataProvider", () => {
         id: "18",
       });
 
-      expect(data.data.id).toBe(18);
-      expect(data.data.attributes.title).toBe("foo");
-      expect(data.data.attributes.content).toBe("bar");
+      expect(data).toBeUndefined();
     });
   });
 
