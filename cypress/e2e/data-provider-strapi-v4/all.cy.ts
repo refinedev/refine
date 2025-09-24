@@ -14,11 +14,12 @@ describe("data-provider-strapi-v4", () => {
       cy.get("#password").type(auth.password);
     });
 
+    cy.interceptStrapiV4Login();
+
     submitAuthForm();
   };
 
   beforeEach(() => {
-    cy.wait(2000);
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
