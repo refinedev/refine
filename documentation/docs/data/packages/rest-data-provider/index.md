@@ -12,7 +12,7 @@ It uses KY library under the hood, which is a tiny and elegant HTTP client based
 
 All of these methods accepts respective parameters from the relevant action. Additionally, `mapResponse` and `getTotalCount` methods also accepts response object.
 
-, and 3rd parameter is options for KY client. You can find KY options [here](https://github.com/sindresorhus/ky#options).
+3rd parameter is options for KY client. You can find KY options [here](https://github.com/sindresorhus/ky#options).
 
 ## Installation
 
@@ -35,7 +35,7 @@ const MyDataProvider = createDataProvider(
 A data provider is simply an object that implements a set of methods.
 Each method corresponds to an operation that Refine can perform: fetching a list, creating a record, updating, deleting, etc.
 
-ach operation such as `getList`, `getOne`, `create` has atomic methods to build your request and format their responses, errors.
+Each operation such as `getList`, `getOne`, `create` has atomic methods to build your request and format their responses, errors.
 
 - **getEndpoint(params)** → returns the API endpoint.
 - **buildHeaders(params)** → adds additional headers.
@@ -69,8 +69,6 @@ export type CreateDataProviderOptions = {
   };
 };
 ```
-
-E
 
 ## How to create a custom REST data provider
 
