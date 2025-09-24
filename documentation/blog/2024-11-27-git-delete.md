@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete
 hide_table_of_contents: false
 ---
 
-**This article was last updated on November 27, 2024, to short explanations for git deleote local and remote branches.**
+**This article was last updated on September 8, 2025 to include branch protection policies and team best practices for safe deletion.**
 
 ## Introduction
 
@@ -335,6 +335,14 @@ Similarly if you want to specify the deletion of tags and not branch, then use b
 ```
 git push origin :refs/tags/tag-name
 ```
+
+## Branch Protection and Pre-Delete Hooks
+
+To avoid accidental removal of important branches such as `main`, `develop`, or long-lived release lines, modern platforms like GitHub and GitLab offer **branch protection rules**. These rules can block deletion, require pull request reviews, or enforce status checks before changes are merged. Combined with local safeguards, teams can also configure **pre-push or pre-delete Git hooks** that run before destructive actions. For example, a hook could refuse to delete a branch unless a team lead approves, or it could stop pushes that target protected branches. These practices make it harder for human error to remove branches that are still in use or critical to deployment pipelines.
+
+## Best Practices for Teams
+
+When multiple developers are working on the same repository, branch cleanup becomes more than a personal workflow—it’s a team-wide responsibility. A good practice is to schedule periodic reviews of stale branches, ideally at sprint boundaries or release milestones, so old feature branches don’t pile up. Communication also matters: announcing deletions in a team channel helps avoid surprises, especially when others may still be referencing those branches. Tools like `git show-branch`, `git branch --merged`, or GitHub’s branch dashboard can help verify whether a branch is truly inactive before removal. By treating cleanup as part of the collaboration process, teams reduce friction and ensure that only safe, unnecessary branches are deleted.
 
 ## Conclusion
 
