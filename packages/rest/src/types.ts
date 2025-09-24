@@ -1,11 +1,14 @@
 import type {
+  CreateManyParams,
   CreateParams,
   CustomParams,
+  DeleteManyParams,
   DeleteOneParams,
   GetListParams,
   GetManyParams,
   GetOneParams,
   HttpError,
+  UpdateManyParams,
   UpdateParams,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
@@ -49,6 +52,17 @@ export type CreateDataProviderOptions = {
     mapResponse?: MapResponse<CreateParams<any>, AnyObject>;
     transformError?: TransformError<CreateParams<any>>;
   };
+  createMany?: {
+    getEndpoint?: GetEndpoint<CreateManyParams<any>>;
+    buildHeaders?: BuildHeaders<CreateManyParams<any>>;
+
+    buildQueryParams?: BuildQueryParams<CreateManyParams<any>>;
+
+    buildBodyParams: BuildBodyParams<CreateManyParams<any>>;
+
+    mapResponse: MapResponse<CreateManyParams<any>, AnyObject[]>;
+    transformError?: TransformError<CreateManyParams<any>>;
+  };
   getOne?: {
     getEndpoint?: GetEndpoint<GetOneParams>;
     buildHeaders?: BuildHeaders<GetOneParams>;
@@ -77,6 +91,18 @@ export type CreateDataProviderOptions = {
     mapResponse?: MapResponse<UpdateParams<any>, AnyObject>;
     transformError?: TransformError<UpdateParams<any>>;
   };
+  updateMany?: {
+    getEndpoint: GetEndpoint<UpdateManyParams<any>>;
+    getRequestMethod?: (params: UpdateManyParams<any>) => "put" | "patch";
+    buildHeaders?: BuildHeaders<UpdateManyParams<any>>;
+
+    buildQueryParams?: BuildQueryParams<UpdateManyParams<any>>;
+
+    buildBodyParams: BuildBodyParams<UpdateManyParams<any>>;
+
+    mapResponse: MapResponse<UpdateManyParams<any>, AnyObject[]>;
+    transformError?: TransformError<UpdateManyParams<any>>;
+  };
   deleteOne?: {
     getEndpoint?: GetEndpoint<DeleteOneParams<any>>;
     buildHeaders?: BuildHeaders<DeleteOneParams<any>>;
@@ -85,7 +111,14 @@ export type CreateDataProviderOptions = {
 
     mapResponse?: MapResponse<DeleteOneParams<any>, AnyObject | undefined>;
   };
+  deleteMany?: {
+    getEndpoint?: GetEndpoint<DeleteManyParams<any>>;
+    buildHeaders?: BuildHeaders<DeleteManyParams<any>>;
 
+    buildQueryParams?: BuildQueryParams<DeleteManyParams<any>>;
+
+    mapResponse?: MapResponse<DeleteManyParams<any>, AnyObject | undefined>;
+  };
   custom?: {
     buildHeaders?: BuildHeaders<CustomParams<any>>;
 

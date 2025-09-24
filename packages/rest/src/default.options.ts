@@ -30,6 +30,8 @@ export const defaultCreateDataProviderOptions = {
         ...params.meta?.query,
       };
 
+      // filters[0][field]=id&filters[0][operator]=eq&filters[0][value]=123
+
       return queryParams;
     },
     async mapResponse(

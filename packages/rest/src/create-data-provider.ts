@@ -1,9 +1,11 @@
 import type {
+  CreateManyResponse,
   CreateResponse,
   CustomResponse,
   DataProvider,
   DeleteOneResponse,
   GetOneResponse,
+  UpdateManyResponse,
   UpdateResponse,
 } from "@refinedev/core";
 import dm from "deepmerge";
@@ -121,6 +123,49 @@ export const createDataProvider = (
 
         throw error;
       },
+      createMany: options.createMany
+        ? async (params): Promise<CreateManyResponse<any>> => {
+            const endpoint =
+              options.createMany.getEndpoint?.(params) ?? params.resource;
+
+            const headers =
+              (await options.createMany.buildHeaders?.(params)) ?? {};
+
+            const query =
+              (await options.createMany.buildQueryParams?.(params)) ?? {};
+
+            const body = await options.createMany.buildBodyParams(params);
+
+            const response = await ky(endpoint, {
+              method: "post",
+              headers,
+              searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+              body: JSON.stringify(body),
+            });
+
+            if (response.ok) {
+              const data = await options.createMany.mapResponse(
+                response,
+                params,
+              );
+
+              return { data };
+            }
+
+            let error;
+
+            if (options.createMany.transformError) {
+              error = await options.createMany?.transformError(
+                response,
+                params,
+              );
+            } else {
+              error = await response.json();
+            }
+
+            throw error;
+          }
+        : undefined,
       update: async (params): Promise<UpdateResponse<any>> => {
         const endpoint = options.update.getEndpoint(params);
 
@@ -150,6 +195,48 @@ export const createDataProvider = (
 
         throw error;
       },
+      updateMany: options.updateMany
+        ? async (params): Promise<UpdateManyResponse<any>> => {
+            const endpoint = options.updateMany.getEndpoint(params);
+
+            const method =
+              options.updateMany.getRequestMethod?.(params) ?? "patch";
+
+            const headers =
+              (await options.updateMany.buildHeaders?.(params)) ?? {};
+
+            const query =
+              (await options.updateMany.buildQueryParams?.(params)) ?? {};
+
+            const body = await options.updateMany.buildBodyParams(params);
+
+            const response = await ky(endpoint, {
+              method,
+              headers,
+              searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+              body: JSON.stringify(body),
+            });
+
+            if (response.ok) {
+              const data = await options.updateMany.mapResponse(
+                response,
+                params,
+              );
+
+              return { data };
+            }
+
+            let error;
+
+            if (options.updateMany.transformError) {
+              error = await options.updateMany.transformError(response, params);
+            } else {
+              error = await response.json();
+            }
+
+            throw error;
+          }
+        : undefined,
       deleteOne: async (params): Promise<DeleteOneResponse<any>> => {
         const endpoint = options.deleteOne.getEndpoint(params);
 
@@ -167,6 +254,35 @@ export const createDataProvider = (
 
         return { data };
       },
+      deleteMany: options.deleteMany
+        ? async (params): Promise<DeleteOneResponse<any>> => {
+            const endpoint =
+              options.deleteMany.getEndpoint?.(params) ?? params.resource;
+
+            const headers =
+              (await options.deleteMany.buildHeaders?.(params)) ?? {};
+
+            const query =
+              (await options.deleteMany.buildQueryParams?.(params)) ?? {};
+
+            const response = await ky(endpoint, {
+              method: "delete",
+              headers,
+              searchParams: qs.stringify(query, { encodeValuesOnly: true }),
+            });
+
+            if (options.deleteMany.mapResponse) {
+              const data = await options.deleteMany.mapResponse(
+                response,
+                params,
+              );
+
+              return { data };
+            }
+
+            return { data: undefined };
+          }
+        : undefined,
       custom: async (params): Promise<CustomResponse<any>> => {
         const { method, url } = params;
 
