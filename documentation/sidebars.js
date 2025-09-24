@@ -179,6 +179,7 @@ module.exports = {
           type: "category",
           label: "Packages",
           items: [
+            "data/packages/rest-data-provider/index",
             "data/packages/airtable/index",
             "data/packages/appwrite/index",
             "data/packages/graphql/index",
