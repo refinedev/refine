@@ -1,5 +1,7 @@
 ---
 title: Rest Data Provider
+source: https://github.com/refinedev/refine/tree/main/packages/rest
+swizzle: true
 ---
 
 We've created `@refinedev/rest` data provider to make it easier to create custom data providers for REST APIs. Creating custom data provider previously required swizzling simple-rest or other data providers. Now with rest data provider, we aim to streamline the process of creating custom data providers for REST APIs.
@@ -1604,3 +1606,316 @@ With this `custom` implementation, here's what happens for different custom oper
 5. **UI update**: Component shows upload success with file details
 
 The `custom` method provides complete flexibility for any specialized API operations while maintaining the consistent transformation pattern used throughout the data provider.
+
+## Hooks
+
+The `@refinedev/rest` data provider uses KY as its HTTP client, which provides powerful hooks for intercepting and modifying requests and responses. We provide several pre-built hooks for common use cases, and you can also create custom hooks or swizzle existing ones to match your specific needs.
+
+:::info KY Hooks
+These are KY hooks, not Refine hooks. They operate at the HTTP request/response level and run for every API call made by the data provider. For more information about KY hooks, see the [KY documentation](https://github.com/sindresorhus/ky#hooks).
+:::
+
+<h3>Using Hooks</h3>
+
+Hooks are passed as the third parameter to `createDataProvider` in the KY options:
+
+```tsx
+import {
+  createDataProvider,
+  authHeaderBeforeRequestHook,
+} from "@refinedev/rest";
+
+const dataProvider = createDataProvider(
+  "https://api.example.com",
+  {}, // Data provider options
+  {
+    // KY options
+    hooks: {
+      beforeRequest: [
+        authHeaderBeforeRequestHook({ ACCESS_TOKEN_KEY: "accessToken" }),
+        // Add more beforeRequest hooks here
+      ],
+      afterResponse: [
+        // Add afterResponse hooks here
+      ],
+      beforeError: [
+        // Add beforeError hooks here
+      ],
+    },
+  },
+);
+```
+
+### Available Hooks
+
+KY provides several hook types for different stages of the request lifecycle:
+
+- **`beforeRequest`**: Modify the request before it's sent
+- **`beforeRetry`**: Handle retry logic for failed requests
+- **`afterResponse`**: Process the response after it's received
+- **`beforeError`**: Transform errors before they're thrown
+
+#### Auth Header Hook
+
+:::simple Swizzle
+You can swizzle this hook to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
+:::
+
+Automatically adds Bearer token authentication to all requests:
+
+```tsx
+import { authHeaderBeforeRequestHook } from "@refinedev/rest";
+
+const dataProvider = createDataProvider(
+  "https://api.example.com",
+  {},
+  {
+    hooks: {
+      beforeRequest: [
+        authHeaderBeforeRequestHook({ ACCESS_TOKEN_KEY: "accessToken" }),
+      ],
+    },
+  },
+);
+```
+
+**Parameters:**
+
+- `ACCESS_TOKEN_KEY`: The localStorage key where your access token is stored
+
+**Behavior:**
+
+- Retrieves the token from `localStorage.getItem(ACCESS_TOKEN_KEY)`
+- Adds `Authorization: Bearer <token>` header to all requests
+- Silently skips if no token is found
+
+#### Refresh Token Hook
+
+:::simple Swizzle
+You can swizzle this hook to customize it with the [**refine CLI**](/docs/3.xx.xx/packages/documentation/cli)
+:::
+
+Automatically handles token refresh when receiving 401 responses:
+
+```tsx
+import { refreshTokenAfterResponseHook } from "@refinedev/rest";
+
+const dataProvider = createDataProvider(
+  "https://api.example.com",
+  {},
+  {
+    hooks: {
+      afterResponse: [
+        refreshTokenAfterResponseHook({
+          ACCESS_TOKEN_KEY: "accessToken",
+          REFRESH_TOKEN_KEY: "refreshToken",
+          REFRESH_TOKEN_URL: "https://api.example.com/refresh-token",
+        }),
+      ],
+    },
+  },
+);
+```
+
+**Parameters:**
+
+- `ACCESS_TOKEN_KEY`: The localStorage key where your access token is stored
+- `REFRESH_TOKEN_KEY`: The localStorage key where your refresh token is stored
+- `REFRESH_TOKEN_URL`: The endpoint URL for refreshing tokens
+
+**Behavior:**
+
+- Intercepts 401 responses and attempts to refresh the access token
+- Sends POST request to refresh endpoint with current refresh token in body
+- Updates localStorage with new access and refresh tokens
+- Retries the original request with the new access token
+- Returns original 401 response if token refresh fails
+
+### Creating Custom Hooks
+
+You can create custom hooks to handle your specific authentication, logging, or request modification needs:
+
+```tsx
+import type { Hooks } from "ky";
+
+// Custom beforeRequest hook for API versioning
+const apiVersionHook: NonNullable<Hooks["beforeRequest"]>[number] = async (
+  request,
+) => {
+  request.headers.set("API-Version", "2.0");
+  request.headers.set("X-Client", "refine-app");
+};
+
+// Custom afterResponse hook for response logging
+const responseLoggerHook: NonNullable<Hooks["afterResponse"]>[number] = async (
+  request,
+  options,
+  response,
+) => {
+  console.log(`${request.method} ${request.url} - ${response.status}`);
+  return response;
+};
+
+// Custom beforeError hook for error transformation
+const errorTransformHook: NonNullable<Hooks["beforeError"]>[number] = async (
+  error,
+) => {
+  if (error.response?.status === 401) {
+    // Redirect to login or refresh token
+    window.location.href = "/login";
+  }
+  return error;
+};
+
+const dataProvider = createDataProvider(
+  "https://api.example.com",
+  {},
+  {
+    hooks: {
+      beforeRequest: [apiVersionHook],
+      afterResponse: [responseLoggerHook],
+      beforeError: [errorTransformHook],
+    },
+  },
+);
+```
+
+### Swizzling Existing Hooks
+
+You can swizzle (copy and modify) our pre-built hooks to customize their behavior. Use the Refine CLI to swizzle hooks:
+
+```bash
+npm run refine swizzle
+```
+
+Then select the hook you want to customize. This will copy the hook to your project where you can modify it:
+
+```tsx
+import type { Hooks } from "ky";
+
+// Swizzled version of authHeaderBeforeRequestHook with custom logic
+const customAuthHeaderHook =
+  (options: {
+    ACCESS_TOKEN_KEY: string;
+  }): NonNullable<Hooks["beforeRequest"]>[number] =>
+  async (request) => {
+    const token = localStorage.getItem(options.ACCESS_TOKEN_KEY);
+
+    if (token) {
+      // Custom: Add both Bearer token and API key
+      request.headers.set("Authorization", `Bearer ${token}`);
+      request.headers.set("X-API-Key", "your-api-key");
+    } else {
+      // Custom: Redirect to login if no token
+      window.location.href = "/login";
+      throw new Error("No authentication token found");
+    }
+  };
+
+const dataProvider = createDataProvider(
+  "https://api.example.com",
+  {},
+  {
+    hooks: {
+      beforeRequest: [
+        customAuthHeaderHook({ ACCESS_TOKEN_KEY: "accessToken" }),
+      ],
+    },
+  },
+);
+```
+
+### Common Hook Patterns
+
+<h4>Request/Response Logging</h4>
+
+```tsx
+const requestLoggerHook: NonNullable<Hooks["beforeRequest"]>[number] = async (
+  request,
+) => {
+  console.log(`Making ${request.method} request to ${request.url}`);
+};
+
+const responseLoggerHook: NonNullable<Hooks["afterResponse"]>[number] = async (
+  request,
+  options,
+  response,
+) => {
+  console.log(`Response ${response.status} from ${request.url}`);
+  return response;
+};
+```
+
+<h4>Request Timeout</h4>
+
+```tsx
+const timeoutHook: NonNullable<Hooks["beforeRequest"]>[number] = async (
+  request,
+  options,
+) => {
+  // Set 30-second timeout for all requests
+  options.timeout = 30000;
+};
+```
+
+<h4>Retry Logic with Custom Conditions</h4>
+
+```tsx
+const customRetryHook: NonNullable<Hooks["beforeRetry"]>[number] = async ({
+  request,
+  options,
+  error,
+  retryCount,
+}) => {
+  // Only retry for specific error codes
+  if (error.response?.status === 503 && retryCount < 3) {
+    console.log(
+      `Retrying request to ${request.url} (attempt ${retryCount + 1})`,
+    );
+    // Add exponential backoff
+    await new Promise((resolve) =>
+      setTimeout(resolve, Math.pow(2, retryCount) * 1000),
+    );
+  }
+};
+```
+
+<h4>Global Error Handling</h4>
+
+```tsx
+const globalErrorHook: NonNullable<Hooks["beforeError"]>[number] = async (
+  error,
+) => {
+  if (error.response?.status === 401) {
+    // Clear auth and redirect
+    localStorage.removeItem("accessToken");
+    window.location.href = "/login";
+  } else if (error.response?.status >= 500) {
+    // Show global error notification
+    console.error("Server error:", error.message);
+  }
+  return error;
+};
+```
+
+<h4>Hook Execution Order</h4>
+
+Hooks execute in the order they're defined in the array:
+
+```tsx
+const dataProvider = createDataProvider(
+  "https://api.example.com",
+  {},
+  {
+    hooks: {
+      beforeRequest: [
+        firstHook, // Runs first
+        secondHook, // Runs second
+        thirdHook, // Runs third
+      ],
+    },
+  },
+);
+```
+
+This allows you to compose multiple hooks and control their execution sequence for complex request/response processing.
