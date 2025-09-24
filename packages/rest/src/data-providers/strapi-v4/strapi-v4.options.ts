@@ -241,10 +241,10 @@ export const strapiV4DataProviderOptions = {
       return params.meta?.query ?? {};
     },
     async mapResponse(
-      response: KyResponse<AnyObject>,
-      params: DeleteOneParams<any>,
+      _response: KyResponse<AnyObject>,
+      _params: DeleteOneParams<any>,
     ) {
-      return await response.json();
+      return undefined;
     },
   },
   custom: {
