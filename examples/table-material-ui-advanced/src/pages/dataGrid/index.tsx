@@ -19,6 +19,10 @@ export const BasicDataGrid: React.FC = () => {
     query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const columns = React.useMemo<GridColDef<IPost>[]>(
@@ -27,7 +31,7 @@ export const BasicDataGrid: React.FC = () => {
         field: "id",
         headerName: "ID",
         type: "number",
-        maxWidth: 70,
+        width: 70,
       },
       { field: "title", headerName: "Title", flex: 1, minWidth: 350 },
       {

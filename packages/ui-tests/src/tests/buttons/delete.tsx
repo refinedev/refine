@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineDeleteButtonProps,
@@ -11,6 +12,7 @@ import {
   render,
   TestWrapper,
   waitFor,
+  mockRouterProvider,
 } from "@test";
 import { Route, Routes } from "react-router";
 
@@ -19,8 +21,8 @@ export const buttonDeleteTests = (
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Delete Button", () => {
     beforeAll(() => {
-      jest.spyOn(console, "error").mockImplementation(jest.fn());
-      jest.clearAllTimers();
+      vi.spyOn(console, "error").mockImplementation(vi.fn());
+      vi.clearAllTimers();
     });
 
     it("should render button successfuly", async () => {
@@ -34,7 +36,7 @@ export const buttonDeleteTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <DeleteButton disabled onClick={mockOnClick} />,
@@ -390,7 +392,7 @@ export const buttonDeleteTests = (
     });
 
     it("should render called function successfully if click the button", async () => {
-      const deleteFunc = jest.fn();
+      const deleteFunc = vi.fn();
       const { getByTestId } = render(
         <DeleteButton onClick={() => deleteFunc()} />,
         {
@@ -407,7 +409,7 @@ export const buttonDeleteTests = (
 
     it("should render Popconfirm successfuly", async () => {
       const { getByText, getAllByText, getByTestId } = render(
-        <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />,
+        <DeleteButton resource="posts" recordItemId="1" />,
         {
           wrapper: TestWrapper({}),
         },
@@ -423,9 +425,9 @@ export const buttonDeleteTests = (
     });
 
     it("should confirm Popconfirm successfuly", async () => {
-      const deleteOneMock = jest.fn();
+      const deleteOneMock = vi.fn();
       const { getByText, getAllByText, getByTestId } = render(
-        <DeleteButton resourceNameOrRouteName="posts" recordItemId="1" />,
+        <DeleteButton resource="posts" recordItemId="1" />,
         {
           wrapper: TestWrapper({
             dataProvider: {
@@ -449,17 +451,14 @@ export const buttonDeleteTests = (
         fireEvent.click(deleteButtons[1]);
       });
 
-      expect(deleteOneMock).toBeCalledTimes(1);
+      expect(deleteOneMock).toHaveBeenCalledTimes(1);
     });
 
     it("should confirm Popconfirm successfuly with recordItemId", async () => {
-      const deleteOneMock = jest.fn();
+      const deleteOneMock = vi.fn();
 
       const { getByText, getAllByText, getByTestId } = render(
-        <DeleteButton
-          recordItemId="record-id"
-          resourceNameOrRouteName="posts"
-        />,
+        <DeleteButton recordItemId="record-id" resource="posts" />,
         {
           wrapper: TestWrapper({
             dataProvider: {
@@ -483,14 +482,14 @@ export const buttonDeleteTests = (
         fireEvent.click(deleteButtons[1]);
       });
 
-      expect(deleteOneMock).toBeCalledWith(
+      expect(deleteOneMock).toHaveBeenCalledWith(
         expect.objectContaining({ id: "record-id" }),
       );
     });
 
     it("should confirm Popconfirm successfuly with onSuccess", async () => {
-      const deleteOneMock = jest.fn();
-      const onSuccessMock = jest.fn();
+      const deleteOneMock = vi.fn();
+      const onSuccessMock = vi.fn();
 
       const { getByText, getAllByText, getByTestId } = render(
         <Routes>
@@ -504,6 +503,21 @@ export const buttonDeleteTests = (
             dataProvider: {
               ...MockJSONServer,
               deleteOne: deleteOneMock,
+            },
+            routerProvider: {
+              ...mockRouterProvider(),
+              parse() {
+                return () => ({
+                  params: {},
+                  pathname: "/posts",
+                  resource: {
+                    name: "posts",
+                    edit: "/posts/edit/:id",
+                  },
+                  action: "edit",
+                  id: 1,
+                });
+              },
             },
             routerInitialEntries: ["/posts/edit/1"],
           }),
@@ -523,13 +537,13 @@ export const buttonDeleteTests = (
         fireEvent.click(deleteButtons[1]);
       });
 
-      expect(deleteOneMock).toBeCalledTimes(1);
-      expect(onSuccessMock).toBeCalledTimes(1);
+      expect(deleteOneMock).toHaveBeenCalledTimes(1);
+      expect(onSuccessMock).toHaveBeenCalledTimes(1);
     });
 
     it("should confirm Popconfirm successfuly with onSuccess", async () => {
-      const deleteOneMock = jest.fn();
-      const onSuccessMock = jest.fn();
+      const deleteOneMock = vi.fn();
+      const onSuccessMock = vi.fn();
 
       const { getByText, getByTestId } = render(
         <Routes>
@@ -551,6 +565,21 @@ export const buttonDeleteTests = (
               ...MockJSONServer,
               deleteOne: deleteOneMock,
             },
+            routerProvider: {
+              ...mockRouterProvider(),
+              parse() {
+                return () => ({
+                  params: {},
+                  pathname: "/posts",
+                  resource: {
+                    name: "posts",
+                    edit: "/posts/edit/:id",
+                  },
+                  action: "edit",
+                  id: 1,
+                });
+              },
+            },
             routerInitialEntries: ["/posts/edit/1"],
           }),
         },
@@ -568,8 +597,8 @@ export const buttonDeleteTests = (
         fireEvent.click(getByText("confirmOkText"));
       });
 
-      expect(deleteOneMock).toBeCalledTimes(1);
-      expect(onSuccessMock).toBeCalledTimes(1);
+      expect(deleteOneMock).toHaveBeenCalledTimes(1);
+      expect(onSuccessMock).toHaveBeenCalledTimes(1);
     });
 
     it("should render with custom mutationMode", async () => {
@@ -596,7 +625,7 @@ export const buttonDeleteTests = (
         <Routes>
           <Route
             path="/:resource"
-            element={<DeleteButton resourceNameOrRouteName="categories" />}
+            element={<DeleteButton resource="categories" />}
           />
         </Routes>,
         {
@@ -610,12 +639,12 @@ export const buttonDeleteTests = (
       getByTestId(RefineButtonTestIds.DeleteButton);
     });
 
-    it("should render with resourceNameOrRouteName", async () => {
+    it("should render with resource", async () => {
       const { getByTestId } = render(
         <Routes>
           <Route
             path="/:resource"
-            element={<DeleteButton resourceNameOrRouteName="users" />}
+            element={<DeleteButton resource="users" />}
           />
         </Routes>,
 

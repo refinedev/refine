@@ -24,18 +24,16 @@ import { Show, TextField } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { query, result: post } = useShow<IPost>();
+  const { data, isLoading } = query;
 
-  const { data: categoryData, isLoading: categoryIsLoading } =
-    useOne<ICategory>({
-      resource: "categories",
-      id: record?.category?.id,
-      queryOptions: {
-        enabled: !!record,
-      },
-    });
+  const { result: category, isLoading: categoryIsLoading } = useOne<ICategory>({
+    resource: "categories",
+    id: post?.category?.id,
+    queryOptions: {
+      enabled: !!record,
+    },
+  });
 
   return (
     <Show isLoading={isLoading}>
@@ -46,9 +44,7 @@ const PostShow: React.FC = () => {
         Category
       </Title>
       {/* highlight-start */}
-      <TextField
-        value={categoryIsLoading ? "Loading..." : categoryData?.data?.title}
-      />
+      <TextField value={categoryIsLoading ? "Loading..." : category?.title} />
       {/* highlight-end */}
     </Show>
   );

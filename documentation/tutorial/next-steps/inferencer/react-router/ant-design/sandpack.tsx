@@ -38,8 +38,8 @@ const AppWithCategories = /* tsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import {
-  ThemedLayoutV2,
-  ThemedTitleV2,
+  ThemedLayout,
+  ThemedTitle,
   useNotificationProvider,
 } from "@refinedev/antd";
 
@@ -94,13 +94,13 @@ export default function App(): JSX.Element {
                     key="authenticated-routes"
                     redirectOnFail="/login"
                   >
-                    <ThemedLayoutV2
+                    <ThemedLayout
                       Title={(props) => (
-                        <ThemedTitleV2 {...props} text="Awesome Project" />
+                        <ThemedTitle {...props} text="Awesome Project" />
                       )}
                     >
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >

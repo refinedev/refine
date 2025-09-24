@@ -93,7 +93,7 @@ export const EditPage: React.FC = () => {
     });
     const product = productQuery?.data?.data;
 
-    const { autocompleteProps, queryResult: categoriesQueryResult } =
+    const { autocompleteProps, query: categoriesQuery } =
         useAutocomplete<ICategory>({
             resource: "categories",
             defaultValue: product?.category.id,

@@ -1,5 +1,28 @@
 # @refinedev/react-router-v6
 
+## 2.0.1
+
+### Patch Changes
+
+- [#7015](https://github.com/refinedev/refine/pull/7015) [`acb1e96b0d6cfddbd6115818b8f01c73d56934ff`](https://github.com/refinedev/refine/commit/acb1e96b0d6cfddbd6115818b8f01c73d56934ff) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: incorrect parseTableParams issue.
+
+  Resolves (#7013)[https://github.com/refinedev/refine/issues/7013]
+
+## 2.0.0
+
+### Major Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: upgrade core React Router integration for Refine 5.0
+
+  - Updated React Router integration for Refine 5.0 and TanStack Query v5 compatibility.
+
+  > 🚨 Breaking changes require migration - check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
+### Patch Changes
+
+- Updated dependencies [[`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/core@5.0.0
+
 ## 1.0.1
 
 ### Patch Changes
@@ -268,7 +291,7 @@
 
   ## Complemetary Components
 
-  - `RefineRoutes` - A component that renders the routes for the resources when the actions are defined as components. This can be used to achieve the legacy behavior of `routerProvider` prop. `RefineRoutes` component accepts a render function as a child and passed a `JSX.Element` array containing `Route` components for the resource routes. You can wrap it to a `Routes` component and let it handle the route creation process for you. Additionally, If you want to add custom routes, you can place them inside the `Routes` component or you can place an another `Routes` component. Both apporaches are now valid and accepted by **refine**.
+  - `RefineRoutes` - A component that renders the routes for the resources when the actions are defined as components. This can be used to achieve the legacy behavior of `routerProvider` prop. `RefineRoutes` component accepts a render function as a child and passed a `React.JSX.Element` array containing `Route` components for the resource routes. You can wrap it to a `Routes` component and let it handle the route creation process for you. Additionally, If you want to add custom routes, you can place them inside the `Routes` component or you can place an another `Routes` component. Both apporaches are now valid and accepted by **refine**.
 
   - `NavigateToResource` - A component that navigates to the first `list` action of the `resources` array of `<Refine>`. Optionally, you can pass a `resource` prop to navigate to `list` action of the resource. This can be placed at the `index` route of your app to redirect to the first resource.
 

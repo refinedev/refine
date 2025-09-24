@@ -46,14 +46,14 @@ export const ProductDrawerShow = (props: Props) => {
   });
   const product = queryResult.data?.data;
 
-  const { data: categoryData } = useOne<ICategory, HttpError>({
+  const { result: categoryData } = useOne<ICategory, HttpError>({
     resource: "categories",
     id: product?.category?.id,
     queryOptions: {
       enabled: !!product?.category?.id,
     },
   });
-  const category = categoryData?.data;
+  const category = categoryData;
 
   const handleDrawerClose = () => {
     if (props?.onClose) {

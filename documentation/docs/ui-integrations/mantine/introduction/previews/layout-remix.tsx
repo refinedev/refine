@@ -52,7 +52,7 @@ import { Refine } from "@refinedev/core";
 import routerProvider from "@refinedev/remix-router";
 import dataProvider from "@refinedev/simple-rest";
 
-import { RefineThemes, ThemedLayoutV2, useNotificationProvider } from "@refinedev/mantine";
+import { RefineThemes, ThemedLayout, useNotificationProvider } from "@refinedev/mantine";
 import { NotificationsProvider } from "@mantine/notifications";
 import { MantineProvider, Global } from "@mantine/core";
 
@@ -96,7 +96,7 @@ export default function App() {
 `.trim();
 
 const ProtectedTsxCode = /* jsx */ `
-import { ThemedLayoutV2 } from "@refinedev/mantine";
+import { ThemedLayout } from "@refinedev/mantine";
 import { Outlet } from "@remix-run/react";
 import { LoaderFunctionArgs, redirect } from "@remix-run/node";
 
@@ -105,9 +105,9 @@ import { LoaderFunctionArgs, redirect } from "@remix-run/node";
  */
 export default function Layout() {
     return (
-        <ThemedLayoutV2>
+        <ThemedLayout>
             <Outlet />
-        </ThemedLayoutV2>
+        </ThemedLayout>
     );
 }
 `.trim();
@@ -155,9 +155,9 @@ export default function ProductList() {
       getRowModel,
       setOptions,
       refineCore: {
-          setCurrent,
+          setCurrentPage,
           pageCount,
-          current,
+          currentPage,
           tableQuery: { data: tableData },
       },
   } = useTable({
@@ -210,8 +210,8 @@ export default function ProductList() {
               <Pagination
                   position="right"
                   total={pageCount}
-                  page={current}
-                  onChange={setCurrent}
+                  page={currentPage}
+                  onChange={setCurrentPage}
               />
           </List>
       </ScrollArea>

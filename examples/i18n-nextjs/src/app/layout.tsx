@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { RefineContext } from "./_refine_context";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 export const metadata: Metadata = {

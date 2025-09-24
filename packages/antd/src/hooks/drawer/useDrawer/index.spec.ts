@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test";
 
@@ -71,7 +72,7 @@ describe("useDrawer Hook", () => {
   });
 
   it("should call close on drawer onClose", async () => {
-    const mockedOnClose = jest.fn();
+    const mockedOnClose = vi.fn();
     const { result } = renderHook(
       () =>
         useDrawer({
@@ -102,7 +103,7 @@ describe("useDrawer Hook", () => {
     });
 
     expect(result.current.drawerProps.open).toEqual(false);
-    expect(mockedOnClose).toBeCalledTimes(1);
+    expect(mockedOnClose).toHaveBeenCalledTimes(1);
   });
 
   it("should call close when drawerProps onClose is undefined", async () => {

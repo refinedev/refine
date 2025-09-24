@@ -92,7 +92,7 @@ import Box from "@mui/material/Box";
 export const ProductCreate: FC = () => {
   const {
     saveButtonProps,
-    refineCore: { queryResult, autoSaveProps },
+    refineCore: { query, autoSaveProps },
     register,
     control,
     formState: { errors },
@@ -201,7 +201,7 @@ import LayoutRemix from "./previews/layout-remix.tsx";
 </TabItem>
 </Tabs>
 
-[`<ThemedLayoutV2 />`](/docs/ui-integrations/material-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
+[`<ThemedLayout />`](/docs/ui-integrations/material-ui/components/themed-layout) component consists of a header, sider and a content area. The sider have a navigation menu items for the defined resources of Refine, if an authentication provider is present, it will also have a functional logout button. The header contains the app logo and name and also information about the current user if an authentication provider is present.
 
 Additionally, Refine also provides a [`<Breadcrumb />`](/docs/ui-integrations/material-ui/components/breadcrumb/) component that uses the Material UI's component as a base and provide appropriate breadcrumbs for the current route. This component is used in the basic views provided by Refine's Material UI package automatically.
 
@@ -305,9 +305,8 @@ import { Show, TextField, NumberField } from "@refinedev/mui";
 import Typography from "@mui/material/Typography";
 
 export const ProductShow = () => {
-  const { queryResult } = useShow<IProduct>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { result: product } = useShow<IProduct>();
+  const { data, isLoading } = query;
 
   return (
     <Show isLoading={isLoading}>
@@ -315,20 +314,20 @@ export const ProductShow = () => {
         Id
       </Typography>
       {/* highlight-next-line */}
-      <TextField value={record?.id} />
+      <TextField value={product?.id} />
 
       <Typography variant="body1" fontWeight="bold">
         Title
       </Typography>
       {/* highlight-next-line */}
-      <TextField value={record?.title} />
+      <TextField value={product?.title} />
 
       <Typography variant="body1" fontWeight="bold">
         Title
       </Typography>
       {/* highlight-next-line */}
       <NumberField
-        value={record?.price}
+        value={product?.price}
         options={{ style: "currency", currency: "USD" }}
       />
     </Show>

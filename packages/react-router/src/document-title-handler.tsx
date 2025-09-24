@@ -26,7 +26,7 @@ export function DocumentTitleHandler({ handler }: Props) {
   const getUserFriendlyName = useUserFriendlyName();
 
   const identifier = resource?.identifier ?? resource?.name;
-  const preferredLabel = resource?.label ?? resource?.meta?.label;
+  const preferredLabel = resource?.meta?.label;
   const resourceName =
     preferredLabel ??
     getUserFriendlyName(identifier, action === "list" ? "plural" : "singular");
@@ -42,13 +42,13 @@ export function DocumentTitleHandler({ handler }: Props) {
       action,
       `${id}`,
       resourceName,
+      getUserFriendlyName,
     );
     if (handler) {
       document.title = handler({
         action,
         resource: {
           ...(resource! ?? {}),
-          label: populatedLabel,
           meta: {
             ...resource?.meta,
             label: populatedLabel,

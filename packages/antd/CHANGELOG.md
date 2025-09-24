@@ -1,5 +1,97 @@
 # @refinedev/antd
 
+## 6.0.2
+
+### Patch Changes
+
+- [#7016](https://github.com/refinedev/refine/pull/7016) [`97e974547949197ed9ca4a1e02b19ef3fc46b673`](https://github.com/refinedev/refine/commit/97e974547949197ed9ca4a1e02b19ef3fc46b673) Thanks [@DoguhanOzgurAkca](https://github.com/DoguhanOzgurAkca)! - feat: comprehensive deprecated code cleanup for v5
+
+  This release completes the cleanup of deprecated code that remained after the Refine v5 migration, providing a cleaner and more maintainable codebase.
+
+  ## Breaking Changes - Removed Deprecated Components
+
+  **@refinedev/antd:**
+
+  - Removed deprecated `ReadyPage` component (use custom components instead)
+  - Removed deprecated `LoginPage` component (use `AuthPage` instead)
+  - Removed deprecated `useSiderVisible` hook (use `useThemedLayoutContext` instead)
+
+  **@refinedev/chakra-ui:**
+
+  - Removed deprecated `ReadyPage` component (use custom components instead)
+  - Removed deprecated `useSiderVisible` hook (use `useThemedLayoutContext` instead)
+
+  **@refinedev/mantine:**
+
+  - Removed deprecated `useSiderVisible` hook (use `useThemedLayoutContext` instead)
+
+  ## New Features
+
+  **@refinedev/codemod:**
+
+  - Added `welcome-page-import-from-core` codemod transformation
+  - Automatically migrates WelcomePage imports from UI libraries to @refinedev/core
+  - Run with: `npx @refinedev/codemod@latest welcome-page-import-from-core`
+
+  ## Improvements
+
+  **@refinedev/antd:**
+
+  - Un-deprecated `getDefaultFilter` function - now the preferred import location
+  - Updated documentation to import `getDefaultFilter` from `@refinedev/antd` instead of `@refinedev/core`
+
+  **@refinedev/core:**
+
+  - Un-deprecated `warnWhenUnsavedChanges` property in RefineOptions (still valid and actively used)
+  - Updated all TanStack Query documentation links from v4 to v5
+  - Improved TSDoc comments with current TanStack Query v5 references
+
+  ## Documentation Updates
+
+  - Updated 7 documentation files to use `getDefaultFilter` from `@refinedev/antd`
+  - Migrated 22 TanStack Query v4 documentation links to v5
+  - All API references now point to current TanStack Query v5 documentation
+
+## 6.0.1
+
+### Patch Changes
+
+- [#6972](https://github.com/refinedev/refine/pull/6972) [`535707a5653045352ca2fcfa78fb45ebbb852b6a`](https://github.com/refinedev/refine/commit/535707a5653045352ca2fcfa78fb45ebbb852b6a) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - chore: dummy update
+
+## 6.0.0
+
+### Major Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: upgrade Ant Design integration for Refine 5.0
+
+  - Updated to latest Ant Design version with deprecated API cleanup and modernized components.
+  - Removed legacy components and restructured hooks and componetns for better developer experience.
+
+  > 🚨 Breaking changes require migration - check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
+### Patch Changes
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/ui-types@2.0.0
+  - @refinedev/core@5.0.0
+
+## 5.47.0
+
+### Minor Changes
+
+- [#6880](https://github.com/refinedev/refine/pull/6880) [`2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2`](https://github.com/refinedev/refine/commit/2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2) Thanks [@arndom](https://github.com/arndom)! - - Add `siderItemsAreCollapsed` prop to all `Sider` components to set default expanded/collapsed nested sider items.
+
+  - UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6721](https://github.com/refinedev/refine/issues/6721)
+
+### Patch Changes
+
+- [#6958](https://github.com/refinedev/refine/pull/6958) [`b447eb36f4e18da63493a1cbd7ad0792eea792e3`](https://github.com/refinedev/refine/commit/b447eb36f4e18da63493a1cbd7ad0792eea792e3) Thanks [@arndom](https://github.com/arndom)! - - Export `useDrawer`out of antd package.
+
+  [Resolves #6944](https://github.com/refinedev/refine/issues/6944)
+
 ## 5.46.3
 
 ### Patch Changes

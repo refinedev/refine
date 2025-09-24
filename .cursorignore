@@ -11,7 +11,6 @@ documentation/static/
 documentation/test/
 documentation/versioned_docs/
 documentation/versioned_sidebars/
-examples/
 hackathon/
 patches/
 pnpm-lock.yaml
@@ -24,7 +23,6 @@ SECURITY.md
 packages/**/tsconfig.json
 packages/**/tsconfig.test.json
 packages/**/tsconfig.declarations.json
-packages/**/jest.config.js
 packages/**/refine.config.js
 packages/**/tsup.config.ts
 dist/

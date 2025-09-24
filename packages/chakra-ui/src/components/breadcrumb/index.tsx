@@ -3,10 +3,7 @@ import {
   matchResourceFromRoute,
   useBreadcrumb,
   useLink,
-  useRefineContext,
-  useResource,
-  useRouterContext,
-  useRouterType,
+  useResourceParams,
 } from "@refinedev/core";
 import type { RefineBreadcrumbProps } from "@refinedev/ui-types";
 import {
@@ -26,27 +23,22 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   meta,
   minItems = 2,
 }) => {
-  const routerType = useRouterType();
   const { breadcrumbs } = useBreadcrumb({ meta });
   const Link = useLink();
-  const { Link: LegacyLink } = useRouterContext();
-  const { hasDashboard } = useRefineContext();
-
-  const ActiveLink = routerType === "legacy" ? LegacyLink : Link;
 
   if (breadcrumbs.length < minItems) return null;
 
-  const { resources } = useResource();
+  const { resources } = useResourceParams();
 
   const rootRouteResource = matchResourceFromRoute("/", resources);
 
   return (
     <ChakraBreadcrumb mb="3" {...breadcrumbProps}>
-      {showHome && (hasDashboard || rootRouteResource?.found) && (
+      {showHome && rootRouteResource?.found && (
         <BreadcrumbItem>
-          <ActiveLink to="/">
+          <Link to="/">
             {rootRouteResource?.resource?.meta?.icon ?? <IconHome size={20} />}
-          </ActiveLink>
+          </Link>
         </BreadcrumbItem>
       )}
       {breadcrumbs.map(({ label, icon, href }) => {
@@ -54,7 +46,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
           <BreadcrumbItem key={label}>
             {!hideIcons && icon}
             {href ? (
-              <BreadcrumbLink ml={2} as={ActiveLink} to={href} href={href}>
+              <BreadcrumbLink ml={2} as={Link as any} to={href}>
                 {label}
               </BreadcrumbLink>
             ) : (

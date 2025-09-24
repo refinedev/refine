@@ -14,12 +14,12 @@ If your data provider does not have a `updateMany` method, `useUpdateMany` will 
 
 ## Usage
 
-The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
+The `useUpdateMany` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters). Additionally, the `mutation` object contains all the TanStack Query's `useMutation` return values.
 
 ```tsx
 import { useUpdateMany } from "@refinedev/core";
 
-const { mutate } = useUpdateMany({
+const { mutate, mutation } = useUpdateMany({
   resource: "products",
 });
 
@@ -30,6 +30,11 @@ mutate({
     material: "Wood",
   },
 });
+
+// You can access mutation state through the mutation object:
+console.log(mutation.isLoading); // mutation loading state
+console.log(mutation.data); // mutation response data
+console.log(mutation.error); // mutation error
 ```
 
 ## Realtime Updates
@@ -99,7 +104,7 @@ Mutation parameters are passed to the `mutate` function and can also be provided
 ```tsx
 import { useUpdateMany } from "@refinedev/core";
 
-const { mutate } = useUpdateMany({
+const { mutate, mutation } = useUpdateMany({
   /* parameters */
 });
 
@@ -115,7 +120,7 @@ mutate({
 It will be passed to the `updateMany` method from the `dataProvider` as a parameter. The parameter is usually used as an API endpoint path. It all depends on how to handle the `resource` in the `updateMany` method. See the [creating a data provider](/docs/data/data-provider) section for an example of how resources are handled.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   resource: "categories",
@@ -131,7 +136,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 It will be passed to the `updateMany` method from the `dataProvider` as a parameter. It is used to determine which records will be updated.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   ids: [1, 2, 3],
@@ -143,7 +148,7 @@ mutate({
 It will be passed to the `updateMany` method from the `dataProvider` as a parameter. The parameter is usually used as the data to be updated. It contains the new values of the record.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   values: {
@@ -161,7 +166,7 @@ Each mode corresponds to a different type of user experience.
 [Refer to the mutation mode documentation for more information &#8594](/docs/advanced-tutorials/mutation-mode)
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   mutationMode: "undoable",
@@ -173,7 +178,7 @@ mutate({
 When `mutationMode` is set to `undoable`, `undoableTimeout` is used to determine duration to wait before executing the mutation. Default value is `5000` milliseconds.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   mutationMode: "undoable",
@@ -192,7 +197,7 @@ import { useRef } from "react";
 import { useUpdateMany } from "@refinedev/core";
 
 const MyComponent = () => {
-  const { mutate } = useUpdateMany();
+  const { mutate, mutation } = useUpdateMany();
   const cancelRef = useRef<(() => void) | null>(null);
 
   const updateItems = () => {
@@ -225,7 +230,7 @@ const MyComponent = () => {
 After data is fetched successfully, `useUpdateMany` can call the `open` function from `NotificationProvider` to show a success notification. With this prop, you can customize the success notification.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   successNotification: (data, values, resource) => {
@@ -245,7 +250,7 @@ mutate({
 After data fetching is failed, `useUpdateMany` will call the `open` function from `NotificationProvider` to show an error notification. With this prop, you can customize the error notification.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   errorNotification: (data, values, resource) => {
@@ -270,7 +275,7 @@ mutate({
 In the following example, we pass the `headers` property in the `meta` object to the `updateMany` method. With similar logic, you can pass any properties to specifically handle the data provider methods.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   // highlight-start
@@ -317,7 +322,7 @@ const myDataProvider = {
 If there is more than one `dataProvider`, you can specify which one to use by passing the `dataProviderName` prop. It is useful when you have a different data provider for different resources.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   dataProviderName: "second-data-provider",
@@ -331,7 +336,7 @@ mutate({
 By default, it invalidates the following queries from the current `resource`: `"list"`, `"many"` and `"detail"`. That means, if you use `useList`, `useMany`, or `useOne` hooks on the same page, they will refetch the data after the mutation is completed.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   invalidates: ["list", "many", "detail"],
@@ -347,7 +352,7 @@ When the mutation mode is set to `optimistic` or `undoable`, the `useUpdate` hoo
 `list`, `many` and `detail` are the keys of the `optimisticUpdateMap` object. To automatically update the cache, you should pass `true`. If you don't want to update the cache, you should pass `false`.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   //...
@@ -365,7 +370,7 @@ In the scenario mentioned above, the `list` and `many` queries will receive auto
 If you wish to customize the cache update, you have the option to provide functions for the `list`, `many`, and `detail` keys. These functions will be invoked with the `previous` data, `values`, and `id` parameters. Your responsibility is to return the updated data within these functions.
 
 ```tsx
-const { mutate } = useUpdateMany();
+const { mutate, mutation } = useUpdateMany();
 
 mutate({
   //...
@@ -499,9 +504,11 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                                                      |
-| ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; ids: BaseKey[]; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
-| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                                                |
+| Property    | Description                                | Type                                                                                                                                                                                      |
+| ----------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; ids: BaseKey[]; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
+| mutate      | Mutation function                          | `(params?: { resource?: string, ids?: BaseKey[], values?: TVariables, ... }) => void`                                                                                                     |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, ids?: BaseKey[], values?: TVariables, ... }) => Promise<{ data: TData }>`                                                                                 |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                                                |
 
 > `*` `UpdateContext` is an internal type.

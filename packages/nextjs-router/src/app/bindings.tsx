@@ -1,12 +1,12 @@
 import {
   type GoConfig,
-  type RouterBindings,
+  type RouterProvider,
   ResourceContext,
   matchResourceFromRoute,
   type ParseResponse,
 } from "@refinedev/core";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import Link from "next/link";
+import NextLink from "next/link";
 import qs from "qs";
 import React, { type ComponentProps, useContext } from "react";
 import { paramsFromCurrentPath } from "../common/params-from-current-path";
@@ -20,7 +20,7 @@ export const stringifyConfig = {
   encodeValuesOnly: true,
 };
 
-export const routerBindings: RouterBindings = {
+export const routerProvider: RouterProvider = {
   go: () => {
     const { push, replace } = useRouter();
     const pathname = usePathname();
@@ -125,7 +125,7 @@ export const routerBindings: RouterBindings = {
         pathname: pathname ? pathname : undefined,
         params: {
           ...combinedParams,
-          current: convertToNumberIfPossible(
+          currentPage: convertToNumberIfPossible(
             combinedParams.current as string,
           ) as number | undefined,
           pageSize: convertToNumberIfPossible(
@@ -144,8 +144,8 @@ export const routerBindings: RouterBindings = {
   },
   Link: React.forwardRef<
     HTMLAnchorElement,
-    ComponentProps<NonNullable<RouterBindings["Link"]>>
+    ComponentProps<NonNullable<RouterProvider["Link"]>>
   >(function RefineLink({ to, ...props }, ref) {
-    return <Link href={to} {...props} ref={ref} />;
+    return <NextLink href={to} {...props} ref={ref} />;
   }),
 };

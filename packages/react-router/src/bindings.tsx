@@ -2,7 +2,7 @@ import React, { type ComponentProps } from "react";
 import {
   type GoConfig,
   type ParseResponse,
-  type RouterBindings,
+  type RouterProvider,
   matchResourceFromRoute,
   ResourceContext,
 } from "@refinedev/core";
@@ -25,7 +25,7 @@ export const stringifyConfig = {
   encodeValuesOnly: true,
 };
 
-export const routerBindings: RouterBindings = {
+export const routerProvider: RouterProvider = {
   go: () => {
     const { search: existingSearch, hash: existingHash } = useLocation();
     const navigate = useNavigate();
@@ -121,8 +121,8 @@ export const routerBindings: RouterBindings = {
         pathname,
         params: {
           ...combinedParams,
-          current: convertToNumberIfPossible(
-            combinedParams.current as string,
+          currentPage: convertToNumberIfPossible(
+            combinedParams.currentPage as string,
           ) as number | undefined,
           pageSize: convertToNumberIfPossible(
             combinedParams.pageSize as string,
@@ -140,8 +140,8 @@ export const routerBindings: RouterBindings = {
   },
   Link: React.forwardRef<
     HTMLAnchorElement,
-    ComponentProps<NonNullable<RouterBindings["Link"]>>
+    ComponentProps<NonNullable<RouterProvider["Link"]>>
   >(function RefineLink(props, ref) {
-    return <Link {...props} ref={ref} />;
+    return <Link to={props.to} {...props} ref={ref} />;
   }),
 };

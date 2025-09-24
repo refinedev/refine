@@ -107,10 +107,11 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
-    tableQuery: { data, isLoading },
+    result,
+    tableQuery: { isLoading },
   } = useTable<IPost>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -143,16 +144,14 @@ type IPost = {
 export default function PostShow() {
     // `posts` resource and the `id` will be inferred from the route.
     // Because we've defined `/posts/show/:id` as the `show` action of the `posts` resource.
-    const { queryResult: { data, isLoading } } = useShow<IPost>();
-
-    const postData = data?.data;
+    const { result: post, query: { isLoading } } = useShow<IPost>();
 
     return (
         <div>
             {isLoading && <p>Loading...</p>}
             {!isLoading && (
-                <h1>{postData?.title}</h1>
-                <p>{postData?.description}</p>
+                <h1>{post?.title}</h1>
+                <p>{post?.description}</p>
             )}
         </div>
     );
@@ -174,10 +173,11 @@ export default function CategoryList() {
   // `categories` resource will be inferred from the route.
   // Because we've defined `/categories` as the `list` action of the `categories` resource.
   const {
+    result,
     tableQuery: { data, isLoading },
   } = useTable<ICategory>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -212,14 +212,13 @@ export default function CategoryShow() {
   // `categories` resource and the `id` will be inferred from the route.
   // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
   const {
-    queryResult: { data, isLoading },
+    result: category,
+    query: { isLoading },
   } = useShow<ICategory>();
-
-  const categoryData = data?.data;
 
   return (
     <div>
-      <h1>{categoryData?.label}</h1>
+      <h1>{category?.label}</h1>
     </div>
   );
 }
@@ -320,10 +319,11 @@ export default function PostList() {
   // `posts` resource will be inferred from the route.
   // Because we've defined `/posts` as the `list` action of the `posts` resource.
   const {
+    result,
     tableQuery: { data, isLoading },
   } = useTable<IPost>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -354,16 +354,14 @@ type IPost = {
 export default function PostShow() {
     // `posts` resource and the `id` will be inferred from the route.
     // Because we've defined `/posts/show/:id` as the `show` action of the `posts` resource.
-    const { queryResult: { data, isLoading } } = useShow<IPost>();
-
-    const postData = data?.data;
+    const { result: post, query: { isLoading } } = useShow<IPost>();
 
     return (
         <div>
             {isLoading && <p>Loading...</p>}
             {!isLoading && (
-                <h1>{postData?.title}</h1>
-                <p>{postData?.description}</p>
+                <h1>{post?.title}</h1>
+                <p>{post?.description}</p>
             )}
         </div>
     );
@@ -383,10 +381,11 @@ export default function CategoryList() {
   // `categories` resource will be inferred from the route.
   // Because we've defined `/categories` as the `list` action of the `categories` resource.
   const {
+    result,
     tableQuery: { data, isLoading },
   } = useTable<ICategory>();
 
-  const tableData = data?.data;
+  const tableData = result?.data;
 
   return (
     <div>
@@ -419,14 +418,13 @@ export default function CategoryShow() {
   // `categories` resource and the `id` will be inferred from the route.
   // Because we've defined `/categories/show/:id` as the `show` action of the `categories` resource.
   const {
-    queryResult: { data, isLoading },
+    result: category,
+    query: { isLoading },
   } = useShow<ICategory>();
-
-  const categoryData = data?.data;
 
   return (
     <div>
-      <h1>{categoryData?.label}</h1>
+      <h1>{category?.label}</h1>
     </div>
   );
 }
@@ -1040,7 +1038,7 @@ export default async function ProductList() {
 async function getData() {
   const response = await dataProvider(API_URL).getList({
     resource: "posts",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
   });
 
   return {
@@ -1147,7 +1145,7 @@ type GetDataParams = {
 
 async function getData(
   params: GetDataParams = {
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     filters: [],
   },
 ) {

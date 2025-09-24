@@ -51,7 +51,7 @@ describe("getList", () => {
           gqlQuery: gqlQuery,
         },
         pagination: {
-          current: 2,
+          currentPage: 2,
         },
       });
 
@@ -172,7 +172,7 @@ describe("getList", () => {
 
   describe("without operation", () => {
     it("throws code error", async () => {
-      expect(
+      await expect(
         dataProvider(client).getList({
           resource: "blogPosts",
         }),

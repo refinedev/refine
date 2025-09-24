@@ -247,15 +247,11 @@ For example, lets say that we have 1000 post records:
 const { selectProps } = useCheckboxGroup({
   resource: "categories",
   // highlight-next-line
-  pagination: { current: 3, pageSize: 8 },
+  pagination: { currentPage: 3, pageSize: 8 },
 });
 ```
 
 The listing will start from page 3, showing 8 records per page.
-
-### ~~sort~~ <PropTag deprecated />
-
-Use `sorters` instead.
 
 ## API Reference
 

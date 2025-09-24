@@ -3,7 +3,6 @@ export * from "./hooks/index.js";
 
 // all auth types
 export * from "./components/pages/auth/types.js";
-export { ILoginForm } from "./components/pages/login/index.js";
 
 export {
   getDefaultFilter,
@@ -17,19 +16,13 @@ export {
   unionSorters,
 } from "./definitions/table/index.js";
 export {
-  createTreeView,
   handleUseParams,
   importCSVMapper,
-  routeGenerator,
-  userFriendlyResourceName,
   getNextPageParam,
   getPreviousPageParam,
-  pickNotDeprecated,
-  legacyResourceTransform,
   matchResourceFromRoute,
   useActiveAuthProvider,
   useUserFriendlyName,
-  queryKeys,
   pickDataProvider,
   keys,
   KeyBuilder,
@@ -63,13 +56,10 @@ export {
 
 export {
   AuthActionResponse,
-  AuthBindings,
   AuthProvider,
   CheckResponse,
   IAuthContext,
   IdentityResponse,
-  ILegacyAuthContext,
-  LegacyAuthProvider,
   OnErrorResponse,
   PermissionResponse,
   SuccessNotificationResponse,
@@ -111,9 +101,7 @@ export {
   BaseRecord,
   HttpError,
   MetaQuery,
-  MetaDataQuery,
   MutationMode,
-  Option,
   BaseOption,
   IQueryKeys,
   Prettify,
@@ -166,7 +154,6 @@ export {
 } from "./contexts/notification/types.js";
 
 export {
-  DashboardPageProps,
   IRefineContext,
   IRefineContextOptions,
   IRefineContextProvider,
@@ -183,27 +170,11 @@ export {
   IResourceComponentsProps,
   IResourceContext,
   IResourceItem,
-  ITreeMenu,
-  IMenuItem,
   ResourceAuditLogPermissions,
   ResourceBindings,
   RouteableProperties,
-  ResourceRouteComponent,
-  ResourceRouteComposition,
-  ResourceRouteDefinition,
   ResourceRoutePath,
 } from "./contexts/resource/types.js";
-
-export {
-  ActionWithPage,
-  LegacyRouterProvider,
-  LegacyRouterProvider as IRouterContext,
-  LegacyRouterProvider as IRouterProvider,
-  PromptProps,
-  ResourceErrorRouterParams,
-  ResourceRouterParams,
-  RouteAction,
-} from "./contexts/router/legacy/types.js";
 
 export {
   Action,
@@ -214,7 +185,6 @@ export {
   ParsedParams,
   ParseFunction,
   RouterProvider,
-  RouterProvider as RouterBindings,
 } from "./contexts/router/types.js";
 
 export {
@@ -229,3 +199,5 @@ export {
   MetaContextProvider,
   useMetaContext,
 } from "./contexts/metaContext/index.js";
+
+export { TreeMenuItem, UseMenuProps } from "./hooks/menu/useMenu.js";

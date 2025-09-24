@@ -32,12 +32,18 @@ module.exports = {
         },
       ],
     },
-    // Devtools
+    // Announcement
     {
       type: "link",
-      href: "https://ai.refine.dev",
-      label: "Refine AI",
+      href: "/docs/migration-guide/4x-to-5x/",
+      label: "Refine v5 is here! 🎉",
       className: "enterprise-badge",
+    },
+    {
+      type: "link",
+      href: "/docs/ui-integrations/shadcn/introduction/",
+      label: "shadcn/ui Integration 🚀",
+      className: "shadcn-badge",
     },
     // Guides & Concepts
     {
@@ -244,7 +250,6 @@ module.exports = {
           label: "Hooks",
           items: [
             "routing/hooks/use-resource-params/index",
-            "routing/hooks/use-resource/index",
             "routing/hooks/use-go/index",
             "routing/hooks/use-back/index",
             "routing/hooks/use-parsed/index",
@@ -469,6 +474,59 @@ module.exports = {
       label: "UI Integrations",
       className: "category-as-header",
       items: [
+        // shadcn/ui
+        {
+          type: "category",
+          label: "shadcn/ui",
+          collapsed: false,
+          items: [
+            "ui-integrations/shadcn/introduction/index",
+            {
+              type: "category",
+              label: "Components",
+              items: [
+                {
+                  type: "category",
+                  label: "Basic Views",
+                  items: [
+                    "ui-integrations/shadcn/components/basic-views/create/index",
+                    "ui-integrations/shadcn/components/basic-views/edit/index",
+                    "ui-integrations/shadcn/components/basic-views/list/index",
+                    "ui-integrations/shadcn/components/basic-views/show/index",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Auth Forms",
+                  items: [
+                    "ui-integrations/shadcn/components/sign-in-form/index",
+                    "ui-integrations/shadcn/components/sign-up-form/index",
+                    "ui-integrations/shadcn/components/forgot-password/index",
+                  ],
+                },
+                {
+                  type: "category",
+                  label: "Buttons",
+                  items: [
+                    "ui-integrations/shadcn/components/buttons/clone-button/index",
+                    "ui-integrations/shadcn/components/buttons/create-button/index",
+                    "ui-integrations/shadcn/components/buttons/delete-button/index",
+                    "ui-integrations/shadcn/components/buttons/edit-button/index",
+                    "ui-integrations/shadcn/components/buttons/list-button/index",
+                    "ui-integrations/shadcn/components/buttons/refresh-button/index",
+                    "ui-integrations/shadcn/components/buttons/show-button/index",
+                  ],
+                },
+                "ui-integrations/shadcn/components/forms/index",
+                "ui-integrations/shadcn/components/data-table/index",
+                "ui-integrations/shadcn/components/themed-layout/index",
+                "ui-integrations/shadcn/components/error-component/index",
+                "ui-integrations/shadcn/components/auto-save-indicator/index",
+                "ui-integrations/shadcn/components/notification-provider/index",
+              ],
+            },
+          ],
+        },
         // Ant Design
         {
           type: "category",
@@ -548,6 +606,7 @@ module.exports = {
                 "ui-integrations/ant-design/hooks/use-radio-group/index",
                 "ui-integrations/ant-design/hooks/use-import/index",
                 "ui-integrations/ant-design/hooks/use-modal/index",
+                "ui-integrations/ant-design/hooks/use-drawer/index",
               ],
             },
             {
@@ -930,6 +989,7 @@ module.exports = {
       label: "Migration Guide 🚀",
       className: "category-as-header",
       items: [
+        "migration-guide/4x-to-5x",
         "migration-guide/3x-to-4x",
         "migration-guide/auth-provider",
         "migration-guide/router-provider",

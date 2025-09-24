@@ -1,4 +1,4 @@
-import { GitHubBanner, Refine } from "@refinedev/core";
+import * as core from "@refinedev/core";
 import {
   useNotificationProvider,
   ErrorComponent,
@@ -13,6 +13,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 
 import { ConfigProvider, App as AntdApp } from "antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList } from "./pages/posts";
@@ -23,10 +24,10 @@ const API_URL = "https://api.fake-rest.refine.dev";
 const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <GitHubBanner />
+      <core.GitHubBanner />
       <ConfigProvider theme={RefineThemes.Blue}>
         <AntdApp>
-          <Refine
+          <core.Refine
             dataProvider={dataProvider(API_URL)}
             routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
@@ -61,7 +62,7 @@ const App: React.FC = () => {
             </Routes>
             <UnsavedChangesNotifier />
             <DocumentTitleHandler />
-          </Refine>
+          </core.Refine>
         </AntdApp>
       </ConfigProvider>
     </BrowserRouter>

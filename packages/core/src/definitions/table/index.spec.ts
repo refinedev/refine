@@ -78,7 +78,7 @@ describe("definitions/table", () => {
 
   it("stringify table params correctly", async () => {
     const pagination = {
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
     };
 
@@ -116,7 +116,7 @@ describe("definitions/table", () => {
 
   it("stringify table single sort params correctly", async () => {
     const pagination = {
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
     };
 
@@ -135,12 +135,12 @@ describe("definitions/table", () => {
 
   it("parse table params with single sorter correctly", async () => {
     const url =
-      "?current=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&filters[0][operator]=in&filters[0][field]=categoryId&filters[0][value][0]=1&filters[0][value][1]=2";
+      "?currentPage=1&pageSize=10&sorter[0][field]=id&sorter[0][order]=desc&filters[0][operator]=in&filters[0][field]=categoryId&filters[0][value][0]=1&filters[0][value][1]=2";
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    const { parsedCurrentPage, parsedPageSize, parsedSorter, parsedFilters } =
       parseTableParams(url);
 
-    expect(parsedCurrent).toBe(1);
+    expect(parsedCurrentPage).toBe(1);
     expect(parsedPageSize).toBe(10);
     expect(parsedSorter).toStrictEqual([{ field: "id", order: "desc" }]);
     expect(parsedFilters).toStrictEqual([
@@ -150,7 +150,7 @@ describe("definitions/table", () => {
 
   it("sorters should be prioritized over sorter", async () => {
     const pagination = {
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
     };
 
@@ -170,7 +170,7 @@ describe("definitions/table", () => {
 
   it("parse table params with advanced query object", async () => {
     const query = {
-      current: 1,
+      currentPage: 1,
       pageSize: 10,
       sorter: [
         { field: "id", order: "asc" },
@@ -196,10 +196,10 @@ describe("definitions/table", () => {
       ],
     };
 
-    const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+    const { parsedCurrentPage, parsedPageSize, parsedSorter, parsedFilters } =
       parseTableParamsFromQuery(query);
 
-    expect(parsedCurrent).toBe(1);
+    expect(parsedCurrentPage).toBe(1);
     expect(parsedPageSize).toBe(10);
     expect(parsedSorter).toStrictEqual([
       { field: "id", order: "asc" },
@@ -619,8 +619,8 @@ describe("definitions/table", () => {
   });
 
   it("parseTableParams default sorter and filters", () => {
-    expect(parseTableParams("?current=1&pageSize=10")).toStrictEqual({
-      parsedCurrent: 1,
+    expect(parseTableParams("?currentPage=1&pageSize=10")).toStrictEqual({
+      parsedCurrentPage: 1,
       parsedFilters: [],
       parsedPageSize: 10,
       parsedSorter: [],

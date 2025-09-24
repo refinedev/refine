@@ -702,11 +702,10 @@ import { IPost, ICategory } from "interfaces";
 
 export const PostList = () => {
   const translate = useTranslate();
-  const { tableProps } = useTable<IPost>();
+  const { result } = useTable<IPost>();
 
-  const categoryIds =
-    tableProps?.dataSource?.map((item) => item.category.id) ?? [];
-  const { data, isLoading } = useMany<ICategory>({
+  const categoryIds = result?.data?.map((item) => item.category.id) ?? [];
+  const { result, isLoading } = useMany<ICategory>({
     resource: "categories",
     ids: categoryIds,
     queryOptions: {
@@ -746,7 +745,7 @@ export const PostList = () => {
 
             return (
               <TextField
-                value={data?.data.find((item) => item.id === value)?.title}
+                value={result?.data.find((item) => item.id === value)?.title}
               />
             );
           }}

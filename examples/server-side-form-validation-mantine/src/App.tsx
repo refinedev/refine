@@ -1,6 +1,6 @@
 import { GitHubBanner, type HttpError, Refine } from "@refinedev/core";
 import {
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   useNotificationProvider,
   RefineThemes,
@@ -92,9 +92,9 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

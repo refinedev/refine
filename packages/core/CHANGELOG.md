@@ -1,5 +1,111 @@
 # @refinedev/core
 
+## 5.0.2
+
+### Patch Changes
+
+- [#7016](https://github.com/refinedev/refine/pull/7016) [`97e974547949197ed9ca4a1e02b19ef3fc46b673`](https://github.com/refinedev/refine/commit/97e974547949197ed9ca4a1e02b19ef3fc46b673) Thanks [@DoguhanOzgurAkca](https://github.com/DoguhanOzgurAkca)! - feat: comprehensive deprecated code cleanup for v5
+
+  This release completes the cleanup of deprecated code that remained after the Refine v5 migration, providing a cleaner and more maintainable codebase.
+
+  ## Breaking Changes - Removed Deprecated Components
+
+  **@refinedev/antd:**
+
+  - Removed deprecated `ReadyPage` component (use custom components instead)
+  - Removed deprecated `LoginPage` component (use `AuthPage` instead)
+  - Removed deprecated `useSiderVisible` hook (use `useThemedLayoutContext` instead)
+
+  **@refinedev/chakra-ui:**
+
+  - Removed deprecated `ReadyPage` component (use custom components instead)
+  - Removed deprecated `useSiderVisible` hook (use `useThemedLayoutContext` instead)
+
+  **@refinedev/mantine:**
+
+  - Removed deprecated `useSiderVisible` hook (use `useThemedLayoutContext` instead)
+
+  ## New Features
+
+  **@refinedev/codemod:**
+
+  - Added `welcome-page-import-from-core` codemod transformation
+  - Automatically migrates WelcomePage imports from UI libraries to @refinedev/core
+  - Run with: `npx @refinedev/codemod@latest welcome-page-import-from-core`
+
+  ## Improvements
+
+  **@refinedev/antd:**
+
+  - Un-deprecated `getDefaultFilter` function - now the preferred import location
+  - Updated documentation to import `getDefaultFilter` from `@refinedev/antd` instead of `@refinedev/core`
+
+  **@refinedev/core:**
+
+  - Un-deprecated `warnWhenUnsavedChanges` property in RefineOptions (still valid and actively used)
+  - Updated all TanStack Query documentation links from v4 to v5
+  - Improved TSDoc comments with current TanStack Query v5 references
+
+  ## Documentation Updates
+
+  - Updated 7 documentation files to use `getDefaultFilter` from `@refinedev/antd`
+  - Migrated 22 TanStack Query v4 documentation links to v5
+  - All API references now point to current TanStack Query v5 documentation
+
+- [#7015](https://github.com/refinedev/refine/pull/7015) [`acb1e96b0d6cfddbd6115818b8f01c73d56934ff`](https://github.com/refinedev/refine/commit/acb1e96b0d6cfddbd6115818b8f01c73d56934ff) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix: incorrect parseTableParams issue.
+
+  Resolves (#7013)[https://github.com/refinedev/refine/issues/7013]
+
+## 5.0.1
+
+### Patch Changes
+
+- [#6990](https://github.com/refinedev/refine/pull/6990) [`90f3f7a43f71747c8d35e69b9a84a5dee6df9354`](https://github.com/refinedev/refine/commit/90f3f7a43f71747c8d35e69b9a84a5dee6df9354) Thanks [@BatuhanW](https://github.com/BatuhanW)! - fix(core): error notification infinite render issue
+
+  useEffect hook in data query hooks that handles the error notification had whole error object in dependency array, which changes with every request, thus causing infinite re-renders. Changed the dependency to just error message string.
+
+  [Resolves #6983](https://github.com/refinedev/refine/issues/6983)
+
+## 5.0.0
+
+### Major Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: upgrade to Refine 5.0 with React 19 and TanStack Query v5
+
+  - Modern React 19 and TanStack Query v5 support with improved performance and developer experience.
+  - Removed all deprecated APIs and legacy systems for a cleaner, more maintainable codebase.
+
+  > 🚨 Breaking changes require migration - check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
+### Patch Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - - Throw an error in `useGetLocale` if it is called without an i18n Provider.
+
+  - This ensures the hook's return type matches that of `i18nProvider.getLocale`.
+  - `useTranslation().getLocale` which is from `useGetLocale` now returns a string.
+
+  [Resolves #6812](https://github.com/refinedev/refine/issues/6812)
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/devtools-internal@2.0.0
+
+## 4.58.0
+
+### Minor Changes
+
+- [#6880](https://github.com/refinedev/refine/pull/6880) [`2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2`](https://github.com/refinedev/refine/commit/2b4c2082b2e07f6c5afa514c4beeb7abc4082ea2) Thanks [@arndom](https://github.com/arndom)! - - Add `siderItemsAreCollapsed` prop to all `Sider` components to set default expanded/collapsed nested sider items.
+
+  - UI packages: AntDesign, Manitine, Charka-UI, Material-UI
+  - Add documentation for this addition
+
+  [Resolves #6721](https://github.com/refinedev/refine/issues/6721)
+
+### Patch Changes
+
+- [#6925](https://github.com/refinedev/refine/pull/6925) [`5a3e404de3f655efd8317f8e2eacbc2be8b3fa7a`](https://github.com/refinedev/refine/commit/5a3e404de3f655efd8317f8e2eacbc2be8b3fa7a) Thanks [@pokycookie](https://github.com/pokycookie)! - - Preserve row id in meta for data hooks.
+
+  [Resolves #6906](https://github.com/refinedev/refine/issues/6906)
+
 ## 4.57.11
 
 ### Patch Changes

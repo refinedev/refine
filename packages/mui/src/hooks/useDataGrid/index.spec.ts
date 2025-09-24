@@ -1,4 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
+import { vi } from "vitest";
 
 import { MockJSONServer, TestWrapper } from "@test";
 
@@ -41,7 +42,7 @@ describe("useDataGrid Hook", () => {
     );
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult?.isLoading).toBeTruthy();
+      expect(!result.current.tableQuery?.isLoading).toBeTruthy();
     });
 
     await act(async () => {
@@ -60,7 +61,7 @@ describe("useDataGrid Hook", () => {
         value: "draft",
       },
     ]);
-    expect(result.current.current).toEqual(1);
+    expect(result.current.currentPage).toEqual(1);
   });
 
   it.each(["client", "server"] as const)(
@@ -164,7 +165,7 @@ describe("useDataGrid Hook", () => {
   );
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useDataGrid({
@@ -190,13 +191,13 @@ describe("useDataGrid Hook", () => {
     );
 
     await waitFor(() => {
-      expect(result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(result.current.tableQuery.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBe(900);
-      expect(onInterval).toBeCalled();
+      expect(onInterval).toHaveBeenCalled();
     });
 
     await waitFor(() => {
-      expect(!result.current.tableQueryResult.isLoading).toBeTruthy();
+      expect(!result.current.tableQuery.isLoading).toBeTruthy();
       expect(result.current.overtime.elapsedTime).toBeUndefined();
     });
   });
@@ -260,7 +261,7 @@ describe("useDataGrid Hook", () => {
       expect(result.current.tableQuery.isSuccess).toBeTruthy();
     });
 
-    expect(result.current.tableQuery).toEqual(result.current.tableQueryResult);
+    expect(result.current.tableQuery).toEqual(result.current.tableQuery);
   });
 
   it("should pass meta from updateMutationOptions to mutate function", async () => {
@@ -268,7 +269,7 @@ describe("useDataGrid Hook", () => {
 
     const mockDataProvider = {
       ...MockJSONServer,
-      update: jest.fn().mockImplementation((params) => {
+      update: vi.fn().mockImplementation((params) => {
         expect(params).toEqual(
           expect.objectContaining({
             meta: mockMeta,

@@ -24,15 +24,10 @@ type IPost = GetFieldsFromList<BlogPostsListQuery>;
 
 export const PostList = () => {
   const { tableProps, filters, sorters } = useTable<IPost>({
-    initialSorter: [
-      {
-        field: "id",
-        order: "desc",
-      },
-    ],
-    metaData: {
+    meta: {
       gqlQuery: POSTS_LIST_QUERY,
     },
+
     queryOptions: {
       retry(failureCount, error) {
         if (error?.message.includes("Network Error") && failureCount <= 3)
@@ -40,12 +35,26 @@ export const PostList = () => {
         return false;
       },
     },
+
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    },
   });
 
   const { selectProps } = useSelect<GetFieldsFromList<CategoriesSelectQuery>>({
     resource: "categories",
-    metaData: {
+
+    meta: {
       gqlQuery: CATEGORIES_SELECT_QUERY,
+    },
+
+    pagination: {
+      mode: "server",
     },
   });
 

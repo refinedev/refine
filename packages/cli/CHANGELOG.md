@@ -1,5 +1,23 @@
 # @refinedev/cli
 
+## 2.16.49
+
+### Patch Changes
+
+- [#7008](https://github.com/refinedev/refine/pull/7008) [`b07be7596fd72b1f83421a14098f0b44b6cdc8de`](https://github.com/refinedev/refine/commit/b07be7596fd72b1f83421a14098f0b44b6cdc8de) Thanks [@BatuhanW](https://github.com/BatuhanW)! - refactor: small refactors on create-resource, check-updates, swizzle, commands. During Vitest migration, some refactors were needed to properly mock some functions.
+
+## 2.16.48
+
+### Patch Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix(test): update Jest assertions and configuration for v30 compatibility
+
+  - Updated test infrastructure with modern Jest API usage and improved configuration.
+  - Internal development dependency updates and tooling modernization - no public API changes.
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/devtools-server@2.0.0
+
 ## 2.16.47
 
 ### Patch Changes

@@ -10,6 +10,28 @@ require("dotenv").config();
 const redirectJson = require("./redirects.json");
 const tutorialData = require("./tutorial-units");
 const thumbsUpDownFeedbackWidget = require("./plugins/thumbs-up-down-feedback-widget");
+const path = require("path");
+
+function singleReact() {
+  const reactDir = path.dirname(require.resolve("react/package.json"));
+  const reactDomDir = path.dirname(require.resolve("react-dom/package.json"));
+
+  return {
+    name: "single-react",
+    configureWebpack() {
+      return {
+        resolve: {
+          alias: {
+            react: reactDir,
+            "react-dom": reactDomDir,
+            "react/jsx-runtime": path.join(reactDir, "jsx-runtime.js"),
+            "react/jsx-dev-runtime": path.join(reactDir, "jsx-dev-runtime.js"),
+          },
+        },
+      };
+    },
+  };
+}
 
 /** @type {import('@docusaurus/types/src/index').DocusaurusConfig} */
 const siteConfig = {
@@ -61,8 +83,18 @@ const siteConfig = {
               showLastUpdateTime: true,
               disableVersioning: process.env.DISABLE_VERSIONING === "true",
               versions: {
+                ...(process.env.DISABLE_VERSIONING === "true"
+                  ? {}
+                  : {
+                      "4.xx.xx": {
+                        label: "4.xx.xx",
+                      },
+                      "3.xx.xx": {
+                        label: "3.xx.xx",
+                      },
+                    }),
                 current: {
-                  label: "4.xx.xx",
+                  label: "5.xx.xx",
                 },
               },
               lastVersion: "current",
@@ -138,6 +170,7 @@ const siteConfig = {
         },
       };
     },
+    singleReact,
     "./plugins/docgen.js",
     ...(process.env.DISABLE_BLOG
       ? []

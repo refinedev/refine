@@ -77,8 +77,8 @@ describe("custom", () => {
   });
 
   describe("when operation is not provided", () => {
-    it("throws error", () => {
-      expect(
+    it("throws error", async () => {
+      await expect(
         dataProvider(client).custom({ url: "", method: "get" }),
       ).rejects.toEqual(new Error("[Code] Operation is required."));
     });

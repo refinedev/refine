@@ -140,7 +140,7 @@ describe("useForm hook", () => {
   it.each(["edit", "create"] as const)(
     "should set %s-form errors from data provider",
     async (action) => {
-      const onMutationError = jest.fn();
+      const onMutationError = vi.fn();
 
       const { getByText, getByTestId } = renderForm({
         refineCoreProps: {
@@ -163,7 +163,7 @@ describe("useForm hook", () => {
         expect(document.body).not.toHaveTextContent("loading");
       });
 
-      expect(onMutationError).toBeCalledTimes(1);
+      expect(onMutationError).toHaveBeenCalledTimes(1);
 
       expect(getByText("Title is required")).toBeInTheDocument();
       expect(getByText("Category is required")).toBeInTheDocument();
@@ -194,7 +194,7 @@ describe("useForm hook", () => {
       disableFromHook: false,
     },
   ] as const)("should disable server-side validation", async (testCase) => {
-    const onMutationErrorMock = jest.fn();
+    const onMutationErrorMock = vi.fn();
 
     const { getByTestId, queryByText } = renderForm({
       refineOptions: {
@@ -222,7 +222,7 @@ describe("useForm hook", () => {
 
     await waitFor(() => {
       expect(document.body).not.toHaveTextContent("loading");
-      expect(onMutationErrorMock).toBeCalledTimes(1);
+      expect(onMutationErrorMock).toHaveBeenCalledTimes(1);
     });
 
     await waitFor(() => {

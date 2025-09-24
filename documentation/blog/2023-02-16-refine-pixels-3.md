@@ -226,7 +226,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -244,7 +244,7 @@ function App() {
           dataProvider={dataProvider(supabaseClient)}
           liveProvider={liveProvider(supabaseClient)}
           authProvider={authProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           notificationProvider={useNotificationProvider}
           options={{
             syncWithLocation: true,
@@ -338,7 +338,7 @@ After creating files above you need to add some imports and [routes](/docs/packa
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -374,7 +374,7 @@ function App() {
           dataProvider={dataProvider(supabaseClient)}
           liveProvider={liveProvider(supabaseClient)}
           auditLogProvider={auditLogProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "canvases",
@@ -485,7 +485,7 @@ import { SponsorsBanner } from "../../components/banners";
 import { Canvas } from "../../types";
 
 export const CanvasList: React.FC = () => {
-  const { listProps, queryResult } = useSimpleList<Canvas>({
+  const { listProps, query } = useSimpleList<Canvas>({
     resource: "canvases",
     pagination: {
       pageSize: 12,
@@ -500,7 +500,7 @@ export const CanvasList: React.FC = () => {
     },
   });
 
-  const { isLoading } = queryResult;
+  const { isLoading } = query;
 
   return (
     <div className="container">
@@ -526,7 +526,7 @@ export const CanvasList: React.FC = () => {
 };
 ```
 
-There are a few of things to note here: the first being the use of **Ant Design** with **Refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `queryResult` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
+There are a few of things to note here: the first being the use of **Ant Design** with **Refine**'s `@refinedev/antd` module. The second thing is the `useSimpleList()` hook that is being used to access `listProps` and `query` items to feed UI elements. And third, the use of pagination and sorting in the query sent.
 
 Let's briefly discuss what's going on:
 
@@ -644,7 +644,7 @@ Let's look at the routes implementation:
 
 ```tsx title="src/components/layout/header/index.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
@@ -654,7 +654,7 @@ const App = () => {
     <BrowserRouter>
       <Refine
         // ...
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
       >
         <Routes>
           <Route
@@ -1045,7 +1045,7 @@ export const CanvasShow: React.FC = () => {
   const { data: { authenticated } = {} } = useIsAuthenticated();
 
   const {
-    queryResult: { data: { data: canvas } = {} },
+    query: { data: { data: canvas } = {} },
   } = useShow<Canvas>();
   const { mutate } = useCreate();
   const { list, push } = useNavigation();
@@ -1162,7 +1162,7 @@ In the code above, we have two instances of data hooks in action. First, with th
 
 ```tsx title="src/pages/canvases/show.tsx"
 const {
-  queryResult: { data: { data: canvas } = {} },
+  query: { data: { data: canvas } = {} },
 } = useShow<Canvas>();
 ```
 
@@ -1206,7 +1206,7 @@ Namely, authentication related routing has been added:
 
 ```tsx title="src/App.tsx"
 import { Refine, Authenticated } from "@refinedev/core";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { GithubOutlined } from "@ant-design/icons";
 import { AuthPage } from "./pages/auth";
@@ -1218,7 +1218,7 @@ const App = () => {
       <Refine
         // ...
         authProvider={authProvider}
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
       >
         <Routes>
           {/* ... */}
@@ -1309,7 +1309,7 @@ Remember, we've already replaced `App.tx` code with the following:
 import { GitHubBanner, Refine, Authenticated } from "@refinedev/core";
 import { useNotificationProvider, ErrorComponent } from "@refinedev/antd";
 import { dataProvider, liveProvider } from "@refinedev/supabase";
-import routerBindings, { NavigateToResource } from "@refinedev/react-router";
+import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { GithubOutlined } from "@ant-design/icons";
@@ -1345,7 +1345,7 @@ function App() {
           dataProvider={dataProvider(supabaseClient)}
           liveProvider={liveProvider(supabaseClient)}
           auditLogProvider={auditLogProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "canvases",
@@ -1480,7 +1480,7 @@ Now it's time to focus on the Home page of our application. We put the `<CanvasF
 
 ```tsx title="App.tsx"
 import { Refine } from "@refinedev/core";
-import routerBindings from "@refinedev/react-router";
+import routerProvider from "@refinedev/react-router";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { Layout } from "./components/layout";
 import { CanvasFeaturedList } from "./pages/canvases";
@@ -1490,7 +1490,7 @@ const App = () => {
     <BrowserRouter>
       <Refine
         // ...
-        routerProvider={routerBindings}
+        routerProvider={routerProvider}
       >
         <Routes>
           {/* ... */}

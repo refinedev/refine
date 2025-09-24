@@ -1,7 +1,7 @@
 import { GitHubBanner, Refine } from "@refinedev/core";
 import {
   useNotificationProvider,
-  ThemedLayoutV2,
+  ThemedLayout,
   ErrorComponent,
   RefineThemes,
 } from "@refinedev/antd";
@@ -17,6 +17,7 @@ import routerProvider, {
 import { BrowserRouter, Routes, Route, Outlet } from "react-router";
 import { createClient } from "graphql-ws";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 import { PostList, PostCreate, PostEdit, PostShow } from "./pages/posts";
@@ -65,9 +66,9 @@ const App: React.FC = () => {
             <Routes>
               <Route
                 element={
-                  <ThemedLayoutV2>
+                  <ThemedLayout>
                     <Outlet />
-                  </ThemedLayoutV2>
+                  </ThemedLayout>
                 }
               >
                 <Route

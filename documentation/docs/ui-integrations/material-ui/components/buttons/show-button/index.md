@@ -92,7 +92,6 @@ render(
 `recordItemId` is used to append the record id to the end of the route path. By default, the `recordItemId` is inferred from the route params.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
 // visible-block-start
 import { ShowButton } from "@refinedev/mui";
 
@@ -140,8 +139,6 @@ render(
 Redirection endpoint is defined by the `resource`'s `show` action path. By default, `<ShowButton>` uses the inferred resource from the route.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
 // visible-block-start
 import { ShowButton } from "@refinedev/mui";
 
@@ -212,8 +209,6 @@ const MyComponent = () => {
 `hideText` is used to show or hide the text of the button. When `true`, only the button icon is visible.
 
 ```tsx live disableScroll previewHeight=120px
-const { useRouterContext } = RefineCore;
-
 // visible-block-start
 import { ShowButton } from "@refinedev/mui";
 
@@ -268,10 +263,6 @@ export const MyListComponent = () => {
   );
 };
 ```
-
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use `resource` prop instead.
 
 ## API Reference
 

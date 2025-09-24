@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook } from "@testing-library/react";
 
 import { TestWrapper, mockRouterProvider } from "@test";
@@ -6,11 +7,11 @@ import { useNavigationButton } from ".";
 import { useButtonCanAccess } from "../button-can-access";
 
 // Mock the useButtonCanAccess hook
-jest.mock("../button-can-access", () => ({
-  useButtonCanAccess: jest.fn(),
+vi.mock("../button-can-access", () => ({
+  useButtonCanAccess: vi.fn(),
 }));
 
-const mockUseButtonCanAccess = useButtonCanAccess as jest.MockedFunction<
+const mockUseButtonCanAccess = useButtonCanAccess as vi.MockedFunction<
   typeof useButtonCanAccess
 >;
 
@@ -18,7 +19,7 @@ const actions = ["list", "show", "create", "edit", "clone"] as const;
 
 describe("useNavigationButton", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     // Default mock return value
     mockUseButtonCanAccess.mockReturnValue({
       title: "",
@@ -55,24 +56,24 @@ describe("useNavigationButton", () => {
         clone: "/posts/:id/clone",
       };
 
-      const goMock = jest.fn();
+      const goMock = vi.fn();
 
       renderHook(
         () => useNavigationButton({ action, resource: "posts", id: 123 }),
         {
           wrapper: TestWrapper({
             resources: [resource],
-            routerProvider: {
-              ...mockRouterProvider({
-                resource: resource,
-              }),
-              go: () => goMock,
-            },
+            routerProvider: mockRouterProvider({
+              resource: resource,
+              fns: {
+                go: () => goMock,
+              },
+            }),
           }),
         },
       );
 
-      expect(goMock).toBeCalledWith({
+      expect(goMock).toHaveBeenCalledWith({
         to: resource[action].replace(":id", "123"),
         type: "path",
       });
@@ -123,7 +124,7 @@ describe("useNavigationButton", () => {
           },
         ];
 
-        const goMock = jest.fn();
+        const goMock = vi.fn();
 
         renderHook(
           () => useNavigationButton({ action, resource: "comments" }),
@@ -140,7 +141,7 @@ describe("useNavigationButton", () => {
           },
         );
 
-        expect(goMock).not.toBeCalled();
+        expect(goMock).not.toHaveBeenCalled();
       });
     }
   });
@@ -257,7 +258,7 @@ describe("useNavigationButton", () => {
       };
 
       actions.forEach((action) => {
-        jest.clearAllMocks();
+        vi.clearAllMocks();
 
         renderHook(
           () =>

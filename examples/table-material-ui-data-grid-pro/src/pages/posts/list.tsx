@@ -9,6 +9,7 @@ import type { ICategory, IPost } from "../../interfaces";
 export const PostList: React.FC = () => {
   const { dataGridProps } = useDataGrid<IPost>({
     syncWithLocation: true,
+
     pagination: {
       mode: "off",
     },
@@ -19,7 +20,10 @@ export const PostList: React.FC = () => {
     query: { isLoading },
   } = useSelect<ICategory>({
     resource: "categories",
-    hasPagination: false,
+
+    pagination: {
+      mode: "off",
+    },
   });
 
   const columns = React.useMemo<GridColDef<IPost>[]>(

@@ -48,7 +48,6 @@ const auditLogProvider = {
         action?: string;
         meta?: Record<string, any>;
         author?: Record<string, any>;
-        metaData?: MetaDataQuery;
     }) => Promise<any>;
     update: (params: {
         id: BaseKey;
@@ -87,7 +86,7 @@ Now let's see how we can handle these events in our audit log provider.
 ```ts title="audit-log-provider.ts"
 export const auditLogProvider: AuditLogProvider = {
   get: async (params) => {
-    const { resource, meta, action, author, metaData } = params;
+    const { resource, meta, action, author } = params;
 
     const response = await fetch(
       `https://example.com/api/audit-logs/${resource}/${meta.id}`,
@@ -351,7 +350,7 @@ mutate({
     status: "published",
     content: "New Post Content",
   },
-  metaData: {
+  meta: {
     foo: "bar",
   },
 });
@@ -368,7 +367,7 @@ mutate({
   },
   "meta": {
     "id": "1",
-    // `metaData` is included in `meta`.
+    // Additional metadata is included in `meta`.
     "foo": "bar"
   }
 }
@@ -393,7 +392,7 @@ mutate({
       content: "New Post Content2",
     },
   ],
-  metaData: {
+  meta: {
     foo: "bar",
   },
 });
@@ -417,7 +416,7 @@ mutate({
   ],
   "meta": {
     "ids": [1, 2],
-    // `metaData` is included in `meta`.
+    // Additional metadata is included in `meta`.
     "foo": "bar"
   }
 }

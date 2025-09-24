@@ -96,7 +96,7 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import { useNotificationProvider } from "@refinedev/antd";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -116,7 +116,7 @@ function App() {
             dataProvider={dataProvider(supabaseClient)}
             liveProvider={liveProvider(supabaseClient)}
             authProvider={authProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             notificationProvider={useNotificationProvider}
             options={{
               syncWithLocation: true,

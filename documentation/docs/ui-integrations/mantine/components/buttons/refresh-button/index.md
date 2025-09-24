@@ -49,25 +49,24 @@ import { Show, MarkdownField, RefreshButton } from "@refinedev/mantine";
 import { Title, Text } from "@mantine/core";
 
 const PostShow: React.FC = () => {
-  const { queryResult } = useShow<IPost>();
-  const { data, isLoading } = queryResult;
-  const record = data?.data;
+  const { result: post, query } = useShow<IPost>();
+  const { data, isLoading } = query;
 
   return (
     // highlight-next-line
     <Show headerButtons={<RefreshButton />} isLoading={isLoading}>
       <Title order={5}>Id</Title>
-      <Text mt="sm">{record?.id}</Text>
+      <Text mt="sm">{post?.id}</Text>
 
       <Title mt="sm" order={5}>
         Title
       </Title>
-      <Text mt="sm">{record?.title}</Text>
+      <Text mt="sm">{post?.title}</Text>
 
       <Title mt="sm" order={5}>
         Content
       </Title>
-      <MarkdownField value={record?.content} />
+      <MarkdownField value={post?.content} />
     </Show>
   );
 };
@@ -271,10 +270,6 @@ render(
   </ReactRouter.BrowserRouter>,
 );
 ```
-
-### ~~resourceNameOrRouteName~~ <PropTag deprecated />
-
-Use `resource` prop instead.
 
 ## API Reference
 

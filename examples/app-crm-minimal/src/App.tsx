@@ -26,6 +26,7 @@ import {
   TasksListPage,
 } from "@/routes";
 
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
 const App = () => {
@@ -45,7 +46,6 @@ const App = () => {
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
                 liveMode: "auto",
-                useNewQueryKeys: true,
               }}
             >
               <Routes>

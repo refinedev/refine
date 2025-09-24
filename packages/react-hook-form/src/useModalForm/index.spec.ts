@@ -236,8 +236,8 @@ describe("useModalForm Hook", () => {
   });
 
   it("should `meta[syncWithLocationKey]` overrided by default", async () => {
-    const mockGetOne = jest.fn();
-    const mockUpdate = jest.fn();
+    const mockGetOne = vi.fn().mockResolvedValue({ data: { id: 5 } });
+    const mockUpdate = vi.fn().mockResolvedValue({ data: { id: 5 } });
 
     const { result } = renderHook(
       () =>

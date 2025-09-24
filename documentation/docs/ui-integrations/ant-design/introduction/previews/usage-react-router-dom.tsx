@@ -83,7 +83,7 @@ import dataProvider from "@refinedev/simple-rest";
 import routerProvider, { NavigateToResource } from "@refinedev/react-router";
 import { BrowserRouter, Route, Routes, Outlet, Navigate } from "react-router";
 
-import { ErrorComponent, RefineThemes, ThemedLayoutV2, useNotificationProvider, AuthPage } from "@refinedev/antd";
+import { ErrorComponent, RefineThemes, ThemedLayout, useNotificationProvider, AuthPage } from "@refinedev/antd";
 import { App as AntdApp, ConfigProvider } from "antd";
 
 import authProvider from "./auth-provider";
@@ -117,9 +117,9 @@ export default function App() {
               <Route element={<Authenticated fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
                 <Route
                   element={
-                    <ThemedLayoutV2>
+                    <ThemedLayout>
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   }
                 >
                   <Route path="/products" element={<Outlet />}>
@@ -193,23 +193,20 @@ import { Typography } from "antd";
 const { Title } = Typography;
 
 export const ProductShow = () => {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
-
-  const record = data?.data;
+  const { result: product, query: { isLoading } } = useShow();
 
   return (
     <Show isLoading={isLoading}>
       <Title level={5}>Id</Title>
-      <NumberField value={record?.id ?? ""} />
+      <NumberField value={product?.id ?? ""} />
       <Title level={5}>Name</Title>
-      <TextField value={record?.name} />
+      <TextField value={product?.name} />
       <Title level={5}>Material</Title>
-      <TextField value={record?.material} />
+      <TextField value={product?.material} />
       <Title level={5}>Description</Title>
-      <MarkdownField value={record?.description} />
+      <MarkdownField value={product?.description} />
       <Title level={5}>Price</Title>
-      <NumberField value={record?.price ?? ""} />
+      <NumberField value={product?.price ?? ""} />
     </Show>
   );
 };

@@ -65,7 +65,6 @@ export const RefineContext = ({
               options={{
                 syncWithLocation: true,
                 warnWhenUnsavedChanges: true,
-                useNewQueryKeys: true,
               }}
             >
               {children}

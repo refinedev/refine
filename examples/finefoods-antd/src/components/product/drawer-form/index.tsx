@@ -55,6 +55,10 @@ export const ProductDrawerForm = (props: Props) => {
 
   const { selectProps: categorySelectProps } = useSelect<ICategory>({
     resource: "categories",
+
+    pagination: {
+      mode: "server",
+    },
   });
 
   const onDrawerCLose = () => {

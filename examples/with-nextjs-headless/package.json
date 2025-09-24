@@ -23,20 +23,20 @@
     "next": "^15.2.4",
     "next-intl": "^3.25.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react-dom": "^19.1.0",
     "react-hook-form": "^7.57.0"
   },
   "devDependencies": {
     "@types/js-cookie": "^3.0.2",
-    "@types/node": "^18.16.2",
+    "@types/node": "^20",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.24.0",
     "eslint-config-next": "15.0.3",
-    "typescript": "^5.4.2"
+    "typescript": "^5.8.3"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20"
   }
 }

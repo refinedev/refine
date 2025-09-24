@@ -28,7 +28,7 @@ export const ProductListCard = (props: Props) => {
   const { pathname } = useLocation();
   const { editUrl } = useNavigation();
   const t = useTranslate();
-  const products = props.tableQueryResult?.data?.data || [];
+  const products = props.tableQuery?.data?.data || [];
 
   const categoryFilters = useMemo(() => {
     const filter = props.filters.find((filter) => {
@@ -67,7 +67,7 @@ export const ProductListCard = (props: Props) => {
         value: newFilters,
       },
     ]);
-    props.setCurrent(1);
+    props.setCurrentPage(1);
   };
 
   return (
@@ -88,7 +88,7 @@ export const ProductListCard = (props: Props) => {
                 value: [],
               },
             ]);
-            props.setCurrent(1);
+            props.setCurrentPage(1);
           }}
         />
         {props.categories.map((category) => {
@@ -257,7 +257,7 @@ export const ProductListCard = (props: Props) => {
           props.setPageSize(+e.target.value);
         }}
         onPageChange={(_e, page) => {
-          props.setCurrent(page + 1);
+          props.setCurrentPage(page + 1);
         }}
       />
     </>

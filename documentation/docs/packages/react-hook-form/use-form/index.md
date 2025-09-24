@@ -29,21 +29,27 @@ const Layout: React.FC = ({ children }) => {
 };
 
 const PostList: React.FC = () => {
-  const { tableQuery, current, setCurrent, pageSize, pageCount } =
-    useTable<IPost>({
-      sorters: {
-        initial: [
-          {
-            field: "id",
-            order: "desc",
-          },
-        ],
-      },
-    });
+  const {
+    result,
+    tableQuery,
+    currentPage,
+    setCurrentPage,
+    pageSize,
+    pageCount,
+  } = useTable<IPost>({
+    sorters: {
+      initial: [
+        {
+          field: "id",
+          order: "desc",
+        },
+      ],
+    },
+  });
   const { edit, create, clone } = useNavigation();
 
-  const hasNext = current < pageCount;
-  const hasPrev = current > 1;
+  const hasNext = currentPage < pageCount;
+  const hasPrev = currentPage > 1;
 
   return (
     <div>
@@ -55,7 +61,7 @@ const PostList: React.FC = () => {
           <td>Actions</td>
         </thead>
         <tbody>
-          {tableQuery.data?.data.map((post) => (
+          {result?.data?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
               <td>{post.title}</td>
@@ -69,39 +75,39 @@ const PostList: React.FC = () => {
       </table>
       <div>
         <div>
-          <button onClick={() => setCurrent(1)} disabled={!hasPrev}>
+          <button onClick={() => setCurrentPage(1)} disabled={!hasPrev}>
             First
           </button>
           <button
-            onClick={() => setCurrent((prev) => prev - 1)}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
             disabled={!hasPrev}
           >
             Previous
           </button>
           <button
-            onClick={() => setCurrent((prev) => prev + 1)}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
             disabled={!hasNext}
           >
             Next
           </button>
-          <button onClick={() => setCurrent(pageCount)} disabled={!hasNext}>
+          <button onClick={() => setCurrentPage(pageCount)} disabled={!hasNext}>
             Last
           </button>
         </div>
         <span>
           Page{" "}
           <strong>
-            {current} of {pageCount}
+            {currentPage} of {pageCount}
           </strong>
         </span>
         <span>
           Go to page:
           <input
             type="number"
-            defaultValue={current}
+            defaultValue={currentPage}
             onChange={(e) => {
               const value = e.target.value ? Number(e.target.value) : 1;
-              setCurrent(value);
+              setCurrentPage(value);
             }}
           />
         </span>
@@ -288,7 +294,7 @@ If you want to show a form in a modal or drawer where necessary route params mig
 
 `useForm` can handle `edit`, `create` and `clone` actions.
 
-By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the current route.
+By default, it determines the `action` from route. The action is inferred by matching the resource's action path with the currentPage route.
 
 It can be overridden by passing the `action` prop where it isn't possible to determine the action from the route (e.g. when using form in a modal or using a custom route).
 
@@ -561,7 +567,7 @@ render(
 
 It will be passed to the [`dataProvider`][data-provider]'s method as a params. This parameter is usually used to as a API endpoint path. It all depends on how to handle the `resource` in your [`dataProvider`][data-provider]. See the [`creating a data provider`](/docs/data/data-provider#creating-a-data-provider) section for an example of how `resource` are handled.
 
-By default it reads the `resource` value from the current URL.
+By default it reads the `resource` value from the currentPage URL.
 
 - When `action` is `"create"`, it will be passed to the [`create`][create] method from the [`dataProvider`][data-provider].
 - When `action` is `"edit"`, it will be passed to the [`update`][update] and the [`getOne`][get-one] method from the [`dataProvider`][data-provider].
@@ -575,7 +581,7 @@ useForm({
 });
 ```
 
-If the `resource` is passed, the `id` from the current URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the current URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
+If the `resource` is passed, the `id` from the currentPage URL will be ignored because it may belong to a different resource. To retrieve the `id` value from the currentPage URL, use the `useParsed` hook and pass the `id` value to the `useForm` hook.
 
 ```tsx
 import { useParsed } from "@refinedev/core";
@@ -687,7 +693,7 @@ useForm({
 
 You can use it to manage the invalidations that will occur at the end of the mutation.
 
-By default it's invalidates following queries from the current `resource`:
+By default it's invalidates following queries from the currentPage `resource`:
 
 - on `create` or `clone` mode: `"list"` and `"many"`
 - on `edit` mode: `"list`", `"many"` and `"detail"`
@@ -1007,7 +1013,7 @@ useForm({
 
 #### invalidateOnUnmount
 
-This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the current resource when hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the current resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
+This prop is useful when you want to invalidate the `list`, `many` and `detail` queries from the currentPage resource when hook is unmounted. By default, it invalidates the `list`, `many` and `detail` queries associated with the currentPage resource. Also, You can use the `invalidates` prop to select which queries to invalidate.
 
 By default, the `invalidateOnUnmount` prop is set to `false`.
 
@@ -1110,21 +1116,13 @@ Loading state of a modal. It's `true` when `useForm` is currently being submitte
 
 If `autoSave` is enabled, this hook returns `autoSaveProps` object with `data`, `error`, and `status` properties from mutation.
 
-### ~~mutationResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`mutation`](#mutation) instead.
-
-### ~~queryResult~~ <PropTag deprecated />
-
-This prop is deprecated and will be removed in the future versions. Use [`query`](#query) instead.
-
 ## FAQ
 
 ### How can Invalidate other resources?
 
 You can invalidate other resources with help of [`useInvalidate`](/docs/data/hooks/use-invalidate) hook.
 
-It is useful when you want to `invalidate` other resources don't have relation with the current resource.
+It is useful when you want to `invalidate` other resources don't have relation with the currentPage resource.
 
 ```tsx
 import { useInvalidate } from "@refinedev/core";

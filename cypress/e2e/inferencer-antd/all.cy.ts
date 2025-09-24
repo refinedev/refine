@@ -158,7 +158,7 @@ describe("inferencer-antd", () => {
       cy.get("#status").should("have.value", body?.status);
       cy.fixture("categories").then((categories) => {
         const category = categories.find(
-          (category) => category.id === body?.category?.id,
+          (category: any) => category.id === body?.category?.id,
         );
         cy.get(`.ant-select-selection-item[title="${category?.title}"]`).should(
           "exist",
@@ -299,7 +299,7 @@ describe("inferencer-antd", () => {
 
     cy.getAntdPaginationItem(2).click();
 
-    cy.url().should("include", "current=2");
+    cy.url().should("include", "currentPage=2");
 
     cy.wait("@getSecondPagePosts");
 
@@ -318,7 +318,7 @@ describe("inferencer-antd", () => {
 
     cy.get(".ant-pagination-prev").first().click();
 
-    cy.url().should("include", "current=1");
+    cy.url().should("include", "currentPage=1");
 
     cy.wait("@getFirstPagePosts");
   });

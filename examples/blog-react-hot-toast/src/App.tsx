@@ -1,7 +1,7 @@
 import { ErrorComponent, GitHubBanner, Refine } from "@refinedev/core";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 
-import routerBindings, {
+import routerProvider, {
   NavigateToResource,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
@@ -42,7 +42,7 @@ function App() {
           notificationProvider={notificationProvider}
           dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
           i18nProvider={i18nProvider}
-          routerProvider={routerBindings}
+          routerProvider={routerProvider}
           resources={[
             {
               name: "blog_posts",

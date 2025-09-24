@@ -30,7 +30,7 @@ export const generateUseListSubscription = ({
   namingConvention,
 }: GenerateUseListSubscriptionParams): GenerateUseListSubscriptionReturnValues => {
   const {
-    current = 1,
+    currentPage = 1,
     pageSize: limit = 10,
     mode = "server",
   } = pagination ?? {};
@@ -60,7 +60,7 @@ export const generateUseListSubscription = ({
       ...(mode === "server"
         ? {
             limit,
-            offset: (current - 1) * limit,
+            offset: (currentPage - 1) * limit,
           }
         : {}),
       ...(hasuraSorting && {
@@ -82,7 +82,7 @@ export const generateUseListSubscription = ({
         ...(mode === "server"
           ? {
               limit,
-              offset: (current - 1) * limit,
+              offset: (currentPage - 1) * limit,
             }
           : {}),
         ...(hasuraSorting && {

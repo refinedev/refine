@@ -130,18 +130,18 @@ import { usePagination } from "@refinedev/chakra-ui";
 import { IconButton } from "@chakra-ui/react";
 
 type PaginationProps = {
-    current: number;
+    currentPage: number;
     pageCount: number;
-    setCurrent: (page: number) => void;
+    setCurrentPage: (page: number) => void;
 };
 
 export const Pagination: React.FC<PaginationProps> = ({
-    current,
+    currentPage,
     pageCount,
-    setCurrent,
+    setCurrentPage,
 }) => {
     const pagination = usePagination({
-        current,
+        currentPage,
         pageCount,
     });
 
@@ -151,7 +151,7 @@ export const Pagination: React.FC<PaginationProps> = ({
                 {pagination?.prev && (
                     <IconButton
                         aria-label="previous page"
-                        onClick={() => setCurrent(current - 1)}
+                        onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={!pagination?.prev}
                         variant="outline"
                     >
@@ -166,8 +166,8 @@ export const Pagination: React.FC<PaginationProps> = ({
                     return (
                         <Button
                             key={page}
-                            onClick={() => setCurrent(page)}
-                            variant={page === current ? "solid" : "outline"}
+                            onClick={() => setCurrentPage(page)}
+                            variant={page === currentPage ? "solid" : "outline"}
                         >
                             {page}
                         </Button>
@@ -176,7 +176,7 @@ export const Pagination: React.FC<PaginationProps> = ({
                 {pagination?.next && (
                     <IconButton
                         aria-label="next page"
-                        onClick={() => setCurrent(current + 1)}
+                        onClick={() => setCurrentPage(currentPage + 1)}
                         variant="outline"
                     >
                         <IconChevronRight size="18" />
@@ -196,7 +196,7 @@ import routerProvider from "@refinedev/nextjs-router/pages";
 import dataProvider from "@refinedev/simple-rest";
 import type { AppProps } from "next/app";
 
-import { RefineThemes, ThemedLayoutV2, notificationProvider } from "@refinedev/chakra-ui";
+import { RefineThemes, ThemedLayout, notificationProvider } from "@refinedev/chakra-ui";
 import { ChakraProvider } from "@chakra-ui/react";
 
 import authProvider from "../src/auth-provider";
@@ -216,9 +216,9 @@ function App({ Component, pageProps }: ExtendedAppProps) {
       }
 
       return (
-          <ThemedLayoutV2>
+          <ThemedLayout>
               <Component {...pageProps} />
-          </ThemedLayoutV2>
+          </ThemedLayout>
       );
   }
 
@@ -335,9 +335,9 @@ export default function ProductList() {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -390,9 +390,9 @@ export default function ProductList() {
                 </Table>
             </TableContainer>
             <Pagination
-                current={current}
+                currentPage={currentPage}
                 pageCount={pageCount}
-                setCurrent={setCurrent}
+                setCurrentPage={setCurrentPage}
             />
         </List>
     );
@@ -436,8 +436,8 @@ import { Heading } from "@chakra-ui/react";
 import authProvider from "../../src/auth-provider";
 
 export default function ProductShow() {
-  const { queryResult } = useShow();
-  const { data, isLoading } = queryResult;
+  const { query } = useShow();
+  const { data, isLoading } = query;
   const record = data?.data;
 
   return (
@@ -507,7 +507,7 @@ import authProvider from "../../../src/auth-provider";
 
 export default function ProductEdit() {
   const {
-    refineCore: { formLoading, queryResult, autoSaveProps },
+    refineCore: { formLoading, query, autoSaveProps },
     saveButtonProps,
     register,
     formState: { errors },

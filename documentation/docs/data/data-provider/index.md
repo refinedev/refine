@@ -111,7 +111,9 @@ const App = () => {
 };
 
 const PostList = () => {
-  const { data: posts } = useList<IPost>({
+  const {
+    result: { data: posts },
+  } = useList<IPost>({
     resource: "posts",
     // highlight-start
     // Data provider can be selected through props
@@ -120,7 +122,9 @@ const PostList = () => {
   });
   // highlight-start
   // We've defined the data provider for this resource as "fineFoods" in its config so we don't need to pass it here
-  const { data: products } = useList<IProduct>({ resource: "products" });
+  const {
+    result: { data: products },
+  } = useList<IProduct>({ resource: "products" });
   // highlight-end
 
   console.log({
@@ -131,7 +135,7 @@ const PostList = () => {
   return (
     <Collapse defaultActiveKey={["products"]}>
       <Collapse.Panel header="Posts" key="posts">
-        {posts?.data.map((post) => (
+        {posts?.map((post) => (
           <div
             key={post.title}
             style={{
@@ -147,7 +151,7 @@ const PostList = () => {
         ))}
       </Collapse.Panel>
       <Collapse.Panel header="Products" key="products">
-        {products?.data.map((product) => (
+        {products?.map((product) => (
           <div
             key={product.name}
             style={{

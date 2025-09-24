@@ -86,7 +86,7 @@ const AppTsxCode = /* jsx */ `
 import { Refine, Authenticated } from "@refinedev/core";
 import {
     ErrorComponent,
-    ThemedLayoutV2,
+    ThemedLayout,
     RefineThemes,
     useNotificationProvider,
     AuthPage
@@ -131,9 +131,9 @@ const App: React.FC = () => {
                             <Route element={<Authenticated key="inner" fallback={<Navigate to="/login" />}><Outlet /></Authenticated>}>
                               <Route
                                   element={
-                                      <ThemedLayoutV2>
+                                      <ThemedLayout>
                                           <Outlet />
-                                      </ThemedLayoutV2>
+                                      </ThemedLayout>
                                   }
                               >
                                   <Route index element={<NavigateToResource resource="products" />} />
@@ -215,9 +215,9 @@ export const ProductList = () => {
         getRowModel,
         setOptions,
         refineCore: {
-            setCurrent,
+            setCurrentPage,
             pageCount,
-            current,
+            currentPage,
             tableQuery: { data: tableData },
         },
     } = useTable({
@@ -270,8 +270,8 @@ export const ProductList = () => {
                 <Pagination
                     position="right"
                     total={pageCount}
-                    page={current}
-                    onChange={setCurrent}
+                    page={currentPage}
+                    onChange={setCurrentPage}
                 />
             </List>
         </ScrollArea>

@@ -4,12 +4,13 @@ import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
 import {
   ErrorComponent,
   useNotificationProvider,
-  ThemedLayoutV2,
-  ThemedSiderV2,
+  ThemedLayout,
+  ThemedSider as ThemedSiderV2,
 } from "@refinedev/antd";
+import "@ant-design/v5-patch-for-react-19";
 import "@refinedev/antd/dist/reset.css";
 
-import routerBindings, {
+import routerProvider, {
   CatchAllNavigate,
   DocumentTitleHandler,
   NavigateToResource,
@@ -56,7 +57,7 @@ function App() {
           <Refine
             dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
             notificationProvider={useNotificationProvider}
-            routerProvider={routerBindings}
+            routerProvider={routerProvider}
             authProvider={authProvider}
             i18nProvider={i18nProvider}
             resources={[
@@ -93,12 +94,12 @@ function App() {
                     key="authenticated-routes"
                     fallback={<CatchAllNavigate to="/login" />}
                   >
-                    <ThemedLayoutV2
+                    <ThemedLayout
                       Header={() => <Header sticky />}
                       Sider={() => <ThemedSiderV2 fixed />}
                     >
                       <Outlet />
-                    </ThemedLayoutV2>
+                    </ThemedLayout>
                   </Authenticated>
                 }
               >

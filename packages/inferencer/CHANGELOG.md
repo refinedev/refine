@@ -1,5 +1,37 @@
 # @refinedev/mantine
 
+## 6.0.1
+
+### Patch Changes
+
+- [#6974](https://github.com/refinedev/refine/pull/6974) [`3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f`](https://github.com/refinedev/refine/commit/3404d749d8b1c0dca66f5e1db8a209d8b67aaf7f) Thanks [@aliemir](https://github.com/aliemir)! - chore: replace `@aliemir/react-live` with `react-live@4`
+
+  After Refine 5, outdated `react-live` package was unable to resolve components properly and caused rendering errors.
+
+  This update fixes the rendering errors.
+
+## 6.0.0
+
+### Major Changes
+
+- [#6945](https://github.com/refinedev/refine/pull/6945) [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - feat: upgrade Inferencer for Refine 5.0 compatibility
+
+  - Updated code generation patterns for Refine 5 API changes and removed deprecated resource options.
+  - Modernized resource label handling and improved test infrastructure for better reliability.
+
+  > 🚨 Breaking changes require migration - check our guide at https://refine.dev/docs/migration-guide/4x-to-5x/
+
+### Patch Changes
+
+- Updated dependencies [[`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`807099eecb4e8d41b1cf9ab557d71d34d12bec35`](https://github.com/refinedev/refine/commit/807099eecb4e8d41b1cf9ab557d71d34d12bec35), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98), [`44a8c7663c42a2aa91074c33294e9d6a88d9ba98`](https://github.com/refinedev/refine/commit/44a8c7663c42a2aa91074c33294e9d6a88d9ba98)]:
+  - @refinedev/chakra-ui@3.0.0
+  - @refinedev/react-hook-form@5.0.0
+  - @refinedev/core@5.0.0
+  - @refinedev/mui@7.0.0
+  - @refinedev/mantine@3.0.0
+  - @refinedev/react-table@6.0.0
+  - @refinedev/antd@6.0.0
+
 ## 5.1.1
 
 ### Patch Changes

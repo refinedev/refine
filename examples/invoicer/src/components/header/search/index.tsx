@@ -23,10 +23,10 @@ export const Search = () => {
 
   const { editUrl } = useNavigation();
 
-  const { data: dataAccount } = useList<Account>({
+  const { result: dataAccount } = useList<Account>({
     resource: "accounts",
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 999,
     },
     filters: [
@@ -46,10 +46,10 @@ export const Search = () => {
       resource: "accounts",
     })) || [];
 
-  const { data: dataClient } = useList<Client>({
+  const { result: dataClient } = useList<Client>({
     resource: "clients",
     pagination: {
-      current: 1,
+      currentPage: 1,
       pageSize: 999,
     },
     filters: [

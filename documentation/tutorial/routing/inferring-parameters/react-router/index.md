@@ -27,16 +27,16 @@ import { useTable, useMany } from "@refinedev/core";
 
 export const ListProducts = () => {
   const {
-    tableQuery: { data, isLoading },
-    current,
-    setCurrent,
+    tableQuery: { isLoading },
+    currentPage,
+    setCurrentPage,
     pageCount,
     sorters,
     setSorters,
   } = useTable({
     // removed-line
     resource: "products",
-    pagination: { current: 1, pageSize: 10 },
+    pagination: { currentPage: 1, pageSize: 10 },
     sorters: { initial: [{ field: "id", order: "asc" }] },
   });
 
@@ -60,7 +60,7 @@ import { useShow } from "@refinedev/core";
 
 export const ShowProduct = () => {
   // removed-line
-  const { data, isLoading } = useOne({ resource: "products", id: 123 });
+  const { isLoading } = useOne({ resource: "products", id: 123 });
   // added-line
   const { query } = useShow();
 

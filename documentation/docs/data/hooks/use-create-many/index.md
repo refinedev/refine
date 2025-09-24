@@ -13,12 +13,12 @@ It is better to implement the `createMany` method in the data provider.
 
 ## Usage
 
-The `useCreateMany` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters).
+The `useCreateMany` hook returns many useful properties and methods. One of them is the `mutate` method which is used to trigger a mutation with the given [parameters](#mutation-parameters). Additionally, the `mutation` object contains all the TanStack Query's `useMutation` return values.
 
 ```tsx
 import { useCreateMany } from "@refinedev/core";
 
-const { mutate } = useCreateMany({
+const { mutate, mutation } = useCreateMany({
   resource: "products",
 });
 
@@ -34,6 +34,11 @@ mutate({
     },
   ],
 });
+
+// You can access mutation state through the mutation object:
+console.log(mutation.isLoading); // mutation loading state
+console.log(mutation.data); // mutation response data
+console.log(mutation.error); // mutation error
 ```
 
 ## Realtime Updates
@@ -109,7 +114,7 @@ Mutation parameters are passed to the `mutate` function and can also be provided
 ```tsx
 import { useCreateMany } from "@refinedev/core";
 
-const { mutate } = useCreateMany({
+const { mutate, mutation } = useCreateMany({
   /* parameters */
 });
 
@@ -125,7 +130,7 @@ mutate({
 This parameter will be passed to the `create` method from the `dataProvider` as a parameter. It is usually used as an API endpoint path but it all depends on how you handle the `resource` in the `create` method.
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   resource: "categories",
@@ -143,7 +148,7 @@ If you have multiple resources with the same name, you can pass the `identifier`
 This prop will be passed to the `create` method from the `dataProvider` as a parameter. It is usually used as the data to be created and contains the data that will be sent to the server.
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   values: [
@@ -166,7 +171,7 @@ mutate({
 This prop allows you to customize the success notification that shows up when the data is fetched successfully and `useCreateMany` calls the `open` function from `NotificationProvider`:
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   successNotification: (data, values, resource) => {
@@ -186,7 +191,7 @@ mutate({
 This prop allows you to customize the error notification that shows up when the data fetching fails and the `useCreateMany` calls the `open` function from `NotificationProvider`
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   errorNotification: (data, values, resource) => {
@@ -209,7 +214,7 @@ mutate({
 In the following example, we pass the `headers` property in the `meta` object to the `create` method. You can pass any properties to specifically handle the data provider methods with similar logic,.
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   // highlight-start
@@ -252,7 +257,7 @@ const myDataProvider = {
 This prop allows you to specify which `dataProvider` if you have more than one. Just pass it like in the example:
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   dataProviderName: "second-data-provider",
@@ -266,7 +271,7 @@ mutate({
 By default, it invalidates the following queries from the current `resource`: `"list"` and `"many"`. That means, if you use `useList` or `useMany` hooks on the same page, they will refetch the data after the mutation is completed.
 
 ```tsx
-const { mutate } = useCreateMany();
+const { mutate, mutation } = useCreateMany();
 
 mutate({
   invalidates: ["list", "many"],
@@ -315,7 +320,9 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Description                                | Type                                                                                                                                                                  |
-| ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
-| overtime                                   | `{ elapsedTime?: number }`                                                                                                                                            |
+| Property    | Description                                | Type                                                                                                                                                                  |
+| ----------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData[]}, TError, { resource: string; values: TVariables[]; }, unknown>`](https://tanstack.com/query/v4/docs/react/reference/useMutation) |
+| mutate      | Mutation function                          | `(params?: { resource?: string, values?: TVariables[], ... }) => void`                                                                                                |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, values?: TVariables[], ... }) => Promise<{ data: TData[] }>`                                                                          |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                            |

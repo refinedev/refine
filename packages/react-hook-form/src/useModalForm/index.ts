@@ -7,11 +7,11 @@ import {
   useGo,
   useModal,
   useParsed,
-  useResource,
   useUserFriendlyName,
   useTranslate,
   useWarnAboutChange,
   useInvalidate,
+  useResourceParams,
 } from "@refinedev/core";
 import type { FieldValues } from "react-hook-form";
 
@@ -123,11 +123,13 @@ export const useModalForm = <
 
   const { resource: resourceProp, action: actionProp } = refineCoreProps ?? {};
 
-  const {
-    resource,
-    action: actionFromParams,
-    identifier,
-  } = useResource(resourceProp);
+  const { resource, identifier } = useResourceParams({
+    resource: resourceProp,
+  });
+  const { action: actionFromParams } = useResourceParams({
+    resource: resourceProp,
+    action: actionProp,
+  });
 
   const parsed = useParsed();
   const go = useGo();
@@ -314,12 +316,7 @@ export const useModalForm = <
     `${identifier}.titles.${actionProp}`,
     undefined,
     `${getUserFriendlyName(
-      `${actionProp} ${
-        resource?.meta?.label ??
-        resource?.options?.label ??
-        resource?.label ??
-        identifier
-      }`,
+      `${actionProp} ${resource?.meta?.label ?? identifier}`,
       "singular",
     )}`,
   );
