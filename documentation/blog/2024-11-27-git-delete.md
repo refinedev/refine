@@ -8,7 +8,7 @@ image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2022-11-27-git-delete
 hide_table_of_contents: false
 ---
 
-**This article was last updated on September 8, 2025 to include branch protection policies and team best practices for safe deletion.**
+**This article was last updated on September 26, 2025 to include branch protection policies and team best practices for safe deletion.**
 
 ## Introduction
 
