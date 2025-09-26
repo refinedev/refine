@@ -11,11 +11,11 @@
     "start": "remix-serve ./build/server/index.js"
   },
   "dependencies": {
-    "@refinedev/cli": "^2.16.48",
-    "@refinedev/core": "^5.0.1",
+    "@refinedev/cli": "^2.16.49",
+    "@refinedev/core": "^5.0.2",
     "@refinedev/react-hook-form": "^5.0.0",
     "@refinedev/react-table": "^6.0.0",
-    "@refinedev/remix-router": "^4.0.0",
+    "@refinedev/remix-router": "^4.0.1",
     "@refinedev/simple-rest": "^6.0.0",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",

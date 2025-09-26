@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { renderHook, waitFor } from "@testing-library/react";
 
@@ -163,7 +164,7 @@ describe("useShow Hook", () => {
   });
 
   it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     renderHook(() => useShow({ resource: "posts", meta: { foo: "bar" } }), {
       wrapper: TestWrapper({
@@ -200,7 +201,7 @@ describe("useShow Hook", () => {
   });
 
   it("two resources with same name, should pass resource meta according to identifier", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     renderHook(() => useShow({ resource: "recentPosts", id: "1" }), {
       wrapper: TestWrapper({
@@ -257,7 +258,7 @@ describe("useShow Hook", () => {
   });
 
   it("should work resourceFromRouter is string", async () => {
-    jest.spyOn(pickResource, "pickResource").mockReturnValueOnce({
+    vi.spyOn(pickResource, "pickResource").mockReturnValueOnce({
       name: "posts",
       list: "/posts",
       show: "/posts/show/:id",
@@ -287,7 +288,7 @@ describe("useShow Hook", () => {
       expect(result.current.query.data?.data).toEqual(posts[0]);
     });
 
-    jest.spyOn(pickResource, "pickResource").mockReturnValueOnce(undefined);
+    vi.spyOn(pickResource, "pickResource").mockReturnValueOnce(undefined);
 
     rerender();
 
@@ -298,7 +299,7 @@ describe("useShow Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useShow({

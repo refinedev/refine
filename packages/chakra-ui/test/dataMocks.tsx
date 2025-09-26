@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import type {
   Action,
@@ -121,7 +122,7 @@ export const MockAuthProvider: AuthProvider = {
   check: async () => ({ authenticated: true }),
   onError: async () => ({}),
   logout: async () => ({ success: true }),
-  forgotPassword: jest.fn().mockResolvedValue({ success: true }),
-  register: jest.fn().mockResolvedValue({ success: true }),
-  updatePassword: jest.fn().mockResolvedValue({ success: true }),
+  forgotPassword: vi.fn().mockResolvedValue({ success: true }),
+  register: vi.fn().mockResolvedValue({ success: true }),
+  updatePassword: vi.fn().mockResolvedValue({ success: true }),
 };

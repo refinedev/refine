@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react";
 
@@ -442,7 +443,7 @@ describe("useTable Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useTable({
@@ -482,7 +483,7 @@ describe("useTable Hook", () => {
   });
 
   it("should call onInterval once at ticks (no duplicates)", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useTable({
@@ -1341,7 +1342,7 @@ describe("useTable Filters", () => {
     expect(result.current.filters).toEqual(initialFilter);
     expect(result.current.filters).toHaveLength(1);
 
-    const setterFunction = jest.fn(
+    const setterFunction = vi.fn(
       (prevFilters) => [...prevFilters, ...newFilters] as CrudFilter[],
     );
 
@@ -1433,7 +1434,7 @@ describe("useTable Filters", () => {
   });
 
   it("should pass meta from resource defination, hook parameter and query parameters to dataProvider", async () => {
-    const getListMock = jest.fn();
+    const getListMock = vi.fn();
 
     renderHook(() => useTable({ resource: "posts", meta: { foo: "bar" } }), {
       wrapper: TestWrapper({
@@ -1467,7 +1468,7 @@ describe("useTable Filters", () => {
   });
 
   it("two resources with same name, should pass resource meta according to identifier", async () => {
-    const getListMock = jest.fn();
+    const getListMock = vi.fn();
 
     renderHook(() => useTable({ resource: "recentPosts" }), {
       wrapper: TestWrapper({

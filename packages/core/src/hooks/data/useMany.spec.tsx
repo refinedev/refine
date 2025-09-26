@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import { defaultRefineOptions } from "@contexts/refine";
@@ -67,7 +68,7 @@ describe("useMany Hook", () => {
   });
 
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const getManyMock = jest.fn();
+    const getManyMock = vi.fn();
 
     renderHook(
       () => useMany({ resource: "posts", meta: { foo: "bar" }, ids: [] }),
@@ -102,7 +103,7 @@ describe("useMany Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useMany({
@@ -146,7 +147,7 @@ describe("useMany Hook", () => {
     it.each(["default", "categories"])(
       "useSubscription [dataProviderName: %s]",
       async (dataProviderName) => {
-        const onSubscribeMock = jest.fn();
+        const onSubscribeMock = vi.fn();
 
         const { result } = renderHook(
           () =>
@@ -160,7 +161,7 @@ describe("useMany Hook", () => {
               dataProvider: MockJSONServer,
               resources: [{ name: "posts" }],
               liveProvider: {
-                unsubscribe: jest.fn(),
+                unsubscribe: vi.fn(),
                 subscribe: onSubscribeMock,
               },
               refineProvider: {
@@ -196,7 +197,7 @@ describe("useMany Hook", () => {
     );
 
     it("liveMode = Off useSubscription", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       const { result } = renderHook(
         () => useMany({ resource: "posts", ids: ["1", "2"] }),
@@ -205,7 +206,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -224,7 +225,7 @@ describe("useMany Hook", () => {
     });
 
     it("liveMode = Off and liveMode hook param auto", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -238,7 +239,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -257,8 +258,8 @@ describe("useMany Hook", () => {
     });
 
     it("unsubscribe call on unmount", async () => {
-      const onSubscribeMock = jest.fn(() => true);
-      const onUnsubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn(() => true);
+      const onUnsubscribeMock = vi.fn();
 
       const { unmount } = renderHook(
         () => useMany({ resource: "posts", ids: ["1", "2"] }),
@@ -286,7 +287,7 @@ describe("useMany Hook", () => {
     });
 
     it("should not subscribe if `queryOptions.enabled` is false", async () => {
-      const onSubscribeMock = jest.fn();
+      const onSubscribeMock = vi.fn();
 
       renderHook(
         () =>
@@ -302,7 +303,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             resources: [{ name: "posts" }],
             liveProvider: {
-              unsubscribe: jest.fn(),
+              unsubscribe: vi.fn(),
               subscribe: onSubscribeMock,
             },
             refineProvider: {
@@ -318,7 +319,7 @@ describe("useMany Hook", () => {
   });
 
   it("should use `getOne` method if does not exist `getMany` method in dataProvider", async () => {
-    const getOneMock = jest.fn();
+    const getOneMock = vi.fn();
 
     const { result } = renderHook(
       () =>
@@ -363,8 +364,8 @@ describe("useMany Hook", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on error", async () => {
-      const getManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const getManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -382,7 +383,7 @@ describe("useMany Hook", () => {
             },
             notificationProvider: {
               open: notificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -402,7 +403,7 @@ describe("useMany Hook", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -420,7 +421,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -439,7 +440,7 @@ describe("useMany Hook", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -453,7 +454,7 @@ describe("useMany Hook", () => {
             dataProvider: MockJSONServer,
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -468,8 +469,8 @@ describe("useMany Hook", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const getManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const getManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -492,7 +493,7 @@ describe("useMany Hook", () => {
             },
             notificationProvider: {
               open: openNotificationMock,
-              close: jest.fn(),
+              close: vi.fn(),
             },
             resources: [{ name: "posts" }],
           }),
@@ -513,8 +514,8 @@ describe("useMany Hook", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const getManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const getManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -549,8 +550,8 @@ describe("useMany Hook", () => {
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
-      const getManyMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const getManyMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(
         () =>
@@ -587,7 +588,7 @@ describe("useMany Hook", () => {
 
   describe("queryOptions", () => {
     it("should override `queryKey` with `queryOptions.queryKey`", async () => {
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -633,11 +634,11 @@ describe("useMany Hook", () => {
     });
 
     it("should override `queryFn` with `queryOptions.queryFn`", async () => {
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
-      const queryFnMock = jest.fn().mockResolvedValue({
+      const queryFnMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -673,10 +674,10 @@ describe("useMany Hook", () => {
   });
 
   it("should select correct dataProviderName", async () => {
-    const getManyDefaultMock = jest.fn().mockResolvedValue({
+    const getManyDefaultMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
-    const getManyFooMock = jest.fn().mockResolvedValue({
+    const getManyFooMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 
@@ -726,7 +727,7 @@ describe("useMany Hook", () => {
   });
 
   it("should get correct `meta` of related resource", async () => {
-    const getManyMock = jest.fn().mockResolvedValue({
+    const getManyMock = vi.fn().mockResolvedValue({
       data: [{ id: 1, title: "foo" }],
     });
 
@@ -771,10 +772,10 @@ describe("useMany Hook", () => {
 
   describe("when passing `identifier` instead of `name`", () => {
     it("should select correct dataProviderName", async () => {
-      const getManyDefaultMock = jest.fn().mockResolvedValue({
+      const getManyDefaultMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
-      const getManyFooMock = jest.fn().mockResolvedValue({
+      const getManyFooMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -825,7 +826,7 @@ describe("useMany Hook", () => {
     });
 
     it("should create queryKey with `identifier`", async () => {
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -874,7 +875,7 @@ describe("useMany Hook", () => {
     });
 
     it("should get correct `meta` of related resource", async () => {
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [{ id: 1, title: "foo" }],
       });
 
@@ -928,9 +929,9 @@ describe("useMany Hook", () => {
 
   describe("should require `ids` and `resource` props", () => {
     it("should require `ids` prop", () => {
-      const warnMock = jest.spyOn(console, "warn").mockImplementation(() => {});
+      const warnMock = vi.spyOn(console, "warn").mockImplementation(() => {});
 
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [],
       });
 
@@ -964,9 +965,9 @@ describe("useMany Hook", () => {
     });
 
     it("should require `resource` prop", () => {
-      const warnMock = jest.spyOn(console, "warn").mockImplementation(() => {});
+      const warnMock = vi.spyOn(console, "warn").mockImplementation(() => {});
 
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [],
       });
 
@@ -1000,9 +1001,9 @@ describe("useMany Hook", () => {
     });
 
     it("should not warn if manually enabled", () => {
-      const warnMock = jest.spyOn(console, "warn").mockImplementation(() => {});
+      const warnMock = vi.spyOn(console, "warn").mockImplementation(() => {});
 
-      const getManyMock = jest.fn().mockResolvedValue({
+      const getManyMock = vi.fn().mockResolvedValue({
         data: [],
       });
 

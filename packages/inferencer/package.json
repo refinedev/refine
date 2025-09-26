@@ -104,7 +104,7 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand --updateSnapshot",
+    "test": "vitest --run",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -135,7 +135,6 @@
     "@testing-library/react": "^16.3.0",
     "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
     "@types/node": "^20",
     "@types/pluralize": "^0.0.29",
@@ -146,14 +145,13 @@
     "esbuild-copy-static-files": "^0.1.0",
     "esbuild-plugin-inline-image": "^0.0.8",
     "identity-obj-proxy": "^3.0.0",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "jsdom": "^25.0.1",
     "react-live": "^4.1.8",
     "react-router": "^7.0.2",
     "react-test-renderer": "^18.2.0",
-    "ts-jest": "^29.1.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "@ant-design/icons": "^5.5.1",

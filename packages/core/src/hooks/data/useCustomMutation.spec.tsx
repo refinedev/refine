@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import { renderHook, waitFor } from "@testing-library/react";
 
 import {
@@ -11,7 +12,7 @@ import { useCustomMutation } from "./useCustomMutation";
 
 describe("useCustomMutation Hook", () => {
   it("should only pass meta from the hook parameter and query parameters to the dataProvider", async () => {
-    const customMock = jest.fn();
+    const customMock = vi.fn();
 
     const { result } = renderHook(() => useCustomMutation(), {
       wrapper: TestWrapper({
@@ -79,8 +80,8 @@ describe("useCustomMutation Hook", () => {
 
   describe("useNotification", () => {
     it("should call `open` from the notification provider on error", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const notificationMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const notificationMock = vi.fn();
 
       const { result } = renderHook(() => useCustomMutation(), {
         wrapper: TestWrapper({
@@ -92,7 +93,7 @@ describe("useCustomMutation Hook", () => {
           },
           notificationProvider: {
             open: notificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -117,14 +118,14 @@ describe("useCustomMutation Hook", () => {
     });
 
     it("should call `open` from notification provider on success with custom notification params", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useCustomMutation(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -153,14 +154,14 @@ describe("useCustomMutation Hook", () => {
     });
 
     it("should not call `open` from notification provider on return `false`", async () => {
-      const openNotificationMock = jest.fn();
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useCustomMutation(), {
         wrapper: TestWrapper({
           dataProvider: MockJSONServer,
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -181,8 +182,8 @@ describe("useCustomMutation Hook", () => {
     });
 
     it("should call `open` from notification provider on error with custom notification params", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const openNotificationMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const openNotificationMock = vi.fn();
 
       const { result } = renderHook(() => useCustomMutation(), {
         wrapper: TestWrapper({
@@ -194,7 +195,7 @@ describe("useCustomMutation Hook", () => {
           },
           notificationProvider: {
             open: openNotificationMock,
-            close: jest.fn(),
+            close: vi.fn(),
           },
           resources: [{ name: "posts" }],
         }),
@@ -225,8 +226,8 @@ describe("useCustomMutation Hook", () => {
 
   describe("useOnError", () => {
     it("should call `onError` from the auth provider on error", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(() => useCustomMutation(), {
         wrapper: TestWrapper({
@@ -257,8 +258,8 @@ describe("useCustomMutation Hook", () => {
     });
 
     it("should call `checkError` from the legacy auth provider on error", async () => {
-      const customMock = jest.fn().mockRejectedValue(new Error("Error"));
-      const onErrorMock = jest.fn();
+      const customMock = vi.fn().mockRejectedValue(new Error("Error"));
+      const onErrorMock = vi.fn();
 
       const { result } = renderHook(() => useCustomMutation(), {
         wrapper: TestWrapper({
@@ -293,7 +294,7 @@ describe("useCustomMutation Hook", () => {
   });
 
   it("should pass `headers` to the data provider if `config.headers` is provided", async () => {
-    const customMock = jest.fn();
+    const customMock = vi.fn();
 
     const { result } = renderHook(() => useCustomMutation(), {
       wrapper: TestWrapper({
@@ -332,7 +333,7 @@ describe("useCustomMutation Hook", () => {
   });
 
   it("works correctly with `interval` and `onInterval` params", async () => {
-    const onInterval = jest.fn();
+    const onInterval = vi.fn();
     const { result } = renderHook(
       () =>
         useCustomMutation({

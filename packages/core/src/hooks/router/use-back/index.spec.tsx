@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { renderHook } from "@testing-library/react";
 
@@ -8,7 +9,7 @@ import { useBack } from "./";
 
 describe("useBack Hook", () => {
   it("should return routerProvider back function", () => {
-    const mockBack = jest.fn();
+    const mockBack = vi.fn();
 
     const { result } = renderHook(() => useBack(), {
       wrapper: TestWrapper({
@@ -46,7 +47,7 @@ describe("useBack Hook", () => {
   });
 
   it("if it is used outside of router provider, should return undefined", () => {
-    jest.spyOn(React, "useContext").mockReturnValue(undefined);
+    vi.spyOn(React, "useContext").mockReturnValue(undefined);
 
     const { result } = renderHook(() => useBack());
 

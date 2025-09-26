@@ -1,15 +1,16 @@
+import { vi } from "vitest";
 import { generateDefaultDocumentTitle } from ".";
 import * as UseRefineContext from "../../../hooks/refine/useRefineContext";
 import { defaultRefineOptions } from "@contexts/refine";
 
-const translateMock = jest.fn(
+const translateMock = vi.fn(
   (key: string, options?: any, defaultMessage?: string | undefined) => {
     return defaultMessage ?? options;
   },
 );
 
 describe("generateDocumentTitle", () => {
-  jest.spyOn(UseRefineContext, "useRefineContext").mockReturnValue({
+  vi.spyOn(UseRefineContext, "useRefineContext").mockReturnValue({
     options: defaultRefineOptions,
   } as any);
 

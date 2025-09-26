@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 
 import { fireEvent, render, waitFor } from "@testing-library/react";
 
@@ -145,7 +146,7 @@ describe("Auth Page Register", () => {
   });
 
   it("should run register mutation when form is submitted", async () => {
-    const registerMock = jest.fn();
+    const registerMock = vi.fn();
     const { getByLabelText, getByDisplayValue } = render(<RegisterPage />, {
       wrapper: TestWrapper({
         authProvider: {
@@ -176,7 +177,7 @@ describe("Auth Page Register", () => {
   });
 
   it("should run register mutation when provider button is clicked", async () => {
-    const registerMock = jest.fn();
+    const registerMock = vi.fn();
     const { getByText } = render(
       <RegisterPage
         providers={[
@@ -260,7 +261,7 @@ describe("Auth Page Register", () => {
   });
 
   it("should should accept 'mutationVariables'", async () => {
-    const registerMock = jest.fn().mockResolvedValue({ success: true });
+    const registerMock = vi.fn().mockResolvedValue({ success: true });
 
     const { getByRole, getByLabelText } = render(
       <RegisterPage

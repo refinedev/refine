@@ -105,7 +105,7 @@ export type useTableProps<TQueryFnData, TError, TData> = {
    */
   syncWithLocation?: boolean;
   /**
-   * react-query's [useQuery](https://tanstack.com/query/v4/docs/reference/useQuery) options
+   * react-query's [useQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useQuery) options
    */
   queryOptions?: MakeOptional<
     UseQueryOptions<
@@ -219,7 +219,7 @@ export function useTable<
   const preferredMeta = meta;
 
   // Parse table params from URL if available
-  const { parsedCurrent, parsedPageSize, parsedSorter, parsedFilters } =
+  const { parsedCurrentPage, parsedPageSize, parsedSorter, parsedFilters } =
     parseTableParams(parsedParams.params?.search ?? "?");
 
   const preferredInitialFilters = filtersFromProp?.initial;
@@ -239,8 +239,8 @@ export function useTable<
 
   if (syncWithLocation) {
     defaultCurrentPage =
-      parsedParams?.params?.current ||
-      parsedCurrent ||
+      parsedParams?.params?.currentPage ||
+      parsedCurrentPage ||
       prefferedCurrentPage ||
       1;
     defaultPageSize =

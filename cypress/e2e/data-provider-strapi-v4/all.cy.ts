@@ -14,11 +14,12 @@ describe("data-provider-strapi-v4", () => {
       cy.get("#password").type(auth.password);
     });
 
+    cy.interceptStrapiV4Login();
+
     submitAuthForm();
   };
 
   beforeEach(() => {
-    cy.wait(2000);
     cy.clearAllCookies();
     cy.clearAllLocalStorage();
     cy.clearAllSessionStorage();
@@ -158,7 +159,7 @@ describe("data-provider-strapi-v4", () => {
         cy.wait("@strapiV4GetPosts").then(({ request }) => {
           const query = request.query;
           console.log(query);
-          expect(query?.["filters["]).to.deep.equal({
+          expect(query?.filters).to.deep.equal({
             category: {
               id: {
                 $in: ["1"],

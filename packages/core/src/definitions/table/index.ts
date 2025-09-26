@@ -16,7 +16,7 @@ export const parseTableParams = (url: string) => {
   );
 
   return {
-    parsedCurrent: currentPage && Number(currentPage),
+    parsedCurrentPage: currentPage && Number(currentPage),
     parsedPageSize: pageSize && Number(pageSize),
     parsedSorter: (sorters as CrudSort[]) || (sorter as CrudSort[]) || [],
     parsedFilters: (filters as CrudFilter[]) ?? [],
@@ -27,7 +27,7 @@ export const parseTableParamsFromQuery = (params: any) => {
   const { currentPage, pageSize, sorters, sorter, filters } = params;
 
   return {
-    parsedCurrent: currentPage && Number(currentPage),
+    parsedCurrentPage: currentPage && Number(currentPage),
     parsedPageSize: pageSize && Number(pageSize),
     parsedSorter: (sorters as CrudSort[]) || (sorter as CrudSort[]) || [],
     parsedFilters: (filters as CrudFilter[]) ?? [],

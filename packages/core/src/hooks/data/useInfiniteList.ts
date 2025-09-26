@@ -91,7 +91,7 @@ export type UseInfiniteListProps<TQueryFnData, TError, TData> = {
    */
   resource: string;
   /**
-   * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v4/docs/react/reference/useInfiniteQuery) options
+   * Tanstack Query's [useInfiniteQuery](https://tanstack.com/query/v5/docs/framework/react/reference/useInfiniteQuery) options
    */
   queryOptions?: Omit<
     UseInfiniteListQueryOptions<TQueryFnData, TError, TData>,

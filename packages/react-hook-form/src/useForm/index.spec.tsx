@@ -140,7 +140,7 @@ describe("useForm hook", () => {
   it.each(["edit", "create"] as const)(
     "should set %s-form errors from data provider",
     async (action) => {
-      const onMutationError = jest.fn();
+      const onMutationError = vi.fn();
 
       const { getByText, getByTestId } = renderForm({
         refineCoreProps: {
@@ -194,7 +194,7 @@ describe("useForm hook", () => {
       disableFromHook: false,
     },
   ] as const)("should disable server-side validation", async (testCase) => {
-    const onMutationErrorMock = jest.fn();
+    const onMutationErrorMock = vi.fn();
 
     const { getByTestId, queryByText } = renderForm({
       refineOptions: {

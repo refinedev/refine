@@ -1,5 +1,6 @@
 import { renderHook } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
+import { vi } from "vitest";
 
 import { TestWrapper } from "@test";
 
@@ -71,7 +72,7 @@ describe("useDrawer Hook", () => {
   });
 
   it("should call close on drawer onClose", async () => {
-    const mockedOnClose = jest.fn();
+    const mockedOnClose = vi.fn();
     const { result } = renderHook(
       () =>
         useDrawer({

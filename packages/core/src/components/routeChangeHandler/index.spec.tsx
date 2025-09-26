@@ -1,4 +1,5 @@
 import React from "react";
+import { vi } from "vitest";
 import { render, TestWrapper, act, mockAuthProvider } from "@test";
 
 import { RouteChangeHandler } from "./index";
@@ -17,7 +18,7 @@ describe("routeChangeHandler", () => {
   it("should call check on route change", async () => {
     const checkAuthMockedAuthProvider = {
       ...mockAuthProvider,
-      check: jest.fn().mockImplementation(() => Promise.resolve()),
+      check: vi.fn().mockImplementation(() => Promise.resolve()),
     };
 
     await act(async () => {
@@ -34,7 +35,7 @@ describe("routeChangeHandler", () => {
   it("should ignore check Promise.reject", async () => {
     const checkAuthMockedAuthProvider = {
       ...mockAuthProvider,
-      check: jest.fn().mockImplementation(() => Promise.reject()),
+      check: vi.fn().mockImplementation(() => Promise.reject()),
     };
 
     await act(async () => {

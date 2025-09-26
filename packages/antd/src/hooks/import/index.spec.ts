@@ -3,6 +3,7 @@ import { act } from "react-dom/test-utils";
 import { notification } from "antd";
 import { renderHook } from "@testing-library/react";
 import { TestWrapper, MockJSONServer, waitFor } from "@test";
+import { vi } from "vitest";
 
 import { useImport } from ".";
 
@@ -19,11 +20,11 @@ const file = new File(
 
 describe("useImport hook", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
-  const notificationOpenSpy = jest.spyOn(notification, "open");
-  const notificationCloseSpy = jest.spyOn(notification, "destroy");
+  const notificationOpenSpy = vi.spyOn(notification, "open");
+  const notificationCloseSpy = vi.spyOn(notification, "destroy");
 
   it("should return false from uploadProps.beforeUpload callback", async () => {
     const { result } = renderHook(

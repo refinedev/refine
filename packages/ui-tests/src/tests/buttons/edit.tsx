@@ -1,3 +1,4 @@
+import { vi } from "vitest";
 import React from "react";
 import {
   type RefineEditButtonProps,
@@ -11,10 +12,10 @@ export const buttonEditTests = (
   EditButton: React.ComponentType<RefineEditButtonProps<any, any>>,
 ): void => {
   describe("[@refinedev/ui-tests] Common Tests / Edit Button", () => {
-    const edit = jest.fn();
+    const edit = vi.fn();
 
     beforeAll(() => {
-      jest.spyOn(console, "warn").mockImplementation(jest.fn());
+      vi.spyOn(console, "warn").mockImplementation(vi.fn());
     });
 
     it("should render button successfuly", async () => {
@@ -28,7 +29,7 @@ export const buttonEditTests = (
     });
 
     it("should be disabled by prop", async () => {
-      const mockOnClick = jest.fn();
+      const mockOnClick = vi.fn();
 
       const { getByText } = render(
         <EditButton disabled onClick={mockOnClick} />,

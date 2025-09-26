@@ -1,9 +1,10 @@
 import { useModalForm } from "..";
 import { MockJSONServer, TestWrapper, waitFor, renderHook, act } from "@test";
+import { vi } from "vitest";
 
 describe("useModalForm hook", () => {
   it("should `meta[syncWithLocationKey]` overrided by default", async () => {
-    const mockGetOne = jest.fn().mockResolvedValue({
+    const mockGetOne = vi.fn().mockResolvedValue({
       data: {
         id: "5",
         title: "Test Post",
@@ -11,7 +12,7 @@ describe("useModalForm hook", () => {
         status: "active",
       },
     });
-    const mockUpdate = jest.fn();
+    const mockUpdate = vi.fn();
 
     const { result } = renderHook(
       () =>

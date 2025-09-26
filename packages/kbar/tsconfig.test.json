@@ -1,9 +1,8 @@
 {
   "extends": "./tsconfig.json",
-  "include": ["test", "test/jest.setup.ts"],
+  "include": ["test"],
   "compilerOptions": {
     "rootDir": ".",
-    "types": ["jest", "@testing-library/jest-dom"],
-    "typeRoots": ["./node_modules/@types", "../../node_modules/@types"]
+    "types": ["vitest/globals"]
   }
 }

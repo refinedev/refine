@@ -36,7 +36,8 @@
     "dev": "tsup --watch",
     "prepare": "pnpm build",
     "publint": "publint --strict=true --level=suggestion",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "types": "node ../shared/generate-declarations.js"
   },
   "dependencies": {
@@ -50,16 +51,14 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
-    "@types/jest": "^29.2.4",
     "@types/lodash": "^4.14.171",
     "@types/node": "^20",
-    "jest": "^30.0.5",
-    "jest-environment-jsdom": "^30.0.5",
+    "@vitest/ui": "^2.1.8",
     "react-router": "^7.0.2",
-    "ts-jest": "^29.1.2",
     "tslib": "^2.6.2",
     "tsup": "^6.7.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.8.3",
+    "vitest": "^2.1.8"
   },
   "peerDependencies": {
     "@refinedev/core": "^5.0.0",
