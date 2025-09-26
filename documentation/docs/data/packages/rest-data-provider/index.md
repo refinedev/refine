@@ -127,7 +127,8 @@ Your API likely expects a different request format. For example:
 - Sorting: `?sort=-createdAt,title` (prefix `-` for descending)
 - Filters: `?status=PUBLISHED&title_like=react`
 - Response: `{ "data": [...], "total": 123 }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -365,7 +366,8 @@ Your API likely expects a POST request with the data in the request body:
 - Method: `POST`
 - Body: `{ dto: { "title": "My Post", "content": "Hello world" }}`
 - Response: `{ "data": { "id": 124, "title": "My Post", "content": "Hello world" } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -513,7 +515,8 @@ Your API likely expects a `PUT` or `PATCH` request with the updated data:
 - Method: `PUT` or `PATCH`
 - Body: `{ dto: { "title": "Updated Title", "content": "Updated content" }}`
 - Response: `{ "data": { "id": 123, "title": "Updated Title", "content": "Updated content" } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -674,7 +677,8 @@ Your API likely expects a DELETE request with the record ID:
 - Method: `DELETE`
 - Body: Optional (for soft deletes or additional data)
 - Response: `{ "data": { "id": 123, "title": "Deleted Post" } }` or `{ "success": true }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -1033,7 +1037,8 @@ Your API likely expects a POST request with multiple records in the request body
 - Method: `POST`
 - Body: `{ "items": [{ "title": "Post 1", "content": "Hello" }, { "title": "Post 2", "content": "World" }] }`
 - Response: `{ "data": [{ "id": 124, "title": "Post 1" }, { "id": 125, "title": "Post 2" }] }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -1221,7 +1226,8 @@ Your API likely expects a `PUT` or `PATCH` request with multiple record updates:
 - Method: `PUT` or `PATCH`
 - Body: `{ "ids": [123, 456, 789], "updates": { "status": "published", "updatedAt": "2025-09-24T..." } }`
 - Response: `{ "data": [{ "id": 123, "status": "published" }, { "id": 456, "status": "published" }] }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
