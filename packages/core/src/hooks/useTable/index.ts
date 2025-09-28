@@ -176,7 +176,7 @@ export type useTableReturnType<
 
 const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSorter: CrudSort[] = [];
-const EMPTY_ARRAY: readonly [] = Object.freeze([]);
+const EMPTY_ARRAY = Object.freeze([]) as [];
 
 export function useTable<
   TQueryFnData extends BaseRecord = BaseRecord,
