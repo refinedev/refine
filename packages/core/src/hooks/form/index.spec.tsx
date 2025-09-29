@@ -1058,6 +1058,168 @@ describe("useForm Hook", () => {
     });
   });
 
+  describe("queryOptions.enabled behavior", () => {
+    it("should not make API call when external enabled is true but id is undefined", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            // id is undefined
+            queryOptions: {
+              enabled: true, // This should not override the internal id check
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        // Should not make the API call because id is undefined
+        expect(getOneMock).not.toHaveBeenCalled();
+      });
+    });
+
+    it("should make API call when both internal condition (id defined) and external enabled are true", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1", // id is defined
+            queryOptions: {
+              enabled: true, // external enabled is true
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        // Should make the API call because both conditions are met
+        expect(getOneMock).toHaveBeenCalled();
+      });
+    });
+
+    it("should not make API call when external enabled is false even if id is defined", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1", // id is defined
+            queryOptions: {
+              enabled: false, // external enabled is false
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        // Should not make the API call because external enabled is false
+        expect(getOneMock).not.toHaveBeenCalled();
+      });
+    });
+
+    it("should not make API call when id is undefined even if external enabled is not provided", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            // id is undefined
+            queryOptions: {
+              // enabled is not provided, should default to true
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        // Should not make the API call because id is undefined
+        expect(getOneMock).not.toHaveBeenCalled();
+      });
+    });
+
+    it("should make API call when id is defined and external enabled is not provided (defaults to true)", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1", // id is defined
+            queryOptions: {
+              // enabled is not provided, should default to true
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        // Should make the API call because id is defined and enabled defaults to true
+        expect(getOneMock).toHaveBeenCalled();
+      });
+    });
+  });
+
   describe("warn messages", () => {
     const warnMock = vi.fn();
 
