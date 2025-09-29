@@ -25,7 +25,7 @@
     "@craco/craco": "^7.1.0",
     "@refinedev/antd": "^6.0.2",
     "@refinedev/cli": "^2.16.49",
-    "@refinedev/core": "^5.0.2",
+    "@refinedev/core": "^5.0.3",
     "@refinedev/react-router": "^2.0.1",
     "@refinedev/simple-rest": "^6.0.0",
     "@uiw/react-md-editor": "^4.0.8",
