@@ -2918,6 +2918,9 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.1
         version: link:../../packages/react-router
+      '@refinedev/rest':
+        specifier: ^2.0.0
+        version: link:../../packages/rest
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
         version: link:../../packages/strapi-v4
@@ -2930,6 +2933,9 @@ importers:
       axios:
         specifier: ^1.11.0
         version: 1.11.0
+      ky:
+        specifier: ^1.10.0
+        version: 1.10.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -3465,7 +3471,7 @@ importers:
         version: 0.9.1
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+        version: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -5205,7 +5211,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+        version: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       next-compose-plugins:
         specifier: ^2.2.1
         version: 2.2.1
@@ -6603,12 +6609,18 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.1
         version: link:../../packages/react-router
+      '@refinedev/rest':
+        specifier: ^2.0.0
+        version: link:../../packages/rest
       '@tanstack/react-query':
         specifier: ^5.81.5
         version: 5.81.5(react@19.1.0)
       dayjs:
         specifier: ^1.10.7
         version: 1.11.10
+      ky:
+        specifier: ^1.10.0
+        version: 1.10.0
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -10398,7 +10410,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+        version: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       nookies:
         specifier: ^2.5.2
         version: 2.5.2
@@ -10477,7 +10489,7 @@ importers:
         version: 3.0.5
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+        version: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       next-auth:
         specifier: ^4.24.5
         version: 4.24.7(next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -11087,7 +11099,7 @@ importers:
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -11136,7 +11148,7 @@ importers:
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       node-fetch:
         specifier: ^2.6.7
         version: 2.7.0(encoding@0.1.13)
@@ -12359,7 +12371,7 @@ importers:
         version: 2.1.9(vitest@2.1.9)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -12751,7 +12763,7 @@ importers:
         version: 1.5.0
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+        version: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       qs:
         specifier: ^6.10.1
         version: 6.12.1
@@ -12958,7 +12970,7 @@ importers:
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13155,7 +13167,7 @@ importers:
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13201,7 +13213,7 @@ importers:
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13253,7 +13265,7 @@ importers:
         version: 6.9.15
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.7.0(vite@5.4.15(@types/node@20.5.1)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4))
+        version: 4.2.1(vite@5.4.15(@types/node@20.5.1)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4))
       '@vitest/ui':
         specifier: ^2.1.8
         version: 2.1.9(vitest@2.1.9)
@@ -13262,7 +13274,7 @@ importers:
         version: 15.11.7
       next:
         specifier: ^14.2.26
-        version: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+        version: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13719,6 +13731,46 @@ importers:
         specifier: ^2.1.8
         version: 2.1.9(@types/node@20.5.1)(@vitest/ui@2.1.9)(happy-dom@15.11.7)(jsdom@26.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))(lightningcss@1.30.1)(msw@2.11.2(@types/node@20.5.1)(typescript@5.8.3))(sass@1.75.0)(terser@5.30.4)
 
+  packages/rest:
+    dependencies:
+      '@nestjsx/crud-request':
+        specifier: ^5.0.0-alpha.3
+        version: 5.0.0-alpha.3
+      '@refinedev/core':
+        specifier: ^5.0.0
+        version: link:../core
+      deepmerge:
+        specifier: ^4.3.1
+        version: 4.3.1
+      ky:
+        specifier: ^1.10.0
+        version: 1.10.0
+      qs:
+        specifier: ^6.10.1
+        version: 6.13.0
+    devDependencies:
+      '@esbuild-plugins/node-resolve':
+        specifier: ^0.1.4
+        version: 0.1.4(esbuild@0.21.5)
+      '@types/node':
+        specifier: ^20
+        version: 20.5.1
+      '@vitest/ui':
+        specifier: ^2.1.8
+        version: 2.1.9(vitest@2.1.9)
+      nock:
+        specifier: ^14.0.5
+        version: 14.0.10
+      tsup:
+        specifier: ^6.7.0
+        version: 6.7.0(postcss@8.5.3)(ts-node@10.9.2(@types/node@20.5.1)(typescript@5.8.3))(typescript@5.8.3)
+      typescript:
+        specifier: ^5.8.3
+        version: 5.8.3
+      vitest:
+        specifier: ^2.1.8
+        version: 2.1.9(@types/node@20.5.1)(@vitest/ui@2.1.9)(happy-dom@15.11.7)(jsdom@26.1.0(bufferutil@4.0.8)(utf-8-validate@5.0.10))(lightningcss@1.30.1)(msw@2.11.2(@types/node@20.5.1)(typescript@5.8.3))(sass@1.75.0)(terser@5.30.4)
+
   packages/simple-rest:
     dependencies:
       axios:
@@ -13745,7 +13797,7 @@ importers:
         version: 2.1.9(vitest@2.1.9)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13797,7 +13849,7 @@ importers:
         version: 25.0.1(bufferutil@4.0.8)(utf-8-validate@5.0.10)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -13852,7 +13904,7 @@ importers:
         version: 2.1.9(vitest@2.1.9)
       nock:
         specifier: ^13.4.0
-        version: 13.5.6
+        version: 13.5.4
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -15181,20 +15233,8 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/plugin-transform-react-jsx-self@7.27.1':
-    resolution: {integrity: sha512-6UzkCs+ejGdZ5mFFC/OCUrv028ab2fp1znZmCZjAOBKiBK2jXD1O+BPSfX8X2qjJ75fZBMSnQn3Rq2mrBJK2mw==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
   '@babel/plugin-transform-react-jsx-source@7.24.1':
     resolution: {integrity: sha512-1v202n7aUq4uXAieRTKcwPzNyphlCuqHHDcdSNc+vdhoTEZcFMh+L5yZuCmGaIO7bs1nJUNfHB89TZyoL48xNA==}
-    engines: {node: '>=6.9.0'}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
-  '@babel/plugin-transform-react-jsx-source@7.27.1':
-    resolution: {integrity: sha512-zbwoTsBruTeKB9hSq73ha66iFeJHuaFkUbwvqElnygoNbj/jHRsSeokowZFN3CZ64IvEqcmmkVe89OPXc7ldAw==}
     engines: {node: '>=6.9.0'}
     peerDependencies:
       '@babel/core': ^7.0.0-0
@@ -19486,9 +19526,6 @@ packages:
   '@repeaterjs/repeater@3.0.5':
     resolution: {integrity: sha512-l3YHBLAol6d/IKnB9LhpD0cEZWAoe3eFKUyTYWmFmCO2Q/WOckxLQAUyMZWwZV2M/m3+4vgRoaolFqaII82/TA==}
 
-  '@rolldown/pluginutils@1.0.0-beta.27':
-    resolution: {integrity: sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA==}
-
   '@rollup/plugin-babel@5.3.1':
     resolution: {integrity: sha512-WFfdLWU/xVWKeRQnKmIAQULUI7Il0gZnBIH/ZFO069wYIfPu+8zrfp/KMW0atmELoRDq8FbiP3VCss9MhCut7Q==}
     engines: {node: '>= 10.0.0'}
@@ -20914,12 +20951,6 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       vite: ^4.2.0 || ^5.0.0
-
-  '@vitejs/plugin-react@4.7.0':
-    resolution: {integrity: sha512-gUu9hwfWvvEDBBmgtAowQCojwZmJ5mcLn3aufeCsitijs3+f2NsrPtlAWIR6OPiqljl96GVCUbLe0HyqIpVaoA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    peerDependencies:
-      vite: ^4.2.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
 
   '@vitest/expect@2.1.9':
     resolution: {integrity: sha512-UJCIkTBenHeKT1TTlKMJWy1laZewsRIzYighyYiJKZreqtdxSos/S1t+ktRMQWu2CKqaarrkeszJx1cgC5tGZw==}
@@ -26253,6 +26284,10 @@ packages:
     resolution: {integrity: sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==}
     engines: {node: '>= 8'}
 
+  ky@1.10.0:
+    resolution: {integrity: sha512-YRPCzHEWZffbfvmRrfwa+5nwBHwZuYiTrfDX0wuhGBPV0pA/zCqcOq93MDssON/baIkpYbvehIX5aLpMxrRhaA==}
+    engines: {node: '>=18'}
+
   language-subtag-registry@0.3.22:
     resolution: {integrity: sha512-tN0MCzyWnoz/4nHS6uxdlFWoUZT7ABptwKPQ52Ea7URk6vll88bWBVhodtnlfEuCcKWNGoc+uGbw1cwa9IKh/w==}
 
@@ -27517,9 +27552,13 @@ packages:
   no-case@3.0.4:
     resolution: {integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==}
 
-  nock@13.5.6:
-    resolution: {integrity: sha512-o2zOYiCpzRqSzPj0Zt/dQ/DqZeYoaQ7TUonc/xUPjCGl9WeHpNbxgVvOquXYAaJzI0M9BXV3HTzG0p8IUAbBTQ==}
+  nock@13.5.4:
+    resolution: {integrity: sha512-yAyTfdeNJGGBFxWdzSKCBYxs5FxLbCg5X5Q4ets974hcQzG1+qCxvIyOo4j2Ry6MUlhWVMX4OoYDefAIIwupjw==}
     engines: {node: '>= 10.13'}
+
+  nock@14.0.10:
+    resolution: {integrity: sha512-Q7HjkpyPeLa0ZVZC5qpxBt5EyLczFJ91MEewQiIi9taWuA0KB/MDJlUWtON+7dGouVdADTQsf9RA7TZk6D8VMw==}
+    engines: {node: '>=18.20.0 <20 || >=20.12.1'}
 
   nock@14.0.5:
     resolution: {integrity: sha512-R49fALR9caB6vxuSWUIaK2eBYeTloZQUFBZ4rHO+TbhMGQHtwnhdqKLYki+o+8qMgLvoBYWrp/2KzGPhxL4S6w==}
@@ -29731,10 +29770,6 @@ packages:
 
   react-refresh@0.14.1:
     resolution: {integrity: sha512-iZiRCtNGY3QYP3pYOSSBOvQmBpQTcJccr/VcK2blpJrpPTUDjeN51mxm5nsrkCzBwsbGUj+TN9q2oPz5E13FLg==}
-    engines: {node: '>=0.10.0'}
-
-  react-refresh@0.17.0:
-    resolution: {integrity: sha512-z6F7K9bV85EfseRCp2bzrpyQ0Gkw1uLoCel9XBVWPg/TjRj94SkJzUTGfOa4bs7iJvBWtQG0Wq7wnI0syw3EBQ==}
     engines: {node: '>=0.10.0'}
 
   react-remove-scroll-bar@2.3.6:
@@ -33171,7 +33206,7 @@ snapshots:
     dependencies:
       '@ant-design/cssinjs': 1.24.0(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       antd: 5.26.7(date-fns@4.1.0)(luxon@3.4.4)(moment@2.30.1)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      next: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+      next: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
 
@@ -35478,20 +35513,10 @@ snapshots:
       '@babel/core': 7.24.4
       '@babel/helper-plugin-utils': 7.24.0
 
-  '@babel/plugin-transform-react-jsx-self@7.27.1(@babel/core@7.28.0)':
-    dependencies:
-      '@babel/core': 7.28.0
-      '@babel/helper-plugin-utils': 7.27.1
-
   '@babel/plugin-transform-react-jsx-source@7.24.1(@babel/core@7.24.4)':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/helper-plugin-utils': 7.24.0
-
-  '@babel/plugin-transform-react-jsx-source@7.27.1(@babel/core@7.28.0)':
-    dependencies:
-      '@babel/core': 7.28.0
-      '@babel/helper-plugin-utils': 7.27.1
 
   '@babel/plugin-transform-react-jsx@7.23.4(@babel/core@7.24.4)':
     dependencies:
@@ -37749,7 +37774,7 @@ snapshots:
   '@eslint/config-array@0.21.0':
     dependencies:
       '@eslint/object-schema': 2.1.6
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.3.4(supports-color@8.1.1)
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
@@ -41721,8 +41746,6 @@ snapshots:
 
   '@repeaterjs/repeater@3.0.5': {}
 
-  '@rolldown/pluginutils@1.0.0-beta.27': {}
-
   '@rollup/plugin-babel@5.3.1(@babel/core@7.28.0)(@types/babel__core@7.20.5)(rollup@2.79.1)':
     dependencies:
       '@babel/core': 7.28.0
@@ -42261,7 +42284,7 @@ snapshots:
       '@supabase/node-fetch': 2.6.15
       '@types/phoenix': 1.6.4
       '@types/ws': 8.5.10
-      ws: 8.18.3(bufferutil@4.0.8)(utf-8-validate@5.0.10)
+      ws: 8.16.0(bufferutil@4.0.8)(utf-8-validate@5.0.10)
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
@@ -43447,18 +43470,6 @@ snapshots:
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.1
-      vite: 5.4.15(@types/node@20.5.1)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4)
-    transitivePeerDependencies:
-      - supports-color
-
-  '@vitejs/plugin-react@4.7.0(vite@5.4.15(@types/node@20.5.1)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4))':
-    dependencies:
-      '@babel/core': 7.28.0
-      '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.0)
-      '@babel/plugin-transform-react-jsx-source': 7.27.1(@babel/core@7.28.0)
-      '@rolldown/pluginutils': 1.0.0-beta.27
-      '@types/babel__core': 7.20.5
-      react-refresh: 0.17.0
       vite: 5.4.15(@types/node@20.5.1)(lightningcss@1.30.1)(sass@1.75.0)(terser@5.30.4)
     transitivePeerDependencies:
       - supports-color
@@ -50473,6 +50484,8 @@ snapshots:
 
   klona@2.0.6: {}
 
+  ky@1.10.0: {}
+
   language-subtag-registry@0.3.22: {}
 
   language-tags@1.0.9:
@@ -52264,7 +52277,7 @@ snapshots:
       '@panva/hkdf': 1.1.1
       cookie: 0.5.0
       jose: 4.15.5
-      next: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+      next: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       oauth: 0.9.15
       openid-client: 5.6.5
       preact: 10.20.2
@@ -52279,7 +52292,7 @@ snapshots:
     dependencies:
       '@formatjs/intl-localematcher': 0.5.4
       negotiator: 1.0.0
-      next: 14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
+      next: 14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0)
       react: 19.1.0
       use-intl: 3.25.3(react@19.1.0)
 
@@ -52290,7 +52303,7 @@ snapshots:
 
   next-tick@1.1.0: {}
 
-  next@14.2.26(@babel/core@7.28.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0):
+  next@14.2.26(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(sass@1.75.0):
     dependencies:
       '@next/env': 14.2.26
       '@swc/helpers': 0.5.5
@@ -52300,7 +52313,7 @@ snapshots:
       postcss: 8.4.31
       react: 19.1.0
       react-dom: 19.1.0(react@19.1.0)
-      styled-jsx: 5.1.1(@babel/core@7.28.0)(react@19.1.0)
+      styled-jsx: 5.1.1(react@19.1.0)
     optionalDependencies:
       '@next/swc-darwin-arm64': 14.2.26
       '@next/swc-darwin-x64': 14.2.26
@@ -52347,13 +52360,19 @@ snapshots:
       lower-case: 2.0.2
       tslib: 2.6.2
 
-  nock@13.5.6:
+  nock@13.5.4:
     dependencies:
-      debug: 4.4.3(supports-color@8.1.1)
+      debug: 4.3.4(supports-color@8.1.1)
       json-stringify-safe: 5.0.1
       propagate: 2.0.1
     transitivePeerDependencies:
       - supports-color
+
+  nock@14.0.10:
+    dependencies:
+      '@mswjs/interceptors': 0.39.6
+      json-stringify-safe: 5.0.1
+      propagate: 2.0.1
 
   nock@14.0.5:
     dependencies:
@@ -54951,8 +54970,6 @@ snapshots:
 
   react-refresh@0.14.1: {}
 
-  react-refresh@0.17.0: {}
-
   react-remove-scroll-bar@2.3.6(@types/react@19.1.8)(react@19.1.0):
     dependencies:
       react: 19.1.0
@@ -56947,12 +56964,10 @@ snapshots:
       stylis: 4.3.1
       tslib: 2.5.0
 
-  styled-jsx@5.1.1(@babel/core@7.28.0)(react@19.1.0):
+  styled-jsx@5.1.1(react@19.1.0):
     dependencies:
       client-only: 0.0.1
       react: 19.1.0
-    optionalDependencies:
-      '@babel/core': 7.28.0
 
   styled-jsx@5.1.6(@babel/core@7.28.0)(react@19.1.0):
     dependencies:
