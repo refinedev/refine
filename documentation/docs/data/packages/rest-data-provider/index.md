@@ -250,13 +250,14 @@ Your API likely expects a simple ID-based request:
 - Endpoint: `https://example.com/posts/123`
 - Method: `GET`
 - Response: `{ "data": { "id": 123, "title": "My Post", "content": "..." } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
 Refine expects just the record object - no wrapping, no arrays, just the data:
 
-:::Attention[Handling Wrapped API Responses]
+:::note Handling Wrapped API Responses
 Your API might wrap the record in a data property, but Refine **expects the raw record object**. You must unwrap it inside your mapResponse function.
 
 Example API Response:
@@ -1437,7 +1438,8 @@ Your API endpoints can have any format since `custom` handles specialized operat
 - Endpoint: `https://example.com/analytics/dashboard`
 - Method: `GET`
 - Response: `{ "metrics": { "totalPosts": 150, "publishedToday": 5 } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
