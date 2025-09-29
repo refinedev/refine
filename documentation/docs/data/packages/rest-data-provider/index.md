@@ -83,15 +83,15 @@ export type CreateDataProviderOptions = {
 
 While Refine provides many built-in data providers like `simple-rest`, `strapi-v4`, and `supabase`, you'll often need to handle APIs with custom request and response formats. This is where @refinedev/rest comes in, giving you the tools to build a bridge between your API and Refine
 
-:::simple The entire process can be simplified to a four-step mental model where your code acts as a translator:
+:::simple The entire process can be simplified to a four-step mental model where your code acts as a translator
 
-**_Refine_** → **_You_**: Refine sends your provider the necessary parameters (resource, ID, filters, sorters, pagination, etc.).
+**Refine** → **You**: Refine sends your provider the necessary parameters (resource, ID, filters, sorters, pagination, etc.).
 
-**_You_** → **_API_**: You translate these parameters to build a valid request for your API, including the endpoint, query, headers, and body.
+**You** → **API**: You translate these parameters to build a valid request for your API, including the endpoint, query, headers, and body.
 
-**_API_** → **_You_**: Your API sends back a raw response or error.
+**API** → **You**: Your API sends back a raw response or error.
 
-**_You_** → **_Refine_**: Finally, you map the response data and transform any errors into the precise format that Refine expects.
+**You** → **Refine**: Finally, you map the response data and transform any errors into the precise format that Refine expects.
 
 :::
 
