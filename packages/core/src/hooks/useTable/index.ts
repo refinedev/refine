@@ -176,6 +176,7 @@ export type useTableReturnType<
 
 const defaultPermanentFilter: CrudFilter[] = [];
 const defaultPermanentSorter: CrudSort[] = [];
+const EMPTY_ARRAY = Object.freeze([]) as [];
 
 export function useTable<
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -434,7 +435,7 @@ export function useTable<
     createLinkForSyncWithLocation,
     overtime: queryResult.overtime,
     result: {
-      data: queryResult.result?.data || [],
+      data: queryResult.result?.data || EMPTY_ARRAY,
       total: queryResult.result?.total,
     },
   };
