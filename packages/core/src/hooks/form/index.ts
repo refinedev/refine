@@ -158,9 +158,10 @@ export const useForm = <
     resource: identifier,
     id,
     queryOptions: {
-      // Only enable the query if it's not a create action and the `id` is defined
       ...props.queryOptions,
+      // Only enable the query if it's not a create action and the `id` is defined
       // AND the external enabled condition (if provided) is also true
+      // External enabled should NOT override the internal ID safety check
       enabled:
         !isCreate && id !== undefined && (props.queryOptions?.enabled ?? true),
     },
