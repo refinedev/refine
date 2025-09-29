@@ -291,10 +291,15 @@ describe("useModalForm Hook", () => {
 
     await act(async () => {
       result.current.modal.show();
+    });
+
+    await act(async () => {
       // register values to form
       result.current.register("test");
       result.current.setValue("test", "test");
     });
+
+    expect(result.current.getValues()).toStrictEqual({ test: "test" });
 
     await act(async () => {
       result.current.modal.close();
@@ -350,20 +355,36 @@ describe("useModalForm Hook", () => {
           },
         }),
       {
-        wrapper: TestWrapper({}),
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            getOne: () =>
+              Promise.resolve({ data: { id: 5, title: "default-title" } }),
+          },
+        }),
       },
     );
 
     await act(async () => {
       result.current.modal.show();
-      result.current.register("test");
-      result.current.setValue("test", "test");
+    });
+
+    await act(async () => {
+      result.current.setValue("title", "new-title");
+    });
+
+    expect(result.current.getValues()).toStrictEqual({
+      id: 5,
+      title: "new-title",
     });
 
     await act(async () => {
       result.current.modal.close();
     });
 
-    expect(result.current.getValues()).toStrictEqual({});
+    expect(result.current.getValues()).toStrictEqual({
+      id: 5,
+      title: "default-title",
+    });
   });
 });
