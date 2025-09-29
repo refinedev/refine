@@ -114,6 +114,8 @@ export type UseCustomReturnType<TData, TError> = {
   };
 } & UseLoadingOvertimeReturnType;
 
+const EMPTY_OBJECT = Object.freeze({}) as any;
+
 export const useCustom = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
@@ -231,7 +233,7 @@ export const useCustom = <
     return {
       query: queryResponse,
       result: {
-        data: queryResponse.data?.data || ({} as TData),
+        data: queryResponse.data?.data || EMPTY_OBJECT,
       },
       overtime: { elapsedTime },
     };
