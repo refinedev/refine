@@ -1,5 +1,17 @@
 # @refinedev/core
 
+## 5.0.3
+
+### Patch Changes
+
+- [#7020](https://github.com/refinedev/refine/pull/7020) [`32ff2e4200ff888111f03d613e7bb838f505c1b1`](https://github.com/refinedev/refine/commit/32ff2e4200ff888111f03d613e7bb838f505c1b1) Thanks [@samay-rgb](https://github.com/samay-rgb)! - fix: use stable array to prevent memoization issue in useList. #7019
+
+  Fixed an issue where `useList`, `useMany`, `useTable`, and `useCustom` hooks created new empty arrays/objects on every render. This caused `useEffect` and `useMemo` to trigger unnecessarily.
+
+  Now these hooks use stable references for better performance.
+
+  Fixes #7019
+
 ## 5.0.2
 
 ### Patch Changes

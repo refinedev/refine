@@ -1,5 +1,15 @@
 # @refinedev/react-hook-form
 
+## 5.0.1
+
+### Patch Changes
+
+- [#6957](https://github.com/refinedev/refine/pull/6957) [`3bb1d1ea3ba72f6ca24a703ccef88de29a1782f3`](https://github.com/refinedev/refine/commit/3bb1d1ea3ba72f6ca24a703ccef88de29a1782f3) Thanks [@arndom](https://github.com/arndom)! - - Add useEffect to set form values from initial query result when modal is visible.
+
+  - Compensates for useForm not setting initial modal form values when querying the same resource id back-to-back.
+
+  [Resolves #6904](https://github.com/refinedev/refine/issues/6904)
+
 ## 5.0.0
 
 ### Major Changes
