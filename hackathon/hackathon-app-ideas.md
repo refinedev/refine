@@ -104,3 +104,6 @@ Remember, these are just examples. Feel free to build any kind of CRUD applicati
 49. **Therapist Booking Platform**: Users can find and book appointments with therapists. Features could include therapist profiles, a booking and payment system, and user reviews.
 
 50. **DIY Project Planning App**: Users can plan DIY projects and keep track of materials and steps. Features could include project templates, a material checklist creator, progress tracking, and a forum for DIY discussions.
+
+51. **AI-Powered Resume Builder**: An AI-Powered Resume Builder takes raw user input and transforms it into a polished, professional resume.
+It uses AI to enhance bullet points, summaries, and tailor resumes for specific job roles.Users can choose from multiple templates and instantly download as PDF.
