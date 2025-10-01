@@ -159,8 +159,10 @@ export const useForm = <
     id,
     queryOptions: {
       // Only enable the query if it's not a create action and the `id` is defined
-      enabled: !isCreate && id !== undefined,
       ...props.queryOptions,
+      // AND the external enabled condition (if provided) is also true
+      enabled:
+        !isCreate && id !== undefined && (props.queryOptions?.enabled ?? true),
     },
     liveMode: props.liveMode,
     onLiveEvent: props.onLiveEvent,
