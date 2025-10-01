@@ -1,5 +1,5 @@
 import { vi } from "vitest";
-import { renderHook, waitFor } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { defaultRefineOptions } from "@contexts/refine";
 import { MockJSONServer, TestWrapper, queryClient } from "@test";
@@ -59,6 +59,90 @@ describe("useInfiniteList Hook", () => {
 
     const { hasNextPage } = result.current.result;
     expect(hasNextPage).toBeTruthy();
+  });
+
+  it("passes updated currentPage to data provider when fetching next page", async () => {
+    const getListMock = vi.fn(async () => ({
+      data: [
+        {
+          id: 1,
+        },
+      ],
+      total: 5,
+    }));
+
+    const dataProvider = {
+      default: {
+        ...MockJSONServer.default,
+        getList: getListMock,
+      },
+    } as DataProviders;
+
+    const { result } = renderHook(
+      () =>
+        useInfiniteList({
+          resource: "posts",
+          pagination: {
+            pageSize: 1,
+          },
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    expect(getListMock).toHaveBeenCalledTimes(1);
+    expect(getListMock).toHaveBeenNthCalledWith(
+      1,
+      expect.objectContaining({
+        pagination: expect.objectContaining({
+          currentPage: 1,
+        }),
+      }),
+    );
+
+    await act(async () => {
+      await result.current.query.fetchNextPage();
+    });
+
+    await waitFor(() => {
+      expect(result.current.query.isFetching).toBeFalsy();
+    });
+
+    expect(getListMock).toHaveBeenCalledTimes(2);
+    expect(getListMock).toHaveBeenNthCalledWith(
+      2,
+      expect.objectContaining({
+        pagination: expect.objectContaining({
+          currentPage: 2,
+        }),
+      }),
+    );
+
+    await act(async () => {
+      await result.current.query.fetchNextPage();
+    });
+
+    await waitFor(() => {
+      expect(result.current.query.isFetching).toBeFalsy();
+    });
+
+    expect(getListMock).toHaveBeenCalledTimes(3);
+    expect(getListMock).toHaveBeenNthCalledWith(
+      3,
+      expect.objectContaining({
+        pagination: expect.objectContaining({
+          currentPage: 3,
+        }),
+      }),
+    );
   });
 
   it("cursor has next", async () => {
