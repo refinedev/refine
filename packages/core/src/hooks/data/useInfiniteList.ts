@@ -250,7 +250,8 @@ export const useInfiniteList = <
     queryFn: (context) => {
       const paginationProperties = {
         ...prefferedPagination,
-        currentPage: context.pageParam,
+        currentPage:
+          (context.pageParam as number) ?? prefferedPagination.currentPage,
       };
 
       const meta = {
@@ -260,7 +261,7 @@ export const useInfiniteList = <
 
       return getList<TQueryFnData>({
         resource: resource?.name || "",
-        pagination: prefferedPagination,
+        pagination: paginationProperties,
         filters: prefferedFilters,
         sorters: prefferedSorters,
         meta,
@@ -344,8 +345,6 @@ export const useInfiniteList = <
     ...overtimeOptions,
     isLoading: queryResponse.isFetching,
   });
-
-  queryResponse.data?.pages;
 
   return {
     query: queryResponse,
