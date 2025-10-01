@@ -2918,6 +2918,9 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.1
         version: link:../../packages/react-router
+      '@refinedev/rest':
+        specifier: ^2.0.0
+        version: link:../../packages/rest
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
         version: link:../../packages/strapi-v4
@@ -6606,6 +6609,9 @@ importers:
       '@refinedev/react-router':
         specifier: ^2.0.1
         version: link:../../packages/react-router
+      '@refinedev/rest':
+        specifier: ^2.0.0
+        version: link:../../packages/rest
       '@tanstack/react-query':
         specifier: ^5.81.5
         version: 5.81.5(react@19.1.0)
