@@ -1112,6 +1112,167 @@ describe("useForm Hook", () => {
     });
   });
 
+  describe("queryOptions.enabled behavior", () => {
+    it("should not fetch when external enabled=true but id=undefined (bug scenario)", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            // id is undefined - this should prevent fetching even with enabled=true
+            queryOptions: {
+              enabled: true, // User sets enabled to true
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      // Wait a bit to ensure no fetch occurs
+      await waitFor(() => {
+        expect(getOneMock).not.toHaveBeenCalled();
+      });
+    });
+
+    it("should not fetch when external enabled=false (regardless of id)", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1", // id is defined
+            queryOptions: {
+              enabled: false, // User disables fetching
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(getOneMock).not.toHaveBeenCalled();
+      });
+    });
+
+    it("should fetch when external enabled=true and id is defined", async () => {
+      const getOneMock = vi.fn().mockResolvedValue({
+        data: { id: "1", title: "Test Post" },
+      });
+
+      const { result } = renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1", // id is defined
+            queryOptions: {
+              enabled: true, // User enables fetching
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(getOneMock).toHaveBeenCalled();
+        expect(result.current.query?.data?.data?.title).toEqual("Test Post");
+      });
+    });
+
+    it("should fetch when no external enabled is provided and id is defined (default behavior)", async () => {
+      const getOneMock = vi.fn().mockResolvedValue({
+        data: { id: "1", title: "Test Post" },
+      });
+
+      const { result } = renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1", // id is defined
+            // No queryOptions.enabled provided
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(getOneMock).toHaveBeenCalled();
+        expect(result.current.query?.data?.data?.title).toEqual("Test Post");
+      });
+    });
+
+    it("should not fetch in create mode even with enabled=true", async () => {
+      const getOneMock = vi.fn();
+
+      renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "create",
+            queryOptions: {
+              enabled: true, // User tries to enable in create mode
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                getOne: getOneMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(getOneMock).not.toHaveBeenCalled();
+      });
+    });
+  });
+
   describe("onFinish rejections", () => {
     it("should reject immediately if resource is not defined", async () => {
       const { result } = renderHook(

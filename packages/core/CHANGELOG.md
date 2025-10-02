@@ -1,5 +1,35 @@
 # @refinedev/core
 
+## 5.0.4
+
+### Patch Changes
+
+- [#7031](https://github.com/refinedev/refine/pull/7031) [`99e9cf01546a4707e1d79be2a4e1671e045bf41e`](https://github.com/refinedev/refine/commit/99e9cf01546a4707e1d79be2a4e1671e045bf41e) Thanks [@DipakHalkude](https://github.com/DipakHalkude)! - fix: prevent external queryOptions.enabled from overriding internal ID check in useForm (#7031)
+
+  Fixed a bug where the `useForm` hook allowed external `queryOptions.enabled` to bypass internal ID safety checks, causing API calls with undefined IDs.
+
+  Added comprehensive tests covering create mode, undefined IDs, and various enabled combinations to ensure the fix works correctly.
+
+  Fixes #7031
+
+- [#7035](https://github.com/refinedev/refine/pull/7035) [`6934c008bee0e07eab424f560503fe5a8e541c8a`](https://github.com/refinedev/refine/commit/6934c008bee0e07eab424f560503fe5a8e541c8a) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: `useInfiniteList` pagination not work #7034
+
+  Now `useInfiniteList` correctly advances server-side pages when loading more results. This bug was caused by [this commit](https://github.com/refinedev/refine/commit/1a02f020fdc2030e7c7a702e3bd9bfddae2fe1c8).
+
+  Resolves #7034
+
+## 5.0.3
+
+### Patch Changes
+
+- [#7020](https://github.com/refinedev/refine/pull/7020) [`32ff2e4200ff888111f03d613e7bb838f505c1b1`](https://github.com/refinedev/refine/commit/32ff2e4200ff888111f03d613e7bb838f505c1b1) Thanks [@samay-rgb](https://github.com/samay-rgb)! - fix: use stable array to prevent memoization issue in useList. #7019
+
+  Fixed an issue where `useList`, `useMany`, `useTable`, and `useCustom` hooks created new empty arrays/objects on every render. This caused `useEffect` and `useMemo` to trigger unnecessarily.
+
+  Now these hooks use stable references for better performance.
+
+  Fixes #7019
+
 ## 5.0.2
 
 ### Patch Changes

@@ -4,15 +4,25 @@ source: https://github.com/refinedev/refine/tree/main/packages/rest
 swizzle: true
 ---
 
-We've created `@refinedev/rest` data provider to make it easier to create custom data providers for REST APIs. Creating custom data provider previously required swizzling simple-rest or other data providers. Now with rest data provider, we aim to streamline the process of creating custom data providers for REST APIs.
+We've created the `@refinedev/rest` data provider to make it easier to build custom data providers for REST APIs. In the past, this usually meant swizzling `simple-rest` or other providers. With `@refinedev/rest`, the process is now more streamlined and flexible.
 
-It uses KY library under the hood, which is a tiny and elegant HTTP client based on Fetch API.
+The provider is powered by [KY](https://github.com/sindresorhus/ky), a lightweight HTTP client built on the Fetch API.
 
-2nd parameter of createDataProvider is options for the data provider itself. It has common data provider methods such as getList, getOne, create, update and inside they have additional methods such as `getEndpoint`, `buildHeaders`, `buildQueryParams`, `mapResponse`.
+When using `createDataProvider`, you pass three arguments:
 
-All of these methods accepts respective parameters from the relevant action. Additionally, `mapResponse` and `getTotalCount` methods also accepts response object.
+1. **Base URL** – the root endpoint of your REST API.
 
-3rd parameter is options for KY client. You can find KY options [here](https://github.com/sindresorhus/ky#options).
+2. **Data provider options** – defines how each standard method (`getList`, `getOne`, `create`, `update`, etc.) works.  
+   Inside each method, you can customize helpers like:
+
+   - `getEndpoint`
+   - `buildHeaders`
+   - `buildQueryParams`
+   - `mapResponse`
+
+   These helpers receive the parameters of the current action. Additionally, `mapResponse` and `getTotalCount` also receive the full response object.
+
+3. **KY client options** – any configuration supported by KY. See the [KY options](https://github.com/sindresorhus/ky#options) for details.
 
 ## Installation
 
@@ -30,12 +40,11 @@ const MyDataProvider = createDataProvider(
 );
 ```
 
-## Create Data Provider Options Interface
+## `createDataProvider` Options
 
-A data provider is simply an object that implements a set of methods.
-Each method corresponds to an operation that Refine can perform: fetching a list, creating a record, updating, deleting, etc.
+A data provider is an object that implements a set of methods, where each method corresponds to a core operation Refine performs, such as fetching a list of records (`getList`), creating a new one (`create`), or handling updates and deletions.
 
-Each operation such as `getList`, `getOne`, `create` has atomic methods to build your request and format their responses, errors.
+Each of these primary operations is broken down into atomic helpers that give you granular control over the request lifecycle. These helpers allow you to precisely build your API request and format the incoming response or errors to match what Refine expects.
 
 - **getEndpoint(params)** → returns the API endpoint.
 - **buildHeaders(params)** → adds additional headers.
@@ -72,17 +81,19 @@ export type CreateDataProviderOptions = {
 
 ## How to create a custom REST data provider
 
-Refine comes with many built-in data providers (`simple-rest`, `strapi-v4`, `supabase`, etc.).
-However, sometimes you need to connect to a custom API or handle very specific request/response formats.
-In such cases, you can easily create your own Data Provider with `@refinedev/rest`.
+While Refine provides many built-in data providers like `simple-rest`, `strapi-v4`, and `supabase`, you'll often need to handle APIs with custom request and response formats. This is where @refinedev/rest comes in, giving you the tools to build a bridge between your API and Refine
 
-:::simple Quick mental model (keep this while coding)
+:::simple The entire process can be simplified to a four-step mental model where your code acts as a translator
 
-- **Refine** → **You**: sends params (resource, id, filters, sorters, pagination, variables, meta).
-- You → API: build endpoint, query, headers, body.
-- API → You: raw response/error.
-- You → Refine: mapResponse (data only) and transformError (message + statusCode).
-  :::
+**Refine** → **You**: Refine sends your provider the necessary parameters (resource, ID, filters, sorters, pagination, etc.).
+
+**You** → **API**: You translate these parameters to build a valid request for your API, including the endpoint, query, headers, and body.
+
+**API** → **You**: Your API sends back a raw response or error.
+
+**You** → **Refine**: Finally, you map the response data and transform any errors into the precise format that Refine expects.
+
+:::
 
 ### getList
 
@@ -116,7 +127,8 @@ Your API likely expects a different request format. For example:
 - Sorting: `?sort=-createdAt,title` (prefix `-` for descending)
 - Filters: `?status=PUBLISHED&title_like=react`
 - Response: `{ "data": [...], "total": 123 }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -218,7 +230,7 @@ The data flow for `getOne` is straightforward since you're fetching just one rec
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides an ID, you build the endpoint, make the request, and return the single record object.
+In this flow, Refine provides a record `id`. Your data provider is then responsible for using that `id` to build the correct endpoint, make the request, and return the single record object from the API's response.
 
 <h3>What Refine Provides</h3>
 
@@ -238,25 +250,29 @@ Your API likely expects a simple ID-based request:
 - Endpoint: `https://example.com/posts/123`
 - Method: `GET`
 - Response: `{ "data": { "id": 123, "title": "My Post", "content": "..." } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
 Refine expects just the record object - no wrapping, no arrays, just the data:
 
-Your API returns:
+:::note Handling Wrapped API Responses
+Your API might wrap the record in a data property, but Refine **expects the raw record object**. You must unwrap it inside your mapResponse function.
+
+Example API Response:
 
 ```json
 { "data": { "id": 123, "title": "My Post", "content": "..." } }
 ```
 
-Refine expects:
+What Refine Expects:
 
 ```json
 { "id": 123, "title": "My Post", "content": "..." }
 ```
 
-If your API wraps the record in a `data` property, you'll need to extract it.
+:::
 
 <h3>Available Methods</h3>
 
@@ -328,10 +344,9 @@ The `create` method handles **creating new records**. This powers your create fo
 <h3>Understanding the Data Flow</h3>
 
 The data flow for `create` involves sending form data to your API:
-
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides form variables, you build the endpoint and request body, send the data, and return the created record.
+In this flow, Refine provides form variables. Your data provider is then responsible for using those variables to build the correct endpoint, make the request, and return the created record object from the API's response.
 
 <h3>What Refine Provides</h3>
 
@@ -352,7 +367,8 @@ Your API likely expects a POST request with the data in the request body:
 - Method: `POST`
 - Body: `{ dto: { "title": "My Post", "content": "Hello world" }}`
 - Response: `{ "data": { "id": 124, "title": "My Post", "content": "Hello world" } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -466,7 +482,7 @@ With this `create` implementation, here's what happens when a user submits a for
 3. **Form validation**: Refine displays field-specific errors under each input
 4. **User feedback**: User sees exactly which fields need to be fixed
 
-This pattern ensures reliable record creation with proper data transformation and comprehensive error handling.
+These patterns ensure reliable record creation with proper data transformations and comprehensive error handling.
 
 ### update
 
@@ -478,7 +494,7 @@ The data flow for `update` involves sending modified form data to your API:
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides the record ID and form variables, you build the endpoint and request body, send the data, and return the updated record.
+In this flow, Refine provides the record `id` and form variables. Your data provider is then responsible for using that `id` and those variables to build the correct endpoint, make the request, and return the updated record object from the API's response.
 
 <h3>What Refine Provides</h3>
 
@@ -491,7 +507,7 @@ Refine calls `update` with these parameters:
 
 <h3>What Your API Expects</h3>
 
-Your API likely expects a PUT or PATCH request with the updated data:
+Your API likely expects a `PUT` or `PATCH` request with the updated data:
 
 :::simple
 **Example API Format:**
@@ -500,7 +516,8 @@ Your API likely expects a PUT or PATCH request with the updated data:
 - Method: `PUT` or `PATCH`
 - Body: `{ dto: { "title": "Updated Title", "content": "Updated content" }}`
 - Response: `{ "data": { "id": 123, "title": "Updated Title", "content": "Updated content" } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -616,7 +633,7 @@ With this `update` implementation, here's what happens when a user modifies a re
 1. **User action**: User edits a form and clicks "Save" or "Update"
 2. **Refine processes**: Refine calls `update` with the record ID and modified data (`id: 123`, `variables: { title: "Updated Title", content: "..." }`)
 3. **Your transformation**: `buildBodyParams` adds metadata (updatedAt timestamp) and formats the request body
-4. **API call**: PUT request goes to `https://example.com/posts/123?expand=author` with the transformed data
+4. **API call**: `PUT` request goes to `https://example.com/posts/123?expand=author` with the transformed data
 5. **Response processing**: `mapResponse` extracts the updated record with expanded author details
 6. **UI update**: Refine refreshes the form or redirects with the updated data
 
@@ -627,7 +644,7 @@ With this `update` implementation, here's what happens when a user modifies a re
 3. **Form validation**: Refine displays field-specific errors under each input
 4. **User feedback**: User sees exactly which fields have validation issues
 
-This pattern ensures reliable record updates with proper data transformation and comprehensive error handling.
+These patterns ensure reliable record creation with proper data transformations and comprehensive error handling.
 
 ### deleteOne
 
@@ -639,7 +656,7 @@ The data flow for `deleteOne` involves sending a delete request to your API:
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides the record ID, you build the endpoint, send the delete request, and return the deleted record for confirmation.
+In this flow, Refine provides the record `id`. Your data provider is then responsible for using that `id` to build the correct endpoint, make the delete request, and return the deleted record object from the API's response for confirmation.
 
 <h3>What Refine Provides</h3>
 
@@ -661,7 +678,8 @@ Your API likely expects a DELETE request with the record ID:
 - Method: `DELETE`
 - Body: Optional (for soft deletes or additional data)
 - Response: `{ "data": { "id": 123, "title": "Deleted Post" } }` or `{ "success": true }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -805,7 +823,7 @@ With this `deleteOne` implementation, here's what happens when a user deletes a 
 4. **Response**: API returns the soft-deleted record with updated status
 5. **UI update**: Record is filtered out of active lists but may appear in "deleted items" view
 
-This pattern ensures reliable record deletion with proper error handling and support for both hard and soft deletion strategies.
+These patterns ensure reliable record creation with proper data transformations and comprehensive error handling.
 
 ### getMany
 
@@ -821,7 +839,7 @@ The data flow for `getMany` involves sending a request with multiple IDs to your
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides an array of IDs, you build the endpoint and query parameters, make the request, and return the matching records.
+In this flow, Refine provides an array of `ids`. Your data provider is then responsible for using those `ids` to build the correct endpoint and query parameters, make the request, and return the matching record objects from the API's response.
 
 <h3>What Refine Provides</h3>
 
@@ -983,7 +1001,7 @@ With this `getMany` implementation, here's what happens when Refine needs multip
 3. **UI handling**: Refine components gracefully handle missing records (show placeholder or skip)
 4. **No error thrown**: Missing records are handled as normal behavior, not errors
 
-This pattern ensures reliable batch record fetching with support for different API designs, large datasets, and graceful error handling.
+These patterns ensure reliable record creation with proper data transformations and comprehensive error handling.
 
 ### createMany
 
@@ -999,7 +1017,7 @@ The data flow for `createMany` involves sending multiple record data to your API
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides an array of record data, you build the endpoint and request body, send the batch data, and return the array of created records.
+In this flow, Refine provides an array of record data. Your data provider is then responsible for using that data to build the correct endpoint, make the request, and return the array of created record objects from the API's response.
 
 <h3>What Refine Provides</h3>
 
@@ -1020,7 +1038,8 @@ Your API likely expects a POST request with multiple records in the request body
 - Method: `POST`
 - Body: `{ "items": [{ "title": "Post 1", "content": "Hello" }, { "title": "Post 2", "content": "World" }] }`
 - Response: `{ "data": [{ "id": 124, "title": "Post 1" }, { "id": 125, "title": "Post 2" }] }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -1170,7 +1189,7 @@ With this `createMany` implementation, here's what happens when multiple records
 3. **Consideration**: You might want to implement chunking logic to split large batches into smaller requests
 4. **Error handling**: Handle timeout and size limit errors gracefully
 
-This pattern ensures efficient batch record creation with proper transaction handling, performance benefits, and comprehensive error management for individual items within the batch.
+These patterns ensure efficient batch record creation with proper transaction handling, performance benefits, and comprehensive error management for individual items within the batch.
 
 ### updateMany
 
@@ -1186,7 +1205,7 @@ The data flow for `updateMany` involves sending multiple record updates to your 
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides an array of IDs and update data, you build the endpoint and request body, send the batch updates, and return the array of updated records.
+In this flow, Refine provides an array of `ids` and update variables. Your data provider is then responsible for using those `ids` and variables to build the correct endpoint, make the request, and return the array of updated record objects from the API's response.
 
 <h3>What Refine Provides</h3>
 
@@ -1199,7 +1218,7 @@ Refine calls `updateMany` with these parameters:
 
 <h3>What Your API Expects</h3>
 
-Your API likely expects a PUT or PATCH request with multiple record updates:
+Your API likely expects a `PUT` or `PATCH` request with multiple record updates:
 
 :::simple
 **Example API Format:**
@@ -1208,7 +1227,8 @@ Your API likely expects a PUT or PATCH request with multiple record updates:
 - Method: `PUT` or `PATCH`
 - Body: `{ "ids": [123, 456, 789], "updates": { "status": "published", "updatedAt": "2025-09-24T..." } }`
 - Response: `{ "data": [{ "id": 123, "status": "published" }, { "id": 456, "status": "published" }] }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
@@ -1259,7 +1279,7 @@ export const myDataProvider: CreateDataProviderOptions = {
     // Specify request method
     getRequestMethod: ({ resource, ids, variables }) => "put",
 
-    // Add required headers for PUT/PATCH requests
+    // Add required headers for `PUT`/PATCH requests
     buildHeaders: async ({ resource, ids, variables }) => ({
       "Accept-Language": "en-US",
     }),
@@ -1339,7 +1359,7 @@ With this `updateMany` implementation, here's what happens when multiple records
 1. **Bulk update triggered**: User selects multiple records and changes their status to "published"
 2. **Refine processes**: Refine calls `updateMany` with IDs and update data (`ids: [123, 456, 789]`, `variables: { status: "published" }`)
 3. **Your transformation**: `buildBodyParams` adds metadata (updatedAt) and formats the request body with IDs and updates
-4. **API call**: PUT request goes to `https://example.com/posts/batch?expand=author` with the batch data
+4. **API call**: `PUT` request goes to `https://example.com/posts/batch?expand=author` with the batch data
 5. **Response processing**: `mapResponse` extracts the array of updated records
 6. **UI update**: Refine refreshes the list view with all updated records showing the new status
 
@@ -1382,7 +1402,7 @@ The data flow for `custom` is flexible since it handles any type of operation:
 
 **Refine Hooks → Your Data Provider → API → Your Data Provider → Refine**
 
-Refine provides the operation parameters, you build the appropriate request, send it to your custom endpoint, and return the response data.
+In this flow, Refine provides the operation parameters. Your data provider is then responsible for using those parameters to build and send the appropriate request to your custom endpoint, and return the raw response data from the API.
 
 <h3>What Refine Provides</h3>
 
@@ -1390,7 +1410,7 @@ Refine calls `custom` with these parameters:
 
 - `url`: the custom endpoint URL (e.g. `"/posts/search"` or `"/analytics/dashboard"`)
 - `method`: HTTP method (e.g. `"get"`, `"post"`, `"put"`, `"delete"`)
-- `payload`: optional request data for POST/PUT operations
+- `payload`: optional request data for POST/`PUT` operations
 - `query`: optional query parameters
 - `headers`: optional custom headers
 - `meta`: optional metadata for additional context
@@ -1418,7 +1438,8 @@ Your API endpoints can have any format since `custom` handles specialized operat
 - Endpoint: `https://example.com/analytics/dashboard`
 - Method: `GET`
 - Response: `{ "metrics": { "totalPosts": 150, "publishedToday": 5 } }`
-  :::
+
+:::
 
 <h3>What Refine Expects Back</h3>
 
