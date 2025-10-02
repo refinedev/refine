@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 import { getXRay } from "@refinedev/devtools-internal";
 import {
@@ -200,6 +200,37 @@ export const useList = <
     },
   });
 
+  const querySelect = useCallback(
+    (rawData: GetListResponse<TQueryFnData>): GetListResponse<TData> => {
+      let data = rawData;
+
+      const { currentPage, mode, pageSize } = prefferedPagination;
+
+      if (mode === "client") {
+        data = {
+          ...data,
+          data: data.data.slice(
+            (currentPage - 1) * pageSize,
+            currentPage * pageSize,
+          ),
+          total: data.total,
+        };
+      }
+
+      if (queryOptions?.select) {
+        return queryOptions?.select?.(data);
+      }
+
+      return data as unknown as GetListResponse<TData>;
+    },
+    [
+      prefferedPagination.currentPage,
+      prefferedPagination.mode,
+      prefferedPagination.pageSize,
+      queryOptions?.select,
+    ],
+  );
+
   const queryResponse = useQuery<
     GetListResponse<TQueryFnData>,
     TError,
@@ -238,28 +269,7 @@ export const useList = <
       typeof queryOptions?.enabled !== "undefined"
         ? queryOptions?.enabled
         : !!resource?.name,
-    select: (rawData) => {
-      let data = rawData;
-
-      const { currentPage, mode, pageSize } = prefferedPagination;
-
-      if (mode === "client") {
-        data = {
-          ...data,
-          data: data.data.slice(
-            (currentPage - 1) * pageSize,
-            currentPage * pageSize,
-          ),
-          total: data.total,
-        };
-      }
-
-      if (queryOptions?.select) {
-        return queryOptions?.select?.(data);
-      }
-
-      return data as unknown as GetListResponse<TData>;
-    },
+    select: querySelect,
     meta: {
       ...queryOptions?.meta,
       ...getXRay("useList", resource?.name),

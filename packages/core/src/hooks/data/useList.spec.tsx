@@ -682,6 +682,115 @@ describe("useList Hook", () => {
   });
 
   describe("queryOptions", () => {
+    it("should call memoized select function only once", async () => {
+      const selectFn = vi.fn((data) => data);
+      const { result, rerender } = renderHook(
+        () =>
+          useList({
+            resource: "posts",
+            queryOptions: {
+              select: selectFn,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      expect(selectFn).toHaveBeenCalledTimes(1);
+
+      rerender();
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      expect(selectFn).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call select function twice when its reference changes", async () => {
+      const selectFn = vi.fn((data) => data);
+      const firstSelectFn = (data: any) => selectFn(data);
+      const secondSelectFn = (data: any) => selectFn(data);
+
+      const { result, rerender } = renderHook(
+        ({ select }) =>
+          useList({
+            resource: "posts",
+            queryOptions: {
+              select,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+          initialProps: { select: firstSelectFn },
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      expect(selectFn).toHaveBeenCalledTimes(1);
+
+      rerender({ select: secondSelectFn });
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      expect(selectFn).toHaveBeenCalledTimes(2);
+    });
+
+    it("should call select function when pagination changes", async () => {
+      const selectFn = vi.fn((data) => data);
+      const { result, rerender } = renderHook(
+        ({ pageSize }) =>
+          useList({
+            resource: "posts",
+            pagination: {
+              mode: "server",
+              pageSize,
+              currentPage: 1,
+            },
+            queryOptions: {
+              select: selectFn,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+          initialProps: { pageSize: 10 },
+        },
+      );
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      expect(selectFn).toHaveBeenCalledTimes(1);
+
+      rerender({ pageSize: 20 });
+
+      await waitFor(() => {
+        expect(result.current.query.isSuccess).toBeTruthy();
+      });
+
+      expect(selectFn).toHaveBeenCalledTimes(2);
+    });
+
     it("should call successNotification on success", async () => {
       const successNotificationMock = vi.fn().mockReturnValue({
         message: "Success",
