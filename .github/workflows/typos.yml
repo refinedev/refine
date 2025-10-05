@@ -1,0 +1,9 @@
+# .github/workflows/typos.yml
+name: typos
+on: [pull_request, push]
+jobs:
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: crate-ci/typos@v1
