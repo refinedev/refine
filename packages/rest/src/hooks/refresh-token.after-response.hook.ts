@@ -43,7 +43,7 @@ export const refreshTokenAfterResponseHook =
           refineOptions.REFRESH_TOKEN_URL,
           {
             method: "post",
-            body: JSON.stringify({ refreshToken: currentRefreshToken }),
+            json: { refreshToken: currentRefreshToken },
           },
         ).json();
 
