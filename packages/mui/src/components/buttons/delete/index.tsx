@@ -74,7 +74,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
   if (isHidden) return null;
 
   return (
-    <div>
+    <>
       <LoadingButton
         color="error"
         onClick={() => setOpen(true)}
@@ -119,6 +119,6 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </>
   );
 };
