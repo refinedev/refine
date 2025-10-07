@@ -2919,7 +2919,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/rest':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/rest
       '@refinedev/strapi-v4':
         specifier: ^7.0.0
@@ -3449,7 +3449,7 @@ importers:
         specifier: ^5.0.4
         version: link:../../packages/core
       '@refinedev/nextjs-router':
-        specifier: ^7.0.1
+        specifier: ^7.0.2
         version: link:../../packages/nextjs-router
       '@refinedev/react-table':
         specifier: ^6.0.0
@@ -5195,7 +5195,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^7.0.1
+        specifier: ^7.0.2
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -6610,7 +6610,7 @@ importers:
         specifier: ^2.0.1
         version: link:../../packages/react-router
       '@refinedev/rest':
-        specifier: ^2.0.0
+        specifier: ^2.0.1
         version: link:../../packages/rest
       '@tanstack/react-query':
         specifier: ^5.81.5
@@ -10394,7 +10394,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^7.0.1
+        specifier: ^7.0.2
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -10473,7 +10473,7 @@ importers:
         specifier: ^2.0.0
         version: link:../../packages/kbar
       '@refinedev/nextjs-router':
-        specifier: ^7.0.1
+        specifier: ^7.0.2
         version: link:../../packages/nextjs-router
       '@refinedev/simple-rest':
         specifier: ^6.0.0
@@ -41976,7 +41976,7 @@ snapshots:
   '@smithy/abort-controller@2.2.0':
     dependencies:
       '@smithy/types': 2.12.0
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@smithy/config-resolver@2.2.0':
@@ -42113,7 +42113,7 @@ snapshots:
     dependencies:
       '@smithy/types': 2.12.0
       '@smithy/util-uri-escape': 2.2.0
-      tslib: 2.6.2
+      tslib: 2.8.1
     optional: true
 
   '@smithy/querystring-parser@2.2.0':
