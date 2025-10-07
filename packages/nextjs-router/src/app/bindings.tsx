@@ -126,7 +126,7 @@ export const routerProvider: RouterProvider = {
         params: {
           ...combinedParams,
           currentPage: convertToNumberIfPossible(
-            combinedParams.current as string,
+            combinedParams.currentPage as string,
           ) as number | undefined,
           pageSize: convertToNumberIfPossible(
             combinedParams.pageSize as string,
