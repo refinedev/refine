@@ -1,0 +1,3 @@
+---
+"@refinedev/nextjs-router": patch
+---
