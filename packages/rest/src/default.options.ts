@@ -7,6 +7,7 @@ import type {
   UpdateParams,
   HttpError,
   GetManyParams,
+  UpdateManyParams,
 } from "@refinedev/core";
 import type { KyResponse } from "ky";
 
@@ -78,7 +79,10 @@ export const defaultCreateDataProviderOptions = {
 
       return params.meta?.query ?? queryParams;
     },
-    async mapResponse(response: KyResponse<AnyObject>, _params: GetManyParams) {
+    async mapResponse(
+      response: KyResponse<AnyObject[]>,
+      _params: GetManyParams,
+    ): Promise<AnyObject[]> {
       const body = await response.json();
 
       return body;
