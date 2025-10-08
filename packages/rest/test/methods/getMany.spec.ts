@@ -2,7 +2,6 @@ import nock from "nock";
 import { API_URL, createDataProvider } from "..";
 
 const response = [{ id: 1 }, { id: 2 }];
-
 const queryParams = { ids: "1,2" };
 
 nock(API_URL)
@@ -30,6 +29,6 @@ describe("getMany", () => {
       },
     });
 
-    expect(result).toEqual(response);
+    expect(result).toEqual({ data: response });
   });
 });
