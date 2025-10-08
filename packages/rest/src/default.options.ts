@@ -81,7 +81,7 @@ export const defaultCreateDataProviderOptions = {
     async mapResponse(response: KyResponse<AnyObject>, _params: GetManyParams) {
       const body = await response.json();
 
-      return body.records;
+      return body;
     },
   },
   create: {
