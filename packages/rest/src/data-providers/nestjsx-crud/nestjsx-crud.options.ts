@@ -55,7 +55,15 @@ export const nestjsxCrudDataProviderOptions: CreateDataProviderOptions = {
 
       return query.queryObject;
     },
-    mapResponse: async (response, _params) => await response.json(),
+    mapResponse: async (response, params) => {
+      const body = await response.json<BaseRecord[] | { data: BaseRecord[] }>();
+
+      if (Array.isArray(body)) {
+        return body;
+      }
+
+      return body.data;
+    },
   },
   create: {
     getEndpoint: (params) => params.resource,
