@@ -1,5 +1,15 @@
 # @refinedev/nextjs-router
 
+## 7.0.2
+
+### Patch Changes
+
+- [#7046](https://github.com/refinedev/refine/pull/7046) [`e0ebbb0f734724da9c9eef81ec387a61ae5db66b`](https://github.com/refinedev/refine/commit/e0ebbb0f734724da9c9eef81ec387a61ae5db66b) Thanks [@alicanerdurmaz](https://github.com/alicanerdurmaz)! - fix: fixed `currentPage` URL parameter not loading correctly on page refresh #7042
+
+  Now the `currentPage` parameter is properly read from URL search params, ensuring pagination state persists across page refreshes.
+
+  Resolves #7042
+
 ## 7.0.1
 
 ### Patch Changes

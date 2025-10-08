@@ -702,6 +702,13 @@ export function DataTableFilterInput<TData>({
     return defaultOperatorFromProps || "eq";
   });
 
+  useEffect(() => {
+    columnFromProps.columnDef.meta = {
+      ...columnFromProps.columnDef.meta,
+      filterOperator: operator,
+    };
+  }, [columnFromProps, operator]);
+
   const handleApply = () => {
     columnFromProps.setFilterValue(filterValue);
   };
