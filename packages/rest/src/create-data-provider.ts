@@ -4,6 +4,7 @@ import type {
   CustomResponse,
   DataProvider,
   DeleteOneResponse,
+  GetManyResponse,
   GetOneResponse,
   UpdateManyResponse,
   UpdateResponse,
@@ -81,7 +82,7 @@ export const createDataProvider = (
 
         return { data };
       },
-      async getMany(params) {
+      async getMany(params): Promise<GetManyResponse<any>> {
         const endpoint = options.getMany.getEndpoint(params);
 
         const headers = await options.getMany.buildHeaders(params);
