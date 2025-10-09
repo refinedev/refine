@@ -1,0 +1,33 @@
+import { defineConfig } from "vitest/config";
+import { resolve } from "path";
+
+export default defineConfig({
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./src/test/vitest.setup.ts"],
+    globals: true,
+    include: ["src/tests/**/*.{test,spec}.{ts,tsx}"],
+    coverage: {
+      provider: "v8",
+      reporter: ["text", "json", "html"],
+      reportsDirectory: "./coverage",
+      exclude: [
+        "src/index.ts",
+        "src/main.tsx",
+        "node_modules/**",
+        "dist/**",
+      ],
+    },
+  },
+  resolve: {
+    alias: {
+      "@components": resolve(__dirname, "src/components"),
+      "@hooks": resolve(__dirname, "src/hooks"),
+      "@test": resolve(__dirname, "src/test"),
+      "@definitions": resolve(__dirname, "src/definitions"),
+    },
+  },
+  esbuild: {
+    target: "esnext",
+  },
+});
