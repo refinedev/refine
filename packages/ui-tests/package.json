@@ -48,7 +48,7 @@
     "react-router": "^7.0.2",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "@refinedev/core": "^5.0.0",

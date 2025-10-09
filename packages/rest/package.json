@@ -94,7 +94,7 @@
     "nock": "^14.0.5",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "@nestjsx/crud-request": "^5.0.0-alpha.3",

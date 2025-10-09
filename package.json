@@ -85,7 +85,7 @@
     "sort-package-json": "^2.7.0",
     "syncpack": "^12.3.2",
     "typescript": "^5.8.3",
-    "vitest": "^2.1.8",
+    "vitest": "^3.2.4",
     "wait-on": "^7.0.1"
   },
   "packageManager": "pnpm@9.4.0+sha256.b6fd0bfda555e7e584ad7e56b30c68b01d5a04f9ee93989f4b93ca8473c49c74",
@@ -97,6 +97,5 @@
     "patchedDependencies": {
       "@changesets/git@3.0.0": "patches/@changesets__git@3.0.0.patch"
     }
-  },
-  "nx": {}
+  }
 }

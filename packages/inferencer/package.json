@@ -151,7 +151,7 @@
     "react-test-renderer": "^18.2.0",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "@ant-design/icons": "^5.5.1",

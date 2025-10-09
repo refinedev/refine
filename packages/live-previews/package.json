@@ -84,7 +84,7 @@
     "nodemon": "^2.0.20",
     "rimraf": "3.0.2",
     "typescript": "^5.8.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.2.4"
   },
   "engines": {
     "node": ">=20"

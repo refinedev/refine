@@ -68,7 +68,7 @@
     "identity-obj-proxy": "^3.0.0",
     "tsup": "^6.7.0",
     "typescript": "^5.8.3",
-    "vitest": "^2.1.8"
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "@tanstack/react-query": "^5.81.5",
