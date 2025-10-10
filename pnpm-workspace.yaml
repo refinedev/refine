@@ -1,10 +1,10 @@
 packages:
-  - "packages/*"
-  - "examples/*"
-  - "!examples/monorepo-*"
-  - "!examples/with-nx"
-  - "!documentation"
-  - "!examples/blog-*"
-  - "!examples/mern-dashboard-client"
-  - "!examples/with-nextjs-headless"
-  - "!examples/store"
+  - packages/*
+  - examples/*
+  - !examples/monorepo-*
+  - !examples/with-nx
+  - !documentation
+  - !examples/blog-*
+  - !examples/mern-dashboard-client
+  - !examples/with-nextjs-headless
+  - !examples/store
