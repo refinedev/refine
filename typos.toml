@@ -1,6 +1,7 @@
 [default]
 locale = "en-us"
 
+# Words or patterns to ignore (Refine-specific and custom)
 extend-ignore-re = [
     "\\.refine",
     "\\.refine\\.",
@@ -30,38 +31,11 @@ extend-ignore-re = [
     "\"refine\"",
     "\"refine",
     "refineTheme",
-    "exitt",
     "refine\\:",
     "refine devtools",
+    "refine dev",
     "const [a-zA-Z0-9_]+ = .*",
     "Example: .*",
     "RGBa",
     "Abd",
-    '.*/refine.*\.jpg',
-    '.*/refine.*\.png',
-    "refine dev"
-]
-
-[files]
-extend-exclude = ["documentation/docs/partials/_partial-translation-file-de.md", "documentation/versioned_docs", "documentation/versioned_sidebars", "*.ts", "*.tsx", "refine-*", "packages", "examples", "*.js", "*.json", "*.svg", "*.png", "*.jpg", "*.jpeg", "pnpm-lock.yaml"]
-ignore-vcs = true
-
-[default.extend-words]
-nin = "nin"
-OT = "OT"
-prev = "prev"
-prepend = "prepend"
-prepended = "prepended"
-goes = "goes"
-IIF = "IIF"
-Preact = "Preact"
-AKS = "AKS"
-ege = "ege"
-nd = "nd"
-DAA = "DAA"
-bare = "bare"
-inovice = "invoice"
-refine = "Refine"
-Axe = "Axe"
-HashiCorp = "HashiCorp"
-Hashi = "Hashi"
+    '.*/refine.*\\
