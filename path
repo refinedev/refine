@@ -1,0 +1,33 @@
+#!/usr/bin/env node
+/**
+ * Ensures cli.cjs exists in the dist folders of the specified packages.
+ */
+
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// Get __dirname in ES module context
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const content = "#! /usr/bin/env node\n";
+
+const packageNames = ["cli", "devtools-server"];
+
+for (const packageName of packageNames) {
+  try {
+    const distPath = path.resolve(__dirname, "packages", packageName, "dist");
+
+    // Create folder if not exists
+    fs.mkdirSync(distPath, { recursive: true });
+
+    // Write cli.cjs
+    const targetFile = path.join(distPath, "cli.cjs");
+    fs.writeFileSync(targetFile, content, "utf8");
+
+    console.log(`✅ Created: ${targetFile}`);
+  } catch (error) {
+    console.error(`❌ Failed to create cli.cjs for ${packageName}:`, error);
+  }
+}
