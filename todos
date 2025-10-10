@@ -1,0 +1,21 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.7.0/schema.json",
+  "formatter": { "enabled": true },
+  "linter": { "enabled": true },
+  "organizeImports": { "enabled": true },
+  "files": {
+    "ignore": [
+      "node_modules",
+      "dist",
+      "build",
+      "coverage",
+      "packages/**/dist",
+      "examples/**/dist",
+      ".next",
+      ".turbo",
+      ".cache",
+      "documentation",
+      "pnpm-lock.yaml"
+    ]
+  }
+}
