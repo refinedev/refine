@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useCallback } from "react"; // ADDED useCallback
 
 import { getXRay } from "@refinedev/devtools-internal";
 import {
@@ -200,6 +200,34 @@ export const useList = <
     },
   });
 
+  // START OF FIX: Memoize the select function using useCallback
+  const select = useCallback(
+    (rawData: GetListResponse<TQueryFnData>): GetListResponse<TData> => {
+      let data = rawData;
+
+      const { currentPage, mode, pageSize } = prefferedPagination;
+
+      if (mode === "client") {
+        data = {
+          ...data,
+          data: data.data.slice(
+            (currentPage - 1) * pageSize,
+            currentPage * pageSize,
+          ),
+          total: data.total,
+        };
+      }
+
+      if (queryOptions?.select) {
+        return queryOptions?.select?.(data);
+      }
+
+      return data as unknown as GetListResponse<TData>;
+    },
+    [prefferedPagination, queryOptions?.select], // Dependencies: Only recreate when pagination or user's select function changes
+  );
+  // END OF FIX
+
   const queryResponse = useQuery<
     GetListResponse<TQueryFnData>,
     TError,
@@ -238,28 +266,7 @@ export const useList = <
       typeof queryOptions?.enabled !== "undefined"
         ? queryOptions?.enabled
         : !!resource?.name,
-    select: (rawData) => {
-      let data = rawData;
-
-      const { currentPage, mode, pageSize } = prefferedPagination;
-
-      if (mode === "client") {
-        data = {
-          ...data,
-          data: data.data.slice(
-            (currentPage - 1) * pageSize,
-            currentPage * pageSize,
-          ),
-          total: data.total,
-        };
-      }
-
-      if (queryOptions?.select) {
-        return queryOptions?.select?.(data);
-      }
-
-      return data as unknown as GetListResponse<TData>;
-    },
+    select: select, // CORRECTED: Now uses the memoized select function
     meta: {
       ...queryOptions?.meta,
       ...getXRay("useList", resource?.name),
