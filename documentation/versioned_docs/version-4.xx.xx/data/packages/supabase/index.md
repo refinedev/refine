@@ -1338,7 +1338,6 @@ const App: React.FC = () => {
                                                 lineHeight: 0,
                                             }}
                                         />
-                                    ),
                                 },
                             ]}
                             {/* highlight-end */}
