@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 
 type NavigateToResourceProps = {
   resource?: string;
+  fallbackTo?: string;
   meta?: Record<string, unknown>;
 };
 
 export const NavigateToResource = ({
   resource: resourceProp,
+  fallbackTo,
   meta,
 }: NavigateToResourceProps) => {
   const ran = React.useRef(false);
@@ -35,6 +37,9 @@ export const NavigateToResource = ({
         }
         ran.current = true;
       }
+    } else if (fallbackTo) {
+      console.warn(`No resource is found. navigation to ${fallbackTo}.`);
+      replace(fallbackTo);
     }
   }, [toResource, replace, meta, getToPath]);
 
