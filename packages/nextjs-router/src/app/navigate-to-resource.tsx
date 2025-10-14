@@ -40,6 +40,7 @@ export const NavigateToResource = ({
     } else if (fallbackTo) {
       console.warn(`No resource is found. navigation to ${fallbackTo}.`);
       replace(fallbackTo);
+      ran.current = true;
     }
   }, [toResource, replace, meta, getToPath]);
 

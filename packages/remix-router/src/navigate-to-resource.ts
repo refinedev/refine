@@ -37,6 +37,7 @@ export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
     } else if (fallbackTo) {
       console.warn(`No resource is found. navigation to ${fallbackTo}.`);
       navigate(fallbackTo, { replace: true });
+      ran.current = true;
     }
   }, [toResource, meta, navigate, getToPath]);
 
