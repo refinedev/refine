@@ -658,6 +658,8 @@ const App = () => {
 
 `resource` (optional) - The name of the resource to navigate to. It will redirect to the first `list` route in the `resources` array if not provided.
 
+`fallbackTo` (optional) - The path to navigate to if no resource is found. If not provided and no resource is found, no navigation will be made.
+
 `meta` (optional) - The meta object to use if the route has parameters in it. The parameters in the current location will also be used to compose the route but `meta` will take precedence.
 
 ### UnsavedChangesNotifier
