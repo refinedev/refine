@@ -15,7 +15,7 @@
     "@refinedev/core": "^5.0.4",
     "@refinedev/react-hook-form": "^5.0.1",
     "@refinedev/react-table": "^6.0.0",
-    "@refinedev/remix-router": "^4.0.1",
+    "@refinedev/remix-router": "^4.0.2",
     "@refinedev/simple-rest": "^6.0.0",
     "@remix-run/node": "^2.4.0",
     "@remix-run/react": "^2.4.0",

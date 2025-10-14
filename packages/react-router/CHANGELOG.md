@@ -1,5 +1,15 @@
 # @refinedev/react-router-v6
 
+## 2.0.2
+
+### Patch Changes
+
+- [#7078](https://github.com/refinedev/refine/pull/7078) [`5518bee265a48abf3dbb3befc7028a53643847da`](https://github.com/refinedev/refine/commit/5518bee265a48abf3dbb3befc7028a53643847da) Thanks [@erenkurnaz](https://github.com/erenkurnaz)! - feat: added `fallbackTo` prop to `NavigateToResource` component #7077
+
+  Now with `fallbackTo` prop, you can specify a fallback route when no resource is found to navigate to. The component will navigate to the provided fallback path instead of doing nothing, providing better user experience.
+
+  Resolves #7077
+
 ## 2.0.1
 
 ### Patch Changes

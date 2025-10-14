@@ -25,7 +25,7 @@
     "@refinedev/cli": "^2.16.49",
     "@refinedev/core": "^5.0.4",
     "@refinedev/react-hook-form": "^5.0.1",
-    "@refinedev/react-router": "^2.0.1",
+    "@refinedev/react-router": "^2.0.2",
     "@refinedev/react-table": "^6.0.0",
     "@refinedev/simple-rest": "^6.0.0",
     "@tanstack/query-sync-storage-persister": "^4.22.0",

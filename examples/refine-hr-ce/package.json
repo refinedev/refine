@@ -36,7 +36,7 @@
     "@refinedev/mui": "^7.0.0",
     "@refinedev/nestjsx-crud": "^6.0.0",
     "@refinedev/react-hook-form": "^5.0.1",
-    "@refinedev/react-router": "^2.0.1",
+    "@refinedev/react-router": "^2.0.2",
     "@refinedev/rest": "^2.0.2",
     "@tanstack/react-query": "^5.81.5",
     "dayjs": "^1.10.7",
