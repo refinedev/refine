@@ -4,11 +4,13 @@ import { useNavigate } from "@remix-run/react";
 
 type NavigateToResourceProps = PropsWithChildren<{
   resource?: string;
+  fallbackTo?: string;
   meta?: Record<string, unknown>;
 }>;
 
 export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
   resource: resourceProp,
+  fallbackTo,
   meta,
 }) => {
   const ran = React.useRef(false);
@@ -32,6 +34,9 @@ export const NavigateToResource: React.FC<NavigateToResourceProps> = ({
         }
         ran.current = true;
       }
+    } else if (fallbackTo) {
+      console.warn(`No resource is found. navigation to ${fallbackTo}.`);
+      navigate(fallbackTo, { replace: true });
     }
   }, [toResource, meta, navigate, getToPath]);
 
