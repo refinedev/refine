@@ -111,7 +111,7 @@ import React from "react";
 import { useLogin } from "@refinedev/core";
 
 export const Login = () => {
-    const { mutate, mutation: { isPending } } = useLogin();
+    const { mutate, isPending } = useLogin();
 
     const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
@@ -249,7 +249,7 @@ import React from "react";
 import { useLogout } from "@refinedev/core";
 
 export const Header = () => {
-  const { mutate, mutation: { isPending } } = useLogout();
+  const { mutate, isPending } = useLogout();
 
   return (
     <>
