@@ -26,7 +26,7 @@
     "@refinedev/antd": "^6.0.2",
     "@refinedev/cli": "^2.16.49",
     "@refinedev/core": "^5.0.4",
-    "@refinedev/react-router": "^2.0.1",
+    "@refinedev/react-router": "^2.0.2",
     "@refinedev/simple-rest": "^6.0.0",
     "antd": "^5.23.0",
     "react": "^19.1.0",

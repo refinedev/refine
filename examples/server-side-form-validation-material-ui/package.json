@@ -31,7 +31,7 @@
     "@refinedev/core": "^5.0.4",
     "@refinedev/mui": "^7.0.0",
     "@refinedev/react-hook-form": "^5.0.1",
-    "@refinedev/react-router": "^2.0.1",
+    "@refinedev/react-router": "^2.0.2",
     "@refinedev/simple-rest": "^6.0.0",
     "@uiw/react-md-editor": "^4.0.8",
     "react": "^19.1.0",

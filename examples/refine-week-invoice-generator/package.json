@@ -30,7 +30,7 @@
     "@refinedev/core": "^5.0.4",
     "@refinedev/inferencer": "^6.0.1",
     "@refinedev/kbar": "^2.0.0",
-    "@refinedev/react-router": "^2.0.1",
+    "@refinedev/react-router": "^2.0.2",
     "@refinedev/strapi-v4": "^7.0.0",
     "antd": "^5.23.0",
     "axios": "^1.11.0",

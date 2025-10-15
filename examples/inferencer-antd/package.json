@@ -29,7 +29,7 @@
     "@refinedev/core": "^5.0.4",
     "@refinedev/inferencer": "^6.0.1",
     "@refinedev/kbar": "^2.0.0",
-    "@refinedev/react-router": "^2.0.1",
+    "@refinedev/react-router": "^2.0.2",
     "@refinedev/simple-rest": "^6.0.0",
     "antd": "^5.23.0",
     "i18next": "^20.1.0",

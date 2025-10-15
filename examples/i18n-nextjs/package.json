@@ -17,7 +17,7 @@
     "@refinedev/core": "^5.0.4",
     "@refinedev/devtools": "^2.0.2",
     "@refinedev/kbar": "^2.0.0",
-    "@refinedev/nextjs-router": "^7.0.2",
+    "@refinedev/nextjs-router": "^7.0.3",
     "@refinedev/simple-rest": "^6.0.0",
     "antd": "^5.23.0",
     "cross-env": "^7.0.3",
