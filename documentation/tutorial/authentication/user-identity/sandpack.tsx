@@ -95,7 +95,7 @@ import React from "react";
 import { useLogout, useGetIdentity } from "@refinedev/core";
 
 export const Header = () => {
-  const { mutate, mutation: { isPending } } = useLogout();
+  const { mutate, isPending } = useLogout();
   const { data: identity } = useGetIdentity();
 
   return (
