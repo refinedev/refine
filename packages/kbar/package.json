@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/kbar",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "private": false,
   "description": "“Refine kbar (cmd+k/ctrl+k), providing powerful keyboard shortcut utilities for enhanced navigation and functionality.",
   "repository": {
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "^5.0.0",
+    "@refinedev/core": "^5.0.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/node": "^20",

@@ -1,5 +1,18 @@
 # @refinedev/devtools
 
+## 2.0.3
+
+### Patch Changes
+
+- [#7086](https://github.com/refinedev/refine/pull/7086) [`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3) Thanks [@BatuhanW](https://github.com/BatuhanW)! - feat: disable minify
+
+  Resolves #6417
+
+- Updated dependencies [[`5c57073cf7584a7ca28ad7e78dc25a16c72e83d3`](https://github.com/refinedev/refine/commit/5c57073cf7584a7ca28ad7e78dc25a16c72e83d3)]:
+  - @refinedev/devtools-server@2.0.1
+  - @refinedev/devtools-shared@2.0.1
+  - @refinedev/cli@2.16.50
+
 ## 2.0.2
 
 ### Patch Changes
