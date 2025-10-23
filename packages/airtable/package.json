@@ -1,6 +1,6 @@
 {
   "name": "@refinedev/airtable",
-  "version": "5.0.0",
+  "version": "5.0.1",
   "private": false,
   "description": "Airtable Data Provider for Refine, enabling seamless Airtable integrations.",
   "repository": {
@@ -47,7 +47,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/core": "5.0.4",
+    "@refinedev/core": "5.0.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/node": "^20",
     "@types/node-fetch": "^2.6.11",
