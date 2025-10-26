@@ -54,7 +54,7 @@ export const liveProvider = (
           return;
         }
 
-        return filters
+        const validFilters = filters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
               return `${filter.field}=${mapOperator(filter.operator)}.${
@@ -63,8 +63,17 @@ export const liveProvider = (
             }
             return;
           })
-          .filter(Boolean)
-          .join(",");
+          .filter(Boolean);
+
+        // Supabase Realtime only supports a single filter per subscription
+        // https://github.com/supabase/realtime/issues/486
+        if (validFilters.length > 1) {
+          console.warn(
+            `[refine/supabase]: Supabase Realtime only supports a single filter per subscription. Using the first filter: "${validFilters[0]}". Additional filters will be ignored.`,
+          );
+        }
+
+        return validFilters[0];
       };
 
       const events = types
