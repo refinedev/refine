@@ -243,9 +243,7 @@ export const CategoryList = () => {
   const { edit, show } = useNavigation();
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
+    reactTable: { getHeaderGroups, getRowModel, setOptions },
     refineCore: {
       tableQuery: { data: tableData },
     },
@@ -340,8 +338,10 @@ import { ColumnDef, flexRender } from "@tanstack/react-table";
 export const CategoryList = () => {
   ...
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: {
+      getHeaderGroups,
+      getRowModel,
+    },
     setOptions,
     refineCore: {
       tableQuery: { data: tableData },
