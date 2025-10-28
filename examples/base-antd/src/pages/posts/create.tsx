@@ -9,6 +9,7 @@ import type { IPost, ICategory } from "../../interfaces";
 
 export const PostCreate = () => {
   const { formProps, saveButtonProps } = useForm<IPost>({
+    // redirectOnSuccess : false,  for testing this functionality
     // warnWhenUnsavedChanges: true,
   });
 

@@ -81,6 +81,8 @@ export const useForm = <
   TResponse,
   TResponseError
 > => {
+  //  const { redirectOnSuccess } = props;
+  const redirectOnSuccess = props.redirectOnSuccess ?? true;
   const getMeta = useMeta();
   const invalidate = useInvalidate();
   const { redirect: defaultRedirect } = useRefineOptions();
@@ -148,6 +150,7 @@ export const useForm = <
   ) => {
     handleSubmitWithRedirect({
       redirect: redirect,
+      redirectOnSuccess,
       resource,
       id: redirectId,
       meta: { ...pickedMeta, ...routeParams },
@@ -239,13 +242,16 @@ export const useForm = <
       if (isAutosave && !isEdit) return reject(autosaveOnNonEditError);
 
       if (!isPessimistic && !isAutosave) {
+        if (redirectOnSuccess) {
+          deferExecution(() => onSuccessRedirect());
+        }
         // If the mutation mode is not pessimistic, handle the redirect immediately in an async manner
         // `setWarnWhen` blocks the redirects until set to `false`
         // If redirect is done before the value is properly set, it will be blocked.
         // We're deferring the execution of the redirect to ensure that the value is set properly.
-        deferExecution(() => onSuccessRedirect());
         // Resolve the promise immediately
         resolve();
+        return;
       }
 
       const variables:
@@ -287,7 +293,7 @@ export const useForm = <
       })
         // If the mutation mode is pessimistic, resolve the promise after the mutation is succeeded
         .then((data) => {
-          if (isPessimistic && !isAutosave) {
+          if (isPessimistic && !isAutosave && redirectOnSuccess) {
             deferExecution(() => onSuccessRedirect(data?.data?.id));
           }
           if (isAutosave) {

@@ -8,6 +8,7 @@ import type { RedirectAction } from "../form/types";
 
 export type UseRedirectionAfterSubmissionType = () => (options: {
   redirect: RedirectAction;
+  redirectOnSuccess?: boolean;
   resource?: IResourceItem;
   id?: BaseKey;
   meta?: MetaQuery;
@@ -20,15 +21,19 @@ export const useRedirectionAfterSubmission: UseRedirectionAfterSubmissionType =
     const handleSubmitWithRedirect = useCallback(
       ({
         redirect,
+        redirectOnSuccess = true,
         resource,
         id,
         meta = {},
       }: {
         redirect: RedirectAction;
+        redirectOnSuccess?: boolean;   
         resource?: IResourceItem;
         id?: BaseKey;
         meta?: MetaQuery;
       }) => {
+
+        if (!redirectOnSuccess) return;
         if (redirect && resource) {
           if (!!resource.show && redirect === "show" && id) {
             return show(resource, id, undefined, meta);

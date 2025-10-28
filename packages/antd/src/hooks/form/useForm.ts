@@ -49,6 +49,7 @@ export type UseFormProps<
    * @see {@link https://refine.dev/docs/advanced-tutorials/forms/server-side-form-validation/}
    */
   disableServerSideValidation?: boolean;
+  redirectOnSuccess?: boolean; // NEW
 } & AutoSaveProps<TVariables> &
   Pick<UseFormConfig, "defaultFormValues">;
 
@@ -110,6 +111,7 @@ export const useForm = <
   submitOnEnter = false,
   warnWhenUnsavedChanges: warnWhenUnsavedChangesProp,
   redirect,
+  redirectOnSuccess,
   successNotification,
   errorNotification,
   meta,
@@ -233,6 +235,7 @@ export const useForm = <
       onMutationErrorProp?.(error, _variables, _context);
     },
     redirect,
+    redirectOnSuccess,
     action,
     resource,
     successNotification,

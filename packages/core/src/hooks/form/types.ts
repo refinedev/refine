@@ -208,7 +208,13 @@ export type UseFormProps<
   ActionParams &
   LiveModeProps &
   UseLoadingOvertimeOptionsProps &
-  AutoSaveProps<TVariables>;
+  AutoSaveProps<TVariables> & {
+    /**
+     * Whether to automatically redirect after a successful mutation.
+     * @default true
+     */
+    redirectOnSuccess?: boolean;
+  };
 
 export type UseFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
