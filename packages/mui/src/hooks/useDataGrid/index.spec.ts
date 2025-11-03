@@ -307,4 +307,83 @@ describe("useDataGrid Hook", () => {
       );
     });
   });
+
+  it("should preserve rowCount during loading states to prevent pagination reset", async () => {
+    let resolvePromise: (value: any) => void;
+    
+    const mockDataProvider = {
+      ...MockJSONServer,
+      getList: vi.fn().mockImplementation(() => {
+        return new Promise((resolve) => {
+          resolvePromise = resolve;
+        });
+      }),
+    };
+
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: mockDataProvider,
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    // Initially, rowCount should be 0
+    expect(result.current.dataGridProps.rowCount).toBe(0);
+
+    // Resolve with initial data
+    await act(async () => {
+      resolvePromise({ data: posts.slice(0, 5), total: 100 });
+    });
+
+    await waitFor(() => {
+      expect(result.current.dataGridProps.rowCount).toBe(100);
+    });
+
+    // Trigger a new request (e.g., page change)
+    act(() => {
+      result.current.setCurrentPage(2);
+    });
+
+    // During loading, rowCount should be preserved (not reset to 0)
+    expect(result.current.dataGridProps.rowCount).toBe(100);
+
+    // Resolve with new data
+    await act(async () => {
+      resolvePromise({ data: posts.slice(5, 10), total: 100 });
+    });
+
+    await waitFor(() => {
+      expect(result.current.dataGridProps.rowCount).toBe(100);
+    });
+  });
+
+  it("should handle rowCount of 0 correctly", async () => {
+    const { result } = renderHook(
+      () =>
+        useDataGrid({
+          resource: "posts",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            ...MockJSONServer,
+            getList: () => Promise.resolve({ data: [], total: 0 }),
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    await waitFor(() => {
+      expect(result.current.tableQuery.isSuccess).toBeTruthy();
+    });
+
+    expect(result.current.dataGridProps.rowCount).toBe(0);
+  });
 });

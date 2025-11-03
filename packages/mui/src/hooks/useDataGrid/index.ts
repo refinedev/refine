@@ -195,7 +195,7 @@ export function useDataGrid<
 
   const rowCountRef = useRef(data?.total || 0);
   const rowCount = useMemo(() => {
-    if (data?.total) {
+    if (data && typeof data.total === 'number') {
       rowCountRef.current = data.total;
     }
     return rowCountRef.current;
