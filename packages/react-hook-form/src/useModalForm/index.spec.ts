@@ -387,4 +387,59 @@ describe("useModalForm Hook", () => {
       title: "default-title",
     });
   });
+
+  it("should handle action switching correctly - modal should show after switching from edit to create", async () => {
+    // This test reproduces the bug described in the issue
+    const { result, rerender } = renderHook(
+      ({ action }: { action: "create" | "edit" }) =>
+        useModalForm({
+          refineCoreProps: {
+            resource: "posts",
+            action,
+          },
+        }),
+      {
+        wrapper: TestWrapper({}),
+        initialProps: { action: "create" as const },
+      },
+    );
+
+    // Step 1: Open create modal - should work
+    await act(async () => {
+      result.current.modal.show();
+    });
+    expect(result.current.modal.visible).toBe(true);
+
+    // Step 2: Close modal
+    await act(async () => {
+      result.current.modal.close();
+    });
+    expect(result.current.modal.visible).toBe(false);
+
+    // Step 3: Switch to edit action
+    rerender({ action: "edit" });
+
+    // Step 4: Open edit modal with ID - should work
+    await act(async () => {
+      result.current.modal.show("5");
+    });
+    expect(result.current.modal.visible).toBe(true);
+
+    // Step 5: Close modal
+    await act(async () => {
+      result.current.modal.close();
+    });
+    expect(result.current.modal.visible).toBe(false);
+
+    // Step 6: Switch back to create action
+    rerender({ action: "create" });
+
+    // Step 7: Try to open create modal again - THIS IS WHERE THE BUG OCCURS
+    await act(async () => {
+      result.current.modal.show();
+    });
+    
+    // This should pass but currently fails due to the bug
+    expect(result.current.modal.visible).toBe(true);
+  });
 });
