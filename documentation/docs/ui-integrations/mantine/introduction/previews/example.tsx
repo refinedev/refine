@@ -11,7 +11,7 @@ export default function Example() {
         "@refinedev/core": "^5.0.0",
         "@refinedev/react-router": "latest",
         "@refinedev/simple-rest": "^6.0.0",
-        "@refinedev/react-table": "^6.0.1",
+        "@refinedev/react-table": "latest",
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
