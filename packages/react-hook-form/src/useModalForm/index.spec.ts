@@ -434,12 +434,11 @@ describe("useModalForm Hook", () => {
     // Step 6: Switch back to create action
     rerender({ action: "create" });
 
-    // Step 7: Try to open create modal again - THIS IS WHERE THE BUG OCCURS
+    // Step 7: Try to open create modal again
     await act(async () => {
       result.current.modal.show();
     });
     
-    // This should pass but currently fails due to the bug
     expect(result.current.modal.visible).toBe(true);
   });
 });
