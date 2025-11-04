@@ -281,7 +281,6 @@ render(
           <ReactRouter.Route index element={<PostList />} />
         </ReactRouter.Route>
         <ReactRouter.Route path="/posts/create" element={<PostCreate />} />
-        <ReactRouter.Route path="/posts/edit/:id" element={<PostEditPage />} />
       </ReactRouter.Routes>
     </RefineAntdDemo>
   </ReactRouter.BrowserRouter>,
@@ -461,7 +460,6 @@ render(
           <ReactRouter.Route index element={<PostList />} />
         </ReactRouter.Route>
         <ReactRouter.Route path="/posts/create" element={<PostCreate />} />
-        <ReactRouter.Route path="/posts/edit/:id" element={<PostEditPage />} />
       </ReactRouter.Routes>
     </RefineAntdDemo>
   </ReactRouter.BrowserRouter>,
