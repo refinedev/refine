@@ -7,11 +7,11 @@ export default function Example() {
       showNavigator
       previewOnly
       dependencies={{
-        "@refinedev/mantine": "^2.28.21",
-        "@refinedev/core": "^4.45.1",
+        "@refinedev/mantine": "^3.0.2",
+        "@refinedev/core": "^5.0.0",
         "@refinedev/react-router": "latest",
-        "@refinedev/simple-rest": "^4.5.4",
-        "@refinedev/react-table": "^5.6.4",
+        "@refinedev/simple-rest": "^6.0.0",
+        "@refinedev/react-table": "^6.0.1",
         "@tanstack/react-table": "^8.2.6",
         "@tabler/icons-react": "^3.1.0",
         "@emotion/react": "^11.8.2",
@@ -255,9 +255,7 @@ export const ProductList = () => {
     );
 
     const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
+        reactTable: { getHeaderGroups, getRowModel, setOptions },
         refineCore: {
             setCurrentPage,
             pageCount,

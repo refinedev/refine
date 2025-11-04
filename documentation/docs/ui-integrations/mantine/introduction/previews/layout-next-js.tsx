@@ -130,9 +130,7 @@ export default function ProductList() {
     );
 
     const {
-        getHeaderGroups,
-        getRowModel,
-        setOptions,
+        reactTable: { getHeaderGroups, getRowModel, setOptions },
         refineCore: {
             setCurrentPage,
             pageCount,

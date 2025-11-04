@@ -1913,21 +1913,23 @@ export const ProductList = () => {
   const { edit, show, create } = useNavigation();
 
   const {
-    getHeaderGroups,
-    getRowModel,
-    setOptions,
+    reactTable: {
+      getHeaderGroups,
+      getRowModel,
+      setOptions,
+      getState,
+      setPageIndex,
+      getCanPreviousPage,
+      getPageCount,
+      getCanNextPage,
+      nextPage,
+      previousPage,
+      setPageSize,
+      getColumn,
+    },
     refineCore: {
       tableQuery: { data: tableData },
     },
-    getState,
-    setPageIndex,
-    getCanPreviousPage,
-    getPageCount,
-    getCanNextPage,
-    nextPage,
-    previousPage,
-    setPageSize,
-    getColumn,
   } = useTable({
     columns,
   });
@@ -2143,8 +2145,7 @@ export const ProductList = () => {
   const { edit, show, create } = useNavigation();
 
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     refineCore: { filters, setCurrentPage, setFilters },
     getState,
     setPageIndex,
@@ -3043,8 +3044,7 @@ export const CategoryList = () => {
   const { edit, show, create } = useNavigation();
 
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     refineCore: { setCurrentPage, filters, setFilters },
     getState,
     setPageIndex,

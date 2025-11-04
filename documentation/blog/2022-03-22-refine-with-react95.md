@@ -1048,8 +1048,7 @@ export const PostList = () => {
   );
 
   const {
-    getHeaderGroups,
-    getRowModel,
+    reactTable: { getHeaderGroups, getRowModel },
     options: { pageCount },
     getState,
     setPageIndex,
