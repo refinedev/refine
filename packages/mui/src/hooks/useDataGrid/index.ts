@@ -3,7 +3,9 @@ import {
   useLiveMode,
   useTable as useTableCore,
   type BaseRecord,
+  type CrudFilter,
   type CrudFilters,
+  type CrudSort,
   type HttpError,
   type Pagination,
   type Prettify,
@@ -120,6 +122,9 @@ export type UseDataGridReturnType<
  *
  */
 
+const defaultPermanentFilter: CrudFilter[] = [];
+const defaultPermanentSort: CrudSort[] = [];
+
 export function useDataGrid<
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
@@ -207,8 +212,10 @@ export function useDataGrid<
     (sortersFromProp?.mode || "server") === "server";
   const isPaginationEnabled = (pagination?.mode ?? "server") !== "off";
 
-  const preferredPermanentSorters = sortersFromProp?.permanent ?? [];
-  const preferredPermanentFilters = filtersFromProp?.permanent ?? [];
+  const preferredPermanentSorters =
+    sortersFromProp?.permanent ?? defaultPermanentSort;
+  const preferredPermanentFilters =
+    filtersFromProp?.permanent ?? defaultPermanentFilter;
 
   const handlePageChange = (page: number) => {
     if (isPaginationEnabled) {
@@ -303,6 +310,14 @@ export function useDataGrid<
     });
   };
 
+  const transformedSortModel = useMemo(
+    () =>
+      transformCrudSortingToSortModel(
+        differenceWith(sorters, preferredPermanentSorters, isEqual),
+      ),
+    [sorters, preferredPermanentSorters],
+  );
+
   return {
     tableQuery,
     dataGridProps: {
@@ -312,9 +327,7 @@ export function useDataGrid<
       rowCount,
       ...dataGridPaginationValues(),
       sortingMode: isServerSideSortingEnabled ? "server" : "client",
-      sortModel: transformCrudSortingToSortModel(
-        differenceWith(sorters, preferredPermanentSorters, isEqual),
-      ),
+      sortModel: transformedSortModel,
       onSortModelChange: handleSortModelChange,
       filterMode: isServerSideFilteringEnabled ? "server" : "client",
       filterModel: transformCrudFiltersToFilterModel(
