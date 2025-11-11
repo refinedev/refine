@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 
 import { getXRay } from "@refinedev/devtools-internal";
+import { useMemo } from "react";
 import {
   type QueryObserverResult,
   type UseQueryOptions,
@@ -200,6 +201,38 @@ export const useList = <
     },
   });
 
+  // Memoize the select function to prevent it from running multiple times
+  // Note: If queryOptions.select is not memoized by the user, this will still
+  // re-run on every render. Users should wrap their select function in useCallback.
+  const memoizedSelect = useMemo(() => {
+    return (rawData: GetListResponse<TQueryFnData>): GetListResponse<TData> => {
+      let data = rawData;
+
+      if (prefferedPagination.mode === "client") {
+        data = {
+          ...data,
+          data: data.data.slice(
+            (prefferedPagination.currentPage - 1) *
+              prefferedPagination.pageSize,
+            prefferedPagination.currentPage * prefferedPagination.pageSize,
+          ),
+          total: data.total,
+        };
+      }
+
+      if (queryOptions?.select) {
+        return queryOptions?.select?.(data);
+      }
+
+      return data as unknown as GetListResponse<TData>;
+    };
+  }, [
+    prefferedPagination.currentPage,
+    prefferedPagination.pageSize,
+    prefferedPagination.mode,
+    queryOptions?.select,
+  ]);
+
   const queryResponse = useQuery<
     GetListResponse<TQueryFnData>,
     TError,
@@ -238,28 +271,7 @@ export const useList = <
       typeof queryOptions?.enabled !== "undefined"
         ? queryOptions?.enabled
         : !!resource?.name,
-    select: (rawData) => {
-      let data = rawData;
-
-      const { currentPage, mode, pageSize } = prefferedPagination;
-
-      if (mode === "client") {
-        data = {
-          ...data,
-          data: data.data.slice(
-            (currentPage - 1) * pageSize,
-            currentPage * pageSize,
-          ),
-          total: data.total,
-        };
-      }
-
-      if (queryOptions?.select) {
-        return queryOptions?.select?.(data);
-      }
-
-      return data as unknown as GetListResponse<TData>;
-    },
+    select: memoizedSelect,
     meta: {
       ...queryOptions?.meta,
       ...getXRay("useList", resource?.name),
