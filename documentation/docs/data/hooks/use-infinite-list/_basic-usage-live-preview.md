@@ -9,12 +9,8 @@ import { useInfiniteList } from "@refinedev/core";
 
 const PostList = () => {
   const {
-    data,
-    isError,
-    isLoading,
-    hasNextPage,
-    fetchNextPage,
-    isFetchingNextPage,
+    result: { data, hasNextPage, hasPreviousPage },
+    query: { isError, isLoading, fetchNextPage, isFetchingNextPage },
   } = useInfiniteList({
     resource: "categories",
     pagination: {
