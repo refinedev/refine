@@ -97,7 +97,7 @@ const PostList: React.FC = () => {
 
   const categoryIds = result?.data?.map((item) => item.categoryId) ?? [];
   const {
-    result,
+    result: categoriesData,
     query: { isLoading },
   } = CoreUseMany<ICategory>({
     resource: "61c43adc284ac",
@@ -127,7 +127,9 @@ const PostList: React.FC = () => {
 
             return (
               <RefineAntdTextField
-                value={result?.data.find((item) => item.id === value)?.title}
+                value={
+                  categoriesData?.data.find((item) => item.id === value)?.title
+                }
               />
             );
           }}
@@ -557,7 +559,7 @@ import { Table, Space } from "antd";
 import { IPost, ICategory } from "interfaces";
 
 export const PostsList: React.FC = () => {
-  const { result, sorter } = useTable<IPost>({
+  const { result, sorters, tableProps } = useTable<IPost>({
     sorters: {
       initial: [
         {

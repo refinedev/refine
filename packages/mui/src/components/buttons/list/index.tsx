@@ -11,7 +11,7 @@ import ListOutlined from "@mui/icons-material/ListOutlined";
 import type { ListButtonProps } from "../types";
 
 /**
- * `<ListButton>` is using uses Material UI {@link https://mui.com/components/buttons/ `<Button>`} component.
+ * `<ListButton>` is using uses Material UI {@link https://mui.com/material-ui/react-button/ `<Button>`} component.
  * It uses the  {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation#list `list`} method from {@link https://refine.dev/docs/api-reference/core/hooks/navigation/useNavigation `useNavigation`} under the hood.
  * It can be useful when redirecting the app to the list page route of resource}.
  *

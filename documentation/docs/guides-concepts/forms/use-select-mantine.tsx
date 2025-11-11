@@ -9,7 +9,7 @@ export default function UseSelectMantine() {
         "@refinedev/core": "latest",
         "@refinedev/simple-rest": "latest",
         "@refinedev/react-hook-form": "latest",
-        "@refinedev/mantine": "^2.28.21",
+        "@refinedev/mantine": "latest",
         "@mantine/core": "^5.10.4",
         "@mantine/notifications": "^5.10.4",
         "@emotion/react": "^11.8.2",
@@ -109,7 +109,7 @@ export const EditPage: React.FC = () => {
             resource: "categories",
             defaultValue: product?.category.id,
         });
-    const categories = categoriesQueryResult?.data?.data;
+    const categories = categoriesQuery?.result?.data;
 
     // find category of product by id from categories
     const categoryOfProduct = categories?.find(
