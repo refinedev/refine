@@ -110,11 +110,9 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
 export type UseCustomReturnType<TData, TError> = {
   query: QueryObserverResult<CustomResponse<TData>, TError>;
   result: {
-    data: CustomResponse<TData>["data"];
+    data: CustomResponse<TData>["data"] | undefined;
   };
 } & UseLoadingOvertimeReturnType;
-
-const EMPTY_OBJECT = Object.freeze({}) as any;
 
 export const useCustom = <
   TQueryFnData extends BaseRecord = BaseRecord,
@@ -233,7 +231,7 @@ export const useCustom = <
     return {
       query: queryResponse,
       result: {
-        data: queryResponse.data?.data || EMPTY_OBJECT,
+        data: queryResponse.data?.data,
       },
       overtime: { elapsedTime },
     };

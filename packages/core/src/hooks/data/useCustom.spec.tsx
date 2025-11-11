@@ -27,7 +27,45 @@ describe("useCustom Hook", () => {
 
     const { data } = result.current.result;
 
+    expect(data).toBeDefined();
     expect(data).toHaveLength(2);
+  });
+
+  it("should return undefined data while loading", async () => {
+    const { result } = renderHook(
+      () =>
+        useCustom({
+          url: "remoteUrl",
+          method: "get",
+        }),
+      {
+        wrapper: TestWrapper({
+          dataProvider: {
+            default: {
+              ...MockJSONServer.default,
+              custom: () => {
+                return new Promise((res) => {
+                  setTimeout(() => res({ data: [1, 2, 3] } as any), 100);
+                });
+              },
+            },
+          },
+          resources: [{ name: "posts" }],
+        }),
+      },
+    );
+
+    // While loading, data should be undefined
+    expect(result.current.query.isPending).toBeTruthy();
+    expect(result.current.result.data).toBeUndefined();
+
+    await waitFor(() => {
+      expect(result.current.query.isSuccess).toBeTruthy();
+    });
+
+    // After loading, data should be defined
+    expect(result.current.result.data).toBeDefined();
+    expect(result.current.result.data).toEqual([1, 2, 3]);
   });
 
   describe("without custom query key", () => {
