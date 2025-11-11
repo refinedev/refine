@@ -438,7 +438,7 @@ describe("useModalForm Hook", () => {
     await act(async () => {
       result.current.modal.show();
     });
-    
+
     expect(result.current.modal.visible).toBe(true);
   });
 });
