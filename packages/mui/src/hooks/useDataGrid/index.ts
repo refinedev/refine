@@ -341,7 +341,7 @@ export function useDataGrid<
             return [key, (value as any).type];
           }),
         );
-        const isStateChanged = !isEqual(newColumnsTypes, columnsTypes);
+        const isStateChanged = !isEqual(newColumnsTypes, columnsTypes.current);
 
         if (isStateChanged) {
           columnsTypes.current = newColumnsTypes;
