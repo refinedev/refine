@@ -32,7 +32,9 @@ interface PostUniqueCheckResponse {
 
 const apiUrl = useApiUrl();
 
-const { data, isLoading } = useCustom<PostUniqueCheckResponse>({
+const {
+  query: { data, isLoading },
+} = useCustom<PostUniqueCheckResponse>({
   url: `${apiUrl}/posts-unique-check`,
   method: "get",
   config: {
@@ -316,10 +318,11 @@ useCustom({
 
 ### Return value
 
-| Description                             | Type                                                                                                                |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's useQuery | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-| overtime                                | `{ elapsedTime?: number }`                                                                                          |
+| Description                                       | Type                                                                                                                |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| query                                             | [`QueryObserverResult<CustomResponse<TData>, TError>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
+| overtime                                          | `{ elapsedTime?: number }`                                                                                          |
+| result <div className="required">Deprecated</div> | `{ data: CustomResponse<TData>["data"] }` Use `query.data?.data` instead                                            |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
