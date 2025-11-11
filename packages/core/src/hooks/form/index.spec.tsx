@@ -1347,4 +1347,138 @@ describe("useForm Hook", () => {
       });
     });
   });
+
+  describe("autoSave debounce stabilization", () => {
+    it("should preserve debounce window across re-renders and batch rapid changes", async () => {
+      vi.useFakeTimers();
+
+      const updateMock = vi
+        .fn()
+        .mockResolvedValue({ data: { id: "1", title: "test" } });
+
+      const { result, rerender } = renderHook(
+        ({ title }) =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1",
+            autoSave: {
+              enabled: true,
+              debounce: 1000,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                update: updateMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+          initialProps: { title: "initial" },
+        },
+      );
+
+      await act(async () => {
+        result.current.onFinishAutoSave({ title: "a" }).catch(() => {});
+        vi.advanceTimersByTime(300);
+        result.current.onFinishAutoSave({ title: "ab" }).catch(() => {});
+        vi.advanceTimersByTime(300);
+        result.current.onFinishAutoSave({ title: "abc" }).catch(() => {});
+        vi.advanceTimersByTime(300);
+      });
+
+      // No calls should have been made yet
+      expect(updateMock).toHaveBeenCalledTimes(0);
+
+      // Wait for debounce to complete
+      await act(async () => {
+        vi.advanceTimersByTime(1100);
+      });
+
+      expect(updateMock).toHaveBeenCalledTimes(1);
+      expect(updateMock).toHaveBeenCalledWith(
+        expect.objectContaining({
+          variables: { title: "abc" },
+        }),
+      );
+
+      vi.useRealTimers();
+    });
+
+    it("should cancel pending autosave on unmount", async () => {
+      vi.useFakeTimers();
+
+      const updateMock = vi
+        .fn()
+        .mockResolvedValue({ data: { id: "1", title: "test" } });
+
+      const { result, unmount } = renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "edit",
+            id: "1",
+            autoSave: {
+              enabled: true,
+              debounce: 1000,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: {
+              default: {
+                ...MockJSONServer.default,
+                update: updateMock,
+              },
+            },
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await act(async () => {
+        result.current.onFinishAutoSave({ title: "test" }).catch(() => {});
+        vi.advanceTimersByTime(500);
+      });
+
+      // Unmount before debounce completes
+      unmount();
+
+      // Wait past the debounce time
+      await act(async () => {
+        vi.advanceTimersByTime(1000);
+      });
+
+      // Update should not have been called because it was cancelled
+      expect(updateMock).toHaveBeenCalledTimes(0);
+
+      vi.useRealTimers();
+    });
+
+    it("should reject autosave in non-edit actions", async () => {
+      const { result } = renderHook(
+        () =>
+          useForm({
+            resource: "posts",
+            action: "create",
+            autoSave: {
+              enabled: true,
+            },
+          }),
+        {
+          wrapper: TestWrapper({
+            dataProvider: MockJSONServer,
+            resources: [{ name: "posts" }],
+          }),
+        },
+      );
+
+      await expect(
+        result.current.onFinishAutoSave({ title: "test" }),
+      ).rejects.toThrow("[useForm]: `autoSave` is only allowed in edit action");
+    });
+  });
 });
