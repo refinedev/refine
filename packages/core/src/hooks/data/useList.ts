@@ -202,19 +202,19 @@ export const useList = <
   });
 
   // Memoize the select function to prevent it from running multiple times
-  // Fixes: https://github.com/refinedev/refine/issues/6713
+  // Note: If queryOptions.select is not memoized by the user, this will still
+  // re-run on every render. Users should wrap their select function in useCallback.
   const memoizedSelect = useMemo(() => {
     return (rawData: GetListResponse<TQueryFnData>): GetListResponse<TData> => {
       let data = rawData;
 
-      const { currentPage, mode, pageSize } = prefferedPagination;
-
-      if (mode === "client") {
+      if (prefferedPagination.mode === "client") {
         data = {
           ...data,
           data: data.data.slice(
-            (currentPage - 1) * pageSize,
-            currentPage * pageSize,
+            (prefferedPagination.currentPage - 1) *
+              prefferedPagination.pageSize,
+            prefferedPagination.currentPage * prefferedPagination.pageSize,
           ),
           total: data.total,
         };
@@ -226,7 +226,12 @@ export const useList = <
 
       return data as unknown as GetListResponse<TData>;
     };
-  }, [prefferedPagination, queryOptions?.select]);
+  }, [
+    prefferedPagination.currentPage,
+    prefferedPagination.pageSize,
+    prefferedPagination.mode,
+    queryOptions?.select,
+  ]);
 
   const queryResponse = useQuery<
     GetListResponse<TQueryFnData>,
