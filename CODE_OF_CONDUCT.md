@@ -132,3 +132,5 @@ at [https://www.contributor-covenant.org/translations][translations].
 [Mozilla CoC]: https://github.com/mozilla/inclusion/blob/master/code-of-conduct-enforcement/consequence-ladder.md
 [FAQ]: https://www.contributor-covenant.org/faq
 [translations]: https://www.contributor-covenant.org/translations
+
+<!-- changes -->
