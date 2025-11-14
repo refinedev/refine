@@ -23,32 +23,33 @@ export const ThemedTitle: React.FC<RefineLayoutThemedTitleProps> = ({
   const Link = useLink();
 
   return (
-    <Link to="/" style={{ textDecoration: "none" }}>
-      <MuiLink
-        underline="none"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          gap: "12px",
-          ...wrapperStyles,
-        }}
-      >
-        <SvgIcon height="24px" width="24px" color="primary">
-          {icon}
-        </SvgIcon>
-        {!collapsed && (
-          <Typography
-            variant="h6"
-            fontWeight={700}
-            color="text.primary"
-            fontSize="inherit"
-            textOverflow="ellipsis"
-            overflow="hidden"
-          >
-            {text}
-          </Typography>
-        )}
-      </MuiLink>
-    </Link>
+    <MuiLink
+      component={Link as any}
+      to="/"
+      underline="none"
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        textDecoration: "none",
+        ...wrapperStyles,
+      }}
+    >
+      <SvgIcon height="24px" width="24px" color="primary">
+        {icon}
+      </SvgIcon>
+      {!collapsed && (
+        <Typography
+          variant="h6"
+          fontWeight={700}
+          color="text.primary"
+          fontSize="inherit"
+          textOverflow="ellipsis"
+          overflow="hidden"
+        >
+          {text}
+        </Typography>
+      )}
+    </MuiLink>
   );
 };

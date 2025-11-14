@@ -42,9 +42,17 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
   const { sx, ...restProps } = props;
 
   return (
-    <LinkComponent
+    <Button
+      component={LinkComponent}
       to={to}
       replace={false}
+      disabled={isDisabled}
+      startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
+      title={title}
+      variant="contained"
+      sx={{ minWidth: 0, textDecoration: "none", ...sx }}
+      data-testid={RefineButtonTestIds.CreateButton}
+      className={RefineButtonClassNames.CreateButton}
       onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
         if (isDisabled) {
           e.preventDefault();
@@ -55,24 +63,13 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           onClick(e);
         }
       }}
-      style={{ textDecoration: "none" }}
+      {...restProps}
     >
-      <Button
-        disabled={isDisabled}
-        startIcon={!hideText && <AddBoxOutlined {...svgIconProps} />}
-        title={title}
-        variant="contained"
-        sx={{ minWidth: 0, ...sx }}
-        data-testid={RefineButtonTestIds.CreateButton}
-        className={RefineButtonClassNames.CreateButton}
-        {...restProps}
-      >
-        {hideText ? (
-          <AddBoxOutlined fontSize="small" {...svgIconProps} />
-        ) : (
-          children ?? label
-        )}
-      </Button>
-    </LinkComponent>
+      {hideText ? (
+        <AddBoxOutlined fontSize="small" {...svgIconProps} />
+      ) : (
+        children ?? label
+      )}
+    </Button>
   );
 };
