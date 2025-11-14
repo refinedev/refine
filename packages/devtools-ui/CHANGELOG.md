@@ -1,5 +1,11 @@
 # @refinedev/devtools-ui
 
+## 2.0.2
+
+### Patch Changes
+
+- [#7116](https://github.com/refinedev/refine/pull/7116) [`05b71de508071e910bbeb0dc818343c9410fa6f5`](https://github.com/refinedev/refine/commit/05b71de508071e910bbeb0dc818343c9410fa6f5) Thanks [@BatuhanW](https://github.com/BatuhanW)! - chore: remove raffle request
+
 ## 2.0.1
 
 ### Patch Changes

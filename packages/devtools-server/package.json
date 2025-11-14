@@ -72,7 +72,7 @@
   },
   "devDependencies": {
     "@esbuild-plugins/node-resolve": "^0.1.4",
-    "@refinedev/devtools-ui": "2.0.1",
+    "@refinedev/devtools-ui": "2.0.2",
     "@testing-library/jest-dom": "^6.6.3",
     "@types/dedent": "^0.7.0",
     "@types/express": "^4.17.21",
