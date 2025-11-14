@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocumentation=self.webpackChunkdocumentation||[]).push([[89920],{47525:e=>{e.exports=JSON.parse('{"permalink":"/blog/tags/admin-panel","page":1,"postsPerPage":12,"totalPages":1,"totalCount":1,"blogDescription":"A resource for Refine, front-end ecosystem, and web development","blogTitle":"Blog"}')}}]);
