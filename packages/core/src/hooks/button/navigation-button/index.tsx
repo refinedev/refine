@@ -69,6 +69,7 @@ export function useNavigationButton(
     switch (props.action) {
       case "create":
       case "list":
+      case "custom":
         return navigation[`${props.action}Url`](resource, props.meta);
       default:
         if (!id) return "";
