@@ -20,6 +20,10 @@ export const liveProvider = (
     }): RealtimeChannel => {
       const resource = channel.replace("resources/", "");
 
+"packageManager": "pnpm@9.4.0+..."
+"packageManager": "pnpm@9.4.0+..."
+      const idsSet = params?.ids ? new Set(params.ids.map(String)) : undefined;
+
       const listener = (payload: RealtimePostgresChangesPayload<any>) => {
         if (
           types.includes("*") ||
@@ -28,16 +32,11 @@ export const liveProvider = (
           if (
             liveTypes[payload.eventType] !== "created" &&
             params?.ids !== undefined &&
-            payload.new?.id !== undefined
+            idsSet &&
+            payload.new?.id !== undefined &&
+            !idsSet.has(payload.new.id.toString())
           ) {
-            if (params.ids.map(String).includes(payload.new.id.toString())) {
-              callback({
-                channel,
-                type: liveTypes[payload.eventType],
-                date: new Date(payload.commit_timestamp),
-                payload: payload.new,
-              });
-            }
+            return;
           } else {
             callback({
               channel,
@@ -50,52 +49,53 @@ export const liveProvider = (
       };
 
       const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
-          return;
+        const supabaseFilters: string[] = [];
+
+        const convert = (filters: CrudFilters) => {
+            filters.map((filter: CrudFilter) => {
+                if (
+                    filter.operator !== "or" &&
+                    filter.operator !== "and" &&
+                    "field" in filter
+                ) {
+                    supabaseFilters.push(
+                        `${filter.field}=${mapOperator(filter.operator)}.${
+                            filter.value
+                        }`,
+                    );
+                }
+
+                if (filter.operator === "or" || filter.operator === "and") {
+                    throw new Error(
+                        `Operator "${filter.operator}" is not supported for Supabase real-time queries.`,
+                    );
+                }
+            });
+        };
+
+        if (filters) {
+            convert(filters);
         }
 
-        return filters
-          .map((filter: CrudFilter): string | undefined => {
-            if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
-            }
-            return;
-          })
-          .filter(Boolean)
-          .join(",");
+        return supabaseFilters.length > 0
+            ? supabaseFilters.join(",")
+            : undefined;
       };
 
-      const events = types
-        .map((x) => supabaseTypes[x])
-        .sort((a, b) => a.localeCompare(b));
       const filter = mapFilter(params?.filters);
-      const ch = `${channel}:${events.join("|")}${filter ? `:${filter}` : ""}`;
 
-      let client = supabaseClient.channel(ch);
-      for (let i = 0; i < events.length; i++) {
-        client = client.on(
+      return supabaseClient
+        .channel(channel)
+        .on(
           "postgres_changes",
-          {
-            event: events[i] as any,
-            schema:
-              meta?.schema ||
-              // @ts-expect-error TS2445 Property rest is protected and only accessible within class SupabaseClient and its subclasses.
-              supabaseClient?.rest?.schemaName ||
-              "public",
-            table: resource,
-            filter: filter,
-          },
+          { event: "*", schema: "public", table: resource, filter },
           listener,
-        );
-      }
-
-      return client.subscribe();
+        )
+        .subscribe();
     },
 
     unsubscribe: async (channel: RealtimeChannel) => {
-      supabaseClient.removeChannel(channel);
+      await supabaseClient.removeChannel(channel);
     },
   };
 };
