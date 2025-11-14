@@ -109,6 +109,9 @@ export type UseCustomProps<TQueryFnData, TError, TQuery, TPayload, TData> = {
 
 export type UseCustomReturnType<TData, TError> = {
   query: QueryObserverResult<CustomResponse<TData>, TError>;
+  /**
+   * @deprecated Please use `query.data.data` instead.
+   */
   result: {
     data: CustomResponse<TData>["data"];
   };
