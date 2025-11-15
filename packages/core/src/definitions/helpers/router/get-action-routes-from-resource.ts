@@ -20,15 +20,29 @@ export const getActionRoutesFromResource = (
   const actionList: Action[] = ["list", "show", "edit", "create", "clone"];
 
   actionList.forEach((action) => {
-    const route: string | undefined = resource[action];
+    const route = resource[action];
 
-    if (route) {
-      actions.push({
-        action,
-        resource,
-        route: `/${route.replace(/^\//, "")}`,
+    if (!route) return;
+
+    if (action === "custom") {
+      const customRoutes = route as string[];
+
+      return customRoutes.forEach((r) => {
+        actions.push({
+          action,
+          resource,
+          route: `/${r.replace(/^\//, "")}`,
+        });
       });
     }
+
+    const regularRoute = route as string;
+
+    return actions.push({
+      action,
+      resource,
+      route: `/${regularRoute.replace(/^\//, "")}`,
+    });
   });
 
   return actions;

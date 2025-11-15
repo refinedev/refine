@@ -12,6 +12,7 @@ export interface IResourceComponents {
   clone?: ResourceRoutePath;
   edit?: ResourceRoutePath;
   show?: ResourceRoutePath;
+  custom?: Array<ResourceRoutePath>;
 }
 
 export type AnyString = string & { __ignore?: never };

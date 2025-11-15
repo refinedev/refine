@@ -165,6 +165,31 @@ export const useNavigation = () => {
     }) as string;
   };
 
+  const customUrl = (
+    resource: string | IResourceItem,
+    meta: MetaQuery = {},
+  ) => {
+    const resourceItem =
+      typeof resource === "string"
+        ? pickResource(resource, resources) ?? { name: resource }
+        : resource;
+
+    const customActionRoute = getActionRoutesFromResource(
+      resourceItem,
+      resources,
+    ).find((r) => r.action === "custom")?.route;
+
+    if (!customActionRoute) {
+      return "";
+    }
+
+    return go({
+      to: composeRoute(customActionRoute, resourceItem?.meta, parsed, meta),
+      type: "path",
+      query: meta.query,
+    }) as string;
+  };
+
   const create = (
     resource: string | IResourceItem,
     type: HistoryType = "push",
@@ -208,6 +233,14 @@ export const useNavigation = () => {
     handleUrl(listUrl(resource, meta), type);
   };
 
+  const custom = (
+    resource: string | IResourceItem,
+    type: HistoryType = "push",
+    meta: MetaQuery = {},
+  ) => {
+    handleUrl(createUrl(resource, meta), type);
+  };
+
   return {
     create,
     createUrl,
@@ -219,5 +252,7 @@ export const useNavigation = () => {
     showUrl,
     list,
     listUrl,
+    custom,
+    customUrl,
   };
 };
