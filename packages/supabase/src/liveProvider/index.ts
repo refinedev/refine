@@ -49,31 +49,41 @@ export const liveProvider = (
         }
       };
 
-      const mapFilter = (filters?: CrudFilters): string | undefined => {
-        if (!filters || filters?.length === 0) {
-          return;
-        }
+      const buildFilter = (filters?: CrudFilters): string | undefined => {
+        if (!filters || filters.length === 0) return undefined;
 
-        return filters
+        const mapped = filters
           .map((filter: CrudFilter): string | undefined => {
             if ("field" in filter) {
-              return `${filter.field}=${mapOperator(filter.operator)}.${
-                filter.value
-              }`;
+              return `${filter.field}=${mapOperator(filter.operator)}.${filter.value}`;
             }
-            return;
+            return undefined;
           })
-          .filter(Boolean)
-          .join(",");
+          .filter(Boolean) as string[];
+
+        if (mapped.length === 0) return undefined;
+
+        if (mapped.length > 1) {
+          console.warn(
+            "[refine-supabase] Supabase Realtime only supports one filter. Using the first filter:",
+            mapped[0],
+          );
+        }
+
+        return mapped[0]; 
       };
 
       const events = types
         .map((x) => supabaseTypes[x])
         .sort((a, b) => a.localeCompare(b));
-      const filter = mapFilter(params?.filters);
+
+      //  replaced mapFilter with the new fixed buildFilter
+      const filter = buildFilter(params?.filters);
+
       const ch = `${channel}:${events.join("|")}${filter ? `:${filter}` : ""}`;
 
       let client = supabaseClient.channel(ch);
+
       for (let i = 0; i < events.length; i++) {
         client = client.on(
           "postgres_changes",
@@ -81,7 +91,6 @@ export const liveProvider = (
             event: events[i] as any,
             schema:
               meta?.schema ||
-              // @ts-expect-error TS2445 Property rest is protected and only accessible within class SupabaseClient and its subclasses.
               supabaseClient?.rest?.schemaName ||
               "public",
             table: resource,
