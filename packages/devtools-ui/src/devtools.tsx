@@ -14,7 +14,6 @@ import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import { Onboarded } from "./components/onboarded";
 import { InitialLayout } from "./components/initial-layout";
-import { RaffleHandler } from "./components/raffle-handler";
 import { MonitorHighlightHandler } from "./components/monitor-highlight-handler";
 import { LocationChangeHandler } from "./components/location-change-handler";
 import { IframePageLoadHandler } from "./components/iframe-page-load-handler";
@@ -51,7 +50,6 @@ export const DevToolsApp = () => {
                 >
                   <Layout>
                     <Outlet />
-                    <RaffleHandler />
                   </Layout>
                 </Onboarded>
               }

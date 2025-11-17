@@ -12030,7 +12030,7 @@ importers:
         specifier: ^0.1.4
         version: 0.1.4(esbuild@0.21.5)
       '@refinedev/devtools-ui':
-        specifier: 2.0.1
+        specifier: 2.0.2
         version: link:../devtools-ui
       '@testing-library/jest-dom':
         specifier: ^6.6.3
