@@ -6,7 +6,6 @@ authors: ozgur
 tags: [ai]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-06-24-vibe-coding/vibe-coding-image.png
 hide_table_of_contents: false
-is_featured: true
 ---
 
 # What Is Vibe Coding?

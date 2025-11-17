@@ -6,6 +6,7 @@ authors: ozgur
 tags: [supabase, admin panel, AI, fast]
 image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-blog-big
 hide_table_of_contents: false
+is_featured: true
 ---
 
 Admin panels are a must for a lot of businesses and teams. From small groups to larger organizations, being able to see all the information at a glance is incredibly helpful. The issue is how long it takes. You might have a lot of resources to wire up, dozens of pages to create and stitch together, and even if you’re using Refine, it can still take a while.
