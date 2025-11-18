@@ -4,7 +4,7 @@ description: Learn how to create and structure your Supabase database in minutes
 slug: supabase-database-setup
 authors: ozgur
 tags: [supabase, database, backend, tutorial]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-main.png
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/2025-11-17-supabase-tutorial/supabase-tutorial-big.png
 hide_table_of_contents: false
 is_featured: true
 ---

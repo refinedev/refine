@@ -4,7 +4,7 @@ description: Learn how Refine AI can help you create an admin panel with supabas
 slug: supabase-refine-ai
 authors: ozgur
 tags: [supabase, admin panel, AI, fast]
-image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-blog-big
+image: https://refine.ams3.cdn.digitaloceanspaces.com/blog/supabase-admin-panel/supabase-ai-big.png
 hide_table_of_contents: false
 is_featured: true
 ---
