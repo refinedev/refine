@@ -30,7 +30,7 @@ const calculatePercentage = (total: number, target: number): number => {
 export const DashboardPage: React.FC = () => {
   const API_URL = useApiUrl("metrics");
 
-  const { result: dailyRevenue } = useCustom({
+  const { query: dailyRevenueQuery } = useCustom({
     url: `${API_URL}/dailyRevenue`,
     method: "get",
     config: {
@@ -38,7 +38,7 @@ export const DashboardPage: React.FC = () => {
     },
   });
 
-  const { result: dailyOrders } = useCustom({
+  const { query: dailyOrdersQuery } = useCustom({
     url: `${API_URL}/dailyOrders`,
     method: "get",
     config: {
@@ -46,13 +46,18 @@ export const DashboardPage: React.FC = () => {
     },
   });
 
-  const { result: newCustomers } = useCustom({
+  const { query: newCustomersQuery } = useCustom({
     url: `${API_URL}/newCustomers`,
     method: "get",
     config: {
       query,
     },
   });
+
+  const dailyRevenue = dailyRevenueQuery.data?.data;
+  const dailyOrders = dailyOrdersQuery.data?.data;
+  const newCustomers = newCustomersQuery.data?.data;
+
   return (
     <main className="m-2">
       <Title>Dashboard</Title>
@@ -67,40 +72,34 @@ export const DashboardPage: React.FC = () => {
             <Grid numItemsMd={2} numItemsLg={3} className="mt-6 gap-6">
               <KpiCard
                 title="Weekly Revenue"
-                total={`$ ${dailyRevenue?.data.total ?? 0}`}
-                trend={dailyRevenue?.data.trend ?? 0}
+                total={`$ ${dailyRevenue?.total ?? 0}`}
+                trend={dailyRevenue?.trend ?? 0}
                 target="$ 10,500"
                 percentage={calculatePercentage(
-                  dailyRevenue?.data.total ?? 0,
+                  dailyRevenue?.total ?? 0,
                   10_500,
                 )}
               />
               <KpiCard
                 title="Weekly Orders"
-                total={`${dailyOrders?.data.total ?? 0}`}
-                trend={dailyOrders?.data.trend ?? 0}
+                total={`${dailyOrders?.total ?? 0}`}
+                trend={dailyOrders?.trend ?? 0}
                 target="500"
-                percentage={calculatePercentage(
-                  dailyOrders?.data.total ?? 0,
-                  500,
-                )}
+                percentage={calculatePercentage(dailyOrders?.total ?? 0, 500)}
               />
               <KpiCard
                 title="New Customers"
-                total={`${newCustomers?.data.total ?? 0}`}
-                trend={newCustomers?.data.trend ?? 0}
+                total={`${newCustomers?.total ?? 0}`}
+                trend={newCustomers?.trend ?? 0}
                 target="200"
-                percentage={calculatePercentage(
-                  newCustomers?.data.total ?? 0,
-                  200,
-                )}
+                percentage={calculatePercentage(newCustomers?.total ?? 0, 200)}
               />
             </Grid>
             <div className="mt-6">
               <ChartView
-                revenue={dailyRevenue?.data.data ?? []}
-                orders={dailyOrders?.data.data ?? []}
-                customers={newCustomers?.data.data ?? []}
+                revenue={dailyRevenue?.data ?? []}
+                orders={dailyOrders?.data ?? []}
+                customers={newCustomers?.data ?? []}
               />
             </div>
           </TabPanel>

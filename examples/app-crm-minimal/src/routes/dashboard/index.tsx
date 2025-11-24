@@ -13,15 +13,14 @@ import {
 import { DASHBOARD_TOTAL_COUNTS_QUERY } from "./queries";
 
 export const DashboardPage = () => {
-  const {
-    query: { isLoading },
-
-    result: data,
-  } = useCustom<DashboardTotalCountsQuery>({
+  const { query } = useCustom<DashboardTotalCountsQuery>({
     url: "",
     method: "get",
     meta: { gqlQuery: DASHBOARD_TOTAL_COUNTS_QUERY },
   });
+
+  const { isLoading } = query;
+  const data = query.data?.data;
 
   return (
     <div className="page-container">
@@ -30,25 +29,24 @@ export const DashboardPage = () => {
           <DashboardTotalCountCard
             resource="companies"
             isLoading={isLoading}
-            totalCount={data?.data.companies.totalCount}
+            totalCount={data?.companies.totalCount}
           />
         </Col>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
             resource="contacts"
             isLoading={isLoading}
-            totalCount={data?.data.contacts.totalCount}
+            totalCount={data?.contacts.totalCount}
           />
         </Col>
         <Col xs={24} sm={24} xl={8}>
           <DashboardTotalCountCard
             resource="deals"
             isLoading={isLoading}
-            totalCount={data?.data.deals.totalCount}
+            totalCount={data?.deals.totalCount}
           />
         </Col>
-      </Row>
-
+      </Row>{" "}
       <Row
         gutter={[32, 32]}
         style={{
@@ -76,7 +74,6 @@ export const DashboardPage = () => {
           <DashboardDealsChart />
         </Col>
       </Row>
-
       <Row
         gutter={[32, 32]}
         style={{
