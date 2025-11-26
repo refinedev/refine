@@ -11,7 +11,7 @@ export const menuItems = [
     label: "Resources",
     items: [
       {
-        label: "Getting Started",
+        label: "Documentation",
         href: "/docs/getting-started/quickstart",
       },
       {
@@ -22,51 +22,24 @@ export const menuItems = [
         label: "Blog",
         href: "/blog",
       },
-      {
-        label: "Templates",
-        href: "/templates",
-      },
-      {
-        label: "Integrations",
-        href: "/integrations",
-      },
-      {
-        label: "Awesome Refine",
-        href: "https://github.com/refinedev/awesome-refine",
-      },
     ],
   },
   {
     label: "Product",
     items: [
       {
-        label: "Refine AI",
-        icon: <NewBadgeIcon />,
-        href: "/ai",
+        label: "Templates",
+        href: "/templates",
+        icon: null,
       },
       {
-        label: "Enterprise",
-        href: "/enterprise",
+        label: "Integrations",
+        href: "/integrations",
+        icon: null,
       },
     ],
   },
-  {
-    label: "Community",
-    items: [
-      {
-        label: "Contributing",
-        href: "/docs/guides-concepts/contributing/",
-      },
-      {
-        label: "RefineWeeks",
-        href: "/week-of-refine",
-      },
-      {
-        label: "Hackathons",
-        href: "https://s.refine.dev/hackathon2",
-      },
-    ],
-  },
+
   {
     label: "Company",
     items: [

@@ -7,8 +7,12 @@ import { LandingHeroAnimation } from "./landing-hero-animation";
 import { LandingCopyCommandButton } from "./landing-copy-command-button";
 import Link from "@docusaurus/Link";
 import { LandingHeroShowcaseSection } from "./landing-hero-showcase-section";
+import { useColorMode } from "@docusaurus/theme-common";
 
 export const LandingHeroSection = ({ className }: { className?: string }) => {
+  const { colorMode } = useColorMode();
+  const isDarkTheme = colorMode === "dark";
+
   return (
     <div
       className={clsx(
@@ -74,28 +78,21 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             </p>
           </div>
           <div
-            className={clsx(
-              "flex",
-              "items-center",
-              "justify-start",
-              "gap-4",
-              "landing-lg:gap-6",
-            )}
+            className={clsx("flex", "items-center", "justify-start", "gap-4")}
           >
             <Link
               to="/docs"
               className={clsx(
                 "self-start",
-                "rounded-3xl",
-                "!text-gray-0 dark:!text-gray-900",
-                "bg-refine-blue dark:bg-refine-cyan-alt",
+                "rounded-lg",
+                "!text-gray-0 dark:!text-white",
+                "bg-refine-blue dark:bg-orange-500",
                 "transition-[filter]",
                 "duration-150",
                 "ease-in-out",
                 "hover:brightness-110",
                 "py-3",
-                "pl-3 pr-5",
-                "w-[200px] landing-sm:w-max",
+                "pl-3 pr-6",
                 "flex",
                 "items-center",
                 "justify-center",
@@ -113,16 +110,36 @@ export const LandingHeroSection = ({ className }: { className?: string }) => {
             />
           </div>
         </div>
-        <div
-          className={clsx(
-            "hidden landing-md:block",
-            "absolute",
-            "top-0",
-            "right-0",
-          )}
-        >
-          <LandingHeroAnimation />
-        </div>
+        {isDarkTheme ? (
+          <div
+            className={clsx(
+              "hidden landing-lg:block",
+              "absolute",
+              "top-0",
+              "right-0",
+            )}
+          >
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              width={690}
+              src="https://refine.ams3.cdn.digitaloceanspaces.com/refine-core/landing/refine-core-hero.mp4"
+            />
+          </div>
+        ) : (
+          <div
+            className={clsx(
+              "hidden landing-md:block",
+              "absolute",
+              "top-0",
+              "right-0",
+            )}
+          >
+            <LandingHeroAnimation />
+          </div>
+        )}
       </div>
       <LandingHeroShowcaseSection />
     </div>

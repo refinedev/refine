@@ -18,16 +18,15 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
           "flex-shrink-0",
           "h-full",
           "p-2 landing-sm:p-4",
-          "rounded-2xl landing-sm:rounded-3xl",
-          "dark:bg-landing-noise",
-          "dark:bg-gray-800 bg-gray-50",
+          "rounded-xl",
+          "dark:bg-zinc-800 bg-gray-50",
         )}
       >
         <div
           className={clsx(
             "h-[288px]",
             "bg-gray-0",
-            "dark:bg-gray-900",
+            "dark:bg-zinc-900",
             "dark:bg-landing-wai-bg-dark",
             "w-full",
             "bg-no-repeat",
@@ -40,7 +39,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
             "px-[15px]",
             "relative",
             "border-t-solid border-t",
-            "border-t-gray-200 dark:border-t-gray-700",
+            "border-t-gray-200 dark:border-t-zinc-700",
             "border-opacity-60 dark:border-opacity-60",
             "shadow-landing-wai-shadow-light dark:shadow-landing-wai-shadow-dark",
             "drop-shadow-sm",
@@ -97,7 +96,7 @@ export const LandingAlreadyInvented: FC<Props> = ({ className }) => {
                 "bottom-[27px]",
                 "landing-sm:right-auto",
                 "landing-sm:left-0",
-                "text-gray-1000 dark:text-gray-0",
+                "text-gray-1000 dark:text-white",
               )}
             />
             <DotsSvg className={clsx("absolute", "right-0", "bottom-[34px]")} />
@@ -193,7 +192,7 @@ const RowsSvg = (props: React.SVGProps<SVGSVGElement>) => (
       d="M1 41V1l576 .038V41H1Z"
     />
     <path
-      className="stroke-[#6C779326] dark:stroke-gray-0 dark:mix-blend-overlay"
+      className="stroke-[#6C779326] dark:stroke-white dark:mix-blend-overlay"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeOpacity={0.5}
@@ -267,15 +266,15 @@ const DotsSvg = (props: React.SVGProps<SVGSVGElement>) => (
       className={clsx(
         "w-[30px] h-[30px]",
         "fill-gray-0 dark:fill-gray-1000",
-        "stroke stroke-gray-200 dark:stroke-gray-1000",
+        "stroke stroke-gray-200 dark:stroke-zinc-700",
       )}
     />
     <path
-      className="fill-gray-600 dark:fill-gray-300"
+      className="fill-gray-600 dark:fill-zinc-300"
       d="M12 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM18 16a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM22 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
     />
     <path
-      className="fill-gray-300 dark:fill-gray-0 opacity-0 dark:opacity-100"
+      className="fill-gray-300 dark:fill-white opacity-0 dark:opacity-100"
       fillOpacity={0.2}
       d="M12 56a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM18 56a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM22 58a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 96a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM18 96a2 2 0 1 1-4 0 2 2 0 0 1 4 0ZM22 98a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
     />

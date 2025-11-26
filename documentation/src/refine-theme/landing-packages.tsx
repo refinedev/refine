@@ -52,17 +52,17 @@ export const LandingPackages: FC<Props> = ({ className }) => {
         <h2
           className={clsx(
             "text-2xl landing-sm:text-[32px]",
-            "tracking-tight",
+            "tracking-normal",
             "text-start",
             "p-0",
-            "dark:text-gray-0 text-gray-900",
+            "dark:text-white text-gray-900",
           )}
         >
           Start{" "}
           <span
             className={clsx(
               "font-semibold",
-              "dark:text-refine-green-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.3)]",
+              "dark:text-orange-400 dark:drop-shadow-none",
               "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
             )}
           >
@@ -72,7 +72,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
           <span
             className={clsx(
               "font-semibold",
-              "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
+              "dark:text-orange-400 dark:drop-shadow-none",
               "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
             )}
           >
@@ -82,7 +82,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
           <span
             className={clsx(
               "font-semibold",
-              "dark:text-refine-red dark:drop-shadow-[0_0_30px_rgba(255,76,77,0.4)]",
+              "dark:text-orange-400 dark:drop-shadow-none",
               "text-refine-purple drop-shadow-[0_0_30px_rgba(128,0,255,0.3)]",
             )}
           >
@@ -96,11 +96,11 @@ export const LandingPackages: FC<Props> = ({ className }) => {
         className={clsx(
           "w-full",
           "relative",
-          "mt-8 landing-sm:mt-12 landing-lg:mt-20",
+          "mt-8 landing-sm:mt-12",
           "pb-4 landing-md:pb-10",
           "dark:bg-landing-packages-dark bg-landing-packages",
-          "dark:bg-gray-800 bg-gray-50",
-          "rounded-2xl landing-sm:rounded-3xl",
+          "dark:bg-zinc-800 bg-gray-50",
+          "rounded-xl",
           "overflow-hidden",
         )}
       >
@@ -143,7 +143,7 @@ export const LandingPackages: FC<Props> = ({ className }) => {
               "p-0",
               "font-semibold",
               "text-base landing-sm:text-2xl",
-              "dark:text-gray-300 text-gray-900",
+              "dark:text-white text-gray-900",
             )}
           >
             Seamless connectivity
@@ -163,11 +163,11 @@ export const LandingPackages: FC<Props> = ({ className }) => {
                 "p-0",
                 "mt-2 landing-sm:mt-4",
                 "text-base",
-                "dark:text-gray-400 text-gray-600",
+                "dark:text-zinc-300 text-gray-600",
               )}
             >
               Out-of-the box integrations for 15+ services including custom REST
-              and GraphQL API’s.
+              and GraphQL API's.
             </p>
             <LandingSectionCtaButton to="/integrations">
               All integrations
@@ -246,7 +246,8 @@ const PackageItem = (props: {
         "justify-center",
         "gap-3",
         "pl-4 pt-4 pb-4 pr-6",
-        "dark:bg-gray-900 bg-gray-0",
+        "dark:bg-zinc-900 bg-gray-0",
+        "dark:backdrop-blur-[6px]",
         "rounded-full",
         "cursor-pointer",
       )}

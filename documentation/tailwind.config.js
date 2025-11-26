@@ -12,6 +12,9 @@ module.exports = {
   jit: true,
   theme: {
     extend: {
+      borderRadius: {
+        "2.5xl": "1.25rem",
+      },
       zIndex: {
         popover: 9,
         modal: 100,
@@ -140,12 +143,6 @@ module.exports = {
           "0px 34px 21px rgba(108, 119, 147, 0.2)",
           "0px 54px 23px rgba(108, 119, 147, 0)",
         ],
-        "github-stars-glow": [
-          "0px 0px 3px #FF993330",
-          "0px 0px 6px #FF9933A0",
-          "0px 0px 16px #FF9933A0",
-          "0px 0px 16px #FF9933",
-        ],
       },
       boxShadow: {
         modal: "4px 8px 16px rgba(42, 42, 66, 0.25)",
@@ -272,8 +269,7 @@ module.exports = {
         "landing-playground-slide-right-bg":
           "url('https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-playground-slide-right.svg')",
         "landing-trusted-by-developers-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
-          "radial-gradient(40% 100% at 110% 0%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0.00) 100%)",
+          "linear-gradient(0deg, #27272a 0%, #27272a 100%)",
         ],
         "landing-trusted-by-developers": [
           "radial-gradient(40% 100% at 110% 20%, rgba(0, 128, 255, 0.15) 0%, #F4F8FB 100%)",
@@ -306,27 +302,27 @@ module.exports = {
           "radial-gradient(50% 100% at 0% 0%, rgba(51, 51, 255, 0.25) 0%, rgba(51, 51, 255, 0) 100%)",
         ],
         "landing-sweet-spot-glow-red-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "",
           "radial-gradient(50% 50% at 50% 50%, rgba(250, 56, 82, 0.15) 0%, rgba(250, 56, 82, 0.00) 100%)",
         ],
         "landing-sweet-spot-glow-yellow-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "",
           "radial-gradient(50% 50% at 50% 50%, rgba(249, 213, 31, 0.15) 0%, rgba(249, 213, 31, 0.00) 100%)",
         ],
         "landing-sweet-spot-glow-orange-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "",
           "radial-gradient(50% 50% at 50% 50%, rgba(249, 140, 31, 0.15) 0%, rgba(249, 140, 31, 0.00) 100%)",
         ],
         "landing-sweet-spot-glow-cyan-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "",
           "radial-gradient(50% 50% at 50% 50%, rgba(71, 209, 191, 0.15) 0%, rgba(71, 209, 191, 0.00) 100%)",
         ],
         "landing-sweet-spot-glow-blue-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "",
           "radial-gradient(50% 50% at 50% 50%, rgba(61, 184, 245, 0.15) 0%, rgba(61, 184, 245, 0.00) 100%)",
         ],
         "landing-sweet-spot-glow-indigo-dark": [
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "",
           "radial-gradient(50% 50% at 50% 50%, rgba(89, 89, 255, 0.15) 0%, rgba(89, 89, 255, 0.00) 100%)",
         ],
         "landing-sweet-spot-glow-red-light": [
@@ -417,19 +413,12 @@ module.exports = {
           "linear-gradient(90deg, rgba(255,255,255,0), #47EBEB, rgba(255,255,255,0))",
         "landing-hero-beam-bottom-light":
           "linear-gradient(90deg, rgba(255,255,255,0), #0080FF, rgba(255,255,255,0))",
-        "landing-hero-github-stars-gradient":
-          "radial-gradient(260.41% 41.87% at 8.38% 50%, rgba(255, 153, 51, 0.10) 0%, rgba(255, 153, 51, 0.00) 100%)",
-        "landing-hero-github-stars-text-light":
-          "linear-gradient(180deg, #14141F 0%, #6C7793 100%)",
-        "landing-hero-github-stars-text-dark":
-          "linear-gradient(180deg, #FFF 0%, rgba(255, 255, 255, 0.50) 100%)",
         "landing-hero-xray-dot-center-bg":
           "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0FBDBD 50%, #0FBDBD 100%)",
         "landing-hero-xray-dot-center-bg-light":
           "radial-gradient(100% 100% at 0% 0%, #74FFFF 0%, #0080FF 50%, #0080FF 100%)",
         "landing-wizard-option-bg-dark": [
-          "radial-gradient(50% 50% at 50% 50%, rgba(71, 235, 235, 0.15) 0%, rgba(71, 235, 235, 0) 100%)",
-          "url(https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/landing-noise.webp)",
+          "linear-gradient(180deg, #27272A 0%, #27272A 100%)",
         ],
         "landing-wizard-option-bg-light": [
           "radial-gradient(50% 50% at 50% 50%, rgba(0, 128, 255, 0.15) 0%, rgba(0, 128, 255, 0) 100%)",
@@ -452,7 +441,7 @@ module.exports = {
           "radial-gradient(50% 50% at 50% 50%, rgba(48, 52, 80, 0.75) 0%, rgba(48, 52, 80, 0.1) 50%, rgba(48, 52, 80, 0.00) 100%)",
         ],
         "landing-copy-command-hover-bg-dark": [
-          "radial-gradient(transparent 30%, rgba(71, 235, 235, 0.25))",
+          "radial-gradient(transparent 30%, rgba(249, 115, 22, 0.10))",
         ],
         "landing-copy-command-hover-bg-light": [
           "radial-gradient(transparent 30%, rgba(0, 128, 255, 0.1))",
@@ -570,7 +559,6 @@ module.exports = {
         "landing-sweet-spot-glow-size-lg": "auto auto, 1600px 1600px",
         "landing-sweet-spot-glow-size-xs": "auto auto, 656px 656px",
         "wheel-already-invented-size": "100% 1px",
-        "landing-github-stars-border-bg-size": "72px 72px",
       },
       animation: {
         "spin-slow": "spin 3s linear infinite",
@@ -607,9 +595,6 @@ module.exports = {
         "wheel-already-invented-reveal":
           "wheel-already-invented-reveal 0.6s cubic-bezier(.23,.95,.64,1.24) forwards",
         "showcase-reveal": "showcase-reveal 0.3s ease-in-out forwards",
-        "github-stars-border":
-          "github-stars-border 10s linear infinite alternate",
-        "github-stars-glow": "github-stars-glow 10s linear infinite alternate",
         "enterprise-iam-services-left":
           "enterprise-iam-services-left 40s linear infinite",
         "enterprise-iam-services-right":
@@ -887,26 +872,6 @@ module.exports = {
           "100%": {
             transform: "translateY(0)",
             opacity: 1,
-          },
-        },
-        "github-stars-border": {
-          "0%": {
-            transform: "translateX(-72px)",
-          },
-          "100%": {
-            transform: "translateX(216px)",
-          },
-        },
-
-        "github-stars-glow": {
-          "0%": {
-            transform: "translateX(0) scale(0.5)",
-          },
-          "50%": {
-            transform: "translateX(78px) scale(1)",
-          },
-          "100%": {
-            transform: "translateX(156px) scale(0.5)",
           },
         },
         "enterprise-iam-services-left": {

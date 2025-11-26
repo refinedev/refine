@@ -30,9 +30,8 @@ export const LandingPureReactCode: FC<Props> = ({
           "h-full",
           "flex-shrink-0",
           "p-2 landing-sm:p-4",
-          "rounded-2xl landing-sm:rounded-3xl",
-          "dark:bg-landing-noise",
-          "dark:bg-gray-800 bg-gray-50",
+          "rounded-xl",
+          "dark:bg-zinc-800 bg-gray-50",
         )}
       >
         <div
@@ -44,10 +43,12 @@ export const LandingPureReactCode: FC<Props> = ({
             "landing-sm:aspect-[560/240] landing-md:aspect-[624/240]  landing-lg:aspect-[607/299]",
             "dark:bg-landing-component-dark bg-landing-component",
             "border-t-solid border-t",
-            "border-t-gray-200 dark:border-t-gray-700",
+            "border-t-gray-200 dark:border-t-zinc-700",
             "border-opacity-60 dark:border-opacity-60",
             "shadow-[0px_-1.5px_0px_rgba(237,242,247,0.5)] dark:shadow-[0px_-1.5px_0px_rgba(20,20,31,0.5)]",
             "drop-shadow-sm",
+            "dark:border-none",
+            "dark:shadow-none",
           )}
         >
           <BrowserOnly>{() => <CodeSlide />}</BrowserOnly>
@@ -56,7 +57,7 @@ export const LandingPureReactCode: FC<Props> = ({
         <div
           className={clsx(
             "not-prose",
-            "mt-4 landing-sm:mt-6 landing-lg:mt-10",
+            "mt-4 landing-sm:mt-6",
             "px-4 landing-sm:px-6",
           )}
         >
@@ -65,7 +66,7 @@ export const LandingPureReactCode: FC<Props> = ({
               "p-0",
               "font-semibold",
               "text-base landing-sm:text-2xl",
-              "dark:text-gray-300 text-gray-900",
+              "dark:text-white text-gray-900",
             )}
           >
             {title}
@@ -86,14 +87,14 @@ export const LandingPureReactCode: FC<Props> = ({
                 "p-0",
                 "mt-2 landing-sm:mt-4",
                 "text-base",
-                "dark:text-gray-400 text-gray-600",
+                "dark:text-zinc-300 text-gray-600",
               )}
             >
               {description}
             </p>
             {cta && (
               <LandingSectionCtaButton to="https://github.com/refinedev/refine">
-                Refine on GitHub
+                Refine Core on GitHub
               </LandingSectionCtaButton>
             )}
           </div>
@@ -138,7 +139,7 @@ const CodeSlide = () => {
   const inView = useInView(ref);
 
   return (
-    <div ref={ref} className={clsx("rounded-lg", "dark:bg-gray-900 bg-gray-0")}>
+    <div ref={ref} className={clsx("rounded-lg", "dark:bg-zinc-900 bg-gray-0")}>
       <div
         className={clsx(
           "text-[10px] leading-[16px]",
@@ -189,7 +190,7 @@ const HighlightCode = memo(function HighlightCodeBase() {
               })}
               key={`${code}-${i}`}
             >
-              <span className={"dark:text-gray-600 text-gray-500 pl-4 pr-2"}>
+              <span className={"dark:text-zinc-700 text-gray-500 pl-4 pr-2"}>
                 {i + 1}
               </span>
               {line.map((token, key) => {

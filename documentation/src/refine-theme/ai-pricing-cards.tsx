@@ -131,7 +131,7 @@ const PricingCardStarter = () => {
       </div>
 
       <div className={clsx("px-4")}>
-        <Separator className={clsx("my-6", "dark:bg-[#FFFFFF26]")} />
+        <Separator className={clsx("my-6", "dark:bg-zinc-700")} />
       </div>
 
       <div className={clsx("flex", "items-center", "gap-1", "px-4", "h-10")}>
@@ -319,9 +319,9 @@ const PricingCardPro = () => {
         "landing-md:max-w-[436px]",
         "landing-lg:max-w-[384px]",
         "border",
-        "dark:border-[#343A46]",
+        "dark:border-zinc-700",
         "border-[#E3E4E5]",
-        "bg-pricing-card-pro-light dark:bg-pricing-card-pro-dark",
+        "bg-pricing-card-pro-light dark:bg-zinc-800",
       )}
     >
       <div className={clsx("px-4")}>
@@ -351,7 +351,7 @@ const PricingCardPro = () => {
       </div>
 
       <div className={clsx("px-4")}>
-        <Separator className={clsx("my-6", "dark:bg-[#FFFFFF26]")} />
+        <Separator className={clsx("my-6", "dark:bg-zinc-700")} />
       </div>
 
       <Select
@@ -364,8 +364,8 @@ const PricingCardPro = () => {
           className={clsx(
             "h-10",
             "rounded-md",
-            "dark:bg-[#16181D80]",
-            "dark:border-[#FFFFFF26]",
+            "dark:bg-zinc-900",
+            "dark:border-zinc-700",
           )}
         >
           <SelectValue placeholder="Select a plan">
@@ -383,7 +383,9 @@ const PricingCardPro = () => {
             </div>
           </SelectValue>
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent
+          className={clsx("dark:bg-zinc-900", "dark:border-zinc-700")}
+        >
           {tierOptions.map((option) => {
             return (
               <SelectItem key={option.value} value={option.value}>
@@ -428,7 +430,7 @@ const PricingCardPro = () => {
       </div>
 
       <div className={clsx("px-4")}>
-        <Separator className={clsx("my-6", "dark:bg-[#FFFFFF26]")} />
+        <Separator className={clsx("my-6", "dark:bg-zinc-700")} />
       </div>
 
       <div className={clsx("flex", "flex-col", "gap-3", "px-4", "mt-4")}>
@@ -507,7 +509,7 @@ const PricingCardEnterprise = () => {
       </div>
 
       <div className={clsx("px-4")}>
-        <Separator className={clsx("my-6", "dark:bg-[#FFFFFF26]")} />
+        <Separator className={clsx("my-6", "dark:bg-zinc-700")} />
       </div>
 
       <p
@@ -531,7 +533,7 @@ const PricingCardEnterprise = () => {
       </div>
 
       <div className={clsx("px-4")}>
-        <Separator className={clsx("my-6", "dark:bg-[#FFFFFF26]")} />
+        <Separator className={clsx("my-6", "dark:bg-zinc-700")} />
       </div>
 
       <div className={clsx("flex", "flex-col", "gap-3", "px-4", "mt-4")}>

@@ -31,6 +31,7 @@ const Desktop = () => {
 
         <div className={clsx("lg:hidden flex")}>
           <SearchBar
+            // @ts-expect-error - forwardRef issue with react 17
             CustomButton={React.forwardRef<
               HTMLButtonElement,
               React.PropsWithChildren<{}>
@@ -60,6 +61,7 @@ export const Mobile = () => {
       <DocRefineLogo />
       <div className={clsx("flex items-center gap-4")}>
         <SearchBar
+          // @ts-expect-error - forwardRef issue with react 17
           CustomButton={React.forwardRef<
             HTMLButtonElement,
             React.PropsWithChildren<{}>

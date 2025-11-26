@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import React from "react";
 import { useCommunityStatsContext } from "../context/CommunityStats";
-import { GithubIcon } from "./icons/github";
+import { StarIcon } from "lucide-react";
 import { Spinner } from "./spinner";
 
 export const LandingGithubStarButton = () => {
@@ -15,22 +15,26 @@ export const LandingGithubStarButton = () => {
       className={clsx(
         "flex gap-2 items-center justify-center",
         "font-normal",
-        "text-sm leading-6",
-        "text-gray-500 dark:text-gray-400",
-        "hover:text-gray-400 dark:hover:text-gray-300",
+        "text-base",
+        "text-gray-900 dark:text-zinc-300",
+        "hover:text-gray-700 dark:hover:text-zinc-200",
         "hover:no-underline",
         "transition-colors",
         "duration-200",
         "ease-in-out",
-        "w-[88px] h-10",
-        "border",
-        "rounded-full",
-        "border-solid",
-        "border-gray-300 dark:border-gray-700",
+        "pl-2.5",
+        "pr-4",
+        "h-10",
+        "min-w-[102px]",
+        "bg-gray-100 dark:bg-zinc-800",
+        "rounded-lg",
+        "font-jetBrains-mono",
+        "tabular-nums",
       )}
     >
-      <GithubIcon className={clsx("w-5 h-5")} />
-      <div className={clsx("flex items-center", "w-10 h-6")}>
+      {/* @ts-expect-error - lucide-react type issue */}
+      <StarIcon className={clsx("w-4 h-4", "text-orange-400")} />
+      <div className={clsx("flex items-center")}>
         {loading ? (
           <Spinner
             className={clsx("w-5 h-5")}

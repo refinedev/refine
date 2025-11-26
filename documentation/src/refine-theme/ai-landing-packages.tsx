@@ -55,7 +55,8 @@ export const AiLandingPackagesDesktop = ({ className }: Props) => {
           "justify-start",
           "gap-4",
           "dark:bg-ai-landing-packages-dark bg-ai-landing-packages",
-          "dark:bg-gray-800 bg-gray-50",
+          "dark:bg-zinc-800 bg-gray-50",
+          "dark:border dark:border-zinc-700",
           "rounded-2xl landing-sm:rounded-3xl",
           "overflow-hidden",
         )}
@@ -122,7 +123,8 @@ export const AiLandingPackagesMobile = ({ className }: Props) => {
         "w-full",
         "rounded-2xl landing-sm:rounded-3xl",
         "dark:bg-ai-landing-packages-mobile-dark bg-ai-landing-packages-mobile",
-        "dark:bg-gray-800 bg-gray-50",
+        "dark:bg-zinc-800 bg-gray-50",
+        "dark:border dark:border-zinc-700",
         className,
       )}
     >
@@ -215,7 +217,7 @@ const TextSection = ({
           className={clsx(
             "p-0",
             "text-base",
-            "dark:text-gray-400 text-gray-600",
+            "dark:text-zinc-300 text-gray-600",
           )}
         >
           Out-of-the box integrations for 15+ services including custom REST and
@@ -274,7 +276,7 @@ const PackageItem = (props: {
         "justify-center",
         "gap-3",
         "pl-4 pt-4 pb-4 pr-6",
-        "dark:bg-gray-900 bg-gray-0",
+        "dark:bg-zinc-900 bg-gray-0",
         "rounded-full",
         "cursor-pointer",
       )}

@@ -15,7 +15,7 @@ import { LandingHeroSection } from "../refine-theme/landing-hero-section";
 import { LandingTryItSection } from "../refine-theme/landing-try-it-section";
 import { CommonHeader } from "../refine-theme/common-header";
 import { LandingTestimonial } from "../refine-theme/landing-testimonial";
-import { LandingAiHeroSection } from "../refine-theme/landing-ai-hero-section";
+import { LandingSolidFoundation } from "../refine-theme/landing-solid-foundation";
 
 function Home() {
   const title = "Refine | Open-source Retool for Enterprise";
@@ -47,7 +47,6 @@ function Home() {
             <div
               className={clsx("mt-0", "landing-sm:mt-8", "landing-lg:mt-20")}
             >
-              <LandingAiHeroSection />
               <LandingHeroSection className={clsx("mt-8")} />
               <LandingTrustedByDevelopers
                 className={clsx(
@@ -59,29 +58,26 @@ function Home() {
               />
             </div>
             <LandingSweetSpot />
-            <div className={clsx("flex flex-col", "gap-12 landing-md:gap-6")}>
+            <div className={clsx("flex flex-col", "gap-4 landing-md:gap-1")}>
               <LandingPackages />
               <div
                 className={clsx(
                   "flex flex-col landing-md:flex-row",
-                  "gap-12 landing-md:gap-6",
+                  "gap-4 landing-md:gap-1",
                 )}
               >
                 <LandingAlreadyInvented
-                  className={clsx(
-                    "w-full landing-md:w-[50%] landing-lg:w-[538px]",
-                  )}
+                  className={clsx("w-full landing-md:w-[50%] ")}
                 />
                 <LandingPureReactCode
-                  className={clsx(
-                    "w-full landing-md:w-[50%] landing-lg:w-[640px]",
-                  )}
+                  className={clsx("w-full landing-md:w-[50%] ")}
                 />
               </div>
             </div>
             <LandingEnterpriseDevelopers />
             <LandingCommunity />
             <LandingTestimonial />
+            <LandingSolidFoundation />
             <LandingTryItSection />
           </div>
           <LandingFooter />

@@ -22,7 +22,7 @@ export const EnterpriseFaq = ({ className }: { className?: string }) => {
         className={clsx(
           "flex",
           "flex-col",
-          "mt-6 landing-sm:mt-12 landing-lg:mt-20",
+          "mt-6 landing-sm:mt-12",
           "not-prose",
         )}
       >

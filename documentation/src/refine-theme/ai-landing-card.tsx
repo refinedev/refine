@@ -30,13 +30,14 @@ export const AiLandingCard = ({
           "p-2 landing-sm:p-4",
           "rounded-2xl landing-sm:rounded-3xl",
           "dark:bg-landing-noise",
-          "dark:bg-gray-800 bg-gray-50",
+          "dark:bg-zinc-800 bg-gray-50",
+          "dark:border dark:border-zinc-700",
         )}
       >
         <div
           className={clsx(
             "bg-gray-0",
-            "dark:bg-gray-900",
+            "dark:bg-zinc-900",
             "rounded-lg",
             "overflow-hidden",
           )}
@@ -92,7 +93,7 @@ export const AiLandingCard = ({
                 "p-0",
                 "mt-4",
                 "text-base",
-                "dark:text-gray-400 text-gray-600",
+                "dark:text-zinc-300 text-gray-600",
               )}
             >
               {description}

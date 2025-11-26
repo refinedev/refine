@@ -51,17 +51,17 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
         <h2
           className={clsx(
             "text-2xl landing-sm:text-[32px]",
-            "tracking-tight",
+            "tracking-normal",
             "text-start",
+            "font-medium",
             "p-0",
-            "dark:text-gray-0 text-gray-900",
+            "dark:text-white text-gray-900",
           )}
         >
           The{" "}
           <span
             className={clsx(
-              "font-semibold",
-              "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
+              "dark:text-orange-400 dark:drop-shadow-none",
               "text-refine-indigo drop-shadow-[0_0_30px_rgba(51,51,255,0.3)]",
             )}
           >
@@ -74,7 +74,8 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             "mt-4 landing-sm:mt-6",
             "max-w-md",
             "text-base",
-            "dark:text-gray-400 text-gray-600",
+            "tracking-[-0.004rem]",
+            "dark:text-gray-300 text-gray-600",
           )}
         >
           Drag-and-drop tools shine initially but collapse under the weight of
@@ -83,7 +84,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
         </p>
       </div>
 
-      <div className={clsx("mt-8 landing-sm:mt-12 landing-lg:mt-20")}>
+      <div className={clsx("mt-8 landing-sm:mt-12")}>
         <div
           className={clsx(
             "select-none",
@@ -93,13 +94,14 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
             "pt-4 landing-sm:pt-10 landing-lg:pt-20",
             "pb-4 landing-lg:pb-0",
             "pl-4 landing-sm:pl-10",
-            "dark:bg-gray-800 bg-gray-50",
+            "dark:bg-zinc-800 bg-gray-50",
             "rounded-2xl landing-sm:rounded-3xl",
             "overflow-hidden",
-            "dark:bg-noise",
           )}
         >
+          {/* @ts-expect-error - Framer Motion v6 type incompatibility with React 17 */}
           <AnimatePresence>
+            {/* @ts-expect-error - Framer Motion v6 type incompatibility with React 17 */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -109,6 +111,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                 ease: "easeInOut",
               }}
               key={activeIndex}
+              // @ts-expect-error - Framer Motion v6 type incompatibility with React 17
               className={clsx(
                 "absolute",
                 "inset-0",
@@ -276,7 +279,7 @@ export const LandingSweetSpot: FC<Props> = ({ className }) => {
                         "bottom-0 landing-sm:bottom-[4px] landing-lg:bottom-[78px]",
                         "-left-2 landing-lg:-left-20",
                         "rounded-xl",
-                        "dark:bg-gray-900 bg-gray-0",
+                        "dark:bg-zinc-800 bg-gray-0",
                         "dark:shadow-landing-sweet-spot-code-dark",
                         "shadow-landing-sweet-spot-code-light",
                         active && "delay-300",

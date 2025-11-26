@@ -43,17 +43,17 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
         <h2
           className={clsx(
             "text-2xl landing-sm:text-[32px]",
-            "tracking-tight",
+            "tracking-normal",
             "text-start",
             "p-0",
-            "dark:text-gray-0 text-gray-900",
+            "dark:text-white text-gray-900",
           )}
         >
           Feel the power of a{" "}
           <span
             className={clsx(
               "font-semibold",
-              "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
+              "dark:text-orange-400 dark:drop-shadow-none",
               "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
             )}
           >
@@ -65,132 +65,55 @@ export const LandingCommunity: FC<Props> = ({ className }) => {
 
       <div
         className={clsx(
-          "mt-8 landing-sm:mt-12 landing-lg:mt-20",
-          "flex",
-          "flex-col landing-lg:flex-row",
-          "gap-4 landing-sm:gap-6",
+          "mt-8 landing-sm:mt-12",
+          "grid",
+          "grid-cols-1 landing-sm:grid-cols-2 landing-lg:grid-cols-4",
+          "gap-4 landing-sm:gap-1",
         )}
       >
-        <div
-          className={clsx(
-            "grid",
-            "grid-cols-1 landing-sm:grid-cols-2",
-            "gap-4 landing-sm:gap-6",
-          )}
-        >
-          {list.map((item, index) => {
-            return (
-              <a
-                href={item?.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                key={index}
+        {list.map((item, index) => {
+          const Wrapper = item.href ? "a" : "div";
+          return (
+            <Wrapper
+              key={index}
+              {...(item.href
+                ? {
+                    href: item.href,
+                    target: "_blank",
+                    rel: "noopener noreferrer",
+                  }
+                : {})}
+              className={clsx(
+                "not-prose",
+                "p-4 landing-sm:p-6",
+                "flex",
+                "flex-col",
+                "gap-2",
+                "dark:bg-zinc-800 bg-gray-50",
+                "rounded-xl",
+                item.href && "cursor-pointer hover:brightness-95",
+              )}
+            >
+              <div
                 className={clsx(
-                  "block",
-                  "not-prose",
-                  "p-4 landing-sm:py-4 landing-sm:px-10",
-                  "dark:bg-landing-noise",
-                  "dark:bg-gray-800 bg-gray-50",
-                  "rounded-2xl landing-sm:rounded-3xl",
-                  "no-underline",
+                  "text-4xl landing-sm:text-5xl",
+                  "font-bold",
+                  "dark:text-white text-gray-900",
                 )}
               >
-                <div
-                  className={clsx(
-                    "whitespace-nowrap",
-                    "text-[40px] leading-[48px] landing-sm:text-[64px] landing-sm:leading-[72px]",
-                    "dark:bg-landing-stats-text-dark bg-landing-stats-text",
-                    "bg-clip-text",
-                    "text-transparent",
-                    "font-bold",
-                    "drop-shadow-2xl",
-                  )}
-                >
-                  {item.stat}
-                </div>
-                <div
-                  className={clsx(
-                    "mt-2 landing-sm:mt-6",
-                    "text-base",
-                    "dark:text-gray-400 text-gray-600",
-                  )}
-                >
-                  {item.description}
-                </div>
-              </a>
-            );
-          })}
-        </div>
-
-        <div
-          className={clsx(
-            "w-full landing-lg:w-[486px]",
-            "not-prose",
-            "flex-shrink-0",
-            "p-4 ",
-            "rounded-2xl landing-sm:rounded-3xl",
-            "dark:bg-landing-noise",
-            "dark:bg-gray-800 bg-gray-50",
-          )}
-        >
-          {isBrowser && (
-            <img
-              className={clsx("w-full", "object-cover")}
-              src={`https://refine.ams3.cdn.digitaloceanspaces.com/website/static/assets/investors-2${
-                colorMode === "dark" ? "-dark" : ""
-              }.png`}
-              style={{
-                aspectRatio: "908/544",
-              }}
-              alt="investors"
-              loading="lazy"
-            />
-          )}
-          <div
-            className={clsx(
-              "mt-6",
-              "px-0 landing-sm:px-6",
-              "text-base",
-              "not-prose",
-              "dark:text-gray-400 text-gray-600",
-            )}
-          >
-            Backed by{" "}
-            <a
-              href="https://www.ycombinator.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={clsx(
-                "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline",
-              )}
-            >
-              Y Combinator
-            </a>
-            {" (YC S23), "}
-            <a
-              href="https://ee.500.co/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={clsx(
-                "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline ",
-              )}
-            >
-              500 Emerging Europe
-            </a>
-            {" and "}
-            <a
-              href="https://senovo.vc/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={clsx(
-                "dark:text-gray-0 text-gray-900 whitespace-nowrap no-underline ",
-              )}
-            >
-              Senovo
-            </a>
-            .
-          </div>
-        </div>
+                {item.stat}
+              </div>
+              <div
+                className={clsx(
+                  "text-sm landing-sm:text-base",
+                  "dark:text-zinc-300 text-gray-600",
+                )}
+              >
+                {item.description}
+              </div>
+            </Wrapper>
+          );
+        })}
       </div>
     </div>
   );

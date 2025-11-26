@@ -27,18 +27,18 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           "font-semibold",
           "text-sm",
           "leading-6",
-          variant === "landing" && "text-gray-900 dark:text-gray-0",
+          variant === "landing" && "text-gray-900 dark:text-white",
           variant === "blog" && "text-refine-react-8 dark:text-refine-react-3",
         )}
       >
-        Refine Development Inc.
+        Refine Inc.
       </div>
       <div
         className={clsx(
           "font-normal",
           "text-sm",
           "leading-5",
-          variant === "landing" && "text-gray-600 dark:text-gray-400",
+          variant === "landing" && "text-gray-600 dark:text-zinc-400",
           variant === "blog" && "text-refine-react-5 dark:text-refine-react-4",
         )}
       >
@@ -50,9 +50,9 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           "font-normal",
           "text-sm",
           "leading-5",
-          variant === "landing" && "text-gray-600 dark:text-gray-400",
+          variant === "landing" && "text-gray-600 dark:text-zinc-400",
           variant === "blog" && "text-refine-react-5 dark:text-refine-react-4",
-          "hover:text-gray-800 dark:hover:text-gray-300",
+          "hover:text-gray-800 dark:hover:text-zinc-200",
           "hover:no-underline",
         )}
       >
@@ -76,7 +76,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
             "text-sm",
             "leading-6",
             "font-semibold",
-            variant === "landing" && "text-gray-900 dark:text-gray-0",
+            variant === "landing" && "text-gray-900 dark:text-white",
             variant === "blog" &&
               "text-refine-react-8 dark:text-refine-react-3",
             "landing-lg:text-right",
@@ -100,10 +100,10 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               target="_blank"
               rel="noreferrer"
               className={clsx(
-                variant === "landing" && "text-gray-600 dark:text-gray-400",
+                variant === "landing" && "text-gray-600 dark:text-zinc-400",
                 variant === "blog" &&
                   "text-refine-react-5 dark:text-refine-react-4",
-                "hover:text-gray-800 dark:hover:text-gray-300",
+                "hover:text-gray-800 dark:hover:text-zinc-200",
                 "hover:no-underline",
               )}
             >
@@ -122,10 +122,10 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
       <div
         className={clsx(
           "border-t border-t-solid",
-          variant === "landing" && "border-t-gray-100 dark:border-t-gray-700",
+          variant === "landing" && "border-t-gray-200 dark:border-t-zinc-700",
           variant === "blog" &&
             "border-t-refine-react-3 dark:border-t-refine-react-7",
-          variant === "landing" && "dark:bg-footer-landing-dark-bg",
+          variant === "landing" && "dark:bg-zinc-800",
           variant === "blog" &&
             "bg-footer-blog-light-bg dark:bg-footer-blog-dark-bg",
         )}
@@ -142,7 +142,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           <div
             className={clsx(
               "px-4 landing-sm:px-8 landing-lg:px-12",
-              "py-4 landing-lg:py-6",
+              "py-4",
               "flex",
               "items-center",
               "justify-between",
@@ -153,7 +153,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               onContextMenu={openFigma}
               className={clsx(
                 "hover:no-underline",
-                "text-gray-900 dark:text-gray-0",
+                "text-gray-900 dark:text-white",
               )}
             >
               <RefineLogoSingleIcon />
@@ -166,9 +166,9 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
             >
               <PHBadgeIcon
                 className={clsx(
-                  variant === "landing" && "text-gray-900 dark:text-gray-0",
+                  variant === "landing" && "text-gray-900 dark:text-white",
                   variant === "blog" && "text-refine-react-5 dark:text-white",
-                  variant === "landing" && "fill-gray-100 dark:fill-gray-700",
+                  variant === "landing" && "fill-gray-100 dark:fill-zinc-900",
                   variant === "blog" &&
                     "fill-refine-react-2 dark:fill-refine-react-7",
                 )}
@@ -178,7 +178,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           <div
             className={clsx(
               "px-4 landing-sm:px-8 landing-lg:px-12",
-              "py-6 landing-lg:pt-8 landing-lg:pb-12",
+              "py-6 landing-lg:pb-12",
               "flex",
               "flex-row",
               "flex-wrap",
@@ -207,7 +207,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                     "text-sm",
                     "leading-6",
                     "font-semibold",
-                    variant === "landing" && "text-gray-900 dark:text-gray-0",
+                    variant === "landing" && "text-gray-900 dark:text-white",
                     variant === "blog" && "text-refine-react-5 dark:text-white",
                   )}
                 >
@@ -229,10 +229,10 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                         "leading-5",
                         "hover:no-underline",
                         variant === "landing" &&
-                          "text-gray-600 dark:text-gray-400",
+                          "text-gray-600 dark:text-zinc-400",
                         variant === "blog" &&
                           "text-refine-react-5 dark:text-refine-react-4",
-                        "hover:text-gray-800 dark:hover:text-gray-300",
+                        "hover:text-gray-800 dark:hover:text-zinc-200",
                       )}
                     >
                       <div className={clsx("flex", "items-center", "gap-2")}>
@@ -266,10 +266,10 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
       <div
         className={clsx(
           "border-t border-t-solid",
-          variant === "landing" && "border-t-gray-100 dark:border-t-gray-700",
+          variant === "landing" && "border-t-gray-200 dark:border-t-zinc-700",
           variant === "blog" &&
             "border-t-refine-react-3 dark:border-t-refine-react-7",
-          variant === "landing" && "bg-gray-50 dark:bg-gray-800",
+          variant === "landing" && "bg-gray-50 dark:bg-zinc-900",
           variant === "blog" && "bg-refine-react-1 dark:bg-refine-react-7",
         )}
       >
@@ -307,14 +307,15 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
                     }
                   : {})}
                 className={clsx(
+                  "min-w-[180px]",
                   "text-sm",
                   "leading-5",
                   "font-normal",
-                  variant === "landing" && "text-gray-600 dark:text-gray-400",
+                  variant === "landing" && "text-gray-600 dark:text-zinc-400",
                   variant === "blog" &&
                     "text-refine-react-5 dark:text-refine-react-4",
                   "hover:no-underline",
-                  "hover:text-gray-800 dark:hover:text-gray-300",
+                  "hover:text-gray-800 dark:hover:text-zinc-200",
                 )}
               >
                 {menu.label}
@@ -328,7 +329,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
               "text-sm",
               "pr-6 landing-sm:pr-0",
               "leading-5",
-              variant === "landing" && "text-gray-900 dark:text-gray-0",
+              variant === "landing" && "text-gray-900 dark:text-white",
               variant === "blog" &&
                 "text-refine-react-8 dark:text-refine-react-3",
               "font-normal",
@@ -336,7 +337,7 @@ export const LandingFooter = ({ variant = "landing" }: Props) => {
           >
             {"© 2025, Refine from San Francisco to wherever you're with "}
             <HeartOutlinedIcon
-              className={clsx("ml-1", "text-refine-red", "inline", "leading-5")}
+              className={clsx("ml-1", "text-red-400", "inline", "leading-5")}
             />
           </div>
         </div>

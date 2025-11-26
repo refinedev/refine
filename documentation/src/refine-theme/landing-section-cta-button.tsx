@@ -24,21 +24,22 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
       onClick={onClick}
       className={clsx(
         className,
+        "tracking-[-0.004rem]",
         "select-none",
         "group/cta-button",
         "relative",
         "no-underline",
-        "rounded-full",
+        "rounded-lg",
         "flex",
         "items-center",
         "justify-center",
         "gap-2",
-        "py-2 pr-2 pl-4",
+        "py-3 pr-3 pl-6",
         "landing-sm:py-3 landing-sm:pr-4 landing-sm:pl-6",
         "text-xs landing-sm:text-base",
         "font-semibold",
-        "dark:text-refine-cyan-alt text-refine-blue",
-        "dark:bg-refine-cyan-alt/10 bg-refine-blue/10",
+        "dark:text-orange-400 text-refine-blue",
+        "dark:bg-[#3A261A] bg-refine-blue/10",
         "overflow-hidden",
       )}
     >
@@ -47,7 +48,7 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
       <div
         className={clsx(
           "select-none",
-          "rounded-3xl",
+          "rounded-lg",
           "absolute",
           "left-0",
           "top-0",

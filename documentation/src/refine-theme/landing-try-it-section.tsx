@@ -86,8 +86,9 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
         <h2
           className={clsx(
             "text-2xl landing-sm:text-[32px] landing-sm:leading-[40px]",
-            "font-bold",
-            "text-gray-900 dark:text-gray-0",
+            "font-semibold",
+            "tracking-normal",
+            "text-gray-900 dark:text-white",
           )}
         >
           Get started now!
@@ -96,7 +97,8 @@ export const LandingTryItSection = ({ className }: { className?: string }) => {
           className={clsx(
             "text-base",
             "font-normal",
-            "text-gray-600 dark:text-gray-400",
+            "tracking-[-0.004rem]",
+            "text-gray-600 dark:text-zinc-300",
             "landing-sm:max-w-[446px]",
           )}
         >
@@ -167,10 +169,10 @@ const LandingTryItOptionsSection = ({
           "flex",
           "flex-col",
           "gap-6 landing-sm:gap-10",
-          "pt-4 landing-sm:pt-10 landing-md:pt-16",
+          "pt-4 landing-sm:pt-8",
+          "pb-4 landing-sm:pb-8",
           "px-4 landing-sm:px-10",
-          "pb-14 landing-sm:pb-20 landing-md:pb-16",
-          "bg-gray-50 dark:bg-gray-800",
+          "bg-gray-50 dark:bg-zinc-800",
           "landing-md:bg-landing-wizard-option-bg-light dark:landing-md:bg-landing-wizard-option-bg-dark",
           "landing-md:bg-landing-wizard-option-left landing-md:bg-landing-wizard-option",
         )}
@@ -178,17 +180,17 @@ const LandingTryItOptionsSection = ({
           backgroundRepeat: "no-repeat, repeat",
         }}
       >
-        <p
+        <div
           className={clsx(
-            "text-base landing-sm:text-xl landing-md:text-base landing-lg:text-xl",
-            "font-semibold",
-            "text-gray-600 dark:text-gray-400",
+            "text-base landing-lg:text-2xl",
+            "text-gray-600 dark:text-white",
             "landing-md:max-w-[318px]",
             "landing-lg:max-w-[446px]",
           )}
         >
-          Use our online GUI to create, customize, and download.
-        </p>
+          <div>Use our online GUI to create,</div>
+          <div>customize, and download.</div>
+        </div>
         <button
           type="button"
           onClick={onClick}
@@ -196,11 +198,12 @@ const LandingTryItOptionsSection = ({
             "appearance-none",
             "focus:outline-none",
             "self-start",
-            "rounded-3xl",
-            "!text-gray-0 dark:!text-gray-900",
-            "bg-refine-blue dark:bg-refine-cyan-alt",
+            "rounded-lg",
+            "!text-gray-0 dark:!text-white",
+            "bg-refine-blue dark:bg-orange-500",
+            "pr-6",
+            "pl-3",
             "py-3",
-            "px-6",
             "flex",
             "items-center",
             "justify-center",
@@ -246,8 +249,8 @@ const LandingTryItOptionsSection = ({
             "landing-md:top-32 landing-md:-left-1",
             "landing-md:-translate-x-1/2",
             "landing-md:-translate-y-1/2",
-            "bg-gray-0 dark:bg-gray-900",
-            "text-gray-600 dark:text-gray-400",
+            "bg-gray-0 dark:bg-zinc-900",
+            "text-gray-600 dark:text-white",
             "w-16 h-16 landing-md:w-[78px] landing-md:h-[78px]",
             "rounded-full",
             "text-base",
@@ -264,10 +267,10 @@ const LandingTryItOptionsSection = ({
           "rounded-2xl landing-md:rounded-3xl",
           "flex flex-col",
           "landing-md:rounded-tl-none landing-md:rounded-bl-none",
-          "pb-4 landing-sm:pb-10 landing-md:pb-16",
+          "pt-4 landing-sm:pt-8",
+          "pb-4 landing-sm:pb-8",
           "px-4 landing-sm:px-10",
-          "pt-14 landing-sm:pt-20 landing-md:pt-16",
-          "bg-gray-50 dark:bg-gray-800",
+          "bg-gray-50 dark:bg-zinc-800",
           "landing-md:bg-landing-wizard-option-bg-light dark:landing-md:bg-landing-wizard-option-bg-dark",
           "landing-md:bg-landing-wizard-option-right landing-md:bg-landing-wizard-option",
           "landing-md:items-end",
@@ -285,17 +288,17 @@ const LandingTryItOptionsSection = ({
             "gap-6 landing-sm:gap-10",
           )}
         >
-          <p
+          <div
             className={clsx(
-              "text-base landing-sm:text-xl landing-md:text-base landing-lg:text-xl",
-              "font-semibold",
-              "text-gray-600 dark:text-gray-400",
+              "text-base landing-lg:text-2xl",
+              "text-gray-600 dark:text-white",
               "landing-lg:max-w-[446px]",
             )}
           >
-            Run the npm command in Terminal and follow the wizard instructions.
-          </p>
-          <LandingCopyCommandButton />
+            <div>Run the npm command in Terminal and</div>
+            <div>follow the wizard instructions.</div>
+          </div>
+          <LandingCopyCommandButton className={"dark:!bg-zinc-700"} />
         </div>
       </div>
     </div>
@@ -348,7 +351,7 @@ const LandingTryItWizardSection = ({
       <div
         className={clsx(
           "flex-1",
-          "bg-gray-0 dark:bg-gray-900",
+          "bg-gray-0 dark:bg-zinc-900",
           "opacity-0",
           visible && "opacity-100",
           "transition-[background-color,background,opacity]",
@@ -366,7 +369,7 @@ const LandingTryItWizardSection = ({
           "box-content",
           "flex-shrink-0",
           "rounded-2xl landing-md:rounded-3xl",
-          "bg-gray-50 dark:bg-gray-800",
+          "bg-gray-50 dark:bg-zinc-800",
           "border border-solid",
           "transition-[border-color,width,height,opacity,background-color]",
           "mx-auto",
@@ -377,8 +380,8 @@ const LandingTryItWizardSection = ({
           !visible && ["pointer-events-none", "select-none"],
           !visible && ["landing-md:border-transparent"],
           visible && [
-            "landing-md:border-gray-200 dark:border-gray-700",
-            "landing-md:bg-gray-50 dark:bg-gray-800",
+            "landing-md:border-gray-200 dark:border-zinc-700",
+            "landing-md:bg-gray-50 dark:bg-zinc-800",
           ],
           !visible && [
             "landing-md:opacity-0",
@@ -418,7 +421,7 @@ const LandingTryItWizardSection = ({
       <div
         className={clsx(
           "flex-1",
-          "bg-gray-0 dark:bg-gray-900",
+          "bg-gray-0 dark:bg-zinc-900",
           "opacity-0",
           visible && "opacity-100",
           "transition-[background-color,background,opacity]",

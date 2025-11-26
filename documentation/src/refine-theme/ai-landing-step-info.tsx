@@ -61,7 +61,7 @@ export const AiLandingStepInfo = ({
         </div>
         <div
           className={clsx(
-            "dark:text-gray-400 text-gray-600",
+            "dark:text-zinc-300 text-gray-600",
             "max-w-[444px]",
             "mt-5",
           )}

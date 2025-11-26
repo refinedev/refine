@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import React, { type FC } from "react";
+import React, { type SVGProps, type FC } from "react";
 import {
   AccessControlIcon,
   BlackBoxIcon,
@@ -9,7 +9,10 @@ import {
   SupportIcon,
 } from "../components/landing/icons";
 
-import { LandingSectionCtaButtonAlt } from "./landing-section-cta-button";
+import {
+  LandingSectionCtaButton,
+  LandingSectionCtaButtonAlt,
+} from "./landing-section-cta-button";
 
 const list = [
   {
@@ -60,52 +63,43 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
       <div className={clsx("not-prose", "w-full", "px-4 landing-md:px-10")}>
         <h2
           className={clsx(
+            "tracking-normal",
+            "flex",
+            "items-center",
+            "gap-3",
+            "font-medium",
             "text-2xl landing-sm:text-[32px] landing-sm:leading-[40px]",
             "tracking-tight",
             "text-start",
             "p-0",
-            "dark:text-gray-0 text-gray-900",
+            "dark:text-white text-gray-900",
           )}
         >
           Enterprise developers{" "}
-          <span className="font-sans text-[#FE251B] drop-shadow-[0_0_30px_rgba(254,37,27,0.3)]">
-            ❤️
-          </span>{" "}
+          <span>
+            <HeartIcon />
+          </span>
+          <span className={clsx("font-medium")}>Refine</span>
           <span
             className={clsx(
-              "font-semibold",
-              "dark:text-refine-cyan-alt dark:drop-shadow-[0_0_30px_rgba(71,235,235,0.25)]",
+              "font-bold",
+              "font-jetBrains-mono",
+              "dark:text-orange-400 dark:drop-shadow-none",
               "text-refine-blue drop-shadow-[0_0_30px_rgba(0,128,255,0.3)]",
             )}
           >
-            Refine
+            CORE
           </span>
-          .
         </h2>
-        <p
-          className={clsx(
-            "mt-4 landing-sm:mt-6",
-            "max-w-md",
-            "text-base",
-            "dark:text-gray-400 text-gray-600",
-          )}
-        >
-          Refine is designed to target the specific pain points of larger
-          organizations by giving top priority to{" "}
-          <span className="font-semibold text-gray-900 dark:text-gray-0">
-            security
-          </span>
-          .
-        </p>
       </div>
 
       <div
         className={clsx(
-          "mt-8 landing-sm:mt-12 landing-lg:mt-20",
+          "mt-8 landing-sm:mt-12",
           "grid",
           "grid-cols-1 landing-md:grid-cols-2 landing-lg:grid-cols-3",
-          "gap-4 landing-sm:gap-12 landing-md:gap-6",
-          "mb-4 landing-sm:mb-12 landing-md:mb-6",
+          "gap-1",
+          "mb-6",
         )}
       >
         {list.map((item, index) => {
@@ -118,27 +112,28 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
                 "flex",
                 "flex-col landing-sm:flex-row landing-md:flex-col",
                 "items-start",
-                "gap-6",
-                "dark:bg-landing-noise",
-                "dark:bg-gray-800 bg-gray-50",
-                "rounded-2xl landing-sm:rounded-3xl",
+                "dark:bg-zinc-800 bg-gray-50",
+                "rounded-xl",
+                "gap-10",
               )}
             >
               <div>{item.icon}</div>
               <div className={clsx("flex", "flex-col", "gap-4")}>
                 <div
                   className={clsx(
-                    "text-xl",
+                    "text-base",
+                    "tracking-[-0.004rem]",
                     "font-semibold",
-                    "text-gray-900 dark:text-gray-0",
+                    "text-gray-900 dark:text-white",
                   )}
                 >
                   {item.title}
                 </div>
                 <div
                   className={clsx(
-                    "text-base",
-                    "dark:text-gray-400 text-gray-600",
+                    "text-sm",
+                    "tracking-[-0.007rem]",
+                    "dark:text-zinc-300 text-gray-600",
                   )}
                 >
                   {item.description}
@@ -149,9 +144,31 @@ export const LandingEnterpriseDevelopers: FC<Props> = ({ className }) => {
         })}
       </div>
 
-      <LandingSectionCtaButtonAlt to="/enterprise">
+      <LandingSectionCtaButton
+        to="/enterprise"
+        className={clsx("w-max", "mx-auto")}
+      >
         Check out Enterprise Edition
-      </LandingSectionCtaButtonAlt>
+      </LandingSectionCtaButton>
     </div>
   );
 };
+
+const HeartIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={40}
+    height={40}
+    fill="none"
+    {...props}
+  >
+    <path
+      fill="#450A0A"
+      stroke="#F87171"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2.5}
+      d="M31.667 23.333c2.483-2.433 5-5.35 5-9.166A9.167 9.167 0 0 0 27.5 5c-2.933 0-5 .833-7.5 3.333C17.5 5.833 15.433 5 12.5 5a9.167 9.167 0 0 0-9.167 9.167c0 3.833 2.5 6.75 5 9.166L20 35l11.667-11.667Z"
+    />
+  </svg>
+);
