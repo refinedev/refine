@@ -426,7 +426,7 @@ useTable({
 
 ### queryOptions
 
-`useTable` uses the [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) to it like this:
+`useTable` uses the [`useList`](/docs/data/hooks/use-list) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/latest/docs/react/reference/useQuery) to it like this:
 
 ```tsx
 useTable({

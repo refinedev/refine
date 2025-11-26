@@ -136,5 +136,5 @@ const MyComponent = () => {
 [access-control-provider]: /docs/authorization/access-control-provider
 [use-query]: https://tanstack.com/query/latest/docs/react/guides/queries
 [tanstack-query]: https://tanstack.com/query/latest
-[query-options]: https://tanstack.com/query/v4/docs/react/reference/useQuery
+[query-options]: https://tanstack.com/query/latest/docs/react/reference/useQuery
 [can-params]: /docs/core/interface-references#canparams

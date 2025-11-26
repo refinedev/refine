@@ -213,7 +213,7 @@ useSelect({
 });
 ```
 
-> For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation &#8594](https://tanstack.com/query/latest/docs/react/reference/useQuery)
 
 ### pagination
 

@@ -215,7 +215,7 @@ type GraphQLQueryOptions = {
 
 ### QueryFunctionContext
 
-Context to be passed to the query function. Refer to [Query Function Context](https://tanstack.com/query/v4/docs/guides/query-functions#queryfunctioncontext) for more information.
+Context to be passed to the query function. Refer to [Query Function Context](https://tanstack.com/query/latest/docs/react/guides/query-functions#queryfunctioncontext) for more information.
 
 ### QueryBuilderOptions
 

@@ -4,7 +4,7 @@ siderbar_label: useUpdateMany
 source: packages/core/src/hooks/data/useUpdateMany.ts
 ---
 
-`useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/v4/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
+`useUpdateMany` is an extended version of TanStack Query's [`useMutation`](https://tanstack.com/query/latest/docs/react/reference/useMutation). It supports all the features of `useMutation` and adds some extra features.
 
 - It uses the `updateMany` method as the **mutation function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine />`.
 
@@ -47,7 +47,7 @@ When the `useUpdateMany` mutation runs successfully, it will call the `publish` 
 
 When the `useUpdateMany` mutation runs successfully, by default it will invalidate the following queries from the current `resource`: `"list"`, `"many"`, and `"detail"`. That means, if you use `useList`, `useMany`, or `useOne` hooks on the same page, they will refetch the data after the mutation is completed. You can change this behavior by passing [`invalidates`](#invalidates) prop.
 
-[Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/guides/query-invalidation)
+[Refer to the query invalidation documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/guides/query-invalidation)
 
 ## Properties
 
@@ -55,7 +55,7 @@ When the `useUpdateMany` mutation runs successfully, by default it will invalida
 
 `mutationOptions` is used to pass options to the `useMutation` hook. It is useful when you want to pass additional options to the `useMutation` hook.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
+[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
 
 ```tsx
 useUpdateMany({
@@ -460,7 +460,7 @@ mutate({
 
 Returns an object with TanStack Query's `useMutation` return values.
 
-[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/v4/docs/react/reference/useMutation)
+[Refer to the `useMutation` documentation for more information &#8594](https://tanstack.com/query/latest/docs/react/reference/useMutation)
 
 ### Additional Values
 
@@ -504,11 +504,11 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 ### Return value
 
-| Property    | Description                                | Type                                                                                                                                                                                      |
-| ----------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; ids: BaseKey[]; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/v4/docs/react/reference/useMutation)\* |
-| mutate      | Mutation function                          | `(params?: { resource?: string, ids?: BaseKey[], values?: TVariables, ... }) => void`                                                                                                     |
-| mutateAsync | Async mutation function                    | `(params?: { resource?: string, ids?: BaseKey[], values?: TVariables, ... }) => Promise<{ data: TData }>`                                                                                 |
-| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                                                |
+| Property    | Description                                | Type                                                                                                                                                                                          |
+| ----------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mutation    | Result of the TanStack Query's useMutation | [`UseMutationResult<{ data: TData }, TError, { resource:string; ids: BaseKey[]; values: TVariables; }, UpdateContext>`](https://tanstack.com/query/latest/docs/react/reference/useMutation)\* |
+| mutate      | Mutation function                          | `(params?: { resource?: string, ids?: BaseKey[], values?: TVariables, ... }) => void`                                                                                                         |
+| mutateAsync | Async mutation function                    | `(params?: { resource?: string, ids?: BaseKey[], values?: TVariables, ... }) => Promise<{ data: TData }>`                                                                                     |
+| overtime    | Overtime loading information               | `{ elapsedTime?: number }`                                                                                                                                                                    |
 
 > `*` `UpdateContext` is an internal type.

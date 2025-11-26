@@ -859,7 +859,7 @@ If you have overlapping properties in both `meta` and `mutationMeta`, the `mutat
 
 Works only in the `action: "edit"` or `action: "clone"` modes.
 
-in `edit` or `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/v4/docs/react/reference/useQuery) options by passing the `queryOptions` property.
+in `edit` or `clone` modes, Refine uses [`useOne`](/docs/data/hooks/use-one) hook to fetch data. You can pass the [`queryOptions`](https://tanstack.com/query/latest/docs/react/reference/useQuery) options by passing the `queryOptions` property.
 
 ```tsx
 useForm({
@@ -873,7 +873,7 @@ useForm({
 
 ### createMutationOptions
 
-In `create` or `clone` modes, Refine uses [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `createMutationOptions` property. This option is only available when `action: "create"` or `action: "clone"`.
+In `create` or `clone` modes, Refine uses [`useCreate`](/docs/data/hooks/use-create) hook to create data. You can pass the [`mutationOptions`](https://tanstack.com/query/latest/docs/react/reference/useMutation) by passing `createMutationOptions` property. This option is only available when `action: "create"` or `action: "clone"`.
 
 ```tsx
 useForm({
@@ -887,7 +887,7 @@ useForm({
 
 ### updateMutationOptions
 
-In `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/v4/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This option is only available when `action: "edit"`.
+In `edit` mode, Refine uses [`useUpdate`](/docs/data/hooks/use-update) hook to update data. You can pass [`mutationOptions`](https://tanstack.com/query/latest/docs/react/reference/useMutation) by passing `updateMutationOptions` property. This option is only available when `action: "edit"`.
 
 ```tsx
 useForm({

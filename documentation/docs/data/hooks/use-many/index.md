@@ -6,7 +6,7 @@ source: packages/core/src/hooks/data/useMany.ts
 
 import BasicUsageLivePreview from "./\_basic-usage-live-preview.md";
 
-`useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/v4/docs/react/reference/useQuery) that supports all of its features and adds some more.
+`useMany` is an extended version of TanStack Query's [`useQuery`](https://tanstack.com/query/latest/docs/react/reference/useQuery) that supports all of its features and adds some more.
 
 - It uses the `getMany` method as the **query function** from the [`dataProvider`](/docs/data/data-provider) which is passed to `<Refine>`.
 
@@ -81,7 +81,7 @@ useMany({
 });
 ```
 
-> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [`useQuery` documentation&#8594](https://tanstack.com/query/latest/docs/react/reference/useQuery)
 
 ### meta
 
@@ -229,7 +229,7 @@ console.log(overtime.elapsedTime); // undefined, 1000, 2000, 3000 4000, ...
 
 Returns an object with TanStack Query's `useQuery` return values.
 
-> For more information, refer to the [ `useQuery` documentation &#8594](https://tanstack.com/query/v4/docs/react/reference/useQuery)
+> For more information, refer to the [ `useQuery` documentation &#8594](https://tanstack.com/query/latest/docs/react/reference/useQuery)
 
 ### Additional Values
 
@@ -262,10 +262,10 @@ errorNotification-default='"Error (status code: `statusCode`)"'
 
 ### Return values
 
-| Description                               | Type                                                                                                                   |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; error: TError }>`](https://tanstack.com/query/v4/docs/react/reference/useQuery) |
-| overtime                                  | `{ elapsedTime?: number }`                                                                                             |
+| Description                               | Type                                                                                                                       |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Result of the TanStack Query's `useQuery` | [`QueryObserverResult<{ data: TData[]; error: TError }>`](https://tanstack.com/query/latest/docs/react/reference/useQuery) |
+| overtime                                  | `{ elapsedTime?: number }`                                                                                                 |
 
 [baserecord]: /docs/core/interface-references#baserecord
 [httperror]: /docs/core/interface-references#httperror
