@@ -7,6 +7,7 @@ export type DocSearchButtonProps = React.ComponentProps<"button"> & {
   iconClassName?: string;
   placeholder?: string;
   shortcutClassName?: string;
+  variant?: "landing" | "doc";
 };
 
 export const DocSearchButton = React.forwardRef<
@@ -19,10 +20,13 @@ export const DocSearchButton = React.forwardRef<
     className,
     placeholder,
     shortcutClassName,
+    variant = "doc",
     ...props
   },
   ref,
 ) {
+  const isLanding = variant === "landing";
+
   return (
     <button
       ref={ref}
@@ -35,9 +39,12 @@ export const DocSearchButton = React.forwardRef<
         "transition-[filter]",
         "duration-200",
         "ease-in-out",
-        "bg-gray-100 dark:bg-zinc-800",
-        "text-gray-500 dark:text-zinc-300",
         "rounded-lg",
+        isLanding && "bg-zinc-800",
+        isLanding && "text-zinc-300",
+        !isLanding && "bg-transparent",
+        !isLanding && "text-gray-500 dark:text-zinc-300",
+        !isLanding && "border border-gray-300 dark:border-zinc-700",
         {
           "justify-center": iconOnly,
           "hover:brightness-110": iconOnly,
@@ -57,8 +64,10 @@ export const DocSearchButton = React.forwardRef<
           </span>
           <div
             className={clsx(
-              "bg-gray-0 dark:bg-zinc-900",
-              "text-gray-500 dark:text-zinc-400",
+              isLanding && "bg-zinc-900",
+              isLanding && "text-zinc-400",
+              !isLanding && "bg-gray-50 dark:bg-zinc-900",
+              !isLanding && "text-gray-500 dark:text-zinc-400",
               "py-0.5 px-1.5",
               "rounded-[0.25rem]",
               "text-xs",

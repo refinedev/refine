@@ -39,6 +39,10 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
         "text-xs landing-sm:text-base",
         "font-semibold",
         "text-orange-400",
+        "hover:text-orange-300",
+        "transition-colors",
+        "duration-300",
+        "ease-in-out",
         "bg-[#3A261A]",
         "overflow-hidden",
       )}
@@ -49,67 +53,6 @@ export const LandingSectionCtaButton: FC<PropsWithChildren<Props>> = ({
         className={clsx(
           "select-none",
           "rounded-lg",
-          "absolute",
-          "left-0",
-          "top-0",
-          "w-full",
-          "h-full",
-          "scale-[2]",
-          "origin-center",
-          "transition-[opacity,transform]",
-          "duration-300",
-          "ease-in-out",
-          "opacity-0",
-          "group-hover/cta-button:opacity-100",
-          "group-hover/cta-button:scale-100",
-          "pointer-events-none",
-          "bg-landing-copy-command-hover-bg-dark",
-        )}
-      />
-    </Link>
-  );
-};
-
-export const LandingSectionCtaButtonAlt: FC<PropsWithChildren<Props>> = ({
-  children,
-  className,
-  to,
-  onClick,
-  icon,
-}) => {
-  return (
-    <Link
-      to={to}
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={onClick}
-      className={clsx(
-        className,
-        "select-none",
-        "landing-sm:max-w-[293px]",
-        "mx-auto",
-        "group/cta-button",
-        "relative",
-        "no-underline",
-        "rounded-full",
-        "flex",
-        "items-center",
-        "justify-center",
-        "gap-2",
-        "py-3 pr-4 pl-6",
-        "text-base",
-        "font-semibold",
-        "text-refine-blue",
-        "bg-refine-blue/10",
-        "overflow-hidden",
-      )}
-    >
-      {children}
-      {icon || <DefaultIcon />}
-      <div
-        className={clsx(
-          "select-none",
-          "rounded-3xl",
           "absolute",
           "left-0",
           "top-0",

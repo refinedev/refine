@@ -12,7 +12,6 @@ import { LandingGithubStarButton } from "./landing-github-star-button";
 import SearchBar from "../theme/SearchBar";
 import { RefineCoreLogoIcon } from "./icons/refine-logo";
 import { DocSearchButton } from "@site/src/refine-theme/doc-search-button";
-import { CommonThemeToggle } from "./common-theme-toggle";
 
 type Props = {
   hasSticky?: boolean;
@@ -131,32 +130,21 @@ export const CommonHeader = ({
                       <DocSearchButton
                         ref={ref}
                         {...props}
-                        className={clsx(
-                          "hidden",
-                          "landing-lg:flex",
-                          "bg-zinc-800",
-                          "text-zinc-300",
-                        )}
-                        shortcutClassName={clsx("bg-zinc-900", "text-zinc-400")}
+                        className={clsx("hidden", "landing-lg:flex")}
+                        variant="landing"
                       />
                       <DocSearchButton
                         ref={ref}
                         iconOnly
                         {...props}
-                        className={clsx(
-                          "flex",
-                          "landing-lg:hidden",
-                          "bg-zinc-800",
-                          "text-zinc-300",
-                        )}
-                        shortcutClassName={clsx("bg-zinc-900", "text-zinc-400")}
+                        className={clsx("flex", "landing-lg:hidden")}
+                        variant="landing"
                       />
                     </>
                   );
                 })}
               />
               <LandingGithubStarButton />
-              <CommonThemeToggle />
             </div>
           </div>
         </div>

@@ -9,10 +9,7 @@ import {
   SupportIcon,
 } from "../components/landing/icons";
 
-import {
-  LandingSectionCtaButton,
-  LandingSectionCtaButtonAlt,
-} from "./landing-section-cta-button";
+import { LandingSectionCtaButton } from "./landing-section-cta-button";
 
 const list = [
   {
