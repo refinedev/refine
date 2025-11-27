@@ -8,7 +8,7 @@ import { DocSearchButton } from "./doc-search-button";
 import { DocSidebarModal } from "./doc-sidebar-modal";
 import { DocVersionDropdown } from "./doc-version-dropdown";
 import { TopAnnouncement } from "./top-announcement";
-import { RefineCoreLogoIcon } from "./icons/refine-logo";
+import { DocRefineLogo } from "./doc-refine-logo";
 
 export const HEADER_HEIGHT = 65;
 
@@ -37,7 +37,7 @@ export const DocHeader = () => {
 const Desktop = () => {
   return (
     <div className={clsx("w-full", "hidden lg:flex items-center", "mx-auto")}>
-      <RefineCoreLogoIcon />
+      <DocRefineLogo />
       <div
         className={clsx(
           "flex-1",
@@ -88,7 +88,7 @@ export const Mobile = () => {
     <div
       className={clsx("w-full", "flex lg:hidden items-center justify-between")}
     >
-      <RefineCoreLogoIcon />
+      <DocRefineLogo />
       <div className={clsx("flex items-center gap-4")}>
         <SearchBar
           CustomButton={React.forwardRef<
